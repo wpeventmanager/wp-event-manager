@@ -132,6 +132,8 @@ Thanks to all of our contributors.
 Use the WordPress.org forums for community support where we try to help all users. If you spot a bug, you can log it (or fix it) on [Support](https://wordpress.org/support/plugin/wp-event-manager) where we can act upon them more efficiently.
 
 
+If you need help with one of our add-ons, [please contact us](http://www.wp-eventmanager.com/contact/).
+
 
 If you want help with a customisation, please consider hiring a developer! [http://jobs.wordpress.net/](http://jobs.wordpress.net/) is a good place to start.
 
@@ -191,9 +193,28 @@ Once installed:
 == Frequently Asked Questions ==
 
 
-= Can I use WP Event Manager without frontend event submission? =
+
+= How do I setup WP Event Manager? =
+
+View the getting [installation](http://www.gamthemes.com/plugins-documentation/wp-event-manager/installation/) and [setup](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/setting-up-wp-event-manager/) guide for advice getting started with the plugin. In most cases it's just a case of adding some shortcodes to your pages!
+
+
+
+= Can I use GAM Event Manager without frontend event submission? =
 
 Yes! If you don't setup the [submit_event_form] shortcode, you can just post from the admin backend.
+
+
+= How can I customize the event submission form? =
+
+There are three ways to customize the fields in WP Event Manager;
+
+
+1. For simple text changes, using a localisation file or a plugin such as https://wordpress.org/plugins/say-what/
+
+2. For field changes, or adding new fields, using functions/filters inside your theme's functions.php file: [http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/editing-event-submission-form-fields/)
+
+3. Use a 3rd party plugin which has a UI for field editing.
 
 
 
@@ -207,9 +228,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 
-
 == Screenshots ==
-
 
 
 1. The submit event form.
@@ -224,7 +243,9 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 6. Event listings in admin.
 
+
 == Changelog ==
+
 
 = 1.0 =
 
