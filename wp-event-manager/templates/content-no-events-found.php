@@ -1,0 +1,1 @@
+<?php if ( defined( 'DOING_AJAX' ) ) : ?>	<li class="no_event_listings_found"><?php _e( 'There are no events matching your search.', 'wp-event-manager' ); ?></li><?php else : ?>	<p class="no_event_listings_found"><?php _e( 'There are currently no events.', 'wp-event-manager' ); ?></p><?php endif; ?>

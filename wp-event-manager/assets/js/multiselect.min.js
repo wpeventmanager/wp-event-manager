@@ -1,0 +1,1 @@
+var MultiSelect=function(){return{init:function(){Common.logInfo("MultiSelect.init...");jQuery(".event-manager-multiselect").chosen({search_contains:!0})}}};MultiSelect=MultiSelect();jQuery(document).ready(function($){MultiSelect.init()});
