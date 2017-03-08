@@ -126,7 +126,7 @@ class WP_Event_Manager {
 
 	public function updater() {
 
-		if ( version_compare( EVENT_MANAGER_VERSION, get_option( 'gam_event_manager_version' ), '>' ) ) {
+		if ( version_compare( EVENT_MANAGER_VERSION, get_option( 'wp_event_manager_version' ), '>' ) ) {
 
 			WP_Event_Manager_Install::install();
 

@@ -1,6 +1,6 @@
 <?php
 /*
-* This file is use to create a sortcode of gam event manager plugin. 
+* This file is use to create a sortcode of wp event manager plugin. 
 * This file include sortcode of event listing,event submit form and event dashboard etc.
 */
 ?>

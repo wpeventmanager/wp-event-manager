@@ -231,18 +231,18 @@ a { text-decoration: none !important; }
 .widefat .column-event_actions .icon-approve:before {
 	content:'\e802'
 }
-.gam_event_manager_meta_data {
+.wp_event_manager_meta_data {
 	padding:12px;
 	zoom:1
 }
-.gam_event_manager_meta_data:after, .gam_event_manager_meta_data:before {
+.wp_event_manager_meta_data:after, .wp_event_manager_meta_data:before {
 	content:"";
 	display:table
 }
-.gam_event_manager_meta_data:after {
+.wp_event_manager_meta_data:after {
 	clear:both
 }
-.gam_event_manager_meta_data .form-field {
+.wp_event_manager_meta_data .form-field {
 	width:50%;
 	line-height:2em;
 	float:left;
@@ -251,29 +251,29 @@ a { text-decoration: none !important; }
 	margin:0 0 12px;
 	clear:both
 }
- .gam_event_manager_meta_data .form-field:nth-child(even) {
+ .wp_event_manager_meta_data .form-field:nth-child(even) {
 float:right;
 padding:0 0 0 12px;
 clear:right
 }
-.gam_event_manager_meta_data .form-field:nth-last-child(-n+2) {
+.wp_event_manager_meta_data .form-field:nth-last-child(-n+2) {
 margin-bottom:0;
 padding-bottom:0;
 border-bottom:0
 }
-.gam_event_manager_meta_data .form-field label {
+.wp_event_manager_meta_data .form-field label {
 	vertical-align:middle;
 	display:block;
 	font-weight:700;
 	margin:0
 }
-.gam_event_manager_meta_data .form-field .tips {
+.wp_event_manager_meta_data .form-field .tips {
 	cursor:help;
 	float:right;
 	font-weight:400;
 	color:#999
 }
-.gam_event_manager_meta_data .form-field input {
+.wp_event_manager_meta_data .form-field input {
 	width:100%;
 	margin:1px 0;
 	-webkit-box-sizing:border-box;
@@ -281,22 +281,22 @@ border-bottom:0
 	box-sizing:border-box;
 	vertical-align:middle
 }
-.gam_event_manager_meta_data .form-field input.checkbox, .gam_event_manager_meta_data .form-field input.radio {
+.wp_event_manager_meta_data .form-field input.checkbox, .wp_event_manager_meta_data .form-field input.radio {
 	width:auto;
 	margin:4px 2px;
 	display:inline-block
 }
-.gam_event_manager_meta_data .form-field .description {
+.wp_event_manager_meta_data .form-field .description {
 	display:block;
 	color:#999
 }
-.gam_event_manager_meta_data .form-field.form-field-checkbox .description {
+.wp_event_manager_meta_data .form-field.form-field-checkbox .description {
 	display:inline
 }
-.gam_event_manager_meta_data .form-field .file_url input {
+.wp_event_manager_meta_data .form-field .file_url input {
 	width:75%
 }
-.gam_event_manager_meta_data .form-field .button {
+.wp_event_manager_meta_data .form-field .button {
 	margin-left:4px
 }
 #tiptip_holder {
@@ -363,7 +363,7 @@ border-bottom:0
 	margin-left:-7px;
 	border-left-color:#464646
 }
-.gam_event_manager_addons_wrap #event-manager-addons-banner {
+.wp_event_manager_addons_wrap #event-manager-addons-banner {
 	position:relative;
 	background:#095179;
 	padding:0 2em 0 5em;
@@ -372,7 +372,7 @@ border-bottom:0
 	border-color:rgba(0, 0, 0, .1);
 	overflow:hidden
 }
-.gam_event_manager_addons_wrap #event-manager-addons-banner strong {
+.wp_event_manager_addons_wrap #event-manager-addons-banner strong {
 	font-size:1.25em;
 	line-height:.8em;
 	text-shadow:0 2px 0 rgba(0, 0, 0, .1);
@@ -380,7 +380,7 @@ border-bottom:0
 	float:left;
 	padding:1.6em 0
 }
-.gam_event_manager_addons_wrap #event-manager-addons-banner a.button {
+.wp_event_manager_addons_wrap #event-manager-addons-banner a.button {
 	color:#fff;
 	text-decoration:none;
 	font-weight:700;
@@ -395,7 +395,7 @@ border-bottom:0
 	height:auto;
 	position:relative
 }
-/*.gam_event_manager_addons_wrap #event-manager-addons-banner:before {
+/*.wp_event_manager_addons_wrap #event-manager-addons-banner:before {
 	display:inline-block;
 	-webkit-font-smoothing:antialiased;
 	vertical-align:top;
@@ -412,10 +412,10 @@ border-bottom:0
 	height:1em;
 	line-height:1em
 }*/
-.gam_event_manager_addons_wrap .products {
+.wp_event_manager_addons_wrap .products {
 	overflow:hidden
 }
-.gam_event_manager_addons_wrap .products li {
+.wp_event_manager_addons_wrap .products li {
 	display:inline-block;
 	margin:0 1% 10px 0!important;
 	padding:0;
@@ -432,14 +432,14 @@ border-bottom:0
 	position:relative;
 	opacity:.8
 }
-.gam_event_manager_addons_wrap .products li:nth-child(4n+0) {
+.wp_event_manager_addons_wrap .products li:nth-child(4n+0) {
 margin-right:0!important
 }
-.gam_event_manager_addons_wrap .products li a {
+.wp_event_manager_addons_wrap .products li a {
 	color:inherit;
 	text-decoration:none
 }
-.gam_event_manager_addons_wrap .products li img {
+.wp_event_manager_addons_wrap .products li img {
 	width:100%;
 	height:auto;
 	display:block;
@@ -448,7 +448,7 @@ margin-right:0!important
 	background:#fff;
 	border-bottom:1px solid rgba(0, 0, 0, .1)
 }
-.gam_event_manager_addons_wrap .products li h2 {
+.wp_event_manager_addons_wrap .products li h2 {
 	margin:0!important;
 	padding:10px 0!important;
 	line-height:1;
@@ -464,30 +464,30 @@ margin-right:0!important
 	text-shadow:none;
 	display:none
 }
-.gam_event_manager_addons_wrap .products li:focus, .gam_event_manager_addons_wrap .products li:hover {
+.wp_event_manager_addons_wrap .products li:focus, .wp_event_manager_addons_wrap .products li:hover {
 	opacity:1
 }
-.gam_event_manager_addons_wrap .products li:focus h2, .gam_event_manager_addons_wrap .products li:hover h2 {
+.wp_event_manager_addons_wrap .products li:focus h2, .wp_event_manager_addons_wrap .products li:hover h2 {
 	display:block
 }
-.gam_event_manager_addons_wrap .products li .third_party {
+.wp_event_manager_addons_wrap .products li .third_party {
 	display:none
 }
-.gam_event_manager_addons_wrap .products li p {
+.wp_event_manager_addons_wrap .products li p {
 	padding:20px!important;
 	margin:0!important;
 	border-top:1px solid #f1f1f1
 }
-.gam_event_manager_addons_wrap .products li .price {
+.wp_event_manager_addons_wrap .products li .price {
 	display:none
 }
 .rtl .widefat .column-event_actions a.button-icon:before {
 	float:right
 }
-.rtl .gam_event_manager_meta_data p {
+.rtl .wp_event_manager_meta_data p {
 	padding:0 20% 0 0
 }
-.rtl .gam_event_manager_meta_data label {
+.rtl .wp_event_manager_meta_data label {
 	left:auto;
 	right:0
 }

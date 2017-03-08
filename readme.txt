@@ -1,12 +1,12 @@
 === WP Event Manager ===
 
-Contributors: ashokdudhat
+Contributors: ashokdudhat,gamthemes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 
-Tags: event manager, event listing, event board, event manager wordpress,event management, event lists, event list, event, events, organizer, attendees, event registration, event listings, registration, listing, manager,calendar, class, concert, conference, date, dates, event, events, google maps, meeting, gam themes, Organizer, seminar, summit, gam, list, ajax, cross browser,google map, venue, widget, workshop,event registration management,booking management,event calendar
+Tags: wp event manager, wp, event manager, event listing, event board, event manager wordpress,event management, event lists, event list, event, events, organizer, attendees, event registration, event listings, registration, listing, manager,calendar, class, concert, conference, date, dates, event, events, google maps, meeting, gam themes, Organizer, seminar, summit, gam, list, ajax, cross browser,google map, venue, widget, workshop,event registration management,booking management,event calendar
 
 Requires at least: 4.1
-Tested up to: 4.7.2
+Tested up to: 4.7.3
 Stable tag: 1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -45,8 +45,8 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 > * Widgets for Recents, Upcomming, Featured Events
 > * Plenty of template tags and shortcodes for use in your posts and pages
 > * Caching Support
-> * Developer friendly code — Custom Post Types, endpoints & template files.
-> * Singleton Javascript & Ajax — Save memory at client side.
+> * Developer friendly code, Custom Post Types, endpoints & template files.
+> * Singleton Javascript, Ajax & Save memory at client side.
 > * Debug Mode for Developers
 > * Actively maintained and supported
 > * Lots of documentation and tutorials
@@ -66,7 +66,7 @@ Documentation for the core plugin and add-ons can be found [on the docs site her
 
 
 
-The core GAM Event Manager plugin is free and always will be. It covers all functionality we consider 'core' to running a simple event listing site.
+The core WP Event Manager plugin is free and always will be. It covers all functionality we consider 'core' to running a simple event listing site.
 
 
 
@@ -78,29 +78,29 @@ You can browse available add-ons after installing the plugin by going to `Event 
 
 > **Pro Add-ons Plugin Features**
 >
-> * **[Registrations](http://www.wp-eventmanager.com/shop/registrations/)**
+> * **[Registrations](http://www.wp-eventmanager.com/plugins/wp-event-manager-registrations/)**
 >  Allow attendees to register to events using a form & organizers to view and manage the registrations from their event dashboard.
-> * **[WooCommerce Sell Tickets](http://www.wp-eventmanager.com/shop/sell-tickets/)**
+> * **[WooCommerce Sell Tickets](http://www.wp-eventmanager.com/plugins/wp-event-manager-sell-tickets/)**
 > Sell tickets for your events and keep track of them. Event Sell Tickets addon runs on the most popular ecommerce system for WordPress powered by WooCommerce. Create multiple event tickets which can be purchased or redeemed during event submission. Requires the WooCommerce plugin.
-> * **[Event Alerts](http://www.wp-eventmanager.com/shop/event-alerts/)**
+> * **[Event Alerts](http://www.wp-eventmanager.com/plugins/wp-event-manager-alerts/)**
 > Allow registered users to save their event searches and create alerts which send new events via email daily, weekly or fortnightly.
-> * **[Bookmarks](http://www.wp-eventmanager.com/shop/bookmarks/)**
+> * **[Bookmarks](http://www.wp-eventmanager.com/plugins/wp-event-manager-bookmarks/)**
 > Attendees/User can bookmark events and organizer can bookmark attendees/user using Bookmarks Plugin. Only logged in users can bookmarks. User can give an note while bookmark and this note is optional.
-> *  **[Embeddable Event Widget](http://www.wp-eventmanager.com/shop/embeddable-event-widget/)**
-> Event Listing Owner (Organizer/User) can generate embed code using Embeddable Event Widget plugin. This embed code can display organizerÕs event listings wherever they use this code.
-> *  **[Sliders](http://www.wp-eventmanager.com/shop/sliders/)**
+> *  **[Embeddable Event Widget](http://www.wp-eventmanager.com/plugins/wp-event-manager-embeddable-event-widget/)**
+> Event Listing Owner (Organizer/User) can generate embed code using Embeddable Event Widget plugin. This embed code can display organizer&#39;s event listings wherever they use this code.
+> *  **[Sliders](http://www.wp-eventmanager.com/plugins/wp-event-manager-sliders/)**
 > Use owl carousel and other type of sliders for your listings. The sliders are totally responsive.
-> * **[Organizers](http://www.wp-eventmanager.com/shop/organizers/)**
+> * **[Organizers](http://www.wp-eventmanager.com/plugins/wp-event-manager-organizers/)**
 > Organizers add-on display grouped and alphabetized list of all the organizers.It also display total active events and total organizers.
-> * **[Contact Organizer](http://www.wp-eventmanager.com/shop/contact-organizer/)**
+> * **[Contact Organizer](http://www.wp-eventmanager.com/plugins/wp-event-manager-contact-organizer/)**
 > You can contact to the organizer via contact form. You can also create own email template for sending mail to organizer.
-> * **[Emails](http://www.wp-eventmanager.com/shop/emails/)**
+> * **[Emails](http://www.wp-eventmanager.com/plugins/wp-event-manager-emails/)**
 > You can create own email template for the user activity like Changes the default user registration email templates. When new user register then send mail with own defined template.
-> * **[Event Tags](http://www.wp-eventmanager.com/shop/event-tags/)**
-> Using the Event Tags plugin you can add a new Ôevent tagsÕ field to the submit process, show events filtered by tag via shortcodes, and add tag filtering to the standard events shortcode.
+> * **[Event Tags](http://www.wp-eventmanager.com/plugins/wp-event-manager-event-tags/)**
+> Using the Event Tags plugin you can add a new event tags field to the submit process, show events filtered by tag via shortcodes, and add tag filtering to the standard events shortcode.
 > * **[Google Analytics](http://www.wp-eventmanager.com/shop/google-analytics/)**
 > This Google Analytics plugin enables you to track your site using the latest Google Analytics tracking code and allows you to view key Google Analytics reports at your google analytics account.
-> * **[Logs](http://www.wp-eventmanager.com/shop/event-logs/)**
+> * **[Logs](http://www.wp-eventmanager.com/plugins/wp-event-manager-event-logs/)**
 > You can make enable or disable debugging and trace javascript and other files with this plugin.
 
 
@@ -196,11 +196,11 @@ Once installed:
 
 = How do I setup WP Event Manager? =
 
-View the getting [installation](http://www.gamthemes.com/plugins-documentation/wp-event-manager/installation/) and [setup](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/setting-up-wp-event-manager/) guide for advice getting started with the plugin. In most cases it's just a case of adding some shortcodes to your pages!
+View the getting [installation](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/installation/) and [setup](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/setting-up-wp-event-manager/) guide for advice getting started with the plugin. In most cases it's just a case of adding some shortcodes to your pages!
 
 
 
-= Can I use GAM Event Manager without frontend event submission? =
+= Can I use WP Event Manager without frontend event submission? =
 
 Yes! If you don't setup the [submit_event_form] shortcode, you can just post from the admin backend.
 
@@ -210,15 +210,15 @@ Yes! If you don't setup the [submit_event_form] shortcode, you can just post fro
 There are three ways to customize the fields in WP Event Manager;
 
 
-1. For simple text changes, using a localisation file or a plugin such as https://wordpress.org/plugins/say-what/
+1. For simple text changes, using a localisation file or a plugin such as [Say What](https://wordpress.org/plugins/say-what/).
 
-2. For field changes, or adding new fields, using functions/filters inside your theme's functions.php file: [http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/editing-event-submission-form-fields/)
+2. For field changes, or adding new fields, using functions/filters inside your theme's functions.php file: [Read more](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/editing-event-submission-form-fields/).
 
 3. Use a 3rd party plugin which has a UI for field editing.
 
 
 
-If you'd like to learn about WordPress filters, here is a great place to start: [https://pippinsplugins.com/a-quick-introduction-to-using-filters/](https://pippinsplugins.com/a-quick-introduction-to-using-filters/)
+If you'd like to learn about WordPress filters, here is a great place to start: [Read more](https://pippinsplugins.com/a-quick-introduction-to-using-filters/).
 
 
 
@@ -231,17 +231,35 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 == Screenshots ==
 
 
-1. The submit event form.
+1. The submit Event Form.
 
-2. Submit event preview.
+2. Submit Event Preview.
 
-3. A single event listing.
+3. A Single Event Listing.
 
-4. Event dashboard.
+4. Event Search Filters
 
-5. Event listings and filters.
+5. Event Listing - Line Layout
 
-6. Event listings in admin.
+6. Event Listing - Box Layout
+
+7. Frontend - Event Dashboard.
+
+8. Backend - Event Dashboard.
+
+9. Add New Event From Backend - Admin Panel.
+
+10. Add Event Type From Backend - Admin Panel.
+
+11. Add Event Category From Backend - Admin Panel.
+
+12. Event Listing Settings From Backend - Admin Panel.
+
+13. Event Submission Settings From Backend - Admin Panel.
+
+14. Event Page Settings From Backend - Admin Panel.
+
+
 
 
 == Changelog ==

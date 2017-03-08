@@ -442,7 +442,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			unset( $this->fields['event']['event_category'] );
 		}
 		
-		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_manager_enable_event_types' ) == 0 ) {
+		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_listing_type' ) == 0 ) {
 			unset( $this->fields['event']['event_type'] );
 		}
 	}
@@ -653,7 +653,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 
 					if ( ! empty( $_POST['create_account_email'] ) ) {
-						$create_account = gam_event_manager_create_account( array(
+						$create_account = wp_event_manager_create_account( array(
 							'username' => empty( $_POST['create_account_username'] ) ? '' : $_POST['create_account_username'],
 							'email'    => $_POST['create_account_email'],
 							'role'     => get_option( 'event_manager_registration_role' )

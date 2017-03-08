@@ -1,6 +1,6 @@
 <?php
 /*
-* This file use for settings at admin site for gam event manager plugin.
+* This file use for settings at admin site for wp event manager plugin.
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -666,7 +666,7 @@ class WP_Event_Manager_Settings {
 
 								default :
 
-									do_action( 'gam_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder );
+									do_action( 'wp_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder );
 
 								break;
 							}
@@ -690,15 +690,15 @@ class WP_Event_Manager_Settings {
                         </p>
                         <p>  
                            <span class="help-icon"></span><b>Need help?</b> <br>
-                           Read the <a href="http://www.gamthemes.com/plugins-documentation/wp-event-manager/" target="_blank" >plugin documentation.</a><br>
-                           Check the <a href="http://www.gamthemes.com/faq/" target="_blank">FAQ.</a><br>
+                           Read the <a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/" target="_blank" >plugin documentation.</a><br>
+                           Check the <a href="http://www.wp-eventmanager.com/faq/" target="_blank">FAQ.</a><br>
                         </p>
                         <p>  
-                           <span class="connect-icon"></span><b>Demo</b> <br>Visit the <a href="http://marketplace.gamthemes.com/plugins/wp-event-manager" target="_blank">plugin demo.</a><br>
-                           Visit the <a href="http://www.gamthemes.com/product-category/plugins/" target="_blank">premium add-ons</a>.<br>                           
+                           <span class="connect-icon"></span><b>Demo</b> <br>Visit the <a href="http://www.wp-eventmanager.com/demo" target="_blank">plugin demo.</a><br>
+                           Visit the <a href="http://www.wp-eventmanager.com/plugins/" target="_blank">premium add-ons</a>.<br>                           
                         </p>
                         
-                        <p><span class="light-grey">This plugin was made with by</span> <a href="http://www.gamthemes.com" target="_blank">gamthemes.com</a>
+                        <p><span class="light-grey">This plugin was made with by</span> <a href="http://www.wp-eventmanager.com" target="_blank">wp-eventmanager.com</a>
                         </p>
                     </div>
                 </div>
