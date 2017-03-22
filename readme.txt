@@ -7,7 +7,7 @@ Tags: wp event manager, wp, event manager, event listing, event board, event man
 
 Requires at least: 4.1
 Tested up to: 4.7.3
-Stable tag: 1.0
+Stable tag: 1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -20,8 +20,8 @@ Lightweight, scalable and full-featured event listings & management plugin for m
 WP Event Manager is a **lightweight, scalable and full-featured event management plugin** for adding event listing functionality to your WordPress site. The shortcode lists all the events, it can work with any theme and is really easy to setup and customise. The settings pages let you select how you want the event displayed.
 
 * [Demo](http://www.wp-eventmanager.com/demo/)
-* [Documentation](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/)
-* [Add-ons](http://www.wp-eventmanager.com/product-category/plugins/)
+* [Documentation](http://www.wp-eventmanager.com/documentation/)
+* [Add-ons](http://www.wp-eventmanager.com/plugins/)
 
 
 > **Free Plugin Features**
@@ -54,12 +54,12 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 
 The plugin comes with several shortcodes to output events in various formats, and since its built with Custom Post Types you are free to extend it further through themes.
 
-[Read more about WP Event Manager](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/).
+[Read more about WP Event Manager](http://www.wp-eventmanager.com/plugins/wp-event-manager/).
 
 = Documentation =
 
 
-Documentation for the core plugin and add-ons can be found [on the docs site here](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/). Please take a look before requesting support because it covers all frequently asked questions!
+Documentation for the core plugin and add-ons can be found [on the docs site here](http://www.wp-eventmanager.com/documentation/). Please take a look before requesting support because it covers all frequently asked questions!
 
 
 = Add-ons =
@@ -105,10 +105,10 @@ You can browse available add-ons after installing the plugin by going to `Event 
 
 
 
-**[Great Add-ons](http://www.wp-eventmanager.com/product-category/plugins/)**
+**[Great Add-ons](http://www.wp-eventmanager.com/plugins/)**
 
 
-You can get the above add-ons and several others at discount with our [Great Add-ons](http://www.wp-eventmanager.com/product-category/plugins/). Take a look!
+You can get the above add-ons and several others at discount with our [Great Add-ons](http://www.wp-eventmanager.com/plugins/). Take a look!
 
 
 
@@ -264,6 +264,23 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+= 1.2 =
+
+* Fixed - Improve WPML compatibility. 
+* Fixed - Add an implicit whitelist for API requests.
+* Fixed - Taxonomy search conditions. 
+* Fixed - Admin Addon page addon listing.
+* Added - Allow event types to be optional, just like categories. 
+* Added - Add get_event_listing_types filter. 
+* Added - Various date format setting improvements. 
+* Added - Pass search values with the event_manager_get_listings_custom_filter_text filter. 
+* Added - Multiple event type and category settings.
+* Added - Admin notification added for showcase and rating.
+
+= 1.1 =
+
+* Fixed - Tweak settings page.
+* Fixed - Tweak css updated.
 
 = 1.0 =
 

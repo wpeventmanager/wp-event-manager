@@ -124,7 +124,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 				'event_type' => array(
 					'label'       => __( 'Event Type', 'wp-event-manager' ),
-					'type'        => 'term-select',
+					'type'        =>  get_option('event_manager_multiselect_event_type') ?  'term-multiselect' : 'term-select',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 2,
@@ -134,7 +134,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 				'event_category' => array(
 					'label'       => __( 'Event Category', 'wp-event-manager' ),
-					'type'        => 'term-multiselect',
+					'type'        => get_option('event_manager_multiselect_event_category') ?  'term-multiselect' : 'term-select',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 3,
@@ -445,6 +445,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_listing_type' ) == 0 ) {
 			unset( $this->fields['event']['event_type'] );
 		}
+		
 	}
 
 	/**

@@ -165,6 +165,7 @@ a { text-decoration: none !important; }
 	position:absolute;
 	right:7px;
 	top:0;
+
 	-webkit-border-radius:50%;
 	border-radius:50%;
 	box-shadow:0 1px 0 1px rgba(0, 0, 0, .1);
@@ -365,36 +366,51 @@ border-bottom:0
 }
 .wp_event_manager_addons_wrap #event-manager-addons-banner {
 	position:relative;
-	background:#095179;
-	padding:0 2em 0 5em;
+	background:#00a5fb;
 	color:#fff;
-	margin:10px .25% 20px 0;
-	border-color:rgba(0, 0, 0, .1);
-	overflow:hidden
+	margin:0 0 30px 0;
+	border-color:rgba(0, 0, 0, 0);
+	overflow:hidden;
+	padding:0 !important;
+	display:inline-block;
+	width:100%;
+	text-align:center;
 }
 .wp_event_manager_addons_wrap #event-manager-addons-banner strong {
-	font-size:1.25em;
-	line-height:.8em;
-	text-shadow:0 2px 0 rgba(0, 0, 0, .1);
-	font-weight:400;
-	float:left;
-	padding:1.6em 0
+	font-size: 23px;
+    line-height: 44px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0);
+    font-weight: 500;
+    float: left;
+    padding: 20px;
+    display: inline-block;
+    width: auto;
+    margin-bottom: 0;
 }
 .wp_event_manager_addons_wrap #event-manager-addons-banner a.button {
-	color:#fff;
+	color:#00a5fb;
 	text-decoration:none;
 	font-weight:700;
-	float:right;
-	background:#095179;
-	border:1px solid #fff;
+	background:#FFF;
+	border:2px solid #fff;
 	line-height:1em;
-	padding:1em;
-	margin:1em 0;
-	text-shadow:0 2px 0 rgba(0, 0, 0, .1);
-	box-shadow:0 2px 0 rgba(0, 0, 0, .1);
+	padding:15px 20px;
+	text-transform:uppercase;
+	border-radius:5px;
+    display: inline-block;
+    float: right;
+    margin: 20px;
+    font-size: 16px;
+	text-shadow:0 2px 0 rgba(0, 0, 0, 0);
+	box-shadow:0 2px 0 rgba(0, 0, 0, 0);
 	height:auto;
-	position:relative
+	position:relative;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease
 }
+.wp_event_manager_addons_wrap #event-manager-addons-banner a.button:hover { color:#FFF; background:#00a5fb;}
 /*.wp_event_manager_addons_wrap #event-manager-addons-banner:before {
 	display:inline-block;
 	-webkit-font-smoothing:antialiased;
@@ -505,7 +521,7 @@ margin-right:0!important
 .widefat tfoot th, 
 .widefat thead td, 
 .widefat thead th, 
-.widget .widget-top{line-height:8px;}
+.widget .widget-top{/*line-height:8px;*/}
 .manage-column.column-event_title.sortable.desc{width:358px;}	
 .widefat td.column-event_title .event_title{padding-right:25px!important;}
 .widefat .column-event_location{width:111px;}
@@ -514,7 +530,7 @@ th.sortable a span, th.sorted a span { line-height:15px;}
 /* plugin info box */
 
 body {	background-color: transparent!important;}
-.box-info {    position: relative;    min-width: 255px;    border: 1px solid #e5e5e5;   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);    box-shadow: 0 1px 1px rgba(0,0,0,0.04);    background: #fff; float:right!important;   box-sizing:border-box; width:28%;  padding:0 15px 15px 15px;}
+.box-info {    position: relative;    min-width: 255px; margin-top:30px;    border: 1px solid #e5e5e5;   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);    box-shadow: 0 1px 1px rgba(0,0,0,0.04);    background: #fff; float:right!important;   box-sizing:border-box; width:28%;  padding:0 15px 15px 15px;}
 .box-info .box-title {    float: right;    width: 27px;    height: 30px;}
 .box-info h3{	padding: 0 0 10px 10px; font-size:13px; border-bottom:1px solid #efefef; }
 .box-info b{ font-size:16px; }
@@ -529,3 +545,284 @@ h1.nav-tab-wrapper, h2.nav-tab-wrapper, h3.nav-tab-wrapper { margin:0 0 20px 0;}
 /* date picket*/
 .datepicker { position:absolute;}
 .datepicker { background-color: #fff!important;}
+
+/* Product Listing Start */
+
+#menu-posts-event_listing ul li:last-child a { color:#f18500 !important;}
+
+
+.products { width: 100%; display: inline-block;}
+.products .col-md-3 { width: 30%; margin:0 20px; float: left;}
+
+.products .col-md-3.col-sm-6:nth-child(1), .products .col-md-3.col-sm-6:nth-child(2) { display:none;}
+
+@media screen and (min-device-width:992px) and (max-device-width:1200px) { 
+.products .col-md-3 { width: 30%; margin:0 20px; float: left;} 
+    
+}
+
+@media screen and (max-width:768px) {
+.products .col-md-3 { width: 100%; margin:0; float: left;}   
+}
+
+.product-listing-box {
+	border-bottom: 4px solid #EEE;
+	margin-bottom: 40px;
+	min-height: 420px;
+	transition: all .5s ease
+}
+.product-listing-box:hover {
+	border-bottom: 4px solid #00a5fa;
+}
+.product-listing-box .product-image {
+	background: #56c6ff;
+	height: 200px;
+	width: 100%;
+	line-height: 200px;
+	text-align: center;
+	margin-bottom: 15px;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease
+}
+.product-listing-box:hover .product-image {
+	background: #00a8ff;
+}
+.product-listing-box .product-image img, .product-listing-box:hover .product-image img {
+	height: 200px;
+	width: auto;
+	-webkit-transition: all .4s ease;
+	-moz-transition: all .4s ease;
+	-ms-transition: all .4s ease;
+	-o-transition: all .4s ease;
+	transition: all .4s ease
+}
+.product-listing-box .product-details {
+	height: 183px;
+	overflow: hidden
+}
+.product-listing-box .product-details .product-title h3 {
+	font-size: 20px;
+	color: #333;
+	line-height: 22px;
+	margin-bottom: 5px;
+	margin-top: 0;
+	width: 70%;
+	float: left;
+	display: inline-table
+}
+.product-listing-box .product-details .product-price {
+	margin-bottom: 10px;
+	float: right;
+	width: 30%;
+	display: inline-table;
+	text-align: right
+}
+.product-listing-box .product-details .product-price span.amount {
+	background: #444;
+	display: inline-table;
+	padding: 8px 10px;
+	font-size: 18px;
+	color: #FFF;
+	line-height: 20px
+}
+.product-listing-box .product-details .product-short-description {
+	font-family: open_sansregular, Arial, Helvetica, sans-serif;
+	display: inline-table;
+	font-size: 16px;
+	text-align: left;
+	color: #888;
+	line-height: 22px;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease
+}
+.product-listing-box:hover .product-details .product-short-description {
+	color: #666
+}
+
+/* Product Listing End */
+
+/* Notice Listing Start */
+.wrap .wp-event-manager-notice.notice {
+    padding: 0 !important;;
+    margin: 5px 0 10px;
+    border: 1px solid #E5E5E5;
+    background: #FFF;
+    overflow: hidden;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+    min-height: 80px;
+    display: table; /* The magic ingredient! */
+    font: 13px "Open Sans", sans-serif;
+}
+
+.wrap .wp-event-manager-notice.notice.loading:before {
+    content: attr(data-message);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 5;
+    text-align: center;
+    line-height: 80px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.wp-event-manager-notice > div {
+    display: table-cell; /* The magic ingredient! */
+    vertical-align: middle;
+    cursor: default;
+    line-height: 1.5;
+}
+
+.wp-event-manager-notice.notice.loading > div {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.wp-event-manager-notice-logo {
+    background-color: #00a5fa;
+    background-image: url('data:image/png;base64,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');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.wp-event-manager-notice-logo span {
+    display: block;
+    width: 80px;
+}
+
+.wp-event-manager-notice-message {
+    width: 100%;
+    padding: 10px 20px;
+    color: #444;
+}
+
+.wp-event-manager-notice-message strong {
+    color: #000;
+}
+
+.wp-event-manager-notice-cta {
+    border-left: 1px solid #E5E5E5;
+    background: #F8F8F8;
+    padding: 0 30px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.wp-core-ui .wp-event-manager-notice-cta button,
+.wp-core-ui .wp-event-manager-notice-cta .button-primary:active {
+    vertical-align: middle;
+}
+
+.wp-core-ui .wp-event-manager-notice-cta input[type="email"] {
+    vertical-align: middle;
+    line-height: 20px;
+    margin: 0;
+    min-width: 50px;
+    max-width: 320px;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.wp-event-manager-notice-dismiss {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: #BBB;
+}
+
+.wp-event-manager-notice-dismiss:hover {
+    color: #666;
+}
+
+@media only all and (max-width: 1200px) {
+    .wp-event-manager-notice-dismiss {
+        display: block;
+        margin: 0 auto;
+        line-height: 18px;
+        padding-top: 8px;
+        padding-bottom: 2px;
+    }
+}
+
+@media only all and (max-width: 1000px) {
+    .wrap .wp-event-manager-notice.notice {
+        display: block;
+        font-size: 13px;
+    }
+
+    .wp-event-manager-notice > .wp-event-manager-notice-logo {
+        float: left;
+        display: inline-block;
+        height: 80px;
+        margin: 10px;
+        border-radius: 4px;
+    }
+
+    .wp-event-manager-notice > .wp-event-manager-notice-message {
+        width: auto;
+        display: block;
+        padding: 10px;
+        min-height: 80px;
+    }
+
+    .wp-event-manager-notice > .wp-event-manager-notice-cta {
+        display: block;
+        border-top: 1px solid #E5E5E5;
+        border-left: 0;
+        text-align: center;
+        white-space: normal;
+        line-height: 30px;
+        padding: 10px 20px;
+    }
+
+    .wp-core-ui .wp-event-manager-notice > .wp-event-manager-notice-cta > input[type="email"],
+    .wp-event-manager-notice > .wp-event-manager-notice-cta > button {
+        font-size: 14px;
+    }
+
+    .wp-event-manager-notice > .wp-event-manager-notice-cta > .wp-event-manager-notice-dismiss {
+        display: inline-block;
+        float: none;
+        line-height: 26px;
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 13px;
+    }
+}
+
+@media only all and (max-width: 500px) {
+    .wp-core-ui .wp-event-manager-notice > .wp-event-manager-notice-cta > input[type="email"],
+    .wp-event-manager-notice > .wp-event-manager-notice-cta > button {
+        display: block;
+        width: 100% !important;
+        max-width: none;
+        margin-bottom: 4px;
+        font-size: 16px;
+        height: 34px;
+    }
+
+    .wp-event-manager-notice > .wp-event-manager-notice-cta > .wp-event-manager-notice-dismiss {
+        margin-top: 5px;
+        font-size: 14px;
+        height: 23px;
+    }
+}
+/* Notice Listing End */

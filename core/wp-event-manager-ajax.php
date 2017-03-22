@@ -319,10 +319,27 @@ class WP_Event_Manager_Ajax {
 			$result['showing_applied_filters'] = true;
 		}	
 		
-		$result['filter_value'] = apply_filters( 'event_manager_get_listings_custom_filter_text', sprintf( __( 'Showing all %s', 'wp-event-manager' ), implode(' ', $result['filter_value'])) );
-
+		if ( $events->post_count && ( $search_location || $search_keywords || $search_datetimes || $search_ticket_prices || $search_event_types || $search_categories ) ) {
+			$message = sprintf( _n( 'Search completed. Found %d matching record.', 'Search completed. Found %d matching records.', $events->post_count, 'wp-event-manager' ), $events->post_count );
+			$result['showing_applied_filters'] = true;
+		} else {
+			$message = "";
+		}
+		
+		$search_values = array(
+				'location'   => $search_location,
+				'keywords'   => $search_keywords,
+				'datetimes'  => $search_datetimes,
+				'tickets'	 => $search_ticket_prices,
+				'types'		 => $search_event_types,
+				'categories' => $search_categories
+		);
+		$result['filter_value'] = apply_filters( 'event_manager_get_listings_custom_filter_text', $message, $search_values );
+			
+		//$result['filter_value'] = apply_filters( 'event_manager_get_listings_custom_filter_text', sprintf( __( 'Showing all %s', 'wp-event-manager' ), implode(' ', $result['filter_value'])) );
+	
+		
 		// Generate RSS link
-
 		$result['showing_links'] = event_manager_get_filtered_links( array(
 
 			'search_keywords'   => $search_keywords,			
@@ -338,6 +355,9 @@ class WP_Event_Manager_Ajax {
 			'search_ticket_prices' => $search_ticket_prices
 
 		) );
+		
+		
+		
 
 		// Generate pagination
 

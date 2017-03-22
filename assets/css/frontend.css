@@ -113,7 +113,7 @@ p,div{ line-height:15px;}
 
 .event-manager-form fieldset {border-bottom-color: #b2b2b2 !important; border-bottom-style: dashed !important; border-bottom-width: 1px !important; padding-bottom: 1.5em !important; padding-left: 0 !important; padding-right: 0 !important; padding-top: 0.5em !important;}
 
-.event-manager-form fieldset label {color: #2d5b6f; font-weight: bold; width: auto !important;margin: 0 20px 0 0; padding:0 10px 0 0;}
+.event-manager-form fieldset label {color: #296783; font-weight: bold; width: auto !important;margin: 0 20px 0 0; padding:0 10px 0 0;}
 
 .event-manager-form fieldset .wp-editor-container {border: 1px solid #2D5C70; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
 
@@ -553,4 +553,3 @@ div.event_listings .load_more_events:focus,div.event_listings .load_more_events:
 #single-event-slider.carousel.slide { display: inline-block; height: 200px; width: 100%; overflow:hidden;}
 #single-event-slider.carousel.slide .carousel-inner .item img {display: block; height: 200px; max-width: 100%; width: 100%;}
 }
-

@@ -14,13 +14,13 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 1.0
+Version: 1.2
 
 Since: 1.0
 
 Requires WordPress Version at least: 4.1
 
-Copyright: 2015 WP Event Manager
+Copyright: 2017 WP Event Manager
 
 License: GNU General Public License v3.0
 
@@ -49,7 +49,7 @@ class WP_Event_Manager {
 	{
 		// Define constants
 
-		define( 'EVENT_MANAGER_VERSION', '1.0' );
+		define( 'EVENT_MANAGER_VERSION', '1.2' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -116,6 +116,9 @@ class WP_Event_Manager {
 		$this->post_types->register_post_types();
 
 		WP_Event_Manager_Install::install();
+		
+		//show notice after activating plugin
+		update_option('event_manager_rating_showcase_admin_notices_dismiss','0');
 		
 		flush_rewrite_rules();
 	}

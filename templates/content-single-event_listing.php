@@ -1,3 +1,4 @@
+<?php global $post; ?>
 <div class="single_event_listing" itemscope itemtype="http://schema.org/EventPosting">
 	<meta itemprop="title" content="<?php echo esc_attr( $post->post_title ); ?>" />
 	
@@ -22,7 +23,7 @@
             <div class="col-md-8 text-justify"> 
             
               <?php do_action('single_event_overview_start');?>
-              <div class="event-details">
+              <div class="event-details" itemprop="description">
                 <h3 class="section-title"><?php _e( 'Event Overview', 'wp-event-manager' ); ?></h3>  
                 
                             <?php $event_banners = get_event_banner(); ?> 

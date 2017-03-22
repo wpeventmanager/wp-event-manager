@@ -231,7 +231,21 @@ class WP_Event_Manager_Settings {
 
 								'all' => __( 'Events will be shown if within ALL selected event types', 'wp-event-manager' ),
 							)
-						)
+						),
+					  array(
+									'name'       => 'event_manager_date_format',
+									'std'        => 'relative',
+									'label'      => __( 'Date Format', 'wp-event-manager' ),
+									'desc'       => __( 'Choose how you want the published date for events to be displayed on the front-end.', 'wp-event-manager' ),
+									'type'       => 'select',
+									'options'    => array(
+											'relative' => __( 'Relative to the current date (e.g., 1 day, 1 week, 1 month ago)', 'wp-event-manager' ),
+											'default'   => __( 'Default date format as defined in Setttings', 'wp-event-manager' ),
+									)
+							)
+					
+						
+						
 					),
 				),
 
@@ -415,7 +429,39 @@ class WP_Event_Manager_Settings {
 								'email' => __( 'Email addresses only', 'wp-event-manager' ),
 								'url'   => __( 'Website URLs only', 'wp-event-manager' ),
 							)
-						)
+						),
+						array(
+									
+								'name'       => 'event_manager_multiselect_event_type',
+									
+								'std'        => '0',
+									
+								'label'      => __( 'Multi-select Event Types For Submission', 'wp-event-manager' ),
+									
+								'cb_label'   => __( 'Enable multi select event type for event listing submission', 'wp-event-manager' ),
+									
+								'desc'       => __( 'If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this.', 'wp-event-manager' ),
+									
+								'type'       => 'checkbox',
+									
+								'attributes' => array()
+						),
+						array(
+									
+								'name'       => 'event_manager_multiselect_event_category',
+									
+								'std'        => '0',
+									
+								'label'      => __( 'Multi-select Event Category For Submission', 'wp-event-manager' ),
+									
+								'cb_label'   => __( 'Enable multi select event category for event listing submission', 'wp-event-manager' ),
+									
+								'desc'       => __( 'If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this.', 'wp-event-manager' ),
+									
+								'type'       => 'checkbox',
+									
+								'attributes' => array()
+						),
 					)
 				),
 
@@ -686,19 +732,19 @@ class WP_Event_Manager_Settings {
                 <div class="box-title" title="Click to toggle"><br></div><h3><span>Plugin Info</span></h3>
                     <div class="inside">
                         <p> 
-                             <span class="premium-icon"></span><b>Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by rating this plugin on <a href="https://wordpress.org/plugins/wp-event-manager/" target="_blank" >wordpress.org.</a>
+                             <span class="premium-icon"></span><b>Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 stars rating this plugin on <a href="https://wordpress.org/plugins/wp-event-manager/" target="_blank" >wordpress.org.</a>
                         </p>
                         <p>  
                            <span class="help-icon"></span><b>Need help?</b> <br>
-                           Read the <a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/" target="_blank" >plugin documentation.</a><br>
-                           Check the <a href="http://www.wp-eventmanager.com/faq/" target="_blank">FAQ.</a><br>
+                           Read the <a href="https://wp-eventmanager.com/documentation/" target="_blank" >Documentation.</a><br>
+                           Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>
                         </p>
                         <p>  
-                           <span class="connect-icon"></span><b>Demo</b> <br>Visit the <a href="http://www.wp-eventmanager.com/demo" target="_blank">plugin demo.</a><br>
-                           Visit the <a href="http://www.wp-eventmanager.com/plugins/" target="_blank">premium add-ons</a>.<br>                           
+                           <span class="connect-icon"></span><b>Demo</b> <br>Visit the <a href="http://www.wp-eventmanager.com/demo" target="_blank">Plugin Demo.</a><br>
+                           Visit the <a href="http://www.wp-eventmanager.com/plugins/" target="_blank">Premium Add-ons</a>.<br>                           
                         </p>
                         
-                        <p><span class="light-grey">This plugin was made with by</span> <a href="http://www.wp-eventmanager.com" target="_blank">wp-eventmanager.com</a>
+                        <p><span class="light-grey">This plugin was made by</span> <a href="https://wp-eventmanager.com/" target="_blank">WP Event Manager</a>.
                         </p>
                     </div>
                 </div>

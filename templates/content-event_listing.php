@@ -17,7 +17,7 @@
                 </div>
                 <div class="event-organizer-name">
                     <?php display_organizer_name( '<normal>', '<normal>' ); ?>
-                    <?php display_event_type(); ?>
+                    <?php if ( get_option( 'event_manager_enable_event_types' ) ) { display_event_type(); } ?>
                 </div>                
             </div>
             <div class="col-md-2">		        
@@ -56,7 +56,9 @@
      <?php if(get_event_location()=='Anywhere'): echo 'Online Event'; else:  display_event_location(false); endif; ?>
     </div>
     <div class="box-footer">
-      <div class="event-type"> <div><?php display_event_type(); ?></div> </div>      
+     <?php if ( get_option( 'event_manager_enable_event_types' ) ) {  ?>
+      <div class="event-type"> <div><?php display_event_type(); ?></div> </div>    
+      <?php } ?>  
       <div class="event-ticket"><?php echo '#'.get_event_ticket_option(); ?></div>
     </div> 
  </div> 
