@@ -19,9 +19,10 @@ Lightweight, scalable and full-featured event listings & management plugin for m
 
 WP Event Manager is a **lightweight, scalable and full-featured event management plugin** for adding event listing functionality to your WordPress site. The shortcode lists all the events, it can work with any theme and is really easy to setup and customise. The settings pages let you select how you want the event displayed.
 
-* [Demo](http://www.wp-eventmanager.com/demo/)
-* [Documentation](http://www.wp-eventmanager.com/documentation/)
+* [Demo](https://wp-eventmanager.com)
 * [Add-ons](http://www.wp-eventmanager.com/plugins/)
+* [Documentation](http://www.wp-eventmanager.com/documentation/)
+
 
 
 > **Free Plugin Features**
