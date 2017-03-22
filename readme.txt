@@ -29,6 +29,7 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 >
 > * Fully Responsive
 > * Cross Browsers support ( Firefox, Chrome, Safari, Opera )
+> * SEO Friendly & Compatible with SEO plugins.
 > * *Multilingual Translation - Internationalized Supported*
 > * Completely ajaxified for super smooth browsing
 > * Add, manage, and categorise event listings using the familiar WordPress UI.
@@ -38,7 +39,6 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 > * Each listing can be tied to an email or website address so that attendees can register to the events.
 > * Searches also display RSS links to allow attendees to be alerted to new events matching their search.
 > * Allow logged in organizers to view, edit, mark cancelled, or delete their active event listings.
-> * Compatible with SEO plugins
 > * *RSS Feeds* 
 > * Event categories
 > * Easily create custom event field (e.g. dress code)
@@ -137,6 +137,17 @@ If you need help with one of our add-ons, [please contact us](http://www.wp-even
 
 
 If you want help with a customisation, please consider hiring a developer! [http://jobs.wordpress.net/](http://jobs.wordpress.net/) is a good place to start.
+
+
+= Connect With US =
+To stay in touch and get latest update about WP Event Manager’s further releases and features, you can connect with us via:
+- [Facebook](https://www.facebook.com/WP-Event-Manager-306625436419764/)
+- [Twitter](https://twitter.com/wp_eventmanager)
+- [Google Plus](https://plus.google.com/u/0/b/107105224603939407328/107105224603939407328)
+- [Linkedin](https://www.linkedin.com/company/wp-event-manager)
+- [Pinterest](https://www.pinterest.com/wpeventmanager/)
+- [Youtube](https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg).
+
 
 
 
@@ -274,7 +285,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Added - Allow event types to be optional, just like categories. 
 * Added - Add get_event_listing_types filter. 
 * Added - Various date format setting improvements. 
-* Added - Pass search values with the event_manager_get_listings_custom_filter_text filter. 
+* Added - Pass search values filter. 
 * Added - Multiple event type and category settings.
 * Added - Admin notification added for showcase and rating.
 
