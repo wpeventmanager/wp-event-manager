@@ -79,6 +79,10 @@ You can browse available add-ons after installing the plugin by going to `Event 
 
 > **Pro Add-ons Plugin Features**
 >
+> * **[Calendar](https://wp-eventmanager.com/plugins/wp-event-manager-calendar/)**
+>  It will let you display an event calendar that lists the upcoming events on your website. This is the most convenient way to display all your events based on the dates.
+> * **[Google Maps](https://wp-eventmanager.com/plugins/wp-event-manager-google-maps/)**
+>  It will integrate the feature of the search through maps and locations. It also enables proximity search on your website.
 > * **[Registrations](http://www.wp-eventmanager.com/plugins/wp-event-manager-registrations/)**
 >  Allow attendees to register to events using a form & organizers to view and manage the registrations from their event dashboard.
 > * **[WooCommerce Sell Tickets](http://www.wp-eventmanager.com/plugins/wp-event-manager-sell-tickets/)**
