@@ -58,8 +58,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if ( ! event_manager_user_can_edit_event( $this->event_id ) ) {
 			$this->event_id = 0;
 		}
+		
 		// Allow resuming from cookie.
-		if ( ! $this->event_id && ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ) {
+		$this->resume_edit = false;
+		if ( ! isset( $_GET[ 'new' ] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ) {
 			$event_id     = absint( $_COOKIE['wp-event-manager-submitting-event-id'] );
 			$event_status = get_post_status( $event_id );
 			if ( 'preview' === $event_status && get_post_meta( $event_id, '_submitting_key', true ) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
@@ -237,7 +239,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				'event_start_time' => array(  
 								'label'=> __( 'Start Time', 'wp-event-manager' ),
 								'placeholder'  => __( 'Please enter event start time', 'wp-event-manager' ),								
-								'type'  => 'date',
+								'type'  => 'text',
 								'priority'    => 13,
 								'required'=>true	  
 							  ),
@@ -253,7 +255,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				'event_end_time' => array(  
 								'label'=> __( 'End Time', 'wp-event-manager' ),
 								'placeholder'  => __( 'Please enter event end time', 'wp-event-manager' ),								
-								'type'  => 'date',
+								'type'  => 'text',
 								'priority'    => 15,
 								'required'=>true	  
 							  ),
@@ -276,20 +278,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 								'priority'    => 17,
 							        'required'=>true
 							  ),
-
-				'event_repeat' => array(
-								'label'=> __( 'Repeat Event', 'wp-event-manager' ),						     
-							    'type'  => 'radio',
-								'default'  => 'no',
-								'options'  => array(
-											'every-week' => __( 'Every Week', 'wp-event-manager' ),
-											'every-2week' => __( 'Every 2nd Week', 'wp-event-manager' ),
-											'every-month' => __( 'Every Month', 'wp-event-manager' ),
-											'no' => __( 'No', 'wp-event-manager' ),
-								 		),
-								'priority'    => 18,
-							        'required'=>true
-				),
 
 				'event_link_to_eventpage' => array(
 									'label'       => __( 'Link To Event Page', 'wp-event-manager' ),									
@@ -445,7 +433,23 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_listing_type' ) == 0 ) {
 			unset( $this->fields['event']['event_type'] );
 		}
-		
+		//get all frontend fields which is set by admin
+		$frontend_selected_fields = get_option('event_manager_frontend_form_fields',true);
+		if(!empty($frontend_selected_fields) && is_array($frontend_selected_fields) ){
+			foreach($frontend_selected_fields as $group_key => $group_fields) {
+				foreach( $group_fields as $field_key => $field_value ) {
+					if(isset($this->fields[$group_key][$field_key]))
+					{
+						foreach( $this->fields[$group_key][$field_key] as $key => $value ){
+							if(!isset($frontend_selected_fields[$group_key][$field_key][$key]))
+								$frontend_selected_fields[$group_key][$field_key][$key] = $this->fields[$group_key][$field_key][$key];
+						}
+					}
+				}
+			}
+			$this->fields = $frontend_selected_fields;
+		}
+		return $this->fields;
 	}
 
 	/**
@@ -454,6 +458,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * @return bool on success, WP_ERROR on failure
 	 */
 	protected function validate_fields( $values ) {
+		$this->fields =  apply_filters( 'before_submit_event_form_validate_fields', $this->fields , $values );
 	      foreach ( $this->fields as $group_key => $group_fields )
     	  {     	      
     	       //this filter need to apply for remove required attributes when option online event selected and ticket price.
@@ -503,7 +508,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					if ( ! empty( $check_value ) ) {
 						foreach ( $check_value as $file_url ) {
 							$file_url = current( explode( '?', $file_url ) );
-							if ( ( $info = wp_check_filetype( $file_url ) ) && ! in_array( $info['type'], $field['allowed_mime_types'] ) ) {
+							$file_info = wp_check_filetype( $file_url );
+							if ( ! is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'] ) ) {
 								throw new Exception( sprintf( __( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $field['label'], $info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
 							}
 						}
@@ -578,8 +584,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						case 'event_description' :
 							$this->fields[ $group_key ][ $key ]['value'] = $event->post_content;
 						break;
+						case  'organizer_logo':
+							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $event->ID ) ? get_post_thumbnail_id( $event->ID ) : get_post_meta( $event->ID, '_' . $key, true );
+						break;
 						case 'event_type' :
-							$this->fields[ $group_key ][ $key ]['value'] = current( wp_get_object_terms( $event->ID, 'event_listing_type', array( 'fields' => 'ids' ) ) );
+							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_type', array( 'fields' => 'ids' ) );
+							if ( ! event_manager_multiselect_event_type() ) {
+								$this->fields[ $group_key ][ $key ]['value'] = current( $this->fields[ $group_key ][ $key ]['value'] );
+							}
 						break;
 						case 'event_category' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_category', array( 'fields' => 'ids' ) );
@@ -616,6 +628,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		get_event_manager_template( 'event-submit.php', array(
 			'form'               => $this->form_name,
 			'event_id'             => $this->get_event_id(),
+			'resume_edit'        => $this->resume_edit,
 			'action'             => $this->get_action(),
 			'event_fields'         => $this->get_fields( 'event' ),
 			'organizer_fields'     => $this->get_fields( 'organizer' ),
@@ -650,6 +663,22 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						}
 						if ( empty( $_POST['create_account_email'] ) ) {
 							throw new Exception( __( 'Please enter your email address.', 'wp-event-manager' ) );
+						}
+						if ( empty( $_POST['create_account_email'] ) ) {
+							throw new Exception( __( 'Please enter your email address.', 'wp-event-manager' ) );
+						}
+					}
+					if ( ! event_manager_use_standard_password_setup_email() && ! empty( $_POST['create_account_password'] ) ) {
+						if ( empty( $_POST['create_account_password_verify'] ) || $_POST['create_account_password_verify'] !== $_POST['create_account_password'] ) {
+							throw new Exception( __( 'Passwords must match.', 'wp-event-manager' ) );
+						}
+						if ( ! event_manager_validate_new_password( $_POST['create_account_password'] ) ) {
+							$password_hint = event_manager_get_password_rules_hint();
+							if ( $password_hint ) {
+								throw new Exception( sprintf( __( 'Invalid Password: %s', 'wp-event-manager' ), $password_hint ) );
+							} else {
+								throw new Exception( __( 'Password is not valid.', 'wp-event-manager' ) );
+							}
 						}
 					}
 
@@ -710,12 +739,23 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			}
 			// Prepend with event type
 			if ( apply_filters( 'submit_event_form_prefix_post_name_with_event_type', true ) && ! empty( $values['event']['event_type'] ) ) {
-			    if( is_int ($values['event']['event_type'] ) ){
-				    $event_type_taxonomy = get_term( $values['event']['event_type']);
-				    $event_slug[] = $event_type_taxonomy->name;
+				if ( event_manager_multiselect_event_type() && is_array($values['event']['event_type']) ) {
+					
+					$event_type = array_values($values['event']['event_type'])[0];
+					if( is_int ($event_type) ){
+						$event_type_taxonomy = get_term( $values['event']['event_type']);
+						$event_type = $event_type_taxonomy->name;
+					}
+					$event_slug[] = $event_type;
 				}
 				else{
-				    $event_slug[] = $values['event']['event_type'];
+					$event_type = $values['event']['event_type'];
+					if( is_int ($event_type) ){
+						$event_type_taxonomy = get_term( $values['event']['event_type']);
+						$event_type = $event_type_taxonomy->name;
+					}
+					$event_slug[] = $event_type;
+					
 				}
 			}
 			$event_slug[]            = $post_title;
@@ -732,8 +772,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$this->event_id = wp_insert_post( $event_data );
 			if ( ! headers_sent() ) {
 				$submitting_key = uniqid();
-				setcookie( 'wp-event-manager-submitting-event-id', $this->event_id, false, COOKIEPATH, COOKIE_DOMAIN, false );
-				setcookie( 'wp-event-manager-submitting-event-key', $submitting_key, false, COOKIEPATH, COOKIE_DOMAIN, false );
+				setcookie( 'wp-event-manager-submitting-event-id', $this->event_id, 0, COOKIEPATH, COOKIE_DOMAIN, false );
+				setcookie( 'wp-event-manager-submitting-event-key', $submitting_key, 0, COOKIEPATH, COOKIE_DOMAIN, false );
 				update_post_meta( $this->event_id, '_submitting_key', $submitting_key );
 			}
 		}
@@ -796,7 +836,18 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					} else {
 						wp_set_object_terms( $this->event_id, array( $values[ $group_key ][ $key ] ), $field['taxonomy'], false );
 					}				
-				// Save meta data
+				// oragnizer logo is a featured image
+				}
+				elseif ( 'organizer_logo' === $key ) {
+					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
+					if ( empty( $attachment_id ) ) {
+						delete_post_thumbnail( $this->event_id );
+					} else {
+						set_post_thumbnail( $this->event_id, $attachment_id );
+					}
+					update_user_meta( get_current_user_id(), '_organizer_logo', $attachment_id );
+					
+					// Save meta data
 				}
 				 else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
@@ -819,12 +870,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 			}
 		}
+		$maybe_attach = array_filter( $maybe_attach );
 		// Handle attachments
 		if ( sizeof( $maybe_attach ) && apply_filters( 'event_manager_attach_uploaded_files', true ) ) {
-			/** WordPress Administration Image API */
-			include_once( ABSPATH . 'wp-admin/includes/image.php' );
+			
 			// Get attachments
-			$attachments     = get_posts( 'post_parent=' . $this->event_id . '&post_type=attachment&fields=ids&post_mime_type=image&numberposts=-1' );
+			$attachments     = get_posts( 'post_parent=' . $this->event_id . '&post_type=attachment&fields=ids&numberposts=-1' );
 			$attachment_urls = array();
 			// Loop attachments already attached to the event
 			foreach ( $attachments as $attachment_key => $attachment ) {
@@ -832,20 +883,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			}
 			foreach ( $maybe_attach as $attachment_url ) {
 				if ( ! in_array( $attachment_url, $attachment_urls ) ) {
-					$attachment = array(
-						'post_title'   => get_the_title( $this->event_id ),
-						'post_content' => '',
-						'post_status'  => 'inherit',
-						'post_parent'  => $this->event_id,
-						'guid'         => $attachment_url
-					);
-					if ( $info = wp_check_filetype( $attachment_url ) ) {
-						$attachment['post_mime_type'] = $info['type'];
-					}
-					$attachment_id = wp_insert_attachment( $attachment, $attachment_url, $this->event_id );
-					if ( ! is_wp_error( $attachment_id ) ) {
-						wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $attachment_url ) );
-					}
+					$this->create_attachment( $attachment_url );
 				}
 			}
 		}
@@ -886,10 +924,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						<?php _e( 'Preview', 'wp-event-manager' ); ?>
 					</h2>
 				</div>
-				<div class="event_listing_preview single_event_listing  col-md-12">			
-					<?php get_event_manager_template_part( 'content-single', 'event_listing' ); ?>
-				</div>
 			</form>
+			<div class="event_listing_preview single_event_listing">			
+				<?php get_event_manager_template_part( 'content-single', 'event_listing' ); ?>
+			</div>
+			
 			<?php
 			wp_reset_postdata();
 		}
@@ -915,7 +954,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				// Update event listing
 				$update_event                  = array();
 				$update_event['ID']            = $event->ID;
-				$update_event['post_status']   = get_option( 'event_manager_submission_requires_approval' ) ? 'pending' : 'publish';
+				$update_event['post_status']   = apply_filters( 'submit_event_post_status', get_option( 'event_manager_submission_requires_approval' ) ? 'pending' : 'publish',$event);
 				$update_event['post_date']     = current_time( 'mysql' );
 				$update_event['post_date_gmt'] = current_time( 'mysql', 1 );
 				wp_update_post( $update_event );

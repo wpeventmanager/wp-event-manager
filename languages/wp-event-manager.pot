@@ -879,9 +879,118 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+#: admin/wp-event-manager-field-editor.php:20
+msgid "Field Editor"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:30
+msgid "Are you sure you want to delete this row?"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:31
+msgid "Are you sure you want to reset your changes? This cannot be undone."
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:42
+msgid "Front End Form Fields"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:43
+msgid "Back End Form Fields"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:81
+msgid "The fields were successfully reset."
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:98
+msgid "Text"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:99
+msgid "Button"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:100
+msgid "Button Options"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:101
+msgid "Checkbox"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:102
+msgid "Date"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:103
+msgid "File"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:104
+msgid "Hidden"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:105
+msgid "Multiselect"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:106
+msgid "Number"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:107
+msgid "Password"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:108
+msgid "Radio"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:109
+msgid "Repeated"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:110
+msgid "Select"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:111
+msgid "Multiselect"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:112
+msgid "Term Checklist"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:113
+msgid "Term Multiselect"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:114
+msgid "Term Select"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:115
+msgid "Textarea"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:116
+msgid "WP Editor"
+msgstr ""
+
+#: admin/wp-event-manager-form-field-editor-field.php:31
+msgid "Not Required"
+msgstr ""
+
+#: admin/wp-event-manager-form-field-editor-field.php:32
+msgid "Required"
+msgstr ""
+
 #: admin/wp-event-manager-settings.php:70
 msgid "Listings Per Page"
 msgstr ""
+
 
 #: admin/wp-event-manager-settings.php:72
 msgid "How many listings should be shown per page by default?"
@@ -1605,35 +1714,35 @@ msgstr ""
 msgid "Posted by"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:417
+#: admin/wp-event-manager-writepanels.php:430
 msgid "%s Data"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:445
-#: admin/wp-event-manager-writepanels.php:448
-#: admin/wp-event-manager-writepanels.php:451
+#: admin/wp-event-manager-writepanels.php:536
+#: admin/wp-event-manager-writepanels.php:539
+#: admin/wp-event-manager-writepanels.php:542
 msgid "Use file"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:445
-#: admin/wp-event-manager-writepanels.php:448
-#: admin/wp-event-manager-writepanels.php:451
+#: admin/wp-event-manager-writepanels.php:536
+#: admin/wp-event-manager-writepanels.php:539
+#: admin/wp-event-manager-writepanels.php:542
 msgid "Upload"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:451
+#: admin/wp-event-manager-writepanels.php:542
 msgid "Add file"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:613
+#: admin/wp-event-manager-writepanels.php:704
 msgid "Guest User"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:615
+#: admin/wp-event-manager-writepanels.php:706
 msgid "Change"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:619
+#: admin/wp-event-manager-writepanels.php:710
 msgid "Enter the ID of the user, or leave blank if submitted by a guest."
 msgstr ""
 

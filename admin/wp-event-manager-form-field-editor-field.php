@@ -1,0 +1,65 @@
+<?php if(empty($field_key))
+		$field_key = $index;
+		
+$args	= array( 'object_type' => array('event_listing') );
+$output = 'names'; // or objects
+$operator = 'and'; // 'and' or 'or'
+$taxonomies = get_taxonomies($args,$output,$operator); //get all registered taxonomy with event_listing
+?>
+<tr>
+	<td class="sort-column">&nbsp;</td>
+	<td>
+		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][label]" value="<?php echo esc_attr( $field['label'] ); ?>" />
+	</td>
+	<td class="field-type">
+		<select name="<?php echo $group_key;?>[<?php echo $field_key;?>][type]" class="field_type">
+			<?php
+			foreach ( $field_types as $key => $type ) {
+				echo '<option value="' . esc_attr( $key ) . '" ' . selected( $field['type'], $key, false ) . '>' . esc_html( $type ) . '</option>';
+			}
+			?>
+		</select>
+	</td>
+	<td>
+		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][description]" value="<?php echo esc_attr( isset( $field['description'] ) ? $field['description'] : '' ); ?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+	</td>
+	<td class="field-options">
+		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][placeholder]" value="<?php if(isset($field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $field['placeholder'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+			<input type="text" class="input-text options" name="<?php echo $group_key;?>[<?php echo $field_key;?>][options]" placeholder="<?php _e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( isset( $field['options'] ) ? implode( ' | ', $field['options'] ) : '' ); ?>" />
+
+		<div class="file-options">
+			<label class="multiple-files"><input type="checkbox" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][multiple]" value="1" <?php checked( ! empty( $field['multiple'] ), true ); ?> /> <?php _e( 'Multiple Files?', 'wp-event-manager' ); ?></label>
+		</div>
+		<div class="taxonomy-options">
+			<label class="taxonomy-option">
+			<?php if  ($taxonomies) { ?>
+					<select class="input-text taxonomy-select" name="<?php echo $group_key;?>[<?php echo $field_key;?>][taxonomy]">
+					<?php  foreach ($taxonomies  as $taxonomy ) { ?>
+						<option value="<?php echo esc_attr( $taxonomy  ); ?>" <?php if(isset($field['taxonomy'])) echo selected( $field['taxonomy'], $taxonomy, false );?> ><?php echo $taxonomy;?></option>
+					<?php } ?>
+					</select>
+					<?php		
+					}
+					?>
+			</label>
+		</div>
+
+		<span class="na">&ndash;</span>
+	</td>
+	<td>
+		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][priority]" value="<?php if(isset($field['priority'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $field['priority'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
+	</td>
+	<td class="field-rules">
+		<div class="rules">
+			<select name="<?php echo $group_key;?>[<?php echo $field_key;?>][required]">
+				<?php $field['required'] =  ( isset( $field['required'] ) ? $field['required'] : false );?>
+				<option value="0" <?php if($field['required'] == false) echo 'selected="selected"';?> ><?php  _e( 'Not Required', 'wp-event-manager' );?></option>
+				<option value="1" <?php if($field['required'] == true) echo 'selected="selected"';?> ><?php  _e( 'Required', 'wp-event-manager' );?></option>
+			</select>
+		</div>
+		<span class="na">&ndash;</span>
+	</td>
+	<td class="field-actions">
+		<a class="delete-field" href='#'>X</a>
+	</td>
+</tr>

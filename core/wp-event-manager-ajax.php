@@ -314,16 +314,14 @@ class WP_Event_Manager_Ajax {
 			$result['filter_value'][] = sprintf( __( 'located in &ldquo;%s&rdquo;', 'wp-event-manager' ), $search_location );
 		}
 
-		if ( 1 === sizeof( $result['filter_value'] ) ) {
-
-			$result['showing_applied_filters'] = true;
-		}	
-		
-		if ( $events->post_count && ( $search_location || $search_keywords || $search_datetimes || $search_ticket_prices || $search_event_types || $search_categories ) ) {
-			$message = sprintf( _n( 'Search completed. Found %d matching record.', 'Search completed. Found %d matching records.', $events->post_count, 'wp-event-manager' ), $events->post_count );
+		if(sizeof( $result['filter_value'] ) > 1 ) 
+        {	    
+        	$message = sprintf( _n( 'Search completed. Found %d matching record.', 'Search completed. Found %d matching records.', $events->found_posts, 'wp-event-manager' ), $events->found_posts);
 			$result['showing_applied_filters'] = true;
 		} else {
+		   
 			$message = "";
+			$result['showing_applied_filters'] = false;			
 		}
 		
 		$search_values = array(
@@ -378,6 +376,11 @@ class WP_Event_Manager_Ajax {
 	 */
 
 	public function upload_file() {
+		
+		if ( ! event_manager_user_can_upload_file_via_ajax() ) {
+					wp_send_json_error( new WP_Error( 'upload', __( 'You must be logged in to upload files using this method.', 'wp-event-manager' ) ) );
+					return;
+		}
 
 		$data = array( 'files' => array() );
 
