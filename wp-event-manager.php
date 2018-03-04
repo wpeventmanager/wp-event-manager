@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 1.2
+Version: 2.2
 
 Since: 1.0
 
@@ -49,7 +49,7 @@ class WP_Event_Manager {
 	{
 		// Define constants
 
-		define( 'EVENT_MANAGER_VERSION', '1.2' );
+		define( 'EVENT_MANAGER_VERSION', '2.2' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -73,7 +73,15 @@ class WP_Event_Manager {
 			include( 'admin/wp-event-manager-admin.php' );
 
 		}
-
+		// Load language files
+		require_once( 'core/wp-event-manager-wpml.php' );
+		require_once( 'core/wp-event-manager-polylang.php' );
+		
+		
+		require_once(   'core/all-in-one-seo-pack.php' );
+		require_once(   'core/jetpack.php' );
+		require_once(   'core/wp-event-manager-yoast.php' );
+		
 		// Init classes
 
 		$this->forms      = new WP_Event_Manager_Forms();
@@ -103,6 +111,13 @@ class WP_Event_Manager {
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
 
 		add_action( 'admin_init', array( $this, 'updater' ) );
+		add_action( 'wp_logout', array( $this, 'cleanup_event_posting_cookies' ) );
+		
+		// Defaults for core actions
+		add_action( 'event_manager_notify_new_user', 'wp_event_manager_notify_new_user', 10, 2 );
+		
+		// Schedule cron events
+		self::check_schedule_crons();
 	}
 
 	/**
@@ -215,15 +230,15 @@ class WP_Event_Manager {
 			) );
 		}
 
-		//jQuery Desrialize - vendor
-		wp_register_script( 'jquery-deserialize', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-deserialize/jquery.deserialize.min.js', array( 'jquery' ), '1.2.1', true );						
+		//jQuery Deserialize - vendor
+		wp_register_script( 'jquery-deserialize', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-deserialize/jquery.deserialize.js', array( 'jquery' ), '1.2.1', true );						
 	
 		//main frontend, bootstrap & bootstrap calendar style 	
 		wp_register_style( 'bootstrap-main-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/bootstrap/css/bootstrap.min.css');	
 		wp_register_style( 'bootstrap-datepicker-css', EVENT_MANAGER_PLUGIN_URL.'/assets/js/jquery-timepicker/bootstrap-datepicker.css');
 		wp_register_style( 'jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL.'/assets/js/jquery-timepicker/jquery.timepicker.css');
 
-		if (!wp_style_is( 'bootstrap.min.css', 'enqueued' )) 
+		if (!wp_style_is( 'bootstrap.min.css', 'enqueued' )  && get_option('event_manager_enqueue_boostrap_frontend',true) == 1) 
 		{
 		    wp_enqueue_style( 'bootstrap-main-css');
 		}
@@ -244,7 +259,7 @@ class WP_Event_Manager {
 		wp_register_script( 'jquery-timepicker-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.js',array('jquery'), EVENT_MANAGER_VERSION, true);
 		wp_register_script( 'bootstrap-datepicker-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/bootstrap-datepicker.js',array('jquery-timepicker-js'), EVENT_MANAGER_VERSION, true);
 
-        if (!wp_script_is( 'bootstrap.min.js', 'enqueued' )) 
+		if (!wp_script_is( 'bootstrap.min.js', 'enqueued' )  && get_option('event_manager_enqueue_boostrap_frontend',true) == 1) 
 		{
 		    wp_enqueue_script( 'bootstrap-main-js');
 		}		
@@ -289,5 +304,32 @@ class WP_Event_Manager {
 	    wp_register_script( 'wp-event-manager-event-registration', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-registration.min.js', array( 'jquery' ), EVENT_MANAGER_VERSION, true );
 
 	}
+	/**
+	 	 * Cleanup job posting cookies.
+	 	 */
+	public function cleanup_event_posting_cookies() {
+			if ( isset( $_COOKIE['wp-event-manager-submitting-event-id'] ) ) {
+					setcookie( 'wp-event-manager-submitting-event-id', '', 0, COOKIEPATH, COOKIE_DOMAIN, false );
+			}
+			if ( isset( $_COOKIE['wp-event-manager-submitting-event-key'] ) ) {
+					setcookie( 'wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false );
+			}
+	}
+	
+	/**
+	 * Check cron status
+	 *
+	 **/
+	public function check_schedule_crons(){
+		if ( ! wp_next_scheduled( 'event_manager_check_for_expired_events' ) ) {
+			wp_schedule_event( time(), 'hourly', 'event_manager_check_for_expired_events' );
+		}
+		if ( ! wp_next_scheduled( 'event_manager_delete_old_previews' ) ) {
+			wp_schedule_event( time(), 'daily', 'event_manager_delete_old_previews' );
+		}
+		if ( ! wp_next_scheduled( 'event_manager_clear_expired_transients' ) ) {
+			wp_schedule_event( time(), 'twicedaily', 'event_manager_clear_expired_transients' );
+		}
+	}			
 }
 $GLOBALS['event_manager'] = new WP_Event_Manager();

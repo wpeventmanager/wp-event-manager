@@ -1,15 +1,11 @@
 === WP Event Manager ===
 
-Contributors: ashokdudhat,gamthemes
+Contributors: ashokdudhat,gamthemes,hiteshmakvana
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
-
-Tags: wp event manager, wp, event manager, event listing, event board, event manager wordpress,event management, event lists, event list, event, events, organizer, attendees, event registration, event listings, registration, listing, manager,calendar, class, concert, conference, date, dates, event, events, google maps, meeting, gam themes, Organizer, seminar, summit, gam, list, ajax, cross browser,google map, venue, widget, workshop,event registration management,booking management,event calendar
-
+Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 4.7.3
-Stable tag: 1.2
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Tested up to: 4.9.4
+Stable tag: 2.2
 
 Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the WordPress admin panel.
 
@@ -23,7 +19,7 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 * [Add-ons](http://www.wp-eventmanager.com/plugins/)
 * [Documentation](http://www.wp-eventmanager.com/documentation/)
 
-
+ [youtube https://www.youtube.com/watch?v=CPK0P7ToRgM]
 
 > **Free Plugin Features**
 >
@@ -276,9 +272,64 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 14. Event Page Settings From Backend - Admin Panel.
 
 
-
-
 == Changelog ==
+
+
+= 2.2 =
+
+* Fixed - Taxonomy conflict with custom fields fixed.
+
+= 2.1 =
+
+* Fixed - Field value not showing in backend. 
+* Added - Field editor compatiblity with taxonomy.
+
+= 2.0 =
+
+* Fixed - Expired listing issue fixed on events shortcode. 
+* Fixed - Organizer logo MIME Type error.
+* Fixed - POT file and some string improved.
+* Fixed - Organizer section css improved.
+* Fixed - Improved cashe helper and expiry date
+
+= 1.9 =
+
+* Added - GUI form field editor added.
+* Fixed - Some CSS tweeks.  
+ 
+= 1.8 =
+
+* Fixed - Preview and expired status in admin panel issue fixed.
+* Fixed - Expired events removed from seo indexing.
+* Fixed - Google map api issue solved.
+* Fixed - Geocodding API improved.
+* Fixed - Rss feed problem solved 
+
+= 1.7 =
+
+* Fixed – Google api issue fixed.
+* Fixed - Some string tweaks.
+
+= 1.6 =
+
+* Fixed – Start date validation issue.
+* Fixed - Set organizer logo as event featured image.
+* Fixed - CSS tweeks.
+
+= 1.5 =
+
+* Fixed – Fixed Watch video button blue color removed..
+* Fixed – Fixed Auto categories and types re-activate plugin problem.
+* Fixed – Fixed css problem with theme.
+* Fixed – Fixed jQuery Deserialize - vendor assign js file.
+
+= 1.4 =
+
+* Fixed – Sort by date problem for event listing and widgets.
+
+= 1.3 =
+
+* Fixed – Widget (Recent,Upcomming and Featured Events) Sort by date.
 
 = 1.2 =
 

@@ -826,3 +826,152 @@ h1.nav-tab-wrapper, h2.nav-tab-wrapper, h3.nav-tab-wrapper { margin:0 0 20px 0;}
     }
 }
 /* Notice Listing End */
+/* Form field editor start */
+.wp-event-manager-event-form-field-editor .nav-tab-wrapper {
+    margin-bottom: 15px
+}
+
+.wp-event-manager-event-form-field-editor table th {
+    padding: 1em 0 1em 1em
+}
+
+.wp-event-manager-event-form-field-editor table td {
+    overflow: visible;
+    padding: 1em 0 1em 1em;
+    vertical-align: middle
+}
+
+.wp-event-manager-event-form-field-editor table td input.input-text,
+.wp-event-manager-event-form-field-editor table td select {
+    width: 100%;
+    min-width: 100px
+}
+
+.wp-event-manager-event-form-field-editor table td .na {
+    display: block;
+    color: #ccc;
+    text-align: center
+}
+
+.wp-event-manager-event-form-field-editor table td .file-options .allowed_mime_types {
+    margin-bottom: .5em
+}
+
+.wp-event-manager-event-form-field-editor table td .file-options .multiple-files input {
+    width: auto;
+    display: inline-block;
+    min-width: 16px
+}
+
+.wp-event-manager-event-form-field-editor table td:last-child,
+.wp-event-manager-event-form-field-editor table th:last-child {
+    padding-right: 1em
+}
+
+.wp-event-manager-event-form-field-editor table tr:nth-child(odd) td {
+    background-color: #F9F9F9
+}
+
+.wp-event-manager-event-form-field-editor table .sort-column {
+    cursor: move;
+    color: #ccc
+}
+
+.wp-event-manager-event-form-field-editor table .sort-column:before {
+    content: "\f333";
+    font-family: dashicons
+}
+
+.wp-event-manager-event-form-field-editor table .field-actions {
+    text-align: right
+}
+
+.wp-event-manager-event-form-field-editor table .field-actions a.delete-field {
+    color: #ccc;
+    padding: 1em 0 0;
+    width: 1em;
+    height: 0;
+    overflow: hidden;
+    display: inline-block;
+    position: relative
+}
+
+.wp-event-manager-event-form-field-editor table .field-actions a.delete-field:before {
+    content: "\f153";
+    font-family: dashicons;
+    font-size: 1em;
+    line-height: 1em;
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.wp-event-manager-event-form-field-editor table .field-actions a.delete-field:hover {
+    color: red
+}
+
+.wp-event-manager-event-form-field-editor table tfoot th {
+    vertical-align: middle;
+    line-height: 28px
+}
+.wp-event-manager-event-form-field-editor table tfoot th .button,
+.wp-event-manager-event-form-field-editor table tfoot th input {
+    margin: 0;
+    float: none;
+    vertical-align: middle
+}
+.wp-event-manager-event-form-field-editor table tfoot th .add-field {
+    float: left
+}
+.wp-event-manager-event-form-field-editor .save-actions {
+    text-align: right
+}
+.wp-event-manager-event-form-field-editor .save-actions input {
+    margin-left: 1em
+}
+.wp-event-manager-event-form-field-editor .save-actions .reset {
+    color: #bbb;
+    text-decoration: none
+}
+.wp-event-manager-event-form-field-editor .save-actions .reset:hover {
+    color: red
+}
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content-wrapper {
+    overflow: hidden
+}
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content {
+    width: 100%;
+    display: block;
+    float: left
+}
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content p {
+    margin-top: 0
+}
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content input {
+    width: 100%;
+    font-size: 1.5em
+}
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content textarea {
+    height: 400px;
+    width: 100%;
+    font-family: monospace
+}
+
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content-tags {
+    width: 100%;
+    padding:20px 0 0 1em;
+    box-sizing: border-box;
+    float: right
+}
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content-tags p {
+    margin-top: 0
+}
+
+.wp-event-manager-event-form-field-editor p.submit-email {
+    clear: both;
+    padding: 1.2em 0;
+    margin: 1em 0;
+    border-top: 1px solid #ddd
+}
+/* Form field editor end */

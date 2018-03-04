@@ -109,7 +109,7 @@ class WP_Event_Manager_Shortcodes {
 
 						// Message
 
-						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been cancelled', 'wp-event-manager' ), $event->post_title ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 
@@ -126,7 +126,7 @@ class WP_Event_Manager_Shortcodes {
 						update_post_meta( $event_id, '_cancelled', 0 );
 						
 						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been marked as not cancelled', 'wp-event-manager' ), $event->post_title ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been marked as not cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 
@@ -136,7 +136,7 @@ class WP_Event_Manager_Shortcodes {
 						wp_trash_post( $event_id );
 
 						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), $event->post_title ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 					case 'duplicate' :
@@ -278,9 +278,9 @@ class WP_Event_Manager_Shortcodes {
 
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
-			'orderby'                   => 'featured',
+			'orderby'                   => 'meta_value',
 
-			'order'                     => 'DESC',
+			'order'                     => 'ASC',
 
 			// Filters + cats
 
@@ -369,7 +369,12 @@ class WP_Event_Manager_Shortcodes {
 		$show_more                 = $this->string_to_bool( $show_more );
 
 		$show_pagination           = $this->string_to_bool( $show_pagination );
-
+		
+		//order by meta value and it will take default sort order by start date of event
+		if ( is_null( $orderby ) ||  empty($orderby ) ) {
+			$orderby  = 'meta_value';
+		}
+		
 		if ( ! is_null( $featured ) ) {
 
 			$featured = ( is_bool( $featured ) && $featured ) || in_array( $featured, array( '1', 'true', 'yes' ) ) ? true : false;

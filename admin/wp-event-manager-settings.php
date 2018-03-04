@@ -52,7 +52,53 @@ class WP_Event_Manager_Settings {
 		$this->settings = apply_filters( 'event_manager_settings',
 
 			array(
-
+					'general_settings' => array(
+							
+							__( 'General', 'wp-event-manager' ),
+							
+							array(
+									
+									array(
+											
+											'name'       => 'event_manager_enqueue_boostrap_frontend',
+											
+											'std'        => '1',
+											
+											'label'      => __( 'Enable boostrap for the frontend', 'wp-event-manager' ),
+											
+											'cb_label'   => __( 'Enable boostrap for the frontend', 'wp-event-manager' ),
+											
+											'desc'       => __( "If enabled, bootstrap framework's style will apply for the frontend side.", 'wp-event-manager' ),
+											
+											'type'       => 'checkbox',
+											
+											'attributes' => array()
+									),
+									array(
+											
+											'name'       => 'event_manager_enqueue_boostrap_backend',
+											
+											'std'        => '1',
+											
+											'label'      => __( 'Enable boostrap for the backend', 'wp-event-manager' ),
+											
+											'cb_label'   => __( 'Enable boostrap for the backend', 'wp-event-manager' ),
+											
+											'desc'       => __( "If enabled, bootstrap framework's style will apply for the backend side.", 'wp-event-manager' ),
+											
+											'type'       => 'checkbox',
+											
+											'attributes' => array()
+									),
+									array(
+											'name'       => 'event_manager_google_maps_api_key',
+											'std'        => '',
+											'label'      => __( 'Google Maps API Key', 'wp-event-manager' ),
+											'desc'       => sprintf( __( 'Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
+											'attributes' => array()
+									)		
+							)
+					),
 				'event_listings' => array(
 
 					__( 'Event Listings', 'wp-event-manager' ),
@@ -90,6 +136,20 @@ class WP_Event_Manager_Settings {
 
 							'attributes' => array()
 						),
+						array(
+								'name'       => 'event_manager_hide_expired',
+								
+								'std'        => get_option( 'event_manager_hide_expired_content' ) ? '1' : '0', // back compat
+								'label'      => __( 'Hide Expired Listings', 'wp-event-manager' ),
+								
+								'cb_label'   => __( 'Hide expired listings in event archive/search', 'wp-event-manager' ),
+								
+								'desc'       => __( 'If enabled, expired event listing is not searchable.', 'wp-event-manager' ),
+								
+								'type'       => 'checkbox',
+								
+								'attributes' => array()
+						),
 
 						array(
 
@@ -97,9 +157,9 @@ class WP_Event_Manager_Settings {
 
 							'std'        => '1',
 
-							'label'      => __( 'Expired Listings', 'wp-event-manager' ),
+							'label'      => __( 'Hide Expired Listings Content', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Hide content within expired listings', 'wp-event-manager' ),
+							'cb_label'   => __( 'Hide expired listing content in single event listing (singular)', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area).', 'wp-event-manager' ),
 
@@ -199,11 +259,11 @@ class WP_Event_Manager_Settings {
 
 							'std'        => 'any',
 
-							'label'      => __( 'Category Filter Type', 'wp-event-manager' ),
+							'label'      => __( 'Category Filter', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, the category select box will default to a multi select on the [events] shortcode.', 'wp-event-manager' ),
 
-							'type'       => 'select',
+							'type'       => 'radio',
 
 							'options' => array(
 
@@ -242,10 +302,7 @@ class WP_Event_Manager_Settings {
 											'relative' => __( 'Relative to the current date (e.g., 1 day, 1 week, 1 month ago)', 'wp-event-manager' ),
 											'default'   => __( 'Default date format as defined in Setttings', 'wp-event-manager' ),
 									)
-							)
-					
-						
-						
+							)			
 					),
 				),
 
@@ -304,6 +361,15 @@ class WP_Event_Manager_Settings {
 							'type'       => 'checkbox',
 
 							'attributes' => array()
+						),
+						array(
+								'name'       => 'event_manager_use_standard_password_setup_email',
+								'std'        => '1',
+								'label'      => __( 'Account Password', 'wp-event-manager' ),
+								'cb_label'   => __( 'Use WordPress\' default behavior and email new users link to set a password', 'wp-event-manager' ),
+								'desc'       => __( 'If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won\'t be verified.', 'wp-event-manager' ),
+								'type'       => 'checkbox',
+								'attributes' => array()
 						),
 
 						array(
@@ -423,7 +489,7 @@ class WP_Event_Manager_Settings {
 							'std'        => '',
 							'label'      => __( 'Registration Method', 'wp-event-manager' ),
 							'desc'       => __( 'Choose the registratoin method for listings.', 'wp-event-manager' ),
-							'type'       => 'select',
+							'type'       => 'radio',
 							'options'    => array(
 								''      => __( 'Email address or website URL', 'wp-event-manager' ),
 								'email' => __( 'Email addresses only', 'wp-event-manager' ),
@@ -649,6 +715,22 @@ class WP_Event_Manager_Settings {
 									}
 
 								break;
+								case "radio":
+									?><fieldset>
+										<legend class="screen-reader-text">
+											<span><?php echo esc_html( $option['label'] ); ?></span>
+										</legend><?php
+
+									if ( $option['desc'] ) {
+										echo '<p class="description">' . $option['desc'] . '</p>';
+									}
+
+									foreach( $option['options'] as $key => $name )
+										echo '<label><input name="' . esc_attr( $option['name'] ) . '" type="radio" value="' . esc_attr( $key ) . '" ' . checked( $value, $key, false ) . ' />' . esc_html( $name ) . '</label><br>';
+
+									?></fieldset><?php
+
+								break;
 
 								case "page" :
 
@@ -740,7 +822,7 @@ class WP_Event_Manager_Settings {
                            Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>
                         </p>
                         <p>  
-                           <span class="connect-icon"></span><b>Demo</b> <br>Visit the <a href="http://www.wp-eventmanager.com/demo" target="_blank">Plugin Demo.</a><br>
+                           <span class="connect-icon"></span><b>Demo</b> <br>Visit the <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank">Plugin Demo.</a><br>
                            Visit the <a href="http://www.wp-eventmanager.com/plugins/" target="_blank">Premium Add-ons</a>.<br>                           
                         </p>
                         

@@ -10,7 +10,7 @@
             </div>            
             <div class="col-md-4">                
                 <div class="event-title">                   
-                    <h4><?php the_title(); ?></h4>  
+                    <h4><?php echo esc_html( get_the_title() ); ?></h4>
                     <div class="boxes-view-listing-registered-code">
                         <?php do_action('event_already_registered_title');?>
                     </div>  
