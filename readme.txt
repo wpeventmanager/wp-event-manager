@@ -39,7 +39,7 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 > * Event categories
 > * Easily create custom event field (e.g. dress code)
 > * Assign event locations and view events by location
-> * Widgets for Recents, Upcomming, Featured Events
+> * Widgets for Recents, Upcoming, Featured Events
 > * Plenty of template tags and shortcodes for use in your posts and pages
 > * Caching Support
 > * Developer friendly code, Custom Post Types, endpoints & template files.
@@ -140,7 +140,7 @@ If you want help with a customisation, please consider hiring a developer! [http
 
 
 = Connect With US =
-To stay in touch and get latest update about WP Event Managerâ€™s further releases and features, you can connect with us via:
+To stay in touch and get latest update about WP Event ManagerÃ¢â‚¬â„¢s further releases and features, you can connect with us via:
 - [Facebook](https://www.facebook.com/WP-Event-Manager-306625436419764/)
 - [Twitter](https://twitter.com/wp_eventmanager)
 - [Google Plus](https://plus.google.com/u/0/b/107105224603939407328/107105224603939407328)
@@ -307,29 +307,29 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 = 1.7 =
 
-* Fixed – Google api issue fixed.
+* Fixed â€“ Google api issue fixed.
 * Fixed - Some string tweaks.
 
 = 1.6 =
 
-* Fixed – Start date validation issue.
+* Fixed â€“ Start date validation issue.
 * Fixed - Set organizer logo as event featured image.
 * Fixed - CSS tweeks.
 
 = 1.5 =
 
-* Fixed – Fixed Watch video button blue color removed..
-* Fixed – Fixed Auto categories and types re-activate plugin problem.
-* Fixed – Fixed css problem with theme.
-* Fixed – Fixed jQuery Deserialize - vendor assign js file.
+* Fixed â€“ Fixed Watch video button blue color removed..
+* Fixed â€“ Fixed Auto categories and types re-activate plugin problem.
+* Fixed â€“ Fixed css problem with theme.
+* Fixed â€“ Fixed jQuery Deserialize - vendor assign js file.
 
 = 1.4 =
 
-* Fixed – Sort by date problem for event listing and widgets.
+* Fixed â€“ Sort by date problem for event listing and widgets.
 
 = 1.3 =
 
-* Fixed – Widget (Recent,Upcomming and Featured Events) Sort by date.
+* Fixed â€“ Widget (Recent,Upcomming and Featured Events) Sort by date.
 
 = 1.2 =
 
