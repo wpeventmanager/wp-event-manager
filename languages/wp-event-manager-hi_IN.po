@@ -1465,6 +1465,7 @@ msgid "Yes"
 msgstr "हाँ"
 
 #: admin/wp-event-manager-writepanels.php:82
+
 msgid "Online Event"
 msgstr "ऑनलाइन  कार्यक्रम"
 

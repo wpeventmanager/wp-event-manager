@@ -61,7 +61,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
-		if ( ! isset( $_GET[ 'new' ] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ) {
+		if ( ! isset( $_GET[ 'new' ] ) && ( 'before' === get_option( 'event_manager_paid_listings_flow' ) || ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ) ){
 			$event_id     = absint( $_COOKIE['wp-event-manager-submitting-event-id'] );
 			$event_status = get_post_status( $event_id );
 			if ( 'preview' === $event_status && get_post_meta( $event_id, '_submitting_key', true ) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
@@ -173,10 +173,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				),			
 
 				'event_pincode' => array(
-					'label'       => __( 'Pincode', 'wp-event-manager' ),
+					'label'       => __( 'Zip Code', 'wp-event-manager' ),
 					'type'        => 'text',
 					'required'    => true,
-					'placeholder' => __( 'Please enter pincode (Area code)', 'wp-event-manager' ),
+					'placeholder' => __( 'Please enter zip code (Area code)', 'wp-event-manager' ),
 					'priority'    => 7
 				),
 
@@ -271,7 +271,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 								    'priority'    => 16,
 							        'required'=>true
 		 		),
-                		'event_ticket_price' => array(
+                'event_ticket_price' => array(
 							        'label'=> __( 'Ticket Price', 'wp-event-manager' ),                              
 							        'placeholder'  => __( 'Please enter ticket price', 'wp-event-manager' ),							        
 							        'type'  => 'text',
@@ -328,14 +328,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 3
 				),	
 
-				'organizer_contact_person_name' => array(
-								'label'       => __( 'Contact Person Name', 'wp-event-manager' ),
-								'type'        => 'text',
-								'required'    => true,
-								'placeholder' => __( 'Enter contact person name in your organization', 'wp-event-manager' ),
-								'priority'    => 4
-				),
-
 				'organizer_email' => array(
 								'label'       => __( 'Organization Email', 'wp-event-manager' ),
 								'type'        => 'text',
@@ -367,15 +359,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 								'placeholder' => __( 'Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany', 'wp-event-manager' ),
 								'priority'    => 8
 				),
-
-				'organizer_google_plus' => array(
-								'label'       => __( 'Google+', 'wp-event-manager' ),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __( 'Google+ URL e.g http://plus.google.com/yourcompany', 'wp-event-manager' ),
-								'priority'    => 9
-				),
-
 				'organizer_facebook' => array(
 								'label'       => __( 'Facebook', 'wp-event-manager' ),
 								'type'        => 'text',
@@ -383,46 +366,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 								'placeholder' => __( 'Facebook URL e.g http://www.facebook.com/yourcompany', 'wp-event-manager' ),
 								'priority'    => 10
 				),
-
-				'organizer_linkedin' => array(
-								'label'       => __( 'Linkedin', 'wp-event-manager' ),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __( 'Linkedin URL e.g http://www.linkedin.com/company/yourcompany', 'wp-event-manager' ),
-								'priority'    => 11
-				),
-
-				'organizer_twitter' => array(
-								'label'       => __( 'Twitter', 'wp-event-manager' ),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __( 'Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager' ),
-								'priority'    => 12
-				),
-
-				'organizer_xing' => array(
-								'label'       => __( 'Xing', 'wp-event-manager' ),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __( 'Xing URL e.g http://www.xing.com/companies/yourcompany', 'wp-event-manager' ),
-								'priority'    => 13
-				),
-
-				'organizer_pinterest' => array(
-								'label'       => __( 'Pinterest', 'wp-event-manager' ),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __( 'Pinterest URL e.g http://www.pinterest.com/yourcompany', 'wp-event-manager' ),
-								'priority'    => 14
-				),
-
-				'organizer_instagram' => array(
-								'label'       => __( 'Instagram', 'wp-event-manager' ),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __( 'Instagram URL e.g http://www.instagram.com/yourcompany', 'wp-event-manager' ),
-								'priority'    => 15
-				)
 			)
 		) );
 
@@ -434,7 +377,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			unset( $this->fields['event']['event_type'] );
 		}
 		//get all frontend fields which is set by admin
-		$frontend_selected_fields = get_option('event_manager_frontend_form_fields',true);
+		$frontend_selected_fields = get_option('event_manager_form_fields',true);
 		if(!empty($frontend_selected_fields) && is_array($frontend_selected_fields) ){
 			foreach($frontend_selected_fields as $group_key => $group_fields) {
 				foreach( $group_fields as $field_key => $field_value ) {
@@ -684,7 +627,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 					if ( ! empty( $_POST['create_account_email'] ) ) {
 						$create_account = wp_event_manager_create_account( array(
-							'username' => empty( $_POST['create_account_username'] ) ? '' : $_POST['create_account_username'],
+							'username' => ( event_manager_generate_username_from_email() || empty( $_POST['create_account_username'] ) ) ? '' : $_POST['create_account_username'],
+							'password' => ( event_manager_use_standard_password_setup_email() || empty( $_POST['create_account_password'] ) ) ? '' : $_POST['create_account_password'],
 							'email'    => $_POST['create_account_email'],
 							'role'     => get_option( 'event_manager_registration_role' )
 						) );
@@ -749,13 +693,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					$event_slug[] = $event_type;
 				}
 				else{
+
 					$event_type = $values['event']['event_type'];
+					
 					if( is_int ($event_type) ){
 						$event_type_taxonomy = get_term( $values['event']['event_type']);
 						$event_type = $event_type_taxonomy->name;
 					}
 					$event_slug[] = $event_type;
-					
 				}
 			}
 			$event_slug[]            = $post_title;
@@ -853,21 +798,16 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 				}
 
-				// Handle attachments
-				if ( 'file' === $field['type'] ) {
-					// Must be absolute
-					if ( is_array( $values[ $group_key ][ $key ] ) ) {
-						foreach ( $values[ $group_key ][ $key ] as $file_url ) {
-							if ( strstr( $file_url, WP_CONTENT_URL ) ) {
-								$maybe_attach[] = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $file_url );
+				// Handle attachments.
+					if ( 'file' === $field['type'] ) {
+						if ( is_array( $values[ $group_key ][ $key ] ) ) {
+							foreach ( $values[ $group_key ][ $key ] as $file_url ) {
+								$maybe_attach[] = $file_url;
 							}
-						}
-					} else {
-						if ( strstr( $values[ $group_key ][ $key ], WP_CONTENT_URL ) ) {
-							$maybe_attach[] = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $values[ $group_key ][ $key ] );
+						} else {
+							$maybe_attach[] = $values[ $group_key ][ $key ];
 						}
 					}
-				}
 			}
 		}
 		$maybe_attach = array_filter( $maybe_attach );
@@ -879,7 +819,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$attachment_urls = array();
 			// Loop attachments already attached to the event
 			foreach ( $attachments as $attachment_key => $attachment ) {
-				$attachment_urls[] = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, wp_get_attachment_url( $attachment ) );
+				$attachment_urls[] = wp_get_attachment_url( $attachment_id );
 			}
 			foreach ( $maybe_attach as $attachment_url ) {
 				if ( ! in_array( $attachment_url, $attachment_urls ) ) {
@@ -912,24 +852,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$post              = get_post( $this->event_id );
 			setup_postdata( $post );
 			$post->post_status = 'preview';
-			?>
-			<form method="post" id="event_preview" action="<?php echo esc_url( $action ); ?>">
-				<div class="event_listing_preview_title">
-					<input type="submit" name="continue" id="event_preview_submit_button" class="button" value="<?php echo apply_filters( 'submit_event_step_preview_submit_text', __( 'Submit Listing →', 'wp-event-manager' ) ); ?>" />
-					<input type="submit" name="edit_event" class="button" value="<?php _e( '← Edit listing', 'wp-event-manager' ); ?>" />
-					<input type="hidden" name="event_id" value="<?php echo esc_attr( $this->event_id ); ?>" />
-					<input type="hidden" name="step" value="<?php echo esc_attr( $this->step ); ?>" />
-					<input type="hidden" name="event_manager_form" value="<?php echo $this->form_name; ?>" />
-					<h2>
-						<?php _e( 'Preview', 'wp-event-manager' ); ?>
-					</h2>
-				</div>
-			</form>
-			<div class="event_listing_preview single_event_listing">			
-				<?php get_event_manager_template_part( 'content-single', 'event_listing' ); ?>
-			</div>
-			
-			<?php
+				get_event_manager_template( 'event-preview.php',  array( 'form' => $this ) );
 			wp_reset_postdata();
 		}
 	}
