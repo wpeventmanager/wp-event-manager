@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Handles front admin page for WP Event Manager.
  *
- * @package wp-job-manager
  * @see https://github.com/woocommerce/woocommerce/blob/3.0.8/includes/admin/class-wc-admin-permalink-settings.php  Based on WooCommerce's implementation.
  * @since 2.5
  */
