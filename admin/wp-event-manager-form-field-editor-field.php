@@ -1,10 +1,6 @@
 <?php if(empty($field_key))
-		$field_key = $index;
-		
-$args	= array( 'object_type' => array('event_listing') );
-$output = 'names'; // or objects
-$operator = 'and'; // 'and' or 'or'
-$taxonomies = get_taxonomies($args,$output,$operator); //get all registered taxonomy with event_listing
+		$field_key = $index;		
+$taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listing' ) );
 ?>
 <tr>
 	<td class="sort-column">&nbsp;</td>
@@ -43,7 +39,6 @@ $taxonomies = get_taxonomies($args,$output,$operator); //get all registered taxo
 					?>
 			</label>
 		</div>
-
 		<span class="na">&ndash;</span>
 	</td>
 	<td>

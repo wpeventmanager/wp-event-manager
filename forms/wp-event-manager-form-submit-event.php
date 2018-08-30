@@ -120,7 +120,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       => __( 'Event Title', 'wp-event-manager' ),
 					'type'        => 'text',
 					'required'    => true,
-					'placeholder' => 'Event title',
+					'placeholder' => __('Event title','wp-event-manager'),
 					'priority'    => 1
 				),
 
@@ -145,7 +145,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				),
 
 				'event_online' => array(
-							        'label'=> 'Online Event',							      	
+							        'label'=> __('Online Event','wp-event-manager'),							      	
 							        'type'  => 'radio',
 								    'default'  => 'no',
 								    'options'  => array(
@@ -696,7 +696,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 			}
 			if ( event_manager_user_requires_account() && ! is_user_logged_in() ) {
-				throw new Exception( __( 'You must be signed in to post a new listing.' ) );
+				throw new Exception( __( 'You must be signed in to post a new listing.','wp-event-manager' ) );
 			}
 
 			// Update the event

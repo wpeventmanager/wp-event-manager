@@ -814,19 +814,17 @@ class WP_Event_Manager_Settings {
                 <div class="box-title" title="Click to toggle"><br></div><h3><span>Plugin Info</span></h3>
                     <div class="inside">
                         <p> 
-                             <span class="premium-icon"></span><b>Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 stars rating this plugin on <a href="https://wordpress.org/plugins/wp-event-manager/" target="_blank" >wordpress.org.</a>
+                             <span class="premium-icon"></span><b><?php _e('Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 stars rating this plugin on <a href="https://wordpress.org/plugins/wp-event-manager/" target="_blank" >wordpress.org.','wp-event-manager') ?></a>
                         </p>
                         <p>  
-                           <span class="help-icon"></span><b>Need help?</b> <br>
-                           Read the <a href="https://wp-eventmanager.com/documentation/" target="_blank" >Documentation.</a><br>
-                           Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>
+                           <?php _e('<span class="help-icon"></span><b>Need help?</b> <br>Read the <a href="https://wp-eventmanager.com/documentation/" target="_blank" >Documentation.</a><br>Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>','wp-event-manager'); ?>
                         </p>
                         <p>  
-                           <span class="connect-icon"></span><b>Demo</b> <br>Visit the <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank">Plugin Demo.</a><br>
-                           Visit the <a href="http://www.wp-eventmanager.com/plugins/" target="_blank">Premium Add-ons</a>.<br>                           
+                           <span class="connect-icon"></span><b><?php _e('Demo','wp-event-manager');?></b> <br><?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank"><?_e('Plugin Demo.','wp-event-manager');?></a><br>
+                           <?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/plugins/" target="_blank"><?php _e('Premium Add-ons','wp-event-manager'); ?></a>.<br>                           
                         </p>
                         
-                        <p><span class="light-grey">This plugin was made by</span> <a href="https://wp-eventmanager.com/" target="_blank">WP Event Manager</a>.
+                        <p><span class="light-grey"><?php _e('This plugin was made by','wp-event-manager');?></span> <a href="https://wp-eventmanager.com/" target="_blank"><?php _e('WP Event Manager','wp-event-manager');?></a>.
                         </p>
                     </div>
                 </div>

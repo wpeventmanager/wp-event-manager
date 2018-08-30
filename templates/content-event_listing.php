@@ -17,7 +17,6 @@
                 </div>
                 <div class="event-organizer-name">
                     <?php display_organizer_name( '<normal>', '<normal>' ); ?>
-                    <?php if ( get_option( 'event_manager_enable_event_types' ) ) { display_event_type(); } ?>
                 </div>                
             </div>
             <div class="col-md-2">		        
@@ -28,12 +27,13 @@
 	        </div>
 	        <div class="col-md-3">		
 		        <div class="event-location"><i class="glyphicon glyphicon-map-marker"></i>
-		          <?php if(get_event_location()=='Anywhere' || get_event_location() == ''): echo 'Online Event'; else:  display_event_location(false); endif; ?>
+		          <?php if(get_event_location()=='Anywhere' || get_event_location() == ''): echo __('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?>
 		       </div>		
 	        </div>
 	        <div class="col-md-2">
                 <div class="event-ticket"><?php echo '#'.get_event_ticket_option(); ?></div>            
             </div>
+            <div class="col-md-3"> <?php if ( get_option( 'event_manager_enable_event_types' ) ) { display_event_type(); } ?></div>
         </div>
       </a> 
      </div>
@@ -53,11 +53,11 @@
     <div class="event-start-date"><?php $timestamp = strtotime(get_event_start_date()); if($timestamp!= null): echo date("M j, Y",$timestamp); endif;?></div>   
     <div class="event-location">
 	 <i class="glyphicon glyphicon-map-marker"></i>
-     <?php if(get_event_location()=='Anywhere'): echo 'Online Event'; else:  display_event_location(false); endif; ?>
+     <?php if(get_event_location()=='Anywhere'): echo __('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?>
     </div>
     <div class="box-footer">
      <?php if ( get_option( 'event_manager_enable_event_types' ) ) {  ?>
-      <div class="event-type"> <div><?php display_event_type(); ?></div> </div>    
+      <div class=""> <?php display_event_type(); ?> </div>    
       <?php } ?>  
       <div class="event-ticket"><?php echo '#'.get_event_ticket_option(); ?></div>
     </div> 
