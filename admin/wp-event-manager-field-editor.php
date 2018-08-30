@@ -108,7 +108,6 @@ class WP_Event_Manager_Field_Editor {
 			'radio'       => __( 'Radio', 'wp-event-manager' ),			
 			'repeated'       => __( 'Repeated', 'wp-event-manager' ),			
 			'select'         => __( 'Select', 'wp-event-manager' ),
-			'multiselect'    => __( 'Multiselect', 'wp-event-manager' ),
 			'term-checklist'    => __( 'Term Checklist', 'wp-event-manager' ),
 			'term-multiselect'    => __( 'Term Multiselect', 'wp-event-manager' ),
 			'term-select'    => __( 'Term Select', 'wp-event-manager' ),
@@ -302,7 +301,7 @@ class WP_Event_Manager_Field_Editor {
 					 foreach( $group_fields as $field_key => $field_value ) {
 							$index++;
 							$new_fields[$group_key][$field_key]['priority'] = $index;
-							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] != 'term-select' || $new_fields[$group_key][$field_key]['type'] != 'term-multiselect'){
+							if ( isset($new_fields[$group_key][$field_key]['type']) && ! in_array($new_fields[$group_key][$field_key]['type'],  array('term-select', 'term-multiselect', 'term-checklist') ) ) {
 								unset($new_fields[$group_key][$field_key]['taxonomy']);
 							}
 							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] == 'select'  || $new_fields[$group_key][$field_key]['type'] == 'radio'  || $new_fields[$group_key][$field_key]['type'] == 'multiselect'){
@@ -341,8 +340,8 @@ class WP_Event_Manager_Field_Editor {
 				foreach($event_fields as $field_key => $event_field) {
 					$index++;
 					$event_fields[$field_key]['priority'] = $index;
-					if(isset($event_fields['type']) && $event_fields[$field_key]['type'] != 'term-select' || $event_fields[$field_key]['type'] != 'term-multiselect'){
-						unset($event_fields[$field_key]['taxonomy']);
+					if ( isset($new_fields[$group_key][$field_key]['type']) && ! in_array($new_fields[$group_key][$field_key]['type'],  array('term-select', 'term-multiselect', 'term-checklist') ) ) {
+						unset($new_fields[$group_key][$field_key]['taxonomy']);
 					}
 					if(isset($event_fields[$field_key]['type']) && $event_fields[$field_key]['type'] == 'select'  || $event_fields[$field_key]['type'] == 'radio'  || $event_fields[$field_key]['type'] == 'multiselect'){
 						if(isset($event_fields[$field_key]['options'])){
@@ -362,7 +361,7 @@ class WP_Event_Manager_Field_Editor {
 					
 					if(isset($event_fields[$field_key]['label'])){
 								$label_key =  str_replace(' ',"_",$event_fields[$field_key]['label']);
-								$event_fields[strtolower($label_key)]= $event_fields[$field_key];
+								$event_fields['_'.strtolower($label_key)]= $event_fields[$field_key];
 					}
 					unset($event_fields[$field_key]);
 				}

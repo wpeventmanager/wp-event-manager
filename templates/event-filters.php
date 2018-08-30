@@ -26,7 +26,7 @@
 			<?php if ( $datetimes) : ?>				
 				<div class="col-sm-4">
 					<label for="search_datetimes"><?php _e( 'Any dates', 'wp-event-manager' ); ?></label>
-					<select name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown" data-placeholder="Choose any date…" data-no_results_text="No results match" data-multiple_text="Select Some Options" >
+					<select name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown" data-placeholder="Choose any date…" data-no_results_text="No results match" data-multiple_text="<?php _e('Select Some Options','wp-event-manager'); ?>" >
 					<?php foreach ( $datetimes as $key => $value  ) : ?>
 						<option  value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
 					<?php endforeach; ?>
@@ -77,7 +77,7 @@
 			<?php if ( $show_ticket_prices && $ticket_prices) : ?>				
 				<div class="col-sm-4">
 					<label for="search_ticket_prices"><?php _e( 'Ticket Prices', 'wp-event-manager' ); ?></label>
-					<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="No results match" data-multiple_text="Select Some Options" >
+					<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php _e('No results match','wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options','wp-event-manager'); ?>" >
 					<?php foreach ( $ticket_prices as $key => $value ) : ?>
 						<option  value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
 					<?php endforeach; ?>

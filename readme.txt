@@ -1,11 +1,11 @@
 === WP Event Manager ===
 
-Contributors: ashokdudhat,gamthemes,hiteshmakvana
+Contributors: ashokdudhat,gamthemes,hiteshmakvana,uponity,telecima,nao,ikosweb,fierevere,nidamo,arshadt87,miteshce3,monikarao,zup2,sofyand,lasacco,giuliag,ideag,lithuanianmenfiverr,snezanastefan,dancaragea,kingmanu,guimo,hani90,xkatka,mrjacobee,tyxla,mhoteb,robertsky_,ohvangie,fgobea,ageha1304,fxbenard,babygirlblog
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 4.9.4
-Stable tag: 2.2
+Tested up to: 4.9.7
+Stable tag: 2.4
 
 Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the WordPress admin panel.
 
@@ -140,7 +140,7 @@ If you want help with a customisation, please consider hiring a developer! [http
 
 
 = Connect With US =
-To stay in touch and get latest update about WP Event Managerâ€™s further releases and features, you can connect with us via:
+To stay in touch and get latest update about WP Event Managerï¿½s further releases and features, you can connect with us via:
 - [Facebook](https://www.facebook.com/WP-Event-Manager-306625436419764/)
 - [Twitter](https://twitter.com/wp_eventmanager)
 - [Google Plus](https://plus.google.com/u/0/b/107105224603939407328/107105224603939407328)
@@ -274,6 +274,18 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+= 2.4 =
+
+* Fixed - All string related issue and POT file.
+* Fixed - Admin form fields improvements.
+* Fixed - Language files added for Bulgarian,Hindi,Indonesian,Italian,Lithuanian,Polish,Portuguese (Brazil),Serbian,Vietnamese,Chinese 
+
+
+= 2.3 =
+
+* Added - Language files for German, Japanese, Russian, and Spanish (Mexico).
+* Fixed - Account creation settings and fields issue.
+* Fixed - Backend form fields issue.
 
 = 2.2 =
 
@@ -307,29 +319,29 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 = 1.7 =
 
-* Fixed – Google api issue fixed.
+* Fixed - Google api issue fixed.
 * Fixed - Some string tweaks.
 
 = 1.6 =
 
-* Fixed – Start date validation issue.
+* Fixed - Start date validation issue.
 * Fixed - Set organizer logo as event featured image.
 * Fixed - CSS tweeks.
 
 = 1.5 =
 
-* Fixed – Fixed Watch video button blue color removed..
-* Fixed – Fixed Auto categories and types re-activate plugin problem.
-* Fixed – Fixed css problem with theme.
-* Fixed – Fixed jQuery Deserialize - vendor assign js file.
+* Fixed - Fixed Watch video button blue color removed..
+* Fixed - Fixed Auto categories and types re-activate plugin problem.
+* Fixed - Fixed css problem with theme.
+* Fixed - Fixed jQuery Deserialize - vendor assign js file.
 
 = 1.4 =
 
-* Fixed – Sort by date problem for event listing and widgets.
+* Fixed - Sort by date problem for event listing and widgets.
 
 = 1.3 =
 
-* Fixed – Widget (Recent,Upcomming and Featured Events) Sort by date.
+* Fixed - Widget (Recent,Upcomming and Featured Events) Sort by date.
 
 = 1.2 =
 

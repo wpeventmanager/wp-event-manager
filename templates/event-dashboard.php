@@ -75,7 +75,7 @@
 								?>
             
                                 <?php elseif ('event_location' === $key ) : 
-                                     if(get_event_location($event)=='Anywhere'): echo 'Online Event'; else:  display_event_location(false,$event); endif;
+                                     if(get_event_location($event)=='Anywhere'): echo __('Online Event','wp-event-manager'); else:  display_event_location(false,$event); endif;
 
     						?>
 				<?php elseif ('view_count' === $key ) : 

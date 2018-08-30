@@ -966,15 +966,15 @@ div.event_listings .load_more_events:focus, div.event_listings .load_more_events
 }
 
 .event-info-row-listing .event-type {
-	float: none;
-	margin: 0;
-	width: 100% !important;
-	color: #fff;
-	display: inline;
-	margin-top: 5px !important;
-	padding: 5px;
-	position: absolute;
-	white-space: nowrap
+float: right;
+    margin: 0;
+    /* width: 100%!important; */
+    color: #fff;
+    display: inline;
+    margin-top: 5px!important;
+    padding: 5px;
+    /* position: absolute; */
+    white-space: nowrap;
 }
 
 .event-info-row-listing .event-title {
@@ -1026,6 +1026,8 @@ div.event_listings .load_more_events:focus, div.event_listings .load_more_events
 		padding: 5px;
 		position: static !important;
 		margin: 0
+		
+
 	}
 	.event-info-row-listing .event-title {
 		float: left;
@@ -1193,10 +1195,8 @@ div.event_listings .load_more_events:focus, div.event_listings .load_more_events
 .event-widget .box-footer .event-type {
 	border-right: 1px solid #ececec;
 	padding: 10px;
-	width: 74%;
 	float: left;
 	color: #333;
-	height: 52px
 }
 
 .event-widget .box-footer .event-ticket {
@@ -1255,9 +1255,17 @@ div.event_listings .load_more_events:focus, div.event_listings .load_more_events
 }
 
 .single_event_listing .meta .event-type {
-	color: #fff;
-	background-color: #f08d3c
+	color: #676b6d;
+	padding:5px;
+	/*background-color: #f08d3c*/
 }
+
+.single_event_listing .meta .event-category {
+	color: #676b6d;
+	padding:5px;
+	/*background-color: #f08d3c*/
+}
+
 
 .single_event_listing .meta .event-cancelled, .single_event_listing .meta .listing-expired
 	{
