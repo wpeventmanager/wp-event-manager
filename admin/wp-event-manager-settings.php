@@ -94,9 +94,18 @@ class WP_Event_Manager_Settings {
 											'name'       => 'event_manager_google_maps_api_key',
 											'std'        => '',
 											'label'      => __( 'Google Maps API Key', 'wp-event-manager' ),
-											'desc'       => sprintf( __( 'Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
+											'desc'       => sprintf( __( 'Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>. It will not show map without Google Map Addon it is used for Geocodding API', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
 											'attributes' => array()
-									)		
+									),
+									array(
+											'name'       => 'event_manager_delete_data_on_uninstall',
+											'std'        => '0',
+											'label'      => __( 'Delete Data On Uninstall', 'wp-event-manager' ),
+											'cb_label'   => __( 'Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be restored.', 'wp-event-manager' ),
+											'desc'       => '',
+											'type'       => 'checkbox',
+											'attributes' => array(),
+									),
 							)
 					),
 				'event_listings' => array(
