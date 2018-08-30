@@ -12,6 +12,29 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class WP_Event_Manager_Ajax {
 
 	/**
+	 * The single instance of the class.
+	 *
+	 * @var self
+	 * @since  2.5
+	 */
+	private static $_instance = null;
+
+	/**
+	 * Allows for accessing single instance of class. Class should only be constructed once per call.
+	 *
+	 * @since  2.5
+	 * @static
+	 * @return self Main instance.
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
+
+
+	/**
 	 * Constructor
 	*/
 
@@ -410,4 +433,4 @@ class WP_Event_Manager_Ajax {
 	}
 }
 
-new WP_Event_Manager_Ajax();
+ WP_Event_Manager_Ajax::instance();

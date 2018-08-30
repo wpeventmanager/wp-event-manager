@@ -42,6 +42,38 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WP_Event_Manager {
 
 	/**
+	 * The single instance of the class.
+	 *
+	 * @var self
+	 * @since  2.5
+	 */
+	private static $_instance = null;
+
+	/**
+	 * REST API instance.
+	 *
+	 * @var WP_Event_Manager_REST_API
+	 */
+	private $rest_api = null;
+
+	/**
+	 * Main WP Event Manager Instance.
+	 *
+	 * Ensures only one instance of WP Event Manager is loaded or can be loaded.
+	 *
+	 * @since  2.5
+	 * @static
+	 * @see WP_Event_Manager()
+	 * @return self Main instance.
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
+
+	/**
 	 * Constructor - get the plugin hooked in and ready
 	 */
 
@@ -62,6 +94,7 @@ class WP_Event_Manager {
 		include( 'core/wp-event-manager-filters.php' );
 		include( 'core/wp-event-manager-cache-helper.php' );		
 
+
 		//shortcodes
 		include( 'shortcodes/wp-event-manager-shortcodes.php' );
 
@@ -73,20 +106,12 @@ class WP_Event_Manager {
 			include( 'admin/wp-event-manager-admin.php' );
 
 		}
-		// Load language files
-		require_once( 'core/wp-event-manager-wpml.php' );
-		require_once( 'core/wp-event-manager-polylang.php' );
-		
-		
-		require_once(   'core/all-in-one-seo-pack.php' );
-		require_once(   'core/jetpack.php' );
-		require_once(   'core/wp-event-manager-yoast.php' );
-		
+		//external 
+		include('external/external.php');
 		// Init classes
+		$this->forms      = WP_Event_Manager_Forms::instance();
 
-		$this->forms      = new WP_Event_Manager_Forms();
-
-		$this->post_types = new WP_Event_Manager_Post_Types();
+		$this->post_types = WP_Event_Manager_Post_Types::instance();
 
 		// Activation - works with symlinks
 
@@ -127,14 +152,13 @@ class WP_Event_Manager {
 	public function activate() {
 
 		WP_Event_Manager_Ajax::add_endpoint();
-
+		unregister_post_type( 'event_listing' );
+		add_filter( 'pre_option_event_manager_enable_types', '__return_true' );
 		$this->post_types->register_post_types();
-
+		remove_filter( 'pre_option_event_manager_enable_types', '__return_true' );
 		WP_Event_Manager_Install::install();
-		
 		//show notice after activating plugin
 		update_option('event_manager_rating_showcase_admin_notices_dismiss','0');
-		
 		flush_rewrite_rules();
 	}
 
@@ -143,7 +167,6 @@ class WP_Event_Manager {
 	 */
 
 	public function updater() {
-
 		if ( version_compare( EVENT_MANAGER_VERSION, get_option( 'wp_event_manager_version' ), '>' ) ) {
 
 			WP_Event_Manager_Install::install();
@@ -166,6 +189,7 @@ class WP_Event_Manager {
 
 		load_plugin_textdomain($domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
+
 
 	/**
 	 * Load functions
@@ -196,8 +220,12 @@ class WP_Event_Manager {
 		$ajax_url         = WP_Event_Manager_Ajax::get_endpoint();
 		$ajax_filter_deps = array( 'jquery', 'jquery-deserialize' );
 
+		$chosen_shortcodes   = array( 'submit_event_form', 'event_dashboard', 'events' );
+		$chosen_used_on_page = has_wpem_shortcode( null, $chosen_shortcodes );
+
+
 		//jQuery Chosen - vendor
-		if ( apply_filters( 'event_manager_chosen_enabled', true ) ) {
+		if ( apply_filters( 'event_manager_chosen_enabled', $chosen_used_on_page ) ) {
 
 			wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
 			wp_register_script( 'wp-event-manager-term-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/term-multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
@@ -282,7 +310,7 @@ class WP_Event_Manager {
 		wp_localize_script( 'wp-event-manager-ajax-filters', 'event_manager_ajax_filters', array(
 			'ajax_url'                => $ajax_url,
 			'is_rtl'                  => is_rtl() ? 1 : 0,
-			'lang'                    => defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : '', // WPML workaround until this is standardized
+			'lang'                    => apply_filters( 'wpem_lang', null ), //defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : '', // WPML workaround until this is standardized
 			'i18n_load_prev_listings' => __( 'Load previous listings', 'wp-event-manager' )
 
 		) );
@@ -332,4 +360,16 @@ class WP_Event_Manager {
 		}
 	}			
 }
-$GLOBALS['event_manager'] = new WP_Event_Manager();
+
+/**
+ * Main instance of WP Event Manager.
+ *
+ * Returns the main instance of WP Event Manager to prevent the need to use globals.
+ *
+ * @since  2.5
+ * @return WP_Event_Manager
+ */
+function WPEM() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+	return WP_Event_Manager::instance();
+}
+$GLOBALS['event_manager'] =  WPEM();

@@ -38,35 +38,11 @@ class WP_Event_Manager_Field_Editor {
 	 * Output the screen
 	 */
 	public function output() {
-		$tabs = array(
-			'forntend-event-fields' => __( 'Front End Form Fields', 'wp-event-manager-registrations' ),
-			'backend-form-fields'  =>  __( 'Back End Form Fields', 'wp-event-manager-registrations' ),
-		);
-		$tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'forntend-event-fields';
-		?>
+	?>
 		<div class="wrap wp-event-manager-form-field-editor">
-			<h2 class="nav-tab-wrapper">
-				<?php
-				foreach( $tabs as $key => $value ) {
-					$active = ( $key == $tab ) ? 'nav-tab-active' : '';
-					echo '<a class="nav-tab ' . $active . '" href="' . admin_url( 'edit.php?post_type=event_listing&page=event-manager-form-editor&tab=' . esc_attr( $key ) ) . '">' . esc_html( $value ) . '</a>';
-				}
-				?>
-			</h2>
-			<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor&amp;tab=<?php echo esc_attr( $tab ); ?>">
-				<?php
-				switch ( $tab ) {
-					case 'forntend-event-fields' :
-						$this->frontend_form_editor();
-					break;
-					case 'backend-form-fields' :
-						$this->backend_form_editor();
-					break;
-					default :
-					break;
-				}
-				?>
-				<?php wp_nonce_field( 'save-' . $tab ); ?>
+			<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor">
+				<?php $this->form_editor(); ?>
+				<?php wp_nonce_field( 'save-wp-event-manager-form-field-editor' ); ?>
 			</form>
 		</div>
 		<?php
@@ -75,9 +51,9 @@ class WP_Event_Manager_Field_Editor {
 	/**
 	 * Output the fronted form editor
 	 */
-	private function frontend_form_editor() {
+	private function form_editor() {
 		if ( ! empty( $_GET['reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
-			delete_option( 'event_manager_frontend_form_fields' );
+			delete_option( 'event_manager_form_fields' );
 			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
 
@@ -90,11 +66,11 @@ class WP_Event_Manager_Field_Editor {
 	
 	$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );	
 	$fields      = $form_submit_event_instance->init_fields();
-	$temp_fields = get_option( 'event_manager_frontend_form_fields', $fields );
+	$temp_fields = get_option( 'event_manager_form_fields', $fields );
 	if(!empty($temp_fields) && is_array($temp_fields))
 		$fields = $temp_fields;
 
-		$field_types = apply_filters( 'event_manager_frontend_form_field_types', array(
+		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           => __( 'Text', 'wp-event-manager' ),
 			'button'           => __( 'Button', 'wp-event-manager' ),
 			'button-options'       => __( 'Button Options', 'wp-event-manager' ),			
@@ -114,22 +90,11 @@ class WP_Event_Manager_Field_Editor {
 			'textarea'    => __( 'Textarea', 'wp-event-manager' ),
 			'wp-editor'       => __( 'WP Editor', 'wp-event-manager' )
 		) );
-
-		
 		?>
 		<?php	
 		foreach($fields  as $group_key => $group_fields){ ?>
 			<div class="wp-event-manager-event-form-field-editor">
-					<?php 
-					if($group_key == 'event'){ ?>
-					<h3><?php _e('Event fields','wp-event-manager');?></h3>
-					<?php	
-					}
-					else if($group_key == 'organizer'){ ?>
-					<h3><?php _e('Organizer fields','wp-event-manager');?></h3>
-					<?php	
-					}
-					?>
+				<h3><?php _e('Event fields','wp-event-manager');?></h3>
 				<table class="widefat">
 					<thead>
 						<tr>
@@ -154,7 +119,6 @@ class WP_Event_Manager_Field_Editor {
 								<input type="submit" class="save-fields button-primary" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
 							</th>
 							<?php } ?>
-							
 						</tr>
 					</tfoot>
 					<tbody id="form-fields" data-field="<?php
@@ -174,121 +138,17 @@ class WP_Event_Manager_Field_Editor {
 								$index ++;
 								include( 'wp-event-manager-form-field-editor-field.php' );
 							}
-						
 					?></tbody>
 				</table>
 			</div>
-<?php	} ?>
-				
-		
-		
-		<?php
-	}
-	
-	/**
-	 * Output the fronted form editor
-	 */
-	private function backend_form_editor() {
-		if ( ! empty( $_GET['reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
-			delete_option( 'event_manager_backend_form_fields' );
-			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
-		}
-		if ( ! empty( $_POST ) && ! empty( $_POST['_wpnonce'] ) ) {
-			echo $this->form_editor_save();
-		}
-		
-		if(class_exists('WP_Event_Manager_Writepanels')){
-			$writepanel = new WP_Event_Manager_Writepanels();
-			
-			$fields = $writepanel->event_listing_fields();
-			$fields = get_option( 'event_manager_backend_form_fields', $fields );
-			if(empty($fields) || !is_array($fields))
-				return;
-			
-			$field_types = apply_filters( 'event_manager_backend_form_field_types', array(
-										'text'           => __( 'Text', 'wp-event-manager' ),
-										'button'           => __( 'Button', 'wp-event-manager' ),
-										'button-options'       => __( 'Button Options', 'wp-event-manager' ),			
-										'checkbox'       => __( 'Checkbox', 'wp-event-manager' ),			
-										'date'       => __( 'Date', 'wp-event-manager' ),			
-										'file'       => __( 'File', 'wp-event-manager' ),			
-										'hidden'       => __( 'Hidden', 'wp-event-manager' ),			
-										'multiselect'       => __( 'Multiselect', 'wp-event-manager' ),			
-										'number'       => __( 'Number', 'wp-event-manager' ),			
-										'password'       => __( 'Password', 'wp-event-manager' ),			
-										'radio'       => __( 'Radio', 'wp-event-manager' ),			
-										'repeated'       => __( 'Repeated', 'wp-event-manager' ),			
-										'select'         => __( 'Select', 'wp-event-manager' ),
-										'multiselect'    => __( 'Multiselect', 'wp-event-manager' ),
-										'term-checklist'    => __( 'Term Checklist', 'wp-event-manager' ),
-										'term-multiselect'    => __( 'Term Multiselect', 'wp-event-manager' ),
-										'term-select'    => __( 'Term Select', 'wp-event-manager' ),
-										'textarea'    => __( 'Textarea', 'wp-event-manager' ),
-										'wp-editor'       => __( 'WP Editor', 'wp-event-manager' ),
-										'author'       => __( 'Author', 'wp-event-manager' )
-									) );
-						
-			$group_key = 'event';
-			 ?>
-			<div class="wp-event-manager-event-form-field-editor">
-					<h3><?php _e('Event fields','wp-event-manager');?></h3>
-				<table class="widefat">
-					<thead>
-						<tr>
-							<th width="1%">&nbsp;</th>
-							<th><?php _e( 'Field Label', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Type', 'wp-event-manager' ); ?></th>
-							<th><?php _e( 'Description', 'wp-event-manager' ); ?></th>
-							<th><?php _e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Priority', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Validation', 'wp-event-manager' ); ?></th>
-							<th width="1%" class="field-actions">&nbsp;</th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<th colspan="4">
-								<a class="button add-field" href="#"><?php _e( 'Add field', 'wp-event-manager' ); ?></a>
-							</th>
-						
-							<th colspan="4" class="save-actions">
-								<a href="<?php echo wp_nonce_url( add_query_arg( 'reset-fields', 1 ), 'reset' ); ?>" class="reset"><?php _e( 'Reset to default', 'wp-event-manager' ); ?></a>
-								<input type="submit" class="save-fields button-primary" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
-							</th>
-						</tr>
-					</tfoot>
-					<tbody id="form-fields" data-field="<?php
-						ob_start();
-						$index     = -1;
-						$field_key = '';
-						$field     = array(
-							'type'        => 'text',
-							'label'       => '',
-							'placeholder' => ''
-						);
-						include( 'wp-event-manager-form-field-editor-field.php' );
-						echo esc_attr( ob_get_clean() );
-					?>"><?php
-							if(isset($fields))
-							foreach ( $fields as $field_key => $field ) {
-								$index ++;
-								include( 'wp-event-manager-form-field-editor-field.php' );
-							}
-						
-					?></tbody>
-				</table>
-			</div>
-	
-			<?php
-		}
-	}
-	
+<?php	} 
+	}	
 	
 	/**
 	 * Save the form fields
 	 */
 	private function form_editor_save() {
-		if( wp_verify_nonce( $_POST['_wpnonce'], 'save-forntend-event-fields' ) )
+		if( wp_verify_nonce( $_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor' ) )
 		{
 			$event_field          	  = ! empty( $_POST['event'] ) ?  $_POST['event'] 				: array();
 			$event_organizer          = ! empty( $_POST['organizer'] ) ?  $_POST['organizer']   	: array();
@@ -327,47 +187,10 @@ class WP_Event_Manager_Field_Editor {
 							unset($new_fields[$group_key][$field_key]);
 					}
 				}
-				$result = update_option( 'event_manager_frontend_form_fields', $new_fields );
+				$result = update_option( 'event_manager_form_fields', $new_fields );
 			
 			}	  
 		}
-		
-		 if( wp_verify_nonce( $_POST['_wpnonce'], 'save-backend-form-fields' )){ 
-		
-			$event_fields          	  = ! empty( $_POST['event'] ) ?  $_POST['event'] 				: array();
-			$index = 0;
-			if(!empty($event_fields)){
-				foreach($event_fields as $field_key => $event_field) {
-					$index++;
-					$event_fields[$field_key]['priority'] = $index;
-					if ( isset($new_fields[$group_key][$field_key]['type']) && ! in_array($new_fields[$group_key][$field_key]['type'],  array('term-select', 'term-multiselect', 'term-checklist') ) ) {
-						unset($new_fields[$group_key][$field_key]['taxonomy']);
-					}
-					if(isset($event_fields[$field_key]['type']) && $event_fields[$field_key]['type'] == 'select'  || $event_fields[$field_key]['type'] == 'radio'  || $event_fields[$field_key]['type'] == 'multiselect'){
-						if(isset($event_fields[$field_key]['options'])){
-							$event_fields[$field_key]['options'] = explode( ' | ', $event_fields[$field_key]['options']);
-							$temp_options = array();
-							foreach($event_fields[$field_key]['options'] as $val){
-								$temp_options[strtolower(str_replace(' ', '_', $val))] = $val;
-							}
-							$event_fields[$field_key]['options'] = $temp_options;
-						}
-					}
-					else{
-						unset($event_fields[$field_key]['options']);
-					}
-					
-					if(!is_int($field_key)) continue;
-					
-					if(isset($event_fields[$field_key]['label'])){
-								$label_key =  str_replace(' ',"_",$event_fields[$field_key]['label']);
-								$event_fields['_'.strtolower($label_key)]= $event_fields[$field_key];
-					}
-					unset($event_fields[$field_key]);
-				}
-				$result = update_option( 'event_manager_backend_form_fields', $event_fields );
-			}
-		 }
 		 
 		 if ( isset($result) && true === $result ) {
 				echo '<div class="updated"><p>' . __( 'The fields were successfully saved.', 'wp-event-manager' ) . '</p></div>';
