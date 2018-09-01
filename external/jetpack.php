@@ -20,7 +20,7 @@ function event_manager_jetpack_skip_cancelled_event_listings( $skip_post, $post 
 }
 add_action( 'jetpack_sitemap_skip_post', 'event_manager_jetpack_skip_cancelled_event_listings', 10, 2 );
 /**
- * Add `job_listing` post type to sitemap.
+ * Add `event_listing` post type to sitemap.
  *
  * @param array $post_types
  * @return array
