@@ -281,6 +281,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Fixed : boostrap depandancy on date-timepicker removed.
 * Improved : SEO and lang translation compatiblity improved.
 * Added : GDPR data cleaner improved.
+* Added : Permalink setting added. 
 
 = 2.4 =
 
