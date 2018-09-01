@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
 Tested up to: 4.9.7
-Stable tag: 2.4
+Stable tag: 2.5
 
 Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the WordPress admin panel.
 
@@ -273,6 +273,13 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 == Changelog ==
+
+= 2.5 =
+
+* Fixed : Field editor bug fixed.
+* Added : jQuery datepicker added.
+* Fixed : boostrap depandancy on date-timepicker removed.
+* Improved : SEO and lang translation compatiblity improved.
 
 = 2.4 =
 
