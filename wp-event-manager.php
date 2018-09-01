@@ -349,7 +349,7 @@ class WP_Event_Manager {
 		wp_enqueue_script( 'jquery-ui');
 	}
 	/**
-	 	 * Cleanup job posting cookies.
+	 	 * Cleanup event posting cookies.
 	 	 */
 	public function cleanup_event_posting_cookies() {
 			if ( isset( $_COOKIE['wp-event-manager-submitting-event-id'] ) ) {

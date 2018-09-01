@@ -91,6 +91,15 @@ class WP_Event_Manager_Settings {
 											'attributes' => array()
 									),
 									array(
+											'name'       => 'event_manager_delete_data_on_uninstall',
+											'std'        => '0',
+											'label'      => __( 'Delete Data On Uninstall', 'wp-event-manager' ),
+											'cb_label'   => __( 'Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be restored.', 'wp-event-manager' ),
+											'desc'       => '',
+											'type'       => 'checkbox',
+											'attributes' => array(),
+									),
+									array(
 											'name'       => 'event_manager_google_maps_api_key',
 											'std'        => '',
 											'label'      => __( 'Google Maps API Key', 'wp-event-manager' ),

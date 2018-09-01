@@ -7,8 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Handles front admin page for WP Event Manager.
  *
- * @package wp-job-manager
- * @see https://github.com/woocommerce/woocommerce/blob/3.0.8/includes/admin/class-wc-admin-permalink-settings.php  Based on WooCommerce's implementation.
  * @since 2.5
  */
 class WP_Event_Manager_Permalink_Settings {
@@ -79,7 +77,7 @@ class WP_Event_Manager_Permalink_Settings {
 	}
 
 	/**
-	 * Show a slug input box for job post type slug.
+	 * Show a slug input box for event post type slug.
 	 */
 	public function event_base_slug_input() {
 		?>
@@ -88,7 +86,7 @@ class WP_Event_Manager_Permalink_Settings {
 	}
 
 	/**
-	 * Show a slug input box for job category slug.
+	 * Show a slug input box for event category slug.
 	 */
 	public function event_category_slug_input() {
 		?>
@@ -97,7 +95,7 @@ class WP_Event_Manager_Permalink_Settings {
 	}
 
 	/**
-	 * Show a slug input box for job type slug.
+	 * Show a slug input box for event type slug.
 	 */
 	public function event_type_slug_input() {
 		?>
