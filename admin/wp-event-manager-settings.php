@@ -94,18 +94,9 @@ class WP_Event_Manager_Settings {
 											'name'       => 'event_manager_google_maps_api_key',
 											'std'        => '',
 											'label'      => __( 'Google Maps API Key', 'wp-event-manager' ),
-											'desc'       => sprintf( __( 'Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>. It will not show map without Google Map Addon it is used for Geocodding API', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
+											'desc'       => sprintf( __( 'Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
 											'attributes' => array()
-									),
-									array(
-											'name'       => 'event_manager_delete_data_on_uninstall',
-											'std'        => '0',
-											'label'      => __( 'Delete Data On Uninstall', 'wp-event-manager' ),
-											'cb_label'   => __( 'Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be restored.', 'wp-event-manager' ),
-											'desc'       => '',
-											'type'       => 'checkbox',
-											'attributes' => array(),
-									),
+									)		
 							)
 					),
 				'event_listings' => array(
@@ -302,16 +293,25 @@ class WP_Event_Manager_Settings {
 							)
 						),
 					  array(
-									'name'       => 'event_manager_date_format',
-									'std'        => 'relative',
-									'label'      => __( 'Date Format', 'wp-event-manager' ),
-									'desc'       => __( 'Choose how you want the published date for events to be displayed on the front-end.', 'wp-event-manager' ),
-									'type'       => 'select',
-									'options'    => array(
-											'relative' => __( 'Relative to the current date (e.g., 1 day, 1 week, 1 month ago)', 'wp-event-manager' ),
-											'default'   => __( 'Default date format as defined in Setttings', 'wp-event-manager' ),
-									)
-							)			
+							'name'       => 'event_manager_date_format',
+							'std'        => 'dd-mm-yy',
+							'label'      => __( 'Date Format', 'wp-event-manager' ),
+							'desc'       => __( 'Choose how you want the published date for events to be displayed on the front-end.', 'wp-event-manager' ),
+							'type'       => 'text',
+							),
+					  array(
+							'name'       => 'event_manager_time_format',
+							'std'        => '',
+							'label'      => __( 'Time Format', 'wp-event-manager' ),
+							'desc'       => __( 'Choose how you want the published time for events to be select on the submit event page.', 'wp-event-manager' ),
+							'type'       => 'select',
+							'options' => array(
+
+								'12'  => __( '12 hour', 'wp-event-manager' ),
+
+								'24' => __( '24 hour', 'wp-event-manager' ),
+							)
+						)			
 					),
 				),
 

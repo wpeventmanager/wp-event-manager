@@ -72,6 +72,7 @@ class WP_Event_Manager_Field_Editor {
 
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           => __( 'Text', 'wp-event-manager' ),
+			'time'           => __( 'Time', 'wp-event-manager' ),
 			'button'           => __( 'Button', 'wp-event-manager' ),
 			'button-options'       => __( 'Button Options', 'wp-event-manager' ),			
 			'checkbox'       => __( 'Checkbox', 'wp-event-manager' ),			
@@ -94,7 +95,16 @@ class WP_Event_Manager_Field_Editor {
 		<?php	
 		foreach($fields  as $group_key => $group_fields){ ?>
 			<div class="wp-event-manager-event-form-field-editor">
-				<h3><?php _e('Event fields','wp-event-manager');?></h3>
+				<?php 
+					if($group_key == 'event'){ ?>
+					<h3><?php _e('Event fields','wp-event-manager');?></h3>
+					<?php	
+					}
+					else if($group_key == 'organizer'){ ?>
+					<h3><?php _e('Organizer fields','wp-event-manager');?></h3>
+					<?php	
+					}
+					?>
 				<table class="widefat">
 					<thead>
 						<tr>
