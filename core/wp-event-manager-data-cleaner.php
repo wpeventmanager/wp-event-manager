@@ -62,61 +62,7 @@ class WP_Event_Manager_Data_Cleaner {
 	 * @var $site_options
 	 */
 	private static $site_options = array(
-			'wp_event_manager_version',
-			
-			'event_manager_per_page',
-			
-			'event_manager_hide_cancelled_events',
-			
-			'event_manager_hide_expired_content',
-			
-			'event_manager_enable_categories',
-			
-			'event_manager_enable_event_types',
-			
-			'event_manager_enable_event_ticket_prices',
-			
-			'event_manager_enable_default_category_multiselect',
-			
-			'event_manager_enable_default_event_type_multiselect',
-			
-			'event_manager_category_filter_type',
-			
-			'event_manager_event_type_filter_type',
-			
-			'event_manager_user_requires_account',
-			
-			'event_manager_enable_registration',
-			
-			'event_manager_registration_role',
-			
-			'event_manager_submission_requires_approval',
-			
-			'event_manager_user_can_edit_pending_submissions',
-			
-			'event_manager_submission_expire_options',
-			
-			'event_manager_submission_duration',
-			
-			'event_manager_allowed_registration_method',
-			
-			'event_manager_submit_event_form_page_id',
-			
-			'event_manager_event_dashboard_page_id',
-			
-			'event_manager_events_page_id',
-			
-			'event_manager_installed_terms',
-			
-			'event_manager_submit_page_slug',
-			
-			'event_manager_event_dashboard_page_slug',
-			
-			'event_manager_rating_showcase_admin_notices_dismiss',
-			
-			'event_manager_google_maps_api_key',
-			
-			'event_manager_backend_form_fields'
+		'event_manager_helper',
 	);
 
 	/**
@@ -155,7 +101,7 @@ class WP_Event_Manager_Data_Cleaner {
 		'delete_event_listings',
 		'delete_private_event_listings',
 		'delete_published_event_listings',
-		'delete_others_job_listings',
+		'delete_others_event_listings',
 		'edit_private_event_listings',
 		'edit_published_event_listings',
 		'manage_event_listing_terms',
@@ -255,8 +201,8 @@ class WP_Event_Manager_Data_Cleaner {
 	private static function cleanup_pages() {
 		// Trash the Submit Event page.
 		$submit_event_form_page_id = get_option( 'event_manager_submit_event_form_page_id' );
-		if ( $submit_job_form_page_id ) {
-			wp_trash_post( $submit_job_form_page_id );
+		if ( $submit_event_form_page_id ) {
+			wp_trash_post( $submit_event_form_page_id );
 		}
 
 		// Trash the Event Dashboard page.
@@ -326,13 +272,13 @@ class WP_Event_Manager_Data_Cleaner {
 		$role_names = array_keys( $wp_roles->roles );
 		foreach ( $role_names as $role_name ) {
 			$role = get_role( $role_name );
-			self::remove_all_job_manager_caps( $role );
+			self::remove_all_event_manager_caps( $role );
 		}
 
 		// Remove caps and role from users.
 		$users = get_users( array() );
 		foreach ( $users as $user ) {
-			self::remove_all_job_manager_caps( $user );
+			self::remove_all_event_manager_caps( $user );
 			$user->remove_role( self::$role );
 		}
 
@@ -341,11 +287,11 @@ class WP_Event_Manager_Data_Cleaner {
 	}
 
 	/**
-	 * Helper method to remove WPJM caps from a user or role object.
+	 * Helper method to remove WPEM caps from a user or role object.
 	 *
 	 * @param (WP_User|WP_Role) $object the user or role object.
 	 */
-	private static function remove_all_job_manager_caps( $object ) {
+	private static function remove_all_event_manager_caps( $object ) {
 		foreach ( self::$caps as $cap ) {
 			$object->remove_cap( $cap );
 		}
