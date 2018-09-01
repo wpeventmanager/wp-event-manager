@@ -112,7 +112,7 @@ You can get the above add-ons and several others at discount with our [Great Add
 
 
 = Multilingual & RTL supported. =
-We've integrated RTL and multi language support within the framework of our page builder, so you get a translated panel out of the box, as well as RTL typography support, and developer options to add even more languages.
+We've integrated RTL and multi language support within the plugin, so you can translate your event listing site in any language, as well as RTL typography support, and developer options to add even more languages.
 
 
 = Translations =
