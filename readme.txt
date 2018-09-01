@@ -280,6 +280,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Added : jQuery datepicker added.
 * Fixed : boostrap depandancy on date-timepicker removed.
 * Improved : SEO and lang translation compatiblity improved.
+* Added : GDPR data cleaner improved.
 
 = 2.4 =
 
