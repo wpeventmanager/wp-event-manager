@@ -1,13 +1,16 @@
 === WP Event Manager ===
 
-Contributors: ashokdudhat,gamthemes,hiteshmakvana,uponity,telecima,nao,ikosweb,fierevere,nidamo,arshadt87,miteshce3,monikarao,zup2,sofyand,lasacco,giuliag,ideag,lithuanianmenfiverr,snezanastefan,dancaragea,kingmanu,guimo,hani90,xkatka,mrjacobee,tyxla,mhoteb,robertsky_,ohvangie,fgobea,ageha1304,fxbenard,babygirlblog
+Contributors: ashokdudhat,gamthemes,hiteshmakvana,uponity,telecima,nao,ikosweb,fierevere,nidamo,arshadt87,miteshce3,monikarao,zup2,sofyand,lasacco,giuliag,ideag,lithuanianmenfiverr,snezanastefan,dancaragea,kingmanu,guimo,hani90,xkatka,mrjacobee,tyxla,mhoteb,robertsky_,ohvangie,fgobea,ageha1304,fxbenard,babygirlblog,urvashipatel,maitrayi,webaware,romanbon,sergeykovalets,bars,garyj,yoavf,saritflor,roydeals1511,xkatka,chantalc,mbootsman,aishakshetri,krupajnanda,trkr,veenabuddhini,berlinlion,madradubhcroga,dyrer,leviathan8,garrett-eclipse,hlashbrooke,yvallejo,bredebs,maxnegro
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 4.9.7
+Tested up to: 4.9.9
 Stable tag: 2.5
+Requires PHP: 5.4
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the WordPress admin panel.
+Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the Frontend and Backend.
 
 
 == Description ==
@@ -19,34 +22,34 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 * [Add-ons](http://www.wp-eventmanager.com/plugins/)
 * [Documentation](http://www.wp-eventmanager.com/documentation/)
 
- [youtube https://www.youtube.com/watch?v=CPK0P7ToRgM]
+[youtube https://www.youtube.com/watch?v=CPK0P7ToRgM]
 
-> **Free Plugin Features**
->
-> * Fully Responsive
-> * Cross Browsers support ( Firefox, Chrome, Safari, Opera )
-> * SEO Friendly & Compatible with SEO plugins.
-> * *Multilingual Translation - Internationalized Supported*
-> * Completely ajaxified for super smooth browsing
-> * Add, manage, and categorise event listings using the familiar WordPress UI.
-> * Searchable & filterable ajax powered event listings added to your pages via shortcodes.
-> * Frontend forms for guests and registered users to submit & manage event listings.
-> * Allow event listers to preview their listing before it goes live. The preview matches the appearance of a live event listing.
-> * Each listing can be tied to an email or website address so that attendees can register to the events.
-> * Searches also display RSS links to allow attendees to be alerted to new events matching their search.
-> * Allow logged in organizers to view, edit, mark cancelled, or delete their active event listings.
-> * *RSS Feeds* 
-> * Event categories
-> * Easily create custom event field (e.g. dress code)
-> * Assign event locations and view events by location
-> * Widgets for Recents, Upcomming, Featured Events
-> * Plenty of template tags and shortcodes for use in your posts and pages
-> * Caching Support
-> * Developer friendly code, Custom Post Types, endpoints & template files.
-> * Singleton Javascript, Ajax & Save memory at client side.
-> * Debug Mode for Developers
-> * Actively maintained and supported
-> * Lots of documentation and tutorials
+**Free Plugin Features**
+
+* Fully Responsive
+* Cross Browsers support ( Firefox, Chrome, Safari, Opera )
+* SEO Friendly & Compatible with SEO plugins.
+* *Multilingual Translation - Internationalized Supported*
+* Completely ajaxified for super smooth browsing
+* Add, manage, and categorise event listings using the familiar WordPress UI.
+* Searchable & filterable ajax powered event listings added to your pages via shortcodes.
+* Frontend forms for guests and registered users to submit & manage event listings.
+* Allow event listers to preview their listing before it goes live. The preview matches the appearance of a live event listing.
+* Each listing can be tied to an email or website address so that attendees can register to the events.
+* Searches also display RSS links to allow attendees to be alerted to new events matching their search.
+* Allow logged in organizers to view, edit, mark cancelled, or delete their active event listings.
+* *RSS Feeds* 
+* Event categories
+* Easily create custom event field (e.g. dress code)
+* Assign event locations and view events by location
+* Widgets for Recents, Upcomming, Featured Events
+* Plenty of template tags and shortcodes for use in your posts and pages
+* Caching Support
+* Developer friendly code, Custom Post Types, endpoints & template files.
+* Singleton Javascript, Ajax & Save memory at client side.
+* Debug Mode for Developers
+* Actively maintained and supported
+* Lots of documentation and tutorials
 
 
 The plugin comes with several shortcodes to output events in various formats, and since its built with Custom Post Types you are free to extend it further through themes.
@@ -62,47 +65,43 @@ Documentation for the core plugin and add-ons can be found [on the docs site her
 = Add-ons =
 
 
-
 The core WP Event Manager plugin is free and always will be. It covers all functionality we consider 'core' to running a simple event listing site.
-
-
 
 Additional, advanced functionality is available through add-ons. Not only do these extend the usefulness of the core plugin, they also help fund the development and support of core.
 
 
-
 You can browse available add-ons after installing the plugin by going to `Event Listings > Add-ons`. Our popular add-ons include:
 
-> **Pro Add-ons Plugin Features**
->
-> * **[Calendar](https://wp-eventmanager.com/plugins/wp-event-manager-calendar/)**
->  It will let you display an event calendar that lists the upcoming events on your website. This is the most convenient way to display all your events based on the dates.
-> * **[Google Maps](https://wp-eventmanager.com/plugins/wp-event-manager-google-maps/)**
->  It will integrate the feature of the search through maps and locations. It also enables proximity search on your website.
-> * **[Registrations](http://www.wp-eventmanager.com/plugins/wp-event-manager-registrations/)**
->  Allow attendees to register to events using a form & organizers to view and manage the registrations from their event dashboard.
-> * **[WooCommerce Sell Tickets](http://www.wp-eventmanager.com/plugins/wp-event-manager-sell-tickets/)**
-> Sell tickets for your events and keep track of them. Event Sell Tickets addon runs on the most popular ecommerce system for WordPress powered by WooCommerce. Create multiple event tickets which can be purchased or redeemed during event submission. Requires the WooCommerce plugin.
-> * **[Event Alerts](http://www.wp-eventmanager.com/plugins/wp-event-manager-alerts/)**
-> Allow registered users to save their event searches and create alerts which send new events via email daily, weekly or fortnightly.
-> * **[Bookmarks](http://www.wp-eventmanager.com/plugins/wp-event-manager-bookmarks/)**
-> Attendees/User can bookmark events and organizer can bookmark attendees/user using Bookmarks Plugin. Only logged in users can bookmarks. User can give an note while bookmark and this note is optional.
-> *  **[Embeddable Event Widget](http://www.wp-eventmanager.com/plugins/wp-event-manager-embeddable-event-widget/)**
-> Event Listing Owner (Organizer/User) can generate embed code using Embeddable Event Widget plugin. This embed code can display organizer&#39;s event listings wherever they use this code.
-> *  **[Sliders](http://www.wp-eventmanager.com/plugins/wp-event-manager-sliders/)**
-> Use owl carousel and other type of sliders for your listings. The sliders are totally responsive.
-> * **[Organizers](http://www.wp-eventmanager.com/plugins/wp-event-manager-organizers/)**
-> Organizers add-on display grouped and alphabetized list of all the organizers.It also display total active events and total organizers.
-> * **[Contact Organizer](http://www.wp-eventmanager.com/plugins/wp-event-manager-contact-organizer/)**
-> You can contact to the organizer via contact form. You can also create own email template for sending mail to organizer.
-> * **[Emails](http://www.wp-eventmanager.com/plugins/wp-event-manager-emails/)**
-> You can create own email template for the user activity like Changes the default user registration email templates. When new user register then send mail with own defined template.
-> * **[Event Tags](http://www.wp-eventmanager.com/plugins/wp-event-manager-event-tags/)**
-> Using the Event Tags plugin you can add a new event tags field to the submit process, show events filtered by tag via shortcodes, and add tag filtering to the standard events shortcode.
-> * **[Google Analytics](http://www.wp-eventmanager.com/shop/google-analytics/)**
-> This Google Analytics plugin enables you to track your site using the latest Google Analytics tracking code and allows you to view key Google Analytics reports at your google analytics account.
-> * **[Logs](http://www.wp-eventmanager.com/plugins/wp-event-manager-event-logs/)**
-> You can make enable or disable debugging and trace javascript and other files with this plugin.
+**Pro Add-ons Plugin Features**
+
+* **[Calendar](https://wp-eventmanager.com/plugins/wp-event-manager-calendar/)**
+It will let you display an event calendar that lists the upcoming events on your website. This is the most convenient way to display all your events based on the dates.
+* **[Google Maps](https://wp-eventmanager.com/plugins/wp-event-manager-google-maps/)**
+It will integrate the feature of the search through maps and locations. It also enables proximity search on your website.
+* **[Registrations](http://www.wp-eventmanager.com/plugins/wp-event-manager-registrations/)**
+Allow attendees to register to events using a form & organizers to view and manage the registrations from their event dashboard.
+* **[WooCommerce Sell Tickets](http://www.wp-eventmanager.com/plugins/wp-event-manager-sell-tickets/)**
+Sell tickets for your events and keep track of them. Event Sell Tickets addon runs on the most popular ecommerce system for WordPress powered by WooCommerce. Create multiple event tickets which can be purchased or redeemed during event submission. Requires the WooCommerce plugin.
+* **[Event Alerts](http://www.wp-eventmanager.com/plugins/wp-event-manager-alerts/)**
+Allow registered users to save their event searches and create alerts which send new events via email daily, weekly or fortnightly.
+* **[Bookmarks](http://www.wp-eventmanager.com/plugins/wp-event-manager-bookmarks/)**
+Attendees/User can bookmark events and organizer can bookmark attendees/user using Bookmarks Plugin. Only logged in users can bookmarks. User can give an note while bookmark and this note is optional.
+*  **[Embeddable Event Widget](http://www.wp-eventmanager.com/plugins/wp-event-manager-embeddable-event-widget/)**
+Event Listing Owner (Organizer/User) can generate embed code using Embeddable Event Widget plugin. This embed code can display organizer&#39;s event listings wherever they use this code.
+*  **[Sliders](http://www.wp-eventmanager.com/plugins/wp-event-manager-sliders/)**
+Use owl carousel and other type of sliders for your listings. The sliders are totally responsive.
+* **[Organizers](http://www.wp-eventmanager.com/plugins/wp-event-manager-organizers/)**
+Organizers add-on display grouped and alphabetized list of all the organizers.It also display total active events and total organizers.
+* **[Contact Organizer](http://www.wp-eventmanager.com/plugins/wp-event-manager-contact-organizer/)**
+You can contact to the organizer via contact form. You can also create own email template for sending mail to organizer.
+* **[Emails](http://www.wp-eventmanager.com/plugins/wp-event-manager-emails/)**
+You can create own email template for the user activity like Changes the default user registration email templates. When new user register then send mail with own defined template.
+* **[Event Tags](http://www.wp-eventmanager.com/plugins/wp-event-manager-event-tags/)**
+Using the Event Tags plugin you can add a new event tags field to the submit process, show events filtered by tag via shortcodes, and add tag filtering to the standard events shortcode.
+* **[Google Analytics](http://www.wp-eventmanager.com/shop/google-analytics/)**
+This Google Analytics plugin enables you to track your site using the latest Google Analytics tracking code and allows you to view key Google Analytics reports at your google analytics account.
+* **[Logs](http://www.wp-eventmanager.com/plugins/wp-event-manager-event-logs/)**
+You can make enable or disable debugging and trace javascript and other files with this plugin.
 
 
 
@@ -112,31 +111,69 @@ You can browse available add-ons after installing the plugin by going to `Event 
 You can get the above add-ons and several others at discount with our [Great Add-ons](http://www.wp-eventmanager.com/plugins/). Take a look!
 
 
-
-= Contributing and reporting bugs =
-
-
-
-You can contribute code & localizations to this plugin via GitHub: [https://github.com/ashokdudhat/wp-event-manager](https://github.com/ashokdudhat/wp-event-manager)
+= Multilingual & RTL supported. =
+We've integrated RTL and multi language support within the framework of our page builder, so you get a translated panel out of the box, as well as RTL typography support, and developer options to add even more languages.
 
 
+= Translations =
+- [Arabic](https://translate.wordpress.org/locale/ar/default/wp-plugins/wp-event-manager) - (ar)
+- [Arabic (Algerian)](https://translate.wordpress.org/locale/arq/default/wp-plugins/wp-event-manager) - (arq)
+- [Arabic (Moroccan)](https://translate.wordpress.org/locale/ary/default/wp-plugins/wp-event-manager) - (ary)
+- [Bengali](https://translate.wordpress.org/locale/bn/default/wp-plugins/wp-event-manager) - (bn_BD)
+- [Bulgarian](https://translate.wordpress.org/locale/bg/default/wp-plugins/wp-event-manager) - (bg_BG)
+- [Chinese (China)](https://translate.wordpress.org/locale/zh-cn/default/wp-plugins/wp-event-manager) - (zh_CN)
+- [Dutch](https://translate.wordpress.org/locale/nl/default/wp-plugins/wp-event-manager) - (nl_NL)
+- [English (Australia)](https://translate.wordpress.org/locale/en-au/default/wp-plugins/wp-event-manager) - (en_AU)
+- [English (UK)](https://translate.wordpress.org/locale/en-gb/default/wp-plugins/wp-event-manager) - (en_GB)
+- [English (Canada)](https://translate.wordpress.org/locale/en-ca/default/wp-plugins/wp-event-manager) - (en_CA)
+- [English (New Zealand)](https://translate.wordpress.org/locale/en-nz/default/wp-plugins/wp-event-manager) - (en_NZ)
+- [English (South Africa)](https://translate.wordpress.org/locale/en-za/default/wp-plugins/wp-event-manager) - (en_ZA)
+- [French](https://translate.wordpress.org/locale/fr/default/wp-plugins/wp-event-manager) - (fr_FR)
+- [French (Belgium)](https://translate.wordpress.org/locale/fr-be/default/wp-plugins/wp-event-manager) - (fr_BE)
+- [German](https://translate.wordpress.org/locale/de/default/wp-plugins/wp-event-manager) - (de_DE)
+- [German (Switzerland)](https://translate.wordpress.org/locale/de-ch/default/wp-plugins/wp-event-manager) - (de_CH)
+- [Greek](https://translate.wordpress.org/locale/el/default/wp-plugins/wp-event-manager) - (el)
+- [Hebrew](https://translate.wordpress.org/locale/he/default/wp-plugins/wp-event-manager) - (he_IL)
+- [Hindi](https://translate.wordpress.org/locale/hi/default/wp-plugins/wp-event-manager) - (hi_IN)
+- [Icelandic](https://translate.wordpress.org/locale/is/default/wp-plugins/wp-event-manager) - (is_IS)
+- [Indonesian](https://translate.wordpress.org/locale/id/default/wp-plugins/wp-event-manager) - (id_ID)
+- [Italian](https://translate.wordpress.org/locale/it/default/wp-plugins/wp-event-manager) - (it_IT)
+- [Japanese](https://translate.wordpress.org/locale/ja/default/wp-plugins/wp-event-manager) - (ja)
+- [Latvian](https://translate.wordpress.org/locale/lv/default/wp-plugins/wp-event-manager) - (lv)
+- [Lithuanian](https://translate.wordpress.org/locale/lt/default/wp-plugins/wp-event-manager) - (lt_LT)
+- [Nepali](https://translate.wordpress.org/locale/ne/default/wp-plugins/wp-event-manager) - (ne_NP)
+- [Polish](https://translate.wordpress.org/locale/pl/default/wp-plugins/wp-event-manager) - (pl_PL)
+- [Portuguese (Brazil)](https://translate.wordpress.org/locale/pt-br/default/wp-plugins/wp-event-manager) - (pt_BR)
+- [Portuguese (Portugal)](https://translate.wordpress.org/locale/pt/default/wp-plugins/wp-event-manager) - (pt_PT)
+- [Romanian](https://translate.wordpress.org/locale/ro/default/wp-plugins/wp-event-manager) - (ro_RO)
+- [Russian](https://translate.wordpress.org/locale/ru/default/wp-plugins/wp-event-manager) - (ru_RU)
+- [Serbian](https://translate.wordpress.org/locale/sr/default/wp-plugins/wp-event-manager) - (sr_RS)
+- [Sinhala](https://translate.wordpress.org/locale/si/default/wp-plugins/wp-event-manager) - (si_LK)
+- [Slovak](https://translate.wordpress.org/locale/sk/default/wp-plugins/wp-event-manager) - (sk_SK)
+- [Spanish (Spain)](https://translate.wordpress.org/locale/es/default/wp-plugins/wp-event-manager) - (es_ES)
+- [Spanish (Mexico)](https://translate.wordpress.org/locale/es-mx/default/wp-plugins/wp-event-manager) - (es_MX)
+- [Spanish (Colombia)](https://translate.wordpress.org/locale/es-co/default/wp-plugins/wp-event-manager) - (es_CO)
+- [Spanish (Chile)](https://translate.wordpress.org/locale/es-cl/default/wp-plugins/wp-event-manager) - (es_CL)
+- [Swedish](https://translate.wordpress.org/locale/sv/default/wp-plugins/wp-event-manager) - (sv_SE)
+- [Turkish](https://translate.wordpress.org/locale/tr/default/wp-plugins/wp-event-manager) - (tr_TR)
+- [Ukrainian](https://translate.wordpress.org/locale/uk/default/wp-plugins/wp-event-manager) - (uk)
+- [Vietnamese](https://translate.wordpress.org/locale/vi/default/wp-plugins/wp-event-manager) - (vi)
 
+
+
+= Be a contributor =
+If you want to contribute, go to our [WP Event Manager GitHub Repository](https://github.com/ashokdudhat/wp-event-manager) and see where you can help.
+
+You can also add a new language via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-event-manager). We've built a short guide explaining [how to translate and localize the plugin](https://www.wp-eventmanager.com/documentation/translating-wp-event-manager/).
 
 Thanks to all of our contributors.
 
-
-
-= Support =
-
-
-
-Use the WordPress.org forums for community support where we try to help all users. If you spot a bug, you can log it (or fix it) on [Support](https://wordpress.org/support/plugin/wp-event-manager) where we can act upon them more efficiently.
-
-
-If you need help with one of our add-ons, [please contact us](http://www.wp-eventmanager.com/contact/).
-
-
-If you want help with a customisation, please consider hiring a developer! [http://jobs.wordpress.net/](http://jobs.wordpress.net/) is a good place to start.
+= Documentation and Support =
+- For documentation and tutorials go to our [Documentation](https://www.wp-eventmanager.com/documentation/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
+- If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/wp-event-manager).
+- If you want help with a customisation, you can contact any one fo the [Listed Certified Developers] (https://www.wp-eventmanager.com/hire-certified-wp-event-manager-developers/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
+- If you need help with one of our add-ons, [please contact here](https://www.wp-eventmanager.com/get-support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
+- For more information about features, FAQs and documentation, check out our website at [WP Event Manager](https://www.wp-eventmanager.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 
 
 = Connect With US =
@@ -276,12 +313,16 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 = 2.5 =
 
-* Fixed : Field editor bug fixed.
+* Fixed : Merged Frontend and Backed Field editor.
 * Added : jQuery datepicker added.
-* Fixed : boostrap depandancy on date-timepicker removed.
+* Fixed : Boostrap depandancy date-timepicker removed.
 * Improved : SEO and lang translation compatiblity improved.
+* Improved : Order by clause improved.
 * Added : GDPR data cleaner improved.
 * Added : Permalink setting added. 
+* Added : Third Party Support separated folder. 
+* Fixed : POT file translation issue fixed. 
+
 
 = 2.4 =
 
