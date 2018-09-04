@@ -218,17 +218,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => $registration_method_placeholder,
 					'priority'    => 11
 				),
-				'event_time_format' => array(  
-								'label'=> __( 'Time Format', 'wp-event-manager' ),
-								'type'  => 'radio',
-								'default'  => '24_hour_format',
-								'options'  => array(
-											    '12_hour_format' => __( '12 hour format', 'wp-event-manager' ),
-											    '24_hour_format' => __( '24 hour format', 'wp-event-manager' )
-								 		    ),
-								'priority'    => 12,
-							        'required'=>true	  
-							  ),
 				'event_start_date' => array(  
 								'label'=> __( 'Start Date', 'wp-event-manager' ),
 								'placeholder'  => __( 'Please enter event start date', 'wp-event-manager' ),								
@@ -239,7 +228,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				'event_start_time' => array(  
 								'label'=> __( 'Start Time', 'wp-event-manager' ),
 								'placeholder'  => __( 'Please enter event start time', 'wp-event-manager' ),								
-								'type'  => 'text',
+								'type'  => 'time',
 								'priority'    => 13,
 								'required'=>true	  
 							  ),
@@ -255,7 +244,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				'event_end_time' => array(  
 								'label'=> __( 'End Time', 'wp-event-manager' ),
 								'placeholder'  => __( 'Please enter event end time', 'wp-event-manager' ),								
-								'type'  => 'text',
+								'type'  => 'time',
 								'priority'    => 15,
 								'required'=>true	  
 							  ),
