@@ -1,5 +1,5 @@
-# Translation of Plugins - WP Event Manager - Development (trunk) in Lithuanian
-# This file is distributed under the same license as the Plugins - WP Event Manager - Development (trunk) package.
+# Translation of Plugins - WP Event Manager - Stable (latest release) in Lithuanian
+# This file is distributed under the same license as the Plugins - WP Event Manager - Stable (latest release) package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2018-06-18 19:12:15+0000\n"
@@ -9,180 +9,179 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: lt\n"
-"Project-Id-Version: Plugins - WP Event Manager - Development (trunk)\n"
-
-#: admin/wp-event-manager-form-field-editor-field.php:31
-msgid "Multiple Files?"
-msgstr "Keli failai?"
-
-#: admin/wp-event-manager-form-field-editor-field.php:28
-msgid "Pipe (|) separate options."
-msgstr "Vertikalusis brūkšnys (|) atskirti nustatymus."
+"Project-Id-Version: Plugins - WP Event Manager - Stable (latest release)\n"
 
 #: admin/wp-event-manager-settings.php:262
 msgid "Category Filter"
 msgstr "Kategorijų filtras"
 
-#: admin/wp-event-manager-form-field-editor-field.php:57
+#: admin/wp-event-manager-form-field-editor-field.php:52
 msgid "Required"
 msgstr "Būtina"
 
-#: admin/wp-event-manager-form-field-editor-field.php:56
+#: admin/wp-event-manager-form-field-editor-field.php:51
 msgid "Not Required"
 msgstr "Nebūtina"
 
 #: admin/wp-event-manager-form-field-editor-field.php:27
-#: admin/wp-event-manager-form-field-editor-field.php:50
+msgid "Multiple Files?"
+msgstr "Keli failai?"
+
+#: admin/wp-event-manager-form-field-editor-field.php:24
+msgid "Pipe (|) separate options."
+msgstr "Vertikalusis brūkšnys (|) atskirti nustatymus."
+
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
 msgid "%s"
 msgstr "%s"
 
-#: admin/wp-event-manager-form-field-editor-field.php:24
-#: admin/wp-event-manager-form-field-editor-field.php:27
-#: admin/wp-event-manager-form-field-editor-field.php:50
+#: admin/wp-event-manager-form-field-editor-field.php:20
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
 msgid "N/A"
 msgstr "Netaikoma"
 
-#: admin/wp-event-manager-field-editor.php:374
+#: admin/wp-event-manager-field-editor.php:373
 msgid "The fields were successfully saved."
 msgstr "Laukeliai buvo išsaugoti sėkmingai."
 
-#: admin/wp-event-manager-field-editor.php:229
+#: admin/wp-event-manager-field-editor.php:228
 msgid "Author"
 msgstr "Autorius"
 
-#: admin/wp-event-manager-field-editor.php:154
-#: admin/wp-event-manager-field-editor.php:256
+#: admin/wp-event-manager-field-editor.php:153
+#: admin/wp-event-manager-field-editor.php:255
 msgid "Reset to default"
 msgstr "Iš naujo nustatyti numatytuosius nustatymus"
 
-#: admin/wp-event-manager-field-editor.php:150
-#: admin/wp-event-manager-field-editor.php:252
+#: admin/wp-event-manager-field-editor.php:149
+#: admin/wp-event-manager-field-editor.php:251
 msgid "Add field"
 msgstr "Pridėti laukelį"
 
-#: admin/wp-event-manager-field-editor.php:143
-#: admin/wp-event-manager-field-editor.php:245
+#: admin/wp-event-manager-field-editor.php:142
+#: admin/wp-event-manager-field-editor.php:244
 msgid "Validation"
 msgstr "Patvirtinimas"
 
-#: admin/wp-event-manager-field-editor.php:142
-#: admin/wp-event-manager-field-editor.php:244
+#: admin/wp-event-manager-field-editor.php:141
+#: admin/wp-event-manager-field-editor.php:243
 msgid "Priority"
 msgstr "Prioritetas"
 
-#: admin/wp-event-manager-field-editor.php:141
-#: admin/wp-event-manager-field-editor.php:243
+#: admin/wp-event-manager-field-editor.php:140
+#: admin/wp-event-manager-field-editor.php:242
 msgid "Placeholder / Options"
 msgstr "Rezervuota vieta / Nustatymai"
 
-#: admin/wp-event-manager-field-editor.php:139
-#: admin/wp-event-manager-field-editor.php:241
+#: admin/wp-event-manager-field-editor.php:138
+#: admin/wp-event-manager-field-editor.php:240
 msgid "Type"
 msgstr "Tipas"
 
-#: admin/wp-event-manager-field-editor.php:138
-#: admin/wp-event-manager-field-editor.php:240
+#: admin/wp-event-manager-field-editor.php:137
+#: admin/wp-event-manager-field-editor.php:239
 msgid "Field Label"
 msgstr "Laukelio etiketė"
 
-#: admin/wp-event-manager-field-editor.php:130
+#: admin/wp-event-manager-field-editor.php:129
 msgid "Organizer fields"
 msgstr "Organizatorių laukeliai"
 
-#: admin/wp-event-manager-field-editor.php:126
-#: admin/wp-event-manager-field-editor.php:235
+#: admin/wp-event-manager-field-editor.php:125
+#: admin/wp-event-manager-field-editor.php:234
 msgid "Event fields"
 msgstr "Įvykių laukeliai"
 
-#: admin/wp-event-manager-field-editor.php:116
-#: admin/wp-event-manager-field-editor.php:228
+#: admin/wp-event-manager-field-editor.php:115
+#: admin/wp-event-manager-field-editor.php:227
 msgid "WP Editor"
 msgstr "WP redaktorius"
 
-#: admin/wp-event-manager-field-editor.php:115
-#: admin/wp-event-manager-field-editor.php:227
+#: admin/wp-event-manager-field-editor.php:114
+#: admin/wp-event-manager-field-editor.php:226
 msgid "Textarea"
 msgstr "Textarea"
 
-#: admin/wp-event-manager-field-editor.php:114
-#: admin/wp-event-manager-field-editor.php:226
+#: admin/wp-event-manager-field-editor.php:113
+#: admin/wp-event-manager-field-editor.php:225
 msgid "Term Select"
 msgstr "Termino pasirinkimas"
 
-#: admin/wp-event-manager-field-editor.php:113
-#: admin/wp-event-manager-field-editor.php:225
+#: admin/wp-event-manager-field-editor.php:112
+#: admin/wp-event-manager-field-editor.php:224
 msgid "Term Multiselect"
 msgstr "Kelių terminų pasirinkimas"
 
-#: admin/wp-event-manager-field-editor.php:112
-#: admin/wp-event-manager-field-editor.php:224
+#: admin/wp-event-manager-field-editor.php:111
+#: admin/wp-event-manager-field-editor.php:223
 msgid "Term Checklist"
 msgstr "Terminų pasirinkimų sąrašas"
 
 #: admin/wp-event-manager-field-editor.php:110
-#: admin/wp-event-manager-field-editor.php:222
+#: admin/wp-event-manager-field-editor.php:221
 msgid "Select"
 msgstr "Pasirinkti"
 
 #: admin/wp-event-manager-field-editor.php:109
-#: admin/wp-event-manager-field-editor.php:221
+#: admin/wp-event-manager-field-editor.php:220
 msgid "Repeated"
 msgstr "Kartojamas"
 
 #: admin/wp-event-manager-field-editor.php:108
-#: admin/wp-event-manager-field-editor.php:220
+#: admin/wp-event-manager-field-editor.php:219
 msgid "Radio"
 msgstr "Radijas"
 
 #: admin/wp-event-manager-field-editor.php:106
-#: admin/wp-event-manager-field-editor.php:218
+#: admin/wp-event-manager-field-editor.php:217
 msgid "Number"
 msgstr "Numeris"
 
 #: admin/wp-event-manager-field-editor.php:105
-#: admin/wp-event-manager-field-editor.php:111
-#: admin/wp-event-manager-field-editor.php:217
-#: admin/wp-event-manager-field-editor.php:223
+#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:222
 msgid "Multiselect"
 msgstr "Kelių dalykų pasirinkimas"
 
 #: admin/wp-event-manager-field-editor.php:104
-#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:215
 msgid "Hidden"
 msgstr "Paslėptas"
 
 #: admin/wp-event-manager-field-editor.php:103
-#: admin/wp-event-manager-field-editor.php:215
+#: admin/wp-event-manager-field-editor.php:214
 msgid "File"
 msgstr "Failas"
 
 #: admin/wp-event-manager-field-editor.php:102
-#: admin/wp-event-manager-field-editor.php:214
+#: admin/wp-event-manager-field-editor.php:213
 msgid "Date"
 msgstr "Data"
 
 #: admin/wp-event-manager-field-editor.php:101
-#: admin/wp-event-manager-field-editor.php:213
+#: admin/wp-event-manager-field-editor.php:212
 msgid "Checkbox"
 msgstr "Žymimasis langelis"
 
 #: admin/wp-event-manager-field-editor.php:100
-#: admin/wp-event-manager-field-editor.php:212
+#: admin/wp-event-manager-field-editor.php:211
 msgid "Button Options"
 msgstr "Mygtukų nustatymai"
 
 #: admin/wp-event-manager-field-editor.php:99
-#: admin/wp-event-manager-field-editor.php:211
+#: admin/wp-event-manager-field-editor.php:210
 msgid "Button"
 msgstr "Mygtukas"
 
 #: admin/wp-event-manager-field-editor.php:98
-#: admin/wp-event-manager-field-editor.php:210
+#: admin/wp-event-manager-field-editor.php:209
 msgid "Text"
 msgstr "Tekstas"
 
 #: admin/wp-event-manager-field-editor.php:81
-#: admin/wp-event-manager-field-editor.php:195
+#: admin/wp-event-manager-field-editor.php:194
 msgid "The fields were successfully reset."
 msgstr "Laukeliai buvo sėkmingai nustatyti iš naujo."
 
@@ -206,241 +205,6 @@ msgstr "Ar jūs įsitikinę, jog norite ištrinti šią eilutę?"
 msgid "Field Editor"
 msgstr "Laukelių redaktorius"
 
-#: wp-event-manager-template.php:417 wp-event-manager-template.php:2076
-msgid "Verify Password"
-msgstr "Patvirtinkite slaptažodį"
-
-#: admin/wp-event-manager-field-editor.php:107
-#: admin/wp-event-manager-field-editor.php:219
-#: wp-event-manager-template.php:406 wp-event-manager-template.php:407
-#: wp-event-manager-template.php:2066
-msgid "Password"
-msgstr "Slaptažodis"
-
-#: wp-event-manager-functions.php:1606
-msgid "Passwords must be at least 8 characters long."
-msgstr "Slaptažodžiai turi bent 8 simbolių ilgio."
-
-#: forms/wp-event-manager-form-submit-event.php:680
-msgid "Password is not valid."
-msgstr "Slaptažodis negalioja. "
-
-#: forms/wp-event-manager-form-submit-event.php:678
-msgid "Invalid Password: %s"
-msgstr "Negaliojantis slaptažodis: %s"
-
-#: forms/wp-event-manager-form-submit-event.php:673
-msgid "Passwords must match."
-msgstr "Slaptažodžiai turi sutapti."
-
-#: core/wp-event-manager-post-types.php:391
-msgid "Preview <span class=\"count\">(%s)</span>"
-msgid_plural "Preview <span class=\"count\">(%s)</span>"
-msgstr[0] "Peržiūrėti <span class=\"count\">(%s)</span>"
-msgstr[1] "Peržiūrėti <span class=\"count\">(%s)</span>"
-msgstr[2] "Peržiūrėti <span class=\"count\">(%s)</span>"
-
-#: core/wp-event-manager-ajax.php:381
-msgid "You must be logged in to upload files using this method."
-msgstr "Jūs turite būti prisijungę, kad galėtumėte įkelti failus naudojantis šiuo metodu."
-
-#: admin/wp-event-manager-settings.php:370
-msgid "If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won't be verified."
-msgstr "Jei įjungta, vartotojui bus išsiųstas el. laiškas su vartotojo vardu ir slaptažodžio nustatymo nuoroda. Priešingu atveju bus rodomas slaptažodžio laukas ir jų el. pašto adresas nebus patvirtintas."
-
-#: admin/wp-event-manager-settings.php:369
-msgid "Use WordPress' default behavior and email new users link to set a password"
-msgstr "Naudokite WordPress numatytąjį elgesį ir naujiems vartotojams siųskite el. paštą, kuriame yra nuorodą į slaptažodžio nustatymą."
-
-#: admin/wp-event-manager-settings.php:368
-msgid "Account Password"
-msgstr "Paskyros slaptažodis"
-
-#: admin/wp-event-manager-settings.php:87
-msgid "If enabled, bootstrap framework's style will apply for the backend side."
-msgstr "Jei įjungta, pagrindinio kompiuterio paleidimo strategijos stiliaus taikymas bus naudojamas iš vidinės programavimo pusės."
-
-#: admin/wp-event-manager-settings.php:71
-msgid "If enabled, bootstrap framework's style will apply for the frontend side."
-msgstr "Jei įjungta, pagrindinio kompiuterio paleidimo strategijos stiliaus taikymas bus naudojamas iš išorinės programavimo pusės."
-
-#: templates/event-submit.php:20
-msgid "Create A New Event"
-msgstr "Sukurti naują įvykį"
-
-#: templates/event-submit.php:20
-msgid "You are editing an existing event. %s"
-msgstr "Jūs redaguojate egzistuojantį įvykį. %s"
-
-#: core/wp-event-manager-post-types.php:323
-msgid "Use as organizer logo"
-msgstr "Naudoti kaip organizatoriaus logotipą"
-
-#: core/wp-event-manager-post-types.php:321
-msgid "Remove organizer logo"
-msgstr "Pašalinti organizatoriaus logotipą"
-
-#: core/wp-event-manager-post-types.php:319
-msgid "Set organizer logo"
-msgstr "Nustatyti organizatoriaus logotipą"
-
-#: core/wp-event-manager-post-types.php:317
-msgid "Organizer Logo"
-msgstr "Organizatoriaus logotipas"
-
-#: admin/wp-event-manager-settings.php:162
-msgid "Hide expired listing content in single event listing (singular)"
-msgstr "Slėpti nebegaliojančio įrašo turinį vieno įvykio įraše (vienaskaita)"
-
-#: admin/wp-event-manager-settings.php:160
-msgid "Hide Expired Listings Content"
-msgstr "Slėpti nebegaliojančių įrašų turinį"
-
-#: admin/wp-event-manager-settings.php:147
-msgid "If enabled, expired event listing is not searchable."
-msgstr "Jei įjungta, nebegaliojantis įvykio įrašas nebus randamas."
-
-#: admin/wp-event-manager-settings.php:145
-msgid "Hide expired listings in event archive/search"
-msgstr "Slėpti nebegaliojančius įrašus įvykių archyve/paieškoje"
-
-#: admin/wp-event-manager-settings.php:143
-msgid "Hide Expired Listings"
-msgstr "Slėpti nebegaliojančius įrašus"
-
-#: admin/wp-event-manager-settings.php:97
-msgid "Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
-msgstr "Google reikalauja API rakto, kad gautų vietos informaciją įvykių įrašams. Įsigykite API raktą iš <a href=\"%s\" target=\"__blank\">Google žemėlapių API kūrėjų svetainės</a>."
-
-#: admin/wp-event-manager-settings.php:96
-msgid "Google Maps API Key"
-msgstr "Google žemėlapių API raktas"
-
-#: admin/wp-event-manager-settings.php:83
-#: admin/wp-event-manager-settings.php:85
-msgid "Enable boostrap for the backend"
-msgstr "Įjungti paleidimo tvarkyklę vidiniui programavimui"
-
-#: admin/wp-event-manager-settings.php:67
-#: admin/wp-event-manager-settings.php:69
-msgid "Enable boostrap for the frontend"
-msgstr "Įjungti paleidimo tvarkyklę išoriniui programavimui"
-
-#: admin/wp-event-manager-settings.php:57
-msgid "General"
-msgstr "Bendrieji"
-
-#: widgets/wp-event-manager-widgets.php:261
-#: widgets/wp-event-manager-widgets.php:397
-#: widgets/wp-event-manager-widgets.php:538
-msgid "Descending  (DESC)"
-msgstr "Mažėjant (Maž.)"
-
-#: widgets/wp-event-manager-widgets.php:260
-#: widgets/wp-event-manager-widgets.php:396
-#: widgets/wp-event-manager-widgets.php:537
-msgid "Ascending (ASC)"
-msgstr "Didėjant (Did.)"
-
-#: widgets/wp-event-manager-widgets.php:258
-#: widgets/wp-event-manager-widgets.php:394
-#: widgets/wp-event-manager-widgets.php:535
-msgid "Order by"
-msgstr "Rūšiuoti pagal"
-
-#: admin/wp-event-manager-admin.php:152
-msgid "Dismiss"
-msgstr "Pašalinti"
-
-#: admin/wp-event-manager-admin.php:151
-msgid "Try Great Add-Ons"
-msgstr "Išbandykite puikius papildinius"
-
-#: admin/wp-event-manager-admin.php:149
-msgid "We've noticed you've been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We'd be thrilled if you could <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">give us a 5 stars rating on WordPress.org!</a></strong> Don't forget to submit your site to <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">our showcase</a></strong> and generate more traffic from our site."
-msgstr "Pastebėjome, jog naudojatės <strong>WP Event Manager</strong> jau kiek laiko. Tikimės, jog jums tai patinka! Mums būtų malonu, jeigu galėtumėte <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">duoti mums 5 žvaigždžių įvertinimą WordPress.org!</a></strong> Nepamirškite pateikti savo svetainę į <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">mūsų demonstraciją</a></strong> ir sugeneruoti didesnį lankytojų kiekį iš mūsų svetainės."
-
-#: wp-event-manager-template.php:443 wp-event-manager-template.php:457
-msgid "Posted %s ago"
-msgstr "Įkelta prieš %s "
-
-#: wp-event-manager-template.php:441
-msgid "Posted on "
-msgstr "Įkelta"
-
-#: core/wp-event-manager-ajax.php:319
-msgid "Search completed. Found %d matching record."
-msgid_plural "Search completed. Found %d matching records."
-msgstr[0] "Paieška baigta. Rastas %d sutampantis rezultatas."
-msgstr[1] "Paieška baigta. Rasti %d sutampantys rezultatai."
-msgstr[2] "Paieška baigta. Rasta %d sutampančių rezultatų."
-
-#: admin/wp-event-manager-settings.php:523
-msgid "Enable multi select event category for event listing submission"
-msgstr "Įjunkite kelių įvykių kategorijų pasirinkimą dėl įvykio įrašo pateikimo"
-
-#: admin/wp-event-manager-settings.php:521
-msgid "Multi-select Event Category For Submission"
-msgstr "Kelių įvykių kategorijų pasirinkimas dėl pateikimo"
-
-#: admin/wp-event-manager-settings.php:507
-msgid "Enable multi select event type for event listing submission"
-msgstr "Įjunkite kelių įvykių tipų pasirinkimą dėl įvykio įrašo pateikimo"
-
-#: admin/wp-event-manager-settings.php:505
-msgid "Multi-select Event Types For Submission"
-msgstr "Kelių įvykių tipų pasirinkimas dėl pateikimo"
-
-#: admin/wp-event-manager-settings.php:303
-msgid "Default date format as defined in Setttings"
-msgstr "Numatytas datos formatas, kuris nurodytas nustatymuose"
-
-#: admin/wp-event-manager-settings.php:302
-msgid "Relative to the current date (e.g., 1 day, 1 week, 1 month ago)"
-msgstr "Atsižvelgiant į dabartinę datą (pvz. prieš 1 dieną, 1 savaitę, 1 mėnesį)"
-
-#: admin/wp-event-manager-settings.php:299
-msgid "Choose how you want the published date for events to be displayed on the front-end."
-msgstr "Pasirinkite, kaip norite, kad paskelbta įvykių data būtų rodoma išorinėje programavimo dalyje."
-
-#: admin/wp-event-manager-settings.php:298
-msgid "Date Format"
-msgstr "Datos formatas"
-
-#: admin/wp-event-manager-writepanels.php:484
-msgid "Most Used"
-msgstr "Dažniausiai naudojamas"
-
-#: admin/wp-event-manager-settings.php:525
-msgid "If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this."
-msgstr "Jeigu įjungta, kiekvienas įvykis gali turėti daugiau nei vieną kategoriją. „Meta“ dėžutė, esanti įrašo redaktoriuje ir pasirinkimo dėžutė įvykio kategorijai išorinio programavimo įvykio pateikimo anketoje yra keičiami to."
-
-#: admin/wp-event-manager-settings.php:509
-msgid "If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this."
-msgstr "Jeigu įjungta, kiekvienas įvykis gali turėti daugiau nei vieną tipą. „Meta“ dėžutė, esanti įrašo redaktoriuje ir pasirinkimo dėžutė įvykio tipui išorinio programavimo įvykio pateikimo anketoje yra keičiami to."
-
-#: admin/wp-event-manager-cpt.php:79 admin/wp-event-manager-cpt.php:81
-msgid "Expire %s"
-msgstr "Padaryti %s nebegaliojantį"
-
-#: admin/wp-event-manager-cpt.php:75 admin/wp-event-manager-cpt.php:77
-msgid "Approve %s"
-msgstr "Patvirtinti %s"
-
-#: admin/wp-event-manager-admin.php:123
-msgid "Add-ons"
-msgstr "Papildiniai"
-
-#: admin/wp-event-manager-admin.php:119
-#: templates/form-fields/repeated-field.php:18
-#: templates/form-fields/repeated-field.php:61
-msgid "Settings"
-msgstr "Nustatymai"
-
-#: admin/wp-event-manager-addons.php:59 admin/wp-event-manager-admin.php:123
-msgid "WP Event Manager Add-ons"
-msgstr "WP Event Manager papildiniai"
-
 #. Author URI of the plugin/theme
 msgid "https://www.wp-eventmanager.com"
 msgstr "https://www.wp-eventmanager.com"
@@ -453,10 +217,11 @@ msgstr "Tvarkykite įvykių įrašus iš WordPress administratoriaus skydelio ir
 msgid "https://www.wp-eventmanager.com/"
 msgstr "https://www.wp-eventmanager.com/"
 
-#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.3)  #-#-#-#-#
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.3)  #-#-#-#-#
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
 #. Author of the plugin/theme
+#: admin/wp-event-manager-settings.php:827
 msgid "WP Event Manager"
 msgstr "WP Event Manager"
 
@@ -480,9 +245,28 @@ msgstr "Netinkamas failų tipas. Priimami tipai:"
 msgid "Your email"
 msgstr "Jūsų el. paštas"
 
+#: wp-event-manager-template.php:417 wp-event-manager-template.php:2076
+msgid "Verify Password"
+msgstr "Patvirtinkite slaptažodį"
+
+#: admin/wp-event-manager-field-editor.php:107
+#: admin/wp-event-manager-field-editor.php:218
+#: wp-event-manager-template.php:406 wp-event-manager-template.php:407
+#: wp-event-manager-template.php:2066
+msgid "Password"
+msgstr "Slaptažodis"
+
 #: wp-event-manager-template.php:507
 msgid "Anywhere"
 msgstr "Bet kur"
+
+#: wp-event-manager-template.php:443 wp-event-manager-template.php:457
+msgid "Posted %s ago"
+msgstr "Įkelta prieš %s "
+
+#: wp-event-manager-template.php:441
+msgid "Posted on "
+msgstr "Įkelta"
 
 #: wp-event-manager-template.php:267
 msgid "Registration via \"%s\" listing on %s"
@@ -491,6 +275,10 @@ msgstr "Registracija per „%s“ įrašą apie %s"
 #: wp-event-manager-template.php:186
 msgid "Inactive"
 msgstr "Neaktyvus"
+
+#: wp-event-manager-functions.php:1606
+msgid "Passwords must be at least 8 characters long."
+msgstr "Slaptažodžiai turi bent 8 simbolių ilgio."
 
 #: wp-event-manager-functions.php:1340
 msgid "Uploaded files need to be one of the following file types: %s"
@@ -567,6 +355,24 @@ msgstr "Populiarūs %s"
 msgid "Display a list of featured listings on your site."
 msgstr "Rodyti populiarių įrašų sąrašą jūsų svetainėje."
 
+#: widgets/wp-event-manager-widgets.php:261
+#: widgets/wp-event-manager-widgets.php:397
+#: widgets/wp-event-manager-widgets.php:538
+msgid "Descending  (DESC)"
+msgstr "Mažėjant (Maž.)"
+
+#: widgets/wp-event-manager-widgets.php:260
+#: widgets/wp-event-manager-widgets.php:396
+#: widgets/wp-event-manager-widgets.php:537
+msgid "Ascending (ASC)"
+msgstr "Didėjant (Did.)"
+
+#: widgets/wp-event-manager-widgets.php:258
+#: widgets/wp-event-manager-widgets.php:394
+#: widgets/wp-event-manager-widgets.php:535
+msgid "Order by"
+msgstr "Rūšiuoti pagal"
+
 #: widgets/wp-event-manager-widgets.php:250
 #: widgets/wp-event-manager-widgets.php:386
 #: widgets/wp-event-manager-widgets.php:527
@@ -604,12 +410,13 @@ msgstr "Jūs negalite ištrinti bilieto, kuomet jis yra pridėtas. Jūs galite j
 msgid "Ticket Details"
 msgstr "Bilieto informacija"
 
+#: templates/event-filters.php:29 templates/event-filters.php:80
 #: templates/form-fields/multiselect-field.php:7
 #: wp-event-manager-functions.php:1092
 msgid "Select Some Options"
 msgstr "Pasirinkti kelis nustatymus"
 
-#: templates/form-fields/multiselect-field.php:7
+#: templates/event-filters.php:80 templates/form-fields/multiselect-field.php:7
 #: wp-event-manager-functions.php:1090
 msgid "No results match"
 msgstr "Nėra rezultatų"
@@ -629,6 +436,14 @@ msgstr "%s buvo pateiktas sėkmingai. Jeigu norite peržiūrėti savo įrašą, 
 #: templates/event-submit.php:37
 msgid "Organizer Details"
 msgstr "Organizatoriaus informacija"
+
+#: templates/event-submit.php:20
+msgid "Create A New Event"
+msgstr "Sukurti naują įvykį"
+
+#: templates/event-submit.php:20
+msgid "You are editing an existing event. %s"
+msgstr "Jūs redaguojate egzistuojantį įvykį. %s"
 
 #: templates/event-submit.php:17
 msgid "Event Details"
@@ -718,10 +533,6 @@ msgstr "Šis įrašas "
 msgid "Share This Event"
 msgstr "Pasidalinti šiuo įvykiu"
 
-#: templates/content-single-event_listing-organizer.php:194
-msgid "Google"
-msgstr "Google"
-
 #: templates/content-single-event_listing-organizer.php:143
 msgid "Organizer Social"
 msgstr "Organizatoriaus socialiniai tinklai"
@@ -776,10 +587,6 @@ msgstr "(pasirinktina)"
 #: wp-event-manager-template.php:398 wp-event-manager-template.php:2058
 msgid "Username"
 msgstr "Vartotojo vardas"
-
-#: templates/account-signin.php:35
-msgid "You must sign in to create a new listing."
-msgstr "Turite prisijungti, kad galėtumėte sukurti naują įrašą."
 
 #: templates/account-signin.php:31
 msgid "optionally"
@@ -872,6 +679,18 @@ msgstr "Pateikti įrašą \t"
 msgid "You must be signed in to post a new listing."
 msgstr "Jūs turite būti prisijungę, kad galėtume įkelti naują įrašą."
 
+#: forms/wp-event-manager-form-submit-event.php:680
+msgid "Password is not valid."
+msgstr "Slaptažodis negalioja. "
+
+#: forms/wp-event-manager-form-submit-event.php:678
+msgid "Invalid Password: %s"
+msgstr "Negaliojantis slaptažodis: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:673
+msgid "Passwords must match."
+msgstr "Slaptažodžiai turi sutapti."
+
 #: forms/wp-event-manager-form-submit-event.php:665
 #: forms/wp-event-manager-form-submit-event.php:668
 msgid "Please enter your email address."
@@ -906,10 +725,18 @@ msgstr "%s negalioja"
 msgid "%s is a required field"
 msgstr "%s yra būtinas laukelis"
 
+#: forms/wp-event-manager-form-submit-event.php:399
+msgid "Twitter URL e.g http://twitter.com/yourorganizer"
+msgstr "Twitter URL, pavyzdžiui http://twitter.com/jusuorganizatorius"
+
 #: forms/wp-event-manager-form-submit-event.php:396
 #: templates/content-single-event_listing-organizer.php:158
 msgid "Twitter"
 msgstr "Twitter"
+
+#: forms/wp-event-manager-form-submit-event.php:286
+msgid "e.g http://www.example.com"
+msgstr "pavyzdžiui http://www.pavyzdys.lt"
 
 #: forms/wp-event-manager-form-submit-event.php:275
 msgid "Ticket Price"
@@ -975,6 +802,13 @@ msgstr "Išsaugoti pakeitimus"
 msgid "Invalid listing"
 msgstr "Negaliojantis įrašas"
 
+#: core/wp-event-manager-post-types.php:391
+msgid "Preview <span class=\"count\">(%s)</span>"
+msgid_plural "Preview <span class=\"count\">(%s)</span>"
+msgstr[0] "Peržiūrėti <span class=\"count\">(%s)</span>"
+msgstr[1] "Peržiūrėti <span class=\"count\">(%s)</span>"
+msgstr[2] "Peržiūrėti <span class=\"count\">(%s)</span>"
+
 #: core/wp-event-manager-post-types.php:378
 msgid "Expired <span class=\"count\">(%s)</span>"
 msgid_plural "Expired <span class=\"count\">(%s)</span>"
@@ -990,6 +824,22 @@ msgstr "Negaliojantis"
 #: core/wp-event-manager-post-types.php:326
 msgid "This is where you can create and manage %s."
 msgstr "Čia jūs galite kurti ir valdyti %s."
+
+#: core/wp-event-manager-post-types.php:323
+msgid "Use as organizer logo"
+msgstr "Naudoti kaip organizatoriaus logotipą"
+
+#: core/wp-event-manager-post-types.php:321
+msgid "Remove organizer logo"
+msgstr "Pašalinti organizatoriaus logotipą"
+
+#: core/wp-event-manager-post-types.php:319
+msgid "Set organizer logo"
+msgstr "Nustatyti organizatoriaus logotipą"
+
+#: core/wp-event-manager-post-types.php:317
+msgid "Organizer Logo"
+msgstr "Organizatoriaus logotipas"
 
 #: core/wp-event-manager-post-types.php:313
 msgid "No %s found in trash"
@@ -1016,6 +866,11 @@ msgstr "Pridėti %s"
 msgid "Add New"
 msgstr "Pridėti naują"
 
+#: core/wp-event-manager-post-types.php:272
+msgctxt "Event permalink - resave permalinks after changing this"
+msgid "event"
+msgstr "ivykis"
+
 #: core/wp-event-manager-post-types.php:262
 msgctxt "Post type archive slug - resave permalinks after changing this"
 msgid "events"
@@ -1028,6 +883,11 @@ msgstr "Įvykiai"
 #: core/wp-event-manager-post-types.php:256
 msgid "Event"
 msgstr "Įvykis"
+
+#: core/wp-event-manager-post-types.php:179
+msgctxt "Event type slug - resave permalinks after changing this"
+msgid "event-type"
+msgstr "ivykio-tipas"
 
 #: core/wp-event-manager-post-types.php:173
 msgid "Event types"
@@ -1080,16 +940,6 @@ msgstr "Visi %s"
 #: core/wp-event-manager-post-types.php:309
 msgid "Search %s"
 msgstr "Ieškoti %s"
-
-#: core/wp-event-manager-post-types.php:272
-msgctxt "Event permalink - resave permalinks after changing this"
-msgid "event"
-msgstr "ivykis"
-
-#: core/wp-event-manager-post-types.php:179
-msgctxt "Event type slug - resave permalinks after changing this"
-msgid "event-type"
-msgstr "ivykio-tipas"
 
 #: core/wp-event-manager-post-types.php:91
 msgctxt "Event category slug - resave permalinks after changing this"
@@ -1169,6 +1019,17 @@ msgstr "Šiandien"
 msgid "Any Date"
 msgstr "Bet kokia data"
 
+#: core/wp-event-manager-ajax.php:381
+msgid "You must be logged in to upload files using this method."
+msgstr "Jūs turite būti prisijungę, kad galėtumėte įkelti failus naudojantis šiuo metodu."
+
+#: core/wp-event-manager-ajax.php:319
+msgid "Search completed. Found %d matching record."
+msgid_plural "Search completed. Found %d matching records."
+msgstr[0] "Paieška baigta. Rastas %d sutampantis rezultatas."
+msgstr[1] "Paieška baigta. Rasti %d sutampantys rezultatai."
+msgstr[2] "Paieška baigta. Rasta %d sutampančių rezultatų."
+
 #: core/wp-event-manager-ajax.php:314
 msgid "located in &ldquo;%s&rdquo;"
 msgstr "esantis &ldquo;%s&rdquo;"
@@ -1177,13 +1038,111 @@ msgstr "esantis &ldquo;%s&rdquo;"
 msgid "Enter the ID of the user, or leave blank if submitted by a guest."
 msgstr "Įveskite vartotojas ID arba palikite tuščią, jeigu pateikta svečio. "
 
-#: admin/wp-event-manager-settings.php:131
-msgid "Hide cancelled events"
-msgstr "Slėpti atšauktus įvykius"
+#: admin/wp-event-manager-writepanels.php:734
+msgid "Change"
+msgstr "Pakeisti"
+
+#: admin/wp-event-manager-writepanels.php:732
+msgid "Guest User"
+msgstr "Vartotojas svečias"
+
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Add file"
+msgstr "Pridėti failą"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Upload"
+msgstr "Įkelti"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Use file"
+msgstr "Naudoti failą"
+
+#: admin/wp-event-manager-writepanels.php:484
+msgid "Most Used"
+msgstr "Dažniausiai naudojamas"
+
+#: admin/wp-event-manager-writepanels.php:434
+msgid "%s Data"
+msgstr "%s duomenys"
+
+#: admin/wp-event-manager-writepanels.php:387
+msgid "Posted by"
+msgstr "Paskelbtas"
+
+#: admin/wp-event-manager-writepanels.php:379
+msgid "yyyy-mm-dd"
+msgstr "yyyy-mm-dd"
+
+#: admin/wp-event-manager-writepanels.php:378
+msgid "Listing Expiry Date"
+msgstr "Įrašo galiojimo data"
+
+#: admin/wp-event-manager-writepanels.php:373
+msgid "Featured listings will be sticky during searches, and can be styled differently."
+msgstr "Populiarūs įrašai bus viršuje paieškos metus ir jų išvaizda gali būti keičiama."
+
+#: admin/wp-event-manager-writepanels.php:371
+msgid "Featured Listing"
+msgstr "Populiarus įrašas"
+
+#: admin/wp-event-manager-writepanels.php:365
+msgid "Cancelled listings will no longer accept registration."
+msgstr "Atšaukti įrašai nepriims registracijos."
+
+#: admin/wp-event-manager-writepanels.php:362
+msgid "Event Cancelled"
+msgstr "Įvykis atšauktas"
+
+#: admin/wp-event-manager-writepanels.php:357
+#: forms/wp-event-manager-form-submit-event.php:423
+msgid "Instagram URL e.g http://www.instagram.com/yourcompany"
+msgstr "Instagram URL, pavyzdžiui http://www.instagram.com/jusuimone"
+
+#: admin/wp-event-manager-writepanels.php:354
+#: forms/wp-event-manager-form-submit-event.php:420
+#: templates/content-single-event_listing-organizer.php:182
+msgid "Instagram"
+msgstr "Instagram"
+
+#: admin/wp-event-manager-writepanels.php:349
+#: forms/wp-event-manager-form-submit-event.php:415
+msgid "Pinterest URL e.g http://www.pinterest.com/yourcompany"
+msgstr "Pinterest URL, pavyzdžiui http://www.pinterest.com/jusuimone"
+
+#: admin/wp-event-manager-writepanels.php:346
+#: forms/wp-event-manager-form-submit-event.php:412
+#: templates/content-single-event_listing-organizer.php:176
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: admin/wp-event-manager-writepanels.php:341
+#: forms/wp-event-manager-form-submit-event.php:407
+msgid "Xing URL e.g http://www.xing.com/companies/yourcompany"
+msgstr "Xing URL, pavyzdžiui http://www.xing.com/companies/jusuimone"
+
+#: admin/wp-event-manager-writepanels.php:338
+#: forms/wp-event-manager-form-submit-event.php:404
+#: templates/content-single-event_listing-organizer.php:170
+msgid "Xing"
+msgstr "Xing"
+
+#: admin/wp-event-manager-writepanels.php:333
+msgid "@yourorganizer"
+msgstr "@jusuorganizatorius"
 
 #: admin/wp-event-manager-writepanels.php:330
 msgid "Twitter username"
 msgstr "Twitter vartotojo vardas"
+
+#: admin/wp-event-manager-writepanels.php:325
+#: forms/wp-event-manager-form-submit-event.php:391
+msgid "Linkedin URL e.g http://www.linkedin.com/company/yourcompany"
+msgstr "Linkedin URL pvz. http://www.linkedin.com/company/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:322
 #: forms/wp-event-manager-form-submit-event.php:388
@@ -1191,16 +1150,32 @@ msgstr "Twitter vartotojo vardas"
 msgid "Linkedin"
 msgstr "Linkedin"
 
+#: admin/wp-event-manager-writepanels.php:317
+#: forms/wp-event-manager-form-submit-event.php:383
+msgid "Facebook URL e.g http://www.facebook.com/yourcompany"
+msgstr "Facebook URL pvz. http://www.facebook.com/jusuimone"
+
 #: admin/wp-event-manager-writepanels.php:314
 #: forms/wp-event-manager-form-submit-event.php:380
 #: templates/content-single-event_listing-organizer.php:152
 msgid "Facebook"
 msgstr "Facebook"
 
+#: admin/wp-event-manager-writepanels.php:309
+#: forms/wp-event-manager-form-submit-event.php:375
+msgid "Google+ URL e.g http://plus.google.com/yourcompany"
+msgstr "Google+ URL pvz. http://plus.google.com/jusuimone"
+
 #: admin/wp-event-manager-writepanels.php:306
 #: forms/wp-event-manager-form-submit-event.php:372
+#: templates/content-single-event_listing-organizer.php:194
 msgid "Google+"
 msgstr "Google+"
+
+#: admin/wp-event-manager-writepanels.php:301
+#: forms/wp-event-manager-form-submit-event.php:367
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany"
+msgstr "Youtube kanalo URL pvz. http://www.youtube.com/channel/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:298
 #: forms/wp-event-manager-form-submit-event.php:364
@@ -1226,21 +1201,26 @@ msgstr "Jūsų organizacijos šūkis"
 msgid "Tagline"
 msgstr "Šūkis"
 
+#: admin/wp-event-manager-writepanels.php:276
+#: forms/wp-event-manager-form-submit-event.php:351
+msgid "Website URL e.g http://www.yourorganization.com"
+msgstr "Svetainės URL pvz. http://www.jusuimone.com"
+
 #: admin/wp-event-manager-writepanels.php:273
 #: forms/wp-event-manager-form-submit-event.php:348
 #: templates/content-single-event_listing-organizer.php:147
 msgid "Website"
 msgstr "Svetainė"
 
-#: admin/wp-event-manager-writepanels.php:265
-#: forms/wp-event-manager-form-submit-event.php:340
-msgid "Organization Email"
-msgstr "Organizacijos el. paštas"
-
 #: admin/wp-event-manager-writepanels.php:268
 #: forms/wp-event-manager-form-submit-event.php:343
 msgid "Enter your email address"
 msgstr "Įveskite savo el. pašto adresą"
+
+#: admin/wp-event-manager-writepanels.php:265
+#: forms/wp-event-manager-form-submit-event.php:340
+msgid "Organization Email"
+msgstr "Organizacijos el. paštas"
 
 #: admin/wp-event-manager-writepanels.php:260
 #: forms/wp-event-manager-form-submit-event.php:335
@@ -1281,6 +1261,10 @@ msgstr "Prašome įvesti registracijos terminą"
 #: forms/wp-event-manager-form-submit-event.php:291
 msgid "Registration Deadline"
 msgstr "Registracijos terminas"
+
+#: admin/wp-event-manager-writepanels.php:219
+msgid "e.g http://ww.example.com"
+msgstr "pvz. http://ww.pavyzdys.com"
 
 #: admin/wp-event-manager-writepanels.php:216
 #: forms/wp-event-manager-form-submit-event.php:283
@@ -1370,8 +1354,8 @@ msgstr "12 valandų formatas"
 msgid "Time Format"
 msgstr "Laiko formatas"
 
-#: admin/wp-event-manager-field-editor.php:140
-#: admin/wp-event-manager-field-editor.php:242
+#: admin/wp-event-manager-field-editor.php:139
+#: admin/wp-event-manager-field-editor.php:241
 #: admin/wp-event-manager-writepanels.php:144
 #: forms/wp-event-manager-form-submit-event.php:208
 msgid "Description"
@@ -1439,6 +1423,13 @@ msgid "Yes"
 msgstr "Taip"
 
 #: admin/wp-event-manager-writepanels.php:82
+#: forms/wp-event-manager-form-submit-event.php:148
+#: templates/content-event_listing.php:30
+#: templates/content-event_listing.php:56
+#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-summary-event_listing.php:10
+#: templates/content-widget-event_listing.php:10
+#: templates/event-dashboard.php:78
 msgid "Online Event"
 msgstr "Internetinis įvykis"
 
@@ -1474,6 +1465,10 @@ msgstr "Pridėti lokalizaciją"
 msgid "Leave a positive review"
 msgstr "Palikite teigiamą atsiliepimą"
 
+#: admin/wp-event-manager-setup.php:347
+msgid "There are many ways to support open-source projects such as WP Event Manager, for example code contribution, translation, or even telling your friends how awesome the plugin (hopefully) is. Thanks in advance for your support - it is much appreciated!"
+msgstr "Yra daugybė būdų, kaip palaikyti atvirojo kodo projektus, tokius kaip WP Event Manager, pvz., prisidedant prie kodo, suteikiant vertimą ar net pasakojant savo draugams, koks nuostabus tai įskiepis (tikiuosi). Ačiū iš anksto už jūsų paramą - tai labai vertinama!"
+
 #: admin/wp-event-manager-setup.php:345
 msgid "Support the Ongoing Development of this Plugin"
 msgstr "Paremti tolesnį šio įskiepio kūrimą"
@@ -1482,13 +1477,17 @@ msgstr "Paremti tolesnį šio įskiepio kūrimą"
 msgid "And don't forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!"
 msgstr "Ir nepamirškite, jei jums reikia daugiau pagalbos naudojant <em>WP Event Manager</em>, galite susipažinti su %1$sdokumentacija%2$s arba %3$srašyti forumuose%2$s!"
 
-#: admin/wp-event-manager-setup.php:347
-msgid "There are many ways to support open-source projects such as WP Event Manager, for example code contribution, translation, or even telling your friends how awesome the plugin (hopefully) is. Thanks in advance for your support - it is much appreciated!"
-msgstr "Yra daugybė būdų, kaip palaikyti atvirojo kodo projektus, tokius kaip WP Event Manager, pvz., prisidedant prie kodo, suteikiant vertimą ar net pasakojant savo draugams, koks nuostabus tai įskiepis (tikiuosi). Ačiū iš anksto už jūsų paramą - tai labai vertinama!"
-
 #: admin/wp-event-manager-setup.php:335
 msgid "Find out more about the front-end event dashboard"
 msgstr "Sužinokite daugiau apie išorinio programavimo įvykių informacijos suvestinę"
+
+#: admin/wp-event-manager-setup.php:331
+msgid "View the event dashboard"
+msgstr "Peržiūrėti įvykio informacijos suvestinę"
+
+#: admin/wp-event-manager-setup.php:325
+msgid "Add the [events] shortcode to a page to list events"
+msgstr "Pridėti [events] „shortcode“ į puslapį, kad pateiktumėte įvykius"
 
 #: admin/wp-event-manager-setup.php:321
 msgid "View submitted event listings"
@@ -1539,9 +1538,27 @@ msgstr "Jei planuojate tvarkyti visus sąrašus iš administracinio prietaisų s
 msgid "This page allows peoples to manage and edit their own events from the front-end."
 msgstr "Šis puslapis leidžia žmonėms tvarkyti ir redaguoti savo įvykius iš išorinio programavimo pusės."
 
+#: admin/wp-event-manager-setup.php:258
+msgctxt "Default page title (wizard)"
+msgid "Event Dashboard"
+msgstr "Įvykio informacijos suvestinė"
+
+#: admin/wp-event-manager-setup.php:250
+msgid "If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page."
+msgstr "Jei nenorite priimti tokiu būdu naudotojų pateiktų pasiūlymų (pvz., tiesiog norite paskelbti įvykius iš administratoriaus informacijos suvestinės), galite praleisti šio puslapio kūrimą."
+
 #: admin/wp-event-manager-setup.php:248
 msgid "This page allows peoples to post events to your website from the front-end."
 msgstr "Šis puslapis leidžia žmonėms paskelbti įvykius į jūsų svetainę iš išorinio programavimo pusės."
+
+#: admin/wp-event-manager-setup.php:245
+msgctxt "Default page title (wizard)"
+msgid "Post an Event"
+msgstr "Paskelbti įvykį "
+
+#: admin/wp-event-manager-setup.php:234
+msgid "Content Shortcode"
+msgstr "Turinio „shortcode“"
 
 #: admin/wp-event-manager-setup.php:232
 msgid "Page Description"
@@ -1559,13 +1576,13 @@ msgstr "<em>WP Event Manager</em> apima %1$s„shortcodes“%2$s, kurie gali bū
 msgid "Page Setup"
 msgstr "Puslapio konfigūracija"
 
-#: admin/wp-event-manager-setup.php:207
-msgid "Continue to page setup"
-msgstr "Tęsti puslapio konfigūraciją"
-
 #: admin/wp-event-manager-setup.php:209
 msgid "Skip setup. I will setup the plugin manually"
 msgstr "Praleisti konfigūraciją. Aš susikonfigūruosiu įskiepį rankiniu būdu"
+
+#: admin/wp-event-manager-setup.php:207
+msgid "Continue to page setup"
+msgstr "Tęsti puslapio konfigūraciją"
 
 #: admin/wp-event-manager-setup.php:203
 msgid "If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help."
@@ -1603,8 +1620,8 @@ msgstr "WP Event Manager konfigūracija"
 msgid "Setup"
 msgstr "Konfigūracija"
 
-#: admin/wp-event-manager-field-editor.php:155
-#: admin/wp-event-manager-field-editor.php:257
+#: admin/wp-event-manager-field-editor.php:154
+#: admin/wp-event-manager-field-editor.php:256
 #: admin/wp-event-manager-settings.php:808
 msgid "Save Changes"
 msgstr "Išsaugoti pakeitimus"
@@ -1621,6 +1638,10 @@ msgstr "--nėra puslapio--"
 msgid "Settings successfully saved"
 msgstr "Nustatymai sėkmingai išsaugoti"
 
+#: admin/wp-event-manager-settings.php:574
+msgid "Select the page where you have placed the [events] shortcode. This lets the plugin know where the event listings page is located."
+msgstr "Pasirinkite puslapį, kuriame įdėjote [events] „shortcode“. Tai leidžia įskiepiui žinoti, kur yra įvykių sąrašo puslapis."
+
 #: admin/wp-event-manager-settings.php:572
 msgid "Event Listings Page"
 msgstr "Įvykių sąrašo puslapis"
@@ -1628,10 +1649,6 @@ msgstr "Įvykių sąrašo puslapis"
 #: admin/wp-event-manager-settings.php:561
 msgid "Select the page where you have placed the [event_dashboard] shortcode. This lets the plugin know where the dashboard is located."
 msgstr "Pasirinkite puslapį, kuriame įdėjote [event_dashboard] „shortcode“. Tai leidžia įskiepiui žinoti, kur yra prietaisų skydelis."
-
-#: admin/wp-event-manager-settings.php:574
-msgid "Select the page where you have placed the [events] shortcode. This lets the plugin know where the event listings page is located."
-msgstr "Pasirinkite puslapį, kuriame įdėjote [events] „shortcode“. Tai leidžia įskiepiui žinoti, kur yra įvykių sąrašo puslapis."
 
 #: admin/wp-event-manager-settings.php:559
 msgid "Event Dashboard Page"
@@ -1648,6 +1665,30 @@ msgstr "Įvykio anketos pateikimo puslapis"
 #: admin/wp-event-manager-settings.php:536
 msgid "Pages"
 msgstr "Puslapiai"
+
+#: admin/wp-event-manager-settings.php:525
+msgid "If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this."
+msgstr "Jeigu įjungta, kiekvienas įvykis gali turėti daugiau nei vieną kategoriją. „Meta“ dėžutė, esanti įrašo redaktoriuje ir pasirinkimo dėžutė įvykio kategorijai išorinio programavimo įvykio pateikimo anketoje yra keičiami to."
+
+#: admin/wp-event-manager-settings.php:523
+msgid "Enable multi select event category for event listing submission"
+msgstr "Įjunkite kelių įvykių kategorijų pasirinkimą dėl įvykio įrašo pateikimo"
+
+#: admin/wp-event-manager-settings.php:521
+msgid "Multi-select Event Category For Submission"
+msgstr "Kelių įvykių kategorijų pasirinkimas dėl pateikimo"
+
+#: admin/wp-event-manager-settings.php:509
+msgid "If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this."
+msgstr "Jeigu įjungta, kiekvienas įvykis gali turėti daugiau nei vieną tipą. „Meta“ dėžutė, esanti įrašo redaktoriuje ir pasirinkimo dėžutė įvykio tipui išorinio programavimo įvykio pateikimo anketoje yra keičiami to."
+
+#: admin/wp-event-manager-settings.php:507
+msgid "Enable multi select event type for event listing submission"
+msgstr "Įjunkite kelių įvykių tipų pasirinkimą dėl įvykio įrašo pateikimo"
+
+#: admin/wp-event-manager-settings.php:505
+msgid "Multi-select Event Types For Submission"
+msgstr "Kelių įvykių tipų pasirinkimas dėl pateikimo"
 
 #: admin/wp-event-manager-settings.php:496
 msgid "Website URLs only"
@@ -1725,6 +1766,10 @@ msgstr "Jei įjungta, vartotojas gali redaguoti pateikimus, kurie laukia adminis
 msgid "Submissions awaiting approval can be edited"
 msgstr "Pateikimai, kurie laukia patvirtinimo, gali būti redaguoti"
 
+#: admin/wp-event-manager-settings.php:413
+msgid "Allow Pending Edits"
+msgstr "Leisti laukiančius redagavimus"
+
 #: admin/wp-event-manager-settings.php:400
 msgid "If enabled, new submissions will be inactive, pending admin approval."
 msgstr "Jei įjungta, nauji pateikimai bus neaktyvūs, laukiant administratoriaus patvirtinimo."
@@ -1744,6 +1789,18 @@ msgstr "Jei įjungsite registraciją ant savo pateikimo anketos, pasirinkite vai
 #: admin/wp-event-manager-settings.php:381
 msgid "Account Role"
 msgstr "Paskyros vaidmuo"
+
+#: admin/wp-event-manager-settings.php:370
+msgid "If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won't be verified."
+msgstr "Jei įjungta, vartotojui bus išsiųstas el. laiškas su vartotojo vardu ir slaptažodžio nustatymo nuoroda. Priešingu atveju bus rodomas slaptažodžio laukas ir jų el. pašto adresas nebus patvirtintas."
+
+#: admin/wp-event-manager-settings.php:369
+msgid "Use WordPress' default behavior and email new users link to set a password"
+msgstr "Naudokite WordPress numatytąjį elgesį ir naujiems vartotojams siųskite el. paštą, kuriame yra nuorodą į slaptažodžio nustatymą."
+
+#: admin/wp-event-manager-settings.php:368
+msgid "Account Password"
+msgstr "Paskyros slaptažodis"
 
 #: admin/wp-event-manager-settings.php:359
 msgid "If enabled, a username will be generated from the first part of the user email address. Otherwise, a username field will be shown."
@@ -1785,6 +1842,22 @@ msgstr "Reikalinga paskyra"
 msgid "Event Submission"
 msgstr "Įvykio pateikimas"
 
+#: admin/wp-event-manager-settings.php:303
+msgid "Default date format as defined in Setttings"
+msgstr "Numatytas datos formatas, kuris nurodytas nustatymuose"
+
+#: admin/wp-event-manager-settings.php:302
+msgid "Relative to the current date (e.g., 1 day, 1 week, 1 month ago)"
+msgstr "Atsižvelgiant į dabartinę datą (pvz. prieš 1 dieną, 1 savaitę, 1 mėnesį)"
+
+#: admin/wp-event-manager-settings.php:299
+msgid "Choose how you want the published date for events to be displayed on the front-end."
+msgstr "Pasirinkite, kaip norite, kad paskelbta įvykių data būtų rodoma išorinėje programavimo dalyje."
+
+#: admin/wp-event-manager-settings.php:298
+msgid "Date Format"
+msgstr "Datos formatas"
+
 #: admin/wp-event-manager-settings.php:292
 msgid "Events will be shown if within ALL selected event types"
 msgstr "Įvykiai bus rodomi, jei jie bus VISŲ pasirinktų įvykių tipuose"
@@ -1805,9 +1878,27 @@ msgstr "Įvykiai bus rodomi, jei jie bus VISOSE pasirinktose kategorijose"
 msgid "Events will be shown if within ANY selected category"
 msgstr "Įvykiai bus rodomi, jei jie bus BET KURIOJE IŠ pasirinktų kategorijų"
 
+#: admin/wp-event-manager-settings.php:249
+#: admin/wp-event-manager-settings.php:284
+msgid "If enabled, the event type select box will default to a multi select on the [events] shortcode."
+msgstr "Jeigu įjungta, įvykio tipo pasirinkimo dėžutė sugrįš į multi-pasirinkimą [events] „shortcode“."
+
+#: admin/wp-event-manager-settings.php:247
+msgid "Enable event type multiselect by default"
+msgstr "Įjungti kelių įvykio tipų pasirinkimą kaip numatyta"
+
 #: admin/wp-event-manager-settings.php:245
 msgid "Multi-select Event Types"
 msgstr "Kelių įvykių tipų pasirinkimas"
+
+#: admin/wp-event-manager-settings.php:232
+#: admin/wp-event-manager-settings.php:264
+msgid "If enabled, the category select box will default to a multi select on the [events] shortcode."
+msgstr "Jeigu įjungta, kategorijos tipo pasirinkimo dėžutė sugrįš į multi-pasirinkimą [events] „shortcode“."
+
+#: admin/wp-event-manager-settings.php:230
+msgid "Enable category multiselect by default"
+msgstr "Įjungti kelių kategorijų pasirinkimą kaip numatyta"
 
 #: admin/wp-event-manager-settings.php:228
 msgid "Multi-select Categories"
@@ -1853,9 +1944,33 @@ msgstr "Kategorijos"
 msgid "If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area)."
 msgstr "Jei įjungta, nebegaliojančių įrašų turinys bus paslėptas. Priešingu atveju, nebegaliojantys įrašai bus rodomi kaip įprasta (be įvykio registracijos zonos)."
 
+#: admin/wp-event-manager-settings.php:162
+msgid "Hide expired listing content in single event listing (singular)"
+msgstr "Slėpti nebegaliojančio įrašo turinį vieno įvykio įraše (vienaskaita)"
+
+#: admin/wp-event-manager-settings.php:160
+msgid "Hide Expired Listings Content"
+msgstr "Slėpti nebegaliojančių įrašų turinį"
+
+#: admin/wp-event-manager-settings.php:147
+msgid "If enabled, expired event listing is not searchable."
+msgstr "Jei įjungta, nebegaliojantis įvykio įrašas nebus randamas."
+
+#: admin/wp-event-manager-settings.php:145
+msgid "Hide expired listings in event archive/search"
+msgstr "Slėpti nebegaliojančius įrašus įvykių archyve/paieškoje"
+
+#: admin/wp-event-manager-settings.php:143
+msgid "Hide Expired Listings"
+msgstr "Slėpti nebegaliojančius įrašus"
+
 #: admin/wp-event-manager-settings.php:133
 msgid "If enabled, cancelled events will be hidden from archives."
 msgstr "Jei įjungta, atšaukti įvykiai bus paslėpti iš archyvų. "
+
+#: admin/wp-event-manager-settings.php:131
+msgid "Hide cancelled events"
+msgstr "Slėpti atšauktus įvykius"
 
 #: admin/wp-event-manager-settings.php:129
 msgid "Cancelled Events"
@@ -1875,6 +1990,36 @@ msgstr "Įrašai per puslapį"
 #: core/wp-event-manager-post-types.php:403
 msgid "Event Listings"
 msgstr "Įvykių įrašai"
+
+#: admin/wp-event-manager-settings.php:97
+msgid "Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
+msgstr "Google reikalauja API rakto, kad gautų vietos informaciją įvykių įrašams. Įsigykite API raktą iš <a href=\"%s\" target=\"__blank\">Google žemėlapių API kūrėjų svetainės</a>."
+
+#: admin/wp-event-manager-settings.php:96
+msgid "Google Maps API Key"
+msgstr "Google žemėlapių API raktas"
+
+#: admin/wp-event-manager-settings.php:87
+msgid "If enabled, bootstrap framework's style will apply for the backend side."
+msgstr "Jei įjungta, pagrindinio kompiuterio paleidimo strategijos stiliaus taikymas bus naudojamas iš vidinės programavimo pusės."
+
+#: admin/wp-event-manager-settings.php:83
+#: admin/wp-event-manager-settings.php:85
+msgid "Enable boostrap for the backend"
+msgstr "Įjungti paleidimo tvarkyklę vidiniui programavimui"
+
+#: admin/wp-event-manager-settings.php:71
+msgid "If enabled, bootstrap framework's style will apply for the frontend side."
+msgstr "Jei įjungta, pagrindinio kompiuterio paleidimo strategijos stiliaus taikymas bus naudojamas iš išorinės programavimo pusės."
+
+#: admin/wp-event-manager-settings.php:67
+#: admin/wp-event-manager-settings.php:69
+msgid "Enable boostrap for the frontend"
+msgstr "Įjungti paleidimo tvarkyklę išoriniui programavimui"
+
+#: admin/wp-event-manager-settings.php:57
+msgid "General"
+msgstr "Bendrieji"
 
 #: admin/wp-event-manager-cpt.php:598 templates/event-dashboard.php:53
 #: wp-event-manager.php:295
@@ -1946,6 +2091,10 @@ msgstr "Įvykio kategorija"
 msgid "Event Type"
 msgstr "Įvykio tipas"
 
+#: admin/wp-event-manager-cpt.php:382
+msgid "Featured?"
+msgstr "Populiarūs?"
+
 #: admin/wp-event-manager-cpt.php:380
 msgid "Cancelled?"
 msgstr "Atšaukta?"
@@ -2016,132 +2165,36 @@ msgstr "%s nebegalioja"
 msgid "%s approved"
 msgstr "%s patvirinta"
 
-#: admin/wp-event-manager-writepanels.php:734
-msgid "Change"
-msgstr "Pakeisti"
+#: admin/wp-event-manager-cpt.php:79 admin/wp-event-manager-cpt.php:81
+msgid "Expire %s"
+msgstr "Padaryti %s nebegaliojantį"
 
-#: admin/wp-event-manager-writepanels.php:732
-msgid "Guest User"
-msgstr "Vartotojas svečias"
+#: admin/wp-event-manager-cpt.php:75 admin/wp-event-manager-cpt.php:77
+msgid "Approve %s"
+msgstr "Patvirtinti %s"
 
-#: admin/wp-event-manager-writepanels.php:546
-msgid "Add file"
-msgstr "Pridėti failą"
+#: admin/wp-event-manager-admin.php:152
+msgid "Dismiss"
+msgstr "Pašalinti"
 
-#: admin/wp-event-manager-writepanels.php:540
-#: admin/wp-event-manager-writepanels.php:543
-#: admin/wp-event-manager-writepanels.php:546
-msgid "Upload"
-msgstr "Įkelti"
+#: admin/wp-event-manager-admin.php:151
+msgid "Try Great Add-Ons"
+msgstr "Išbandykite puikius papildinius"
 
-#: admin/wp-event-manager-writepanels.php:540
-#: admin/wp-event-manager-writepanels.php:543
-#: admin/wp-event-manager-writepanels.php:546
-msgid "Use file"
-msgstr "Naudoti failą"
+#: admin/wp-event-manager-admin.php:149
+msgid "We've noticed you've been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We'd be thrilled if you could <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">give us a 5 stars rating on WordPress.org!</a></strong> Don't forget to submit your site to <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">our showcase</a></strong> and generate more traffic from our site."
+msgstr "Pastebėjome, jog naudojatės <strong>WP Event Manager</strong> jau kiek laiko. Tikimės, jog jums tai patinka! Mums būtų malonu, jeigu galėtumėte <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">duoti mums 5 žvaigždžių įvertinimą WordPress.org!</a></strong> Nepamirškite pateikti savo svetainę į <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">mūsų demonstraciją</a></strong> ir sugeneruoti didesnį lankytojų kiekį iš mūsų svetainės."
 
-#: admin/wp-event-manager-writepanels.php:434
-msgid "%s Data"
-msgstr "%s duomenys"
+#: admin/wp-event-manager-admin.php:123
+msgid "Add-ons"
+msgstr "Papildiniai"
 
-#: admin/wp-event-manager-writepanels.php:387
-msgid "Posted by"
-msgstr "Paskelbtas"
+#: admin/wp-event-manager-admin.php:119
+#: templates/form-fields/repeated-field.php:18
+#: templates/form-fields/repeated-field.php:61
+msgid "Settings"
+msgstr "Nustatymai"
 
-#: admin/wp-event-manager-writepanels.php:379
-msgid "yyyy-mm-dd"
-msgstr "yyyy-mm-dd"
-
-#: admin/wp-event-manager-writepanels.php:378
-msgid "Listing Expiry Date"
-msgstr "Įrašo galiojimo data"
-
-#: admin/wp-event-manager-writepanels.php:373
-msgid "Featured listings will be sticky during searches, and can be styled differently."
-msgstr "Populiarūs įrašai bus viršuje paieškos metus ir jų išvaizda gali būti keičiama."
-
-#: admin/wp-event-manager-writepanels.php:371
-msgid "Featured Listing"
-msgstr "Populiarus įrašas"
-
-#: admin/wp-event-manager-writepanels.php:365
-msgid "Cancelled listings will no longer accept registration."
-msgstr "Atšaukti įrašai nepriims registracijos."
-
-#: admin/wp-event-manager-writepanels.php:362
-msgid "Event Cancelled"
-msgstr "Įvykis atšauktas"
-
-#: admin/wp-event-manager-writepanels.php:354
-#: forms/wp-event-manager-form-submit-event.php:420
-#: templates/content-single-event_listing-organizer.php:182
-msgid "Instagram"
-msgstr "Instagram"
-
-#: admin/wp-event-manager-writepanels.php:346
-#: forms/wp-event-manager-form-submit-event.php:412
-#: templates/content-single-event_listing-organizer.php:176
-msgid "Pinterest"
-msgstr "Pinterest"
-
-#: admin/wp-event-manager-writepanels.php:338
-#: forms/wp-event-manager-form-submit-event.php:404
-#: templates/content-single-event_listing-organizer.php:170
-msgid "Xing"
-msgstr "Xing"
-
-#: admin/wp-event-manager-writepanels.php:333
-msgid "@yourorganizer"
-msgstr "@jusuorganizatorius"
-
-#: admin/wp-event-manager-setup.php:331
-msgid "View the event dashboard"
-msgstr "Peržiūrėti įvykio informacijos suvestinę"
-
-#: admin/wp-event-manager-setup.php:325
-msgid "Add the [events] shortcode to a page to list events"
-msgstr "Pridėti [events] „shortcode“ į puslapį, kad pateiktumėte įvykius"
-
-#: admin/wp-event-manager-setup.php:258
-msgctxt "Default page title (wizard)"
-msgid "Event Dashboard"
-msgstr "Įvykio informacijos suvestinė"
-
-#: admin/wp-event-manager-setup.php:250
-msgid "If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page."
-msgstr "Jei nenorite priimti tokiu būdu naudotojų pateiktų pasiūlymų (pvz., tiesiog norite paskelbti įvykius iš administratoriaus informacijos suvestinės), galite praleisti šio puslapio kūrimą."
-
-#: admin/wp-event-manager-setup.php:245
-msgctxt "Default page title (wizard)"
-msgid "Post an Event"
-msgstr "Paskelbti įvykį "
-
-#: admin/wp-event-manager-setup.php:234
-msgid "Content Shortcode"
-msgstr "Turinio „shortcode“"
-
-#: admin/wp-event-manager-settings.php:413
-msgid "Allow Pending Edits"
-msgstr "Leisti laukiančius redagavimus"
-
-#: admin/wp-event-manager-settings.php:247
-msgid "Enable event type multiselect by default"
-msgstr "Įjungti kelių įvykio tipų pasirinkimą kaip numatyta"
-
-#: admin/wp-event-manager-settings.php:230
-msgid "Enable category multiselect by default"
-msgstr "Įjungti kelių kategorijų pasirinkimą kaip numatyta"
-
-#: admin/wp-event-manager-cpt.php:382
-msgid "Featured?"
-msgstr "Populiarūs?"
-
-#: admin/wp-event-manager-settings.php:249
-#: admin/wp-event-manager-settings.php:284
-msgid "If enabled, the event type select box will default to a multi select on the [events] shortcode."
-msgstr "Jeigu įjungta, įvykio tipo pasirinkimo dėžutė sugrįš į multi-pasirinkimą [events] „shortcode“."
-
-#: admin/wp-event-manager-settings.php:232
-#: admin/wp-event-manager-settings.php:264
-msgid "If enabled, the category select box will default to a multi select on the [events] shortcode."
-msgstr "Jeigu įjungta, kategorijos tipo pasirinkimo dėžutė sugrįš į multi-pasirinkimą [events] „shortcode“."
+#: admin/wp-event-manager-addons.php:59 admin/wp-event-manager-admin.php:123
+msgid "WP Event Manager Add-ons"
+msgstr "WP Event Manager papildiniai"
