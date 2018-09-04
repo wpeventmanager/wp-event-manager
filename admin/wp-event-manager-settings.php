@@ -102,7 +102,7 @@ class WP_Event_Manager_Settings {
 									array(
 											'name'       => 'event_manager_google_maps_api_key',
 											'std'        => '',
-											'label'      => __( 'Google Maps API Key', 'wp-event-manager' ),
+											'label'      => __( 'Google API Key', 'wp-event-manager' ),
 											'desc'       => sprintf( __( 'Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
 											'attributes' => array()
 									)		
