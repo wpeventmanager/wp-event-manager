@@ -53,41 +53,41 @@ class WP_Event_Manager_Settings {
 
 			array(
 					'general_settings' => array(
-							
+
 							__( 'General', 'wp-event-manager' ),
-							
+
 							array(
-									
+
 									array(
-											
+
 											'name'       => 'event_manager_enqueue_boostrap_frontend',
-											
+
 											'std'        => '1',
-											
+
 											'label'      => __( 'Enable boostrap for the frontend', 'wp-event-manager' ),
-											
+
 											'cb_label'   => __( 'Enable boostrap for the frontend', 'wp-event-manager' ),
-											
+
 											'desc'       => __( "If enabled, bootstrap framework's style will apply for the frontend side.", 'wp-event-manager' ),
-											
+
 											'type'       => 'checkbox',
-											
+
 											'attributes' => array()
 									),
 									array(
-											
+
 											'name'       => 'event_manager_enqueue_boostrap_backend',
-											
+
 											'std'        => '1',
-											
+
 											'label'      => __( 'Enable boostrap for the backend', 'wp-event-manager' ),
-											
+
 											'cb_label'   => __( 'Enable boostrap for the backend', 'wp-event-manager' ),
-											
+
 											'desc'       => __( "If enabled, bootstrap framework's style will apply for the backend side.", 'wp-event-manager' ),
-											
+
 											'type'       => 'checkbox',
-											
+
 											'attributes' => array()
 									),
 									array(
@@ -120,9 +120,9 @@ class WP_Event_Manager_Settings {
 											'desc'       => __( 'Choose how you want the published time for events to be select on the submit event page.', 'wp-event-manager' ),
 											'type'       => 'select',
 											'options' => array(
-									
+
 													'12'  => __( '12 hour', 'wp-event-manager' ),
-									
+
 													'24' => __( '24 hour', 'wp-event-manager' ),
 											)
 									)
@@ -155,11 +155,11 @@ class WP_Event_Manager_Settings {
 
 							'std'        => '0',
 
-							'label'      => __( 'Cancelled Events', 'wp-event-manager' ),
+							'label'      => __( 'Canceled Events', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Hide cancelled events', 'wp-event-manager' ),
+							'cb_label'   => __( 'Hide canceled events', 'wp-event-manager' ),
 
-							'desc'       => __( 'If enabled, cancelled events will be hidden from archives.', 'wp-event-manager' ),
+							'desc'       => __( 'If enabled, canceled events will be hidden from archives.', 'wp-event-manager' ),
 
 							'type'       => 'checkbox',
 
@@ -167,16 +167,16 @@ class WP_Event_Manager_Settings {
 						),
 						array(
 								'name'       => 'event_manager_hide_expired',
-								
+
 								'std'        => get_option( 'event_manager_hide_expired_content' ) ? '1' : '0', // back compat
 								'label'      => __( 'Hide Expired Listings', 'wp-event-manager' ),
-								
+
 								'cb_label'   => __( 'Hide expired listings in event archive/search', 'wp-event-manager' ),
-								
+
 								'desc'       => __( 'If enabled, expired event listing is not searchable.', 'wp-event-manager' ),
-								
+
 								'type'       => 'checkbox',
-								
+
 								'attributes' => array()
 						),
 
@@ -246,7 +246,7 @@ class WP_Event_Manager_Settings {
 							'type'       => 'checkbox',
 
 							'attributes' => array()
-						),						
+						),
 
 						array(
 
@@ -320,7 +320,7 @@ class WP_Event_Manager_Settings {
 
 								'all' => __( 'Events will be shown if within ALL selected event types', 'wp-event-manager' ),
 							)
-						)			
+						)
 					),
 				),
 
@@ -438,19 +438,19 @@ class WP_Event_Manager_Settings {
 
 							'attributes' => array()
 						),
-						array(		
+						array(
 								'name'       => 'event_manager_user_can_add_multiple_banner',
 
 								'std'        => '0',
-	
+
 								'label'      => __( 'Allow Multiple Banners', 'wp-event-manager' ),
-	
+
 								'cb_label'   => __( 'User can submit multiple banner', 'wp-event-manager' ),
 
 								'desc'       => __( 'If enabled, Multiple banner can add at frontend by user and backend side by admin.', 'wp-event-manager' ),
-	
+
 								'type'       => 'checkbox',
-		
+
 								'attributes' => array()
 						),
 						array(
@@ -515,35 +515,35 @@ class WP_Event_Manager_Settings {
 							)
 						),
 						array(
-									
+
 								'name'       => 'event_manager_multiselect_event_type',
-									
+
 								'std'        => '0',
-									
+
 								'label'      => __( 'Multi-select Event Types For Submission', 'wp-event-manager' ),
-									
+
 								'cb_label'   => __( 'Enable multi select event type for event listing submission', 'wp-event-manager' ),
-									
+
 								'desc'       => __( 'If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this.', 'wp-event-manager' ),
-									
+
 								'type'       => 'checkbox',
-									
+
 								'attributes' => array()
 						),
 						array(
-									
+
 								'name'       => 'event_manager_multiselect_event_category',
-									
+
 								'std'        => '0',
-									
+
 								'label'      => __( 'Multi-select Event Category For Submission', 'wp-event-manager' ),
-									
+
 								'cb_label'   => __( 'Enable multi select event category for event listing submission', 'wp-event-manager' ),
-									
+
 								'desc'       => __( 'If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this.', 'wp-event-manager' ),
-									
+
 								'type'       => 'checkbox',
-									
+
 								'attributes' => array()
 						),
 					)
@@ -635,12 +635,12 @@ class WP_Event_Manager_Settings {
 		$this->init_settings();
 
 		?>
-		
-	
-       
-		<div class="wrap event-manager-settings-wrap">	
 
-			<form method="post" name="event-manager-settings-form" action="options.php">	
+
+
+		<div class="wrap event-manager-settings-wrap">
+
+			<form method="post" name="event-manager-settings-form" action="options.php">
 
 				<?php settings_fields( $this->settings_group ); ?>
 
@@ -654,11 +654,11 @@ class WP_Event_Manager_Settings {
 			    		}
 			    	?>
 			    </h2>
-			    
+
 			 <div class="admin-setting-left">
-			     	
+
 			     <div class="white-background">
-			     		
+
 				<?php
 
 					if ( ! empty( $_GET['settings-updated'] ) ) {
@@ -777,7 +777,7 @@ class WP_Event_Manager_Settings {
 										echo ' <p class="description">' . $option['desc'] . '</p>';
 
 									}
-									
+
 								break;
 
 								case "password" :
@@ -804,8 +804,8 @@ class WP_Event_Manager_Settings {
 										echo ' <p class="description">' . $option['desc'] . '</p>';
 								}
 
-								break;		
-								
+								break;
+
 								case "multi-select-checkbox":
 								    $this->create_multi_select_checkbox($option);
 									break;
@@ -825,54 +825,54 @@ class WP_Event_Manager_Settings {
 				<p class="submit">
 					<input type="submit" class="button-primary" id="save-changes" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
 				</p>
-			 </div>  <!-- .admin-setting-left -->						
+			 </div>  <!-- .admin-setting-left -->
 		    </form>
-		    
+
             <div id="plugin_info" class="box-info">
                 <div class="box-title" title="Click to toggle"><br></div><h3><span>Plugin Info</span></h3>
                     <div class="inside">
-                        <p> 
+                        <p>
                              <span class="premium-icon"></span><b><?php _e('Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 stars rating this plugin on <a href="https://wordpress.org/plugins/wp-event-manager/" target="_blank" >wordpress.org.','wp-event-manager') ?></a>
                         </p>
-                        <p>  
+                        <p>
                            <?php _e('<span class="help-icon"></span><b>Need help?</b> <br>Read the <a href="https://wp-eventmanager.com/documentation/" target="_blank" >Documentation.</a><br>Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>','wp-event-manager'); ?>
                         </p>
-                        <p>  
+                        <p>
                            <span class="connect-icon"></span><b><?php _e('Demo','wp-event-manager');?></b> <br><?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank"><?_e('Plugin Demo.','wp-event-manager');?></a><br>
-                           <?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/plugins/" target="_blank"><?php _e('Premium Add-ons','wp-event-manager'); ?></a>.<br>                           
+                           <?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/plugins/" target="_blank"><?php _e('Premium Add-ons','wp-event-manager'); ?></a>.<br>
                         </p>
-                        
+
                         <p><span class="light-grey"><?php _e('This plugin was made by','wp-event-manager');?></span> <a href="https://wp-eventmanager.com/" target="_blank"><?php _e('WP Event Manager','wp-event-manager');?></a>.
                         </p>
                     </div>
                 </div>
             </div>
-	  	
+
 
 		<?php  wp_enqueue_script( 'wp-event-manager-admin-settings');
 	}
-	
+
 	/**
 	 * Creates Multiselect checkbox.
-	 * This function generate multiselect 
+	 * This function generate multiselect
 	 * @param $value
 	 * @return void
-	 */ 
-	public function create_multi_select_checkbox($value) 
-	{ 
-		
+	 */
+	public function create_multi_select_checkbox($value)
+	{
+
 		echo '<ul class="mnt-checklist" id="'.$value['name'].'" >'."\n";
 		foreach ($value['options'] as $option_value => $option_list) {
 			$checked = " ";
 			if (get_option($value['name'] ) ) {
-			
+
                                  $all_country = get_option( $value['name'] );
                                  $start_string = strpos($option_list['name'],'[');
                                  $country_code = substr($option_list['name'] ,$start_string + 1 ,  2 );
                                  $coutry_exist = array_key_exists($country_code , $all_country);
                               if( $coutry_exist ){
-                                     $checked = " checked='checked' ";       
-                                     
+                                     $checked = " checked='checked' ";
+
                               }
 			}
 			echo "<li>\n";
@@ -881,5 +881,5 @@ class WP_Event_Manager_Settings {
 			echo "</li>\n";
 		}
 		echo "</ul>\n";
-    }	
+    }
 }
