@@ -1,56 +1,56 @@
-# Translation of Plugins - WP Event Manager - Stable (latest release) in Russian
+# Translation of Plugins - WP Event Manager - Stable (latest release) in Bengali
 # This file is distributed under the same license as the Plugins - WP Event Manager - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-09-02 20:54:03+0000\n"
+"PO-Revision-Date: 2018-09-02 10:23:58+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
-"Language: ru\n"
+"Language: bn\n"
 "Project-Id-Version: Plugins - WP Event Manager - Stable (latest release)\n"
 
 #: admin/wp-event-manager-settings.php:817
 msgid "Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 stars rating this plugin on <a href=\"https://wordpress.org/plugins/wp-event-manager/\" target=\"_blank\" >wordpress.org."
-msgstr "Помогите улучшить этот плагин!</b> <br>Нравится? Оцените в 5 звезд на <a href=\"https://ru.wordpress.org/plugins/wp-event-manager/\" target=\"_blank\" >wordpress.org."
+msgstr "এই প্লাগইনটি উন্নত করতে সাহায্য করুন!</b> <br>এই প্লাগইন উপভোগ? আপনি এই প্লাগইন 5 তারকা রেটিং দ্বারা সাহায্য করতে পারেন <a href=\"https://wordpress.org/plugins/wp-event-manager/\" target=\"_blank\" >wordpress.org."
 
 #: admin/wp-event-manager-settings.php:820
 msgid "<span class=\"help-icon\"></span><b>Need help?</b> <br>Read the <a href=\"https://wp-eventmanager.com/documentation/\" target=\"_blank\" >Documentation.</a><br>Check the <a href=\"https://wp-eventmanager.com/faqs/\" target=\"_blank\">FAQs.</a><br>"
-msgstr "<span class=\"help-icon\"></span><b>Нужна помощь?</b> <br>Прочитайте <a href=\"https://wp-eventmanager.com/documentation/\" target=\"_blank\" >Документацию.</a><br>Проверьте <a href=\"https://wp-eventmanager.com/faqs/\" target=\"_blank\">часто задаваемые вопросы.</a><br>"
+msgstr "<span class=\"help-icon\"></span><b>সাহায্য দরকার?</b> <br>পড়ুন <a href=\"https://wp-eventmanager.com/documentation/\" target=\"_blank\" >ডকুমেন্টেশন</a><br>চেক করুন <a href=\"https://wp-eventmanager.com/faqs/\" target=\"_blank\">প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী</a><br>"
 
 #: admin/wp-event-manager-settings.php:823
 msgid "Demo"
-msgstr "Демо"
+msgstr "ডেমো"
 
 #: admin/wp-event-manager-settings.php:823
 #: admin/wp-event-manager-settings.php:824
 msgid "Visit the"
-msgstr "Посетите"
+msgstr "পরিদর্শন করুন"
 
 #: admin/wp-event-manager-settings.php:823
 msgid "Plugin Demo."
-msgstr "Демо плагина."
+msgstr "প্লাগইন ডেমো"
 
 #: admin/wp-event-manager-settings.php:824
 msgid "Premium Add-ons"
-msgstr "Премиум дополнения"
+msgstr "প্রিমিয়াম অ্যাড-অন"
 
 #: admin/wp-event-manager-settings.php:827
 msgid "This plugin was made by"
-msgstr "Этот плагин создан"
+msgstr "এই প্লাগইন তৈরি করা হয়েছিল"
 
 #: admin/wp-event-manager-setup.php:153
 msgid "Error in nonce. Try again."
-msgstr "Ошибка проверки nonce. Попробуйте снова."
+msgstr "অজানা সমস্যা। আবার চেষ্টা করুন।"
 
 #: forms/wp-event-manager-form-submit-event.php:123
 msgid "Event title"
-msgstr "Название мероприятия"
+msgstr "ইভেন্ট শিরোনাম"
 
 #: templates/event-registration-email.php:6
 msgid "Gmail"
-msgstr "Gmail"
+msgstr "জিমেইল"
 
 #: templates/event-registration-email.php:8
 msgid "AOL"
@@ -58,35 +58,35 @@ msgstr "AOL"
 
 #: templates/event-registration-email.php:12
 msgid "Outlook"
-msgstr "Outlook"
+msgstr "আউটলুক"
 
 #: templates/event-registration-email.php:10
 msgid "Yahoo"
-msgstr "Yahoo"
+msgstr "য়াহু "
 
 #: wp-event-manager-template.php:418
 msgid "Confirm Password"
-msgstr "Подтверждение пароля"
+msgstr "পাসওয়ার্ড নিশ্চিত করুন"
 
 #: admin/wp-event-manager-settings.php:262
 msgid "Category Filter"
-msgstr "Фильтр  Категорий"
+msgstr "পাসওয়ার্ড নিশ্চিত করুন"
 
 #: admin/wp-event-manager-form-field-editor-field.php:52
 msgid "Required"
-msgstr "Необходимый"
+msgstr "প্রয়োজনীয়"
 
 #: admin/wp-event-manager-form-field-editor-field.php:51
 msgid "Not Required"
-msgstr "Не требуется"
+msgstr "আবশ্যক না"
 
 #: admin/wp-event-manager-form-field-editor-field.php:27
 msgid "Multiple Files?"
-msgstr "Несколько файлов?"
+msgstr "একাধিক ফাইল?"
 
 #: admin/wp-event-manager-form-field-editor-field.php:24
 msgid "Pipe (|) separate options."
-msgstr "Pipe (|) отдельные опции."
+msgstr "পাইপ (|) আলাদা বিকল্পগুলি"
 
 #: admin/wp-event-manager-form-field-editor-field.php:23
 #: admin/wp-event-manager-form-field-editor-field.php:45
@@ -101,166 +101,166 @@ msgstr "N/A"
 
 #: admin/wp-event-manager-field-editor.php:373
 msgid "The fields were successfully saved."
-msgstr "Поля были успешно сохранены."
+msgstr "ক্ষেত্র সফলভাবে সংরক্ষিত করা হয়েছে।"
 
 #: admin/wp-event-manager-field-editor.php:228
 msgid "Author"
-msgstr "Автор"
+msgstr "লেখক"
 
 #: admin/wp-event-manager-field-editor.php:153
 #: admin/wp-event-manager-field-editor.php:255
 msgid "Reset to default"
-msgstr "Восстановить значения по умолчанию"
+msgstr "ডিফল্টেে রিসেট করুন"
 
 #: admin/wp-event-manager-field-editor.php:149
 #: admin/wp-event-manager-field-editor.php:251
 msgid "Add field"
-msgstr "Добавить поле"
+msgstr "ক্ষেত্র যোগ করুন"
 
 #: admin/wp-event-manager-field-editor.php:142
 #: admin/wp-event-manager-field-editor.php:244
 msgid "Validation"
-msgstr "Проверка"
+msgstr "ভ্যালিডেশন"
 
 #: admin/wp-event-manager-field-editor.php:141
 #: admin/wp-event-manager-field-editor.php:243
 msgid "Priority"
-msgstr "Приоритет"
+msgstr "অগ্রাধিকার"
 
 #: admin/wp-event-manager-field-editor.php:140
 #: admin/wp-event-manager-field-editor.php:242
 msgid "Placeholder / Options"
-msgstr "Заполнитель / Опции"
+msgstr "স্থানধারক / বিকল্প"
 
 #: admin/wp-event-manager-field-editor.php:138
 #: admin/wp-event-manager-field-editor.php:240
 msgid "Type"
-msgstr "Тип"
+msgstr "টাইপ"
 
 #: admin/wp-event-manager-field-editor.php:137
 #: admin/wp-event-manager-field-editor.php:239
 msgid "Field Label"
-msgstr "Полевая Метка"
+msgstr "ফিল্ড লেবেল"
 
 #: admin/wp-event-manager-field-editor.php:129
 msgid "Organizer fields"
-msgstr "Поля Организатора"
+msgstr "সংগঠক ফিল্ড"
 
 #: admin/wp-event-manager-field-editor.php:125
 #: admin/wp-event-manager-field-editor.php:234
 msgid "Event fields"
-msgstr "Поля Событий"
+msgstr "ইভেন্ট ফিল্ড"
 
 #: admin/wp-event-manager-field-editor.php:115
 #: admin/wp-event-manager-field-editor.php:227
 msgid "WP Editor"
-msgstr "Редактор WP"
+msgstr "WP এডিটর"
 
 #: admin/wp-event-manager-field-editor.php:114
 #: admin/wp-event-manager-field-editor.php:226
 msgid "Textarea"
-msgstr "Textarea"
+msgstr "পাঠ্য এলাকা"
 
 #: admin/wp-event-manager-field-editor.php:113
 #: admin/wp-event-manager-field-editor.php:225
 msgid "Term Select"
-msgstr "Выбор Термина"
+msgstr "টার্ম নির্বাচন"
 
 #: admin/wp-event-manager-field-editor.php:112
 #: admin/wp-event-manager-field-editor.php:224
 msgid "Term Multiselect"
-msgstr "Мультиселекция Термина"
+msgstr "টার্ম একাধিক নির্বাচন"
 
 #: admin/wp-event-manager-field-editor.php:111
 #: admin/wp-event-manager-field-editor.php:223
 msgid "Term Checklist"
-msgstr "Контрольный список термина"
+msgstr "টার্ম চেকলিস্ট"
 
 #: admin/wp-event-manager-field-editor.php:110
 #: admin/wp-event-manager-field-editor.php:221
 msgid "Select"
-msgstr "Выбрат"
+msgstr "নির্বাচন করুন"
 
 #: admin/wp-event-manager-field-editor.php:109
 #: admin/wp-event-manager-field-editor.php:220
 msgid "Repeated"
-msgstr "Повторный"
+msgstr "পুনরাবৃত্ত"
 
 #: admin/wp-event-manager-field-editor.php:108
 #: admin/wp-event-manager-field-editor.php:219
 msgid "Radio"
-msgstr "Радио"
+msgstr "রেডিও"
 
 #: admin/wp-event-manager-field-editor.php:106
 #: admin/wp-event-manager-field-editor.php:217
 msgid "Number"
-msgstr "Число"
+msgstr "সংখ্যা"
 
 #: admin/wp-event-manager-field-editor.php:105
 #: admin/wp-event-manager-field-editor.php:216
 #: admin/wp-event-manager-field-editor.php:222
 msgid "Multiselect"
-msgstr "Мультиселекция"
+msgstr "একাধিক নির্বাচন"
 
 #: admin/wp-event-manager-field-editor.php:104
 #: admin/wp-event-manager-field-editor.php:215
 msgid "Hidden"
-msgstr "Скрыто"
+msgstr "গোপন"
 
 #: admin/wp-event-manager-field-editor.php:103
 #: admin/wp-event-manager-field-editor.php:214
 msgid "File"
-msgstr "файл"
+msgstr "ফাইল"
 
 #: admin/wp-event-manager-field-editor.php:102
 #: admin/wp-event-manager-field-editor.php:213
 msgid "Date"
-msgstr "Дата"
+msgstr "তারিখ"
 
 #: admin/wp-event-manager-field-editor.php:101
 #: admin/wp-event-manager-field-editor.php:212
 msgid "Checkbox"
-msgstr "Флажок"
+msgstr "চেকবক্স"
 
 #: admin/wp-event-manager-field-editor.php:100
 #: admin/wp-event-manager-field-editor.php:211
 msgid "Button Options"
-msgstr "Параметры кнопки"
+msgstr "বোতাম বিকল্প"
 
 #: admin/wp-event-manager-field-editor.php:99
 #: admin/wp-event-manager-field-editor.php:210
 msgid "Button"
-msgstr "Кнопка"
+msgstr "বোতাম"
 
 #: admin/wp-event-manager-field-editor.php:98
 #: admin/wp-event-manager-field-editor.php:209
 msgid "Text"
-msgstr "Текст"
+msgstr "টেক্সট"
 
 #: admin/wp-event-manager-field-editor.php:81
 #: admin/wp-event-manager-field-editor.php:194
 msgid "The fields were successfully reset."
-msgstr "Поля были успешно сброшены."
+msgstr "ক্ষেত্রগুলি সফলভাবে রিসেট করা হয়েছে।"
 
 #: admin/wp-event-manager-field-editor.php:43
 msgid "Back End Form Fields"
-msgstr "Поля формы Бекендa"
+msgstr "ব্যাক এন্ড ফর্ম ফিল্ড"
 
 #: admin/wp-event-manager-field-editor.php:42
 msgid "Front End Form Fields"
-msgstr "Поля формы Фронтендa"
+msgstr "ফ্রন্ট এন্ড ফর্ম ফিল্ড"
 
 #: admin/wp-event-manager-field-editor.php:31
 msgid "Are you sure you want to reset your changes? This cannot be undone."
-msgstr "Вы действительно хотите сбросить свои изменения? Это не может быть отменено."
+msgstr "আপনি কি আপনার পরিবর্তনগুলি পুনরায় সেট করতে চান? এটা পূর্বাবস্থায় ফেরানো যাবে না।"
 
 #: admin/wp-event-manager-field-editor.php:30
 msgid "Are you sure you want to delete this row?"
-msgstr "Вы действительно хотите удалить эту строку?"
+msgstr "আপনি কি এই সারিটি মুছে ফেলতে চান?"
 
 #: admin/wp-event-manager-field-editor.php:20
 msgid "Field Editor"
-msgstr "Редактор поля"
+msgstr "ফিল্ড এডিটর"
 
 #. Author URI of the plugin/theme
 msgid "https://www.wp-eventmanager.com"
@@ -268,7 +268,7 @@ msgstr "https://www.wp-eventmanager.com"
 
 #. Description of the plugin/theme
 msgid "Manage event listings from the WordPress admin panel, and allow users to post events directly to your site."
-msgstr "Управляйте списками событий из панели администрирования WordPress и позволяйте пользователям публиковать события непосредственно на вашем сайте."
+msgstr "ওয়ার্ডপ্রেস অ্যাডমিন প্যানেলে ইভেন্ট তালিকা পরিচালনা করুন এবং আপনার সাইটে সরাসরি ইভেন্ট পোস্ট করার অনুমতি দিন।"
 
 #. Plugin URI of the plugin/theme
 msgid "https://www.wp-eventmanager.com/"
@@ -280,86 +280,86 @@ msgstr "https://www.wp-eventmanager.com/"
 #. Author of the plugin/theme
 #: admin/wp-event-manager-settings.php:827
 msgid "WP Event Manager"
-msgstr "WP Event Manager"
+msgstr "WP ইভেন্ট ম্যানেজার"
 
 #: wp-event-manager.php:299
 msgid "Are you sure you want to delete this event?"
-msgstr "Вы уверены, что хотите удалить это событие?"
+msgstr "আপনি কি নিশ্চিত যে আপনি এই ইভেন্টটি মুছতে চান?"
 
 #: wp-event-manager.php:297
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "বাতিল করুন"
 
 #: wp-event-manager.php:286
 msgid "Load previous listings"
-msgstr "Загрузить предыдущие листинги"
+msgstr "আগের তালিকা লোড করুন"
 
 #: wp-event-manager.php:229
 msgid "Invalid file type. Accepted types:"
-msgstr "Неверный тип файла. Принятые типы:"
+msgstr "অবৈধ ফাইল টাইপ। গ্রহণযোগ্য টাইপ:"
 
 #: wp-event-manager-template.php:425 wp-event-manager-template.php:2083
 msgid "Your email"
-msgstr "Ваш адрес элек. почты"
+msgstr "আপনার ইমেল"
 
 #: wp-event-manager-template.php:417 wp-event-manager-template.php:2076
 msgid "Verify Password"
-msgstr "подтвердите пароль"
+msgstr "পাসওয়ার্ড যাচাই করুন"
 
 #: admin/wp-event-manager-field-editor.php:107
 #: admin/wp-event-manager-field-editor.php:218
 #: wp-event-manager-template.php:406 wp-event-manager-template.php:407
 #: wp-event-manager-template.php:2066
 msgid "Password"
-msgstr "Пароль"
+msgstr "পাসওয়ার্ড"
 
 #: wp-event-manager-template.php:507
 msgid "Anywhere"
-msgstr "Везде"
+msgstr "যে কোন জায়গায়"
 
 #: wp-event-manager-template.php:443 wp-event-manager-template.php:457
 msgid "Posted %s ago"
-msgstr "Добавлено %s назад"
+msgstr "পোস্ট করা হয়েছে %s আগে"
 
 #: wp-event-manager-template.php:441
 msgid "Posted on "
-msgstr "Опубликовано"
+msgstr "পোস্ট হয়েছে"
 
 #: wp-event-manager-template.php:267
 msgid "Registration via \"%s\" listing on %s"
-msgstr "Регистрация через листинг \"%s\" на %s"
+msgstr "নিবন্ধন \"%s\" এর মাধ্যমে %s তালিকায় "
 
 #: wp-event-manager-template.php:186
 msgid "Inactive"
-msgstr "Неактивный"
+msgstr "নিষ্ক্রিয়"
 
 #: wp-event-manager-functions.php:1606
 msgid "Passwords must be at least 8 characters long."
-msgstr "Пароли должны содержать не менее 8 символов."
+msgstr "পাসওয়ার্ড কমপক্ষে 8 অক্ষর দীর্ঘ হওয়া আবশ্যক।"
 
 #: wp-event-manager-functions.php:1340
 msgid "Uploaded files need to be one of the following file types: %s"
-msgstr "Загруженные файлы должны быть одного из следующих типов файлов: %s"
+msgstr "আপলোড করা ফাইলগুলি নিম্নলিখিত ফাইল প্রকারের একটি হওয়া আবশ্যক: %s"
 
 #: wp-event-manager-functions.php:1138
 msgid "Choose a event type&hellip;"
-msgstr "Выберите тип события&hellip;"
+msgstr "একটি ইভেন্ট প্রকার নির্বাচন করুন এবং hellip;"
 
 #: wp-event-manager-functions.php:1088
 msgid "Choose a category&hellip;"
-msgstr "Выберите категорию&hellip;"
+msgstr "একটি বিভাগ চয়ন করুন এবং hellip;"
 
 #: wp-event-manager-functions.php:858
 msgid "This email is already registered, please choose another one."
-msgstr "Этот адрес уже зарегистрирован, пожалуйста, выберите другой."
+msgstr "এই ইমেল ইতিমধ্যে নিবন্ধিত আছে, অন্য একটি নির্বাচন করুন।"
 
 #: wp-event-manager-functions.php:853
 msgid "Your email address isn&#8217;t correct."
-msgstr "Ваш адрес электронной почты неверен."
+msgstr "আপনার ইমেল ঠিকানা সঠিক নয়"
 
 #: wp-event-manager-functions.php:843
 msgid "Invalid email address."
-msgstr "Неверный адрес электронной почты."
+msgstr "অকার্যকর ইমেইল ঠিকানা"
 
 #: wp-event-manager-functions.php:716
 msgid "RSS"
@@ -367,453 +367,453 @@ msgstr "RSS"
 
 #: wp-event-manager-functions.php:709
 msgid "Reset"
-msgstr "Сброс"
+msgstr "রিসেট করুন"
 
 #: wp-event-manager-functions.php:524
 msgctxt "post status"
 msgid "Active"
-msgstr "Aктивный"
+msgstr "সক্রিয়"
 
 #: wp-event-manager-functions.php:522
 msgctxt "post status"
 msgid "Pending payment"
-msgstr "В ожидании оплаты"
+msgstr "অপেক্ষারত পেমেন্ট"
 
 #: wp-event-manager-functions.php:520
 msgctxt "post status"
 msgid "Pending approval"
-msgstr "В ожидании утверждения"
+msgstr "অপেক্ষারত অনুমোদন"
 
 #: wp-event-manager-functions.php:518
 msgctxt "post status"
 msgid "Preview"
-msgstr "Предварительный просмотр"
+msgstr "পূর্বদৃশ্য"
 
 #: wp-event-manager-functions.php:514
 msgctxt "post status"
 msgid "Draft"
-msgstr "Черновой вариант"
+msgstr "ড্রাফট"
 
 #: widgets/wp-event-manager-widgets.php:502
 #: widgets/wp-event-manager-widgets.php:510
 msgid "Upcoming %s"
-msgstr "Наступающий %s"
+msgstr "আসন্ন %s"
 
 #: widgets/wp-event-manager-widgets.php:498
 msgid "Display a list of upcoming listings on your site."
-msgstr "Отобразите список предстоящих листингов на вашем сайте."
+msgstr "আপনার সাইটে পরবর্তী লিস্টিং এর একটি তালিকা প্রদর্শন করুন।"
 
 #: widgets/wp-event-manager-widgets.php:361
 #: widgets/wp-event-manager-widgets.php:369
 msgid "Featured %s"
-msgstr "Рекомендуемые %s"
+msgstr "দেখানো %s"
 
 #: widgets/wp-event-manager-widgets.php:357
 msgid "Display a list of featured listings on your site."
-msgstr "Отобразите список избранных листингов на вашем сайте."
+msgstr "আপনার সাইটে দেখানো লিস্টিং এর একটি তালিকা প্রদর্শন করুন।"
 
 #: widgets/wp-event-manager-widgets.php:261
 #: widgets/wp-event-manager-widgets.php:397
 #: widgets/wp-event-manager-widgets.php:538
 msgid "Descending  (DESC)"
-msgstr "По убыванию (DESC)"
+msgstr "নিম্নক্রম  (DESC)"
 
 #: widgets/wp-event-manager-widgets.php:260
 #: widgets/wp-event-manager-widgets.php:396
 #: widgets/wp-event-manager-widgets.php:537
 msgid "Ascending (ASC)"
-msgstr "По возрастанию (ASC)"
+msgstr "ঊর্ধ্বগামী (ASC)"
 
 #: widgets/wp-event-manager-widgets.php:258
 #: widgets/wp-event-manager-widgets.php:394
 #: widgets/wp-event-manager-widgets.php:535
 msgid "Order by"
-msgstr "Сортировать по"
+msgstr "আদেশ দ্বারা"
 
 #: widgets/wp-event-manager-widgets.php:250
 #: widgets/wp-event-manager-widgets.php:386
 #: widgets/wp-event-manager-widgets.php:527
 msgid "Number of listings to show"
-msgstr "Количество листингов для показа"
+msgstr "দেখানোর জন্য লিস্টিং এর সংখ্যা"
 
 #: widgets/wp-event-manager-widgets.php:226
 msgid "Keyword"
-msgstr "Ключевое слово"
+msgstr "কি ওয়ার্ড"
 
 #: widgets/wp-event-manager-widgets.php:207
 #: widgets/wp-event-manager-widgets.php:215
 msgid "Recent %s"
-msgstr "Последние %s"
+msgstr "সাম্প্রতিক %s"
 
 #: widgets/wp-event-manager-widgets.php:203
 msgid "Display a list of recent listings on your site, optionally matching a keyword and location."
-msgstr "Отобразите список последних листингов на вашем сайте, при необходимости сопоставив ключевые слова и местоположение."
+msgstr "আপনার সাইটে সাম্প্রতিক লিস্টিং এর একটি তালিকা প্রদর্শন করুন, বিকল্পভাবে একটি কীওয়ার্ড এবং অবস্থানের সাথে মিলান।"
 
 #: templates/form-fields/uploaded-file-html.php:11
 #: templates/form-fields/uploaded-file-html.php:13
 msgid "remove"
-msgstr "удалить"
+msgstr "সরান"
 
 #: templates/form-fields/repeated-field.php:59
 msgid "Remove"
-msgstr "Удалить"
+msgstr "সরান"
 
 #: templates/form-fields/repeated-field.php:19
 msgid "You can't delete ticket once it is added.You can make it private from settings tab."
-msgstr "Вы не можете удалить билет после его добавления. Вы можете сделать его закрытым с вкладки настроек."
+msgstr "টিকিট যোগ করা হলে আপনি আর এটি মুছে ফেলতে পারবেন না। আপনি এটি সেটিংস ট্যাব থেকে ব্যক্তিগত করতে পারেন।"
 
 #: templates/form-fields/repeated-field.php:17
 #: templates/form-fields/repeated-field.php:60
 msgid "Ticket Details"
-msgstr "Детали Билетa"
+msgstr "টিকেট বিবরণ"
 
 #: templates/event-filters.php:29 templates/event-filters.php:80
 #: templates/form-fields/multiselect-field.php:7
 #: wp-event-manager-functions.php:1092
 msgid "Select Some Options"
-msgstr "Выберите Некоторые Параметры"
+msgstr "কিছু অপশন নির্বাচন করুন"
 
 #: templates/event-filters.php:80 templates/form-fields/multiselect-field.php:7
 #: wp-event-manager-functions.php:1090
 msgid "No results match"
-msgstr "Нет совпадений результатов"
+msgstr "কোন ফলাফল মিলছে না"
 
 #: templates/form-fields/file-field.php:85
 msgid "Maximum file size: %s."
-msgstr "Максимальный размер файла: %s."
+msgstr "ফাইলের সর্বাধিক আকার: %s"
 
 #: templates/event-submitted.php:11
 msgid "%s submitted successfully. Your listing will be visible once approved."
-msgstr "%s отправлено успешно. Ваш листинг будет видимым после его утверждения."
+msgstr "%s সফলভাবে জমা দেওয়া হয়েছে। আপনার লিস্টিং একবার অনুমোদিত হলে দৃশ্যমান হবে।"
 
 #: templates/event-submitted.php:7
 msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a>."
-msgstr "%s в списке успешно. Чтобы просмотреть листинг <a href=\"%s\"> нажмите здесь </a>."
+msgstr "%s সফলভাবে তালিকাবদ্ধ করা হয়েছে। আপনার লিস্টিং দেখতে <a href=\"%s\"> এখানে ক্লিক করুন </a>।"
 
 #: templates/event-submit.php:37
 msgid "Organizer Details"
-msgstr "Информация об Oрганизаторе"
+msgstr "সংগঠক বিবরণ"
 
 #: templates/event-submit.php:20
 msgid "Create A New Event"
-msgstr "Создать Новое Событие"
+msgstr "একটি নতুন ইভেন্ট তৈরি করুন"
 
 #: templates/event-submit.php:20
 msgid "You are editing an existing event. %s"
-msgstr "Вы редактируете существующее событие. %s"
+msgstr "আপনি একটি বিদ্যমান ইভেন্ট সম্পাদনা করছেন। %s"
 
 #: templates/event-submit.php:17
 msgid "Event Details"
-msgstr "Информация о Событии"
+msgstr "ইভেন্ট এর বিবরণ"
 
 #: templates/event-registration.php:8
 msgid "Register for event"
-msgstr "Зарегистрируйтесь для этого события"
+msgstr "ইভেন্টের জন্য নিবন্ধন করুন"
 
 #: templates/event-registration-url.php:1
 msgid "To register for this event please visit the following URL:"
-msgstr "Чтобы зарегистрироваться для этого события, перейдите по следующему URL:"
+msgstr "এই ইভেন্টের জন্য নিবন্ধন করতে নিম্নলিখিত URL দেখুন:"
 
 #: templates/event-registration-email.php:4
 msgid "Register using webmail: "
-msgstr "Зарегистрируйтесь с помощью веб-почты:"
+msgstr "ওয়েবমেইল ব্যবহার করে নিবন্ধন করুন:"
 
 #: templates/event-registration-email.php:1
 msgid "To register for this event <strong>email your details to</strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
-msgstr "Чтобы зарегистрировать это событие <strong> отправьте свои данные по электронной почте </strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
+msgstr "এই ইভেন্টের জন্য নিবন্ধন করতে <strong>আপনার বিবরণ ইমেল করুন</strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
 
 #: templates/event-listings-start.php:4
 msgid "Recent Events"
-msgstr "Последние События"
+msgstr "সম্প্রতিক ইভেন্ট"
 
 #: templates/event-filters.php:96
 msgid "Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled in order to view listings."
-msgstr "Ваш браузер не поддерживает JavaScript или отключен. JavaScript должен быть включен для просмотра листингов."
+msgstr "আপনার ব্রাউজার জাভাস্ক্রিপ্ট সমর্থন করে না, অথবা এটি অক্ষম করা আছে। লিস্টিং দেখতে জাভাস্ক্রিপ্ট সক্রিয় করা আবশ্যক।"
 
 #: templates/event-filters.php:79
 msgid "Ticket Prices"
-msgstr "Цены Билетов"
+msgstr "টিকেট মূল্য"
 
 #: templates/event-filters.php:67
 msgid "Any Event Type"
-msgstr "Любой Tип События"
+msgstr "যে কোন ইভেন্ট প্রকার"
 
 #: templates/event-filters.php:50
 msgid "Any Category"
-msgstr "Любая Категория"
+msgstr "যে কোন বিভাগ"
 
 #: templates/event-filters.php:46
 msgid "Category"
-msgstr "Категория"
+msgstr "বিভাগ"
 
 #: templates/event-filters.php:28
 msgid "Any dates"
-msgstr "Любые даты"
+msgstr "যে কোনো তারিখ"
 
 #: templates/event-filters.php:11 templates/event-filters.php:12
 msgid "Keywords"
-msgstr "Ключевые слова"
+msgstr "কীওয়ার্ড"
 
 #: templates/event-dashboard.php:43
 msgid "Relist"
-msgstr "Повторно перечислить"
+msgstr "রিলিস্ট"
 
 #: templates/event-dashboard.php:39
 msgid "Duplicate"
-msgstr "Дублировать"
+msgstr "নকল"
 
 #: templates/event-dashboard.php:37
 msgid "Mark cancelled"
-msgstr "Отметить как отменено"
+msgstr "মার্ক বাতিল করা হয়েছে"
 
 #: templates/event-dashboard.php:35
 msgid "Mark not cancelled"
-msgstr "Отметить как не отменено"
+msgstr "মার্ক বাতিল করা হয়েনি"
 
 #: templates/event-dashboard.php:14
 msgid "You do not have any active listings."
-msgstr "У вас нет активных листингов."
+msgstr "আপনার কোন সক্রিয় তালিকা নেই।"
 
 #: templates/event-dashboard-login.php:2
 msgid "You need to be signed in to manage your listings."
-msgstr "Для управления листингами необходимо войти в систему."
+msgstr "আপনার তালিকা পরিচালনা করতে আপনাকে অবশ্যই সাইন ইন করতে হবে।"
 
 #: templates/content-single-event_listing.php:27
 msgid "Event Overview"
-msgstr "Обзор Событий"
+msgstr "ইভেন্ট ওভারভিউ"
 
 #: templates/content-single-event_listing.php:7
 msgid "This listing has expired."
-msgstr "Срок действия этого листингa истек."
+msgstr "এই লিস্টিং এর মেয়াদ শেষ হয়ে গেছে।"
 
 #: templates/content-single-event_listing-organizer.php:204
 msgid "Share This Event"
-msgstr "Поделиться этим событием"
+msgstr "এই ইভেন্ট শেয়ার করুন"
 
 #: templates/content-single-event_listing-organizer.php:143
 msgid "Organizer Social"
-msgstr "Социальная Сеть Организаторa"
+msgstr "সংগঠক সামাজিক"
 
 #: templates/content-single-event_listing-organizer.php:111
 msgid "Registration End Date"
-msgstr "Дата окончания регистрации"
+msgstr "নিবন্ধন শেষ তারিখ"
 
 #: templates/content-single-event_listing-organizer.php:88
 msgid "When & Where"
-msgstr "Когда и Где"
+msgstr "কখন ও কোথাই"
 
 #: templates/content-single-event_listing-organizer.php:80
 msgid "Ticket Information"
-msgstr "Информация о Билете"
+msgstr "টিকেট তথ্য"
 
 #: templates/content-single-event_listing-organizer.php:59
 #: templates/content-single-event_listing-organizer.php:66
 msgid "Watch Video"
-msgstr "Смотреть Видео"
+msgstr "ভিডিও দেখুন"
 
 #: templates/content-single-event_listing-organizer.php:52
 msgid "View More Details"
-msgstr "Просмотреть Дополнительную Информацию"
+msgstr "আরও বিস্তারিত দেখুন"
 
 #: templates/content-single-event_listing-organizer.php:36
 msgid "About"
-msgstr "Насчет"
+msgstr "সম্বন্ধে"
 
 #: templates/content-single-event_listing-meta.php:46
 msgid "Registrations have closed"
-msgstr "Регистрация закрыта"
+msgstr "নিবন্ধন বন্ধ আছে"
 
 #: templates/content-single-event_listing-meta.php:43
 msgid "This event has been cancelled"
-msgstr "Это событие отменено"
+msgstr "এই ইভেন্টটি বাতিল করা হয়েছে"
 
 #: templates/content-no-events-found.php:4
 msgid "There are currently no events."
-msgstr "В настоящее время нет событий."
+msgstr "বর্তমানে কোনো ইভেন্ট নেই।"
 
 #: templates/content-no-events-found.php:2
 msgid "There are no events matching your search."
-msgstr "Нет событий, соответствующих вашему поиску."
+msgstr "আপনার অনুসন্ধানের সাথে মেলে এমন কোন ইভেন্ট নেই।"
 
 #: templates/account-signin.php:49 templates/event-submit.php:27
 #: templates/event-submit.php:41 templates/form-fields/repeated-field.php:32
 #: templates/form-fields/repeated-field.php:74
 msgid "(optional)"
-msgstr "(необязательный)"
+msgstr "(ঐচ্ছিক)"
 
 #: wp-event-manager-template.php:398 wp-event-manager-template.php:2058
 msgid "Username"
-msgstr "Имя Пользователя"
+msgstr "ব্যবহারকারীর নাম"
 
 #: templates/account-signin.php:35
 msgid " You must sign in to create a new listing."
-msgstr "Вы должны войти в систему, чтобы создать новый листинг."
+msgstr "একটি নতুন লিস্টিং তৈরি করতে আপনাকে অবশ্যই সাইন ইন করতে হবে।"
 
 #: templates/account-signin.php:31
 msgid "optionally"
-msgstr "необязательно"
+msgstr "ঐচ্ছিকরূপে"
 
 #: templates/account-signin.php:31
 msgid "If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email."
-msgstr "Если у вас нет учетной записи, просто введите свой адрес электронной почты и создайте новый. Вы получите свой пароль в ближайшее время в вашей электронной почте."
+msgstr "আপনি যদি আমাদের সাথে কোনও অ্যাকাউন্ট না থাকে, তাহলে শুধু আপনার ইমেল ঠিকানা লিখুন এবং একটি নতুন একটি তৈরি করুন। আপনি আপনার ইমেইল শীঘ্রই আপনার ইমেইল পাবেন।"
 
 #: templates/account-signin.php:27 templates/event-dashboard-login.php:2
 msgid "Sign in"
-msgstr "Войти в систему"
+msgstr "সাইন ইন "
 
 #: templates/account-signin.php:23
 msgid "Have an account?"
-msgstr "У вас есть аккаунт?"
+msgstr "একাউন্ট আছে?"
 
 #: templates/account-signin.php:9
 msgid "Sign out"
-msgstr "Выйти"
+msgstr "সাইন আউট"
 
 #: templates/account-signin.php:7
 msgid "You are currently signed in as <strong>%s</strong>."
-msgstr "В настоящее время вы вошли в систему как <strong>%s </strong>."
+msgstr "আপনি বর্তমানে <strong>%s</strong> হিসাবে সাইন ইন করেছেন"
 
 #: templates/account-signin.php:3
 msgid "Your account"
-msgstr "Ваш аккаунт"
+msgstr "আপনার অ্যাকাউন্ট"
 
 #: shortcodes/wp-event-manager-shortcodes.php:541
 msgid "Load more listings"
-msgstr "Загрузить больше листингов"
+msgstr "আরও লিস্টিং লোড করুন"
 
 #: shortcodes/wp-event-manager-shortcodes.php:488
 msgid "Load more events"
-msgstr "Загрузить больше событий"
+msgstr "আরো ইভেন্ট লোড করুন"
 
 #: shortcodes/wp-event-manager-shortcodes.php:246
 msgid "Action"
-msgstr "Действие"
+msgstr "কাজ"
 
 #: shortcodes/wp-event-manager-shortcodes.php:245
 msgid "Viewed"
-msgstr "Просмотренный"
+msgstr "দেখা হয়েছে"
 
 #: shortcodes/wp-event-manager-shortcodes.php:241
 #: widgets/wp-event-manager-widgets.php:217
 #: widgets/wp-event-manager-widgets.php:371
 #: widgets/wp-event-manager-widgets.php:512
 msgid "Title"
-msgstr "Заглавие"
+msgstr "শিরোনাম"
 
 #: shortcodes/wp-event-manager-shortcodes.php:144
 msgid "Missing submission page."
-msgstr "Отсутствует страница отправки."
+msgstr "অনুপস্থিত জমা পৃষ্ঠা"
 
 #: shortcodes/wp-event-manager-shortcodes.php:139
 msgid "%s has been deleted"
-msgstr "%s удалено"
+msgstr "%s মুছে ফেলা হয়েছে"
 
 #: shortcodes/wp-event-manager-shortcodes.php:129
 msgid "%s has been marked as not cancelled"
-msgstr "%s отмечен как не отмененный"
+msgstr "%s বাতিল করা নয় বলে চিহ্নিত করা হয়েছে"
 
 #: shortcodes/wp-event-manager-shortcodes.php:121
 msgid "This event is not cancelled"
-msgstr "Это событие не отменено"
+msgstr "এই ইভেন্ট বাতিল করা হয়নি"
 
 #: shortcodes/wp-event-manager-shortcodes.php:112
 msgid "%s has been cancelled"
-msgstr "%s отменено"
+msgstr "%s বাতিল করা হয়ছে"
 
 #: shortcodes/wp-event-manager-shortcodes.php:104
 msgid "This event has already been cancelled"
-msgstr "Это событие уже отменено"
+msgstr "এই ইভেন্টটি বাতিল করা হয়ছে"
 
 #: shortcodes/wp-event-manager-shortcodes.php:93
 msgid "Invalid ID"
-msgstr "Неверный ID"
+msgstr "অবৈধ আইডি"
 
 #: forms/wp-event-manager-form-submit-event.php:919
 msgid "← Edit listing"
-msgstr "← Изменить  листинг"
+msgstr "← লিস্টিং এডিট করুন"
 
 #: forms/wp-event-manager-form-submit-event.php:918
 msgid "Submit Listing →"
-msgstr "Добавить листинг \t"
+msgstr "লিস্টিং জমা করুন \t"
 
 #: forms/wp-event-manager-form-submit-event.php:699
 msgid "You must be signed in to post a new listing."
-msgstr "Вы должны войти в систему, чтобы опубликовать новый листинг."
+msgstr "একটি নতুন লিস্টিং পোস্ট করতে আপনাকে অবশ্যই সাইন ইন করতে হবে।"
 
 #: forms/wp-event-manager-form-submit-event.php:680
 msgid "Password is not valid."
-msgstr "Пароль недействителен."
+msgstr "পাসওয়ার্ডটি বৈধ নয়।"
 
 #: forms/wp-event-manager-form-submit-event.php:678
 msgid "Invalid Password: %s"
-msgstr "Недействительный пароль: %s"
+msgstr "অবৈধ পাসওয়ার্ড: %s"
 
 #: forms/wp-event-manager-form-submit-event.php:673
 msgid "Passwords must match."
-msgstr "Пароли должны совпадать."
+msgstr "পাসওয়ার্ডগুলি অবশ্যই মিলিত হবে।"
 
 #: forms/wp-event-manager-form-submit-event.php:665
 #: forms/wp-event-manager-form-submit-event.php:668
 msgid "Please enter your email address."
-msgstr "Пожалуйста, введите Ваш адрес электронной почты."
+msgstr "আপনার ইমেইল ঠিকানা লিখুন দয়া করে"
 
 #: forms/wp-event-manager-form-submit-event.php:662
 msgid "Please enter a username."
-msgstr "Пожалуйста введите имя пользователя."
+msgstr "ব্যবহারকারীর নাম লিখুন দয়া করে"
 
 #: forms/wp-event-manager-form-submit-event.php:547
 msgid "Please enter a valid registration email address or URL"
-msgstr "Пожалуйста, введите адрес электронной почты регистрации или URL"
+msgstr "দয়া করে একটি বৈধ নিবন্ধন ইমেল ঠিকানা বা URL লিখুন"
 
 #: forms/wp-event-manager-form-submit-event.php:537
 msgid "Please enter a valid registration URL"
-msgstr "Пожалуйста, введите действительный регистрационный URL"
+msgstr "একটি বৈধ নিবন্ধন URL লিখুন দয়া করে"
 
 #: forms/wp-event-manager-form-submit-event.php:528
 msgid "Please enter a valid registration email address"
-msgstr "Пожалуйста, введите действительный регистрационный адрес электронной почты"
+msgstr "অনুগ্রহ করে একটি বৈধ নিবন্ধন ইমেল ঠিকানা লিখুন দয়া করে"
 
 #: forms/wp-event-manager-form-submit-event.php:513
 #: wp-event-manager-functions.php:1336
 msgid "\"%s\" (filetype %s) needs to be one of the following file types: %s"
-msgstr "\"%s\" (тип файла%s) должен быть одним из следующих типов файлов: %s"
+msgstr "\"%s\" (filetype %s) নিম্নলিখিত ফাইল প্রকারগুলির মধ্যে একটি হতে হবে: %s"
 
 #: forms/wp-event-manager-form-submit-event.php:497
 msgid "%s is invalid"
-msgstr "Недопустимый %s"
+msgstr "%s অবৈধ"
 
 #: forms/wp-event-manager-form-submit-event.php:486
 msgid "%s is a required field"
-msgstr "%s является обязательным полем"
+msgstr "%s হল একটি প্রয়োজনীয় ফিল্ড"
 
 #: forms/wp-event-manager-form-submit-event.php:399
 msgid "Twitter URL e.g http://twitter.com/yourorganizer"
-msgstr "URL Twitter, например http://twitter.com/yourorganizer"
+msgstr "টুইটার URL উদাহরণ http://twitter.com/yourorganizer"
 
 #: forms/wp-event-manager-form-submit-event.php:396
 #: templates/content-single-event_listing-organizer.php:158
 msgid "Twitter"
-msgstr "Twitter"
+msgstr "টুইটার"
 
 #: forms/wp-event-manager-form-submit-event.php:286
 msgid "e.g http://www.example.com"
-msgstr "например http://www.example.com"
+msgstr "উদাহরণ http://www.example.com"
 
 #: forms/wp-event-manager-form-submit-event.php:275
 msgid "Ticket Price"
-msgstr "Цена билета"
+msgstr "টিকিট মূল্য"
 
 #: forms/wp-event-manager-form-submit-event.php:187
 msgid "e.g. \"Berlin\",\"London\""
-msgstr "например \"Берлин\", \"Лондон\""
+msgstr "উদাহরণ \"বার্লিন\", \"লন্ডন\""
 
 #: forms/wp-event-manager-form-submit-event.php:113
 msgid "Enter an email address or website URL"
-msgstr "Введите адрес электронной почты или URL веб-сайта"
+msgstr "একটি ইমেল ঠিকানা বা ওয়েবসাইট URL লিখুন"
 
 #: forms/wp-event-manager-form-submit-event.php:112
 msgid "Registration email/URL"
-msgstr "адрес электронной почты/URL регистрации"
+msgstr "নিবন্ধন ইমেইল / URL"
 
 #: forms/wp-event-manager-form-submit-event.php:109
 msgid "http://"
@@ -821,7 +821,7 @@ msgstr "http://"
 
 #: forms/wp-event-manager-form-submit-event.php:108
 msgid "Registration URL"
-msgstr "URL регистрации"
+msgstr "নিবন্ধন ইমেইল"
 
 #: forms/wp-event-manager-form-submit-event.php:105
 #: wp-event-manager-template.php:426 wp-event-manager-template.php:2084
@@ -830,361 +830,358 @@ msgstr "you@yourdomain.com"
 
 #: forms/wp-event-manager-form-submit-event.php:104
 msgid "Registration email"
-msgstr "Электронная почта регистрации"
+msgstr "নিবন্ধন ইমেইল"
 
 #: forms/wp-event-manager-form-submit-event.php:43
 msgid "Done"
-msgstr "Сделано"
+msgstr "সম্পন্ন হয়েছে"
 
 #: forms/wp-event-manager-form-submit-event.php:36
 #: forms/wp-event-manager-form-submit-event.php:636
 #: forms/wp-event-manager-form-submit-event.php:924
 msgid "Preview"
-msgstr "Предварительный просмотр"
+msgstr "পূর্বদৃশ্য"
 
 #: forms/wp-event-manager-form-submit-event.php:29
 msgid "Submit Details"
-msgstr "Отправить Детали"
+msgstr "বিস্তারিত জমা দিন"
 
 #: forms/wp-event-manager-form-edit-event.php:161
 msgid "View &rarr;"
-msgstr "Просмотр &rarr;"
+msgstr "দেখুন & rarr;"
 
 #: forms/wp-event-manager-form-edit-event.php:161
 #: forms/wp-event-manager-form-edit-event.php:167
 msgid "Your changes have been saved."
-msgstr "Ваши изменения были сохранены."
+msgstr "আপনার পরিবর্তনগুলি সংরক্ষণ করা হয়েছে।"
 
 #: forms/wp-event-manager-form-edit-event.php:120
 msgid "Save changes"
-msgstr "Сохранить изменения"
+msgstr "পরিবর্তনগুলো সংরক্ষন করুন"
 
 #: forms/wp-event-manager-form-edit-event.php:66
 msgid "Invalid listing"
-msgstr "Недопустимый листинг"
+msgstr "অবৈধ লিস্টিং"
 
 #: core/wp-event-manager-post-types.php:391
 msgid "Preview <span class=\"count\">(%s)</span>"
 msgid_plural "Preview <span class=\"count\">(%s)</span>"
-msgstr[0] "Предварительный просмотр <span class=\"count\">(%s)</span>"
-msgstr[1] "Предварительные просмотры <span class=\"count\">(%s)</span>"
-msgstr[2] "Предварительных просмотров <span class=\"count\">(%s)</span>"
+msgstr[0] "পূর্বদৃশ্য <span class=\"count\">(%s)</span>"
+msgstr[1] "পূর্বদৃশ্য <span class=\"count\">(%s)</span>"
 
 #: core/wp-event-manager-post-types.php:378
 msgid "Expired <span class=\"count\">(%s)</span>"
 msgid_plural "Expired <span class=\"count\">(%s)</span>"
-msgstr[0] "Срок действия истек  <span class=\"count\">(%s)</span>"
-msgstr[1] "Срок действия истек  <span class=\"count\">(%s)</span>"
-msgstr[2] "Срок действия истек  <span class=\"count\">(%s)</span>"
+msgstr[0] "মেয়াদোত্তীর্ণ <span class=\"count\">(%s)</span>"
+msgstr[1] "মেয়াদোত্তীর্ণ <span class=\"count\">(%s)</span>"
 
 #: core/wp-event-manager-post-types.php:368 wp-event-manager-functions.php:516
 msgctxt "post status"
 msgid "Expired"
-msgstr "Истек"
+msgstr "মেয়াদোত্তীর্ণ"
 
 #: core/wp-event-manager-post-types.php:326
 msgid "This is where you can create and manage %s."
-msgstr "Здесь вы можете создавать и управлять %s."
+msgstr "এটি এমন জায়গা যেখানে আপনি %s তৈরি এবং পরিচালনা করতে পারেন।"
 
 #: core/wp-event-manager-post-types.php:323
 msgid "Use as organizer logo"
-msgstr "Использовать в качестве логотипа органайзера"
+msgstr "সংগঠক লোগো হিসাবে ব্যবহার করুন"
 
 #: core/wp-event-manager-post-types.php:321
 msgid "Remove organizer logo"
-msgstr "Удалить логотип органайзера"
+msgstr "আয়োজক লোগো সরান"
 
 #: core/wp-event-manager-post-types.php:319
 msgid "Set organizer logo"
-msgstr "Установить логотип органайзера"
+msgstr "সংগঠক লোগো সেট করুন"
 
 #: core/wp-event-manager-post-types.php:317
 msgid "Organizer Logo"
-msgstr "Логотип Организатора"
+msgstr "আয়োজক লোগো"
 
 #: core/wp-event-manager-post-types.php:313
 msgid "No %s found in trash"
-msgstr "Не найдено %s в корзине"
+msgstr "ট্র্যাশে কোনো %s পাওয়া যায়নি"
 
 #: core/wp-event-manager-post-types.php:311
 msgid "No %s found"
-msgstr "Не найдено %s"
+msgstr "কোনো %s পাওয়া যায়নি"
 
 #: core/wp-event-manager-post-types.php:305
 #: core/wp-event-manager-post-types.php:307
 msgid "View %s"
-msgstr "Просмотр %s"
+msgstr "%s দেখুন"
 
 #: core/wp-event-manager-post-types.php:303
 msgid "New %s"
-msgstr "Новый %s"
+msgstr "নতুন %s"
 
 #: core/wp-event-manager-post-types.php:297
 msgid "Add %s"
-msgstr "Добавить %s"
+msgstr "%s যোগ করুন"
 
 #: core/wp-event-manager-post-types.php:295
 msgid "Add New"
-msgstr "Добавить Новый"
+msgstr "নতুন যোগ করুন"
 
 #: core/wp-event-manager-post-types.php:272
 msgctxt "Event permalink - resave permalinks after changing this"
 msgid "event"
-msgstr "event"
+msgstr "ইভেন্ট"
 
 #: core/wp-event-manager-post-types.php:262
 msgctxt "Post type archive slug - resave permalinks after changing this"
 msgid "events"
-msgstr "events"
+msgstr "ইভেন্টগুলি"
 
 #: core/wp-event-manager-post-types.php:258
 msgid "Events"
-msgstr "События"
+msgstr "ইভেন্টগুলি"
 
 #: core/wp-event-manager-post-types.php:256
 msgid "Event"
-msgstr "Событие"
+msgstr "ইভেন্ট"
 
 #: core/wp-event-manager-post-types.php:179
 msgctxt "Event type slug - resave permalinks after changing this"
 msgid "event-type"
-msgstr "event-type"
+msgstr "ইভেন্ট-প্রকার"
 
 #: core/wp-event-manager-post-types.php:173
 msgid "Event types"
-msgstr "Типы событий"
+msgstr "ইভেন্ট প্রকার"
 
 #: core/wp-event-manager-post-types.php:171
 msgid "Event type"
-msgstr "Тип события"
+msgstr "ইভেন্ট প্রকার"
 
 #: core/wp-event-manager-post-types.php:141
 #: core/wp-event-manager-post-types.php:229
 msgid "New %s Name"
-msgstr "Новое имя %s"
+msgstr "নতুন %s নাম"
 
 #: core/wp-event-manager-post-types.php:139
 #: core/wp-event-manager-post-types.php:227
 msgid "Add New %s"
-msgstr "Добавить новый %s"
+msgstr "%s নতুন যোগ করুন"
 
 #: core/wp-event-manager-post-types.php:137
 #: core/wp-event-manager-post-types.php:225
 msgid "Update %s"
-msgstr "Обновить %s"
+msgstr "আপডেট %s"
 
 #: core/wp-event-manager-post-types.php:135
 #: core/wp-event-manager-post-types.php:223
 #: core/wp-event-manager-post-types.php:301
 msgid "Edit %s"
-msgstr "Редактировать %s"
+msgstr "এডিট %s"
 
 #: core/wp-event-manager-post-types.php:133
 #: core/wp-event-manager-post-types.php:221
 msgid "Parent %s:"
-msgstr "Родитель %s:"
+msgstr "প্যারেন্ট %s:"
 
 #: core/wp-event-manager-post-types.php:131
 #: core/wp-event-manager-post-types.php:219
 #: core/wp-event-manager-post-types.php:315
 msgid "Parent %s"
-msgstr "Родитель %s"
+msgstr "প্যারেন্ট %s"
 
 #: core/wp-event-manager-post-types.php:129
 #: core/wp-event-manager-post-types.php:217
 #: core/wp-event-manager-post-types.php:293
 msgid "All %s"
-msgstr "Все %s"
+msgstr "সব %s"
 
 #: core/wp-event-manager-post-types.php:127
 #: core/wp-event-manager-post-types.php:215
 #: core/wp-event-manager-post-types.php:309
 msgid "Search %s"
-msgstr "Поиск %s"
+msgstr "খুঁজুন %s"
 
 #: core/wp-event-manager-post-types.php:91
 msgctxt "Event category slug - resave permalinks after changing this"
 msgid "event-category"
-msgstr "event-category"
+msgstr "ইভেন্ট -বিভাগ"
 
 #: core/wp-event-manager-post-types.php:85
 msgid "Event categories"
-msgstr "Категории событий"
+msgstr "ইভেন্ট বিভাগ"
 
 #: core/wp-event-manager-post-types.php:83
 msgid "Event category"
-msgstr "Категория события"
+msgstr "ইভেন্ট বিভাগ"
 
 #: core/wp-event-manager-install.php:69
 msgid "Organizer"
-msgstr "Oрганизатор"
+msgstr "আয়োজককারী"
 
 #: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
 #: core/wp-event-manager-geocode.php:236
 msgid "Geocoding error"
-msgstr "Ошибка геокодирования"
+msgstr "জিওকোডিং ত্রুটি"
 
 #: core/wp-event-manager-geocode.php:210
 msgid "Query limit reached"
-msgstr "Достигнут лимит запроса"
+msgstr "প্রশ্ন সীমা পৌঁছেছেন"
 
 #: core/wp-event-manager-geocode.php:202
 msgid "No results found"
-msgstr "Результатов не найдено"
+msgstr "কোন ফলাফল পাওয়া যায়নি"
 
 #: core/wp-event-manager-filters.php:73
 msgid "Any Ticket Price"
-msgstr "Любая цена билета"
+msgstr "যে কোন টিকেট মূল্য"
 
 #: core/wp-event-manager-filters.php:41
 msgid "Next Year"
-msgstr "Следующий Год"
+msgstr "আগামী বছর"
 
 #: core/wp-event-manager-filters.php:39
 msgid "Next Month"
-msgstr "Следующий Месяц"
+msgstr "পরের মাসে"
 
 #: core/wp-event-manager-filters.php:37
 msgid "Next Weekend"
-msgstr "Следующий Уикенд"
+msgstr "পরের সপ্তাহান্তে"
 
 #: core/wp-event-manager-filters.php:35
 msgid "Next Week"
-msgstr "Следующая Неделя"
+msgstr "পরের সপ্তাহে"
 
 #: core/wp-event-manager-filters.php:33
 msgid "This Year"
-msgstr "Этот Год"
+msgstr "এই বছর"
 
 #: core/wp-event-manager-filters.php:31
 msgid "This Month"
-msgstr "Этот Месяц"
+msgstr "এই মাস"
 
 #: core/wp-event-manager-filters.php:29
 msgid "This Weekend"
-msgstr "Этот Уикенд"
+msgstr "এই সপ্তাহান্তে"
 
 #: core/wp-event-manager-filters.php:27
 msgid "This Week"
-msgstr "Эта Неделя"
+msgstr "এই সপ্তাহ"
 
 #: core/wp-event-manager-filters.php:25
 msgid "Tomorrow"
-msgstr "Завтра"
+msgstr "আগামীকাল"
 
 #: core/wp-event-manager-filters.php:23
 msgid "Today"
-msgstr "Cегодня"
+msgstr "আজ"
 
 #: core/wp-event-manager-filters.php:21
 msgid "Any Date"
-msgstr "Любая Дата"
+msgstr "কোন তারিখ"
 
 #: core/wp-event-manager-ajax.php:381
 msgid "You must be logged in to upload files using this method."
-msgstr "Вы должны войти в систему, чтобы загружать файлы, используя этот метод."
+msgstr "আপনাকে এই পদ্ধতি ব্যবহার করে ফাইল আপলোড করতে গেলে লগ ইন করতে হবে।"
 
 #: core/wp-event-manager-ajax.php:319
 msgid "Search completed. Found %d matching record."
 msgid_plural "Search completed. Found %d matching records."
-msgstr[0] "Поиск завершен. Найдено %d совпадающая запись."
-msgstr[1] "Поиск завершен. Найдено %d совпадающих записей."
-msgstr[2] "Поиск завершен. Найдено %d соответствующих записей."
+msgstr[0] "একবচন: অনুসন্ধান সম্পন্ন হয়েছে। %d একই রকম রেকর্ড পাওয়া গেছে।"
+msgstr[1] "বহুবচন: অনুসন্ধান সম্পন্ন হয়েছে। %d একই রকম রেকর্ড পাওয়া গেছে।"
 
 #: core/wp-event-manager-ajax.php:314
 msgid "located in &ldquo;%s&rdquo;"
-msgstr "расположенный в &ldquo;%s&rdquo;"
+msgstr "অবস্থিত &ldquo;%s&rdquo;"
 
 #: admin/wp-event-manager-writepanels.php:738
 msgid "Enter the ID of the user, or leave blank if submitted by a guest."
-msgstr "Введите ID пользователя или оставьте пустым, если он был отправлен гостем."
+msgstr "ব্যবহারকারীর আইডিটি প্রবেশ করান, অথবা অতিথি দ্বারা জমা দেওয়া হলে ফাঁকা রাখুন।"
 
 #: admin/wp-event-manager-writepanels.php:734
 msgid "Change"
-msgstr "Изменить"
+msgstr "পরিবর্তন করুন"
 
 #: admin/wp-event-manager-writepanels.php:732
 msgid "Guest User"
-msgstr "Гость Пользователь"
+msgstr "অতিথি ব্যবহারকারী"
 
 #: admin/wp-event-manager-writepanels.php:546
 msgid "Add file"
-msgstr "Добавить файл"
+msgstr "ফাইল যোগ করুন"
 
 #: admin/wp-event-manager-writepanels.php:540
 #: admin/wp-event-manager-writepanels.php:543
 #: admin/wp-event-manager-writepanels.php:546
 msgid "Upload"
-msgstr "Загрузит"
+msgstr "আপলোড করুন"
 
 #: admin/wp-event-manager-writepanels.php:540
 #: admin/wp-event-manager-writepanels.php:543
 #: admin/wp-event-manager-writepanels.php:546
 msgid "Use file"
-msgstr "Использовать файл"
+msgstr "ফাইল ব্যবহার করুন"
 
 #: admin/wp-event-manager-writepanels.php:484
 msgid "Most Used"
-msgstr "Наиболее Используемое"
+msgstr "সর্বাধিক ব্যবহৃত"
 
 #: admin/wp-event-manager-writepanels.php:434
 msgid "%s Data"
-msgstr "%s Данные"
+msgstr "%s ডাটা"
 
 #: admin/wp-event-manager-writepanels.php:387
 msgid "Posted by"
-msgstr "Отправлено"
+msgstr "এর দ্বারা পোস্ট করা"
 
 #: admin/wp-event-manager-writepanels.php:379
 msgid "yyyy-mm-dd"
-msgstr "гггг-мм-дд"
+msgstr "yyyy-mm-dd"
 
 #: admin/wp-event-manager-writepanels.php:378
 msgid "Listing Expiry Date"
-msgstr "Дата истечения срока листинга"
+msgstr "লিস্টিং মেয়াদ শেষের তারিখ"
 
 #: admin/wp-event-manager-writepanels.php:373
 msgid "Featured listings will be sticky during searches, and can be styled differently."
-msgstr "Избранные листинги будут липкими во время поиска, и могут быть оформлены по-разному."
+msgstr "দেখানো লিস্টিং অনুসন্ধানের সময় চটচটে হবে, এবং ভিন্নভাবে স্টাইল করা যেতে পারে।"
 
 #: admin/wp-event-manager-writepanels.php:371
 msgid "Featured Listing"
-msgstr "Избранные Листинги"
+msgstr "দেখানো লিস্টিং"
 
 #: admin/wp-event-manager-writepanels.php:365
 msgid "Cancelled listings will no longer accept registration."
-msgstr "Отмененные листинги больше не будут принимать регистрацию."
+msgstr "বাতিল লিস্টিং এ আর রেজিস্ট্রেশন গ্রহণ করবে না।"
 
 #: admin/wp-event-manager-writepanels.php:362
 msgid "Event Cancelled"
-msgstr "Событие Oтменено"
+msgstr "বাতিল ইভেন্ট"
 
 #: admin/wp-event-manager-writepanels.php:357
 #: forms/wp-event-manager-form-submit-event.php:423
 msgid "Instagram URL e.g http://www.instagram.com/yourcompany"
-msgstr "URL-адрес Instagram, например http://www.instagram.com/yourcompany"
+msgstr "ইনস্টাগ্রাম URL উদাহরণ http://www.instagram.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:354
 #: forms/wp-event-manager-form-submit-event.php:420
 #: templates/content-single-event_listing-organizer.php:182
 msgid "Instagram"
-msgstr "Instagram"
+msgstr "ইনস্টাগ্রাম"
 
 #: admin/wp-event-manager-writepanels.php:349
 #: forms/wp-event-manager-form-submit-event.php:415
 msgid "Pinterest URL e.g http://www.pinterest.com/yourcompany"
-msgstr "URL-адрес Pinterest, например http://www.pinterest.com/yourcompany"
+msgstr "পিন্টারেস্ট URL উদাহরণ http://www.pinterest.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:346
 #: forms/wp-event-manager-form-submit-event.php:412
 #: templates/content-single-event_listing-organizer.php:176
 msgid "Pinterest"
-msgstr "Pinterest"
+msgstr "পিন্টারেস্ট"
 
 #: admin/wp-event-manager-writepanels.php:341
 #: forms/wp-event-manager-form-submit-event.php:407
 msgid "Xing URL e.g http://www.xing.com/companies/yourcompany"
-msgstr "URL-адрес Xing, например http://www.xing.com/companies/yourcompany"
+msgstr "Xing URL উদাহরণ  http://www.xing.com/companies/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:338
 #: forms/wp-event-manager-form-submit-event.php:404
@@ -1198,242 +1195,242 @@ msgstr "@yourorganizer"
 
 #: admin/wp-event-manager-writepanels.php:330
 msgid "Twitter username"
-msgstr "Имя пользователя в Твиттере"
+msgstr "টুইটার ব্যবহারকারীর নাম"
 
 #: admin/wp-event-manager-writepanels.php:325
 #: forms/wp-event-manager-form-submit-event.php:391
 msgid "Linkedin URL e.g http://www.linkedin.com/company/yourcompany"
-msgstr "URL Linkedin, например http://www.linkedin.com/company/yourcompany"
+msgstr "লিঙ্কডইন URL উদাহরণ  http://www.linkedin.com/company/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:322
 #: forms/wp-event-manager-form-submit-event.php:388
 #: templates/content-single-event_listing-organizer.php:164
 msgid "Linkedin"
-msgstr "Linkedin"
+msgstr "লিঙ্কডইন"
 
 #: admin/wp-event-manager-writepanels.php:317
 #: forms/wp-event-manager-form-submit-event.php:383
 msgid "Facebook URL e.g http://www.facebook.com/yourcompany"
-msgstr "URL-адрес Facebook, например http://www.facebook.com/yourcompany"
+msgstr "ফেসবুক URL উদাহরণ  http://www.facebook.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:314
 #: forms/wp-event-manager-form-submit-event.php:380
 #: templates/content-single-event_listing-organizer.php:152
 msgid "Facebook"
-msgstr "Facebook"
+msgstr "ফেসবুক"
 
 #: admin/wp-event-manager-writepanels.php:309
 #: forms/wp-event-manager-form-submit-event.php:375
 msgid "Google+ URL e.g http://plus.google.com/yourcompany"
-msgstr "URL-адрес Google+, например http://plus.google.com/yourcompany"
+msgstr "গুগল+ URL উদাহরণ http://plus.google.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:306
 #: forms/wp-event-manager-form-submit-event.php:372
 #: templates/content-single-event_listing-organizer.php:194
 msgid "Google+"
-msgstr "Google+"
+msgstr "গুগল+"
 
 #: admin/wp-event-manager-writepanels.php:301
 #: forms/wp-event-manager-form-submit-event.php:367
 msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany"
-msgstr "URL канала Youtube, например http://www.youtube.com/channel/yourcompany"
+msgstr "ইউটিউব চ্যানেল URL উদাহরণ http://www.youtube.com/channel/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:298
 #: forms/wp-event-manager-form-submit-event.php:364
 #: templates/content-single-event_listing-organizer.php:188
 msgid "Youtube"
-msgstr "Youtube"
+msgstr "ইউটিউব"
 
 #: admin/wp-event-manager-writepanels.php:293
 #: forms/wp-event-manager-form-submit-event.php:359
 msgid "A link to a video about your organization"
-msgstr "Ссылка на видео о вашей организации"
+msgstr "আপনার সংস্থার সম্পর্কে একটি ভিডিওর লিঙ্ক"
 
 #: admin/wp-event-manager-writepanels.php:290
 #: forms/wp-event-manager-form-submit-event.php:356
 msgid "Video"
-msgstr "Видео"
+msgstr "ভিডিও"
 
 #: admin/wp-event-manager-writepanels.php:284
 msgid "Your organization tagline"
-msgstr "Tagline вашей организации"
+msgstr "আপনার সংস্থা ট্যাগলাইন"
 
 #: admin/wp-event-manager-writepanels.php:281
 msgid "Tagline"
-msgstr "Tagline"
+msgstr "ট্যাগলাইন"
 
 #: admin/wp-event-manager-writepanels.php:276
 #: forms/wp-event-manager-form-submit-event.php:351
 msgid "Website URL e.g http://www.yourorganization.com"
-msgstr "URL веб-сайта, например http://www.yourorganization.com"
+msgstr "ওয়েবসাইট URL উদাহরণ http://www.yourorganization.com"
 
 #: admin/wp-event-manager-writepanels.php:273
 #: forms/wp-event-manager-form-submit-event.php:348
 #: templates/content-single-event_listing-organizer.php:147
 msgid "Website"
-msgstr "Веб-сайт"
+msgstr "ওয়েবসাইট"
 
 #: admin/wp-event-manager-writepanels.php:268
 #: forms/wp-event-manager-form-submit-event.php:343
 msgid "Enter your email address"
-msgstr "Введите ваш адрес электронной почты"
+msgstr "আপনার ইমেইল ঠিকানাটি লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:265
 #: forms/wp-event-manager-form-submit-event.php:340
 msgid "Organization Email"
-msgstr "Электронная почта организации"
+msgstr "সংস্থা ইমেল"
 
 #: admin/wp-event-manager-writepanels.php:260
 #: forms/wp-event-manager-form-submit-event.php:335
 msgid "Enter contact person name in your organization"
-msgstr "Введите имя контактного лица в вашей организации"
+msgstr "আপনার প্রতিষ্ঠানের যোগাযোগ করার ব্যক্তির নাম লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:257
 #: forms/wp-event-manager-form-submit-event.php:332
 msgid "Contact Person Name"
-msgstr "Имя контактного лица"
+msgstr "যোগাযোগ করার ব্যক্তির নাম"
 
 #: admin/wp-event-manager-writepanels.php:249
 #: forms/wp-event-manager-form-submit-event.php:324
 msgid "Organizer Description"
-msgstr "Описание Организатора"
+msgstr "সংগঠক বর্ণনা"
 
 #: admin/wp-event-manager-writepanels.php:240
 #: forms/wp-event-manager-form-submit-event.php:308
 msgid "Logo"
-msgstr "Логотип"
+msgstr "লোগো"
 
 #: admin/wp-event-manager-writepanels.php:235
 #: forms/wp-event-manager-form-submit-event.php:304
 msgid "Enter the name of the organization"
-msgstr "Введите название организации"
+msgstr "প্রতিষ্ঠানের নাম লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:232
 #: forms/wp-event-manager-form-submit-event.php:301
 msgid "Organization name"
-msgstr "Название организации"
+msgstr "প্রতিষ্ঠানের নাম"
 
 #: admin/wp-event-manager-writepanels.php:227
 #: forms/wp-event-manager-form-submit-event.php:294
 msgid "Please enter registration deadline"
-msgstr "Пожалуйста, введите регистрационный срок"
+msgstr "দয়া করে নিবন্ধন করার সময়সীমা লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:224
 #: forms/wp-event-manager-form-submit-event.php:291
 msgid "Registration Deadline"
-msgstr "Срок регистрации"
+msgstr "নিবন্ধন করার সময়সীমা"
 
 #: admin/wp-event-manager-writepanels.php:219
 msgid "e.g http://ww.example.com"
-msgstr "например http://ww.example.com"
+msgstr "উদাহরণ http://ww.example.com"
 
 #: admin/wp-event-manager-writepanels.php:216
 #: forms/wp-event-manager-form-submit-event.php:283
 msgid "Link To Event Page"
-msgstr "Ссылка на страницу события"
+msgstr "ইভেন্ট পেজ লিঙ্ক"
 
 #: admin/wp-event-manager-writepanels.php:207
 #: forms/wp-event-manager-form-submit-event.php:276
 msgid "Please enter ticket price"
-msgstr "Пожалуйста, введите цену билета"
+msgstr "দয়া করে টিকেটের দাম লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:206
 msgid "Price"
-msgstr "Цена"
+msgstr "দাম"
 
 #: admin/wp-event-manager-writepanels.php:199
 #: core/wp-event-manager-filters.php:77
 #: forms/wp-event-manager-form-submit-event.php:269
 msgid "Free"
-msgstr "Бесплатно"
+msgstr "বিনামূল্যে"
 
 #: admin/wp-event-manager-writepanels.php:198
 #: core/wp-event-manager-filters.php:75
 #: forms/wp-event-manager-form-submit-event.php:268
 msgid "Paid"
-msgstr "Оплаченный"
+msgstr "অর্থ প্রদান হয়েছে"
 
 #: admin/wp-event-manager-writepanels.php:194
 #: forms/wp-event-manager-form-submit-event.php:264
 msgid "Ticket Options"
-msgstr "Варианты билетов"
+msgstr "টিকেট বিকল্প"
 
 #: admin/wp-event-manager-writepanels.php:187
 #: forms/wp-event-manager-form-submit-event.php:257
 msgid "Please enter event end time"
-msgstr "Пожалуйста, введите время окончания события"
+msgstr "দয়া করে ইভেন্টের শেষের সময়টি প্রবেশ করুন"
 
 #: admin/wp-event-manager-writepanels.php:186
 #: forms/wp-event-manager-form-submit-event.php:256
 msgid "End Time"
-msgstr "Время Окончания"
+msgstr "শেষের সময়"
 
 #: admin/wp-event-manager-writepanels.php:179
 #: forms/wp-event-manager-form-submit-event.php:249
 msgid "Please enter event end date"
-msgstr "Пожалуйста, введите дату окончания события"
+msgstr "দয়া করে ইভেন্টের শেষ তারিখ লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:178
 #: forms/wp-event-manager-form-submit-event.php:248
 #: shortcodes/wp-event-manager-shortcodes.php:244
 msgid "End Date"
-msgstr "Дата Окончания"
+msgstr "শেষ তারিখ"
 
 #: admin/wp-event-manager-writepanels.php:171
 #: forms/wp-event-manager-form-submit-event.php:241
 msgid "Please enter event start time"
-msgstr "Введите время начала события"
+msgstr "ইভেন্ট শুরু সময় লিখুন দয়া করে"
 
 #: admin/wp-event-manager-writepanels.php:170
 #: forms/wp-event-manager-form-submit-event.php:240
 msgid "Start Time"
-msgstr "Время Начала"
+msgstr "শুরু সময়"
 
 #: admin/wp-event-manager-writepanels.php:163
 #: forms/wp-event-manager-form-submit-event.php:234
 msgid "Please enter event start date"
-msgstr "Пожалуйста, введите дату начала события"
+msgstr "ইভেন্ট শুরু তারিখ লিখুন দয়া করে"
 
 #: admin/wp-event-manager-writepanels.php:162
 #: forms/wp-event-manager-form-submit-event.php:233
 #: shortcodes/wp-event-manager-shortcodes.php:243
 msgid "Start Date"
-msgstr "Дата Начала"
+msgstr "শুরু তারিখ"
 
 #: admin/wp-event-manager-writepanels.php:156
 #: forms/wp-event-manager-form-submit-event.php:227
 msgid "24 hour format"
-msgstr "24-часовой формат"
+msgstr "24 ঘন্টা ফর্মাট"
 
 #: admin/wp-event-manager-writepanels.php:155
 #: forms/wp-event-manager-form-submit-event.php:226
 msgid "12 hour format"
-msgstr "12-часовой формат"
+msgstr "12 ঘন্টা ফর্মাট"
 
 #: admin/wp-event-manager-writepanels.php:151
 #: forms/wp-event-manager-form-submit-event.php:222
 msgid "Time Format"
-msgstr "Формат Времени"
+msgstr "সময় ফর্মাট"
 
 #: admin/wp-event-manager-field-editor.php:139
 #: admin/wp-event-manager-field-editor.php:241
 #: admin/wp-event-manager-writepanels.php:144
 #: forms/wp-event-manager-form-submit-event.php:208
 msgid "Description"
-msgstr "Описание"
+msgstr "বিবরণ"
 
 #: admin/wp-event-manager-writepanels.php:128
 #: forms/wp-event-manager-form-submit-event.php:192
 msgid "Event Banner"
-msgstr "Баннер Событий"
+msgstr "ইভেন্ট ব্যানার"
 
 #: admin/wp-event-manager-writepanels.php:123
 msgid "e.g. \"Berlin\",\"Munich\""
-msgstr "например \"Берлин\", \"Мюнхен\""
+msgstr "উদাহরণ \"বার্লিন\", \"মিউনিখ\""
 
 #: admin/wp-event-manager-writepanels.php:120
 msgid "Leave this blank if the location is not important"
-msgstr "Оставьте это поле пустым, если местоположение не важно"
+msgstr "অবস্থানটি গুরুত্বপূর্ণ না হলে ফাঁকা ছেড়ে দিন"
 
 #: admin/wp-event-manager-writepanels.php:119
 #: forms/wp-event-manager-form-submit-event.php:184
@@ -1441,47 +1438,47 @@ msgstr "Оставьте это поле пустым, если местопол
 #: templates/event-filters.php:19 templates/event-filters.php:20
 #: widgets/wp-event-manager-widgets.php:235
 msgid "Location"
-msgstr "Расположение"
+msgstr "অবস্থান"
 
 #: admin/wp-event-manager-writepanels.php:114
 #: forms/wp-event-manager-form-submit-event.php:179
 msgid "Please enter pincode (Area code)"
-msgstr "Пожалуйста, введите пин-код (Код области)"
+msgstr "দয়া করে পিিন কোড (এরিয়া কোড) লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:111
 #: forms/wp-event-manager-form-submit-event.php:176
 msgid "Pincode"
-msgstr "Пин-код"
+msgstr "পিনকোড"
 
 #: admin/wp-event-manager-writepanels.php:106
 #: forms/wp-event-manager-form-submit-event.php:171
 msgid "Please enter street name and number"
-msgstr "Введите название улицы и номер"
+msgstr "দয়া করে রাস্তার নাম এবং নম্বর লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:103
 #: forms/wp-event-manager-form-submit-event.php:168
 msgid "Address"
-msgstr "Адрес"
+msgstr "ঠিকানা"
 
 #: admin/wp-event-manager-writepanels.php:98
 #: forms/wp-event-manager-form-submit-event.php:163
 msgid "Please enter the venue name"
-msgstr "Введите название места проведения события"
+msgstr "ভেন্যু নামটি লিখুন দয়া করে"
 
 #: admin/wp-event-manager-writepanels.php:95
 #: forms/wp-event-manager-form-submit-event.php:160
 msgid "Venue Name"
-msgstr "Название места проведения события"
+msgstr "ভেন্যু নাম"
 
 #: admin/wp-event-manager-writepanels.php:88
 #: forms/wp-event-manager-form-submit-event.php:153
 msgid "No"
-msgstr "Нет"
+msgstr "না"
 
 #: admin/wp-event-manager-writepanels.php:87
 #: forms/wp-event-manager-form-submit-event.php:152
 msgid "Yes"
-msgstr "Да"
+msgstr "হ্যাঁ"
 
 #: admin/wp-event-manager-writepanels.php:82
 #: forms/wp-event-manager-form-submit-event.php:148
@@ -1492,621 +1489,621 @@ msgstr "Да"
 #: templates/content-widget-event_listing.php:10
 #: templates/event-dashboard.php:78
 msgid "Online Event"
-msgstr "Онлайн-Событие"
+msgstr "অনলাইন ইভেন্ট"
 
 #: admin/wp-event-manager-writepanels.php:48
 msgid "This field is required for the \"registration\" area to appear beneath the listing."
-msgstr "Это поле необходимо для того, чтобы область регистрации появлялась под листингом."
+msgstr "এই নিবন্ধটি \"নিবন্ধীকরণ\" এলাকার জন্য লিস্টিং এর নীচে প্রদর্শিত হবে।"
 
 #: admin/wp-event-manager-writepanels.php:47
 msgid "URL or email which attendees use to register"
-msgstr "URL или адрес электронной почты, которые участники используют для регистрации"
+msgstr "URL বা ইমেল যা অংশগ্রহণকারীদের নিবন্ধন করতে ব্যবহার করে"
 
 #: admin/wp-event-manager-writepanels.php:46
 msgid "Registration Email or URL"
-msgstr "Электронная Почта или URL-адрес Регистрации"
+msgstr "নিবন্ধন ইমেইল বা URL"
 
 #: admin/wp-event-manager-writepanels.php:38
 msgid "Total View Count"
-msgstr "Общий Счетчик Просмотров"
+msgstr "মোট ভিউ সংখ্যা"
 
 #: admin/wp-event-manager-setup.php:357
 msgid "Help other users on the forums"
-msgstr "Помощь другим пользователям на форумах"
+msgstr "ফোরামে অন্যান্য ব্যবহারকারীদের সাহায্য করুন"
 
 #: admin/wp-event-manager-setup.php:355
 msgid "Contribute code or report a bug"
-msgstr "Предоставьте код или сообщить об ошибке"
+msgstr "কোড অবদান করুন বা একটি বাগ রিপোর্ট করুন"
 
 #: admin/wp-event-manager-setup.php:353
 msgid "Contribute a localization"
-msgstr "Способствовать локализации"
+msgstr "একটি স্থানীয়করণ অবদান রাখুন"
 
 #: admin/wp-event-manager-setup.php:351
 msgid "Leave a positive review"
-msgstr "Оставьте положительный отзыв"
+msgstr "একটি ইতিবাচক পর্যালোচনা লিখুন"
 
 #: admin/wp-event-manager-setup.php:347
 msgid "There are many ways to support open-source projects such as WP Event Manager, for example code contribution, translation, or even telling your friends how awesome the plugin (hopefully) is. Thanks in advance for your support - it is much appreciated!"
-msgstr "Существует множество способов поддержки проектов с открытым исходным кодом, таких как WP Event Manager, например, внесение кода, перевод или даже рассказать друзьям, насколько удивительным является плагин (надеюсь). Заранее благодарю за вашу поддержку - это очень ценится!"
+msgstr "উদাহরণস্বরূপ, কোড অবদান, অনুবাদ বা এমনকি আপনার বন্ধুদেরকে কীভাবে প্লাগইনটি আশা করা হয় (আশা করা হচ্ছে), যেমন WP ইভেন্ট ম্যানেজারের মত ওপেন-সোর্স প্রকল্পগুলি সমর্থন করার অনেক উপায় আছে। আপনার সমর্থন জন্য অগ্রিম ধন্যবাদ - এটা অনেক প্রশংসা করা হয়!"
 
 #: admin/wp-event-manager-setup.php:345
 msgid "Support the Ongoing Development of this Plugin"
-msgstr "Поддержка текущей разработки этого плагина"
+msgstr "এই প্লাগইনের চলমান উন্নয়ন সমর্থন করুন"
 
 #: admin/wp-event-manager-setup.php:341
 msgid "And don't forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!"
-msgstr "И не забывайте, если вам нужна дополнительная помощь используя <em> WP Event Manager </em>, вы можете проконсультироваться с %1$sdocumentation%2$s или %3$spost на форумах%2$s!"
+msgstr "এবং ভুলবেন না, যদি আপনার <em> WP ইভেন্ট ম্যানেজার </em> ব্যবহার করে আরো সাহায্যের প্রয়োজন হয় তবে আপনি %2$s ফোরামে %1$s ডকুমেন্টেশন %2$s বা %3$s পোস্ট অনুসন্ধান করতে পারেন!"
 
 #: admin/wp-event-manager-setup.php:335
 msgid "Find out more about the front-end event dashboard"
-msgstr "Узнайте больше об интерфейсной панели события"
+msgstr "ফ্রন্ট-এন্ড ইভেন্ট ড্যাশবোর্ড সম্পর্কে আরও জানুন"
 
 #: admin/wp-event-manager-setup.php:331
 msgid "View the event dashboard"
-msgstr "Просмотр панели событий"
+msgstr "ইভেন্ট ড্যাশবোর্ড দেখুন"
 
 #: admin/wp-event-manager-setup.php:325
 msgid "Add the [events] shortcode to a page to list events"
-msgstr "Добавьте короткий код [events] на страницу для отображения событий"
+msgstr "ইভেন্ট তালিকা তালিকাতে একটি [events] শর্টকোড যোগ করুন"
 
 #: admin/wp-event-manager-setup.php:321
 msgid "View submitted event listings"
-msgstr "Просмотр представленных листингов событий"
+msgstr "জমা ইভেন্ট তালিকা দেখুন"
 
 #: admin/wp-event-manager-setup.php:315
 msgid "Find out more about the front-end event submission form"
-msgstr "Узнайте больше о представлении формы события из Фронте"
+msgstr "ফ্রন্ট-এন্ড ইভেন্ট জমা ফর্ম সম্পর্কে আরও জানুন"
 
 #: admin/wp-event-manager-setup.php:311
 msgid "Add a event via the front-end"
-msgstr "Добавление события через Фронтенд"
+msgstr "ফ্রন্ট-এন্ডএর মাধ্যমে একটি ইভেন্ট যোগ করুন"
 
 #: admin/wp-event-manager-setup.php:307
 msgid "Add a event via the back-end"
-msgstr "Добавление события через Бекенд"
+msgstr "ব্যাক-এন্ডের মাধ্যমে একটি ইভেন্ট যোগ করুন"
 
 #: admin/wp-event-manager-setup.php:305
 msgid "Tweak the plugin settings"
-msgstr "Настройка настроек плагина"
+msgstr "প্লাগইন সেটিংস অদলবদল করুন"
 
 #: admin/wp-event-manager-setup.php:301
 msgid "Looks like you're all set to start using the plugin. In case you're wondering where to go next:"
-msgstr "Похоже, вы готовы начать использовать плагин. Если вам интересно, куда идти дальше:"
+msgstr "মনে হচ্ছে আপনি প্লাগইন ব্যবহার শুরু করার জন্য সমস্ত সেট করেছেন। যদি আপনি ভাবছেন যে পরবর্তী কোথায় যেতে হবে:"
 
 #: admin/wp-event-manager-setup.php:299
 msgid "All Done!"
-msgstr "Все Сделано!"
+msgstr "সব সম্পন্ন হয়েছে!"
 
 #: admin/wp-event-manager-setup.php:288
 msgid "Skip this step"
-msgstr "Пропустить этот шаг"
+msgstr "এই ধাপটি এড়িয়ে যান"
 
 #: admin/wp-event-manager-setup.php:275
 msgid "This page allows users to browse, search, and filter event listings on the front-end of your site."
-msgstr "Эта страница позволяет пользователям просматривать, искать и фильтровать листинг и событий в интерфейсе вашего сайта."
+msgstr "এই পৃষ্ঠা ব্যবহারকারীদের ব্রাউজ, সন্ধান, এবং আপনার সাইটের ফ্রন্ট-এ ইভেন্ট লিস্টিং ফিল্টার করতে পারবেন।"
 
 #: admin/wp-event-manager-setup.php:273
 msgctxt "Default page title (wizard)"
 msgid "Events"
-msgstr "События"
+msgstr "ইভেন্ট"
 
 #: admin/wp-event-manager-setup.php:264
 msgid "If you plan on managing all listings from the admin dashboard you can skip creating this page."
-msgstr "Если вы планируете управлять всеми листингами с панели управления admin, вы можете пропустить создание этой страницы."
+msgstr "আপনি অ্যাডমিন ড্যাশবোর্ড থেকে সমস্ত লিস্টিং পরিচালনার জন্য পরিকল্পনা করলে আপনি এই পৃষ্ঠাটি তৈরি করা এড়িয়ে যেতে পারেন।"
 
 #: admin/wp-event-manager-setup.php:262
 msgid "This page allows peoples to manage and edit their own events from the front-end."
-msgstr "Эта страница позволяет людям управлять и редактировать свои собственные события из Фронтенда."
+msgstr "এই পৃষ্ঠাটি মানুষদের ফ্রন্ট-এন্ড থেকে তাদের নিজস্ব ইভেন্ট পরিচালনা এবং সম্পাদনা করতে দেয়।"
 
 #: admin/wp-event-manager-setup.php:258
 msgctxt "Default page title (wizard)"
 msgid "Event Dashboard"
-msgstr "Панель Управления Событий"
+msgstr "ইভেন্ট ড্যাশবোর্ড"
 
 #: admin/wp-event-manager-setup.php:250
 msgid "If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page."
-msgstr "Если вы не хотите принимать заявки от пользователей таким образом (например, вы просто хотите публиковать события из панели управления админa), вы можете пропустить создание этой страницы."
+msgstr "আপনি যদি এই পদ্ধতিতে ব্যবহারকারীদের থেকে জমা গ্রহণ করতে না চান (উদাহরণস্বরূপ, আপনি অ্যাডমিন ড্যাশবোর্ড থেকে ইভেন্ট পোস্ট করতে চান) আপনি এই পৃষ্ঠাটি তৈরি করা এড়িয়ে যেতে পারেন।"
 
 #: admin/wp-event-manager-setup.php:248
 msgid "This page allows peoples to post events to your website from the front-end."
-msgstr "Эта страница позволяет людям публиковать события на своем веб-сайте из Фронтенда."
+msgstr "এই পেজটি লোকেদের আপনার ওয়েবসাইটে ইভেন্ট এ ফ্রন্ট-এন্ড থেকে পোস্ট করতে দেয়।"
 
 #: admin/wp-event-manager-setup.php:245
 msgctxt "Default page title (wizard)"
 msgid "Post an Event"
-msgstr "Опубликовать Событие"
+msgstr "একটি ইভেন্ট পোস্ট করুন"
 
 #: admin/wp-event-manager-setup.php:234
 msgid "Content Shortcode"
-msgstr "Шорткод Содержаниа"
+msgstr "বিষয়বস্তু শর্টকোড"
 
 #: admin/wp-event-manager-setup.php:232
 msgid "Page Description"
-msgstr "Описание Страницы"
+msgstr "পৃষ্ঠা বর্ণনা"
 
 #: admin/wp-event-manager-setup.php:230
 msgid "Page Title"
-msgstr "Название Страницы"
+msgstr "পেজের শিরোনাম"
 
 #: admin/wp-event-manager-setup.php:219
 msgid "<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s."
-msgstr "<em>WP Event Manager </em> включает %1$sshortcodes%2$s, которые могут использоваться в вашем %3$spages%2$s для вывода содержаниа. Они могут быть созданы для вас ниже. Для получения дополнительной информации о коротких кодах событий просмотрите %4$sshortcode documentation%2$s."
+msgstr "<em> WP ইভেন্ট ম্যানেজার </em>%1$s শর্টকোড %2$s অন্তর্ভুক্ত করে যা আপনার %3$s পেজ %2$s আউটপুট সামগ্রীতে ব্যবহার করা যেতে পারে। এই নীচের জন্য আপনার জন্য তৈরি করা যাবে। ইভেন্ট শর্টকাটগুলি সম্পর্কে আরও তথ্যের জন্য %4$s শর্টকোড ডকুমেন্টেশন %2$s দেখুন।"
 
 #: admin/wp-event-manager-setup.php:217
 msgid "Page Setup"
-msgstr "Настройка страницы"
+msgstr "পেজ সেটআপ"
 
 #: admin/wp-event-manager-setup.php:209
 msgid "Skip setup. I will setup the plugin manually"
-msgstr "Пропустить настройку. Я настрою плагин вручную"
+msgstr "সেটআপ এড়িয়ে যান আমি ম্যানুয়ালি প্লাগইন সেটআপ করব"
 
 #: admin/wp-event-manager-setup.php:207
 msgid "Continue to page setup"
-msgstr "Продолжить настройку страницы"
+msgstr "পেজ সেটআপ চালিয়ে যান"
 
 #: admin/wp-event-manager-setup.php:203
 msgid "If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help."
-msgstr "Если вы хотите пропустить мастер и вручную настроить страницы и короткие коды, процесс все еще относительно прост. Обратитесь за помощью к %sdocumentation%s."
+msgstr "যদি আপনি উইজার্ডটি ছেড়ে দিতে চান এবং পৃষ্ঠাগুলি সেটআপ করতে চান এবং নিজেকে নিজে নিজে স্লাইড করতে চান, তবে প্রক্রিয়াটি অপেক্ষাকৃত সহজ। সাহায্যের জন্য %s ডকুমেন্টেশন %s পড়ুন।"
 
 #: admin/wp-event-manager-setup.php:201
 msgid "This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events."
-msgstr "Этот мастер установки поможет вам начать работу, создав страницы для представления событий, управления событиями и перечисления ваших событий."
+msgstr "এই সেটআপ উইজার্ড আপনাকে ইভেন্ট জমা দেওয়ার জন্য পৃষ্ঠাগুলি তৈরি করে, ইভেন্ট পরিচালনা করে এবং আপনার ইভেন্টগুলির তালিকা তৈরি করতে সহায়তা করবে।"
 
 #: admin/wp-event-manager-setup.php:199
 msgid "Thanks for installing <em>WP Event Manager</em>!"
-msgstr "Благодарим за установку <em> WP Event Manager </em>!"
+msgstr "ইনস্টল করার জন্য ধন্যবাদ <em> WP ইভেন্ট ম্যানেজার </em>!"
 
 #: admin/wp-event-manager-setup.php:197
 msgid "Setup Wizard Introduction"
-msgstr "Введение Мастера Установки"
+msgstr "সেটআপ উইজার্ড ভূমিকা"
 
 #: admin/wp-event-manager-setup.php:191
 msgid "3. Done"
-msgstr "3. Готово"
+msgstr "সম্পন্ন হয়েছে"
 
 #: admin/wp-event-manager-setup.php:189
 msgid "2. Page Setup"
-msgstr "2. Настройка Страницы"
+msgstr "পেজ সেটআপ"
 
 #: admin/wp-event-manager-setup.php:187
 msgid "1. Introduction"
-msgstr "1. Введение"
+msgstr "ভূমিকা"
 
 #: admin/wp-event-manager-setup.php:183
 msgid "WP Event Manager Setup"
-msgstr "Настройка WP Event Manager"
+msgstr "WP ইভেন্ট ম্যানেজার সেটআপ"
 
 #: admin/wp-event-manager-setup.php:45
 msgid "Setup"
-msgstr "Настройка"
+msgstr "সেটআপ"
 
 #: admin/wp-event-manager-field-editor.php:154
 #: admin/wp-event-manager-field-editor.php:256
 #: admin/wp-event-manager-settings.php:808
 msgid "Save Changes"
-msgstr "Сохранить Изменения"
+msgstr "পরিবর্তনগুলোর সংরক্ষন করুন"
 
 #: admin/wp-event-manager-settings.php:755
 msgid "Select a page&hellip;"
-msgstr "Выберите страницу&hellip;"
+msgstr "একটি পৃষ্ঠা নির্বাচন করুন ও hellip;"
 
 #: admin/wp-event-manager-settings.php:747
 msgid "--no page--"
-msgstr "--нет страницы--"
+msgstr "- কোন পাতা নেই--"
 
 #: admin/wp-event-manager-settings.php:650
 msgid "Settings successfully saved"
-msgstr "Настройки успешно сохранены"
+msgstr "সেটিংস সফলভাবে সংরক্ষিত হয়েছে"
 
 #: admin/wp-event-manager-settings.php:574
 msgid "Select the page where you have placed the [events] shortcode. This lets the plugin know where the event listings page is located."
-msgstr "Выберите страницу, где вы разместили короткий код [events]. Это позволяет плагину знать, где находится страница листингов событий."
+msgstr "আপনি [event] শর্টকোডটি স্থাপন করেছেন এমন পৃষ্ঠাটি নির্বাচন করুন এই প্লাগইনটি জানাচ্ছে যে ইভেন্ট লিস্টিং পৃষ্ঠা কোথায় অবস্থিত।"
 
 #: admin/wp-event-manager-settings.php:572
 msgid "Event Listings Page"
-msgstr "Страница листингов событий"
+msgstr "ইভেন্ট লিস্টিং পেজ"
 
 #: admin/wp-event-manager-settings.php:561
 msgid "Select the page where you have placed the [event_dashboard] shortcode. This lets the plugin know where the dashboard is located."
-msgstr "Выберите страницу, где вы поместили короткий код [event_dashboard]. Это позволяет плагину знать, где находится панель управления."
+msgstr "আপনি [event_dashboard] শর্টকোড স্থাপন করেছেন এমন পৃষ্ঠাটি নির্বাচন করুন এই ড্যাশবোর্ড অবস্থিত যেখানে প্লাগইন জানতে দেয়।"
 
 #: admin/wp-event-manager-settings.php:559
 msgid "Event Dashboard Page"
-msgstr "Страница Панели Управления События"
+msgstr "ইভেন্ট ডাশবোর্ড পেজ"
 
 #: admin/wp-event-manager-settings.php:548
 msgid "Select the page where you have placed the [submit_event_form] shortcode. This lets the plugin know where the form is located."
-msgstr "Выберите страницу, где вы разместили короткий код [submit_event_form]. Это позволяет плагину знать, где находится форма."
+msgstr "আপনি [submit_event_form] শর্টকোড স্থাপন করেছেন এমন পৃষ্ঠাটি নির্বাচন করুন এই ফর্মটি কোথায় অবস্থিত তা প্লাগইনটি জানাচ্ছে।"
 
 #: admin/wp-event-manager-settings.php:546
 msgid "Submit Event Form Page"
-msgstr "Страница отправки формы События"
+msgstr "ইভেন্ট ফরম পেজ জমা দিন"
 
 #: admin/wp-event-manager-settings.php:536
 msgid "Pages"
-msgstr "Страницы"
+msgstr "পেজ"
 
 #: admin/wp-event-manager-settings.php:525
 msgid "If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this."
-msgstr "Если включено, каждое событие может иметь более одной категории. В этом случае изменяется метабокс в редакторе сообщений и поле выбора для категории события в форме отправки заявки на Фронтенд."
+msgstr "সক্ষম থাকলে প্রতিটি ইভেন্টে একাধিক বিভাগ থাকতে পারে। পোস্ট সম্পাদকের মেটাবক্স এবং ইভেন্ট ইভেন্টের জন্য ইভেন্ট বিভাগের নির্বাচন বাক্সে এটির পরিবর্তিত হয়।"
 
 #: admin/wp-event-manager-settings.php:523
 msgid "Enable multi select event category for event listing submission"
-msgstr "Включить категорию с несколькими избранными событиями для представления листинга событий"
+msgstr "ইভেন্ট লিস্টিং জমা দেওয়ার জন্য মাল্টি নির্বাচন ইভেন্ট বিভাগ সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:521
 msgid "Multi-select Event Category For Submission"
-msgstr "Множественный выбор Категория события для представления"
+msgstr "জমা দেওয়ার জন্য মাল্টি-নির্বাচন ইভেন্ট বিভাগ"
 
 #: admin/wp-event-manager-settings.php:509
 msgid "If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this."
-msgstr "Если включено, каждое событие может иметь более одного типа. Мета-бокс в редакторе постa и поле выбора для типа события в форме отправки листинги на Фронтенд  изменены."
+msgstr "সক্ষম থাকলে প্রতিটি ইভেন্টে একাধিক প্রকার থাকতে পারে। পোস্ট সম্পাদকের মেটাবক্স এবং প্রকারের ইভেন্ট জমা ফর্মের ইভেন্টের প্রকারের নির্বাচন বাক্সটি এর দ্বারা পরিবর্তিত হয়।"
 
 #: admin/wp-event-manager-settings.php:507
 msgid "Enable multi select event type for event listing submission"
-msgstr "Включить многотипный тип события для представления листинга событий"
+msgstr "ইভেন্ট লিস্টিং জমা দেওয়ার জন্য মাল্টি নির্বাচন ইভেন্ট প্রকার সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:505
 msgid "Multi-select Event Types For Submission"
-msgstr "Мультивыбор типов событий для пред"
+msgstr "জমা দেওয়ার জন্য মাল্টি-নির্বাচন ইভেন্ট প্রকার"
 
 #: admin/wp-event-manager-settings.php:496
 msgid "Website URLs only"
-msgstr "Только URL веб-сайта"
+msgstr "ওয়েবসাইট URL শুধুমাত্র"
 
 #: admin/wp-event-manager-settings.php:495
 msgid "Email addresses only"
-msgstr "Только адреса электронной почты"
+msgstr "শুধুমাত্র ইমেল ঠিকানাগুলি"
 
 #: admin/wp-event-manager-settings.php:494
 msgid "Email address or website URL"
-msgstr "Адрес электронной почты или URL-адрес веб-сайта"
+msgstr "ইমেল ঠিকানা বা ওয়েবসাইট URL"
 
 #: admin/wp-event-manager-settings.php:491
 msgid "Choose the registratoin method for listings."
-msgstr "Выберите метод регистрации для листингов."
+msgstr "লিস্টিং গুলির জন্য নিবন্ধন পদ্ধতি চয়ন করুন"
 
 #: admin/wp-event-manager-settings.php:490
 msgid "Registration Method"
-msgstr "Метод Регистрации"
+msgstr "নিবন্ধীকরণ পদ্ধতি"
 
 #: admin/wp-event-manager-settings.php:483
 msgid "How many <strong>days</strong> listings are live before expiring. Can be left blank to never expire."
-msgstr "Сколько <strong> дней </strong> листинги живут до истечения срока действия. Может оставаться пустым, чтобы никогда не истекать."
+msgstr "মেয়াদপূরণের আগে কত <strong> দিন </strong> লিস্টিং লাইভ রয়েছে। মেয়াদ শেষ না হওয়া পর্যন্ত খালি রাখা যাবে না।"
 
 #: admin/wp-event-manager-settings.php:481
 msgid "Listing Duration"
-msgstr "Продолжительность Листинга"
+msgstr "তালিকা সময়কাল"
 
 #: admin/wp-event-manager-settings.php:471
 msgid "Listing expire on Specified Below Days"
-msgstr "Срок действия листинга по указанным ниже дням"
+msgstr "লিস্টিং নীচে দিনগুলিতে মেয়াদ শেষ হবে"
 
 #: admin/wp-event-manager-settings.php:469
 msgid "Listing expire on Event End Date"
-msgstr "Срок действия листинга по дате окончания события"
+msgstr "ইভেন্ট সমাপ্তির তারিখের লিস্টিং এর মেয়াদ শেষ হবে"
 
 #: admin/wp-event-manager-settings.php:463
 msgid "You can set event submission expiry time either event end date or specific days."
-msgstr "Вы можете установить время истечения срока действия события либо дату окончания события, либо конкретные дни."
+msgstr "আপনি ইভেন্ট জমা মেয়াদপূর্তির সময় ইভেন্ট ইভেন্ট শেষ তারিখ বা নির্দিষ্ট দিন সেট করতে পারেন।"
 
 #: admin/wp-event-manager-settings.php:461
 msgid "Listing Expire"
-msgstr "Срок действия листинга"
+msgstr "লিস্টিং শেষের তারিখ"
 
 #: admin/wp-event-manager-settings.php:448
 msgid "If enabled, expired listings will automatically deleted after 30 days."
-msgstr "Если включено, истекшие листинги автоматически удаляются через 30 дней."
+msgstr "সক্রিয় থাকলে 30 দিনের মধ্যে মেয়াদ শেষ হওয়া লিস্টিং স্বয়ংক্রিয়ভাবে মুছে যাবে।"
 
 #: admin/wp-event-manager-settings.php:446
 msgid "Expired listings are deleted after 30 days"
-msgstr "Истекшие листинги удаляются через 30 дней"
+msgstr "30 দিন পরে মেয়াদউত্তীর্ণ লিস্টিং মুছে ফেলা হয়"
 
 #: admin/wp-event-manager-settings.php:444
 msgid "Delete Expired listings"
-msgstr "Удалить Истекшие листинги"
+msgstr "মেয়াদউত্তীর্ণ লিস্টিং মুছুন"
 
 #: admin/wp-event-manager-settings.php:432
 msgid "If enabled, Multiple banner can add at frontend by user and backend side by admin."
-msgstr "Если включено, многократный баннер может быть добавлен во внешнем интерфейсе пользователем и на стороне сервера администратором."
+msgstr "সক্রিয় থাকলে, একাধিক ব্যানারটি ব্যবহারকারী এবং ব্যাক-এন্ড দ্বারা অ্যাডমিন দ্বারা ফ্রন্টএন্ডে যুক্ত করতে পারে।"
 
 #: admin/wp-event-manager-settings.php:430
 msgid "User can submit multiple banner"
-msgstr "Пользователь может отправить несколько баннеров"
+msgstr "ব্যবহারকারী একাধিক ব্যানার জমা দিতে পারেন"
 
 #: admin/wp-event-manager-settings.php:428
 msgid "Allow Multiple Banners"
-msgstr "Разрешить несколько баннеров"
+msgstr "একাধিক ব্যানার অনুমতি দিন"
 
 #: admin/wp-event-manager-settings.php:417
 msgid "If enabled, submissions awaiting admin approval can be edited by the user."
-msgstr "Если включено, oтправления, ожидающие одобрения администратора, могут быть отредактированы пользователем."
+msgstr "সক্ষম থাকলে, প্রশাসক অনুমোদনের অপেক্ষায় থাকা জমাগুলি ব্যবহারকারী দ্বারা সম্পাদনা করা যেতে পারে।"
 
 #: admin/wp-event-manager-settings.php:415
 msgid "Submissions awaiting approval can be edited"
-msgstr "Oтправления, ожидающие утверждения, могут быть отредактированы"
+msgstr "অনুমোদনের অপেক্ষায় থাকা জমাগুলি সম্পাদনা করা যেতে পারে"
 
 #: admin/wp-event-manager-settings.php:413
 msgid "Allow Pending Edits"
-msgstr "Разрешить ожидающие изменения"
+msgstr "মুলতুবি থাকা সম্পাদনাগুলি মঞ্জুরি দিন"
 
 #: admin/wp-event-manager-settings.php:400
 msgid "If enabled, new submissions will be inactive, pending admin approval."
-msgstr "Если включено, новые oтправления будут неактивными, ожидая одобрения администратора."
+msgstr "সক্রিয় থাকলে, নতুন জমাগুলি নিষ্ক্রিয় থাকবে, অ্যাডমিন অনুমোদন মুলতুবি থাকবে"
 
 #: admin/wp-event-manager-settings.php:398
 msgid "New listing submissions require admin approval"
-msgstr "Новые oтправления листингов требуют одобрения администратора"
+msgstr "নতুন লিস্টিং জমা অ্যাডমিন অনুমোদনের প্রয়োজন"
 
 #: admin/wp-event-manager-settings.php:396
 msgid "Moderate New Listings"
-msgstr "Умерять Новые Листинги"
+msgstr "নতুন লিস্টিং পরিচালনা করুন"
 
 #: admin/wp-event-manager-settings.php:383
 msgid "If you enable registration on your submission form, choose a role for the new user."
-msgstr "Если вы включите регистрацию в форме отправки, выберите роль для нового пользователя."
+msgstr "যদি আপনি আপনার জমা ফর্ম জমা নিবন্ধন সক্ষম, নতুন ব্যবহারকারীর জন্য একটি ভূমিকা নির্বাচন।"
 
 #: admin/wp-event-manager-settings.php:381
 msgid "Account Role"
-msgstr "РольУчетной Записи"
+msgstr "অ্যাকাউন্ট ভূমিকা"
 
 #: admin/wp-event-manager-settings.php:370
 msgid "If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won't be verified."
-msgstr "Если включено, электронное письмо будет отправлено пользователю с указанием имени пользователя и ссылки для установки пароля. В противном случае будет отображаться поле пароля, и их адрес электронной почты не будет проверен."
+msgstr "সক্রিয় থাকলে, ব্যবহারকারীর ব্যবহারকারীর নাম এবং তাদের পাসওয়ার্ড সেট করার জন্য একটি লিঙ্ক সহ একটি ইমেল পাঠানো হবে। অন্যথায়, একটি পাসওয়ার্ড ক্ষেত্র দেখানো হবে এবং তাদের ইমেল ঠিকানা যাচাই করা হবে না।"
 
 #: admin/wp-event-manager-settings.php:369
 msgid "Use WordPress' default behavior and email new users link to set a password"
-msgstr "Используйте ссылку по умолчанию для WordPress и ссылку для новых пользователей электронной почты, чтобы установить пароль"
+msgstr "একটি পাসওয়ার্ড সেট করতে WordPress(ওয়ার্ডপ্রেস) ডিফল্ট আচরণ এবং ইমেইল নতুন ব্যবহারকারীদের লিঙ্ক ব্যবহার করুন"
 
 #: admin/wp-event-manager-settings.php:368
 msgid "Account Password"
-msgstr "Пароль Учетной Записи"
+msgstr "অ্যাকাউন্টের পাসওয়ার্ড"
 
 #: admin/wp-event-manager-settings.php:359
 msgid "If enabled, a username will be generated from the first part of the user email address. Otherwise, a username field will be shown."
-msgstr "Если включено, имя пользователя будет создано из первой части адреса электронной почты пользователя. В противном случае будет показано поле имени пользователя."
+msgstr "সক্রিয় থাকলে, ব্যবহারকারীর ইমেল ঠিকানাটির প্রথম অংশ থেকে একটি ব্যবহারকারীর নাম উত্পন্ন হবে। অন্যথায়, একটি ব্যবহারকারীর নাম দেখানো হবে।"
 
 #: admin/wp-event-manager-settings.php:357
 msgid "Automatically Generate Username from Email Address"
-msgstr "Автоматическое создание имени пользователя с адреса электронной почты"
+msgstr "স্বয়ংক্রিয়ভাবে ইমেল ঠিকানা থেকে ইউজারনেম তৈরি করুন"
 
 #: admin/wp-event-manager-settings.php:355
 msgid "Account Username"
-msgstr "Имя пользователя Учетной Записи"
+msgstr "অ্যাকাউন্ট ব্যবহারকারীর নাম"
 
 #: admin/wp-event-manager-settings.php:342
 msgid "If enabled, non-logged in users will be able to create an account by entering their email address on the submission form."
-msgstr "Если включено, пользователи без регистрации смогут создать учетную запись, указав свой адрес электронной почты в форме отправки."
+msgstr "যদি সক্ষম করা হয়, তবে নন-লগ ইন ব্যবহারকারীরা জমা ফর্ম এ তাদের ইমেল ঠিকানা লিখতে একটি অ্যাকাউন্ট তৈরি করতে সক্ষম হবে।"
 
 #: admin/wp-event-manager-settings.php:340
 msgid "Allow account creation"
-msgstr "Разрешить создание учетной записи"
+msgstr "অ্যাকাউন্ট তৈরির অনুমতি দিন"
 
 #: admin/wp-event-manager-settings.php:338
 msgid "Account Creation"
-msgstr "Создание Учетной Записи"
+msgstr "অ্যাকাউন্ট তৈরি"
 
 #: admin/wp-event-manager-settings.php:325
 msgid "If disabled, non-logged in users will be able to submit listings without creating an account."
-msgstr "Если отключено, пользователи без регистрации смогут отправлять листинги без создания учетной записи."
+msgstr "অক্ষম হলে, অ লগ করা ব্যবহারকারীরা একটি অ্যাকাউন্ট তৈরি না করেই তালিকা জমা দিতে সক্ষম হবে।"
 
 #: admin/wp-event-manager-settings.php:323
 msgid "Submitting listings requires an account"
-msgstr "Для отправки листингов требуется учетная запись"
+msgstr "তালিকা জমা দেওয়ার জন্য একটি অ্যাকাউন্টের প্রয়োজন"
 
 #: admin/wp-event-manager-settings.php:321
 msgid "Account Required"
-msgstr "Требуется Учетная Запись"
+msgstr "অ্যাকাউন্ট প্রয়োজন"
 
 #: admin/wp-event-manager-settings.php:311
 msgid "Event Submission"
-msgstr "Отправка Событий"
+msgstr "ইভেন্ট জমা"
 
 #: admin/wp-event-manager-settings.php:303
 msgid "Default date format as defined in Setttings"
-msgstr "Формат даты по умолчанию, определенный в настройках"
+msgstr "সেটিংস হিসাবে সংজ্ঞায়িত ডিফল্ট তারিখ বিন্যাস"
 
 #: admin/wp-event-manager-settings.php:302
 msgid "Relative to the current date (e.g., 1 day, 1 week, 1 month ago)"
-msgstr "Относительно текущей даты (например, 1 день, 1 неделя, 1 месяц назад)"
+msgstr "বর্তমান তারিখ সম্পর্কিত (উদাঃ, 1 দিন, 1 সপ্তাহ, 1 মাস আগে)"
 
 #: admin/wp-event-manager-settings.php:299
 msgid "Choose how you want the published date for events to be displayed on the front-end."
-msgstr "Выберите, как вы хотите, чтобы опубликованная дата событий отображалась в Фронтенде."
+msgstr "ফ্রন্ট-এন্ড প্রদর্শিত ইভেন্টের জন্য প্রকাশিত তারিখটি কেমন তা চয়ন করুন।"
 
 #: admin/wp-event-manager-settings.php:298
 msgid "Date Format"
-msgstr "Формат Даты"
+msgstr "তারিখ ফর্মাট"
 
 #: admin/wp-event-manager-settings.php:292
 msgid "Events will be shown if within ALL selected event types"
-msgstr "События будут отображаться, если внутри ВСЕX выбранных типов событий"
+msgstr "সব নির্বাচিত ইভেন্ট প্রকারের মধ্যে ইভেন্টগুলি দেখানো হবে"
 
 #: admin/wp-event-manager-settings.php:290
 msgid "Events will be shown if within ANY selected event type"
-msgstr "События будут отображаться, если в пределах ЛЮБОГО выбранного типа события"
+msgstr "কোনও নির্বাচিত ইভেন্টের প্রকারের মধ্যে ইভেন্টগুলি দেখানো হবে"
 
 #: admin/wp-event-manager-settings.php:282
 msgid "Event Type Filter"
-msgstr "Фильтр Типа События"
+msgstr "ইভেন্ট টাইপ ফিল্টার"
 
 #: admin/wp-event-manager-settings.php:272
 msgid "Events will be shown if within ALL selected categories"
-msgstr "События будут показаны, если во ВСЕХ выбранных категориях"
+msgstr "সব নির্বাচিত বিভাগের মধ্যে ইভেন্ট প্রদর্শিত হবে"
 
 #: admin/wp-event-manager-settings.php:270
 msgid "Events will be shown if within ANY selected category"
-msgstr "События будут показаны, если в ЛЮБОЙ выбранной категории"
+msgstr "যে কোনও নির্বাচিত বিভাগের মধ্যে ইভেন্টগুলি দেখানো হবে"
 
 #: admin/wp-event-manager-settings.php:249
 #: admin/wp-event-manager-settings.php:284
 msgid "If enabled, the event type select box will default to a multi select on the [events] shortcode."
-msgstr "Если включено, поле выбора типа события будет по умолчанию использоваться для множественного выбора в коротком коде [events]."
+msgstr "যদি সক্ষম করা হয়, ইভেন্টের প্রকারের নির্বাচন বাক্সটি [ইভেন্টস] শর্টকোড একটি মাল্টি নির্বাচন করতে ডিফল্ট হবে।"
 
 #: admin/wp-event-manager-settings.php:247
 msgid "Enable event type multiselect by default"
-msgstr "Включить мультиселектор типа события по умолчанию"
+msgstr "ডিফল্ট অনুসারে ইভেন্টের ধরনটি মাল্টিনির্বাচন সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:245
 msgid "Multi-select Event Types"
-msgstr "Мультисортированные типы событий"
+msgstr "মাল্টি-নির্বাচন ইভেন্ট টাইপ"
 
 #: admin/wp-event-manager-settings.php:232
 #: admin/wp-event-manager-settings.php:264
 msgid "If enabled, the category select box will default to a multi select on the [events] shortcode."
-msgstr "Если включено, в поле выбора категории по умолчанию будет выбран множественный выбор в коротком коде [events]."
+msgstr "যদি সক্ষম করা হয়, তাহলে বিভাগটি নির্বাচন করুন [ইভেন্টস] শর্টকোড একটি মাল্টি নির্বাচন করতে ডিফল্ট হবে।"
 
 #: admin/wp-event-manager-settings.php:230
 msgid "Enable category multiselect by default"
-msgstr "Включить категорию множественный выбор по умолчанию"
+msgstr "ডিফল্ট অনুসারে বিভাগ মাল্টিনির্বাচন সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:228
 msgid "Multi-select Categories"
-msgstr "Мульти-выбор категорий"
+msgstr "বিভাগ মাল্টিনির্বাচন"
 
 #: admin/wp-event-manager-settings.php:215
 msgid "Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission."
-msgstr "Выберите, нужно ли указывать цены билетa. Цены на билеты должны быть настроены администратором, чтобы пользователи могли выбирать их во время подачи."
+msgstr "টিকেটের মূল্যগুলি কি বাছাই হবে তা চয়ন করুন জমা দেওয়ার সময় ব্যবহারকারীদের পছন্দ করার অনুমতি দেওয়ার জন্য একটি অ্যাডমিন দ্বারা টিকিটের মূল্যগুলি সেট আপ হওয়া আবশ্যক।"
 
 #: admin/wp-event-manager-settings.php:213
 msgid "Enable ticket prices for listings"
-msgstr "Включить цены на билеты для листингов"
+msgstr "তালিকাগুলির জন্য টিকিট মূল্য সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:211
 msgid "Ticket prices"
-msgstr "Цены на билеты"
+msgstr "টিকেট মূল্য"
 
 #: admin/wp-event-manager-settings.php:198
 msgid "Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission."
-msgstr "Выберите, следует ли включать типы событий. типы событий должны быть настроены администратором, чтобы пользователи могли выбирать их во время отправки."
+msgstr "ইভেন্ট প্রকারগুলিকে সক্ষম করা হবে কিনা তা চয়ন করুন। ইভেন্ট ধরনের ব্যবহারকারীদের জমা দেওয়ার সময় তাদের চয়ন করতে পারেন একটি অ্যাডমিন দ্বারা সেটআপ হতে হবে।"
 
 #: admin/wp-event-manager-settings.php:196
 msgid "Enable event types for listings"
-msgstr "Включить типы событий для листингов"
+msgstr "লিস্টিংগুলির জন্য ইভেন্টের প্রকারগুলি সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:194
 msgid "Event Types"
-msgstr "Типы Событий"
+msgstr "ইভেন্টের প্রকার"
 
 #: admin/wp-event-manager-settings.php:181
 msgid "Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission."
-msgstr "Выберите, следует ли включать категории. Категории должны быть настроены администратором, чтобы пользователи могли выбирать их во время отправки."
+msgstr "বিভাগগুলি সক্রিয় কিনা তা চয়ন করুন ব্যবহারকারীদের জমা দেওয়ার সময় তাদের নির্বাচন করার অনুমতি দেওয়ার জন্য বিভাগগুলি প্রশাসকের দ্বারা সেট করা আবশ্যক।"
 
 #: admin/wp-event-manager-settings.php:179
 msgid "Enable categories for listings"
-msgstr "Включить категории для листингов"
+msgstr "লিস্টিংগুলির জন্য বিভাগগুলি সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:177
 msgid "Categories"
-msgstr "Категории"
+msgstr "বিভাগ"
 
 #: admin/wp-event-manager-settings.php:164
 msgid "If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area)."
-msgstr "Если включено, содержимое в листингах с истекшим сроком действия будет скрыто. В противном случае истекшие листинги будут отображаться как обычно (без зоны регистрации событий)."
+msgstr "সক্রিয় থাকলে, মেয়াদ শেষ হওয়া সূচকের মধ্যে থাকা সামগ্রী লুকানো থাকবে। অন্যথায়, মেয়াদউত্তীর্ণ তালিকা স্বাভাবিক হিসাবে প্রদর্শিত হবে (ইভেন্ট নিবন্ধন এলাকা ছাড়া)।"
 
 #: admin/wp-event-manager-settings.php:162
 msgid "Hide expired listing content in single event listing (singular)"
-msgstr "Скрыть исчерпывающий листинг содержимого в одном листинге событий (единственное число)"
+msgstr "একক ইভেন্ট লিস্টিং মেয়াদউত্তীর্ণ লিস্টিং বিষয়বস্তু লুকান (একবচন)"
 
 #: admin/wp-event-manager-settings.php:160
 msgid "Hide Expired Listings Content"
-msgstr "Скрыть Истекшее Содержание Листингов"
+msgstr "মেয়াদ শেষ লিস্টিং এর সামগ্রী লুকান"
 
 #: admin/wp-event-manager-settings.php:147
 msgid "If enabled, expired event listing is not searchable."
-msgstr "Если включено, листинг исключенных событий не доступен для поиска."
+msgstr "সক্রিয় থাকলে, মেয়াদ শেষ হওয়া ইভেন্ট লিস্টিং অনুসন্ধানযোগ্য নয়।"
 
 #: admin/wp-event-manager-settings.php:145
 msgid "Hide expired listings in event archive/search"
-msgstr "Скрыть истекшие листиниги в архиве событий/поиске"
+msgstr "ঘটনা আর্কাইভ / অনুসন্ধান মধ্যে মেয়াদ শেষ লিস্টিং লুকান"
 
 #: admin/wp-event-manager-settings.php:143
 msgid "Hide Expired Listings"
-msgstr "Скрыть Истекшие Листинги"
+msgstr "মেয়াদ শেষ লিস্টিং লুকান"
 
 #: admin/wp-event-manager-settings.php:133
 msgid "If enabled, cancelled events will be hidden from archives."
-msgstr "Если включено, отмененные события будут скрыты от архивов."
+msgstr "সক্রিয় থাকলে, বাতিল করা ইভেন্টগুলি আর্কাইভ থেকে লুকানো থাকবে।"
 
 #: admin/wp-event-manager-settings.php:131
 msgid "Hide cancelled events"
-msgstr "Скрыть отмененные события"
+msgstr "বাতিল করা ইভেন্টগুলি লুকান"
 
 #: admin/wp-event-manager-settings.php:129
 msgid "Cancelled Events"
-msgstr "Отмененные События"
+msgstr "বাতিল করা ইভেন্ট"
 
 #: admin/wp-event-manager-settings.php:118
 msgid "How many listings should be shown per page by default?"
-msgstr "Сколько листингов должно отображаться на странице по умолчанию?"
+msgstr "প্রতি পৃষ্ঠায় কতগুলি লিস্টিং প্রদর্শিত হবে?"
 
 #: admin/wp-event-manager-settings.php:116
 msgid "Listings Per Page"
-msgstr "Листинги На Страницу"
+msgstr "প্রতি পৃষ্ঠায় কতগুলি লিস্টিং"
 
 #: admin/wp-event-manager-settings.php:104
 #: admin/wp-event-manager-writepanels.php:440
 #: core/wp-event-manager-post-types.php:291
 #: core/wp-event-manager-post-types.php:403
 msgid "Event Listings"
-msgstr "Листинги Событий"
+msgstr "ইভেন্ট লিস্টিং"
 
 #: admin/wp-event-manager-settings.php:97
 msgid "Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
-msgstr "Google требует ключ API, чтобы извлекал информацию о местоположении для  листингов событий. Приобретите ключ API с <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
+msgstr "ইভেন্ট তালিকাগুলির জন্য অবস্থানের তথ্য উদ্ধার করতে একটি API কী প্রয়োজন। <a href=\"%s\" target=\"__blank\"> গুগুল মানচিত্র API বিকাশকারী সাইট </a> থেকে একটি API কী অর্জন করুন"
 
 #: admin/wp-event-manager-settings.php:96
 msgid "Google Maps API Key"
-msgstr "Ключ API Карт Google"
+msgstr "গুগুল মানচিত্র API কী"
 
 #: admin/wp-event-manager-settings.php:87
 msgid "If enabled, bootstrap framework's style will apply for the backend side."
-msgstr "Если включено, стиль рамки бутстрапа будет применяться для бекендa."
+msgstr "যদি সক্ষম করা থাকে, তাহলে ব্যাকড্রাফ ফ্রেমওয়ার্কের স্টাইল ব্যাক এন্ড সাইডের জন্য প্রযোজ্য হবে।"
 
 #: admin/wp-event-manager-settings.php:83
 #: admin/wp-event-manager-settings.php:85
 msgid "Enable boostrap for the backend"
-msgstr "Включить boostrap для бэкэндa"
+msgstr "ব্যাক-এন্ডের জন্য বুটস্ট্র্যাপ সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:71
 msgid "If enabled, bootstrap framework's style will apply for the frontend side."
-msgstr "Если включено, стиль рамки bootstrap будет применяться для стороннего Фронтенда."
+msgstr "যদি সক্ষম করা থাকে, তাহলে ফ্রন্টএন্ড পাশের জন্য বুটস্ট্রাফ ফ্রেমওয়ার্কের শৈলী প্রয়োগ হবে।"
 
 #: admin/wp-event-manager-settings.php:67
 #: admin/wp-event-manager-settings.php:69
 msgid "Enable boostrap for the frontend"
-msgstr "Включить boostrap для Фронтенда"
+msgstr "ফ্রন্টএন্ডের জন্য বুটস্ট্র্যাপ সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:57
 msgid "General"
-msgstr "Генеральный"
+msgstr "সাধারণ"
 
 #: admin/wp-event-manager-cpt.php:598 templates/event-dashboard.php:53
 #: wp-event-manager.php:295
 msgid "Delete"
-msgstr "Удалить"
+msgstr "মুছুন"
 
 #: admin/wp-event-manager-cpt.php:586 core/wp-event-manager-post-types.php:299
 #: templates/event-dashboard.php:33 templates/event-dashboard.php:49
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "এডিট করুন"
 
 #: admin/wp-event-manager-cpt.php:574
 msgid "View"
-msgstr "Посмотреть"
+msgstr "দেখুন"
 
 #: admin/wp-event-manager-cpt.php:560
 msgid "Approve"
-msgstr "Одобрить"
+msgstr "অনুমোদন দিন"
 
 #: admin/wp-event-manager-cpt.php:524
 msgid "by %s"
-msgstr "%s"
+msgstr "%s দ্বারা"
 
 #: admin/wp-event-manager-cpt.php:524
 msgid "by a guest"
-msgstr "гостем"
+msgstr "একজন অতিথি দ্বারা"
 
 #: admin/wp-event-manager-cpt.php:522 admin/wp-event-manager-cpt.php:532
 #: admin/wp-event-manager-cpt.php:543
@@ -2115,58 +2112,58 @@ msgstr "M j, Y"
 
 #: admin/wp-event-manager-cpt.php:479
 msgid "ID: %d"
-msgstr "ID: %d"
+msgstr "আইডি: %d"
 
 #: admin/wp-event-manager-cpt.php:400
 msgid "Actions"
-msgstr "Действия"
+msgstr "কাজ"
 
 #: admin/wp-event-manager-cpt.php:398
 msgid "Event Expiry Date"
-msgstr "Дата Истечения Срока Действия"
+msgstr "ইভেন্ট মেয়াদ শেষের তারিখ"
 
 #: admin/wp-event-manager-cpt.php:396
 msgid "Event End Date"
-msgstr "Дата Окончания События"
+msgstr "ইভেন্ট শেষ তারিখ"
 
 #: admin/wp-event-manager-cpt.php:394
 msgid "Posted Date"
-msgstr "Дата Публикации"
+msgstr "পোস্ট করার তারিখ"
 
 #: admin/wp-event-manager-cpt.php:392
 msgid "Event Organizer"
-msgstr "Организатор Событий"
+msgstr "ইভেন্ট অর্গানাইজার"
 
 #: admin/wp-event-manager-cpt.php:390
 msgid "Event Location"
-msgstr "Место События"
+msgstr "ইভেন্ট অবস্থান"
 
 #: admin/wp-event-manager-cpt.php:388 admin/wp-event-manager-writepanels.php:72
 #: forms/wp-event-manager-form-submit-event.php:138
 msgid "Event Category"
-msgstr "Категория События"
+msgstr "ইভেন্ট বিভাগ"
 
 #: admin/wp-event-manager-cpt.php:386 admin/wp-event-manager-writepanels.php:62
 #: forms/wp-event-manager-form-submit-event.php:128
 #: templates/event-filters.php:63
 msgid "Event Type"
-msgstr "Тип События"
+msgstr "ইভেন্টের ধরণ"
 
 #: admin/wp-event-manager-cpt.php:382
 msgid "Featured?"
-msgstr "Рекомендуемый?"
+msgstr "দেখানো?"
 
 #: admin/wp-event-manager-cpt.php:380
 msgid "Cancelled?"
-msgstr "Отменено?"
+msgstr "বাতিল করা?"
 
 #: admin/wp-event-manager-cpt.php:378
 msgid "Status"
-msgstr "Статус"
+msgstr "অবস্থা"
 
 #: admin/wp-event-manager-cpt.php:355
 msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview</a>"
-msgstr "Обновлен проект %s. <a target=\"_blank\" href=\"%s\"> Предварительный просмотр </a>"
+msgstr "%s ড্রাফট আপডেট করা হয়েছে <a target=\"_blank\" href=\"%s\">পূর্বদৃশ্য</a>"
 
 #: admin/wp-event-manager-cpt.php:353
 msgid "M j, Y @ G:i"
@@ -2174,88 +2171,88 @@ msgstr "M j, Y @ G:i"
 
 #: admin/wp-event-manager-cpt.php:351
 msgid "%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview</a>"
-msgstr "%s запланировано на: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\"> Предварительный просмотр </a>"
+msgstr "%s এর জন্য নির্ধারিত: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">পূর্বদৃশ্য</a>"
 
 #: admin/wp-event-manager-cpt.php:349
 msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview</a>"
-msgstr "%s отправлено. <a target=\"_blank\" href=\"%s\"> Предварительный просмотр </a>"
+msgstr "%s জমা দেওয়া হয়েছে <a target=\"_blank\" href=\"%s\">পূর্বদৃশ্য</a>"
 
 #: admin/wp-event-manager-cpt.php:347
 msgid "%s saved."
-msgstr "%s сохранено."
+msgstr "%s সংরক্ষিত হয়েছে"
 
 #: admin/wp-event-manager-cpt.php:345
 msgid "%s published. <a href=\"%s\">View</a>"
-msgstr "%s опубликовано. <a href=\"%s\">Просмотр </a>"
+msgstr "%s প্রকাশিত। <a href=\"%s\"> দেখুন </a>"
 
 #: admin/wp-event-manager-cpt.php:343
 msgid "%s restored to revision from %s"
-msgstr "%s восстанавливается до ревизии от %s"
+msgstr "%s থেকে পুনর্বিন্যাসে %s পুনরুদ্ধার করা হয়েছে"
 
 #: admin/wp-event-manager-cpt.php:341
 msgid "%s updated."
-msgstr "%s обновлено."
+msgstr "%s আপডেট হয়েছে।"
 
 #: admin/wp-event-manager-cpt.php:339
 msgid "Custom field deleted."
-msgstr "Пользовательское поле удалено."
+msgstr "কাস্টম ফিল্ড মোছা হয়েছে"
 
 #: admin/wp-event-manager-cpt.php:337
 msgid "Custom field updated."
-msgstr "Пользовательское поле обновлено."
+msgstr "কাস্টম ফিল্ড আপডেট করা হয়েছে"
 
 #: admin/wp-event-manager-cpt.php:335
 msgid "%s updated. <a href=\"%s\">View</a>"
-msgstr "%s обновлено. <a href=\"%s\"> Просмотр </a>"
+msgstr "%s আপডেট হয়েছে। <a href=\"%s\"> দেখুন </a>"
 
 #: admin/wp-event-manager-cpt.php:314 admin/wp-event-manager-cpt.php:384
 #: admin/wp-event-manager-writepanels.php:54
 #: forms/wp-event-manager-form-submit-event.php:120
 msgid "Event Title"
-msgstr "Название События"
+msgstr "ইভেন্ট শিরোনাম"
 
 #: admin/wp-event-manager-cpt.php:294
 msgid "Select category"
-msgstr "Выберите категорию"
+msgstr "বিভাগ নির্বাচন করুন"
 
 #: admin/wp-event-manager-cpt.php:245 admin/wp-event-manager-cpt.php:249
 msgid "%s expired"
-msgstr "%s истек"
+msgstr "%s মেয়াদ শেষ হয়ে গেছে"
 
 #: admin/wp-event-manager-cpt.php:214 admin/wp-event-manager-cpt.php:218
 msgid "%s approved"
-msgstr "%s одобрено"
+msgstr "%s অনুমোদিত হয়েছে"
 
 #: admin/wp-event-manager-cpt.php:79 admin/wp-event-manager-cpt.php:81
 msgid "Expire %s"
-msgstr "Истекает %s"
+msgstr "%s মেয়াদ শেষ"
 
 #: admin/wp-event-manager-cpt.php:75 admin/wp-event-manager-cpt.php:77
 msgid "Approve %s"
-msgstr "Утвердить %s"
+msgstr "%s অনুমোদন করুন"
 
 #: admin/wp-event-manager-admin.php:152
 msgid "Dismiss"
-msgstr "Отклонять"
+msgstr "খারিজ করুন"
 
 #: admin/wp-event-manager-admin.php:151
 msgid "Try Great Add-Ons"
-msgstr "Попробуйте Отличные Дополнения"
+msgstr "দারুন অ্যাড-অনগুলি ব্যবহার করে দেখুন"
 
 #: admin/wp-event-manager-admin.php:149
 msgid "We've noticed you've been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We'd be thrilled if you could <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">give us a 5 stars rating on WordPress.org!</a></strong> Don't forget to submit your site to <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">our showcase</a></strong> and generate more traffic from our site."
-msgstr "Мы заметили, что вы используете <strong> WP Event Manager </strong> в течение некоторого времени. мы надеемся, что вам это нравится! Мы были бы в восторге, если бы вы могли <strong> <a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\"> дать нам оценку 5 звезд на WordPress.org! </a> </strong> Не забудьте отправить свой сайт на <strong> <a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\"> нашу витрину </a> </strong> и генерировать больше трафика с нашего сайта."
+msgstr "আমরা লক্ষ্য করেছি যে আপনি কিছু সময়ের জন্য <strong> WP ইভেন্ট ম্যানেজার </strong> ব্যবহার করছেন আমরা আশা করি আপনি এটা ভালোবাসেন! আপনি যদি <strong> <a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\"> আমাদের 5 তারকা রেটিং দিতে পারেন তবে আমরা রোমাঞ্চিত হব ওয়ার্ডপ্রেস ওয়ার্ডপ্রেস! </a> </strong> <strong> <a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\"> আপনার সাইটকে জমা দিতে ভুলবেন না </a> </strong> এবং আমাদের সাইট থেকে আরো ট্র্যাফিক উৎপন্ন করে।"
 
 #: admin/wp-event-manager-admin.php:123
 msgid "Add-ons"
-msgstr "Надстройки"
+msgstr "অ্যাড-অন"
 
 #: admin/wp-event-manager-admin.php:119
 #: templates/form-fields/repeated-field.php:18
 #: templates/form-fields/repeated-field.php:61
 msgid "Settings"
-msgstr "Настройки"
+msgstr "সেটিংস"
 
 #: admin/wp-event-manager-addons.php:59 admin/wp-event-manager-admin.php:123
 msgid "WP Event Manager Add-ons"
-msgstr "Надстройки WP Event Manager"
+msgstr "WP ইভেন্ট ম্যানেজার অ্যাড-অন"
