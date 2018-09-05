@@ -16,7 +16,7 @@ Lightweight, scalable and full-featured event listings & management plugin for m
 == Description ==
 
 
-WP Event Manager is a **lightweight, scalable and full-featured event management plugin** for adding event listing functionality to your WordPress site. The shortcode lists all the events, it can work with any theme and is really easy to setup and customize. The settings pages let you select how you want the event displayed.
+WP Event Manager is a **lightweight, scalable and full-featured event management plugin** for adding event listing functionality to your WordPress site. The shortcode lists all the events, it can work with any theme and is really easy to setup and customise. The settings pages let you select how you want the event displayed.
 
 * [Demo](https://wp-eventmanager.com)
 * [Add-ons](http://www.wp-eventmanager.com/plugins/)
@@ -31,18 +31,18 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 * SEO Friendly & Compatible with SEO plugins.
 * *Multilingual Translation - Internationalized Supported*
 * Completely ajaxified for super smooth browsing
-* Add, manage, and categorize event listings using the familiar WordPress UI.
+* Add, manage, and categorise event listings using the familiar WordPress UI.
 * Searchable & filterable ajax powered event listings added to your pages via shortcodes.
 * Frontend forms for guests and registered users to submit & manage event listings.
 * Allow event listers to preview their listing before it goes live. The preview matches the appearance of a live event listing.
 * Each listing can be tied to an email or website address so that attendees can register to the events.
 * Searches also display RSS links to allow attendees to be alerted to new events matching their search.
-* Allow logged in organizers to view, edit, mark canceled, or delete their active event listings.
+* Allow logged in organizers to view, edit, mark cancelled, or delete their active event listings.
 * *RSS Feeds* 
 * Event categories
 * Easily create custom event field (e.g. dress code)
 * Assign event locations and view events by location
-* Widgets for Recent, Upcoming, and Featured Events
+* Widgets for Recents, Upcomming, Featured Events
 * Plenty of template tags and shortcodes for use in your posts and pages
 * Caching Support
 * Developer friendly code, Custom Post Types, endpoints & template files.
@@ -91,7 +91,7 @@ Event Listing Owner (Organizer/User) can generate embed code using Embeddable Ev
 *  **[Sliders](http://www.wp-eventmanager.com/plugins/wp-event-manager-sliders/)**
 Use owl carousel and other type of sliders for your listings. The sliders are totally responsive.
 * **[Organizers](http://www.wp-eventmanager.com/plugins/wp-event-manager-organizers/)**
-Organizers add-on displays grouped and alphabetized list of all the organizers. It also displays total active events and total organizers.
+Organizers add-on display grouped and alphabetized list of all the organizers.It also display total active events and total organizers.
 * **[Contact Organizer](http://www.wp-eventmanager.com/plugins/wp-event-manager-contact-organizer/)**
 You can contact to the organizer via contact form. You can also create own email template for sending mail to organizer.
 * **[Emails](http://www.wp-eventmanager.com/plugins/wp-event-manager-emails/)**
@@ -177,7 +177,7 @@ Thanks to all of our contributors.
 
 
 = Connect With US =
-To stay in touch and get latest update about WP Event Manager's further releases and features, you can connect with us via:
+To stay in touch and get latest update about WP Event Manager�s further releases and features, you can connect with us via:
 - [Facebook](https://www.facebook.com/WP-Event-Manager-306625436419764/)
 - [Twitter](https://twitter.com/wp_eventmanager)
 - [Google Plus](https://plus.google.com/u/0/b/107105224603939407328/107105224603939407328)
@@ -259,7 +259,7 @@ Yes! If you don't setup the [submit_event_form] shortcode, you can just post fro
 There are three ways to customize the fields in WP Event Manager;
 
 
-1. For simple text changes, using a localization file or a plugin such as [Say What](https://wordpress.org/plugins/say-what/).
+1. For simple text changes, using a localisation file or a plugin such as [Say What](https://wordpress.org/plugins/say-what/).
 
 2. For field changes, or adding new fields, using functions/filters inside your theme's functions.php file: [Read more](http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/editing-event-submission-form-fields/).
 
@@ -273,7 +273,7 @@ If you'd like to learn about WordPress filters, here is a great place to start: 
 
 = How can I be notified of new events via email? =
 
-If you wish to be notified of new postings on your site you can use a plugin such as [Post Status Notifier](https://wordpress.org/plugins/post-status-notifier-lite/).
+If you wish to be notified of new postings on your site you can use a plugin such as [Post Status Notifier](http://wordpress.org/plugins/post-status-notifier-lite/).
 
 
 
