@@ -177,7 +177,7 @@ Thanks to all of our contributors.
 
 
 = Connect With US =
-To stay in touch and get latest update about WP Event Manager�s further releases and features, you can connect with us via:
+To stay in touch and get latest update about WP Event Managerâ€™s further releases and features, you can connect with us via:
 - [Facebook](https://www.facebook.com/WP-Event-Manager-306625436419764/)
 - [Twitter](https://twitter.com/wp_eventmanager)
 - [Google Plus](https://plus.google.com/u/0/b/107105224603939407328/107105224603939407328)
@@ -313,15 +313,15 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 = 2.5 =
 
-* Fixed : Merged Frontend and Backed Field editor.
-* Added : jQuery datepicker added.
-* Fixed : Boostrap depandancy date-timepicker removed.
-* Improved : SEO and lang translation compatiblity improved.
-* Improved : Order by clause improved.
-* Added : GDPR data cleaner improved.
-* Added : Permalink setting added. 
-* Added : Third Party Support separated folder. 
-* Fixed : POT file translation issue fixed. 
+* Fixed - Merged Frontend and Backed Field editor.
+* Added - jQuery datepicker added.
+* Fixed - Boostrap depandancy date-timepicker removed.
+* Improved - SEO and lang translation compatiblity improved.
+* Improved - Order by clause improved.
+* Added - GDPR data cleaner improved.
+* Added - Permalink setting added. 
+* Added - Third Party Support separated folder. 
+* Fixed - POT file translation issue fixed. 
 
 
 = 2.4 =
