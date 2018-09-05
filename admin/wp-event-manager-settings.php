@@ -121,9 +121,9 @@ class WP_Event_Manager_Settings {
 											'type'       => 'select',
 											'options' => array(
 									
-													'12'  => __( '12 hour', 'wp-event-manager' ),
+													'12'  => __( '12-hour', 'wp-event-manager' ),
 									
-													'24' => __( '24 hour', 'wp-event-manager' ),
+													'24' => __( '24-hour', 'wp-event-manager' ),
 											)
 									)
 							)
