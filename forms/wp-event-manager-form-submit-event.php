@@ -333,11 +333,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 								'priority'    => 6
 				),
 
-				'organizer_video' => array(
-								'label'       => __( 'Video', 'wp-event-manager' ),
+				'organizer_twitter' => array(
+								'label'       => __( 'Twitter', 'wp-event-manager' ),
 								'type'        => 'text',
 								'required'    => false,
-								'placeholder' => __( 'A link to a video about your organization', 'wp-event-manager' ),
+								'placeholder' => __( 'Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager' ),
 								'priority'    => 7
 				),
 
