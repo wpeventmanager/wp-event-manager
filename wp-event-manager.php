@@ -4,7 +4,7 @@ Plugin Name: WP Event Manager
 
 Plugin URI: https://www.wp-eventmanager.com/
 
-Description: Manage event listings from the WordPress admin panel, and allow users to post events directly to your site.
+Description: Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the Frontend and Backend.
 
 Author: WP Event Manager
 

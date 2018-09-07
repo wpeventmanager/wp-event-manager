@@ -103,7 +103,7 @@ class WP_Event_Manager_Settings {
 											'name'       => 'event_manager_google_maps_api_key',
 											'std'        => '',
 											'label'      => __( 'Google API Key', 'wp-event-manager' ),
-											'desc'       => sprintf( __( 'Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
+											'desc'       => sprintf( __( 'If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
 											'attributes' => array()
 									)
 							)
@@ -530,14 +530,14 @@ class WP_Event_Manager_Settings {
 								'name'       => 'event_manager_date_format',
 								'std'        => 'dd-mm-yy',
 								'label'      => __( 'Date Format', 'wp-event-manager' ),
-								'desc'       => __( 'Choose how you want the published date for events to be displayed on the front-end.', 'wp-event-manager' ),
+								'desc'       => sprintf( __( 'Choose how you want the start and end date formate for the event submission page. if you do not know possible standard format then please check <a href="%s" target="__blank">Datepicker format page</a>.', 'wp-event-manager' ), 'http://api.jqueryui.com/datepicker/#utility-formatDate' ),
 								'type'       => 'text',
 						),
 						array(
 								'name'       => 'event_manager_time_format',
 								'std'        => '',
 								'label'      => __( 'Time Format', 'wp-event-manager' ),
-								'desc'       => __( 'Choose how you want the published time for events to be select on the submit event page.', 'wp-event-manager' ),
+								'desc'       => __( 'Choose how you want the start and end time for events to be select on the submit event page.', 'wp-event-manager' ),
 								'type'       => 'select',
 								'options' => array(
 											
