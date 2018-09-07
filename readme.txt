@@ -162,7 +162,7 @@ We've integrated RTL and multi language support within the plugin, so you can tr
 
 
 = Be a contributor =
-If you want to contribute, go to our [WP Event Manager GitHub Repository](https://github.com/ashokdudhat/wp-event-manager) and see where you can help.
+If you want to contribute, go to our [WP Event Manager GitHub Repository](https://github.com/wpeventmanager/wp-event-manager) and see where you can help.
 
 You can also add a new language via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-event-manager). We've built a short guide explaining [how to translate and localize the plugin](https://www.wp-eventmanager.com/documentation/translating-wp-event-manager/).
 
