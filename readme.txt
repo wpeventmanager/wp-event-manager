@@ -171,7 +171,7 @@ Thanks to all of our contributors.
 = Documentation and Support =
 - For documentation and tutorials go to our [Documentation](https://www.wp-eventmanager.com/documentation/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 - If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/wp-event-manager).
-- If you want help with a customisation, you can contact any one fo the [Listed Certified Developers] (https://www.wp-eventmanager.com/hire-certified-wp-event-manager-developers/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
+- If you want help with a customisation, you can contact any one for the [Listed Certified Developers](https://www.wp-eventmanager.com/hire-certified-wp-event-manager-developers/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 - If you need help with one of our add-ons, [please contact here](https://www.wp-eventmanager.com/get-support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 - For more information about features, FAQs and documentation, check out our website at [WP Event Manager](https://www.wp-eventmanager.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 
