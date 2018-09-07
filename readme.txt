@@ -1,6 +1,6 @@
 === WP Event Manager ===
 
-Contributors: ashokdudhat,gamthemes,hiteshmakvana,uponity,telecima,nao,ikosweb,fierevere,nidamo,arshadt87,miteshce3,monikarao,zup2,sofyand,lasacco,giuliag,ideag,lithuanianmenfiverr,snezanastefan,dancaragea,kingmanu,guimo,hani90,xkatka,mrjacobee,tyxla,mhoteb,robertsky_,ohvangie,fgobea,ageha1304,fxbenard,babygirlblog,urvashipatel,maitrayi,webaware,romanbon,sergeykovalets,bars,garyj,yoavf,saritflor,roydeals1511,xkatka,chantalc,mbootsman,aishakshetri,krupajnanda,trkr,veenabuddhini,berlinlion,madradubhcroga,dyrer,leviathan8,garrett-eclipse,hlashbrooke,yvallejo,bredebs,maxnegro
+Contributors: ashokdudhat,gamthemes,hiteshmakvana,naokomc,garrett-eclipse,monikarao
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
