@@ -177,7 +177,7 @@ Thanks to all of our contributors.
 
 
 = Connect With US =
-To stay in touch and get latest update about WP Event Managerâ€™s further releases and features, you can connect with us via:
+To stay in touch and get latest update about WP Event Manager's further releases and features, you can connect with us via:
 - [Facebook](https://www.facebook.com/wpeventmanager/)
 - [Twitter](https://twitter.com/wp_eventmanager)
 - [Google Plus](https://plus.google.com/u/0/b/107105224603939407328/107105224603939407328)
