@@ -20,10 +20,6 @@
 }
 
 /* Start conflict with bootstrap fix */
-body 
-{
-    background-color: transparent !important;
-}
 .fade { opacity: 1 !important;}
 a { text-decoration: none !important; }
 
