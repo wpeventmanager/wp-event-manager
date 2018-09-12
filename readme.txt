@@ -313,7 +313,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 = 2.6 =
 
-* Fixed - Field eiditor improved.
+* Fixed - Field editor improved.
 * Fixed - Time field type issue fixed.
 * Fixed - Admin expiry date and other date field improved.
 * Fixed - Admin panel css issue fixed.
