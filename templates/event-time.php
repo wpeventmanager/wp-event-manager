@@ -9,7 +9,7 @@ if(get_event_manager_time_format() == '12'){
 <select name="<?php echo esc_attr( isset( $field['name'] ) ? $field['name'] : $key ); ?>" id="<?php echo esc_attr( $key ); ?>" <?php if ( ! empty( $field['required'] ) ) echo 'required'; ?> attribute="<?php echo esc_attr( isset( $field['attribute'] ) ? $field['attribute'] : '' ); ?>" >
 	
 	<?php foreach ($twelve_hour as $key => $value) { ?> 
-		<option value="<?php echo esc_attr( $value ); ?>" <?php if ( isset( $field['value'] ) ) selected( isset( $field['value'] ) ? $field['value'] :  $value ); ?>><?php echo esc_html( $value ); ?></option>
+		<option value="<?php echo esc_attr( $value ); ?>" <?php if ( isset( $field['value'] ) ) selected( $field['value'] ,  $value ); ?>><?php echo esc_html( $value ); ?></option>
 	<?php } ?>
 </select>
 
@@ -18,7 +18,7 @@ if(get_event_manager_time_format() == '12'){
 <select name="<?php echo esc_attr( isset( $field['name'] ) ? $field['name'] : $key ); ?>" id="<?php echo esc_attr( $key ); ?>" <?php if ( ! empty( $field['required'] ) ) echo 'required'; ?> attribute="<?php echo esc_attr( isset( $field['attribute'] ) ? $field['attribute'] : '' ); ?>" >
 
 	<?php foreach ($twentyfour_hour as $key => $value) { ?> 
-		<option value="<?php echo esc_attr( $value ); ?>" <?php if ( isset( $field['value'] ) ) selected( isset( $field['value'] ) ? $field['value'] : $value ); ?>><?php echo esc_html( $value ); ?></option>
+		<option value="<?php echo esc_attr( $value ); ?>" <?php if ( isset( $field['value'] ) ) selected( $field['value'] , $value ); ?>><?php echo esc_html( $value ); ?></option>
 	<?php } ?>
 </select>
 <?php
