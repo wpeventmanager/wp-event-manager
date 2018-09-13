@@ -526,13 +526,14 @@ class WP_Event_Manager_Settings {
 									
 								'attributes' => array()
 						),
+							/*
 						array(
 								'name'       => 'event_manager_date_format',
 								'std'        => 'dd-mm-yy',
 								'label'      => __( 'Date Format', 'wp-event-manager' ),
 								'desc'       => sprintf( __( 'Choose how you want the start and end date formate for the event submission page. if you do not know possible standard format then please check <a href="%s" target="__blank">Datepicker format page</a>.', 'wp-event-manager' ), 'http://api.jqueryui.com/datepicker/#utility-formatDate' ),
 								'type'       => 'text',
-						),
+						),*/
 						array(
 								'name'       => 'event_manager_time_format',
 								'std'        => '',
