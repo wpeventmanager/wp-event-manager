@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 2.6
+Version: 2.7
 
 Since: 1.0
 
@@ -261,30 +261,14 @@ class WP_Event_Manager {
 		//jQuery Deserialize - vendor
 		wp_register_script( 'jquery-deserialize', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-deserialize/jquery.deserialize.js', array( 'jquery' ), '1.2.1', true );						
 	
-		//main frontend, bootstrap & bootstrap calendar style 	
+		//main frontend, bootstrap style 	
 		wp_register_style( 'bootstrap-main-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/bootstrap/css/bootstrap.min.css');	
-		//wp_register_style( 'bootstrap-datepicker-css', EVENT_MANAGER_PLUGIN_URL.'/assets/js/jquery-timepicker/bootstrap-datepicker.css');
-		//wp_register_style( 'jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL.'/assets/js/jquery-timepicker/jquery.timepicker.css');
 
 		if (!wp_style_is( 'bootstrap.min.css', 'enqueued' )  && get_option('event_manager_enqueue_boostrap_frontend',true) == 1) 
 		{
 		    wp_enqueue_style( 'bootstrap-main-css');
 		}
-		
-		if (!wp_style_is( 'jquery.timepicker.css', 'enqueued' )) 
-		{
-		   // wp_enqueue_style( 'jquery-timepicker-css');
-		}
-
-		if (!wp_style_is( 'bootstrap-datepicker.css', 'enqueued' )) 
-		{
-		    //wp_enqueue_style( 'bootstrap-datepicker-css');
-		}
 		wp_enqueue_style( 'wp-event-manager-frontend', EVENT_MANAGER_PLUGIN_URL . '/assets/css/frontend.min.css');	
-
-
-
-
 
 		//bootstrap, moment and bootstrap calendar js	
 		wp_register_script( 'bootstrap-main-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/bootstrap/js/bootstrap.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
@@ -294,11 +278,6 @@ class WP_Event_Manager {
 		if (!wp_script_is( 'bootstrap.min.js', 'enqueued' )  && get_option('event_manager_enqueue_boostrap_frontend',true) == 1) 
 		{
 		    wp_enqueue_script( 'bootstrap-main-js');
-		}		
-	
-		if (!wp_script_is( 'bootstrap-datepicker.js', 'enqueued' )) 
-		{
-		   //wp_enqueue_script( 'bootstrap-datepicker-js');	
 		}
 				
 		//common js
@@ -307,13 +286,6 @@ class WP_Event_Manager {
 
 		//event submission forms and validation js
 		wp_register_script( 'wp-event-manager-event-submission', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-submission.min.js', array('jquery','jquery-ui') , EVENT_MANAGER_VERSION, true );
-
-		wp_localize_script( 'wp-event-manager-event-submission', 'event_manager_event_submission', array(
-
-			'i18n_date_format' => get_event_manager_date_format(),
-		) );
-
-
 
         wp_register_script( 'wp-event-manager-content-event-listing', EVENT_MANAGER_PLUGIN_URL . '/assets/js/content-event-listing.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true );					
 
