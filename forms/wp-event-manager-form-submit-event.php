@@ -532,6 +532,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta( $event->ID, '_' . $key, true );
 						break;
 					}
+					if ( ! empty( $field['taxonomy'] ) ) {
+						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, $field['taxonomy'], array( 'fields' => 'ids' ) );
+					}
 				}
 			}
 
