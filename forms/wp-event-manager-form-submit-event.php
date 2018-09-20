@@ -353,6 +353,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => false,
 								'placeholder' => __( 'Facebook URL e.g http://www.facebook.com/yourcompany', 'wp-event-manager' ),
+								
 								'priority'    => 10
 				),
 			)
@@ -367,19 +368,23 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 		//get all frontend fields which is set by admin
 		$frontend_selected_fields = get_option('event_manager_form_fields',true);
-		if(!empty($frontend_selected_fields) && is_array($frontend_selected_fields) ){
-			foreach($frontend_selected_fields as $group_key => $group_fields) {
-				foreach( $group_fields as $field_key => $field_value ) {
-					if(isset($this->fields[$group_key][$field_key]))
-					{
-						foreach( $this->fields[$group_key][$field_key] as $key => $value ){
+		if(!empty($frontend_selected_fields) && is_array($frontend_selected_fields) )
+		{
+				foreach( $this->fields as $group_key => $group_fields ){
+					foreach ($group_fields as $field_key => $field_value) {
+						//visiblity
+						if( isset( $field_value['visiblity']) && $field_value['visiblity'] == true && !isset($frontend_selected_fields[$group_key][$field_key]) ){
+							$frontend_selected_fields[$group_key][$field_key] = $this->fields[$group_key][$field_key];
+						}
+	
+						//update missing key value of field 
+						foreach ($field_value as $key => $value) {
 							if(!isset($frontend_selected_fields[$group_key][$field_key][$key]))
-								$frontend_selected_fields[$group_key][$field_key][$key] = $this->fields[$group_key][$field_key][$key];
+								$frontend_selected_fields[$group_key][$field_key][$key] = $field_value[$key];
 						}
 					}
 				}
-			}
-			$this->fields = $frontend_selected_fields;
+				$this->fields = $frontend_selected_fields;
 		}
 		return $this->fields;
 	}
