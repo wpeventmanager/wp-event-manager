@@ -61,7 +61,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
-		if ( ! isset( $_GET[ 'new' ] ) && ( 'before' === get_option( 'event_manager_paid_listings_flow' ) || ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ) ){
+		if ( ! isset( $_GET[ 'new' ] ) && ( 'before' === get_option( 'event_manager_paid_listings_flow' ) || !$this->event_id  ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ){
 			$event_id     = absint( $_COOKIE['wp-event-manager-submitting-event-id'] );
 			$event_status = get_post_status( $event_id );
 			if ( 'preview' === $event_status && get_post_meta( $event_id, '_submitting_key', true ) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
@@ -359,11 +359,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			)
 		) );
 
-		if ( ! get_option( 'event_manager_enable_categories' ) || wp_count_terms( 'event_listing_category' ) == 0 ) {
+		if ( ! get_option( 'event_manager_enable_categories' ) || 0 === wp_count_terms( 'event_listing_category' )  ) {
 			unset( $this->fields['event']['event_category'] );
 		}
 		
-		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_listing_type' ) == 0 ) {
+		if ( ! get_option( 'event_manager_enable_event_types' ) || 0 === wp_count_terms( 'event_listing_type' ) ) {
 			unset( $this->fields['event']['event_type'] );
 		}
 		//get all frontend fields which is set by admin
