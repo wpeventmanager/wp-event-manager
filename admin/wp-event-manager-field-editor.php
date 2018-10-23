@@ -111,7 +111,7 @@ class WP_Event_Manager_Field_Editor {
 							<th width="1%"><?php _e( 'Type', 'wp-event-manager' ); ?></th>
 							<th><?php _e( 'Description', 'wp-event-manager' ); ?></th>
 							<th><?php _e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Admin Only', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php _e( 'Only For Admin', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Priority', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Validation', 'wp-event-manager' ); ?></th>
 							<th width="1%" class="field-actions">&nbsp;</th>
