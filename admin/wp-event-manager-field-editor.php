@@ -67,7 +67,8 @@ class WP_Event_Manager_Field_Editor {
 		}
 		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
 		$fields = $form_submit_event_instance->merge_with_custom_fields('backend');
-
+		
+		$disbled_fields = array('event_title','event_description');
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           => __( 'Text', 'wp-event-manager' ),
 			'time'           => __( 'Time', 'wp-event-manager' ),

@@ -41,11 +41,15 @@ $taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listi
 		</div>
 		<span class="na">&ndash;</span>
 	</td>
-	<td><input type="checkbox" name="<?php echo $group_key;?>[<?php echo $field_key;?>][admin_only]" value="1" <?php checked( ! empty( $field['admin_only'] ), true ); ?> /></td>
+	<td>
+	<?php if( !in_array($field_key, $disbled_fields) ){ ?> 
+	<input type="checkbox" name="<?php echo $group_key;?>[<?php echo $field_key;?>][admin_only]" value="1" <?php checked( ! empty( $field['admin_only'] ), true ); ?> /></td>
+	<?php } ?>
 	<td>
 		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][priority]" value="<?php if(isset($field['priority'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $field['priority'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
 	</td>
 	<td class="field-rules">
+	<?php if( !in_array($field_key, $disbled_fields) ){ ?> 
 		<div class="rules">
 			<select name="<?php echo $group_key;?>[<?php echo $field_key;?>][required]">
 				<?php $field['required'] =  ( isset( $field['required'] ) ? $field['required'] : false );?>
@@ -53,9 +57,12 @@ $taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listi
 				<option value="1" <?php if($field['required'] == true) echo 'selected="selected"';?> ><?php  _e( 'Required', 'wp-event-manager' );?></option>
 			</select>
 		</div>
+		<?php } ?>
 		<span class="na">&ndash;</span>
 	</td>
 	<td class="field-actions">
+	<?php if( !in_array($field_key, $disbled_fields) ){ ?> 
 		<a class="delete-field" href='#'>X</a>
+		<?php } ?>
 	</td>
 </tr>
