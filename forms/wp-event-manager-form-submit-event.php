@@ -928,8 +928,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				if(isset($field['visibility']))
 					unset($updated_fields[$group_key][$key]);
 					
-				if( isset($field['admin_only']) &&  $field_view = 'frontend' &&  $field['admin_only'] == TRUE )
-					unset($updated_fields[$group_key][$key]);
+					//remove admin fields if view type is frontend
+					if( isset($field['admin_only']) &&  $field_view == 'frontend' &&  $field['admin_only'] == true )
+						unset($updated_fields[$group_key][$key]);
 			}
 		}
 		$this->fields = apply_filters('merge_with_custom_fields',$updated_fields,$default_fields) ;

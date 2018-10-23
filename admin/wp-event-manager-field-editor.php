@@ -66,7 +66,7 @@ class WP_Event_Manager_Field_Editor {
 			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );	
 		}
 		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
-		$fields = $form_submit_event_instance->merge_with_custom_fields();
+		$fields = $form_submit_event_instance->merge_with_custom_fields('backend');
 
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           => __( 'Text', 'wp-event-manager' ),
@@ -111,6 +111,7 @@ class WP_Event_Manager_Field_Editor {
 							<th width="1%"><?php _e( 'Type', 'wp-event-manager' ); ?></th>
 							<th><?php _e( 'Description', 'wp-event-manager' ); ?></th>
 							<th><?php _e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php _e( 'Admin Only', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Priority', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Validation', 'wp-event-manager' ); ?></th>
 							<th width="1%" class="field-actions">&nbsp;</th>
@@ -203,7 +204,7 @@ class WP_Event_Manager_Field_Editor {
 				}
 				
 				$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
-				$default_fields = $form_submit_event_instance->get_default_fields();
+				$default_fields = $form_submit_event_instance->get_default_fields('backend');
 				//if field in not exist in new fields array then
 				if(!empty($default_fields))
 				foreach ( $default_fields as $group_key => $group_fields ) {
