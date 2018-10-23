@@ -61,14 +61,12 @@ class WP_Event_Manager_Field_Editor {
 			echo $this->form_editor_save();
 		}
 
-	include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
-	include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
-	
-	$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );	
-	$fields      = $form_submit_event_instance->init_fields();
-	$temp_fields = get_option( 'event_manager_form_fields', $fields );
-	if(!empty($temp_fields) && is_array($temp_fields))
-		$fields = $temp_fields;
+		if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) {
+			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );	
+		}
+		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+		$fields = $form_submit_event_instance->merge_with_custom_fields();
 
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           => __( 'Text', 'wp-event-manager' ),
@@ -197,6 +195,26 @@ class WP_Event_Manager_Field_Editor {
 							unset($new_fields[$group_key][$field_key]);
 					}
 				}
+				
+				//merge field with default fields
+				if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) {
+					include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+					include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
+				}
+				
+				$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+				$default_fields = $form_submit_event_instance->get_default_fields();
+				//if field in not exist in new fields array then
+				if(!empty($default_fields))
+				foreach ( $default_fields as $group_key => $group_fields ) {
+					foreach ($group_fields as $key => $field) {
+						if( !isset( $new_fields[$group_key][$key] ) ){
+							$new_fields[$group_key][$key] 				= $field;
+							$new_fields[$group_key][$key]['visibility'] = false;
+						}
+					}
+				}
+				
 				$result = update_option( 'event_manager_form_fields', $new_fields );
 			
 			}	  
