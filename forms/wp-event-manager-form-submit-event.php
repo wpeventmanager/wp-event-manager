@@ -932,6 +932,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					if( isset($field['admin_only']) &&  $field_view == 'frontend' &&  $field['admin_only'] == true )
 						unset($updated_fields[$group_key][$key]);
 			}
+			uasort( $updated_fields[$group_key], array( $this, 'sort_by_priority' ) );
 		}
 		$this->fields = apply_filters('merge_with_custom_fields',$updated_fields,$default_fields) ;
 	
