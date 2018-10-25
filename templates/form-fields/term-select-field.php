@@ -1,4 +1,4 @@
-<?php
+<?php$field['default'] = isset($field['default']) ? $field['default'] : '';
 // Get selected value
 if ( isset( $field['value'] ) ) {
 	$selected = $field['value'];
