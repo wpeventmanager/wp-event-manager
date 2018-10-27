@@ -212,7 +212,7 @@ class WP_Event_Manager_Field_Editor {
 					foreach ($group_fields as $key => $field) {
 						if( !isset( $new_fields[$group_key][$key] ) ){
 							$new_fields[$group_key][$key] 				= $field;
-							$new_fields[$group_key][$key]['visibility'] = false;
+							$new_fields[$group_key][$key]['visibility'] = 0;
 						}
 					}
 				}
