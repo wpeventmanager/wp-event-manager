@@ -317,6 +317,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Fixed - Registration button compatiblity with registration addon.
 * Fixed - Date field type
 * Fixed - Registration deadline
+* Fixed - backend and submit event js improved
 
 
 = 2.7 =
