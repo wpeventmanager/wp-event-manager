@@ -61,7 +61,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
-		if ( ! isset( $_GET[ 'new' ] ) && ( 'before' === get_option( 'event_manager_paid_listings_flow' ) || ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ) ){
+		if ( ! isset( $_GET[ 'new' ] ) && ( 'before' === get_option( 'event_manager_paid_listings_flow' ) || !$this->event_id  ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ){
 			$event_id     = absint( $_COOKIE['wp-event-manager-submitting-event-id'] );
 			$event_status = get_post_status( $event_id );
 			if ( 'preview' === $event_status && get_post_meta( $event_id, '_submitting_key', true ) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
@@ -359,33 +359,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			)
 		) );
 
-		if ( ! get_option( 'event_manager_enable_categories' ) || wp_count_terms( 'event_listing_category' ) == 0 ) {
+		if ( ! get_option( 'event_manager_enable_categories' ) || 0 === wp_count_terms( 'event_listing_category' )  ) {
 			unset( $this->fields['event']['event_category'] );
 		}
 		
-		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_listing_type' ) == 0 ) {
+		if ( ! get_option( 'event_manager_enable_event_types' ) || 0 === wp_count_terms( 'event_listing_type' ) ) {
 			unset( $this->fields['event']['event_type'] );
 		}
-		//get all frontend fields which is set by admin
-		$frontend_selected_fields = get_option('event_manager_form_fields',true);
-		if(!empty($frontend_selected_fields) && is_array($frontend_selected_fields) )
-		{
-				foreach( $this->fields as $group_key => $group_fields ){
-					foreach ($group_fields as $field_key => $field_value) {
-						//visiblity
-						if( isset( $field_value['visiblity']) && $field_value['visiblity'] == true && !isset($frontend_selected_fields[$group_key][$field_key]) ){
-							$frontend_selected_fields[$group_key][$field_key] = $this->fields[$group_key][$field_key];
-						}
 	
-						//update missing key value of field 
-						foreach ($field_value as $key => $value) {
-							if(!isset($frontend_selected_fields[$group_key][$field_key][$key]))
-								$frontend_selected_fields[$group_key][$field_key][$key] = $field_value[$key];
-						}
-					}
-				}
-				$this->fields = $frontend_selected_fields;
-		}
 		return $this->fields;
 	}
 
@@ -516,7 +497,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * Submit Step
 	 */
 	public function submit() {
-		$this->init_fields();
+			// Init fields
+			//$this->init_fields(); We dont need to initialize with this function because of field edior
+			// Now field editor function will return all the fields 
+			//Get merged fields from db and default fields.
+			$this->merge_with_custom_fields('frontend' );
 		// Load data if neccessary
 		if ( $this->event_id ) {
 			$event = get_post( $this->event_id );
@@ -591,7 +576,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	public function submit_handler() {
 		try {
 			// Init fields
-			$this->init_fields();
+			//$this->init_fields(); We dont need to initialize with this function because of field edior
+			// Now field editor function will return all the fields 
+			//Get merged fields from db and default fields.
+			$this->merge_with_custom_fields('frontend' );
+			
 			// Get posted values
 			$values = $this->get_posted_fields();
 			if ( empty( $_POST['submit_event'] ) ) {
@@ -897,5 +886,84 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	public function done() {
 		do_action( 'event_manager_event_submitted', $this->event_id );
 		get_event_manager_template( 'event-submitted.php', array( 'event' => get_post( $this->event_id ) ) );
+	}
+	
+	/**
+	 * get user selected fields from the field editor
+	 *
+	 * @return fields Array
+	 */
+	public function get_event_manager_fieldeditor_fields(){
+		return apply_filters('get_event_manager_fieldeditor_fields', get_option( 'event_manager_form_fields', false ) );
+	}
+	
+	/**
+	 * This function will initilize default fields and return as array
+	 * @return fields Array
+	 **/
+	public function get_default_fields( ) {
+		if(empty($this->fields)){
+			// Make sure fields are initialized and set
+			$this->init_fields();
+		}
+	
+		return $this->fields;
+	}
+	
+	/**
+	 * Merge and replace $default_fields with custom fields
+	 *
+	 * @return array Returns merged and replaced fields
+	 */
+	public function merge_with_custom_fields( $field_view = 'frontend' ) {
+	
+		$custom_fields  = $this->get_event_manager_fieldeditor_fields();
+		$default_fields = $this->get_default_fields( );
+		if(!is_array($custom_fields ))
+			return $default_fields;
+	
+		$updated_fields = ! empty( $custom_fields ) ? array_replace_recursive( $default_fields, $custom_fields ) : $default_fields;
+		
+		/**
+		 * Above array_replace_recursive function will replace the default fields by custom fields.
+		 * If array key is not same then it will merge array. This is only case for the Radio and Select Field(In case of array if key is not same).
+		 * For eg. options key it has any value or option as per user requested or overrided but array_replace_recursive will merge both 		options of default field and custom fields.
+		 User change the default value of the event_online (radio button) from Yes --> Y and No--> N then array_replace_recursive will merge both valus of the options array for event_online like options('yes'=>'yes', 'no'=>'no','y'=>'y','n'=>'n') but  we need to keep only updated options value of the event_online so we have to remove old default options values and for that we have to do the following procedure.
+		 * In short: To remove default options need to replace the options array with custom options which is added by user.
+		 **/
+		foreach($default_fields as $default_group_key => $default_group){
+			foreach ($default_group as $field_key => $field_value) {
+				foreach($field_value as $key => $value ){
+					if( isset( $custom_fields[$default_group_key][$field_key][$key]) && ( $key == 'options' || is_array($value) ) )
+						$updated_fields[$default_group_key][$field_key][$key] = $custom_fields[$default_group_key][$field_key][$key];
+				}
+			}
+		}
+		
+		/**
+		 * If default field is removed via field editor then we can not removed this field from the code because it is hardcode in the file so we need to set flag to identify to keep the record which perticular field is removed by the user.
+		 * Using visibility flag we can identify those fields need to remove or keep in the Field Editor based on visibility flag value. if visibility true then we will keep the field and if visibility flag false then we will not show this default field in the field editor. (As action of user removed this field from the field editor but not removed from the code so we have to set this flag)
+		 * We are getting several default fields from the addons and using theme side customization via 'submit_event_form_fields' filter.
+		 * Now, Not easy to manage filter fields and default fields of plugin in this case so we need to set this flag for identify wheather field show  or not in the field editor.
+		 *
+		 * If user selected admin only fields then we need to unset that fields from the frontend user.
+		 **/
+		if(!empty($updated_fields))
+		foreach ( $updated_fields as $group_key => $group_fields ) {
+			foreach ($group_fields as $key => $field) {
+				//remove if visiblity is false
+				if(isset($field['visibility']) && $field['visibility'] == false )
+					unset($updated_fields[$group_key][$key]);
+					
+				//remove admin fields if view type is frontend
+				if( isset($field['admin_only']) &&  $field_view == 'frontend' &&  $field['admin_only'] == true )
+					unset($updated_fields[$group_key][$key]);
+			}
+			uasort( $updated_fields[$group_key], array( $this, 'sort_by_priority' ) );
+		}
+		
+		$this->fields = apply_filters('merge_with_custom_fields',$updated_fields,$default_fields) ;
+	
+		return $this->fields;
 	}
 }

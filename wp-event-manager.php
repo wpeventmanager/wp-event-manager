@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 2.7
+Version: 2.8
 
 Since: 1.0
 
@@ -81,7 +81,7 @@ class WP_Event_Manager {
 	{
 		// Define constants
 
-		define( 'EVENT_MANAGER_VERSION', '2.7' );
+		define( 'EVENT_MANAGER_VERSION', '2.8' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
