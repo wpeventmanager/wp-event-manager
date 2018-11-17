@@ -1,11 +1,11 @@
 === WP Event Manager ===
 
-Contributors: ashokdudhat,gamthemes,hiteshmakvana,naokomc,garrett-eclipse,monikarao
+Contributors: ashokdudhat,gamthemes,hiteshmakvana,nao,garrett-eclipse,monikarao
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 4.9.9
-Stable tag: 2.5
+Tested up to: 4.9.8
+Stable tag: 2.8
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -162,7 +162,7 @@ We've integrated RTL and multi language support within the plugin, so you can tr
 
 
 = Be a contributor =
-If you want to contribute, go to our [WP Event Manager GitHub Repository](https://github.com/ashokdudhat/wp-event-manager) and see where you can help.
+If you want to contribute, go to our [WP Event Manager GitHub Repository](https://github.com/wpeventmanager/wp-event-manager) and see where you can help.
 
 You can also add a new language via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-event-manager). We've built a short guide explaining [how to translate and localize the plugin](https://www.wp-eventmanager.com/documentation/translating-wp-event-manager/).
 
@@ -171,14 +171,14 @@ Thanks to all of our contributors.
 = Documentation and Support =
 - For documentation and tutorials go to our [Documentation](https://www.wp-eventmanager.com/documentation/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 - If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/wp-event-manager).
-- If you want help with a customisation, you can contact any one fo the [Listed Certified Developers] (https://www.wp-eventmanager.com/hire-certified-wp-event-manager-developers/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
+- If you want help with a customisation, you can contact any one for the [Listed Certified Developers](https://www.wp-eventmanager.com/hire-certified-wp-event-manager-developers/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 - If you need help with one of our add-ons, [please contact here](https://www.wp-eventmanager.com/get-support/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 - For more information about features, FAQs and documentation, check out our website at [WP Event Manager](https://www.wp-eventmanager.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme).
 
 
 = Connect With US =
-To stay in touch and get latest update about WP Event Managerâ€™s further releases and features, you can connect with us via:
-- [Facebook](https://www.facebook.com/WP-Event-Manager-306625436419764/)
+To stay in touch and get latest update about WP Event Manager's further releases and features, you can connect with us via:
+- [Facebook](https://www.facebook.com/wpeventmanager/)
 - [Twitter](https://twitter.com/wp_eventmanager)
 - [Google Plus](https://plus.google.com/u/0/b/107105224603939407328/107105224603939407328)
 - [Linkedin](https://www.linkedin.com/company/wp-event-manager)
@@ -310,6 +310,28 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 == Changelog ==
+
+= 2.8 =
+
+* Fixed - Field editor issue.
+* Fixed - Registration button compatiblity with registration addon.
+* Fixed - Date field type
+* Fixed - Registration deadline
+* Fixed - backend and submit event js improved
+
+
+= 2.7 =
+
+* Fixed - Datepicker format changed to default as it is.
+* Fixed - taxonomy editing fields.
+* Fixed - Date filter fixed.
+
+= 2.6 =
+
+* Fixed - Field editor improved.
+* Fixed - Time field type issue fixed.
+* Fixed - Admin expiry date and other date field improved.
+* Fixed - Admin panel css issue fixed.
 
 = 2.5 =
 

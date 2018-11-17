@@ -20,10 +20,6 @@
 }
 
 /* Start conflict with bootstrap fix */
-body 
-{
-    background-color: transparent !important;
-}
 .fade { opacity: 1 !important;}
 a { text-decoration: none !important; }
 
@@ -528,8 +524,6 @@ margin-right:0!important
 th.sortable a span, th.sorted a span { line-height:15px;}
 
 /* plugin info box */
-
-body {	background-color: transparent!important;}
 .box-info {    position: relative;    min-width: 255px; margin-top:30px;    border: 1px solid #e5e5e5;   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);    box-shadow: 0 1px 1px rgba(0,0,0,0.04);    background: #fff; float:right!important;   box-sizing:border-box; width:28%;  padding:0 15px 15px 15px;}
 .box-info .box-title {    float: right;    width: 27px;    height: 30px;}
 .box-info h3{	padding: 0 0 10px 10px; font-size:13px; border-bottom:1px solid #efefef; }

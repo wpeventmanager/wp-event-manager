@@ -61,15 +61,14 @@ class WP_Event_Manager_Field_Editor {
 			echo $this->form_editor_save();
 		}
 
-	include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
-	include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
-	
-	$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );	
-	$fields      = $form_submit_event_instance->init_fields();
-	$temp_fields = get_option( 'event_manager_form_fields', $fields );
-	if(!empty($temp_fields) && is_array($temp_fields))
-		$fields = $temp_fields;
-
+		if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) {
+			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );	
+		}
+		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+		$fields = $form_submit_event_instance->merge_with_custom_fields('backend');
+		
+		$disbled_fields = array('event_title','event_description');
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           => __( 'Text', 'wp-event-manager' ),
 			'time'           => __( 'Time', 'wp-event-manager' ),
@@ -113,6 +112,7 @@ class WP_Event_Manager_Field_Editor {
 							<th width="1%"><?php _e( 'Type', 'wp-event-manager' ); ?></th>
 							<th><?php _e( 'Description', 'wp-event-manager' ); ?></th>
 							<th><?php _e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php _e( 'Only For Admin', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Priority', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Validation', 'wp-event-manager' ); ?></th>
 							<th width="1%" class="field-actions">&nbsp;</th>
@@ -174,7 +174,7 @@ class WP_Event_Manager_Field_Editor {
 							if ( isset($new_fields[$group_key][$field_key]['type']) && ! in_array($new_fields[$group_key][$field_key]['type'],  array('term-select', 'term-multiselect', 'term-checklist') ) ) {
 								unset($new_fields[$group_key][$field_key]['taxonomy']);
 							}
-							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] == 'select'  || $new_fields[$group_key][$field_key]['type'] == 'radio'  || $new_fields[$group_key][$field_key]['type'] == 'multiselect'){
+							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] == 'select'  || $new_fields[$group_key][$field_key]['type'] == 'radio'  || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options' ){
 								if(isset($new_fields[$group_key][$field_key]['options'])){
 									$new_fields[$group_key][$field_key]['options'] = explode( ' | ', $new_fields[$group_key][$field_key]['options']);
 									$temp_options = array();
@@ -197,6 +197,26 @@ class WP_Event_Manager_Field_Editor {
 							unset($new_fields[$group_key][$field_key]);
 					}
 				}
+				
+				//merge field with default fields
+				if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) {
+					include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+					include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
+				}
+				
+				$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+				$default_fields = $form_submit_event_instance->get_default_fields('backend');
+				//if field in not exist in new fields array then
+				if(!empty($default_fields))
+				foreach ( $default_fields as $group_key => $group_fields ) {
+					foreach ($group_fields as $key => $field) {
+						if( !isset( $new_fields[$group_key][$key] ) ){
+							$new_fields[$group_key][$key] 				= $field;
+							$new_fields[$group_key][$key]['visibility'] = 0;
+						}
+					}
+				}
+				
 				$result = update_option( 'event_manager_form_fields', $new_fields );
 			
 			}	  
