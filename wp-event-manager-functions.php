@@ -456,7 +456,7 @@ function get_event_listings( $args = array() ) {
 		set_transient( $query_args_hash, $result, DAY_IN_SECONDS * 30 );
 	}
 	
-	//$result = apply_filters('get_event_listings_result_args',$query_args,$args );
+	$result = apply_filters('get_event_listings_result_args',$result,$query_args );
 	
 	do_action( 'after_get_event_listings', $query_args, $args );
 
