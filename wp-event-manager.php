@@ -92,7 +92,8 @@ class WP_Event_Manager {
 		include( 'core/wp-event-manager-api.php' );
 		include( 'core/wp-event-manager-geocode.php' );
 		include( 'core/wp-event-manager-filters.php' );
-		include( 'core/wp-event-manager-cache-helper.php' );		
+		include( 'core/wp-event-manager-cache-helper.php' );
+		include( 'core/wp-event-manager-date-time.php' );
 
 
 		//shortcodes
@@ -285,8 +286,17 @@ class WP_Event_Manager {
 		wp_enqueue_script('wp-event-manager-common'); 		
 
 		//event submission forms and validation js
-		wp_register_script( 'wp-event-manager-event-submission', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-submission.min.js', array('jquery','jquery-ui') , EVENT_MANAGER_VERSION, true );
-
+		wp_register_script( 'wp-event-manager-event-submission', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-submission.min.js', array('jquery','jquery-ui-core','jquery-ui-datepicker') , EVENT_MANAGER_VERSION, true );
+		wp_localize_script( 'wp-event-manager-event-submission', 'wp_event_manager_event_submission', array(
+			
+		'i18n_datepicker_format' => WP_Event_Manager_Date_Time::get_datepicker_format(),
+		
+		'i18n_timepicker_format' => WP_Event_Manager_Date_Time::get_timepicker_format(),
+		
+		'i18n_timepicker_step' => WP_Event_Manager_Date_Time::get_timepicker_step(),
+		
+		) );
+		
         wp_register_script( 'wp-event-manager-content-event-listing', EVENT_MANAGER_PLUGIN_URL . '/assets/js/content-event-listing.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true );					
 
 		//ajax filters js
@@ -317,8 +327,13 @@ class WP_Event_Manager {
 
 
 		wp_enqueue_style( 'wp-event-manager-jquery-ui-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.css');	
-		wp_register_script( 'jquery-ui', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.js', array('jquery'), EVENT_MANAGER_VERSION, true);
-		wp_enqueue_script( 'jquery-ui');
+		//wp_register_script( 'jquery-ui', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.js', array('jquery'), EVENT_MANAGER_VERSION, true);
+		//wp_enqueue_script( 'jquery-ui');
+		
+		wp_enqueue_style( 'wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css');
+		wp_register_script( 'wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array( 'jquery' ,'jquery-ui-core'), EVENT_MANAGER_VERSION, true );
+		wp_enqueue_script( 'wp-event-manager-jquery-timepicker');
+		
 	}
 	/**
 	 	 * Cleanup event posting cookies.
