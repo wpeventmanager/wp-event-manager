@@ -519,10 +519,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						break;
 						
 						case ($key ==  'event_start_date' ||  $key == 'event_end_date' ) :
-							$event_start_date = get_post_meta( $event->ID, '_' . $key, true );
+							$event_date = get_post_meta( $event->ID, '_' . $key, true );
 							$default_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+							$default_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $default_date_format );
 						
-							$this->fields[ $group_key ][ $key ]['value'] = date($default_date_format ,strtotime($event_start_date) );
+							$this->fields[ $group_key ][ $key ]['value'] = date($default_date_format ,strtotime($event_date) );
 						break;
 							
 						case 'event_type' :
