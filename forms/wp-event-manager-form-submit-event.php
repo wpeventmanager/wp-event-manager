@@ -517,6 +517,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						case  'organizer_logo':
 							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $event->ID ) ? get_post_thumbnail_id( $event->ID ) : get_post_meta( $event->ID, '_' . $key, true );
 						break;
+						
+						case ($key ==  'event_start_date' ||  $key == 'event_end_date' ) :
+							$event_start_date = get_post_meta( $event->ID, '_' . $key, true );
+							$default_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+						
+							$this->fields[ $group_key ][ $key ]['value'] = date($default_date_format ,strtotime($event_start_date) );
+						break;
+							
 						case 'event_type' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_type', array( 'fields' => 'ids' ) );
 							if ( ! event_manager_multiselect_event_type() ) {
