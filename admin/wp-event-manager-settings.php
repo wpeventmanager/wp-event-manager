@@ -595,6 +595,63 @@ class WP_Event_Manager_Settings {
 							'type'      => 'page'
 						),
 					)
+				),
+				'date_time_formatting' => array(
+						__( 'Date & time formatting', 'wp-event-manager' ),
+				
+						array(
+								array(
+				
+										'name' 		=> 'event_manager_datepicker_format',
+				
+										'std' 		=> '',
+				
+										'label' 	=> __( 'Datepicker Date Format', 'wp-event-manager' ),
+				
+										'desc'		=> __( 'Select the date format to use in datepickers', 'wp-event-manager' ),
+				
+										'type'      => 'select',
+				
+										'options'	=>  WP_Event_Manager_Date_Time::get_event_manager_date_admin_settings()
+								),
+				
+								array(
+										'name' 		=> 'event_manager_timepicker_format',
+										'std' 		=> '12',
+										'label' 	=> __( 'Timepicker Format', 'wp-event-manager' ),
+				
+										'desc'		=> __( 'Select the time format to use in timepicker', 'wp-event-manager' ),
+				
+										'type'      => 'radio',
+				
+										'options'	=>  array(
+												'12' => __( '12 Hours', 'wp-event-manager' ),
+												'24' => __( '24 Hours', 'wp-event-manager' )
+										)
+								),
+								array(
+										'name' 		=> 'event_manager_timepicker_step',
+				
+										'std' 		=> '30',
+				
+										'label' 	=> __( 'Timepicker step', 'wp-event-manager' ),
+				
+										'desc'		=> __( 'Select the time step to use in timepicker. Time step must have to be in between 1 to 60.', 'wp-event-manager' ),
+				
+										'type'      => 'text',
+								),
+								array(
+										'name' 		=> 'event_manager_view_date_format',
+				
+										'std' 		=> 'Y-m-d',
+				
+										'label' 	=> __( 'Date format', 'wp-event-manager' ),
+				
+										'desc'		=> __( 'This date format will be used at all the frontend date views.', 'wp-event-manager' ),
+				
+										'type'      => 'text',
+								),
+						)
 				)
 			)
 		);
