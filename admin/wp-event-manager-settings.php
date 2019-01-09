@@ -601,7 +601,7 @@ class WP_Event_Manager_Settings {
 				
 						array(
 								array(
-				
+														
 										'name' 		=> 'event_manager_datepicker_format',
 				
 										'std' 		=> '',
