@@ -248,6 +248,16 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 								'priority'    => 15,
 								'required'=>true	  
 							  ),
+				'event_timezone' => array(
+						'label'=> __( 'Event timezone', 'wp-event-manager' ),
+						'placeholder'  	=> __( 'Please select timezone for event', 'wp-event-manager' ),
+						'type'  		=> 'timezone',
+						'priority'    	=> 15,
+						'required'	=> true,
+						'class'		=> 'event-manager-category-dropdown',
+						'default'	=> '+5:00'
+						//'value'		=> ''
+				),
 
 				'event_ticket_options' => array(
 							        'label'=> __( 'Ticket Options', 'wp-event-manager' ),							      
@@ -365,6 +375,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		
 		if ( ! get_option( 'event_manager_enable_event_types' ) || 0 === wp_count_terms( 'event_listing_type' ) ) {
 			unset( $this->fields['event']['event_type'] );
+		}
+		
+		//unset timezone field if setting is site wise timezone
+		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
+		if ( $timezone_setting != 'each_event' ) {
+			unset( $this->fields['event']['event_timezone'] );
 		}
 	
 		return $this->fields;
@@ -502,6 +518,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			// Now field editor function will return all the fields 
 			//Get merged fields from db and default fields.
 			$this->merge_with_custom_fields('frontend' );
+			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+			
+			//covert datepicker format  into php date() function date format
+			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+			
 		// Load data if neccessary
 		if ( $this->event_id ) {
 			$event = get_post( $this->event_id );
@@ -541,6 +563,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 					if ( ! empty( $field['taxonomy'] ) ) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, $field['taxonomy'], array( 'fields' => 'ids' ) );
+					}
+					
+					if(! empty( $field['type'] ) &&  $field['type'] == 'date' ){
+						$event_date = get_post_meta( $event->ID, '_' . $key, true );
+						echo $php_date_format;
+						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );
 					}
 				}
 			}
@@ -773,6 +801,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		add_post_meta( $this->event_id, '_cancelled', 0, true );
 		add_post_meta( $this->event_id, '_featured', 0, true );
 		$maybe_attach = array();
+		
+		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+		
+		//covert datepicker format  into php date() function date format
+		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 
 		// Loop fields and save meta and term data
 		foreach ( $this->fields as $group_key => $group_fields ) {
@@ -796,6 +830,51 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					update_user_meta( get_current_user_id(), '_organizer_logo', $attachment_id );
 					
 					// Save meta data
+				}
+				
+				elseif( $key === 'event_start_date'  ){
+					//save event start date according to mysql date format with event start time
+					if(isset( $values[ $group_key ][ $key ] ) && isset( $values[ $group_key ][ 'event_start_time' ] )){
+				
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_start_time' ] );
+						//combine event start date value with event start time
+						$date =  $values[ $group_key ][ $key ].' '.$start_time ;
+				
+						//Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
+						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+				
+						update_post_meta( $this->event_id, '_' . $key,$date_dbformatted);
+						//update_post_meta( $this->event_id, '_' . $key, date('Y-m-d H:i:s',strtotime(  $values[ $group_key ][ $key ].' '. $values[ $group_key ][ 'event_start_time' ]  )) );
+					}
+					else
+						update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+				
+				}
+				elseif( $key ==='event_end_date' ){
+					//save event end date according to mysql date format with event end time
+					if(isset( $values[ $group_key ][ $key ] ) && isset( $values[ $group_key ][ 'event_end_time' ] )){
+						$end_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_end_time' ] );
+						//combine event start date value with event start time
+						$date =  $values[ $group_key ][ $key ].' '.$end_time ;
+
+						//Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
+						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+				
+						update_post_meta( $this->event_id, '_' . $key,$date_dbformatted);
+				
+						//update_post_meta( $this->event_id, '_' . $key, date('Y-m-d H:i:s',strtotime(  $values[ $group_key ][ $key ].' '. $values[ $group_key ][ 'event_end_time' ]  )) );
+					}
+					else
+						update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+				}
+				elseif ( $field['type'] == 'date' ) {
+					$date = $values[ $group_key ][ $key ];
+					//Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+					update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
 				}
 				 else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );

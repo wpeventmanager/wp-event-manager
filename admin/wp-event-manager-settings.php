@@ -651,6 +651,21 @@ class WP_Event_Manager_Settings {
 				
 										'type'      => 'text',
 								),
+								array(
+										'name' 		=> 'event_manager_timezone_setting',
+								
+										'std' 		=> 'site_timezone',
+								
+										'label' 	=> __( 'Event timezone', 'wp-event-manager' ),
+								
+										'desc'		=> __( 'timezone for the event date and time', 'wp-event-manager' ),
+								
+										'type'      => 'radio',
+										'options'	=> array(
+												'site_timezone' 	=> __( 'Use website timezone.', 'wp-event-manager' ),
+												'each_event' 		=> __( 'Select timezone on each event', 'wp-event-manager' )
+										)
+								)
 						)
 				)
 			)
