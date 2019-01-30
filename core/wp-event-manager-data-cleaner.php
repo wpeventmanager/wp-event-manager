@@ -1,324 +1,409 @@
 <?php
-/**
- * Defines a class with methods for cleaning up plugin data. To be used when
- * the plugin is deleted.
- *
- * @package Core
+/*
+ * Class WP_Event_Manager_Date_Time
+ * 
  */
+class WP_Event_Manager_Date_Time {
 
-if ( ! defined( 'ABSPATH' ) ) {
-	// Exit if accessed directly.
-	exit;
+	const DATABASE_DATE_TIME_FORMAT      = 'Y-m-d H:i:s';
+	const DBTIMEFORMAT          = 'H:i:s';
+
+
+	/**
+	* Get datepicker format function will return all the date formats for datepicker
+	* 
+	* 
+	* @since 3.0
+	**/
+	public static function get_datepicker_format() {
+
+		$selected_format = get_option('event_manager_datepicker_format',0);
+		$formats = self::get_default_date_formats();
+
+		if($selected_format && isset($formats['datepicker_date_formats'][$selected_format]))
+			return $formats['datepicker_date_formats'][$selected_format];
+		else
+			return  $formats['datepicker_date_formats'][0];
+	}
+
+	/**
+	*
+	**/
+	public static function get_default_date_formats(){
+
+		$date_formats['datepicker_date_formats']  = apply_filters('wp_event_manager_datepicker_date_formats',
+																		array(
+																			'yy-mm-dd',
+																			'm-d-yy',
+																			'mm-dd-yy',
+																			'd-m-yy',
+																			'dd-mm-yy',
+																			
+																			'm/d/yy',
+																			'mm/dd/yy',
+																			'd/m/yy',
+																			'dd/mm/yy',
+
+																			'yy.mm.dd',
+																			'mm.dd.yy',
+																			'dd.mm.yy'
+
+
+																		) 
+															);
+
+		$date_formats['view_date_formats'] = apply_filters('wp_event_manager_view_date_formats',
+											 	array( 
+											 		'Y-m-d',
+													'n-j-Y',
+													'm-d-Y',
+													'j-n-Y',
+													'd-m-Y',
+
+													'n/j/Y',
+													'm/d/Y',
+													'j/n/Y',
+													'd/m/Y',
+
+													'Y.m.d',
+													'm.d.Y',
+													'd.m.Y',
+											 		
+											 ));
+
+
+		return $date_formats;
+	}
+
+
+	/**
+	*  php date format parsing has error so we need to parse via our custom parsing method
+	*  Ref. https://stackoverflow.com/questions/6668223/php-date-parse-from-format-alternative-in-php-5-2
+	*/
+	public static function date_parse_from_format($format, $date) {
+
+	  // reverse engineer date formats
+        $keys = array(
+				// Year with 4 Digits
+				'Y' => array( 'year', '\d{4}' ),
+
+				// Year with 2 Digits
+				'y' => array( 'year', '\d{2}' ),
+
+				// Month with leading 0
+				'm' => array( 'month', '\d{2}' ),
+
+				// Month without the leading 0
+				'n' => array( 'month', '\d{1,2}' ),
+
+				// Month ABBR 3 letters
+				'M' => array( 'month', '[A-Z][a-z]{2}' ),
+
+				// Month Name
+				'F' => array( 'month', '[A-Z][a-z]{2,8}' ),
+
+				// Day with leading 0
+				'd' => array( 'day', '\d{2}' ),
+
+				// Day without leading 0
+				'j' => array( 'day', '\d{1,2}' ),
+
+				// Day ABBR 3 Letters
+				'D' => array( 'day', '[A-Z][a-z]{2}' ),
+
+				// Day Name
+				'l' => array( 'day', '[A-Z][a-z]{5,8}' ),
+
+				// Hour 12h formatted, with leading 0
+				'h' => array( 'hour', '\d{2}' ),
+
+				// Hour 24h formatted, with leading 0
+				'H' => array( 'hour', '\d{2}' ),
+
+				// Hour 12h formatted, without leading 0
+				'g' => array( 'hour', '\d{1,2}' ),
+
+				// Hour 24h formatted, without leading 0
+				'G' => array( 'hour', '\d{1,2}' ),
+
+				// Minutes with leading 0
+				'i' => array( 'minute', '\d{2}' ),
+
+				// Seconds with leading 0
+				's' => array( 'second', '\d{2}' ),
+        );
+
+        // convert format string to regex
+        $regex = '';
+        $chars = str_split($format);
+        foreach ( $chars AS $n => $char ) {
+            $lastChar = isset($chars[$n-1]) ? $chars[$n-1] : '';
+            $skipCurrent = '\\' == $lastChar;
+            if ( !$skipCurrent && isset($keys[$char]) ) {
+                $regex .= '(?P<'.$keys[$char][0].'>'.$keys[$char][1].')';
+            }
+            else if ( '\\' == $char ) {
+                $regex .= $char;
+            }
+            else {
+                $regex .= preg_quote($char);
+            }
+        }
+
+        $dt = array();
+        
+        // now try to match it
+        if( preg_match('#^'.$regex.'$#', $date, $dt) ){
+            foreach ( $dt AS $k => $v ){
+                if ( is_int($k) ){
+                    unset($dt[$k]);
+                }
+            }
+
+
+            if( !checkdate($dt['month'], $dt['day'], $dt['year']) ){
+                return false;
+            }
+        }
+        else {
+
+            return false;
+        }
+
+        $dt['month'] = str_pad( $dt['month'], 2, '0', STR_PAD_LEFT );
+			$dt['day'] = str_pad( $dt['day'], 2, '0', STR_PAD_LEFT );
+
+			$formatted = '{year}-{month}-{day}' . ( isset( $dt['hour'], $dt['minute'] ,$dt['second'] ) ? ' {hour}:{minute}:{second}' : '' );
+			foreach ( $dt as $key => $value ) {
+				$formatted = str_replace( '{' . $key . '}', $value, $formatted );
+			}
+
+
+        return $formatted;
+	}
+
+	/*
+	*  yy-dd-mm = Y-d-m = 2019-15-01
+	*/
+	public static function get_view_date_format_from_datepicker_date_format( $datepicker_format = 'yy-mm-dd' ){
+
+		$all_formats = self::get_default_date_formats();
+		$indexof_view_date_format = array_search( $datepicker_format, $all_formats['datepicker_date_formats'] ); 
+
+		return $all_formats['view_date_formats'][$indexof_view_date_format];
+	}
+
+	/**
+	* Get timepicker format function will return all the date formats for timepicker
+	* 
+	* @since 3.0
+	**/
+	public static function get_timepicker_format() {
+		$selected_format = get_option('event_manager_timepicker_format',12);
+		
+		$formats =  array('h:i A','H:i');
+		if($selected_format && $selected_format == 24  ){
+			return $formats[1];
+		}
+		else
+			return  $formats[0];
+	}
+
+	/**
+		 * Returns the time only.
+		 *
+		 * @param string $time time in 24 hour or 12 hour.
+		 *
+		 * @return string it will return time in DB formatted 24 hours time
+		 */
+		public static function get_db_formatted_time( $time ) {
+			$time = is_numeric( $time ) ? $time : strtotime( $time );
+			return date( self::DBTIMEFORMAT, $time );
+		}
+
+
+	/**
+	* Get timepicker format function will return all the date formats for timepicker
+	* 
+	* @since 3.0
+	**/
+	public static function get_timepicker_step() {
+		$selected_step = get_option('event_manager_timepicker_step',30);
+		
+		return isset($selected_step) && $selected_step >= 1 && $selected_step <= 60 ? $selected_step : 30;
+	}
+
+
+	public static function get_event_manager_view_date_format(){
+		return get_option('event_manager_view_date_format','M d ,Y');
+	}
+	public static function get_event_manager_date_admin_settings(){
+				$dummy_date = strtotime( 'January 15 ' . date( 'Y' ) );
+				$default_foramts = self::get_default_date_formats();
+				$setting_values = array();
+				foreach($default_foramts['view_date_formats'] as $key => $value ){	
+					$setting_values[$key] = date( $value, $dummy_date );
+				}
+				return $setting_values;
+	}
+
+	public static function get_event_manager_timezone_setting(){
+		$selected_timezone = get_option('event_manager_timezone_setting','site_timezone');
+		return $selected_timezone;
+	}
+
+	public static function get_current_site_timezone(){
+		$current_offset = get_option('gmt_offset');
+		$tzstring = get_option('timezone_string');
+
+		$check_zone_info = true;
+
+		// Remove old Etc mappings. Fallback to gmt_offset.
+		if ( false !== strpos($tzstring,'Etc/GMT') )
+			$tzstring = '';
+
+		if ( empty($tzstring) ) { // Create a UTC+- zone if no timezone string exists
+			$check_zone_info = false;
+			if ( 0 == $current_offset )
+				$tzstring = 'UTC+0';
+			elseif ($current_offset < 0)
+				$tzstring = 'UTC' . $current_offset;
+			else
+				$tzstring = 'UTC+' . $current_offset;
+		}
+		return $tzstring;
+	}
+
+
+	public static function wp_event_manager_timezone_choice($tzstring = null){
+		if(empty($tzstring))
+			$tzstring = self::get_current_site_timezone();
+
+		return apply_filters( 'wp_event_manager_timezone_choice', wp_timezone_choice( $tzstring, get_user_locale() ));
+	}
+
+	public static function convert_event_timezone_into_abbr( $event_timezone ){
+		//get string of event timezone if it is UTC offset
+		$tzstring 	= self::generate_timezone_string_from_utc_offset( $event_timezone );
+
+		$date_time 	= new DateTime('NOW');
+		$date_time->setTimeZone(new DateTimeZone( $tzstring ));
+		return $date_time->format('T'); 
+	}
+
+
+	/**
+	* current_timestamp_from_event_timezone will return the current timestamp according to the 
+	*	timezone selected in event or passed in argument
+	* @since 3.0
+	* @param $event_timezone
+	* @return  timestamp
+	**/
+	public static function current_timestamp_from_event_timezone( $event_timezone ){
+		if(empty($event_timezone))
+			return;
+		//get string of event timezone if it is UTC offset
+		$tzstring 	= self::generate_timezone_string_from_utc_offset( $event_timezone );
+
+		$date_time = new DateTime( "now" );
+
+		$date_time->setTimezone( new DateTimeZone( $tzstring ) );
+		
+		return strtotime( $date_time->format('Y-m-d H:i:s') ); 
+	}
+
+
+
+	/**
+	 * Tests to see if the timezone string is a UTC offset, ie "UTC+2".
+	 *
+	 * @param string $timezone
+	 *
+	 * @return bool
+	 */
+	public static function is_utc_offset( $timezone ) {
+		$timezone = trim( $timezone );
+		return ( 0 === strpos( $timezone, 'UTC' ) && strlen( $timezone ) > 3 );
+	}
+
+	/**
+	 * Helper function to retrieve the timezone string for a given UTC offset
+	 *
+	 * This is a close copy of WooCommerce's wc_timezone_string() method
+	 *
+	 * @param string $offset UTC offset
+	 *
+	 * @return string
+	 */
+	public static function generate_timezone_string_from_utc_offset( $offset ) {
+		if ( ! self::is_utc_offset( $offset ) ) {
+			return $offset;
+		}
+
+		// ensure we have the minutes on the offset
+		if ( ! strpos( $offset, ':' ) ) {
+			$offset .= ':00';
+		}
+
+		$offset = str_replace( 'UTC', '', $offset );
+
+		list( $hours, $minutes ) = explode( ':', $offset );
+		$seconds = $hours * 60 * 60 + $minutes * 60;
+
+		// attempt to guess the timezone string from the UTC offset
+		$timezone = timezone_name_from_abbr( '', $seconds, 0 );
+
+		if ( false === $timezone ) {
+			$is_dst = date( 'I' );
+
+			foreach ( timezone_abbreviations_list() as $abbr ) {
+				foreach ( $abbr as $city ) {
+					if (
+						$city['dst'] == $is_dst
+						&& $city['offset'] == $seconds
+					) {
+						return $city['timezone_id'];
+					}
+				}
+			}
+
+			// fallback to UTC
+			return 'UTC';
+		}
+
+		return $timezone;
+	}
+
+	/**
+	 * Localizes a date or timestamp using WordPress timezone and returns it in the specified format.
+	 *
+	 * @param string     $format   The format the date shouuld be formatted to.
+	 * @param string|int $date     The date UNIX timestamp or `strtotime` parseable string.
+	 * @param string     $timezone An optional timezone string identifying the timezone the date shoudl be localized
+	 *                             to; defaults to the WordPress installation timezone (if available) or to the system
+	 *                             timezone.
+	 *
+	 * @return string|bool The parsed date in the specified format and localized to the system or specified
+	 *                     timezone, or `false` if the specified date is not a valid date string or timestamp
+	 *                     or the specified timezone is not a valid timezone string.
+	 */
+	public static function localize_date($date = null, $format = null,  $timezone = null ) {
+
+		if(empty($timezone))
+			$timezone = self::get_current_site_timezone();
+		
+		$timezone = self::generate_timezone_string_from_utc_offset( $timezone );
+		
+		try {
+			$date = new DateTime( strtotime($date) );
+			$date->setTimezone( new DateTimeZone( $timezone ) );
+			
+		} catch ( Exception $e ) {
+			return false;
+		}
+
+		return $date->format( $format );
+	}
 }
 
-/**
- * Methods for cleaning up all plugin data.
- *
- * @since 2.5
- */
-class WP_Event_Manager_Data_Cleaner {
-
-	/**
-	 * Custom post types to be deleted.
-	 *
-	 * @var $custom_post_types
-	 */
-	private static $custom_post_types = array(
-		'event_listing',
-	);
-
-	/**
-	 * Taxonomies to be deleted.
-	 *
-	 * @var $taxonomies
-	 */
-	private static $taxonomies = array(
-		'event_listing_category',
-		'event_listing_type',
-	);
-
-	/** Cron jobs to be unscheduled.
-	 *
-	 * @var $cron_jobs
-	 */
-	private static $cron_jobs = array(
-		'event_manager_check_for_expired_events',
-		'event_manager_delete_old_previews',
-		'event_manager_clear_expired_transients',
-		'event_manager_email_daily_notices',
-		'event_manager_usage_tracking_send_usage_data',
-	);
-
-	/**
-	 * Options to be deleted.
-	 *
-	 * @var $options
-	 */
-	private static $options = array(  );
-
-	/**
-	 * Site options to be deleted.
-	 *
-	 * @var $site_options
-	 */
-	private static $site_options = array(
-		'event_manager_helper',
-	);
-
-	/**
-	 * Transient names (as MySQL regexes) to be deleted. The prefixes
-	 * "_transient_" and "_transient_timeout_" will be prepended.
-	 *
-	 * @var $transients
-	 */
-	private static $transients = array(
-		'_event_manager_activation_redirect',
-		'get_event_listings-transient-version',
-		'jm_.*',
-	);
-
-	/**
-	 * Role to be removed.
-	 *
-	 * @var $role
-	 */
-	private static $role = 'organizer';
-
-	/**
-	 * Capabilities to be deleted.
-	 *
-	 * @var $caps
-	 */
-	private static $caps = array(
-		'manage_event_listings',
-		'edit_event_listing',
-		'read_event_listing',
-		'delete_event_listing',
-		'edit_event_listings',
-		'edit_others_event_listings',
-		'publish_event_listings',
-		'read_private_event_listings',
-		'delete_event_listings',
-		'delete_private_event_listings',
-		'delete_published_event_listings',
-		'delete_others_event_listings',
-		'edit_private_event_listings',
-		'edit_published_event_listings',
-		'manage_event_listing_terms',
-		'edit_event_listing_terms',
-		'delete_event_listing_terms',
-		'assign_event_listing_terms',
-	);
-
-	/**
-	 * User meta key names to be deleted.
-	 *
-	 * @var array $user_meta_keys
-	 */
-	private static $user_meta_keys = array(
-		'_organizer_logo',
-		'_organizer_name',
-		'_organizer_website',
-		'_organizer_tagline',
-		'_organizer_twitter',
-		'_organizer_video',
-	);
-
-	/**
-	 * Cleanup all data.
-	 *
-	 * @access public
-	 */
-	public static function cleanup_all() {
-		self::cleanup_custom_post_types();
-		self::cleanup_taxonomies();
-		self::cleanup_pages();
-		self::cleanup_cron_jobs();
-		self::cleanup_roles_and_caps();
-		self::cleanup_transients();
-		self::cleanup_user_meta();
-		self::cleanup_options();
-		self::cleanup_site_options();
-	}
-
-	/**
-	 * Cleanup data for custom post types.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_custom_post_types() {
-		foreach ( self::$custom_post_types as $post_type ) {
-			$items = get_posts(
-				array(
-					'post_type'   => $post_type,
-					'post_status' => 'any',
-					'numberposts' => -1,
-					'fields'      => 'ids',
-				)
-			);
-
-			foreach ( $items as $item ) {
-				wp_trash_post( $item );
-			}
-		}
-	}
-
-	/**
-	 * Cleanup data for taxonomies.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_taxonomies() {
-		global $wpdb;
-
-		foreach ( self::$taxonomies as $taxonomy ) {
-			$terms = $wpdb->get_results(
-				$wpdb->prepare(
-					"SELECT term_id, term_taxonomy_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s",
-					$taxonomy
-				)
-			);
-
-			// Delete all data for each term.
-			foreach ( $terms as $term ) {
-				$wpdb->delete( $wpdb->term_relationships, array( 'term_taxonomy_id' => $term->term_taxonomy_id ) );
-				$wpdb->delete( $wpdb->term_taxonomy, array( 'term_taxonomy_id' => $term->term_taxonomy_id ) );
-				$wpdb->delete( $wpdb->terms, array( 'term_id' => $term->term_id ) );
-				$wpdb->delete( $wpdb->termmeta, array( 'term_id' => $term->term_id ) );
-			}
-
-			if ( function_exists( 'clean_taxonomy_cache' ) ) {
-				clean_taxonomy_cache( $taxonomy );
-			}
-		}
-	}
-
-	/**
-	 * Cleanup data for pages.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_pages() {
-		// Trash the Submit Event page.
-		$submit_event_form_page_id = get_option( 'event_manager_submit_event_form_page_id' );
-		if ( $submit_event_form_page_id ) {
-			wp_trash_post( $submit_event_form_page_id );
-		}
-
-		// Trash the Event Dashboard page.
-		$event_dashboard_page_id = get_option( 'event_manager_event_dashboard_page_id' );
-		if ( $event_dashboard_page_id ) {
-			wp_trash_post( $event_dashboard_page_id );
-		}
-
-		// Trash the Events page.
-		$events_page_id = get_option( 'event_manager_events_page_id' );
-		if ( $events_page_id ) {
-			wp_trash_post( $events_page_id );
-		}
-	}
-
-	/**
-	 * Cleanup data for options.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_options() {
-		foreach ( self::$options as $option ) {
-			delete_option( $option );
-		}
-	}
-
-	/**
-	 * Cleanup data for site options.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_site_options() {
-		foreach ( self::$site_options as $option ) {
-			delete_site_option( $option );
-		}
-	}
-
-	/**
-	 * Cleanup transients from the database.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_transients() {
-		global $wpdb;
-
-		foreach ( array( '_transient_', '_transient_timeout_' ) as $prefix ) {
-			foreach ( self::$transients as $transient ) {
-				$wpdb->query(
-					$wpdb->prepare(
-						"DELETE FROM $wpdb->options WHERE option_name RLIKE %s",
-						$prefix . $transient
-					)
-				);
-			}
-		}
-	}
-
-	/**
-	 * Cleanup data for roles and caps.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_roles_and_caps() {
-		global $wp_roles;
-
-		// Remove caps from roles.
-		$role_names = array_keys( $wp_roles->roles );
-		foreach ( $role_names as $role_name ) {
-			$role = get_role( $role_name );
-			self::remove_all_event_manager_caps( $role );
-		}
-
-		// Remove caps and role from users.
-		$users = get_users( array() );
-		foreach ( $users as $user ) {
-			self::remove_all_event_manager_caps( $user );
-			$user->remove_role( self::$role );
-		}
-
-		// Remove role.
-		remove_role( self::$role );
-	}
-
-	/**
-	 * Helper method to remove WPEM caps from a user or role object.
-	 *
-	 * @param (WP_User|WP_Role) $object the user or role object.
-	 */
-	private static function remove_all_event_manager_caps( $object ) {
-		foreach ( self::$caps as $cap ) {
-			$object->remove_cap( $cap );
-		}
-	}
-
-	/**
-	 * Cleanup user meta from the database.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_user_meta() {
-		global $wpdb;
-
-		foreach ( self::$user_meta_keys as $meta_key ) {
-			$wpdb->delete( $wpdb->usermeta, array( 'meta_key' => $meta_key ) );
-		}
-	}
-
-	/**
-	 * Cleanup cron jobs. Note that this should be done on deactivation, but
-	 * doing it here as well for safety.
-	 *
-	 * @access private
-	 */
-	private static function cleanup_cron_jobs() {
-		foreach ( self::$cron_jobs as $job ) {
-			wp_clear_scheduled_hook( $job );
-		}
-	}
-}
+new WP_Event_Manager_Date_Time();

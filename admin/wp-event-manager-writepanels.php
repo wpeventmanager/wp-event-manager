@@ -46,6 +46,33 @@
 		<p class="form-field">			<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>			<input type="text" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" data-picker="timepicker" />		</p>
 			<?php
 		}				/**
+		 * input_timezone function.
+		 *
+		 * @param mixed $key
+		 * @param mixed $field
+		 */
+		public static function input_timezone( $key, $field ) {
+			global $thepostid;
+			if ( ! isset( $field['value'] ) ) {
+				$field['value'] = get_post_meta( $thepostid, $key, true );
+			}
+			if ( ! empty( $field['name'] ) ) {
+				$name = $field['name'];
+			} else {
+				$name = $key;
+			}
+			?>
+				<p class="form-field">
+					<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>
+					 <select name="<?php echo esc_attr( isset( $field['name'] ) ? $field['name'] : $key ); ?>" id="<?php echo isset( $field['id'] ) ? esc_attr( $field['id'] ) :  esc_attr( $key ); ?>" class="input-select <?php echo esc_attr( isset( $field['class'] ) ? $field['class'] : $key ); ?>">
+		 			<?php 
+		 			$value = isset($field['value']) ? $field['value'] : $field['default'];	
+		 			echo WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice($value);
+		 			?>
+		 			</select>
+				</p>
+		<?php
+		}								/**
 		 * input_number function.
 		 *
 		 * @param mixed $key
