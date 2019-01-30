@@ -148,6 +148,7 @@ class WP_Event_Manager_Date_Time {
         }
 
         $dt = array();
+        
         // now try to match it
         if( preg_match('#^'.$regex.'$#', $date, $dt) ){
             foreach ( $dt AS $k => $v ){
@@ -162,6 +163,7 @@ class WP_Event_Manager_Date_Time {
             }
         }
         else {
+
             return false;
         }
 
@@ -295,6 +297,8 @@ class WP_Event_Manager_Date_Time {
 	* @return  timestamp
 	**/
 	public static function current_timestamp_from_event_timezone( $event_timezone ){
+		if(empty($event_timezone))
+			return;
 		//get string of event timezone if it is UTC offset
 		$tzstring 	= self::generate_timezone_string_from_utc_offset( $event_timezone );
 
@@ -384,12 +388,13 @@ class WP_Event_Manager_Date_Time {
 
 		if(empty($timezone))
 			$timezone = self::get_current_site_timezone();
-
+		
 		$timezone = self::generate_timezone_string_from_utc_offset( $timezone );
-
+		
 		try {
-			$date = new DateTime( $date );
+			$date = new DateTime( strtotime($date) );
 			$date->setTimezone( new DateTimeZone( $timezone ) );
+			
 		} catch ( Exception $e ) {
 			return false;
 		}

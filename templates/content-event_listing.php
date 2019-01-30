@@ -21,8 +21,7 @@
             </div>
             <div class="col-md-2">		        
     			   <div class="date">
-    			        <date><?php $timestamp = strtotime(get_event_start_date()); if($timestamp!= null): echo date("M j, Y",$timestamp); endif;?></date>
-    			        <date><?php /* printf( __( '%s ago', 'wp-event-manager' ), human_time_diff( get_post_time( 'U' ), current_time( 'timestamp' ) ) ); */ ?></date>    			        
+    			        <date><?php display_event_start_date();?></date>    			        
     			   </div>       			  
 	        </div>
 	        <div class="col-md-3">		
@@ -50,7 +49,7 @@
     <div class="event-title">
         <?php the_title(); ?>
     </div>
-    <div class="event-start-date"><?php $timestamp = strtotime(get_event_start_date()); if($timestamp!= null): echo date("M j, Y",$timestamp); endif;?></div>   
+    <div class="event-start-date"><?php display_event_start_date();?></div>   
     <div class="event-location">
 	 <i class="glyphicon glyphicon-map-marker"></i>
      <?php if(get_event_location()=='Anywhere'): echo __('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?>
