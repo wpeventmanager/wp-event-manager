@@ -1,5 +1,11 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+/**
+ * WP_Event_Manager_Date_Time
+ */
 class WP_Event_Manager_Date_Time {
 
 	const DATABASE_DATE_TIME_FORMAT      = 'Y-m-d H:i:s';
@@ -9,7 +15,8 @@ class WP_Event_Manager_Date_Time {
 	/**
 	* Get datepicker format function will return all the date formats for datepicker
 	* 
-	* 
+	* @param null
+	* @return format of datepicker
 	* @since 3.0
 	**/
 	public static function get_datepicker_format() {
@@ -24,7 +31,10 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	*
+	* function get_default_date_formats will return all the date formats
+	* 
+	* @return array
+	* @since 3.0
 	**/
 	public static function get_default_date_formats(){
 
@@ -74,8 +84,12 @@ class WP_Event_Manager_Date_Time {
 
 
 	/**
-	*  php date format parsing has error so we need to parse via our custom parsing method
-	*  Ref. https://stackoverflow.com/questions/6668223/php-date-parse-from-format-alternative-in-php-5-2
+	 * This function will parse the date to dbformatted date
+	 * Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+	 * php date format parsing has error so we need to parse via our custom parsing method
+	 * Ref. https://stackoverflow.com/questions/6668223/php-date-parse-from-format-alternative-in-php-5-2
+	 *  
+	 *  @since 3.0
 	*/
 	public static function date_parse_from_format($format, $date) {
 
@@ -179,9 +193,13 @@ class WP_Event_Manager_Date_Time {
         return $formatted;
 	}
 
-	/*
-	*  yy-dd-mm = Y-d-m = 2019-15-01
-	*/
+	/**
+	* This function will return php formatted date format from datepicker formatted date
+	* For eg. in date picker date format is yy-mm-dd where this format in php will be Y-m-d
+	* So, We need one central function will allow to convert datepicker format in to php formatted format.
+	* 
+	* @since 3.0
+	**/
 	public static function get_view_date_format_from_datepicker_date_format( $datepicker_format = 'yy-mm-dd' ){
 
 		$all_formats = self::get_default_date_formats();
