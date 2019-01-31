@@ -32,6 +32,7 @@ class WP_Event_Manager_Date_Time {
 
 	/**
 	* function get_default_date_formats will return all the date formats
+	* This function has both type of format jquery-ui-datepicker as well as for php date format
 	* 
 	* @return array
 	* @since 3.0
@@ -212,6 +213,8 @@ class WP_Event_Manager_Date_Time {
 	* Get timepicker format function will return all the date formats for timepicker
 	* 
 	* @since 3.0
+	* @param null
+	* @return string format
 	**/
 	public static function get_timepicker_format() {
 		$selected_format = get_option('event_manager_timepicker_format',12);
@@ -225,16 +228,16 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-		 * Returns the time only.
-		 *
-		 * @param string $time time in 24 hour or 12 hour.
-		 *
-		 * @return string it will return time in DB formatted 24 hours time
-		 */
-		public static function get_db_formatted_time( $time ) {
-			$time = is_numeric( $time ) ? $time : strtotime( $time );
-			return date( self::DBTIMEFORMAT, $time );
-		}
+	 * Returns the time only.
+	 *
+	 * @since 3.0
+	 * @param string $time time in 24 hour or 12 hour.
+	 * @return string it will return time in DB formatted 24 hours time
+	 */
+	public static function get_db_formatted_time( $time ) {
+		$time = is_numeric( $time ) ? $time : strtotime( $time );
+		return date( self::DBTIMEFORMAT, $time );
+	}
 
 
 	/**
@@ -248,10 +251,28 @@ class WP_Event_Manager_Date_Time {
 		return isset($selected_step) && $selected_step >= 1 && $selected_step <= 60 ? $selected_step : 30;
 	}
 
-
+	/**
+	 * Get wp event manager view date format
+	 * This format is set by user from event listing -> settings -> date and time
+	 * 
+	 * @return string
+	 * @since 3.0
+	 * 
+	 **/
 	public static function get_event_manager_view_date_format(){
 		return get_option('event_manager_view_date_format','M d ,Y');
 	}
+	
+	/**
+	 * Get Wp event manager date admin setting where you can get array of dummy date 
+	 * The key of each value will be a php date format which is generated from the get_default_date_formats()
+	 * It will just make array for dropdown for showing dummy date and key as php formatted so we can save it
+	 * Currentrly it is used at event listing -> settings -> date and time - datepicker format
+	 * In wp event manager settings we don't have way to generate html so we have generated array for select option
+	 * 
+	 * @since 3.0
+	 * @return array
+	 */
 	public static function get_event_manager_date_admin_settings(){
 				$dummy_date = strtotime( 'January 15 ' . date( 'Y' ) );
 				$default_foramts = self::get_default_date_formats();
@@ -262,11 +283,20 @@ class WP_Event_Manager_Date_Time {
 				return $setting_values;
 	}
 
+	/**
+	 * Get event manager timezone setting defined in event listing -> settings 
+	 * 
+	 * @since 3.0
+	 * @return string $selected_timezone
+	 */
 	public static function get_event_manager_timezone_setting(){
 		$selected_timezone = get_option('event_manager_timezone_setting','site_timezone');
 		return $selected_timezone;
 	}
-
+	/**
+	 * 
+	 * @return string
+	 */
 	public static function get_current_site_timezone(){
 		$current_offset = get_option('gmt_offset');
 		$tzstring = get_option('timezone_string');
@@ -289,14 +319,21 @@ class WP_Event_Manager_Date_Time {
 		return $tzstring;
 	}
 
-
+	/**
+	 * 
+	 * @param string $tzstring
+	 */
 	public static function wp_event_manager_timezone_choice($tzstring = null){
 		if(empty($tzstring))
 			$tzstring = self::get_current_site_timezone();
 
 		return apply_filters( 'wp_event_manager_timezone_choice', wp_timezone_choice( $tzstring, get_user_locale() ));
 	}
-
+	
+	/**
+	 * 
+	 * @param string $event_timezone
+	 */
 	public static function convert_event_timezone_into_abbr( $event_timezone ){
 		//get string of event timezone if it is UTC offset
 		$tzstring 	= self::generate_timezone_string_from_utc_offset( $event_timezone );

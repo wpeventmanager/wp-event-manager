@@ -70,25 +70,26 @@ class WP_Event_Manager_Field_Editor {
 		
 		$disbled_fields = array('event_title','event_description');
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
-			'text'           => __( 'Text', 'wp-event-manager' ),
-			'time'           => __( 'Time', 'wp-event-manager' ),
-			'button'           => __( 'Button', 'wp-event-manager' ),
-			'button-options'       => __( 'Button Options', 'wp-event-manager' ),			
-			'checkbox'       => __( 'Checkbox', 'wp-event-manager' ),			
-			'date'       => __( 'Date', 'wp-event-manager' ),			
-			'file'       => __( 'File', 'wp-event-manager' ),			
-			'hidden'       => __( 'Hidden', 'wp-event-manager' ),			
-			'multiselect'       => __( 'Multiselect', 'wp-event-manager' ),			
-			'number'       => __( 'Number', 'wp-event-manager' ),			
-			'password'       => __( 'Password', 'wp-event-manager' ),			
-			'radio'       => __( 'Radio', 'wp-event-manager' ),			
-			'repeated'       => __( 'Repeated', 'wp-event-manager' ),			
-			'select'         => __( 'Select', 'wp-event-manager' ),
-			'term-checklist'    => __( 'Term Checklist', 'wp-event-manager' ),
-			'term-multiselect'    => __( 'Term Multiselect', 'wp-event-manager' ),
-			'term-select'    => __( 'Term Select', 'wp-event-manager' ),
-			'textarea'    => __( 'Textarea', 'wp-event-manager' ),
-			'wp-editor'       => __( 'WP Editor', 'wp-event-manager' )
+			'text'           		=> __( 'Text', 'wp-event-manager' ),
+			'time'           		=> __( 'Time', 'wp-event-manager' ),
+			'button'           		=> __( 'Button', 'wp-event-manager' ),
+			'button-options'       	=> __( 'Button Options', 'wp-event-manager' ),			
+			'checkbox'       		=> __( 'Checkbox', 'wp-event-manager' ),			
+			'date'       			=> __( 'Date', 'wp-event-manager' ),
+			'timezone'           	=> __( 'Timezone', 'wp-event-manager' ),			
+			'file'       			=> __( 'File', 'wp-event-manager' ),			
+			'hidden'       			=> __( 'Hidden', 'wp-event-manager' ),			
+			'multiselect'       	=> __( 'Multiselect', 'wp-event-manager' ),			
+			'number'       			=> __( 'Number', 'wp-event-manager' ),			
+			'password'       		=> __( 'Password', 'wp-event-manager' ),			
+			'radio'       			=> __( 'Radio', 'wp-event-manager' ),			
+			'repeated'       		=> __( 'Repeated', 'wp-event-manager' ),			
+			'select'         		=> __( 'Select', 'wp-event-manager' ),
+			'term-checklist'    	=> __( 'Term Checklist', 'wp-event-manager' ),
+			'term-multiselect'    	=> __( 'Term Multiselect', 'wp-event-manager' ),
+			'term-select'    		=> __( 'Term Select', 'wp-event-manager' ),
+			'textarea'    			=> __( 'Textarea', 'wp-event-manager' ),
+			'wp-editor'       		=> __( 'WP Editor', 'wp-event-manager' )
 		) );
 		?>
 		<?php	
@@ -112,6 +113,7 @@ class WP_Event_Manager_Field_Editor {
 							<th width="1%"><?php _e( 'Type', 'wp-event-manager' ); ?></th>
 							<th><?php _e( 'Description', 'wp-event-manager' ); ?></th>
 							<th><?php _e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php _e( 'Meta Key', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Only For Admin', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Priority', 'wp-event-manager' ); ?></th>
 							<th width="1%"><?php _e( 'Validation', 'wp-event-manager' ); ?></th>
