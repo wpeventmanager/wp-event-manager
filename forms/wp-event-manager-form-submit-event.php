@@ -869,8 +869,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 				elseif ( $field['type'] == 'date' ) {
 					$date = $values[ $group_key ][ $key ];					
-					//Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date. ' 00:00:00' );
+					//Convert date and time value into DB formatted format and save eg. 1970-01-01
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format  , $date );
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 					update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
 				}
