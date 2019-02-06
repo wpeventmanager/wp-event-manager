@@ -62,16 +62,10 @@
 										?>
 									</ul>		
 								<?php elseif ('event_start_date' === $key ) : 
-											 $date = strtotime(get_event_start_date($event));
-											 $time = get_event_start_time($event);
-										 	 echo isset($date) ?  date("M j, Y",$date) . PHP_EOL : '-' . PHP_EOL;
-											 echo (isset($time) && isset($date)) ? $time  : '-';
+											 display_event_start_date('','',true,$event);?> &nbsp; <?php display_event_start_time('','',true,$event);
 								?>
 								<?php elseif ('event_end_date' === $key ) : 
-											 $date = strtotime(get_event_end_date($event));
-											 $time = get_event_end_time($event);
-										 	 echo isset($date) ?  date("M j, Y",$date) . PHP_EOL : '-' . PHP_EOL;
-											 echo (isset($time) && isset($date)) ? $time  : '-';		
+											 display_event_end_date('','',true,$event);?>&nbsp;<?php  display_event_end_time('','',true,$event); 	
 								?>
             
                                 <?php elseif ('event_location' === $key ) : 
