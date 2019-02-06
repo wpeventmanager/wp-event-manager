@@ -74,7 +74,7 @@ class WP_Event_Manager_Data_Cleaner {
 	private static $transients = array(
 		'_event_manager_activation_redirect',
 		'get_event_listings-transient-version',
-		'jm_.*',
+		'em_.*',
 	);
 
 	/**
