@@ -597,7 +597,7 @@ class WP_Event_Manager_Settings {
 					)
 				),
 				'date_time_formatting' => array(
-						__( 'Date & time formatting', 'wp-event-manager' ),
+						__( 'Date & Time Format', 'wp-event-manager' ),
 				
 						array(
 								array(
@@ -620,7 +620,7 @@ class WP_Event_Manager_Settings {
 										'std' 		=> '12',
 										'label' 	=> __( 'Timepicker Format', 'wp-event-manager' ),
 				
-										'desc'		=> __( 'Select the time format to use in timepicker', 'wp-event-manager' ),
+										'desc'		=> __( 'Select the time format to use in timepickers', 'wp-event-manager' ),
 				
 										'type'      => 'radio',
 				
@@ -634,9 +634,9 @@ class WP_Event_Manager_Settings {
 				
 										'std' 		=> '30',
 				
-										'label' 	=> __( 'Timepicker step', 'wp-event-manager' ),
+										'label' 	=> __( 'Timepicker Step', 'wp-event-manager' ),
 				
-										'desc'		=> __( 'Select the time step to use in timepicker. Time step must have to be in between 1 to 60.', 'wp-event-manager' ),
+										'desc'		=> __( 'Select the time step to use in timepickers. Time step must have to be in between 1 to 60.', 'wp-event-manager' ),
 				
 										'type'      => 'text',
 								),
@@ -645,9 +645,9 @@ class WP_Event_Manager_Settings {
 				
 										'std' 		=> 'Y-m-d',
 				
-										'label' 	=> __( 'Date format', 'wp-event-manager' ),
+										'label' 	=> __( 'Date Format', 'wp-event-manager' ),
 				
-										'desc'		=> __( 'This date format will be used at all the frontend date views.', 'wp-event-manager' ),
+										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://codex.wordpress.org/Formatting_Date_and_Time'),
 				
 										'type'      => 'text',
 								),
@@ -656,9 +656,9 @@ class WP_Event_Manager_Settings {
 								
 										'std' 		=> 'site_timezone',
 								
-										'label' 	=> __( 'Event timezone', 'wp-event-manager' ),
+										'label' 	=> __( 'Event Timezone', 'wp-event-manager' ),
 								
-										'desc'		=> __( 'timezone for the event date and time', 'wp-event-manager' ),
+										'desc'		=> __( 'Timezone for the event date and time', 'wp-event-manager' ),
 								
 										'type'      => 'radio',
 										'options'	=> array(
