@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
 Tested up to: 4.9.8
-Stable tag: 2.8
+Stable tag: 3.0
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -310,6 +310,20 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 == Changelog ==
+
+= 3.0 =
+
+* Fixed - Event date and time issue.
+* Added - Date and time setting added.
+* Added - Field key added in field editor table.
+* Added - Field type timezone added.
+* Fixed - Registration deadline issue fixed.
+* Added - Admin only field restriction added.
+* Added - Timepicker added.
+
+= 2.9 =
+
+* Fixed - Event listing result filter added.
 
 = 2.8 =
 

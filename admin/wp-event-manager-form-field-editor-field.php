@@ -41,6 +41,7 @@ $taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listi
 		</div>
 		<span class="na">&ndash;</span>
 	</td>
+	<td> <input type="text" value="_<?php echo $field_key; ?>" readonly></td>
 	<td>
 	<?php if( !in_array($field_key, $disbled_fields) ){ ?> 
 	<input type="checkbox" name="<?php echo $group_key;?>[<?php echo $field_key;?>][admin_only]" value="1" <?php checked( ! empty( $field['admin_only'] ), true ); ?> /></td>

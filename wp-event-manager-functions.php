@@ -308,19 +308,6 @@ function get_event_listings( $args = array() ) {
 								'operator'         => $operator
 							);	
 	}
-	if ( 'featured' === $args['orderby'] ) {
-		$query_args['orderby'] = array(
-			'menu_order' => 'ASC',
-			'date'       => 'DESC',
-			'ID'         => 'DESC',
-		);
-	}
-	if ( 'rand_featured' === $args['orderby'] ) {
-		$query_args['orderby'] = array(
-			'menu_order' => 'ASC',
-			'rand'       => 'ASC',
-		);
-	}
 
 	//must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 	if ( ! empty( $args['search_ticket_prices'] ) ) 
@@ -363,7 +350,13 @@ function get_event_listings( $args = array() ) {
 				'rand'       => 'ASC',
 			);
 	}
-
+	//if orderby meta key _event_start_date 
+	if ( 'event_start_date' === $args['orderby'] ) {
+		$query_args['orderby'] ='meta_value';
+		$query_args['meta_key'] ='_event_start_date';
+		$query_args['meta_type'] ='DATE';
+	}
+	
 	$event_manager_keyword = sanitize_text_field( $args['search_keywords'] ); 
 	if ( ! empty($event_manager_keyword ) && strlen($event_manager_keyword) >= apply_filters( 'event_manager_get_listings_keyword_length_threshold', 2 ) ) {
 
@@ -456,7 +449,7 @@ function get_event_listings( $args = array() ) {
 		set_transient( $query_args_hash, $result, DAY_IN_SECONDS * 30 );
 	}
 	
-	//$result = apply_filters('get_event_listings_result_args',$query_args,$args );
+	$result = apply_filters('get_event_listings_result_args',$result,$query_args );
 	
 	do_action( 'after_get_event_listings', $query_args, $args );
 
