@@ -705,20 +705,20 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	if ( $update_slug ) {
 			$event_slug   = array();
 			// Prepend with organizer name
-			if ( apply_filters( 'submit_event_form_prefix_post_name_with_organizer', true ) && ! empty( $values['organizer']['organizer_name'] ) ) {
+			/* if ( apply_filters( 'submit_event_form_prefix_post_name_with_organizer', true ) && ! empty( $values['organizer']['organizer_name'] ) ) {
 				$event_slug[] = $values['organizer']['organizer_name'];
 			}
 			// Prepend location
 			if ( apply_filters( 'submit_event_form_prefix_post_name_with_location', true ) && ! empty( $values['event']['event_location'] ) ) {
 				$event_slug[] = $values['event']['event_location'];
-			}
+			} */
 			// Prepend with event type
 			if ( apply_filters( 'submit_event_form_prefix_post_name_with_event_type', true ) && ! empty( $values['event']['event_type'] ) ) {
 				if ( event_manager_multiselect_event_type() && is_array($values['event']['event_type']) ) {
 					
 					$event_type = array_values($values['event']['event_type'])[0];
 					if( is_int ($event_type) ){
-						$event_type_taxonomy = get_term( $values['event']['event_type']);
+						$event_type_taxonomy = get_term( $values['event']['event_type'][0]);
 						$event_type = $event_type_taxonomy->name;
 					}
 					$event_slug[] = $event_type;
@@ -734,8 +734,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					$event_slug[] = $event_type;
 				}
 			}
-			$event_slug[]            = $post_title;
-			$event_data['post_name'] = sanitize_title( implode( '-', $event_slug ) );
+			$event_slug[]            	= $post_title;
+			$event_slugs				= implode( '-', $event_slug ) ;
+			$event_data['post_name'] 	= apply_filters('submit_event_form_save_slug_data', $event_slugs);
 		}
 		if ( $status ) {
 			$event_data['post_status'] = $status;
