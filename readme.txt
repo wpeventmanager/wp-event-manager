@@ -311,6 +311,13 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+= 3.1 =
+
+* Fixed - Date format issue fixed.
+* Fixed - Event slug improved.
+* Added - Widget settings added
+* Fixed - Event slug improved.	
+
 = 3.0 =
 
 * Fixed - Event date and time issue.
