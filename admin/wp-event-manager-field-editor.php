@@ -30,14 +30,15 @@ class WP_Event_Manager_Field_Editor {
 			'cofirm_delete_i18n' => __( 'Are you sure you want to delete this row?', 'wp-event-manager' ),
 			'cofirm_reset_i18n'  => __( 'Are you sure you want to reset your changes? This cannot be undone.', 'wp-event-manager' )
 		) );
-		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.min.css' );
-		wp_enqueue_script( 'wp-event-manager-form-field-editor' );
+		
 	}
 	
 	/**
 	 * Output the screen
 	 */
 	public function output() {
+		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.min.css' );
+		wp_enqueue_script( 'wp-event-manager-form-field-editor' );
 	?>
 		<div class="wrap wp-event-manager-form-field-editor">
 			<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor">
