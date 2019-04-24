@@ -308,7 +308,25 @@ function get_event_listings( $args = array() ) {
 								'operator'         => $operator
 							);	
 	}
-
+	if ( ! empty( $args['search_tags'] ) )
+	{
+	    $field    = is_numeric( $args['search_tags'][0] ) ? 'term_id' : 'slug';
+	    
+	    $operator = 'all' === get_option( 'event_manager_event_type_filter_type', 'all' ) && sizeof( $args['search_tags'] ) > 1 ? 'AND' : 'IN';
+	    
+	    $query_args['tax_query'][] = array(
+	        
+	        'taxonomy'         => 'event_listing_tag',
+	        
+	        'field'            => $field,
+	        
+	        'terms'            => array_values( $args['search_tags'] ),
+	        
+	        'include_children' => $operator !== 'AND' ,
+	        
+	        'operator'         => $operator
+	    );
+	}
 	//must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 	if ( ! empty( $args['search_ticket_prices'] ) ) 
 	{	
