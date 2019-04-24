@@ -4,7 +4,7 @@
 	
     <!-- Main if condition start -->
 	<?php if ( get_option( 'event_manager_hide_expired_content', 1 ) && 'expired' === $post->post_status ) : ?>
-		<div class="event-manager-info"><?php _e( 'This listing has expired.', 'wp-event-manager' ); ?></div>
+		<div class="event-manager-info"><?php _e( 'This listing has been expired.', 'wp-event-manager' ); ?></div>
 	<?php else : ?>
 		<?php
 			/**
