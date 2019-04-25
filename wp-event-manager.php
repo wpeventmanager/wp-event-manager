@@ -365,6 +365,17 @@ class WP_Event_Manager {
 }
 
 /**
+ * Create link on plugin page for event manager plugin settings
+ */
+function add_plugin_page_event_manager_settings_link( $links ) {
+    $links[] = '<a href="' .
+        admin_url( 'edit.php?post_type=event_listing&page=event-manager-settings' ) .
+        '">' . __('Settings', 'wp-event-manager') . '</a>';
+        return $links;
+}
+add_filter('plugin_action_links_'.plugin_basename(__FILE__), 'add_plugin_page_event_manager_settings_link');
+
+/**
  * Main instance of WP Event Manager.
  *
  * Returns the main instance of WP Event Manager to prevent the need to use globals.
