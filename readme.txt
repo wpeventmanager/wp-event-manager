@@ -1,6 +1,6 @@
 === WP Event Manager ===
 
-Contributors: ashokdudhat,gamthemes,hiteshmakvana,gamritakikani,nao,garrett-eclipse,monikarao
+Contributors: ashokdudhat,gamthemes,hiteshmakvana, kikanirita, nao,garrett-eclipse,monikarao
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
@@ -311,12 +311,16 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+= 3.1.1 =
+
+* Added - Setting link at plugin page added.
+* Fixed - Upcoming Event listing Widget fixed. 
+
 = 3.1 =
 
 * Fixed - Date format issue fixed.
 * Fixed - Event slug improved.
 * Added - Widget settings added
-
 
 = 3.0 =
 
