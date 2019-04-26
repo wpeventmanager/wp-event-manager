@@ -877,6 +877,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 				 else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
+					    $ticket_type=$values[ $group_key ][ $key ];
+					}
+					if('_' .$key=='_event_recurrence' && $values[ $group_key ][ $key ]=='no'){
+					    $recurre_event='no';
+					}
 				}
 
 				// Handle attachments.
@@ -908,7 +914,16 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 			}
 		}
-
+		// reset meta value if ticket type is free
+		if($ticket_type=='free'){
+		    update_post_meta( $this->event_id, '_event_ticket_price', '');
+		}
+		if($recurre_event=='no'){
+		    update_post_meta( $this->event_id, '_recure_every', '');
+		    update_post_meta( $this->event_id, '_recure_month_day', '');
+		    update_post_meta( $this->event_id, '_recure_weekday', '');
+		    update_post_meta( $this->event_id, '_recure_untill', '');
+		}
 		// And user meta to save time in future
 		if ( is_user_logged_in() ) {
 			update_user_meta( get_current_user_id(), '_organizer_name', isset( $values['organizer']['organizer_name'] ) ? $values['organizer']['organizer_name'] : '' );
