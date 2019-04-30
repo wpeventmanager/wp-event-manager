@@ -594,6 +594,18 @@ class WP_Event_Manager_Settings {
 
 							'type'      => 'page'
 						),
+					    array(
+					        
+					        'name' 		=> 'event_manager_login_page_url',
+					        
+					        'std' 		=> '',
+					        
+					        'label' 	=> __( 'Login Page URL', 'wp-event-manager' ),
+					        
+					        'desc'		=> __( 'Enter the Login page URL.', 'wp-event-manager' ),
+					        
+					        'type'      => 'text'
+					    ),
 					)
 				),
 				'date_time_formatting' => array(
