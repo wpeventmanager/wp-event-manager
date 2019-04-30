@@ -1021,8 +1021,22 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	
 		$custom_fields  = $this->get_event_manager_fieldeditor_fields();
 		$default_fields = $this->get_default_fields( );
-		if(!is_array($custom_fields ))
-			return $default_fields;
+		
+		if(!get_option('event_manager_enable_event_ticket_prices', false)){
+		    if(isset($custom_fields['event']['event_ticket_options']))
+		        $custom_fields['event']['event_ticket_options']['visibility']=false;
+		    if(isset($custom_fields['event']['event_ticket_price']))
+		        $custom_fields['event']['event_ticket_price']['visibility']=false;
+		            
+		    if(isset($default_fields['event']['event_ticket_options']))
+		        unset($default_fields['event']['event_ticket_options']);
+		    if(isset($default_fields['event']['event_ticket_price']))
+		        unset($default_fields['event']['event_ticket_price']);
+		}
+		if(!is_array($custom_fields )){
+		    $this->fields = apply_filters('merge_with_custom_fields',$default_fields,$default_fields) ;
+		    return $this->fields;
+		}
 	
 		$updated_fields = ! empty( $custom_fields ) ? array_replace_recursive( $default_fields, $custom_fields ) : $default_fields;
 		
