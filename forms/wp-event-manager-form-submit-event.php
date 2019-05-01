@@ -809,6 +809,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		//covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 
+		$ticket_type='';
+		$recurre_event='';
 		// Loop fields and save meta and term data
 		foreach ( $this->fields as $group_key => $group_fields ) {
 			foreach ( $group_fields as $key => $field ) {
