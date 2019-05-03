@@ -314,7 +314,12 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 = 3.1.1 =
 
 * Added - Setting link at plugin page added.
-* Fixed - Upcoming Event listing Widget fixed. 
+* Fixed - Upcoming Event listing Widget fixed.
+* Fixed - Improvement in custom fields Field editor
+* Fixed - Ticket price option will be set using settings
+* Added - Featured Event Background Color changed
+* Added - Settings added for frontend login link
+* Fixed - some css tweaks
 
 = 3.1 =
 

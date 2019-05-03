@@ -40,7 +40,7 @@
 </div>
 
 <!-- Box Layout -->
-<a href="<?php display_event_permalink(); ?>">
+<a <?php event_listing_class(); ?> href="<?php display_event_permalink(); ?>">
  <div class="box-layout"> 
     <div class="event-img"><?php  display_event_banner(); ?></div>     
        <div class="boxes-view-box-registered-code">
