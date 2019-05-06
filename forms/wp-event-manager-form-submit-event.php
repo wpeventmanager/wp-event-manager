@@ -369,11 +369,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			)
 		) );
 
-		if ( ! get_option( 'event_manager_enable_categories' ) || 0 === wp_count_terms( 'event_listing_category' )  ) {
+		if ( ! get_option( 'event_manager_enable_categories' ) || wp_count_terms( 'event_listing_category' ) == 0 ) {
 			unset( $this->fields['event']['event_category'] );
 		}
 		
-		if ( ! get_option( 'event_manager_enable_event_types' ) || 0 === wp_count_terms( 'event_listing_type' ) ) {
+		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_listing_type' ) == 0 ) {
 			unset( $this->fields['event']['event_type'] );
 		}
 		
