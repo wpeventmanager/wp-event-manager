@@ -179,57 +179,6 @@ class WP_Event_Manager_Settings {
 
 						array(
 
-							'name'       => 'event_manager_enable_categories',
-
-							'std'        => '0',
-
-							'label'      => __( 'Categories', 'wp-event-manager' ),
-
-							'cb_label'   => __( 'Enable categories for listings', 'wp-event-manager' ),
-
-							'desc'       => __( 'Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
-
-							'type'       => 'checkbox',
-
-							'attributes' => array()
-						),
-
-						array(
-
-							'name'       => 'event_manager_enable_event_types',
-
-							'std'        => '0',
-
-							'label'      => __( 'Event Types', 'wp-event-manager' ),
-
-							'cb_label'   => __( 'Enable event types for listings', 'wp-event-manager' ),
-
-							'desc'       => __( 'Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
-
-							'type'       => 'checkbox',
-
-							'attributes' => array()
-						),
-
-						array(
-
-							'name'       => 'event_manager_enable_event_ticket_prices',
-
-							'std'        => '0',
-
-							'label'      => __( 'Ticket prices', 'wp-event-manager' ),
-
-							'cb_label'   => __( 'Enable ticket prices for listings', 'wp-event-manager' ),
-
-							'desc'       => __( 'Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
-
-							'type'       => 'checkbox',
-
-							'attributes' => array()
-						),						
-
-						array(
-
 							'name'       => 'event_manager_enable_default_category_multiselect',
 
 							'std'        => '0',
@@ -494,6 +443,58 @@ class WP_Event_Manager_Settings {
 								'url'   => __( 'Website URLs only', 'wp-event-manager' ),
 							)
 						),
+					    
+					    array(
+					        
+					        'name'       => 'event_manager_enable_categories',
+					        
+					        'std'        => '0',
+					        
+					        'label'      => __( 'Categories', 'wp-event-manager' ),
+					        
+					        'cb_label'   => __( 'Enable categories for listings', 'wp-event-manager' ),
+					        
+					        'desc'       => __( 'Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        
+					        'type'       => 'checkbox',
+					        
+					        'attributes' => array()
+					    ),
+					    
+					    array(
+					        
+					        'name'       => 'event_manager_enable_event_types',
+					        
+					        'std'        => '0',
+					        
+					        'label'      => __( 'Event Types', 'wp-event-manager' ),
+					        
+					        'cb_label'   => __( 'Enable event types for listings', 'wp-event-manager' ),
+					        
+					        'desc'       => __( 'Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        
+					        'type'       => 'checkbox',
+					        
+					        'attributes' => array()
+					    ),
+					    
+					    array(
+					        
+					        'name'       => 'event_manager_enable_event_ticket_prices',
+					        
+					        'std'        => '0',
+					        
+					        'label'      => __( 'Ticket prices', 'wp-event-manager' ),
+					        
+					        'cb_label'   => __( 'Enable ticket prices for listings', 'wp-event-manager' ),
+					        
+					        'desc'       => __( 'Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        
+					        'type'       => 'checkbox',
+					        
+					        'attributes' => array()
+					    ),
+					    
 						array(
 									
 								'name'       => 'event_manager_multiselect_event_type',
