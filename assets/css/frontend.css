@@ -623,7 +623,7 @@ a.link-button {
 	.rp4wp-related-event_listing>ul li.no_event_listings_found.event_featured a, .event_listing.event_featured div, 
 	ul.event_listings li.event_listing.event_featured a, ul.event_listings li.no_event_listings_found.event_featured a
 	{
-	background: #ffffb3
+	background: #ffffdc7a;
 }
 
 .rp4wp-related-event_listing>ul li.event_listing.event_featured a:focus,
@@ -815,7 +815,7 @@ a.link-button {
 
 .box-layout .event-img img {
 	height: 100%;
-	max-width: 250px;
+	/* max-width: 250px; */
 	width: 100%
 }
 
