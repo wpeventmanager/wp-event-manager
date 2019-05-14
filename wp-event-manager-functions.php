@@ -137,7 +137,7 @@ function get_event_listings( $args = array() ) {
 		);
 	}
 
-	if ( ! empty( $args['search_datetimes'] ) ) 
+	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
 			if($args['search_datetimes'][0]=='datetime_today')
 			{	
@@ -269,7 +269,7 @@ function get_event_listings( $args = array() ) {
 			$query_args['meta_query'][] = $date_search;
 	}
 
-	if ( ! empty( $args['search_categories'] ) ) 
+	if ( ! empty( $args['search_categories'][0] ) ) 
 	{
 		$field    = is_numeric( $args['search_categories'][0] ) ? 'term_id' : 'slug';
 
@@ -289,7 +289,7 @@ function get_event_listings( $args = array() ) {
 							);
 	}
 	
-	if ( ! empty( $args['search_event_types'] ) ) 
+	if ( ! empty( $args['search_event_types'][0] ) ) 
 	{
 		$field    = is_numeric( $args['search_event_types'][0] ) ? 'term_id' : 'slug';	
 
@@ -308,7 +308,7 @@ function get_event_listings( $args = array() ) {
 								'operator'         => $operator
 							);	
 	}
-	if ( ! empty( $args['search_tags'] ) )
+	if ( ! empty( $args['search_tags'][0] ) )
 	{
 	    $field    = is_numeric( $args['search_tags'][0] ) ? 'term_id' : 'slug';
 	    
@@ -328,7 +328,7 @@ function get_event_listings( $args = array() ) {
 	    );
 	}
 	//must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
-	if ( ! empty( $args['search_ticket_prices'] ) ) 
+	if ( ! empty( $args['search_ticket_prices'][0] ) ) 
 	{	
 		if($args['search_ticket_prices'][0]=='ticket_price_paid')
 		{  
