@@ -369,14 +369,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			)
 		) );
 
-		if ( ! get_option( 'event_manager_enable_categories' ) || wp_count_terms( 'event_listing_category' ) == 0 ) {
-		    $this->fields['event']['event_category']['visibility']=false;
-		}
-		
-		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_listing_type' ) == 0 ) {
-		    $this->fields['event']['event_type']['visibility']=false;
-		}
-		
 		//unset timezone field if setting is site wise timezone
 		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
 		if ( $timezone_setting != 'each_event' ) {
@@ -1035,6 +1027,17 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		    if(isset($default_fields['event']['event_ticket_price']))
 		        unset($default_fields['event']['event_ticket_price']);
 		}
+		
+		if ( !get_option( 'event_manager_enable_categories') || wp_count_terms( 'event_listing_category' ) == 0 ) {
+		    $custom_fields['event']['event_category']['visibility']=false;
+		    unset($default_fields['event']['event_category']);
+		}
+		
+		if ( ! get_option( 'event_manager_enable_event_types' ) || wp_count_terms( 'event_listing_type' ) == 0 ) {
+		    $custom_fields['event']['event_type']['visibility']=false;
+		    unset($default_fields['event']['event_type']);
+		}
+		
 		if(!is_array($custom_fields )){
 		    $this->fields = apply_filters('merge_with_custom_fields',$default_fields,$default_fields) ;
 		    return $this->fields;
