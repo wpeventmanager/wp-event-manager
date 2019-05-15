@@ -139,6 +139,7 @@ function get_event_listings( $args = array() ) {
 
 	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
+	    $date_search=array();
 			if($args['search_datetimes'][0]=='datetime_today')
 			{	
 				$datetime=date('Y-m-d');
@@ -330,6 +331,7 @@ function get_event_listings( $args = array() ) {
 	//must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 	if ( ! empty( $args['search_ticket_prices'][0] ) ) 
 	{	
+	    $ticket_price_value='';
 		if($args['search_ticket_prices'][0]=='ticket_price_paid')
 		{  
 		  $ticket_price_value='paid';     
