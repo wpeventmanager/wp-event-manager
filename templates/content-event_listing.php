@@ -21,7 +21,11 @@
             </div>
             <div class="col-md-2">		        
     			   <div class="date">
-    			        <date><?php display_event_start_date();?></date>    			        
+    			        <date>
+    			        <?php 
+    			             $date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
+    			             echo date_i18n($date_format, strtotime(get_event_start_date()));?>
+    			        </date>    			        
     			   </div>       			  
 	        </div>
 	        <div class="col-md-3">		

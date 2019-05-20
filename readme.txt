@@ -311,6 +311,11 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+= 3.1.2 =
+
+* Added - shortcode Widget of elementor compitible.
+* Added - convert start date into date_i18n.
+
 = 3.1.1 =
 
 * Added - Setting link at plugin page added.
