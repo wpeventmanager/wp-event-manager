@@ -77,7 +77,8 @@ class Plugin {
 		require_once( __DIR__ . '/elementor-widgets/elementor-event-listing.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-single-event.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-single-event-summary.php' );
-		require_once( __DIR__ . '/elementor-widgets/elementor-event-dashboard.php' );		
+		require_once( __DIR__ . '/elementor-widgets/elementor-event-dashboard.php' );
+		require_once( __DIR__ . '/elementor-widgets/elementor-past-event-listing.php' );				
 	}
 
 	/**
@@ -96,7 +97,8 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Listing() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Single_Event() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Summary() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Dashboard() );		
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Dashboard() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Past_Event_Listing() );				
 	}
 
 }

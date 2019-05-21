@@ -315,6 +315,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 * Added - shortcode Widget of elementor compitible.
 * Added - convert start date into date_i18n.
+* Added - Shortcode for past event listing added.
 
 = 3.1.1 =
 

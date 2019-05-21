@@ -33,7 +33,7 @@ class WP_Event_Manager_Shortcodes {
 		add_shortcode( 'events', array( $this, 'output_events' ) );
 		add_shortcode( 'event', array( $this, 'output_event' ) );
 		add_shortcode( 'event_summary', array( $this, 'output_event_summary' ) );
-		
+		add_shortcode( 'past_events', array( $this, 'output_past_events' ) );
 		add_shortcode( 'event_register', array( $this, 'output_event_register' ) );
 	}
 	/**
@@ -790,6 +790,51 @@ class WP_Event_Manager_Shortcodes {
 		wp_reset_postdata();
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * output_events function.
+	 *
+	 * @access public
+	 * @param mixed $args
+	 * @return void
+	 */
+
+	public function output_past_events() {
+
+		ob_start();	
+		
+		$args_past = array(
+			'post_type'   => 'event_listing',
+			'post_status' => array('expired'),
+			'posts_per_page' => -1												
+		);
+
+		$past_events = new WP_Query( $args_past );
+
+		if ( $past_events->have_posts() ) : ?>
+
+			<div class="row">   
+				<div class="col-md-8 "><h3 class="normal-section-title-past-event">Past Events</h3></div>				
+			</div>
+			<ul id="event-listing-view" class="event_listings event-listings-table-bordered">
+			<?php while ( $past_events->have_posts() ) : $past_events->the_post(); ?>
+
+				<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
+				
+			<?php endwhile; ?>
+		<?php else :
+
+			do_action( 'event_manager_output_events_no_results' );
+
+		endif;
+
+		wp_reset_postdata();
+		
+		$event_listings_output = apply_filters( 'event_manager_event_listings_output', ob_get_clean() );
+
+		return '<div class="event_listings">' . $event_listings_output . '</div>';
+		
 	}
 }
 
