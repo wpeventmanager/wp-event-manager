@@ -112,9 +112,19 @@ class Elementor_Single_Event extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		if($settings['event_id']>0){
+		    $event_id = 'id='.$settings['event_id'];
+		    $settings['event_id']='id='.$settings['event_id'];
+		}
+		else{
+		    $event_id = '';
+		    $settings['event_id']='';
+		}
+		$shortcode = '[event '.$event_id.' ]';
+		echo $shortcode;
 	}
 
-	public function render_plain_content() {
+	/*public function render_plain_content() {
 		// In plain mode, render without shortcode
 		$settings = $this->get_settings_for_display();
 
@@ -128,7 +138,7 @@ class Elementor_Single_Event extends Widget_Base {
 		}
 		$shortcode = '[event '.$event_id.' ]';
 		echo $shortcode;
-	}
+	}*/
 
 	/**
 	 * Render the widget output in the editor.

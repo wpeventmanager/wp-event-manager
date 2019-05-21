@@ -269,30 +269,32 @@ class Elementor_Event_Listing extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		
-		// if(strlen($settings['location'])>0)
-		// 	$location = 'location='.$settings['location'];
-		// else
-		// 	$location = '';
-
-		// if(strlen($settings['keywords'])>0)
-		// 	$keywords = 'keywords='.$settings['keywords'];
-		// else
-		// 	$keywords = '';
-
-		// if(strlen($settings['categories'])>0)
-		// 	$categories = 'categories='.$settings['categories'];
-		// else
-		// 	$categories = '';
 		
-		// if(strlen($settings['event_types'])>0)
-		// 	$event_types = 'event_types='.$settings['event_types'];
-		// else
-		// 	$event_types = '';
-		
-		// $shortcode = '[events show_pagination='.$settings["show_pagination"].' per_page='.$settings["per_page"].' order='.$settings["order"].' orderby='.$settings['orderby'].' featured='.$settings['featured'].' cancelled='.$settings['cancelled'].' show_filters='.$settings["show_filters"].' show_categories='.$settings["show_categories"].' show_event_types='.$settings["show_event_types"].' '.$location.' '.$keywords.' '.$categories.' '.$event_types.' ]';
+		if(strlen($settings['location'])>0)
+		    $location = 'location='.$settings['location'];
+	    else
+	        $location = '';
+	        
+        if(strlen($settings['keywords'])>0)
+            $keywords = 'keywords='.$settings['keywords'];
+        else
+            $keywords = '';
+            
+        if(strlen($settings['categories'])>0)
+            $categories = 'categories='.$settings['categories'];
+        else
+            $categories = '';
+            
+        if(strlen($settings['event_types'])>0)
+            $event_types = 'event_types='.$settings['event_types'];
+        else
+            $event_types = '';
+            
+        $shortcode = '[events show_pagination='.$settings["show_pagination"].' per_page='.$settings["per_page"].' order='.$settings["order"].' orderby='.$settings['orderby'].' featured='.$settings['featured'].' cancelled='.$settings['cancelled'].' show_filters='.$settings["show_filters"].' show_categories='.$settings["show_categories"].' show_event_types='.$settings["show_event_types"].' '.$location.' '.$keywords.' '.$categories.' '.$event_types.' ]';
+        echo $shortcode;
 	}
 
-	public function render_plain_content() {
+	/*public function render_plain_content() {
 		// In plain mode, render without shortcode
 		$settings = $this->get_settings_for_display();
 
@@ -318,7 +320,7 @@ class Elementor_Event_Listing extends Widget_Base {
 
 		$shortcode = '[events show_pagination='.$settings["show_pagination"].' per_page='.$settings["per_page"].' order='.$settings["order"].' orderby='.$settings['orderby'].' featured='.$settings['featured'].' cancelled='.$settings['cancelled'].' show_filters='.$settings["show_filters"].' show_categories='.$settings["show_categories"].' show_event_types='.$settings["show_event_types"].' '.$location.' '.$keywords.' '.$categories.' '.$event_types.' ]';
 		echo $shortcode;
-	}
+	}*/
 
 	/**
 	 * Render the widget output in the editor.

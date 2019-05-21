@@ -104,15 +104,17 @@ class Elementor_Submit_Event_Form extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$shortcode = '[submit_event_form]';
+		echo $shortcode;
 	}
 
-	public function render_plain_content() {
+	/*public function render_plain_content() {
 		// In plain mode, render without shortcode
 		$settings = $this->get_settings_for_display();
 		
 		$shortcode = '[submit_event_form]';
 		echo $shortcode;
-	}
+	}*/
 
 	/**
 	 * Render the widget output in the editor.
