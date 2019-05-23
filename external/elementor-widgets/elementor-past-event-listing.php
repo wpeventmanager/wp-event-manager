@@ -105,17 +105,9 @@ class Elementor_Past_Event_Listing extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		
-		$shortcode = '[past_events]';
+		$shortcode = do_shortcode('[past_events]');
 		echo $shortcode;
 	}
-
-	/*public function render_plain_content() {
-		// In plain mode, render without shortcode
-		$settings = $this->get_settings_for_display();
-
-		$shortcode = '[past_events]';
-		echo $shortcode;
-	}*/
 
 	/**
 	 * Render the widget output in the editor.
@@ -128,7 +120,7 @@ class Elementor_Past_Event_Listing extends Widget_Base {
 
 		$shortcode = do_shortcode('[past_events]');
 		?>
-		<div class="elementor-shortcode"><?php echo $shortcode; ?></div>
+		<div class="elementor-shortcode"><?php echo do_shortcode('[past_events]'); ?></div>
 		<?php
 	}
 }
