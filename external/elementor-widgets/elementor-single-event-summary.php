@@ -113,16 +113,11 @@ class Elementor_Event_Summary extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();	
 		
-		if($settings['event_id']>0){
+		if($settings['event_id']>0)
 		    $event_id = 'id='.$settings['event_id'];
-		    $settings['event_id']='id='.$settings['event_id'];
-		}
-		else{
-		    $event_id = '';
-		    $settings['event_id']='';
-		}
-		$shortcode = '[event_summary '.$event_id.' ]';
-		echo $shortcode;
+	    else
+	        $event_id = '';
+	    echo do_shortcode('[event_summary '.$event_id.' ]');
 	}
 
 	/*public function render_plain_content() {
@@ -150,7 +145,7 @@ class Elementor_Event_Summary extends Widget_Base {
 	 */
 	protected function _content_template() {
 
-		$shortcode = do_shortcode('[event_summary {{{settings.event_id}}}]');
+		$shortcode = do_shortcode('[event_summary id={{{settings.event_id}}}]');
 		?>
 		<div class="elementor-shortcode"><?php echo $shortcode; ?></div>
 		<?php
