@@ -120,8 +120,7 @@ class Elementor_Single_Event extends Widget_Base {
 		    $event_id = '';
 		    $settings['event_id']='';
 		}
-		$shortcode = '[event '.$event_id.' ]';
-		echo $shortcode;
+		echo do_shortcode('[event '.$event_id.' ]');
 	}
 
 	/*public function render_plain_content() {
