@@ -113,30 +113,14 @@ class Elementor_Event_Dashboard extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		if($settings['posts_per_page']>0){
-			$settings['posts_per_page']='posts_per_page='.(int)$settings['posts_per_page'];
+		if($settings['posts_per_page']>0)
 			$posts_per_page = 'posts_per_page='.(int)$settings['posts_per_page'];
-		}
-		else{
-			$settings['posts_per_page']='';
-			$posts_per_page = '';
-		}
-		$shortcode = '[event_dashboard '.$posts_per_page.' ]';
-		echo $shortcode;
+		else
+		    $posts_per_page = 'posts_per_page=10';
+		
+		echo '[event_dashboard '.$posts_per_page.' ]';
 	}
 
-	/*public function render_plain_content() {
-		// In plain mode, render without shortcode
-		$settings = $this->get_settings_for_display();
-		if($settings['posts_per_page']>0){
-			$posts_per_page = 'posts_per_page='.(int)$settings['posts_per_page'];
-		}
-		else{
-			$posts_per_page = '';
-		}
-		$shortcode = '[event_dashboard '.$posts_per_page.' ]';
-		echo $shortcode;
-	}*/
 
 	/**
 	 * Render the widget output in the editor.
@@ -145,11 +129,5 @@ class Elementor_Event_Dashboard extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {
-
-		$shortcode = do_shortcode('[event_dashboard {{{settings.posts_per_page}}} ]');
-		?>
-		<div class="elementor-shortcode"><?php echo $shortcode; ?></div>
-		<?php
-	}
+	protected function _content_template() {}
 }
