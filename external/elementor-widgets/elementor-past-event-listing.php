@@ -116,11 +116,5 @@ class Elementor_Past_Event_Listing extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {
-
-		$shortcode = do_shortcode('[past_events]');
-		?>
-		<div class="elementor-shortcode"><?php echo do_shortcode('[past_events]'); ?></div>
-		<?php
-	}
+	protected function _content_template() {}
 }
