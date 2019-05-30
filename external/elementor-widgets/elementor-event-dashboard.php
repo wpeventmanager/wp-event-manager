@@ -118,7 +118,7 @@ class Elementor_Event_Dashboard extends Widget_Base {
 		else
 		    $posts_per_page = 'posts_per_page=10';
 		
-		echo '[event_dashboard '.$posts_per_page.' ]';
+		echo do_shortcode('[event_dashboard '.$posts_per_page.' ]');
 	}
 
 
