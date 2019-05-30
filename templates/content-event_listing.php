@@ -53,7 +53,8 @@
     <div class="event-title">
         <?php the_title(); ?>
     </div>
-    <div class="event-start-date"><?php display_event_start_date();?></div>   
+    <div class="event-start-date"><?php $date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
+      echo date_i18n( $date_format, strtotime(get_event_start_date()) );?></div>   
     <div class="event-location">
 	 <i class="glyphicon glyphicon-map-marker"></i>
      <?php if(get_event_location()=='Anywhere'): echo __('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?>
