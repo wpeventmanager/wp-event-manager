@@ -4,8 +4,8 @@ Contributors: ashokdudhat,gamthemes,hiteshmakvana, kikanirita, nao,garrett-eclip
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 5.1.1
-Stable tag: 3.1
+Tested up to: 5.2.1
+Stable tag: 3.1.2
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -316,6 +316,10 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Added - shortcode Widget of elementor compitible.
 * Added - convert start date into date_i18n.
 * Added - Shortcode for past event listing added.
+* Fixed - Events shortcode atts filter false fixed.
+* Added - Date i18n added
+* Fixed - POT file fixed with missing string
+
 
 = 3.1.1 =
 
