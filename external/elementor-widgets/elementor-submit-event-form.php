@@ -104,8 +104,7 @@ class Elementor_Submit_Event_Form extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$shortcode = '[submit_event_form]';
-		echo $shortcode;
+		echo do_shortcode('[submit_event_form]');
 	}
 
 	/**
