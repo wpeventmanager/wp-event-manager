@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
 Tested up to: 5.2.1
-Stable tag: 3.1.2
+Stable tag: 3.1.3
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -314,6 +314,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 = 3.1.3 =
 
 * Fixed - Widget title, number undefined solved
+* Fixed - event type meta box fixed
 
 = 3.1.2 =
 
