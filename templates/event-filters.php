@@ -27,9 +27,13 @@
 				<div class="col-sm-4">
 					<label for="search_datetimes"><?php _e( 'Any dates', 'wp-event-manager' ); ?></label>
 					<select name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown" data-placeholder="Choose any date…" data-no_results_text="No results match" data-multiple_text="<?php _e('Select Some Options','wp-event-manager'); ?>" >
-					<?php foreach ( $datetimes as $key => $value  ) : ?>
-						<option  value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
-					<?php endforeach; ?>
+					<?php foreach ( $datetimes as $key => $value  ) :
+						if(!strcasecmp($selected_datetime, $value) || $selected_datetime==$key) : ?>
+							<option selected=selected  value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+						<?php else : ?>
+							<option value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+						<?php endif;						
+					 endforeach; ?>
 					</select>
 				</div>
 			<?php endif; ?>	  			
@@ -45,9 +49,9 @@
 				<div class="col-sm-4">
 					<label for="search_categories"><?php _e( 'Category', 'wp-event-manager' ); ?></label>
 					<?php if ( $show_category_multiselect ) : ?>
-						<?php event_manager_dropdown_selection( array( 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'hide_empty' => false) ); ?>
+						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'hide_empty' => false) ); ?>
 					<?php else : ?>
-						<?php event_manager_dropdown_selection( array( 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'show_option_all' => __( 'Any Category', 'wp-event-manager' ), 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'multiple' => false, 'hide_empty' => false) ); ?>
+						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'show_option_all' => __( 'Any Category', 'wp-event-manager' ), 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'multiple' => false, 'hide_empty' => false) ); ?>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>	 
@@ -62,9 +66,9 @@
 				<div class="col-sm-4">
 					<label for="search_event_types"><?php _e( 'Event Type', 'wp-event-manager' ); ?></label>
 					<?php if ( $show_event_type_multiselect) : ?>
- 					    <?php event_manager_dropdown_selection( array( 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'hide_empty' => false) ); ?>
+ 					    <?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'hide_empty' => false) ); ?>
 					<?php else : ?>
-						<?php event_manager_dropdown_selection( array( 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'show_option_all' => __( 'Any Event Type', 'wp-event-manager' ), 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'multiple' => false,'hide_empty' => false) ); ?>
+						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'show_option_all' => __( 'Any Event Type', 'wp-event-manager' ), 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'multiple' => false,'hide_empty' => false) ); ?>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>		        
@@ -78,9 +82,13 @@
 				<div class="col-sm-4">
 					<label for="search_ticket_prices"><?php _e( 'Ticket Prices', 'wp-event-manager' ); ?></label>
 					<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php _e('No results match','wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options','wp-event-manager'); ?>" >
-					<?php foreach ( $ticket_prices as $key => $value ) : ?>
-						<option  value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
-					<?php endforeach; ?>
+					<?php foreach ( $ticket_prices as $key => $value ) :
+						if(!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price==$key) : ?>
+							<option selected=selected value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+						<?php else : ?>
+							<option value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+						<?php endif;
+					endforeach; ?>
 					</select>
 				</div>
 			<?php endif; ?>	  
