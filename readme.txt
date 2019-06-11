@@ -315,6 +315,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 * Fixed - Widget title, number undefined solved
 * Fixed - event type meta box fixed
+* Added - event-slug added at event add/update time (Admin-side) 
 
 = 3.1.2 =
 
