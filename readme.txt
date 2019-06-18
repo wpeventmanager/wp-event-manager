@@ -315,6 +315,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 = 3.1.4 =
 
 * Fixed - Problem with apostrophes in the text/description/placeholders in field-editor fixed
+* Fixed - event title & description stored as category at event creation time is fixed
 
 = 3.1.3 =
 
