@@ -8,10 +8,15 @@ $taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listi
 		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][label]" value="<?php echo esc_attr( $field['label'] ); ?>" />
 	</td>
 	<td class="field-type">
-		<select name="<?php echo $group_key;?>[<?php echo $field_key;?>][type]" class="field_type" <?php if( in_array($field_key, $disbled_fields) ){ echo "disabled=true";} ?>>
+		<select name="<?php echo $group_key;?>[<?php echo $field_key;?>][type]" class="field_type" >
 			<?php
 			foreach ( $field_types as $key => $type ) {
-				echo '<option value="' . esc_attr( $key ) . '" ' . selected( $field['type'], $key, false ) . '>' . esc_html( $type ) . '</option>';
+			    if( in_array($field_key, $disbled_fields) ){
+			        if($key==$field['type'])
+			            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $field['type'], $key, false ) . '>' . esc_html( $type ) . '</option>';
+			    }else{
+			        echo '<option value="' . esc_attr( $key ) . '" ' . selected( $field['type'], $key, false ) . '>' . esc_html( $type ) . '</option>';
+			    }
 			}
 			?>
 		</select>
