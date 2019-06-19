@@ -1071,6 +1071,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if(!empty($updated_fields))
 		foreach ( $updated_fields as $group_key => $group_fields ) {
 			foreach ($group_fields as $key => $field) {
+			    
+			    $updated_fields[$group_key][$key]=array_map('stripslashes_deep',$updated_fields[$group_key][$key]);				
+			    
 				//remove if visiblity is false
 				if(isset($field['visibility']) && $field['visibility'] == false )
 					unset($updated_fields[$group_key][$key]);

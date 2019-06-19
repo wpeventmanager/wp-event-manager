@@ -5,7 +5,7 @@ $taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listi
 <tr>
 	<td class="sort-column">&nbsp;</td>
 	<td>
-		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][label]" value="<?php echo esc_attr( $field['label'] ); ?>" />
+		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][label]" value="<?php echo esc_attr( stripslashes($field['label']) ); ?>" />
 	</td>
 	<td class="field-type">
 		<select name="<?php echo $group_key;?>[<?php echo $field_key;?>][type]" class="field_type" >
@@ -22,10 +22,10 @@ $taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listi
 		</select>
 	</td>
 	<td>
-		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][description]" value="<?php echo esc_attr( isset( $field['description'] ) ? $field['description'] : '' ); ?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][description]" value="<?php echo esc_attr( isset( $field['description'] ) ? stripslashes($field['description']) : '' ); ?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
 	</td>
 	<td class="field-options">
-		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][placeholder]" value="<?php if(isset($field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $field['placeholder'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][placeholder]" value="<?php if(isset($field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  stripslashes($field['placeholder']) );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
 			<input type="text" class="input-text options" name="<?php echo $group_key;?>[<?php echo $field_key;?>][options]" placeholder="<?php _e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( isset( $field['options'] ) ? implode( ' | ', $field['options'] ) : '' ); ?>" />
 
 		<div class="file-options">
