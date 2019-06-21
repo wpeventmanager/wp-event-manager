@@ -25,18 +25,9 @@ $taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listi
 		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][description]" value="<?php echo esc_attr( isset( $field['description'] ) ? stripslashes($field['description']) : '' ); ?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
 	</td>
 	<td class="field-options">
-	<?php
-		//get all options key & value and implde them 
-		if(isset($field['options'])){
-		    $options = implode(' | ', array_map(
-				function ($v, $k) { return sprintf("%s : %s", $k, $v); },
-				$field['options'],
-				array_keys($field['options'])
-			));
-		}
-	?>
-		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][placeholder]" value="<?php if(isset($field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  stripslashes($field['placeholder']) );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
-			<input type="text" class="input-text options" name="<?php echo $group_key;?>[<?php echo $field_key;?>][options]" placeholder="<?php _e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( isset( $field['options'] ) ? $options : '' ); ?>" />
+
+		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][placeholder]" value="<?php if(isset($field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $field['placeholder'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+			<input type="text" class="input-text options" name="<?php echo $group_key;?>[<?php echo $field_key;?>][options]" placeholder="<?php _e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( isset( $field['options'] ) ? implode( ' | ', $field['options'] ) : '' ); ?>" />
 
 		<div class="file-options">
 			<label class="multiple-files"><input type="checkbox" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][multiple]" value="1" <?php checked( ! empty( $field['multiple'] ), true ); ?> /> <?php _e( 'Multiple Files?', 'wp-event-manager' ); ?></label>
