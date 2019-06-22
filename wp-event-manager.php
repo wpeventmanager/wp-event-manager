@@ -304,9 +304,7 @@ class WP_Event_Manager {
 		wp_localize_script( 'wp-event-manager-ajax-filters', 'event_manager_ajax_filters', array(
 			'ajax_url'                => $ajax_url,
 			'is_rtl'                  => is_rtl() ? 1 : 0,
-			'lang'                    => apply_filters( 'wpem_lang', null ), //defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : '', // WPML workaround until this is standardized
-			'i18n_load_prev_listings' => __( 'Load previous listings', 'wp-event-manager' )
-
+			'lang'                    => apply_filters( 'wpem_lang', null ) //defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : '', // WPML workaround until this is standardized			
 		) );
 
 		//dashboard
