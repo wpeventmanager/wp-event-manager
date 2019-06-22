@@ -4,8 +4,8 @@ Contributors: ashokdudhat,gamthemes,hiteshmakvana, kikanirita, nao,garrett-eclip
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 5.2.1
-Stable tag: 3.1.3
+Tested up to: 5.2.2
+Stable tag: 3.1.4
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -311,10 +311,18 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+
+= 3.1.4 =
+
+* Fixed - Problem with apostrophes in the text/description/placeholders in field-editor fixed.
+* Fixed - Event title and description converted as category field fixed.
+* Fixed - In events shortcode selected category and selected type fixed.
+
 = 3.1.3 =
 
 * Fixed - Widget title, number undefined solved
 * Fixed - event type meta box fixed
+* Added - event-slug added at event add/update time (Admin-side) 
 
 = 3.1.2 =
 
