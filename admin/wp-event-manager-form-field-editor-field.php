@@ -29,7 +29,7 @@ $taxonomies = get_object_taxonomies( (object) array( 'post_type' => 'event_listi
 		//get all options key & value and implde them 
 		if(isset($field['options'])){
 			$options = implode(' | ', array_map(
-				function ($v, $k) { return sprintf("%s : %s", $k, $v); },
+			    function ($optionkey, $optionvalue) { return sprintf("%s : %s", $optionkey, $optionvalue); },
 				$field['options'],
 				array_keys($field['options'])
 			));
