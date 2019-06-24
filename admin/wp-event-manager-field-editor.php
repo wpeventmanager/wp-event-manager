@@ -182,7 +182,11 @@ class WP_Event_Manager_Field_Editor {
 									$new_fields[$group_key][$field_key]['options'] = explode( ' | ', $new_fields[$group_key][$field_key]['options']);
 									$temp_options = array();
 									foreach($new_fields[$group_key][$field_key]['options'] as $val){
-									    $temp_options[strtolower(str_replace(' ', '_', $val))] = $val;
+									    $option_key = explode( ' : ', $val);
+									    if(!isset($option_key[1]))
+									        $temp_options[strtolower(str_replace(' ', '_',$option_key[0]))] =  $option_key[0] ;
+								        else
+								            $temp_options[strtolower(str_replace(' ', '_',$option_key[0]))] =  $option_key[1] ;
 									}
 									$new_fields[$group_key][$field_key]['options'] = $temp_options;
 								}
