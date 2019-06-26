@@ -15,64 +15,51 @@ var ContentEventListing= function () {
     		  //Check when user has changed page using pagination and then need to keep current selected layout
     		  //When layout is box and user changed page using pagination then need to show line layout instead of line layout  
     		  if(localStorage.getItem("layout")=="line-layout" )
-    		  {            		      
-    		      jQuery('.line-layout').show();   
-    		      jQuery('.box-layout').hide();   	   
-    		      jQuery( "#line-layout-icon" ).removeClass( "lightgray-layout-icon" );
-    		      jQuery( "#box-layout-icon" ).addClass( "lightgray-layout-icon" );  
-    		      
-    		      jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings-table-bordered-change" ); 
-                  jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings-table-bordered" );
-                  jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings-change" ); 
-                  jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings" );       
+    		  {  
+    			 
+    			//find  active layout class and remove active
+                  jQuery('.wpem-event-layout-action').find('.wpem-active-layout').removeClass('wpem-active-layout');
+                  jQuery('#wpem-event-list-layout').addClass("wpem-active-layout");
                   
+                  //add box layout class and remove list view class
+                  if(jQuery(".wpem-event-listings").hasClass('wpem-row wpem-event-listing-box-view'))
+                	  jQuery(".wpem-event-listings").removeClass("wpem-row wpem-event-listing-box-view");      
+                  if(!jQuery(".wpem-event-listings").hasClass('wpem-event-listing-list-view'))
+                  	   jQuery(".wpem-event-listings").addClass("wpem-event-listing-list-view");
+                     
     		  } 
-    		  else if(localStorage.getItem("layout")=="box-layout" )
-    		  {   
-                  jQuery('.box-layout').show();
-        		  jQuery('.line-layout').hide(); 
-	              jQuery( "#line-layout-icon" ).addClass( "lightgray-layout-icon" );                
-	              jQuery( "#box-layout-icon" ).removeClass( "lightgray-layout-icon" );  
-	                       
-	              jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings-table-bordered" ); 
-        	      jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings-table-bordered-change" );
-        	      jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings" ); 
-        	      jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings-change" );  
-        	     
-    		  }
     		  else if(localStorage.getItem("layout")=="calendar-layout" )
-    		  {   
-                     jQuery('.box-layout').hide(); 
-    			     jQuery('.line-layout').hide();    			    
-    			     jQuery('#load_more_events').hide();
-    			     jQuery( "#line-layout-icon" ).addClass( "lightgray-layout-icon" );
-		             jQuery( "#box-layout-icon" ).addClass( "lightgray-layout-icon" );
-		             jQuery( "#calendar-layout-icon" ).removeClass( "lightgray-layout-icon" );	         
+    		  {     
+    			  jQuery('.wpem-event-layout-action').find('.wpem-active-layout').removeClass('wpem-active-layout');
+    			  jQuery('#wpem-event-calendar-layout').addClass("wpem-active-layout");
+    			  
+    			  //remove classes for list view and box view
+                   jQuery(".wpem-event-listings").removeClass("wpem-row wpem-event-listing-box-view");
+               	   jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
+                 
+                  jQuery(".wpem-event-listings").addClass("wpem-row wpem-event-listing-calendar-view");
+                	  
+	              jQuery('#load_more_events').hide();
+	              jQuery('.event-manager-pagination').hide();	         
         	     
     		  }   
     		  else 
     		  {
-    		        //initially line layout hidden    		       
-        		   jQuery('.line-layout').hide(); 
-    		       jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings-table-bordered" ); 
-                   jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings-table-bordered-change" );
-                   jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings" ); 
-                   jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings-change" ); 
+    			  //find  active layout class and remove active
+                  jQuery('.wpem-event-layout-action').find('.wpem-active-layout').removeClass('wpem-active-layout');
+                  jQuery('#wpem-event-box-layout').addClass("wpem-active-layout");
+                  
+                  //add box layout class and remove list view class
+                  if(jQuery(".wpem-event-listings").hasClass('wpem-event-listing-list-view'))
+               	   jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
+                  if(!jQuery(".wpem-event-listings").hasClass('wpem-row wpem-event-listing-box-view'))
+                  jQuery(".wpem-event-listings").addClass("wpem-row wpem-event-listing-box-view");
     		  }
+    		  
+   		    jQuery(document).delegate('#load_more_events','click', ContentEventListing.actions.loadMoreEventsClick);
+  		    jQuery(document).delegate('#wpem-event-list-layout','click', ContentEventListing.actions.lineLayoutIconClick);
+  		    jQuery(document).delegate('#wpem-event-box-layout','click', ContentEventListing.actions.boxLayoutIconClick);
         },
-        
-        ///<summary>
-        ///Bind event for layout selection icon click.  
-        ///</summary>     
-        ///<returns type="initialization settings" />   
-        /// <since>1.0.0</since> 
-        layoutSelectionEventBind: function() 
-        {           
-            jQuery(document).delegate('#load_more_events','click', ContentEventListing.actions.loadMoreEventsClick);
-		    jQuery(document).delegate('#line-layout-icon','click', ContentEventListing.actions.lineLayoutIconClick);
-		    jQuery(document).delegate('#box-layout-icon','click', ContentEventListing.actions.boxLayoutIconClick);		    
-        },
-        
         actions: 
         {
                 /// <summary>
@@ -106,15 +93,15 @@ var ContentEventListing= function () {
 	            lineLayoutIconClick: function (event)
 	            {   
 	                      Common.logInfo("ContentEventListing.actions.lineLayoutIconClick...");                   
-	               	      jQuery('.box-layout').hide(); 
-        			      jQuery('.line-layout').show();      
-	                      jQuery(this).removeClass( "lightgray-layout-icon" );
-	                      jQuery(this).closest('i').prev().addClass( "lightgray-layout-icon" );
+	                      jQuery('.wpem-event-layout-action').find('.wpem-active-layout').removeClass('wpem-active-layout');
+	                      jQuery(this).addClass("wpem-active-layout");
 	                      
-	                      jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings-table-bordered-change" ); 
-        	              jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings-table-bordered" );
-        	              jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings-change" ); 
-        	              jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings" ); 
+	                      //add box layout class and remove list view class
+	                      if(jQuery(".wpem-event-listings").hasClass('wpem-row wpem-event-listing-box-view'))
+	                    	  jQuery(".wpem-event-listings").removeClass("wpem-row wpem-event-listing-box-view");
+	                      
+	                      if(!jQuery(".wpem-event-listings").hasClass('wpem-event-listing-list-view'))
+	                    	  jQuery(".wpem-event-listings").addClass("wpem-event-listing-list-view");
         	            
         			      localStorage.setItem("layout", "line-layout");
         			      
@@ -128,18 +115,21 @@ var ContentEventListing= function () {
 	            /// <since>1.0.0</since>     
 	            boxLayoutIconClick: function (event)
 	            {                      	       
-	                       Common.logInfo("ContentEventListing.actions.boxLayoutIconClick...");    
-	                       jQuery('.box-layout').show();
-        			       jQuery('.line-layout').hide(); 
-	                       jQuery(this).removeClass( "lightgray-layout-icon" );	                       
-	                       jQuery(this).closest('i').next().addClass( "lightgray-layout-icon" );
-	                       
-	                       jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings-table-bordered" ); 
-        	               jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings-table-bordered-change" );
-        	               jQuery( ".event-listings-view-header" ).parent().find('ul').removeClass( "event-listings" ); 
-        	               jQuery( ".event-listings-view-header" ).parent().find('ul').addClass( "event-listings-change" );  
-        			       localStorage.setItem("layout", "box-layout"); 
-        			       event.preventDefault();
+                   Common.logInfo("ContentEventListing.actions.boxLayoutIconClick...");   
+                   
+                   //find  active layout class and remove active
+                   jQuery('.wpem-event-layout-action').find('.wpem-active-layout').removeClass('wpem-active-layout');
+                   jQuery(this).addClass("wpem-active-layout");
+                   
+                   //add box layout class and remove list view class
+                   if(jQuery(".wpem-event-listings").hasClass('wpem-event-listing-list-view'))
+                	   jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
+                   if(!jQuery(".wpem-event-listings").hasClass('wpem-row wpem-event-listing-box-view'))
+                   jQuery(".wpem-event-listings").addClass("wpem-row wpem-event-listing-box-view");
+                   
+			       localStorage.setItem("layout", "box-layout"); 
+			       
+			       event.preventDefault();
 	            }		   
         }
 
@@ -150,5 +140,5 @@ var ContentEventListing= function () {
 ContentEventListing= ContentEventListing();
 jQuery(document).ready(function($) 
 {   
-   ContentEventListing.layoutSelectionEventBind();
+   ContentEventListing.init();
 });

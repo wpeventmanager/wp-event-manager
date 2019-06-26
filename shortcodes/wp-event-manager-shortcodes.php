@@ -325,6 +325,8 @@ class WP_Event_Manager_Shortcodes {
 			'selected_event_type'       => '',
 
 			'selected_ticket_price'      => '',
+		    
+		    'layout_type'      => 'all',
 
 		) ), $atts ) );
 
@@ -475,11 +477,11 @@ class WP_Event_Manager_Shortcodes {
 
 										'location' => $location, 
 
-										'keywords' => $keywords							
+										'keywords' => $keywords,						
 										
 									      ));
 
-			get_event_manager_template( 'event-listings-start.php' );
+			get_event_manager_template( 'event-listings-start.php',array('layout_type'=>$layout_type) );
 
 			get_event_manager_template( 'event-listings-end.php' );
 
@@ -518,7 +520,7 @@ class WP_Event_Manager_Shortcodes {
 
 			if ( $events->have_posts() ) : ?>
 
-				<?php get_event_manager_template( 'event-listings-start.php' ); ?>			
+				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>$layout_type)); ?>			
 
 				<?php while ( $events->have_posts() ) : $events->the_post(); ?>
 

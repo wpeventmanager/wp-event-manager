@@ -600,3 +600,9 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 
 
 /** Event Dashboard Page ** End **/
+
+
+/*temp css rupesh need to improve*/
+.wpem-row .wpem-event-listing-calendar-view .wpem-event-box-col{
+	display:none;
+}
