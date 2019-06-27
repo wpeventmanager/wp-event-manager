@@ -4,9 +4,9 @@
 	?>
 	<div class="event_registration registration">
 		<?php do_action( 'event_registration_start', $register ); ?>
-		
-		<input type="button" class="registration_button button" value="<?php _e( 'Register for event', 'wp-event-manager' ); ?>" />
-		
+		<div class="wpem-event-sidebar-button wpem-registration-event-button">
+		<input type="button" class="registration_button wpem-theme-button" value="<?php _e( 'Register for event', 'wp-event-manager' ); ?>" />
+		</div>
 		<div class="registration_details">
 			<?php
 				/**
