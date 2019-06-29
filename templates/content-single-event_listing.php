@@ -4,6 +4,7 @@
       ?>
 <div class="single_event_listing" itemscope itemtype="http://schema.org/EventPosting">
 	<meta itemprop="title" content="<?php echo esc_attr( $post->post_title ); ?>" />
+	
 	<div class="wpem-main wpem-single-event-page">
 		<?php if ( get_option( 'event_manager_hide_expired_content', 1 ) && 'expired' === $post->post_status ) : ?>
 		<div class="event-manager-info"><?php _e( 'This listing has been expired.', 'wp-event-manager' ); ?></div>
@@ -17,6 +18,13 @@
 		<div class="wpem-single-event-wrapper">
 		<div class="wpem-single-event-header-top">
 			<div class="wpem-row">
+			<?php if ( is_event_cancelled() ) : ?>
+              <big>|</big>
+              <span class="event-cancelled"  itemprop="eventCancelled"><?php _e( 'This event has been cancelled', 'wp-event-manager' ); ?></span>	               
+            <?php elseif ( ! attendees_can_apply() && 'preview' !== $post->post_status ) : ?>		       
+               <big>|</big>
+		       <span class="listing-expired" itemprop="eventExpired"><?php _e( 'Registrations have closed', 'wp-event-manager' ); ?></span>
+	        <?php endif; ?>
 				 <div class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-images">
 				 <?php
 				 $event_banners = get_event_banner();
