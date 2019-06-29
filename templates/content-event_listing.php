@@ -15,8 +15,8 @@
           <!-- Hide in list View // Show in Box View -->
           <?php do_action('event_already_registered_title');?>
             <?php //if ( user_has_registered_for_event( get_current_user_id(), get_the_ID() ) ){ ?>
-            <div class="wpem-event-register-label"><span class="wpem-event-register-label-text"><?php _e( 'Registered', 'wp-event-manager-registrations' ); ?></span></div>
-            <?php //} ?>
+            <!--  <div class="wpem-event-register-label"><span class="wpem-event-register-label-text"><?php _e( 'Registered', 'wp-event-manager-registrations' ); ?></span></div>
+--><?php //} ?>
           
           <div class="wpem-event-date">
             <div class="wpem-event-date-type">
@@ -58,9 +58,10 @@
             <?php if( get_event_type()) { ?>
               <div class="wpem-event-type"><?php if ( get_option( 'event_manager_enable_event_types' ) ) { display_event_type(); } ?></div>
             <?php } ?>
+            <?php do_action('event_already_registered_title');?>
             <?php //if ( user_has_registered_for_event( get_current_user_id(), get_the_ID() ) ){ ?>
-            <div class="wpem-event-register-label"><span class="wpem-event-register-label-text"><?php _e( 'Registered', 'wp-event-manager-registrations' ); ?></span></div>
-            <?php //} ?>
+           <!--   <div class="wpem-event-register-label"><span class="wpem-event-register-label-text"><?php _e( 'Registered', 'wp-event-manager-registrations' ); ?></span></div>
+--><?php //} ?>
             <!-- Show in list View // Hide in Box View -->
             <?php if(get_event_ticket_option()){  ?>
               <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text"><span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span></div>

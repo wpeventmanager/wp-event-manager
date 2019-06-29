@@ -45,7 +45,7 @@
 			<?php endif; ?>	  			
 			<!-- Search by date section end -->
 	         </div> <!-- /row -->
-		<div class="row">
+		<div class="wpem-row">
 			<!-- Search by event categories section start -->
 			<?php if ( $categories ) : ?>
 				<?php foreach ( $categories as $category ) : ?>
@@ -85,8 +85,9 @@
 			<!-- Search by event type section end -->
 			<!-- Search by any ticket price section start -->			
 			<?php if ( $show_ticket_prices && $ticket_prices) : ?>				
-				<div class="col-sm-4">
-					<label for="search_ticket_prices"><?php _e( 'Ticket Prices', 'wp-event-manager' ); ?></label>
+				<div class="wpem-col">
+				<div class="wpem-form-group">
+					<label for="search_ticket_prices" class="wpem-form-label"><?php _e( 'Ticket Prices', 'wp-event-manager' ); ?></label>
 					<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php _e('No results match','wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options','wp-event-manager'); ?>" >
 					<?php foreach ( $ticket_prices as $key => $value ) :
 						if(!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price==$key) : ?>
@@ -96,6 +97,7 @@
 						<?php endif;
 					endforeach; ?>
 					</select>
+					</div>
 				</div>
 			<?php endif; ?>	  
 			<!-- Search by any ticket price section end -->  

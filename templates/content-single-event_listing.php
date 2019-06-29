@@ -17,14 +17,15 @@
 		<div class="wpem-single-event-wrapper">
 		<div class="wpem-single-event-header-top">
 			<div class="wpem-row">
-				<?php $event_banners = get_event_banner();?>
 				 <div class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-images">
-				 <?php if(is_array($event_banners) && sizeof($event_banners) > 1 ) : ?>
+				 <?php
+				 $event_banners = get_event_banner();
+				 if(is_array($event_banners) && sizeof($event_banners) > 1 ) : ?>
 				 <div class="wpem-single-event-slider-wrapper">
 				 	<div class="wpem-single-event-slider">
 				 		<?php foreach( $event_banners as $banner_key => $banner_value ) :  ?>
 				 			<div class="wpem-slider-items">
-				 			<img src="<?php echo $banner_value;?>" alt="<?php echo esc_attr(get_organizer_name());?>" />
+				 				<img src="<?php echo $banner_value;?>" alt="<?php echo esc_attr(get_organizer_name());?>" />
 				 			</div>
 				 		<?php endforeach;?>
 				 	</div>
