@@ -2,7 +2,7 @@
     $start_date = get_event_start_date();
     $end_date = get_event_end_date();
     $event_type = get_event_type();
-    if(is_array($event_type))
+    if(is_array($event_type) && isset($event_type[0]))
       $event_type = $event_type[0]->slug;
 ?>
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-4 "><!----- wpem-col-lg-4 value can be change by admin settings ------->
@@ -13,9 +13,7 @@
         <div class="wpem-event-banner-img" style="background-image: url(<?php $banner= get_event_banner(); if(is_array($banner)) echo $banner[0];else echo $banner; ?> ) ; ?>);">
 
           <!-- Hide in list View // Show in Box View -->
-          <?php do_action('event_already_registered_title');?>
-          
-          
+          <?php do_action('event_already_registered_title');?>     
           <div class="wpem-event-date">
             <div class="wpem-event-date-type">
               <div class="wpem-from-date">
@@ -30,7 +28,6 @@
       </div>
 
       <div class="wpem-event-infomation">
-
           <div class="wpem-event-date">
             <div class="wpem-event-date-type">
 
@@ -63,11 +60,8 @@
               <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text"><span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span></div>
             <?php } ?>
             <!-- Show in list View // Hide in Box View -->
-
           </div>
-
       </div>   
-
     </a>
   </div>
   </div>
