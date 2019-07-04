@@ -64,6 +64,7 @@
                         <div class="wpem-event-title"><h3 class="wpem-heading-text"><?php the_title();?></h3></div>
                         <div class="wpem-event-organizer"><div class="wpem-event-organizer-name"><a><?php printf( __('by %s','wp-event-manager'),get_organizer_name() );?></a></div></div>
                         <div class="wpem-event-ticket"><span class="wpem-event-ticket-text"><?php display_event_ticket_price( '',  '', true, $post );?></span></div>
+                        <div><?php display_event_type();?></div>
                       </div>
 				 </div>
 			</div>
