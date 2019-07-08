@@ -87,7 +87,7 @@
                 <div class="wpem-single-event-sidebar-info">
                   
                   <h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
-                  <?php printf( __('%s'),$start_date);?> – <?php printf(__('%s','wp-event-manager'),$end_date);?>
+                  <?php display_event_start_date();?> – <?php display_event_end_date();?>
                   <div class="clearfix">&nbsp;</div>
 
                   <h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
