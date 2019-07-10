@@ -1,10 +1,10 @@
-<?php 
-    $start_date = get_event_start_date();
-    $end_date = get_event_end_date();
-    $event_type = get_event_type();
-    if(is_array($event_type) && isset($event_type[0]))
-      $event_type = $event_type[0]->slug;
-?>
+<?php
+$start_date = get_event_start_date();
+$end_date = get_event_end_date();
+$event_type = get_event_type();
+if(is_array($event_type) && isset($event_type[0]))
+	$event_type = $event_type[0]->slug;
+	?>
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-4 "><!----- wpem-col-lg-4 value can be change by admin settings ------->
   <div class="wpem-event-layout-wrapper">
   <div <?php event_listing_class('wpem-event-layout-wrapper'); ?>>
