@@ -162,31 +162,23 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'required'    => 'true',					
 					'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
 					'priority'    => 5
-				),			
-
-				'event_address' => array(
-					'label'       => __( 'Address', 'wp-event-manager' ),
-					'type'        => 'text',
-					'required'    => 'true',					
-					'placeholder' => __( 'Please enter street name and number', 'wp-event-manager' ),
-					'priority'    => 6
-				),			
-
+				),					
+				'event_location' => array(
+							'label'       => __( 'Location', 'wp-event-manager' ),
+							'type'        => 'text',
+							'required'    => true,
+							'placeholder' => __( 'e.g. "Berlin","London"', 'wp-event-manager' ),
+							'priority'    => 7
+				),
 				'event_pincode' => array(
 					'label'       => __( 'Zip Code', 'wp-event-manager' ),
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => __( 'Please enter zip code (Area code)', 'wp-event-manager' ),
-					'priority'    => 7
-				),
-
-				'event_location' => array(
-					'label'       => __( 'Location', 'wp-event-manager' ),
-					'type'        => 'text',
-					'required'    => true,
-					'placeholder' => __( 'e.g. "Berlin","London"', 'wp-event-manager' ),
 					'priority'    => 8
 				),
+
+				
 
 				'event_banner' => array(
 					'label'       => __( 'Event Banner', 'wp-event-manager' ),
