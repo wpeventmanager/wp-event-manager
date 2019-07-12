@@ -12,15 +12,15 @@
 		<div class="repeated-row-<?php echo esc_attr( $key ); ?>">
 		<input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr( $key ); ?>[]" value="<?php echo absint( $index ); ?>" />
 		
-         <ul class="nav nav-tabs">
+         <ul class="wpem-nav wpem-nav-tabs">
          
             <li class="active"><a data-toggle="tab" href="#sell-ticket-details-<?php echo $key . '-' . $index; ?>"><?php _e('Ticket Details','wp-event-manager');?></a></li>
             <li><a data-toggle="tab" href="#<?php echo $key . '_' . $index; ?>"><?php _e('Settings','wp-event-manager');?></a></li>
             <a class="pull-right ticket-notice-info" data-toggle="popover" data-trigger="hover"   data-placement="top" data-content="<?php _e('You can\'t delete ticket once it is added.You can make it private from settings tab.','wp-event-manager');?>" > <span class="glyphicon glyphicon-info-sign"></span></a>
 
           </ul>
-            <div class="tab-content">
-                <div id="sell-ticket-details-<?php echo $key . '-' . $index; ?>" class="tab-pane fade in active">
+            <div class="wpem-tab-content">
+                <div id="sell-ticket-details-<?php echo $key . '-' . $index; ?>" class="wpem-tab-pane fade in active">
                   <?php foreach ( $field['fields'] as $subkey => $subfield ) : 
                             if ($subkey == 'ticket_description') : ?>
                 </div><!------------end ticket details tab------>
