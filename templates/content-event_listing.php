@@ -4,7 +4,7 @@ $end_date = get_event_end_date();
 $event_type = get_event_type();
 if(is_array($event_type) && isset($event_type[0]))
 	$event_type = $event_type[0]->slug;
-	?>
+?>
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-4 "><!----- wpem-col-lg-4 value can be change by admin settings ------->
   <div class="wpem-event-layout-wrapper">
   <div <?php event_listing_class('wpem-event-layout-wrapper'); ?>>
@@ -50,8 +50,8 @@ if(is_array($event_type) && isset($event_type[0]))
             <div class="wpem-event-date-time"><span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php display_event_start_time();?> - <?php display_event_end_date();?> <?php display_event_end_time();?></span></div>
             <div class="wpem-event-location"><span class="wpem-event-location-text"><?php if(get_event_location()=='Anywhere' || get_event_location() == ''): echo __('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?></span></div>
             
-            <?php if( get_event_type()) { ?>
-              <div class="wpem-event-type"><?php if ( get_option( 'event_manager_enable_event_types' ) ) { display_event_type(); } ?></div>
+            <?php if( get_option( 'event_manager_enable_event_types' ) && get_event_type() ) { ?>
+              <div class="wpem-event-type"><?php display_event_type(); ?></div>
             <?php } ?>
             <?php do_action('event_already_registered_title');?>
             

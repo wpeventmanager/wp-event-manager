@@ -102,7 +102,7 @@ $end_date = get_event_end_date ();
 						<div class="wpem-single-event-body-sidebar">
 
 							<div class="wpem-single-event-sidebar-info">
-
+									<?php do_action('single_event_sidebar_start');?>
 								<h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
                   <?php display_event_start_date();?> – <?php display_event_end_date();?>
                   <div class="clearfix">&nbsp;</div>
@@ -110,22 +110,18 @@ $end_date = get_event_end_date ();
 								<h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
                   <?php display_event_location();?>
                   <div class="clearfix">&nbsp;</div>
-                  <?php if( get_event_type()) { ?>
+                  <?php if(get_option( 'event_manager_enable_event_types' ) && get_event_type()) { ?>
                    <h3 class="wpem-heading-text"><?php _e('Event Types','wp-event-manager');?></h3>
-								<div class="wpem-event-type"><?php if ( get_option( 'event_manager_enable_event_types' ) ) { display_event_type(); } ?></div>
+								<div class="wpem-event-type"><?php  display_event_type();  ?></div>
             	<?php } ?>
             	
-            	<?php if( get_event_type()) { ?>
+            	<?php if(get_option( 'event_manager_enable_categories' ) && get_event_type()) { ?>
                    <h3 class="wpem-heading-text"><?php _e('Event Category','wp-event-manager');?></h3>
-								<div class="wpem-event-type"><?php if ( get_option( 'event_manager_enable_categories' ) ) { display_event_category(); } ?></div>
+				   <div class="wpem-event-type"><?php display_event_category(); ?></div>
             	<?php } ?>
-            	<?php if( get_event_tags()) { ?>
-            	 	<div class="clearfix">&nbsp;</div>
-								<h3 class="wpem-heading-text">Event Tags</h3>
-                 	<?php display_event_tags();?>
-                  <?php } ?>
+           
                 </div>
-				<?php do_action('single_event_sidebar_start');?>
+				
                 <?php
 			$date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format ();
 			$registration_end_date = get_event_registration_end_date ();
@@ -144,9 +140,6 @@ $end_date = get_event_end_date ();
 			if (attendees_can_apply () && ((strtotime ( $registration_end_date ) > $current_timestamp) || empty ( $registration_end_date )) && $registration_addon_form)
 				get_event_manager_template ( 'event-registration.php' );
 			?>
-			     
-			       
-                      
 			     <?php do_action('single_event_sidebar_end');?>
 		     
 		         <!-- Event Registration End Date start-->
@@ -199,7 +192,7 @@ $end_date = get_event_end_date ();
          	  
 	<?php
 
-get_event_manager_template_part ( 'content', 'single-event_listing-organizer' );
+			get_event_manager_template_part ( 'content', 'single-event_listing-organizer' );
 			/**
 			 * single_event_listing_end hook
 			 */
@@ -213,3 +206,28 @@ get_event_manager_template_part ( 'content', 'single-event_listing-organizer' );
 	</div>
 	<!-- / wpem-main end  -->
 </div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+
+    jQuery('.wpem-single-event-slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear'
+    });
+
+
+
+  /*   jQuery('#wpem_bookmark_event_button').click(function() {
+      jQuery(this).toggleClass("wpem-active-button");
+      jQuery('#wpem_bookmark_event_form').slideToggle("slow");
+    }); */
+
+    
+
+  });
+
+</script>
+
