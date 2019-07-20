@@ -1,5 +1,4 @@
 <?php
-
 global $post;
 $start_date = get_event_start_date ();
 $end_date = get_event_end_date ();
@@ -80,7 +79,7 @@ $end_date = get_event_end_date ();
 							<div class="wpem-event-ticket">
 								<span class="wpem-event-ticket-text"><?php display_event_ticket_price( '',  '', true, $post );?></span>
 							</div>
-							<div><?php display_event_type();?></div>
+							
 						</div>
 					</div>
 				</div>
@@ -115,42 +114,50 @@ $end_date = get_event_end_date ();
 								<div class="wpem-event-type"><?php  display_event_type();  ?></div>
             	<?php } ?>
             	
-            	<?php if(get_option( 'event_manager_enable_categories' ) && get_event_type()) { ?>
+				<?php if(get_option( 'event_manager_enable_categories' ) && get_event_type()) { ?>
+					<div class="clearfix">&nbsp;</div>
                    <h3 class="wpem-heading-text"><?php _e('Event Category','wp-event-manager');?></h3>
 				   <div class="wpem-event-type"><?php display_event_category(); ?></div>
+				   
             	<?php } ?>
-           
-                </div>
-				
-                <?php
-			$date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format ();
-			$registration_end_date = get_event_registration_end_date ();
-			$registration_end_date = WP_Event_Manager_Date_Time::date_parse_from_format ( $date_format, $registration_end_date );
-
-			$registration_addon_form = apply_filters ( 'event_manager_registration_addon_form', true );
-			$event_timezone = get_event_timezone ();
-
-			// check if timezone settings is enabled as each event then set current time stamp according to the timezone
-			// for eg. if each event selected then Berlin timezone will be different then current site timezone.
-			if (WP_Event_Manager_Date_Time::get_event_manager_timezone_setting () == 'each_event')
-				$current_timestamp = WP_Event_Manager_Date_Time::current_timestamp_from_event_timezone ( $event_timezone );
-			else
-				$current_timestamp = current_time ( 'timestamp' ); // If site wise timezone selected
-
-			if (attendees_can_apply () && ((strtotime ( $registration_end_date ) > $current_timestamp) || empty ( $registration_end_date )) && $registration_addon_form)
-				get_event_manager_template ( 'event-registration.php' );
-			?>
-			     <?php do_action('single_event_sidebar_end');?>
-		     
-		         <!-- Event Registration End Date start-->
-                 <?php if(get_event_registration_end_date()): ?>                                             
-                     	<h3 class="wpem-heading-text"><?php _e('Registration End Date','wp-event-manager');?></h3>
-                        <?php display_event_registration_end_date();?>
-                 <?php endif; ?>
-                 <!-- Registration End Date End-->
+		   <div class="clearfix">&nbsp;</div>
+		   <!-- Event Registration End Date start-->
+		   <?php if(get_event_registration_end_date()): ?>                                             
+								<h3 class="wpem-heading-text"><?php _e('Registration End Date','wp-event-manager');?></h3>
+								<?php display_event_registration_end_date();?>
+						<?php endif; ?>
+						<!-- Registration End Date End-->
 							<div class="clearfix">&nbsp;</div>
-							<h3 class="wpem-heading-text">Share With Friends</h3>
+							
+		   <?php do_action('single_event_sidebar_end');?>
+		   
+                </div>
+				<?php do_action( 'single_event_listing_button_start' ); ?>
+                <?php
+					$date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format ();
+					$registration_end_date = get_event_registration_end_date ();
+					$registration_end_date = WP_Event_Manager_Date_Time::date_parse_from_format ( $date_format, $registration_end_date );
 
+					$registration_addon_form = apply_filters ( 'event_manager_registration_addon_form', true );
+					$event_timezone = get_event_timezone ();
+
+					// check if timezone settings is enabled as each event then set current time stamp according to the timezone
+					// for eg. if each event selected then Berlin timezone will be different then current site timezone.
+					if (WP_Event_Manager_Date_Time::get_event_manager_timezone_setting () == 'each_event')
+						$current_timestamp = WP_Event_Manager_Date_Time::current_timestamp_from_event_timezone ( $event_timezone );
+					else
+						$current_timestamp = current_time ( 'timestamp' ); // If site wise timezone selected
+
+					if (attendees_can_apply () && ((strtotime ( $registration_end_date ) > $current_timestamp) || empty ( $registration_end_date )) && $registration_addon_form)
+						get_event_manager_template ( 'event-registration.php' );
+					?>
+						<div class="clearfix">&nbsp;</div>
+					
+						
+
+							<?php do_action( 'single_event_listing_button_end' ); ?>		
+							<h3 class="wpem-heading-text">Share With Friends</h3>
+					
 
 							<div class="wpem-share-this-event">
 								<div class="wpem-event-share-lists">
@@ -217,15 +224,6 @@ $end_date = get_event_end_date ();
       fade: true,
       cssEase: 'linear'
     });
-
-
-
-  /*   jQuery('#wpem_bookmark_event_button').click(function() {
-      jQuery(this).toggleClass("wpem-active-button");
-      jQuery('#wpem_bookmark_event_form').slideToggle("slow");
-    }); */
-
-    
 
   });
 
