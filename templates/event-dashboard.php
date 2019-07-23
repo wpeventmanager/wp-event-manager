@@ -1,4 +1,5 @@
 <?php do_action('event_manager_event_dashboard_before'); ?>
+<p></p>
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">

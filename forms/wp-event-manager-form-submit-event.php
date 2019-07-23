@@ -162,14 +162,16 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'required'    => 'true',					
 					'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
 					'priority'    => 5
-				),					
-				'event_location' => array(
-							'label'       => __( 'Location', 'wp-event-manager' ),
-							'type'        => 'text',
-							'required'    => true,
-							'placeholder' => __( 'e.g. "Berlin","London"', 'wp-event-manager' ),
-							'priority'    => 7
 				),
+					
+				'event_address' => array(
+						'label'       => __( 'Address', 'wp-event-manager' ),
+						'type'        => 'text',
+						'required'    => 'true',
+						'placeholder' => __( 'Please enter street name and number', 'wp-event-manager' ),
+						'priority'    => 6
+				),
+					
 				'event_pincode' => array(
 					'label'       => __( 'Zip Code', 'wp-event-manager' ),
 					'type'        => 'text',
@@ -177,9 +179,15 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => __( 'Please enter zip code (Area code)', 'wp-event-manager' ),
 					'priority'    => 8
 				),
-
-				
-
+					
+				'event_location' => array(
+						'label'       => __( 'Location', 'wp-event-manager' ),
+						'type'        => 'text',
+						'required'    => true,
+						'placeholder' => __( 'e.g. "Berlin","London"', 'wp-event-manager' ),
+						'priority'    => 7
+				),
+					
 				'event_banner' => array(
 					'label'       => __( 'Event Banner', 'wp-event-manager' ),
 					'type'        => 'file',
@@ -202,7 +210,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 10
-				),	
+				),
+					
 				'registration' => array(
 					'label'       => $registration_method_label,
 					'type'        => 'text',
@@ -210,6 +219,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => $registration_method_placeholder,
 					'priority'    => 11
 				),
+					
 				'event_start_date' => array(  
 								'label'=> __( 'Start Date', 'wp-event-manager' ),
 								'placeholder'  => __( 'Please enter event start date', 'wp-event-manager' ),								
@@ -223,7 +233,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 								'type'  => 'time',
 								'priority'    => 13,
 								'required'=>true	  
-							  ),
+								),
 
 				'event_end_date' => array(
 							        'label'=> __( 'End Date', 'wp-event-manager' ),
@@ -266,9 +276,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							        'label'=> __( 'Ticket Price', 'wp-event-manager' ),                              
 							        'placeholder'  => __( 'Please enter ticket price', 'wp-event-manager' ),							        
 							        'type'  => 'text',
-								'priority'    => 17,
+									'priority'    => 17,
 							        'required'=>true
-							  ),
+							  		),
 
 				'event_link_to_eventpage' => array(
 									'label'       => __( 'Link To Event Page', 'wp-event-manager' ),									
@@ -276,7 +286,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 									'required'    => false,					
 									'placeholder' => __( 'e.g http://www.example.com', 'wp-event-manager' ),
 									'priority'    => 19
-				),
+									),
 
 				'event_registration_deadline' => array(
 									'label'       => __( 'Registration Deadline', 'wp-event-manager' ),	
@@ -284,7 +294,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 									'required'    => false,					
 									'placeholder' => __( 'Please enter registration deadline', 'wp-event-manager' ),
 									'priority'    => 20
-				),						 
+									),						 
 			),
 			
 			'organizer' => array(

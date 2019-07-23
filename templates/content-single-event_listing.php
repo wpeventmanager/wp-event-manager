@@ -107,7 +107,7 @@ $end_date = get_event_end_date ();
                   <div class="clearfix">&nbsp;</div>
 
 								<h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
-                  <?php display_event_location();?>
+                  <?php if(get_event_address()){ display_event_address(); echo ',';} ?> <?php display_event_location();?> 
                   <div class="clearfix">&nbsp;</div>
                   <?php if(get_option( 'event_manager_enable_event_types' ) && get_event_type()) { ?>
                    <h3 class="wpem-heading-text"><?php _e('Event Types','wp-event-manager');?></h3>

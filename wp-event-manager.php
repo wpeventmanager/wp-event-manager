@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Plugin Name: WP Event Manager
 
 Plugin URI: https://www.wp-eventmanager.com/
@@ -26,7 +26,7 @@ License: GNU General Public License v3.0
 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-*/
+**/
 
 // Exit if accessed directly
 

@@ -1101,8 +1101,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Legacy
-	 * @deprecated 1.19.1
+	 * 
 	 */
 
 	public function maybe_generate_geolocation_data( $meta_id, $object_id, $meta_key, $_meta_value ) {
