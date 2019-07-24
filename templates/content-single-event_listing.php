@@ -105,16 +105,16 @@ $end_date = get_event_end_date ();
 								<h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
                   <?php display_event_start_date();?> – <?php display_event_end_date();?>
                   <div class="clearfix">&nbsp;</div>
-
-								<h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
+				  <h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
                   <?php if(get_event_address()){ display_event_address(); echo ',';} ?> <?php display_event_location();?> 
-                  <div class="clearfix">&nbsp;</div>
+                  
                   <?php if(get_option( 'event_manager_enable_event_types' ) && get_event_type()) { ?>
-                   <h3 class="wpem-heading-text"><?php _e('Event Types','wp-event-manager');?></h3>
-								<div class="wpem-event-type"><?php  display_event_type();  ?></div>
+                  <div class="clearfix">&nbsp;</div>
+                  <h3 class="wpem-heading-text"><?php _e('Event Types','wp-event-manager');?></h3>
+				  <div class="wpem-event-type"><?php  display_event_type();  ?></div>
             	<?php } ?>
             	
-				<?php if(get_option( 'event_manager_enable_categories' ) && get_event_type()) { ?>
+				<?php if(get_option( 'event_manager_enable_categories' ) && get_event_category()) { ?>
 					<div class="clearfix">&nbsp;</div>
                    <h3 class="wpem-heading-text"><?php _e('Event Category','wp-event-manager');?></h3>
 				   <div class="wpem-event-type"><?php display_event_category(); ?></div>
@@ -123,14 +123,13 @@ $end_date = get_event_end_date ();
 		   <div class="clearfix">&nbsp;</div>
 		   <!-- Event Registration End Date start-->
 		   <?php if(get_event_registration_end_date()): ?>                                             
-								<h3 class="wpem-heading-text"><?php _e('Registration End Date','wp-event-manager');?></h3>
-								<?php display_event_registration_end_date();?>
-						<?php endif; ?>
-						<!-- Registration End Date End-->
-							<div class="clearfix">&nbsp;</div>
-							
+					<h3 class="wpem-heading-text"><?php _e('Registration End Date','wp-event-manager');?></h3>
+					<?php display_event_registration_end_date();?>
+		  <?php endif; ?>
+		  <!-- Registration End Date End-->
+		  <div class="clearfix">&nbsp;</div>
+		  				
 		   <?php do_action('single_event_sidebar_end');?>
-		   
                 </div>
 				<?php do_action( 'single_event_listing_button_start' ); ?>
                 <?php

@@ -64,9 +64,7 @@
 
                 <div class="wpem-ticket-counter-wrapper"><div class="wpem-ticket-counter"><?php echo '%%repeated-row-index%%'; ?></div></div>
 
-                <div class="wpem-ticket-close-button"><a href="#remove" class="remove-row" title="<?php _e( 'Remove', 'wp-event-manager' ); ?>" id="repeated-row-<?php echo esc_attr( $key.'_%%repeated-row-index%%' ); ?>" ><i class="wpem-icon-cross"></i></a></div>
-                
-                <div class="wpem-ticket-notice-info"><a class="ticket-notice-info" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?php _e('You can\'t delete ticket once it is added.You can make it private from settings tab.','wp-event-manager');?>" ><i class="wpem-icon-blocked"></i></a></div>
+                <div class="wpem-ticket-close-button"><a href="#remove" class="remove-row" title="<?php _e( 'Remove', 'wp-event-manager' ); ?>" id="repeated-row-<?php echo esc_attr( $key.'_%%repeated-row-index%%' ); ?>" ><i class="wpem-icon-cross"></i></a></div>   
             </div>
 
             <ul class="wpem-tabs-wrap wpem-list-unstyled">
