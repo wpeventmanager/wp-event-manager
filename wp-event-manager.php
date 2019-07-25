@@ -316,8 +316,8 @@ class WP_Event_Manager {
 		wp_register_script( 'wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array( 'jquery' ,'jquery-ui-core'), EVENT_MANAGER_VERSION, true );
 		wp_enqueue_script( 'wp-event-manager-jquery-timepicker');
 		
-		wp_register_script( 'wp-event-manager-slick-script', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.min.js', array( 'jquery' ), EVENT_MANAGER_VERSION, true );
-		wp_register_script( 'wp-event-manager-slick-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.css' , array( ), EVENT_MANAGER_VERSION, true );
+		wp_register_script( 'wp-event-manager-slick-script', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.min.js', array( 'jquery' ) );
+		wp_register_style( 'wp-event-manager-slick-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.css' , array( ) );
 		wp_enqueue_script('wp-event-manager-slick-script');
 		wp_enqueue_style( 'wp-event-manager-slick-style');
 	}

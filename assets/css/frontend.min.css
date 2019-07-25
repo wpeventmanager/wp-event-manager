@@ -85,10 +85,6 @@
 .wpem-form-wrapper .chosen-container .chosen-drop .chosen-results li { font-size: 16px; line-height: 20px; transition: all 0s; }
 .wpem-form-wrapper .chosen-container .chosen-drop .chosen-results li.highlighted { background: #00a5fa; }
 
-.wpem-form-wrapper .filter_wide.filter_by_tag { font-size: 17px; letter-spacing: 0px; margin: 5px 0; display: inline-block; width: 100%; }
-.wpem-form-wrapper .filter_wide.filter_by_tag .filter_by_tag_cloud { display: inline-block; margin: -3px; padding-top: 10px; }
-.wpem-form-wrapper .filter_wide.filter_by_tag .filter_by_tag_cloud .tag-cloud-link { background: #e8e8e8; line-height: normal; display: inline-block; padding: 3px 6px; color: #555; border-radius: 5px; margin: 3px; }
-
 .wpem-form-wrapper .showing_applied_filters { background: #e8e8e8; font-size: 15px; border-radius: 5px; padding: 5px; margin: 10px 0; display: inline-block; width: 100%; }
 .wpem-form-wrapper .showing_applied_filters span { margin: 2px; display: inline-block; }
 .wpem-form-wrapper .showing_applied_filters a { float: right; margin: 2px; display: inline-block; }
@@ -164,7 +160,7 @@
 .wpem-event-listing-list-view .wpem-listing-google-map-wrapper { padding: 0px; }
 .wpem-event-listing-list-view .wpem-event-box-col { flex: unset; max-width: unset; width: 100%; margin: 0px; padding: 0px; -webkit-box-flex: unset; }
 
-.wpem-event-listings .wpem-event-layout-wrapper { border-bottom: 1px solid #e4e4e4; border-right: 1px solid #e4e4e4; background: #FFF; transition: background 0.2s; }
+.wpem-event-listings .wpem-event-layout-wrapper { border-bottom: 1px solid #e4e4e4; border-right: 1px solid #e4e4e4; background: #FFF; margin: 0px; transition: background 0.2s; }
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-layout-wrap { width: 100%; display: inline-block; margin: 0; }
 
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-action-url { display: inline-flex; width: 100%; padding: 23px 17px; border-left: 3px solid #DDD; transition: border 0.2s; }
@@ -351,7 +347,7 @@
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider .wpem-slider-items img { width: 900px; height: 450px; }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider ul.slick-dots { position: absolute; left: 10px; bottom: 10px; margin: 0; padding: 0; }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider ul.slick-dots li { height: 10px; width: 10px; position: relative; margin: 4px; font-size: 0px; line-height: normal; float: left; display: inline-block; }
-.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider ul.slick-dots li button { height: 10px; width: 10px; display: inline-block; border-radius: 100%; background: rgba(255,255,255,0.5); position: absolute; left: 0; top: 0; border: none; }
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider ul.slick-dots li button { height: 10px; width: 10px; display: inline-block; border-radius: 100%; background: rgba(255,255,255,0.5); position: absolute; left: 0; top: 0; border: none; padding: 0; font-size: 0px; }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider ul.slick-dots li.slick-active button { background: rgba(255,255,255,1); }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider ul.slick-dots li button::before { display: none; }
 
@@ -398,31 +394,7 @@
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-body-content { padding: 30px; }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-body-content .wpem-heading-text { font-size: 20px; font-weight: 500; color: #222; padding: 0px; margin: 0px 0px 15px 0px; }
 
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-form-wrapper { margin: 0px; padding: 0px; }
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-event-ticket-info-title { background: #EEEDF2; border-top: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4; padding: 15px 20px; margin: 0px; }
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-event-ticket-info-title .wpem-heading-text { font-size: 19px; font-weight: 500; color: #222; padding: 0px; margin: 0px; }
 
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-body { padding: 20px; background: #F8F7FA; border-bottom: 1px solid #e4e4e4; }
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-body .wpem-ticket-info-wrap { background: #FFF; padding: 20px; display: flex; align-items: center; width: 100%; margin: 15px 0px; box-shadow: 0px 2px 3px rgba(0,0,0,0.1); border-left: 4px solid #999; transition: all 0.2s; }
-
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-body .wpem-ticket-info-wrap:hover { box-shadow: 0px 4px 6px rgba(0,0,0,0.13); }
-
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-body .wpem-ticket-info-wrap.wpem-selected-ticket { border-width: 4px; border-color: #00a5fa; }
-
-.wpem-single-event-page .wpem-ticket-information-body .wpem-ticket-info-wrap .wpem-ticket-type-and-price { width: 35%; float: left; }
-.wpem-single-event-page .wpem-ticket-information-body .wpem-ticket-info-wrap .wpem-ticket-type-and-price .wpem-ticket-type { font-weight: 600; font-size: 19px; }
-.wpem-single-event-page .wpem-ticket-information-body .wpem-ticket-info-wrap .wpem-ticket-type-and-price .wpem-ticket-price { display: inline-block; }
-.wpem-single-event-page .wpem-ticket-information-body .wpem-ticket-info-wrap .wpem-ticket-type-and-price .wpem-ticket-price .wpem-ticket-extra-fee { display: inline-block; }
-.wpem-single-event-page .wpem-ticket-information-body .wpem-ticket-info-wrap .wpem-ticket-start-end-date { width: calc(40% - 20px); margin: 0 0 0 20px; float: left; }
-.wpem-single-event-page .wpem-ticket-information-body .wpem-ticket-info-wrap .wpem-ticket-quantity { width: calc(25% - 20px); float: left; margin: 0 0 0 20px; }
-.wpem-single-event-page .wpem-ticket-information-body .wpem-ticket-info-wrap .wpem-ticket-quantity .wpem-ticket-remaining-quantity { font-size: 14px; line-height: 16px; margin-top: 5px; }
-
-
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-fotoer { padding: 15px 20px; display: flex; align-items: center; flex-wrap: wrap; }
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-fotoer .wpem-ticket-total-quantity { width: 20%; float: left; }
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-fotoer .wpem-ticket-total-price { width: calc(50% - 20px); margin: 0 0 0 20px; float: left; }
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-fotoer #sell-ticket-status-message { float: left; width: calc(70% - 40px); display: inline-block; }
-.wpem-single-event-page .wpem-single-event-ticket-information .wpem-ticket-information-wrapper .wpem-ticket-information-fotoer .wpem-ticket-register-button { width: calc(30% - 20px); margin: 0 0 0 20px; float: left; text-align: right; }
 
 
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar { padding: 30px 30px 30px 0px; }
@@ -433,7 +405,7 @@
 
 .wpem-single-event-page .wpem-single-event-sidebar-info { margin-bottom: 35px; }
 
-.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-type-text { padding: 5px 10px; border-radius: 5px; font-size: 15px; display: inline-block; cursor: default; }
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-type-text { padding: 5px 10px; border-radius: 5px; font-size: 15px; line-height: 20px; display: inline-block; cursor: default; }
 
 .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar a.wpem-theme-button,
 .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar input.wpem-theme-button,
@@ -685,7 +657,7 @@
 .event_listing_preview_title { background: #999; border-radius: 5px 5px 0 0; margin-top: 30px; padding: 10px 20px; text-align: center; }
 .event_listing_preview_title h3 { padding: 0px; margin: 0px; color: #FFF; }
 .event_listing_preview { border: 2px solid #999; padding: 20px; border-radius: 0 0 5px 5px; }
-
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-category .event-category { padding: 5px 10px; border-radius: 5px; font-size: 15px; line-height: 20px; display: inline-block; cursor: default; }
 
 /** Single Event Page ** End **/
 

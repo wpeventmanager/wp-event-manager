@@ -76,9 +76,11 @@ $end_date = get_event_end_date ();
 									<a><?php printf( __('by %s','wp-event-manager'),get_organizer_name() );?></a>
 								</div>
 							</div>
+							<?php if(get_event_ticket_price()) { ?>
 							<div class="wpem-event-ticket">
-								<span class="wpem-event-ticket-text"><?php display_event_ticket_price( '',  '', true, $post );?></span>
+								<span class="wpem-event-ticket-text"><?php _e('Price:','wp-event-manager');?><?php display_event_ticket_price( '',  '', true, $post );?></span>
 							</div>
+							<?php } ?>
 							
 						</div>
 					</div>
@@ -117,7 +119,7 @@ $end_date = get_event_end_date ();
 				<?php if(get_option( 'event_manager_enable_categories' ) && get_event_category()) { ?>
 					<div class="clearfix">&nbsp;</div>
                    <h3 class="wpem-heading-text"><?php _e('Event Category','wp-event-manager');?></h3>
-				   <div class="wpem-event-type"><?php display_event_category(); ?></div>
+				   <div class="wpem-event-category"><?php display_event_category(); ?></div>
 				   
             	<?php } ?>
 		   <div class="clearfix">&nbsp;</div>
@@ -225,6 +227,5 @@ $end_date = get_event_end_date ();
     });
 
   });
-
 </script>
 

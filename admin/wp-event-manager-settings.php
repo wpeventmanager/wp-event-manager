@@ -57,39 +57,6 @@ class WP_Event_Manager_Settings {
 							__( 'General', 'wp-event-manager' ),
 							
 							array(
-									
-									array(
-											
-											'name'       => 'event_manager_enqueue_boostrap_frontend',
-											
-											'std'        => '1',
-											
-											'label'      => __( 'Enable boostrap for the frontend', 'wp-event-manager' ),
-											
-											'cb_label'   => __( 'Enable boostrap for the frontend', 'wp-event-manager' ),
-											
-											'desc'       => __( "If enabled, bootstrap framework's style will apply for the frontend side.", 'wp-event-manager' ),
-											
-											'type'       => 'checkbox',
-											
-											'attributes' => array()
-									),
-									array(
-											
-											'name'       => 'event_manager_enqueue_boostrap_backend',
-											
-											'std'        => '1',
-											
-											'label'      => __( 'Enable boostrap for the backend', 'wp-event-manager' ),
-											
-											'cb_label'   => __( 'Enable boostrap for the backend', 'wp-event-manager' ),
-											
-											'desc'       => __( "If enabled, bootstrap framework's style will apply for the backend side.", 'wp-event-manager' ),
-											
-											'type'       => 'checkbox',
-											
-											'attributes' => array()
-									),
 									array(
 											'name'       => 'event_manager_delete_data_on_uninstall',
 											'std'        => '0',
