@@ -816,15 +816,14 @@ class WP_Event_Manager_Shortcodes {
 
 		if ( $past_events->have_posts() ) : ?>
 
-			<div class="row">   
-				<div class="col-md-8 "><h3 class="normal-section-title-past-event">Past Events</h3></div>				
-			</div>
-			<ul id="event-listing-view" class="event_listings event-listings-table-bordered">
+			
+			<div id="event-listing-view" class="wpem-main wpem-event-listings event_listings wpem-event-listing-list-view">	
 			<?php while ( $past_events->have_posts() ) : $past_events->the_post(); ?>
 
 				<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
 				
 			<?php endwhile; ?>
+			</div>
 		<?php else :
 
 			do_action( 'event_manager_output_events_no_results' );
@@ -835,7 +834,7 @@ class WP_Event_Manager_Shortcodes {
 		
 		$event_listings_output = apply_filters( 'event_manager_event_listings_output', ob_get_clean() );
 
-		return '<div class="event_listings">' . $event_listings_output . '</div>';
+		return  $event_listings_output;
 		
 	}
 }
