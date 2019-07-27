@@ -318,8 +318,7 @@ class WP_Event_Manager {
 		
 		wp_register_script( 'wp-event-manager-slick-script', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.min.js', array( 'jquery' ) );
 		wp_register_style( 'wp-event-manager-slick-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.css' , array( ) );
-		wp_enqueue_script('wp-event-manager-slick-script');
-		wp_enqueue_style( 'wp-event-manager-slick-style');
+		
 	}
 	/**
 	 	 * Cleanup event posting cookies.
