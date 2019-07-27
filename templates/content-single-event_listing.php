@@ -12,8 +12,17 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 
 	<div class="wpem-main wpem-single-event-page">
 		<?php if ( get_option( 'event_manager_hide_expired_content', 1 ) && 'expired' === $post->post_status ) : ?>
-		<div class="event-manager-info"><?php _e( 'This listing has been expired.', 'wp-event-manager' ); ?></div>
+		<div class="event-manager-info wpem-alert wpem-alert-danger"><?php _e( 'This listing has been expired.', 'wp-event-manager' ); ?></div>
 		<?php else : ?>
+			<?php if ( is_event_cancelled() ) : ?>
+              <div class="wpem-alert wpem-alert-danger">
+              	<span class="event-cancelled" itemprop="eventCancelled"><?php _e( 'This event has been cancelled.', 'wp-event-manager' ); ?></span>
+			  </div>	               
+            <?php elseif ( ! attendees_can_apply() && 'preview' !== $post->post_status ) : ?>		       
+               <div class="wpem-alert wpem-alert-danger">
+               	<span class="listing-expired" itemprop="eventExpired"><?php _e( 'Registrations have closed.', 'wp-event-manager' ); ?></span>
+               </div>
+	        <?php endif; ?>
 		<?php
 			/**
 			 * single_event_listing_start hook
@@ -23,15 +32,8 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 		<div class="wpem-single-event-wrapper">
 			<div class="wpem-single-event-header-top">
 				<div class="wpem-row">
-			<?php if ( is_event_cancelled() ) : ?>
-              <big>|</big> <span class="event-cancelled"
-						itemprop="eventCancelled"><?php _e( 'This event has been cancelled', 'wp-event-manager' ); ?></span>	               
-            <?php elseif ( ! attendees_can_apply() && 'preview' !== $post->post_status ) : ?>		       
-               <big>|</big> <span class="listing-expired"
-						itemprop="eventExpired"><?php _e( 'Registrations have closed', 'wp-event-manager' ); ?></span>
-	        <?php endif; ?>
-				 <div
-						class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-images">
+		
+				 <div class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-images">
 				 <?php
 			$event_banners = get_event_banner ();
 			if (is_array ( $event_banners ) && sizeof ( $event_banners ) > 1) :

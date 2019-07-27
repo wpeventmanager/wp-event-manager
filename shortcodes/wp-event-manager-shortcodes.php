@@ -136,7 +136,7 @@ class WP_Event_Manager_Shortcodes {
 						wp_trash_post( $event_id );
 
 						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 					case 'duplicate' :
@@ -172,7 +172,7 @@ class WP_Event_Manager_Shortcodes {
 
 			} catch ( Exception $e ) {
 
-				$this->event_dashboard_message = '<div class="event-manager-error">' . $e->getMessage() . '</div>';
+				$this->event_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $e->getMessage() . '</div>';
 			}
 		}
 	}
