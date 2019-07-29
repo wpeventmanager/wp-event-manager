@@ -10,7 +10,7 @@ if(is_array($event_type) && isset($event_type[0]))
   <div <?php event_listing_class('wpem-event-layout-wrapper'); ?>>
     <a href="<?php display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo $event_type;?>">
       <div class="wpem-event-banner">
-        <div class="wpem-event-banner-img" style="background-image: url(<?php $banner= get_event_banner(); if(is_array($banner) && isset($banner[0]) ) echo $banner[0];elseif( is_array($banner) && empty($banner)) ''; else echo $banner; ?> ) ; ?>);">
+        <div class="wpem-event-banner-img" style="background-image: url(<?php $banner= get_event_banner(); if(is_array($banner) && isset($banner[0]) ) echo $banner[0];elseif( is_array($banner) && empty($banner)) ''; else echo $banner; ?> ) ">
           <!-- Hide in list View // Show in Box View -->
           <?php do_action('event_already_registered_title');?>     
           <div class="wpem-event-date">
