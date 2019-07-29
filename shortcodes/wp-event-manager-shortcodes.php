@@ -393,7 +393,7 @@ class WP_Event_Manager_Shortcodes {
 
 		//Set value for the ticket prices		
 
-		$ticket_prices=WP_Event_Manager_Filters::get_ticket_prices_filter();
+		$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
 
 		// Array handling
 

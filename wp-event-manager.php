@@ -319,6 +319,11 @@ class WP_Event_Manager {
 		wp_register_script( 'wp-event-manager-slick-script', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.min.js', array( 'jquery' ) );
 		wp_register_style( 'wp-event-manager-slick-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.css' , array( ) );
 		
+		wp_register_style( 'wp-event-manager-grid-style', EVENT_MANAGER_PLUGIN_URL . '/assets/css/wpem-grid.min.css');
+		wp_register_style( 'wp-event-manager-font-style', EVENT_MANAGER_PLUGIN_URL . '/assets/fonts/style.css');
+		
+		wp_enqueue_style( 'wp-event-manager-grid-style');
+		wp_enqueue_style( 'wp-event-manager-font-style');
 	}
 	/**
 	 	 * Cleanup event posting cookies.
