@@ -15,7 +15,7 @@ global $event_manager;
     	<h2 class="wpem-form-title wpem-heading-text"><?php _e( 'Event Details', 'wp-event-manager' ); ?></h2>
     <?php
 	if ( isset( $resume_edit ) && $resume_edit ) {
-		printf( '<p><strong>' . __( "You are editing an existing event. %s","wp-event-manager" ) . '</strong></p>', '<a href="?new=1&key=' . $resume_edit . '">' . __( 'Create A New Event','wp-event-manager' ) . '</a>' );
+		printf( '<p class="wpem-alert wpem-alert-info"><strong>' . __( "You are editing an existing event. %s","wp-event-manager" ) . '</strong></p>', '<a href="?new=1&key=' . $resume_edit . '">' . __( 'Create A New Event','wp-event-manager' ) . '</a>' );
 	}
 	?>
 	
@@ -48,7 +48,7 @@ global $event_manager;
 			<input type="hidden" name="event_manager_form" value="<?php echo $form; ?>" />
 			<input type="hidden" name="event_id" value="<?php echo esc_attr( $event_id ); ?>" />
 			<input type="hidden" name="step" value="<?php echo esc_attr( $step ); ?>" />
-			<input type="submit" name="submit_event" class="btn" value="<?php esc_attr_e( $submit_button_text ); ?>" />
+			<input type="submit" name="submit_event" class="wpem-theme-button" value="<?php esc_attr_e( $submit_button_text ); ?>" />
 		</div>
 	<?php else : ?>
 	

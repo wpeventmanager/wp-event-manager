@@ -16,11 +16,11 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 		<?php else : ?>
 			<?php if ( is_event_cancelled() ) : ?>
               <div class="wpem-alert wpem-alert-danger">
-              	<span class="event-cancelled" itemprop="eventCancelled"><?php _e( 'This event has been cancelled.', 'wp-event-manager' ); ?></span>
+              	<span class="event-cancelled" itemprop="eventCancelled"><?php _e( 'This event has been cancelled', 'wp-event-manager' ); ?></span>
 			  </div>	               
             <?php elseif ( ! attendees_can_apply() && 'preview' !== $post->post_status ) : ?>		       
                <div class="wpem-alert wpem-alert-danger">
-               	<span class="listing-expired" itemprop="eventExpired"><?php _e( 'Registrations have closed.', 'wp-event-manager' ); ?></span>
+               	<span class="listing-expired" itemprop="eventExpired"><?php _e( 'Registrations have closed', 'wp-event-manager' ); ?></span>
                </div>
 	        <?php endif; ?>
 		<?php
@@ -125,12 +125,13 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 						if (attendees_can_apply () && ((strtotime ( $registration_end_date ) > $current_timestamp) || empty ( $registration_end_date )) && $registration_addon_form)
 							get_event_manager_template ( 'event-registration.php' );
 						?>
-							<div class="clearfix">&nbsp;</div>
+				
 							<?php do_action( 'single_event_listing_button_end' ); ?>
 							
 							<div class="wpem-single-event-sidebar-info">
 									
 					<?php do_action('single_event_sidebar_start');?>
+					<div class="clearfix">&nbsp;</div>
 				    <h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
                   <?php display_event_start_date();?> – <?php display_event_end_date();?>
                   <div class="clearfix">&nbsp;</div>
@@ -224,18 +225,28 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 	</div>
 	<!-- / wpem-main end  -->
 </div>
-
 <script type="text/javascript">
   jQuery(document).ready(function(){
-
     jQuery('.wpem-single-event-slider').slick({
       dots: true,
       infinite: true,
       speed: 500,
       fade: true,
-      cssEase: 'linear'
+      cssEase: 'linear',
+      responsive: [{
+	      breakpoint: 992,
+	      settings: {
+	        dots: true,
+	        infinite: true,
+	        speed: 500,
+	        fade: true,
+	        cssEase: 'linear',
+	        adaptiveHeight: true
+	      }
+	    }]
     });
 
   });
+
 </script>
 
