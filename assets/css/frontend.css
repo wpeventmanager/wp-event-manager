@@ -114,6 +114,7 @@
 .wpem-main .wpem-theme-url a, .wpem-main .wpem-theme-url { color: #008cd4; }
 .wpem-theme-url a:hover, .wpem-theme-url:hover, 
 .wpem-main .wpem-theme-url a:hover, .wpem-main .wpem-theme-url:hover { color: #111; }
+.wpem-main fieldset{border:none;}
 
 .wpem-theme-button i { line-height: normal; }
 
@@ -435,7 +436,7 @@
 .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar .wpem-icon-text-button:hover { text-decoration: none; color: #333; }
 .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar .wpem-icon-text-button.remove-bookmark i { float: right; margin: 0px; font-size: 12px; }
 
-.wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar .wpem-register-event-form form { background: #EEEDF2; padding: 25px; margin: 20px 0; border-radius: 5px; }
+.wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar .wpem-register-event-form form { background: #EEEDF2; padding: 15px; margin: 10px 0; border-radius: 5px; }
 
 .wpem-single-event-page .wpem-share-this-event { margin: 0px; padding: 0px; display: inline-block; width: 100%; } 
 .wpem-single-event-page .wpem-share-this-event .wpem-event-share-lists { display: inline-block; margin: 0; }
