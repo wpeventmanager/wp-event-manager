@@ -164,7 +164,22 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 		  <?php endif; ?>
 		  <!-- Registration End Date End-->
 		  <div class="clearfix">&nbsp;</div>
-		  				
+		  <?php if( get_organizer_youtube()){ ?>
+		    <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video','wp-event-manager');?></button>
+		    <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Watch video','wp-event-manager');?>">
+        		<div class="wpem-modal-content-wrapper">
+        			<div class="wpem-modal-header">
+        				<div class="wpem-modal-header-title"><h3 class="wpem-modal-header-title-text"><?php _e('Watch video','wp-event-manager');?></h3></div>
+        				<div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
+        			</div>
+        			<div class="wpem-modal-content">
+        			    <?php echo wp_oembed_get(get_organizer_youtube() , array( 'autoplay' => 1, 'rel' => 0) );?>
+                    </div>
+                </div>
+                <a href="#"><div class="wpem-modal-overlay"></div></a>
+            </div>
+      		<div class="clearfix">&nbsp;</div>
+	  		<?php } ?>			
 		   <?php do_action('single_event_sidebar_end');?>
                 </div>
 				
