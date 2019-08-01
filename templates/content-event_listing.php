@@ -4,18 +4,21 @@ $end_date = get_event_end_date();
 $event_type = get_event_type();
 if(is_array($event_type) && isset($event_type[0]))
 	$event_type = $event_type[0]->slug;
-	$banner= get_event_banner(); 
-// 	if(is_array($banner) && isset($banner[0]) ) 
-// 		echo $banner[0];
-// 	elseif( is_array($banner) && empty($banner)) 
-// 	''; else echo $banner;
+	$banner= get_event_banner();
+	
+	if(is_array($banner) && isset($banner[0]) ) 
+		$banner = $banner[0];
+	elseif( is_array($banner) && empty($banner)) 
+		$banner = ''; 
+	else 
+		$banner = $banner;
 ?>
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-4 "><!----- wpem-col-lg-4 value can be change by admin settings ------->
   <div class="wpem-event-layout-wrapper">
   <div <?php event_listing_class('wpem-event-layout-wrapper'); ?>>
     <a href="<?php display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo $event_type;?>">
       <div class="wpem-event-banner">
-        <div class="wpem-event-banner-img" style="background-image: url(<?php  ?> )">
+        <div class="wpem-event-banner-img" style="background-image: url(<?php echo $banner  ?> )">
 
           <!-- Hide in list View // Show in Box View -->
           <?php do_action('event_already_registered_title');?>     
