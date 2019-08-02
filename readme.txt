@@ -313,8 +313,11 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 = 3.1.6 =
 
-* Added - New design with all new structure
-* Added - Layout type attribute added in events shortcode
+* Added - New design responsive structure
+* Added - Layout type attribute in events shortcode
+* Added - CSS Improved
+* Added - All Templates Improved
+* Fixed - Minor Bugs
 
 
 
