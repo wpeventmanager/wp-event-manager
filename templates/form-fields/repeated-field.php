@@ -14,7 +14,7 @@
     <div class="wpem-tabs-wrapper wpem-add-tickets-tab-wrapper">
             <div class="wpem-tabs-action-buttons">
                 <div class="wpem-ticket-counter-wrapper"><div class="wpem-ticket-counter"><?php echo absint( $index ); ?></div></div>                
-                <div class="wpem-ticket-notice-info"><a class="ticket-notice-info"  title="<?php _e('You can\'t delete ticket once it is added.You can make it private from settings tab.','wp-event-manager');?>" ><i class="wpem-icon-blocked"></i></a></div>
+                <div class="wpem-ticket-notice-info"><a class="ticket-notice-info" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?php _e('You can\'t delete ticket once it is added.You can make it private from settings tab.','wp-event-manager');?>" ><i class="wpem-icon-blocked"></i></a></div>
             </div>
             <ul class="wpem-tabs-wrap">
                 <li class="wpem-tab-link active" data-tab="sell-ticket-details_<?php echo esc_attr( $index ); ?>"><?php _e('Ticket details','wp-event-manager');?></li>
@@ -67,8 +67,8 @@
                 <div class="wpem-ticket-close-button"><a href="#remove" class="remove-row" title="<?php _e( 'Remove', 'wp-event-manager' ); ?>" id="repeated-row-<?php echo esc_attr( $key.'_%%repeated-row-index%%' ); ?>" ><i class="wpem-icon-cross"></i></a></div>   
             </div>
 
-            <ul class="wpem-tabs-wrap wpem-list-unstyled">
-                <li class="wpem-tab-link active" data-tab="sell-ticket-details_%%repeated-row-index%%'"><?php _e('Ticket details','wp-event-manager');?></li>
+            <ul class="wpem-tabs-wrap">
+                <li class="wpem-tab-link active" data-tab="sell-ticket-details_%%repeated-row-index%%"><?php _e('Ticket details','wp-event-manager');?></li>
                 <li class="wpem-tab-link" data-tab="<?php echo $key; ?>_%%repeated-row-index%%"><?php _e('Settings','wp-event-manager');?></li>
             </ul>
             <div id="sell-ticket-details-<?php echo $key . '-' . '%%repeated-row-index%%'; ?>" class="wpem-tab-content current">
