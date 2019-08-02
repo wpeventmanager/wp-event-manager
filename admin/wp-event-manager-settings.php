@@ -493,27 +493,6 @@ class WP_Event_Manager_Settings {
 								'type'       => 'checkbox',
 									
 								'attributes' => array()
-						),
-							/*
-						array(
-								'name'       => 'event_manager_date_format',
-								'std'        => 'dd-mm-yy',
-								'label'      => __( 'Date Format', 'wp-event-manager' ),
-								'desc'       => sprintf( __( 'Choose how you want the start and end date formate for the event submission page. if you do not know possible standard format then please check <a href="%s" target="__blank">Datepicker format page</a>.', 'wp-event-manager' ), 'http://api.jqueryui.com/datepicker/#utility-formatDate' ),
-								'type'       => 'text',
-						),*/
-						array(
-								'name'       => 'event_manager_time_format',
-								'std'        => '',
-								'label'      => __( 'Time Format', 'wp-event-manager' ),
-								'desc'       => __( 'Choose how you want the start and end time for events to be select on the submit event page.', 'wp-event-manager' ),
-								'type'       => 'select',
-								'options' => array(
-											
-										'12'  => __( '12-hour', 'wp-event-manager' ),
-											
-										'24' => __( '24-hour', 'wp-event-manager' ),
-								)
 						)
 					)
 				),
@@ -630,6 +609,19 @@ class WP_Event_Manager_Settings {
 										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://codex.wordpress.org/Formatting_Date_and_Time'),
 				
 										'type'      => 'text',
+								),
+								array(
+										'name'       => 'event_manager_time_format',
+										'std'        => '',
+										'label'      => __( 'Time Format', 'wp-event-manager' ),
+										'desc'       => __( 'Choose how you want the start and end time for events to be select on the submit event page.', 'wp-event-manager' ),
+										'type'       => 'select',
+										'options' => array(
+												
+												'12'  => __( '12-hour', 'wp-event-manager' ),
+												
+												'24' => __( '24-hour', 'wp-event-manager' ),
+										)
 								),
 								array(
 										'name' 		=> 'event_manager_timezone_setting',
