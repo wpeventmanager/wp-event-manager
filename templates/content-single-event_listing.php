@@ -4,6 +4,7 @@ $start_date = get_event_start_date ();
 $end_date = get_event_end_date ();
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style( 'wp-event-manager-slick-style');
+
 ?>
 <div class="single_event_listing" itemscope
 	itemtype="http://schema.org/EventPosting">
@@ -42,8 +43,7 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 							<div class="wpem-single-event-slider">
 				 		<?php foreach( $event_banners as $banner_key => $banner_value ) :  ?>
 				 			<div class="wpem-slider-items">
-									<img src="<?php echo $banner_value;?>"
-										alt="<?php echo esc_attr(get_organizer_name());?>" />
+									<img src="<?php echo $banner_value;?>" alt="<?php the_title();?>" />
 								</div>
 				 		<?php endforeach;?>
 				 	</div>
@@ -54,8 +54,7 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 						</div>
 				 <?php endif;?>
 				 </div>
-					<div
-						class="wpem-col-xs-12 wpem-col-md-4 wpem-single-event-short-info">
+					<div class="wpem-col-xs-12 wpem-col-md-4 wpem-single-event-short-info">
 						<div class="wpem-event-date">
 							<div class="wpem-event-date-type">
         					<?php if (isset($start_date) && isset($end_date)) :  ?>
