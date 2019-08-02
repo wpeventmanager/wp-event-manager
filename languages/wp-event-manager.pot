@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2019-05-30 16:59+0530\n"
-"PO-Revision-Date: 2019-05-30 16:59+0530\n"
+"POT-Creation-Date: 2019-08-02 19:51+0530\n"
+"PO-Revision-Date: 2019-08-02 19:48+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,8 +26,8 @@ msgid "WP Event Manager Add-ons"
 msgstr ""
 
 #: admin/wp-event-manager-admin.php:10
-#: templates/form-fields/repeated-field.php:18
-#: templates/form-fields/repeated-field.php:61 wp-event-manager.php:373
+#: templates/form-fields/repeated-field.php:21
+#: templates/form-fields/repeated-field.php:72 wp-event-manager.php:363
 msgid "Settings"
 msgstr ""
 
@@ -54,152 +54,173 @@ msgstr ""
 msgid "Dismiss"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:75 admin/wp-event-manager-cpt.php:77
 #, php-format
 msgid "Approve %s"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:79 admin/wp-event-manager-cpt.php:81
 #, php-format
 msgid "Expire %s"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:214 admin/wp-event-manager-cpt.php:218
 #, php-format
 msgid "%s approved"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:245 admin/wp-event-manager-cpt.php:249
 #, php-format
 msgid "%s expired"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:294
 msgid "Select category"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:314 admin/wp-event-manager-cpt.php:384
 #: forms/wp-event-manager-form-submit-event.php:120
 msgid "Event Title"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:335
 #, php-format
 msgid "%s updated. <a href=\"%s\">View</a>"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:337
 msgid "Custom field updated."
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:339
 msgid "Custom field deleted."
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:341
 #, php-format
 msgid "%s updated."
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:343
 #, php-format
 msgid "%s restored to revision from %s"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:345
 #, php-format
 msgid "%s published. <a href=\"%s\">View</a>"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:347
 #, php-format
 msgid "%s saved."
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:349
 #, php-format
 msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview</a>"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:351
 #, php-format
 msgid ""
 "%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
 "\">Preview</a>"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:353
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:355
 #, php-format
 msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview</a>"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:378
 msgid "Status"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:380
 msgid "Cancelled?"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:382
 msgid "Featured?"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:386
 #: forms/wp-event-manager-form-submit-event.php:128
-#: templates/event-filters.php:63
+#: templates/event-filters.php:76
 msgid "Event Type"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:388
 #: forms/wp-event-manager-form-submit-event.php:138
+#: templates/content-single-event_listing.php:154
 msgid "Event Category"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:390
 msgid "Event Location"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:392
 msgid "Event Organizer"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:394
 msgid "Posted Date"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:396
 msgid "Event End Date"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:398
 msgid "Event Expiry Date"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:400
 msgid "Actions"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:479
 #, php-format
 msgid "ID: %d"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:522 admin/wp-event-manager-cpt.php:532
+#: admin/wp-event-manager-cpt.php:543
 msgid "M j, Y"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:524
 msgid "by a guest"
 msgstr ""
 
-#: admin/wp-event-manager-cpt.php:1
+#: admin/wp-event-manager-cpt.php:524
+#: templates/content-single-event_listing.php:79
 #, php-format
 msgid "by %s"
+msgstr ""
+
+#: admin/wp-event-manager-cpt.php:560
+msgid "Approve"
+msgstr ""
+
+#: admin/wp-event-manager-cpt.php:574
+msgid "View"
+msgstr ""
+
+#: admin/wp-event-manager-cpt.php:586 core/wp-event-manager-post-types.php:322
+#: templates/event-dashboard.php:38 templates/event-dashboard.php:69
+msgid "Edit"
+msgstr ""
+
+#: admin/wp-event-manager-cpt.php:598 templates/event-dashboard.php:76
+#: wp-event-manager.php:299
+msgid "Delete"
 msgstr ""
 
 #: admin/wp-event-manager-field-editor.php:20
@@ -348,39 +369,40 @@ msgid "Reset to default"
 msgstr ""
 
 #: admin/wp-event-manager-field-editor.php:132
-#: admin/wp-event-manager-settings.php:912
+#: admin/wp-event-manager-settings.php:871
 msgid "Save Changes"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:229
+#: admin/wp-event-manager-field-editor.php:234
 msgid "The fields were successfully saved."
 msgstr ""
 
-#: admin/wp-event-manager-form-field-editor-field.php:20
-#: admin/wp-event-manager-form-field-editor-field.php:23
-#: admin/wp-event-manager-form-field-editor-field.php:50
+#: admin/wp-event-manager-form-field-editor-field.php:25
+#: admin/wp-event-manager-form-field-editor-field.php:38
+#: admin/wp-event-manager-form-field-editor-field.php:65
 msgid "N/A"
 msgstr ""
 
-#: admin/wp-event-manager-form-field-editor-field.php:23
-#: admin/wp-event-manager-form-field-editor-field.php:50
+#: admin/wp-event-manager-form-field-editor-field.php:38
+#: admin/wp-event-manager-form-field-editor-field.php:65
+#: templates/content-single-event_listing-organizer.php:20
 #, php-format
 msgid "%s"
 msgstr ""
 
-#: admin/wp-event-manager-form-field-editor-field.php:24
+#: admin/wp-event-manager-form-field-editor-field.php:39
 msgid "Pipe (|) separate options."
 msgstr ""
 
-#: admin/wp-event-manager-form-field-editor-field.php:27
+#: admin/wp-event-manager-form-field-editor-field.php:42
 msgid "Multiple Files?"
 msgstr ""
 
-#: admin/wp-event-manager-form-field-editor-field.php:57
+#: admin/wp-event-manager-form-field-editor-field.php:72
 msgid "Not Required"
 msgstr ""
 
-#: admin/wp-event-manager-form-field-editor-field.php:58
+#: admin/wp-event-manager-form-field-editor-field.php:73
 msgid "Required"
 msgstr ""
 
@@ -397,16 +419,19 @@ msgid "Event type base"
 msgstr ""
 
 #: admin/wp-event-manager-permalink-settings.php:84
+#: core/wp-event-manager-post-types.php:1224
 msgctxt "Event permalink - resave permalinks after changing this"
 msgid "event"
 msgstr ""
 
 #: admin/wp-event-manager-permalink-settings.php:93
+#: core/wp-event-manager-post-types.php:1225
 msgctxt "Event category slug - resave permalinks after changing this"
 msgid "event-category"
 msgstr ""
 
 #: admin/wp-event-manager-permalink-settings.php:102
+#: core/wp-event-manager-post-types.php:1226
 msgctxt "Event type slug - resave permalinks after changing this"
 msgid "event-type"
 msgstr ""
@@ -415,41 +440,21 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:67
-#: admin/wp-event-manager-settings.php:69
-msgid "Enable boostrap for the frontend"
-msgstr ""
-
-#: admin/wp-event-manager-settings.php:71
-msgid ""
-"If enabled, bootstrap framework's style will apply for the frontend side."
-msgstr ""
-
-#: admin/wp-event-manager-settings.php:83
-#: admin/wp-event-manager-settings.php:85
-msgid "Enable boostrap for the backend"
-msgstr ""
-
-#: admin/wp-event-manager-settings.php:87
-msgid ""
-"If enabled, bootstrap framework's style will apply for the backend side."
-msgstr ""
-
-#: admin/wp-event-manager-settings.php:96
+#: admin/wp-event-manager-settings.php:63
 msgid "Delete Data On Uninstall"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:97
+#: admin/wp-event-manager-settings.php:64
 msgid ""
 "Delete WP Event Manager data when the plugin is deleted. Once removed, this "
 "data cannot be restored."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:105
+#: admin/wp-event-manager-settings.php:72
 msgid "Google API Key"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:106
+#: admin/wp-event-manager-settings.php:73
 #, php-format
 msgid ""
 "If you are going to deal with google map or location then you need Google "
@@ -460,500 +465,503 @@ msgid ""
 "\"__blank\">Google Maps API developer site</a>."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:113
+#: admin/wp-event-manager-settings.php:80
+#: core/wp-event-manager-post-types.php:314
+#: core/wp-event-manager-post-types.php:426
 msgid "Event Listings"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:125
+#: admin/wp-event-manager-settings.php:92
 msgid "Listings Per Page"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:127
+#: admin/wp-event-manager-settings.php:94
 msgid "How many listings should be shown per page by default?"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:138
+#: admin/wp-event-manager-settings.php:105
 msgid "Cancelled Events"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:140
+#: admin/wp-event-manager-settings.php:107
 msgid "Hide cancelled events"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:142
+#: admin/wp-event-manager-settings.php:109
 msgid "If enabled, cancelled events will be hidden from archives."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:152
+#: admin/wp-event-manager-settings.php:119
 msgid "Hide Expired Listings"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:154
+#: admin/wp-event-manager-settings.php:121
 msgid "Hide expired listings in event archive/search"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:156
+#: admin/wp-event-manager-settings.php:123
 msgid "If enabled, expired event listing is not searchable."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:169
+#: admin/wp-event-manager-settings.php:136
 msgid "Hide Expired Listings Content"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:171
+#: admin/wp-event-manager-settings.php:138
 msgid "Hide expired listing content in single event listing (singular)"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:173
+#: admin/wp-event-manager-settings.php:140
 msgid ""
 "If enabled, the content within expired listings will be hidden. Otherwise, "
 "expired listings will be displayed as normal (without the event registration "
 "area)."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:186
+#: admin/wp-event-manager-settings.php:153
 msgid "Multi-select Categories"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:188
+#: admin/wp-event-manager-settings.php:155
 msgid "Enable category multiselect by default"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:190
-#: admin/wp-event-manager-settings.php:222
+#: admin/wp-event-manager-settings.php:157
+#: admin/wp-event-manager-settings.php:189
 msgid ""
 "If enabled, the category select box will default to a multi select on the "
 "[events] shortcode."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:203
+#: admin/wp-event-manager-settings.php:170
 msgid "Multi-select Event Types"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:205
+#: admin/wp-event-manager-settings.php:172
 msgid "Enable event type multiselect by default"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:207
-#: admin/wp-event-manager-settings.php:242
+#: admin/wp-event-manager-settings.php:174
+#: admin/wp-event-manager-settings.php:209
 msgid ""
 "If enabled, the event type select box will default to a multi select on the "
 "[events] shortcode."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:220
+#: admin/wp-event-manager-settings.php:187
 #: external/elementor-widgets/elementor-event-listing.php:195
 msgid "Category Filter"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:228
+#: admin/wp-event-manager-settings.php:195
 msgid "Events will be shown if within ANY selected category"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:230
+#: admin/wp-event-manager-settings.php:197
 msgid "Events will be shown if within ALL selected categories"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:240
+#: admin/wp-event-manager-settings.php:207
 msgid "Event Type Filter"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:248
+#: admin/wp-event-manager-settings.php:215
 msgid "Events will be shown if within ANY selected event type"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:250
+#: admin/wp-event-manager-settings.php:217
 msgid "Events will be shown if within ALL selected event types"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:258
+#: admin/wp-event-manager-settings.php:225
 msgid "Event Submission"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:268
+#: admin/wp-event-manager-settings.php:235
 msgid "Account Required"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:270
+#: admin/wp-event-manager-settings.php:237
 msgid "Submitting listings requires an account"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:272
+#: admin/wp-event-manager-settings.php:239
 msgid ""
 "If disabled, non-logged in users will be able to submit listings without "
 "creating an account."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:285
+#: admin/wp-event-manager-settings.php:252
 msgid "Account Creation"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:287
+#: admin/wp-event-manager-settings.php:254
 msgid "Allow account creation"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:289
+#: admin/wp-event-manager-settings.php:256
 msgid ""
 "If enabled, non-logged in users will be able to create an account by "
 "entering their email address on the submission form."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:302
+#: admin/wp-event-manager-settings.php:269
 msgid "Account Username"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:304
+#: admin/wp-event-manager-settings.php:271
 msgid "Automatically Generate Username from Email Address"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:306
+#: admin/wp-event-manager-settings.php:273
 msgid ""
 "If enabled, a username will be generated from the first part of the user "
 "email address. Otherwise, a username field will be shown."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:315
+#: admin/wp-event-manager-settings.php:282
 msgid "Account Password"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:316
+#: admin/wp-event-manager-settings.php:283
 msgid ""
 "Use WordPress' default behavior and email new users link to set a password"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:317
+#: admin/wp-event-manager-settings.php:284
 msgid ""
 "If enabled, an email will be sent to the user with their username and a link "
 "to set their password. Otherwise, a password field will be shown and their "
 "email address won't be verified."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:328
+#: admin/wp-event-manager-settings.php:295
 msgid "Account Role"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:330
+#: admin/wp-event-manager-settings.php:297
 msgid ""
 "If you enable registration on your submission form, choose a role for the "
 "new user."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:343
+#: admin/wp-event-manager-settings.php:310
 msgid "Moderate New Listings"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:345
+#: admin/wp-event-manager-settings.php:312
 msgid "New listing submissions require admin approval"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:347
+#: admin/wp-event-manager-settings.php:314
 msgid "If enabled, new submissions will be inactive, pending admin approval."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:360
+#: admin/wp-event-manager-settings.php:327
 msgid "Allow Pending Edits"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:362
+#: admin/wp-event-manager-settings.php:329
 msgid "Submissions awaiting approval can be edited"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:364
+#: admin/wp-event-manager-settings.php:331
 msgid ""
 "If enabled, submissions awaiting admin approval can be edited by the user."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:375
+#: admin/wp-event-manager-settings.php:342
 msgid "Allow Multiple Banners"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:377
+#: admin/wp-event-manager-settings.php:344
 msgid "User can submit multiple banner"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:379
+#: admin/wp-event-manager-settings.php:346
 msgid ""
 "If enabled, Multiple banner can add at frontend by user and backend side by "
 "admin."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:391
+#: admin/wp-event-manager-settings.php:358
 msgid "Delete Expired listings"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:393
+#: admin/wp-event-manager-settings.php:360
 msgid "Expired listings are deleted after 30 days"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:395
+#: admin/wp-event-manager-settings.php:362
 msgid "If enabled, expired listings will automatically deleted after 30 days."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:408
+#: admin/wp-event-manager-settings.php:375
 msgid "Listing Expire"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:410
+#: admin/wp-event-manager-settings.php:377
 msgid ""
 "You can set event submission expiry time either event end date or specific "
 "days."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:416
+#: admin/wp-event-manager-settings.php:383
 msgid "Listing expire on Event End Date"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:418
+#: admin/wp-event-manager-settings.php:385
 msgid "Listing expire on Specified Below Days"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:428
+#: admin/wp-event-manager-settings.php:395
 msgid "Listing Duration"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:430
+#: admin/wp-event-manager-settings.php:397
 msgid ""
 "How many <strong>days</strong> listings are live before expiring. Can be "
 "left blank to never expire."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:437
+#: admin/wp-event-manager-settings.php:404
 msgid "Registration Method"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:438
+#: admin/wp-event-manager-settings.php:405
 msgid "Choose the registratoin method for listings."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:441
+#: admin/wp-event-manager-settings.php:408
 msgid "Email address or website URL"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:442
+#: admin/wp-event-manager-settings.php:409
 msgid "Email addresses only"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:443
+#: admin/wp-event-manager-settings.php:410
 msgid "Website URLs only"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:453
+#: admin/wp-event-manager-settings.php:420
 msgid "Categories"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:455
+#: admin/wp-event-manager-settings.php:422
 msgid "Enable categories for listings"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:457
+#: admin/wp-event-manager-settings.php:424
 msgid ""
 "Choose whether to enable categories. Categories must be setup by an admin to "
 "allow users to choose them during submission."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:470
+#: admin/wp-event-manager-settings.php:437
+#: templates/content-single-event_listing.php:148
 msgid "Event Types"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:472
+#: admin/wp-event-manager-settings.php:439
 msgid "Enable event types for listings"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:474
+#: admin/wp-event-manager-settings.php:441
 msgid ""
 "Choose whether to enable event types. event types must be setup by an admin "
 "to allow users to choose them during submission."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:487
+#: admin/wp-event-manager-settings.php:454
 msgid "Ticket prices"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:489
+#: admin/wp-event-manager-settings.php:456
 msgid "Enable ticket prices for listings"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:491
+#: admin/wp-event-manager-settings.php:458
 msgid ""
 "Choose whether to enable ticket prices. Ticket prices must be setup by an "
 "admin to allow users to choose them during submission."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:504
+#: admin/wp-event-manager-settings.php:471
 msgid "Multi-select Event Types For Submission"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:506
+#: admin/wp-event-manager-settings.php:473
 msgid "Enable multi select event type for event listing submission"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:508
+#: admin/wp-event-manager-settings.php:475
 msgid ""
 "If enabled each event can have more than one type. The metabox on the post "
 "editor and the select box for event type on the frontend event submission "
 "form are changed by this."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:520
+#: admin/wp-event-manager-settings.php:487
 msgid "Multi-select Event Category For Submission"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:522
+#: admin/wp-event-manager-settings.php:489
 msgid "Enable multi select event category for event listing submission"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:524
+#: admin/wp-event-manager-settings.php:491
 msgid ""
 "If enabled each event can have more than one category. The metabox on the "
 "post editor and the select box for event category on the frontend event "
 "submission form are changed by this."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:541
-msgid "Time Format"
-msgstr ""
-
-#: admin/wp-event-manager-settings.php:542
-msgid ""
-"Choose how you want the start and end time for events to be select on the "
-"submit event page."
-msgstr ""
-
-#: admin/wp-event-manager-settings.php:546
-msgid "12-hour"
-msgstr ""
-
-#: admin/wp-event-manager-settings.php:548
-msgid "24-hour"
-msgstr ""
-
-#: admin/wp-event-manager-settings.php:556
+#: admin/wp-event-manager-settings.php:502
 msgid "Pages"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:566
+#: admin/wp-event-manager-settings.php:512
 msgid "Submit Event Form Page"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:568
+#: admin/wp-event-manager-settings.php:514
 msgid ""
 "Select the page where you have placed the [submit_event_form] shortcode. "
 "This lets the plugin know where the form is located."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:579
+#: admin/wp-event-manager-settings.php:525
 msgid "Event Dashboard Page"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:581
+#: admin/wp-event-manager-settings.php:527
 msgid ""
 "Select the page where you have placed the [event_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:592
+#: admin/wp-event-manager-settings.php:538
 msgid "Event Listings Page"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:594
+#: admin/wp-event-manager-settings.php:540
 msgid ""
 "Select the page where you have placed the [events] shortcode. This lets the "
 "plugin know where the event listings page is located."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:604
+#: admin/wp-event-manager-settings.php:550
 msgid "Login Page URL"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:606
+#: admin/wp-event-manager-settings.php:552
 msgid "Enter the Login page URL."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:613
+#: admin/wp-event-manager-settings.php:559
 msgid "Date & Time Format"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:622
+#: admin/wp-event-manager-settings.php:568
 msgid "Datepicker Date Format"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:624
+#: admin/wp-event-manager-settings.php:570
 msgid "Select the date format to use in datepickers"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:634
+#: admin/wp-event-manager-settings.php:580
 msgid "Timepicker Format"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:636
+#: admin/wp-event-manager-settings.php:582
 msgid "Select the time format to use in timepickers"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:641
+#: admin/wp-event-manager-settings.php:587
 msgid "12 Hours"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:642
+#: admin/wp-event-manager-settings.php:588
 msgid "24 Hours"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:650
+#: admin/wp-event-manager-settings.php:596
 msgid "Timepicker Step"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:652
+#: admin/wp-event-manager-settings.php:598
 msgid ""
 "Select the time step to use in timepickers. Time step must have to be in "
 "between 1 to 60."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:661
+#: admin/wp-event-manager-settings.php:607
 msgid "Date Format"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:663
+#: admin/wp-event-manager-settings.php:609
 #, php-format
 msgid ""
 "This date format will be used at the frontend date display. <a href=\"%s\" "
 "target=\"__blank\">For more information click here</a>"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:672
+#: admin/wp-event-manager-settings.php:616
+msgid "Time Format"
+msgstr ""
+
+#: admin/wp-event-manager-settings.php:617
+msgid ""
+"Choose how you want the start and end time for events to be select on the "
+"submit event page."
+msgstr ""
+
+#: admin/wp-event-manager-settings.php:621
+msgid "12-hour"
+msgstr ""
+
+#: admin/wp-event-manager-settings.php:623
+msgid "24-hour"
+msgstr ""
+
+#: admin/wp-event-manager-settings.php:631
 msgid "Event Timezone"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:674
+#: admin/wp-event-manager-settings.php:633
 msgid "Timezone for the event date and time"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:678
+#: admin/wp-event-manager-settings.php:637
 msgid "Use website timezone."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:679
+#: admin/wp-event-manager-settings.php:638
 msgid "Select timezone on each event"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:754
+#: admin/wp-event-manager-settings.php:713
 msgid "Settings successfully saved"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:851
+#: admin/wp-event-manager-settings.php:810
 msgid "--no page--"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:859
+#: admin/wp-event-manager-settings.php:818
 msgid "Select a page&hellip;"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:921
+#: admin/wp-event-manager-settings.php:880
 msgid ""
 "Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 "
 "stars rating this plugin on <a href=\"https://wordpress.org/plugins/wp-event-"
 "manager/\" target=\"_blank\" >wordpress.org."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:924
+#: admin/wp-event-manager-settings.php:883
 msgid ""
 "<span class=\"help-icon\"></span><b>Need help?</b> <br>Read the <a href="
 "\"https://wp-eventmanager.com/documentation/\" target=\"_blank\" "
@@ -961,68 +969,72 @@ msgid ""
 "\" target=\"_blank\">FAQs.</a><br>"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:927
+#: admin/wp-event-manager-settings.php:886
 msgid "Demo"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:927
-#: admin/wp-event-manager-settings.php:928
+#: admin/wp-event-manager-settings.php:886
+#: admin/wp-event-manager-settings.php:887
 msgid "Visit the"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:927
+#: admin/wp-event-manager-settings.php:886
 msgid "Plugin Demo."
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:928
+#: admin/wp-event-manager-settings.php:887
 msgid "Premium Add-ons"
 msgstr ""
 
-#: admin/wp-event-manager-settings.php:931
+#: admin/wp-event-manager-settings.php:890
 msgid "This plugin was made by"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
 #. Author of the plugin/theme
-#: admin/wp-event-manager-settings.php:931
+#: admin/wp-event-manager-settings.php:890
 msgid "WP Event Manager"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:47
 msgid "Setup"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:155
+msgid "Error in nonce. Try again."
+msgstr ""
+
+#: admin/wp-event-manager-setup.php:185
 msgid "WP Event Manager Setup"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:189
 msgid "1. Introduction"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:191
 msgid "2. Page Setup"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:193
 msgid "3. Done"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:199
 msgid "Setup Wizard Introduction"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:201
 msgid "Thanks for installing <em>WP Event Manager</em>!"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:203
 msgid ""
 "This setup wizard will help you get started by creating the pages for event "
 "submission, event management, and listing your events."
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:205
 #, php-format
 msgid ""
 "If you want to skip the wizard and setup the pages and shortcodes yourself "
@@ -1030,19 +1042,19 @@ msgid ""
 "%sdocumentation%s for help."
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:209
 msgid "Continue to page setup"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:211
 msgid "Skip setup. I will setup the plugin manually"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:219
 msgid "Page Setup"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:221
 #, php-format
 msgid ""
 "<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used "
@@ -1051,121 +1063,121 @@ msgid ""
 "documentation%2$s."
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:232
 msgid "Page Title"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:234
 msgid "Page Description"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:236
 msgid "Content Shortcode"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:247
 msgctxt "Default page title (wizard)"
 msgid "Post an Event"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:250
 msgid ""
 "This page allows peoples to post events to your website from the front-end."
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:252
 msgid ""
 "If you do not want to accept submissions from users in this way (for example "
 "you just want to post events from the admin dashboard) you can skip creating "
 "this page."
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:260
 msgctxt "Default page title (wizard)"
 msgid "Event Dashboard"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:264
 msgid ""
 "This page allows peoples to manage and edit their own events from the front-"
 "end."
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:266
 msgid ""
 "If you plan on managing all listings from the admin dashboard you can skip "
 "creating this page."
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:275
 msgctxt "Default page title (wizard)"
 msgid "Events"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:277
 msgid ""
 "This page allows users to browse, search, and filter event listings on the "
 "front-end of your site."
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:290
 msgid "Skip this step"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:301
 msgid "All Done!"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:303
 msgid ""
 "Looks like you're all set to start using the plugin. In case you're "
 "wondering where to go next:"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:307
 msgid "Tweak the plugin settings"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:309
 msgid "Add a event via the back-end"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:313
 msgid "Add a event via the front-end"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:317
 msgid "Find out more about the front-end event submission form"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:323
 msgid "View submitted event listings"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:327
 msgid "Add the [events] shortcode to a page to list events"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:333
 msgid "View the event dashboard"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:337
 msgid "Find out more about the front-end event dashboard"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:343
 #, php-format
 msgid ""
 "And don't forget, if you need any more help using <em>WP Event Manager</em> "
 "you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:347
 msgid "Support the Ongoing Development of this Plugin"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:349
 msgid ""
 "There are many ways to support open-source projects such as WP Event "
 "Manager, for example code contribution, translation, or even telling your "
@@ -1173,76 +1185,78 @@ msgid ""
 "support - it is much appreciated!"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:353
 msgid "Leave a positive review"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:355
 msgid "Contribute a localization"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:357
 msgid "Contribute code or report a bug"
 msgstr ""
 
-#: admin/wp-event-manager-setup.php:1
+#: admin/wp-event-manager-setup.php:359
 msgid "Help other users on the forums"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
+#: admin/wp-event-manager-writepanels.php:101
 msgid "Featured Listing"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
+#: admin/wp-event-manager-writepanels.php:103
 msgid ""
 "Featured listings will be sticky during searches, and can be styled "
 "differently."
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
+#: admin/wp-event-manager-writepanels.php:108
 msgid "Listing Expiry Date"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
+#: admin/wp-event-manager-writepanels.php:110
 msgid "yyyy-mm-dd"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
+#: admin/wp-event-manager-writepanels.php:118
 msgid "Posted by"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
+#: admin/wp-event-manager-writepanels.php:146
 #, php-format
 msgid "%s Data"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
+#: admin/wp-event-manager-writepanels.php:197
 msgid "Most Used"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
-#: admin/wp-event-manager-writepanels.php:8
+#: admin/wp-event-manager-writepanels.php:253
+#: admin/wp-event-manager-writepanels.php:258
+#: admin/wp-event-manager-writepanels.php:261
 msgid "Use file"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:7
-#: admin/wp-event-manager-writepanels.php:8
+#: admin/wp-event-manager-writepanels.php:253
+#: admin/wp-event-manager-writepanels.php:258
+#: admin/wp-event-manager-writepanels.php:261
 msgid "Upload"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:8
+#: admin/wp-event-manager-writepanels.php:261
 msgid "Add file"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:128
+#: admin/wp-event-manager-writepanels.php:584
 msgid "Guest User"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:128
+#: admin/wp-event-manager-writepanels.php:586
 msgid "Change"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:128
+#: admin/wp-event-manager-writepanels.php:590
 msgid "Enter the ID of the user, or leave blank if submitted by a guest."
 msgstr ""
 
@@ -1262,61 +1276,61 @@ msgstr[1] ""
 msgid "You must be logged in to upload files using this method."
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:21
 msgid "Any Date"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:23
 msgid "Today"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:25
 msgid "Tomorrow"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:27
 msgid "This Week"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:29
 msgid "This Weekend"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:31
 msgid "This Month"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:33
 msgid "This Year"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:35
 msgid "Next Week"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:37
 msgid "Next Weekend"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:39
 msgid "Next Month"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:41
 msgid "Next Year"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
+#: core/wp-event-manager-filters.php:73
 msgid "Any Ticket Price"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
-#: forms/wp-event-manager-form-submit-event.php:267
+#: core/wp-event-manager-filters.php:75
+#: forms/wp-event-manager-form-submit-event.php:269
 msgid "Paid"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:1
-#: forms/wp-event-manager-form-submit-event.php:268
+#: core/wp-event-manager-filters.php:77
+#: forms/wp-event-manager-form-submit-event.php:270
 msgid "Free"
 msgstr ""
 
@@ -1329,6 +1343,157 @@ msgstr ""
 #: core/wp-event-manager-geocode.php:3
 msgid "Geocoding error"
 msgstr ""
+
+#: core/wp-event-manager-post-types.php:102
+msgid "Event category"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:104
+msgid "Event categories"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:146
+#: core/wp-event-manager-post-types.php:234
+#: core/wp-event-manager-post-types.php:332
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:148
+#: core/wp-event-manager-post-types.php:236
+#: core/wp-event-manager-post-types.php:316
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:150
+#: core/wp-event-manager-post-types.php:238
+#: core/wp-event-manager-post-types.php:338
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:152
+#: core/wp-event-manager-post-types.php:240
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:154
+#: core/wp-event-manager-post-types.php:242
+#: core/wp-event-manager-post-types.php:324
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:156
+#: core/wp-event-manager-post-types.php:244
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:158
+#: core/wp-event-manager-post-types.php:246
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:160
+#: core/wp-event-manager-post-types.php:248
+#, php-format
+msgid "New %s Name"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:190
+msgid "Event type"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:192
+msgid "Event types"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:275
+msgid "Event"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:277
+msgid "Events"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:288
+msgctxt "Post type archive slug - resave permalinks after changing this"
+msgid "events"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:318
+msgid "Add New"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:320
+#, php-format
+msgid "Add %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:326
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:328
+#: core/wp-event-manager-post-types.php:330
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:334
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:336
+#, php-format
+msgid "No %s found in trash"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:340
+msgid "Organizer Logo"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:342
+msgid "Set organizer logo"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:344
+msgid "Remove organizer logo"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:346
+msgid "Use as organizer logo"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:349
+#, php-format
+msgid "This is where you can create and manage %s."
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:391 wp-event-manager-functions.php:603
+msgctxt "post status"
+msgid "Expired"
+msgstr ""
+
+#: core/wp-event-manager-post-types.php:401
+#, php-format
+msgid "Expired <span class=\"count\">(%s)</span>"
+msgid_plural "Expired <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/wp-event-manager-post-types.php:414
+#, php-format
+msgid "Preview <span class=\"count\">(%s)</span>"
+msgid_plural "Preview <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: external/elementor-widgets/elementor-event-dashboard.php:36
 #: external/elementor-widgets/elementor-event-dashboard.php:90
@@ -1370,44 +1535,50 @@ msgid "True"
 msgstr ""
 
 #: external/elementor-widgets/elementor-event-listing.php:126
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:260
+#: widgets/wp-event-manager-widgets.php:402
+#: widgets/wp-event-manager-widgets.php:549
 msgid "Ascending (ASC)"
 msgstr ""
 
 #: external/elementor-widgets/elementor-event-listing.php:127
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:261
+#: widgets/wp-event-manager-widgets.php:403
+#: widgets/wp-event-manager-widgets.php:550
 msgid "Descending  (DESC)"
 msgstr ""
 
 #: external/elementor-widgets/elementor-event-listing.php:139
 #: shortcodes/wp-event-manager-shortcodes.php:241
-#: widgets/wp-event-manager-widgets.php:1
-#: widgets/wp-event-manager-widgets.php:9
+#: widgets/wp-event-manager-widgets.php:217
+#: widgets/wp-event-manager-widgets.php:377
+#: widgets/wp-event-manager-widgets.php:524
+#: widgets/wp-event-manager-widgets.php:561
 msgid "Title"
 msgstr ""
 
 #: external/elementor-widgets/elementor-event-listing.php:140
-#: widgets/wp-event-manager-widgets.php:10
+#: widgets/wp-event-manager-widgets.php:562
 msgid "ID"
 msgstr ""
 
 #: external/elementor-widgets/elementor-event-listing.php:141
-#: widgets/wp-event-manager-widgets.php:11
+#: widgets/wp-event-manager-widgets.php:563
 msgid "Name"
 msgstr ""
 
 #: external/elementor-widgets/elementor-event-listing.php:142
-#: widgets/wp-event-manager-widgets.php:12
+#: widgets/wp-event-manager-widgets.php:564
 msgid "Modified"
 msgstr ""
 
 #: external/elementor-widgets/elementor-event-listing.php:143
-#: widgets/wp-event-manager-widgets.php:13
+#: widgets/wp-event-manager-widgets.php:565
 msgid "Parent"
 msgstr ""
 
 #: external/elementor-widgets/elementor-event-listing.php:144
-#: widgets/wp-event-manager-widgets.php:14
+#: widgets/wp-event-manager-widgets.php:566
 msgid "Event Start Date"
 msgstr ""
 
@@ -1439,8 +1610,9 @@ msgstr ""
 #: external/elementor-widgets/elementor-event-listing.php:221
 #: forms/wp-event-manager-form-submit-event.php:184
 #: shortcodes/wp-event-manager-shortcodes.php:242
-#: templates/event-filters.php:19 templates/event-filters.php:20
-#: widgets/wp-event-manager-widgets.php:1
+#: templates/content-single-event_listing.php:137
+#: templates/event-filters.php:22 templates/event-filters.php:23
+#: widgets/wp-event-manager-widgets.php:235
 msgid "Location"
 msgstr ""
 
@@ -1513,7 +1685,7 @@ msgid "Submit Details"
 msgstr ""
 
 #: forms/wp-event-manager-form-submit-event.php:36
-#: forms/wp-event-manager-form-submit-event.php:598
+#: forms/wp-event-manager-form-submit-event.php:600
 #: templates/event-preview.php:21
 msgid "Preview"
 msgstr ""
@@ -1551,14 +1723,11 @@ msgid "Event title"
 msgstr ""
 
 #: forms/wp-event-manager-form-submit-event.php:148
-#: templates/content-event_listing.php:33
-#: templates/content-event_listing.php:60
-#: templates/content-past_event_listing.php:31
-#: templates/content-past_event_listing.php:57
-#: templates/content-single-event_listing-organizer.php:13
+#: templates/content-event_listing.php:59
+#: templates/content-past_event_listing.php:50
 #: templates/content-summary-event_listing.php:1
 #: templates/content-widget-event_listing.php:1
-#: templates/event-dashboard.php:72
+#: templates/event-dashboard.php:113
 msgid "Online Event"
 msgstr ""
 
@@ -1602,191 +1771,190 @@ msgstr ""
 msgid "Event Banner"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:222
+#: forms/wp-event-manager-form-submit-event.php:224
 #: shortcodes/wp-event-manager-shortcodes.php:243
 msgid "Start Date"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:223
+#: forms/wp-event-manager-form-submit-event.php:225
 msgid "Please enter event start date"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:229
+#: forms/wp-event-manager-form-submit-event.php:231
 msgid "Start Time"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:230
+#: forms/wp-event-manager-form-submit-event.php:232
 msgid "Please enter event start time"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:237
+#: forms/wp-event-manager-form-submit-event.php:239
 #: shortcodes/wp-event-manager-shortcodes.php:244
 msgid "End Date"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:238
+#: forms/wp-event-manager-form-submit-event.php:240
 msgid "Please enter event end date"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:245
+#: forms/wp-event-manager-form-submit-event.php:247
 msgid "End Time"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:246
+#: forms/wp-event-manager-form-submit-event.php:248
 msgid "Please enter event end time"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:252
+#: forms/wp-event-manager-form-submit-event.php:254
 msgid "Event timezone"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:253
+#: forms/wp-event-manager-form-submit-event.php:255
 msgid "Please select timezone for event"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:263
+#: forms/wp-event-manager-form-submit-event.php:265
 msgid "Ticket Options"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:274
+#: forms/wp-event-manager-form-submit-event.php:276
 msgid "Ticket Price"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:275
+#: forms/wp-event-manager-form-submit-event.php:277
 msgid "Please enter ticket price"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:282
+#: forms/wp-event-manager-form-submit-event.php:284
 msgid "Link To Event Page"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:285
+#: forms/wp-event-manager-form-submit-event.php:287
 msgid "e.g http://www.example.com"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:290
+#: forms/wp-event-manager-form-submit-event.php:292
 msgid "Registration Deadline"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:293
+#: forms/wp-event-manager-form-submit-event.php:295
 msgid "Please enter registration deadline"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:300
+#: forms/wp-event-manager-form-submit-event.php:302
 msgid "Organization name"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:303
+#: forms/wp-event-manager-form-submit-event.php:305
 msgid "Enter the name of the organization"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:307
+#: forms/wp-event-manager-form-submit-event.php:309
 msgid "Logo"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:323
+#: forms/wp-event-manager-form-submit-event.php:325
 msgid "Organizer Description"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:331
+#: forms/wp-event-manager-form-submit-event.php:333
 msgid "Organization Email"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:334
+#: forms/wp-event-manager-form-submit-event.php:336
 msgid "Enter your email address"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:339
-#: templates/content-single-event_listing-organizer.php:13
+#: forms/wp-event-manager-form-submit-event.php:341
+#: templates/content-single-event_listing-organizer.php:33
 msgid "Website"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:342
+#: forms/wp-event-manager-form-submit-event.php:344
 msgid "Website URL e.g http://www.yourorganization.com"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:347
-#: templates/content-single-event_listing-organizer.php:13
+#: forms/wp-event-manager-form-submit-event.php:349
+#: templates/content-single-event_listing-organizer.php:42
 msgid "Twitter"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:350
+#: forms/wp-event-manager-form-submit-event.php:352
 msgid "Twitter URL e.g http://twitter.com/yourorganizer"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:355
-#: templates/content-single-event_listing-organizer.php:13
+#: forms/wp-event-manager-form-submit-event.php:357
+#: templates/content-single-event_listing-organizer.php:46
 msgid "Youtube"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:358
+#: forms/wp-event-manager-form-submit-event.php:360
 msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:362
-#: templates/content-single-event_listing-organizer.php:13
+#: forms/wp-event-manager-form-submit-event.php:364
 msgid "Facebook"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:365
+#: forms/wp-event-manager-form-submit-event.php:367
 msgid "Facebook URL e.g http://www.facebook.com/yourcompany"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:412
+#: forms/wp-event-manager-form-submit-event.php:414
 #, php-format
 msgid "%s is a required field"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:423
+#: forms/wp-event-manager-form-submit-event.php:425
 #, php-format
 msgid "%s is invalid"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:439
+#: forms/wp-event-manager-form-submit-event.php:441
 #: wp-event-manager-functions.php:1564
 #, php-format
 msgid "\"%s\" (filetype %s) needs to be one of the following file types: %s"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:454
+#: forms/wp-event-manager-form-submit-event.php:456
 msgid "Please enter a valid registration email address"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:463
+#: forms/wp-event-manager-form-submit-event.php:465
 msgid "Please enter a valid registration URL"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:473
+#: forms/wp-event-manager-form-submit-event.php:475
 msgid "Please enter a valid registration email address or URL"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:483
+#: forms/wp-event-manager-form-submit-event.php:485
 msgid "Please enter a valid organizer email address"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:628
+#: forms/wp-event-manager-form-submit-event.php:630
 msgid "Please enter a username."
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:631
-#: forms/wp-event-manager-form-submit-event.php:634
+#: forms/wp-event-manager-form-submit-event.php:633
+#: forms/wp-event-manager-form-submit-event.php:636
 msgid "Please enter your email address."
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:639
+#: forms/wp-event-manager-form-submit-event.php:641
 msgid "Passwords must match."
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:644
+#: forms/wp-event-manager-form-submit-event.php:646
 #, php-format
 msgid "Invalid Password: %s"
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:646
+#: forms/wp-event-manager-form-submit-event.php:648
 msgid "Password is not valid."
 msgstr ""
 
-#: forms/wp-event-manager-form-submit-event.php:666
+#: forms/wp-event-manager-form-submit-event.php:668
 msgid "You must be signed in to post a new listing."
 msgstr ""
 
@@ -1829,52 +1997,52 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: shortcodes/wp-event-manager-shortcodes.php:488
+#: shortcodes/wp-event-manager-shortcodes.php:490
 msgid "Load more events"
 msgstr ""
 
-#: shortcodes/wp-event-manager-shortcodes.php:541
+#: shortcodes/wp-event-manager-shortcodes.php:543
 msgid "Load more listings"
 msgstr ""
 
-#: templates/account-signin.php:1
+#: templates/account-signin.php:3
 msgid "Your account"
 msgstr ""
 
-#: templates/account-signin.php:1
+#: templates/account-signin.php:4
 #, php-format
 msgid "You are currently signed in as <strong>%s</strong>."
 msgstr ""
 
-#: templates/account-signin.php:1
+#: templates/account-signin.php:5
 msgid "Sign out"
 msgstr ""
 
-#: templates/account-signin.php:1
+#: templates/account-signin.php:11
 msgid "Have an account?"
 msgstr ""
 
-#: templates/account-signin.php:1 templates/event-dashboard-login.php:2
+#: templates/account-signin.php:13 templates/event-dashboard-login.php:2
 msgid "Sign in"
 msgstr ""
 
-#: templates/account-signin.php:1
+#: templates/account-signin.php:15
 msgid ""
 "If you don&rsquo;t have an account with us, just enter your email address "
 "and create a new one.  You will receive your password shortly in your email."
 msgstr ""
 
-#: templates/account-signin.php:1
+#: templates/account-signin.php:15
 msgid "optionally"
 msgstr ""
 
-#: templates/account-signin.php:1
+#: templates/account-signin.php:17
 msgid " You must sign in to create a new listing."
 msgstr ""
 
-#: templates/account-signin.php:1 templates/event-submit.php:1
-#: templates/form-fields/repeated-field.php:32
-#: templates/form-fields/repeated-field.php:74
+#: templates/account-signin.php:26 templates/event-submit.php:25
+#: templates/event-submit.php:39 templates/form-fields/repeated-field.php:34
+#: templates/form-fields/repeated-field.php:84
 msgid "(optional)"
 msgstr ""
 
@@ -1886,162 +2054,136 @@ msgstr ""
 msgid "There are currently no events."
 msgstr ""
 
-#: templates/content-single-event_listing-meta.php:1
-msgid "This event has been cancelled"
+#: templates/content-single-event_listing-organizer.php:33
+msgid "Get Connect on Website"
 msgstr ""
 
-#: templates/content-single-event_listing-meta.php:1
-msgid "Registrations have closed"
+#: templates/content-single-event_listing-organizer.php:38
+msgid "Get Connect on Facebook"
 msgstr ""
 
-#: templates/content-single-event_listing-organizer.php:1
-msgid "About"
+#: templates/content-single-event_listing-organizer.php:38
+msgid "Faceboo"
 msgstr ""
 
-#: templates/content-single-event_listing-organizer.php:13
-msgid "View More Details"
+#: templates/content-single-event_listing-organizer.php:42
+msgid "Get Connect on Twitter"
 msgstr ""
 
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Watch Video"
+#: templates/content-single-event_listing-organizer.php:46
+msgid "Get Connect on Youtube"
 msgstr ""
 
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Ticket Information"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-#, php-format
-msgid "Ticket Price: %s"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "When & Where"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "From: "
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "To: "
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Registration End Date"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Organizer Social"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Linkedin"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Xing"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Pinterest"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Instagram"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Google+"
-msgstr ""
-
-#: templates/content-single-event_listing-organizer.php:13
-msgid "Share This Event"
-msgstr ""
-
-#: templates/content-single-event_listing.php:7
+#: templates/content-single-event_listing.php:16
 msgid "This listing has been expired."
 msgstr ""
 
-#: templates/content-single-event_listing.php:27
-msgid "Event Overview"
+#: templates/content-single-event_listing.php:20
+msgid "This event has been cancelled"
+msgstr ""
+
+#: templates/content-single-event_listing.php:24
+msgid "Registrations have closed"
+msgstr ""
+
+#: templates/content-single-event_listing.php:84
+msgid "Price:"
+msgstr ""
+
+#: templates/content-single-event_listing.php:134
+msgid "Date And Time"
+msgstr ""
+
+#: templates/content-single-event_listing.php:141
+msgid "Venue"
+msgstr ""
+
+#: templates/content-single-event_listing.php:161
+msgid "Registration End Date"
+msgstr ""
+
+#: templates/content-single-event_listing.php:167
+#: templates/content-single-event_listing.php:168
+#: templates/content-single-event_listing.php:171
+msgid "Watch video"
 msgstr ""
 
 #: templates/event-dashboard-login.php:2
 msgid "You need to be signed in to manage your listings."
 msgstr ""
 
-#: templates/event-dashboard.php:14
+#: templates/event-dashboard.php:16
 msgid "You do not have any active listings."
 msgstr ""
 
-#: templates/event-dashboard.php:33 templates/event-dashboard.php:49
-msgid "Edit"
-msgstr ""
-
-#: templates/event-dashboard.php:35
+#: templates/event-dashboard.php:43
 msgid "Mark not cancelled"
 msgstr ""
 
-#: templates/event-dashboard.php:37
+#: templates/event-dashboard.php:48
 msgid "Mark cancelled"
 msgstr ""
 
-#: templates/event-dashboard.php:39
+#: templates/event-dashboard.php:53
 msgid "Duplicate"
 msgstr ""
 
-#: templates/event-dashboard.php:43
+#: templates/event-dashboard.php:60
 msgid "Relist"
 msgstr ""
 
-#: templates/event-dashboard.php:53 wp-event-manager.php:317
-msgid "Delete"
-msgstr ""
-
-#: templates/event-filters.php:11 templates/event-filters.php:12
+#: templates/event-filters.php:12 templates/event-filters.php:13
 msgid "Keywords"
 msgstr ""
 
-#: templates/event-filters.php:28
+#: templates/event-filters.php:33
 msgid "Any dates"
 msgstr ""
 
-#: templates/event-filters.php:29 templates/event-filters.php:80
+#: templates/event-filters.php:34 templates/event-filters.php:91
 #: templates/form-fields/multiselect-field.php:1
 #: wp-event-manager-functions.php:1320
 msgid "Select Some Options"
 msgstr ""
 
-#: templates/event-filters.php:46
+#: templates/event-filters.php:57
 msgid "Category"
 msgstr ""
 
-#: templates/event-filters.php:50
+#: templates/event-filters.php:61
 msgid "Any Category"
 msgstr ""
 
-#: templates/event-filters.php:67
+#: templates/event-filters.php:80
 msgid "Any Event Type"
 msgstr ""
 
-#: templates/event-filters.php:79
+#: templates/event-filters.php:90
 msgid "Ticket Prices"
 msgstr ""
 
-#: templates/event-filters.php:80 templates/form-fields/multiselect-field.php:1
+#: templates/event-filters.php:91 templates/form-fields/multiselect-field.php:1
 #: wp-event-manager-functions.php:1318
 msgid "No results match"
 msgstr ""
 
-#: templates/event-filters.php:96
+#: templates/event-filters.php:112
 msgid ""
 "Your browser does not support JavaScript, or it is disabled. JavaScript must "
 "be enabled in order to view listings."
 msgstr ""
 
-#: templates/event-listings-start.php:1
+#: templates/event-listings-start.php:7
+#: widgets/wp-event-manager-widgets.php:293
 msgid "Recent Events"
+msgstr ""
+
+#: templates/event-listings-start.php:13
+msgid "Events List View"
+msgstr ""
+
+#: templates/event-listings-start.php:14
+msgid "Events Box View"
 msgstr ""
 
 #: templates/event-preview.php:19
@@ -2087,30 +2229,30 @@ msgstr ""
 msgid "Register for event"
 msgstr ""
 
-#: templates/event-submit.php:1
+#: templates/event-submit.php:15
 msgid "Event Details"
 msgstr ""
 
-#: templates/event-submit.php:1
+#: templates/event-submit.php:18
 #, php-format
 msgid "You are editing an existing event. %s"
 msgstr ""
 
-#: templates/event-submit.php:1
+#: templates/event-submit.php:18
 msgid "Create A New Event"
 msgstr ""
 
-#: templates/event-submit.php:1
+#: templates/event-submit.php:35
 msgid "Organizer Details"
 msgstr ""
 
-#: templates/event-submitted.php:1
+#: templates/event-submitted.php:7
 #, php-format
 msgid ""
 "%s listed successfully. To view your listing <a href=\"%s\">click here</a>."
 msgstr ""
 
-#: templates/event-submitted.php:1
+#: templates/event-submitted.php:11
 #, php-format
 msgid "%s submitted successfully. Your listing will be visible once approved."
 msgstr ""
@@ -2121,78 +2263,89 @@ msgid "Maximum file size: %s."
 msgstr ""
 
 #: templates/form-fields/repeated-field.php:17
-#: templates/form-fields/repeated-field.php:60
-msgid "Ticket Details"
-msgstr ""
-
-#: templates/form-fields/repeated-field.php:19
 msgid ""
 "You can't delete ticket once it is added.You can make it private from "
 "settings tab."
 msgstr ""
 
-#: templates/form-fields/repeated-field.php:59
+#: templates/form-fields/repeated-field.php:20
+#: templates/form-fields/repeated-field.php:71
+msgid "Ticket details"
+msgstr ""
+
+#: templates/form-fields/repeated-field.php:67
 msgid "Remove"
 msgstr ""
 
-#: templates/form-fields/uploaded-file-html.php:1
+#: templates/form-fields/uploaded-file-html.php:11
+#: templates/form-fields/uploaded-file-html.php:13
 msgid "remove"
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:203
 msgid ""
 "Display a list of recent listings on your site, optionally matching a "
 "keyword and location."
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:207
+#: widgets/wp-event-manager-widgets.php:215
 #, php-format
 msgid "Recent %s"
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:226
 msgid "Keyword"
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:250
+#: widgets/wp-event-manager-widgets.php:392
+#: widgets/wp-event-manager-widgets.php:539
 msgid "Number of listings to show"
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
-#: widgets/wp-event-manager-widgets.php:7
+#: widgets/wp-event-manager-widgets.php:258
+#: widgets/wp-event-manager-widgets.php:400
+#: widgets/wp-event-manager-widgets.php:547
+#: widgets/wp-event-manager-widgets.php:559
 msgid "Order by"
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:363
 msgid "Display a list of featured listings on your site."
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:367
+#: widgets/wp-event-manager-widgets.php:375
 #, php-format
 msgid "Featured %s"
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:437
+msgid "Featured Events"
+msgstr ""
+
+#: widgets/wp-event-manager-widgets.php:510
 msgid "Display a list of upcoming listings on your site."
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:1
+#: widgets/wp-event-manager-widgets.php:514
+#: widgets/wp-event-manager-widgets.php:522
 #, php-format
 msgid "Upcoming %s"
 msgstr ""
 
-#: widgets/wp-event-manager-widgets.php:15
+#: widgets/wp-event-manager-widgets.php:567
 msgid "Random"
+msgstr ""
+
+#: widgets/wp-event-manager-widgets.php:600
+msgid "Upcoming Events"
 msgstr ""
 
 #: wp-event-manager-functions.php:601
 msgctxt "post status"
 msgid "Draft"
-msgstr ""
-
-#: wp-event-manager-functions.php:603
-msgctxt "post status"
-msgid "Expired"
 msgstr ""
 
 #: wp-event-manager-functions.php:605
@@ -2256,15 +2409,11 @@ msgstr ""
 msgid "Invalid file type. Accepted types:"
 msgstr ""
 
-#: wp-event-manager.php:308
-msgid "Load previous listings"
-msgstr ""
-
-#: wp-event-manager.php:319
+#: wp-event-manager.php:301
 msgid "Cancel"
 msgstr ""
 
-#: wp-event-manager.php:321
+#: wp-event-manager.php:303
 msgid "Are you sure you want to delete this event?"
 msgstr ""
 
