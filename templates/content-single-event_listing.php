@@ -76,7 +76,9 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 							</div>
 							<div class="wpem-event-organizer">
 								<div class="wpem-event-organizer-name">
-									<a><?php printf( __('by %s','wp-event-manager'),get_organizer_name() );?></a>
+									<?php do_action('single_event_organizer_name_start');?>
+									<?php printf( __('by %s','wp-event-manager'),get_organizer_name() );?>
+									<?php do_action('single_event_organizer_name_end');?>
 								</div>
 							</div>
 							<?php if(get_event_ticket_price()) { ?>
