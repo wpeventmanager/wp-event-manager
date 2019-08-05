@@ -19,7 +19,7 @@ class WP_Event_Manager_Field_Editor {
 	public function admin_menu() {
 		add_submenu_page( 'edit.php?post_type=event_listing', __( 'Field Editor', 'wp-event-manager' ),  __( 'Field Editor', 'wp-event-manager' ) , 'manage_options', 'event-manager-form-editor', array( $this, 'output' ) );
 	}
-
+	
 	/**
 	 * Register scripts
 	 */
@@ -27,8 +27,8 @@ class WP_Event_Manager_Field_Editor {
 		wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
 		wp_register_script( 'wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL .'/assets/js/field-editor.min.js' , array( 'jquery', 'jquery-ui-sortable', 'chosen' ), EVENT_MANAGER_VERSION, true );
 		wp_localize_script( 'wp-event-manager-form-field-editor', 'wp_event_manager_form_editor', array(
-			'cofirm_delete_i18n' => __( 'Are you sure you want to delete this row?', 'wp-event-manager' ),
-			'cofirm_reset_i18n'  => __( 'Are you sure you want to reset your changes? This cannot be undone.', 'wp-event-manager' )
+				'cofirm_delete_i18n' => __( 'Are you sure you want to delete this row?', 'wp-event-manager' ),
+				'cofirm_reset_i18n'  => __( 'Are you sure you want to reset your changes? This cannot be undone.', 'wp-event-manager' )
 		) );
 		
 	}
@@ -39,7 +39,7 @@ class WP_Event_Manager_Field_Editor {
 	public function output() {
 		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.min.css' );
 		wp_enqueue_script( 'wp-event-manager-form-field-editor' );
-	?>
+		?>
 		<div class="wrap wp-event-manager-form-field-editor">
 			<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor">
 				<?php $this->form_editor(); ?>
@@ -182,7 +182,12 @@ class WP_Event_Manager_Field_Editor {
 									$new_fields[$group_key][$field_key]['options'] = explode( ' | ', $new_fields[$group_key][$field_key]['options']);
 									$temp_options = array();
 									foreach($new_fields[$group_key][$field_key]['options'] as $val){
-									    $temp_options[strtolower(str_replace(' ', '_', $val))] = $val;
+// 									    $option_key = explode( ' : ', $val);
+// 									    if(!isset($option_key[1]))
+// 									        $temp_options[strtolower(str_replace(' ', '_',$option_key[0]))] =  $option_key[0] ;
+// 								        else
+// 								            $temp_options[strtolower(str_replace(' ', '_',$option_key[0]))] =  $option_key[1] ;
+                                        $temp_options[strtolower(str_replace(' ', '_', $val))] = stripslashes($val);
 									}
 									$new_fields[$group_key][$field_key]['options'] = $temp_options;
 								}

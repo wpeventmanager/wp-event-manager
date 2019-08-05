@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Plugin Name: WP Event Manager
 
 Plugin URI: https://www.wp-eventmanager.com/
@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.4
+Version: 3.1.6
 
 Since: 1.0
 
@@ -26,7 +26,7 @@ License: GNU General Public License v3.0
 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-*/
+**/
 
 // Exit if accessed directly
 
@@ -81,7 +81,7 @@ class WP_Event_Manager {
 	{
 		// Define constants
 
-		define( 'EVENT_MANAGER_VERSION', '3.1.4' );
+		define( 'EVENT_MANAGER_VERSION', '3.1.6' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -257,30 +257,14 @@ class WP_Event_Manager {
 				'js_field_html'          => esc_js( str_replace( "\n", "", $js_field_html ) ),
 				'i18n_invalid_file_type' => __( 'Invalid file type. Accepted types:', 'wp-event-manager' )
 			) );
+			
 		}
 
 		//jQuery Deserialize - vendor
 		wp_register_script( 'jquery-deserialize', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-deserialize/jquery.deserialize.js', array( 'jquery' ), '1.2.1', true );						
 	
-		//main frontend, bootstrap style 	
-		wp_register_style( 'bootstrap-main-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/bootstrap/css/bootstrap.min.css');	
-
-		if (!wp_style_is( 'bootstrap.min.css', 'enqueued' )  && get_option('event_manager_enqueue_boostrap_frontend',true) == 1) 
-		{
-		    wp_enqueue_style( 'bootstrap-main-css');
-		}
 		wp_enqueue_style( 'wp-event-manager-frontend', EVENT_MANAGER_PLUGIN_URL . '/assets/css/frontend.min.css');	
 
-		//bootstrap, moment and bootstrap calendar js	
-		wp_register_script( 'bootstrap-main-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/bootstrap/js/bootstrap.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
-		//wp_register_script( 'jquery-timepicker-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.js',array('jquery'), EVENT_MANAGER_VERSION, true);
-		//wp_register_script( 'bootstrap-datepicker-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/bootstrap-datepicker.js',array('jquery-timepicker-js'), EVENT_MANAGER_VERSION, true);
-
-		if (!wp_script_is( 'bootstrap.min.js', 'enqueued' )  && get_option('event_manager_enqueue_boostrap_frontend',true) == 1) 
-		{
-		    wp_enqueue_script( 'bootstrap-main-js');
-		}
-				
 		//common js
 		wp_register_script('wp-event-manager-common', EVENT_MANAGER_PLUGIN_URL . '/assets/js/common.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);	
 		wp_enqueue_script('wp-event-manager-common'); 		
@@ -304,9 +288,7 @@ class WP_Event_Manager {
 		wp_localize_script( 'wp-event-manager-ajax-filters', 'event_manager_ajax_filters', array(
 			'ajax_url'                => $ajax_url,
 			'is_rtl'                  => is_rtl() ? 1 : 0,
-			'lang'                    => apply_filters( 'wpem_lang', null ), //defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : '', // WPML workaround until this is standardized
-			'i18n_load_prev_listings' => __( 'Load previous listings', 'wp-event-manager' )
-
+			'lang'                    => apply_filters( 'wpem_lang', null ) //defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : '', // WPML workaround until this is standardized			
 		) );
 
 		//dashboard
@@ -334,6 +316,14 @@ class WP_Event_Manager {
 		wp_register_script( 'wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array( 'jquery' ,'jquery-ui-core'), EVENT_MANAGER_VERSION, true );
 		wp_enqueue_script( 'wp-event-manager-jquery-timepicker');
 		
+		wp_register_script( 'wp-event-manager-slick-script', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.min.js', array( 'jquery' ) );
+		wp_register_style( 'wp-event-manager-slick-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.css' , array( ) );
+		
+		wp_register_style( 'wp-event-manager-grid-style', EVENT_MANAGER_PLUGIN_URL . '/assets/css/wpem-grid.min.css');
+		wp_register_style( 'wp-event-manager-font-style', EVENT_MANAGER_PLUGIN_URL . '/assets/fonts/style.css');
+		
+		wp_enqueue_style( 'wp-event-manager-grid-style');
+		wp_enqueue_style( 'wp-event-manager-font-style');
 	}
 	/**
 	 	 * Cleanup event posting cookies.

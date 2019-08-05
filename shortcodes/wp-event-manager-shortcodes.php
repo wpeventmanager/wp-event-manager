@@ -109,7 +109,7 @@ class WP_Event_Manager_Shortcodes {
 
 						// Message
 
-						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 
@@ -126,7 +126,7 @@ class WP_Event_Manager_Shortcodes {
 						update_post_meta( $event_id, '_cancelled', 0 );
 						
 						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been marked as not cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been marked as not cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 
@@ -136,7 +136,7 @@ class WP_Event_Manager_Shortcodes {
 						wp_trash_post( $event_id );
 
 						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 					case 'duplicate' :
@@ -172,7 +172,7 @@ class WP_Event_Manager_Shortcodes {
 
 			} catch ( Exception $e ) {
 
-				$this->event_dashboard_message = '<div class="event-manager-error">' . $e->getMessage() . '</div>';
+				$this->event_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $e->getMessage() . '</div>';
 			}
 		}
 	}
@@ -325,6 +325,8 @@ class WP_Event_Manager_Shortcodes {
 			'selected_event_type'       => '',
 
 			'selected_ticket_price'      => '',
+		    
+		    'layout_type'      => 'all',
 
 		) ), $atts ) );
 
@@ -391,7 +393,7 @@ class WP_Event_Manager_Shortcodes {
 
 		//Set value for the ticket prices		
 
-		$ticket_prices=WP_Event_Manager_Filters::get_ticket_prices_filter();
+		$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
 
 		// Array handling
 
@@ -475,11 +477,11 @@ class WP_Event_Manager_Shortcodes {
 
 										'location' => $location, 
 
-										'keywords' => $keywords							
+										'keywords' => $keywords,						
 										
 									      ));
 
-			get_event_manager_template( 'event-listings-start.php' );
+			get_event_manager_template( 'event-listings-start.php',array('layout_type'=>$layout_type) );
 
 			get_event_manager_template( 'event-listings-end.php' );
 
@@ -518,7 +520,7 @@ class WP_Event_Manager_Shortcodes {
 
 			if ( $events->have_posts() ) : ?>
 
-				<?php get_event_manager_template( 'event-listings-start.php' ); ?>			
+				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>$layout_type)); ?>			
 
 				<?php while ( $events->have_posts() ) : $events->the_post(); ?>
 
@@ -814,15 +816,14 @@ class WP_Event_Manager_Shortcodes {
 
 		if ( $past_events->have_posts() ) : ?>
 
-			<div class="row">   
-				<div class="col-md-8 "><h3 class="normal-section-title-past-event">Past Events</h3></div>				
-			</div>
-			<ul id="event-listing-view" class="event_listings event-listings-table-bordered">
+			
+			<div id="event-listing-view" class="wpem-main wpem-event-listings event_listings wpem-event-listing-list-view">	
 			<?php while ( $past_events->have_posts() ) : $past_events->the_post(); ?>
 
 				<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
 				
 			<?php endwhile; ?>
+			</div>
 		<?php else :
 
 			do_action( 'event_manager_output_events_no_results' );
@@ -833,7 +834,7 @@ class WP_Event_Manager_Shortcodes {
 		
 		$event_listings_output = apply_filters( 'event_manager_event_listings_output', ob_get_clean() );
 
-		return '<div class="event_listings">' . $event_listings_output . '</div>';
+		return  $event_listings_output;
 		
 	}
 }
