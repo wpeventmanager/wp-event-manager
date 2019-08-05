@@ -16,7 +16,7 @@
             		<div class="wpem-organizer-logo-wrapper">
             		<div class="wpem-organizer-logo"><a><?php display_organizer_logo();?></a></div>
             		</div>
-            		<div class="wpem-organizer-name wpem-heading-text"><a href=""><span><?php display_organizer_name(); ?></span></a></div>
+            		<div class="wpem-organizer-name wpem-heading-text"><span><?php display_organizer_name(); ?></span></div>
                   	<div class="wpem-organizer-short-info"><?php printf(__('%s','wp-event-manager'),get_organizer_description());  ?></div>
 
                   <div class="wpem-organizer-social-links">
