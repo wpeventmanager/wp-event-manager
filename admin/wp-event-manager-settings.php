@@ -611,6 +611,17 @@ class WP_Event_Manager_Settings {
 										'type'      => 'text',
 								),
 								array(
+										'name' 		=> 'event_manager_date_time_format_separator',
+										
+										'std' 		=> '@',
+										
+										'label' 	=> __( 'Date And Time Separator', 'wp-event-manager' ),
+										
+										'desc'		=> __( 'Add date and time separator.', 'wp-event-manager' ),
+										
+										'type'      => 'text',
+								),
+								array(
 										'name'       => 'event_manager_time_format',
 										'std'        => '',
 										'label'      => __( 'Time Format', 'wp-event-manager' ),
