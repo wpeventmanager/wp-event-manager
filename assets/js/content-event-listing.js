@@ -21,29 +21,13 @@ var ContentEventListing= function () {
         /// <since>1.0.0</since> 
         layoutSelectionEventBind: function() 
         {     
-            jQuery(document).delegate('#load_more_events','click', ContentEventListing.actions.loadMoreEventsClick);
 		    jQuery(document).delegate('#wpem-event-list-layout','click', ContentEventListing.actions.lineLayoutIconClick);
 		    jQuery(document).delegate('#wpem-event-box-layout','click', ContentEventListing.actions.boxLayoutIconClick);		    
         },
         
         actions: 
         {
-                /// <summary>
-	            /// Check when user has changed page using pagination and then need to keep current selected layout.
-	            /// </summary>     
-	            /// <returns type="events listing view" />    
-	            /// <since>1.0.0</since>     
-	            loadMoreEventsClick: function (event)
-	            {	                          
-	                 Common.logInfo("ContentEventListing.actions.loadMoreEventsClick...");
-	                 //Check when user has changed page using pagination and then need to keep current selected layout
-        			//When layout is box and user changed page using pagination then need to show line layout instead of line layout
-        			 
-        			    /*jQuery('.line-layout').show();  
-        			    jQuery('.box-layout').hide();  */ 
-        				
-        			event.preventDefault();
-		       },
+             
 		   
 		        /// <summary>
 	            /// Click on line layout.
@@ -65,7 +49,7 @@ var ContentEventListing= function () {
             
                 jQuery(".wpem-event-listings").addClass("wpem-event-listing-list-view");
                     	            
-    		      //localStorage.setItem("layout", "line-layout");
+    		      localStorage.setItem("layout", "line-layout");
     		      event.preventDefault();
 	            },
 	            
@@ -91,7 +75,7 @@ var ContentEventListing= function () {
                      jQuery(".wpem-event-listings").addClass('wpem-row wpem-event-listing-box-view');
                     // jQuery(".wpem-event-listings").addClass('wpem-event-listing-box-view');
                     
-    		       //localStorage.setItem("layout", "box-layout"); 
+    		       localStorage.setItem("layout", "box-layout"); 
     		       event.preventDefault();
 	            }		   
         }

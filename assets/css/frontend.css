@@ -848,6 +848,9 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 
 
 .wpem-tabs-wrapper .wpem-tabs-wrap { display: inline-block; width: 100%;  }
+.wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link { border-top: 1px solid #CCC; }
+.wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link:first-child { border-top: 0px; }
+
 .wpem-add-tickets-tab-wrapper .wpem-tabs-action-buttons { position: relative; right: 5px; top: 5px; float: right; }
 
 
