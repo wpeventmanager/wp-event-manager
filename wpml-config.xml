@@ -1,0 +1,43 @@
+<wpml-config>
+  <custom-types>
+    <custom-type translate="0">event_listing</custom-type>
+  </custom-types>
+  <shortcodes>
+    <shortcode>
+      <tag>events</tag>
+      <attributes>
+        <attribute>per_page</attribute>
+        <attribute>orderby</attribute>
+        <attribute>order</attribute>
+        <attribute>show_filters</attribute>
+        <attribute>show_categories</attribute>
+        <attribute>show_event_types</attribute>
+        <attribute>show_ticket_prices</attribute>
+        <attribute>show_category_multiselect</attribute>
+        <attribute>show_event_type_multiselect</attribute>
+        <attribute>show_pagination</attribute>
+        <attribute>show_more</attribute>
+        <attribute>categories</attribute>
+        <attribute>event_types</attribute>
+        <attribute>featured</attribute>
+        <attribute>cancelled</attribute>
+        <attribute>location</attribute>
+        <attribute>keywords</attribute>
+        <attribute>selected_datetime</attribute>
+        <attribute>selected_category</attribute>
+        <attribute>selected_event_type</attribute>
+        <attribute>selected_ticket_price</attribute>
+        <attribute>layout_type</attribute>
+      </attributes>
+    </shortcode>
+    <shortcode>
+      <tag>event_dashboard</tag>
+      <attributes>
+        <attribute>posts_per_page</attribute>
+      </attributes>
+    </shortcode>
+    <shortcode>
+      <tag>submit_event_form</tag>
+    </shortcode>
+  </shortcodes>
+</wpml-config>
