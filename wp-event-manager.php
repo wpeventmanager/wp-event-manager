@@ -292,7 +292,6 @@ class WP_Event_Manager {
 		) );
 
 		//dashboard
-		wp_register_script( 'bootstrap-confirmation-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/bootstrap/bootstrap-confirmation.min.js', array('jquery','bootstrap-main-js'), EVENT_MANAGER_VERSION, true );			
 		wp_register_script( 'wp-event-manager-event-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-dashboard.min.js', array( 'jquery','bootstrap-confirmation-js' ), EVENT_MANAGER_VERSION, true );	
 		wp_localize_script( 'wp-event-manager-event-dashboard', 'event_manager_event_dashboard', array(
 

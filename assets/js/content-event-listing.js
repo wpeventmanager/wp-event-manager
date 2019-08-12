@@ -9,26 +9,48 @@ var ContentEventListing= function () {
         /// <since>1.0.0</since> 
         init: function() 
         {   
-	           Common.logInfo("ContentEventListing.init...");  
+	           Common.logInfo("ContentEventListing.init..."); 
+	           jQuery(document).delegate('#load_more_events','click', ContentEventListing.actions.loadMoreEventsClick);
+			   jQuery(document).delegate('#wpem-event-list-layout','click', ContentEventListing.actions.lineLayoutIconClick);
+			   jQuery(document).delegate('#wpem-event-box-layout','click', ContentEventListing.actions.boxLayoutIconClick);
+			   //With show_pagination attribute in shortcodes. e.g [events per_page="10" show_pagination="true"]
+			   //Check when user has changed page using pagination and then need to keep current selected layout
+			   //When layout is box and user changed page using pagination then need to show line layout instead of line layout  
+			   if(localStorage.getItem("layout")=="line-layout" )
+			   {    
+                  console.log('inside line layout');                      
+                  jQuery(".wpem-event-box-col").show();
+
+                    jQuery('.wpem-event-box-layout').removeClass('wpem-active-layout');
+                    jQuery('.wpem-event-list-layout').addClass('wpem-active-layout');
+                    
+     
+                    if(jQuery(".wpem-event-listings").hasClass('wpem-row'))
+                       jQuery(".wpem-event-listings").removeClass('wpem-row');
+
+                   jQuery(".wpem-event-listings").removeClass("wpem-event-listing-box-view");
+                   jQuery(".wpem-event-listings").addClass("wpem-event-listing-list-view");
+   
+              } 
+              else{   
+                jQuery(".wpem-event-box-col").show();
+
+                jQuery('.wpem-event-list-layout').removeClass('wpem-active-layout');
+                jQuery('.wpem-event-box-layout').addClass('wpem-active-layout');
+                
+
+
+                if(!jQuery(".wpem-event-listings").hasClass('wpem-row'))
+                   jQuery(".wpem-event-listings").addClass('wpem-row');
+
+               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
+               jQuery(".wpem-event-listings").addClass("wpem-event-listing-box-view"); 
+              }
 			   
-    		     
+			  
         },
-        
-        ///<summary>
-        ///Bind event for layout selection icon click.  
-        ///</summary>     
-        ///<returns type="initialization settings" />   
-        /// <since>1.0.0</since> 
-        layoutSelectionEventBind: function() 
-        {     
-		    jQuery(document).delegate('#wpem-event-list-layout','click', ContentEventListing.actions.lineLayoutIconClick);
-		    jQuery(document).delegate('#wpem-event-box-layout','click', ContentEventListing.actions.boxLayoutIconClick);		    
-        },
-        
         actions: 
         {
-             
-		   
 		        /// <summary>
 	            /// Click on line layout.
 	            /// </summary>     
@@ -87,5 +109,5 @@ var ContentEventListing= function () {
 ContentEventListing= ContentEventListing();
 jQuery(document).ready(function($) 
 {
-   ContentEventListing.layoutSelectionEventBind();
+   ContentEventListing.init();
 });
