@@ -16,45 +16,45 @@ var ContentEventListing= function () {
 			   
 			   //check if default layout is set or icon are on the page to load according to localstorage
 			   if(jQuery('.wpem-event-list-layout').length > 0 || jQuery('.wpem-event-box-layout').length > 0) {
-			   //With show_pagination attribute in shortcodes. e.g [events per_page="10" show_pagination="true"]
-			   //Check when user has changed page using pagination and then need to keep current selected layout
-	           //When layout is box and user changed page using pagination then need to show line layout instead of line layout  
-	           if(localStorage.getItem("layout")=="line-layout" ){    
-	                    jQuery(".wpem-event-box-col").show();
-	                    jQuery('.wpem-event-box-layout').removeClass('wpem-active-layout');
-	                    jQuery('.wpem-event-list-layout').addClass('wpem-active-layout');
-	                    
-	                    if(jQuery(".wpem-event-listings").hasClass('wpem-row'))
-	                       jQuery(".wpem-event-listings").removeClass('wpem-row');
-
-	                   jQuery(".wpem-event-listings").removeClass("wpem-event-listing-box-view");
-	                   jQuery(".wpem-event-listings").addClass("wpem-event-listing-list-view");
-	   
-	              } 
-	              else if(localStorage.getItem("layout")=="calendar-layout" ){      
-	                jQuery(".wpem-event-box-col").hide();
-	                jQuery('.wpem-event-list-layout').removeClass('wpem-active-layout');
-	                jQuery('.wpem-event-box-layout').removeClass('wpem-active-layout');
-	                jQuery('.wpem-event-calendar-layout').addClass('wpem-active-layout');
-
-	                if(!jQuery(".wpem-event-listings").hasClass('wpem-row'))
-	                   jQuery(".wpem-event-listings").addClass('wpem-row');
-
-	               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
-	               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-box-view");      
-	               jQuery(".wpem-event-listings").addClass("wpem-event-listing-calendar-view");      	                 
-	              }  
-	              else {   
-	                jQuery(".wpem-event-box-col").show();
-	                jQuery('.wpem-event-list-layout').removeClass('wpem-active-layout');
-	                jQuery('.wpem-event-box-layout').addClass('wpem-active-layout');
-
-	                if(!jQuery(".wpem-event-listings").hasClass('wpem-row'))
-	                   jQuery(".wpem-event-listings").addClass('wpem-row');
-
-	               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
-	               jQuery(".wpem-event-listings").addClass("wpem-event-listing-box-view"); 
-	              }
+				   //With show_pagination attribute in shortcodes. e.g [events per_page="10" show_pagination="true"]
+				   //Check when user has changed page using pagination and then need to keep current selected layout
+		           //When layout is box and user changed page using pagination then need to show line layout instead of line layout  
+		           if(localStorage.getItem("layout")=="line-layout" ){    
+		                    jQuery(".wpem-event-box-col").show();
+		                    jQuery('.wpem-event-box-layout').removeClass('wpem-active-layout');
+		                    jQuery('.wpem-event-list-layout').addClass('wpem-active-layout');
+		                    
+		                    if(jQuery(".wpem-event-listings").hasClass('wpem-row'))
+		                       jQuery(".wpem-event-listings").removeClass('wpem-row');
+	
+		                   jQuery(".wpem-event-listings").removeClass("wpem-event-listing-box-view");
+		                   jQuery(".wpem-event-listings").addClass("wpem-event-listing-list-view");
+		   
+		              } 
+		              else if(localStorage.getItem("layout")=="calendar-layout" ){      
+		                jQuery(".wpem-event-box-col").hide();
+		                jQuery('.wpem-event-list-layout').removeClass('wpem-active-layout');
+		                jQuery('.wpem-event-box-layout').removeClass('wpem-active-layout');
+		                jQuery('.wpem-event-calendar-layout').addClass('wpem-active-layout');
+	
+		                if(!jQuery(".wpem-event-listings").hasClass('wpem-row'))
+		                   jQuery(".wpem-event-listings").addClass('wpem-row');
+	
+		               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
+		               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-box-view");      
+		               jQuery(".wpem-event-listings").addClass("wpem-event-listing-calendar-view");      	                 
+		              }  
+		              else {   
+		                jQuery(".wpem-event-box-col").show();
+		                jQuery('.wpem-event-list-layout').removeClass('wpem-active-layout');
+		                jQuery('.wpem-event-box-layout').addClass('wpem-active-layout');
+	
+		                if(!jQuery(".wpem-event-listings").hasClass('wpem-row'))
+		                   jQuery(".wpem-event-listings").addClass('wpem-row');
+	
+		               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
+		               jQuery(".wpem-event-listings").addClass("wpem-event-listing-box-view"); 
+		              }
 			   }
         },
         actions: 
