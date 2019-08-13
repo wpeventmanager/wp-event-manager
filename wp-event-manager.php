@@ -292,7 +292,7 @@ class WP_Event_Manager {
 		) );
 
 		//dashboard
-		wp_register_script( 'wp-event-manager-event-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-dashboard.min.js', array( 'jquery','bootstrap-confirmation-js' ), EVENT_MANAGER_VERSION, true );	
+		wp_register_script( 'wp-event-manager-event-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-dashboard.min.js', array( 'jquery' ), EVENT_MANAGER_VERSION, true );	
 		wp_localize_script( 'wp-event-manager-event-dashboard', 'event_manager_event_dashboard', array(
 
 			'i18n_btnOkLabel' => __( 'Delete', 'wp-event-manager' ),
@@ -308,8 +308,6 @@ class WP_Event_Manager {
 
 
 		wp_enqueue_style( 'wp-event-manager-jquery-ui-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.css');	
-		//wp_register_script( 'jquery-ui', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.js', array('jquery'), EVENT_MANAGER_VERSION, true);
-		//wp_enqueue_script( 'jquery-ui');
 		
 		wp_enqueue_style( 'wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css');
 		wp_register_script( 'wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array( 'jquery' ,'jquery-ui-core'), EVENT_MANAGER_VERSION, true );
