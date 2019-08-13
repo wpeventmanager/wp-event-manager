@@ -13,6 +13,9 @@ var ContentEventListing= function () {
 	           jQuery(document).delegate('#load_more_events','click', ContentEventListing.actions.loadMoreEventsClick);
 			   jQuery(document).delegate('#wpem-event-list-layout','click', ContentEventListing.actions.lineLayoutIconClick);
 			   jQuery(document).delegate('#wpem-event-box-layout','click', ContentEventListing.actions.boxLayoutIconClick);
+			   
+			   //check if default layout is set or icon are on the page to load according to localstorage
+			   if(jQuery('.wpem-event-list-layout').length > 0 || jQuery('.wpem-event-box-layout').length > 0) {
 			   //With show_pagination attribute in shortcodes. e.g [events per_page="10" show_pagination="true"]
 			   //Check when user has changed page using pagination and then need to keep current selected layout
 	           //When layout is box and user changed page using pagination then need to show line layout instead of line layout  
@@ -51,7 +54,8 @@ var ContentEventListing= function () {
 
 	               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
 	               jQuery(".wpem-event-listings").addClass("wpem-event-listing-box-view"); 
-	              }			  
+	              }
+			   }
         },
         actions: 
         {
