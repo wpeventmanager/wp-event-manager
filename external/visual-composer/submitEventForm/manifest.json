@@ -1,0 +1,19 @@
+{
+  "elements": {
+    "submitEventForm": {
+      "settings": {
+        "name": "Submit Event Form",
+        "metaThumbnailUrl": "[publicPath]/submit-event-form.jpg",
+        "metaPreviewUrl": "[publicPath]/submit-event-preview.png",
+        "metaDescription": "It will show Submit Event Form"
+      }
+    }
+  },
+  "categories": {
+    "Misc": {
+      "elements": [
+        "submitEventForm"
+      ]
+    }
+  }
+}

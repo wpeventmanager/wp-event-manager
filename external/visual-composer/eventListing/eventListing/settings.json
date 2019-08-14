@@ -1,0 +1,362 @@
+{ 
+  "featured": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Show Featured",
+      "values": [
+        {
+          "label": "All Events",
+          "value": ""
+        },
+        {
+          "label": "False",
+          "value": "false"
+        },
+        {
+          "label": "True",
+          "value": "true"
+        }
+      ]
+    }
+  },
+  "cancelled": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "true",
+    "options": {
+      "label": "Show Cancelled",
+      "values": [
+        {
+          "label": "False",
+          "value": "false"
+        },
+        {
+          "label": "True",
+          "value": "true"
+        }
+      ]
+    }
+  },
+  "show_filters": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "true",
+    "options": {
+      "label": "Show Filter",
+      "values": [
+        {
+          "label": "False",
+          "value": "false"
+        },
+        {
+          "label": "True",
+          "value": "true"
+        }
+      ]
+    }
+  },
+  "show_categories": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "true",
+    "options": {
+      "label": "Show Categories",
+      "values": [
+        {
+          "label": "False",
+          "value": "false"
+        },
+        {
+          "label": "True",
+          "value": "true"
+        }
+      ]
+    }
+  },
+  "show_types": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "true",
+    "options": {
+      "label": "Show Types",
+      "values": [
+        {
+          "label": "False",
+          "value": "false"
+        },
+        {
+          "label": "True",
+          "value": "true"
+        }
+      ]
+    }
+  },
+  "show_ticket_prices": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "true",
+    "options": {
+      "label": "Show Ticket Prices",
+      "values": [
+        {
+          "label": "False",
+          "value": "false"
+        },
+        {
+          "label": "True",
+          "value": "true"
+        }
+      ]
+    }
+  },
+  "orderby": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "event_start_date",
+    "options": {
+      "label": "Order By",
+      "values": [
+        {
+          "label": "Event Start Date",
+          "value": "event_start_date"
+        },
+        {
+          "label": "Random",
+          "value": "rand"
+        },
+        {
+          "label": "Title",
+          "value": "title"
+        },
+        {
+          "label": "ID",
+          "value": "ID"
+        },
+        {
+          "label": "Name",
+          "value": "name"
+        }
+      ]
+    }
+  },
+  "order": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "ASC",
+    "options": {
+      "label": "Order",
+      "values": [
+        {
+          "label": "ASC",
+          "value": "ASC"
+        },
+        {
+          "label": "DESC",
+          "value": "DESC"
+        }
+      ]
+    }
+  },
+  "show_pagination": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "false",
+    "name":"pagination",
+    "options": {
+      "label": "Show Pagination",
+     
+      "values": [
+        {
+          "label": "False",
+          "value": "false"
+        },
+        {
+          "label": "True",
+          "value": "true"
+        }
+      ]
+    }
+  },
+  "per_page": {
+    "type": "number",
+    "access": "public",
+    "value": "10",
+    "options": {
+      "label": "Post Per Page",
+      "description": "",
+      "min": -1      
+    }
+  },
+  "categories": {
+    "type": "autocomplete",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Event Categories",
+      "action": "listCategory",
+      "description": "Add Event Categories separated by Comma"
+    }
+  },
+  "event_types": {
+    "type": "autocomplete",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Event Types",
+      "action": "listType",
+      "description": "Add Event Types separated by Comma"
+    }
+  },
+  "ticket_prices": {
+    "type": "string",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Event Ticket Prices",
+      "description": "Add Event Ticket Price separated by Comma"
+    }
+  },
+  "location": {
+    "type": "string",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Event Location",
+      "description": ""
+    }
+  },
+  "keywords": {
+    "type": "string",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Event Keywords",
+      "description": ""
+    }
+  },
+  "selected_datetime": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Default Selected Date Filter",
+      "global": "vcvWPEMDateList"
+    }
+  },
+  "selected_category": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Selected Category",
+      "global": "vcvWPEMCatList"
+    }
+  },
+  "selected_event_type": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Default Selected Event Type",
+      "global": "vcvWPEMTypeList"
+    }
+  },
+  "selected_ticket_price": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Default Selected Event Ticke Price",
+      "global": "vcvWPEMTicketType"
+    }
+  },
+ 
+  "darkTextSkin": {
+    "type": "toggleSmall",
+    "access": "public",
+    "value": false
+  },
+  "designOptions": {
+    "type": "designOptions",
+    "access": "public",
+    "value": {},
+    "options": {
+      "label": "Design Options"
+    }
+  },
+  "editFormTab1": {
+    "type": "group",
+    "access": "protected",
+    "value": [
+      "show_pagination",
+      "per_page",
+      "orderby",
+      "order",
+      "show_filters",
+      "show_categories",
+      "show_types",
+      "show_ticket_prices",
+      "categories",
+      "event_types",
+      "ticket_prices",
+      "location",
+      "keywords",
+      "selected_datetime",
+      "selected_category",
+      "selected_event_type",
+      "selected_ticket_price",
+      "featured",
+      "cancelled",
+      "metaCustomId",
+      "customClass"
+    ],
+    "options": {
+      "label": "General"
+    }
+  },
+  "metaEditFormTabs": {
+    "type": "group",
+    "access": "protected",
+    "value": [
+      "editFormTab1",
+      "designOptions"
+    ]
+  },
+  "relatedTo": {
+    "type": "group",
+    "access": "protected",
+    "value": [
+      "General"
+    ]
+  },
+  "metaOrder": {
+    "type": "number",
+    "access": "protected",
+    "value": 3
+  },
+  "customClass": {
+    "type": "string",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Extra class name",
+      "description": "Add an extra class name to the element and refer to it from Custom CSS option."
+    }
+  },
+  "metaCustomId": {
+    "type": "customId",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Event ID",
+      "description": "Apply event ID to get event detail"
+    }
+  }, 
+  "tag": {
+    "access": "protected",
+    "type": "string",
+    "value": "eventListing"
+  }
+}
