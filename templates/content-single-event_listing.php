@@ -81,10 +81,19 @@ do_action('set_single_listing_view_count');
 									<?php do_action('single_event_organizer_name_end');?>
 								</div>
 							</div>
-							<?php if(get_event_ticket_price()) { ?>
-							<div class="wpem-event-ticket">
-								<span class="wpem-event-ticket-text"><?php _e('Price:','wp-event-manager');?><?php display_event_ticket_price( '',  '', true, $post );?></span>
-							</div>
+							<?php 
+							$view_count = get_post_views_count($post);
+							if( $view_count ){  ?>
+							<div class="clearfix">&nbsp;</div>
+							<div><i class="wpem-icon-eye"></i> <?php printf(__('%d people viewed this event.','wp-event-manager'),$view_count); ?></div>
+							<?php } ?>
+							<?php if(get_event_ticket_option()){  ?>
+							<div class="clearfix">&nbsp;</div>
+							<div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span></div>
+							<?php } ?>
+							<?php if(get_event_ticket_price()){ ?>
+								<div class="clearfix">&nbsp;</div>
+								<div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price( '',  '', true, $post );?></div>
 							<?php } ?>
 							
 						</div>
@@ -227,7 +236,7 @@ do_action('set_single_listing_view_count');
          	  
 	<?php
 
-			get_event_manager_template_part ( 'content', 'single-event_listing-organizer' );
+			get_event_manager_template_part( 'content', 'single-event_listing-organizer' );
 			/**
 			 * single_event_listing_end hook
 			 */
@@ -241,6 +250,7 @@ do_action('set_single_listing_view_count');
 	</div>
 	<!-- / wpem-main end  -->
 </div>
+<!-- override the script if needed -->
 <script type="text/javascript">
   jQuery(document).ready(function(){
     jQuery('.wpem-single-event-slider').slick({
@@ -263,6 +273,5 @@ do_action('set_single_listing_view_count');
     });
 
   });
-
 </script>
 
