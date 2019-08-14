@@ -952,8 +952,8 @@ class WP_Event_Manager_Post_Types {
 
 	    function set_single_listing_view_count($post) 
 	    {     
+	    	global $post; 
 	       //get the user role. 
-
 		    if ( is_user_logged_in() ) 
 		     {
 			     $role=get_event_manager_current_user_role();  

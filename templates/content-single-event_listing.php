@@ -4,7 +4,7 @@ $start_date = get_event_start_date ();
 $end_date = get_event_end_date ();
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style( 'wp-event-manager-slick-style');
-
+do_action('set_single_listing_view_count');
 ?>
 <div class="single_event_listing" itemscope
 	itemtype="http://schema.org/EventPosting">

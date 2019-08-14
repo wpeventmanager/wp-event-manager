@@ -486,13 +486,7 @@ class WP_Event_Manager_CPT {
 						echo '<span class="event-type ' . $type->slug . '"><strong>' . $type->name . '</strong></span>';
 					}
 				}
-			break;	
-
-			case "event_listing_category" :
-
-				if ( ! $terms = get_the_term_list( $post->ID, $column, '', ', ', '' ) ) echo '<span class="na">&ndash;</span>'; else echo $terms;
-
-			break;			
+			break;		
 
 			case "event_location" :
 
