@@ -1,0 +1,19 @@
+{
+  "elements": {
+    "pastEventListing": {
+      "settings": {
+        "name": "Past Event Listing",
+        "metaThumbnailUrl": "[publicPath]/past-event-listing.jpg",
+        "metaPreviewUrl": "[publicPath]/past-events-preview.png",
+        "metaDescription": "It will list all past events"
+      }
+    }
+  },
+  "categories": {
+    "Misc": {
+      "elements": [
+        "pastEventListing"
+      ]
+    }
+  }
+}

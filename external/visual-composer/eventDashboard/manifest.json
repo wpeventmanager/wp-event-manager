@@ -1,0 +1,19 @@
+{
+  "elements": {
+    "eventDashboard": {
+      "settings": {
+        "name": "Event Dashboard",
+        "metaThumbnailUrl": "[publicPath]/event-dashboard.jpg",
+        "metaPreviewUrl": "[publicPath]/event-dashboard-preview.png",
+        "metaDescription": "It will show the event dashboard detail"
+      }
+    }
+  },
+  "categories": {
+    "Misc": {
+      "elements": [
+        "eventDashboard"
+      ]
+    }
+  }
+}

@@ -1,0 +1,141 @@
+{ 
+  "featured": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Show Featured",
+      "values": [
+        {
+          "label": "All Events",
+          "value": ""
+        },
+        {
+          "label": "False",
+          "value": "false"
+        },
+        {
+          "label": "True",
+          "value": "true"
+        }
+      ]
+    }
+  },
+  "align": {
+    "type": "dropdown",
+    "access": "public",
+    "value": "left",
+    "options": {
+      "label": "Align",
+      "values": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    }
+  },  
+  "limit": {
+    "type": "number",
+    "access": "public",
+    "value": "1",
+    "options": {
+      "label": "Limit",
+      "min": 1      
+    }
+  },
+  "width": {
+    "type": "number",
+    "access": "public",
+    "value": "100",
+    "options": {
+      "label": "Width",
+      "min": 100      
+    }
+  },
+  "eventid": {
+    "type": "autocomplete",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Event Id",
+      "action": "eventId"
+    }
+  }, 
+  "darkTextSkin": {
+    "type": "toggleSmall",
+    "access": "public",
+    "value": false
+  },
+  "designOptions": {
+    "type": "designOptions",
+    "access": "public",
+    "value": {},
+    "options": {
+      "label": "Design Options"
+    }
+  },
+  "editFormTab1": {
+    "type": "group",
+    "access": "protected",
+    "value": [
+      "eventid",
+      "width",
+      "align",
+      "featured",
+      "limit",
+      "metaCustomId",
+      "customClass"
+    ],
+    "options": {
+      "label": "General"
+    }
+  },
+  "metaEditFormTabs": {
+    "type": "group",
+    "access": "protected",
+    "value": [
+      "editFormTab1",
+      "designOptions"
+    ]
+  },
+  "relatedTo": {
+    "type": "group",
+    "access": "protected",
+    "value": [
+      "General"
+    ]
+  },
+  "metaOrder": {
+    "type": "number",
+    "access": "protected",
+    "value": 3
+  },
+  "customClass": {
+    "type": "string",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Extra class name",
+      "description": "Add an extra class name to the element and refer to it from Custom CSS option."
+    }
+  },
+  "metaCustomId": {
+    "type": "customId",
+    "access": "public",
+    "value": "",
+    "options": {
+      "label": "Element ID",
+      "description": "Apply unique ID to element to link directly to it by using #your_id (for element ID use lowercase input only)."
+    }
+  },
+  "tag": {
+    "access": "protected",
+    "type": "string",
+    "value": "eventSummary"
+  }
+}
