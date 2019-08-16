@@ -87,13 +87,13 @@ do_action('set_single_listing_view_count');
 							<div class="clearfix">&nbsp;</div>
 							<div><i class="wpem-icon-eye"></i> <?php printf(__('%d people viewed this event.','wp-event-manager'),$view_count); ?></div>
 							<?php } ?>
-							<?php if(get_event_ticket_option()){  ?>
-							<div class="clearfix">&nbsp;</div>
-							<div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span></div>
-							<?php } ?>
 							<?php if(get_event_ticket_price()){ ?>
 								<div class="clearfix">&nbsp;</div>
 								<div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price( '',  '', true, $post );?></div>
+							<?php } ?>
+							<?php if(get_event_ticket_option()){  ?>
+							<div class="clearfix">&nbsp;</div>
+							<div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span></div>
 							<?php } ?>
 							
 						</div>
@@ -143,7 +143,11 @@ do_action('set_single_listing_view_count');
 					<?php do_action('single_event_sidebar_start');?>
 					<div class="clearfix">&nbsp;</div>
 				    <h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
-            <div class="wpem-event-date-time"><span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php display_date_time_separator() ?> <?php display_event_start_time();?> <?php _e('To','wp-event-manager');?>  <?php display_event_end_date();?> <?php display_date_time_separator() ?> <?php display_event_end_time();?></span></div>
+            <div class="wpem-event-date-time">
+	            <span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php if(get_event_start_time()){ display_date_time_separator(); ?> <?php display_event_start_time(); }?></span>
+	            <br/>
+	            <span class="wpem-event-date-time-text"><?php display_event_end_date();?> <?php if(get_event_end_time()){ display_date_time_separator() ?> <?php display_event_end_time(); } ?></span>
+            </div>
                   <div class="clearfix">&nbsp;</div>
 				  <h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
                   <?php if(get_event_address()){ display_event_address(); echo ',';} ?> <?php display_event_location();?> 

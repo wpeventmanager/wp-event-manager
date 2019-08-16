@@ -221,7 +221,7 @@
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-register-label .wpem-event-register-label-text { background: #64b60c; color: #FFF; padding: 5px 7px; display: inline-block; line-height: 15px; font-weight: 400; font-size: 14px; border-radius: 4px; }
 
  .wpem-event-ticket-type { display: inline-block; }
- .wpem-event-ticket-type .wpem-event-ticket-type-text { background: #EEE; color: #333; padding: 5px 7px; display: inline-block; line-height: 15px; font-weight: 500; font-size: 14px; border-radius: 4px; }
+ .wpem-event-ticket-type .wpem-event-ticket-type-text { background: #CCC; color: #333; padding: 5px 7px; display: inline-block; line-height: 15px; font-weight: 500; font-size: 14px; border-radius: 4px; }
 
 
 .wpem-event-listings .wpem-event-layout-wrapper:hover { background: #fafafa; }
