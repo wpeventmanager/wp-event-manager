@@ -674,7 +674,7 @@
 .event_listing_preview { border: 2px solid #999; padding: 20px; border-radius: 0 0 5px 5px; }
 
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-type { margin: -3px; padding-top: 5px; }
-.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-type .event-type { padding: 5px 10px; border-radius: 5px; font-size: 15px; line-height: 20px; display: inline-block; cursor: default; margin: 3px; }
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-type .event-type { padding: 5px 10px; border-radius: 5px; font-size: 15px; line-height: 20px; display: inline-block; cursor: default; margin: 3px;background: #ccc; }
 
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-category { margin: -3px; padding-top: 5px; }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-category .event-category { padding: 5px 10px; border-radius: 5px; font-size: 15px; line-height: 20px; display: inline-block; cursor: default; margin: 3px; }

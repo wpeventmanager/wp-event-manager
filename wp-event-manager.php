@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.7
+Version: 3.1.8
 
 Since: 1.0
 
@@ -81,7 +81,7 @@ class WP_Event_Manager {
 	{
 		// Define constants
 
-		define( 'EVENT_MANAGER_VERSION', '3.1.7' );
+		define( 'EVENT_MANAGER_VERSION', '3.1.8' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -111,15 +111,12 @@ class WP_Event_Manager {
 		include('external/external.php');
 		// Init classes
 		$this->forms      = WP_Event_Manager_Forms::instance();
-
 		$this->post_types = WP_Event_Manager_Post_Types::instance();
 
 		// Activation - works with symlinks
-
 		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'activate' ) );
 
 		// Switch theme
-
 		add_action( 'after_switch_theme', array( 'WP_Event_Manager_Ajax', 'add_endpoint' ), 10 );
 
 		add_action( 'after_switch_theme', array( $this->post_types, 'register_post_types' ), 11 );
@@ -127,7 +124,6 @@ class WP_Event_Manager {
 		add_action( 'after_switch_theme', 'flush_rewrite_rules', 15 );
 
 		// Actions
-
 		add_action( 'after_setup_theme', array( $this, 'load_plugin_textdomain' ) );
 
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );

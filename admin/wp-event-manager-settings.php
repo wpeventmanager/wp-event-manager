@@ -545,7 +545,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'name' 		=> 'event_manager_login_page_url',
 					        
-					        'std' 		=> '',
+					    	'std' 		=> wp_login_url(),
 					        
 					        'label' 	=> __( 'Login Page URL', 'wp-event-manager' ),
 					        

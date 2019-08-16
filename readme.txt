@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
 Tested up to: 5.2.2
-Stable tag: 3.1.7
+Stable tag: 3.1.8
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -310,6 +310,18 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 == Changelog ==
+
+= 3.1.8 =
+
+* Added - Visual composer compatiblity added
+* Added - View count added
+* Fixed - Layout improved
+* Fixed - Field editor option value added with key and translation
+* Fixed - Date format issue with multilingual
+* Fixed - Layout improved 
+* Fixed - placeholder image improved 
+* Fixed - WPML config file im proved 
+
 
 = 3.1.7 =
 
