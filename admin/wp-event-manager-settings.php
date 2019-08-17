@@ -545,7 +545,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'name' 		=> 'event_manager_login_page_url',
 					        
-					        'std' 		=> '',
+					    	'std' 		=> wp_login_url(),
 					        
 					        'label' 	=> __( 'Login Page URL', 'wp-event-manager' ),
 					        
@@ -608,6 +608,17 @@ class WP_Event_Manager_Settings {
 				
 										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://codex.wordpress.org/Formatting_Date_and_Time'),
 				
+										'type'      => 'text',
+								),
+								array(
+										'name' 		=> 'event_manager_date_time_format_separator',
+										
+										'std' 		=> '@',
+										
+										'label' 	=> __( 'Date And Time Separator', 'wp-event-manager' ),
+										
+										'desc'		=> __( 'Add date and time separator.', 'wp-event-manager' ),
+										
 										'type'      => 'text',
 								),
 								array(

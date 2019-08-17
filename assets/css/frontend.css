@@ -220,8 +220,8 @@
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-register-label { display: inline-block; }
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-register-label .wpem-event-register-label-text { background: #64b60c; color: #FFF; padding: 5px 7px; display: inline-block; line-height: 15px; font-weight: 400; font-size: 14px; border-radius: 4px; }
 
-.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-ticket-type { display: inline-block; }
-.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-ticket-type .wpem-event-ticket-type-text { background: #EEE; color: #333; padding: 5px 7px; display: inline-block; line-height: 15px; font-weight: 500; font-size: 14px; border-radius: 4px; }
+ .wpem-event-ticket-type { display: inline-block; }
+ .wpem-event-ticket-type .wpem-event-ticket-type-text { background: #CCC; color: #333; padding: 5px 7px; display: inline-block; line-height: 15px; font-weight: 500; font-size: 14px; border-radius: 4px; }
 
 
 .wpem-event-listings .wpem-event-layout-wrapper:hover { background: #fafafa; }
@@ -674,7 +674,7 @@
 .event_listing_preview { border: 2px solid #999; padding: 20px; border-radius: 0 0 5px 5px; }
 
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-type { margin: -3px; padding-top: 5px; }
-.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-type .event-type { padding: 5px 10px; border-radius: 5px; font-size: 15px; line-height: 20px; display: inline-block; cursor: default; margin: 3px; }
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-type .event-type { padding: 5px 10px; border-radius: 5px; font-size: 15px; line-height: 20px; display: inline-block; cursor: default; margin: 3px;background: #ccc; }
 
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-category { margin: -3px; padding-top: 5px; }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-category .event-category { padding: 5px 10px; border-radius: 5px; font-size: 15px; line-height: 20px; display: inline-block; cursor: default; margin: 3px; }
@@ -848,6 +848,9 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 
 
 .wpem-tabs-wrapper .wpem-tabs-wrap { display: inline-block; width: 100%;  }
+.wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link { border-top: 1px solid #CCC; }
+.wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link:first-child { border-top: 0px; }
+
 .wpem-add-tickets-tab-wrapper .wpem-tabs-action-buttons { position: relative; right: 5px; top: 5px; float: right; }
 
 

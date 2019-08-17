@@ -385,24 +385,17 @@ class WP_Event_Manager_CPT {
 
 		$columns["event_listing_type"]     = __( "Event Type", 'wp-event-manager' );
 
-		$columns["event_listing_category"] = __( "Event Category", 'wp-event-manager' );		
-
 		$columns["event_location"]         = __( "Event Location", 'wp-event-manager' );	
 
 	    $columns["event_organizer"]        = __( "Event Organizer", 'wp-event-manager' );		
 
-		$columns["event_posted"]           = __( "Posted Date", 'wp-event-manager' );
+	    $columns["event_start_date"]       = __( "Event Start Date", 'wp-event-manager' );
 
-		$columns["event_end_date"]          = __( "Event End Date", 'wp-event-manager' );
+		$columns["event_end_date"]         = __( "Event End Date", 'wp-event-manager' );
 		
 		$columns["event_expires"]          = __( "Event Expiry Date", 'wp-event-manager' );	
 
 		$columns['event_actions']          = __( "Actions", 'wp-event-manager' );
-
-		if ( ! get_option( 'event_manager_enable_categories' ) ) {
-
-			unset( $columns["event_listing_category"] );
-		}
 		
 		if ( ! get_option( 'event_manager_enable_event_types' ) ) {
 		
@@ -493,13 +486,7 @@ class WP_Event_Manager_CPT {
 						echo '<span class="event-type ' . $type->slug . '"><strong>' . $type->name . '</strong></span>';
 					}
 				}
-			break;	
-
-			case "event_listing_category" :
-
-				if ( ! $terms = get_the_term_list( $post->ID, $column, '', ', ', '' ) ) echo '<span class="na">&ndash;</span>'; else echo $terms;
-
-			break;			
+			break;		
 
 			case "event_location" :
 
@@ -517,19 +504,20 @@ class WP_Event_Manager_CPT {
 
 			break;		
 
-			case "event_posted" :
-
-				echo '<strong>' . date_i18n( __( 'M j, Y', 'wp-event-manager' ), strtotime( $post->post_date ) ) . '</strong><span>';
-
-				echo ( empty( $post->post_author ) ? __( 'by a guest', 'wp-event-manager' ) : sprintf( __( 'by %s', 'wp-event-manager' ), '<a href="' . esc_url( add_query_arg( 'author', $post->post_author ) ) . '">' . get_the_author() . '</a>' ) ) . '</span>';
-			
+			case "event_start_date" :
+				
+				if ( $post->_event_start_date )
+					
+					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_start_date ) ) . '</strong>';
+					else
+						echo '&ndash;';
 			break;
 
 			case "event_end_date" :
 
 				if ( $post->_event_end_date )
 
-					echo '<strong>' . date_i18n( __( 'M j, Y', 'wp-event-manager' ), strtotime( $post->_event_end_date ) ) . '</strong>';
+					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_end_date ) ) . '</strong>';
 				else
 					echo '&ndash;';
 			break;
@@ -540,7 +528,7 @@ class WP_Event_Manager_CPT {
 				
 					//echo '<strong>' . date_i18n( __( 'M j, Y', 'wp-event-manager' ), strtotime( $post->_event_expiry_date ) ) . '</strong>';
 					
-					echo '<strong>' .date_i18n( __( 'M j, Y', 'wp-event-manager' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
+					echo '<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
 				else
 					echo '&ndash;';
 			break;
@@ -641,6 +629,8 @@ class WP_Event_Manager_CPT {
 			'event_location' => 'event_location',
 
 			'event_organizer' => 'event_organizer',	
+				
+			'event_start_date'  => 'event_start_date',
 
 			'event_end_date'  => 'event_end_date',		
 

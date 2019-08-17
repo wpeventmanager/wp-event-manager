@@ -4,7 +4,7 @@ $start_date = get_event_start_date ();
 $end_date = get_event_end_date ();
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style( 'wp-event-manager-slick-style');
-
+do_action('set_single_listing_view_count');
 ?>
 <div class="single_event_listing" itemscope
 	itemtype="http://schema.org/EventPosting">
@@ -81,10 +81,19 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 									<?php do_action('single_event_organizer_name_end');?>
 								</div>
 							</div>
-							<?php if(get_event_ticket_price()) { ?>
-							<div class="wpem-event-ticket">
-								<span class="wpem-event-ticket-text"><?php _e('Price:','wp-event-manager');?><?php display_event_ticket_price( '',  '', true, $post );?></span>
-							</div>
+							<?php 
+							$view_count = get_post_views_count($post);
+							if( $view_count ){  ?>
+							<div class="clearfix">&nbsp;</div>
+							<div><i class="wpem-icon-eye"></i> <?php printf(__('%d people viewed this event.','wp-event-manager'),$view_count); ?></div>
+							<?php } ?>
+							<?php if(get_event_ticket_price()){ ?>
+								<div class="clearfix">&nbsp;</div>
+								<div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price( '',  '', true, $post );?></div>
+							<?php } ?>
+							<?php if(get_event_ticket_option()){  ?>
+							<div class="clearfix">&nbsp;</div>
+							<div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span></div>
 							<?php } ?>
 							
 						</div>
@@ -134,7 +143,11 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 					<?php do_action('single_event_sidebar_start');?>
 					<div class="clearfix">&nbsp;</div>
 				    <h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
-            <div class="wpem-event-date-time"><span class="wpem-event-date-time-text"><?php display_event_start_date();?>,<?php display_event_start_time();?> - <?php display_event_end_date();?> <?php display_event_end_time();?></span></div>
+            <div class="wpem-event-date-time">
+	            <span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php if(get_event_start_time()){ display_date_time_separator(); ?> <?php display_event_start_time(); }?></span>
+	            <br/>
+	            <span class="wpem-event-date-time-text"><?php display_event_end_date();?> <?php if(get_event_end_time()){ display_date_time_separator() ?> <?php display_event_end_time(); } ?></span>
+            </div>
                   <div class="clearfix">&nbsp;</div>
 				  <h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
                   <?php if(get_event_address()){ display_event_address(); echo ',';} ?> <?php display_event_location();?> 
@@ -227,7 +240,7 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
          	  
 	<?php
 
-			get_event_manager_template_part ( 'content', 'single-event_listing-organizer' );
+			get_event_manager_template_part( 'content', 'single-event_listing-organizer' );
 			/**
 			 * single_event_listing_end hook
 			 */
@@ -241,6 +254,7 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 	</div>
 	<!-- / wpem-main end  -->
 </div>
+<!-- override the script if needed -->
 <script type="text/javascript">
   jQuery(document).ready(function(){
     jQuery('.wpem-single-event-slider').slick({
@@ -263,6 +277,5 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
     });
 
   });
-
 </script>
 

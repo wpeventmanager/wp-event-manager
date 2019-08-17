@@ -179,15 +179,14 @@ class WP_Event_Manager_Field_Editor {
 							}
 							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] == 'select'  || $new_fields[$group_key][$field_key]['type'] == 'radio'  || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options') {
 								if(isset($new_fields[$group_key][$field_key]['options'])){
-									$new_fields[$group_key][$field_key]['options'] = explode( ' | ', $new_fields[$group_key][$field_key]['options']);
+									$new_fields[$group_key][$field_key]['options'] = explode( '|', $new_fields[$group_key][$field_key]['options']);
 									$temp_options = array();
 									foreach($new_fields[$group_key][$field_key]['options'] as $val){
-// 									    $option_key = explode( ' : ', $val);
-// 									    if(!isset($option_key[1]))
-// 									        $temp_options[strtolower(str_replace(' ', '_',$option_key[0]))] =  $option_key[0] ;
-// 								        else
-// 								            $temp_options[strtolower(str_replace(' ', '_',$option_key[0]))] =  $option_key[1] ;
-                                        $temp_options[strtolower(str_replace(' ', '_', $val))] = stripslashes($val);
+										$option_key = explode( ':', $val);
+										if(isset($option_key[1]))
+											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  $option_key[1] ;
+										else
+											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  $option_key[0] ;
 									}
 									$new_fields[$group_key][$field_key]['options'] = $temp_options;
 								}
