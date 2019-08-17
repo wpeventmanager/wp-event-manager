@@ -832,9 +832,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			//save event start date according to mysql date format with event start time
 				elseif( $key === 'event_start_date'  ){
 
-					if(isset( $values[ $group_key ][ $key ] ) && isset( $values[ $group_key ][ 'event_start_time' ] )){
-
-						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_start_time' ] );
+					if(isset( $values[ $group_key ][ $key ] )  && !empty($values[ $group_key ][ $key ])){
+						
+						if ( isset( $values[ $group_key ][ 'event_start_time' ] ) && !empty($values[ $group_key ][ 'event_start_time' ]))
+							$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_start_time' ] );
+						else
+							$start_time = '';
 						//combine event start date value with event start time 
 						$date =  $values[ $group_key ][ $key ].' '.$start_time ;
 						
@@ -851,7 +854,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				elseif( $key ==='event_end_date' ){
 						//save event end date according to mysql date format with event end time
 						if(isset( $values[ $group_key ][ $key ] ) && isset( $values[ $group_key ][ 'event_end_time' ] )){
-							$end_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_end_time' ] );
+							
+							if(isset( $values[ $group_key ][ 'event_end_time' ] ) && !empty($values[ $group_key ][ 'event_end_time' ] ))
+								$end_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_end_time' ] );
+							else
+								$end_time =  '';
+							
 							//combine event start date value with event start time 
 							$date =  $values[ $group_key ][ $key ].' '.$end_time ;
 
@@ -865,11 +873,16 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 				}
 				elseif ( $field['type'] == 'date' ) {
-					$date = $values[ $group_key ][ $key ];					
-					//Convert date and time value into DB formatted format and save eg. 1970-01-01
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format  , $date );
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-					update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
+					$date = $values[ $group_key ][ $key ];	
+					if(!empty($date)) {
+						//Convert date and time value into DB formatted format and save eg. 1970-01-01
+						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format  , $date );
+						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+						update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
+					}
+					else
+						update_post_meta( $this->event_id, '_' . $key, '' );
+					
 				}
 				 else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
