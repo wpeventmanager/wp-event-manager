@@ -1043,13 +1043,19 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		        unset($default_fields['event']['event_ticket_price']);
 		}
 		if ( !get_option( 'event_manager_enable_categories') || (wp_count_terms( 'event_listing_category' ) == 0 && isset($custom_fields['event']['event_category'])) ) {
-		    $custom_fields['event']['event_category']['visibility']=false;
+			
+			if(isset( $custom_fields['event']['event_category']))
+				$custom_fields['event']['event_category']['visibility']=false;
+			
 		    unset($default_fields['event']['event_category']);
 		}
 		
 		if ( ! get_option( 'event_manager_enable_event_types' ) || (wp_count_terms( 'event_listing_type' ) == 0 && isset($custom_fields['event']['event_type'])) ) {
-		    $custom_fields['event']['event_type']['visibility']=false;
-		    unset($default_fields['event']['event_type']);
+			
+			if(isset( $custom_fields['event']['event_type']))
+			$custom_fields['event']['event_type']['visibility']=false;
+		    
+			unset($default_fields['event']['event_type']);
 		}
 		
 		if(!is_array($custom_fields )){

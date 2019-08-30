@@ -70,7 +70,7 @@
 .wpem-form-wrapper .wpem-form-group .event-manager-uploaded-files .event-manager-uploaded-file .event-manager-uploaded-file-preview .event-manager-remove-uploaded-file:hover::before { color: #111; }    
 
 
-.wpem-form-wrapper .chosen-container { height: 45px; width: 100%; outline: none; margin: 0px; border: 2px solid #CCC; border-radius: 5px; background-color: #FFF; transition: all 0.2s; }
+.wpem-form-wrapper .chosen-container { width: 100%; outline: none; margin: 0px; border: 2px solid #CCC; border-radius: 5px; background-color: #FFF; transition: all 0.2s; }
 .wpem-form-wrapper .chosen-container:hover { border-color: #999; background-color: #fff; transition: all 0.2s; }
 .wpem-form-wrapper .chosen-container:focus { border-color: #00a5fa; background-color: #efefef; }
 
