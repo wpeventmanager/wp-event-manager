@@ -116,7 +116,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 				}
 				if(! empty( $field['type'] ) &&  $field['type'] == 'date'){
 					$event_date = get_post_meta( $event->ID, '_' . $key, true );
-					$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );
+					$this->fields[ $group_key ][ $key ]['value'] = !empty($event_date) ? date($php_date_format ,strtotime($event_date) ) :'';
 				}
 			}
 		}
