@@ -238,7 +238,28 @@ class WP_Event_Manager_Date_Time {
 		$time = is_numeric( $time ) ? $time : strtotime( $time );
 		return date( self::DBTIMEFORMAT, $time );
 	}
-
+	
+	/**
+	 * Returns the date time DB formatted.
+	 *
+	 * @since 3.1.10
+	 * @param string  $date and $time
+	 * @return string it will return time in DB formatted date and time
+	 */
+	public static function get_db_formatted_date_time( $date = '', $time = '00:00:00' ) {
+		if(empty($date))
+			return;
+			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			$datepicker_date_format 	= self::get_datepicker_format();
+			
+			//covert datepicker format  into php date() function date format
+			$php_date_format 		= self::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+			$time = self::get_db_formatted_time( $time );
+			//Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+			$db_date_time = self::date_parse_from_format( $php_date_format . ' H:i:s'  , $date .' '.$time );
+			
+			return $db_date_time;
+	}
 
 	/**
 	* Get timepicker format function will return all the date formats for timepicker
