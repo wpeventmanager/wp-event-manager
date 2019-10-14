@@ -146,7 +146,9 @@ do_action('set_single_listing_view_count');
             <div class="wpem-event-date-time">
 	            <span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php if(get_event_start_time()){ display_date_time_separator(); ?> <?php display_event_start_time(); }?></span>
 	            <br/>
+	            <?php if( get_event_start_date() != get_event_end_date() ) { ?>
 	            <span class="wpem-event-date-time-text"><?php display_event_end_date();?> <?php if(get_event_end_time()){ display_date_time_separator() ?> <?php display_event_end_time(); } ?></span>
+	            <?php } ?>
             </div>
                   <div class="clearfix">&nbsp;</div>
 				  <h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
