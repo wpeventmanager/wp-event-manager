@@ -1833,25 +1833,3 @@ function event_manager_get_password_rules_hint() {
 	 */
 	return apply_filters( 'event_manager_password_rules_hint', __( 'Passwords must be at least 8 characters long.', 'wp-event-manager') );
 }
-
-/**
- * Returns the date format.
- *
- * @return string
- */
-function get_event_manager_date_format(){
-	$format = apply_filters('wp_event_manager_date_format', get_option('event_manager_date_format',true) );
-	$format = !empty($format) ? $format :  'yy-mm-dd'; 
-	return $format;
-}
-
-/**
- * Returns the time format.
- *
- * @return string
- */
-function get_event_manager_time_format(){
-	$format = apply_filters('wp_event_manager_time_format', get_option('event_manager_time_format',true) );
-	$format = !empty($format) ? $format :  '12'; 
-	return $format;
-}

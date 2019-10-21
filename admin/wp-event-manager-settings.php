@@ -622,19 +622,6 @@ class WP_Event_Manager_Settings {
 										'type'      => 'text',
 								),
 								array(
-										'name'       => 'event_manager_time_format',
-										'std'        => '',
-										'label'      => __( 'Time Format', 'wp-event-manager' ),
-										'desc'       => __( 'Choose how you want the start and end time for events to be select on the submit event page.', 'wp-event-manager' ),
-										'type'       => 'select',
-										'options' => array(
-												
-												'12'  => __( '12-hour', 'wp-event-manager' ),
-												
-												'24' => __( '24-hour', 'wp-event-manager' ),
-										)
-								),
-								array(
 										'name' 		=> 'event_manager_timezone_setting',
 								
 										'std' 		=> 'site_timezone',
