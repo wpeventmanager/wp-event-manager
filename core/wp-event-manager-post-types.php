@@ -789,6 +789,7 @@ class WP_Event_Manager_Post_Types {
 		$ticket_price  = get_event_ticket_option( $post_id );
 
 		$organizer  = get_organizer_name( $post_id );
+		do_action('event_fee_item_start');
 
 		if ( $location ) {
 
@@ -809,6 +810,7 @@ class WP_Event_Manager_Post_Types {
 
 			echo "<event_listing:organizer><![CDATA[" . esc_html( $organizer ) . "]]></event_listing:organizer>\n";
 		}
+		do_action('event_fee_item_end');
 	}
 
 	/**
