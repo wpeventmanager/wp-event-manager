@@ -311,6 +311,12 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+= 3.1.10 =
+
+* Fixed - chosen at backend side improved
+
+
+
 = 3.1.9 =
 
 * Fixed - Field editor conflict with category
