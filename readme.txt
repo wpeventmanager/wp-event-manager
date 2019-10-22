@@ -314,6 +314,12 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 = 3.1.10 =
 
 * Fixed - chosen at backend side improved
+* Fixed - RSS feed item hooks added.
+* Fixed - One day event duplicate date improved.
+* Fixed - RSS feed item hooks added.
+* Fixed - Elementor listing settings improved.
+* Fixed - Registration button conditions improved with method type.
+
 
 
 

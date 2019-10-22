@@ -80,7 +80,6 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
-
 		define( 'EVENT_MANAGER_VERSION', '3.1.9' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
@@ -103,9 +102,7 @@ class WP_Event_Manager {
 		include( 'forms/wp-event-manager-forms.php' );	
 
 		if ( is_admin() ) {
-
 			include( 'admin/wp-event-manager-admin.php' );
-
 		}
 		//external 
 		include('external/external.php');
@@ -167,7 +164,6 @@ class WP_Event_Manager {
 		if ( version_compare( EVENT_MANAGER_VERSION, get_option( 'wp_event_manager_version' ), '>' ) ) {
 
 			WP_Event_Manager_Install::install();
-
 			flush_rewrite_rules();
 		}
 	}

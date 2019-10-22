@@ -365,8 +365,10 @@ class WP_Event_Manager_Post_Types {
 				'rewrite' 				=> $rewrite,
 
 				'query_var' 			=> true,
+					
+				'show_in_rest' 			=> true,
 
-					'supports' 				=> array( 'title', 'editor', 'custom-fields', 'publicize' , 'thumbnail'),
+				'supports' 				=> array( 'title', 'editor', 'custom-fields', 'publicize' , 'thumbnail'),
 
 				'has_archive' 			=> $has_archive,
 
