@@ -179,3 +179,4 @@ h1.nav-tab-wrapper,h2.nav-tab-wrapper,h3.nav-tab-wrapper{margin:0 0 20px}
 .wp-event-manager-event-form-field-editor .wp-event-registrations-email-content-tags{width:100%;padding:20px 0 0 1em;box-sizing:border-box;float:right}
 .wp-event-manager-event-form-field-editor .wp-event-registrations-email-content-tags p{margin-top:0}
 .wp-event-manager-event-form-field-editor p.submit-email{clear:both;padding:1.2em 0;margin:1em 0;border-top:1px solid #ddd}
+.form-field .chosen-container{width:100% !important;}
