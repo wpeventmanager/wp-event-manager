@@ -206,7 +206,7 @@ do_action('set_single_listing_view_count');
 				
                 
 							<div class="clearfix">&nbsp;</div>		
-							<h3 class="wpem-heading-text">Share With Friends</h3>
+							<h3 class="wpem-heading-text"><?php _e('Share With Friends','wp-event-manager');?></h3>
 							<div class="wpem-share-this-event">
 								<div class="wpem-event-share-lists">
                     <?php do_action('single_event_listing_social_share_start');?> 

@@ -56,7 +56,12 @@ if(is_array($event_type) && isset($event_type[0]))
           <div class="wpem-event-details">
             <div class="wpem-event-title"><h3 class="wpem-heading-text"><?php echo esc_html( get_the_title() ); ?></h3></div>
 
-            <div class="wpem-event-date-time"><span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php display_date_time_separator() ?> <?php display_event_start_time();?> - <?php display_event_end_date();?> <?php display_date_time_separator() ?> <?php display_event_end_time();?></span></div>
+            <div class="wpem-event-date-time"><span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php display_date_time_separator() ?> <?php display_event_start_time();?> -<?php 
+              if (isset($start_date) && isset($end_date) && $start_date != $end_date ){
+                display_event_end_date();
+                display_date_time_separator();
+              } 
+            ?> <?php display_event_end_time();?></span></div>
             <div class="wpem-event-location"><span class="wpem-event-location-text"><?php if(get_event_location()=='Anywhere' || get_event_location() == ''): echo __('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?></span></div>
             
             <?php if( get_option( 'event_manager_enable_event_types' ) && get_event_type() ) { ?>
