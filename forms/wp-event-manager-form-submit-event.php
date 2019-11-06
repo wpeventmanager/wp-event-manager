@@ -759,19 +759,28 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		include_once( ABSPATH . 'wp-admin/includes/media.php' );
 	
 		$upload_dir     = wp_upload_dir();
+		$attachment_url = esc_url( $attachment_url, array( 'http', 'https' ) );
+		if ( empty( $attachment_url ) ) {
+			return 0;
+		}
+		
+		$attachment_url_parts = wp_parse_url( $attachment_url );
+		if ( false !== strpos( $attachment_url_parts['path'], '../' ) ) {
+			return 0;
+		}
+		$attachment_url = sprintf( '%s://%s%s', $attachment_url_parts['scheme'], $attachment_url_parts['host'], $attachment_url_parts['path'] );
 		$attachment_url = str_replace( array( $upload_dir['baseurl'], WP_CONTENT_URL, site_url( '/' ) ), array( $upload_dir['basedir'], WP_CONTENT_DIR, ABSPATH ), $attachment_url );
-	
 		if ( empty( $attachment_url ) || ! is_string( $attachment_url ) ) {
 			return 0;
 		}
-	
+		
 		$attachment     = array(
-				'post_title'   => get_the_title( $this->event_id ),
-				'post_content' => '',
-				'post_status'  => 'inherit',
-				'post_parent'  => $this->event_id,
-				'guid'         => $attachment_url
-		);
+							'post_title'   => get_the_title( $this->event_id ),
+							'post_content' => '',
+							'post_status'  => 'inherit',
+							'post_parent'  => $this->event_id,
+							'guid'         => $attachment_url
+						);
 	
 		if ( $info = wp_check_filetype( $attachment_url ) ) {
 			$attachment['post_mime_type'] = $info['type'];
@@ -889,13 +898,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
 					    $ticket_type=$values[ $group_key ][ $key ];
 					}
-					if('_' .$key=='_event_recurrence' && $values[ $group_key ][ $key ]=='no'){
-					    $recurre_event='no';
-					}
-				}
-
-				// Handle attachments.
-					if ( 'file' === $field['type'] ) {
+					// Handle attachments.
+					if ( 'file' === $field['type'] && $key != 'event_banner' ) {
 						if ( is_array( $values[ $group_key ][ $key ] ) ) {
 							foreach ( $values[ $group_key ][ $key ] as $file_url ) {
 								$maybe_attach[] = $file_url;
@@ -904,6 +908,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$maybe_attach[] = $values[ $group_key ][ $key ];
 						}
 					}
+				}
 			}
 		}
 		$maybe_attach = array_filter( $maybe_attach );
@@ -926,12 +931,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		// reset meta value if ticket type is free
 		if($ticket_type=='free'){
 		    update_post_meta( $this->event_id, '_event_ticket_price', '');
-		}
-		if($recurre_event=='no'){
-		    update_post_meta( $this->event_id, '_recure_every', '');
-		    update_post_meta( $this->event_id, '_recure_month_day', '');
-		    update_post_meta( $this->event_id, '_recure_weekday', '');
-		    update_post_meta( $this->event_id, '_recure_untill', '');
 		}
 		// And user meta to save time in future
 		if ( is_user_logged_in() ) {
