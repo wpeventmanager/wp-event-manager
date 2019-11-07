@@ -151,9 +151,10 @@ do_action('set_single_listing_view_count');
             <div class="wpem-event-date-time" >
 	            <span class="wpem-event-date-time-text" itemprop="startDate" content="<?php echo $start_date;?>"><?php display_event_start_date();?> <?php if(get_event_start_time()){ display_date_time_separator(); ?> <?php display_event_start_time(); }?></span>
 	            <br/>
-	            <?php if( get_event_start_date() != get_event_end_date() ) { ?>
-	            <span class="wpem-event-date-time-text" itemprop="endDate" content="<?php echo $end_date;?>"><?php display_event_end_date();?> <?php if(get_event_end_time()){ display_date_time_separator() ?> <?php display_event_end_time(); } ?></span>
-	            <?php } ?>
+	            <span class="wpem-event-date-time-text" itemprop="endDate" content="<?php echo $end_date;?>">
+	            <?php if( get_event_start_date() != get_event_end_date() ) {  display_event_end_date(); } ?>
+	            <?php if(get_event_end_time()){ display_date_time_separator() ?> <?php display_event_end_time(); } ?>
+	            </span>
             </div>
             <div itemprop="location" itemscope itemtype="http://schema.org/Place">
                   <div class="clearfix">&nbsp;</div>
