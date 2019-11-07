@@ -7,13 +7,13 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 do_action('set_single_listing_view_count');
 ?>
 <div class="single_event_listing" itemscope
-	itemtype="http://schema.org/EventPosting">
+	itemtype="http://schema.org/Event">
 	<meta itemprop="title"
 		content="<?php echo esc_attr( $post->post_title ); ?>" />
 
 	<div class="wpem-main wpem-single-event-page">
 		<?php if ( get_option( 'event_manager_hide_expired_content', 1 ) && 'expired' === $post->post_status ) : ?>
-		<div class="event-manager-info wpem-alert wpem-alert-danger"><?php _e( 'This listing has been expired.', 'wp-event-manager' ); ?></div>
+		<div class="event-manager-info wpem-alert wpem-alert-danger" ><?php _e( 'This listing has been expired.', 'wp-event-manager' ); ?></div>
 		<?php else : ?>
 			<?php if ( is_event_cancelled() ) : ?>
               <div class="wpem-alert wpem-alert-danger">
@@ -148,22 +148,25 @@ do_action('set_single_listing_view_count');
 					<?php do_action('single_event_sidebar_start');?>
 					<div class="clearfix">&nbsp;</div>
 				    <h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
-            <div class="wpem-event-date-time">
-	            <span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php if(get_event_start_time()){ display_date_time_separator(); ?> <?php display_event_start_time(); }?></span>
+            <div class="wpem-event-date-time" >
+	            <span class="wpem-event-date-time-text" itemprop="startDate" content="<?php echo $start_date;?>"><?php display_event_start_date();?> <?php if(get_event_start_time()){ display_date_time_separator(); ?> <?php display_event_start_time(); }?></span>
 	            <br/>
 	            <?php if( get_event_start_date() != get_event_end_date() ) { ?>
-	            <span class="wpem-event-date-time-text"><?php display_event_end_date();?> <?php if(get_event_end_time()){ display_date_time_separator() ?> <?php display_event_end_time(); } ?></span>
+	            <span class="wpem-event-date-time-text" itemprop="endDate" content="<?php echo $end_date;?>"><?php display_event_end_date();?> <?php if(get_event_end_time()){ display_date_time_separator() ?> <?php display_event_end_time(); } ?></span>
 	            <?php } ?>
             </div>
+            <div itemprop="location" itemscope itemtype="http://schema.org/Place">
                   <div class="clearfix">&nbsp;</div>
 				  <h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
-                  <?php if(get_event_address()){ display_event_address(); echo ',';} ?> <?php display_event_location();?> 
+				  <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                  	<?php if(get_event_address()){ display_event_address(); echo ',';} ?> <?php display_event_location();?> 
+              	  </div>
                   <?php if(get_event_venue_name()){ ?>
                   <div class="clearfix">&nbsp;</div>
 				  <h3 class="wpem-heading-text"><?php _e('Venue','wp-event-manager');?></h3>
                   <?php  display_event_venue_name(); 
                   } ?> 
-                  
+            </div>      
                   
                   <?php if(get_option( 'event_manager_enable_event_types' ) && get_event_type()) { ?>
                   <div class="clearfix">&nbsp;</div>

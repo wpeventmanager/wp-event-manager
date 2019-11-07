@@ -923,7 +923,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				$attachment_urls[] = wp_get_attachment_url( $attachment_id );
 			}
 			foreach ( $maybe_attach as $attachment_url ) {
-				if ( ! in_array( $attachment_url, $attachment_urls ) ) {
+				if ( ! in_array( $attachment_url, $attachment_urls ) && !is_numeric($attachment_url) ) {
 					$this->create_attachment( $attachment_url );
 				}
 			}
