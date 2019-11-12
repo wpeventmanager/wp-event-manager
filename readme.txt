@@ -320,7 +320,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Fixed - One day event duplicate date improved.
 * Fixed - Elementor listing settings improved.
 * Fixed - Registration button conditions improved with method type.
-
+* Fixed - Gutenberg category compatiblity.
 
 = 3.1.9 =
 

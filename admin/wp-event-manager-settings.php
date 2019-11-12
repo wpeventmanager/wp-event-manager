@@ -288,21 +288,6 @@ class WP_Event_Manager_Settings {
 
 						array(
 
-							'name'       => 'event_manager_registration_role',
-
-							'std'        => 'employer',
-
-							'label'      => __( 'Account Role', 'wp-event-manager' ),
-
-							'desc'       => __( 'If you enable registration on your submission form, choose a role for the new user.', 'wp-event-manager' ),
-
-							'type'       => 'select',
-
-							'options'    => $account_roles
-						),
-
-						array(
-
 							'name'       => 'event_manager_submission_requires_approval',
 
 							'std'        => '1',
@@ -398,18 +383,7 @@ class WP_Event_Manager_Settings {
 
 							'attributes' => array()
 						),
-						array(
-							'name'       => 'event_manager_allowed_registration_method',
-							'std'        => '',
-							'label'      => __( 'Registration Method', 'wp-event-manager' ),
-							'desc'       => __( 'Choose the registratoin method for listings.', 'wp-event-manager' ),
-							'type'       => 'radio',
-							'options'    => array(
-								''      => __( 'Email address or website URL', 'wp-event-manager' ),
-								'email' => __( 'Email addresses only', 'wp-event-manager' ),
-								'url'   => __( 'Website URLs only', 'wp-event-manager' ),
-							)
-						),
+						
 					    
 					    array(
 					        
