@@ -288,6 +288,21 @@ class WP_Event_Manager_Settings {
 
 						array(
 
+							'name'       => 'event_manager_registration_role',
+
+							'std'        => 'organizer',
+
+							'label'      => __( 'Account Role', 'wp-event-manager' ),
+
+							'desc'       => __( 'If you enable user registration on your submission form, choose a role for the new user.', 'wp-event-manager' ),
+
+							'type'       => 'select',
+
+							'options'    => $account_roles
+						),
+
+						array(
+
 							'name'       => 'event_manager_submission_requires_approval',
 
 							'std'        => '1',
@@ -383,7 +398,6 @@ class WP_Event_Manager_Settings {
 
 							'attributes' => array()
 						),
-						
 					    
 					    array(
 					        

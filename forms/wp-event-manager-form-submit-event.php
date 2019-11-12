@@ -655,7 +655,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							'username' => ( event_manager_generate_username_from_email() || empty( $_POST['create_account_username'] ) ) ? '' : $_POST['create_account_username'],
 							'password' => ( event_manager_use_standard_password_setup_email() || empty( $_POST['create_account_password'] ) ) ? '' : $_POST['create_account_password'],
 							'email'    => $_POST['create_account_email'],
-							'role'     => get_option( 'event_manager_registration_role' )
+							'role'     => get_option( 'event_manager_registration_role','organizer' )
 						) );
 					}
 				}
