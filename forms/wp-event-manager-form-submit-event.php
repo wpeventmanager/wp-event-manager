@@ -181,10 +181,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				),
 					
 				'event_location' => array(
-						'label'       => __( 'Location', 'wp-event-manager' ),
+						'label'       => __( 'Event Location', 'wp-event-manager' ),
 						'type'        => 'text',
 						'required'    => true,
-						'placeholder' => __( 'e.g. "Berlin","London"', 'wp-event-manager' ),
+						'placeholder' => __( '', 'wp-event-manager' ),
 						'priority'    => 7
 				),
 					
