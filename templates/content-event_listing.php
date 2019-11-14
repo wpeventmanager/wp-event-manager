@@ -71,7 +71,7 @@ if(is_array($event_type) && isset($event_type[0]))
             
             <!-- Show in list View // Hide in Box View -->
             <?php if(get_event_ticket_option()){  ?>
-              <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text"><span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span></div>
+              <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option();?></span></div>
             <?php } ?>
             <!-- Show in list View // Hide in Box View -->
           </div>

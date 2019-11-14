@@ -98,7 +98,7 @@ do_action('set_single_listing_view_count');
 							<?php } ?>
 							<?php if(get_event_ticket_option()){  ?>
 							<div class="clearfix">&nbsp;</div>
-							<div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span></div>
+							<div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option();?></span></div>
 							<?php } ?>
 							
 						</div>
