@@ -58,15 +58,19 @@ do_action('set_single_listing_view_count');
 						<div class="wpem-event-date">
 							<div class="wpem-event-date-type">
         					<?php if (isset($start_date) && isset($end_date) && $start_date != $end_date ) :  ?>
-                          <div class="wpem-from-date">
+                          		<?php if(!empty($start_date)){ ?>
+                          		<div class="wpem-from-date">
 									<div class="wpem-date"><?php echo date_i18n('d',strtotime($start_date));?></div>
 									<div class="wpem-month"><?php echo date_i18n('M',strtotime($start_date));?></div>
 								</div>
+								<?php } ?>
+								<?php if(!empty($end_date)){ ?>
 								<div class="wpem-to-date">
 									<div class="wpem-date-separator">-</div>
 									<div class="wpem-date"><?php echo date_i18n('d',strtotime($end_date));?></div>
 									<div class="wpem-month"><?php echo date_i18n('M',strtotime($end_date));?></div>
 								</div>
+								<?php } ?>
 								<?php else :?>
 								<div class="wpem-from-date">
 									<div class="wpem-date"><?php echo date_i18n('d',strtotime($start_date));?></div>

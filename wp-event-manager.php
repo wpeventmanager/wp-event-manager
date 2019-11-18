@@ -20,7 +20,7 @@ Since: 1.0
 
 Requires WordPress Version at least: 4.1
 
-Copyright: 2017 WP Event Manager
+Copyright: 2019 WP Event Manager
 
 License: GNU General Public License v3.0
 
