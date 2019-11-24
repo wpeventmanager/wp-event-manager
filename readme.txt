@@ -4,8 +4,8 @@ Contributors: ashokdudhat,gamthemes,hiteshmakvana, kikanirita, nao,garrett-eclip
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 5.2.2
-Stable tag: 3.1.9
+Tested up to: 5.3
+Stable tag: 3.1.10
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -315,7 +315,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 * Fixed - Same day event start end date fixed.
 * Fixed - Media files duplicate issue fixed.
-* Fixed - chosen at backend side improved.
+* Fixed - Chosen at backend side improved.
 * Fixed - RSS feed item hooks added.
 * Fixed - One day event duplicate date improved.
 * Fixed - Elementor listing settings improved.
@@ -327,7 +327,6 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Fixed - Field editor conflict with category
 * Fixed - POT strings are improved
 * Fixed - Some css and js tweaks
-
 
 = 3.1.8 =
 
