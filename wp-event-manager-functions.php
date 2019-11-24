@@ -528,7 +528,6 @@ function get_event_listings_keyword_search( $search) {
 				'_registration',
 				'_event_start_date',
 				'_event_start_time',
-				'_event_link_to_eventpage',
 				'_organizer_contact_person_name',
 				'_organizer_email',
 				'_organizer_website',

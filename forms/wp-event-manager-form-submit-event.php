@@ -184,7 +184,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						'label'       => __( 'Event Location', 'wp-event-manager' ),
 						'type'        => 'text',
 						'required'    => true,
-						'placeholder' => __( '', 'wp-event-manager' ),
+						'placeholder' => __( 'Location for google map', 'wp-event-manager' ),
 						'priority'    => 7
 				),
 					
@@ -279,14 +279,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 									'priority'    => 17,
 							        'required'=>true
 							  		),
-
-				'event_link_to_eventpage' => array(
-									'label'       => __( 'Link To Event Page', 'wp-event-manager' ),									
-									'type'        => 'text',
-									'required'    => false,					
-									'placeholder' => __( 'e.g http://www.example.com', 'wp-event-manager' ),
-									'priority'    => 19
-									),
 
 				'event_registration_deadline' => array(
 									'label'       => __( 'Registration Deadline', 'wp-event-manager' ),	
