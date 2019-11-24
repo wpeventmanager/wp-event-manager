@@ -290,11 +290,11 @@ class WP_Event_Manager_Settings {
 
 							'name'       => 'event_manager_registration_role',
 
-							'std'        => 'employer',
+							'std'        => 'organizer',
 
 							'label'      => __( 'Account Role', 'wp-event-manager' ),
 
-							'desc'       => __( 'If you enable registration on your submission form, choose a role for the new user.', 'wp-event-manager' ),
+							'desc'       => __( 'If you enable user registration on your submission form, choose a role for the new user.', 'wp-event-manager' ),
 
 							'type'       => 'select',
 
@@ -397,18 +397,6 @@ class WP_Event_Manager_Settings {
 							'desc'       => __( 'How many <strong>days</strong> listings are live before expiring. Can be left blank to never expire.', 'wp-event-manager' ),
 
 							'attributes' => array()
-						),
-						array(
-							'name'       => 'event_manager_allowed_registration_method',
-							'std'        => '',
-							'label'      => __( 'Registration Method', 'wp-event-manager' ),
-							'desc'       => __( 'Choose the registratoin method for listings.', 'wp-event-manager' ),
-							'type'       => 'radio',
-							'options'    => array(
-								''      => __( 'Email address or website URL', 'wp-event-manager' ),
-								'email' => __( 'Email addresses only', 'wp-event-manager' ),
-								'url'   => __( 'Website URLs only', 'wp-event-manager' ),
-							)
 						),
 					    
 					    array(
@@ -620,19 +608,6 @@ class WP_Event_Manager_Settings {
 										'desc'		=> __( 'Add date and time separator.', 'wp-event-manager' ),
 										
 										'type'      => 'text',
-								),
-								array(
-										'name'       => 'event_manager_time_format',
-										'std'        => '',
-										'label'      => __( 'Time Format', 'wp-event-manager' ),
-										'desc'       => __( 'Choose how you want the start and end time for events to be select on the submit event page.', 'wp-event-manager' ),
-										'type'       => 'select',
-										'options' => array(
-												
-												'12'  => __( '12-hour', 'wp-event-manager' ),
-												
-												'24' => __( '24-hour', 'wp-event-manager' ),
-										)
 								),
 								array(
 										'name' 		=> 'event_manager_timezone_setting',

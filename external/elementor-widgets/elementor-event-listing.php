@@ -119,7 +119,7 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'order',
 			[
-				'label' => __( 'Show Pagination', 'wp-event-manager' ),
+				'label' => __( 'Order', 'wp-event-manager' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'DESC',
 				'options' => [
@@ -132,7 +132,7 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'orderby',
 			[
-				'label' => __( 'Show Pagination', 'wp-event-manager' ),
+				'label' => __( 'Order By', 'wp-event-manager' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'event_start_date',
 				'options' => [
