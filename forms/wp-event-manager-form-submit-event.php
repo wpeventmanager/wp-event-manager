@@ -891,7 +891,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					    $ticket_type=$values[ $group_key ][ $key ];
 					}
 					// Handle attachments.
-					if ( 'file' === $field['type'] && $key != 'event_banner' ) {
+					if ( 'file' === $field['type']  ) {
 						if ( is_array( $values[ $group_key ][ $key ] ) ) {
 							foreach ( $values[ $group_key ][ $key ] as $file_url ) {
 								$maybe_attach[] = $file_url;
@@ -912,7 +912,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$attachment_urls = array();
 			// Loop attachments already attached to the event
 			foreach ( $attachments as $attachment_key => $attachment ) {
-				$attachment_urls[] = wp_get_attachment_url( $attachment_id );
+				$attachment_urls[] = wp_get_attachment_url( $attachment );
 			}
 			foreach ( $maybe_attach as $attachment_url ) {
 				if ( ! in_array( $attachment_url, $attachment_urls ) && !is_numeric($attachment_url) ) {
