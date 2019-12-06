@@ -311,6 +311,11 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+= 3.1.12 =
+
+* Fixed - Banner attachment issue.
+* Fixed - Elementor featured issue.
+
 = 3.1.11 =
 
 * Fixed - Registration button conflict.
