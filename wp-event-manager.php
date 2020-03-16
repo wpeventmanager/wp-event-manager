@@ -104,8 +104,10 @@ class WP_Event_Manager {
 		if ( is_admin() ) {
 			include( 'admin/wp-event-manager-admin.php' );
 		}
+		
 		//external 
 		include('external/external.php');
+
 		// Init classes
 		$this->forms      = WP_Event_Manager_Forms::instance();
 		$this->post_types = WP_Event_Manager_Post_Types::instance();
@@ -147,9 +149,11 @@ class WP_Event_Manager {
 
 		WP_Event_Manager_Ajax::add_endpoint();
 		unregister_post_type( 'event_listing' );
-		add_filter( 'pre_option_event_manager_enable_types', '__return_true' );
+		add_filter( 'pre_option_event_manager_enable_categories', '__return_true' );
+		add_filter( 'pre_option_event_manager_enable_event_types', '__return_true' );
 		$this->post_types->register_post_types();
-		remove_filter( 'pre_option_event_manager_enable_types', '__return_true' );
+		remove_filter( 'pre_option_event_manager_enable_categories', '__return_true' );
+		remove_filter( 'pre_option_event_manager_enable_event_types', '__return_true' );
 		WP_Event_Manager_Install::install();
 		//show notice after activating plugin
 		update_option('event_manager_rating_showcase_admin_notices_dismiss','0');

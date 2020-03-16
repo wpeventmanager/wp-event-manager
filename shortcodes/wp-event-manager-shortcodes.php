@@ -481,7 +481,7 @@ class WP_Event_Manager_Shortcodes {
 										
 									      ));
 
-			get_event_manager_template( 'event-listings-start.php',array('layout_type'=>$layout_type) );
+			//get_event_manager_template( 'event-listings-start.php',array('layout_type'=>$layout_type) );
 
 			get_event_manager_template( 'event-listings-end.php' );
 
@@ -490,70 +490,71 @@ class WP_Event_Manager_Shortcodes {
 				echo '<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong>' . __( 'Load more events', 'wp-event-manager' ) . '</strong></a>';
 			}
 			
-		} else {
-		    
-			$events = get_event_listings( apply_filters( 'event_manager_output_events_args', array(
+		}
 
-				'search_location'   => $location,
+		$events = get_event_listings( apply_filters( 'event_manager_output_events_args', array(
 
-				'search_keywords'   => $keywords,
+			'search_location'   => $location,
 
-				'search_datetimes'  => $datetimes,
+			'search_keywords'   => $keywords,
 
-				'search_categories' => $categories,
+			'search_datetimes'  => $datetimes,
 
-				'search_event_types'       => $event_types,
+			'search_categories' => $categories,
 
-				'search_ticket_prices'       => $ticket_prices,
+			'search_event_types'       => $event_types,
 
-				'orderby'           => $orderby,
+			'search_ticket_prices'       => $ticket_prices,
 
-				'order'             => $order,
+			'orderby'           => $orderby,
 
-				'posts_per_page'    => $per_page,
+			'order'             => $order,
 
-				'featured'          => $featured,
+			'posts_per_page'    => $per_page,
 
-				'cancelled'         => $cancelled
+			'featured'          => $featured,
 
-			) ) );
+			'cancelled'         => $cancelled
 
-			if ( $events->have_posts() ) : ?>
+		) ) );
 
-				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>$layout_type)); ?>			
+		if ( $events->have_posts() ) : ?>
 
-				<?php while ( $events->have_posts() ) : $events->the_post(); ?>
+			<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>$layout_type)); ?>			
 
-					<?php  get_event_manager_template_part( 'content', 'event_listing' ); ?>
-					
-				<?php endwhile; ?>
+			<?php while ( $events->have_posts() ) : $events->the_post(); ?>
 
-				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
+				<?php  get_event_manager_template_part( 'content', 'event_listing' ); ?>
+				
+			<?php endwhile; ?>
 
-				<?php if ( $events->found_posts > $per_page && $show_more ) : ?>
+			<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
-					<?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
+			<?php if ( $events->found_posts > $per_page && $show_more ) : ?>
 
-					<?php if ( $show_pagination ) : ?>
+				<?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
 
-						<?php echo get_event_listing_pagination( $events->max_num_pages ); ?>
+				<?php if ( $show_pagination ) : ?>
 
-					<?php else : ?>
+					<?php echo get_event_listing_pagination( $events->max_num_pages ); ?>
 
-						<a class="load_more_events" id="load_more_events" href="#"><strong><?php _e( 'Load more listings', 'wp-event-manager' ); ?></strong></a>
+				<?php else : ?>
 
-					<?php endif; ?>
+					<a class="load_more_events" id="load_more_events" href="#"><strong><?php _e( 'Load more listings', 'wp-event-manager' ); ?></strong></a>
 
 				<?php endif; ?>
 
-			<?php else :
+			<?php endif; ?>
 
-				do_action( 'event_manager_output_events_no_results' );
+		<?php else :
 
-			endif;
+			do_action( 'event_manager_output_events_no_results' );
 
-			wp_reset_postdata();
-		}
+		endif;
+
+		wp_reset_postdata();
+
+
 
 		$data_attributes_string = '';
 

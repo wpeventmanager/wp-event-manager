@@ -10,7 +10,7 @@ var ContentEventListing= function () {
         init: function() 
         {   
 	           Common.logInfo("ContentEventListing.init..."); 
-	           jQuery(document).delegate('#load_more_events','click', ContentEventListing.actions.loadMoreEventsClick);
+	           
 			   jQuery(document).delegate('#wpem-event-list-layout','click', ContentEventListing.actions.lineLayoutIconClick);
 			   jQuery(document).delegate('#wpem-event-box-layout','click', ContentEventListing.actions.boxLayoutIconClick);
 			   
