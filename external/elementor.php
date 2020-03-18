@@ -47,6 +47,10 @@ class Plugin {
 
 		// Register widgets
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+
+
+		// Register tags
+		add_action( 'elementor/dynamic_tags/register_tags', [ $this, 'register_tags' ] );
 	}
 
 	/**
@@ -78,7 +82,8 @@ class Plugin {
 		require_once( __DIR__ . '/elementor-widgets/elementor-single-event.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-single-event-summary.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-event-dashboard.php' );
-		require_once( __DIR__ . '/elementor-widgets/elementor-past-event-listing.php' );				
+		require_once( __DIR__ . '/elementor-widgets/elementor-past-event-listing.php' );
+		require_once( __DIR__ . '/elementor-widgets/elementor-single-event-field.php' );
 	}
 
 	/**
@@ -99,6 +104,54 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Summary() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Dashboard() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Past_Event_Listing() );				
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Field() );
+	}
+
+	/**
+	 * Register new group for WP-event-manager core tag
+	 * @param $elementsManager
+	 */
+	public function register_groups() {
+		$elementsManager = \Elementor\Plugin::$instance->dynamic_tags;
+		
+		$elementsManager->register_group(
+			'wp-event-manager-groups', [
+				'title' => 'WP Event Manager'
+			]
+		);
+	}
+
+	/**
+	 * Include Tags files
+	 *
+	 * Load tags files
+	 *
+	 * @access private
+	 */
+	private function include_tags_files() {		
+		require_once( __DIR__ . '/elementor-tags/elementor-single-event-tag.php' );
+		require_once( __DIR__ . '/elementor-tags/elementor-single-event-image-tag.php' );
+		require_once( __DIR__ . '/elementor-tags/elementor-single-event-gallery-tag.php' );
+	}
+
+	/**
+	 * Register Tags
+	 *
+	 * Register new Elementor widgets.
+	 *
+	 * @access public
+	 */
+	public function register_tags($dynamic_tags) {
+		// Register Groups
+		$this->register_groups();
+
+		// Its is now safe to include Tags files
+		$this->include_tags_files();
+
+		// Register Tags
+		$dynamic_tags->register_tag( new Tags\Elementor_Event_Tag() );
+		$dynamic_tags->register_tag( new Tags\Elementor_Event_Image_Tag() );
+		$dynamic_tags->register_tag( new Tags\Elementor_Event_Gallery_Tag() );
 	}
 
 }
