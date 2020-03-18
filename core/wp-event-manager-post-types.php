@@ -250,7 +250,8 @@ class WP_Event_Manager_Post_Types {
 	            	),
 
 		            'show_ui' 				=> true,
-	        		'show_in_rest'          => true,
+		        		
+		        	'show_in_rest'          => true,
 
 		            'public' 			    => $public,
 
@@ -339,13 +340,13 @@ class WP_Event_Manager_Post_Types {
 
 					'parent' 				=> sprintf( __( 'Parent %s', 'wp-event-manager' ), $singular ),
 					
-					'featured_image'        => __( 'Organizer Logo', 'wp-event-manager' ),
+					'featured_image'        => __( 'Organizer Logo', 'wp-event-manage' ),
 					
-					'set_featured_image'    => __( 'Set organizer logo', 'wp-event-manager' ),
+					'set_featured_image'    => __( 'Set organizer logo', 'wp-event-manage' ),
 					
-					'remove_featured_image' => __( 'Remove organizer logo', 'wp-event-manager' ),
+					'remove_featured_image' => __( 'Remove organizer logo', 'wp-event-manage' ),
 					
-					'use_featured_image'    => __( 'Use as organizer logo', 'wp-event-manager' ),
+					'use_featured_image'    => __( 'Use as organizer logo', 'wp-event-manage' ),
 				),
 
 				'description' => sprintf( __( 'This is where you can create and manage %s.', 'wp-event-manager' ), $plural ),
@@ -650,6 +651,17 @@ class WP_Event_Manager_Post_Types {
 					    'compare' => 'BETWEEN',
 					    'type'    => 'date'
 					);
+			}
+			else
+			{
+				$dates = json_decode($args['search_datetimes'][0], true);
+
+				$date_search[] = array(
+					'key'     => '_event_start_date',
+					'value'   => [$dates['start'], $dates['end']],
+				    'compare' => 'BETWEEN',
+				    'type'    => 'date'
+				);
 			}
 
 			$query_args['meta_query'][] = $date_search;

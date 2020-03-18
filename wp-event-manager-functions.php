@@ -266,6 +266,17 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			}
+			else
+			{
+				$dates = json_decode($args['search_datetimes'][0], true);
+
+				$date_search[] = array(
+					'key'     => '_event_start_date',
+					'value'   => [$dates['start'], $dates['end']],
+				    'compare' => 'BETWEEN',
+				    'type'    => 'date'
+				);
+			}
 
 			$query_args['meta_query'][] = $date_search;
 	}
@@ -401,8 +412,8 @@ function get_event_listings( $args = array() ) {
 	if ( function_exists( 'pll_current_language' ) ) {
 		$query_args['lang'] = pll_current_language();
 	}
-		/** This filter is documented in wp-event-manager.php */
-		$query_args['lang'] = apply_filters( 'wpjm_lang', null );
+	/** This filter is documented in wp-event-manager.php */
+	$query_args['lang'] = apply_filters( 'wpjm_lang', null );
 	// Filter args
 
 	$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );
@@ -463,7 +474,6 @@ function get_event_listings( $args = array() ) {
 	
 
 	if ( false === ( $result = get_transient( $query_args_hash ) ) ) {
-
 		$result = new WP_Query( $query_args );
 
 		set_transient( $query_args_hash, $result, DAY_IN_SECONDS * 30 );

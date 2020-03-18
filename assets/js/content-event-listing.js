@@ -55,7 +55,63 @@ var ContentEventListing= function () {
 		               jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
 		               jQuery(".wpem-event-listings").addClass("wpem-event-listing-box-view"); 
 		              }
-			   }
+			   	}
+
+			   	if(jQuery( 'input.date_range_picker' ).length > 0)
+		     	{
+		     		jQuery("input.date_range_picker").daterangepicker({
+	                    datepickerOptions : {
+	                        numberOfMonths : 2,
+	                        minDate: null,
+					        maxDate: null
+	                    },
+	                    initialText: 'Select Date',
+	                    dateFormat: 'yy-mm-dd',
+	                    rangeSplitter: ' : ',
+	                    presetRanges: [
+	                      {
+	                        text: 'Today',
+	                        dateStart: function() { return moment() },
+	                        dateEnd: function() { return moment() }
+	                      }, 
+	                      {
+	                        text: 'Tomorrow',
+	                        dateStart: function() { return moment().add('days', 1) },
+	                        dateEnd: function() { return moment().add('days', 1) }
+	                      },
+	                      {
+	                        text: 'This Week',
+	                        dateStart: function() { return moment().startOf('week') },
+	                        dateEnd: function() { return moment().endOf('week') }
+	                      }, 
+	                      {
+	                        text: 'Next Week',
+	                        dateStart: function() { return moment().add('weeks', 1).startOf('week') },
+	                        dateEnd: function() { return moment().add('weeks', 1).endOf('week') }
+	                      },
+	                      {
+	                        text: 'This Month',
+	                        dateStart: function() { return moment().startOf('month') },
+	                        dateEnd: function() { return moment().endOf('month') }
+	                      },
+	                      {
+	                        text: 'Next Month',
+	                        dateStart: function() { return moment().add('months', 1).startOf('month') },
+	                        dateEnd: function() { return moment().add('months', 1).endOf('month') }
+	                      },
+	                      {
+	                        text: 'This Year',
+	                        dateStart: function() { return moment().startOf('year') },
+	                        dateEnd: function() { return moment().endOf('year') }
+	                      },
+	                      {
+	                        text: 'Next Year',
+	                        dateStart: function() { return moment().add('years', 1).startOf('year') },
+	                        dateEnd: function() { return moment().add('years', 1).endOf('year') }
+	                      },
+	                    ],
+	                });
+		     	}
         },
         actions: 
         {
