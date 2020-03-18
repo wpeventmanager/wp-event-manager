@@ -126,7 +126,7 @@ do_action('set_single_listing_view_count');
 							<?php
 						$date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format ();
 						$registration_end_date = get_event_registration_end_date ();
-						$registration_end_date = WP_Event_Manager_Date_Time::date_parse_from_format ( $date_format, $registration_end_date );
+						/* $registration_end_date = WP_Event_Manager_Date_Time::date_parse_from_format ( $date_format, $registration_end_date ); */
 	
 						$registration_addon_form = apply_filters ( 'event_manager_registration_addon_form', true );
 						$event_timezone = get_event_timezone ();
