@@ -1,17 +1,7 @@
 <?php  if ( $register = get_event_registration_method() ) :
 	wp_enqueue_script( 'wp-event-manager-event-registration' );
 	
-	if($register->type == 'email')
-	{
-		$register_data = $register->raw_email;
-	}
-	else
-	{
-		$register_data = $register->url;
-	}
-
-	if($register_data != ''):
-
+	if($register->type):
 	?>
 	<div class="event_registration registration">
 		<?php do_action( 'event_registration_start', $register ); ?>
