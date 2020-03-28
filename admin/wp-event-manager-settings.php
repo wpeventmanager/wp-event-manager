@@ -403,7 +403,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'name'       => 'event_manager_enable_categories',
 					        
-					        'std'        => '0',
+					        'std'        => '1',
 					        
 					        'label'      => __( 'Categories', 'wp-event-manager' ),
 					        
@@ -420,7 +420,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'name'       => 'event_manager_enable_event_types',
 					        
-					        'std'        => '0',
+					        'std'        => '1',
 					        
 					        'label'      => __( 'Event Types', 'wp-event-manager' ),
 					        
