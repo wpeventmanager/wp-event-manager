@@ -278,7 +278,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
-			'orderby'                   => 'featured', // meta_value
+			'orderby'                   => 'meta_value', // meta_value
 
 			'order'                     => 'ASC',
 
