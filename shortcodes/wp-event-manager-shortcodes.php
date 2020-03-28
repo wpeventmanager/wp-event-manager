@@ -278,7 +278,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
-			'orderby'                   => 'meta_value',
+			'orderby'                   => 'featured', // meta_value
 
 			'order'                     => 'ASC',
 
@@ -481,7 +481,7 @@ class WP_Event_Manager_Shortcodes {
 										
 									      ));
 
-			//get_event_manager_template( 'event-listings-start.php',array('layout_type'=>$layout_type) );
+			get_event_manager_template( 'event-listings-start.php',array('layout_type'=>$layout_type) );
 
 			get_event_manager_template( 'event-listings-end.php' );
 
@@ -490,71 +490,70 @@ class WP_Event_Manager_Shortcodes {
 				echo '<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong>' . __( 'Load more events', 'wp-event-manager' ) . '</strong></a>';
 			}
 			
-		}
+		} else {
+		    
+			$events = get_event_listings( apply_filters( 'event_manager_output_events_args', array(
 
-		$events = get_event_listings( apply_filters( 'event_manager_output_events_args', array(
+				'search_location'   => $location,
 
-			'search_location'   => $location,
+				'search_keywords'   => $keywords,
 
-			'search_keywords'   => $keywords,
+				'search_datetimes'  => $datetimes,
 
-			'search_datetimes'  => $datetimes,
+				'search_categories' => $categories,
 
-			'search_categories' => $categories,
+				'search_event_types'       => $event_types,
 
-			'search_event_types'       => $event_types,
+				'search_ticket_prices'       => $ticket_prices,
 
-			'search_ticket_prices'       => $ticket_prices,
+				'orderby'           => $orderby,
 
-			'orderby'           => $orderby,
+				'order'             => $order,
 
-			'order'             => $order,
+				'posts_per_page'    => $per_page,
 
-			'posts_per_page'    => $per_page,
+				'featured'          => $featured,
 
-			'featured'          => $featured,
+				'cancelled'         => $cancelled
 
-			'cancelled'         => $cancelled
+			) ) );
 
-		) ) );
+			if ( $events->have_posts() ) : ?>
 
-		if ( $events->have_posts() ) : ?>
+				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>$layout_type)); ?>			
 
-			<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>$layout_type)); ?>			
+				<?php while ( $events->have_posts() ) : $events->the_post(); ?>
 
-			<?php while ( $events->have_posts() ) : $events->the_post(); ?>
+					<?php  get_event_manager_template_part( 'content', 'event_listing' ); ?>
+					
+				<?php endwhile; ?>
 
-				<?php  get_event_manager_template_part( 'content', 'event_listing' ); ?>
-				
-			<?php endwhile; ?>
+				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
-			<?php get_event_manager_template( 'event-listings-end.php' ); ?>
+				<?php if ( $events->found_posts > $per_page && $show_more ) : ?>
 
-			<?php if ( $events->found_posts > $per_page && $show_more ) : ?>
+					<?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
 
-				<?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
+					<?php if ( $show_pagination ) : ?>
 
-				<?php if ( $show_pagination ) : ?>
+						<?php echo get_event_listing_pagination( $events->max_num_pages ); ?>
 
-					<?php echo get_event_listing_pagination( $events->max_num_pages ); ?>
+					<?php else : ?>
 
-				<?php else : ?>
+						<a class="load_more_events" id="load_more_events" href="#"><strong><?php _e( 'Load more listings', 'wp-event-manager' ); ?></strong></a>
 
-					<a class="load_more_events" id="load_more_events" href="#"><strong><?php _e( 'Load more listings', 'wp-event-manager' ); ?></strong></a>
+					<?php endif; ?>
 
 				<?php endif; ?>
 
-			<?php endif; ?>
+			<?php else :
 
-		<?php else :
+				do_action( 'event_manager_output_events_no_results' );
 
-			do_action( 'event_manager_output_events_no_results' );
+			endif;
 
-		endif;
-
-		wp_reset_postdata();
-
-
+			wp_reset_postdata();
+		}
 
 		$data_attributes_string = '';
 
@@ -739,11 +738,17 @@ class WP_Event_Manager_Shortcodes {
 
 		if ( $events->have_posts() ) : ?>
 
-			<?php while ( $events->have_posts() ) : $events->the_post(); ?>
+			<?php while ( $events->have_posts() ) : $events->the_post();
 
-					<?php get_event_manager_template_part( 'content-summary', 'event_listing' ); ?>
+				$width = $atts['width'] ? $atts['width'] : 'auto';
 
-			<?php endwhile; ?>
+				echo '<div class="event_summary_shortcode align' . esc_attr( $atts['align'] ) . '" style="width: ' . esc_attr( $width ) . '">';
+
+				get_event_manager_template_part( 'content-summary', 'event_listing' );
+
+				echo '</div>';
+
+			endwhile; ?>
 
 		<?php endif;
 
