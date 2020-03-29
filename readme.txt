@@ -318,13 +318,12 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Added - Filter by date range.
 * Fixed - Registration button improved.
 * Fixed - Some string translation improved.
-
+* Added - REST API added.
 
 = 3.1.11 =
 
 * Fixed - Registration button conflict.
 * Fixed - Some js and css tweaks.
-
 
 = 3.1.10 =
 
