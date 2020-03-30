@@ -278,7 +278,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
-			'orderby'                   => 'meta_value',
+			'orderby'                   => 'meta_value', // meta_value
 
 			'order'                     => 'ASC',
 
@@ -738,11 +738,17 @@ class WP_Event_Manager_Shortcodes {
 
 		if ( $events->have_posts() ) : ?>
 
-			<?php while ( $events->have_posts() ) : $events->the_post(); ?>
+			<?php while ( $events->have_posts() ) : $events->the_post();
 
-					<?php get_event_manager_template_part( 'content-summary', 'event_listing' ); ?>
+				$width = $atts['width'] ? $atts['width'] : 'auto';
 
-			<?php endwhile; ?>
+				echo '<div class="event_summary_shortcode align' . esc_attr( $atts['align'] ) . '" style="width: ' . esc_attr( $width ) . '">';
+
+				get_event_manager_template_part( 'content-summary', 'event_listing' );
+
+				echo '</div>';
+
+			endwhile; ?>
 
 		<?php endif;
 

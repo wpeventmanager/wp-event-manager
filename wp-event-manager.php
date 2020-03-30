@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.11
+Version: 3.1.12
 
 Since: 1.0
 
@@ -80,7 +80,7 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
-		define( 'EVENT_MANAGER_VERSION', '3.1.11' );
+		define( 'EVENT_MANAGER_VERSION', '3.1.12' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -104,8 +104,10 @@ class WP_Event_Manager {
 		if ( is_admin() ) {
 			include( 'admin/wp-event-manager-admin.php' );
 		}
+		
 		//external 
 		include('external/external.php');
+
 		// Init classes
 		$this->forms      = WP_Event_Manager_Forms::instance();
 		$this->post_types = WP_Event_Manager_Post_Types::instance();
@@ -147,9 +149,11 @@ class WP_Event_Manager {
 
 		WP_Event_Manager_Ajax::add_endpoint();
 		unregister_post_type( 'event_listing' );
-		add_filter( 'pre_option_event_manager_enable_types', '__return_true' );
+		add_filter( 'pre_option_event_manager_enable_categories', '__return_true' );
+		add_filter( 'pre_option_event_manager_enable_event_types', '__return_true' );
 		$this->post_types->register_post_types();
-		remove_filter( 'pre_option_event_manager_enable_types', '__return_true' );
+		remove_filter( 'pre_option_event_manager_enable_categories', '__return_true' );
+		remove_filter( 'pre_option_event_manager_enable_event_types', '__return_true' );
 		WP_Event_Manager_Install::install();
 		//show notice after activating plugin
 		update_option('event_manager_rating_showcase_admin_notices_dismiss','0');
@@ -272,8 +276,14 @@ class WP_Event_Manager {
 		'i18n_timepicker_step' => WP_Event_Manager_Date_Time::get_timepicker_step(),
 		
 		) );
+
+		//jQuery UI date rang picker
+		wp_register_style( 'wp-event-manager-jquery-ui-daterangepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui-daterangepicker/jquery.comiseo.daterangepicker.css');
+		wp_register_style( 'wp-event-manager-jquery-ui-daterangepicker-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui-daterangepicker/styles.css');
+		wp_register_script( 'wp-event-manager-jquery-ui-daterangepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui-daterangepicker/jquery.comiseo.daterangepicker.js', array('jquery-ui-core', 'jquery-ui-button', 'jquery-ui-datepicker', 'jquery-ui-menu', 'jquery-ui-widget', 'moment') , EVENT_MANAGER_VERSION, true );
+
 		
-        wp_register_script( 'wp-event-manager-content-event-listing', EVENT_MANAGER_PLUGIN_URL . '/assets/js/content-event-listing.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true );					
+		wp_register_script( 'wp-event-manager-content-event-listing', EVENT_MANAGER_PLUGIN_URL . '/assets/js/content-event-listing.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true );					
 
 		//ajax filters js
 		wp_register_script( 'wp-event-manager-ajax-filters', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-ajax-filters.min.js', $ajax_filter_deps, EVENT_MANAGER_VERSION, true );

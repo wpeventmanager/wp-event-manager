@@ -1,4 +1,8 @@
+<?php wp_enqueue_style( 'wp-event-manager-jquery-ui-daterangepicker' ); ?>
+<?php wp_enqueue_style( 'wp-event-manager-jquery-ui-daterangepicker-style' ); ?>
+<?php wp_enqueue_script( 'wp-event-manager-jquery-ui-daterangepicker' ); ?>
 <?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
+
 <?php do_action( 'event_manager_event_filters_before', $atts ); ?>
 <form class="wpem-main wpem-form-wrapper wpem-event-filter-wrapper event_filters" id="event_filters">
 	<?php do_action( 'event_manager_event_filters_start', $atts ); ?>
@@ -26,24 +30,39 @@
 
 			<!-- Search by location section end -->
 
+			<?php /* ?>
 			<!-- Search by date section start -->
 			<?php if ( $datetimes) : ?>				
 				<div class="wpem-col">
-			<div class="wpem-form-group">
-					<label for="search_datetimes" class="wpem-form-label"><?php _e( 'Any dates', 'wp-event-manager' ); ?></label>
-					<select name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown" data-placeholder="Choose any date…" data-no_results_text="No results match" data-multiple_text="<?php _e('Select Some Options','wp-event-manager'); ?>" >
-					<?php foreach ( $datetimes as $key => $value  ) :
-						if(!strcasecmp($selected_datetime, $value) || $selected_datetime==$key) : ?>
-							<option selected=selected  value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
-						<?php else : ?>
-							<option value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
-						<?php endif;						
-					 endforeach; ?>
-					</select>
-					</div>
+					<div class="wpem-form-group">
+						<label for="search_datetimes" class="wpem-form-label"><?php _e( 'Any dates', 'wp-event-manager' ); ?></label>
+						<select name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown" data-placeholder="Choose any date…" data-no_results_text="No results match" data-multiple_text="<?php _e('Select Some Options','wp-event-manager'); ?>" >
+						<?php foreach ( $datetimes as $key => $value  ) :
+							if(!strcasecmp($selected_datetime, $value) || $selected_datetime==$key) : ?>
+								<option selected=selected  value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+							<?php else : ?>
+								<option value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+							<?php endif;						
+						 endforeach; ?>
+						</select>
+						</div>
 				</div>
 			<?php endif; ?>	  			
 			<!-- Search by date section end -->
+			<?php */ ?>
+
+			<!-- Search by date section start -->
+			<?php if ( $datetimes) : ?>				
+				<div class="wpem-col">
+					<div class="wpem-form-group">
+						<label for="search_datetimes" class="wpem-form-label"><?php _e( 'Any dates', 'wp-event-manager' ); ?></label>
+						<input type="text" name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown date_range_picker" >
+						</div>
+				</div>
+			<?php endif; ?>	  			
+			<!-- Search by date section end -->
+
+
 	         </div> <!-- /row -->
 		<div class="wpem-row">
 			<!-- Search by event categories section start -->
