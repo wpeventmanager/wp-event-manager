@@ -284,7 +284,19 @@ class WP_Event_Manager {
 
 		
 		wp_register_script( 'wp-event-manager-content-event-listing', EVENT_MANAGER_PLUGIN_URL . '/assets/js/content-event-listing.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true );					
-
+		wp_localize_script( 'wp-event-manager-content-event-listing', 'event_manager_content_event_listing', array(
+				
+				'i18n_dateLabel' => __( 'Select Date', 'wp-event-manager' ),
+				
+				'i18n_today' => __( 'Today', 'wp-event-manager' ),
+				'i18n_tomorrow' => __( 'Tomorrow', 'wp-event-manager' ),
+				'i18n_thisWeek' => __( 'This Week', 'wp-event-manager' ),
+				'i18n_nextWeek' => __( 'Next Week', 'wp-event-manager' ),
+				'i18n_thisMonth' => __( 'This Month', 'wp-event-manager' ),
+				'i18n_nextMonth' => __( 'Next Month', 'wp-event-manager' ),
+				'i18n_thisYear' => __( 'This Year', 'wp-event-manager' ),
+				'i18n_nextYear' => __( 'Next Month', 'wp-event-manager' )
+		) );
 		//ajax filters js
 		wp_register_script( 'wp-event-manager-ajax-filters', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-ajax-filters.min.js', $ajax_filter_deps, EVENT_MANAGER_VERSION, true );
 		wp_localize_script( 'wp-event-manager-ajax-filters', 'event_manager_ajax_filters', array(
