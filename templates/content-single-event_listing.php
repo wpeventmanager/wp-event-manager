@@ -111,7 +111,7 @@ if ($view_count) {?>
 					<div
 						class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-left-content">
                <?php do_action('single_event_overview_before');?>
-              <div class="wpem-single-event-body-content" itemprop="description" content="<?php echo apply_filters('display_event_description', get_the_content()); ?>">
+              <div class="wpem-single-event-body-content" itemprop="description"  content='<?php echo wp_trim_words(get_the_content(),150) ; ?>'>
                <?php do_action('single_event_overview_start');?>
                	<?php echo apply_filters('display_event_description', get_the_content()); ?>
                <?php do_action('single_event_overview_end');?>
