@@ -573,13 +573,13 @@ class WP_Event_Manager_Shortcodes {
 
 			'order'           => $order,
 
-			'datetimes'       => implode( ',', $datetimes),
-
-			'categories'      => implode( ',', $categories ),
-
-			'event_types'     => implode( ',', $event_types),
-
-			'ticket_prices'   => implode( ',', $ticket_prices)
+			'datetimes'       => !empty($selected_datetime) ? implode( ',', $selected_datetime) : '',
+			
+			'categories'      => !empty($selected_category) ? implode( ',', $selected_category ) : '',
+			
+			'event_types'     => !empty($selected_event_type) ? implode( ',', $selected_event_type) : '',
+			
+			'ticket_prices'   => !empty($selected_ticket_price) ? implode( ',', $selected_ticket_price) : ''
 		);
 
 		if ( ! is_null( $featured ) ) {
