@@ -939,5 +939,5 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 	
 		return $this->fields;
-	}
+
 }

@@ -418,6 +418,79 @@ class WP_Event_Manager_Post_Types {
 	
 			'label_count'               => _n_noop( 'Preview <span class="count">(%s)</span>', 'Preview <span class="count">(%s)</span>', 'wp-event-manager' )
 		) );
+
+			if(get_option('enable_event_organizer')){	
+	 	$singular  = __( 'Organizer', 'wp-event-manager' );
+		$plural    = __( 'Organizers', 'wp-event-manager' );
+	    register_post_type( 'event_organizer', apply_filters('register_event_organizer_post_type',array(
+				        'labels' => array(
+
+						'name' 					=> $plural,
+
+						'singular_name' 		=> $singular,
+
+						
+						'featured_image'        => __( 'Organizer Logo', 'wp-event-manager' ),
+						
+						'set_featured_image'    => __( 'Set organizer logo', 'wp-event-manager' ),
+						
+						'remove_featured_image' => __( 'Remove organizer logo', 'wp-event-manager' ),
+						
+						'use_featured_image'    => __( 'Use as organizer logo', 'wp-event-manager' ),
+					),
+
+				        'public'             => true,
+				        'publicly_queryable' => true,
+				        'show_ui'            => true,
+				        'show_in_menu'       => false,
+				        'query_var'          => true,
+				        'rewrite'            => array( 'slug' => 'event_organizer' ),
+				        'capability_type'    => 'post',
+				        'has_archive'        => true,
+				        'hierarchical'       => false,
+				        'menu_position'      => null,
+				        'show_in_menu' => 'edit.php?post_type=event_listing',
+				        'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+				         
+	    		) )
+	    );
+	}
+	if(get_option('enable_event_venue')){
+	    $singular  = __( 'Venue', 'wp-event-manager' );
+		$plural    = __( 'Venues', 'wp-event-manager' );
+	    register_post_type( 'event_venue', apply_filters('register_event_venue_post_type',array(
+				        'labels' => array(
+
+						'name' 					=> $plural,
+
+						'singular_name' 		=> $singular,
+
+						
+						'featured_image'        => __( 'Venue Logo', 'wp-event-manager' ),
+						
+						'set_featured_image'    => __( 'Set venue logo', 'wp-event-manager' ),
+						
+						'remove_featured_image' => __( 'Remove venue logo', 'wp-event-manager' ),
+						
+						'use_featured_image'    => __( 'Use as venue logo', 'wp-event-manager' ),
+					),
+
+				        'public'             => true,
+				        'publicly_queryable' => true,
+				        'show_ui'            => true,
+				        'show_in_menu'       => false,
+				        'query_var'          => true,
+				        'rewrite'            => array( 'slug' => 'event_venue' ),
+				        'capability_type'    => 'post',
+				        'has_archive'        => true,
+				        'hierarchical'       => false,
+				        'menu_position'      => null,
+				        'show_in_menu' => 'edit.php?post_type=event_listing',
+				        'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+				         
+	    		) )
+	    );
+	}
 	}
 
 	/**

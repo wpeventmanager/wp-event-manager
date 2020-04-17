@@ -57,6 +57,25 @@ class WP_Event_Manager_Settings {
 							__( 'General', 'wp-event-manager' ),
 							
 							array(
+								array(
+											'name'       => 'enable_event_organizer',
+											'std'        => '1',
+											'label'      => __( 'Enable oganizer', 'wp-event-manager' ),
+											'cb_label'   => __( 'Display orgnizer on events.', 'wp-event-manager' ),
+											'desc'       => '',
+											'type'       => 'checkbox',
+											'attributes' => array(),
+									),
+								array(
+											'name'       => 'enable_event_venue',
+											'std'        => '1',
+											'label'      => __( 'Enable venue', 'wp-event-manager' ),
+											'cb_label'   => __( 'Display venue on events.', 'wp-event-manager' ),
+											'desc'       => '',
+											'type'       => 'checkbox',
+											'attributes' => array(),
+									),
+
 									array(
 											'name'       => 'event_manager_delete_data_on_uninstall',
 											'std'        => '0',
