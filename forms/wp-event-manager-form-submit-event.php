@@ -286,11 +286,41 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 									'required'    => false,					
 									'placeholder' => __( 'Please enter registration deadline', 'wp-event-manager' ),
 									'priority'    => 20
-									),						 
+									),
+										 
 			),
+			'organizer' => array(
+								'event_organizer_ids' => array(
+												'label'       => __( 'Organizer', 'wp-event-manager' ),		      
+										        'type'  => 'multiselect',
+											    'default'  => '',
+											    'options'  => get_all_organizer_array(),
+											    'priority'    => 21,
+										        'required'=>true
+												),
+			),
+			'venue' => array(
+								'event_venue_ids' => array(
+												'label'       => __( 'Venues', 'wp-event-manager' ),		      
+										        'type'  => 'multiselect',
+											    'default'  => '',
+											    'options'  => get_all_venue_array(),
+											    'priority'    => 21,
+										        'required'=>true
+												),
+			)
 			
 			)
 		 );
+
+		//unset organizer or venue if disabled
+		$orgnizer_enabled = get_option( 'enable_event_organizer');
+		if(!$orgnizer_enabled)
+			unset( $this->fields['organizer']['event_organizer_ids'] );
+
+		$venue_enabled = get_option( 'enable_event_venue');
+		if(!$venue_enabled)
+			unset( $this->fields['venue']['event_venue_ids'] );
 
 		//unset timezone field if setting is site wise timezone
 		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
@@ -398,16 +428,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 				break;
 			}
-		}
-		
-		//organizer email validation
-		if (isset( $values['organizer']['organizer_email'] ) && !empty( $values['organizer']['organizer_email'] ) ) {
-			if ( ! is_email( $values['organizer']['organizer_email'] ) ) {
-				throw new Exception( __( 'Please enter a valid organizer email address', 'wp-event-manager' ) );
-			}
-				
-		}
-		
+		}	
 		return apply_filters( 'submit_event_form_validate_fields', true, $this->fields, $values );
 	}
 
@@ -491,11 +512,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$this->fields = apply_filters( 'submit_event_form_fields_get_event_data', $this->fields, $event );
 		// Get user meta
 		} elseif ( is_user_logged_in() && empty( $_POST['submit_event'] ) ) {
-			if ( ! empty( $this->fields['organizer'] ) ) {
-				foreach ( $this->fields['organizer'] as $key => $field ) {
-					$this->fields['organizer'][ $key ]['value'] = get_user_meta( get_current_user_id(), '_' . $key, true );
-				}
-			}
 			
 			if ( ! empty( $this->fields['event']['registration'] ) ) {
 				$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
@@ -517,6 +533,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'action'             => $this->get_action(),
 			'event_fields'         => $this->get_fields( 'event' ),
 			'organizer_fields'     => $this->get_fields( 'organizer' ),
+			'venue_fields'     => $this->get_fields( 'venue' ),
 			'step'               => $this->get_step(),
 			'submit_button_text' => apply_filters( 'submit_event_form_submit_button_text', __( 'Preview', 'wp-event-manager' ) )
 		) );
@@ -925,7 +942,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * @return fields Array
 	 */
 	public  function get_event_manager_fieldeditor_fields(){
-		return apply_filters('get_event_manager_fieldeditor_fields', get_option( 'event_manager_form_fields', false ) );
+		return apply_filters('event_manager_submit_event_form_fields', get_option( 'event_manager_submit_event_form_fields', false ) );
 	}
 	
 	/**
@@ -939,5 +956,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 	
 		return $this->fields;
-
+	}
+	
+	
 }

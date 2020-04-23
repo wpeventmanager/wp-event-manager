@@ -605,7 +605,7 @@ abstract class WP_Event_Manager_Form {
 		if(!empty($updated_fields))
 		foreach ( $updated_fields as $group_key => $group_fields ) {
 			foreach ($group_fields as $key => $field) {
-			    
+			    echo $group_key.' = '.$key."</br>";
 			    $updated_fields[$group_key][$key]=array_map('stripslashes_deep',$updated_fields[$group_key][$key]);				
 			    
 				//remove if visiblity is false

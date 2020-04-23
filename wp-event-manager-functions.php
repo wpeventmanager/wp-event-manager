@@ -1842,3 +1842,129 @@ function event_manager_get_password_rules_hint() {
 	 */
 	return apply_filters( 'event_manager_password_rules_hint', __( 'Passwords must be at least 8 characters long.', 'wp-event-manager') );
 }
+
+/**
+ * 
+ * @since 3.1.14
+ * @param null
+ * @return string
+ */
+function get_all_event_organizer() {
+	if ( is_user_logged_in() ) {
+		$args = apply_filters('get_all_event_organizer_arg',array(
+					'post_type'   => 'event_organizer',
+					'post_status' => 'publish',
+					'posts_per_page'=> -1,
+					'author'        =>  get_current_user_id(),
+
+		));
+		$all_organizer = get_posts( $args );
+		return $all_organizer ;
+	}
+	return false;
+}
+
+function get_all_organizer_array(){
+	$all_organizer =get_all_event_organizer();
+	$organizer_array =array();
+	foreach ($all_organizer as $organizer) { 
+		$organizer_array[$organizer->ID] = $organizer->post_title;
+
+	}
+	return $organizer_array;
+}
+/**
+ * 
+ * @since 3.1.14
+ * @param null
+ * @return string
+ */
+function get_event_organizer_count($organizer_id = '') {
+	if ( is_user_logged_in() || empty($organizer_id) ) {
+		$author_id = get_current_user_id();
+		return sizeof(get_posts(array(
+			'post_type'      => 'event_listing',
+			'post_status'    =>  array( 'publish' ),
+			'posts_per_page' => -1,
+			'author'->$author_id,
+			//'fields'         => 'ids',
+			//'meta_key'    	 => '_event_ids',
+			//'meta_value'	 => $event_id,
+			'meta_query' => array(
+		         array(
+		             'key' => '_event_organizer_ids',
+		             'value' => $organizer_id,
+		              'compare' => 'LIKE',
+            			//'type' => 'NUMBER' //<-- add this
+		         )
+		    )
+			)
+		) );
+	}
+}
+
+/**
+ * 
+ * @since 3.1.14
+ * @param null
+ * @return string
+ */
+function get_event_by_organizer_id($organizer_id = '') {
+	if ( is_user_logged_in() || empty($organizer_id) ) {
+		$author_id = get_current_user_id();
+		return get_posts(array(
+			'post_type'      => 'event_listing',
+			'post_status'    =>  array( 'publish' ),
+			'posts_per_page' => -1,
+			'author'->$author_id,
+			//'fields'         => 'ids',
+			//'meta_key'    	 => '_event_ids',
+			//'meta_value'	 => $event_id,
+			'meta_query' => array(
+		         array(
+		             'key' => '_event_organizer_ids',
+		             'value' => $organizer_id,
+		              'compare' => 'LIKE',
+            			//'type' => 'NUMBER' //<-- add this
+		         )
+		    )
+			)
+		);
+	}
+}
+
+
+/**
+ * 
+ * @since 3.1.14
+ * @param null
+ * @return string
+ */
+function get_all_event_venue() {
+	if ( is_user_logged_in() ) {
+		$args = apply_filters('get_all_event_venue_arg',array(
+					'post_type'   => 'event_venue',
+					'post_status' => 'publish',
+					'posts_per_page'=> -1,
+					'author'        =>  get_current_user_id(),
+
+		));
+		$all_venue = get_posts( $args );
+		return $all_venue ;
+	}
+	return false;
+}
+
+function get_all_venue_array(){
+	$all_venue =get_all_event_venue();
+	$venue_array =array();
+	foreach ($all_venue as $venue) { 
+		$venue_array[$venue->ID] = $venue->post_title;
+
+	}
+	return $venue_array;
+}
+
+
+
+

@@ -123,6 +123,8 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 
 		$this->fields = apply_filters( 'submit_event_form_fields_get_event_data', $this->fields, $event );
 
+		
+
 		wp_enqueue_script( 'wp-event-manager-event-submission' );
 
 		get_event_manager_template( 'event-submit.php', array(
@@ -136,6 +138,8 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 			'event_fields'         => $this->get_fields( 'event' ),
 
 			'organizer_fields'     => $this->get_fields( 'organizer' ),
+
+			'venue_fields'     => $this->get_fields( 'venue' ),
 
 			'step'               => $this->get_step(),
 

@@ -57,6 +57,7 @@ class WP_Event_Manager_Settings {
 							__( 'General', 'wp-event-manager' ),
 							
 							array(
+
 								array(
 											'name'       => 'enable_event_organizer',
 											'std'        => '1',
@@ -560,6 +561,56 @@ class WP_Event_Manager_Settings {
 					        
 					        'type'      => 'text'
 					    ),
+					    
+					    array(
+
+							'name' 		=> 'event_manager_submit_organizer_form_page_id',
+
+							'std' 		=> '',
+
+							'label' 	=> __( 'Submit Organizer Form Page', 'wp-event-manager' ),
+
+							'desc'		=> __( 'Select the page where you have placed the [submit_organizer_form] shortcode. This lets the plugin know where the form is located.', 'wp-event-manager' ),
+
+							'type'      => 'page'
+						),
+						array(
+					        
+					        'name' 		=> 'event_manager_organizer_dashboard_page_id',
+					        
+					    	'std' 		=> '',
+
+							'label' 	=> __( 'Organizer Dashboard Page', 'wp-event-manager' ),
+
+							'desc'		=> __( 'Select the page where you have placed the [organizer_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'wp-event-manager' ),
+					        
+					        'type'      => 'page'
+					    ),
+						array(
+
+							'name' 		=> 'event_manager_submit_venue_form_page_id',
+
+							'std' 		=> '',
+
+							'label' 	=> __( 'Submit Venue Form Page', 'wp-event-manager' ),
+
+							'desc'		=> __( 'Select the page where you have placed the [submit_venue_form] shortcode. This lets the plugin know where the form is located.', 'wp-event-manager' ),
+
+							'type'      => 'page'
+						),
+						array(
+					        
+					        'name' 		=> 'event_manager_venue_dashboard_page_id',
+					        
+					    	'std' 		=> '',
+
+							'label' 	=> __( 'Venue Dashboard Page', 'wp-event-manager' ),
+
+							'desc'		=> __( 'Select the page where you have placed the [venue_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'wp-event-manager' ),
+					        
+					        'type'      => 'page'
+					    ),
+
 					)
 				),
 				'date_time_formatting' => array(

@@ -54,6 +54,14 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	private function form_editor() {
 		if ( ! empty( $_GET['reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
+			update_option('event_manager_submit_organizer_form_fields',$new_fields['organizer']);
+update_option('event_manager_submit_organizer_form_fields',$new_fields['venue']);
+
+	
+
+			delete_option( 'event_manager_submit_event_form_fields' );
+			delete_option( 'event_manager_submit_organizer_form_fields' );
+			delete_option( 'event_manager_submit_venue_form_fields' );
 			delete_option( 'event_manager_form_fields' );
 			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
@@ -90,7 +98,7 @@ class WP_Event_Manager_Field_Editor {
 		$GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
 		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
 		$event_fields =	$form_submit_event_instance->merge_with_custom_fields('backend');
-
+		
 		if(get_option('enable_event_organizer')){
 			$GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
 			$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Organizer', 'instance' ) );
@@ -106,7 +114,7 @@ class WP_Event_Manager_Field_Editor {
 		}
 		else
 			$venue_fields = array();
-		
+
 		$fields = array_merge($event_fields,$organizer_fields,$venue_fields );
 		foreach($fields  as $group_key => $group_fields){ ?>
 
@@ -253,7 +261,7 @@ class WP_Event_Manager_Field_Editor {
 					update_option('event_manager_submit_organizer_form_fields',$new_fields['organizer']);
 
 				if(isset($new_fields['venue']))
-					update_option('event_manager_submit_organizer_form_fields',$new_fields['venue']);
+					update_option('event_manager_submit_venue_form_fields',$new_fields['venue']);
 
 				//this will be removed in future
 				//$result = update_option( 'event_manager_form_fields', $new_fields );
