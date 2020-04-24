@@ -316,6 +316,30 @@ class WP_Event_Manager {
 			'i18n_confirm_delete' => __( 'Are you sure you want to delete this event?', 'wp-event-manager' )
 
 		) );
+
+		//organizer dashboard
+		wp_register_script( 'wp-event-manager-organizer-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/organizer-dashboard.min.js', array( 'jquery' ), EVENT_MANAGER_VERSION, true );	
+		wp_localize_script( 'wp-event-manager-organizer-dashboard', 'event_manager_organizer_dashboard', array(
+
+			'i18n_btnOkLabel' => __( 'Delete', 'wp-event-manager' ),
+
+			'i18n_btnCancelLabel' => __( 'Cancel', 'wp-event-manager' ),
+
+			'i18n_confirm_delete' => __( 'Are you sure you want to delete this organizer?', 'wp-event-manager' )
+
+		) );
+
+		//venue dashboard
+		wp_register_script( 'wp-event-manager-venue-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/venue-dashboard.min.js', array( 'jquery' ), EVENT_MANAGER_VERSION, true );	
+		wp_localize_script( 'wp-event-manager-venue-dashboard', 'event_manager_venue_dashboard', array(
+
+			'i18n_btnOkLabel' => __( 'Delete', 'wp-event-manager' ),
+
+			'i18n_btnCancelLabel' => __( 'Cancel', 'wp-event-manager' ),
+
+			'i18n_confirm_delete' => __( 'Are you sure you want to delete this venue?', 'wp-event-manager' )
+
+		) );
 		
 		//registration
 	    wp_register_script( 'wp-event-manager-event-registration', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-registration.min.js', array( 'jquery' ), EVENT_MANAGER_VERSION, true );

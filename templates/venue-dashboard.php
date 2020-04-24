@@ -1,8 +1,8 @@
 <?php do_action('event_manager_organizer_dashboard_before'); ?>
 <p>
-	<?php $submit_organizer 		= get_option('event_manager_submit_organizer_form_page_id');
-	if(!empty($submit_organizer )){ ?>
-		<a  href=""><?php  _e('Add organizer','wp-event-manager');?></a>
+	<?php $submit_venue 		= get_option('event_manager_submit_venue_form_page_id');
+	if(!empty($submit_venue )){ ?>
+		<a  href="<?php echo get_permalink($submit_venue);?>"><?php  _e('Add venue','wp-event-manager');?></a>
 	<?php
 	}
 	?>	
@@ -12,34 +12,34 @@
 		<table class="wpem-main wpem-responsive-table-wrapper">
 			<thead>
 				<tr>
-					<?php foreach ( $organizer_dashboard_columns as $key => $column ) : ?>
+					<?php foreach ( $venue_dashboard_columns as $key => $column ) : ?>
 					<th class="wpem-heading-text <?php echo esc_attr( $key ); ?>"><?php echo esc_html( $column ); ?></th>
 					<?php endforeach; ?>
 				</tr>
 			</thead>
 			<tbody>
-				<?php if ( ! $organizers ) : ?>
+				<?php if ( ! $venues ) : ?>
 				<tr>
-					<td colspan="2"><?php _e( 'You do not have any organizer.', 'wp-event-manager' ); ?></td>
+					<td colspan="3"><?php _e( 'You do not have any venue.', 'wp-event-manager' ); ?></td>
 				</tr>
 				<?php else : ?>
-				<?php foreach ( $organizers as $organizer ) : ?>
+				<?php foreach ( $venues as $venue ) : ?>
 				<tr>
 
-					<?php  foreach ( $organizer_dashboard_columns as $key => $column ) : ?>
+					<?php  foreach ( $venue_dashboard_columns as $key => $column ) : ?>
 						<td data-title="<?php echo esc_html( $column ); ?>"
 						class="<?php echo esc_attr( $key ); ?>">
-							<?php if ('organizer_name' === $key ) : ?>
+							<?php if ('venue_name' === $key ) : ?>
 								
-									<a href="<?php echo get_permalink( $organizer->ID ); ?>"><?php echo esc_html( $organizer->post_title ); ?></a>
+									<a href="<?php echo get_permalink( $venue->ID ); ?>"><?php echo esc_html( $venue->post_title ); ?></a>
 								
-								<?php elseif ('organizer_events' === $key ) :?>
+								<?php elseif ('venue_events' === $key ) :?>
 
-									<?php // echo get_event_organizer_count($organizer->ID);
-										$events = get_event_by_organizer_id($organizer->ID);
+									<?php // echo get_event_venue_count($venue->ID);
+										$events = get_event_by_venue_id($venue->ID);
 										?>
-										<a  class="event-organizer-count" ><?php echo sizeof($events);?></a>
-										<div class="organizer-events-list">
+										<a  class="event-venue-count" ><?php echo sizeof($events);?></a>
+										<div class="venue-events-list">
 											<?php 
 											foreach ($events as  $event) { ?>
 												<span><?php echo get_the_title($event->ID);?></span>
@@ -48,11 +48,11 @@
 											?>
 										</div>
 
-								<?php elseif ('organizer_action' === $key ) :?>
+								<?php elseif ('venue_action' === $key ) :?>
 		                            <div class="wpem-dboard-event-action">
 									<?php
 								$actions = array ();
-								switch ($organizer->post_status) {
+								switch ($venue->post_status) {
 									case 'publish' :
 										$actions ['edit'] = array (
 												'label' => __ ( 'Edit', 'wp-event-manager' ),
@@ -68,11 +68,11 @@
 										'label' => __ ( 'Delete', 'wp-event-manager' ),
 										'nonce' => true
 								);
-								$actions = apply_filters ( 'event_manager_my_organizer_actions', $actions, $organizer );
+								$actions = apply_filters ( 'event_manager_my_venue_actions', $actions, $venue );
 								foreach ( $actions as $action => $value ) {
 									$action_url = add_query_arg ( array (
 											'action' => $action,
-											'organizer_id' => $organizer->ID
+											'organizer_id' => $venue->ID
 									) );
 									if ($value['nonce']) {
 										$action_url = wp_nonce_url ( $action_url, 'event_manager_my_organizer_actions' );
@@ -85,7 +85,7 @@
 
 						
 							<?php else : ?>
-								<?php do_action( 'event_manager_organizer_dashboard_column_' . $key, $organizer ); ?>
+								<?php do_action( 'event_manager_organizer_dashboard_column_' . $key, $venue ); ?>
 							<?php endif; ?>
 						</td>
 					<?php endforeach; ?>

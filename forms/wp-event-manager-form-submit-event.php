@@ -295,6 +295,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 										        'type'  => 'multiselect',
 											    'default'  => '',
 											    'options'  => get_all_organizer_array(),
+											     'description'	=> sprintf(__('Leave empty if you don\'t want to show organizer.Manage your organizers <a href="%s" target="__blank">here</a>','wp-event-manager'),get_permalink( get_option('event_manager_submit_organizer_form_page_id','') ) ),
 											    'priority'    => 21,
 										        'required'=>true
 												),
@@ -315,11 +316,13 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 		//unset organizer or venue if disabled
 		$orgnizer_enabled = get_option( 'enable_event_organizer');
-		if(!$orgnizer_enabled)
+		$organizer_submit_page = get_option('event_manager_submit_organizer_form_page_id',false);
+		if(!$orgnizer_enabled || !$organizer_submit_page)
 			unset( $this->fields['organizer']['event_organizer_ids'] );
 
 		$venue_enabled = get_option( 'enable_event_venue');
-		if(!$venue_enabled)
+		$venue_submit_page = get_option('event_manager_submit_organizer_form_page_id',false);
+		if(!$venue_enabled || !$venue_submit_page)
 			unset( $this->fields['venue']['event_venue_ids'] );
 
 		//unset timezone field if setting is site wise timezone

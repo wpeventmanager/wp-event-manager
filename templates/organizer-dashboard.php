@@ -2,7 +2,7 @@
 <p>
 	<?php $submit_organizer 		= get_option('event_manager_submit_organizer_form_page_id');
 	if(!empty($submit_organizer )){ ?>
-		<a  href=""><?php  _e('Add organizer','wp-event-manager');?></a>
+		<a  href="<?php echo get_permalink($submit_organizer);?>"><?php  _e('Add organizer','wp-event-manager');?></a>
 	<?php
 	}
 	?>	
@@ -20,7 +20,7 @@
 			<tbody>
 				<?php if ( ! $organizers ) : ?>
 				<tr>
-					<td colspan="2"><?php _e( 'You do not have any organizer.', 'wp-event-manager' ); ?></td>
+					<td colspan="3"><?php _e( 'You do not have any organizer.', 'wp-event-manager' ); ?></td>
 				</tr>
 				<?php else : ?>
 				<?php foreach ( $organizers as $organizer ) : ?>
