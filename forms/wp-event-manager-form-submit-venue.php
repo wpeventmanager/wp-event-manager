@@ -150,7 +150,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * @return fields Array
 	 */
 	public  function get_event_manager_fieldeditor_fields(){
-		return apply_filters('get_event_manager_fieldeditor_fields', get_option( 'event_manager_form_fields', false ) );
+		return apply_filters('event_manager_submit_venue_form_fields', get_option( 'event_manager_submit_venue_form_fields', false ) );
 	}
 
 	/**

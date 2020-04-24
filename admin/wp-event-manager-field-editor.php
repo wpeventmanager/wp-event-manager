@@ -54,11 +54,6 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	private function form_editor() {
 		if ( ! empty( $_GET['reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
-			update_option('event_manager_submit_organizer_form_fields',$new_fields['organizer']);
-update_option('event_manager_submit_organizer_form_fields',$new_fields['venue']);
-
-	
-
 			delete_option( 'event_manager_submit_event_form_fields' );
 			delete_option( 'event_manager_submit_organizer_form_fields' );
 			delete_option( 'event_manager_submit_venue_form_fields' );
@@ -70,7 +65,7 @@ update_option('event_manager_submit_organizer_form_fields',$new_fields['venue'])
 			echo $this->form_editor_save();
 		}
 		
-		$disbled_fields = array('event_title','event_description');
+		$disbled_fields = array('event_title','event_description','organizer_name','organizer_description','venue_name','venue_description');
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           		=> __( 'Text', 'wp-event-manager' ),
 			'time'           		=> __( 'Time', 'wp-event-manager' ),
@@ -116,7 +111,10 @@ update_option('event_manager_submit_organizer_form_fields',$new_fields['venue'])
 			$venue_fields = array();
 
 		$fields = array_merge($event_fields,$organizer_fields,$venue_fields );
-		foreach($fields  as $group_key => $group_fields){ ?>
+		foreach($fields  as $group_key => $group_fields){ 
+				if(empty($group_fields))
+					continue;
+			?>
 
 			<div class="wp-event-manager-event-form-field-editor">
 					
@@ -189,7 +187,7 @@ update_option('event_manager_submit_organizer_form_fields',$new_fields['venue'])
 
 
 
-			if(!empty($event_field) && !empty($event_organizer)){
+			if(!empty($event_field) ){
 				$new_fields = array('event' => $event_field ,'organizer' =>$event_organizer, 'venue' => $event_venue);
 				
 				//find the numers keys from the fields array and replace with lable if label not exist remove that field
@@ -256,15 +254,15 @@ update_option('event_manager_submit_organizer_form_fields',$new_fields['venue'])
 				}
 				
 				if(isset($new_fields['event']))
-					update_option('event_manager_submit_event_form_fields',$new_fields['event']);
+					update_option('event_manager_submit_event_form_fields',array('event' =>$new_fields['event']));
 				if(isset($new_fields['organizer']))
-					update_option('event_manager_submit_organizer_form_fields',$new_fields['organizer']);
+					update_option('event_manager_submit_organizer_form_fields',array('orgnizer' =>$new_fields['organizer']) );
 
 				if(isset($new_fields['venue']))
-					update_option('event_manager_submit_venue_form_fields',$new_fields['venue']);
+					update_option('event_manager_submit_venue_form_fields',array('venue'=>$new_fields['venue']) );
 
 				//this will be removed in future
-				//$result = update_option( 'event_manager_form_fields', $new_fields );
+				$result = update_option( 'event_manager_form_fields', $new_fields );
 			
 			}	  
 		}

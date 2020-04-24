@@ -181,7 +181,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * @return fields Array
 	 */
 	public  function get_event_manager_fieldeditor_fields(){
-		return apply_filters('event_manager_submit_event_form_fields', get_option( 'event_manager_submit_event_form_fields', false ) );
+		return apply_filters('event_manager_submit_organizer_form_fields', get_option( 'event_manager_submit_organizer_form_fields', false ) );
 	}
 
 	/**
