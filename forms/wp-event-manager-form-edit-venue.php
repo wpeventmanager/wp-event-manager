@@ -37,7 +37,6 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 		$this->venue_id = ! empty( $_REQUEST['venue_id'] ) ? absint( $_REQUEST[ 'venue_id' ] ) : 0;
 
 		if  ( ! event_manager_user_can_edit_event( $this->venue_id ) ) {
-
 			$this->venue_id = 0;
 		}
 	}
@@ -125,7 +124,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 			'action'             	=> $this->get_action(),
 
-			'organizer_fields'     	=> $this->get_fields( 'venue' ),
+			'venue_fields'     	=> $this->get_fields( 'venue' ),
 
 			'step'               	=> $this->get_step(),
 

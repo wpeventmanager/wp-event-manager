@@ -24,6 +24,8 @@ class WP_Event_Manager_Shortcodes {
 
 		add_action( 'event_manager_event_dashboard_content_edit', array( $this, 'edit_event' ) );
 		add_action( 'event_manager_organizer_dashboard_content_edit', array( $this, 'edit_organizer' ) );
+		add_action( 'event_manager_venue_dashboard_content_edit', array( $this, 'edit_venue' ) );
+
 		add_action( 'event_manager_event_filters_end', array( $this, 'event_filter_results' ), 30 );
 		add_action( 'event_manager_output_events_no_results', array( $this, 'output_no_results' ) );
 
@@ -61,6 +63,9 @@ class WP_Event_Manager_Shortcodes {
 		}
 		elseif ( is_page() && strstr( $post->post_content, '[organizer_dashboard' )) {
 			$this->organizer_dashboard_handler();
+		}
+		elseif ( is_page() && strstr( $post->post_content, '[venue_dashboard' )) {
+			$this->venue_dashboard_handler();
 		}
 	}
 
@@ -451,6 +456,83 @@ class WP_Event_Manager_Shortcodes {
 		echo $event_manager->forms->get_form( 'edit-organizer' );
 	}
 
+	/**
+	 * Handles actions on venue dashboard
+	 */
+
+	public function venue_dashboard_handler() {
+
+		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'event_manager_my_venue_actions' ) ) {
+
+			$action = sanitize_title( $_REQUEST['action'] );
+
+			$venue_id = absint( $_REQUEST['venue_id'] );
+
+			try {
+
+				// Get Event
+
+				$venue    = get_post( $venue_id );
+
+				// Check ownership
+
+				if ( ! event_manager_user_can_edit_event( $venue_id ) ) {
+
+					throw new Exception( __( 'Invalid ID', 'wp-event-manager' ) );
+				}
+
+				switch ( $action ) {
+
+					
+
+					case 'delete' :
+
+						// Trash it
+						wp_trash_post( $venue_id );
+
+						// Message
+						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $venue->post_title ) ) . '</div>';
+
+						break;
+					case 'duplicate' :
+						if ( ! event_manager_get_permalink( 'submit_venue_form' ) ) {
+							throw new Exception( __( 'Missing submission page.', 'wp-event-manager' ) );
+						}
+					
+						$new_venue_id = event_manager_duplicate_listing( $venue_id );
+					
+						if ( $new_venue_id ) {
+							// Puslish organizer
+							  $my_post = array(
+							      'ID'           => $new_venue_id,
+							      'post_status'   => 'publish',
+							  );
+							  
+							// Update the post into the database
+							  wp_update_post( $my_post );
+
+
+							wp_redirect( add_query_arg( array( 'venue_id' => absint( $new_venue_id ) ), event_manager_get_permalink( 'submit_venue_form' ) ) );
+							exit;
+						}
+					
+					break;
+
+					default :
+
+						do_action( 'event_manager_venue_dashboard_do_action_' . $action );
+
+						break;
+				}
+				
+				do_action( 'event_manager_my_venue_do_action', $action, $venue_id );
+
+			} catch ( Exception $e ) {
+
+				$this->venue_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $e->getMessage() . '</div>';
+			}
+		}
+	}
 
 	/**
 	 * Shortcode which lists the logged in user's venues
@@ -523,6 +605,17 @@ class WP_Event_Manager_Shortcodes {
 		get_event_manager_template( 'venue-dashboard.php', array( 'venues' => $venues->query( $args ), 'max_num_pages' => $venues->max_num_pages, 'venue_dashboard_columns' => $venue_dashboard_columns ) );
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * Edit venue form
+	 */
+
+	public function edit_venue() {
+
+		global $event_manager;
+
+		echo $event_manager->forms->get_form( 'edit-venue' );
 	}
 
 	/**

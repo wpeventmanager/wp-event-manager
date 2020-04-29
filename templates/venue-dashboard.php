@@ -72,10 +72,10 @@
 								foreach ( $actions as $action => $value ) {
 									$action_url = add_query_arg ( array (
 											'action' => $action,
-											'organizer_id' => $venue->ID
+											'venue_id' => $venue->ID
 									) );
 									if ($value['nonce']) {
-										$action_url = wp_nonce_url ( $action_url, 'event_manager_my_organizer_actions' );
+										$action_url = wp_nonce_url ( $action_url, 'event_manager_my_venue_actions' );
 									}
 									echo '<div class="wpem-dboard-event-act-btn"><a href="' . esc_url ( $action_url ) . '" class="event-dashboard-action-' . esc_attr ( $action ) . '" title="' . esc_html ( $value ['label'] ) . '" >' . esc_html ( $value ['label'] ) . '</a></div>';
 								}
