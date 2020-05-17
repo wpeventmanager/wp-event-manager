@@ -152,7 +152,7 @@ class WP_Event_Manager_Writepanels {
 			add_meta_box( 'event_listing_type', $event_listing_type->labels->menu_name, array( $this, 'event_listing_metabox' ),'event_listing' ,'side','core');
 		}
 		
-	
+			if(isset($wp_post_types['event_organizer']))
 			add_meta_box( 'event_organizer_data', sprintf( __( '%s Data', 'wp-event-manager' ), $wp_post_types['event_organizer']->labels->singular_name ), array( $this, 'event_organizer_data' ), 'event_organizer', 'normal', 'high' );
 		
 

@@ -1867,6 +1867,8 @@ function get_all_event_organizer() {
 function get_all_organizer_array(){
 	$all_organizer =get_all_event_organizer();
 	$organizer_array =array();
+
+	if(is_array($all_organizer) )
 	foreach ($all_organizer as $organizer) { 
 		$organizer_array[$organizer->ID] = $organizer->post_title;
 
@@ -1958,6 +1960,7 @@ function get_all_event_venue() {
 function get_all_venue_array(){
 	$all_venue =get_all_event_venue();
 	$venue_array =array();
+	if(isset($all_venue))
 	foreach ($all_venue as $venue) { 
 		$venue_array[$venue->ID] = $venue->post_title;
 

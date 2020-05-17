@@ -59,6 +59,13 @@ class WP_Event_Manager_API extends WP_REST_Controller{
      */
     protected $auth_method = '';
 
+    /**
+     * Current auth method.
+     *
+     * @var string
+     */
+     protected $namespace = 'wpem-api/v1/';
+
 	/**
 	 * Allows for accessing single instance of class. Class should only be constructed once per call.
 	 *
@@ -82,27 +89,33 @@ class WP_Event_Manager_API extends WP_REST_Controller{
 	 
 	public function __construct() {
 
-		add_action('rest_api_init', [$this, 'rest_api_init'], 10);
+		 add_action('rest_api_init', [$this, 'rest_api_init'], 10);
 
-        add_filter( 'event_manager_get_listings', [$this, 'get_events_query_filter'], 10, 2);
+         add_filter( 'event_manager_get_listings', [$this, 'get_events_query_filter'], 10, 2);
+         
+        
 	}
 
 	public function rest_api_init()
     {
 
-        $namespace = 'event-manager-api/v2/';
+       
 
         /**
          * API User
          */
-        $this->post_login($namespace, 'user/login/', $this, 'login');
-        $this->post($namespace, 'user/event/', $this, 'get_user_event_list');
-        $this->post($namespace, 'user/event/add', $this, 'add_event');
-        $this->put($namespace, 'user/event/update/(?P<eventid>[0-9]+)/', $this, 'update_event');
-        $this->delete($namespace, 'user/event/delete/(?P<eventid>[0-9]+)/', $this, 'delete_event');
+         $this->post_login($this->namespace, 'user/login/', $this, 'login');
+        // $this->post($namespace, 'user/event/', $this, 'get_user_event_list');
+        // $this->post($namespace, 'user/event/add', $this, 'add_event');
+        // $this->put($namespace, 'user/event/update/(?P<eventid>[0-9]+)/', $this, 'update_event');
+        // $this->delete($namespace, 'user/event/delete/(?P<eventid>[0-9]+)/', $this, 'delete_event');
 
-        $this->get($namespace, 'event/', $this, 'get_event_list');
-        $this->get($namespace, 'event/(?P<eventid>[0-9]+)/', $this, 'get_single_event');
+        // /**
+        // * Authentication
+        // */
+
+        // $this->get($namespace, 'event/', $this, 'get_event_list');
+        // $this->get($namespace, 'event/(?P<eventid>[0-9]+)/', $this, 'get_single_event');
     }
 
     private function perform_basic_authentication()
@@ -281,6 +294,18 @@ class WP_Event_Manager_API extends WP_REST_Controller{
             $resp['message'] = 'Required parameter(s) missing.';
             $resp['data']     = new stdClass();
         }
+
+        return $resp;
+    }
+
+    public function app_logins($request)
+    {
+        $params = $request->get_params();
+
+        $app_key = $params['app_key'];
+      
+
+  
 
         return $resp;
     }

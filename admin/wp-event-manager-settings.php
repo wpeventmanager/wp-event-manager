@@ -768,7 +768,7 @@ class WP_Event_Manager_Settings {
 
 						echo '<div class="updated fade event-manager-updated"><p>' . __( 'Settings successfully saved', 'wp-event-manager' ) . '</p></div>';
 					}
-
+					
 					foreach ( $this->settings as $key => $section ) {
 
 						echo '<div id="settings-' . sanitize_title( $key ) . '" class="settings_panel">';

@@ -42,29 +42,7 @@ class WP_Event_Manager_Admin {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 
 		add_action( 'current_screen', array( $this, 'conditional_includes' ) );
-		//add_action( 'in_plugin_update_message-wp-event-manager/wp-event-manager.php', array($this,'wpem_plugin_update_message'), 10, 2 );
-	}
-	
-	
-	public function wpem_plugin_update_message( $data, $response ) {
-		printf(
-				'
-<style>
-#wp-event-manager-update p:last-child:before{ content:"" }
-#wp-event-manager-update .update-message.notice{display: table !important;}
-.wpem-plugin-update-notice{display:table-row;}
-</style>
-<div class="wpem-plugin-update-notice"><span><strong>%s</strong> %s 
-<br/><br/>Before upgrading to new version, please do the following things.
-				<br/><br/>Update new designed all templates from plugin to your theme side if you have overridden.
-				<br/>
-<br/>There is no any change in database so no worry about any database related settings or issue but we always recommend to take a backup of your database.
-				<br/><br/>Once upgrade core plugin then upgrade all other add ons.</span>
-				 </div>',
-				__( 'Heads up!', 'wp-event-manager' ),
-				__( 'We\'ve updated the plugins with the new design and new content (made huge changes in CSS and All Templates). ', 'wp-event-manager' )
-				
-				);
+		
 	}
 
 	/**

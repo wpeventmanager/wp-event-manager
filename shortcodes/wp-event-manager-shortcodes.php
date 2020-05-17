@@ -935,7 +935,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'event_types'     => !empty($selected_event_type) ? implode( ',', $selected_event_type) : '',
 
-			'ticket_prices'   => !empty($selected_ticket_price) ? implode( ',', $selected_ticket_price) : ''
+			'ticket_prices'   => !empty($selected_ticket_price) ? $selected_ticket_price : ''
 		);
 
 		if ( ! is_null( $featured ) ) {

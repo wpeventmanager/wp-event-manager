@@ -555,6 +555,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
+			
 			if ( empty( $_POST['submit_event'] ) ) {
 				return;
 			}
