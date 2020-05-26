@@ -1718,6 +1718,7 @@ function event_manager_duplicate_listing( $post_id ) {
 			'menu_order'     => $post->menu_order
 	) );
 
+	
 	/**
 	 * Copy taxonomies.
 	 */
@@ -1733,6 +1734,8 @@ function event_manager_duplicate_listing( $post_id ) {
 	 */
 	$post_meta = $wpdb->get_results( $wpdb->prepare( "SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id=%d", $post_id ) );
 
+	do_action('event_manager_duplicate_listing_meta_start',$post_meta,$post,$new_post_id);
+
 	if ( ! empty( $post_meta ) ) {
 		$post_meta = wp_list_pluck( $post_meta, 'meta_value', 'meta_key' );
 		foreach ( $post_meta as $meta_key => $meta_value ) {
@@ -1745,6 +1748,8 @@ function event_manager_duplicate_listing( $post_id ) {
 
 	update_post_meta( $new_post_id, '_cancelled', 0 );
 	update_post_meta( $new_post_id, '_featured', 0 );
+
+	do_action('event_manager_duplicate_listing_meta_end',$post_meta,$post,$new_post_id);
 
 	return $new_post_id;
 }

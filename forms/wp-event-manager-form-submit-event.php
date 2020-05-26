@@ -961,6 +961,27 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	
 		return $this->fields;
 	}
-	
+
+
+	/**
+	 * This function will set event id for invoking event object
+	 * @return $id
+	 **/
+	public  function set_id( $id ) {
+		$this->event_id = $id;
+		
+		return $this->event_id;
+	}
+
+	/**
+	 * This function will get event id for invoking event object
+	 * @return $id
+	 **/
+	public  function get_id() {
+		if(empty($this->event_id))
+			$this->event_id = 0;
+
+		return $this->event_id;
+	}	
 	
 }
