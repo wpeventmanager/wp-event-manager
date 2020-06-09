@@ -1,6 +1,6 @@
 <?php
 /**
- * WP_Event_Manager_Form_Submit_Organizer class.
+ * WP_Event_Manager_Form_Submit_Venue class.
  */
 
 class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
@@ -67,14 +67,14 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		}
 		// Load event details
 		if ( $this->venue_id ) {
-			$organizer_status = get_post_status( $this->venue_id );
+			$venue_status = get_post_status( $this->venue_id );
 			if ( 'expired' === $venue_status ) {
 				if ( ! event_manager_user_can_edit_event( $this->venue_id ) ) {
 					$this->venue_id = 0;
 					$this->step   = 0;
 				}
 			} elseif ( ! in_array( $venue_status, apply_filters( 'event_manager_valid_submit_venue_statuses', array( 'preview' ) ) ) ) {
-				$this->organizer_id = 0;
+				$this->venue_id = 0;
 				$this->step   = 0;
 			}
 		}
@@ -186,42 +186,42 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			
 		// Load data if neccessary
 		if ( $this->venue_id ) {
-			$organizer = get_post( $this->venue_id );
+			$venue = get_post( $this->venue_id );
 			foreach ( $this->fields as $group_key => $group_fields ) {
 				foreach ( $group_fields as $key => $field ) {
 					switch ( $key ) {
 						case 'venue_name' :
-							$this->fields[ $group_key ][ $key ]['value'] = $organizer->post_title;
+							$this->fields[ $group_key ][ $key ]['value'] = $venue->post_title;
 						break;
 						case 'venue_description' :
-							$this->fields[ $group_key ][ $key ]['value'] = $organizer->post_content;
+							$this->fields[ $group_key ][ $key ]['value'] = $venue->post_content;
 						break;
 						case  'venue_logo':
-							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $organizer->ID ) ? get_post_thumbnail_id( $organizer->ID ) : get_post_meta( $organizer->ID, '_' . $key, true );
+							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $venue->ID ) ? get_post_thumbnail_id( $venue->ID ) : get_post_meta( $venue->ID, '_' . $key, true );
 						break;
 						default:
-							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta( $organizer->ID, '_' . $key, true );
+							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta( $venue->ID, '_' . $key, true );
 						break;
 					}
 					if ( ! empty( $field['taxonomy'] ) ) {
-						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $organizer->ID, $field['taxonomy'], array( 'fields' => 'ids' ) );
+						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $venue->ID, $field['taxonomy'], array( 'fields' => 'ids' ) );
 					}
 					
 					if(! empty( $field['type'] ) &&  $field['type'] == 'date' ){
-						$event_date = get_post_meta( $organizer->ID, '_' . $key, true );
+						$event_date = get_post_meta( $venue->ID, '_' . $key, true );
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );
 					}
 				}
 			}
 
-			$this->fields = apply_filters( 'submit_venue_form_fields_get_venue_data', $this->fields, $organizer );
+			$this->fields = apply_filters( 'submit_venue_form_fields_get_venue_data', $this->fields, $venue );
 		}
 		
 
 		//wp_enqueue_script( 'wp-event-manager-venue-submission' );
 		get_event_manager_template( 'venue-submit.php', array(
 			'form'               => $this->form_name,
-			'organizer_id'       => $this->get_venue_id(),
+			'venue_id'       => $this->get_venue_id(),
 			'resume_edit'        => $this->resume_edit,
 			'action'             => $this->get_action(),
 			'venue_fields'     => $this->get_fields( 'venue' ),
@@ -280,7 +280,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			}
 		}
 		
-		//organizer email validation
+		//venue email validation
 		if (isset( $values['venue']['venue_email'] ) && !empty( $values['venue']['venue_email'] ) ) {
 			if ( ! is_email( $values['venue']['venue_email'] ) ) {
 				throw new Exception( __( 'Please enter a valid venue email address', 'wp-event-manager' ) );
@@ -313,8 +313,8 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			}
 			
 			// Update the event
-			$this->save_organizer( $values['venue']['venue_name'], $values['venue']['venue_description'], $this->organizer_id ? '' : 'publish', $values );
-			$this->update_organizer_data( $values );
+			$this->save_venue( $values['venue']['venue_name'], $values['venue']['venue_description'], $this->venue_id ? '' : 'publish', $values );
+			$this->update_venue_data( $values );
 			// Successful, show next step
 			$this->step ++;
 		} catch ( Exception $e ) {
@@ -324,7 +324,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Update or create a organizer from posted data
+	 * Update or create a venue from posted data
 	 *
 	 * @param  string $post_title
 	 * @param  string $post_content
@@ -332,7 +332,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * @param  array $values
 	 * @param  bool $update_slug
 	 */
-	protected function save_organizer( $post_title, $post_content, $status = 'publish', $values = array(), $update_slug = true ) {
+	protected function save_venue( $post_title, $post_content, $status = 'publish', $values = array(), $update_slug = true ) {
 		$venue_data = array(
 			'post_title'     => $post_title,
 			'post_content'   => $post_content,
@@ -364,7 +364,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 *
 	 * @param  array $values
 	 */
-	protected function update_organizer_data( $values ) {
+	protected function update_venue_data( $values ) {
 		$maybe_attach = array();
 		
 		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting

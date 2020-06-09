@@ -3,7 +3,7 @@
 include_once( 'wp-event-manager-form-submit-venue.php' );
 
 /**
- * WP_Event_Manager_Form_Edit_Event class.
+ * WP_Event_Manager_Form_Edit_Venue class.
  */
 
 class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venue {
@@ -85,7 +85,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 				if ( ! isset( $this->fields[ $group_key ][ $key ]['value'] ) ) {
 
-					if ( 'organizer_name' === $key ) {
+					if ( 'venue_name' === $key ) {
 
 						$this->fields[ $group_key ][ $key ]['value'] = $venue->post_title;
 
@@ -93,7 +93,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 						$this->fields[ $group_key ][ $key ]['value'] = $venue->post_content;
 
-					} elseif ( 'organizer_logo' === $key ) {
+					} elseif ( 'venue_logo' === $key ) {
 						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $venue->ID ) ? get_post_thumbnail_id( $venueu->ID ) : get_post_meta( $venue->ID, '_' . $key, true );
 						
 					} elseif ( ! empty( $field['taxonomy'] ) ) {
@@ -120,7 +120,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 			'form'               	=> $this->form_name,
 
-			'organizer_id'          => $this->get_venue_id(),
+			'venue_id'          => $this->get_venue_id(),
 
 			'action'             	=> $this->get_action(),
 
@@ -159,7 +159,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 			
 			// Update the event
 
-			$this->save_organizer( $values['venue']['venue_name'], $values['venue']['venue_description'], '', $values, false );
+			$this->save_venue( $values['venue']['venue_name'], $values['venue']['venue_description'], '', $values, false );
 
 			$this->update_venue_data( $values );
 

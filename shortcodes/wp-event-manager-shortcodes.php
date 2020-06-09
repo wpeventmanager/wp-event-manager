@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class WP_Event_Manager_Shortcodes {
 
 	private $event_dashboard_message = '';
+	private $organizer_dashboard_message = '';
+	private $venue_dashboard_message = '';
 	
 	/**
 	 * Constructor
