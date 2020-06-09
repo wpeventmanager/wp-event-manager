@@ -1997,3 +1997,35 @@ function get_event_by_venue_id($venue_id = '') {
 		));
 	}
 }
+
+/**
+ * check organizer ids
+ * @since 3.1.13
+ * @param
+ * @return
+ **/
+function has_event_organizer_ids( $post = null ) {
+
+	$post = get_post( $post );
+
+	if ( $post->post_type !== 'event_listing' )
+		return;
+
+	return !empty($post->_event_organizer_ids) ? true : false;
+}
+
+/**
+ * get organizer ids
+ * @since 3.1.13
+ * @param
+ * @return
+ **/
+function get_event_organizer_ids( $post = null ) {
+
+	$post = get_post( $post );
+
+	if ( $post->post_type !== 'event_listing' )
+		return;
+
+	return !empty($post->_event_organizer_ids) ? $post->_event_organizer_ids : '';
+}
