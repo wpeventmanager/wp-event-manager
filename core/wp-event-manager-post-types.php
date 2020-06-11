@@ -35,6 +35,7 @@ class WP_Event_Manager_Post_Types {
 
 		add_filter( 'admin_head', array( $this, 'admin_head' ) );
 		add_filter( 'the_content', array( $this, 'event_content' ) );
+		add_filter( 'the_content', array( $this, 'organizer_content' ) );
 		add_action( 'event_manager_check_for_expired_events', array( $this, 'check_for_expired_events' ) );
 		add_action( 'event_manager_delete_old_previews', array( $this, 'delete_old_previews' ) );
 
@@ -444,7 +445,7 @@ class WP_Event_Manager_Post_Types {
 				        'show_ui'            => true,
 				        'show_in_menu'       => false,
 				        'query_var'          => true,
-				        'rewrite'            => array( 'slug' => 'event_organizer' ),
+				        'rewrite'            => array( 'slug' => 'event-organizer' ),
 				        'capability_type'    => 'post',
 				        'has_archive'        => true,
 				        'hierarchical'       => false,
@@ -480,7 +481,7 @@ class WP_Event_Manager_Post_Types {
 				        'show_ui'            => true,
 				        'show_in_menu'       => false,
 				        'query_var'          => true,
-				        'rewrite'            => array( 'slug' => 'event_venue' ),
+				        'rewrite'            => array( 'slug' => 'event-venue' ),
 				        'capability_type'    => 'post',
 				        'has_archive'        => true,
 				        'hierarchical'       => false,
@@ -525,7 +526,6 @@ class WP_Event_Manager_Post_Types {
 	/**
 	 * Add extra content when showing event content
 	 */
-
 	public function event_content( $content ) {
 
 		global $post;
@@ -553,6 +553,136 @@ class WP_Event_Manager_Post_Types {
 		add_filter( 'the_content', array( $this, 'event_content' ) );
 
 		return apply_filters( 'event_manager_single_event_content', $content, $post );
+	}
+
+	/**
+	 * Add extra content when showing organizer content
+	 */
+	public function organizer_content( $content ) {
+
+		global $post;
+
+		if ( ! is_singular( 'event_organizer' ) || ! in_the_loop() ) 
+		{
+			return $content;
+		}
+
+		remove_filter( 'the_content', array( $this, 'organizer_content' ) );
+
+		if ( 'event_organizer' === $post->post_type ) {
+
+			ob_start();
+
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+            $per_page = 10;
+            $today_date=date("Y-m-d");
+            $organizer_id = get_the_ID();
+            $show_pagination = true;
+
+            $args_upcoming = array(
+                'post_type'   => 'event_listing',
+                'post_status' => 'publish',
+                'posts_per_page' => $per_page,                                              
+                'paged' => $paged
+            );
+
+            $args_upcoming['meta_query'] = array( 
+                'relation' => 'AND', 
+                array(
+                        'key'     => '_event_organizer_ids',
+                        'value'   => $organizer_id, 
+                        'compare' => 'LIKE',
+                    ),
+                array(
+                         'key'     => '_event_start_date',
+                         'value'   => $today_date,
+                         'type'    => 'date',
+                         'compare' => '>'   
+                    ) 
+            );
+
+            $upcomingEvents = new WP_Query( $args_upcoming );
+            wp_reset_query();
+
+            $args_current = $args_upcoming;
+            
+            $args_current['meta_query'] = array(
+                'relation' => 'AND',
+                array(
+                    'key'     => '_event_organizer_ids',
+                    'value'   => $organizer_id, 
+                    'compare' => 'LIKE',
+                ),
+                array(
+                    'key'     => '_event_start_date',
+                    'value'   => $today_date,
+                    'type'    => 'date',
+                    'compare' => '<='
+                ),
+                array(
+                    'key'     => '_event_end_date',
+                    'value'   => $today_date,
+                    'type'    => 'date',
+                    'compare' => '>='
+                )
+            );
+
+            $currentEvents = new WP_Query( $args_current );
+            wp_reset_query();
+
+            $args_past = array(
+                'post_type'   => 'event_listing',
+                'post_status' => array('expired', 'publish'),
+                'posts_per_page' => $per_page,
+                'paged' => $paged
+            );
+        
+            $args_past['meta_query'] = array( 
+                'relation' => 'AND', 
+                array(
+                    'key'     => '_event_organizer_ids',
+                    'value'   => $organizer_id, 
+                    'compare' => 'LIKE',
+                ),
+                array(
+                    'key'     => '_event_end_date',
+                    'value'   => $today_date,
+                    'type'    => 'date',
+                    'compare' => '<'   
+                )
+            );
+            $pastEvents = new WP_Query( $args_past );
+            wp_reset_query();
+
+			do_action( 'organizer_content_start' );
+
+			wp_enqueue_script( 'wp-event-manager-organizer');
+
+			get_event_manager_template( 
+			    'content-single-event_organizer.php', 
+			    array(
+			        'organizer_id'	=> $organizer_id,
+			        'per_page'		=> $per_page,
+			        'show_pagination'	=> $show_pagination,
+			        'upcomingEvents' => $upcomingEvents,
+			        'currentEvents' => $currentEvents,
+			        'pastEvents' 	=> $pastEvents,
+			    ), 
+			    'wp-event-manager', 
+			    EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
+			);
+
+			wp_reset_postdata();
+			//get_event_manager_template_part( 'content-single', 'event_organizer', 'wp-event-manager', EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/');
+
+			do_action( 'organizer_content_end' );
+
+			$content = ob_get_clean();
+		}
+
+		add_filter( 'the_content', array( $this, 'organizer_content' ) );
+
+		return apply_filters( 'event_manager_single_organizer_content', $content, $post );
 	}
 
 	/**

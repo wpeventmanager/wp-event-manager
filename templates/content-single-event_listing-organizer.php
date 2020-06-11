@@ -65,8 +65,17 @@
                                             ?>
                                             <div class="wpem-social-icon wpem-youtube"><a href="<?php echo esc_url($organizer_youtube); ?>" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>" target="_blank"><?php _e('Youtube', 'wp-event-manager'); ?></a></div>
                                         <?php } ?>
-                                        <?php do_action('single_event_listing_organizer_single_social_end'); ?>
-                                    </div>
+
+                                        <?php do_action('single_event_listing_organizer_single_social_end', $organizer_id); ?>
+
+                                    </div>                                    
+                            
+                                </div>
+
+                                <div class="wpem-organizer-contact-actions">
+                                    <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>
+
+                                    <?php do_action('single_event_listing_organizer_action_end', $organizer_id); ?>
                                 </div>
 
                             <?php endforeach; ?>
@@ -114,15 +123,15 @@
                                     <div class="wpem-social-icon wpem-youtube"><a href="<?php echo esc_url($organizer_youtube); ?>" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>" target="_blank"><?php _e('Youtube', 'wp-event-manager'); ?></a></div>
                                 <?php } ?>
                                 <?php do_action('single_event_listing_organizer_single_social_end'); ?>
-                            </div>
+                            </div>                            
+                        </div>
+
+                        <div class="wpem-organizer-contact-actions">
+                            <?php do_action('single_event_listing_organizer_action_start'); ?>
+
+                            <?php do_action('single_event_listing_organizer_action_end'); ?>
                         </div>
                     <?php endif; ?>
-
-                    <div class="wpem-organizer-contact-actions">
-                        <?php do_action('single_event_listing_organizer_action_start'); ?>
-
-                        <?php do_action('single_event_listing_organizer_action_end'); ?>
-                    </div>
 
                     <?php do_action('single_event_listing_organizer_end'); ?>
                 </div>

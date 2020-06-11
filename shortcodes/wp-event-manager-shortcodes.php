@@ -31,6 +31,8 @@ class WP_Event_Manager_Shortcodes {
 		add_action( 'event_manager_event_filters_end', array( $this, 'event_filter_results' ), 30 );
 		add_action( 'event_manager_output_events_no_results', array( $this, 'output_no_results' ) );
 
+		add_action( 'single_event_listing_organizer_action_start', array( $this, 'organizer_more_info_link' ) );
+
 		add_shortcode( 'submit_event_form', array( $this, 'submit_event_form' ) );
 		add_shortcode( 'event_dashboard', array( $this, 'event_dashboard' ) );
 
@@ -50,6 +52,8 @@ class WP_Event_Manager_Shortcodes {
 		add_shortcode( 'event_summary', array( $this, 'output_event_summary' ) );
 		add_shortcode( 'past_events', array( $this, 'output_past_events' ) );
 		add_shortcode( 'event_register', array( $this, 'output_event_register' ) );
+
+		add_shortcode( 'event_organizers', array( $this, 'output_event_organizers' ) );
 	}
 	/**
 	 * Handle actions which need to be run before the shortcode e.g. post actions
@@ -968,6 +972,18 @@ class WP_Event_Manager_Shortcodes {
 
 		get_event_manager_template( 'content-no-events-found.php' );
 	}
+
+	/**
+	 * Output anchor tag close: single organizer details url
+	 */
+	public function organizer_more_info_link( $organizer_id ) {
+		$organizer_url = get_permalink( $organizer_id );
+		
+		if(isset($organizer_url) && !empty($organizer_url))
+		{			
+			printf( '<div class="wpem-organizer-page-url-button"><a href="%s" class="wpem-theme-button"><span>%s</span></a></div>', $organizer_url, __( 'More info', 'wp-event-manager' ) );
+		}
+	}
 	
 	/**
 	 * Get string as a bool
@@ -1201,6 +1217,51 @@ class WP_Event_Manager_Shortcodes {
 		return  $event_listings_output;
 		
 	}
+
+	/**
+	 *  It is very simply a plugin that outputs a list of all organizers that have listed events on your website. 
+     *  Once you have installed " WP Event Manager - Organizer Profiles" simply visit "Pages > Add New". 
+     *  Once you have added a title to your page add the this shortcode: [event_organizers]
+     *  This will output a grouped and alphabetized list of all organizers.
+	 *
+	 * @access public
+	 * @param array $args
+	 * @return string
+	 */
+	public function output_event_organizers($atts)
+	{
+		$orgnizers   = get_all_organizer_array();
+		$countAllEvents = get_event_organizer_count();
+          
+        foreach ( $orgnizers as $orgnizer_id => $orgnizer ):
+			$orgnizers_array[ strtoupper( $orgnizer[0] ) ][$orgnizer_id] = $orgnizer;
+	    endforeach;
+         
+		wp_enqueue_script( 'wp-event-manager-organizer');
+        
+        if ( count($orgnizers)!=0 ) :
+
+        	get_event_manager_template( 
+          		'event-organizers.php', 
+          		array(
+					'orgnizers'			=> $orgnizers,
+					'orgnizers_array'   => $orgnizers_array,
+                	'countAllEvents'    => $countAllEvents,
+				), 
+				'wp-event-manager', 
+				EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/' 
+			);	
+
+		else :
+			get_event_manager_template_part( 'content', 'no-organizers-found' ); 
+		endif;
+              
+		wp_reset_postdata();
+		
+		return ob_get_clean();
+	}
+
+
 }
 
 new WP_Event_Manager_Shortcodes(); ?>

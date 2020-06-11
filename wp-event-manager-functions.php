@@ -1887,27 +1887,8 @@ function get_all_organizer_array(){
  * @return string
  */
 function get_event_organizer_count($organizer_id = '') {
-	if ( is_user_logged_in() || empty($organizer_id) ) {
-		$author_id = get_current_user_id();
-		return sizeof(get_posts(array(
-			'post_type'      => 'event_listing',
-			'post_status'    =>  array( 'publish' ),
-			'posts_per_page' => -1,
-			'author'->$author_id,
-			//'fields'         => 'ids',
-			//'meta_key'    	 => '_event_ids',
-			//'meta_value'	 => $event_id,
-			'meta_query' => array(
-		         array(
-		             'key' => '_event_organizer_ids',
-		             'value' => $organizer_id,
-		              'compare' => 'LIKE',
-            			//'type' => 'NUMBER' //<-- add this
-		         )
-		    )
-			)
-		) );
-	}
+
+	return sizeof(get_event_by_organizer_id($organizer_id));
 }
 
 /**
@@ -1917,26 +1898,23 @@ function get_event_organizer_count($organizer_id = '') {
  * @return string
  */
 function get_event_by_organizer_id($organizer_id = '') {
-	if ( is_user_logged_in() || empty($organizer_id) ) {
-		$author_id = get_current_user_id();
-		return get_posts(array(
-			'post_type'      => 'event_listing',
-			'post_status'    => array( 'publish' ),
-			'posts_per_page' => -1,
-			'author'		 => $author_id,
-			//'fields'         => 'ids',
-			//'meta_key'    	 => '_event_ids',
-			//'meta_value'	 => $event_id,
-			'meta_query' => array(
-		        array(
-		            'key' => '_event_organizer_ids',
-		            'value' => $organizer_id,
-		            'compare' => 'LIKE',
-            		//'type' => 'NUMBER' //<-- add this
-		        )
-		    )
-		));
+
+	$args = [
+		'post_type'      => 'event_listing',
+		'post_status'    => array( 'publish' ),
+		'posts_per_page' => -1,
+	];
+
+	if(!empty($organizer_id))
+	{
+		$args['meta_query'][] = [
+			'key' => '_event_organizer_ids',
+            'value' => $organizer_id,
+            'compare' => 'LIKE',
+		];
 	}
+
+	return get_posts($args);
 }
 
 
