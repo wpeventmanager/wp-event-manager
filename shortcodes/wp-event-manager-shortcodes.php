@@ -1182,27 +1182,95 @@ class WP_Event_Manager_Shortcodes {
 	 * @return void
 	 */
 
-	public function output_past_events() {
+	public function output_past_events( $atts ) {
 
-		ob_start();	
+		ob_start();
+
+		extract( shortcode_atts ( array(
+
+			'per_page'                  => get_option( 'event_manager_per_page' ),
+
+			'orderby'                   => 'meta_value', // meta_value
+
+			'order'                     => 'ASC',
+
+			'show_pagination'           => true,
+
+			'selected_datetime'         => '',
+
+			'selected_categories'       => '',
+
+			'selected_event_types'     => '',
+		), $atts ) );
+
+		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		
 		$args_past = array(
-			'post_type'   => 'event_listing',
-			'post_status' => array('expired'),
-			'posts_per_page' => -1												
+			'post_type'  	=> 'event_listing',
+			'post_status'	=> array('expired'),
+			'posts_per_page' => $per_page,
+			'paged'			=> $paged,
+			'orderby'		=> $orderby,
+			'order'			=> $order,
+			'tax_query'		=> [
+				'relation' => 'OR',
+			]
 		);
 
+
+		if(!empty($selected_categories))
+		{
+			$categories = explode(',', $selected_categories);
+
+			$args_past['tax_query'][] = [
+				'taxonomy' => 'event_listing_category',
+				'field'   => 'slug',
+				'terms'   => $categories,
+			];
+		}
+
+		if(!empty($selected_event_types))
+		{
+			$event_types = explode(',', $selected_event_types);
+
+			$args_past['tax_query'][] = [
+				'key' => 'event_listing_type',
+				'field'   => 'slug',
+				'terms'   => $event_types,
+			];
+		}
+
+		if(!empty($selected_datetime))
+		{
+			$datetimes = explode(',', $selected_datetime);
+
+			$args_past['meta_query'][] = [
+				'key' => '_event_start_date',
+				'value'   => $datetimes,
+				'compare' => 'BETWEEN',
+				'type'    => 'date'
+			];
+		}
+
 		$past_events = new WP_Query( $args_past );
+		wp_reset_query();
 
 		if ( $past_events->have_posts() ) : ?>
-
-			
 			<div id="event-listing-view" class="wpem-main wpem-event-listings event_listings wpem-event-listing-list-view">	
 			<?php while ( $past_events->have_posts() ) : $past_events->the_post(); ?>
 
 				<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
 				
 			<?php endwhile; ?>
+
+			<?php if ($past_events->found_posts > $per_page) : ?>
+                <?php if ($show_pagination == "true") : ?>
+                    <div class="event-organizer-pagination">
+                    	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
+                    </div> 
+                <?php endif; ?>
+            <?php endif; ?>
+
 			</div>
 		<?php else :
 
