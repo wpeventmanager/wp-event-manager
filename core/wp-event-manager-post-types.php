@@ -1069,6 +1069,49 @@ class WP_Event_Manager_Post_Types {
 				}
 			}
 		}
+
+		//Delete event after finished
+		$delete_events_after_finished = absint( get_option( 'event_manager_delete_events_after_finished' ) ) == 1 ? true : false;
+		if($delete_events_after_finished)
+		{
+			$args = [
+				'post_type'      => 'event_listing',
+				'post_status'    => array( 'publish', 'expired' ),
+				'posts_per_page' => -1,
+				'meta_query' => array(
+			        'relation' => 'AND',
+			        array(
+			            'key'     => '_event_end_date',
+			            'value'   => date( 'Y-m-d'),
+			            'compare' => '<=',
+			        ),
+			        array(
+			            'key'     => '_event_end_time',
+			            'value'   => date( 'H:i A'),
+			            'compare' => '<',
+			        ),
+			    ),
+			];
+
+			$event_ids = get_posts($args);
+
+			if ( $event_ids ) 
+			{
+				foreach ( $event_ids as $event_id ) 
+				{
+					$event_data       = array();
+
+					$event_data['ID'] = $event_id->ID;
+
+					$event_data['post_status'] = 'expired';
+
+					wp_update_post( $event_data );
+
+					wp_trash_post( $event_id->ID );
+				}
+			}
+		}
+
 	}
 	
 	/**
