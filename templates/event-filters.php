@@ -52,11 +52,28 @@
 			<?php */ ?>
 
 			<!-- Search by date section start -->
-			<?php if ( $datetimes) : ?>				
+			<?php if ( $datetimes) : ?>	
+
+				<?php
+				$arr_selected_datetime = [];
+				if(!empty($selected_datetime))
+				{
+					$selected_datetime = explode(',', $selected_datetime);
+
+					$start_date = esc_attr( strip_tags( $selected_datetime[0] ) );
+					$end_date = esc_attr( strip_tags( $selected_datetime[1] ) );
+
+					$arr_selected_datetime['start'] = date_i18n("Y-m-d", strtotime( $start_date ) );
+					$arr_selected_datetime['end'] = date_i18n("Y-m-d", strtotime( $end_date ) );
+
+					$selected_datetime = json_encode($arr_selected_datetime);
+				}
+				?>
+
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_datetimes" class="wpem-form-label"><?php _e( 'Any dates', 'wp-event-manager' ); ?></label>
-						<input type="text" name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown date_range_picker" >
+						<input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo $selected_datetime; ?>' class="event-manager-category-dropdown date_range_picker" >
 						</div>
 				</div>
 			<?php endif; ?>	  			

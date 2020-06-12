@@ -935,7 +935,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'order'           => $order,
 
-			'datetimes'       => !empty($selected_datetime) ? implode( ',', $selected_datetime) : '',
+			'datetimes'       => $selected_datetime,
 
 			'categories'      => !empty($selected_category) ? implode( ',', $selected_category ) : '',
 
