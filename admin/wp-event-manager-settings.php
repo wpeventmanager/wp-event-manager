@@ -371,6 +371,22 @@ class WP_Event_Manager_Settings {
 						),
 						array(
 
+							'name'       => 'event_manager_delete_events_after_finished',
+
+							'std'        => '0',
+
+							'label'      => __( 'Delete listings after finished', 'wp-event-manager' ),
+
+							'cb_label'   => __( 'Delete listings after finished', 'wp-event-manager' ),
+
+							'desc'       => __( 'If enabled, expired listings will automatically deleted after finished.', 'wp-event-manager' ),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array()
+						),
+						array(
+
 							'name'       => 'event_manager_delete_expired_events',
 
 							'std'        => '0',
