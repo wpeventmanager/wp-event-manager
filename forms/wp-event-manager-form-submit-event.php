@@ -874,6 +874,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				if ( ! in_array( $attachment_url, $attachment_urls ) && !is_numeric($attachment_url) ) {
 					$attachment_id = $this->create_attachment( $attachment_url );
 
+					/*
+					* set first image of banner as a thumbnail
+					*/
 					if($key == 0)
 					{
 						set_post_thumbnail($this->event_id, $attachment_id);
