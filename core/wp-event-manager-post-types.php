@@ -341,13 +341,13 @@ class WP_Event_Manager_Post_Types {
 
 					'parent' 				=> sprintf( __( 'Parent %s', 'wp-event-manager' ), $singular ),
 					
-					'featured_image'        => __( 'Event Thumbnai', 'wp-event-manager' ),
+					'featured_image'        => __( 'Event Thumbnail', 'wp-event-manager' ),
 					
-					'set_featured_image'    => __( 'Set event thumbnai', 'wp-event-manager' ),
+					'set_featured_image'    => __( 'Set event thumbnail', 'wp-event-manager' ),
 					
-					'remove_featured_image' => __( 'Remove event thumbnai', 'wp-event-manager' ),
+					'remove_featured_image' => __( 'Remove event thumbnail', 'wp-event-manager' ),
 					
-					'use_featured_image'    => __( 'Use as event thumbnai', 'wp-event-manager' ),
+					'use_featured_image'    => __( 'Use as event thumbnail', 'wp-event-manager' ),
 				),
 
 				'description' => sprintf( __( 'This is where you can create and manage %s.', 'wp-event-manager' ), $plural ),
