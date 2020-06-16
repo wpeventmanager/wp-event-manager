@@ -526,7 +526,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * Done Step
 	 */
 	public function done() {
-		do_action( 'event_manager_organizer_submitted', $this->venue_id );
+		do_action( 'event_manager_organizer_submitted', $this->organizer_id );
 		get_event_manager_template( 'organizer-submitted.php', array( 'organizer' => get_post( $this->organizer_id ) ) );
 	}
 }
