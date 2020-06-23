@@ -1299,30 +1299,29 @@ class WP_Event_Manager_Shortcodes {
 	public function output_event_organizers($atts)
 	{
 		$orgnizers   = get_all_organizer_array();
-		$countAllEvents = get_event_organizer_count();
-          
-        foreach ( $orgnizers as $orgnizer_id => $orgnizer ):
-			$orgnizers_array[ strtoupper( $orgnizer[0] ) ][$orgnizer_id] = $orgnizer;
-	    endforeach;
+		$countAllEvents = get_event_organizer_count();        
+        $orgnizers_array = [];
+
+        if(!empty($orgnizers))
+        {
+        	foreach ( $orgnizers as $orgnizer_id => $orgnizer )
+        	{
+        		$orgnizers_array[ strtoupper( $orgnizer[0] ) ][$orgnizer_id] = $orgnizer;
+        	}
+        }        
          
 		wp_enqueue_script( 'wp-event-manager-organizer');
         
-        if ( count($orgnizers)!=0 ) :
-
-        	get_event_manager_template( 
-          		'event-organizers.php', 
-          		array(
-					'orgnizers'			=> $orgnizers,
-					'orgnizers_array'   => $orgnizers_array,
-                	'countAllEvents'    => $countAllEvents,
-				), 
-				'wp-event-manager', 
-				EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/' 
-			);	
-
-		else :
-			get_event_manager_template_part( 'content', 'no-organizers-found' ); 
-		endif;
+        get_event_manager_template( 
+      		'event-organizers.php', 
+      		array(
+				'orgnizers'			=> $orgnizers,
+				'orgnizers_array'   => $orgnizers_array,
+            	'countAllEvents'    => $countAllEvents,
+			), 
+			'wp-event-manager', 
+			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/' 
+		);
               
 		wp_reset_postdata();
 		
