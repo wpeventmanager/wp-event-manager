@@ -241,7 +241,7 @@ if ($is_friend_share): ?>
 									</div>
 									<div class="wpem-social-icon wpem-linkedin">
 										<a
-											href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=<?php display_event_permalink();?>"
+											href="https://www.linkedin.com/shareArticle?mini=true&url=<?php display_event_permalink();?>&title=<?php display_event_title();?>&summary=&source=Event"
 											title="Share this page on Linkedin">Linkedin</a>
 									</div>
 									<div class="wpem-social-icon wpem-xing">
