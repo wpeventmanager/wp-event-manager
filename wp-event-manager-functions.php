@@ -1942,11 +1942,14 @@ function get_all_event_venue() {
 function get_all_venue_array(){
 	$all_venue =get_all_event_venue();
 	$venue_array =array();
-	if(isset($all_venue))
-	foreach ($all_venue as $venue) { 
-		$venue_array[$venue->ID] = $venue->post_title;
-
+	if(!empty($all_venue))
+	{
+		foreach ($all_venue as $venue)
+		{
+			$venue_array[$venue->ID] = $venue->post_title;
+		}	
 	}
+	
 	return $venue_array;
 }
 
