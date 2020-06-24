@@ -205,9 +205,9 @@ class WP_Event_Manager_Field_Editor {
 									foreach($new_fields[$group_key][$field_key]['options'] as $val){
 										$option_key = explode( ':', $val);
 										if(isset($option_key[1]))
-											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  $option_key[1] ;
+											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[1]);
 										else
-											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  $option_key[0] ;
+											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[0]);
 									}
 									$new_fields[$group_key][$field_key]['options'] = $temp_options;
 								}
