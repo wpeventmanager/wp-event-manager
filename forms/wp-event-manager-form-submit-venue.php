@@ -73,7 +73,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					$this->venue_id = 0;
 					$this->step   = 0;
 				}
-			} elseif ( ! in_array( $venue_status, apply_filters( 'event_manager_valid_submit_venue_statuses', array( 'preview' ) ) ) ) {
+			} elseif ( ! in_array( $venue_status, apply_filters( 'event_manager_valid_submit_venue_statuses', array( 'publish' ) ) ) ) {
 				$this->venue_id = 0;
 				$this->step   = 0;
 			}

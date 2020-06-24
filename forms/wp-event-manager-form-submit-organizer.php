@@ -74,11 +74,12 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					$this->organizer_id = 0;
 					$this->step   = 0;
 				}
-			} elseif ( ! in_array( $organizer_status, apply_filters( 'event_manager_valid_submit_organizer_statuses', array( 'preview' ) ) ) ) {
+			} elseif ( ! in_array( $organizer_status, apply_filters( 'event_manager_valid_submit_organizer_statuses', array( 'publish' ) ) ) ) {
 				$this->organizer_id = 0;
 				$this->step   = 0;
 			}
 		}
+
 	}
 
 	/**

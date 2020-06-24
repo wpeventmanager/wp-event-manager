@@ -19,7 +19,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Constructor
 	 */
-
 	public function __construct() {
 
 		add_action( 'wp', array( $this, 'shortcode_action_handler' ) );
@@ -55,16 +54,15 @@ class WP_Event_Manager_Shortcodes {
 
 		add_shortcode( 'event_organizers', array( $this, 'output_event_organizers' ) );
 	}
+
 	/**
 	 * Handle actions which need to be run before the shortcode e.g. post actions
 	 */
-
 	public function shortcode_action_handler() {
 
 		global $post;
 		
 		if ( is_page() && strstr( $post->post_content, '[event_dashboard' ) ) {
-
 			$this->event_dashboard_handler();
 		}
 		elseif ( is_page() && strstr( $post->post_content, '[organizer_dashboard' )) {
@@ -74,13 +72,10 @@ class WP_Event_Manager_Shortcodes {
 			$this->venue_dashboard_handler();
 		}
 	}
-
-
 	
 	/**
 	 * Show the event submission form
 	*/
-
 	public function submit_event_form( $atts = array() ) {
 
 		return $GLOBALS['event_manager']->forms->get_form( 'submit-event', $atts );
@@ -89,7 +84,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Show the organizer submission form
 	 */
-
 	public function submit_organizer_form( $atts = array() ) {
 
 		return $GLOBALS['event_manager']->forms->get_form( 'submit-organizer', $atts );
@@ -98,7 +92,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Show the organizer submission form
 	 */
-
 	public function submit_venue_form( $atts = array() ) {
 
 		return $GLOBALS['event_manager']->forms->get_form( 'submit-venue', $atts );
@@ -107,7 +100,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Handles actions on event dashboard
 	 */
-
 	public function event_dashboard_handler() {
 
 		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'event_manager_my_event_actions' ) ) {
@@ -213,12 +205,9 @@ class WP_Event_Manager_Shortcodes {
 		}
 	}
 	
-
-	
 	/**
 	 * Shortcode which lists the logged in user's events
-	 */
-	 
+	 */	 
 	public function event_dashboard( $atts ) {
 
 		if ( ! is_user_logged_in() ) {
@@ -292,7 +281,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Edit event form
 	 */
-
 	public function edit_event() {
 
 		global $event_manager;
@@ -303,7 +291,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Handles actions on organizer dashboard
 	 */
-
 	public function organizer_dashboard_handler() {
 
 		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'event_manager_my_organizer_actions' ) ) {
@@ -343,20 +330,19 @@ class WP_Event_Manager_Shortcodes {
 							throw new Exception( __( 'Missing submission page.', 'wp-event-manager' ) );
 						}
 					
-						$new_event_id = event_manager_duplicate_listing( $organizer_id );
+						$new_organizer_id = event_manager_duplicate_listing( $organizer_id );
 					
-						if ( $new_event_id ) {
+						if ( $new_organizer_id ) {
 							// Puslish organizer
-							  $my_post = array(
-							      'ID'           => $new_event_id,
-							      'post_status'   => 'publish',
-							  );
+						  	$my_post = array(
+						      	'ID'           => $new_organizer_id,
+						      	'post_status'   => 'publish',
+						  	);
 							  
 							// Update the post into the database
-							  wp_update_post( $my_post );
+							wp_update_post( $my_post );
 
-
-							wp_redirect( add_query_arg( array( 'organizer_id' => absint( $new_event_id ) ), event_manager_get_permalink( 'submit_organizer_form' ) ) );
+							wp_redirect( add_query_arg( array( 'organizer_id' => absint( $new_organizer_id ) ), event_manager_get_permalink( 'submit_organizer_form' ) ) );
 							exit;
 						}
 					
@@ -369,7 +355,7 @@ class WP_Event_Manager_Shortcodes {
 						break;
 				}
 				
-				do_action( 'event_manager_my_organizer_do_action', $action, $organizer_ids );
+				do_action( 'event_manager_my_organizer_do_action', $action, $organizer_id );
 
 			} catch ( Exception $e ) {
 
@@ -380,8 +366,7 @@ class WP_Event_Manager_Shortcodes {
 
 	/**
 	 * Shortcode which lists the logged in user's organizers
-	 */
-	 
+	 */	 
 	public function organizer_dashboard( $atts ) {
 
 		if ( ! is_user_logged_in() ) {
@@ -454,7 +439,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Edit event form
 	 */
-
 	public function edit_organizer() {
 
 		global $event_manager;
@@ -465,7 +449,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Handles actions on venue dashboard
 	 */
-
 	public function venue_dashboard_handler() {
 
 		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'event_manager_my_venue_actions' ) ) {
@@ -509,14 +492,13 @@ class WP_Event_Manager_Shortcodes {
 					
 						if ( $new_venue_id ) {
 							// Puslish organizer
-							  $my_post = array(
-							      'ID'           => $new_venue_id,
-							      'post_status'   => 'publish',
-							  );
+							$my_post = array(
+							    'ID'           => $new_venue_id,
+							    'post_status'   => 'publish',
+							);
 							  
 							// Update the post into the database
-							  wp_update_post( $my_post );
-
+							wp_update_post( $my_post );
 
 							wp_redirect( add_query_arg( array( 'venue_id' => absint( $new_venue_id ) ), event_manager_get_permalink( 'submit_venue_form' ) ) );
 							exit;
@@ -542,8 +524,7 @@ class WP_Event_Manager_Shortcodes {
 
 	/**
 	 * Shortcode which lists the logged in user's venues
-	 */
-	 
+	 */	 
 	public function venue_dashboard( $atts ) {
 
 		if ( ! is_user_logged_in() ) {
@@ -616,7 +597,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Edit venue form
 	 */
-
 	public function edit_venue() {
 
 		global $event_manager;
@@ -631,7 +611,6 @@ class WP_Event_Manager_Shortcodes {
 	 * @param mixed $args
 	 * @return void
 	 */
-
 	public function output_events( $atts ) {
 
 		ob_start();
@@ -967,7 +946,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Output some content when no results were found
 	 */
-
 	public function output_no_results() {
 
 		get_event_manager_template( 'content-no-events-found.php' );
@@ -990,7 +968,6 @@ class WP_Event_Manager_Shortcodes {
 	 * @param  string $value
 	 * @return bool
 	 */
-
 	public function string_to_bool( $value ) {
 
 		return ( is_bool( $value ) && $value ) || in_array( $value, array( '1', 'true', 'yes' ) ) ? true : false;
@@ -999,7 +976,6 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Show results div
 	 */
-
 	public function event_filter_results() {
 
 		echo '<div class="showing_applied_filters"></div>';
@@ -1012,7 +988,6 @@ class WP_Event_Manager_Shortcodes {
 	 * @param array $args
 	 * @return string
 	 */
-
 	public function output_event( $atts ) {
 	    
 		extract( shortcode_atts( array(
@@ -1061,7 +1036,6 @@ class WP_Event_Manager_Shortcodes {
 	 * @param array $args
 	 * @return string
 	 */
-
 	public function output_event_summary( $atts ) {
 
 		extract( shortcode_atts( array(
@@ -1181,7 +1155,6 @@ class WP_Event_Manager_Shortcodes {
 	 * @param mixed $args
 	 * @return void
 	 */
-
 	public function output_past_events( $atts ) {
 
 		ob_start();
