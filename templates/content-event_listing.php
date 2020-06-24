@@ -100,7 +100,7 @@ $thumbnail  = get_event_thumbnail();
                         <div class="wpem-event-location">
                             <span class="wpem-event-location-text">
                                 <?php
-                                if (get_event_location() == 'Anywhere' || get_event_location() == ''): echo __('Online Event', 'wp-event-manager');
+                                if (get_event_location() == 'Online Event' || get_event_location() == ''): echo __('Online Event', 'wp-event-manager');
                                 else: display_event_location(false);
                                 endif;
                                 ?>

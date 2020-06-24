@@ -109,7 +109,7 @@ display_event_end_time ( '', '', true, $event );
 		                    <?php
 
 elseif ('event_location' === $key) :
-								if (get_event_location ( $event ) == 'Anywhere') :
+								if (get_event_location ( $event ) == 'Online Event') :
 									echo __ ( 'Online Event', 'wp-event-manager' );
 								else :
 									display_event_location ( false, $event );
