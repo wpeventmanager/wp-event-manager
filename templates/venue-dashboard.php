@@ -40,12 +40,17 @@
 										?>
 										<a  class="event-venue-count" ><?php echo sizeof($events);?></a>
 										<div class="venue-events-list">
-											<?php 
-											foreach ($events as  $event) { ?>
-												<span><?php echo get_the_title($event->ID);?></span>
-											<?php
-											}
-											?>
+											<?php $i=1; ?>
+											<?php foreach ($events as  $event) : ?>
+
+												<?php if($i > 1) : ?>
+													<span>, </span>
+												<?php endif; ?>
+
+												<span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
+
+												<?php $i++; ?>
+											<?php endforeach; ?>
 										</div>
 
 								<?php elseif ('venue_action' === $key ) :?>
