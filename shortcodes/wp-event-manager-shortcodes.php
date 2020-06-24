@@ -954,12 +954,12 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Output anchor tag close: single organizer details url
 	 */
-	public function organizer_more_info_link( $organizer_id ) {
-		$organizer_url = get_permalink( $organizer_id );
-		
-		if(isset($organizer_url) && !empty($organizer_url))
-		{			
-			printf( '<div class="wpem-organizer-page-url-button"><a href="%s" class="wpem-theme-button"><span>%s</span></a></div>', $organizer_url, __( 'More info', 'wp-event-manager' ) );
+	public function organizer_more_info_link( $organizer_id ) {		
+
+		if(isset($organizer_id) && !empty($organizer_id))
+		{	
+			$organizer_url = get_permalink( $organizer_id );		
+			printf( '<div class="wpem-organizer-page-url-button"><a href="%s" class="wpem-theme-button"><span>%s</span></a></div>',  get_permalink( $organizer_id ), __( 'More info', 'wp-event-manager' ) );
 		}
 	}
 	
