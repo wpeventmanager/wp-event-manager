@@ -954,7 +954,13 @@ class WP_Event_Manager_Shortcodes {
 	/**
 	 * Output anchor tag close: single organizer details url
 	 */
-	public function organizer_more_info_link( $organizer_id ) {		
+	public function organizer_more_info_link( $organizer_id ) {
+
+		global $post;
+		
+		if ( ! $post || 'event_listing' !== $post->post_type ) {
+			return;
+		}
 
 		if(isset($organizer_id) && !empty($organizer_id))
 		{	
