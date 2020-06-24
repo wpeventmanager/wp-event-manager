@@ -230,28 +230,23 @@ if ($is_friend_share): ?>
 								<div class="wpem-event-share-lists">
 				                    <?php do_action('single_event_listing_social_share_start');?>
 				                    <div class="wpem-social-icon wpem-facebook">
-										<a
-											href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink();?>"
+										<a href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink();?>"
 											title="Share this page on Facebook">Facebook</a>
 									</div>
 									<div class="wpem-social-icon wpem-twitter">
-										<a
-											href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink();?>"
+										<a href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink();?>"
 											title="Share this page on Twitter">Twitter</a>
 									</div>
 									<div class="wpem-social-icon wpem-linkedin">
-										<a
-											href="https://www.linkedin.com/shareArticle?mini=true&url=<?php display_event_permalink();?>&title=<?php display_event_title();?>&summary=&source=Event"
+										<a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php display_event_permalink();?>"
 											title="Share this page on Linkedin">Linkedin</a>
 									</div>
 									<div class="wpem-social-icon wpem-xing">
-										<a
-											href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink();?>"
+										<a href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink();?>"
 											title="Share this page on Xing">Xing</a>
 									</div>
 									<div class="wpem-social-icon wpem-pinterest">
-										<a
-											href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink();?>"
+										<a href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink();?>"
 											title="Share this page on Pinterest">Pinterest</a>
 									</div>
 			                   	 <?php do_action('single_event_listing_social_share_end');?>
