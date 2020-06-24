@@ -1942,6 +1942,7 @@ function get_all_event_venue() {
 function get_all_venue_array(){
 	$all_venue =get_all_event_venue();
 	$venue_array =array();
+	
 	if(!empty($all_venue))
 	{
 		foreach ($all_venue as $venue)
