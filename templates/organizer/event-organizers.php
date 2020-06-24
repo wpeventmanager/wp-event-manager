@@ -136,7 +136,9 @@
         <!-- ends class col-md-9 -->
 
     <?php else : ?>
-        <?php _e( 'You do not have any organizer.', 'wp-event-manager' ); ?>
+        <div class="wpem-alert wpem-alert-info">
+            <?php _e( 'You do not have any organizer.', 'wp-event-manager' ); ?>
+        </div>
     <?php endif; ?>
     
 </div>
