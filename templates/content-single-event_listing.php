@@ -83,7 +83,7 @@ if (is_array($event_banners) && sizeof($event_banners) > 1):
 							<div class="wpem-event-organizer">
 								<div class="wpem-event-organizer-name" itemprop="performer" content="<?php echo get_organizer_name(); ?>">
 									<?php do_action('single_event_organizer_name_start');?>
-									<?php printf(__('by %s', 'wp-event-manager'), get_organizer_name());?>
+									<?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true));?>
 									<?php do_action('single_event_organizer_name_end');?>
 								</div>
 							</div>
