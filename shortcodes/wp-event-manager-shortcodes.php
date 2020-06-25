@@ -1173,7 +1173,11 @@ class WP_Event_Manager_Shortcodes {
 
 			'orderby'                   => 'meta_value', // meta_value
 
-			'meta_key'  				=> 'event_start_date',			
+			'meta_key'  				=> 'event_start_date',
+
+			'location'                  => '',
+
+			'keywords'                  => '',
 
 			'show_pagination'           => true,
 
@@ -1199,11 +1203,12 @@ class WP_Event_Manager_Shortcodes {
 			'order'			=> $order,
 			'orderby'		=> $orderby,
 			'meta_key'		=> $meta_key,
-			'tax_query'		=> [
-				'relation'  => 'OR',
-			]
 		);
 
+		if(!empty($keywords))
+		{
+			$args_past['s'] = $keywords;
+		}
 
 		if(!empty($selected_categories))
 		{
@@ -1239,7 +1244,17 @@ class WP_Event_Manager_Shortcodes {
 			];
 		}
 
+		if(!empty($location))
+		{
+			$args_past['meta_query'][] = [
+				'key' => '_event_location',
+				'value'   => $location,
+				'type'    => 'IN'
+			];
+		}
+
 		$past_events = new WP_Query( $args_past );
+
 		wp_reset_query();
 
 		if ( $past_events->have_posts() ) : ?>
