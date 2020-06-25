@@ -1169,9 +1169,11 @@ class WP_Event_Manager_Shortcodes {
 
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
+			'order'                     => 'DESC',
+
 			'orderby'                   => 'meta_value', // meta_value
 
-			'order'                     => 'ASC',
+			'meta_key'  				=> 'event_start_date',			
 
 			'show_pagination'           => true,
 
@@ -1183,16 +1185,22 @@ class WP_Event_Manager_Shortcodes {
 		), $atts ) );
 
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+		if(substr( $meta_key, 0, 1 ) !== "_")
+		{
+			$meta_key = '_'.$meta_key;
+		}
 		
 		$args_past = array(
 			'post_type'  	=> 'event_listing',
 			'post_status'	=> array('expired'),
 			'posts_per_page' => $per_page,
 			'paged'			=> $paged,
-			'orderby'		=> $orderby,
 			'order'			=> $order,
+			'orderby'		=> $orderby,
+			'meta_key'		=> $meta_key,
 			'tax_query'		=> [
-				'relation' => 'OR',
+				'relation'  => 'OR',
 			]
 		);
 
