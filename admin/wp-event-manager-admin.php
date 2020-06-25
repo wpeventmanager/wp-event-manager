@@ -77,6 +77,8 @@ class WP_Event_Manager_Admin {
 				'i18n_timepicker_format' => WP_Event_Manager_Date_Time::get_timepicker_format(),
 				
 				'i18n_timepicker_step' => WP_Event_Manager_Date_Time::get_timepicker_step(),
+
+				'show_past_date' => apply_filters( 'event_manager_show_past_date', false ),
 				
 				) );
 			wp_enqueue_script('wp-event-manager-admin-js');
