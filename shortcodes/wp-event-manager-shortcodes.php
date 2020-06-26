@@ -1169,6 +1169,8 @@ class WP_Event_Manager_Shortcodes {
 
 		extract( shortcode_atts ( array(
 
+			'show_pagination'           => true,
+
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
 			'order'                     => 'DESC',
@@ -1180,8 +1182,6 @@ class WP_Event_Manager_Shortcodes {
 			'location'                  => '',
 
 			'keywords'                  => '',
-
-			'show_pagination'           => true,
 
 			'selected_datetime'         => '',
 
@@ -1214,23 +1214,23 @@ class WP_Event_Manager_Shortcodes {
 
 		if(!empty($selected_categories))
 		{
-			$categories = explode(',', $selected_categories);
+			$categories = explode(',', sanitize_text_field($selected_categories) );
 
 			$args_past['tax_query'][] = [
-				'taxonomy' => 'event_listing_category',
-				'field'   => 'slug',
-				'terms'   => $categories,
+				'taxonomy'	=> 'event_listing_category',
+				'field'   	=> 'name',
+				'terms'   	=> $categories,
 			];
 		}
 
 		if(!empty($selected_event_types))
 		{
-			$event_types = explode(',', $selected_event_types);
+			$event_types = explode(',', sanitize_text_field($selected_event_types) );
 
 			$args_past['tax_query'][] = [
-				'key' => 'event_listing_type',
-				'field'   => 'slug',
-				'terms'   => $event_types,
+				'taxonomy'	=> 'event_listing_type',
+				'field'   	=> 'name',
+				'terms'   	=> $event_types,
 			];
 		}
 
@@ -1249,9 +1249,9 @@ class WP_Event_Manager_Shortcodes {
 		if(!empty($location))
 		{
 			$args_past['meta_query'][] = [
-				'key' => '_event_location',
-				'value'   => $location,
-				'type'    => 'IN'
+				'key' 		=> '_event_location',
+				'value'  	=> $location,
+				'compare'	=> 'LIKE'
 			];
 		}
 
