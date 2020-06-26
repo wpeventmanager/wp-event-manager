@@ -97,12 +97,17 @@ class Elementor_Event_Tag extends Tag {
 		{
 			foreach ( $group_fields as $field_key => $field )
 			{
-				if(in_array($field['type'], ['text', 'term-select', 'radio', 'wp-editor', 'date', 'time']))
+				//if(in_array($field['type'], ['text', 'term-select', 'radio', 'wp-editor', 'date', 'time', 'select', 'multiselect']))
+				if( !in_array($field['type'], ['file', 'hidden']) )
 				{
-					$arrOption[$field_key] = $field['label'];	
+					$arrOption[$field_key] = $field['label'];
 				}
 			}
 		}
+
+		$arrOption['view_count'] = __('View Count', 'wp-event-manager');
+		$arrOption['event_ticket_type'] = __('Ticket Type', 'wp-event-manager');
+		$arrOption['event_share'] = __('Share Event', 'wp-event-manager');
 
 		$this->add_control(
 			'event_tag',
@@ -176,42 +181,7 @@ class Elementor_Event_Tag extends Tag {
 			}
 			else if($event_tag == 'registration')
 			{
-				$register = get_event_registration_method($event);
-				wp_enqueue_script( 'wp-event-manager-event-registration' );
-
-				if(isset($register->url) || isset($register->raw_email)):
-				
-					if($register->type == 'email')
-					{
-						$register_data = $register->raw_email;
-					}
-					else
-					{
-						$register_data = $register->url;
-					}
-
-					if($register_data != ''):
-
-					?>
-					<div class="event_registration registration">
-						<?php do_action( 'event_registration_start', $register ); ?>
-						<div class="wpem-event-sidebar-button wpem-registration-event-button">
-						<input type="button" class="registration_button wpem-theme-button" value="<?php _e( 'Register for event', 'wp-event-manager' ); ?>" />
-						</div>
-						<div class="registration_details wpem-register-event-form" style="display: none;">
-							<?php
-								/**
-								 * event_manager_registration_details_email or event_manager_registration_details_url hook
-								 */
-								do_action( 'event_manager_registration_details_' . $register->type, $register );
-							?>
-						</div>
-						<?php do_action( 'event_registration_end', $register ); ?>
-					</div>
-
-					<?php endif; ?>
-
-				<?php endif;
+				get_event_manager_template('event-registration.php');
 			}
 			else if($event_tag == 'event_start_date')
 			{
@@ -237,6 +207,10 @@ class Elementor_Event_Tag extends Tag {
 			{
 				display_organizer_name('', '', true, $event);
 			}
+			else if($event_tag == 'organizer_logo')
+			{
+				display_organizer_logo('full', '', $event);
+			}
 			else if($event_tag == 'organizer_description')
 			{
 				echo get_organizer_description($event);
@@ -244,6 +218,10 @@ class Elementor_Event_Tag extends Tag {
 			else if($event_tag == 'organizer_email')
 			{
 				display_organizer_email('', '', true, $event);
+			}
+			else if($event_tag == 'event_organizer_ids')
+			{
+				echo get_organizer_name($event, true);
 			}
 			else if($event_tag == 'organizer_website')
 			{
@@ -261,9 +239,67 @@ class Elementor_Event_Tag extends Tag {
 			{
 				display_organizer_facebook('', '', true, $event);
 			}
+			else if($event_tag == 'view_count')
+			{
+				$view_count = get_post_views_count($event);
+
+				if($view_count) : ?>
+					<i class="wpem-icon-eye"></i> <?php echo $view_count;?>
+				<?php endif;
+			}
+			else if($event_tag == 'event_ticket_type')
+			{
+				if (get_event_ticket_option($event)) : ?>
+                    <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text">
+                        <span class="wpem-event-ticket-type-text"><?php display_event_ticket_option('', '', true, $event); ?></span>
+                    </div>
+                <?php endif;
+			}
+			else if($event_tag == 'event_category')
+			{
+				display_event_category($event);
+			}
+			else if($event_tag == 'event_registration_deadline')
+			{
+				if(get_event_registration_end_date($event))
+				{
+					display_event_registration_end_date($event);
+				}
+			}
+			else if($event_tag == 'event_share')
+			{
+				?>
+				<div class="wpem-share-this-event">
+					<div class="wpem-event-share-lists">
+	                    <?php do_action('single_event_listing_social_share_start');?>
+	                    <div class="wpem-social-icon wpem-facebook">
+							<a href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink($event);?>"
+								title="Share this page on Facebook">Facebook</a>
+						</div>
+						<div class="wpem-social-icon wpem-twitter">
+							<a href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink($event);?>"
+								title="Share this page on Twitter">Twitter</a>
+						</div>
+						<div class="wpem-social-icon wpem-linkedin">
+							<a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php display_event_permalink($event);?>"
+								title="Share this page on Linkedin">Linkedin</a>
+						</div>
+						<div class="wpem-social-icon wpem-xing">
+							<a href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink($event);?>"
+								title="Share this page on Xing">Xing</a>
+						</div>
+						<div class="wpem-social-icon wpem-pinterest">
+							<a href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink($event);?>"
+								title="Share this page on Pinterest">Pinterest</a>
+						</div>
+                   	 <?php do_action('single_event_listing_social_share_end');?>
+                  	</div>
+				</div>
+				<?php
+			}
 			else
 			{
-				echo get_post_meta($post_id, $settings['event_field'], true);
+				echo get_post_meta($post_id, '_'.$settings['event_field'], true);
 			}
 		}
 		else
