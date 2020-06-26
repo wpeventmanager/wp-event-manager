@@ -908,7 +908,7 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 
 .organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-name:nth-child(odd) { background: #e8e8e8;  transition: all 0.2s; }
 
-.wpem-single-organizer-profile-wrapper { background: #EEEDF2; border-radius: 5px; padding: 25px; }
+.wpem-single-organizer-profile-wrapper { background: #EEEDF2; border-radius: 5px; padding: 25px; margin-bottom: 20px;}
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile { max-width: unset; margin: 0 auto; }
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-logo-wrapper { margin-bottom: 25px; text-align: center; }
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-logo-wrapper .wpem-organizer-logo { display: inline-block; margin: 0px auto; }
