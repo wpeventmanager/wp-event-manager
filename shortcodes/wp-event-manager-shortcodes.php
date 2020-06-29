@@ -53,6 +53,7 @@ class WP_Event_Manager_Shortcodes {
 		add_shortcode( 'event_register', array( $this, 'output_event_register' ) );
 
 		add_shortcode( 'event_organizers', array( $this, 'output_event_organizers' ) );
+		add_shortcode( 'event_organizer', array( $this, 'output_event_organizer' ) );
 	}
 
 	/**
@@ -1332,6 +1333,145 @@ class WP_Event_Manager_Shortcodes {
 		return ob_get_clean();
 	}
 
+
+	/**
+	 *  It is very simply a plugin that outputs a list of all organizers that have listed events on your website. 
+     *  Once you have installed " WP Event Manager - Organizer Profiles" simply visit "Pages > Add New". 
+     *  Once you have added a title to your page add the this shortcode: [event_organizer]
+     *  This will output a grouped and alphabetized list of all organizers.
+	 *
+	 * @access public
+	 * @param array $args
+	 * @return string
+	 */
+	public function output_event_organizer($atts)
+	{
+		extract( shortcode_atts( array(		    
+			'id' => '',
+		), $atts ) );
+
+		if ( ! $id )
+			return;
+
+		ob_start();
+
+		$args = array(
+			'post_type'   => 'event_organizer',
+			'post_status' => 'publish',
+			'p'           => $id
+		);
+
+		$organizers = new WP_Query( $args );
+
+		if(empty($organizers->posts))
+			return;
+
+		ob_start();
+
+		$organizer    = $organizers->posts[0];
+
+        $paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $per_page        = 10;
+        $today_date      = date("Y-m-d");
+        $organizer_id    = $organizer->ID;
+        $show_pagination = true;
+
+        $args_upcoming = array(
+            'post_type'      => 'event_listing',
+            'post_status'    => 'publish',
+            'posts_per_page' => $per_page,
+            'paged'          => $paged
+        );
+
+        $args_upcoming['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+                'key'     => '_event_organizer_ids',
+                'value'   => $organizer_id,
+                'compare' => 'LIKE',
+            ),
+            array(
+                'key'     => '_event_start_date',
+                'value'   => $today_date,
+                'type'    => 'date',
+                'compare' => '>'
+            )
+        );
+
+        $upcomingEvents = new WP_Query($args_upcoming);
+        wp_reset_query();
+
+        $args_current = $args_upcoming;
+
+        $args_current['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+                'key'     => '_event_organizer_ids',
+                'value'   => $organizer_id,
+                'compare' => 'LIKE',
+            ),
+            array(
+                'key'     => '_event_start_date',
+                'value'   => $today_date,
+                'type'    => 'date',
+                'compare' => '<='
+            ),
+            array(
+                'key'     => '_event_end_date',
+                'value'   => $today_date,
+                'type'    => 'date',
+                'compare' => '>='
+            )
+        );
+
+        $currentEvents = new WP_Query($args_current);
+        wp_reset_query();
+
+        $args_past = array(
+            'post_type'      => 'event_listing',
+            'post_status'    => array('expired', 'publish'),
+            'posts_per_page' => $per_page,
+            'paged'          => $paged
+        );
+
+        $args_past['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+                'key'     => '_event_organizer_ids',
+                'value'   => $organizer_id,
+                'compare' => 'LIKE',
+            ),
+            array(
+                'key'     => '_event_end_date',
+                'value'   => $today_date,
+                'type'    => 'date',
+                'compare' => '<'
+            )
+        );
+        $pastEvents              = new WP_Query($args_past);
+        wp_reset_query();
+
+        do_action('organizer_content_start');
+
+        wp_enqueue_script('wp-event-manager-organizer');
+
+        get_event_manager_template(
+            'content-single-event_organizer.php', array(
+            'organizer_id'    => $organizer_id,
+            'per_page'        => $per_page,
+            'show_pagination' => $show_pagination,
+            'upcomingEvents'  => $upcomingEvents,
+            'currentEvents'   => $currentEvents,
+            'pastEvents'      => $pastEvents,
+                ), 'wp-event-manager', EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
+        );
+
+        wp_reset_postdata();
+
+        do_action('organizer_content_end');
+
+        return ob_get_clean();
+	}
 
 }
 
