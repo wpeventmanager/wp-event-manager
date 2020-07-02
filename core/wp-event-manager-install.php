@@ -50,6 +50,13 @@ class WP_Event_Manager_Install {
 			update_option( 'event_manager_event_dashboard_page_id', $page_id );
 		}
 
+		// 3.1.14 change field option name
+		if ( !empty(get_option( 'event_manager_form_fields', true )) && empty(get_option( 'event_manager_submit_event_form_fields', false )) ) {
+			$all_fields = get_option( 'event_manager_form_fields', true );
+
+			update_option('event_manager_submit_event_form_fields', $all_fields);
+		}
+
 		delete_transient( 'wp_event_manager_addons_html' );
 
 		update_option( 'wp_event_manager_version', EVENT_MANAGER_VERSION );

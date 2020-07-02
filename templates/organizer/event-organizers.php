@@ -19,7 +19,7 @@
 <!-- shows organizer related data -->
 <div class="wpem-main wpem-row organizer-related-data-wrapper">
 
-    <?php if(count($orgnizers) > 0) : ?>
+    <?php if(count($organizers) > 0) : ?>
 
         <div class="wpem-col-md-3 organizer-related-data-counter">
             <div class="wpem-related-data-well">
@@ -28,7 +28,7 @@
                         <div href="#" class="list-group-item">
                             <div class="list-group-title"><?php _e('Organizers', 'wp-event-manager'); ?></div>
                             <div class="list-group-content">
-                                <h3 class="h-height"><?php echo count($orgnizers); ?></h3>
+                                <h3 class="h-height"><?php echo count($organizers); ?></h3>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
             <div class="wpem-row">
                 <?php
                 foreach (range('0', '9') as $letter) :
-                    if (!isset($orgnizers_array [$letter]))
+                    if (!isset($organizers_array [$letter]))
                         continue;
                     ?>				
                     <div id="show_<?php echo $letter; ?>"
@@ -65,7 +65,7 @@
                             <div class="organizer-name-list">
                                 <!-- shows the organizer name with number of event organizer posted -->
                                 <?php
-                                foreach ($orgnizers_array [$letter] as $organizer_name) :
+                                foreach ($organizers_array [$letter] as $organizer_name) :
                                     
                                     $count = get_event_organizer_count($organizer_id);
 
@@ -93,7 +93,7 @@
 
                 <?php
                 foreach (range('A', 'Z') as $letter) :
-                    if (!isset($orgnizers_array [$letter]))
+                    if (!isset($organizers_array [$letter]))
                         continue;
                     ?>
                     <!-- shows all the letter from which organizer will start -->
@@ -108,7 +108,7 @@
                             <div class="organizer-name-list">
                                 <!-- shows the organizer name with number of event organizer posted -->
                                 <?php
-                                foreach ($orgnizers_array [$letter] as $organizer_id => $organizer_name) :
+                                foreach ($organizers_array [$letter] as $organizer_id => $organizer_name) :
                                     
                                     $count = get_event_organizer_count($organizer_id);
 

@@ -255,8 +255,9 @@ class WP_Event_Manager_Field_Editor {
 				
 				if(isset($new_fields['event']))
 					update_option('event_manager_submit_event_form_fields',array('event' =>$new_fields['event']));
+				
 				if(isset($new_fields['organizer']))
-					update_option('event_manager_submit_organizer_form_fields',array('orgnizer' =>$new_fields['organizer']) );
+					update_option('event_manager_submit_organizer_form_fields',array('organizer' =>$new_fields['organizer']) );
 
 				if(isset($new_fields['venue']))
 					update_option('event_manager_submit_venue_form_fields',array('venue'=>$new_fields['venue']) );
@@ -265,8 +266,7 @@ class WP_Event_Manager_Field_Editor {
 				$result = update_option( 'event_manager_form_fields', $new_fields );
 			
 			}	  
-		}
-		 
+		}		 
 
 		echo '<div class="updated"><p>' . __( 'The fields were successfully saved.', 'wp-event-manager' ) . '</p></div>';
 		

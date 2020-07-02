@@ -7,7 +7,7 @@
 
         <div class="wpem-organizer-logo-wrapper">
             <div class="wpem-organizer-logo">
-                <a><?php display_organizer_logo($organizer); ?></a>
+                <a><?php display_organizer_logo('', '', $organizer); ?></a>
             </div>
             <?php /** <div class="wpem-organizer-logo-title wpem-heading-text"><a><span><?php echo $organizer_name; ?></span></a></div> */ ?>
         </div>

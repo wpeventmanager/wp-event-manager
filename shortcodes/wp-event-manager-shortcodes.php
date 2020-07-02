@@ -1303,15 +1303,15 @@ class WP_Event_Manager_Shortcodes {
 	 */
 	public function output_event_organizers($atts)
 	{
-		$orgnizers   = get_all_organizer_array();
+		$organizers   = get_all_organizer_array();
 		$countAllEvents = get_event_organizer_count();        
-        $orgnizers_array = [];
+        $organizers_array = [];
 
-        if(!empty($orgnizers))
+        if(!empty($organizers))
         {
-        	foreach ( $orgnizers as $orgnizer_id => $orgnizer )
+        	foreach ( $organizers as $organizer_id => $organizer )
         	{
-        		$orgnizers_array[ strtoupper( $orgnizer[0] ) ][$orgnizer_id] = $orgnizer;
+        		$organizers_array[ strtoupper( $organizer[0] ) ][$organizer_id] = $organizer;
         	}
         }        
          
@@ -1320,8 +1320,8 @@ class WP_Event_Manager_Shortcodes {
         get_event_manager_template( 
       		'event-organizers.php', 
       		array(
-				'orgnizers'			=> $orgnizers,
-				'orgnizers_array'   => $orgnizers_array,
+				'organizers'		=> $organizers,
+				'organizers_array'  => $organizers_array,
             	'countAllEvents'    => $countAllEvents,
 			), 
 			'wp-event-manager', 

@@ -61,8 +61,8 @@ class WP_Event_Manager_Settings {
 								array(
 											'name'       => 'enable_event_organizer',
 											'std'        => '1',
-											'label'      => __( 'Enable oganizer', 'wp-event-manager' ),
-											'cb_label'   => __( 'Display orgnizer on events.', 'wp-event-manager' ),
+											'label'      => __( 'Enable organizer', 'wp-event-manager' ),
+											'cb_label'   => __( 'Display organizer on events.', 'wp-event-manager' ),
 											'desc'       => '',
 											'type'       => 'checkbox',
 											'attributes' => array(),

@@ -319,9 +319,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		) );
 
 		//unset organizer or venue if disabled
-		$orgnizer_enabled = get_option( 'enable_event_organizer');
+		$organizer_enabled = get_option( 'enable_event_organizer');
 		$organizer_submit_page = get_option('event_manager_submit_organizer_form_page_id',false);
-		if(!$orgnizer_enabled || !$organizer_submit_page)
+		if(!$organizer_enabled || !$organizer_submit_page)
 			unset( $this->fields['organizer']['event_organizer_ids'] );
 
 		$venue_enabled = get_option( 'enable_event_venue');
