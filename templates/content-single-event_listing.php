@@ -144,6 +144,10 @@ do_action('set_single_listing_view_count');
                                 {
                                     get_event_manager_template('event-registration.php');
                                 }
+                                else
+                                {
+                                    echo '<div class="wpem-alert wpem-alert-warning">' . __( 'Event registration closed.', 'wp-event-manager' ) . '</div>';
+                                }
                                 ?>
 
                                 <?php do_action('single_event_listing_button_end'); ?>
