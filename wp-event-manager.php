@@ -88,7 +88,6 @@ class WP_Event_Manager {
 		include( 'core/wp-event-manager-install.php' );
 		include( 'core/wp-event-manager-post-types.php' );
 		include( 'core/wp-event-manager-ajax.php' );
-		include( 'core/wp-event-manager-api.php' );
 		include( 'core/wp-event-manager-geocode.php' );
 		include( 'core/wp-event-manager-filters.php' );
 		include( 'core/wp-event-manager-cache-helper.php' );
