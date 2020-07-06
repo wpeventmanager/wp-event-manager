@@ -144,7 +144,7 @@ do_action('set_single_listing_view_count');
                                 {
                                     get_event_manager_template('event-registration.php');
                                 }
-                                else
+                                else if(strtotime($registration_end_date) < $current_timestamp)
                                 {
                                     echo '<div class="wpem-alert wpem-alert-warning">' . __( 'Event registration closed.', 'wp-event-manager' ) . '</div>';
                                 }
