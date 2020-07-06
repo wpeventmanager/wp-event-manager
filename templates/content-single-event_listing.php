@@ -210,7 +210,7 @@ do_action('set_single_listing_view_count');
                                         <?php if (get_event_venue_name()) : ?>
                                             <div class="clearfix">&nbsp;</div>
                                             <h3 class="wpem-heading-text"><?php _e('Venue', 'wp-event-manager'); ?></h3>
-                                            <?php display_event_venue_name(); ?>                  	
+                                            <?php echo get_event_venue_name($post, true); ?>                  	
                                         <?php endif; ?>
                                     </div>
 

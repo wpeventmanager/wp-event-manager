@@ -34,8 +34,11 @@ class WP_Event_Manager_Post_Types {
 		add_action( 'init', array( $this, 'register_post_types' ), 0 );
 
 		add_filter( 'admin_head', array( $this, 'admin_head' ) );
+
 		add_filter( 'the_content', array( $this, 'event_content' ) );
 		add_filter( 'the_content', array( $this, 'organizer_content' ) );
+		add_filter( 'the_content', array( $this, 'venue_content' ) );
+
 		add_action( 'event_manager_check_for_expired_events', array( $this, 'check_for_expired_events' ) );
 		add_action( 'event_manager_delete_old_previews', array( $this, 'delete_old_previews' ) );
 
@@ -683,6 +686,49 @@ class WP_Event_Manager_Post_Types {
 		add_filter( 'the_content', array( $this, 'organizer_content' ) );
 
 		return apply_filters( 'event_manager_single_organizer_content', $content, $post );
+	}
+
+		/**
+	 * Add extra content when showing venue content
+	 */
+	public function venue_content( $content ) {
+
+		global $post;
+
+		if ( ! is_singular( 'event_venue' ) || ! in_the_loop() ) 
+		{
+			return $content;
+		}
+
+		remove_filter( 'the_content', array( $this, 'venue_content' ) );
+
+		if ( 'event_venue' === $post->post_type ) {
+
+			ob_start();
+
+			$venue_id = get_the_ID();
+
+			do_action( 'venue_content_start' );
+
+			get_event_manager_template( 
+			    'content-single-event_venue.php', 
+			    array(
+			        'venue_id'	=> $venue_id,
+			    ), 
+			    'wp-event-manager', 
+			    EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
+			);
+
+			wp_reset_postdata();
+
+			do_action( 'venue_content_end' );
+
+			$content = ob_get_clean();
+		}
+
+		add_filter( 'the_content', array( $this, 'venue_content' ) );
+
+		return apply_filters( 'event_manager_single_venue_content', $content, $post );
 	}
 
 	/**

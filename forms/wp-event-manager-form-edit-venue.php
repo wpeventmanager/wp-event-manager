@@ -89,7 +89,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 						$this->fields[ $group_key ][ $key ]['value'] = $venue->post_title;
 
-					} elseif ( 'event_description' === $key ) {
+					} elseif ( 'venue_description' === $key ) {
 
 						$this->fields[ $group_key ][ $key ]['value'] = $venue->post_content;
 
