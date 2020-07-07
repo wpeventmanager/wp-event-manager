@@ -51,8 +51,11 @@ class WP_Event_Manager_Install {
 		}
 
 		// 3.1.14 change field option name
-		if ( !empty(get_option( 'event_manager_form_fields', true )) && empty(get_option( 'event_manager_submit_event_form_fields', false )) ) {
+		if ( !empty(get_option( 'event_manager_form_fields', true )) && empty(get_option( 'event_manager_submit_event_form_fields', false )) ) 
+		{
 			$all_fields = get_option( 'event_manager_form_fields', true );
+
+			unset($all_fields['event']['event_address']);
 
 			update_option('event_manager_submit_event_form_fields', $all_fields);
 		}

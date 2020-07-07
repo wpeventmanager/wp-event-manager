@@ -163,7 +163,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
 					'priority'    => 5
 				),
-					
+				/*	
 				'event_address' => array(
 					'label'       => __( 'Address', 'wp-event-manager' ),
 					'type'        => 'text',
@@ -171,7 +171,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => __( 'Please enter street name and number', 'wp-event-manager' ),
 					'priority'    => 6
 				),
-					
+				*/	
 				'event_pincode' => array(
 					'label'       => __( 'Zip Code', 'wp-event-manager' ),
 					'type'        => 'text',
