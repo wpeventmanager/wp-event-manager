@@ -20,7 +20,7 @@ WP Event Manager is a **lightweight, scalable and full-featured event management
 
 * [Demo](https://wp-eventmanager.com)
 * [Add-ons](http://www.wp-eventmanager.com/plugins/)
-* [Documentation](http://www.wp-eventmanager.com/documentation/)
+* [Documentation](https://wp-eventmanager.com/help-center/)
 
 [youtube https://www.youtube.com/watch?v=CPK0P7ToRgM]
 
