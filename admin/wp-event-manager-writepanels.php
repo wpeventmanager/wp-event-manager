@@ -880,6 +880,9 @@ class WP_Event_Manager_Writepanels {
 		
 		//covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+
+		update_post_meta( $post_id, '_organizer_name', sanitize_text_field( $_POST[ 'post_title' ] ) );
+		update_post_meta( $post_id, '_organizer_description', sanitize_text_field( $_POST[ 'content' ] ) );
 		
 		// Save fields
 		foreach ( $this->organizer_listing_fields() as $key => $field ) {
@@ -1023,6 +1026,9 @@ class WP_Event_Manager_Writepanels {
 		
 		//covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+
+		update_post_meta( $post_id, '_venue_name', sanitize_text_field( $_POST[ 'post_title' ] ) );
+		update_post_meta( $post_id, '_venue_description', sanitize_text_field( $_POST[ 'content' ] ) );
 		
 		// Save fields
 		foreach ( $this->venue_listing_fields() as $key => $field ) 
