@@ -59,40 +59,41 @@ class WP_Event_Manager_Settings {
 							array(
 
 								array(
-											'name'       => 'enable_event_organizer',
-											'std'        => '1',
-											'label'      => __( 'Enable organizer', 'wp-event-manager' ),
-											'cb_label'   => __( 'Display organizer on events.', 'wp-event-manager' ),
-											'desc'       => '',
-											'type'       => 'checkbox',
-											'attributes' => array(),
-									),
+										'name'       => 'enable_event_organizer',
+										'std'        => '1',
+										'label'      => __( 'Enable organizer', 'wp-event-manager' ),
+										'cb_label'   => __( 'Display organizer on events.', 'wp-event-manager' ),
+										'desc'       => '',
+										'type'       => 'checkbox',
+										'attributes' => array(),
+								),
+								/*
 								array(
-											'name'       => 'enable_event_venue',
-											'std'        => '1',
-											'label'      => __( 'Enable venue', 'wp-event-manager' ),
-											'cb_label'   => __( 'Display venue on events.', 'wp-event-manager' ),
-											'desc'       => '',
-											'type'       => 'checkbox',
-											'attributes' => array(),
-									),
-
-									array(
-											'name'       => 'event_manager_delete_data_on_uninstall',
-											'std'        => '0',
-											'label'      => __( 'Delete Data On Uninstall', 'wp-event-manager' ),
-											'cb_label'   => __( 'Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be restored.', 'wp-event-manager' ),
-											'desc'       => '',
-											'type'       => 'checkbox',
-											'attributes' => array(),
-									),
-									array(
-											'name'       => 'event_manager_google_maps_api_key',
-											'std'        => '',
-											'label'      => __( 'Google API Key', 'wp-event-manager' ),
-											'desc'       => sprintf( __( 'If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
-											'attributes' => array()
-									)
+										'name'       => 'enable_event_venue',
+										'std'        => '1',
+										'label'      => __( 'Enable venue', 'wp-event-manager' ),
+										'cb_label'   => __( 'Display venue on events.', 'wp-event-manager' ),
+										'desc'       => '',
+										'type'       => 'checkbox',
+										'attributes' => array(),
+								),
+								*/
+								array(
+										'name'       => 'event_manager_delete_data_on_uninstall',
+										'std'        => '0',
+										'label'      => __( 'Delete Data On Uninstall', 'wp-event-manager' ),
+										'cb_label'   => __( 'Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be restored.', 'wp-event-manager' ),
+										'desc'       => '',
+										'type'       => 'checkbox',
+										'attributes' => array(),
+								),
+								array(
+										'name'       => 'event_manager_google_maps_api_key',
+										'std'        => '',
+										'label'      => __( 'Google API Key', 'wp-event-manager' ),
+										'desc'       => sprintf( __( 'If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
+										'attributes' => array()
+								)
 							)
 					),
 				'event_listings' => array(
@@ -602,6 +603,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'type'      => 'page'
 					    ),
+					    /*
 						array(
 
 							'name' 		=> 'event_manager_submit_venue_form_page_id',
@@ -626,6 +628,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'type'      => 'page'
 					    ),
+					    */
 
 					)
 				),
