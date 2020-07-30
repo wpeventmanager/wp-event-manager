@@ -666,9 +666,11 @@ class WP_Event_Manager_Shortcodes {
 
 			'selected_event_type'       => '',
 
-			'selected_ticket_price'      => '',
+			'selected_ticket_price'     => '',
 		    
-		    'layout_type'      => 'all',
+		    'layout_type'      			=> 'all',
+
+		    'event_online'      		=> '',
 
 		) ), $atts ) );
 
@@ -819,7 +821,9 @@ class WP_Event_Manager_Shortcodes {
 
 										'location' => $location, 
 
-										'keywords' => $keywords,						
+										'keywords' => $keywords,
+
+										'event_online' => $event_online,
 										
 									      ));
 
@@ -844,9 +848,9 @@ class WP_Event_Manager_Shortcodes {
 
 				'search_categories' => $categories,
 
-				'search_event_types'       => $event_types,
+				'search_event_types'	=> $event_types,
 
-				'search_ticket_prices'       => $ticket_prices,
+				'search_ticket_prices'  => $ticket_prices,
 
 				'orderby'           => $orderby,
 
@@ -856,7 +860,9 @@ class WP_Event_Manager_Shortcodes {
 
 				'featured'          => $featured,
 
-				'cancelled'         => $cancelled
+				'cancelled'         => $cancelled,
+
+				'event_online'    	=> $event_online,
 
 			) ) );
 
@@ -921,7 +927,9 @@ class WP_Event_Manager_Shortcodes {
 
 			'event_types'     => !empty($selected_event_type) ? implode( ',', $selected_event_type) : '',
 
-			'ticket_prices'   => !empty($selected_ticket_price) ? $selected_ticket_price : ''
+			'ticket_prices'   => !empty($selected_ticket_price) ? $selected_ticket_price : '',
+
+			'event_online'    => $event_online,
 		);
 
 		if ( ! is_null( $featured ) ) {

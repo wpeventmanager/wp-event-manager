@@ -193,25 +193,25 @@ class WP_Event_Manager_Ajax {
 
 		$args = array(
 
-			'search_location'    => $search_location,
+			'search_location'    	=> $search_location,
 
-			'search_keywords'    => $search_keywords,
+			'search_keywords'    	=> $search_keywords,
 
-			'search_datetimes'  => $search_datetimes,
+			'search_datetimes'  	=> $search_datetimes,
 
-			'search_categories'  => $search_categories,
+			'search_categories'  	=> $search_categories,
 
-			'search_event_types'  => $search_event_types,
+			'search_event_types'  	=> $search_event_types,
 
-			'search_ticket_prices'  => $search_ticket_prices,			
+			'search_ticket_prices'	=> $search_ticket_prices,			
 
-			'orderby'            => $orderby,
+			'orderby'            	=> $orderby,
 
-			'order'              => sanitize_text_field( $_REQUEST['order'] ),
+			'order'              	=> sanitize_text_field( $_REQUEST['order'] ),
 
-			'offset'             => ( absint( $_REQUEST['page'] ) - 1 ) * absint( $_REQUEST['per_page'] ),
+			'offset'             	=> ( absint( $_REQUEST['page'] ) - 1 ) * absint( $_REQUEST['per_page'] ),
 
-			'posts_per_page'     => absint( $_REQUEST['per_page'] )
+			'posts_per_page'     	=> absint( $_REQUEST['per_page'] ),
 		);
 
 		if ( isset( $_REQUEST['cancelled'] ) && ( $_REQUEST['cancelled'] === 'true' || $_REQUEST['cancelled'] === 'false' ) ) {
@@ -224,6 +224,11 @@ class WP_Event_Manager_Ajax {
 			$args['featured'] = $_REQUEST['featured'] === 'true' ? true : false;
 
 			$args['orderby']  = 'featured' === $orderby ? 'date' : $orderby;
+		}
+
+		if ( isset( $_REQUEST['event_online'] ) && ( $_REQUEST['event_online'] === 'true' || $_REQUEST['event_online'] === 'false' ) ) {
+
+			$args['event_online'] = $_REQUEST['event_online'] === 'true' ? true : false;
 		}
 
 		ob_start();

@@ -137,6 +137,18 @@ function get_event_listings( $args = array() ) {
 		);
 	}
 
+	if ( isset($args['event_online']) && !is_null( $args['event_online'] ) ) {
+
+		$query_args['meta_query'][] = array(
+
+			'key'     => '_event_online',
+
+			'value'   => 'yes',
+
+			'compare' => '='
+		);
+	}
+
 	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
 	    $date_search=array();
