@@ -813,25 +813,34 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 				}
 				elseif( $key ==='event_end_date' ){
-						//save event end date according to mysql date format with event end time
-						if(isset( $values[ $group_key ][ $key ] ) && isset( $values[ $group_key ][ 'event_end_time' ] )){
-							
-							if(isset( $values[ $group_key ][ 'event_end_time' ] ) && !empty($values[ $group_key ][ 'event_end_time' ] ))
-								$end_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_end_time' ] );
-							else
-								$end_time =  '';
-							
-							//combine event start date value with event start time 
-							$date =  $values[ $group_key ][ $key ].' '.$end_time ;
-
-	        				 //Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
-							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-
-							update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
-						}
+					//save event end date according to mysql date format with event end time
+					if(isset( $values[ $group_key ][ $key ] ) && isset( $values[ $group_key ][ 'event_end_time' ] )){
+						
+						if(isset( $values[ $group_key ][ 'event_end_time' ] ) && !empty($values[ $group_key ][ 'event_end_time' ] ))
+							$end_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_end_time' ] );
 						else
-							update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+							$end_time =  '';
+						
+						//combine event start date value with event start time 
+						$date =  $values[ $group_key ][ $key ].' '.$end_time ;
+
+        				 //Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
+						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+
+						update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
+					}
+					else
+					{
+						update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+					}
+
+					/*
+					* when user change event data from front side than we update expiry date as per event end date
+					*/
+					$event_expiry_date = get_event_expiry_date($this->event_id);
+					update_post_meta( $this->event_id, '_event_expiry_date', $event_expiry_date );
+
 				}
 				elseif ( $field['type'] == 'date' ) {
 					$date = $values[ $group_key ][ $key ];	
