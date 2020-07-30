@@ -202,7 +202,7 @@ class WP_Event_Manager_Setup {
 
 				<p><?php _e( 'This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events.', 'wp-event-manager' ); ?></p>
 
-				<p><?php printf( __( 'If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help.', 'wp-event-manager' ), '<a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/">', '</a>' ); ?></p>
+				<p><?php printf( __( 'If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/knowledge-base/install-wp-event-manager/">', '</a>' ); ?></p>
 
 				<p class="submit">
 
@@ -218,7 +218,7 @@ class WP_Event_Manager_Setup {
 
 				<h3><?php _e( 'Page Setup', 'wp-event-manager' ); ?></h3>
 
-				<p><?php printf( __( '<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s.', 'wp-event-manager' ), '<a href="http://codex.wordpress.org/Shortcode" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="http://codex.wordpress.org/Pages" target="_blank" class="help-page-link">', '<a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/" target="_blank" class="help-page-link">' ); ?></p>
+				<p><?php printf( __( '<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s.', 'wp-event-manager' ), '<a href="http://codex.wordpress.org/Shortcode" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="http://codex.wordpress.org/Pages" target="_blank" class="help-page-link">', '<a href="https://wp-eventmanager.com/knowledge-base/the-event-dashboard/" target="_blank" class="help-page-link">' ); ?></p>
 
 				<form action="<?php echo esc_url( add_query_arg( 'step', 3 ) ); ?>" method="post">
 					<?php wp_nonce_field( 'step_3', 'setup_wizard' ); ?>
@@ -314,7 +314,7 @@ class WP_Event_Manager_Setup {
 
 					<?php else : ?>
 
-						<li><a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/the-event-submission-form/"><?php _e( 'Find out more about the front-end event submission form', 'wp-event-manager' ); ?></a></li>
+						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-submission-form/"><?php _e( 'Find out more about the front-end event submission form', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
@@ -324,7 +324,7 @@ class WP_Event_Manager_Setup {
 
 					<?php else : ?>
 
-						<li><a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/the-event-listings/"><?php _e( 'Add the [events] shortcode to a page to list events', 'wp-event-manager' ); ?></a></li>
+						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-listings/"><?php _e( 'Add the [events] shortcode to a page to list events', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
@@ -334,13 +334,13 @@ class WP_Event_Manager_Setup {
 
 					<?php else : ?>
 
-						<li><a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/the-event-dashboard/"><?php _e( 'Find out more about the front-end event dashboard', 'wp-event-manager' ); ?></a></li>
+						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-dashboard/"><?php _e( 'Find out more about the front-end event dashboard', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
 				</ul>
 
-				<p><?php printf( __( 'And don\'t forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!', 'wp-event-manager' ), '<a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/">', '</a>', '<a href="https://wordpress.org/support/plugin/wp-event-manager">' ); ?></p>
+				<p><?php printf( __( 'And don\'t forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>', '<a href="https://wordpress.org/support/plugin/wp-event-manager">' ); ?></p>
 
 				<div class="wp-event-manager-support-the-plugin">
 
@@ -354,7 +354,7 @@ class WP_Event_Manager_Setup {
 
 						<li class="icon-localization"><a href="https://translate.wordpress.org/projects/wp-plugins/wp-event-manager"><?php _e( 'Contribute a localization', 'wp-event-manager' ); ?></a></li>
 
-						<li class="icon-code"><a href="http://www.wp-eventmanager.com/forum/"><?php _e( 'Contribute code or report a bug', 'wp-event-manager' ); ?></a></li>
+						<li class="icon-code"><a href="https://wp-eventmanager.com/help-center/"><?php _e( 'Contribute code or report a bug', 'wp-event-manager' ); ?></a></li>
 
 						<li class="icon-forum"><a href="https://wordpress.org/support/plugin/wp-event-manager"><?php _e( 'Help other users on the forums', 'wp-event-manager' ); ?></a></li>
 
