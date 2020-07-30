@@ -41,6 +41,8 @@ class WP_Event_Manager_Writepanels {
 
 		add_action( 'event_manager_save_organizer_listing', array( $this, 'save_organizer_listing_data' ), 20, 2 );
 		add_action( 'event_manager_save_venue_listing', array( $this, 'save_venue_listing_data' ), 20, 2 );
+
+		add_action( 'before_delete_post', array( $this, 'delete_event_with_attachment' ), 10);
 	}
 
 	/**
@@ -1075,6 +1077,51 @@ class WP_Event_Manager_Writepanels {
 				}
 			}
 		}
+	}
+
+
+		/**
+	 * wpem_delete_event_with_attachment function.
+	 *
+	 * @param $post_id
+	 * @access public
+	 * @return void
+	 */
+	public function delete_event_with_attachment($post_id) {
+		if( get_post_type($post_id) != 'event_listing' )
+			return;
+
+		$event_banner = get_event_banner($post_id);
+
+		if(!empty($event_banner))
+		{
+			$wp_upload_dir = wp_get_upload_dir();
+
+			$baseurl = $wp_upload_dir['baseurl'] . '/';
+
+			foreach ($event_banner as $banner) 
+			{
+				$wp_attached_file = str_replace($baseurl, '', $banner);
+
+				$args = array(
+			        'meta_key'         	=> '_wp_attached_file',
+			        'meta_value'       	=> $wp_attached_file,
+			        'post_type'        	=> 'attachment',
+			        'posts_per_page'	=> 1,
+			    );
+
+				$attachments = get_posts($args);
+
+				if(!empty($attachments))
+				{
+					foreach ($attachments as $attachment) 
+					{
+						wp_delete_attachment($attachment->ID);
+					}
+				}
+			}
+		}
+
 	}
 
 }
