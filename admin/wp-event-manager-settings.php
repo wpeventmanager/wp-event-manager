@@ -683,7 +683,7 @@ class WP_Event_Manager_Settings {
 				
 										'label' 	=> __( 'Date Format', 'wp-event-manager' ),
 				
-										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://codex.wordpress.org/Formatting_Date_and_Time'),
+										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://wordpress.org/support/article/formatting-date-and-time/'),
 				
 										'type'      => 'text',
 								),
