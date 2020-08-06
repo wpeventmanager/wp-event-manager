@@ -1834,11 +1834,11 @@ msgid "Add the [events] shortcode to a page to list events"
 msgstr "Ajouter le code court [events] à une page pour lister les évènement"
 
 #: admin/wp-event-manager-setup.php:313
-msgid "Add a event via the front-end"
+msgid "Add an event via the front-end"
 msgstr "Ajouter un évènement depuis l’interface publique"
 
 #: admin/wp-event-manager-setup.php:309
-msgid "Add a event via the back-end"
+msgid "Add an event via the back-end"
 msgstr "Ajouter un évènement depuis l’interface d’administration"
 
 #: admin/wp-event-manager-setup.php:277
@@ -1951,7 +1951,7 @@ msgid "Registration via \"%s\" listing on %s"
 msgstr "Inscription via « %s » liste sur %s"
 
 #: wp-event-manager-functions.php:1353
-msgid "Choose a event type&hellip;"
+msgid "Choose an event type&hellip;"
 msgstr "Choisir un type d’évènement…"
 
 #: wp-event-manager-functions.php:1303

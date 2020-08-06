@@ -572,7 +572,7 @@ msgid "Add %s"
 msgstr "Добавяне на %s"
 
 #: admin/wp-event-manager-setup.php:311
-msgid "Add a event via the front-end"
+msgid "Add an event via the front-end"
 msgstr "Добавяне на събитие"
 
 #: admin/wp-event-manager-writepanels.php:546
@@ -705,7 +705,7 @@ msgid "Choose a category&hellip;"
 msgstr "Изберете категория"
 
 #: wp-event-manager-functions.php:1138
-msgid "Choose a event type&hellip;"
+msgid "Choose an event type&hellip;"
 msgstr "Изберете друг тип събитие"
 
 #: admin/wp-event-manager-settings.php:491
@@ -1148,7 +1148,7 @@ msgid "And don't forget, if you need any more help using <em>WP Event Manager</e
 msgstr "И не забравяйте, ако имате нужда от помощ за използването на <em>WP Event Manager</em> можете да се консултирате с %1$sдокументацията%2$s или %3$sда пишете във форума%2$s!"
 
 #: admin/wp-event-manager-setup.php:307
-msgid "Add a event via the back-end"
+msgid "Add an event via the back-end"
 msgstr "Добавяне на събитие през администрацията"
 
 #: admin/wp-event-manager-setup.php:325

@@ -1106,11 +1106,11 @@ msgid "Tweak the plugin settings"
 msgstr ""
 
 #: admin/wp-event-manager-setup.php:309
-msgid "Add a event via the back-end"
+msgid "Add an event via the back-end"
 msgstr ""
 
 #: admin/wp-event-manager-setup.php:313
-msgid "Add a event via the front-end"
+msgid "Add an event via the front-end"
 msgstr ""
 
 #: admin/wp-event-manager-setup.php:317
@@ -2389,7 +2389,7 @@ msgid "Choose a category&hellip;"
 msgstr ""
 
 #: wp-event-manager-functions.php:1365
-msgid "Choose a event type&hellip;"
+msgid "Choose an event type&hellip;"
 msgstr ""
 
 #: wp-event-manager-functions.php:1567
