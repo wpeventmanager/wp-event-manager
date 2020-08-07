@@ -9,6 +9,6 @@
 	
 	<a href="http://compose.mail.yahoo.com/?to=<?php echo $register->email; ?>&subject=<?php echo urlencode( $register->subject ); ?>" target="_blank" class="event_registration_email"><?php _e('Yahoo','wp-event-manager');?></a> / 
 	
-	<a href="http://mail.live.com/mail/EditMessageLight.aspx?n=&to=<?php echo $register->email; ?>&subject=<?php echo urlencode( $register->subject ); ?>" target="_blank" class="event_registration_email"><?php _e('Outlook','wp-event-manager');?></a>
+	<a href="https://outlook.live.com/mail/0/deeplink/compose?to=<?php echo $register->email; ?>&subject=<?php echo urlencode( $register->subject ); ?>" target="_blank" class="event_registration_email"><?php _e('Outlook','wp-event-manager');?></a>
 
 </p>
