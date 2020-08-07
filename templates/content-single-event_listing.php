@@ -31,7 +31,7 @@ do_action('set_single_listing_view_count');
                 <div class="wpem-single-event-header-top">
                     <div class="wpem-row">
 
-                        <div class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-images">
+                        <div class="wpem-col-xs-12 wpem-col-sm-12 wpem-col-md-12 wpem-single-event-images">
                             <?php
                             $event_banners = get_event_banner();
                             if (is_array($event_banners) && sizeof($event_banners) > 1):
@@ -51,70 +51,54 @@ do_action('set_single_listing_view_count');
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="wpem-col-xs-12 wpem-col-md-4 wpem-single-event-short-info">
-                            <div class="wpem-event-date">
-                                <div class="wpem-event-date-type">
-                                    <?php if (isset($start_date) && isset($end_date) && $start_date != $end_date): ?>
-                                        <?php if (!empty($start_date)) : ?>
-                                            <div class="wpem-from-date">
-                                                <div class="wpem-date"><?php echo date_i18n('d', strtotime($start_date)); ?></div>
-                                                <div class="wpem-month"><?php echo date_i18n('M', strtotime($start_date)); ?></div>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php
-                                        if (!empty($end_date)) : ?>
-                                            <div class="wpem-to-date">
-                                                <div class="wpem-date-separator">-</div>
-                                                <div class="wpem-date"><?php echo date_i18n('d', strtotime($end_date)); ?></div>
-                                                <div class="wpem-month"><?php echo date_i18n('M', strtotime($end_date)); ?></div>
-                                            </div>
-                                        <?php endif; ?>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="wpem-event-details">
-                                <div class="wpem-event-title">
-                                    <h3 class="wpem-heading-text"><?php the_title(); ?></h3>
-                                </div>
-                                <div class="wpem-event-organizer">
-                                    <div class="wpem-event-organizer-name">
-                                        <?php do_action('single_event_organizer_name_start'); ?>
-                                        <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true)); ?>
-                                        <?php do_action('single_event_organizer_name_end'); ?>
-                                    </div>
-                                </div>
-                                <?php
-                                $view_count = get_post_views_count($post);
-                                if ($view_count) : ?>
-                                    <div class="clearfix">&nbsp;</div>
-                                    <div><i class="wpem-icon-eye"></i> <?php printf(__('%d people viewed this event.', 'wp-event-manager'), $view_count); ?></div>
-                                <?php endif; ?>
-
-                                <?php if (get_event_ticket_price()) : ?>
-                                    <div class="clearfix">&nbsp;</div>
-                                    <div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price('', '', true, $post); ?></div>
-                                <?php endif; ?>
-
-                                <?php if (get_event_ticket_option()) : ?>
-                                    <div class="clearfix">&nbsp;</div>
-                                    <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
-                                <?php endif; ?>
-
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="wpem-single-event-body">
                     <div class="wpem-row">
                         <div class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-left-content">
+                            <div class="wpem-single-event-short-info">                        
+                                <div class="wpem-event-details">
+                                    <div class="wpem-event-title">
+                                        <h3 class="wpem-heading-text"><?php the_title(); ?></h3>
+                                    </div>
+
+                                    <div class="wpem-event-organizer">
+                                        <div class="wpem-event-organizer-name">
+                                            <?php do_action('single_event_organizer_name_start'); ?>
+                                            <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true)); ?>
+                                            <?php do_action('single_event_organizer_name_end'); ?>
+                                        </div>
+                                    </div>
+
+                                    <?php
+                                    $view_count = get_post_views_count($post);
+                                    if ($view_count) : ?>                                        
+                                        <div class="wpem-viewed-event wpem-tooltip wpem-tooltip-bottom"><i class="wpem-icon-eye"></i><?php printf(__(' %d', 'wp-event-manager'), $view_count); ?>                                        
+                                            <span class="wpem-tooltiptext"><?php printf(__('%d people viewed this event.', 'wp-event-manager'), $view_count); ?></span>
+                                        </div>                                        
+                                    <?php endif; ?>
+
+                                    <?php if (get_event_ticket_price()) : ?>                                        
+                                        <div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price('', '', true, $post); ?></div>
+                                    <?php endif; ?>
+
+                                    <?php if (get_event_ticket_option()) : ?>                                        
+                                        <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
+                                    <?php endif; ?>
+                                    </div>
+                            </div>
+
                             <?php do_action('single_event_overview_before'); ?>
+
                             <div class="wpem-single-event-body-content">
                                 <?php do_action('single_event_overview_start'); ?>
                                 <?php echo apply_filters('display_event_description', get_the_content()); ?>
                                 <?php do_action('single_event_overview_end'); ?>
                             </div>
+
                             <?php do_action('single_event_overview_after'); ?>
+
                         </div>
                         <div class="wpem-col-xs-12 wpem-col-sm-5 wpem-col-md-4 wpem-single-event-right-content">
                             <div class="wpem-single-event-body-sidebar">
@@ -257,7 +241,6 @@ do_action('set_single_listing_view_count');
 
                                 </div>
 
-
                                 <?php
                                 $is_friend_share = apply_filters('event_manager_event_friend_share', true);
 
@@ -325,6 +308,7 @@ do_action('set_single_listing_view_count');
             speed: 500,
             fade: true,
             cssEase: 'linear',
+            adaptiveHeight: true,
             responsive: [{
                     breakpoint: 992,
                     settings: {

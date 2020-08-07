@@ -1024,3 +1024,15 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 {
 	.wpem-single-organizer-profile-wrapper .wpem-organizer-contact-form-wrapper .wpem-organizer-contact-form .wpem-col-md-6 {max-width: 100%; flex: 0 0 100%; }
 }
+
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-body-content {padding: 30px;word-break: break-word;}
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info{padding:30px 30px 0px 30px}
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider .wpem-slider-items img,.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-single-image-wrapper .wpem-event-single-image img {width: 100%;height: auto;}
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-single-image-wrapper .wpem-event-single-image {display: flex;}
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-event-organizer {color: #949494;display: inline-block;margin-right: 10px;}
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-viewed-event {margin-right: 10px;}
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-viewed-event:hover .wpem-icon-eye {color: #222;}
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-viewed-event .wpem-icon-eye{color:#00a5fa;transition:0.2s color ease-in-out}
+
+/* Calendar Button */
+.wpem-form-group .comiseo-daterangepicker-triggerbutton.ui-button {font-family: sans-serif; min-width: auto;width: calc(100% - 35px) !important; height: 41px;margin: 0;outline: 0;border: 2px solid #ccc;border-radius: 5px;font-size: 17px;font-weight: 400;line-height: 41px;padding: 0 15px;background-color: #fff;color: #757575;transition: all .2s;}
