@@ -158,7 +158,7 @@ class WP_Event_Manager_Data_Cleaner {
 			);
 
 			foreach ( $items as $item ) {
-				wp_trash_post( $item );
+				wp_delete_post( $item );
 			}
 		}
 	}
@@ -202,19 +202,19 @@ class WP_Event_Manager_Data_Cleaner {
 		// Trash the Submit Event page.
 		$submit_event_form_page_id = get_option( 'event_manager_submit_event_form_page_id' );
 		if ( $submit_event_form_page_id ) {
-			wp_trash_post( $submit_event_form_page_id );
+			wp_delete_post( $submit_event_form_page_id );
 		}
 
 		// Trash the Event Dashboard page.
 		$event_dashboard_page_id = get_option( 'event_manager_event_dashboard_page_id' );
 		if ( $event_dashboard_page_id ) {
-			wp_trash_post( $event_dashboard_page_id );
+			wp_delete_post( $event_dashboard_page_id );
 		}
 
 		// Trash the Events page.
 		$events_page_id = get_option( 'event_manager_events_page_id' );
 		if ( $events_page_id ) {
-			wp_trash_post( $events_page_id );
+			wp_delete_post( $events_page_id );
 		}
 	}
 
