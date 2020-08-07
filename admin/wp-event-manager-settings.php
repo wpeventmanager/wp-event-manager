@@ -958,7 +958,7 @@ class WP_Event_Manager_Settings {
                            <?php _e('<span class="help-icon"></span><b>Need help?</b> <br>Read the <a href="https://wp-eventmanager.com/documentation/" target="_blank" >Documentation.</a><br>Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>','wp-event-manager'); ?>
                         </p>
                         <p>  
-                           <span class="connect-icon"></span><b><?php _e('Demo','wp-event-manager');?></b> <br><?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank"><?_e('Plugin Demo.','wp-event-manager');?></a><br>
+                           <span class="connect-icon"></span><b><?php _e('Demo','wp-event-manager');?></b> <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank"><?_e('Plugin Demo.','wp-event-manager');?></a><br>
                            <?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/plugins/" target="_blank"><?php _e('Premium Add-ons','wp-event-manager'); ?></a>.<br>                           
                         </p>
                         
