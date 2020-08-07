@@ -219,6 +219,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => $registration_method_placeholder,
 					'priority'    => 11
 				),
+
+				'event_video_url' => array(
+					'label'=> __( 'Video URL', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder'=> __( 'Please enter event video url', 'wp-event-manager' ),
+					'priority'    => 11
+				),
 					
 				'event_start_date' => array(  
 					'label'=> __( 'Start Date', 'wp-event-manager' ),
