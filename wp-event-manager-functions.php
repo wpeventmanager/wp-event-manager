@@ -1867,18 +1867,21 @@ function event_manager_get_password_rules_hint() {
  * @return string
  */
 function get_all_event_organizer() {
-	if ( is_user_logged_in() ) {
-		$args = apply_filters('get_all_event_organizer_arg',array(
+
+	$args = apply_filters('get_all_event_organizer_arg',array(
 					'post_type'   => 'event_organizer',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
 					'author'        =>  get_current_user_id(),
+			));
 
-		));
-		$all_organizer = get_posts( $args );
-		return $all_organizer ;
+	if ( is_user_logged_in() ) 
+	{
+		$args['author'] =  get_current_user_id();		
 	}
-	return false;
+
+	$all_organizer = get_posts( $args );
+	return $all_organizer;
 }
 
 function get_all_organizer_array(){
@@ -1937,17 +1940,20 @@ function get_event_by_organizer_id($organizer_id = '') {
  * @return string
  */
 function get_all_event_venue() {
-	if ( is_user_logged_in() ) {
-		$args = apply_filters('get_all_event_venue_arg',array(
+
+	$args = apply_filters('get_all_event_venue_arg',array(
 					'post_type'   => 'event_venue',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
-					'author'        =>  get_current_user_id(),
+			));
 
-		));
-		$all_venue = get_posts( $args );
-		return $all_venue ;
+	if ( is_user_logged_in() ) 
+	{
+		$args['author'] =  get_current_user_id();		
 	}
+
+	$all_venue = get_posts( $args );
+	return $all_venue ;
 	return false;
 }
 
