@@ -1877,7 +1877,7 @@ function get_all_event_organizer() {
 
 	if ( is_user_logged_in() ) 
 	{
-		$args['author'] =  get_current_user_id();		
+		//$args['author'] =  get_current_user_id();		
 	}
 
 	$all_organizer = get_posts( $args );
@@ -1949,12 +1949,11 @@ function get_all_event_venue() {
 
 	if ( is_user_logged_in() ) 
 	{
-		$args['author'] =  get_current_user_id();		
+		//$args['author'] =  get_current_user_id();		
 	}
 
 	$all_venue = get_posts( $args );
-	return $all_venue ;
-	return false;
+	return $all_venue;
 }
 
 function get_all_venue_array(){
