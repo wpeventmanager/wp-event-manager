@@ -400,7 +400,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
     					}
     				}
 
-				if ( 'file' === $field['type'] && ! empty( $field['allowed_mime_types'] ) ) {
+				if ( isset($field['type']) && 'file' === $field['type'] && ! empty( $field['allowed_mime_types'] ) ) {
 					if ( is_array( $values[ $group_key ][ $key ] ) ) {
 						$check_value = array_filter( $values[ $group_key ][ $key ] );
 					} else {
