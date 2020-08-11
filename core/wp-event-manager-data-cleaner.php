@@ -158,9 +158,53 @@ class WP_Event_Manager_Data_Cleaner {
 			);
 
 			foreach ( $items as $item ) {
+				self::delete_event_with_attachment($item);
 				wp_delete_post( $item );
 			}
 		}
+	}
+
+	/**
+	 * wpem_delete_event_with_attachment function.
+	 *
+	 * @param $post_id
+	 * @return void
+	 */
+	private static function delete_event_with_attachment($post_id) {
+		if( get_post_type($post_id) != 'event_listing' )
+			return;
+
+		$event_banner = get_post_meta($post_id, '_event_banner', true);
+
+		if(!empty($event_banner))
+		{
+			$wp_upload_dir = wp_get_upload_dir();
+
+			$baseurl = $wp_upload_dir['baseurl'] . '/';
+
+			foreach ($event_banner as $banner) 
+			{
+				$wp_attached_file = str_replace($baseurl, '', $banner);
+
+				$args = array(
+			        'meta_key'         	=> '_wp_attached_file',
+			        'meta_value'       	=> $wp_attached_file,
+			        'post_type'        	=> 'attachment',
+			        'posts_per_page'	=> 1,
+			    );
+
+				$attachments = get_posts($args);
+
+				if(!empty($attachments))
+				{
+					foreach ($attachments as $attachment) 
+					{
+						wp_delete_attachment($attachment->ID);
+					}
+				}
+			}
+		}
+
 	}
 
 	/**
