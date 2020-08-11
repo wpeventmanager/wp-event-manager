@@ -1311,6 +1311,15 @@ class WP_Event_Manager_Shortcodes {
 	 */
 	public function output_event_organizers($atts)
 	{
+		if ( ! is_user_logged_in() ) {
+
+			ob_start();
+
+			get_event_manager_template( 'event-dashboard-login.php' );
+
+			return ob_get_clean();
+		}
+		
 		$organizers   = get_all_organizer_array();
 		$countAllEvents = get_event_organizer_count();        
         $organizers_array = [];
