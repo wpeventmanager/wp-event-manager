@@ -758,8 +758,8 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a::before { content: ""; position: absolute; left: 0; top: 0; height: 30px; width: 30px; font-family: 'wp-event-manager'; text-align: center; line-height: 30px; font-size: 18px; } 
 table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-edit::before { content: "\e906"; }
 table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-relist::before { content: "\ea2e"; }
-table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-mark_not_cancelled::before { content: "\ea52"; } 
-table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-mark_cancelled::before { content: "\ea53"; } 
+table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-mark_not_cancelled::before { content: "\ea10"; } 
+table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-mark_cancelled::before { content: "\ea0e"; } 
 table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-duplicate::before { content: "\e92c"; }
 table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-delete::before { content: "\e9ad"; }    
 
