@@ -25,6 +25,7 @@ class WP_Event_Manager_Data_Cleaner {
 	 */
 	private static $custom_post_types = array(
 		'event_listing',
+		'event_organizer',
 	);
 
 	/**
