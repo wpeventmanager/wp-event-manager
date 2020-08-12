@@ -65,7 +65,10 @@ var ContentEventListing= function () {
 	                        minDate: null,
 					        maxDate: null
 	                    },
-	                    initialText: event_manager_content_event_listing.i18n_dateLabel,
+	                    initialText: event_manager_content_event_listing.i18n_initialText,
+	                    applyButtonText: event_manager_content_event_listing.i18n_applyButtonText,
+	                    clearButtonText: event_manager_content_event_listing.i18n_clearButtonText,
+	                    cancelButtonText: event_manager_content_event_listing.i18n_cancelButtonText,
 	                    dateFormat: 'yy-mm-dd',
 	                    rangeSplitter: ' : ',
 	                    presetRanges: [

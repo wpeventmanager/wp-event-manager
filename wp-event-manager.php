@@ -285,7 +285,10 @@ class WP_Event_Manager {
 		wp_register_script( 'wp-event-manager-content-event-listing', EVENT_MANAGER_PLUGIN_URL . '/assets/js/content-event-listing.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true );					
 		wp_localize_script( 'wp-event-manager-content-event-listing', 'event_manager_content_event_listing', array(
 				
-				'i18n_dateLabel' => __( 'Select Date', 'wp-event-manager' ),
+				'i18n_initialText' => __( 'Select date range', 'wp-event-manager' ),
+				'i18n_applyButtonText' => __( 'Apply', 'wp-event-manager' ),
+				'i18n_clearButtonText' => __( 'Clear', 'wp-event-manager' ),
+				'i18n_cancelButtonText' => __( 'Cancel', 'wp-event-manager' ),
 				
 				'i18n_today' => __( 'Today', 'wp-event-manager' ),
 				'i18n_tomorrow' => __( 'Tomorrow', 'wp-event-manager' ),
