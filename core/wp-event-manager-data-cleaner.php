@@ -172,7 +172,7 @@ class WP_Event_Manager_Data_Cleaner {
 	 * @return void
 	 */
 	private static function delete_event_with_attachment($post_id) {
-		if( get_post_type($post_id) != 'event_listing' )
+		if( !in_array(get_post_type($post_id), ['event_listing', 'event_organizer']) )
 			return;
 
 		$event_banner = get_post_meta($post_id, '_event_banner', true);
@@ -200,10 +200,16 @@ class WP_Event_Manager_Data_Cleaner {
 				{
 					foreach ($attachments as $attachment) 
 					{
-						wp_delete_attachment($attachment->ID);
+						wp_delete_attachment($attachment->ID, true);
 					}
 				}
 			}
+		}
+
+		$thumbnail_id = get_post_thumbnail_id($post_id);
+		if(!empty($thumbnail_id))
+		{
+			wp_delete_attachment($thumbnail_id, true);
 		}
 
 	}
@@ -260,6 +266,18 @@ class WP_Event_Manager_Data_Cleaner {
 		$events_page_id = get_option( 'event_manager_events_page_id' );
 		if ( $events_page_id ) {
 			wp_delete_post( $events_page_id, true );
+		}
+
+		// Trash the submit organizer page.
+		$submit_organizer_form_page_id = get_option( 'event_manager_submit_organizer_form_page_id' );
+		if ( $submit_organizer_form_page_id ) {
+			wp_delete_post( $submit_organizer_form_page_id, true );
+		}
+
+		// Trash the organizer dashboard page.
+		$organizer_dashboard_page_id = get_option( 'event_manager_organizer_dashboard_page_id' );
+		if ( $organizer_dashboard_page_id ) {
+			wp_delete_post( $organizer_dashboard_page_id, true );
 		}
 	}
 

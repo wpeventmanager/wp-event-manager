@@ -1088,7 +1088,7 @@ class WP_Event_Manager_Writepanels {
 	 * @return void
 	 */
 	public function delete_event_with_attachment($post_id) {
-		if( get_post_type($post_id) != 'event_listing' )
+		if( !in_array(get_post_type($post_id), ['event_listing', 'event_organizer']) )
 			return;
 
 		$event_banner = get_event_banner($post_id);
@@ -1116,10 +1116,16 @@ class WP_Event_Manager_Writepanels {
 				{
 					foreach ($attachments as $attachment) 
 					{
-						wp_delete_attachment($attachment->ID);
+						wp_delete_attachment($attachment->ID, true);
 					}
 				}
 			}
+		}
+
+		$thumbnail_id = get_post_thumbnail_id($post_id);
+		if(!empty($thumbnail_id))
+		{
+			wp_delete_attachment($thumbnail_id, true);
 		}
 
 	}
