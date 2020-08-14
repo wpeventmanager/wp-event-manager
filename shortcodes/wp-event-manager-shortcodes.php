@@ -923,9 +923,9 @@ class WP_Event_Manager_Shortcodes {
 
 			'datetimes'       => $selected_datetime,
 
-			'categories'      => !empty($selected_category) ? implode( ',', $selected_category ) : '',
+			'categories'      => !empty($selected_category) ? $selected_category : '',
 
-			'event_types'     => !empty($selected_event_type) ? implode( ',', $selected_event_type) : '',
+			'event_types'     => !empty($selected_event_type) ? $selected_event_type : '',
 
 			'ticket_prices'   => !empty($selected_ticket_price) ? $selected_ticket_price : '',
 
