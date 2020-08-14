@@ -459,6 +459,8 @@ class WP_Event_Manager_Post_Types {
 	    		) )
 	    );
 	}
+
+	/*
 	if(get_option('enable_event_venue')){
 	    $singular  = __( 'Venue', 'wp-event-manager' );
 		$plural    = __( 'Venues', 'wp-event-manager' );
@@ -493,8 +495,8 @@ class WP_Event_Manager_Post_Types {
 				        'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
 				         
 	    		) )
-	    );
-	}
+	    	);
+		} */
 	}
 
 	/**

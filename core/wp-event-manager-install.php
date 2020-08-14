@@ -23,7 +23,6 @@ class WP_Event_Manager_Install {
 
 
 		// Redirect to setup screen for new installs
-
 		if ( ! get_option( 'wp_event_manager_version' ) ) {
 
 			set_transient( '_event_manager_activation_redirect', 1, HOUR_IN_SECONDS );
@@ -58,6 +57,23 @@ class WP_Event_Manager_Install {
 			unset($all_fields['event']['event_address']);
 
 			update_option('event_manager_submit_event_form_fields', $all_fields);
+		}
+
+		// 3.1.14 add organizer pages
+		$pages_to_create = [
+			'submit_organizer_form' => [
+				'page_title' => 'Submit Organizer Form',
+				'page_content' => '[submit_organizer_form]',
+			],
+			'organizer_dashboard' => [
+				'page_title' => 'Organizer Dashboard',
+				'page_content' => '[organizer_dashboard]',
+			],
+		];
+
+		foreach ( $pages_to_create as $page_slug => $page ) 
+		{
+			self::create_page( sanitize_text_field( $page['page_title'] ), $page['page_content'], 'event_manager_' . $page_slug . '_page_id' );
 		}
 
 		delete_transient( 'wp_event_manager_addons_html' );
@@ -104,8 +120,7 @@ class WP_Event_Manager_Install {
 	/**
 	 * Get capabilities
 	 * @return array
-	 */
-	 
+	 */	 
 	private static function get_core_capabilities() {
 
 		return array(
@@ -153,7 +168,6 @@ class WP_Event_Manager_Install {
 			)
 		);
 	}
-
 	
 	/**
 	 * Default taxonomy terms to set up in WP Event Manager.
@@ -233,10 +247,10 @@ class WP_Event_Manager_Install {
 			)
 		);
 	}
+
 	/**
 	 * default_terms function.
 	 */
-
 	private static function default_terms() {
 		if ( get_option( 'event_manager_installed_terms' ) == 1 ) {
 			return;
@@ -275,4 +289,40 @@ class WP_Event_Manager_Install {
 			}
 		}
 	}
+
+	/**
+	 * create_page function.
+	 */
+	private static function create_page( $title, $content, $option ) 
+	{
+		if(get_option($option) == '')
+		{
+			$page_data = array(
+
+				'post_status'    => 'publish',
+
+				'post_type'      => 'page',
+
+				'post_author'    => 1,
+
+				'post_name'      => sanitize_title( $title ),
+
+				'post_title'     => $title,
+
+				'post_content'   => $content,
+
+				'post_parent'    => 0,
+
+				'comment_status' => 'closed'
+			);
+
+			$page_id = wp_insert_post( $page_data );
+
+			if ( $option ) {
+
+				update_option( $option, $page_id );
+			}
+		}		
+	}
+
 }
