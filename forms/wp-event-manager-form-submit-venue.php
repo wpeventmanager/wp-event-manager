@@ -109,7 +109,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			
 				'venue_description' => array(
 					'label'       => __( 'Venue Description', 'wp-event-manager' ),
-					'type'        => 'textarea',
+					'type'        => 'wp-editor',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 2
