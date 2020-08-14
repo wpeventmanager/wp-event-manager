@@ -544,7 +544,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
 					
 					'std'   => 10,
 					
-					'label' => __( 'Order by', 'wp-event-manager' ),
+					'label' => __( 'Order', 'wp-event-manager' ),
 					'options'=> array(
 							'ASC' => __( 'Ascending (ASC)', 'wp-event-manager' ),
 							'DESC' => __( 'Descending  (DESC)', 'wp-event-manager' )
