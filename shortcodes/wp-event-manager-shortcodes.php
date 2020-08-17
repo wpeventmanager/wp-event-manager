@@ -427,6 +427,8 @@ class WP_Event_Manager_Shortcodes {
 
 			'organizer_name' => __( 'Organizer name', 'wp-event-manager' ),
 
+			'organizer_details' => __( 'Details', 'wp-event-manager' ), 
+
 			'organizer_events' => __( 'Events', 'wp-event-manager' ),
 			
 			'organizer_action' => __( 'Action', 'wp-event-manager' ), 
