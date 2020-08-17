@@ -87,7 +87,7 @@
 								$events = get_event_by_organizer_id($organizer->ID);
 								?>
 
-								<div  class="event-organizer-count wpem-tooltip wpem-tooltip-bottom" ><?php echo sizeof($events);?></a>
+								<div  class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo sizeof($events);?></a>
 									<span class="organizer-events-list wpem-tooltiptext">
 										<?php foreach ($events as  $event) : ?>
 											<span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
