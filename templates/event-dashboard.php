@@ -1,5 +1,12 @@
 <?php do_action('event_manager_event_dashboard_before'); ?>
-<p></p>
+<p>
+	<?php $submit_event 		= get_option('event_manager_submit_event_form_page_id');
+	if(!empty($submit_event )){ ?>
+		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_event);?>"><span><?php _e('Add event','wp-event-manager');?></span></a>
+	<?php
+	}
+	?>	
+</p>
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">
