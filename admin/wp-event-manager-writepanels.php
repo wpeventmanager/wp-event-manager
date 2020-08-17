@@ -1099,9 +1099,33 @@ class WP_Event_Manager_Writepanels {
 
 			$baseurl = $wp_upload_dir['baseurl'] . '/';
 
-			foreach ($event_banner as $banner) 
+			if(is_array($event_banner))
 			{
-				$wp_attached_file = str_replace($baseurl, '', $banner);
+				foreach ($event_banner as $banner) 
+				{
+					$wp_attached_file = str_replace($baseurl, '', $banner);
+
+					$args = array(
+				        'meta_key'         	=> '_wp_attached_file',
+				        'meta_value'       	=> $wp_attached_file,
+				        'post_type'        	=> 'attachment',
+				        'posts_per_page'	=> 1,
+				    );
+
+					$attachments = get_posts($args);
+
+					if(!empty($attachments))
+					{
+						foreach ($attachments as $attachment) 
+						{
+							wp_delete_attachment($attachment->ID, true);
+						}
+					}
+				}
+			}
+			else
+			{
+				$wp_attached_file = str_replace($baseurl, '', $event_banner);
 
 				$args = array(
 			        'meta_key'         	=> '_wp_attached_file',
