@@ -2,7 +2,7 @@
 <p>
 	<?php $submit_organizer 		= get_option('event_manager_submit_organizer_form_page_id');
 	if(!empty($submit_organizer )){ ?>
-		<a  href="<?php echo get_permalink($submit_organizer);?>"><?php  _e('Add organizer','wp-event-manager');?></a>
+		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_organizer);?>"><?php  _e('Add organizer','wp-event-manager');?></a>
 	<?php
 	}
 	?>	
@@ -27,35 +27,77 @@
 				<tr>
 
 					<?php  foreach ( $organizer_dashboard_columns as $key => $column ) : ?>
-						<td data-title="<?php echo esc_html( $column ); ?>"
-						class="<?php echo esc_attr( $key ); ?>">
+						<td data-title="<?php echo esc_html( $column ); ?>" class="<?php echo esc_attr( $key ); ?>">
 							<?php if ('organizer_name' === $key ) : ?>
+								<div class="wpem-organizer-logo"><?php display_organizer_logo('', '', $organizer); ?></div>
+								<a href="<?php echo get_permalink( $organizer->ID ); ?>"><?php echo esc_html( $organizer->post_title ); ?></a>
 								
-									<a href="<?php echo get_permalink( $organizer->ID ); ?>"><?php echo esc_html( $organizer->post_title ); ?></a>
-								
-								<?php elseif ('organizer_events' === $key ) :?>
+							<?php elseif ('organizer_details' === $key ) :?>
+								<div class="wpem-organizer-social-links">
+									<div class="wpem-organizer-social-lists">
+									
+										<?php do_action('single_event_listing_organizer_social_start');
 
-									<?php // echo get_event_organizer_count($organizer->ID);
-										$events = get_event_by_organizer_id($organizer->ID);
-										?>
-										<a  class="event-organizer-count" ><?php echo sizeof($events);?></a>
-										<div class="organizer-events-list">
-											<?php $i=1; ?>
-											<?php foreach ($events as  $event) : ?>
+									   	$organizer_website  = get_organizer_website($organizer);
+									   	$organizer_facebook = get_organizer_facebook($organizer);
+									   	$organizer_twitter  = get_organizer_twitter($organizer);
+									   	$organizer_youtube  = get_organizer_youtube($organizer);
+									   	
+									   	if (!empty($organizer_website))
+									   	{
+										   	?>
+										   	<div class="wpem-social-icon wpem-weblink">
+											   	<a href="<?php echo esc_url($organizer_website); ?>" target="_blank" title="Get Connect on Website"><?php _e('Website', 'wp-event-manager'); ?></a>
+										   	</div>
+										   	<?php
+									   	}
 
-												<?php if($i > 1) : ?>
-													<span>, </span>
-												<?php endif; ?>
+									   	if (!empty($organizer_facebook))
+									   	{
+										   	?> 
+										   	<div class="wpem-social-icon wpem-facebook">
+											   	<a href="<?php echo esc_url($organizer_facebook); ?>" target="_blank" title="Get Connect on Facebook"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+										   	</div>
+										   	<?php
+									   	}
 
-												<span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
+									   	if (!empty($organizer_twitter))
+									   	{
+										   	?>
+										   	<div class="wpem-social-icon wpem-twitter">
+											   	<a href="<?php echo esc_url($organizer_twitter); ?>" target="_blank" title="Get Connect on Twitter"><?php _e('Twitter', 'wp-event-manager'); ?></a>
+										   	</div>
+										   	<?php
+									   	}
 
-												<?php $i++; ?>
-											<?php endforeach; ?>
-										</div>
+									   	if (!empty($organizer_youtube))
+									   	{
+										   	?>
+										   	<div class="wpem-social-icon wpem-youtube">
+											   	<a href="<?php echo esc_url($organizer_youtube); ?>" target="_blank" title="Get Connect on YouTube"><?php _e('Youtube', 'wp-event-manager'); ?></a>
+										   	</div>
+									   	<?php } ?>
 
-								<?php elseif ('organizer_action' === $key ) :?>
-		                            <div class="wpem-dboard-event-action">
-									<?php
+								   		<?php do_action('single_event_listing_organizer_single_social_end', $organizer->ID); ?>
+								   	</div>
+							   	</div>
+
+							<?php elseif ('organizer_events' === $key ) :?>
+								<?php // echo get_event_organizer_count($organizer->ID);
+								$events = get_event_by_organizer_id($organizer->ID);
+								?>
+
+								<div  class="event-organizer-count wpem-tooltip wpem-tooltip-bottom" ><?php echo sizeof($events);?></a>
+									<span class="organizer-events-list wpem-tooltiptext">
+										<?php foreach ($events as  $event) : ?>
+											<span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
+										<?php endforeach; ?>
+									</span>
+								</div>
+
+							<?php elseif ('organizer_action' === $key ) :?>
+	                            <div class="wpem-dboard-event-action">
+								<?php
 								$actions = array ();
 								switch ($organizer->post_status) {
 									case 'publish' :
@@ -85,10 +127,8 @@
 									echo '<div class="wpem-dboard-event-act-btn"><a href="' . esc_url ( $action_url ) . '" class="event-dashboard-action-' . esc_attr ( $action ) . '" title="' . esc_html ( $value ['label'] ) . '" >' . esc_html ( $value ['label'] ) . '</a></div>';
 								}
 								?>
-								</div>		
-							
+								</div>
 
-						
 							<?php else : ?>
 								<?php do_action( 'event_manager_organizer_dashboard_column_' . $key, $organizer ); ?>
 							<?php endif; ?>
