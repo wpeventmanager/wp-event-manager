@@ -59,11 +59,22 @@ class WP_Event_Manager_Admin {
 	 * @return void
 	 */
 	public function upgrade_database_notice() {
-   		?>
-	    <div class="notice notice-warning is-dismissible">
-	        <p><?php echo sprintf( __( 'Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager-migration' ), admin_url( 'edit.php?post_type=event_listing&page=event-manager-upgrade-database' ) ); ?></p>
-	    </div>
-	    <?php
+
+		global $wpdb;
+
+		$sql = "SELECT * FROM $wpdb->postmeta WHERE `meta_key` IN ('_organizer_email', '_organizer_name') AND `meta_value` != '' AND post_id IN (SELECT ID FROM $wpdb->posts WHERE `post_type` = 'event_listing')";
+
+		$result = $wpdb->get_row($sql, ARRAY_A);
+
+		if(!empty($result))
+		{
+			?>
+		    <div class="notice notice-warning is-dismissible">
+		        <p><?php echo sprintf( __( 'Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager-migration' ), admin_url( 'edit.php?post_type=event_listing&page=event-manager-upgrade-database' ) ); ?></p>
+		    </div>
+		    <?php	
+		}
+   		
 	}
 
 	/**
@@ -128,11 +139,20 @@ class WP_Event_Manager_Admin {
 
 	public function admin_menu() {
 
+		global $wpdb;
+
 		add_submenu_page( 'edit.php?post_type=event_listing', __( 'Settings', 'wp-event-manager' ), __( 'Settings', 'wp-event-manager' ), 'manage_options', 'event-manager-settings', array( $this->settings_page, 'output' ) );
 
 		if ( get_option( 'event_manager_upgrade_database' ) == false )
 		{
-			add_submenu_page(  'edit.php?post_type=event_listing', __( 'Upgrade Database', 'wp-event-manager' ),  __( 'Upgrade Database', 'wp-event-manager' ) , 'manage_options', 'event-manager-upgrade-database', array( $this, 'upgrade_database' ) );
+			$sql = "SELECT * FROM $wpdb->postmeta WHERE `meta_key` IN ('_organizer_email', '_organizer_name') AND `meta_value` != '' AND post_id IN (SELECT ID FROM $wpdb->posts WHERE `post_type` = 'event_listing')";
+
+			$result = $wpdb->get_row($sql, ARRAY_A);
+
+			if(!empty($result))
+			{
+				add_submenu_page(  'edit.php?post_type=event_listing', __( 'Upgrade Database', 'wp-event-manager' ),  __( 'Upgrade Database', 'wp-event-manager' ) , 'manage_options', 'event-manager-upgrade-database', array( $this, 'upgrade_database' ) );
+			}
 		}
 
 		if ( apply_filters( 'event_manager_show_addons_page', true ) )
