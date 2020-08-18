@@ -457,7 +457,7 @@ msgid "Uploaded files need to be one of the following file types: %s"
 msgstr "Los archivos cargados deben ser uno de los siguientes tipos de archivo: %s"
 
 #: wp-event-manager-functions.php:1353
-msgid "Choose a event type&hellip;"
+msgid "Choose an event type&hellip;"
 msgstr "Escoge un tipo de evento&hellip;"
 
 #: wp-event-manager-functions.php:1303
@@ -1426,11 +1426,11 @@ msgid "Find out more about the front-end event submission form"
 msgstr "Descubre más acerca del formulario de carga de eventos del frontend"
 
 #: admin/wp-event-manager-setup.php:313
-msgid "Add a event via the front-end"
+msgid "Add an event via the front-end"
 msgstr "Agregar evento por el frontend"
 
 #: admin/wp-event-manager-setup.php:309
-msgid "Add a event via the back-end"
+msgid "Add an event via the back-end"
 msgstr "Agregar evento por el backend"
 
 #: admin/wp-event-manager-setup.php:307

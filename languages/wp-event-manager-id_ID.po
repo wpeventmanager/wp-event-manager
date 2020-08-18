@@ -491,7 +491,7 @@ msgid "Registration via \"%s\" listing on %s"
 msgstr "Registrasi via \"%s\" daftar pada %s"
 
 #: wp-event-manager-functions.php:1138
-msgid "Choose a event type&hellip;"
+msgid "Choose an event type&hellip;"
 msgstr "Pilih jenis acara&hellip;"
 
 #: wp-event-manager-functions.php:1088
@@ -1392,11 +1392,11 @@ msgid "Find out more about the front-end event submission form"
 msgstr "Cari tahu lebih lanjut tentang front-end formulir pengajuan acara"
 
 #: admin/wp-event-manager-setup.php:311
-msgid "Add a event via the front-end"
+msgid "Add an event via the front-end"
 msgstr "Tambahkan acara melalui front-end"
 
 #: admin/wp-event-manager-setup.php:307
-msgid "Add a event via the back-end"
+msgid "Add an event via the back-end"
 msgstr "Tambahkan acara melalui back-end"
 
 #: admin/wp-event-manager-setup.php:305
