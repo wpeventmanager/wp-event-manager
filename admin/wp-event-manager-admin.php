@@ -42,7 +42,28 @@ class WP_Event_Manager_Admin {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 
 		add_action( 'current_screen', array( $this, 'conditional_includes' ) );
-		
+
+		if ( get_option( 'event_manager_upgrade_database' ) == false )
+		{
+			add_action( 'admin_notices', array( $this, 'upgrade_database_notice' ) );
+		}
+
+		// Ajax
+		add_action( 'wp_ajax_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );		
+	}
+
+	/**
+	 * upgrade_database_notice function.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function upgrade_database_notice() {
+   		?>
+	    <div class="notice notice-warning is-dismissible">
+	        <p><?php echo sprintf( __( 'Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager-migration' ), admin_url( 'edit.php?post_type=event_listing&page=event-manager-upgrade-database' ) ); ?></p>
+	    </div>
+	    <?php
 	}
 
 	/**
@@ -51,7 +72,6 @@ class WP_Event_Manager_Admin {
 	 * @access public
 	 * @return void
 	 */
-
 	public function admin_enqueue_scripts() {
 
 		global $wp_scripts;
@@ -61,16 +81,21 @@ class WP_Event_Manager_Admin {
 		//main frontend style 	
 		wp_enqueue_style( 'event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css' );	
 	
-		if ( in_array( $screen->id, apply_filters( 'event_manager_admin_screen_ids', array( 'edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons' ) ) ) ) 
+		if ( in_array( $screen->id, apply_filters( 'event_manager_admin_screen_ids', array( 'edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database' ) ) ) )
 		{
 			$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
 			
-			wp_enqueue_style( 'jquery-ui-style',EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-ui/jquery-ui.min.css', array(), $jquery_version );			
+			wp_enqueue_style( 'jquery-ui-style', EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-ui/jquery-ui.min.css', array(), $jquery_version );			
 
 			wp_register_script( 'jquery-tiptip', EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-tiptip/jquery.tipTip.min.js', array( 'jquery' ), EVENT_MANAGER_VERSION, true );	
 
 			wp_register_script( 'wp-event-manager-admin-js', EVENT_MANAGER_PLUGIN_URL. '/assets/js/admin.min.js', array( 'jquery', 'jquery-tiptip','jquery-ui-core','jquery-ui-datepicker'), EVENT_MANAGER_VERSION, true );
 			wp_localize_script( 'wp-event-manager-admin-js', 'wp_event_manager_admin_js', array(
+
+				'ajax_url' 	 => admin_url( 'admin-ajax.php' ),
+
+				'upgrade_database_before_send_text' 	 => __( 'Your database upgrading now', 'wp-event-manager' ),
+				'upgrade_database_success_send_text'  	=> __( 'Your database upgraded successfully! Please go <a href="'. admin_url( 'edit.php?post_type=event_listing' ) .'">event list</a> page.', 'wp-event-manager'),
 			
 				'i18n_datepicker_format' => WP_Event_Manager_Date_Time::get_datepicker_format(),
 				
@@ -81,8 +106,7 @@ class WP_Event_Manager_Admin {
 				'show_past_date' => apply_filters( 'event_manager_show_past_date', false ),
 				
 				) );
-			wp_enqueue_script('wp-event-manager-admin-js');
-			
+			wp_enqueue_script('wp-event-manager-admin-js');			
 		}	
 		
 		wp_register_script( 'wp-event-manager-admin-settings', EVENT_MANAGER_PLUGIN_URL. '/assets/js/admin-settings.min.js', array( 'jquery' ), EVENT_MANAGER_VERSION, true );
@@ -106,15 +130,218 @@ class WP_Event_Manager_Admin {
 
 		add_submenu_page( 'edit.php?post_type=event_listing', __( 'Settings', 'wp-event-manager' ), __( 'Settings', 'wp-event-manager' ), 'manage_options', 'event-manager-settings', array( $this->settings_page, 'output' ) );
 
-		if ( apply_filters( 'event_manager_show_addons_page', true ) )
+		if ( get_option( 'event_manager_upgrade_database' ) == false )
+		{
+			add_submenu_page(  'edit.php?post_type=event_listing', __( 'Upgrade Database', 'wp-event-manager' ),  __( 'Upgrade Database', 'wp-event-manager' ) , 'manage_options', 'event-manager-upgrade-database', array( $this, 'upgrade_database' ) );
+		}
 
+		if ( apply_filters( 'event_manager_show_addons_page', true ) )
+		{
 			add_submenu_page(  'edit.php?post_type=event_listing', __( 'WP Event Manager Add-ons', 'wp-event-manager' ),  __( 'Add-ons', 'wp-event-manager' ) , 'manage_options', 'event-manager-addons', array( $this, 'addons_page' ) );
+		}
+	}
+
+	/**
+	 * Upgrade database page
+	 */
+	public function upgrade_database() 
+	{
+		?>
+		<div class="wrap wp_event_manager wp_event_manager_upgrade_database">
+			<form method="post" class="wpem-mailchimp-organization-matches-attribute">
+	        	<table class="widefat">
+
+	        		<thead>
+		                <tr>
+		                    <th><h3><?php _e( 'Upgrade yor database for new version of WP Event Manager', 'wp-event-manager' ); ?></h3></th>
+		                </tr>
+	                </thead>
+
+	                <tbody>
+	                	<td>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+						</td>
+	                </tbody>
+
+	            	<tfoot>
+		                <tr>
+		                    <td>
+								<a class="button-primary" id="wp_event_manager_upgrade_database" href="javascript:void(0)"><?php _e( 'Upgrade', 'wp-event-manager' ); ?></a>
+							</td>
+		                </tr>
+	                </tfoot>
+
+	            </table>
+	        </form>
+    	</div>
+		<?php
+	}
+
+	public function wpem_upgrade_database() {
+
+		$all_fields = get_option( 'event_manager_form_fields', true );
+
+   		if( !empty($all_fields) && isset($all_fields['organizer']) && !empty($all_fields['organizer']) )
+   		{
+   			$organizer_fields = $all_fields['organizer'];
+
+   			$args = [
+   				'post_type' 	=> 'event_listing',
+   				'post_status' 	=> ['publish'],
+   				'post_limits'	=> '-1',
+   			];
+
+   			$events = get_posts($args);
+
+   			if( !empty($events) && count($events) > 0 )
+   			{
+   				foreach ($events as $event) {
+   					
+   					if( isset($event->_organizer_email) && !empty($event->_organizer_email) )
+   					{
+   						$organizer_data = [];
+
+	   					foreach ($organizer_fields as $key => $field) {
+	   						$name = '_'.$key;
+
+	   						if($key == 'organizer_logo')
+	   						{
+	   							$organizer_data[$key] = $event->_thumbnail_id;
+	   						}
+	   						else
+	   						{
+	   							$organizer_data[$key] = $event->$name;	
+	   						}	   						
+	   					}
+
+	   					$this->migrate_organizer_from_event_meta($event, $organizer_data);
+   					}
+
+   					$this->banner_image_set_thumnail($event);
+   				}
+   			}
+
+   			update_option( 'event_manager_upgrade_database', true );
+   		}
+
+   		wp_send_json( __( 'Your database upgraded successfully!', 'wp-event-manager' ) );
+
+   		wp_die();
+	}
+
+	/**
+	 * check_organizer_exist
+	 */
+	public function check_organizer_exist($organizer_email) {
+
+		$args = [
+   				'post_type' 	=> 'event_organizer',
+   				'post_status' 	=> ['publish'],
+   				'meta_query' => [
+			        [
+			            'key'     => '_organizer_email',
+			            'value'   => $organizer_email,
+			            'compare' => '=',
+			        ],
+			    ],
+   			];
+
+   		$organizer = get_posts($args);
+
+   		if(!empty($organizer))
+   		{
+   			return $organizer[0]->ID;
+   		}
+   		else
+   		{
+   			return false;
+   		}
+	}
+
+	/**
+	 * migrate_organizer_from_event_meta
+	 */
+	public function migrate_organizer_from_event_meta($event, $organizer_data) {
+
+		$organizer_id = $this->check_organizer_exist($organizer_data['organizer_email']);
+
+		if( !$organizer_id )
+		{
+			$args = apply_filters('wpem_create_event_organizer_data',array(
+				'post_title'     => wp_strip_all_tags( $organizer_data['organizer_name'] ),
+				'post_content'   => $organizer_data['organizer_description'],
+				'post_status'    => 'publish',
+				'post_type'      => 'event_organizer',
+				'comment_status' => 'closed',
+				'post_author'    => $event->post_author,
+			) );
+
+			$organizer_id = wp_insert_post( $args );
+		}
+
+		foreach ($organizer_data as $name => $value) 
+		{
+			if($name == 'organizer_logo')
+			{
+				update_post_meta( $organizer_id, '_thumbnail_id', sanitize_text_field($value) );
+			}
+			else
+			{
+				update_post_meta( $organizer_id, '_'.$name, sanitize_text_field($value) );
+
+				delete_post_meta( $event->ID, '_'.$name );
+			}			
+		}
+
+		update_post_meta( $event->ID, '_event_organizer_ids', [$organizer_id] );
+	}
+
+	/**
+	 * banner_image_set_thumnail
+	 */
+	public function banner_image_set_thumnail($event) {
+
+		$banner = get_event_banner($event);
+
+		if(is_array($banner))
+		{
+			$image_url = $banner[0];
+		}
+		else
+		{
+			$image_url = $banner;
+		}
+
+		if( isset($image_url) && !empty($image_url) )
+		{
+			$wp_upload_dir = wp_get_upload_dir();
+
+			$baseurl = $wp_upload_dir['baseurl'] . '/';
+
+			$wp_attached_file = str_replace($baseurl, '', $image_url);
+
+			$args = array(
+		        'meta_key'         	=> '_wp_attached_file',
+		        'meta_value'       	=> $wp_attached_file,
+		        'post_type'        	=> 'attachment',
+		        'posts_per_page'	=> 1,
+		    );
+
+			$attachments = get_posts($args);
+
+			if(!empty($attachments))
+			{
+				foreach ($attachments as $attachment) 
+				{
+					update_post_meta( $event->ID, '_thumbnail_id', $attachment->ID );
+				}
+			}
+		}
 	}
 
 	/**
 	 * Output addons page
 	 */
-
 	public function addons_page() {
 
 		$addons = include( 'wp-event-manager-addons.php' );
