@@ -88,11 +88,13 @@
 								?>
 
 								<div  class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo sizeof($events);?></a>
-									<span class="organizer-events-list wpem-tooltiptext">
-										<?php foreach ($events as  $event) : ?>
-											<span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
-										<?php endforeach; ?>
-									</span>
+									<?php if(!empty($events)) : ?>
+										<span class="organizer-events-list wpem-tooltiptext">
+											<?php foreach ($events as $event) : ?>
+												<span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
+											<?php endforeach; ?>
+										</span>
+									<?php endif; ?>
 								</div>
 
 							<?php elseif ('organizer_action' === $key ) :?>
