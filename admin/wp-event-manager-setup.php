@@ -164,7 +164,11 @@ class WP_Event_Manager_Setup {
 
 				'event_dashboard'   => '[event_dashboard]',
 
-				'events'            => '[events]'
+				'events'            => '[events]',
+
+				'submit_organizer_form'	=> '[submit_organizer_form]',
+
+				'organizer_dashboard'   => '[organizer_dashboard]',
 			);
 
 			foreach ( $pages_to_create as $page => $content ) {
@@ -277,6 +281,26 @@ class WP_Event_Manager_Setup {
 								<td><?php _e( 'This page allows users to browse, search, and filter event listings on the front-end of your site.', 'wp-event-manager' ); ?></td>
 
 								<td><code>[events]</code></td>
+							</tr>
+
+							<tr>
+								<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_organizer_form]" /></td>
+
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Submit Organizer Form', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[submit_organizer_form]" /></td>
+
+								<td><?php _e( 'This page allows users to browse, search, and filter event listings on the front-end of your site.', 'wp-event-manager' ); ?></td>
+
+								<td><code>[submit_organizer_form]</code></td>
+							</tr>
+
+							<tr>
+								<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[organizer_dashboard]" /></td>
+
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Organizer Dashboard', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[organizer_dashboard]" /></td>
+
+								<td><?php _e( 'This page allows users to browse, search, and filter event listings on the front-end of your site.', 'wp-event-manager' ); ?></td>
+
+								<td><code>[organizer_dashboard]</code></td>
 							</tr>
 
 						</tbody>

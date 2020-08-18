@@ -12,7 +12,6 @@ class WP_Event_Manager_Install {
 	/**
 	 * Install WP Event Manager
 	 */
-
 	public static function install() {
 
 		global $wpdb;
@@ -49,6 +48,18 @@ class WP_Event_Manager_Install {
 			update_option( 'event_manager_event_dashboard_page_id', $page_id );
 		}
 
+		delete_transient( 'wp_event_manager_addons_html' );
+
+		update_option( 'wp_event_manager_version', EVENT_MANAGER_VERSION );
+	}
+
+	/**
+	 * Install WP Event Manager
+	 */
+	public static function update() {
+
+		global $wpdb;
+
 		// 3.1.14 change field option name
 		if ( !empty(get_option( 'event_manager_form_fields', true )) && empty(get_option( 'event_manager_submit_event_form_fields', false )) ) 
 		{
@@ -84,7 +95,6 @@ class WP_Event_Manager_Install {
 	/**
 	 * Init user roles
 	 */
-
 	private static function init_user_roles() {
 
 		global $wp_roles;
