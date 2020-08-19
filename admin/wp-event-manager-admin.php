@@ -150,7 +150,7 @@ class WP_Event_Manager_Admin {
 
 			$result = $wpdb->get_row($sql, ARRAY_A);
 
-			//if(!empty($result))
+			if(!empty($result))
 			{
 				add_submenu_page(  'edit.php?post_type=event_listing', __( 'Upgrade Database', 'wp-event-manager' ),  __( 'Upgrade Database', 'wp-event-manager' ) , 'manage_options', 'event-manager-upgrade-database', array( $this, 'upgrade_database' ) );
 			}
