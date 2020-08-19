@@ -50,6 +50,7 @@ class WP_Event_Manager_Admin {
 
 		// Ajax
 		add_action( 'wp_ajax_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );		
+		add_action( 'wp_ajax_nopriv_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );
 	}
 
 	/**
@@ -149,7 +150,7 @@ class WP_Event_Manager_Admin {
 
 			$result = $wpdb->get_row($sql, ARRAY_A);
 
-			if(!empty($result))
+			//if(!empty($result))
 			{
 				add_submenu_page(  'edit.php?post_type=event_listing', __( 'Upgrade Database', 'wp-event-manager' ),  __( 'Upgrade Database', 'wp-event-manager' ) , 'manage_options', 'event-manager-upgrade-database', array( $this, 'upgrade_database' ) );
 			}
@@ -199,12 +200,12 @@ class WP_Event_Manager_Admin {
 
 	public function wpem_upgrade_database() {
 
-		$all_fields = get_option( 'event_manager_form_fields', true );
+		$GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
+		$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Organizer', 'instance' ) );
+		$organizer_fields =	$form_submit_organizer_instance->merge_with_custom_fields('backend');
 
-   		if( !empty($all_fields) && isset($all_fields['organizer']) && !empty($all_fields['organizer']) )
+   		if( !empty($organizer_fields) && isset($organizer_fields['organizer']) && !empty($organizer_fields['organizer']) )
    		{
-   			$organizer_fields = $all_fields['organizer'];
-
    			$args = [
    				'post_type' 	=> 'event_listing',
    				'post_status' 	=> ['publish'],
@@ -221,7 +222,7 @@ class WP_Event_Manager_Admin {
    					{
    						$organizer_data = [];
 
-	   					foreach ($organizer_fields as $key => $field) {
+	   					foreach ($organizer_fields['organizer'] as $key => $field) {
 	   						$name = '_'.$key;
 
 	   						if($key == 'organizer_logo')
