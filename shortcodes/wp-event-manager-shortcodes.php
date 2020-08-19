@@ -795,7 +795,7 @@ class WP_Event_Manager_Shortcodes {
 
 										'datetimes' => $datetimes,
 
-										'selected_datetime' => $selected_datetime , 
+										'selected_datetime' => $selected_datetime, 
 
 										'show_categories' => $show_categories, 
 
@@ -803,7 +803,7 @@ class WP_Event_Manager_Shortcodes {
 
 										'categories' => $categories,
 
-										'selected_category' => $selected_category, 
+										'selected_category' => !empty($selected_category) ? explode(',', $selected_category) : '',
 
 										'show_event_types' => $show_event_types ,
 
@@ -811,7 +811,7 @@ class WP_Event_Manager_Shortcodes {
 
 										'event_types' => $event_types, 
 
-										'selected_event_type' => $selected_event_type, 
+										'selected_event_type' => !empty($selected_event_type) ? explode(',', $selected_event_type) : '',
 
 										'show_ticket_prices' => $show_ticket_prices ,
 
