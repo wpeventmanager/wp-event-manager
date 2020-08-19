@@ -2995,3 +2995,11 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-event-title {
     margin: 5px 0 10px 0
 }
+
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-right-content p {
+    word-break: break-word;
+}
+.single_event_listing .wpem-event-details .wpem-tooltip .wpem-tooltiptext {
+    min-width: 180px;
+    font-size: 14px;
+}
