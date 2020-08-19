@@ -69,7 +69,7 @@ class WP_Event_Manager_Admin {
 		if(!empty($result))
 		{
 			?>
-		    <div class="notice notice-warning is-dismissible">
+		    <div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
 		        <p><?php echo sprintf( __( 'Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager-migration' ), admin_url( 'edit.php?post_type=event_listing&page=event-manager-upgrade-database' ) ); ?></p>
 		    </div>
 		    <?php	
