@@ -169,6 +169,8 @@ class WP_Event_Manager_Setup {
 				'submit_organizer_form'	=> '[submit_organizer_form]',
 
 				'organizer_dashboard'   => '[organizer_dashboard]',
+
+				'event_organizers'   	=> '[event_organizers]',
 			);
 
 			foreach ( $pages_to_create as $page => $content ) {
@@ -309,6 +311,20 @@ class WP_Event_Manager_Setup {
 								</td>
 
 								<td><code>[organizer_dashboard]</code></td>
+							</tr>
+
+							<tr>
+								<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_organizers]" /></td>
+
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Event Organizer', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
+
+								<td>
+									<p><?php _e( 'This page allows peoples to manage and edit their own events from the front-end.', 'wp-event-manager' ); ?></p>
+
+									<p><?php _e( 'If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager' ); ?></p>
+								</td>
+
+								<td><code>[event_organizers]</code></td>
 							</tr>
 
 						</tbody>

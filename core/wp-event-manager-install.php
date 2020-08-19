@@ -80,6 +80,10 @@ class WP_Event_Manager_Install {
 				'page_title' => 'Organizer Dashboard',
 				'page_content' => '[organizer_dashboard]',
 			],
+			'event_organizers' => [
+				'page_title' => 'Event Organizer',
+				'page_content' => '[event_organizers]',
+			],
 		];
 
 		foreach ( $pages_to_create as $page_slug => $page ) 
