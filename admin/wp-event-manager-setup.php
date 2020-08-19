@@ -291,9 +291,9 @@ class WP_Event_Manager_Setup {
 								<td><input type="text" value="<?php echo esc_attr( _x( 'Submit Organizer Form', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[submit_organizer_form]" /></td>
 
 								<td>
-									<p><?php _e( 'This page allows peoples to manage and edit their own events from the front-end.', 'wp-event-manager' ); ?></p>
+									<p><?php _e( 'This page allows people to Submit the Organizers form the frontend.', 'wp-event-manager' ); ?></p>
 									
-									<p><?php _e( 'If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager' ); ?></p>
+									<p><?php _e( 'In case if you do not want to allow your users to submit organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
 								</td>
 
 								<td><code>[submit_organizer_form]</code></td>
@@ -305,9 +305,9 @@ class WP_Event_Manager_Setup {
 								<td><input type="text" value="<?php echo esc_attr( _x( 'Organizer Dashboard', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[organizer_dashboard]" /></td>
 
 								<td>
-									<p><?php _e( 'This page allows peoples to manage and edit their own events from the front-end.', 'wp-event-manager' ); ?></p>
+									<p><?php _e( 'This page allows people to manage (edit, delete and duplicate)t the Organizers form the frontend.', 'wp-event-manager' ); ?></p>
 
-									<p><?php _e( 'If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager' ); ?></p>
+									<p><?php _e( 'In case if you do not want to allow your users to manage organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
 								</td>
 
 								<td><code>[organizer_dashboard]</code></td>
@@ -319,9 +319,7 @@ class WP_Event_Manager_Setup {
 								<td><input type="text" value="<?php echo esc_attr( _x( 'Event Organizer', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
 
 								<td>
-									<p><?php _e( 'This page allows peoples to manage and edit their own events from the front-end.', 'wp-event-manager' ); ?></p>
-
-									<p><?php _e( 'If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager' ); ?></p>
+									<p><?php _e( 'This page allows peoples to manage and edit their own organizers from the front-end.', 'wp-event-manager' ); ?></p>
 								</td>
 
 								<td><code>[event_organizers]</code></td>
