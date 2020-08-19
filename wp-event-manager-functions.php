@@ -1334,7 +1334,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 		'show_option_all' => false,
 
-		'placeholder'     => __( 'Choose a category&hellip;', 'wp-event-manager' ),
+		'placeholder'     => __( 'Choose a Category&hellip;', 'wp-event-manager' ),
 
 		'no_results_text' => __( 'No results match', 'wp-event-manager' ),
 
@@ -1384,7 +1384,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 	if($taxonomy=='event_listing_type'):
 
-		$placeholder=__( 'Choose an event type&hellip;', 'wp-event-manager' );
+		$placeholder=__( 'Choose an Event Type&hellip;', 'wp-event-manager' );
 
 	endif;
 

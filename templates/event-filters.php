@@ -94,7 +94,7 @@
 					<?php if ( $show_category_multiselect ) : ?>
 						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'hide_empty' => false) ); ?>
 					<?php else : ?>
-						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'show_option_all' => __( 'Any Category', 'wp-event-manager' ), 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'multiple' => false, 'hide_empty' => false) ); ?>
+						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'show_option_all' => __( 'Choose a Category', 'wp-event-manager' ), 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'multiple' => false, 'hide_empty' => false) ); ?>
 					<?php endif; ?>
 					</div>
 				</div>
@@ -113,7 +113,7 @@
 					<?php if ( $show_event_type_multiselect) : ?>
  					    <?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'hide_empty' => false) ); ?>
 					<?php else : ?>
-						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'show_option_all' => __( 'Any Event Type', 'wp-event-manager' ), 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'multiple' => false,'hide_empty' => false) ); ?>
+						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'show_option_all' => __( 'Choose an Event Type', 'wp-event-manager' ), 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'multiple' => false,'hide_empty' => false) ); ?>
 					<?php endif; ?>
 					</div>
 				</div>
