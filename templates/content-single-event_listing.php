@@ -51,7 +51,7 @@ do_action('set_single_listing_view_count');
                                 </div>
                             <?php endif; ?>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="wpem-single-event-body">
@@ -73,7 +73,8 @@ do_action('set_single_listing_view_count');
 
                                     <?php
                                     $view_count = get_post_views_count($post);
-                                    if ($view_count) : ?>                                        
+                                    if ($view_count) :
+                                        ?>                                        
                                         <div class="wpem-viewed-event wpem-tooltip wpem-tooltip-bottom"><i class="wpem-icon-eye"></i><?php printf(__(' %d', 'wp-event-manager'), $view_count); ?>                                        
                                             <span class="wpem-tooltiptext"><?php printf(__('%d people viewed this event.', 'wp-event-manager'), $view_count); ?></span>
                                         </div>                                        
@@ -86,8 +87,10 @@ do_action('set_single_listing_view_count');
                                     <?php if (get_event_ticket_option()) : ?>                                        
                                         <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
                                     <?php endif; ?>
-                                    </div>
+                                </div>
                             </div>
+
+
 
                             <?php do_action('single_event_overview_before'); ?>
 
@@ -96,6 +99,99 @@ do_action('set_single_listing_view_count');
                                 <?php echo apply_filters('display_event_description', get_the_content()); ?>
                                 <?php do_action('single_event_overview_end'); ?>
                             </div>
+
+                            <!-- Additional Info Block Start -->
+                            <?php
+                            $show_additional_details = apply_filters('event_manager_show_additional_details', true);
+
+                            if( $show_additional_details ) :
+
+                                $GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
+                                $form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+                                $custom_fields = $form_submit_event_instance->get_event_manager_fieldeditor_fields();
+                                $default_fields = $form_submit_event_instance->get_default_fields( );
+                                
+                                $additional_fields = [];
+                                if( !empty($custom_fields) && isset($custom_fields) && !empty($custom_fields['event']) )
+                                {
+                                    foreach ($custom_fields['event'] as $field_name => $field_data) 
+                                    {
+                                        if( !array_key_exists($field_name, $default_fields['event']) )
+                                        {
+                                            $additional_fields[$field_name] = $field_data;
+                                        }
+                                    }
+                                }
+
+                                if( !empty($additional_fields)) : ?>
+                                <div class="wpem-additional-info-block-wrapper">
+
+                                    <div class="wpem-additional-info-block">
+                                        <h3 class="wpem-heading-text"><?php _e('Additional Details', 'wp-event-manager'); ?></h3>
+                                    </div>
+                                    
+                                    <div class="wpem-additional-info-block-details">
+
+                                        <?php do_action('single_event_additional_details_start'); ?>
+
+                                        <div class="wpem-row">
+
+                                            <?php foreach ($additional_fields as $name => $field) : ?>
+                                                
+                                                <?php
+                                                $field_key = '_'.$name;
+                                                $field_value = $post->$field_key;
+                                                ?>
+
+                                                <?php if( !empty($field_value) ) : ?>
+                                                
+                                                    <?php if( $field['type'] == 'textarea' || $field['type'] == 'wp-editor' ) : ?>
+                                                        <div class="wpem-col-12 wpem-additional-info-block-textarea">
+                                                            <div class="wpem-additional-info-block-details-content-items">
+                                                                <p class="wpem-additional-info-block-title"><strong> <?php echo $field['label']; ?></strong></p>
+                                                                <p class="wpem-additional-info-block-textarea-text"><?php echo $field_value; ?></p>
+                                                            </div>
+                                                        </div>
+
+                                                    <?php elseif($field['type'] == 'multiselect') : ?>
+                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                            <div class="wpem-additional-info-block-details-content-items">
+                                                                <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo $field_value; ?></p>
+                                                            </div>
+                                                        </div>
+
+                                                    <?php elseif($field['type'] == 'select') : ?>
+                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                            <div class="wpem-additional-info-block-details-content-items">
+                                                                <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo $field_value; ?></p>
+                                                            </div>
+                                                        </div>
+
+                                                    <?php else : ?>
+                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                            <div class="wpem-additional-info-block-details-content-items">
+                                                                <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo $field_value; ?></p>
+                                                            </div>
+                                                        </div>
+
+                                                    <?php endif; ?>
+
+                                                <?php endif; ?>
+                                                
+                                            <?php endforeach; ?>
+
+                                        </div>
+
+                                        <?php do_action('single_event_additional_details_end'); ?>
+
+                                    </div>
+
+                                </div>
+                                <?php endif; ?>
+
+                            <?php endif; ?>
+
+                            <!-- Additional Info Block End  -->
 
                             <?php do_action('single_event_overview_after'); ?>
 
@@ -128,9 +224,9 @@ do_action('set_single_listing_view_count');
                                 {
                                     get_event_manager_template('event-registration.php');
                                 }
-                                else if(strtotime($registration_end_date) < $current_timestamp)
+                                else if (strtotime($registration_end_date) < $current_timestamp)
                                 {
-                                    echo '<div class="wpem-alert wpem-alert-warning">' . __( 'Event registration closed.', 'wp-event-manager' ) . '</div>';
+                                    echo '<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>';
                                 }
                                 ?>
 
@@ -162,7 +258,7 @@ do_action('set_single_listing_view_count');
                                             if (get_event_start_date() != get_event_end_date())
                                             {
                                                 display_event_end_date();
-                                            }                                            
+                                            }
                                             ?> <?php
                                             if (get_event_end_date() != '' && get_event_end_time())
                                             {
@@ -198,7 +294,7 @@ do_action('set_single_listing_view_count');
                                         <?php endif; ?>
                                     </div>
 
-                                    <?php if (get_option('event_manager_enable_event_types') && get_event_type()) :?>
+                                    <?php if (get_option('event_manager_enable_event_types') && get_event_type()) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Types', 'wp-event-manager'); ?></h3>
                                         <div class="wpem-event-type"><?php display_event_type(); ?></div>
@@ -218,7 +314,7 @@ do_action('set_single_listing_view_count');
                                     <?php endif; ?>                                    
                                     <!-- Registration End Date End-->
 
-                                    
+
                                     <?php if (get_organizer_youtube()) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></button>
@@ -244,7 +340,8 @@ do_action('set_single_listing_view_count');
                                 <?php
                                 $is_friend_share = apply_filters('event_manager_event_friend_share', true);
 
-                                if ($is_friend_share): ?>
+                                if ($is_friend_share):
+                                    ?>
                                     <h3 class="wpem-heading-text"><?php _e('Share With Friends', 'wp-event-manager'); ?></h3>
                                     <div class="wpem-share-this-event">
                                         <div class="wpem-event-share-lists">
