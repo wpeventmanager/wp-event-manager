@@ -50,7 +50,7 @@ class WP_Event_Manager_Admin {
 
 		// Ajax
 		add_action( 'wp_ajax_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );		
-		add_action( 'wp_ajax_nopriv_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );
+		//add_action( 'wp_ajax_nopriv_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );
 	}
 
 	/**

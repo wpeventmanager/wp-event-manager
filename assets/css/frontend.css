@@ -3003,3 +3003,31 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
     min-width: 180px;
     font-size: 14px;
 }
+
+
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block {background: #eeedf2;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 15px 30px;
+    margin: 0;}
+    .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details {
+        padding: 30px;
+    }
+    
+    .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details p {
+        font-size: 14px;
+        margin-bottom: 0px;
+        padding-left: 5px;
+    }
+        .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details .wpem-additional-info-block-textarea p {
+            color: #868686;
+        }
+        .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details .wpem-additional-info-block-details-content-items {
+        padding: 10px 0px;
+        border-bottom: 1px solid #ccc;
+    }
+    .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details .wpem-additional-info-block-textarea p.wpem-additional-info-block-title {
+    color: #333;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
