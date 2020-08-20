@@ -180,7 +180,12 @@ class WP_Event_Manager_Admin {
 
 	                <tbody>
 	                	<td>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+							<p><?php _e('3.1.14 has released!
+We are constantly working to improve your event management experience, We have a new release focusing on a handle of fixes and updates & here is a summary of what has been improved...
+
+Manage your Organizers directly at the frontend and backend.
+Migration of Old Organizer data would be transferred to the list Automatically.
+A prior Backup does no harm before updating the plugin!','wp-event-manager');?>.</p>
 						</td>
 	                </tbody>
 
