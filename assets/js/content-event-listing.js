@@ -57,7 +57,7 @@ var ContentEventListing= function () {
 		              }
 			   	}
 
-			   	if(jQuery( 'input.date_range_picker' ).length > 0)
+			   if(jQuery( 'input.date_range_picker' ).length > 0)
 		     	{
 		     		jQuery("input.date_range_picker").daterangepicker({
 	                    datepickerOptions : {
@@ -65,47 +65,50 @@ var ContentEventListing= function () {
 	                        minDate: null,
 					        maxDate: null
 	                    },
-	                    initialText: 'Select Date',
+	                    initialText: event_manager_content_event_listing.i18n_initialText,
+	                    applyButtonText: event_manager_content_event_listing.i18n_applyButtonText,
+	                    clearButtonText: event_manager_content_event_listing.i18n_clearButtonText,
+	                    cancelButtonText: event_manager_content_event_listing.i18n_cancelButtonText,
 	                    dateFormat: 'yy-mm-dd',
 	                    rangeSplitter: ' : ',
 	                    presetRanges: [
 	                      {
-	                        text: 'Today',
+	                        text: event_manager_content_event_listing.i18n_today,
 	                        dateStart: function() { return moment() },
 	                        dateEnd: function() { return moment() }
 	                      }, 
 	                      {
-	                        text: 'Tomorrow',
+	                        text: event_manager_content_event_listing.i18n_tomorrow,
 	                        dateStart: function() { return moment().add('days', 1) },
 	                        dateEnd: function() { return moment().add('days', 1) }
 	                      },
 	                      {
-	                        text: 'This Week',
+	                        text: event_manager_content_event_listing.i18n_thisWeek,
 	                        dateStart: function() { return moment().startOf('week') },
 	                        dateEnd: function() { return moment().endOf('week') }
 	                      }, 
 	                      {
-	                        text: 'Next Week',
+	                        text: event_manager_content_event_listing.i18n_nextWeek,
 	                        dateStart: function() { return moment().add('weeks', 1).startOf('week') },
 	                        dateEnd: function() { return moment().add('weeks', 1).endOf('week') }
 	                      },
 	                      {
-	                        text: 'This Month',
+	                        text: event_manager_content_event_listing.i18n_thisMonth,
 	                        dateStart: function() { return moment().startOf('month') },
 	                        dateEnd: function() { return moment().endOf('month') }
 	                      },
 	                      {
-	                        text: 'Next Month',
+	                        text: event_manager_content_event_listing.i18n_nextMonth,
 	                        dateStart: function() { return moment().add('months', 1).startOf('month') },
 	                        dateEnd: function() { return moment().add('months', 1).endOf('month') }
 	                      },
 	                      {
-	                        text: 'This Year',
+	                        text: event_manager_content_event_listing.i18n_thisYear,
 	                        dateStart: function() { return moment().startOf('year') },
 	                        dateEnd: function() { return moment().endOf('year') }
 	                      },
 	                      {
-	                        text: 'Next Year',
+	                        text: event_manager_content_event_listing.i18n_nextYear,
 	                        dateStart: function() { return moment().add('years', 1).startOf('year') },
 	                        dateEnd: function() { return moment().add('years', 1).endOf('year') }
 	                      },

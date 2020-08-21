@@ -379,7 +379,7 @@ class WP_Event_Manager_Date_Time {
 		$tzstring 	= self::generate_timezone_string_from_utc_offset( $event_timezone );
 
 		$date_time = new DateTime( "now" );
-
+		
 		$date_time->setTimezone( new DateTimeZone( $tzstring ) );
 		
 		return strtotime( $date_time->format('Y-m-d H:i:s') ); 
@@ -409,6 +409,7 @@ class WP_Event_Manager_Date_Time {
 	 * @return string
 	 */
 	public static function generate_timezone_string_from_utc_offset( $offset ) {
+		
 		if ( ! self::is_utc_offset( $offset ) ) {
 			return $offset;
 		}
@@ -434,7 +435,7 @@ class WP_Event_Manager_Date_Time {
 					if (
 						$city['dst'] == $is_dst
 						&& $city['offset'] == $seconds
-					) {
+					&& !empty($city['timezone_id'])) {
 						return $city['timezone_id'];
 					}
 				}

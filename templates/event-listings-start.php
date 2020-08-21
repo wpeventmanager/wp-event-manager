@@ -4,7 +4,7 @@
     <div class="wpem-row">
         <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-8">
             <div class="wpem-event-listing-header-title">
-                <h2 class="wpem-heading-text"><?php _e( 'Recent Events', 'wp-event-manager' ); ?></h2> </div>
+                <h2 class="wpem-heading-text"><?php _e( 'Events', 'wp-event-manager' ); ?></h2> </div>
         </div>
         <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-4">
             <div class="wpem-event-layout-action-wrapper">

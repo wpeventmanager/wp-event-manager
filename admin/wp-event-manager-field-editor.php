@@ -54,6 +54,9 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	private function form_editor() {
 		if ( ! empty( $_GET['reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
+			delete_option( 'event_manager_submit_event_form_fields' );
+			delete_option( 'event_manager_submit_organizer_form_fields' );
+			delete_option( 'event_manager_submit_venue_form_fields' );
 			delete_option( 'event_manager_form_fields' );
 			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
@@ -61,15 +64,8 @@ class WP_Event_Manager_Field_Editor {
 		if ( ! empty( $_POST ) && ! empty( $_POST['_wpnonce'] ) ) {
 			echo $this->form_editor_save();
 		}
-
-		if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) {
-			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
-			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );	
-		}
-		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
-		$fields = $form_submit_event_instance->merge_with_custom_fields('backend');
 		
-		$disbled_fields = array('event_title','event_description');
+		$disbled_fields = array('event_title','event_description','organizer_name','organizer_description','venue_name','venue_description');
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           		=> __( 'Text', 'wp-event-manager' ),
 			'time'           		=> __( 'Time', 'wp-event-manager' ),
@@ -92,20 +88,37 @@ class WP_Event_Manager_Field_Editor {
 			'textarea'    			=> __( 'Textarea', 'wp-event-manager' ),
 			'wp-editor'       		=> __( 'WP Editor', 'wp-event-manager' )
 		) );
-		?>
-		<?php	
-		foreach($fields  as $group_key => $group_fields){ ?>
+
+		
+		$GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
+		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+		$event_fields =	$form_submit_event_instance->merge_with_custom_fields('backend');
+		
+		if(get_option('enable_event_organizer')){
+			$GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
+			$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Organizer', 'instance' ) );
+			$organizer_fields =	$form_submit_organizer_instance->merge_with_custom_fields('backend');
+		}
+		else
+			$organizer_fields = array();
+
+		if(get_option('enable_event_venue')){
+			$GLOBALS['event_manager']->forms->get_form( 'submit-venue', array() );
+			$form_submit_venue_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Venue', 'instance' ) );
+			$venue_fields =	$form_submit_venue_instance->merge_with_custom_fields('backend');
+		}
+		else
+			$venue_fields = array();
+
+		$fields = array_merge($event_fields,$organizer_fields,$venue_fields );
+		foreach($fields  as $group_key => $group_fields){ 
+				if(empty($group_fields))
+					continue;
+			?>
+
 			<div class="wp-event-manager-event-form-field-editor">
-				<?php 
-					if($group_key == 'event'){ ?>
-					<h3><?php _e('Event fields','wp-event-manager');?></h3>
-					<?php	
-					}
-					else if($group_key == 'organizer'){ ?>
-					<h3><?php _e('Organizer fields','wp-event-manager');?></h3>
-					<?php	
-					}
-					?>
+					
+				<h3><?php printf(__('%s fields','wp-event-manager'),$group_key);?></h3>
 				<table class="widefat">
 					<thead>
 						<tr>
@@ -126,12 +139,12 @@ class WP_Event_Manager_Field_Editor {
 							<th colspan="4">
 								<a class="button add-field" href="#"><?php _e( 'Add field', 'wp-event-manager' ); ?></a>
 							</th>
-							<?php if($group_key == 'organizer'){ ?>
-							<th colspan="4" class="save-actions">
+							
+							<th colspan="6" class="save-actions">
 								<a href="<?php echo wp_nonce_url( add_query_arg( 'reset-fields', 1 ), 'reset' ); ?>" class="reset"><?php _e( 'Reset to default', 'wp-event-manager' ); ?></a>
 								<input type="submit" class="save-fields button-primary" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
 							</th>
-							<?php } ?>
+						
 						</tr>
 					</tfoot>
 					<tbody id="form-fields" data-field="<?php
@@ -153,8 +166,12 @@ class WP_Event_Manager_Field_Editor {
 							}
 					?></tbody>
 				</table>
-			</div>
-<?php	} 
+		<?php
+		}?>
+
+		
+
+<?php	 
 	}	
 	
 	/**
@@ -165,9 +182,13 @@ class WP_Event_Manager_Field_Editor {
 		{
 			$event_field          	  = ! empty( $_POST['event'] ) ?  $_POST['event'] 				: array();
 			$event_organizer          = ! empty( $_POST['organizer'] ) ?  $_POST['organizer']   	: array();
+			$event_venue          = ! empty( $_POST['venue'] ) ?  $_POST['venue']   	: array();
 			$index = 0;
-			if(!empty($event_field) && !empty($event_organizer)){
-				$new_fields = array('event' => $event_field ,'organizer' =>$event_organizer);
+
+
+
+			if(!empty($event_field) ){
+				$new_fields = array('event' => $event_field ,'organizer' =>$event_organizer, 'venue' => $event_venue);
 				
 				//find the numers keys from the fields array and replace with lable if label not exist remove that field
 				 foreach($new_fields as $group_key => $group_fields) {
@@ -184,9 +205,9 @@ class WP_Event_Manager_Field_Editor {
 									foreach($new_fields[$group_key][$field_key]['options'] as $val){
 										$option_key = explode( ':', $val);
 										if(isset($option_key[1]))
-											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  $option_key[1] ;
+											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[1]);
 										else
-											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  $option_key[0] ;
+											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[0]);
 									}
 									$new_fields[$group_key][$field_key]['options'] = $temp_options;
 								}
@@ -206,32 +227,49 @@ class WP_Event_Manager_Field_Editor {
 				}
 				
 				//merge field with default fields
-				if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) {
-					include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
-					include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
-				}
-				
+
+				$GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
 				$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
-				$default_fields = $form_submit_event_instance->get_default_fields('backend');
-				//if field in not exist in new fields array then
+				$event_fields =	$form_submit_event_instance->get_default_fields('backend');
+
+				$GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
+				$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_organizer', 'instance' ) );
+				$organizer_fields =	$form_submit_organizer_instance->get_default_fields('backend');
+
+				$GLOBALS['event_manager']->forms->get_form( 'submit-venue', array() );
+				$form_submit_venue_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Venue', 'instance' ) );
+				$venue_fields =	$form_submit_venue_instance->get_default_fields('backend');
+
+				$default_fields = array_merge($event_fields,$organizer_fields,$venue_fields );
+
+				//if field in not exist in new fields array then make visiblity false
 				if(!empty($default_fields))
 				foreach ( $default_fields as $group_key => $group_fields ) {
 					foreach ($group_fields as $key => $field) {
 						if( !isset( $new_fields[$group_key][$key] ) ){
 							$new_fields[$group_key][$key] 				= $field;
-							$new_fields[$group_key][$key]['visibility'] = 0;
+							$new_fields[$group_key][$key]['visibility'] = 0; //it will make visiblity false means removed from the field editor.
 						}
 					}
 				}
 				
+				if(isset($new_fields['event']))
+					update_option('event_manager_submit_event_form_fields',array('event' =>$new_fields['event']));
+				
+				if(isset($new_fields['organizer']))
+					update_option('event_manager_submit_organizer_form_fields',array('organizer' =>$new_fields['organizer']) );
+
+				if(isset($new_fields['venue']))
+					update_option('event_manager_submit_venue_form_fields',array('venue'=>$new_fields['venue']) );
+
+				//this will be removed in future
 				$result = update_option( 'event_manager_form_fields', $new_fields );
 			
 			}	  
-		}
-		 
-		 if ( isset($result) && true === $result ) {
-				echo '<div class="updated"><p>' . __( 'The fields were successfully saved.', 'wp-event-manager' ) . '</p></div>';
-		}
+		}		 
+
+		echo '<div class="updated"><p>' . __( 'The fields were successfully saved.', 'wp-event-manager' ) . '</p></div>';
+		
 	}
 
 	/**

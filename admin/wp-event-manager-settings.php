@@ -57,22 +57,43 @@ class WP_Event_Manager_Settings {
 							__( 'General', 'wp-event-manager' ),
 							
 							array(
-									array(
-											'name'       => 'event_manager_delete_data_on_uninstall',
-											'std'        => '0',
-											'label'      => __( 'Delete Data On Uninstall', 'wp-event-manager' ),
-											'cb_label'   => __( 'Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be restored.', 'wp-event-manager' ),
-											'desc'       => '',
-											'type'       => 'checkbox',
-											'attributes' => array(),
-									),
-									array(
-											'name'       => 'event_manager_google_maps_api_key',
-											'std'        => '',
-											'label'      => __( 'Google API Key', 'wp-event-manager' ),
-											'desc'       => sprintf( __( 'If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
-											'attributes' => array()
-									)
+
+								array(
+										'name'       => 'enable_event_organizer',
+										'std'        => '1',
+										'label'      => __( 'Enable organizer', 'wp-event-manager' ),
+										'cb_label'   => __( 'Display organizer on events.', 'wp-event-manager' ),
+										'desc'       => '',
+										'type'       => 'checkbox',
+										'attributes' => array(),
+								),
+								/*
+								array(
+										'name'       => 'enable_event_venue',
+										'std'        => '1',
+										'label'      => __( 'Enable venue', 'wp-event-manager' ),
+										'cb_label'   => __( 'Display venue on events.', 'wp-event-manager' ),
+										'desc'       => '',
+										'type'       => 'checkbox',
+										'attributes' => array(),
+								),
+								*/
+								array(
+										'name'       => 'event_manager_delete_data_on_uninstall',
+										'std'        => '0',
+										'label'      => __( 'Delete Data On Uninstall', 'wp-event-manager' ),
+										'cb_label'   => __( 'Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be restored.', 'wp-event-manager' ),
+										'desc'       => '',
+										'type'       => 'checkbox',
+										'attributes' => array(),
+								),
+								array(
+										'name'       => 'event_manager_google_maps_api_key',
+										'std'        => '',
+										'label'      => __( 'Google API Key', 'wp-event-manager' ),
+										'desc'       => sprintf( __( 'If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%s" target="__blank">Google Maps API developer site</a>.', 'wp-event-manager' ), 'https://developers.google.com/maps/documentation/geocoding/get-api-key' ),
+										'attributes' => array()
+								)
 							)
 					),
 				'event_listings' => array(
@@ -351,6 +372,22 @@ class WP_Event_Manager_Settings {
 						),
 						array(
 
+							'name'       => 'event_manager_delete_events_after_finished',
+
+							'std'        => '0',
+
+							'label'      => __( 'Delete listings after finished', 'wp-event-manager' ),
+
+							'cb_label'   => __( 'Delete listings after finished', 'wp-event-manager' ),
+
+							'desc'       => __( 'If enabled, expired listings will automatically deleted after finished.', 'wp-event-manager' ),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array()
+						),
+						array(
+
 							'name'       => 'event_manager_delete_expired_events',
 
 							'std'        => '0',
@@ -407,9 +444,9 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Categories', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable categories for listings', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Categories for listing and submission form', 'wp-event-manager' ),
 					        
-					        'desc'       => __( 'Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        'desc'       => __( 'Choose whether to enable categories on the event listing and submission page. If enabled, it needs to be prior created at the backend.', 'wp-event-manager' ),
 					        
 					        'type'       => 'checkbox',
 					        
@@ -424,9 +461,9 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Event Types', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable event types for listings', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Event types for listing and submission form', 'wp-event-manager' ),
 					        
-					        'desc'       => __( 'Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        'desc'       => __( 'Choose whether to enable event types on the event listing and submission page. If enabled, it needs to be prior created at the backend.', 'wp-event-manager' ),
 					        
 					        'type'       => 'checkbox',
 					        
@@ -441,9 +478,9 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Ticket prices', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable ticket prices for listings', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Ticket prices for listing and submission form', 'wp-event-manager' ),
 					        
-					        'desc'       => __( 'Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        'desc'       => __( 'Choose whether to enable ticket prices on the event listing and submission page.', 'wp-event-manager' ),
 					        
 					        'type'       => 'checkbox',
 					        
@@ -541,6 +578,58 @@ class WP_Event_Manager_Settings {
 					        
 					        'type'      => 'text'
 					    ),
+					    
+					    array(
+
+							'name' 		=> 'event_manager_submit_organizer_form_page_id',
+
+							'std' 		=> '',
+
+							'label' 	=> __( 'Submit Organizer Form Page', 'wp-event-manager' ),
+
+							'desc'		=> __( 'Select the page where you have placed the [submit_organizer_form] shortcode. This lets the plugin know where the form is located.', 'wp-event-manager' ),
+
+							'type'      => 'page'
+						),
+						array(
+					        
+					        'name' 		=> 'event_manager_organizer_dashboard_page_id',
+					        
+					    	'std' 		=> '',
+
+							'label' 	=> __( 'Organizer Dashboard Page', 'wp-event-manager' ),
+
+							'desc'		=> __( 'Select the page where you have placed the [organizer_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'wp-event-manager' ),
+					        
+					        'type'      => 'page'
+					    ),
+					    /*
+						array(
+
+							'name' 		=> 'event_manager_submit_venue_form_page_id',
+
+							'std' 		=> '',
+
+							'label' 	=> __( 'Submit Venue Form Page', 'wp-event-manager' ),
+
+							'desc'		=> __( 'Select the page where you have placed the [submit_venue_form] shortcode. This lets the plugin know where the form is located.', 'wp-event-manager' ),
+
+							'type'      => 'page'
+						),
+						array(
+					        
+					        'name' 		=> 'event_manager_venue_dashboard_page_id',
+					        
+					    	'std' 		=> '',
+
+							'label' 	=> __( 'Venue Dashboard Page', 'wp-event-manager' ),
+
+							'desc'		=> __( 'Select the page where you have placed the [venue_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'wp-event-manager' ),
+					        
+					        'type'      => 'page'
+					    ),
+					    */
+
 					)
 				),
 				'date_time_formatting' => array(
@@ -594,7 +683,7 @@ class WP_Event_Manager_Settings {
 				
 										'label' 	=> __( 'Date Format', 'wp-event-manager' ),
 				
-										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://codex.wordpress.org/Formatting_Date_and_Time'),
+										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://wordpress.org/support/article/formatting-date-and-time/'),
 				
 										'type'      => 'text',
 								),
@@ -698,7 +787,7 @@ class WP_Event_Manager_Settings {
 
 						echo '<div class="updated fade event-manager-updated"><p>' . __( 'Settings successfully saved', 'wp-event-manager' ) . '</p></div>';
 					}
-
+					
 					foreach ( $this->settings as $key => $section ) {
 
 						echo '<div id="settings-' . sanitize_title( $key ) . '" class="settings_panel">';
@@ -869,7 +958,7 @@ class WP_Event_Manager_Settings {
                            <?php _e('<span class="help-icon"></span><b>Need help?</b> <br>Read the <a href="https://wp-eventmanager.com/documentation/" target="_blank" >Documentation.</a><br>Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>','wp-event-manager'); ?>
                         </p>
                         <p>  
-                           <span class="connect-icon"></span><b><?php _e('Demo','wp-event-manager');?></b> <br><?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank"><?_e('Plugin Demo.','wp-event-manager');?></a><br>
+                           <span class="connect-icon"></span><b><?php _e('Demo','wp-event-manager');?></b> <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank"><?_e('Plugin Demo.','wp-event-manager');?></a><br>
                            <?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/plugins/" target="_blank"><?php _e('Premium Add-ons','wp-event-manager'); ?></a>.<br>                           
                         </p>
                         

@@ -544,7 +544,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
 					
 					'std'   => 10,
 					
-					'label' => __( 'Order by', 'wp-event-manager' ),
+					'label' => __( 'Order', 'wp-event-manager' ),
 					'options'=> array(
 							'ASC' => __( 'Ascending (ASC)', 'wp-event-manager' ),
 							'DESC' => __( 'Descending  (DESC)', 'wp-event-manager' )
@@ -623,6 +623,13 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
 		        'compare' => '>'
 		    )
 		);
+
+		if ( 'event_start_date' === $args['orderby'] ) {
+			$args['orderby'] ='meta_value';
+			$args['meta_key'] ='_event_start_date';
+			$args['meta_type'] ='DATE';
+		}
+		
 		$events = new WP_Query( $args );
 
 		if ( $events->have_posts() ) : ?>

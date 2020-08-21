@@ -52,11 +52,28 @@
 			<?php */ ?>
 
 			<!-- Search by date section start -->
-			<?php if ( $datetimes) : ?>				
+			<?php if ( $datetimes) : ?>	
+
+				<?php
+				$arr_selected_datetime = [];
+				if(!empty($selected_datetime))
+				{
+					$selected_datetime = explode(',', $selected_datetime);
+
+					$start_date = esc_attr( strip_tags( $selected_datetime[0] ) );
+					$end_date = esc_attr( strip_tags( $selected_datetime[1] ) );
+
+					$arr_selected_datetime['start'] = date_i18n("Y-m-d", strtotime( $start_date ) );
+					$arr_selected_datetime['end'] = date_i18n("Y-m-d", strtotime( $end_date ) );
+
+					$selected_datetime = json_encode($arr_selected_datetime);
+				}
+				?>
+
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_datetimes" class="wpem-form-label"><?php _e( 'Any dates', 'wp-event-manager' ); ?></label>
-						<input type="text" name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown date_range_picker" >
+						<input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo $selected_datetime; ?>' class="event-manager-category-dropdown date_range_picker" >
 						</div>
 				</div>
 			<?php endif; ?>	  			
@@ -70,14 +87,14 @@
 				<?php foreach ( $categories as $category ) : ?>
 					<input type="hidden" name="search_categories[]" value="<?php  echo sanitize_title( $category ); ?>" />
 				<?php endforeach; ?>
-			<?php elseif ( $show_categories && ! is_tax( 'event_listing_category' ) && get_terms( 'event_listing_category' ) ) : ?>
+			<?php elseif ( $show_categories && ! is_tax( 'event_listing_category' ) && get_terms( 'event_listing_category', ['hide_empty' => false] ) ) : ?>
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 					<label for="search_categories" class="wpem-form-label"><?php _e( 'Category', 'wp-event-manager' ); ?></label>
 					<?php if ( $show_category_multiselect ) : ?>
 						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'hide_empty' => false) ); ?>
 					<?php else : ?>
-						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'show_option_all' => __( 'Any Category', 'wp-event-manager' ), 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'multiple' => false, 'hide_empty' => false) ); ?>
+						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'show_option_all' => __( 'Choose a Category', 'wp-event-manager' ), 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'multiple' => false, 'hide_empty' => false) ); ?>
 					<?php endif; ?>
 					</div>
 				</div>
@@ -89,14 +106,14 @@
 				<?php foreach ( $event_types as $event_type) : ?>
 					<input type="hidden" name="search_event_types[]" value="<?php echo sanitize_title( $event_type); ?>" />
 				<?php endforeach; ?>
-			<?php elseif ( $show_event_types && ! is_tax( 'event_listing_type' ) && get_terms( 'event_listing_type' ) ) : ?>		
+			<?php elseif ( $show_event_types && ! is_tax( 'event_listing_type' ) && get_terms( 'event_listing_type', ['hide_empty' => false] ) ) : ?>		
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 					<label for="search_event_types" class="wpem-form-label"><?php _e( 'Event Type', 'wp-event-manager' ); ?></label>
 					<?php if ( $show_event_type_multiselect) : ?>
  					    <?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'hide_empty' => false) ); ?>
 					<?php else : ?>
-						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'show_option_all' => __( 'Any Event Type', 'wp-event-manager' ), 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'multiple' => false,'hide_empty' => false) ); ?>
+						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'show_option_all' => __( 'Choose an Event Type', 'wp-event-manager' ), 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'multiple' => false,'hide_empty' => false) ); ?>
 					<?php endif; ?>
 					</div>
 				</div>
@@ -120,6 +137,23 @@
 				</div>
 			<?php endif; ?>	  
 			<!-- Search by any ticket price section end -->  
+
+			<?php /* ?>	  
+			<!-- Search by Online Event start -->  
+			<div class="wpem-col">
+				<div class="wpem-form-group">
+					<label for="event_online" class="wpem-form-label"></label>
+					<?php if($event_online) : ?>
+						<input type="checkbox" name="event_online" id="event_online" value='1' class="event-manager-filter" checked="checked" > <?php _e( 'Online Event', 'wp-event-manager' ); ?>
+					<?php else: ?>
+						<input type="checkbox" name="event_online" id="event_online" value='1' class="event-manager-filter" > <?php _e( 'Online Event', 'wp-event-manager' ); ?>
+					<?php endif; ?>
+					
+				</div>
+			</div>
+			<!-- Search by Online Event end -->
+			<?php */ ?>
+
     </div> <!-- /row -->
 
     <?php do_action( 'event_manager_event_filters_search_events_end', $atts ); ?>	

@@ -1,5 +1,12 @@
 <?php do_action('event_manager_event_dashboard_before'); ?>
-<p></p>
+<p>
+	<?php $submit_event 		= get_option('event_manager_submit_event_form_page_id');
+	if(!empty($submit_event )){ ?>
+		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_event);?>"><span><?php _e('Add event','wp-event-manager');?></span></a>
+	<?php
+	}
+	?>	
+</p>
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">
@@ -109,7 +116,7 @@ display_event_end_time ( '', '', true, $event );
 		                    <?php
 
 elseif ('event_location' === $key) :
-								if (get_event_location ( $event ) == 'Anywhere') :
+								if (get_event_location ( $event ) == 'Online Event') :
 									echo __ ( 'Online Event', 'wp-event-manager' );
 								else :
 									display_event_location ( false, $event );

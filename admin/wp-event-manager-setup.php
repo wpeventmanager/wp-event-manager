@@ -164,7 +164,13 @@ class WP_Event_Manager_Setup {
 
 				'event_dashboard'   => '[event_dashboard]',
 
-				'events'            => '[events]'
+				'events'            => '[events]',
+
+				'submit_organizer_form'	=> '[submit_organizer_form]',
+
+				'organizer_dashboard'   => '[organizer_dashboard]',
+
+				'event_organizers'   	=> '[event_organizers]',
 			);
 
 			foreach ( $pages_to_create as $page => $content ) {
@@ -202,7 +208,7 @@ class WP_Event_Manager_Setup {
 
 				<p><?php _e( 'This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events.', 'wp-event-manager' ); ?></p>
 
-				<p><?php printf( __( 'If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help.', 'wp-event-manager' ), '<a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/">', '</a>' ); ?></p>
+				<p><?php printf( __( 'If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>' ); ?></p>
 
 				<p class="submit">
 
@@ -218,7 +224,7 @@ class WP_Event_Manager_Setup {
 
 				<h3><?php _e( 'Page Setup', 'wp-event-manager' ); ?></h3>
 
-				<p><?php printf( __( '<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s.', 'wp-event-manager' ), '<a href="http://codex.wordpress.org/Shortcode" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="http://codex.wordpress.org/Pages" target="_blank" class="help-page-link">', '<a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/" target="_blank" class="help-page-link">' ); ?></p>
+				<p><?php printf( __( '<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/knowledge-base/" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="https://wordpress.org/support/article/pages/" target="_blank" class="help-page-link">', '<a href="https://wp-eventmanager.com/knowledge-base/the-event-dashboard/" target="_blank" class="help-page-link">' ); ?></p>
 
 				<form action="<?php echo esc_url( add_query_arg( 'step', 3 ) ); ?>" method="post">
 					<?php wp_nonce_field( 'step_3', 'setup_wizard' ); ?>
@@ -279,6 +285,46 @@ class WP_Event_Manager_Setup {
 								<td><code>[events]</code></td>
 							</tr>
 
+							<tr>
+								<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_organizer_form]" /></td>
+
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Submit Organizer Form', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[submit_organizer_form]" /></td>
+
+								<td>
+									<p><?php _e( 'This page allows people to Submit the Organizers form the frontend.', 'wp-event-manager' ); ?></p>
+									
+									<p><?php _e( 'In case if you do not want to allow your users to submit organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
+								</td>
+
+								<td><code>[submit_organizer_form]</code></td>
+							</tr>
+
+							<tr>
+								<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[organizer_dashboard]" /></td>
+
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Organizer Dashboard', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[organizer_dashboard]" /></td>
+
+								<td>
+									<p><?php _e( 'This page allows people to manage (edit, delete and duplicate)t the Organizers form the frontend.', 'wp-event-manager' ); ?></p>
+
+									<p><?php _e( 'In case if you do not want to allow your users to manage organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
+								</td>
+
+								<td><code>[organizer_dashboard]</code></td>
+							</tr>
+
+							<tr>
+								<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_organizers]" /></td>
+
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Event Organizer', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
+
+								<td>
+									<p><?php _e( 'This page allows peoples to manage and edit their own organizers from the front-end.', 'wp-event-manager' ); ?></p>
+								</td>
+
+								<td><code>[event_organizers]</code></td>
+							</tr>
+
 						</tbody>
 
 						<tfoot>
@@ -314,7 +360,7 @@ class WP_Event_Manager_Setup {
 
 					<?php else : ?>
 
-						<li><a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/the-event-submission-form/"><?php _e( 'Find out more about the front-end event submission form', 'wp-event-manager' ); ?></a></li>
+						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-submission-form/"><?php _e( 'Find out more about the front-end event submission form', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
@@ -324,7 +370,7 @@ class WP_Event_Manager_Setup {
 
 					<?php else : ?>
 
-						<li><a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/the-event-listings/"><?php _e( 'Add the [events] shortcode to a page to list events', 'wp-event-manager' ); ?></a></li>
+						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-listings/"><?php _e( 'Add the [events] shortcode to a page to list events', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
@@ -334,13 +380,13 @@ class WP_Event_Manager_Setup {
 
 					<?php else : ?>
 
-						<li><a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/the-event-dashboard/"><?php _e( 'Find out more about the front-end event dashboard', 'wp-event-manager' ); ?></a></li>
+						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-dashboard/"><?php _e( 'Find out more about the front-end event dashboard', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
 				</ul>
 
-				<p><?php printf( __( 'And don\'t forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!', 'wp-event-manager' ), '<a href="http://www.wp-eventmanager.com/plugins-documentation/wp-event-manager/">', '</a>', '<a href="https://wordpress.org/support/plugin/wp-event-manager">' ); ?></p>
+				<p><?php printf( __( 'And don\'t forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>', '<a href="https://wordpress.org/support/plugin/wp-event-manager">' ); ?></p>
 
 				<div class="wp-event-manager-support-the-plugin">
 
@@ -350,11 +396,11 @@ class WP_Event_Manager_Setup {
 
 					<ul>
 
-						<li class="icon-review"><a href="https://wordpress.org/support/view/plugin-reviews/wp-event-manager#postform"><?php _e( 'Leave a positive review', 'wp-event-manager' ); ?></a></li>
+						<li class="icon-review"><a href="https://wordpress.org/support/plugin/wp-event-manager/reviews/#postform"><?php _e( 'Leave a positive review', 'wp-event-manager' ); ?></a></li>
 
 						<li class="icon-localization"><a href="https://translate.wordpress.org/projects/wp-plugins/wp-event-manager"><?php _e( 'Contribute a localization', 'wp-event-manager' ); ?></a></li>
 
-						<li class="icon-code"><a href="http://www.wp-eventmanager.com/forum/"><?php _e( 'Contribute code or report a bug', 'wp-event-manager' ); ?></a></li>
+						<li class="icon-code"><a href="https://wp-eventmanager.com/help-center/"><?php _e( 'Contribute code or report a bug', 'wp-event-manager' ); ?></a></li>
 
 						<li class="icon-forum"><a href="https://wordpress.org/support/plugin/wp-event-manager"><?php _e( 'Help other users on the forums', 'wp-event-manager' ); ?></a></li>
 

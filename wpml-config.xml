@@ -1,6 +1,6 @@
 <wpml-config>
   <custom-types>
-    <custom-type translate="0">event_listing</custom-type>
+    <custom-type translate="1">event_listing</custom-type>
   </custom-types>
   <shortcodes>
     <shortcode>

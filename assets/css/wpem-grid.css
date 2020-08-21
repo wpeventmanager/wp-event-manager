@@ -1,5 +1,6 @@
-html{-webkit-box-sizing:border-box;box-sizing:border-box;-ms-overflow-style:scrollbar}
-*,::before,::after{-webkit-box-sizing:inherit;box-sizing:inherit}
+html{
+/*-webkit-box-sizing:border-box;box-sizing:border-box;*/-ms-overflow-style:scrollbar}
+*,::before,::after{/*-webkit-box-sizing:inherit;box-sizing:inherit*/}
 .wpem-container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
 @media (min-width: 576px) {
 .wpem-container{max-width:540px}

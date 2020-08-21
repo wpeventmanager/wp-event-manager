@@ -91,6 +91,99 @@ class Elementor_Past_Event_Listing extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'show_pagination',
+			[
+				'label' => __( 'Show Pagination', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'false',
+				'options' => [
+					'false' => __( 'False', 'wp-event-manager' ),
+					'true' => __( 'True', 'wp-event-manager' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'per_page',
+			[
+				'label'       => __( 'Post Per Page', 'wp-event-manager' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => '10',
+			]
+		);
+
+		$this->add_control(
+			'order',
+			[
+				'label' => __( 'Order', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'DESC',
+				'options' => [
+					'ASC' => __( 'Ascending (ASC)', 'wp-event-manager' ),
+					'DESC' => __( 'Descending  (DESC)', 'wp-event-manager' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'meta_key',
+			[
+				'label' => __( 'Order By', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'event_start_date',
+				'options' => [
+					'title' => __( 'Title', 'wp-event-manager' ),
+					'ID' => __( 'ID', 'wp-event-manager' ),
+					'name' => __( 'Name', 'wp-event-manager' ),
+					'modified' => __( 'Modified', 'wp-event-manager' ),
+					'parent' => __( 'Parent', 'wp-event-manager' ),
+					'event_start_date' => __( 'Event Start Date', 'wp-event-manager' ),
+					'rand' => __( 'Rand', 'wp-event-manager' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'location',
+			[
+				'label'       => __( 'Location', 'wp-event-manager' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => __( 'Enter Location', 'wp-event-manager' ),
+				'default'     => '',
+			]
+		);
+
+		$this->add_control(
+			'keywords',
+			[
+				'label'       => __( 'Keywords ', 'wp-event-manager' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => __( 'Enter Keywords ', 'wp-event-manager' ),
+				'default'     => '',
+			]
+		);
+
+		$this->add_control(
+			'selected_categories',
+			[
+				'label'       => __( 'Categories ', 'wp-event-manager' ),
+				'type'        => Controls_Manager::TEXTAREA,
+				'placeholder' => __( 'Enter Categories by comma separate', 'wp-event-manager' ),
+				'default'     => '',
+			]
+		);
+
+		$this->add_control(
+			'selected_event_types',
+			[
+				'label'       => __( 'Event Types ', 'wp-event-manager' ),
+				'type'        => Controls_Manager::TEXTAREA,
+				'placeholder' => __( 'Enter Event Types by comma separate', 'wp-event-manager' ),
+				'default'     => '',
+			]
+		);
+
 		$this->end_controls_section();
 
 	}
@@ -104,9 +197,30 @@ class Elementor_Past_Event_Listing extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		if(strlen($settings['location'])>0)
+		    $location = 'location="'.$settings['location'].'"';
+	    else
+	        $location = '';
+	        
+        if(strlen($settings['keywords'])>0)
+            $keywords = 'keywords="'.$settings['keywords'].'"';
+        else
+            $keywords = '';
+
+        if(strlen($settings['selected_categories'])>0)
+            $categories = 'selected_categories="'.$settings['selected_categories'].'"';
+        else
+            $categories = '';
+            
+        if(strlen($settings['selected_event_types'])>0)
+            $event_types = 'selected_event_types="'.$settings['selected_event_types'].'"';
+        else
+            $event_types = '';
 		
-		$shortcode = do_shortcode('[past_events]');
-		echo $shortcode;
+		$shortcode = '[past_events show_pagination="'.$settings['show_pagination'].'" per_page="'.$settings['per_page'].'" order="'.$settings['order'].'" meta_key="'.$settings['meta_key'].'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.']';
+
+		echo do_shortcode($shortcode);
 	}
 
 	/**
