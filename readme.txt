@@ -1,11 +1,11 @@
 === WP Event Manager ===
 
-Contributors: ashokdudhat,gamthemes,hiteshmakvana
+Contributors: gamthemes,ashokdudhat,hiteshmakvana
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 5.4
-Stable tag: 3.1.13
+Tested up to: 5.5
+Stable tag: 3.1.14
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -310,6 +310,23 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 == Changelog ==
+
+= 3.1.14 =
+
+* Added - Multiple organizer selection with event.
+* Fixed - Admin can add past date events.
+* Fixed - Past events shortcode improved with attributes.
+* Fixed - Field editor improved with organizer.
+* Fixed - Attachment not deleting.
+* Fixed - Pagination issue with filters.
+* Fixed - Delete data on unistall.
+* Remove - Address fields removed.
+* Fixed - Field editor related issues.
+* Fixed - Schema duplication and schema warnings.
+* Fixed - Single event page banner section improvements.
+* Fixed - Google search console warning.
+* Fixed - Some css and js tweaks.
+
 
 = 3.1.13 =
 
