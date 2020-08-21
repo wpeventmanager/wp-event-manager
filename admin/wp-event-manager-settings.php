@@ -444,9 +444,9 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Categories', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable categories for listings', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Categories for listing and submission form', 'wp-event-manager' ),
 					        
-					        'desc'       => __( 'Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        'desc'       => __( 'Choose whether to enable categories on the event listing and submission page. If enabled, it needs to be prior created at the backend.', 'wp-event-manager' ),
 					        
 					        'type'       => 'checkbox',
 					        
@@ -461,9 +461,9 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Event Types', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable event types for listings', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Event types for listing and submission form', 'wp-event-manager' ),
 					        
-					        'desc'       => __( 'Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        'desc'       => __( 'Choose whether to enable event types on the event listing and submission page. If enabled, it needs to be prior created at the backend.', 'wp-event-manager' ),
 					        
 					        'type'       => 'checkbox',
 					        
@@ -478,9 +478,9 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Ticket prices', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable ticket prices for listings', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Ticket prices for listing and submission form', 'wp-event-manager' ),
 					        
-					        'desc'       => __( 'Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission.', 'wp-event-manager' ),
+					        'desc'       => __( 'Choose whether to enable ticket prices on the event listing and submission page.', 'wp-event-manager' ),
 					        
 					        'type'       => 'checkbox',
 					        
