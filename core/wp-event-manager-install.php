@@ -65,11 +65,14 @@ class WP_Event_Manager_Install {
 		{
 			$all_fields = get_option( 'event_manager_form_fields', true );
 
-			unset($all_fields['event']['event_address']);
+			if(isset($all_fields) && !empty($all_fields))
+			{
+				unset($all_fields['event']['event_address']);
 
-			update_option( 'event_manager_submit_event_form_fields', array('event' =>$all_fields['event']) );
+				update_option( 'event_manager_submit_event_form_fields', array('event' =>$all_fields['event']) );
 
-			update_option( 'event_manager_submit_organizer_form_fields', array('organizer' =>$all_fields['organizer']) );
+				update_option( 'event_manager_submit_organizer_form_fields', array('organizer' =>$all_fields['organizer']) );	
+			}			
 		}
 
 		// 3.1.14 add organizer pages
