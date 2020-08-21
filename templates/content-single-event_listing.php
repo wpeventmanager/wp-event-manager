@@ -104,7 +104,7 @@ do_action('set_single_listing_view_count');
                             <?php
                             $show_additional_details = apply_filters('event_manager_show_additional_details', true);
 
-                            if( $show_additional_details ) :
+                            if( $show_additional_details && is_single() ) :
 
                                 $GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
                                 $form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
