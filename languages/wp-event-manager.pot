@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2020-08-21 21:30+0530\n"
+"POT-Creation-Date: 2020-08-21 21:36+0530\n"
 "PO-Revision-Date: 2020-08-21 21:30+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1232,13 +1232,6 @@ msgstr ""
 
 #: admin/wp-event-manager-setup.php:359
 msgid "Add a event via the front-end"
-=======
-#: admin/wp-event-manager-setup.php:309
-msgid "Add an event via the back-end"
-msgstr ""
-
-#: admin/wp-event-manager-setup.php:313
-msgid "Add an event via the front-end"
 msgstr ""
 
 #: admin/wp-event-manager-setup.php:363
@@ -2928,12 +2921,8 @@ msgstr ""
 msgid "Choose a Category&hellip;"
 msgstr ""
 
-
 #: wp-event-manager-functions.php:1387
 msgid "Choose an Event Type&hellip;"
-=======
-#: wp-event-manager-functions.php:1365
-msgid "Choose an event type&hellip;"
 msgstr ""
 
 #: wp-event-manager-functions.php:1589
