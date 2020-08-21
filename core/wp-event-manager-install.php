@@ -65,9 +65,10 @@ class WP_Event_Manager_Install {
 		{
 			$all_fields = get_option( 'event_manager_form_fields', true );
 
-			if(isset($all_fields) && !empty($all_fields))
+			if(isset($all_fields) && !empty($all_fields) && is_array($all_fields))
 			{
-				unset($all_fields['event']['event_address']);
+				if(isset($all_fields['event']['event_address']))
+					unset($all_fields['event']['event_address']);
 
 				update_option( 'event_manager_submit_event_form_fields', array('event' =>$all_fields['event']) );
 
