@@ -39,6 +39,9 @@ class WP_Event_Manager_Shortcodes {
 		if(get_option('enable_event_organizer')){
 			add_shortcode( 'submit_organizer_form', array( $this, 'submit_organizer_form' ) );
 			add_shortcode( 'organizer_dashboard', array( $this, 'organizer_dashboard' ) );
+
+			add_shortcode( 'event_organizers', array( $this, 'output_event_organizers' ) );
+			add_shortcode( 'event_organizer', array( $this, 'output_event_organizer' ) );
 		}
 		
 		if(get_option('enable_event_venue')){
@@ -51,9 +54,6 @@ class WP_Event_Manager_Shortcodes {
 		add_shortcode( 'event_summary', array( $this, 'output_event_summary' ) );
 		add_shortcode( 'past_events', array( $this, 'output_past_events' ) );
 		add_shortcode( 'event_register', array( $this, 'output_event_register' ) );
-
-		add_shortcode( 'event_organizers', array( $this, 'output_event_organizers' ) );
-		add_shortcode( 'event_organizer', array( $this, 'output_event_organizer' ) );
 	}
 
 	/**
