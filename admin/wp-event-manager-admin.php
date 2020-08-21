@@ -169,36 +169,34 @@ class WP_Event_Manager_Admin {
 	{
 		?>
 		<div class="wrap wp_event_manager wp_event_manager_upgrade_database">
-			<form method="post" class="wpem-mailchimp-organization-matches-attribute">
-	        	<table class="widefat">
+        	<table class="widefat">
 
-	        		<thead>
-		                <tr>
-		                    <th><h3><?php _e( 'Upgrade yor database for new version of WP Event Manager', 'wp-event-manager' ); ?></h3></th>
-		                </tr>
-	                </thead>
+        		<thead>
+	                <tr>
+	                    <th><h3><?php _e( 'Upgrade yor database for new version of WP Event Manager', 'wp-event-manager' ); ?></h3></th>
+	                </tr>
+                </thead>
 
-	                <tbody>
-	                	<td>
-							<p><?php _e('3.1.14 has released!
+                <tbody>
+                	<td>
+						<p><?php _e('3.1.14 has released!
 We are constantly working to improve your event management experience, We have a new release focusing on a handle of fixes and updates & here is a summary of what has been improved...
 
 Manage your Organizers directly at the frontend and backend.
 Migration of Old Organizer data would be transferred to the list Automatically.
 A prior Backup does no harm before updating the plugin!','wp-event-manager');?>.</p>
+					</td>
+                </tbody>
+
+            	<tfoot>
+	                <tr>
+	                    <td>
+							<a class="button-primary" id="wp_event_manager_upgrade_database" href="javascript:void(0)"><?php _e( 'Upgrade', 'wp-event-manager' ); ?></a>
 						</td>
-	                </tbody>
-
-	            	<tfoot>
-		                <tr>
-		                    <td>
-								<a class="button-primary" id="wp_event_manager_upgrade_database" href="javascript:void(0)"><?php _e( 'Upgrade', 'wp-event-manager' ); ?></a>
-							</td>
-		                </tr>
-	                </tfoot>
-
-	            </table>
-	        </form>
+	                </tr>
+                </tfoot>
+                
+            </table>
     	</div>
 		<?php
 	}
