@@ -526,9 +526,9 @@ class WP_Event_Manager_CPT {
 
 				if ( $post->_event_expiry_date )
 				
-					//echo '<strong>' . date_i18n( __( 'M j, Y', 'wp-event-manager' ), strtotime( $post->_event_expiry_date ) ) . '</strong>';
+					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_expiry_date ) ) . '</strong>';
 					
-					echo '<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
+					//echo '<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
 				else
 					echo '&ndash;';
 			break;
