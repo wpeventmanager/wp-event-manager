@@ -1186,9 +1186,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'order'                     => 'DESC',
 
-			'orderby'                   => 'meta_value', // meta_value
-
-			'meta_key'  				=> 'event_start_date',
+			'orderby'                   => 'event_start_date', // meta_value
 
 			'location'                  => '',
 
@@ -1203,11 +1201,6 @@ class WP_Event_Manager_Shortcodes {
 
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-		if(substr( $meta_key, 0, 1 ) !== "_")
-		{
-			$meta_key = '_'.$meta_key;
-		}
-		
 		$args_past = array(
 			'post_type'  	=> 'event_listing',
 			'post_status'	=> array('expired'),
@@ -1215,7 +1208,6 @@ class WP_Event_Manager_Shortcodes {
 			'paged'			=> $paged,
 			'order'			=> $order,
 			'orderby'		=> $orderby,
-			'meta_key'		=> $meta_key,
 		);
 
 		if(!empty($keywords))
@@ -1264,6 +1256,12 @@ class WP_Event_Manager_Shortcodes {
 				'value'  	=> $location,
 				'compare'	=> 'LIKE'
 			];
+		}
+
+		if ( 'event_start_date' === $args_past['orderby'] ) {
+			$args_past['orderby'] ='meta_value';
+			$args_past['meta_key'] ='_event_start_date';
+			$args_past['meta_type'] ='DATE';
 		}
 
 		$past_events = new WP_Query( $args_past );
