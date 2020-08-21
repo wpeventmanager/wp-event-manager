@@ -733,8 +733,8 @@ msgid "Choose a category&hellip;"
 msgstr "Choose a category&hellip;"
 
 #: wp-event-manager-functions.php:1346
-msgid "Choose a event type&hellip;"
-msgstr "Choose a event type&hellip;"
+msgid "Choose an event type&hellip;"
+msgstr "Choose an event type&hellip;"
 
 #: admin/wp-event-manager-settings.php:190
 msgid "Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission."
@@ -1075,11 +1075,11 @@ msgid "Find out more about the front-end event dashboard"
 msgstr "Find out more about the front-end event dashboard"
 
 #: admin/wp-event-manager-setup.php:313
-msgid "Add a event via the front-end"
+msgid "Add an event via the front-end"
 msgstr "Add an event via the front end"
 
 #: admin/wp-event-manager-setup.php:309
-msgid "Add a event via the back-end"
+msgid "Add an event via the back-end"
 msgstr "Add an event via the back end"
 
 #: admin/wp-event-manager-settings.php:489

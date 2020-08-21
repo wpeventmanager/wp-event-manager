@@ -471,7 +471,7 @@ msgid "Uploaded files need to be one of the following file types: %s"
 msgstr "Tập tin tải lên cần phải thuộc một trong những định dạng sau: %s"
 
 #: wp-event-manager-functions.php:1138
-msgid "Choose a event type&hellip;"
+msgid "Choose an event type&hellip;"
 msgstr "Chọn một loại sự kiện&hellip;"
 
 #: wp-event-manager-functions.php:1088
@@ -1667,11 +1667,11 @@ msgid "Find out more about the front-end event submission form"
 msgstr "Xem thêm về biểu mẫu gửi sự kiện trên front-end"
 
 #: admin/wp-event-manager-setup.php:311
-msgid "Add a event via the front-end"
+msgid "Add an event via the front-end"
 msgstr "Thêm sự kiện qua front-end"
 
 #: admin/wp-event-manager-setup.php:307
-msgid "Add a event via the back-end"
+msgid "Add an event via the back-end"
 msgstr "Thêm sự kiện qua back-end"
 
 #: admin/wp-event-manager-setup.php:305

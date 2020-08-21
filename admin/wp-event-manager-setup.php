@@ -352,11 +352,11 @@ class WP_Event_Manager_Setup {
 
 					<li><a href="<?php echo admin_url( 'edit.php?post_type=event_listing&page=event-manager-settings' ); ?>"><?php _e( 'Tweak the plugin settings', 'wp-event-manager' ); ?></a></li>
 
-					<li><a href="<?php echo admin_url( 'post-new.php?post_type=event_listing' ); ?>"><?php _e( 'Add a event via the back-end', 'wp-event-manager' ); ?></a></li>
+					<li><a href="<?php echo admin_url( 'post-new.php?post_type=event_listing' ); ?>"><?php _e( 'Add an event via the back-end', 'wp-event-manager' ); ?></a></li>
 
 					<?php if ( $permalink = event_manager_get_permalink( 'submit_event_form' ) ) : ?>
 
-						<li><a href="<?php echo esc_url( $permalink ); ?>"><?php _e( 'Add a event via the front-end', 'wp-event-manager' ); ?></a></li>
+						<li><a href="<?php echo esc_url( $permalink ); ?>"><?php _e( 'Add an event via the front-end', 'wp-event-manager' ); ?></a></li>
 
 					<?php else : ?>
 

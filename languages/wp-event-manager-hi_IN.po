@@ -469,7 +469,7 @@ msgid "Uploaded files need to be one of the following file types: %s"
 msgstr "अपलोड की गई फ़ाइल निम्न फ़ाइल प्रकारों में से एक होनी आवश्यक है: %s"
 
 #: wp-event-manager-functions.php:1138
-msgid "Choose a event type&hellip;"
+msgid "Choose an event type&hellip;"
 msgstr "इवेंट प्रकार और हेलिप चुने"
 
 #: wp-event-manager-functions.php:1088
@@ -1609,11 +1609,11 @@ msgid "Find out more about the front-end event submission form"
 msgstr "फ्रंट एंड इवेंट सबमिशन फॉर्म के बारे में और जानें"
 
 #: admin/wp-event-manager-setup.php:311
-msgid "Add a event via the front-end"
+msgid "Add an event via the front-end"
 msgstr "फ्रंट-एंड के माध्यम से एक ईवेंट जोड़ें"
 
 #: admin/wp-event-manager-setup.php:307
-msgid "Add a event via the back-end"
+msgid "Add an event via the back-end"
 msgstr "बैक-एंड के माध्यम से एक ईवेंट जोड़ें"
 
 #: admin/wp-event-manager-setup.php:305

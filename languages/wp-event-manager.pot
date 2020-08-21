@@ -1232,6 +1232,13 @@ msgstr ""
 
 #: admin/wp-event-manager-setup.php:359
 msgid "Add a event via the front-end"
+=======
+#: admin/wp-event-manager-setup.php:309
+msgid "Add an event via the back-end"
+msgstr ""
+
+#: admin/wp-event-manager-setup.php:313
+msgid "Add an event via the front-end"
 msgstr ""
 
 #: admin/wp-event-manager-setup.php:363
@@ -2921,8 +2928,12 @@ msgstr ""
 msgid "Choose a Category&hellip;"
 msgstr ""
 
+
 #: wp-event-manager-functions.php:1387
 msgid "Choose an Event Type&hellip;"
+=======
+#: wp-event-manager-functions.php:1365
+msgid "Choose an event type&hellip;"
 msgstr ""
 
 #: wp-event-manager-functions.php:1589
