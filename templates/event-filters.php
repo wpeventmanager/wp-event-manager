@@ -137,6 +137,23 @@
 				</div>
 			<?php endif; ?>	  
 			<!-- Search by any ticket price section end -->  
+
+			<?php /* ?>	  
+			<!-- Search by Online Event start -->  
+			<div class="wpem-col">
+				<div class="wpem-form-group">
+					<label for="event_online" class="wpem-form-label"></label>
+					<?php if($event_online) : ?>
+						<input type="checkbox" name="event_online" id="event_online" value='1' class="event-manager-filter" checked="checked" > <?php _e( 'Online Event', 'wp-event-manager' ); ?>
+					<?php else: ?>
+						<input type="checkbox" name="event_online" id="event_online" value='1' class="event-manager-filter" > <?php _e( 'Online Event', 'wp-event-manager' ); ?>
+					<?php endif; ?>
+					
+				</div>
+			</div>
+			<!-- Search by Online Event end -->
+			<?php */ ?>
+
     </div> <!-- /row -->
 
     <?php do_action( 'event_manager_event_filters_search_events_end', $atts ); ?>	
