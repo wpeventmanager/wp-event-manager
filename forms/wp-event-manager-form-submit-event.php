@@ -976,7 +976,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			        'type'  		=> 'multiselect',
 				    'default'  		=> '',
 				    'options'  		=> get_all_organizer_array(),
-				    'description'	=> sprintf(__('If you don\'t show organizer list. Manage your organizers <a href="%s" target="__blank">here</a>','wp-event-manager'),get_permalink( get_option('event_manager_organizer_dashboard_page_id','') ) ),
+				    'description'	=> sprintf(__('If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="%s" target="__blank">here</a>','wp-event-manager'),get_permalink( get_option('event_manager_organizer_dashboard_page_id','') ) ),
 				    'priority'   	=> 21,
 			        'required'		=>false
 				),
