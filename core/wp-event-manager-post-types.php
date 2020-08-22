@@ -318,7 +318,7 @@ class WP_Event_Manager_Post_Types {
 
 					'singular_name' 		=> $singular,
 
-					'menu_name'             => __( 'Event Listings', 'wp-event-manager' ),
+					'menu_name'             => __( 'Event Manager', 'wp-event-manager' ),
 
 					'all_items'             => sprintf( __( 'All %s', 'wp-event-manager' ), $plural ),
 
