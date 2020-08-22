@@ -1,6 +1,6 @@
 === WP Event Manager ===
 
-Contributors: gamthemes,ashokdudhat,hiteshmakvana
+Contributors: wpeventmanager,ashokdudhat,hiteshmakvana,sapnamd,priyagoenka,kishankothari,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
@@ -18,9 +18,9 @@ Lightweight, scalable and full-featured event listings & management plugin for m
 
 WP Event Manager is a **lightweight, scalable and full-featured event management plugin** for adding event listing functionality to your WordPress site. The shortcode lists all the events, it can work with any theme and is really easy to setup and customise. The settings pages let you select how you want the event displayed.
 
-* [Demo](https://demo.wp-eventmanager.com/)
+* [Demo](https://wp-eventmanager.com)
 * [Add-ons](http://www.wp-eventmanager.com/plugins/)
-* [Documentation](https://wp-eventmanager.com/help-center/)
+* [Documentation](http://www.wp-eventmanager.com/documentation/)
 
 [youtube https://www.youtube.com/watch?v=CPK0P7ToRgM]
 
@@ -311,7 +311,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
-= 3.1.14 =
+= 3.1.14 [Aug 22TH, 2020] =
 
 * Added - Multiple organizer selection with event.
 * Fixed - Admin can add past date events.
@@ -319,14 +319,13 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 * Fixed - Field editor improved with organizer.
 * Fixed - Attachment not deleting.
 * Fixed - Pagination issue with filters.
-* Fixed - Delete data on unistall.
+* Fixed - Delete data on uninstall.
 * Remove - Address fields removed.
 * Fixed - Field editor related issues.
 * Fixed - Schema duplication and schema warnings.
 * Fixed - Single event page banner section improvements.
 * Fixed - Google search console warning.
 * Fixed - Some css and js tweaks.
-
 
 = 3.1.13 =
 
