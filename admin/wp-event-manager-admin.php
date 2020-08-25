@@ -43,7 +43,7 @@ class WP_Event_Manager_Admin {
 
 		add_action( 'current_screen', array( $this, 'conditional_includes' ) );
 
-		if ( version_compare( get_option( 'event_manager_db_version', 0 ), '3.1.15', '<' ) )
+		if ( version_compare( get_option( 'event_manager_db_version', 0 ), EVENT_MANAGER_DB_VERSION, '<' ) )
 		{
 			add_action( 'admin_notices', array( $this, 'upgrade_database_notice' ) );
 		}
@@ -61,7 +61,7 @@ class WP_Event_Manager_Admin {
 	 */
 	public function upgrade_database_notice() {
 
-		if ( version_compare( get_option( 'event_manager_db_version', 0 ), '3.1.15', '<' ) )
+		if ( version_compare( get_option( 'event_manager_db_version', 0 ), EVENT_MANAGER_DB_VERSION, '<' ) )
 		{
 			?>
 		    <div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
@@ -138,7 +138,7 @@ class WP_Event_Manager_Admin {
 
 		add_submenu_page( 'edit.php?post_type=event_listing', __( 'Settings', 'wp-event-manager' ), __( 'Settings', 'wp-event-manager' ), 'manage_options', 'event-manager-settings', array( $this->settings_page, 'output' ) );
 
-		if ( version_compare( get_option( 'event_manager_db_version', 0 ), '3.1.15', '<' ) ) 
+		if ( version_compare( get_option( 'event_manager_db_version', 0 ), EVENT_MANAGER_DB_VERSION, '<' ) ) 
 		{
 			add_submenu_page(  'edit.php?post_type=event_listing', __( 'Upgrade Database', 'wp-event-manager' ),  __( 'Upgrade Database', 'wp-event-manager' ) , 'manage_options', 'event-manager-upgrade-database', array( $this, 'upgrade_database' ) );
 		}
@@ -232,7 +232,7 @@ A prior Backup does no harm before updating the plugin!','wp-event-manager');?>.
    				}
    			}
 
-   			update_option( 'event_manager_db_version', '3.1.15' );
+   			update_option( 'event_manager_db_version', EVENT_MANAGER_DB_VERSION );
    		}
 
    		wp_send_json( __( 'Your database upgraded successfully!', 'wp-event-manager' ) );
