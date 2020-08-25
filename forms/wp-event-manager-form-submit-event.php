@@ -134,52 +134,67 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 */
 	protected function validate_fields( $values ) {
 		$this->fields =  apply_filters( 'before_submit_event_form_validate_fields', $this->fields , $values );
-	      foreach ( $this->fields as $group_key => $group_fields )
-    	  {     	      
-    	       //this filter need to apply for remove required attributes when option online event selected and ticket price.
-    	       if(isset($group_fields['event_online'] ) )
-				 {
-    				if($group_fields['event_online']['value']=='yes')
-    				{	  
-    				    $group_fields['event_venue_name']['required']=false;
-    					$group_fields['event_address']['required']=false;
-    					$group_fields['event_pincode']['required']=false;
-    					$group_fields['event_location']['required']=false;
-    				}
-				 }
-				 
-				 if(isset($group_fields['event_ticket_options']) )
-				{
-    				if($group_fields['event_ticket_options']['value']=='free')
-    				{	
-    					$group_fields['event_ticket_price']['required']=false;
-    				} 			
+	    
+	    foreach ( $this->fields as $group_key => $group_fields )
+    	{     	      
+    	    //this filter need to apply for remove required attributes when option online event selected and ticket price.
+    	    if(isset($group_fields['event_online'] ) )
+			{
+    			if($group_fields['event_online']['value']=='yes')
+				{	  
+				    $group_fields['event_venue_name']['required']=false;
+					$group_fields['event_address']['required']=false;
+					$group_fields['event_pincode']['required']=false;
+					$group_fields['event_location']['required']=false;
 				}
-		        foreach ( $group_fields as $key => $field ) 
-              	{
-    				if ( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {	    
-    					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'wp-event-manager' ), $field['label'] ) );
-    				}
+			}
+				 
+			if(isset($group_fields['event_ticket_options']) )
+			{
+				if($group_fields['event_ticket_options']['value']=='free')
+				{	
+					$group_fields['event_ticket_price']['required']=false;
+				} 			
+			}
 
-				    if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) {
-    					if ( is_array( $values[ $group_key ][ $key ] ) ) {
-    						$check_value = $values[ $group_key ][ $key ];
-    					} else {
-    						$check_value = empty( $values[ $group_key ][ $key ] ) ? array() : array( $values[ $group_key ][ $key ] );
-    					}
-    					foreach ( $check_value as $term ) {    
-    						if ( ! term_exists( $term, $field['taxonomy'] ) ) {
-    							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid', 'wp-event-manager' ), $field['label'] ) );    
-    						}
-    					}
-    				}
+	        foreach ( $group_fields as $key => $field ) 
+          	{
+				if ( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) 
+				{	    
+					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'wp-event-manager' ), $field['label'] ) );
+				}
 
-				if ( isset($field['type']) && 'file' === $field['type'] && ! empty( $field['allowed_mime_types'] ) ) {
-					if ( is_array( $values[ $group_key ][ $key ] ) ) {
+			    if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) 
+			    {
+					if ( is_array( $values[ $group_key ][ $key ] ) ) 
+					{
+						$check_value = $values[ $group_key ][ $key ];
+					} 
+					else 
+					{
+						$check_value = empty( $values[ $group_key ][ $key ] ) ? array() : array( $values[ $group_key ][ $key ] );
+					}
+
+					foreach ( $check_value as $term ) 
+					{
+						if ( ! term_exists( $term, $field['taxonomy'] ) ) 
+						{
+							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid', 'wp-event-manager' ), $field['label'] ) );    
+						}
+					}
+				}
+
+				if ( isset($field['type']) && 'file' === $field['type'] && ! empty( $field['allowed_mime_types'] ) ) 
+				{
+					if ( is_array( $values[ $group_key ][ $key ] ) ) 
+					{
 						$check_value = array_filter( $values[ $group_key ][ $key ] );
-					} else {
+					} 
+					else 
+					{
 						$check_value = array_filter( array( $values[ $group_key ][ $key ] ) );
 					}
+
 					if ( ! empty( $check_value ) ) {
 						foreach ( $check_value as $file_url ) {
 							$file_url = current( explode( '?', $file_url ) );
@@ -192,11 +207,18 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 			}
 		}
+
+		if( strtotime($values['event']['event_start_date']) > strtotime($values['event']['event_end_date']) )
+		{
+			return new WP_Error( 'validation-error', __( 'Event end date must be greater than the event start date.', 'wp-event-manager' ) );
+		}
 		
 		// Registration method
-		if ( isset( $values['event']['registration'] ) && ! empty( $values['event']['registration'] ) ) {
+		if ( isset( $values['event']['registration'] ) && ! empty( $values['event']['registration'] ) ) 
+		{
 			$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
 			$values['event']['registration'] = str_replace( ' ', '+', $values['event']['registration'] );
+
 			switch ( $allowed_registration_method ) {
 				case 'email' :
 					if ( ! is_email( $values['event']['registration'] ) ) {
@@ -224,7 +246,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 				break;
 			}
-		}	
+		}
+
 		return apply_filters( 'submit_event_form_validate_fields', true, $this->fields, $values );
 	}
 
