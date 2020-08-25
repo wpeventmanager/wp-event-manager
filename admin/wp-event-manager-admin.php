@@ -107,7 +107,7 @@ class WP_Event_Manager_Admin {
 				'ajax_url' 	 => admin_url( 'admin-ajax.php' ),
 
 				'upgrade_database_before_send_text' 	 => __( 'Your database upgrading now', 'wp-event-manager' ),
-				'upgrade_database_success_send_text'  	=> __( ' Your database has been upgraded successfully! In order to take advantage, save the permalink and proceed.', 'wp-event-manager'),
+				'upgrade_database_success_send_text'  	=> __( 'Your database upgraded successfully! Now go to the Settings => Permalink => Save Changes. Please go <a href="'. admin_url( 'edit.php?post_type=event_listing' ) .'">event list</a> page.', 'wp-event-manager'),
 			
 				'i18n_datepicker_format' => WP_Event_Manager_Date_Time::get_datepicker_format(),
 				
@@ -210,9 +210,9 @@ A prior Backup does no harm before updating the plugin!','wp-event-manager');?>.
    		if( !empty($organizer_fields) && isset($organizer_fields['organizer']) && !empty($organizer_fields['organizer']) )
    		{
    			$args = [
-   				'post_type' 	=> 'event_listing',
-   				'post_status' 	=> ['publish'],
-   				'post_limits'	=> '-1',
+   				'post_type' 		=> 'event_listing',
+   				'post_status' 		=> ['publish'],
+   				'posts_per_page'	=> '-1',
    			];
 
    			$events = get_posts($args);
