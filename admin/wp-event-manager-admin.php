@@ -241,40 +241,11 @@ A prior Backup does no harm before updating the plugin!','wp-event-manager');?>.
 	}
 
 	/**
-	 * check_organizer_exist
-	 */
-	public function check_organizer_exist($organizer_email) {
-
-		$args = [
-   				'post_type' 	=> 'event_organizer',
-   				'post_status' 	=> ['publish'],
-   				'meta_query' => [
-			        [
-			            'key'     => '_organizer_email',
-			            'value'   => $organizer_email,
-			            'compare' => '=',
-			        ],
-			    ],
-   			];
-
-   		$organizer = get_posts($args);
-
-   		if(!empty($organizer))
-   		{
-   			return $organizer[0]->ID;
-   		}
-   		else
-   		{
-   			return false;
-   		}
-	}
-
-	/**
 	 * migrate_organizer_from_event_meta
 	 */
 	public function migrate_organizer_from_event_meta($event, $organizer_data) {
 
-		$organizer_id = $this->check_organizer_exist($organizer_data['organizer_email']);
+		$organizer_id = check_organizer_exist($organizer_data['organizer_email']);
 
 		if( !$organizer_id )
 		{

@@ -319,6 +319,12 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			}
 				
 		}
+
+		$organizer_id = check_organizer_exist($values['organizer']['organizer_email']);
+		if( isset($organizer_id) && !empty($organizer_id) )
+		{
+			return new WP_Error( 'validation-error', __( 'Organizer email exist.', 'wp-event-manager' ) );
+		}
 		
 		return apply_filters( 'submit_organizer_form_validate_fields', true, $this->fields, $values );
 	}

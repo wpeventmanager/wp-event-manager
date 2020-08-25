@@ -2030,3 +2030,35 @@ function get_event_organizer_ids( $post = null ) {
 
 	return !empty($post->_event_organizer_ids) ? $post->_event_organizer_ids : '';
 }
+
+/**
+ * check_organizer_exist
+ * @since 3.1.15
+ * @param
+ * @return
+ **/
+function check_organizer_exist($organizer_email) 
+{
+	$args = [
+			'post_type' 	=> 'event_organizer',
+			'post_status' 	=> ['publish'],
+			'meta_query' => [
+	        [
+	            'key'     => '_organizer_email',
+	            'value'   => $organizer_email,
+	            'compare' => '=',
+	        ],
+	    ],
+	];
+
+	$organizer = get_posts($args);
+
+	if(!empty($organizer))
+	{
+		return $organizer[0]->ID;
+	}
+	else
+	{
+		return false;
+	}
+}
