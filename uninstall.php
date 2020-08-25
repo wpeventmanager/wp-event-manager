@@ -91,7 +91,7 @@ $options = array(
 		'wp_event_manager_version',
 		'wpem_permalinks',
 		'event_manager_upgrade_database',
-		'event_manager_db_version',
+		'wp_event_manager_db_version',
 );
 
 foreach ( $options as $option ) {
