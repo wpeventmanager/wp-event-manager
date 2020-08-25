@@ -2051,9 +2051,11 @@ function check_organizer_exist($organizer_email)
 	    ],
 	];
 
+	$args = apply_filters('check_organizer_exist_query_args', $args);
+
 	$organizer = get_posts($args);
 
-	if(!empty($organizer))
+	if( !empty($organizer) && isset($organizer[0]->ID) )
 	{
 		return $organizer[0]->ID;
 	}
