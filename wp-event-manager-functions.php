@@ -137,7 +137,7 @@ function get_event_listings( $args = array() ) {
 		);
 	}
 
-	if ( isset($args['event_online']) && !is_null( $args['event_online'] ) ) {
+	if ( isset($args['event_online']) && $args['event_online'] == true ) {
 
 		$query_args['meta_query'][] = array(
 
@@ -2029,4 +2029,38 @@ function get_event_organizer_ids( $post = null ) {
 		return;
 
 	return !empty($post->_event_organizer_ids) ? $post->_event_organizer_ids : '';
+}
+
+/**
+ * check_organizer_exist
+ * @since 3.1.15
+ * @param
+ * @return
+ **/
+function check_organizer_exist($organizer_email) 
+{
+	$args = [
+			'post_type' 	=> 'event_organizer',
+			'post_status' 	=> ['publish'],
+			'meta_query' => [
+	        [
+	            'key'     => '_organizer_email',
+	            'value'   => $organizer_email,
+	            'compare' => '=',
+	        ],
+	    ],
+	];
+
+	$args = apply_filters('check_organizer_exist_query_args', $args);
+
+	$organizer = get_posts($args);
+
+	if( !empty($organizer) && isset($organizer[0]->ID) )
+	{
+		return $organizer[0]->ID;
+	}
+	else
+	{
+		return false;
+	}
 }

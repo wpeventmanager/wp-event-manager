@@ -148,7 +148,7 @@ do_action('set_single_listing_view_count');
                                                     <?php if( $field['type'] == 'textarea' || $field['type'] == 'wp-editor' ) : ?>
                                                         <div class="wpem-col-12 wpem-additional-info-block-textarea">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong> <?php printf( __( '%s', 'wp-event-manager' ),  $$field['label']); ?></strong></p>
+                                                                <p class="wpem-additional-info-block-title"><strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?></strong></p>
                                                                 <p class="wpem-additional-info-block-textarea-text"><?php printf( __( '%s', 'wp-event-manager' ),  $field_value);; ?></p>
                                                             </div>
                                                         </div>

@@ -316,8 +316,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		if (isset( $values['organizer']['organizer_email'] ) && !empty( $values['organizer']['organizer_email'] ) ) {
 			if ( ! is_email( $values['organizer']['organizer_email'] ) ) {
 				throw new Exception( __( 'Please enter a valid organizer email address', 'wp-event-manager' ) );
-			}
-				
+			}				
 		}
 		
 		return apply_filters( 'submit_organizer_form_validate_fields', true, $this->fields, $values );
