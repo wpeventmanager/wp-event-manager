@@ -90,6 +90,8 @@ $options = array(
 		'event_manager_view_date_format',
 		'wp_event_manager_version',
 		'wpem_permalinks',
+		'event_manager_upgrade_database',
+		'event_manager_db_version',
 );
 
 foreach ( $options as $option ) {
