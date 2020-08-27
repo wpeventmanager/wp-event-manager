@@ -253,7 +253,7 @@ class WP_Event_Manager_Post_Types {
 	                    'new_item_name' 	=> sprintf( __( 'New %s Name', 'wp-event-manager' ),  $singular )
 	            	),
 
-		            'show_ui' 				=> true,
+		            'show_ui' 				=> false,
 		        		
 		        	'show_in_rest'          => true,
 
@@ -433,6 +433,7 @@ class WP_Event_Manager_Post_Types {
 
 						'singular_name' 		=> $singular,
 
+						'add_new_item' 			=> sprintf( __( 'Add %s', 'wp-event-manager' ), $singular ),
 						
 						'featured_image'        => __( 'Organizer Logo', 'wp-event-manager' ),
 						
