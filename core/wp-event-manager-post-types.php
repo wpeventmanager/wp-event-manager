@@ -84,26 +84,6 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * event_archive function.
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function event_archive($template) 
-	{
-		if ( is_tax( 'event_listing_category' ) ) {
-
-			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_category.php';
-	    }
-	    elseif ( is_tax( 'event_listing_type' ) ) {
-
-			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_type.php';
-	    }
-
-	    return $template;
-	}
-
-	/**
 	 * register_post_types function.
 	 *
 	 * @access public
@@ -400,7 +380,7 @@ class WP_Event_Manager_Post_Types {
 
 				'has_archive' 			=> $has_archive,
 
-				'show_in_nav_menus' 	=> false,
+				//'show_in_nav_menus' 	=> false,
 
 				'menu_icon' => 'dashicons-calendar' // It's use to display event listing icon at admin site. 
 			) )
@@ -712,7 +692,7 @@ class WP_Event_Manager_Post_Types {
 		return apply_filters( 'event_manager_single_organizer_content', $content, $post );
 	}
 
-		/**
+	/**
 	 * Add extra content when showing venue content
 	 */
 	public function venue_content( $content ) {
@@ -753,6 +733,26 @@ class WP_Event_Manager_Post_Types {
 		add_filter( 'the_content', array( $this, 'venue_content' ) );
 
 		return apply_filters( 'event_manager_single_venue_content', $content, $post );
+	}
+
+	/**
+	 * event_archive function.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function event_archive($template) 
+	{
+		if ( is_tax( 'event_listing_category' ) ) {
+
+			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_category.php';
+	    }
+	    elseif ( is_tax( 'event_listing_type' ) ) {
+
+			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_type.php';
+	    }
+
+	    return $template;
 	}
 
 	/**
