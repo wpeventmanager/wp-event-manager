@@ -380,7 +380,7 @@ class WP_Event_Manager_Post_Types {
 
 				'has_archive' 			=> $has_archive,
 
-				//'show_in_nav_menus' 	=> false,
+				'show_in_nav_menus' 	=> true,
 
 				'menu_icon' => 'dashicons-calendar' // It's use to display event listing icon at admin site. 
 			) )
