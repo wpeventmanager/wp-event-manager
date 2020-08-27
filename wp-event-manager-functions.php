@@ -288,6 +288,15 @@ function get_event_listings( $args = array() ) {
 				    'compare' => 'BETWEEN',
 				    'type'    => 'date'
 				);
+
+				$date_search[] = array(
+					'key'     => '_event_end_date',
+					'value'   => [$dates['start'], $dates['end']],
+				    'compare' => 'BETWEEN',
+				    'type'    => 'date'
+				);
+
+				$date_search['relation'] = 'OR';
 			}
 
 			$query_args['meta_query'][] = $date_search;
