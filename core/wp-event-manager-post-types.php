@@ -39,6 +39,8 @@ class WP_Event_Manager_Post_Types {
 		add_filter( 'the_content', array( $this, 'organizer_content' ) );
 		add_filter( 'the_content', array( $this, 'venue_content' ) );
 
+		add_filter( 'archive_template', array( $this, 'event_archive' ) );
+
 		add_action( 'event_manager_check_for_expired_events', array( $this, 'check_for_expired_events' ) );
 		add_action( 'event_manager_delete_old_previews', array( $this, 'delete_old_previews' ) );
 
@@ -82,12 +84,31 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
+	 * event_archive function.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function event_archive($template) 
+	{
+		if ( is_tax( 'event_listing_category' ) ) {
+
+			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_category.php';
+	    }
+	    elseif ( is_tax( 'event_listing_type' ) ) {
+
+			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_type.php';
+	    }
+
+	    return $template;
+	}
+
+	/**
 	 * register_post_types function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-
 	public function register_post_types() {
 
 		if ( post_type_exists( "event_listing" ) )
@@ -122,9 +143,9 @@ class WP_Event_Manager_Post_Types {
 
 			} else {
 
-				$rewrite   = false;
+				$rewrite   = true;
 
-				$public    = false;
+				$public    = true;
 			}
 
 			register_taxonomy( "event_listing_category",
@@ -212,9 +233,9 @@ class WP_Event_Manager_Post_Types {
 
 			} else {
 
-				$rewrite   = false;
+				$rewrite   = true;
 
-				$public    = false;
+				$public    = true;
 
 			}
 
@@ -253,7 +274,7 @@ class WP_Event_Manager_Post_Types {
 	                    'new_item_name' 	=> sprintf( __( 'New %s Name', 'wp-event-manager' ),  $singular )
 	            	),
 
-		            'show_ui' 				=> false,
+		            'show_ui' 				=> true,
 		        		
 		        	'show_in_rest'          => true,
 
