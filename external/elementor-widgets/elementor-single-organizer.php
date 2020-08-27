@@ -91,11 +91,33 @@ class Elementor_Single_Organizer extends Widget_Base {
 			]
 		);
 
+		$args = array(
+				'post_type'		=> 'event_organizer',
+				'post_status'	=> 'publish',
+				'posts_per_page'=> -1,
+		);
+
+		$rganizers = get_posts( $args );
+
+		$options = [];
+		if(!empty($rganizers))
+		{
+			foreach ($rganizers as $rganizer) {
+				$options[$rganizer->ID] = $rganizer->post_title;
+			}
+		}
+		else
+		{
+			$options[] = __( 'Not Found Organizer', 'wp-event-manager' );
+		}
+
 		$this->add_control(
 			'organizer_id',
 			[
-				'label'       => __( 'Organizer Id', 'wp-event-manager' ),
-				'type'        => Controls_Manager::NUMBER,
+				'label'     => __( 'Select Organizer', 'wp-event-manager' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'	=> $options
 			]
 		);
 

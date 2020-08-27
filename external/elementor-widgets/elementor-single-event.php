@@ -114,7 +114,7 @@ class Elementor_Single_Event extends Widget_Base {
 		$this->add_control(
 			'event_id',
 			[
-				'label'     => __( 'Event Id', 'wp-event-manager' ),
+				'label'     => __( 'Select Event', 'wp-event-manager' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'	=> $options
