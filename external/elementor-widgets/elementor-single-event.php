@@ -91,11 +91,33 @@ class Elementor_Single_Event extends Widget_Base {
 			]
 		);
 
+		$args = array(
+				'post_type'		=> 'event_listing',
+				'post_status'	=> 'publish',
+				'posts_per_page'=> -1,
+		);
+
+		$events = get_posts( $args );
+
+		$options = [];
+		if(!empty($events))
+		{
+			foreach ($events as $event) {
+				$options[$event->ID] = $event->post_title;
+			}
+		}
+		else
+		{
+			$options[] = __( 'Not Found Event', 'wp-event-manager' );
+		}
+
 		$this->add_control(
 			'event_id',
 			[
-				'label'       => __( 'Event Id', 'wp-event-manager' ),
-				'type'        => Controls_Manager::NUMBER,
+				'label'     => __( 'Event Id', 'wp-event-manager' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'	=> $options
 			]
 		);
 
