@@ -316,7 +316,7 @@ class WP_Event_Manager_Setup {
 							<tr>
 								<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_organizers]" /></td>
 
-								<td><input type="text" value="<?php echo esc_attr( _x( 'Event Organizer', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Event Organizers', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
 
 								<td>
 									<p><?php _e( 'This page allows peoples to manage and edit their own organizers from the front-end.', 'wp-event-manager' ); ?></p>

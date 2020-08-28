@@ -87,7 +87,7 @@ class WP_Event_Manager_Install {
 				'page_content' => '[organizer_dashboard]',
 			],
 			'event_organizers' => [
-				'page_title' => 'Event Organizer',
+				'page_title' => 'Event Organizers',
 				'page_content' => '[event_organizers]',
 			],
 		];
