@@ -20,7 +20,7 @@
 			<tbody>
 				<?php if ( ! $venues ) : ?>
 				<tr>
-					<td colspan="3"><?php _e( 'You do not have any venue.', 'wp-event-manager' ); ?></td>
+					<td colspan="3"><?php _e( 'There are not venue.', 'wp-event-manager' ); ?></td>
 				</tr>
 				<?php else : ?>
 				<?php foreach ( $venues as $venue ) : ?>

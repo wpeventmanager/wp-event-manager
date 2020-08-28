@@ -139,7 +139,7 @@
 
     <?php else : ?>
         <div class="wpem-alert wpem-alert-info">
-            <?php _e( 'You do not have any organizer.', 'wp-event-manager' ); ?>
+            <?php _e( 'There are not organizer.', 'wp-event-manager' ); ?>
         </div>
     <?php endif; ?>
     
