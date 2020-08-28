@@ -35,6 +35,9 @@ class WP_Event_Manager_CPT {
 
 		add_filter( 'request', array( $this, 'sort_columns' ) );
 
+		add_filter( 'manage_event_organizer_posts_columns', array( $this, 'organizer_columns' ), 10 );
+		add_action( 'manage_event_organizer_posts_custom_column', array( $this, 'organizer_columns_data' ), 10, 2 );
+
 		add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ) );
 
 		add_action( 'admin_footer-edit.php', array( $this, 'add_bulk_actions' ) );
@@ -694,12 +697,43 @@ class WP_Event_Manager_CPT {
 		return $vars;
 	}
 
+	/**
+	 * organizer_columns function.
+	 *
+	 * @access public
+	 * @param $columns
+	 * @return 
+	 * @since 3.1.16
+	 */
+	public function organizer_columns( $columns ) {
+
+		$columns = array_slice($columns, 0, 2, true) + array('organizer_email' => __('Email', 'wp-event-manager')) + array_slice($columns, 2, count($columns)-2, true);
+
+		return $columns;
+	}
+
+	/**
+	 * organizer_columns_data function.
+	 *
+	 * @access public
+	 * @param $column, $post_id
+	 * @return 
+	 * @since 3.1.16
+	 */
+	public function organizer_columns_data( $column, $post_id ) {
+
+		switch ( $column ) {
+			case 'organizer_email' :
+				echo get_post_meta($post_id, '_organizer_email', true);
+				break;
+		}
+	}
+
     /**
 	 * Adds post status to the "submitdiv" Meta Box and post type WP List Table screens. Based on https://gist.github.com/franz-josef-kaiser/2930190
 	 *
 	 * @return void
-	 */
-	 
+	 */	 
 	public function extend_submitdiv_post_status() {
 
 		global $post, $post_type;
