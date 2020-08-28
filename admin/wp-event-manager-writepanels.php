@@ -725,6 +725,20 @@ class WP_Event_Manager_Writepanels {
 			elseif ( '_event_author' === $key ) {
 				$wpdb->update( $wpdb->posts, array( 'post_author' => $_POST[ $key ] > 0 ? absint( $_POST[ $key ] ) : 0 ), array( 'ID' => $post_id ) );
 			}
+			elseif ( '_event_organizer_ids' === $key ) {
+				if ( ! empty( $_POST[ $key ] ) ) {
+					update_post_meta( $post_id, $key, array_filter( array_map( 'sanitize_text_field', $_POST[ $key ] ) ) );
+				} else {
+				    update_post_meta( $post_id, $key, '' );
+				}
+			}
+			elseif ( '_event_venue_ids' === $key ) {
+				if ( ! empty( $_POST[ $key ] ) ) {
+					update_post_meta( $post_id, $key, array_filter( array_map( 'sanitize_text_field', $_POST[ $key ] ) ) );
+				} else {
+				    update_post_meta( $post_id, $key, '' );
+				}
+			}
 			// Everything else		
 			else {
 				$type = ! empty( $field['type'] ) ? $field['type'] : '';
@@ -762,8 +776,8 @@ class WP_Event_Manager_Writepanels {
 				}
 			}
 		}
-		/* Set Post Status To Expired If Already Expired */
-		
+
+		/* Set Post Status To Expired If Already Expired */		
 		$event_timezone = get_post_meta($post_id,'_event_timezone',true);
 		//check if timezone settings is enabled as each event then set current time stamp according to the timezone
 		// for eg. if each event selected then Berlin timezone will be different then current site timezone.
