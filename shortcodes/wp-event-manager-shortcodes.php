@@ -161,11 +161,17 @@ class WP_Event_Manager_Shortcodes {
 
 					case 'delete' :
 
+						$events_status = get_post_status($event_id);
+
 						// Trash it
 						wp_trash_post( $event_id );
 
-						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						if(!in_array($events_status, ['trash']))
+						{
+							// Message
+							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been 	deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
+						}
+						
 
 						break;
 					case 'duplicate' :
