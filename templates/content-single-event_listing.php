@@ -118,7 +118,13 @@ do_action('set_single_listing_view_count');
                                     {
                                         if( !array_key_exists($field_name, $default_fields['event']) )
                                         {
-                                            $additional_fields[$field_name] = $field_data;
+                                            $meta_key = '_'.$field_name;
+                                            $field_value = $post->$meta_key;
+
+                                            if(!empty( $field_value ))
+                                            {
+                                                $additional_fields[$field_name] = $field_data;    
+                                            }
                                         }
                                     }
                                 }
