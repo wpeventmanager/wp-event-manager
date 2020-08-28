@@ -1875,33 +1875,51 @@ function event_manager_get_password_rules_hint() {
  * @param null
  * @return string
  */
-function get_all_event_organizer() {
-
-	if ( is_user_logged_in() ) 
-	{
-		$args = apply_filters('get_all_event_organizer_arg',array(
+function get_all_event_organizer($user_id = '') 
+{
+	$args = apply_filters('get_all_event_organizer_arg',array(
 					'post_type'   => 'event_organizer',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
-					'author'        =>  get_current_user_id(),
-		));
+			));
 
-		$all_organizer = get_posts( $args );
-		return $all_organizer;
+	if( isset($user_id) && !empty($user_id) )
+	{
+		$args['author'] = $user_id;	
 	}
 
-	return false;
+	$all_organizer = get_posts( $args );
+
+	if(!empty($all_organizer))
+	{
+		return $all_organizer;	
+	}
+	else
+	{
+		return false;
+	}	
 }
 
-function get_all_organizer_array(){
-	$all_organizer =get_all_event_organizer();
+/**
+ * 
+ * @since 3.1.14
+ * @param null
+ * @return string
+ */
+function get_all_organizer_array($user_id = '')
+{
+	$all_organizer =get_all_event_organizer($user_id);
+
 	$organizer_array =array();
 
-	if(is_array($all_organizer) )
-	foreach ($all_organizer as $organizer) { 
-		$organizer_array[$organizer->ID] = $organizer->post_title;
-
+	if( is_array($all_organizer) && !empty($all_organizer) )
+	{
+		foreach ($all_organizer as $organizer) 
+		{
+			$organizer_array[$organizer->ID] = $organizer->post_title;
+		}	
 	}
+	
 	return $organizer_array;
 }
 /**
@@ -1910,8 +1928,8 @@ function get_all_organizer_array(){
  * @param null
  * @return string
  */
-function get_event_organizer_count($organizer_id = '') {
-
+function get_event_organizer_count($organizer_id = '') 
+{
 	return sizeof(get_event_by_organizer_id($organizer_id));
 }
 
@@ -1921,8 +1939,8 @@ function get_event_organizer_count($organizer_id = '') {
  * @param null
  * @return string
  */
-function get_event_by_organizer_id($organizer_id = '') {
-
+function get_event_by_organizer_id($organizer_id = '') 
+{
 	$args = [
 		'post_type'      => 'event_listing',
 		'post_status'    => array( 'publish' ),
@@ -1948,32 +1966,46 @@ function get_event_by_organizer_id($organizer_id = '') {
  * @param null
  * @return string
  */
-function get_all_event_venue() {
-
-	if ( is_user_logged_in() ) 
-	{
-		$args = apply_filters('get_all_event_venue_arg',array(
+function get_all_event_venue($user_id = '') 
+{
+	$args = apply_filters('get_all_event_venue_arg',array(
 					'post_type'   => 'event_venue',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
-					'author'=> get_current_user_id(),
-		));
+			));
 
-		$all_venue = get_posts( $args );
-		return $all_venue;
+	if( isset($user_id) && !empty($user_id) )
+	{
+		$args['author'] = $user_id;	
 	}
 
-	return false;
-	
-}
+	$all_venue = get_posts( $args );
 
-function get_all_venue_array(){
-	$all_venue =get_all_event_venue();
-	$venue_array =array();
-	
 	if(!empty($all_venue))
 	{
-		foreach ($all_venue as $venue)
+		return $all_venue;	
+	}
+	else
+	{
+		return false;	
+	}
+}
+
+/**
+ * 
+ * @since 3.1.14
+ * @param null
+ * @return string
+ */
+function get_all_venue_array($user_id = '')
+{
+	$all_venue =get_all_event_venue($user_id);
+	
+	$venue_array =array();
+
+	if( is_array($all_venue) && !empty($all_venue) )
+	{
+		foreach ($all_venue as $venue) 
 		{
 			$venue_array[$venue->ID] = $venue->post_title;
 		}	
@@ -1988,8 +2020,10 @@ function get_all_venue_array(){
  * @param null
  * @return string
  */
-function get_event_by_venue_id($venue_id = '') {
-	if ( is_user_logged_in() || empty($venue_id) ) {
+function get_event_by_venue_id($venue_id = '') 
+{
+	if ( is_user_logged_in() || empty($venue_id) ) 
+	{
 		$author_id = get_current_user_id();
 		return get_posts(array(
 			'post_type'      => 'event_listing',
@@ -2014,8 +2048,8 @@ function get_event_by_venue_id($venue_id = '') {
  * @param
  * @return
  **/
-function has_event_organizer_ids( $post = null ) {
-
+function has_event_organizer_ids( $post = null ) 
+{
 	$post = get_post( $post );
 
 	if ( $post->post_type !== 'event_listing' )
@@ -2030,8 +2064,8 @@ function has_event_organizer_ids( $post = null ) {
  * @param
  * @return
  **/
-function get_event_organizer_ids( $post = null ) {
-
+function get_event_organizer_ids( $post = null ) 
+{
 	$post = get_post( $post );
 
 	if ( $post->post_type !== 'event_listing' )

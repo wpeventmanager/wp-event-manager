@@ -790,6 +790,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 **/
 	public  function get_default_fields( ) {
 
+		$current_user_id = get_current_user_id();
+
 		$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
 		switch ( $allowed_registration_method ) {
 			case 'email' :
@@ -998,7 +1000,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       	=> __( 'Organizer', 'wp-event-manager' ),		      
 			        'type'  		=> 'multiselect',
 				    'default'  		=> '',
-				    'options'  		=> get_all_organizer_array(),
+				    'options'  		=> get_all_organizer_array($current_user_id),
 				    'description'	=> sprintf(__('If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="%s" target="__blank">here</a>','wp-event-manager'),get_permalink( get_option('event_manager_organizer_dashboard_page_id','') ) ),
 				    'priority'   	=> 21,
 			        'required'		=>false
@@ -1011,7 +1013,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
 			        'type'  		=> 'multiselect',
 				    'default'  		=> '',
-				    'options'  		=> get_all_venue_array(),
+				    'options'  		=> get_all_venue_array($current_user_id),
 				    'description'	=> sprintf(__('If you don\'t show venue list. Manage your venues <a href="%s" target="__blank">here</a>','wp-event-manager'),get_permalink( get_option('event_manager_venue_dashboard_page_id','') ) ),
 				    'priority'    	=> 21,
 			        'required'		=>true
