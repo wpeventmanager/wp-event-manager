@@ -621,7 +621,12 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
 		        'value'   => $today_date,
 		        'type'    => 'DATE',
 		        'compare' => '>'
-		    )
+		    ),
+		    array(
+		        'key'     => '_cancelled',
+		        'value'   => '1',
+		        'compare' => '!='
+		    ),
 		);
 
 		if ( 'event_start_date' === $args['orderby'] ) {
