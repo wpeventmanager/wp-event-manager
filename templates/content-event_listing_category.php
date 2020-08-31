@@ -17,6 +17,11 @@ global $wp_query;
             </div><!-- .archive-header-inner -->
         </header><!-- .archive-header -->
 
+        <?php
+        // remove calender view
+        remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
+        ?>
+
         <div class="entry-content wpem-mb-3">
             <div class="event_listings">
                 <?php if ( have_posts() ) : ?>
