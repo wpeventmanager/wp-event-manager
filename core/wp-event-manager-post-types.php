@@ -39,7 +39,7 @@ class WP_Event_Manager_Post_Types {
 		add_filter( 'the_content', array( $this, 'organizer_content' ) );
 		add_filter( 'the_content', array( $this, 'venue_content' ) );
 
-		add_filter( 'archive_template', array( $this, 'event_archive' ) );
+		add_filter( 'archive_template', array( $this, 'event_archive' ), 20 );
 
 		add_action( 'event_manager_check_for_expired_events', array( $this, 'check_for_expired_events' ) );
 		add_action( 'event_manager_delete_old_previews', array( $this, 'delete_old_previews' ) );

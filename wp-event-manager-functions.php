@@ -296,6 +296,13 @@ function get_event_listings( $args = array() ) {
 				    'type'    => 'date'
 				);
 
+				$date_search[] = array(
+					'key'     => '_event_end_date',
+					'value'   => $dates['end'],
+				    'compare' => '>=',
+				    'type'    => 'date'
+				);
+
 				$date_search['relation'] = 'OR';
 			}
 
