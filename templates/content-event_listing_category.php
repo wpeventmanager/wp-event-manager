@@ -18,7 +18,7 @@ global $wp_query;
         </header><!-- .archive-header -->
 
         <div class="entry-content wpem-mb-3">
-            <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings wpem-event-listing-list-view"> 
+            <div class="event_listings">
                 <?php if ( have_posts() ) : ?>
 
                     <?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>'all')); ?>           
