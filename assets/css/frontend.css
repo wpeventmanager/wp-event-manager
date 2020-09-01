@@ -2076,6 +2076,21 @@ table.wpem-responsive-table-wrapper thead th.wpem-heading-text {
 table.wpem-responsive-table-wrapper thead th:first-child {
     padding-left: 15px;
 }
+table.wpem-responsive-table-wrapper thead tr th.wpem-heading-text a{
+    color: #00a5fa;
+    cursor: pointer;
+}
+table.wpem-responsive-table-wrapper thead tr th.wpem-heading-text a.orderby-asc:hover::after {
+    content: "\ea3e";
+    font-family: wp-event-manager;
+    font-size: 15px;
+}
+
+table.wpem-responsive-table-wrapper thead tr th.wpem-heading-text a.orderby-desc:hover::after {
+    content: "\ea3a";
+    font-family: wp-event-manager;
+    font-size: 15px;
+}
 table.wpem-responsive-table-wrapper tbody tr {
     background: #fff;
 }

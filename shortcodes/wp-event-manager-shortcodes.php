@@ -255,19 +255,37 @@ class WP_Event_Manager_Shortcodes {
 		// ....If not show the event dashboard
 
 		$args     = apply_filters( 'event_manager_get_dashboard_events_args', array(
-
 			'post_type'           => 'event_listing',
 			'post_status'         => array( 'publish', 'expired', 'pending' ),
 			'ignore_sticky_posts' => 1,
 			'posts_per_page'      => $posts_per_page,
 			'offset'              => ( max( 1, get_query_var('paged') ) - 1 ) * $posts_per_page,
 			'orderby'             => 'date',
-			'order'               => 'desc',
+			'order'               => isset($_GET['order']) ? $_GET['order'] : 'desc' ,
 			'author'              => get_current_user_id()
-
 		) );
 
+		if( isset($_GET['orderby']) && !empty($_GET['orderby']) )
+		{
+			if($_GET['orderby'] == 'event_title')
+			{
+				$args['orderby'] = 'title';
+			}
+			elseif($_GET['orderby'] == 'event_location')
+			{
+				$args['meta_key'] = '_event_location';
+				$args['orderby'] = 'meta_value';
+			}
+			elseif($_GET['orderby'] == 'event_start_date')
+			{
+				$args['meta_key'] = '_event_start_date';
+				$args['orderby'] = 'meta_value';
+				$args['meta_type'] ='DATE';
+			}
+		}
+
 		$events = new WP_Query;
+
 		echo $this->event_dashboard_message;
 
 		$event_dashboard_columns = apply_filters( 'event_manager_event_dashboard_columns', array(
@@ -1274,21 +1292,28 @@ class WP_Event_Manager_Shortcodes {
 
 		wp_reset_query();
 
+		// remove calender view
+		//remove_filter('wpem_default_listing_layout_class', 'add_calendar_class_default_listing_layout', 25);
+		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
+
 		if ( $past_events->have_posts() ) : ?>
-			<div id="event-listing-view" class="wpem-main wpem-event-listings event_listings wpem-event-listing-list-view">	
-			<?php while ( $past_events->have_posts() ) : $past_events->the_post(); ?>
+			<div class="event_listings">
 
-				<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
-				
-			<?php endwhile; ?>
+				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>'all')); ?>
 
-			<?php if ($past_events->found_posts > $per_page) : ?>
-                <?php if ($show_pagination == "true") : ?>
-                    <div class="event-organizer-pagination">
-                    	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
-                    </div> 
-                <?php endif; ?>
-            <?php endif; ?>
+				<?php while ( $past_events->have_posts() ) : $past_events->the_post(); ?>
+
+					<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
+					
+				<?php endwhile; ?>
+
+				<?php if ($past_events->found_posts > $per_page) : ?>
+	                <?php if ($show_pagination == "true") : ?>
+	                    <div class="event-organizer-pagination">
+	                    	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
+	                    </div> 
+	                <?php endif; ?>
+	            <?php endif; ?>
 
 			</div>
 		<?php else :
@@ -1317,15 +1342,6 @@ class WP_Event_Manager_Shortcodes {
 	 */
 	public function output_event_organizers($atts)
 	{
-		if ( ! is_user_logged_in() ) {
-
-			ob_start();
-
-			get_event_manager_template( 'event-dashboard-login.php' );
-
-			return ob_get_clean();
-		}
-		
 		$organizers   = get_all_organizer_array();
 		$countAllEvents = get_event_organizer_count();        
         $organizers_array = [];

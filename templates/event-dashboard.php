@@ -1,19 +1,99 @@
 <?php do_action('event_manager_event_dashboard_before'); ?>
+
 <p>
-	<?php $submit_event 		= get_option('event_manager_submit_event_form_page_id');
-	if(!empty($submit_event )){ ?>
+	<?php $submit_event = get_option('event_manager_submit_event_form_page_id');
+	if(!empty($submit_event )) : ?>
 		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_event);?>"><span><?php _e('Add event','wp-event-manager');?></span></a>
-	<?php
-	}
-	?>	
+	<?php endif; ?>
 </p>
+
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">
 			<thead>
 				<tr>
-					<?php foreach ( $event_dashboard_columns as $key => $column ) : ?>
-					<th class="wpem-heading-text <?php echo esc_attr( $key ); ?>"><?php echo esc_html( $column ); ?></th>
+					<?php $event_dashboard = get_option('event_manager_event_dashboard_page_id'); ?>
+					<?php foreach( $event_dashboard_columns as $key => $column ) : ?>
+						
+						<?php if ('event_title' == $key ) : ?>
+							<?php
+							$order = 'desc';
+							if( isset($_GET['orderby']) && $_GET['orderby'] == $key )
+							{
+								$order = isset($_GET['order']) ? $_GET['order'] : 'desc';
+							}
+
+							if( $order == 'asc' )
+							{
+								$url = add_query_arg( array(
+								    'orderby' => $key,
+								    'order' => 'desc',
+								), get_permalink($event_dashboard) );
+							}
+							else
+							{
+								$url = add_query_arg( array(
+								    'orderby' => $key,
+								    'order' => 'asc',
+								), get_permalink($event_dashboard) );	
+							}							
+							?>
+							<th class="wpem-heading-text <?php echo esc_attr( $key ); ?>"><a class="orderby-<?php echo $order; ?>" href="<?php echo $url; ?>"><?php echo esc_html( $column ); ?></a></th>
+
+						<?php elseif ('event_location' == $key ) : ?>
+							<?php
+							$order = 'desc';
+							if( isset($_GET['orderby']) && $_GET['orderby'] == $key )
+							{
+								$order = isset($_GET['order']) ? $_GET['order'] : 'desc';
+							}
+
+							if( $order == 'asc' )
+							{
+								$url = add_query_arg( array(
+								    'orderby' => $key,
+								    'order' => 'desc',
+								), get_permalink($event_dashboard) );
+							}
+							else
+							{
+								$url = add_query_arg( array(
+								    'orderby' => $key,
+								    'order' => 'asc',
+								), get_permalink($event_dashboard) );	
+							}							
+							?>
+							<th class="wpem-heading-text <?php echo esc_attr( $key ); ?>"><a class="orderby-<?php echo $order; ?>" href="<?php echo $url; ?>"><?php echo esc_html( $column ); ?></a></th>
+
+						<?php elseif ('event_start_date' == $key ) : ?>
+							<?php
+							$order = 'desc';
+							if( isset($_GET['orderby']) && $_GET['orderby'] == $key )
+							{
+								$order = isset($_GET['order']) ? $_GET['order'] : 'desc';
+							}
+
+							if( $order == 'asc' )
+							{
+								$url = add_query_arg( array(
+								    'orderby' => $key,
+								    'order' => 'desc',
+								), get_permalink($event_dashboard) );
+							}
+							else
+							{
+								$url = add_query_arg( array(
+								    'orderby' => $key,
+								    'order' => 'asc',
+								), get_permalink($event_dashboard) );	
+							}							
+							?>
+							<th class="wpem-heading-text <?php echo esc_attr( $key ); ?>"><a class="orderby-<?php echo $order; ?>" href="<?php echo $url; ?>"><?php echo esc_html( $column ); ?></a></th>
+
+						<?php else : ?>
+							<th class="wpem-heading-text <?php echo esc_attr( $key ); ?>"><?php echo esc_html( $column ); ?></th>
+						<?php endif; ?>
+
 					<?php endforeach; ?>
 				</tr>
 			</thead>
@@ -24,8 +104,7 @@
 				</tr>
 				<?php else : ?>
 				<?php foreach ( $events as $event ) : ?>
-				<tr>
-
+					<tr>
 					<?php  foreach ( $event_dashboard_columns as $key => $column ) : ?>
 						<td data-title="<?php echo esc_html( $column ); ?>"
 						class="<?php echo esc_attr( $key ); ?>">
@@ -35,7 +114,8 @@
 								<?php else : ?>
 									<?php echo $event->post_title; ?> <small>(<?php display_event_status( $event ); ?>)</small>
 								<?php endif; ?>
-								<?php elseif ('event_action' === $key ) :?>
+								
+							<?php elseif ('event_action' === $key ) :?>
 		                            <div class="wpem-dboard-event-action">
 									<?php
 								$actions = array ();
@@ -98,34 +178,32 @@
 								</div>		
 							<?php
 
-elseif ('event_start_date' === $key) :
+							elseif ('event_start_date' === $key) :
 								display_event_start_date ( '', '', true, $event );
 								?> &nbsp; <?php
 
-display_event_start_time ( '', '', true, $event );
+								display_event_start_time ( '', '', true, $event );
 								?>
 							<?php
 
-elseif ('event_end_date' === $key) :
+							elseif ('event_end_date' === $key) :
 								display_event_end_date ( '', '', true, $event );
 								?>&nbsp;<?php
 
-display_event_end_time ( '', '', true, $event );
+								display_event_end_time ( '', '', true, $event );
 								?>
-
 		                    <?php
 
-elseif ('event_location' === $key) :
+							elseif ('event_location' === $key) :
 								if (get_event_location ( $event ) == 'Online Event') :
 									echo __ ( 'Online Event', 'wp-event-manager' );
 								else :
 									display_event_location ( false, $event );
 								endif;
-
 								?>
-						<?php
+							<?php
 
-elseif ('view_count' === $key) :
+							elseif ('view_count' === $key) :
 								echo get_post_views_count ( $event );
 								?>
 							<?php else : ?>
@@ -133,8 +211,7 @@ elseif ('view_count' === $key) :
 							<?php endif; ?>
 						</td>
 					<?php endforeach; ?>
-
-				</tr>
+					</tr>
 				<?php endforeach; ?>
 				<?php endif; ?>
 			</tbody>
