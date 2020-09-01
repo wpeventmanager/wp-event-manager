@@ -867,9 +867,15 @@ function event_manager_get_filtered_links( $args = array() ) {
 
 	$return = '';
 	
-	foreach ( $links as $key => $link ) {
+	$i = 1;
+	foreach ( $links as $key => $link ) 
+	{
+		if($i > 1)
+			$return .= ' <a href="#">|</a> ';
 
 		$return .= '<a href="' . esc_url( $link['url'] ) . '" class="' . esc_attr( $key ) . '">' . $link['name'] . '</a>';
+
+		$i++;
 	}
 	
 	return $return;
