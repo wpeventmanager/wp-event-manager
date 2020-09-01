@@ -14,7 +14,7 @@
                     <?php /** <div class="wpem-organizer-logo-title wpem-heading-text"><a><span><?php echo $organizer_name; ?></span></a></div> */ ?>
                     <div class="wpem-organizer-social-links">
                         <div class="wpem-organizer-social-lists">
-                            <?php do_action('single_event_listing_organizer_social_start'); ?>
+                            <?php do_action('single_event_listing_organizer_social_start', $organizer_id); ?>
                             <?php
                             $organizer_website  = get_organizer_website($organizer);
                             $organizer_facebook = get_organizer_facebook($organizer);
