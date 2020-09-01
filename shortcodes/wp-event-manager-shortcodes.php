@@ -1342,7 +1342,21 @@ class WP_Event_Manager_Shortcodes {
 	 */
 	public function output_event_organizers($atts)
 	{
-		$organizers   = get_all_organizer_array();
+		extract( $atts = shortcode_atts( apply_filters( 'event_manager_output_event_organizers_defaults', array(
+
+			'orderby'	=> 'title', // title
+			'order'     => 'ASC',
+			'show_thumb'	=> true,
+			'show_count'	=> true,
+
+		) ), $atts ) );
+
+		$args = [
+			'orderby' 	=> $orderby,
+			'order'		=> $order,
+		];
+
+		$organizers   = get_all_organizer_array('', $args);
 		$countAllEvents = get_event_organizer_count();        
         $organizers_array = [];
 
@@ -1352,7 +1366,7 @@ class WP_Event_Manager_Shortcodes {
         	{
         		$organizers_array[ strtoupper( $organizer[0] ) ][$organizer_id] = $organizer;
         	}
-        }        
+        }
          
 		wp_enqueue_script( 'wp-event-manager-organizer');
         
@@ -1362,6 +1376,8 @@ class WP_Event_Manager_Shortcodes {
 				'organizers'		=> $organizers,
 				'organizers_array'  => $organizers_array,
             	'countAllEvents'    => $countAllEvents,
+            	'show_thumb'		=> $show_thumb,
+            	'show_count'		=> $show_count,
 			), 
 			'wp-event-manager', 
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/' 

@@ -1875,9 +1875,9 @@ function event_manager_get_password_rules_hint() {
  * @param null
  * @return string
  */
-function get_all_event_organizer($user_id = '') 
+function get_all_event_organizer($user_id = '', $args = []) 
 {
-	$args = apply_filters('get_all_event_organizer_arg',array(
+	$query_args = apply_filters('get_all_event_organizer_arg',array(
 					'post_type'   => 'event_organizer',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
@@ -1885,10 +1885,15 @@ function get_all_event_organizer($user_id = '')
 
 	if( isset($user_id) && !empty($user_id) )
 	{
-		$args['author'] = $user_id;	
+		$query_args['author'] = $user_id;	
 	}
 
-	$all_organizer = get_posts( $args );
+	if( isset($args) && !empty($args) )
+	{
+		$query_args = array_merge($query_args,$args);
+	}
+
+	$all_organizer = get_posts( $query_args );
 
 	if(!empty($all_organizer))
 	{
@@ -1906,9 +1911,9 @@ function get_all_event_organizer($user_id = '')
  * @param null
  * @return string
  */
-function get_all_organizer_array($user_id = '')
+function get_all_organizer_array($user_id = '', $args = [])
 {
-	$all_organizer =get_all_event_organizer($user_id);
+	$all_organizer =get_all_event_organizer($user_id, $args);
 
 	$organizer_array =array();
 
@@ -1966,9 +1971,9 @@ function get_event_by_organizer_id($organizer_id = '')
  * @param null
  * @return string
  */
-function get_all_event_venue($user_id = '') 
+function get_all_event_venue($user_id = '', $args = []) 
 {
-	$args = apply_filters('get_all_event_venue_arg',array(
+	$query_args = apply_filters('get_all_event_venue_arg',array(
 					'post_type'   => 'event_venue',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
@@ -1976,10 +1981,15 @@ function get_all_event_venue($user_id = '')
 
 	if( isset($user_id) && !empty($user_id) )
 	{
-		$args['author'] = $user_id;	
+		$query_args['author'] = $user_id;	
 	}
 
-	$all_venue = get_posts( $args );
+	if( isset($args) && !empty($args) )
+	{
+		$query_args = array_merge($query_args,$args);
+	}
+
+	$all_venue = get_posts( $query_args );
 
 	if(!empty($all_venue))
 	{
@@ -1997,7 +2007,7 @@ function get_all_event_venue($user_id = '')
  * @param null
  * @return string
  */
-function get_all_venue_array($user_id = '')
+function get_all_venue_array($user_id = '', $args = [])
 {
 	$all_venue =get_all_event_venue($user_id);
 	
