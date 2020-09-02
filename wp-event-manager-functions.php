@@ -1889,7 +1889,8 @@ function get_all_event_organizer($user_id = '', $args = [])
 					'posts_per_page'=> -1,
 			));
 
-	if( isset($user_id) && !empty($user_id) )
+
+	if( isset($user_id) && !empty($user_id) && !is_admin() )
 	{
 		$query_args['author'] = $user_id;	
 	}
@@ -1985,7 +1986,7 @@ function get_all_event_venue($user_id = '', $args = [])
 					'posts_per_page'=> -1,
 			));
 
-	if( isset($user_id) && !empty($user_id) )
+	if( isset($user_id) && !empty($user_id) && !is_admin() )
 	{
 		$query_args['author'] = $user_id;	
 	}
