@@ -70,6 +70,9 @@ class WP_Event_Manager_Install {
 				if(isset($all_fields['event']['event_address']))
 					unset($all_fields['event']['event_address']);
 
+				if(isset($all_fields['event']['event_venue_name']))
+					unset($all_fields['event']['event_venue_name']);
+
 				update_option( 'event_manager_submit_event_form_fields', array('event' =>$all_fields['event']) );
 
 				update_option( 'event_manager_submit_organizer_form_fields', array('organizer' =>$all_fields['organizer']) );	
@@ -89,6 +92,14 @@ class WP_Event_Manager_Install {
 			'event_organizers' => [
 				'page_title' => 'Event Organizers',
 				'page_content' => '[event_organizers]',
+			],
+			'submit_venue_form' => [
+				'page_title' => 'Submit Venue Form',
+				'page_content' => '[submit_venue_form]',
+			],
+			'venue_dashboard' => [
+				'page_title' => 'Venue Dashboard',
+				'page_content' => '[venue_dashboard]',
 			],
 		];
 

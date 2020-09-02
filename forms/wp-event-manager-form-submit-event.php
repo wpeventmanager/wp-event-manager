@@ -849,7 +849,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'priority'    => 4,
 			        'required'=>true
 		 		),		
-		 		 
+		 		/*
 		 		'event_venue_name' => array(
 					'label'       => __( 'Venue Name', 'wp-event-manager' ),
 					'type'        => 'text',
@@ -857,6 +857,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
 					'priority'    => 5
 				),
+				*/
 				/*	
 				'event_address' => array(
 					'label'       => __( 'Address', 'wp-event-manager' ),
@@ -1007,7 +1008,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				),
 			),
 			
-			/*
+			
 			'venue' => array(
 				'event_venue_ids' => array(
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
@@ -1016,10 +1017,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'options'  		=> get_all_venue_array($current_user_id),
 				    'description'	=> sprintf(__('If you don\'t show venue list. Manage your venues <a href="%s" target="__blank">here</a>','wp-event-manager'),get_permalink( get_option('event_manager_venue_dashboard_page_id','') ) ),
 				    'priority'    	=> 21,
-			        'required'		=>true
+			        'required'		=>false
 				),
 			)
-			*/
+			
 			
 		) );
 

@@ -67,7 +67,7 @@ class WP_Event_Manager_Settings {
 										'type'       => 'checkbox',
 										'attributes' => array(),
 								),
-								/*
+								
 								array(
 										'name'       => 'enable_event_venue',
 										'std'        => '1',
@@ -77,7 +77,7 @@ class WP_Event_Manager_Settings {
 										'type'       => 'checkbox',
 										'attributes' => array(),
 								),
-								*/
+								
 								array(
 										'name'       => 'event_manager_delete_data_on_uninstall',
 										'std'        => '0',
@@ -603,7 +603,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'type'      => 'page'
 					    ),
-					    /*
+					    
 						array(
 
 							'name' 		=> 'event_manager_submit_venue_form_page_id',
@@ -628,7 +628,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'type'      => 'page'
 					    ),
-					    */
+					    
 
 					)
 				),

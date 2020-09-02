@@ -2,7 +2,7 @@
 <p>
 	<?php $submit_venue 		= get_option('event_manager_submit_venue_form_page_id');
 	if(!empty($submit_venue )){ ?>
-		<a  href="<?php echo get_permalink($submit_venue);?>"><?php  _e('Add venue','wp-event-manager');?></a>
+		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_venue);?>"><?php  _e('Add venue','wp-event-manager');?></a>
 	<?php
 	}
 	?>	
