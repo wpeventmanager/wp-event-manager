@@ -127,6 +127,14 @@ do_action('set_single_listing_view_count');
                                             }
                                         }
                                     }
+
+                                    if( isset($additional_fields['attendee_information_type']) )
+                                        unset($additional_fields['attendee_information_type']);
+
+                                    if( isset($additional_fields['attendee_information_fields']) )
+                                        unset($additional_fields['attendee_information_fields']);
+
+                                    $additional_fields = apply_filters('event_manager_additional_fields', $additional_fields);
                                 }
 
                                 if( !empty($additional_fields)) : ?>
@@ -162,14 +170,14 @@ do_action('set_single_listing_view_count');
                                                     <?php elseif($field['type'] == 'multiselect') : ?>
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $$field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
                                                             </div>
                                                         </div>
 
                                                     <?php elseif($field['type'] == 'select') : ?>
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $$field['label']); ?> - </strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value);; ?></p>
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value);; ?></p>
                                                             </div>
                                                         </div>
 
