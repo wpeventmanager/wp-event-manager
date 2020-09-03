@@ -848,7 +848,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				 		    ),
 				    'priority'    => 4,
 			        'required'=>true
-		 		),		
+		 		),
+
 		 		/*
 		 		'event_venue_name' => array(
 					'label'       => __( 'Venue Name', 'wp-event-manager' ),
@@ -858,6 +859,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 5
 				),
 				*/
+
 				/*	
 				'event_address' => array(
 					'label'       => __( 'Address', 'wp-event-manager' ),
@@ -867,6 +869,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 6
 				),
 				*/	
+				
 				'event_pincode' => array(
 					'label'       => __( 'Zip Code', 'wp-event-manager' ),
 					'type'        => 'text',
