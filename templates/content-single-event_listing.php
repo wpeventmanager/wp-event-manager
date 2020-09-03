@@ -134,7 +134,7 @@ do_action('set_single_listing_view_count');
                                     if( isset($additional_fields['attendee_information_fields']) )
                                         unset($additional_fields['attendee_information_fields']);
 
-                                    $additional_fields = apply_filters('event_manager_additional_fields', $additional_fields);
+                                    $additional_fields = apply_filters('event_manager_show_additional_details_fields', $additional_fields);
                                 }
 
                                 if( !empty($additional_fields)) : ?>
