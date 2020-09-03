@@ -167,9 +167,15 @@ class Plugin {
 		require_once( __DIR__ . '/elementor-widgets/elementor-past-event-listing.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-single-event-field.php' );
 
+		require_once( __DIR__ . '/elementor-widgets/elementor-submit-organizer-form.php' );
+		require_once( __DIR__ . '/elementor-widgets/elementor-organizer-dashboard.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-single-event-organizer.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-single-organizer.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-event-organizers.php' );
+
+		require_once( __DIR__ . '/elementor-widgets/elementor-submit-venue-form.php' );
+		require_once( __DIR__ . '/elementor-widgets/elementor-venue-dashboard.php' );
+		require_once( __DIR__ . '/elementor-widgets/elementor-single-venue.php' );
 	}
 
 	/**
@@ -192,9 +198,15 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Past_Event_Listing() );				
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Field() );
 
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Organizer_Dashboard() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Submit_Organizer_Form() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Single_Event_Organizer() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Single_Organizer() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Organizers() );
+
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Venue_Dashboard() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Submit_Venue_Form() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Single_Venue() );
 	}
 
 	/**

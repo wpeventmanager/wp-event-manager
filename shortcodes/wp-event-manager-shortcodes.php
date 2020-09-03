@@ -47,6 +47,8 @@ class WP_Event_Manager_Shortcodes {
 		if(get_option('enable_event_venue')){
 			add_shortcode( 'submit_venue_form', array( $this, 'submit_venue_form' ) );
 			add_shortcode( 'venue_dashboard', array( $this, 'venue_dashboard' ) );
+
+			add_shortcode( 'event_venue', array( $this, 'output_event_venue' ) );
 		}
 		
 		add_shortcode( 'events', array( $this, 'output_events' ) );
@@ -1388,7 +1390,6 @@ class WP_Event_Manager_Shortcodes {
 		return ob_get_clean();
 	}
 
-
 	/**
 	 *  It is very simply a plugin that outputs a list of all organizers that have listed events on your website. 
      *  Once you have installed " WP Event Manager - Organizer Profiles" simply visit "Pages > Add New". 
@@ -1524,6 +1525,45 @@ class WP_Event_Manager_Shortcodes {
         wp_reset_postdata();
 
         do_action('organizer_content_end');
+
+        return ob_get_clean();
+	}
+
+	/**
+	 *  It is very simply a plugin that outputs a list of all venues that have listed events on your website. 
+     *  Once you have installed " WP Event Manager - Organizer Profiles" simply visit "Pages > Add New". 
+     *  Once you have added a title to your page add the this shortcode: [event_organizer]
+     *  This will output a grouped and alphabetized list of all organizers.
+	 *
+	 * @access public
+	 * @param array $args
+	 * @return string
+	 */
+	public function output_event_venue($atts)
+	{
+		extract( shortcode_atts( array(		    
+			'id' => '',
+		), $atts ) );
+
+		if ( ! $id )
+			return;
+
+		ob_start();
+
+		do_action( 'venue_content_start' );
+
+		get_event_manager_template( 
+		    'content-single-event_venue.php', 
+		    array(
+		        'venue_id'	=> $id,
+		    ), 
+		    'wp-event-manager', 
+		    EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
+		);
+
+		wp_reset_postdata();
+
+		do_action( 'venue_content_end' );
 
         return ob_get_clean();
 	}
