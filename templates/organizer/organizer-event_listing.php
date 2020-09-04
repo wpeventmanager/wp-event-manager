@@ -2,15 +2,15 @@
     <div class="wpem-tabs-wrapper">
 
         <ul class="wpem-tabs-wrap">
-            <li class="wpem-tab-link" data-tab="past">
-                <?php _e('Past Events', 'wp-event-manager'); ?>
-            </li>
-            <li class="wpem-tab-link" data-tab="current">
+           <li class="wpem-tab-link" data-tab="current">
                 <?php _e('Current Events', 'wp-event-manager'); ?>
             </li>            
             <li class="wpem-tab-link active" data-tab="upcoming">
                 <?php _e('Upcoming Events', 'wp-event-manager'); ?>
-            </li>            
+            </li>
+            <li class="wpem-tab-link" data-tab="past">
+                <?php _e('Past Events', 'wp-event-manager'); ?>
+            </li>
         </ul>
 
         <div class="event-organizer-tab-contents wpem-tab-content current">
