@@ -238,7 +238,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return array of data
 	 */
 
-	protected function get_posted_fields() {
+	public function get_posted_fields() {
 	    
 			// Init fields
 			//$this->init_fields(); We dont need to initialize with this function because of field edior

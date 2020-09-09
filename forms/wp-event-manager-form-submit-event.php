@@ -446,7 +446,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * @param  array $values
 	 * @param  bool $update_slug
 	 */
-	protected function save_event( $post_title, $post_content, $status = 'preview', $values = array(), $update_slug = true ) {
+	public function save_event( $post_title, $post_content, $status = 'preview', $values = array(), $update_slug = true ) {
 		$event_data = array(
 			'post_title'     => $post_title,
 			'post_content'   => $post_content,
@@ -558,7 +558,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 *
 	 * @param  array $values
 	 */
-	protected function update_event_data( $values ) {
+	public function update_event_data( $values ) {
 		// Set defaults
 		add_post_meta( $this->event_id, '_cancelled', 0, true );
 		add_post_meta( $this->event_id, '_featured', 0, true );
