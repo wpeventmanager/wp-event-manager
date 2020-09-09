@@ -725,6 +725,46 @@ class WP_Event_Manager_Writepanels {
 			elseif ( '_event_author' === $key ) {
 				$wpdb->update( $wpdb->posts, array( 'post_author' => $_POST[ $key ] > 0 ? absint( $_POST[ $key ] ) : 0 ), array( 'ID' => $post_id ) );
 			}
+			elseif ( '_event_start_date' === $key ) {
+				if(isset( $_POST[ $key ] )  && !empty($_POST[ $key ]))
+				{
+					if ( isset( $_POST[ '_event_start_time' ] ) && !empty($_POST[ '_event_start_time' ]) )
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $_POST[ '_event_start_time' ] );
+					else
+						$start_time = '';
+					//combine event start date value with event start time 
+					$date =  $_POST[ $key ].' '.$start_time ;
+					
+    				 //Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+
+					update_post_meta( $post_id, $key, $date_dbformatted);
+				}
+				else
+					update_post_meta( $post_id, $key, $_POST[ $key ] );
+
+			}
+			elseif ( '_event_end_date' === $key ) {
+				if(isset( $_POST[ $key ] )  && !empty($_POST[ $key ]))
+				{
+					if ( isset( $_POST[ '_event_end_time' ] ) && !empty($_POST[ '_event_end_time' ]) )
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $_POST[ '_event_end_time' ] );
+					else
+						$start_time = '';
+					//combine event start date value with event start time 
+					$date =  $_POST[ $key ].' '.$start_time ;
+					
+    				 //Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+
+					update_post_meta( $post_id, $key, $date_dbformatted);
+				}
+				else
+					update_post_meta( $post_id, $key, $_POST[ $key ] );
+
+			}
 			elseif ( '_event_organizer_ids' === $key ) {
 				if ( ! empty( $_POST[ $key ] ) ) {
 					update_post_meta( $post_id, $key, array_filter( array_map( 'sanitize_text_field', $_POST[ $key ] ) ) );

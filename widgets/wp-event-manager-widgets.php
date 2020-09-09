@@ -611,7 +611,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
 		    'post_status' => 'publish',
 		    'posts_per_page'    => $number,
 		    'orderby'           => isset( $instance['orderby'] ) ? $instance['orderby'] : 'event_start_date',
-		    'order'             =>  isset( $instance['order'] ) ? $instance['order'] : 'ASC',
+		    'order'             => isset( $instance['order'] ) ? $instance['order'] : 'ASC',
 		    
 		);
 		
@@ -619,7 +619,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
 		    array(
 		        'key'     => '_event_start_date',
 		        'value'   => $today_date,
-		        'type'    => 'DATE',
+		        'type'    => 'DATETIME',
 		        'compare' => '>'
 		    ),
 		    array(
