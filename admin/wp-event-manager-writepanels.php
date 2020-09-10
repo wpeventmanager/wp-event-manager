@@ -725,6 +725,38 @@ class WP_Event_Manager_Writepanels {
 			elseif ( '_event_author' === $key ) {
 				$wpdb->update( $wpdb->posts, array( 'post_author' => $_POST[ $key ] > 0 ? absint( $_POST[ $key ] ) : 0 ), array( 'ID' => $post_id ) );
 			}
+			elseif ( '_event_banner' === $key ) {
+				if ( is_array( $_POST[ $key ] ) ) {
+					$thumbnail_image = $_POST[ $key ][0];
+					update_post_meta( $post_id, $key, array_filter( array_map( 'sanitize_text_field', $_POST[ $key ] ) ) );
+				} else {
+					$thumbnail_image = $_POST[ $key ];
+					update_post_meta( $post_id, $key, sanitize_text_field( $_POST[ $key ] ) );
+				}
+
+				$wp_upload_dir = wp_get_upload_dir();
+
+				$baseurl = $wp_upload_dir['baseurl'] . '/';
+
+				$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
+
+				$args = array(
+			        'meta_key'         	=> '_wp_attached_file',
+			        'meta_value'       	=> $wp_attached_file,
+			        'post_type'        	=> 'attachment',
+			        'posts_per_page'	=> 1,
+			    );
+
+				$attachments = get_posts($args);
+
+				if(!empty($attachments))
+				{
+					foreach ($attachments as $attachment) 
+					{
+						set_post_thumbnail( $post_id, $attachment->ID );
+					}
+				}
+			}
 			elseif ( '_event_start_date' === $key ) {
 				if(isset( $_POST[ $key ] )  && !empty($_POST[ $key ]))
 				{
