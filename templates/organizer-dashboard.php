@@ -1,12 +1,12 @@
 <?php do_action('event_manager_organizer_dashboard_before'); ?>
-<p>
-	<?php $submit_organizer 		= get_option('event_manager_submit_organizer_form_page_id');
-	if(!empty($submit_organizer )){ ?>
+
+<?php $submit_organizer = get_option('event_manager_submit_organizer_form_page_id');
+if(!empty($submit_organizer )) : ?>
+	<div class="wpem-d-inline-block wpem-dashboard-i-block-btn">
 		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_organizer);?>"><span><?php _e('Add organizer','wp-event-manager');?></span></a>
-	<?php
-	}
-	?>	
-</p>
+	</div>
+<?php endif; ?>
+
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">

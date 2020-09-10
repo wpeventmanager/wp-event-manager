@@ -3041,3 +3041,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
 .wpem-event-listing-box-view.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-action-url:last-child {
     display: inline-block;
 }
+.wpem-d-inline-block.wpem-dashboard-i-block-btn {
+    margin: 10px 0px;
+}

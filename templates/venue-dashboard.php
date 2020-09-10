@@ -1,12 +1,12 @@
 <?php do_action('event_manager_organizer_dashboard_before'); ?>
-<p>
-	<?php $submit_venue 		= get_option('event_manager_submit_venue_form_page_id');
-	if(!empty($submit_venue )){ ?>
-		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_venue);?>"><?php  _e('Add venue','wp-event-manager');?></a>
-	<?php
-	}
-	?>	
-</p>
+
+<?php $submit_venue = get_option('event_manager_submit_venue_form_page_id');
+if(!empty($submit_venue )) : ?>
+	<div class="wpem-d-inline-block wpem-dashboard-i-block-btn">
+		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_venue);?>"><span><?php _e('Add venue','wp-event-manager');?></span></a>
+	</div>
+<?php endif; ?>
+
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">
