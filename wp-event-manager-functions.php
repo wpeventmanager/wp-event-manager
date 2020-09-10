@@ -385,13 +385,9 @@ function get_event_listings( $args = array() ) {
 	}
 
 	if ( 'featured' === $args['orderby'] ) {
-
 		$query_args['orderby'] = array(
-
 			'menu_order' => 'ASC',
-
 			'date'       => 'DESC',
-
 			'ID'         => 'DESC',
 		);
 	}
@@ -406,7 +402,7 @@ function get_event_listings( $args = array() ) {
 	if ( 'event_start_date' === $args['orderby'] ) {
 		$query_args['orderby'] ='meta_value';
 		$query_args['meta_key'] ='_event_start_date';
-		$query_args['meta_type'] ='DATE';
+		$query_args['meta_type'] ='DATETIME';
 	}
 	
 	$event_manager_keyword = sanitize_text_field( $args['search_keywords'] ); 

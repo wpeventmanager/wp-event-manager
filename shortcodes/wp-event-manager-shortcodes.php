@@ -282,7 +282,7 @@ class WP_Event_Manager_Shortcodes {
 			{
 				$args['meta_key'] = '_event_start_date';
 				$args['orderby'] = 'meta_value';
-				$args['meta_type'] ='DATE';
+				$args['meta_type'] ='DATETIME';
 			}
 		}
 
@@ -1287,7 +1287,7 @@ class WP_Event_Manager_Shortcodes {
 		if ( 'event_start_date' === $args_past['orderby'] ) {
 			$args_past['orderby'] ='meta_value';
 			$args_past['meta_key'] ='_event_start_date';
-			$args_past['meta_type'] ='DATE';
+			$args_past['meta_type'] ='DATETIME';
 		}
 
 		$past_events = new WP_Query( $args_past );
