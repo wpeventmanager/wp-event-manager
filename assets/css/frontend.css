@@ -677,6 +677,11 @@ input.wpem-theme-button:hover span {
 }
 .wpem-event-listing-list-view.wpem-event-listings .wpem-event-layout-wrapper .event_listing {
     margin: 0;
+    display: inline-flex;
+    width: 100%;
+    padding: 23px 17px;
+    border-left: 3px solid #ddd;
+    transition: border 0.2s;
 }
 .wpem-event-listings .wpem-event-layout-wrapper {
     border-bottom: 1px solid #e4e4e4;
@@ -689,13 +694,6 @@ input.wpem-theme-button:hover span {
     width: 100%;
     display: inline-block;
     margin: 0;
-}
-.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-action-url {
-    display: inline-flex;
-    width: 100%;
-    padding: 23px 17px;
-    border-left: 3px solid #ddd;
-    transition: border 0.2s;
 }
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-banner {
     float: left;
@@ -799,6 +797,7 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-type {
     margin: 5px;
     min-height: 22px;
+    color: #333;
 }
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-date-time {
     position: relative;
@@ -815,6 +814,7 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-location {
     position: relative;
     padding-left: 20px;
+    width: 100%;
 }
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-location::before {
     content: "\e947";
@@ -904,7 +904,7 @@ input.wpem-theme-button:hover span {
     height: 100%;
 }
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-action-url {
-    display: inline-block;
+    /* display:inline-block; */
     width: 100%;
     padding: 0;
     border-left: none;
@@ -997,6 +997,7 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-type {
     margin: 5px;
     min-height: 23px;
+    color: #333;
 }
 .wpem-event-listings .wpem-event-layout-wrapper.event_featured,
 .wpem-event-listings .wpem-event-layout-wrapper.event_featured:hover {
@@ -2076,21 +2077,6 @@ table.wpem-responsive-table-wrapper thead th.wpem-heading-text {
 table.wpem-responsive-table-wrapper thead th:first-child {
     padding-left: 15px;
 }
-table.wpem-responsive-table-wrapper thead tr th.wpem-heading-text a{
-    color: #00a5fa;
-    cursor: pointer;
-}
-table.wpem-responsive-table-wrapper thead tr th.wpem-heading-text a.orderby-asc:hover::after {
-    content: "\ea3e";
-    font-family: wp-event-manager;
-    font-size: 15px;
-}
-
-table.wpem-responsive-table-wrapper thead tr th.wpem-heading-text a.orderby-desc:hover::after {
-    content: "\ea3a";
-    font-family: wp-event-manager;
-    font-size: 15px;
-}
 table.wpem-responsive-table-wrapper tbody tr {
     background: #fff;
 }
@@ -2743,7 +2729,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
     height: auto;
 }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-single-image-wrapper .wpem-event-single-image {
-    display: flex;
+    display: block;
 }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-event-organizer {
     color: #949494;
@@ -3014,7 +3000,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-event-title {
     margin: 5px 0 10px 0;
 }
-
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-right-content p {
     word-break: break-word;
 }
@@ -3022,31 +3007,37 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
     min-width: 180px;
     font-size: 14px;
 }
-
-
-.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block {background: #eeedf2;
-                                                                                                                                        border-top: 1px solid #e4e4e4;
-                                                                                                                                        border-bottom: 1px solid #e4e4e4;
-                                                                                                                                        padding: 15px 30px;
-                                                                                                                                        margin: 0;}
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block {
+    background: #eeedf2;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 15px 30px;
+    margin: 0;
+}
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details {
     padding: 30px;
 }
-
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details p {
     font-size: 14px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     padding-left: 5px;
 }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details .wpem-additional-info-block-textarea p {
     color: #868686;
 }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details .wpem-additional-info-block-details-content-items {
-    padding: 10px 0px;
+    padding: 10px 0;
     border-bottom: 1px solid #ccc;
 }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block-details .wpem-additional-info-block-textarea p.wpem-additional-info-block-title {
     color: #333;
     font-size: 16px;
     padding-bottom: 10px;
+}
+.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-action-url:last-child {
+    display: inline-flex;
+    width: 100%;
+}
+.wpem-event-listing-box-view.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-action-url:last-child {
+    display: inline-block;
 }
