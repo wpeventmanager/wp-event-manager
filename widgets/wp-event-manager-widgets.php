@@ -604,7 +604,8 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
         else
             $number = 4 ;
 
-		$today_date=date('Y-m-d g:i:s');
+		//$today_date=date('Y-m-d g:i:s');
+		$today_date = current_time('Y-m-d g:i:s');
 		
 		$args = array(
 		    'post_type'   => 'event_listing',
