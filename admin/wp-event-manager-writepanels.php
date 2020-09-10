@@ -109,7 +109,7 @@ class WP_Event_Manager_Writepanels {
 			$fields['_event_expiry_date'] = array(
 				'label'       => __( 'Listing Expiry Date', 'wp-event-manager' ),
 				'type'        => 'date',
-				'placeholder' => __( 'yyyy-mm-dd', 'wp-event-manager' ),
+				'placeholder' => __( 'Please enter event expiry date', 'wp-event-manager' ),
 				'priority'    => 40,	
 				'value'       => $expiry_date,
 			);
