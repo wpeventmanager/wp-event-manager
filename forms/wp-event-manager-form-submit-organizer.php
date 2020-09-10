@@ -107,6 +107,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'placeholder' => __( 'Enter the name of the organization', 'wp-event-manager' ),
 								'priority'    => 1
 				),
+
 				'organizer_logo' => array(
 								'label'       => __( 'Logo', 'wp-event-manager' ),
 								'type'        => 'file',
@@ -124,11 +125,11 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 				),
 
 				'organizer_description' => array(
-					'label'       => __( 'Organizer Description', 'wp-event-manager' ),
-					'type'        => 'wp-editor',
-					'required'    => true,
-					'placeholder' => '',
-					'priority'    => 3
+								'label'       => __( 'Organizer Description', 'wp-event-manager' ),
+								'type'        => 'wp-editor',
+								'required'    => true,
+								'placeholder' => '',
+								'priority'    => 3
 				),	
 
 				'organizer_email' => array(
@@ -167,7 +168,6 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => false,
 								'placeholder' => __( 'Facebook URL e.g http://www.facebook.com/yourcompany', 'wp-event-manager' ),
-								
 								'priority'    => 10
 				),
 			)
