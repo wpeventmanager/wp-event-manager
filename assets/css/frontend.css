@@ -3070,3 +3070,105 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
 .wpem-event-listing-type-page .wpem-event-listing-type-page-wrapper .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper {
     padding: 0;
 }
+.wpem-single-venue-profile-wrapper {
+    background: #fafafa;
+    border-radius: 5px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile {
+    max-width: unset;
+    margin: 0 auto;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-logo-wrapper {
+    margin-bottom: 25px;
+    text-align: center;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-logo-wrapper .wpem-venue-logo {
+    display: block;
+    margin: 0 auto;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-logo-wrapper .wpem-venue-logo img {
+    height: auto;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links{
+    margin: 0;
+    padding: 15px 0 0 0;
+    display: flex;
+    width: 100%;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists{
+    display: inline-block;
+    margin: 0;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon{
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    position: relative;
+    margin: 4px;
+    float: left;
+    font-size: 0;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-weblink a{
+    background: #999;
+        height: 35px;
+    width: 35px;
+    display: inline-block;
+    background: #ccc;
+    border-radius: 100%;
+    opacity: 1;
+    transition: all .2s;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-weblink a::before{
+    background-color: #fff;
+    mask-image: url(../images/wpem-web-link-icon.svg);
+    -webkit-mask-image: url(../images/wpem-web-link-icon.svg);
+    -webkit-mask-size: 17px;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    content: "";
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    background-size: 14px;
+    background-position: center;
+    left: 0;
+    top: 0;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-infomation-wrapper {
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+.wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-description {
+    margin-bottom: 20px;
+    color: #979797;
+}
+
+div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext {
+    max-height: 75px;
+    overflow: auto;
+    min-width: 200px;
+}
+div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext span {
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+div#event-manager-event-dashboard .wpem-responsive-table-block tbody tr:last-child .event-venue-count.wpem-tooltip.wpem-tooltip-bottom .venue-events-list.wpem-tooltiptext{
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-100%);
+}
+div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext span:last-child {
+    border: none;
+}

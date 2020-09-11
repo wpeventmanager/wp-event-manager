@@ -42,8 +42,9 @@ if(!empty($submit_venue )) : ?>
 									<?php // echo get_event_venue_count($venue->ID);
 										$events = get_event_by_venue_id($venue->ID);
 										?>
-										<a  class="event-venue-count" ><?php echo sizeof($events);?></a>
-										<div class="venue-events-list">
+										<div  class="event-venue-count wpem-tooltip wpem-tooltip-bottom">
+										<a href="javaScript:void(0)"><?php echo sizeof($events);?></a>
+										<span class="venue-events-list wpem-tooltiptext">
 											<?php $i=1; ?>
 											<?php foreach ($events as  $event) : ?>
 
@@ -55,7 +56,7 @@ if(!empty($submit_venue )) : ?>
 
 												<?php $i++; ?>
 											<?php endforeach; ?>
-										</div>
+										</span>
 
 								<?php elseif ('venue_action' === $key ) :?>
 		                            <div class="wpem-dboard-event-action">
