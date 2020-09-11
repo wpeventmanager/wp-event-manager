@@ -875,9 +875,9 @@ class WP_Event_Manager_Shortcodes {
 
 				'search_datetimes'  => $datetimes,
 
-				'search_categories' => $categories,
+				'search_categories' => !empty($selected_category) ? explode(',', $selected_category) : '',
 
-				'search_event_types'	=> $event_types,
+				'search_event_types'	=> !empty($selected_event_type) ? explode(',', $selected_event_type) : '',
 
 				'search_ticket_prices'  => $ticket_prices,
 
