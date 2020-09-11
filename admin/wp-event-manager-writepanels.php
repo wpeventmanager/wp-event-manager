@@ -734,28 +734,36 @@ class WP_Event_Manager_Writepanels {
 					update_post_meta( $post_id, $key, sanitize_text_field( $_POST[ $key ] ) );
 				}
 
-				$wp_upload_dir = wp_get_upload_dir();
-
-				$baseurl = $wp_upload_dir['baseurl'] . '/';
-
-				$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
-
-				$args = array(
-			        'meta_key'         	=> '_wp_attached_file',
-			        'meta_value'       	=> $wp_attached_file,
-			        'post_type'        	=> 'attachment',
-			        'posts_per_page'	=> 1,
-			    );
-
-				$attachments = get_posts($args);
-
-				if(!empty($attachments))
+				if( isset($thumbnail_image) && !empty($thumbnail_image) )
 				{
-					foreach ($attachments as $attachment) 
+					$wp_upload_dir = wp_get_upload_dir();
+
+					$baseurl = $wp_upload_dir['baseurl'] . '/';
+
+					$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
+
+					$args = array(
+				        'meta_key'         	=> '_wp_attached_file',
+				        'meta_value'       	=> $wp_attached_file,
+				        'post_type'        	=> 'attachment',
+				        'posts_per_page'	=> 1,
+				    );
+
+					$attachments = get_posts($args);
+
+					if(!empty($attachments))
 					{
-						set_post_thumbnail( $post_id, $attachment->ID );
+						foreach ($attachments as $attachment) 
+						{
+							set_post_thumbnail( $post_id, $attachment->ID );
+						}
 					}
 				}
+				else
+				{
+					update_post_meta( $post_id, '_thumbnail_id', '' );
+				}
+				
 			}
 			elseif ( '_event_start_date' === $key ) {
 				if(isset( $_POST[ $key ] )  && !empty($_POST[ $key ]))
