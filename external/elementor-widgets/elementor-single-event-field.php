@@ -180,7 +180,11 @@ class Elementor_Event_Field extends Widget_Base {
 
 				if(!$is_event_online)
 				{
-					echo $is_event_online;
+					echo get_event_location();
+				}
+				else
+				{
+					echo __('Online Event', 'wp-event-manager');
 				}
 			}
 			else if($settings['event_field'] == 'event_venue_name')
@@ -193,7 +197,7 @@ class Elementor_Event_Field extends Widget_Base {
 			}
 			else if($settings['event_field'] == 'event_pincode')
 			{
-				display_event_address('', '', true, $event);
+				display_event_pincode('', '', true, $event);
 			}
 			else if($settings['event_field'] == 'event_location')
 			{
@@ -226,6 +230,10 @@ class Elementor_Event_Field extends Widget_Base {
 			else if($settings['event_field'] == 'event_end_time')
 			{
 				display_event_end_time('', '', true, $event);
+			}
+			else if($settings['event_field'] == 'event_timezone')
+			{
+				display_event_timezone('', '', true, $event);
 			}
 			else if($settings['event_field'] == 'event_registration_deadline')
 			{
@@ -262,6 +270,28 @@ class Elementor_Event_Field extends Widget_Base {
 			else if($settings['event_field'] == 'organizer_youtube')
 			{
 				display_organizer_youtube('', '', true, $event);
+			}
+			else if($settings['event_field'] == 'event_video_url')
+			{
+				?>
+				<?php if (get_organizer_youtube($event)) : ?>
+                    <div class="clearfix">&nbsp;</div>
+                    <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></button>
+                    <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Watch video', 'wp-event-manager'); ?>">
+                        <div class="wpem-modal-content-wrapper">
+                            <div class="wpem-modal-header">
+                                <div class="wpem-modal-header-title"><h3 class="wpem-modal-header-title-text"><?php _e('Watch video', 'wp-event-manager'); ?></h3></div>
+                                <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
+                            </div>
+                            <div class="wpem-modal-content">
+                                <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => 1, 'rel' => 0)); ?>
+                            </div>
+                        </div>
+                        <a href="#"><div class="wpem-modal-overlay"></div></a>
+                    </div>
+                    <div class="clearfix">&nbsp;</div>
+                <?php endif; ?>
+				<?php
 			}
 			else if($settings['event_field'] == 'organizer_facebook')
 			{
@@ -325,9 +355,13 @@ class Elementor_Event_Field extends Widget_Base {
 				</div>
 				<?php
 			}
+			else if($settings['event_field'] == 'event_venue_ids')
+			{
+				echo get_event_venue_name($event, true);
+			}
 			else
 			{
-				echo get_post_meta($post_id, $settings['event_field'], true);
+				echo get_post_meta($post_id, '_'.$settings['event_field'], true);
 			}
 		}
 		else
