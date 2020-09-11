@@ -1,27 +1,27 @@
 <?php $venue = get_post($venue_id); ?>
 
-<div class="wpem-single-organizer-profile-wrapper" id="wpem_venue_profile">
-    <div class="wpem-organizer-profile">
+<div class="wpem-single-venue-profile-wrapper" id="wpem_venue_profile">
+    <div class="wpem-venue-profile">
 
         <?php do_action('single_event_listing_venue_start'); ?>
 
-        <div class="wpem-organizer-logo-wrapper">
-            <div class="wpem-organizer-logo">
+        <div class="wpem-venue-logo-wrapper">
+            <div class="wpem-venue-logo">
                 <a><?php display_venue_logo('', '', $venue); ?></a>
             </div>
             <?php /** <div class="wpem-organizer-logo-title wpem-heading-text"><a><span><?php echo $venue_name; ?></span></a></div> */ ?>
         </div>
 
-        <div class="wpem-organizer-infomation-wrapper">
+        <div class="wpem-venue-infomation-wrapper">
 
-            <div class="wpem-organizer-name wpem-heading-text">
+            <div class="wpem-venue-name wpem-heading-text">
                 <span><?php echo get_event_venue_name($venue); ?></span>
             </div>
 
-            <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), get_venue_description($venue)); ?></div>
+            <div class="wpem-venue-description"><?php printf(__('%s', 'wp-event-manager'), get_venue_description($venue)); ?></div>
             
-            <div class="wpem-organizer-social-links">
-                <div class="wpem-organizer-social-lists">
+            <div class="wpem-venue-social-links">
+                <div class="wpem-venue-social-lists">
                     <?php do_action('single_event_listing_venue_social_start'); ?>
                     <?php
                     $venue_website  = get_venue_website($venue);
@@ -71,7 +71,7 @@
 
         </div>
 
-        <div class="wpem-organizer-contact-actions">
+        <div class="wpem-venue-contact-actions">
             <?php do_action('single_event_listing_venue_action_start', $venue_id); ?>
 
             <?php do_action('single_event_listing_venue_action_end', $venue_id); ?>
