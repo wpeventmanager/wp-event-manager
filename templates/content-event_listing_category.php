@@ -8,21 +8,21 @@ get_header();
 global $wp_query;
 ?>
 
-<div id="primary" class="content-area">
-    <main id="main" class="site-main">
+<div class="wpem-container">
+<div class="wpem-main wpem-event-listing-type-page">
+<div class="wpem-row">
 
-        <header class="archive-header has-text-align-center header-footer-group">
-            <div class="archive-header-inner section-inner medium">
-                <h1 class="archive-title"><?php echo get_the_archive_title(); ?></h1>
-            </div><!-- .archive-header-inner -->
-        </header><!-- .archive-header -->
+<div class="wpem-col-12 wpem-event-listing-type-page-wrapper">
+
+<div class="wpem-my-5 wpem-event-listing-type-page-title">
+                <h1 class="wpem-heading-text"><?php echo get_the_archive_title(); ?></h1>
+                </div>
 
         <?php
         // remove calender view
         remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
         ?>
 
-        <div class="entry-content wpem-mb-3">
             <div class="event_listings">
                 <?php if ( have_posts() ) : ?>
 
@@ -46,9 +46,10 @@ global $wp_query;
 
                 wp_reset_postdata(); ?>                
             </div>
-        </div>
-        
-    </main>
 </div>
+</div>
+</div>
+</div>
+
 
 <?php get_footer(); ?>

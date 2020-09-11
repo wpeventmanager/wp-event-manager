@@ -904,7 +904,6 @@ input.wpem-theme-button:hover span {
     height: 100%;
 }
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-action-url {
-    /* display:inline-block; */
     width: 100%;
     padding: 0;
     border-left: none;
@@ -3043,4 +3042,17 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
 }
 .wpem-d-inline-block.wpem-dashboard-i-block-btn {
     margin: 10px 0px;
+}
+.wpem-event-listing-type-page .wpem-event-listing-type-page-wrapper {
+    margin: 20px 0px;
+}
+.wpem-event-listing-type-page .wpem-event-listing-type-page-wrapper .wpem-event-listing-type-page-title .wpem-heading-text {
+    font-size: 32px;
+    line-height: 60px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+}
+.wpem-event-listing-type-page .wpem-event-listing-type-page-wrapper .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper {
+    padding: 0;
 }
