@@ -110,6 +110,15 @@ class Elementor_Event_Field extends Widget_Base {
 		$arrOption['event_ticket_type'] = __('Ticket Type', 'wp-event-manager');
 		$arrOption['event_share'] = __('Share Event', 'wp-event-manager');
 		
+		//unset field
+		if(isset($arrOption['paid_tickets']))
+			unset($arrOption['paid_tickets']);
+
+		if(isset($arrOption['free_tickets']))
+			unset($arrOption['free_tickets']);
+
+		if(isset($arrOption['donation_tickets']))
+			unset($arrOption['donation_tickets']);
 
 		$this->add_control(
 			'event_field_before_html',
