@@ -1615,7 +1615,7 @@ class WP_Event_Manager_Shortcodes {
 		$args['meta_query'] = array(
 		    array(
 		        'key'     => '_event_start_date',
-		        'value'   => current_time('Y-m-d g:i:s'),
+		        'value'   => current_time('Y-m-d H:i:s'),
 		        'type'    => 'DATETIME',
 		        'compare' => '>'
 		    ),

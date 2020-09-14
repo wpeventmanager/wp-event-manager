@@ -1152,13 +1152,9 @@ class WP_Event_Manager_Post_Types {
 			        'relation' => 'AND',
 			        array(
 			            'key'     => '_event_end_date',
-			            'value'   => date( 'Y-m-d'),
-			            'compare' => '<=',
-			        ),
-			        array(
-			            'key'     => '_event_end_time',
-			            'value'   => date( 'H:i A'),
-			            'compare' => '<',
+			            'value'   => current_time('Y-m-d H:i:s'),
+				        'type'    => 'DATETIME',
+				        'compare' => '<'
 			        ),
 			    ),
 			];
