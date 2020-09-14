@@ -66,7 +66,11 @@ do_action('set_single_listing_view_count');
                                     <div class="wpem-event-organizer">
                                         <div class="wpem-event-organizer-name">
                                             <?php do_action('single_event_organizer_name_start'); ?>
-                                            <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true)); ?>
+                                            <?php if(get_option('enable_event_organizer')) : ?>
+                                                <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true)); ?>
+                                            <?php else : ?>    
+                                                <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, false)); ?>
+                                            <?php endif; ?>
                                             <?php do_action('single_event_organizer_name_end'); ?>
                                         </div>
                                     </div>
