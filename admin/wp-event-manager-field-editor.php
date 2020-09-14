@@ -195,6 +195,9 @@ class WP_Event_Manager_Field_Editor {
 					 foreach( $group_fields as $field_key => $field_value ) {
 							$index++;
 							$new_fields[$group_key][$field_key]['priority'] = $index;
+
+							$new_fields[$group_key][$field_key]['label'] = trim($new_fields[$group_key][$field_key]['label']);
+							
 							if ( isset($new_fields[$group_key][$field_key]['type']) && ! in_array($new_fields[$group_key][$field_key]['type'],  array('term-select', 'term-multiselect', 'term-checklist') ) ) {
 								unset($new_fields[$group_key][$field_key]['taxonomy']);
 							}
