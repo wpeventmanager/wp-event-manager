@@ -63,17 +63,15 @@ do_action('set_single_listing_view_count');
                                         <h3 class="wpem-heading-text"><?php the_title(); ?></h3>
                                     </div>
 
-                                    <div class="wpem-event-organizer">
-                                        <div class="wpem-event-organizer-name">
-                                            <?php do_action('single_event_organizer_name_start'); ?>
-                                            <?php if(get_option('enable_event_organizer')) : ?>
-                                                <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true)); ?>
-                                            <?php else : ?>    
-                                                <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, false)); ?>
-                                            <?php endif; ?>
-                                            <?php do_action('single_event_organizer_name_end'); ?>
+                                    <?php if(get_option('enable_event_organizer')) : ?>
+                                        <div class="wpem-event-organizer">
+                                            <div class="wpem-event-organizer-name">
+                                                <?php do_action('single_event_organizer_name_start'); ?>
+                                                 <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true)); ?>
+                                                <?php do_action('single_event_organizer_name_end'); ?>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
 
                                     <?php
                                     $view_count = get_post_views_count($post);
