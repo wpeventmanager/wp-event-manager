@@ -70,7 +70,8 @@ var ContentEventListing= function () {
 		                    applyButtonText: event_manager_content_event_listing.i18n_applyButtonText,
 		                    clearButtonText: event_manager_content_event_listing.i18n_clearButtonText,
 		                    cancelButtonText: event_manager_content_event_listing.i18n_cancelButtonText,
-		                    dateFormat: 'yy-mm-dd',
+		                    dateFormat: event_manager_content_event_listing.i18n_datepicker_format,
+		                    altFormat: event_manager_content_event_listing.i18n_datepicker_format,
 		                    rangeSplitter: ' : ',
 		                    presetRanges: [
 		                      {
