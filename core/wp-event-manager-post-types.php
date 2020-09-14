@@ -509,7 +509,7 @@ class WP_Event_Manager_Post_Types {
 
 		global $menu;
 
-		$plural     = __( 'Event Listings', 'wp-event-manager' );
+		$plural     = __( 'Event Manager', 'wp-event-manager' );
 
 		$count_events = wp_count_posts( 'event_listing', 'readable' );
 
