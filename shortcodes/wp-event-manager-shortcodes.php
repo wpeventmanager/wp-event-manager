@@ -231,7 +231,7 @@ class WP_Event_Manager_Shortcodes {
 		
 		extract( shortcode_atts( array(
 
-			'posts_per_page' => '25',
+			'posts_per_page' => '10',
 
 		), $atts ) );
 
@@ -408,7 +408,7 @@ class WP_Event_Manager_Shortcodes {
 		
 		extract( shortcode_atts( array(
 
-			'posts_per_page' => '25',
+			'posts_per_page' => '10',
 
 		), $atts ) );
 
@@ -568,7 +568,7 @@ class WP_Event_Manager_Shortcodes {
 		
 		extract( shortcode_atts( array(
 
-			'posts_per_page' => '25',
+			'posts_per_page' => '10',
 
 		), $atts ) );
 
