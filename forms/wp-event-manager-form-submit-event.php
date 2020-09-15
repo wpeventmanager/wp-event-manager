@@ -669,17 +669,17 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				elseif ( $key == 'event_venue_ids' ) {
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 
-					if($current_user_id)
+					if( $current_user_id && !empty($values[ $group_key ][ $key ]) )
 					{
-						foreach ($values[ $group_key ][ $key ] as $venue_id) 
-						{
-							$my_post = array(
-						      	'ID'           => $venue_id,
-						      	'post_author'  => $current_user_id,
-						      	'post_status'  => 'publish',
-							);
-							wp_update_post($my_post);	
-						}
+						$my_post = array(
+					      	'ID'           => $values[ $group_key ][ $key ],
+					      	'post_author'  => $current_user_id,
+					      	'post_status'  => 'publish',
+						);
+						wp_update_post($my_post);
+
+						update_post_meta( $values[ $group_key ][ $key ], '_venue_location', $values['event']['event_location'] );
+						update_post_meta( $values[ $group_key ][ $key ], '_venue_zipcode', $values['event']['event_pincode'] );
 					}					
 				}
 				elseif ( $field['type'] == 'date' ) {
@@ -1043,21 +1043,19 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'priority'   	=> 21,
 			        'required'		=>false
 				),
-			),
-			
+			),			
 			
 			'venue' => array(
 				'event_venue_ids' => array(
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
-			        'type'  		=> 'multiselect',
+			        'type'  		=> 'select',
 				    'default'  		=> '',
-				    'options'  		=> ($current_user_id) ? get_all_venue_array($current_user_id) : [],
+				    'options'  		=> ($current_user_id) ? get_all_venue_array($current_user_id) : '',
 				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="javascript:void(0)" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager'),
 				    'priority'    	=> 21,
 			        'required'		=>false
 				),
-			)
-			
+			)			
 			
 		) );
 
