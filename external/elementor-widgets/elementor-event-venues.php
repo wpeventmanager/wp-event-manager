@@ -7,12 +7,12 @@ use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Elementor Single Venue
+ * Elementor Event Venues
  *
- * Elementor widget for single Venue.
+ * Elementor widget for Event Venues.
  *
  */
-class Elementor_Single_Venue extends Widget_Base {
+class Elementor_Event_Venues extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -22,7 +22,7 @@ class Elementor_Single_Venue extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'single-venue';
+		return 'event-venues';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Elementor_Single_Venue extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Single Venue', 'wp-event-manager' );
+		return __( 'Event Venues', 'wp-event-manager' );
 	}
 	/**	
 	 * Get widget icon.
@@ -57,7 +57,7 @@ class Elementor_Single_Venue extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'single-venue', 'code' ];
+		return [ 'event-venues', 'code' ];
 	}
 
 	/**
@@ -87,37 +87,62 @@ class Elementor_Single_Venue extends Widget_Base {
 		$this->start_controls_section(
 			'section_shortcode',
 			[
-				'label' => __( 'Single Venue', 'wp-event-manager' ),
+				'label' => __( 'Event Venues', 'wp-event-manager' ),
 			]
 		);
 
-		$args = array(
-				'post_type'		=> 'event_venue',
-				'post_status'	=> 'publish',
-				'posts_per_page'=> -1,
+		$this->add_control(
+			'order',
+			[
+				'label' => __( 'Order', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'ASC',
+				'options' => [
+					'ASC' => __( 'Ascending (ASC)', 'wp-event-manager' ),
+					'DESC' => __( 'Descending  (DESC)', 'wp-event-manager' ),
+				],
+			]
 		);
 
-		$rganizers = get_posts( $args );
-
-		$options = [];
-		if(!empty($rganizers))
-		{
-			foreach ($rganizers as $rganizer) {
-				$options[$rganizer->ID] = $rganizer->post_title;
-			}
-		}
-		else
-		{
-			$options[] = __( 'Not Found Venue', 'wp-event-manager' );
-		}
+		$this->add_control(
+			'orderby',
+			[
+				'label' => __( 'Order By', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'title',
+				'options' => [
+					'title' => __( 'Title', 'wp-event-manager' ),
+					'ID' => __( 'ID', 'wp-event-manager' ),
+					'name' => __( 'Name', 'wp-event-manager' ),
+					'modified' => __( 'Modified', 'wp-event-manager' ),
+					'rand' => __( 'Rand', 'wp-event-manager' ),
+				],
+			]
+		);
 
 		$this->add_control(
-			'venue_id',
+			'show_thumb',
 			[
-				'label'     => __( 'Select Venue', 'wp-event-manager' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => '',
-				'options'	=> $options
+				'label' => __( 'Show Thumb', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'true',
+				'options' => [
+					'false' => __( 'False', 'wp-event-manager' ),
+					'true' => __( 'True', 'wp-event-manager' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'show_count',
+			[
+				'label' => __( 'Show Count', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'true',
+				'options' => [
+					'false' => __( 'False', 'wp-event-manager' ),
+					'true' => __( 'True', 'wp-event-manager' ),
+				],
 			]
 		);
 
@@ -134,15 +159,8 @@ class Elementor_Single_Venue extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		if($settings['venue_id']>0){
-		    $venue_id = 'id='.$settings['venue_id'];
-		    $settings['venue_id']='id='.$settings['venue_id'];
-		}
-		else{
-		    $venue_id = '';
-		    $settings['venue_id']='';
-		}
-		echo do_shortcode('[event_venue '.$venue_id.' ]');
+		
+		echo do_shortcode('[event_venues order="'.$settings['order'].'" orderby="'.$settings['orderby'].'" show_thumb="'.$settings['show_thumb'].'" show_count="'.$settings['show_count'].'"]');
 	}
 
 	/**

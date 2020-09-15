@@ -177,6 +177,7 @@ class Plugin {
 		require_once( __DIR__ . '/elementor-widgets/elementor-submit-venue-form.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-venue-dashboard.php' );
 		require_once( __DIR__ . '/elementor-widgets/elementor-single-venue.php' );
+		require_once( __DIR__ . '/elementor-widgets/elementor-event-venues.php' );
 	}
 
 	/**
@@ -209,6 +210,7 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Venue_Dashboard() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Submit_Venue_Form() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Single_Venue() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Event_Venues() );
 	}
 
 	/**
