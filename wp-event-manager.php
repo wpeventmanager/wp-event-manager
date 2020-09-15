@@ -272,7 +272,9 @@ class WP_Event_Manager {
 		
 		'i18n_timepicker_format' => WP_Event_Manager_Date_Time::get_timepicker_format(),
 		
-		'i18n_timepicker_step' => WP_Event_Manager_Date_Time::get_timepicker_step(),
+		'i18n_timepicker_step'	=> WP_Event_Manager_Date_Time::get_timepicker_step(),
+
+		'ajax_url' 	 => admin_url( 'admin-ajax.php' ),
 		
 		) );
 

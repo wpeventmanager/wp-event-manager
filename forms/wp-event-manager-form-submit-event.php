@@ -1005,7 +1005,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			        'type'  		=> 'multiselect',
 				    'default'  		=> '',
 				    'options'  		=> get_all_organizer_array($current_user_id),
-				    'description'	=> sprintf(__('If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="%s" target="__blank">here</a>','wp-event-manager'),get_permalink( get_option('event_manager_organizer_dashboard_page_id','') ) ),
+				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="javascript:void(0)" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager'),
 				    'priority'   	=> 21,
 			        'required'		=>false
 				),
@@ -1018,7 +1018,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			        'type'  		=> 'multiselect',
 				    'default'  		=> '',
 				    'options'  		=> get_all_venue_array($current_user_id),
-				    'description'	=> sprintf(__('If you don\'t show venue list. Manage your venues <a href="%s" target="__blank">here</a>','wp-event-manager'),get_permalink( get_option('event_manager_venue_dashboard_page_id','') ) ),
+				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="javascript:void(0)" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager'),
 				    'priority'    	=> 21,
 			        'required'		=>false
 				),

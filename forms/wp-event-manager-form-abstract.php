@@ -111,6 +111,17 @@ abstract class WP_Event_Manager_Form {
 			echo '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $error . '</div>';
 		}
 	}
+
+	/**
+	 * Get errors
+	 */
+	public function get_errors() {
+
+		foreach ( $this->errors as $error ) {
+
+			return $error;
+		}
+	}
 	
 	/**
 	 * Get action (URL for forms to post to).
