@@ -344,8 +344,8 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
-			//if ( empty( $_POST['submit_venue'] ) || !is_user_logged_in() ) {
-			if ( empty( $_POST['submit_venue'] ) ) {
+			//if ( empty( $_POST['submit_organizer'] ) || !is_user_logged_in() ) {
+			if ( empty( $_POST['submit_organizer'] ) ) {
 				return;
 			}
 			// Validate required
