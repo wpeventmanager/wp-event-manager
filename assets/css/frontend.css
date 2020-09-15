@@ -1965,6 +1965,7 @@ input.wpem-theme-button:hover span {
 }
 .wpem-modal .wpem-modal-content-wrapper .wpem-modal-header .wpem-modal-header-title .wpem-modal-header-title-text {
     font-size: 20px;
+    line-height: 42px;
     font-weight: 700;
     color: #111;
     margin: 0;
