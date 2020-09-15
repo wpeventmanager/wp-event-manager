@@ -580,107 +580,11 @@ class WP_Event_Manager_Post_Types {
 
 			ob_start();
 
-			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            $per_page = 10;
-            $today_date=date("Y-m-d");
-            $organizer_id = get_the_ID();
-            $show_pagination = true;
-
-            $args_upcoming = array(
-                'post_type'   => 'event_listing',
-                'post_status' => 'publish',
-                'posts_per_page' => $per_page,                                              
-                'paged' => $paged
-            );
-
-            $args_upcoming['meta_query'] = array( 
-                'relation' => 'AND', 
-                array(
-                        'key'     => '_event_organizer_ids',
-                        'value'   => $organizer_id, 
-                        'compare' => 'LIKE',
-                    ),
-                array(
-                         'key'     => '_event_start_date',
-                         'value'   => $today_date,
-                         'type'    => 'date',
-                         'compare' => '>'   
-                    ) 
-            );
-
-            $upcomingEvents = new WP_Query( $args_upcoming );
-            wp_reset_query();
-
-            $args_current = $args_upcoming;
+			$organizer_id = get_the_ID();
             
-            $args_current['meta_query'] = array(
-                'relation' => 'AND',
-                array(
-                    'key'     => '_event_organizer_ids',
-                    'value'   => $organizer_id, 
-                    'compare' => 'LIKE',
-                ),
-                array(
-                    'key'     => '_event_start_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '<='
-                ),
-                array(
-                    'key'     => '_event_end_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '>='
-                )
-            );
+            do_action( 'organizer_content_start' );
 
-            $currentEvents = new WP_Query( $args_current );
-            wp_reset_query();
-
-            $args_past = array(
-                'post_type'   => 'event_listing',
-                'post_status' => array('expired', 'publish'),
-                'posts_per_page' => $per_page,
-                'paged' => $paged
-            );
-        
-            $args_past['meta_query'] = array( 
-                'relation' => 'AND', 
-                array(
-                    'key'     => '_event_organizer_ids',
-                    'value'   => $organizer_id, 
-                    'compare' => 'LIKE',
-                ),
-                array(
-                    'key'     => '_event_end_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '<'   
-                )
-            );
-            $pastEvents = new WP_Query( $args_past );
-            wp_reset_query();
-
-			do_action( 'organizer_content_start' );
-
-			wp_enqueue_script( 'wp-event-manager-organizer');
-
-			get_event_manager_template( 
-			    'content-single-event_organizer.php', 
-			    array(
-			        'organizer_id'	=> $organizer_id,
-			        'per_page'		=> $per_page,
-			        'show_pagination'	=> $show_pagination,
-			        'upcomingEvents' => $upcomingEvents,
-			        'currentEvents' => $currentEvents,
-			        'pastEvents' 	=> $pastEvents,
-			    ), 
-			    'wp-event-manager', 
-			    EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
-			);
-
-			wp_reset_postdata();
-			//get_event_manager_template_part( 'content-single', 'event_organizer', 'wp-event-manager', EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/');
+			echo do_shortcode('[event_organizer id="'.$organizer_id.'"]');
 
 			do_action( 'organizer_content_end' );
 
@@ -710,106 +614,11 @@ class WP_Event_Manager_Post_Types {
 
 			ob_start();
 
-			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            $per_page = 10;
-            $today_date=date("Y-m-d");
-            $venue_id = get_the_ID();
-            $show_pagination = true;
-
-			$args_upcoming = array(
-                'post_type'   => 'event_listing',
-                'post_status' => 'publish',
-                'posts_per_page' => $per_page,                                              
-                'paged' => $paged
-            );
-
-            $args_upcoming['meta_query'] = array( 
-                'relation' => 'AND', 
-                array(
-                        'key'     => '_event_venue_ids',
-                        'value'   => $venue_id, 
-                        'compare' => 'LIKE',
-                    ),
-                array(
-                         'key'     => '_event_start_date',
-                         'value'   => $today_date,
-                         'type'    => 'date',
-                         'compare' => '>'   
-                    ) 
-            );
-
-            $upcomingEvents = new WP_Query( $args_upcoming );
-            wp_reset_query();
-
-            $args_current = $args_upcoming;
-            
-            $args_current['meta_query'] = array(
-                'relation' => 'AND',
-                array(
-                    'key'     => '_event_venue_ids',
-                    'value'   => $venue_id, 
-                    'compare' => 'LIKE',
-                ),
-                array(
-                    'key'     => '_event_start_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '<='
-                ),
-                array(
-                    'key'     => '_event_end_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '>='
-                )
-            );
-
-            $currentEvents = new WP_Query( $args_current );
-            wp_reset_query();
-
-            $args_past = array(
-                'post_type'   => 'event_listing',
-                'post_status' => array('expired', 'publish'),
-                'posts_per_page' => $per_page,
-                'paged' => $paged
-            );
-        
-            $args_past['meta_query'] = array( 
-                'relation' => 'AND', 
-                array(
-                    'key'     => '_event_venue_ids',
-                    'value'   => $venue_id, 
-                    'compare' => 'LIKE',
-                ),
-                array(
-                    'key'     => '_event_end_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '<'   
-                )
-            );
-            $pastEvents = new WP_Query( $args_past );
-            wp_reset_query();
+			$venue_id = get_the_ID();
 
 			do_action( 'organizer_content_start' );
 
-			wp_enqueue_script( 'wp-event-manager-organizer');
-
-			get_event_manager_template( 
-			    'content-single-event_venue.php', 
-			    array(
-			        'venue_id'			=> $venue_id,
-			        'per_page'			=> $per_page,
-			        'show_pagination'	=> $show_pagination,
-			        'upcomingEvents' 	=> $upcomingEvents,
-			        'currentEvents' 	=> $currentEvents,
-			        'pastEvents' 		=> $pastEvents,
-			    ), 
-			    'wp-event-manager', 
-			    EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
-			);
-
-			wp_reset_postdata();
+			echo do_shortcode('[event_venue id="'.$venue_id.'"]');
 
 			do_action( 'venue_content_end' );
 
