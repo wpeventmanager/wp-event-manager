@@ -1,4 +1,4 @@
-<div class="wpem-event-organizer-tabs">
+<div class="wpem-event-venue-tabs">
     <div class="wpem-tabs-wrapper">
 
         <ul class="wpem-tabs-wrap">
@@ -13,7 +13,7 @@
             </li>
         </ul>
 
-        <div class="event-organizer-tab-contents wpem-tab-content current">
+        <div class="event-venue-tab-contents wpem-tab-content current">
             
             <!-- upcoming events list start-->
             <div id="upcoming" class="wpem-tab-pane active">  
@@ -25,7 +25,7 @@
                     </div>
                     <?php if ($upcomingEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <div class="event-organizer-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $upcomingEvents->max_num_pages)); ?></div> 
+                            <div class="event-venue-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $upcomingEvents->max_num_pages)); ?></div> 
                         <?php endif; ?>
                     <?php endif; ?>      
                     <?php
@@ -47,7 +47,7 @@
 
                     <?php if ($currentEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <div class="event-organizer-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $currentEvents->max_num_pages)); ?></div> 
+                            <div class="event-venue-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $currentEvents->max_num_pages)); ?></div> 
                         <?php endif; ?>
                     <?php endif; ?>      
                     <?php
@@ -68,7 +68,7 @@
                     </div>
                     <?php if ($pastEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <div class="event-organizer-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $pastEvents->max_num_pages)); ?></div> 
+                            <div class="event-venue-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $pastEvents->max_num_pages)); ?></div> 
                         <?php endif; ?>
                     <?php endif; ?>
                     <?php

@@ -20,7 +20,7 @@ var Organizers = function () {
                 localStorage.setItem("layout", "box-layout");
             }
 			if(jQuery(".normal-section-title").length >0)
-			   jQuery(".normal-section-title").html(event_manager_organizers_organizer.i18n_upcomingEventsTitle);
+			   jQuery(".normal-section-title").html(event_manager_organizer.i18n_upcomingEventsTitle);
     	},
 
         actions:
@@ -47,9 +47,9 @@ var Organizers = function () {
                 }
                 else if(jQuery('#show_' + currentClickedLetterId).length ) {	//show clicked letter organizer only       
                     jQuery('#show_' + currentClickedLetterId).css({ "display": "block" });
-                    jQuery('.no-organizer').css({ "display": "none" });
+                    jQuery('.no-organizer').addClass('wpem-d-none');
                 }else{
-                    jQuery('.no-organizer').css({ "display": "block" });
+                    jQuery('.no-organizer').removeClass('wpem-d-none');
                 }
                 event.preventDefault();
             },
@@ -67,7 +67,7 @@ var Organizers = function () {
         		if(jQuery(event.target).attr('href')=='#past')
                 {   
                     if(jQuery(".normal-section-title").length >0)
-                      jQuery(".normal-section-title").html(event_manager_organizers_organizer.i18n_pastEventsTitle);  
+                      jQuery(".normal-section-title").html(event_manager_organizer.i18n_pastEventsTitle);  
                       
                     if(localStorage.getItem("layout")=="box-layout")
 		            {                       
@@ -82,7 +82,7 @@ var Organizers = function () {
                 }else if(jQuery(event.target).attr('href')=='#current')
                 {   
                     if(jQuery(".normal-section-title").length >0)
-                      jQuery(".normal-section-title").html(event_manager_organizers_organizer.i18n_currentEventsTitle);  
+                      jQuery(".normal-section-title").html(event_manager_organizer.i18n_currentEventsTitle);  
                       
                      
                     if(localStorage.getItem("layout")=="box-layout")
@@ -99,7 +99,7 @@ var Organizers = function () {
                 else
                 {
                     if(jQuery(".normal-section-title").length >0)
-                       jQuery(".normal-section-title").html(event_manager_organizers_organizer.i18n_upcomingEventsTitle);
+                       jQuery(".normal-section-title").html(event_manager_organizer.i18n_upcomingEventsTitle);
                 }
                	//jQuery(this).tab('show');
                 event.preventDefault();

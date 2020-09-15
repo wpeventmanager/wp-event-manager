@@ -16,7 +16,7 @@
 
 
         <div class="available-events-number-icon">
-            <a href="<?php echo get_option('siteurl') ?>" class="list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
+            <a href="<?php echo get_the_permalink(get_option('event_manager_events_page_id')); ?>" class="list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
                 <div class="organizer-counter-upper-wrap">
                     <div class="organizer-counter-icon-wrap"><i class="wpem-icon-calendar"></i></div>
                     <div class="organizer-counter-number-wrap"><?php echo $countAllEvents; ?></div>
@@ -84,6 +84,11 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+            </div>
+            <div class="no-organizer wpem-d-none">
+                <div class="wpem-alert wpem-alert-info">
+                    <?php _e( 'There are not organizer.', 'wp-event-manager' ); ?>
+                </div>
             </div>
         </div>
         <!-- ends class col-md-12 -->

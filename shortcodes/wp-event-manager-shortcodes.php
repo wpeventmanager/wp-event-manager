@@ -615,6 +615,8 @@ class WP_Event_Manager_Shortcodes {
 
 			'venue_name' => __( 'Venue name', 'wp-event-manager' ),
 
+			'venue_details' => __( 'Details', 'wp-event-manager' ), 
+
 			'venue_events' => __( 'Events', 'wp-event-manager' ),
 			
 			'venue_action' => __( 'Action', 'wp-event-manager' ), 
