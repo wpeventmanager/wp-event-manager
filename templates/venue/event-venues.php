@@ -53,11 +53,10 @@
             <div class="wpem-row">
                 <?php
                 foreach ($venues_array as $letter => $venues) : ?>
-                    <div id="show_<?php echo $letter; ?>"
-                         class="show-venue-info show-venue-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
+                    <div id="show_<?php echo $letter; ?>" class="show-venue-info show-venue-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
                         <div class="wpem-list-group">
                             <div class="venue-group-header list-group-item list-group-item-success">
-                                <div id="<?php echo $letter; ?>"><?php echo $letter; ?></div>
+                                <div><?php echo sprintf( __( '%s', 'wp-event-manager' ), $letter ); ?></div>
                             </div>
 
                             <div class="venue-name-list">

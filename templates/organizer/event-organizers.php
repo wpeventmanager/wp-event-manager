@@ -53,11 +53,10 @@
             <div class="wpem-row">
                 <?php
                 foreach ($organizers_array as $letter => $organizers) : ?>
-                    <div id="show_<?php echo $letter; ?>"
-                         class="show-organizer-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
+                    <div id="show_<?php echo $letter; ?>" class="show-organizer-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
                         <div class="wpem-list-group">
                             <div class="organizer-group-header list-group-item list-group-item-success">
-                                <div id="<?php echo $letter; ?>"><?php echo $letter; ?></div>
+                                <div><?php echo sprintf( __( '%s', 'wp-event-manager' ), $letter ); ?></div>
                             </div>
 
                             <div class="organizer-name-list">
@@ -66,7 +65,8 @@
                                     $count = get_event_organizer_count($organizer_id); ?>
                                     
                                     <div class="organizer-list-items">
-                                        <a href="<?php echo get_the_permalink($organizer_id) ?>" class="list-group-item list-color" title="<?php _e('Click here, for more info.', 'wp-event-manager'); ?>" ><?php $organizer = get_post($organizer_id); ?>
+                                        <a href="<?php echo get_the_permalink($organizer_id) ?>" class="list-group-item list-color" title="<?php _e('Click here, for more info.', 'wp-event-manager'); ?>" >
+                                            <?php $organizer = get_post($organizer_id); ?>
                                             <?php if ( $show_thumb && $show_thumb == 'true' ) : ?>
                                                 <div class="wpem-organizer-logo"><?php display_organizer_logo('', '', $organizer); ?></div>
                                             <?php endif; ?>
