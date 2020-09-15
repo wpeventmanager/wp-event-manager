@@ -336,16 +336,19 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
-			if ( empty( $_POST['submit_venue'] ) || !is_user_logged_in() ) {
+			//if ( empty( $_POST['submit_venue'] ) || !is_user_logged_in() ) {
+			if ( empty( $_POST['submit_venue'] ) ) {
 				return;
 			}
 			// Validate required
 			if ( is_wp_error( ( $return = $this->validate_fields( $values ) ) ) ) {
 				throw new Exception( $return->get_error_message() );
 			}
+
+			$status = is_user_logged_in() ? 'publish' : 'pending';
 			
 			// Update the event
-			$this->save_venue( $values['venue']['venue_name'], $values['venue']['venue_description'], $this->venue_id ? '' : 'publish', $values );
+			$this->save_venue( $values['venue']['venue_name'], $values['venue']['venue_description'], $this->venue_id ? '' : $status, $values );
 			$this->update_venue_data( $values );
 			// Successful, show next step
 			$this->step ++;

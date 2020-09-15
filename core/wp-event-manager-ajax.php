@@ -61,8 +61,10 @@ class WP_Event_Manager_Ajax {
 		add_action( 'wp_ajax_event_manager_upload_file', array( $this, 'upload_file' ) );
 
 		add_action( 'wp_ajax_add_organizer', array( $this, 'add_organizer' ) );
+		add_action( 'wp_ajax_nopriv_add_organizer', array( $this, 'add_organizer' ) );
 
 		add_action( 'wp_ajax_add_venue', array( $this, 'add_venue' ) );
+		add_action( 'wp_ajax_nopriv_add_venue', array( $this, 'add_venue' ) );
 	}
 	
 	/**

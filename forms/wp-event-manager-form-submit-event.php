@@ -559,6 +559,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * @param  array $values
 	 */
 	public function update_event_data( $values ) {
+		$current_user_id = get_current_user_id();
+
 		// Set defaults
 		add_post_meta( $this->event_id, '_cancelled', 0, true );
 		add_post_meta( $this->event_id, '_featured', 0, true );
@@ -648,6 +650,38 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					update_post_meta( $this->event_id, '_event_expiry_date', $event_expiry_date );
 
 				}
+				elseif ( $key == 'event_organizer_ids' ) {
+					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+
+					if($current_user_id)
+					{
+						foreach ($values[ $group_key ][ $key ] as $organizer_id) 
+						{
+							$my_post = array(
+						      	'ID'           => $organizer_id,
+						      	'post_author'  => $current_user_id,
+						      	'post_status'  => 'publish',
+							);
+							wp_update_post($my_post);	
+						}
+					}
+				}
+				elseif ( $key == 'event_venue_ids' ) {
+					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+
+					if($current_user_id)
+					{
+						foreach ($values[ $group_key ][ $key ] as $venue_id) 
+						{
+							$my_post = array(
+						      	'ID'           => $venue_id,
+						      	'post_author'  => $current_user_id,
+						      	'post_status'  => 'publish',
+							);
+							wp_update_post($my_post);	
+						}
+					}					
+				}
 				elseif ( $field['type'] == 'date' ) {
 					$date = $values[ $group_key ][ $key ];	
 					if(!empty($date)) {
@@ -659,7 +693,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					else
 						update_post_meta( $this->event_id, '_' . $key, '' );
 					
-				}
+				}				
 				else { 
 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
@@ -1004,7 +1038,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       	=> __( 'Organizer', 'wp-event-manager' ),		      
 			        'type'  		=> 'multiselect',
 				    'default'  		=> '',
-				    'options'  		=> get_all_organizer_array($current_user_id),
+				    'options'  		=> ($current_user_id) ? get_all_organizer_array($current_user_id) : [],
 				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="javascript:void(0)" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager'),
 				    'priority'   	=> 21,
 			        'required'		=>false
@@ -1017,7 +1051,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
 			        'type'  		=> 'multiselect',
 				    'default'  		=> '',
-				    'options'  		=> get_all_venue_array($current_user_id),
+				    'options'  		=> ($current_user_id) ? get_all_venue_array($current_user_id) : [],
 				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="javascript:void(0)" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager'),
 				    'priority'    	=> 21,
 			        'required'		=>false
