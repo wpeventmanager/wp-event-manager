@@ -134,9 +134,41 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 							'label'       => __( 'Website', 'wp-event-manager' ),
 							'type'        => 'text',
 							'required'    => false,
-							'placeholder' => __( 'Website URL e.g http://www.yourorganization.com', 'wp-event-manager' ),
+							'placeholder' => __( 'Website URL e.g http://www.yourvenue.com', 'wp-event-manager' ),
 							'priority'    => 4
 				),
+
+				'venue_facebook' => array(
+								'label'       => __( 'Facebook', 'wp-event-manager' ),
+								'type'        => 'text',
+								'required'    => false,
+								'placeholder' => __( 'Facebook URL e.g http://www.facebook.com/yourvenue', 'wp-event-manager' ),
+								'priority'    => 5
+				),
+
+				'venue_instagram' => array(
+								'label'       => __( 'Instagram', 'wp-event-manager' ),
+								'type'        => 'text',
+								'required'    => false,
+								'placeholder' => __( 'Instagram URL e.g http://www.instagram.com/yourvenue', 'wp-event-manager' ),
+								'priority'    => 6
+				),
+
+				'venue_youtube' => array(
+								'label'       => __( 'Youtube', 'wp-event-manager' ),
+								'type'        => 'text',
+								'required'    => false,
+								'placeholder' => __( 'Youtube Channel URL e.g http://www.youtube.com/channel/yourvenue', 'wp-event-manager' ),
+								'priority'    => 7
+				),
+
+				'venue_twitter' => array(
+								'label'       => __( 'Twitter', 'wp-event-manager' ),
+								'type'        => 'text',
+								'required'    => false,
+								'placeholder' => __( 'Twitter URL e.g http://twitter.com/yourvenue', 'wp-event-manager' ),
+								'priority'    => 8
+				),				
 			)
 
 		) );
