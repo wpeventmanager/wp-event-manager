@@ -106,6 +106,13 @@ class WP_Event_Manager_Writepanels {
 				'priority'    => 39
 			);
 
+			$fields['_cancelled'] = array(
+				'label'       => __( 'Cancelled Listing', 'wp-event-manager' ),
+				'type'        => 'checkbox',
+				'description' => __( 'Cancelled listings will be sticky during searches, and can be styled differently.', 'wp-event-manager' ),
+				'priority'    => 39
+			);
+
 			$fields['_event_expiry_date'] = array(
 				'label'       => __( 'Listing Expiry Date', 'wp-event-manager' ),
 				'type'        => 'date',
