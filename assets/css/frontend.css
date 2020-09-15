@@ -3194,3 +3194,12 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events
 .wpem-event-listing-type-page .wpem-event-listing-type-page-wrapper .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper {
     padding: 0;
 }
+.event_listing_preview_title h2 {
+    margin-bottom: 0;
+    color: #fff;
+}
+.event_listing_preview_title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
