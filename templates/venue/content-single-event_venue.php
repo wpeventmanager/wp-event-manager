@@ -81,3 +81,18 @@
         <?php do_action('single_event_listing_venue_end'); ?>
     </div>
 </div>
+
+<?php
+get_event_manager_template( 
+    'venue-event_listing.php', 
+    array(
+        'venue_id'          => $venue_id,
+        'per_page'          => $per_page,
+        'show_pagination'   => $show_pagination,
+        'upcomingEvents'    => $upcomingEvents,
+        'currentEvents'     => $currentEvents,
+        'pastEvents'        => $pastEvents,
+    ), 
+    'wp-event-manager', 
+    EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
+);

@@ -48,6 +48,7 @@ class WP_Event_Manager_Shortcodes {
 			add_shortcode( 'submit_venue_form', array( $this, 'submit_venue_form' ) );
 			add_shortcode( 'venue_dashboard', array( $this, 'venue_dashboard' ) );
 
+			add_shortcode( 'event_venues', array( $this, 'output_event_venues' ) );
 			add_shortcode( 'event_venue', array( $this, 'output_event_venue' ) );
 		}
 		
@@ -1371,7 +1372,7 @@ class WP_Event_Manager_Shortcodes {
         	}
         }
          
-		wp_enqueue_script( 'wp-event-manager-organizer');
+		wp_enqueue_script( 'wp-event-manager-organizer' );
         
         get_event_manager_template( 
       		'event-organizers.php', 
@@ -1530,6 +1531,64 @@ class WP_Event_Manager_Shortcodes {
         return ob_get_clean();
 	}
 
+		/**
+	 *  It is very simply a plugin that outputs a list of all venues that have listed events on your website. 
+     *  Once you have installed " WP Event Manager - Venue Profiles" simply visit "Pages > Add New". 
+     *  Once you have added a title to your page add the this shortcode: [event_venues]
+     *  This will output a grouped and alphabetized list of all venues.
+	 *
+	 * @access public
+	 * @param array $args
+	 * @return string
+	 */
+	public function output_event_venues($atts)
+	{
+		extract( $atts = shortcode_atts( apply_filters( 'event_manager_output_event_venues_defaults', array(
+
+			'orderby'	=> 'title', // title
+			'order'     => 'ASC',
+			'show_thumb'	=> true,
+			'show_count'	=> true,
+
+		) ), $atts ) );
+
+		$args = [
+			'orderby' 	=> $orderby,
+			'order'		=> $order,
+		];
+
+		$venues   = get_all_venue_array('', $args);
+		$countAllEvents = get_event_venue_count();        
+        $venues_array = [];
+
+        if(!empty($venues))
+        {
+        	foreach ( $venues as $venue_id => $venue )
+        	{
+        		$venues_array[ strtoupper( $venue[0] ) ][$venue_id] = $venue;
+        	}
+        }
+         
+		wp_enqueue_script( 'wp-event-manager-venue' );
+        
+        get_event_manager_template( 
+      		'event-venues.php', 
+      		array(
+				'venues'			=> $venues,
+				'venues_array'  	=> $venues_array,
+            	'countAllEvents'	=> $countAllEvents,
+            	'show_thumb'		=> $show_thumb,
+            	'show_count'		=> $show_count,
+			), 
+			'wp-event-manager', 
+			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/' 
+		);
+              
+		wp_reset_postdata();
+		
+		return ob_get_clean();
+	}
+
 	/**
 	 *  It is very simply a plugin that outputs a list of all venues that have listed events on your website. 
      *  Once you have installed " WP Event Manager - Organizer Profiles" simply visit "Pages > Add New". 
@@ -1549,17 +1608,120 @@ class WP_Event_Manager_Shortcodes {
 		if ( ! $id )
 			return;
 
+		$args = array(
+			'post_type'   => 'event_venue',
+			'post_status' => 'publish',
+			'p'           => $id
+		);
+
+		$venues = new WP_Query( $args );
+
+		if(empty($venues->posts))
+			return;
+
 		ob_start();
+
+		$venue    = $venues->posts[0];
+
+        $paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $per_page        = 10;
+        $today_date      = date("Y-m-d");
+        $venue_id    	 = $venue->ID;
+        $show_pagination = true;
+
+		$args_upcoming = array(
+            'post_type'      => 'event_listing',
+            'post_status'    => 'publish',
+            'posts_per_page' => $per_page,
+            'paged'          => $paged
+        );
+
+        $args_upcoming['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+                'key'     => '_event_venue_ids',
+                'value'   => $venue_id,
+                'compare' => 'LIKE',
+            ),
+            array(
+                'key'     => '_event_start_date',
+                'value'   => $today_date,
+                'type'    => 'date',
+                'compare' => '>'
+            )
+        );
+
+        $upcomingEvents = new WP_Query($args_upcoming);
+        wp_reset_query();
+
+        $args_current = $args_upcoming;
+
+        $args_current['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+                'key'     => '_event_venue_ids',
+                'value'   => $venue_id,
+                'compare' => 'LIKE',
+            ),
+            array(
+                'key'     => '_event_start_date',
+                'value'   => $today_date,
+                'type'    => 'date',
+                'compare' => '<='
+            ),
+            array(
+                'key'     => '_event_end_date',
+                'value'   => $today_date,
+                'type'    => 'date',
+                'compare' => '>='
+            )
+        );
+
+        $currentEvents = new WP_Query($args_current);
+        wp_reset_query();
+
+        $args_past = array(
+            'post_type'      => 'event_listing',
+            'post_status'    => array('expired', 'publish'),
+            'posts_per_page' => $per_page,
+            'paged'          => $paged
+        );
+
+        $args_past['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+                'key'     => '_event_venue_ids',
+                'value'   => $venue_id,
+                'compare' => 'LIKE',
+            ),
+            array(
+                'key'     => '_event_end_date',
+                'value'   => $today_date,
+                'type'    => 'date',
+                'compare' => '<'
+            )
+        );
+        $pastEvents              = new WP_Query($args_past);
+        wp_reset_query();
 
 		do_action( 'venue_content_start' );
 
+		wp_enqueue_script('wp-event-manager-venue');
+
+		echo '<pre>';
+		print_r($per_page);
+		echo '</pre>' . __FILE__ . ' ( Line Number ' . __LINE__ . ')';
+		die;
+
 		get_event_manager_template( 
-		    'content-single-event_venue.php', 
-		    array(
-		        'venue_id'	=> $id,
-		    ), 
-		    'wp-event-manager', 
-		    EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
+		    'content-single-event_venue.php', array(
+		        'venue_id'    	  => $venue_id,
+            	'per_page'        => $per_page,
+            	'show_pagination' => $show_pagination,
+            	'upcomingEvents'  => $upcomingEvents,
+            	'currentEvents'   => $currentEvents,
+            	'pastEvents'      => $pastEvents,
+		    ), 'wp-event-manager', EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
 		);
 
 		wp_reset_postdata();

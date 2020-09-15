@@ -356,6 +356,18 @@ class WP_Event_Manager {
             'i18n_pastEventsTitle' => __( 'Past Events', 'wp-event-manager' ),
             
     	    'i18n_currentEventsTitle' => __( 'Current Events', 'wp-event-manager' )
+		) );  
+
+
+		//venue
+		wp_register_script( 'wp-event-manager-venue', EVENT_MANAGER_PLUGIN_URL . '/assets/js/venue.min.js', array( 'jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true );
+    
+    	wp_localize_script( 'wp-event-manager-venue', 'event_manager_venue', array(
+            'i18n_upcomingEventsTitle' => __( 'Upcoming Events', 'wp-event-manager' ),
+
+            'i18n_pastEventsTitle' => __( 'Past Events', 'wp-event-manager' ),
+            
+    	    'i18n_currentEventsTitle' => __( 'Current Events', 'wp-event-manager' )
 		) );        	
 
 		

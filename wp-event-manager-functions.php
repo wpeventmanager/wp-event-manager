@@ -1930,6 +1930,7 @@ function get_all_organizer_array($user_id = '', $args = [])
 	
 	return $organizer_array;
 }
+
 /**
  * 
  * @since 3.1.14
@@ -2025,6 +2026,17 @@ function get_all_venue_array($user_id = '', $args = [])
 	}
 	
 	return $venue_array;
+}
+
+/**
+ * 
+ * @since 3.1.16
+ * @param null
+ * @return string
+ */
+function get_event_venue_count($venue_id = '') 
+{
+	return sizeof(get_event_by_venue_id($venue_id));
 }
 
 /**
