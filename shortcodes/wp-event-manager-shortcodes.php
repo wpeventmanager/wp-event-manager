@@ -1708,11 +1708,6 @@ class WP_Event_Manager_Shortcodes {
 
 		wp_enqueue_script('wp-event-manager-venue');
 
-		echo '<pre>';
-		print_r($per_page);
-		echo '</pre>' . __FILE__ . ' ( Line Number ' . __LINE__ . ')';
-		die;
-
 		get_event_manager_template( 
 		    'content-single-event_venue.php', array(
 		        'venue_id'    	  => $venue_id,
