@@ -311,6 +311,14 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+= 3.1.16 [Sep 15TH, 2020] =
+
+* Added - Separate venue listing with dashbaord.
+* Fixed - Organizer and venue adding at submit an event page.
+* Fixed - Widget sorting by time.
+
+
+
 = 3.1.15 [Aug 25TH, 2020] =
 
 * Fixed - Migration from event meta to separte organizer improved.
