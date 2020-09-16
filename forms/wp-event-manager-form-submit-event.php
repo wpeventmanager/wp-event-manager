@@ -349,12 +349,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if ( $timezone_setting != 'each_event' ) {
 			unset( $this->fields['event']['event_timezone'] );
 		}
-
-		if(!is_user_logged_in())
-		{
-			unset( $this->fields['organizer']['event_organizer_ids'] );
-			unset( $this->fields['venue']['event_venue_ids'] );
-		}
 	
 		return $this->fields;
 	}
