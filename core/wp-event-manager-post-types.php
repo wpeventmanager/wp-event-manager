@@ -473,6 +473,7 @@ class WP_Event_Manager_Post_Types {
 
 						'singular_name' 		=> $singular,
 
+						'add_new_item' 			=> sprintf( __( 'Add %s', 'wp-event-manager' ), $singular ),
 						
 						'featured_image'        => __( 'Venue Logo', 'wp-event-manager' ),
 						
