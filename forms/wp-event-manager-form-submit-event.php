@@ -98,8 +98,240 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			return;
 		}
 
-		// get default fields
-		$this->fields = $this->get_default_fields();
+		$current_user_id = get_current_user_id();
+
+		$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
+		switch ( $allowed_registration_method ) {
+			case 'email' :
+				$registration_method_label       = __( 'Registration email', 'wp-event-manager' );
+				$registration_method_placeholder = __( 'you@yourdomain.com', 'wp-event-manager' );
+			break;
+			case 'url' :
+				$registration_method_label       = __( 'Registration URL', 'wp-event-manager' );
+				$registration_method_placeholder = __( 'http://', 'wp-event-manager' );
+			break;
+			default :
+				$registration_method_label       = __( 'Registration email/URL', 'wp-event-manager' );
+				$registration_method_placeholder = __( 'Enter an email address or website URL', 'wp-event-manager' );
+			break;
+		}
+		
+		$this->fields = apply_filters( 'submit_event_form_fields', array(
+			'event' => array(
+				'event_title' => array(
+					'label'       => __( 'Event Title', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => true,
+					'placeholder' => __('Event title','wp-event-manager'),
+					'priority'    => 1
+				),
+
+				'event_type' => array(
+					'label'       => __( 'Event Type', 'wp-event-manager' ),
+					'type'        =>  get_option('event_manager_multiselect_event_type') ?  'term-multiselect' : 'term-select',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 2,
+					'default'     => 'meeting-or-networking-event',
+					'taxonomy'    => 'event_listing_type'
+				),
+
+				'event_category' => array(
+					'label'       => __( 'Event Category', 'wp-event-manager' ),
+					'type'        => get_option('event_manager_multiselect_event_category') ?  'term-multiselect' : 'term-select',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 3,
+					'default'     => '',
+					'taxonomy'    => 'event_listing_category'
+				),
+
+				'event_online' => array(
+			        'label'	=> __('Online Event','wp-event-manager'),							      	
+			        'type'  => 'radio',
+				    'default'  => 'no',
+				    'options'  => array(
+							    'yes' => __( 'Yes', 'wp-event-manager' ),
+							    'no' => __( 'No', 'wp-event-manager' )
+				 		    ),
+				    'priority'    => 4,
+			        'required'=>true
+		 		),
+
+		 		/*
+		 		'event_venue_name' => array(
+					'label'       => __( 'Venue Name', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => 'true',					
+					'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
+					'priority'    => 5
+				),
+				*/
+
+				/*	
+				'event_address' => array(
+					'label'       => __( 'Address', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => 'true',
+					'placeholder' => __( 'Please enter street name and number', 'wp-event-manager' ),
+					'priority'    => 6
+				),
+				*/	
+				
+				'event_pincode' => array(
+					'label'       => __( 'Zip Code', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => true,
+					'placeholder' => __( 'Please enter zip code (Area code)', 'wp-event-manager' ),
+					'priority'    => 8
+				),
+					
+				'event_location' => array(
+					'label'       => __( 'Event Location', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => true,
+					'placeholder' => __( 'Location for google map', 'wp-event-manager' ),
+					'priority'    => 7
+				),
+					
+				'event_banner' => array(
+					'label'       => __( 'Event Banner', 'wp-event-manager' ),
+					'type'        => 'file',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 9,
+					'ajax'        => true,
+					'multiple'    => get_option( 'event_manager_user_can_add_multiple_banner' ) == 1 ? true : false,
+					'allowed_mime_types' => array(
+						'jpg'  => 'image/jpeg',
+						'jpeg' => 'image/jpeg',
+						'gif'  => 'image/gif',
+						'png'  => 'image/png'
+					)
+				),
+
+				'event_description' => array(
+					'label'       => __( 'Description', 'wp-event-manager' ),
+					'type'        => 'wp-editor',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 10
+				),
+					
+				'registration' => array(
+					'label'       => $registration_method_label,
+					'type'        => 'text',
+					'required'    => true,
+					'placeholder' => $registration_method_placeholder,
+					'priority'    => 11
+				),
+
+				'event_video_url' => array(
+					'label'=> __( 'Video URL', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder'=> __( 'Please enter event video url', 'wp-event-manager' ),
+					'priority'    => 11
+				),
+					
+				'event_start_date' => array(  
+					'label'=> __( 'Start Date', 'wp-event-manager' ),
+					'placeholder'  => __( 'Please enter event start date', 'wp-event-manager' ),								
+					'type'  => 'date',
+					'priority'    => 12,
+					'required'=>true	  
+				),
+
+				'event_start_time' => array(  
+					'label'=> __( 'Start Time', 'wp-event-manager' ),
+					'placeholder'  => __( 'Please enter event start time', 'wp-event-manager' ),								
+					'type'  => 'time',
+					'priority'    => 13,
+					'required'=>true	  
+				),
+
+				'event_end_date' => array(
+			        'label'=> __( 'End Date', 'wp-event-manager' ),
+			        'placeholder'  => __( 'Please enter event end date', 'wp-event-manager' ),							        
+			        'type'  => 'date',
+				    'priority'    => 14,
+			        'required'=>true
+			  	),
+							  
+				'event_end_time' => array(  
+					'label'=> __( 'End Time', 'wp-event-manager' ),
+					'placeholder'  => __( 'Please enter event end time', 'wp-event-manager' ),								
+					'type'  => 'time',
+					'priority'    => 15,
+					'required'=>true	  
+				),
+
+				'event_timezone' => array(
+					'label'=> __( 'Event timezone', 'wp-event-manager' ),
+					'placeholder'  	=> __( 'Please select timezone for event', 'wp-event-manager' ),
+					'type'  		=> 'timezone',
+					'priority'    	=> 15,
+					'required'	=> true,
+					'class'		=> 'event-manager-category-dropdown',
+					'default'	=> '+5:00'
+					//'value'		=> ''
+				),
+
+				'event_ticket_options' => array(
+			        'label'=> __( 'Ticket Options', 'wp-event-manager' ),							      
+			        'type'  => 'radio',
+				    'default'  => 'free',
+				    'options'  => array(
+							    'paid' => __( 'Paid', 'wp-event-manager' ),
+							    'free' => __( 'Free', 'wp-event-manager' )
+				 		    ),
+				    'priority'    => 16,
+			        'required'=>true
+		 		),
+
+                'event_ticket_price' => array(
+			        'label'=> __( 'Ticket Price', 'wp-event-manager' ),                              
+			        'placeholder'  => __( 'Please enter ticket price', 'wp-event-manager' ),							        
+			        'type'  => 'text',
+					'priority'    => 17,
+			        'required'=>true
+				),
+
+				'event_registration_deadline' => array(
+					'label'       => __( 'Registration Deadline', 'wp-event-manager' ),	
+					'type'        => 'date',
+					'required'    => false,					
+					'placeholder' => __( 'Please enter registration deadline', 'wp-event-manager' ),
+					'priority'    => 20
+				),
+										 
+			),
+
+			'organizer' => array(
+				'event_organizer_ids' => array(
+					'label'       	=> __( 'Organizer', 'wp-event-manager' ),		      
+			        'type'  		=> 'multiselect',
+				    'default'  		=> '',
+				    'options'  		=> ($current_user_id) ? get_all_organizer_array($current_user_id) : [],
+				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="javascript:void(0)" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager'),
+				    'priority'   	=> 21,
+			        'required'		=>false
+				),
+			),			
+			
+			'venue' => array(
+				'event_venue_ids' => array(
+					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
+			        'type'  		=> 'select',
+				    'default'  		=> '',
+				    'options'  		=> ($current_user_id) ? get_all_venue_array($current_user_id) : ['' => __( 'Select Venue', 'wp-event-manager' )],
+				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="javascript:void(0)" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager'),
+				    'priority'    	=> 21,
+			        'required'		=>false
+				),
+			)			
+			
+		) );
 
 		//unset organizer or venue if disabled
 		$organizer_enabled = get_option( 'enable_event_organizer');
@@ -824,242 +1056,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 **/
 	public  function get_default_fields( ) {
 
-		$current_user_id = get_current_user_id();
-
-		$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
-		switch ( $allowed_registration_method ) {
-			case 'email' :
-				$registration_method_label       = __( 'Registration email', 'wp-event-manager' );
-				$registration_method_placeholder = __( 'you@yourdomain.com', 'wp-event-manager' );
-			break;
-			case 'url' :
-				$registration_method_label       = __( 'Registration URL', 'wp-event-manager' );
-				$registration_method_placeholder = __( 'http://', 'wp-event-manager' );
-			break;
-			default :
-				$registration_method_label       = __( 'Registration email/URL', 'wp-event-manager' );
-				$registration_method_placeholder = __( 'Enter an email address or website URL', 'wp-event-manager' );
-			break;
+		if(empty($this->fields)){
+			// Make sure fields are initialized and set
+			$this->init_fields();
 		}
-		
-		$default_fileds = apply_filters( 'submit_event_form_fields', array(
-			'event' => array(
-				'event_title' => array(
-					'label'       => __( 'Event Title', 'wp-event-manager' ),
-					'type'        => 'text',
-					'required'    => true,
-					'placeholder' => __('Event title','wp-event-manager'),
-					'priority'    => 1
-				),
-
-				'event_type' => array(
-					'label'       => __( 'Event Type', 'wp-event-manager' ),
-					'type'        =>  get_option('event_manager_multiselect_event_type') ?  'term-multiselect' : 'term-select',
-					'required'    => true,
-					'placeholder' => '',
-					'priority'    => 2,
-					'default'     => 'meeting-or-networking-event',
-					'taxonomy'    => 'event_listing_type'
-				),
-
-				'event_category' => array(
-					'label'       => __( 'Event Category', 'wp-event-manager' ),
-					'type'        => get_option('event_manager_multiselect_event_category') ?  'term-multiselect' : 'term-select',
-					'required'    => true,
-					'placeholder' => '',
-					'priority'    => 3,
-					'default'     => '',
-					'taxonomy'    => 'event_listing_category'
-				),
-
-				'event_online' => array(
-			        'label'	=> __('Online Event','wp-event-manager'),							      	
-			        'type'  => 'radio',
-				    'default'  => 'no',
-				    'options'  => array(
-							    'yes' => __( 'Yes', 'wp-event-manager' ),
-							    'no' => __( 'No', 'wp-event-manager' )
-				 		    ),
-				    'priority'    => 4,
-			        'required'=>true
-		 		),
-
-		 		/*
-		 		'event_venue_name' => array(
-					'label'       => __( 'Venue Name', 'wp-event-manager' ),
-					'type'        => 'text',
-					'required'    => 'true',					
-					'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
-					'priority'    => 5
-				),
-				*/
-
-				/*	
-				'event_address' => array(
-					'label'       => __( 'Address', 'wp-event-manager' ),
-					'type'        => 'text',
-					'required'    => 'true',
-					'placeholder' => __( 'Please enter street name and number', 'wp-event-manager' ),
-					'priority'    => 6
-				),
-				*/	
-				
-				'event_pincode' => array(
-					'label'       => __( 'Zip Code', 'wp-event-manager' ),
-					'type'        => 'text',
-					'required'    => true,
-					'placeholder' => __( 'Please enter zip code (Area code)', 'wp-event-manager' ),
-					'priority'    => 8
-				),
-					
-				'event_location' => array(
-					'label'       => __( 'Event Location', 'wp-event-manager' ),
-					'type'        => 'text',
-					'required'    => true,
-					'placeholder' => __( 'Location for google map', 'wp-event-manager' ),
-					'priority'    => 7
-				),
-					
-				'event_banner' => array(
-					'label'       => __( 'Event Banner', 'wp-event-manager' ),
-					'type'        => 'file',
-					'required'    => true,
-					'placeholder' => '',
-					'priority'    => 9,
-					'ajax'        => true,
-					'multiple'    => get_option( 'event_manager_user_can_add_multiple_banner' ) == 1 ? true : false,
-					'allowed_mime_types' => array(
-						'jpg'  => 'image/jpeg',
-						'jpeg' => 'image/jpeg',
-						'gif'  => 'image/gif',
-						'png'  => 'image/png'
-					)
-				),
-
-				'event_description' => array(
-					'label'       => __( 'Description', 'wp-event-manager' ),
-					'type'        => 'wp-editor',
-					'required'    => true,
-					'placeholder' => '',
-					'priority'    => 10
-				),
-					
-				'registration' => array(
-					'label'       => $registration_method_label,
-					'type'        => 'text',
-					'required'    => true,
-					'placeholder' => $registration_method_placeholder,
-					'priority'    => 11
-				),
-
-				'event_video_url' => array(
-					'label'=> __( 'Video URL', 'wp-event-manager' ),
-					'type'        => 'text',
-					'required'    => false,
-					'placeholder'=> __( 'Please enter event video url', 'wp-event-manager' ),
-					'priority'    => 11
-				),
-					
-				'event_start_date' => array(  
-					'label'=> __( 'Start Date', 'wp-event-manager' ),
-					'placeholder'  => __( 'Please enter event start date', 'wp-event-manager' ),								
-					'type'  => 'date',
-					'priority'    => 12,
-					'required'=>true	  
-				),
-
-				'event_start_time' => array(  
-					'label'=> __( 'Start Time', 'wp-event-manager' ),
-					'placeholder'  => __( 'Please enter event start time', 'wp-event-manager' ),								
-					'type'  => 'time',
-					'priority'    => 13,
-					'required'=>true	  
-				),
-
-				'event_end_date' => array(
-			        'label'=> __( 'End Date', 'wp-event-manager' ),
-			        'placeholder'  => __( 'Please enter event end date', 'wp-event-manager' ),							        
-			        'type'  => 'date',
-				    'priority'    => 14,
-			        'required'=>true
-			  	),
-							  
-				'event_end_time' => array(  
-					'label'=> __( 'End Time', 'wp-event-manager' ),
-					'placeholder'  => __( 'Please enter event end time', 'wp-event-manager' ),								
-					'type'  => 'time',
-					'priority'    => 15,
-					'required'=>true	  
-				),
-
-				'event_timezone' => array(
-					'label'=> __( 'Event timezone', 'wp-event-manager' ),
-					'placeholder'  	=> __( 'Please select timezone for event', 'wp-event-manager' ),
-					'type'  		=> 'timezone',
-					'priority'    	=> 15,
-					'required'	=> true,
-					'class'		=> 'event-manager-category-dropdown',
-					'default'	=> '+5:00'
-					//'value'		=> ''
-				),
-
-				'event_ticket_options' => array(
-			        'label'=> __( 'Ticket Options', 'wp-event-manager' ),							      
-			        'type'  => 'radio',
-				    'default'  => 'free',
-				    'options'  => array(
-							    'paid' => __( 'Paid', 'wp-event-manager' ),
-							    'free' => __( 'Free', 'wp-event-manager' )
-				 		    ),
-				    'priority'    => 16,
-			        'required'=>true
-		 		),
-
-                'event_ticket_price' => array(
-			        'label'=> __( 'Ticket Price', 'wp-event-manager' ),                              
-			        'placeholder'  => __( 'Please enter ticket price', 'wp-event-manager' ),							        
-			        'type'  => 'text',
-					'priority'    => 17,
-			        'required'=>true
-				),
-
-				'event_registration_deadline' => array(
-					'label'       => __( 'Registration Deadline', 'wp-event-manager' ),	
-					'type'        => 'date',
-					'required'    => false,					
-					'placeholder' => __( 'Please enter registration deadline', 'wp-event-manager' ),
-					'priority'    => 20
-				),
-										 
-			),
-
-			'organizer' => array(
-				'event_organizer_ids' => array(
-					'label'       	=> __( 'Organizer', 'wp-event-manager' ),		      
-			        'type'  		=> 'multiselect',
-				    'default'  		=> '',
-				    'options'  		=> ($current_user_id) ? get_all_organizer_array($current_user_id) : [],
-				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="javascript:void(0)" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager'),
-				    'priority'   	=> 21,
-			        'required'		=>false
-				),
-			),			
-			
-			'venue' => array(
-				'event_venue_ids' => array(
-					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
-			        'type'  		=> 'select',
-				    'default'  		=> '',
-				    'options'  		=> ($current_user_id) ? get_all_venue_array($current_user_id) : ['' => __( 'Select Venue', 'wp-event-manager' )],
-				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="javascript:void(0)" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager'),
-				    'priority'    	=> 21,
-			        'required'		=>false
-				),
-			)			
-			
-		) );
-
-		return $default_fileds;
+	
+		return $this->fields;
 	}
 
 
