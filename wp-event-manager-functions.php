@@ -2019,8 +2019,6 @@ function get_all_venue_array($user_id = '', $args = [])
 
 	if( is_array($all_venue) && !empty($all_venue) )
 	{
-		$venue_array[''] = __( 'Select Venue', 'wp-event-manager' );
-
 		foreach ($all_venue as $venue) 
 		{
 			$venue_array[$venue->ID] = $venue->post_title;
