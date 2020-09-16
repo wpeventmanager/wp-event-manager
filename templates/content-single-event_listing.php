@@ -302,12 +302,6 @@ do_action('set_single_listing_view_count');
                                             ?> 
                                             <?php display_event_location(); ?>
                                         </div>
-
-                                        <?php if (get_event_venue_name()) : ?>
-                                            <div class="clearfix">&nbsp;</div>
-                                            <h3 class="wpem-heading-text"><?php _e('Venue', 'wp-event-manager'); ?></h3>
-                                            <?php echo get_event_venue_name($post, true); ?>                  	
-                                        <?php endif; ?>
                                     </div>
 
                                     <?php if (get_option('event_manager_enable_event_types') && get_event_type()) : ?>
