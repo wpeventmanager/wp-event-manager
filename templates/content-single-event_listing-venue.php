@@ -9,7 +9,7 @@
 ?>
 
 
-<?php if (has_event_venue_ids()) : ?>
+<?php if (has_event_venue_ids() && !is_event_online() ) : ?>
 
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">

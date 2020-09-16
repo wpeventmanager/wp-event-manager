@@ -2011,7 +2011,7 @@ function get_all_event_venue($user_id = '', $args = [])
  * @param null
  * @return string
  */
-function get_all_venue_array($user_id = '', $args = [], $blank_option)
+function get_all_venue_array($user_id = '', $args = [], $blank_option = false)
 {
 	$all_venue =get_all_event_venue($user_id);
 	
