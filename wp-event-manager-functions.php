@@ -2080,6 +2080,14 @@ function has_event_organizer_ids( $post = null )
 	if ( $post->post_type !== 'event_listing' )
 		return;
 
+	if(!empty($post->_event_organizer_ids))
+	{
+		$organizer = get_post($post->_event_organizer_ids);
+
+		if($organizer->post_status != 'publish')
+			return;
+	}
+
 	return !empty($post->_event_organizer_ids) ? true : false;
 }
 
@@ -2145,6 +2153,14 @@ function has_event_venue_ids( $post = null )
 
 	if ( $post->post_type !== 'event_listing' )
 		return;
+
+	if(!empty($post->_event_venue_ids))
+	{
+		$venue = get_post($post->_event_venue_ids);
+
+		if($venue->post_status != 'publish')
+			return;
+	}
 
 	return !empty($post->_event_venue_ids) ? true : false;
 }
