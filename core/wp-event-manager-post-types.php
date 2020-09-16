@@ -376,7 +376,7 @@ class WP_Event_Manager_Post_Types {
 					
 				'show_in_rest' 			=> true,
 
-				'supports' 				=> array( 'title', 'editor', 'custom-fields', 'publicize' , 'thumbnail', 'comments'),
+				'supports' 				=> array( 'title', 'editor', 'custom-fields', 'publicize' , 'thumbnail'),
 
 				'has_archive' 			=> $has_archive,
 
