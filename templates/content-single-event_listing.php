@@ -399,6 +399,11 @@ do_action('set_single_listing_view_count');
                 if(get_option('enable_event_organizer')){
                     get_event_manager_template_part('content', 'single-event_listing-organizer');
                 }
+
+                if(get_option('enable_event_venue')){
+                    get_event_manager_template_part('content', 'single-event_listing-venue');
+                }
+
                 /**
                  * single_event_listing_end hook
                  */

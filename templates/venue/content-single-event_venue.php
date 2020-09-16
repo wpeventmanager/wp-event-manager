@@ -26,6 +26,7 @@
                     <?php
                     $venue_website  = get_venue_website($venue);
                     $venue_facebook = get_venue_facebook($venue);
+                    $venue_instagram = get_venue_instagram($venue);
                     $venue_twitter  = get_venue_twitter($venue);
                     $venue_youtube  = get_venue_youtube($venue);
                     ?>
@@ -34,7 +35,7 @@
                     {
                         ?>
                         <div class="wpem-social-icon wpem-weblink">
-                            <a href="<?php echo esc_url($venue_website); ?>" target="_blank" title="Get Connect on Website"><?php _e('Website', 'wp-event-manager'); ?></a>
+                            <a href="<?php echo esc_url($venue_website); ?>" target="_blank" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>"><?php _e('Website', 'wp-event-manager'); ?></a>
                         </div>
                         <?php
                     }
@@ -43,7 +44,16 @@
                     {
                         ?> 
                         <div class="wpem-social-icon wpem-facebook">
-                            <a href="<?php echo esc_url($venue_facebook); ?>" target="_blank" title="Get Connect on Facebook"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+                            <a href="<?php echo esc_url($venue_facebook); ?>" target="_blank" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+                        </div>
+                        <?php
+                    }
+
+                    if (!empty($venue_instagram))
+                    {
+                        ?> 
+                        <div class="wpem-social-icon wpem-instagram">
+                            <a href="<?php echo esc_url($venue_instagram); ?>" target="_blank" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php _e('Instagram', 'wp-event-manager'); ?></a>
                         </div>
                         <?php
                     }
@@ -52,7 +62,7 @@
                     {
                         ?>
                         <div class="wpem-social-icon wpem-twitter">
-                            <a href="<?php echo esc_url($venue_twitter); ?>" target="_blank" title="Get Connect on Twitter"><?php _e('Twitter', 'wp-event-manager'); ?></a>
+                            <a href="<?php echo esc_url($venue_twitter); ?>" target="_blank" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php _e('Twitter', 'wp-event-manager'); ?></a>
                         </div>
                         <?php
                     }
@@ -60,7 +70,7 @@
                     {
                         ?>
                         <div class="wpem-social-icon wpem-youtube">
-                            <a href="<?php echo esc_url($venue_youtube); ?>" target="_blank" title="Get Connect on Whatsapp"><?php _e('Youtube', 'wp-event-manager'); ?></a>
+                            <a href="<?php echo esc_url($venue_youtube); ?>" target="_blank" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php _e('Youtube', 'wp-event-manager'); ?></a>
                         </div>
                     <?php } ?>
 

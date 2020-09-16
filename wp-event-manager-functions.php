@@ -2130,3 +2130,35 @@ function check_organizer_exist($organizer_email)
 		return false;
 	}
 }
+
+/**
+ * check venue ids
+ * @since 3.1.16
+ * @param
+ * @return
+ **/
+function has_event_venue_ids( $post = null ) 
+{
+	$post = get_post( $post );
+
+	if ( $post->post_type !== 'event_listing' )
+		return;
+
+	return !empty($post->_event_venue_ids) ? true : false;
+}
+
+/**
+ * get venue ids
+ * @since 3.1.16
+ * @param
+ * @return
+ **/
+function get_event_venue_ids( $post = null ) 
+{
+	$post = get_post( $post );
+
+	if ( $post->post_type !== 'event_listing' )
+		return;
+
+	return !empty($post->_event_venue_ids) ? $post->_event_venue_ids : '';
+}
