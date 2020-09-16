@@ -36,7 +36,7 @@
 
                         <div class="wpem-venue-inner-wrapper">
                             <div class="wpem-row">
-                                <div class="wpem-col-md-6 ">
+                                <div class="wpem-col">
                                     <div class="wpem-venue-name wpem-heading-text">
                                         <a href="#"><span><?php display_event_venue_name('', '', true, $venue_id); ?></span></a>
                                     </div>
@@ -109,11 +109,8 @@
                                     </div>
                                 </div>
 
-                                <div class="wpem-col-md-6 ">
-                                    <div class="wpem-venue-map-area">
-                                        <?php do_action('single_event_listing_venue_map', $venue_id); ?>
-                                    </div>
-                                </div> 
+                                <?php do_action('single_event_listing_venue_map'); ?>
+
                             </div>
                         </div>
 
