@@ -324,7 +324,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
 			        'type'  		=> 'select',
 				    'default'  		=> '',
-				    'options'  		=> ($current_user_id) ? array_merge(['' => __( 'Select Venue', 'wp-event-manager' )],get_all_venue_array($current_user_id)) : ['' => __( 'Select Venue', 'wp-event-manager' )],
+				    'options'  		=> ($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager' )],
 				    'description'	=> __('<div class="wpem-alert wpem-m-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="javascript:void(0)" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager'),
 				    'priority'    	=> 21,
 			        'required'		=>false

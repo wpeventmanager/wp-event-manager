@@ -2011,7 +2011,7 @@ function get_all_event_venue($user_id = '', $args = [])
  * @param null
  * @return string
  */
-function get_all_venue_array($user_id = '', $args = [])
+function get_all_venue_array($user_id = '', $args = [], $blank_option)
 {
 	$all_venue =get_all_event_venue($user_id);
 	
@@ -2019,6 +2019,11 @@ function get_all_venue_array($user_id = '', $args = [])
 
 	if( is_array($all_venue) && !empty($all_venue) )
 	{
+		if($blank_option)
+		{
+			$venue_array[''] = __( 'Select Venue', 'wp-event-manager' );
+		}
+
 		foreach ($all_venue as $venue) 
 		{
 			$venue_array[$venue->ID] = $venue->post_title;
