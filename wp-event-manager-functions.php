@@ -2082,7 +2082,7 @@ function has_event_organizer_ids( $post = null )
 
 	if(!empty($post->_event_organizer_ids))
 	{
-		$organizer = get_post($post->_event_organizer_ids);
+		$organizer = get_post($post->_event_organizer_ids[0]);
 
 		if($organizer->post_status != 'publish')
 			return;
