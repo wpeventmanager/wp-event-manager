@@ -19,14 +19,6 @@ var OrganizerDashboard= function () {
 				jQuery('.event-dashboard-action-delete').on('click', OrganizerDashboard.confirmation.showDialog);	
 
 	        }
-	        if(jQuery('.event-organizer-count').length >0)
-		    {
-
-				//jQuery('.event-organizer-count').css({'cursor':'pointer'});  					
-				//for delete event confirmation dialog / tooltip 
-				jQuery('.event-dashboard-action-delete').on('click', OrganizerDashboard.confirmation.showDialog);	
-
-	        }
 
 	        if(jQuery('.event-organizer-count').length >0)
 		    {				

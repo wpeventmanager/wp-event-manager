@@ -39,6 +39,8 @@ class WP_Event_Manager_Post_Types {
 		add_filter( 'the_content', array( $this, 'organizer_content' ) );
 		add_filter( 'the_content', array( $this, 'venue_content' ) );
 
+		add_filter( 'archive_template', array( $this, 'event_archive' ), 20 );
+
 		add_action( 'event_manager_check_for_expired_events', array( $this, 'check_for_expired_events' ) );
 		add_action( 'event_manager_delete_old_previews', array( $this, 'delete_old_previews' ) );
 
@@ -87,7 +89,6 @@ class WP_Event_Manager_Post_Types {
 	 * @access public
 	 * @return void
 	 */
-
 	public function register_post_types() {
 
 		if ( post_type_exists( "event_listing" ) )
@@ -122,9 +123,9 @@ class WP_Event_Manager_Post_Types {
 
 			} else {
 
-				$rewrite   = false;
+				$rewrite   = true;
 
-				$public    = false;
+				$public    = true;
 			}
 
 			register_taxonomy( "event_listing_category",
@@ -212,9 +213,9 @@ class WP_Event_Manager_Post_Types {
 
 			} else {
 
-				$rewrite   = false;
+				$rewrite   = true;
 
-				$public    = false;
+				$public    = true;
 
 			}
 
@@ -379,7 +380,7 @@ class WP_Event_Manager_Post_Types {
 
 				'has_archive' 			=> $has_archive,
 
-				'show_in_nav_menus' 	=> false,
+				'show_in_nav_menus' 	=> true,
 
 				'menu_icon' => 'dashicons-calendar' // It's use to display event listing icon at admin site. 
 			) )
@@ -433,6 +434,7 @@ class WP_Event_Manager_Post_Types {
 
 						'singular_name' 		=> $singular,
 
+						'add_new_item' 			=> sprintf( __( 'Add %s', 'wp-event-manager' ), $singular ),
 						
 						'featured_image'        => __( 'Organizer Logo', 'wp-event-manager' ),
 						
@@ -460,7 +462,7 @@ class WP_Event_Manager_Post_Types {
 	    );
 	}
 
-	/*
+	
 	if(get_option('enable_event_venue')){
 	    $singular  = __( 'Venue', 'wp-event-manager' );
 		$plural    = __( 'Venues', 'wp-event-manager' );
@@ -471,6 +473,7 @@ class WP_Event_Manager_Post_Types {
 
 						'singular_name' 		=> $singular,
 
+						'add_new_item' 			=> sprintf( __( 'Add %s', 'wp-event-manager' ), $singular ),
 						
 						'featured_image'        => __( 'Venue Logo', 'wp-event-manager' ),
 						
@@ -496,7 +499,7 @@ class WP_Event_Manager_Post_Types {
 				         
 	    		) )
 	    	);
-		} */
+		}
 	}
 
 	/**
@@ -507,7 +510,7 @@ class WP_Event_Manager_Post_Types {
 
 		global $menu;
 
-		$plural     = __( 'Event Listings', 'wp-event-manager' );
+		$plural     = __( 'Event Manager', 'wp-event-manager' );
 
 		$count_events = wp_count_posts( 'event_listing', 'readable' );
 
@@ -578,107 +581,11 @@ class WP_Event_Manager_Post_Types {
 
 			ob_start();
 
-			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            $per_page = 10;
-            $today_date=date("Y-m-d");
-            $organizer_id = get_the_ID();
-            $show_pagination = true;
-
-            $args_upcoming = array(
-                'post_type'   => 'event_listing',
-                'post_status' => 'publish',
-                'posts_per_page' => $per_page,                                              
-                'paged' => $paged
-            );
-
-            $args_upcoming['meta_query'] = array( 
-                'relation' => 'AND', 
-                array(
-                        'key'     => '_event_organizer_ids',
-                        'value'   => $organizer_id, 
-                        'compare' => 'LIKE',
-                    ),
-                array(
-                         'key'     => '_event_start_date',
-                         'value'   => $today_date,
-                         'type'    => 'date',
-                         'compare' => '>'   
-                    ) 
-            );
-
-            $upcomingEvents = new WP_Query( $args_upcoming );
-            wp_reset_query();
-
-            $args_current = $args_upcoming;
+			$organizer_id = get_the_ID();
             
-            $args_current['meta_query'] = array(
-                'relation' => 'AND',
-                array(
-                    'key'     => '_event_organizer_ids',
-                    'value'   => $organizer_id, 
-                    'compare' => 'LIKE',
-                ),
-                array(
-                    'key'     => '_event_start_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '<='
-                ),
-                array(
-                    'key'     => '_event_end_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '>='
-                )
-            );
+            do_action( 'organizer_content_start' );
 
-            $currentEvents = new WP_Query( $args_current );
-            wp_reset_query();
-
-            $args_past = array(
-                'post_type'   => 'event_listing',
-                'post_status' => array('expired', 'publish'),
-                'posts_per_page' => $per_page,
-                'paged' => $paged
-            );
-        
-            $args_past['meta_query'] = array( 
-                'relation' => 'AND', 
-                array(
-                    'key'     => '_event_organizer_ids',
-                    'value'   => $organizer_id, 
-                    'compare' => 'LIKE',
-                ),
-                array(
-                    'key'     => '_event_end_date',
-                    'value'   => $today_date,
-                    'type'    => 'date',
-                    'compare' => '<'   
-                )
-            );
-            $pastEvents = new WP_Query( $args_past );
-            wp_reset_query();
-
-			do_action( 'organizer_content_start' );
-
-			wp_enqueue_script( 'wp-event-manager-organizer');
-
-			get_event_manager_template( 
-			    'content-single-event_organizer.php', 
-			    array(
-			        'organizer_id'	=> $organizer_id,
-			        'per_page'		=> $per_page,
-			        'show_pagination'	=> $show_pagination,
-			        'upcomingEvents' => $upcomingEvents,
-			        'currentEvents' => $currentEvents,
-			        'pastEvents' 	=> $pastEvents,
-			    ), 
-			    'wp-event-manager', 
-			    EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
-			);
-
-			wp_reset_postdata();
-			//get_event_manager_template_part( 'content-single', 'event_organizer', 'wp-event-manager', EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/');
+			echo do_shortcode('[event_organizer id="'.$organizer_id.'"]');
 
 			do_action( 'organizer_content_end' );
 
@@ -690,7 +597,7 @@ class WP_Event_Manager_Post_Types {
 		return apply_filters( 'event_manager_single_organizer_content', $content, $post );
 	}
 
-		/**
+	/**
 	 * Add extra content when showing venue content
 	 */
 	public function venue_content( $content ) {
@@ -710,18 +617,9 @@ class WP_Event_Manager_Post_Types {
 
 			$venue_id = get_the_ID();
 
-			do_action( 'venue_content_start' );
+			do_action( 'organizer_content_start' );
 
-			get_event_manager_template( 
-			    'content-single-event_venue.php', 
-			    array(
-			        'venue_id'	=> $venue_id,
-			    ), 
-			    'wp-event-manager', 
-			    EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
-			);
-
-			wp_reset_postdata();
+			echo do_shortcode('[event_venue id="'.$venue_id.'"]');
 
 			do_action( 'venue_content_end' );
 
@@ -731,6 +629,26 @@ class WP_Event_Manager_Post_Types {
 		add_filter( 'the_content', array( $this, 'venue_content' ) );
 
 		return apply_filters( 'event_manager_single_venue_content', $content, $post );
+	}
+
+	/**
+	 * event_archive function.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function event_archive($template) 
+	{
+		if ( is_tax( 'event_listing_category' ) ) {
+
+			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_category.php';
+	    }
+	    elseif ( is_tax( 'event_listing_type' ) ) {
+
+			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_type.php';
+	    }
+
+	    return $template;
 	}
 
 	/**
@@ -1130,13 +1048,9 @@ class WP_Event_Manager_Post_Types {
 			        'relation' => 'AND',
 			        array(
 			            'key'     => '_event_end_date',
-			            'value'   => date( 'Y-m-d'),
-			            'compare' => '<=',
-			        ),
-			        array(
-			            'key'     => '_event_end_time',
-			            'value'   => date( 'H:i A'),
-			            'compare' => '<',
+			            'value'   => current_time('Y-m-d H:i:s'),
+				        'type'    => 'DATETIME',
+				        'compare' => '<'
 			        ),
 			    ),
 			];

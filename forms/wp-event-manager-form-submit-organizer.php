@@ -107,6 +107,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'placeholder' => __( 'Enter the name of the organization', 'wp-event-manager' ),
 								'priority'    => 1
 				),
+
 				'organizer_logo' => array(
 								'label'       => __( 'Logo', 'wp-event-manager' ),
 								'type'        => 'file',
@@ -124,11 +125,11 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 				),
 
 				'organizer_description' => array(
-					'label'       => __( 'Organizer Description', 'wp-event-manager' ),
-					'type'        => 'wp-editor',
-					'required'    => true,
-					'placeholder' => '',
-					'priority'    => 3
+								'label'       => __( 'Organizer Description', 'wp-event-manager' ),
+								'type'        => 'wp-editor',
+								'required'    => true,
+								'placeholder' => '',
+								'priority'    => 3
 				),	
 
 				'organizer_email' => array(
@@ -147,27 +148,35 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'priority'    => 6
 				),
 
-				'organizer_twitter' => array(
-								'label'       => __( 'Twitter', 'wp-event-manager' ),
+				'organizer_facebook' => array(
+								'label'       => __( 'Facebook', 'wp-event-manager' ),
 								'type'        => 'text',
 								'required'    => false,
-								'placeholder' => __( 'Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager' ),
+								'placeholder' => __( 'Facebook URL e.g http://www.facebook.com/yourorganizer', 'wp-event-manager' ),
 								'priority'    => 7
+				),
+
+				'organizer_instagram' => array(
+								'label'       => __( 'Instagram', 'wp-event-manager' ),
+								'type'        => 'text',
+								'required'    => false,
+								'placeholder' => __( 'Instagram URL e.g http://www.instagram.com/yourorganizer', 'wp-event-manager' ),
+								'priority'    => 8
 				),
 
 				'organizer_youtube' => array(
 								'label'       => __( 'Youtube', 'wp-event-manager' ),
 								'type'        => 'text',
 								'required'    => false,
-								'placeholder' => __( 'Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany', 'wp-event-manager' ),
-								'priority'    => 8
+								'placeholder' => __( 'Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer', 'wp-event-manager' ),
+								'priority'    => 9
 				),
-				'organizer_facebook' => array(
-								'label'       => __( 'Facebook', 'wp-event-manager' ),
+
+				'organizer_twitter' => array(
+								'label'       => __( 'Twitter', 'wp-event-manager' ),
 								'type'        => 'text',
 								'required'    => false,
-								'placeholder' => __( 'Facebook URL e.g http://www.facebook.com/yourcompany', 'wp-event-manager' ),
-								
+								'placeholder' => __( 'Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager' ),
 								'priority'    => 10
 				),
 			)
@@ -335,16 +344,19 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
-			if ( empty( $_POST['submit_organizer'] ) || !is_user_logged_in() ) {
+			//if ( empty( $_POST['submit_organizer'] ) || !is_user_logged_in() ) {
+			if ( empty( $_POST['submit_organizer'] ) ) {
 				return;
 			}
 			// Validate required
 			if ( is_wp_error( ( $return = $this->validate_fields( $values ) ) ) ) {
 				throw new Exception( $return->get_error_message() );
 			}
+
+			$status = is_user_logged_in() ? 'publish' : 'pending';
 			
 			// Update the event
-			$this->save_organizer( $values['organizer']['organizer_name'], $values['organizer']['organizer_description'], $this->organizer_id ? '' : 'publish', $values );
+			$this->save_organizer( $values['organizer']['organizer_name'], $values['organizer']['organizer_description'], $this->organizer_id ? '' : $status, $values );
 			$this->update_organizer_data( $values );
 			// Successful, show next step
 			$this->step ++;

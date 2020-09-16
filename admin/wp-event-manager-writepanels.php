@@ -106,10 +106,17 @@ class WP_Event_Manager_Writepanels {
 				'priority'    => 39
 			);
 
+			$fields['_cancelled'] = array(
+				'label'       => __( 'Cancelled Listing', 'wp-event-manager' ),
+				'type'        => 'checkbox',
+				'description' => __( 'Cancelled listings will be sticky during searches, and can be styled differently.', 'wp-event-manager' ),
+				'priority'    => 39
+			);
+
 			$fields['_event_expiry_date'] = array(
 				'label'       => __( 'Listing Expiry Date', 'wp-event-manager' ),
 				'type'        => 'date',
-				'placeholder' => __( 'yyyy-mm-dd', 'wp-event-manager' ),
+				'placeholder' => __( 'Please enter event expiry date', 'wp-event-manager' ),
 				'priority'    => 40,	
 				'value'       => $expiry_date,
 			);
@@ -725,6 +732,101 @@ class WP_Event_Manager_Writepanels {
 			elseif ( '_event_author' === $key ) {
 				$wpdb->update( $wpdb->posts, array( 'post_author' => $_POST[ $key ] > 0 ? absint( $_POST[ $key ] ) : 0 ), array( 'ID' => $post_id ) );
 			}
+			elseif ( '_event_banner' === $key ) {
+				if ( is_array( $_POST[ $key ] ) ) {
+					$thumbnail_image = $_POST[ $key ][0];
+					update_post_meta( $post_id, $key, array_filter( array_map( 'sanitize_text_field', $_POST[ $key ] ) ) );
+				} else {
+					$thumbnail_image = $_POST[ $key ];
+					update_post_meta( $post_id, $key, sanitize_text_field( $_POST[ $key ] ) );
+				}
+
+				$image = get_the_post_thumbnail_url($post_id);
+
+				if(empty($image))
+				{
+					if( isset($thumbnail_image) && !empty($thumbnail_image) )
+					{
+						$wp_upload_dir = wp_get_upload_dir();
+
+						$baseurl = $wp_upload_dir['baseurl'] . '/';
+
+						$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
+
+						$args = array(
+					        'meta_key'         	=> '_wp_attached_file',
+					        'meta_value'       	=> $wp_attached_file,
+					        'post_type'        	=> 'attachment',
+					        'posts_per_page'	=> 1,
+					    );
+
+						$attachments = get_posts($args);
+
+						if(!empty($attachments))
+						{
+							foreach ($attachments as $attachment) 
+							{
+								set_post_thumbnail( $post_id, $attachment->ID );
+							}
+						}
+					}
+				}
+				
+			}
+			elseif ( '_event_start_date' === $key ) {
+				if(isset( $_POST[ $key ] )  && !empty($_POST[ $key ]))
+				{
+					if ( isset( $_POST[ '_event_start_time' ] ) && !empty($_POST[ '_event_start_time' ]) )
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $_POST[ '_event_start_time' ] );
+					else
+						$start_time = '';
+					//combine event start date value with event start time 
+					$date =  $_POST[ $key ].' '.$start_time ;
+					
+    				 //Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+
+					update_post_meta( $post_id, $key, $date_dbformatted);
+				}
+				else
+					update_post_meta( $post_id, $key, $_POST[ $key ] );
+
+			}
+			elseif ( '_event_end_date' === $key ) {
+				if(isset( $_POST[ $key ] )  && !empty($_POST[ $key ]))
+				{
+					if ( isset( $_POST[ '_event_end_time' ] ) && !empty($_POST[ '_event_end_time' ]) )
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $_POST[ '_event_end_time' ] );
+					else
+						$start_time = '';
+					//combine event start date value with event start time 
+					$date =  $_POST[ $key ].' '.$start_time ;
+					
+    				 //Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+
+					update_post_meta( $post_id, $key, $date_dbformatted);
+				}
+				else
+					update_post_meta( $post_id, $key, $_POST[ $key ] );
+
+			}
+			elseif ( '_event_organizer_ids' === $key ) {
+				if ( ! empty( $_POST[ $key ] ) ) {
+					update_post_meta( $post_id, $key, array_filter( array_map( 'sanitize_text_field', $_POST[ $key ] ) ) );
+				} else {
+				    update_post_meta( $post_id, $key, '' );
+				}
+			}
+			elseif ( '_event_venue_ids' === $key ) {
+				if ( ! empty( $_POST[ $key ] ) ) {
+					update_post_meta( $post_id, $key, $_POST[ $key ] );
+				} else {
+				    update_post_meta( $post_id, $key, '' );
+				}
+			}
 			// Everything else		
 			else {
 				$type = ! empty( $field['type'] ) ? $field['type'] : '';
@@ -762,8 +864,8 @@ class WP_Event_Manager_Writepanels {
 				}
 			}
 		}
-		/* Set Post Status To Expired If Already Expired */
-		
+
+		/* Set Post Status To Expired If Already Expired */		
 		$event_timezone = get_post_meta($post_id,'_event_timezone',true);
 		//check if timezone settings is enabled as each event then set current time stamp according to the timezone
 		// for eg. if each event selected then Berlin timezone will be different then current site timezone.

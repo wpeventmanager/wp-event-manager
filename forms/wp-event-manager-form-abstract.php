@@ -111,6 +111,17 @@ abstract class WP_Event_Manager_Form {
 			echo '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $error . '</div>';
 		}
 	}
+
+	/**
+	 * Get errors
+	 */
+	public function get_errors() {
+
+		foreach ( $this->errors as $error ) {
+
+			return $error;
+		}
+	}
 	
 	/**
 	 * Get action (URL for forms to post to).
@@ -238,7 +249,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return array of data
 	 */
 
-	protected function get_posted_fields() {
+	public function get_posted_fields() {
 	    
 			// Init fields
 			//$this->init_fields(); We dont need to initialize with this function because of field edior

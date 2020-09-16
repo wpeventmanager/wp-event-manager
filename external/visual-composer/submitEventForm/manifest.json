@@ -2,10 +2,10 @@
   "elements": {
     "submitEventForm": {
       "settings": {
-        "name": "Submit Event Form",
+        "name": "Submit an Event",
         "metaThumbnailUrl": "[publicPath]/submit-event-form.jpg",
-        "metaPreviewUrl": "[publicPath]/submit-event-preview.png",
-        "metaDescription": "It will show Submit Event Form"
+        "metaPreviewUrl": "[publicPath]/submit-event-preview.jpg",
+        "metaDescription": "Submit event element."
       }
     }
   },

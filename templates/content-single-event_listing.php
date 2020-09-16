@@ -63,13 +63,15 @@ do_action('set_single_listing_view_count');
                                         <h3 class="wpem-heading-text"><?php the_title(); ?></h3>
                                     </div>
 
-                                    <div class="wpem-event-organizer">
-                                        <div class="wpem-event-organizer-name">
-                                            <?php do_action('single_event_organizer_name_start'); ?>
-                                            <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true)); ?>
-                                            <?php do_action('single_event_organizer_name_end'); ?>
+                                    <?php if(get_option('enable_event_organizer')) : ?>
+                                        <div class="wpem-event-organizer">
+                                            <div class="wpem-event-organizer-name">
+                                                <?php do_action('single_event_organizer_name_start'); ?>
+                                                 <?php printf(__('by %s', 'wp-event-manager'), get_organizer_name($post, true)); ?>
+                                                <?php do_action('single_event_organizer_name_end'); ?>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
 
                                     <?php
                                     $view_count = get_post_views_count($post);
@@ -118,9 +120,23 @@ do_action('set_single_listing_view_count');
                                     {
                                         if( !array_key_exists($field_name, $default_fields['event']) )
                                         {
-                                            $additional_fields[$field_name] = $field_data;
+                                            $meta_key = '_'.$field_name;
+                                            $field_value = $post->$meta_key;
+
+                                            if(!empty( $field_value ))
+                                            {
+                                                $additional_fields[$field_name] = $field_data;    
+                                            }
                                         }
                                     }
+
+                                    if( isset($additional_fields['attendee_information_type']) )
+                                        unset($additional_fields['attendee_information_type']);
+
+                                    if( isset($additional_fields['attendee_information_fields']) )
+                                        unset($additional_fields['attendee_information_fields']);
+
+                                    $additional_fields = apply_filters('event_manager_show_additional_details_fields', $additional_fields);
                                 }
 
                                 if( !empty($additional_fields)) : ?>
@@ -156,14 +172,14 @@ do_action('set_single_listing_view_count');
                                                     <?php elseif($field['type'] == 'multiselect') : ?>
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $$field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
                                                             </div>
                                                         </div>
 
                                                     <?php elseif($field['type'] == 'select') : ?>
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $$field['label']); ?> - </strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value);; ?></p>
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value);; ?></p>
                                                             </div>
                                                         </div>
 
@@ -286,12 +302,6 @@ do_action('set_single_listing_view_count');
                                             ?> 
                                             <?php display_event_location(); ?>
                                         </div>
-
-                                        <?php if (get_event_venue_name()) : ?>
-                                            <div class="clearfix">&nbsp;</div>
-                                            <h3 class="wpem-heading-text"><?php _e('Venue', 'wp-event-manager'); ?></h3>
-                                            <?php echo get_event_venue_name($post, true); ?>                  	
-                                        <?php endif; ?>
                                     </div>
 
                                     <?php if (get_option('event_manager_enable_event_types') && get_event_type()) : ?>
@@ -380,7 +390,14 @@ do_action('set_single_listing_view_count');
                 </div>
 
                 <?php
-                get_event_manager_template_part('content', 'single-event_listing-organizer');
+                if(get_option('enable_event_organizer')){
+                    get_event_manager_template_part('content', 'single-event_listing-organizer');
+                }
+
+                if(get_option('enable_event_venue')){
+                    get_event_manager_template_part('content', 'single-event_listing-venue');
+                }
+
                 /**
                  * single_event_listing_end hook
                  */

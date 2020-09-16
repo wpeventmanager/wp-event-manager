@@ -226,9 +226,9 @@ A prior Backup does no harm before updating the plugin!','wp-event-manager');?>.
 	   					}
 
 	   					$this->migrate_organizer_from_event_meta($event, $organizer_data);
-   					}
 
-   					$this->banner_image_set_thumnail($event);
+	   					$this->banner_image_set_thumnail($event);
+   					}
    				}
    			}
 

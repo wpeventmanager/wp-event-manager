@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
 Tested up to: 5.5
-Stable tag: 3.1.15
+Stable tag: 3.1.16
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -310,6 +310,20 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 == Changelog ==
+
+= 3.1.16 [Sep 16TH, 2020] =
+
+* Added - Separate venue listing with dashbaord.
+* Fixed - Organizer and venue adding at submit an event page.
+* Fixed - Widget sorting by time.
+* Fixed - Event thumbanil syncronized with event banner.
+* Fixed - WPML compatiblity improved.
+* Fixed - Elementor single event template and widgets improved.
+* Fixed - Some string,js and css tweaks.
+* Fixed - single event section improved.
+* Fixed - improved taxonomy archive template.
+* Fixed - All files optimized and reduced the size of plugin.
+
 
 = 3.1.15 [Aug 25TH, 2020] =
 

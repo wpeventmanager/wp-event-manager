@@ -604,14 +604,15 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
         else
             $number = 4 ;
 
-		$today_date=date('Y-m-d g:i:s');
+		//$today_date=date('Y-m-d g:i:s');
+		$today_date = current_time('Y-m-d H:i:s');
 		
 		$args = array(
 		    'post_type'   => 'event_listing',
 		    'post_status' => 'publish',
 		    'posts_per_page'    => $number,
 		    'orderby'           => isset( $instance['orderby'] ) ? $instance['orderby'] : 'event_start_date',
-		    'order'             =>  isset( $instance['order'] ) ? $instance['order'] : 'ASC',
+		    'order'             => isset( $instance['order'] ) ? $instance['order'] : 'ASC',
 		    
 		);
 		
@@ -619,15 +620,20 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
 		    array(
 		        'key'     => '_event_start_date',
 		        'value'   => $today_date,
-		        'type'    => 'DATE',
+		        'type'    => 'DATETIME',
 		        'compare' => '>'
-		    )
+		    ),
+		    array(
+		        'key'     => '_cancelled',
+		        'value'   => '1',
+		        'compare' => '!='
+		    ),
 		);
 
 		if ( 'event_start_date' === $args['orderby'] ) {
 			$args['orderby'] ='meta_value';
 			$args['meta_key'] ='_event_start_date';
-			$args['meta_type'] ='DATE';
+			$args['meta_type'] ='DATETIME';
 		}
 		
 		$events = new WP_Query( $args );

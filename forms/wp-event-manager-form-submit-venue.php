@@ -98,45 +98,77 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		
 		$this->fields = apply_filters( 'submit_venue_form_fields', array(
 			'venue' => array(
-						'venue_name' => array(
-						'label'       => __( 'Venue Name', 'wp-event-manager' ),
-						'type'        => 'text',
-						'required'    => 'true',					
-						'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
-						'priority'    => 1
-								),
-						
+				'venue_name' => array(
+							'label'       => __( 'Venue Name', 'wp-event-manager' ),
+							'type'        => 'text',
+							'required'    => 'true',					
+							'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
+							'priority'    => 1
+				),						
 			
 				'venue_description' => array(
-					'label'       => __( 'Venue Description', 'wp-event-manager' ),
-					'type'        => 'wp-editor',
-					'required'    => true,
-					'placeholder' => '',
-					'priority'    => 2
-				),	
+							'label'       => __( 'Venue Description', 'wp-event-manager' ),
+							'type'        => 'wp-editor',
+							'required'    => true,
+							'placeholder' => '',
+							'priority'    => 2
+				),
+
 				'venue_logo' => array(
-								'label'       => __( 'Logo', 'wp-event-manager' ),
-								'type'        => 'file',
-								'required'    => false,
-								'placeholder' => '',
-								'priority'    => 3,
-								'ajax'        => true,
-								'multiple'    => false,
-								'allowed_mime_types' => array(
-									'jpg'  => 'image/jpeg',
-									'jpeg' => 'image/jpeg',
-									'gif'  => 'image/gif',
-									'png'  => 'image/png'
-								)
+							'label'       => __( 'Logo', 'wp-event-manager' ),
+							'type'        => 'file',
+							'required'    => false,
+							'placeholder' => '',
+							'priority'    => 3,
+							'ajax'        => true,
+							'multiple'    => false,
+							'allowed_mime_types' => array(
+								'jpg'  => 'image/jpeg',
+								'jpeg' => 'image/jpeg',
+								'gif'  => 'image/gif',
+								'png'  => 'image/png'
+							)
 				),
 
 				'venue_website' => array(
-								'label'       => __( 'Website', 'wp-event-manager' ),
+							'label'       => __( 'Website', 'wp-event-manager' ),
+							'type'        => 'text',
+							'required'    => false,
+							'placeholder' => __( 'Website URL e.g http://www.yourvenue.com', 'wp-event-manager' ),
+							'priority'    => 4
+				),
+
+				'venue_facebook' => array(
+								'label'       => __( 'Facebook', 'wp-event-manager' ),
 								'type'        => 'text',
 								'required'    => false,
-								'placeholder' => __( 'Website URL e.g http://www.yourorganization.com', 'wp-event-manager' ),
-								'priority'    => 4
+								'placeholder' => __( 'Facebook URL e.g http://www.facebook.com/yourvenue', 'wp-event-manager' ),
+								'priority'    => 5
 				),
+
+				'venue_instagram' => array(
+								'label'       => __( 'Instagram', 'wp-event-manager' ),
+								'type'        => 'text',
+								'required'    => false,
+								'placeholder' => __( 'Instagram URL e.g http://www.instagram.com/yourvenue', 'wp-event-manager' ),
+								'priority'    => 6
+				),
+
+				'venue_youtube' => array(
+								'label'       => __( 'Youtube', 'wp-event-manager' ),
+								'type'        => 'text',
+								'required'    => false,
+								'placeholder' => __( 'Youtube Channel URL e.g http://www.youtube.com/channel/yourvenue', 'wp-event-manager' ),
+								'priority'    => 7
+				),
+
+				'venue_twitter' => array(
+								'label'       => __( 'Twitter', 'wp-event-manager' ),
+								'type'        => 'text',
+								'required'    => false,
+								'placeholder' => __( 'Twitter URL e.g http://twitter.com/yourvenue', 'wp-event-manager' ),
+								'priority'    => 8
+				),				
 			)
 
 		) );
@@ -304,16 +336,19 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
-			if ( empty( $_POST['submit_venue'] ) || !is_user_logged_in() ) {
+			//if ( empty( $_POST['submit_venue'] ) || !is_user_logged_in() ) {
+			if ( empty( $_POST['submit_venue'] ) ) {
 				return;
 			}
 			// Validate required
 			if ( is_wp_error( ( $return = $this->validate_fields( $values ) ) ) ) {
 				throw new Exception( $return->get_error_message() );
 			}
+
+			$status = is_user_logged_in() ? 'publish' : 'pending';
 			
 			// Update the event
-			$this->save_venue( $values['venue']['venue_name'], $values['venue']['venue_description'], $this->venue_id ? '' : 'publish', $values );
+			$this->save_venue( $values['venue']['venue_name'], $values['venue']['venue_description'], $this->venue_id ? '' : $status, $values );
 			$this->update_venue_data( $values );
 			// Successful, show next step
 			$this->step ++;

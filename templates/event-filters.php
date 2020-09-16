@@ -63,8 +63,23 @@
 					$start_date = esc_attr( strip_tags( $selected_datetime[0] ) );
 					$end_date = esc_attr( strip_tags( $selected_datetime[1] ) );
 
-					$arr_selected_datetime['start'] = date_i18n("Y-m-d", strtotime( $start_date ) );
-					$arr_selected_datetime['end'] = date_i18n("Y-m-d", strtotime( $end_date ) );
+					
+
+					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+		
+					//covert datepicker format  into php date() function date format
+					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+
+					$arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $start_date );
+					$arr_selected_datetime['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $end_date );
+
+
+
+					$date_format 		= WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
+
+					$arr_selected_datetime['start'] 	= date_i18n( $date_format, strtotime( $arr_selected_datetime['start'] ) );
+					$arr_selected_datetime['end'] 	= date_i18n( $date_format, strtotime( $arr_selected_datetime['end'] ) );
 
 					$selected_datetime = json_encode($arr_selected_datetime);
 				}

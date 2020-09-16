@@ -1,12 +1,16 @@
 <?php do_action('event_manager_organizer_dashboard_before'); ?>
-<p>
-	<?php $submit_organizer 		= get_option('event_manager_submit_organizer_form_page_id');
-	if(!empty($submit_organizer )){ ?>
+
+<?php do_action('event_manager_organizer_dashboard_button_action_start'); ?>
+
+<?php $submit_organizer = get_option('event_manager_submit_organizer_form_page_id');
+if(!empty($submit_organizer )) : ?>
+	<div class="wpem-d-inline-block wpem-dashboard-i-block-btn">
 		<a class="wpem-theme-button" href="<?php echo get_permalink($submit_organizer);?>"><span><?php _e('Add organizer','wp-event-manager');?></span></a>
-	<?php
-	}
-	?>	
-</p>
+	</div>
+<?php endif; ?>
+
+<?php do_action('event_manager_organizer_dashboard_button_action_end'); ?>
+
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">
@@ -20,7 +24,7 @@
 			<tbody>
 				<?php if ( ! $organizers ) : ?>
 				<tr>
-					<td colspan="<?php echo count($organizer_dashboard_columns); ?>"><?php _e( 'You do not have any organizer.', 'wp-event-manager' ); ?></td>
+					<td colspan="<?php echo count($organizer_dashboard_columns); ?>"><?php _e( 'There are not organizer.', 'wp-event-manager' ); ?></td>
 				</tr>
 				<?php else : ?>
 				<?php foreach ( $organizers as $organizer ) : ?>
@@ -36,10 +40,11 @@
 								<div class="wpem-organizer-social-links">
 									<div class="wpem-organizer-social-lists">
 									
-										<?php do_action('single_event_listing_organizer_social_start');
+										<?php do_action('single_event_listing_organizer_social_start', $organizer->ID);
 
 									   	$organizer_website  = get_organizer_website($organizer);
 									   	$organizer_facebook = get_organizer_facebook($organizer);
+									   	$organizer_instagram = get_organizer_instagram($organizer);
 									   	$organizer_twitter  = get_organizer_twitter($organizer);
 									   	$organizer_youtube  = get_organizer_youtube($organizer);
 									   	
@@ -47,7 +52,7 @@
 									   	{
 										   	?>
 										   	<div class="wpem-social-icon wpem-weblink">
-											   	<a href="<?php echo esc_url($organizer_website); ?>" target="_blank" title="Get Connect on Website"><?php _e('Website', 'wp-event-manager'); ?></a>
+											   	<a href="<?php echo esc_url($organizer_website); ?>" target="_blank" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>"><?php _e('Website', 'wp-event-manager'); ?></a>
 										   	</div>
 										   	<?php
 									   	}
@@ -56,7 +61,16 @@
 									   	{
 										   	?> 
 										   	<div class="wpem-social-icon wpem-facebook">
-											   	<a href="<?php echo esc_url($organizer_facebook); ?>" target="_blank" title="Get Connect on Facebook"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+											   	<a href="<?php echo esc_url($organizer_facebook); ?>" target="_blank" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+										   	</div>
+										   	<?php
+									   	}
+
+									   	if (!empty($organizer_instagram))
+									   	{
+										   	?> 
+										   	<div class="wpem-social-icon wpem-instagram">
+											   	<a href="<?php echo esc_url($organizer_instagram); ?>" target="_blank" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php _e('Instagram', 'wp-event-manager'); ?></a>
 										   	</div>
 										   	<?php
 									   	}
@@ -65,7 +79,7 @@
 									   	{
 										   	?>
 										   	<div class="wpem-social-icon wpem-twitter">
-											   	<a href="<?php echo esc_url($organizer_twitter); ?>" target="_blank" title="Get Connect on Twitter"><?php _e('Twitter', 'wp-event-manager'); ?></a>
+											   	<a href="<?php echo esc_url($organizer_twitter); ?>" target="_blank" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php _e('Twitter', 'wp-event-manager'); ?></a>
 										   	</div>
 										   	<?php
 									   	}
@@ -74,7 +88,7 @@
 									   	{
 										   	?>
 										   	<div class="wpem-social-icon wpem-youtube">
-											   	<a href="<?php echo esc_url($organizer_youtube); ?>" target="_blank" title="Get Connect on YouTube"><?php _e('Youtube', 'wp-event-manager'); ?></a>
+											   	<a href="<?php echo esc_url($organizer_youtube); ?>" target="_blank" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php _e('Youtube', 'wp-event-manager'); ?></a>
 										   	</div>
 									   	<?php } ?>
 

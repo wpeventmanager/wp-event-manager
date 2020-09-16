@@ -59,12 +59,17 @@ class WP_Event_Manager_Ajax {
 		add_action( 'wp_ajax_nopriv_event_manager_upload_file', array( $this, 'upload_file' ) );
 
 		add_action( 'wp_ajax_event_manager_upload_file', array( $this, 'upload_file' ) );
+
+		add_action( 'wp_ajax_add_organizer', array( $this, 'add_organizer' ) );
+		add_action( 'wp_ajax_nopriv_add_organizer', array( $this, 'add_organizer' ) );
+
+		add_action( 'wp_ajax_add_venue', array( $this, 'add_venue' ) );
+		add_action( 'wp_ajax_nopriv_add_venue', array( $this, 'add_venue' ) );
 	}
 	
 	/**
 	 * Add our endpoint for frontend ajax requests
 	*/
-
 	public static function add_endpoint() {
 
 		add_rewrite_tag( '%em-ajax%', '([^/]*)' );
@@ -435,6 +440,144 @@ class WP_Event_Manager_Ajax {
 		}
 
 		wp_send_json( $data );
+	}
+
+	/**
+	 * add_organizer function.
+	 * add organizer with popup action
+	 * @access public
+	 * @param 
+	 * @return array
+	 * @since 3.1.16
+	 */
+	public function add_organizer() {
+
+		$params = array();
+		parse_str($_REQUEST['form_data'], $params);
+		$params['organizer_description'] = $_REQUEST['organizer_description'];
+		$params['submit_organizer'] = 'Submit';
+
+		$data = [];
+
+		if(!empty($params['organizer_name']) && isset($params['organizer_id'])  && $params['organizer_id'] == 0 )
+		{
+			$_POST = $params;
+
+			if(isset($_COOKIE['wp-event-manager-submitting-organizer-id']) )
+			    unset( $_COOKIE['wp-event-manager-submitting-organizer-id'] );				
+			if(isset($_COOKIE['wp-event-manager-submitting-organizer-key']) )
+			    unset( $_COOKIE['wp-event-manager-submitting-organizer-key'] );
+
+			$GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
+			$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Organizer', 'instance' ) );
+			$event_fields =	$form_submit_organizer_instance->merge_with_custom_fields('frontend');
+
+			//submit current event with $_POST values
+			$form_submit_organizer_instance->submit_handler();
+
+			$organizer_id = $form_submit_organizer_instance->get_organizer_id();
+
+			if( isset($organizer_id) && !empty($organizer_id ) )
+			{
+				$organizer = get_post( $organizer_id );
+
+				$data = [
+					'code' => 200,
+					'organizer' => [
+						'organizer_id' 	=> $organizer_id,
+						'organizer_name' => $organizer->post_title,
+					],
+					'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Successfully created') . '</div>',
+				];
+			}
+			else
+			{
+				$data = [
+					'code' => 404,
+					'message' => '<div class="wpem-alert wpem-alert-danger">'. $form_submit_organizer_instance->get_errors() . '</div>',
+				];
+			}
+		}
+		else
+		{
+			$data = [
+				'code' => 404,
+				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Organizer Name is a required field') . '</div>',
+			];
+		}
+
+		wp_send_json( $data );
+
+		wp_die();
+	}
+
+	/**
+	 * add_venue function.
+	 * add venue with popup action
+	 * @access public
+	 * @param 
+	 * @return array
+	 * @since 3.1.16
+	 */
+	public function add_venue() {
+
+		$params = array();
+		parse_str($_REQUEST['form_data'], $params);
+		$params['venue_description'] = $_REQUEST['venue_description'];
+		$params['submit_venue'] = 'Submit';
+
+		$data = [];
+
+		if(!empty($params['venue_name']) && isset($params['venue_id'])  && $params['venue_id'] == 0 )
+		{
+			$_POST = $params;
+
+			if(isset($_COOKIE['wp-event-manager-submitting-venue-id']) )
+			    unset( $_COOKIE['wp-event-manager-submitting-venue-id'] );				
+			if(isset($_COOKIE['wp-event-manager-submitting-venue-key']) )
+			    unset( $_COOKIE['wp-event-manager-submitting-venue-key'] );
+
+			$GLOBALS['event_manager']->forms->get_form( 'submit-venue', array() );
+			$form_submit_venue_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Venue', 'instance' ) );
+			$event_fields =	$form_submit_venue_instance->merge_with_custom_fields('frontend');
+
+			//submit current event with $_POST values
+			$form_submit_venue_instance->submit_handler();
+
+			$venue_id = $form_submit_venue_instance->get_venue_id();
+
+			if( isset($venue_id) && !empty($venue_id ) )
+			{
+				$venue = get_post( $venue_id );
+
+				$data = [
+					'code' => 200,
+					'venue' => [
+						'venue_id' 	=> $venue_id,
+						'venue_name' => $venue->post_title,
+					],
+					'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Successfully created') . '</div>',
+				];
+			}
+			else
+			{
+				$data = [
+					'code' => 404,
+					'message' => '<div class="wpem-alert wpem-alert-danger">'. $form_submit_venue_instance->get_errors() . '</div>',
+				];
+			}
+		}
+		else
+		{
+			$data = [
+				'code' => 404,
+				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Venue Name is a required field') . '</div>',
+			];
+		}
+
+		wp_send_json( $data );
+
+		wp_die();
 	}
 }
 

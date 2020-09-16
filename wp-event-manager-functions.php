@@ -288,6 +288,15 @@ function get_event_listings( $args = array() ) {
 				    'compare' => 'BETWEEN',
 				    'type'    => 'date'
 				);
+
+				$date_search[] = array(
+					'key'     => '_event_end_date',
+					'value'   => [$dates['start'], $dates['end']],
+				    'compare' => 'BETWEEN',
+				    'type'    => 'date'
+				);
+
+				$date_search['relation'] = 'OR';
 			}
 
 			$query_args['meta_query'][] = $date_search;
@@ -376,13 +385,9 @@ function get_event_listings( $args = array() ) {
 	}
 
 	if ( 'featured' === $args['orderby'] ) {
-
 		$query_args['orderby'] = array(
-
 			'menu_order' => 'ASC',
-
 			'date'       => 'DESC',
-
 			'ID'         => 'DESC',
 		);
 	}
@@ -397,7 +402,7 @@ function get_event_listings( $args = array() ) {
 	if ( 'event_start_date' === $args['orderby'] ) {
 		$query_args['orderby'] ='meta_value';
 		$query_args['meta_key'] ='_event_start_date';
-		$query_args['meta_type'] ='DATE';
+		$query_args['meta_type'] ='DATETIME';
 	}
 	
 	$event_manager_keyword = sanitize_text_field( $args['search_keywords'] ); 
@@ -858,9 +863,15 @@ function event_manager_get_filtered_links( $args = array() ) {
 
 	$return = '';
 	
-	foreach ( $links as $key => $link ) {
+	$i = 1;
+	foreach ( $links as $key => $link ) 
+	{
+		if($i > 1)
+			$return .= ' <a href="#">|</a> ';
 
 		$return .= '<a href="' . esc_url( $link['url'] ) . '" class="' . esc_attr( $key ) . '">' . $link['name'] . '</a>';
+
+		$i++;
 	}
 	
 	return $return;
@@ -1866,43 +1877,68 @@ function event_manager_get_password_rules_hint() {
  * @param null
  * @return string
  */
-function get_all_event_organizer() {
-
-	if ( is_user_logged_in() ) 
-	{
-		$args = apply_filters('get_all_event_organizer_arg',array(
+function get_all_event_organizer($user_id = '', $args = []) 
+{
+	$query_args = apply_filters('get_all_event_organizer_arg',array(
 					'post_type'   => 'event_organizer',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
-					'author'        =>  get_current_user_id(),
-		));
+			));
 
-		$all_organizer = get_posts( $args );
-		return $all_organizer;
+
+	if( isset($user_id) && !empty($user_id) && !is_admin() )
+	{
+		$query_args['author'] = $user_id;	
 	}
 
-	return false;
-}
-
-function get_all_organizer_array(){
-	$all_organizer =get_all_event_organizer();
-	$organizer_array =array();
-
-	if(is_array($all_organizer) )
-	foreach ($all_organizer as $organizer) { 
-		$organizer_array[$organizer->ID] = $organizer->post_title;
-
+	if( isset($args) && !empty($args) )
+	{
+		$query_args = array_merge($query_args,$args);
 	}
-	return $organizer_array;
+
+	$all_organizer = get_posts( $query_args );
+
+	if(!empty($all_organizer))
+	{
+		return $all_organizer;	
+	}
+	else
+	{
+		return false;
+	}	
 }
+
 /**
  * 
  * @since 3.1.14
  * @param null
  * @return string
  */
-function get_event_organizer_count($organizer_id = '') {
+function get_all_organizer_array($user_id = '', $args = [])
+{
+	$all_organizer =get_all_event_organizer($user_id, $args);
 
+	$organizer_array =array();
+
+	if( is_array($all_organizer) && !empty($all_organizer) )
+	{
+		foreach ($all_organizer as $organizer) 
+		{
+			$organizer_array[$organizer->ID] = $organizer->post_title;
+		}	
+	}
+	
+	return $organizer_array;
+}
+
+/**
+ * 
+ * @since 3.1.14
+ * @param null
+ * @return string
+ */
+function get_event_organizer_count($organizer_id = '') 
+{
 	return sizeof(get_event_by_organizer_id($organizer_id));
 }
 
@@ -1912,8 +1948,8 @@ function get_event_organizer_count($organizer_id = '') {
  * @param null
  * @return string
  */
-function get_event_by_organizer_id($organizer_id = '') {
-
+function get_event_by_organizer_id($organizer_id = '') 
+{
 	$args = [
 		'post_type'      => 'event_listing',
 		'post_status'    => array( 'publish' ),
@@ -1939,32 +1975,56 @@ function get_event_by_organizer_id($organizer_id = '') {
  * @param null
  * @return string
  */
-function get_all_event_venue() {
-
-	if ( is_user_logged_in() ) 
-	{
-		$args = apply_filters('get_all_event_venue_arg',array(
+function get_all_event_venue($user_id = '', $args = []) 
+{
+	$query_args = apply_filters('get_all_event_venue_arg',array(
 					'post_type'   => 'event_venue',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
-					'author'=> get_current_user_id(),
-		));
+			));
 
-		$all_venue = get_posts( $args );
-		return $all_venue;
+	if( isset($user_id) && !empty($user_id) && !is_admin() )
+	{
+		$query_args['author'] = $user_id;	
 	}
 
-	return false;
-	
-}
+	if( isset($args) && !empty($args) )
+	{
+		$query_args = array_merge($query_args,$args);
+	}
 
-function get_all_venue_array(){
-	$all_venue =get_all_event_venue();
-	$venue_array =array();
-	
+	$all_venue = get_posts( $query_args );
+
 	if(!empty($all_venue))
 	{
-		foreach ($all_venue as $venue)
+		return $all_venue;	
+	}
+	else
+	{
+		return false;	
+	}
+}
+
+/**
+ * 
+ * @since 3.1.14
+ * @param null
+ * @return string
+ */
+function get_all_venue_array($user_id = '', $args = [], $blank_option = false)
+{
+	$all_venue =get_all_event_venue($user_id);
+	
+	$venue_array =array();
+
+	if( is_array($all_venue) && !empty($all_venue) )
+	{
+		if($blank_option)
+		{
+			$venue_array[''] = __( 'Select Venue', 'wp-event-manager' );
+		}
+
+		foreach ($all_venue as $venue) 
 		{
 			$venue_array[$venue->ID] = $venue->post_title;
 		}	
@@ -1975,28 +2035,39 @@ function get_all_venue_array(){
 
 /**
  * 
+ * @since 3.1.16
+ * @param null
+ * @return string
+ */
+function get_event_venue_count($venue_id = '') 
+{
+	return sizeof(get_event_by_venue_id($venue_id));
+}
+
+/**
+ * 
  * @since 3.1.14
  * @param null
  * @return string
  */
-function get_event_by_venue_id($venue_id = '') {
-	if ( is_user_logged_in() || empty($venue_id) ) {
-		$author_id = get_current_user_id();
-		return get_posts(array(
-			'post_type'      => 'event_listing',
-			'post_status'    => array( 'publish' ),
-			'posts_per_page' => -1,
-			'author'		 => $author_id,
-			'meta_query' => array(
-		        array(
-		            'key' => '_event_venue_ids',
-		            'value' => $venue_id,
-		            'compare' => 'LIKE',
-            		//'type' => 'NUMBER' //<-- add this
-		        )
-		    )
-		));
+function get_event_by_venue_id($venue_id = '') 
+{
+	$args = [
+		'post_type'      => 'event_listing',
+		'post_status'    => array( 'publish' ),
+		'posts_per_page' => -1,
+	];
+
+	if(!empty($venue_id))
+	{
+		$args['meta_query'][] = [
+			'key' => '_event_venue_ids',
+            'value' => $venue_id,
+            'compare' => 'LIKE',
+		];
 	}
+
+	return get_posts($args);
 }
 
 /**
@@ -2005,12 +2076,20 @@ function get_event_by_venue_id($venue_id = '') {
  * @param
  * @return
  **/
-function has_event_organizer_ids( $post = null ) {
-
+function has_event_organizer_ids( $post = null ) 
+{
 	$post = get_post( $post );
 
 	if ( $post->post_type !== 'event_listing' )
 		return;
+
+	if(!empty($post->_event_organizer_ids))
+	{
+		$organizer = get_post($post->_event_organizer_ids[0]);
+
+		if($organizer->post_status != 'publish')
+			return;
+	}
 
 	return !empty($post->_event_organizer_ids) ? true : false;
 }
@@ -2021,8 +2100,8 @@ function has_event_organizer_ids( $post = null ) {
  * @param
  * @return
  **/
-function get_event_organizer_ids( $post = null ) {
-
+function get_event_organizer_ids( $post = null ) 
+{
 	$post = get_post( $post );
 
 	if ( $post->post_type !== 'event_listing' )
@@ -2063,4 +2142,44 @@ function check_organizer_exist($organizer_email)
 	{
 		return false;
 	}
+}
+
+/**
+ * check venue ids
+ * @since 3.1.16
+ * @param
+ * @return
+ **/
+function has_event_venue_ids( $post = null ) 
+{
+	$post = get_post( $post );
+
+	if ( $post->post_type !== 'event_listing' )
+		return;
+
+	if(!empty($post->_event_venue_ids))
+	{
+		$venue = get_post($post->_event_venue_ids);
+
+		if($venue->post_status != 'publish')
+			return;
+	}
+
+	return !empty($post->_event_venue_ids) ? true : false;
+}
+
+/**
+ * get venue ids
+ * @since 3.1.16
+ * @param
+ * @return
+ **/
+function get_event_venue_ids( $post = null ) 
+{
+	$post = get_post( $post );
+
+	if ( $post->post_type !== 'event_listing' )
+		return;
+
+	return !empty($post->_event_venue_ids) ? $post->_event_venue_ids : '';
 }

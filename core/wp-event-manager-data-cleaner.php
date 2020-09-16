@@ -26,6 +26,7 @@ class WP_Event_Manager_Data_Cleaner {
 	private static $custom_post_types = array(
 		'event_listing',
 		'event_organizer',
+		'event_venue',
 	);
 
 	/**
@@ -302,6 +303,24 @@ class WP_Event_Manager_Data_Cleaner {
 		$organizer_dashboard_page_id = get_option( 'event_manager_organizer_dashboard_page_id' );
 		if ( $organizer_dashboard_page_id ) {
 			wp_delete_post( $organizer_dashboard_page_id, true );
+		}
+
+		// Trash the event organizer page.
+		$event_organizers_page_id = get_option( 'event_manager_event_organizers_page_id' );
+		if ( $event_organizers_page_id ) {
+			wp_delete_post( $event_organizers_page_id, true );
+		}
+
+		// Trash the submit venue page.
+		$submit_venue_form_page_id = get_option( 'event_manager_submit_venue_form_page_id' );
+		if ( $submit_venue_form_page_id ) {
+			wp_delete_post( $submit_venue_form_page_id, true );
+		}
+
+		// Trash the venue dashboard page.
+		$venue_dashboard_page_id = get_option( 'event_manager_venue_dashboard_page_id' );
+		if ( $venue_dashboard_page_id ) {
+			wp_delete_post( $venue_dashboard_page_id, true );
 		}
 	}
 

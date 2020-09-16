@@ -234,6 +234,33 @@ class Elementor_Event_Listing extends Widget_Base {
 				'default'     => '',
 			]
 		);
+		/*
+		$this->add_control(
+			'selected_datetime',
+			[
+				'label'       => __( 'Selected Date', 'wp-event-manager' ),
+				'type'        => Controls_Manager::DATE_TIME,
+				'placeholder' => __( 'Enter Date', 'wp-event-manager' ),
+				'default'     => '',
+				'picker_options' => array(
+										'mode' => 'range',
+										'minDate' => 'today',
+										'dateFormat' => 'Y-m-d',
+										'enableTime' => false,
+									)
+			]
+		);
+		*/
+		$this->add_control(
+			'selected_datetime',
+			[
+				'label'       => __( 'Selected Date', 'wp-event-manager' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => __( 'Enter Date', 'wp-event-manager' ),
+				'default'     => '',
+				'description' => '"2021-12-15,2021-12-20" OR "today,2021-12-20" OR "tomorrow,2021-12-20"'
+			]
+		);
 		
 		$this->add_control(
 			'categories',
@@ -289,11 +316,16 @@ class Elementor_Event_Listing extends Widget_Base {
             $event_types = 'event_types="'.$settings['event_types'].'"';
         else
             $event_types = '';
+
+        if(strlen($settings['selected_datetime'])>0)
+            $selected_datetime = 'selected_datetime="'.$settings['selected_datetime'].'"';
+        else
+            $selected_datetime = '';
           
         $featured = !empty($settings['featured']) ? ' featured="'.$settings['featured'].'"' : '';
         $cancelled = !empty($settings['cancelled']) ? ' cancelled="'.$settings['cancelled'].'"' : '';
             
-        $shortcode = '[events show_pagination="'.$settings['show_pagination'].'" per_page="'.$settings['per_page'].'" order="'.$settings['order'].'" orderby="'.$settings['orderby'].'" featured="'.$settings['featured'].'" cancelled="'.$settings['cancelled'].'" show_filters="'.$settings['show_filters'].'" show_categories="'.$settings['show_categories'].'" show_event_types="'.$settings['show_event_types'].'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' ]';
+        $shortcode = '[events show_pagination="'.$settings['show_pagination'].'" per_page="'.$settings['per_page'].'" order="'.$settings['order'].'" orderby="'.$settings['orderby'].'" featured="'.$settings['featured'].'" cancelled="'.$settings['cancelled'].'" show_filters="'.$settings['show_filters'].'" show_categories="'.$settings['show_categories'].'" show_event_types="'.$settings['show_event_types'].'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' ]';
 
         echo do_shortcode($shortcode);
 	}

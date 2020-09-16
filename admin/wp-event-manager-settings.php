@@ -62,22 +62,22 @@ class WP_Event_Manager_Settings {
 										'name'       => 'enable_event_organizer',
 										'std'        => '1',
 										'label'      => __( 'Enable organizer', 'wp-event-manager' ),
-										'cb_label'   => __( 'Display organizer on events.', 'wp-event-manager' ),
+										'cb_label'   => __( 'Disable this to remove the functionality of Organizers on Your Event Website', 'wp-event-manager' ),
 										'desc'       => '',
 										'type'       => 'checkbox',
 										'attributes' => array(),
 								),
-								/*
+								
 								array(
 										'name'       => 'enable_event_venue',
 										'std'        => '1',
 										'label'      => __( 'Enable venue', 'wp-event-manager' ),
-										'cb_label'   => __( 'Display venue on events.', 'wp-event-manager' ),
+										'cb_label'   => __( 'Disable this to remove the functionality of Venue on your Event Website.', 'wp-event-manager' ),
 										'desc'       => '',
 										'type'       => 'checkbox',
 										'attributes' => array(),
 								),
-								*/
+								
 								array(
 										'name'       => 'event_manager_delete_data_on_uninstall',
 										'std'        => '0',
@@ -603,7 +603,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'type'      => 'page'
 					    ),
-					    /*
+					    
 						array(
 
 							'name' 		=> 'event_manager_submit_venue_form_page_id',
@@ -628,7 +628,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'type'      => 'page'
 					    ),
-					    */
+					    
 
 					)
 				),
