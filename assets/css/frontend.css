@@ -3537,3 +3537,15 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events
 .wpem-single-event-page .wpem-single-event-footer div.wpem-listing-accordion.active .wpem-icon-plus {
     display: none;
 }
+.wpem-form-wrapper .wpem-form-group .account-sign-in a, 
+.wpem-form-wrapper .wpem-form-group a.wpem_add_organizer_popup.wpem-modal-button, 
+.wpem-form-wrapper .wpem-form-group a.wpem_add_venue_popup.wpem-modal-button {
+    background: #888;
+    color: #fff;
+    transition: 0.2s all ease-in-out;
+}
+.wpem-form-wrapper .wpem-form-group .account-sign-in a:hover,
+.wpem-form-wrapper .wpem-form-group a.wpem_add_organizer_popup.wpem-modal-button:hover, 
+.wpem-form-wrapper .wpem-form-group a.wpem_add_venue_popup.wpem-modal-button:hover {
+    background: #00a5fa;
+}
