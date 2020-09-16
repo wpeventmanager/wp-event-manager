@@ -45,7 +45,7 @@ class Elementor_Single_Venue extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-google-maps';		
+		return 'eicon-map-pin';		
 	}
 	/**
 	 * Get widget keywords.
