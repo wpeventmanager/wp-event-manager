@@ -677,7 +677,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'post_title'     => $post_title,
 			'post_content'   => $post_content,
 			'post_type'      => 'event_listing',
-			'comment_status' => apply_filters( 'event_manager_allowed_comment', 'open' ),
+			'comment_status' => apply_filters( 'event_manager_allowed_comment', 'closed' ),
 		);
 
 	if ( $update_slug ) {
