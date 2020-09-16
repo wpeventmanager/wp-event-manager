@@ -1577,11 +1577,13 @@ input.wpem-theme-button:hover span {
     margin: 0 auto;
     padding: 20px 30px;
 }
-.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-logo-wrapper {
+.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-logo-wrapper,
+.wpem-single-event-page .wpem-single-event-footer .wpem-venue-profile-wrapper .wpem-venue-profile .wpem-venue-logo-wrapper {
     margin: 10px 0;
     text-align: center;
 }
-.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-logo-wrapper .wpem-organizer-logo {
+.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-logo-wrapper .wpem-organizer-logo,
+.wpem-single-event-page .wpem-single-event-footer .wpem-venue-profile-wrapper .wpem-venue-profile .wpem-venue-logo-wrapper .wpem-venue-logo {
     display: inline-block;
     margin: 0 auto;
 }

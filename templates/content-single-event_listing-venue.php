@@ -36,9 +36,16 @@
 
                         <div class="wpem-venue-inner-wrapper">
                             <div class="wpem-row">
-                                <div class="wpem-col">
+
+                                <div class="wpem-col-md-3 wpem-col-sm-12">
+                                    <div class="wpem-venue-logo-wrapper">
+                                        <div class="wpem-venue-logo"><a><img class="venue_logo" src="https://static.toiimg.com/thumb/msid-76452318,width-1070,height-580,imgsize-1120901,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg" alt="Surat"></a></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="wpem-col-md-9 wpem-col-sm-12">
                                     <div class="wpem-venue-name wpem-heading-text">
-                                        <a href="<?php echo get_the_permalink($venue_id); ?>"><span><?php display_event_venue_name('', '', true, $venue_id); ?></span></a>
+                                        <a href="<?php get_the_permalink($venue_id); ?>"><span><?php display_event_venue_name('', '', true, $venue_id); ?></span></a>
                                     </div>
 
                                     <?php do_action('single_event_listing_venue_description_before', $venue_id); ?>
