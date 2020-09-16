@@ -39,7 +39,11 @@
 
                                 <div class="wpem-col-md-3 wpem-col-sm-12">
                                     <div class="wpem-venue-logo-wrapper">
-                                        <div class="wpem-venue-logo"><a><img class="venue_logo" src="https://static.toiimg.com/thumb/msid-76452318,width-1070,height-580,imgsize-1120901,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg" alt="Surat"></a></div>
+                                        <div class="wpem-venue-logo">
+                                            <a href="<?php echo get_the_permalink($venue_id); ?>">
+                                                <?php display_venue_logo('', '', $venue_id); ?>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 

@@ -94,7 +94,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 						$this->fields[ $group_key ][ $key ]['value'] = $venue->post_content;
 
 					} elseif ( 'venue_logo' === $key ) {
-						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $venue->ID ) ? get_post_thumbnail_id( $venueu->ID ) : get_post_meta( $venue->ID, '_' . $key, true );
+						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $venue->ID ) ? get_post_thumbnail_id( $venue->ID ) : get_post_meta( $venue->ID, '_' . $key, true );
 						
 					} elseif ( ! empty( $field['taxonomy'] ) ) {
 
