@@ -38,7 +38,7 @@
                             <div class="wpem-row">
                                 <div class="wpem-col">
                                     <div class="wpem-venue-name wpem-heading-text">
-                                        <a href="<?php get_the_permalink($venue_id); ?>"><span><?php display_event_venue_name('', '', true, $venue_id); ?></span></a>
+                                        <a href="<?php echo get_the_permalink($venue_id); ?>"><span><?php display_event_venue_name('', '', true, $venue_id); ?></span></a>
                                     </div>
 
                                     <?php do_action('single_event_listing_venue_description_before', $venue_id); ?>
