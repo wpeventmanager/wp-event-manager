@@ -50,7 +50,7 @@ global $event_manager;
 		<!-- Venue Information Fields -->
 		<?php if(get_option('enable_event_venue')) : ?>
 			<?php if ( $venue_fields ) : ?>				
-				<?php do_action( 'submit_event_form_organizer_fields_start' ); ?>
+				<?php do_action( 'submit_event_form_venue_fields_start' ); ?>
 				<?php foreach ( $venue_fields as $key => $field ) : ?>
 					<fieldset class="wpem-form-group fieldset-<?php echo esc_attr( $key ); ?>">
 						<h2 class="wpem-form-title wpem-heading-text"><?php _e( 'Venue Details', 'wp-event-manager' ); ?></h2>
@@ -60,7 +60,7 @@ global $event_manager;
 						</div>
 					</fieldset>
 				<?php endforeach; ?>
-				<?php do_action( 'submit_event_form_organizer_fields_end' ); ?>
+				<?php do_action( 'submit_event_form_venue_fields_start' ); ?>
 			<?php endif; ?>
 		<?php endif; ?>
 		
