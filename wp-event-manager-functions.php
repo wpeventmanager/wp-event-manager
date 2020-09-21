@@ -281,6 +281,13 @@ function get_event_listings( $args = array() ) {
 			else
 			{
 				$dates = json_decode($args['search_datetimes'][0], true);
+				//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+				$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+	
+				//covert datepicker format  into php date() function date format
+				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start'] );
+				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end'] );
 
 				$date_search[] = array(
 					'key'     => '_event_start_date',

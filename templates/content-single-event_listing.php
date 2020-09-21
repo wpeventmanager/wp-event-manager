@@ -232,11 +232,11 @@ do_action('set_single_listing_view_count');
                                 }
                                 else
                                 {
-                                    $current_timestamp = current_time('timestamp');
+                                    $current_timestamp = strtotime(current_time('Y-m-d'));
                                 }
                                 // If site wise timezone selected
 
-                                if (attendees_can_apply() && ((strtotime($registration_end_date) > $current_timestamp) || empty($registration_end_date)) && $registration_addon_form)
+                                if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form)
                                 {
                                     get_event_manager_template('event-registration.php');
                                 }

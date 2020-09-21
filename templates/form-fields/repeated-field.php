@@ -42,6 +42,14 @@
                                         $subfield['name']  = $key . '_' . $subkey . '_' . $index;
                                         $subfield['id']    = $key . '_' . $subkey . '_' . $index;
                                         $subfield['value'] = isset($value[$subkey]) ? $value[$subkey] : '';
+                                        if($subkey === 'ticket_quantity' && isset($value['product_id']))
+                                        {
+                                            $stock = get_post_meta($value['product_id'], '_stock', true);
+                                            if( isset($stock) && !empty($stock) ){
+                                                $subfield['value'] = $stock;
+                                            }
+                                        }
+                                        
                                         get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
                                         ?>
                                     </div>
