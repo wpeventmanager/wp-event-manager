@@ -111,7 +111,7 @@ do_action('set_single_listing_view_count');
                                 $GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
                                 $form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
                                 $custom_fields = $form_submit_event_instance->get_event_manager_fieldeditor_fields();
-                                $default_fields = $form_submit_event_instance->get_default_fields( );
+                                $default_fields = $form_submit_event_instance->get_default_event_fields();
                                 
                                 $additional_fields = [];
                                 if( !empty($custom_fields) && isset($custom_fields) && !empty($custom_fields['event']) )
@@ -180,6 +180,28 @@ do_action('set_single_listing_view_count');
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
                                                                 <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value);; ?></p>
+                                                            </div>
+                                                        </div>
+
+                                                    <?php elseif( $field['type'] == 'file' ) : ?>
+                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                            <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong></p>
+                                                            <div class="wpem-additional-info-block-details-content-items wpem-additional-file-slider">
+                                                                <?php if( is_array($field_value) ) : ?>
+                                                                    <?php foreach ($field_value as $file) : ?>
+                                                                        <?php if( in_array(pathinfo($file, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg']) ) : ?>
+                                                                            <div><img src="<?php echo $file; ?>"></div>
+                                                                        <?php else : ?>
+                                                                            <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $field_value; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a></div>
+                                                                        <?php endif; ?>
+                                                                    <?php endforeach; ?>
+                                                                <?php else : ?>
+                                                                    <?php if( in_array(pathinfo($field_value, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg']) ) : ?>
+                                                                        <div><img src="<?php echo $field_value; ?>"></div>
+                                                                    <?php else : ?>
+                                                                        <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $field_value; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a></div>
+                                                                    <?php endif; ?>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
 
