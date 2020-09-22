@@ -19,6 +19,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 		return self::$_instance;
 	}
+
 	/**
 	 * Constructor.
 	 */
@@ -90,11 +91,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	public function get_event_id() {
 		return absint( $this->event_id );
 	}
+
 	/**
 	 * init_fields function.
 	 */
 	public function init_fields() {
-	
 		if ( $this->fields ) {
 			return;
 		}
@@ -126,9 +127,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * @return fields Array
 	 **/
 	public function get_default_event_fields( ) {
-​
+
 		$current_user_id = get_current_user_id();
-​
+
 		$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
 		switch ( $allowed_registration_method ) {
 			case 'email' :
@@ -144,7 +145,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				$registration_method_placeholder = __( 'Enter an email address or website URL', 'wp-event-manager' );
 			break;
 		}
-​
+
 		return apply_filters( 'submit_event_form_fields', array(
 			'event' => array(
 				'event_title' => array(
@@ -154,7 +155,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => __('Event title','wp-event-manager'),
 					'priority'    => 1
 				),
-​
+
 				'event_type' => array(
 					'label'       => __( 'Event Type', 'wp-event-manager' ),
 					'type'        =>  get_option('event_manager_multiselect_event_type') ?  'term-multiselect' : 'term-select',
@@ -164,7 +165,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'default'     => 'meeting-or-networking-event',
 					'taxonomy'    => 'event_listing_type'
 				),
-​
+
 				'event_category' => array(
 					'label'       => __( 'Event Category', 'wp-event-manager' ),
 					'type'        => get_option('event_manager_multiselect_event_category') ?  'term-multiselect' : 'term-select',
@@ -174,7 +175,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'default'     => '',
 					'taxonomy'    => 'event_listing_category'
 				),
-​
+
 				'event_online' => array(
 			        'label'	=> __('Online Event','wp-event-manager'),							      	
 			        'type'  => 'radio',
@@ -186,7 +187,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'priority'    => 4,
 			        'required'=>true
 		 		),
-​
+
 		 		/*
 		 		'event_venue_name' => array(
 					'label'       => __( 'Venue Name', 'wp-event-manager' ),
@@ -196,7 +197,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 5
 				),
 				*/
-​
+
 				/*	
 				'event_address' => array(
 					'label'       => __( 'Address', 'wp-event-manager' ),
@@ -238,7 +239,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						'png'  => 'image/png'
 					)
 				),
-​
+
 				'event_description' => array(
 					'label'       => __( 'Description', 'wp-event-manager' ),
 					'type'        => 'wp-editor',
@@ -254,7 +255,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => $registration_method_placeholder,
 					'priority'    => 11
 				),
-​
+
 				'event_video_url' => array(
 					'label'=> __( 'Video URL', 'wp-event-manager' ),
 					'type'        => 'text',
@@ -270,7 +271,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 12,
 					'required'=>true	  
 				),
-​
+
 				'event_start_time' => array(  
 					'label'=> __( 'Start Time', 'wp-event-manager' ),
 					'placeholder'  => __( 'Please enter event start time', 'wp-event-manager' ),								
@@ -278,7 +279,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 13,
 					'required'=>true	  
 				),
-​
+
 				'event_end_date' => array(
 			        'label'=> __( 'End Date', 'wp-event-manager' ),
 			        'placeholder'  => __( 'Please enter event end date', 'wp-event-manager' ),							        
@@ -294,7 +295,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 15,
 					'required'=>true	  
 				),
-​
+
 				'event_timezone' => array(
 					'label'=> __( 'Event timezone', 'wp-event-manager' ),
 					'placeholder'  	=> __( 'Please select timezone for event', 'wp-event-manager' ),
@@ -305,7 +306,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'default'	=> '+5:00'
 					//'value'		=> ''
 				),
-​
+
 				'event_ticket_options' => array(
 			        'label'=> __( 'Ticket Options', 'wp-event-manager' ),							      
 			        'type'  => 'radio',
@@ -317,7 +318,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'priority'    => 16,
 			        'required'=>true
 		 		),
-​
+
                 'event_ticket_price' => array(
 			        'label'=> __( 'Ticket Price', 'wp-event-manager' ),                              
 			        'placeholder'  => __( 'Please enter ticket price', 'wp-event-manager' ),							        
@@ -325,7 +326,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 17,
 			        'required'=>true
 				),
-​
+
 				'event_registration_deadline' => array(
 					'label'       => __( 'Registration Deadline', 'wp-event-manager' ),	
 					'type'        => 'date',
@@ -335,7 +336,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				),
 										 
 			),
-​
+
 			'organizer' => array(
 				'event_organizer_ids' => array(
 					'label'       	=> __( 'Organizer', 'wp-event-manager' ),		      
@@ -362,7 +363,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			
 		) );
 	}
-
 
 	/**
 	 * Validate the posted fields
@@ -1059,7 +1059,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * This function will initilize default fields and return as array
 	 * @return fields Array
 	 **/
-	public  function get_default_fields() {
+	public  function get_default_fields( ) {
 
 		if(empty($this->fields)){
 			// Make sure fields are initialized and set
