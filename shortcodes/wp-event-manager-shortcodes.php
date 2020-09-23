@@ -1303,7 +1303,7 @@ class WP_Event_Manager_Shortcodes {
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
 
 		if ( $past_events->have_posts() ) : ?>
-			<div class="event_listings">
+			<div class="past_event_listings">
 
 				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>'all')); ?>
 
@@ -1315,7 +1315,7 @@ class WP_Event_Manager_Shortcodes {
 
 				<?php if ($past_events->found_posts > $per_page) : ?>
 	                <?php if ($show_pagination == "true") : ?>
-	                    <div class="event-organizer-pagination">
+	                    <div class="event-organizer-pagination wpem-col-12">
 	                    	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
 	                    </div> 
 	                <?php endif; ?>
