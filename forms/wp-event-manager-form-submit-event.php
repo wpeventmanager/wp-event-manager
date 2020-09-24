@@ -841,7 +841,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				//save event start date according to mysql date format with event start time
 				elseif( $key === 'event_start_date'  ){
 
-					if(isset( $values[ $group_key ][ $key ] )  && !empty($values[ $group_key ][ $key ])){
+					if(isset( $values[ $group_key ][ $key ] ) && !empty($values[ $group_key ][ $key ]) && !empty($values[ $group_key ][ $key ])){
 						
 						if ( isset( $values[ $group_key ][ 'event_start_time' ] ) && !empty($values[ $group_key ][ 'event_start_time' ]))
 							$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_start_time' ] );
@@ -862,7 +862,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 				elseif( $key ==='event_end_date' ){
 					//save event end date according to mysql date format with event end time
-					if(isset( $values[ $group_key ][ $key ] ) && isset( $values[ $group_key ][ 'event_end_time' ] )){
+					if( isset( $values[ $group_key ][ $key ] ) && !empty($values[ $group_key ][ $key ]) && isset( $values[ $group_key ][ 'event_end_time' ] )){
 						
 						if(isset( $values[ $group_key ][ 'event_end_time' ] ) && !empty($values[ $group_key ][ 'event_end_time' ] ))
 							$end_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_end_time' ] );
