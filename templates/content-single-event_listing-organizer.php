@@ -60,6 +60,7 @@
                                                         <?php do_action('single_event_listing_organizer_social_start', $organizer_id); ?>
                                                         <?php
                                                         $organizer_website  = get_organizer_website($organizer_id);
+                                                        $organizer_phone = get_organizer_phone($organizer_id);
                                                         $organizer_facebook = get_organizer_facebook($organizer_id);
                                                         $organizer_instagram = get_organizer_instagram($organizer_id);
                                                         $organizer_twitter  = get_organizer_twitter($organizer_id);
@@ -70,6 +71,14 @@
                                                         {
                                                             ?>
                                                             <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php _e('Website', 'wp-event-manager'); ?></a></div>
+                                                            <?php
+                                                        }
+                                                        if (!empty($organizer_phone))
+                                                        {
+                                                            ?>
+                                                            <div class="wpem-social-icon wpem-phone">
+                                                                <a href="tel:<?php echo ($organizer_phone); ?>" target="_blank" title="<?php _e('Get Connect on Phone', 'wp-event-manager'); ?>"><?php _e('Phone', 'wp-event-manager'); ?></a>
+                                                            </div>
                                                             <?php
                                                         }
                                                         if (!empty($organizer_facebook))
@@ -164,6 +173,7 @@
                                                 <?php do_action('single_event_listing_organizer_social_start'); ?>
                                                 <?php
                                                 $organizer_website  = get_organizer_website();
+                                                $organizer_phone = get_organizer_phone();
                                                 $organizer_facebook = get_organizer_facebook();
                                                 $organizer_instagram = get_organizer_instagram();
                                                 $organizer_twitter  = get_organizer_twitter();
@@ -174,6 +184,14 @@
                                                 {
                                                     ?>
                                                     <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php _e('Website', 'wp-event-manager'); ?></a></div>
+                                                    <?php
+                                                }
+                                                if (!empty($organizer_phone))
+                                                {
+                                                    ?>
+                                                    <div class="wpem-social-icon wpem-phone">
+                                                        <a href="tel:<?php echo ($organizer_phone); ?>" target="_blank" title="<?php _e('Get Connect on Phone', 'wp-event-manager'); ?>"><?php _e('Phone', 'wp-event-manager'); ?></a>
+                                                    </div>
                                                     <?php
                                                 }
                                                 if (!empty($organizer_facebook))
