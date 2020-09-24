@@ -48,6 +48,11 @@ class WP_Event_Manager_Install {
 			update_option( 'event_manager_event_dashboard_page_id', $page_id );
 		}
 
+		if ( false === get_option( 'wp_event_manager_db_version', false ) )
+		{
+			update_option( 'wp_event_manager_db_version', '3.1.13' );
+		}
+
 		delete_transient( 'wp_event_manager_addons_html' );
 
 		update_option( 'wp_event_manager_version', EVENT_MANAGER_VERSION );
