@@ -99,6 +99,42 @@ class Elementor_Event_Summary extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'width',
+			[
+				'default' 	=> '250px',
+				'label'     => __( 'Width', 'wp-event-manager' ),
+				'type'      => Controls_Manager::TEXT,
+			]
+		);
+
+		$this->add_control(
+			'align',
+			[
+				'label' => __( 'Align', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'left',
+				'options' => [
+					'left' => __( 'Left', 'wp-event-manager' ),
+					'center' => __( 'Center', 'wp-event-manager' ),
+					'right' => __( 'Right', 'wp-event-manager' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'featured',
+			[
+				'label' => __( 'Featured', 'wp-event-manager' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'false',
+				'options' => [
+					'false' => __( 'False', 'wp-event-manager' ),
+					'true' => __( 'True', 'wp-event-manager' ),
+				],
+			]
+		);
+
 		$this->end_controls_section();
 
 	}
@@ -114,10 +150,26 @@ class Elementor_Event_Summary extends Widget_Base {
 		$settings = $this->get_settings_for_display();	
 		
 		if($settings['event_id']>0)
-		    $event_id = 'id='.$settings['event_id'];
+		    $event_id = 'id="'.$settings['event_id'].'"';
 	    else
 	        $event_id = '';
-	    echo do_shortcode('[event_summary '.$event_id.' ]');
+
+	    if($settings['width']>0)
+		    $width = 'width="'.$settings['width'].'"';
+	    else
+	        $width = '';
+
+	    if($settings['align'] != '')
+		    $align = 'align="'.$settings['align'].'"';
+	    else
+	        $align = '';
+
+	    if($settings['featured'] != '')
+		    $featured = 'featured="'.$settings['featured'].'"';
+	    else
+	        $featured = '';
+
+	    echo do_shortcode('[event_summary '.$event_id.' '.$width.' '.$align.' '.$featured.' ]');
 	}
 
 	/**
@@ -127,9 +179,5 @@ class Elementor_Event_Summary extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {
-		?>
-		<div class="elementor-shortcode"></div>
-		<?php
-	}
+	protected function _content_template() {}
 }
