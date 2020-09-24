@@ -140,14 +140,6 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'priority'    => 5
 				),
 
-				'organizer_phone' => array(
-								'label'       => __( 'Organization Phone', 'wp-event-manager' ),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __( 'Enter your phone number', 'wp-event-manager' ),
-								'priority'    => 5
-				),
-
 				'organizer_website' => array(
 								'label'       => __( 'Website', 'wp-event-manager' ),
 								'type'        => 'text',

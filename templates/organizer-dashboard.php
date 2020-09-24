@@ -43,7 +43,6 @@ if(!empty($submit_organizer )) : ?>
 										<?php do_action('single_event_listing_organizer_social_start', $organizer->ID);
 
 									   	$organizer_website  = get_organizer_website($organizer);
-									   	$organizer_phone = get_organizer_phone($organizer);
 									   	$organizer_facebook = get_organizer_facebook($organizer);
 									   	$organizer_instagram = get_organizer_instagram($organizer);
 									   	$organizer_twitter  = get_organizer_twitter($organizer);
@@ -57,15 +56,6 @@ if(!empty($submit_organizer )) : ?>
 										   	</div>
 										   	<?php
 									   	}
-
-									   	if (!empty($organizer_phone))
-			                            {
-			                                ?>
-			                                <div class="wpem-social-icon wpem-phone">
-			                                    <a href="tel:<?php echo ($organizer_phone); ?>" target="_blank" title="<?php _e('Get Connect on Phone', 'wp-event-manager'); ?>"><?php _e('Phone', 'wp-event-manager'); ?></a>
-			                                </div>
-			                                <?php
-			                            }
 
 									   	if (!empty($organizer_facebook))
 									   	{
