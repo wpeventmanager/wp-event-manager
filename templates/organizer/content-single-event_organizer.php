@@ -79,7 +79,7 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                 <div class="wpem-organizer-infomation-wrapper">
 
                     <div class="wpem-organizer-name wpem-heading-text">
-                        <span><?php display_organizer_name('', '', true, $organizer); ?></span>
+                        <span><?php echo $organizer->post_title; ?></span>
                     </div>
 
                     <div class="wpem-organizer-email"><?php printf(__('%s', 'wp-event-manager'), $organizer_email); ?></div>
