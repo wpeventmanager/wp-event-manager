@@ -106,6 +106,10 @@ class WP_Event_Manager_Install {
 				'page_title' => 'Venue Dashboard',
 				'page_content' => '[venue_dashboard]',
 			],
+			'event_venues' => [
+				'page_title' => 'Event Venues',
+				'page_content' => '[event_venues]',
+			],
 		];
 
 		foreach ( $pages_to_create as $page_slug => $page ) 

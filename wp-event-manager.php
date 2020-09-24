@@ -80,7 +80,7 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
-		define( 'EVENT_MANAGER_VERSION', '3.1.16' );
+		define( 'EVENT_MANAGER_VERSION', '3.1.17' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -181,7 +181,7 @@ class WP_Event_Manager {
 
         	$locale = apply_filters('plugin_locale', get_locale(), $domain);
 
-		load_textdomain( $domain, WP_LANG_DIR . "/wp-event-manager/".$domain."-" .$locale. ".mo" );
+		load_textdomain( $domain, WP_LANG_DIR . "/wp-event-manager-stripe-split-payment/".$domain."-" .$locale. ".mo" );
 
 		load_plugin_textdomain($domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
