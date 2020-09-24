@@ -3595,3 +3595,7 @@ p.post-submitted-success-green-message a {
 .wpem-icon>a::before {
     font-family: wp-event-manager
 }
+
+.wpem-single-event-page .wpem-single-event-footer .wpem-venue-wrapper .wpem-venue-profile .wpem-venue-name.wpem-heading-text a:hover {
+    color:#00a5fa;
+}

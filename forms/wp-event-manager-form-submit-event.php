@@ -445,9 +445,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			}
 		}
 
-		if( strtotime($values['event']['event_start_date']) > strtotime($values['event']['event_end_date']) )
+		if( isset($values['event']['event_start_date']) && !empty($values['event']['event_start_date']) && isset($values['event']['event_end_date']) && !empty($values['event']['event_end_date']) )
 		{
-			return new WP_Error( 'validation-error', __( 'Event end date must be greater than the event start date.', 'wp-event-manager' ) );
+			if( $values['event']['event_start_date'] > $values['event']['event_end_date'] )
+			{
+				return new WP_Error( 'validation-error', __( 'Event end date must be greater than the event start date.', 'wp-event-manager' ) );
+			}	
 		}
 		
 		// Registration method
