@@ -1,4 +1,6 @@
-<?php $organizer = get_post($organizer_id); ?>
+<?php $organizer = get_post($organizer_id);
+$organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
+?>
 
 <div class="wpem-single-organizer-profile-wrapper" id="wpem_organizer_profile">
     <div class="wpem-organizer-profile">
@@ -77,7 +79,7 @@
                 <div class="wpem-organizer-infomation-wrapper">
 
                     <div class="wpem-organizer-name wpem-heading-text">
-                        <span><?php display_organizer_name('', '', true, $organizer); ?></span>
+                        <span><?php echo $organizer->post_title; ?></span>
                     </div>
 
                     <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), get_organizer_description($organizer)); ?></div>

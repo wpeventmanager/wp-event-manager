@@ -175,6 +175,8 @@ class WP_Event_Manager_Setup {
 				'submit_venue_form'		=> '[submit_venue_form]',
 
 				'venue_dashboard'   	=> '[venue_dashboard]',
+
+				'event_venues'   		=> '[event_venues]',
 			);
 
 			foreach ( $pages_to_create as $page => $content ) {
@@ -323,7 +325,9 @@ class WP_Event_Manager_Setup {
 								<td><input type="text" value="<?php echo esc_attr( _x( 'Event Organizers', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
 
 								<td>
-									<p><?php _e( 'This page allows peoples to manage and edit their own organizers from the front-end.', 'wp-event-manager' ); ?></p>
+									<p><?php _e( 'This page allows peoples to show organizers from the front-end.', 'wp-event-manager' ); ?></p>
+
+									<p><?php _e( 'In case if you do not want to allow your users to show organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
 								</td>
 
 								<td><code>[event_organizers]</code></td>
@@ -355,6 +359,20 @@ class WP_Event_Manager_Setup {
 								</td>
 
 								<td><code>[venue_dashboard]</code></td>
+							</tr>
+
+							<tr>
+								<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_venues]" /></td>
+
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Event Venues', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[event_venues]" /></td>
+
+								<td>
+									<p><?php _e( 'This page allows peoples to show venues from the front-end.', 'wp-event-manager' ); ?></p>
+
+									<p><?php _e( 'In case if you do not want to allow your users to show venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
+								</td>
+
+								<td><code>[event_venues]</code></td>
 							</tr>
 
 						</tbody>

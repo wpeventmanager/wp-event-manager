@@ -165,7 +165,7 @@ do_action('set_single_listing_view_count');
                                                         <div class="wpem-col-12 wpem-additional-info-block-textarea">
                                                             <div class="wpem-additional-info-block-details-content-items">
                                                                 <p class="wpem-additional-info-block-title"><strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?></strong></p>
-                                                                <p class="wpem-additional-info-block-textarea-text"><?php printf( __( '%s', 'wp-event-manager' ),  $field_value);; ?></p>
+                                                                <p class="wpem-additional-info-block-textarea-text"><?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
                                                             </div>
                                                         </div>
 
@@ -179,7 +179,7 @@ do_action('set_single_listing_view_count');
                                                     <?php elseif($field['type'] == 'select') : ?>
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value);; ?></p>
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
                                                             </div>
                                                         </div>
 
@@ -240,7 +240,7 @@ do_action('set_single_listing_view_count');
 
                                 <?php
                                 $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
-                                $registration_end_date = get_event_registration_end_date();
+                                $registration_end_date = get_event_registration_end_date(). ' 23:59:59';
                                 /* $registration_end_date = WP_Event_Manager_Date_Time::date_parse_from_format ( $date_format, $registration_end_date ); */
 
                                 $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
@@ -254,7 +254,7 @@ do_action('set_single_listing_view_count');
                                 }
                                 else
                                 {
-                                    $current_timestamp = strtotime(current_time('Y-m-d'));
+                                    $current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
                                 }
                                 // If site wise timezone selected
 
@@ -457,6 +457,5 @@ do_action('set_single_listing_view_count');
                     }
                 }]
         });
-
     });
 </script>

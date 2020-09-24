@@ -173,6 +173,45 @@
     color: #fff
 }
 
+.event-manager-pagination-2 {
+    text-align: center;
+    display: inline-block;
+    width: 100%
+}
+
+.event-manager-pagination-2 ul.page-numbers {
+    margin: 0 auto;
+    padding: 0;
+    display: inline-flex
+}
+
+.event-manager-pagination-2 ul.page-numbers li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 2px
+}
+
+.event-manager-pagination-2 ul.page-numbers li .page-numbers {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    padding: 5px 10px;
+    display: inline-block;
+    border: 2px solid #dadada;
+    background: #fff;
+    color: #555
+}
+
+.event-manager-pagination-2 ul.page-numbers li .page-numbers:hover {
+    border-color: #999
+}
+
+.event-manager-pagination-2 ul.page-numbers li .page-numbers.current {
+    border-color: #00a5fa;
+    background: #00a5fa;
+    color: #fff
+}
+
 .wpem-main .wpem-heading-text {
     font-weight: 400
 }
@@ -1740,16 +1779,14 @@
     margin: 0 auto
 }
 
-.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-name,
-.wpem-single-event-page .wpem-single-event-footer .wpem-venue-profile-wrapper .wpem-venue-profile .wpem-venue-name {
+.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-name,.wpem-single-event-page .wpem-single-event-footer .wpem-venue-profile-wrapper .wpem-venue-profile .wpem-venue-name {
     font-size: 21px;
     line-height: 25px;
     margin: 10px 0;
     font-weight: 700
 }
 
-.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-short-info,
-.wpem-single-event-page .wpem-single-event-footer .wpem-venue-profile-wrapper .wpem-venue-profile .wpem-venue-short-info {
+.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-short-info,.wpem-single-event-page .wpem-single-event-footer .wpem-venue-profile-wrapper .wpem-venue-profile .wpem-venue-short-info {
     margin-bottom: 15px;
     word-break: break-word;
     color: #979797
@@ -2609,6 +2646,19 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
         margin: 0
     }
 
+    .event-manager-pagination-2 ul.page-numbers {
+        display: inline-block;
+        text-align: center
+    }
+
+    .event-manager-pagination-2 ul.page-numbers li {
+        padding: 3px
+    }
+
+    .event-manager-pagination-2 ul.page-numbers li .page-numbers {
+        margin: 0
+    }
+
     .wpem-modal .wpem-modal-content-wrapper .wpem-modal-content .wpem-theme-button {
         margin: 5px 0;
         width: 100%
@@ -3353,7 +3403,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block tbody tr:last-chi
     transform: translate(-50%,-100%)
 }
 
-div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext span {
+div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext span, div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-events-list.wpem-tooltiptext span {
     display: block;
     text-align: center;
     padding: 5px 0;
@@ -3361,7 +3411,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events
     border-bottom: 1px solid #ccc
 }
 
-div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext span:last-child {
+div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext span:last-child, div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-events-list.wpem-tooltiptext span:last-child {
     border: none
 }
 
@@ -3540,4 +3590,12 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events
 
 p.post-submitted-success-green-message a {
     color: #fff
+}
+
+.wpem-icon>a::before {
+    font-family: wp-event-manager
+}
+
+.wpem-single-event-page .wpem-single-event-footer .wpem-venue-wrapper .wpem-venue-profile .wpem-venue-name.wpem-heading-text a:hover {
+    color:#00a5fa;
 }

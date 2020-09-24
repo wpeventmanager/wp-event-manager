@@ -15,7 +15,7 @@
         <div class="wpem-venue-infomation-wrapper">
 
             <div class="wpem-venue-name wpem-heading-text">
-                <span><?php echo get_event_venue_name($venue); ?></span>
+                <span><?php echo $venue->post_title; ?></span>
             </div>
 
             <div class="wpem-venue-description"><?php printf(__('%s', 'wp-event-manager'), get_venue_description($venue)); ?></div>

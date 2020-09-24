@@ -1294,6 +1294,8 @@ class WP_Event_Manager_Shortcodes {
 			$args_past['meta_type'] ='DATETIME';
 		}
 
+		$args_past = apply_filters( 'event_manager_past_event_listings_args', $args_past );
+
 		$past_events = new WP_Query( $args_past );
 
 		wp_reset_query();
@@ -1303,7 +1305,7 @@ class WP_Event_Manager_Shortcodes {
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
 
 		if ( $past_events->have_posts() ) : ?>
-			<div class="event_listings">
+			<div class="past_event_listings">
 
 				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>'all')); ?>
 
@@ -1315,7 +1317,7 @@ class WP_Event_Manager_Shortcodes {
 
 				<?php if ($past_events->found_posts > $per_page) : ?>
 	                <?php if ($show_pagination == "true") : ?>
-	                    <div class="event-organizer-pagination">
+	                    <div class="event-organizer-pagination wpem-col-12">
 	                    	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
 	                    </div> 
 	                <?php endif; ?>
@@ -1330,7 +1332,7 @@ class WP_Event_Manager_Shortcodes {
 
 		wp_reset_postdata();
 		
-		$event_listings_output = apply_filters( 'event_manager_event_listings_output', ob_get_clean() );
+		$event_listings_output = apply_filters( 'event_manager_past_event_listings_output', ob_get_clean() );
 
 		return  $event_listings_output;
 		
@@ -1839,6 +1841,8 @@ class WP_Event_Manager_Shortcodes {
 			$args['meta_type'] ='DATETIME';
 		}
 
+		$args = apply_filters( 'event_manager_upcoming_event_listings_args', $args );
+
 		$upcoming_events = new WP_Query( $args );
 
 		wp_reset_query();
@@ -1875,7 +1879,7 @@ class WP_Event_Manager_Shortcodes {
 
 		wp_reset_postdata();
 		
-		$event_listings_output = apply_filters( 'event_manager_event_listings_output', ob_get_clean() );
+		$event_listings_output = apply_filters( 'event_manager_upcoming_event_listings_output', ob_get_clean() );
 
 		return  $event_listings_output;
 		

@@ -308,12 +308,12 @@ class Elementor_Event_Listing extends Widget_Base {
             $keywords = '';
             
         if(strlen($settings['categories'])>0)
-            $categories = 'categories="'.$settings['categories'].'"';
+            $categories = 'selected_category="'.$settings['categories'].'"';
         else
             $categories = '';
             
         if(strlen($settings['event_types'])>0)
-            $event_types = 'event_types="'.$settings['event_types'].'"';
+            $event_types = 'selected_event_type="'.$settings['event_types'].'"';
         else
             $event_types = '';
 

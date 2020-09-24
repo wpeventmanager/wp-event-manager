@@ -78,15 +78,23 @@ class WP_Event_Manager_Writepanels {
 		**/
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
+
+				if($field_key === 'registration')
+				{
+					$field_value['value'] = $registration;
+				}
 				
 				if( strpos($field_key, '_') !== 0 ) {
 					$fields['_'.$field_key]  = $field_value;	
 				}else{
 					$fields[$field_key]  = $field_value;	
 				}
+
+				
 			}
 			unset($fields[$group_key]);
 		}
+
 		$fields = apply_filters( 'event_manager_event_listing_data_fields', $fields );
 
 		if(isset($fields['_event_title']))
