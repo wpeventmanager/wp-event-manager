@@ -1,4 +1,5 @@
 <?php
+global $post;
 $start_date = get_event_start_date();
 $start_time = get_event_start_time();
 $end_date   = get_event_end_date();
@@ -7,7 +8,7 @@ $event_type = get_event_type();
 if (is_array($event_type) && isset($event_type[0]))
     $event_type = $event_type[0]->slug;
 
-$thumbnail  = get_event_thumbnail();
+$thumbnail  = get_event_thumbnail($post,'full');
 ?>
 
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-<?php echo apply_filters('event_manager_event_wpem_column', '4'); ?>">
