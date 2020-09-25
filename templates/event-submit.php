@@ -60,7 +60,7 @@ global $event_manager;
 						</div>
 					</fieldset>
 				<?php endforeach; ?>
-				<?php do_action( 'submit_event_form_venue_fields_start' ); ?>
+				<?php do_action( 'submit_event_form_venue_fields_end' ); ?>
 			<?php endif; ?>
 		<?php endif; ?>
 		
