@@ -3599,3 +3599,9 @@ p.post-submitted-success-green-message a {
 .wpem-single-event-page .wpem-single-event-footer .wpem-venue-wrapper .wpem-venue-profile .wpem-venue-name.wpem-heading-text a:hover {
     color:#00a5fa;
 }
+
+.wpem-main.wpem-single-event-widget .wpem-event-banner .wpem-event-banner-img img {
+    width: 100%;
+    height: auto;
+    max-width:100%;
+} 
