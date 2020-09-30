@@ -10,7 +10,8 @@ do_action('set_single_listing_view_count');
 
     <div class="wpem-main wpem-single-event-page">
         <?php if (get_option('event_manager_hide_expired_content', 1) && 'expired' === $post->post_status): ?>
-            <div class="event-manager-info wpem-alert wpem-alert-danger" ><?php _e('This listing has been expired.', 'wp-event-manager'); ?></div>
+            <div class="wpem-alert wpem-alert-danger" ><?php _e('This listing has been expired.', 'wp-event-manager'); ?></div>
+        
         <?php else: ?>
             <?php if (is_event_cancelled()): ?>
                 <div class="wpem-alert wpem-alert-danger">
@@ -54,6 +55,7 @@ do_action('set_single_listing_view_count');
 
                     </div>
                 </div>
+
                 <div class="wpem-single-event-body">
                     <div class="wpem-row">
                         <div class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-left-content">
@@ -402,13 +404,9 @@ do_action('set_single_listing_view_count');
                                         </div>
                                     </div>
                                 <?php endif; ?>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
 
                 <?php
@@ -425,11 +423,11 @@ do_action('set_single_listing_view_count');
                  */
                 do_action('single_event_listing_end');
                 ?>
-            <?php endif; ?>
-            <!-- Main if condition end -->
-        </div>
-        <!-- / wpem-wrapper end  -->
-
+            
+            </div>
+            <!-- / wpem-wrapper end  -->            
+        <?php endif; ?>
+        <!-- Main if condition end -->
     </div>
     <!-- / wpem-main end  -->
 </div>
