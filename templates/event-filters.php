@@ -71,15 +71,20 @@
 					//covert datepicker format  into php date() function date format
 					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 
+					if($start_date == 'today')
+					{
+						$start_date = date($php_date_format);
+					}
+					else if($start_date == 'tomorrow')
+					{
+						$start_date = date($php_date_format, strtotime('+1 day'));
+					}
+
 					$arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $start_date );
 					$arr_selected_datetime['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $end_date );
 
-
-
-					$date_format 		= WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
-
-					$arr_selected_datetime['start'] 	= date_i18n( $date_format, strtotime( $arr_selected_datetime['start'] ) );
-					$arr_selected_datetime['end'] 	= date_i18n( $date_format, strtotime( $arr_selected_datetime['end'] ) );
+					$arr_selected_datetime['start'] 	= date_i18n( $php_date_format, strtotime( $arr_selected_datetime['start'] ) );
+					$arr_selected_datetime['end'] 	= date_i18n( $php_date_format, strtotime( $arr_selected_datetime['end'] ) );
 
 					$selected_datetime = json_encode($arr_selected_datetime);
 				}
