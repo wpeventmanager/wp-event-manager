@@ -547,7 +547,7 @@ class WP_Event_Manager_Writepanels {
 			?>
 				<p class="form-field">
 					<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>
-					<input type="number" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" />
+					<input type="number" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" min="<?php echo isset( $field['min'] ) ? esc_attr( $field['min'] ) : '0'; ?>"  max="<?php echo isset( $field['max'] ) ? esc_attr( $field['max'] ) : ''; ?>" />
 				</p>
 				<?php
 			}
