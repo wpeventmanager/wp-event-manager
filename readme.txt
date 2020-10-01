@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
 Tested up to: 5.5
-Stable tag: 3.1.16
+Stable tag: 3.1.17
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -310,6 +310,15 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 == Changelog ==
+
+= 3.1.17 [Sep 24TH, 2020] =
+
+Fixed - Date and event type search filter improved.
+Fixed - Repeated field updated. 
+Fixed - Venue and orgaizer single template improved.
+Fixed - Elementor shortcode improved.
+Fixed - Some js and css tweaks.
+
 
 = 3.1.16 [Sep 16TH, 2020] =
 
