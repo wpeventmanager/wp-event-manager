@@ -444,8 +444,10 @@ function get_event_listings( $args = array() ) {
 	do_action( 'before_get_event_listings', $query_args, $args );
 	// Cache results.
 		if ( apply_filters( 'get_event_listings_cache_results', true ) ) {
-			$to_hash              = wp_json_encode( $query_args );
-			$query_args_hash      = 'em_' . md5( $to_hash . EVENT_MANAGER_VERSION ) . WP_Event_Manager_Cache_Helper::get_transient_version( 'get_event_listings' );
+			
+			$to_hash         = wp_json_encode( $query_args ) . apply_filters( 'wpml_current_language', '' );
+			$query_args_hash = 'em_' . md5( $to_hash . EVENT_MANAGER_VERSION ) . WP_Event_Manager_Cache_Helper::get_transient_version( 'get_event_listings' );
+			
 			$result               = false;
 			$cached_query_results = true;
 			$cached_query_posts   = get_transient( $query_args_hash );
@@ -490,17 +492,17 @@ function get_event_listings( $args = array() ) {
 		} else {
 			$result = new WP_Query( $query_args );
 		}
-	// Generate hash
-	$to_hash  = json_encode( $query_args ) . apply_filters( 'wpml_current_language', '' );
-
-	$query_args_hash = 'em_' . md5( $to_hash ) . WP_Event_Manager_Cache_Helper::get_transient_version( 'get_event_listings' );
-
 	
+	if ( apply_filters( 'get_event_listings_cache_results', true ) ) {
+		// Generate hash
+		$to_hash         = wp_json_encode( $query_args ) . apply_filters( 'wpml_current_language', '' );
+		$query_args_hash = 'em_' . md5( $to_hash . EVENT_MANAGER_VERSION ) . WP_Event_Manager_Cache_Helper::get_transient_version( 'get_event_listings' );
 
-	if ( false === ( $result = get_transient( $query_args_hash ) ) ) {
-		$result = new WP_Query( $query_args );
+		if ( false === ( $result = get_transient( $query_args_hash ) ) ) {
+			$result = new WP_Query( $query_args );
 
-		set_transient( $query_args_hash, $result, DAY_IN_SECONDS * 30 );
+			set_transient( $query_args_hash, $result, DAY_IN_SECONDS * 30 );
+		}
 	}
 	
 	$result = apply_filters('get_event_listings_result_args',$result,$query_args );

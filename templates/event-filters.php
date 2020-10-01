@@ -22,7 +22,7 @@
 
 			<!-- Search by location section start -->
 			<div class="wpem-col">
-			<div class="wpem-form-group">
+			<div class="wpem-form-group wpem-location-container">
 				<label for="search_location" class="wpem-form-label"><?php _e( 'Location', 'wp-event-manager' ); ?></label>
 				<input type="text" name="search_location" id="search_location"  placeholder="<?php esc_attr_e( 'Location', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( $location ); ?>" />
 			</div>
