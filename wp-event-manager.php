@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.16
+Version: 3.1.17
 
 Since: 1.0
 
