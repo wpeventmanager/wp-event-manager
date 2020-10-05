@@ -136,4 +136,48 @@
 
     </div>
 
+<?php elseif( get_event_venue_name() != '' ) : ?>
+    <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
+        <div class="wpem-row">
+            <div class="wpem-col-md-12">
+                <div class="wpem-venue-profile-wrapper" id="wpem_venue_profile">
+
+                    <?php $event_content_toggle = apply_filters('event_manager_event_content_toggle', true);
+                    $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-venue-info-title';
+                    ?>
+
+                    <div class="<?php echo $event_content_toggle_class; ?> active">
+                        <h3 class="wpem-heading-text"><?php _e('Venue', 'wp-event-manager'); ?></h3>
+                        <?php if($event_content_toggle) : ?>
+                            <i class="wpem-icon-minus"></i><i class="wpem-icon-plus"></i>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="wpem-venue-wrapper wpem-listing-accordion-panel active" style="display: block;">
+                        <div class="wpem-venue-profile">
+
+                            <?php do_action('single_event_listing_venue_start'); ?>
+
+                            <div class="wpem-venue-inner-wrapper">
+                                <div class="wpem-row">
+                                    
+                                    <div class="wpem-col-md-12 wpem-col-sm-12">
+                                        <div class="wpem-venue-name wpem-heading-text">
+                                            <?php display_event_venue_name(); ?></span></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <?php do_action('single_event_listing_venue_end'); ?>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 <?php endif; ?>
