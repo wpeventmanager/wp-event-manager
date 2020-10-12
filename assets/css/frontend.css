@@ -3,11 +3,6 @@
     -webkit-box-sizing: border-box
 }
 
-[class^=wpem] img {
-    max-width: 100%;
-    height: auto
-}
-
 .wpem-main {
     font-size: 18px;
     line-height: 25px;
@@ -1471,7 +1466,7 @@
     color: #00a5fa;
     text-decoration: unset;
     cursor: pointer;
-    display: inline-block;
+    display: inline-block
 }
 
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-single-event-sidebar-info a:hover {
@@ -1780,7 +1775,10 @@
     display: inline-block;
     margin: 0 auto
 }
-
+.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-logo-wrapper .wpem-organizer-logo img, .wpem-single-event-page .wpem-single-event-footer .wpem-venue-profile-wrapper .wpem-venue-profile .wpem-venue-logo-wrapper .wpem-venue-logo img {
+    width: 100%;
+    height: auto;
+}
 .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-name,.wpem-single-event-page .wpem-single-event-footer .wpem-venue-profile-wrapper .wpem-venue-profile .wpem-venue-name {
     font-size: 21px;
     line-height: 25px;
@@ -2089,7 +2087,7 @@
     display: inline-block;
     cursor: pointer;
     margin: 3px;
-    background: #eeedf2;
+    background: #eeedf2
 }
 
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-event-category {
@@ -2105,7 +2103,7 @@
     background: #eeedf2;
     display: inline-block;
     cursor: pointer;
-    margin: 3px;
+    margin: 3px
 }
 
 .wpem-tabs-wrapper .wpem-event-listings .wpem-event-layout-wrapper {
@@ -2575,9 +2573,11 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
     .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar {
         padding: 20px
     }
-        .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content::after {
-    display: none;
-}
+
+    .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content::after {
+        display: none
+    }
+
     .event_listing_preview_title {
         margin: 0
     }
@@ -2635,7 +2635,6 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
         top: 5px;
         float: right
     }
-
 }
 
 @media screen and (max-width: 600px) {
@@ -2669,7 +2668,6 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
         margin: 5px 0;
         width: 100%
     }
-
 }
 
 .organizer-letters,.venue-letters {
@@ -3307,7 +3305,10 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
     border: 1px solid #ccc;
     margin-right: 10px
 }
-
+.organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-list-items .wpem-organizer-logo img, .venue-related-data-wrapper .show-venue-info .wpem-list-group .venue-name-list .venue-list-items .wpem-venue-logo img {
+    width: 100%;
+    height: auto;
+}
 .organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-list-items .wpem-event-organizer-conunt-number,.venue-related-data-wrapper .show-venue-info .wpem-list-group .venue-name-list .venue-list-items .wpem-event-venue-conunt-number {
     display: flex;
     margin-left: auto;
@@ -3385,9 +3386,14 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 
 div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-logo,div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-logo {
     display: table-cell;
-    max-width: 50px
+    max-width: 50px;
 }
 
+div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-logo img, div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-logo img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
 div#event-manager-event-dashboard .wpem-responsive-table-block .organizer_name a,div#event-manager-event-dashboard .wpem-responsive-table-block .venue_name a {
     vertical-align: middle;
     display: table-cell;
@@ -3613,6 +3619,6 @@ p.post-submitted-success-green-message a {
     max-width: 100%
 }
 
-.wpem-fr{
-    float:right;
+.wpem-fr {
+    float: right
 }
