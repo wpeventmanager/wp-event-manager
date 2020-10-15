@@ -1572,6 +1572,8 @@ class WP_Event_Manager_Shortcodes {
         		$venues_array[ strtoupper( $venue[0] ) ][$venue_id] = $venue;
         	}
         }
+
+        do_action('venue_content_start');
          
 		wp_enqueue_script( 'wp-event-manager-venue' );
         
@@ -1587,6 +1589,8 @@ class WP_Event_Manager_Shortcodes {
 			'wp-event-manager', 
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/' 
 		);
+
+		do_action('venue_content_end');
               
 		wp_reset_postdata();
 		
