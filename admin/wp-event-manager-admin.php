@@ -82,7 +82,7 @@ class WP_Event_Manager_Admin {
 
 		global $wp_scripts;
 
-		$screen = get_current_screen();	
+		$screen = get_current_screen();
 
 		//main frontend style 	
 		wp_enqueue_style( 'event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css' );	
@@ -99,6 +99,8 @@ class WP_Event_Manager_Admin {
 			wp_localize_script( 'wp-event-manager-admin-js', 'wp_event_manager_admin_js', array(
 
 				'ajax_url' 	 => admin_url( 'admin-ajax.php' ),
+
+				'start_of_week' => get_option( 'start_of_week' ),
 
 				'upgrade_database_before_send_text' 	 => __( 'Your database upgrading now', 'wp-event-manager' ),
 				'upgrade_database_success_send_text'  	=> __( 'Your database has been upgraded successfully! In order to take advantage, save the permalink and proceed.', 'wp-event-manager'),

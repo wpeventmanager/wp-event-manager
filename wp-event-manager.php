@@ -267,6 +267,8 @@ class WP_Event_Manager {
 		//event submission forms and validation js
 		wp_register_script( 'wp-event-manager-event-submission', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-submission.min.js', array('jquery','jquery-ui-core','jquery-ui-datepicker') , EVENT_MANAGER_VERSION, true );
 		wp_localize_script( 'wp-event-manager-event-submission', 'wp_event_manager_event_submission', array(
+
+		'start_of_week' => get_option( 'start_of_week' ),
 			
 		'i18n_datepicker_format' => WP_Event_Manager_Date_Time::get_datepicker_format(),
 		
