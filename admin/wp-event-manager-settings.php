@@ -924,7 +924,18 @@ class WP_Event_Manager_Settings {
 										echo ' <p class="description">' . $option['desc'] . '</p>';
 								}
 
-								break;		
+								break;
+
+								case "number" :
+
+									?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="number" min="0" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
+
+									if ( $option['desc'] ) {
+
+										echo ' <p class="description">' . $option['desc'] . '</p>';
+								}
+
+								break;
 								
 								case "multi-select-checkbox":
 								    $this->create_multi_select_checkbox($option);
