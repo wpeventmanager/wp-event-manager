@@ -174,7 +174,14 @@ do_action('set_single_listing_view_count');
                                                     <?php elseif($field['type'] == 'multiselect') : ?>
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
+                                                                <?php
+                                                                $my_value_arr = [];
+                                                                foreach ($field_value as $key => $my_value) 
+                                                                {
+                                                                    $my_value_arr[] = $field['options'][$my_value];
+                                                                }
+                                                                ?>
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  implode(', ', $my_value_arr)); ?></p>
                                                             </div>
                                                         </div>
 
