@@ -847,12 +847,34 @@ class WP_Event_Manager_Settings {
 									?></select><?php
 
 									if ( $option['desc'] ) {
-
 										echo ' <p class="description">' . $option['desc'] . '</p>';
-
 									}
 
 								break;
+
+								case "multiselect" :
+
+									?><select id="setting-<?php echo $option['name']; ?>" multiple="multiple" class="regular-text" name="<?php echo $option['name']; ?>[]" <?php echo implode( ' ', $attributes ); ?>><?php
+
+										foreach( $option['options'] as $key => $name )
+										{
+											$selected = '';
+											if(in_array($key, $value))
+											{
+												$selected = ' selected ';
+											}
+
+											echo '<option value="' . esc_attr( $key ) . '" ' . $selected . ' >' . esc_html( $name ) . '</option>';
+										}
+
+									?></select><?php
+
+									if ( $option['desc'] ) {
+										echo ' <p class="description">' . $option['desc'] . '</p>';
+									}
+
+								break;
+
 								case "radio":
 									?><fieldset>
 										<legend class="screen-reader-text">
