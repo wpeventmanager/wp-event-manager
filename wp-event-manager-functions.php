@@ -1548,9 +1548,9 @@ function event_manager_upload_file( $file, $args = array() ) {
 
 	global $event_manager_upload, $event_manager_uploading_file;
 
-	include_once( ABSPATH . 'wp-admin/includes/file.php' );
-
-	include_once( ABSPATH . 'wp-admin/includes/media.php' );
+	require_once( ABSPATH . 'wp-admin/includes/image.php' );
+    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    require_once( ABSPATH . 'wp-admin/includes/media.php' );
 
 	$args = wp_parse_args( $args, array(
 
