@@ -504,9 +504,6 @@ a {
 .manage-column.column-event_title.sortable.desc {
   width: 358px;
 }
-.widefat td.column-event_title .event_title {
-  padding-right: 25px !important;
-}
 .widefat .column-event_location {
   width: 111px;
 }
