@@ -87,7 +87,7 @@
             </div>
             <div class="no-venue wpem-d-none">
                 <div class="wpem-alert wpem-alert-info">
-                    <?php _e( 'There are not venue.', 'wp-event-manager' ); ?>
+                    <?php _e( 'There are not venues.', 'wp-event-manager' ); ?>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
 
     <?php else : ?>
         <div class="wpem-alert wpem-alert-info">
-            <?php _e( 'There are not venue.', 'wp-event-manager' ); ?>
+            <?php _e( 'There are not venues.', 'wp-event-manager' ); ?>
         </div>
     <?php endif; ?>
     
