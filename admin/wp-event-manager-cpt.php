@@ -630,8 +630,6 @@ class WP_Event_Manager_CPT {
 			'event_title' => 'title',
 
 			'event_location' => 'event_location',
-
-			'event_organizer' => 'event_organizer',	
 				
 			'event_start_date'  => 'event_start_date',
 
