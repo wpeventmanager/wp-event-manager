@@ -24,7 +24,7 @@ if(!empty($submit_organizer )) : ?>
 			<tbody>
 				<?php if ( ! $organizers ) : ?>
 				<tr>
-					<td colspan="<?php echo count($organizer_dashboard_columns); ?>"><?php _e( 'There are not organizer.', 'wp-event-manager' ); ?></td>
+					<td colspan="<?php echo count($organizer_dashboard_columns); ?>"><?php _e( 'There are no organizers.', 'wp-event-manager' ); ?></td>
 				</tr>
 				<?php else : ?>
 				<?php foreach ( $organizers as $organizer ) : ?>
