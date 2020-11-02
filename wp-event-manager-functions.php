@@ -2017,7 +2017,7 @@ function get_all_event_venue($user_id = '', $args = [])
  */
 function get_all_venue_array($user_id = '', $args = [], $blank_option = false)
 {
-	$all_venue =get_all_event_venue($user_id);
+	$all_venue =get_all_event_venue($user_id, $args);
 	
 	$venue_array =array();
 
