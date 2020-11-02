@@ -40,11 +40,15 @@ class WP_Event_Manager_Field_Editor {
 		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.min.css' );
 		wp_enqueue_script( 'wp-event-manager-form-field-editor' );
 		?>
-		<div class="wrap wp-event-manager-form-field-editor">
-			<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor">
-				<?php $this->form_editor(); ?>
-				<?php wp_nonce_field( 'save-wp-event-manager-form-field-editor' ); ?>
-			</form>
+		<div class="wrap wp-event-manager-registrations-form-editor">
+            <h1 class="wp-heading-inline"><?php _e('Form fields'); ?></h1>
+
+			<div class="wpem-wrap wp-event-manager-form-field-editor">
+				<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor">
+					<?php $this->form_editor(); ?>
+					<?php wp_nonce_field( 'save-wp-event-manager-form-field-editor' ); ?>
+				</form>
+			</div>
 		</div>
 		<?php
 	}
@@ -118,7 +122,7 @@ class WP_Event_Manager_Field_Editor {
 
 			<div class="wp-event-manager-event-form-field-editor">
 					
-				<h3><?php printf(__('%s fields','wp-event-manager'),$group_key);?></h3>
+				<h3><?php printf(__('%s fields','wp-event-manager'), ucfirst($group_key));?></h3>
 				<table class="widefat">
 					<thead>
 						<tr>
