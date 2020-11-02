@@ -501,7 +501,7 @@ class WP_Event_Manager_CPT {
 
 			    echo '<div class="organizer"><strong>';
 
-				display_organizer_name();
+				echo get_organizer_name('', true, 'backend');
 
 				echo '</strong></div>';
 
