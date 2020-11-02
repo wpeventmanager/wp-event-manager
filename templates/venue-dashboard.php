@@ -26,7 +26,7 @@ if (!empty($submit_venue)) :
             <tbody>
                 <?php if (!$venues) : ?>
                     <tr>
-                        <td colspan="4"><?php _e('There are not venues.', 'wp-event-manager'); ?></td>
+                        <td colspan="4"><?php _e('There are no venues.', 'wp-event-manager'); ?></td>
                     </tr>
                 <?php else : ?>
                     <?php foreach ($venues as $venue) : ?>
