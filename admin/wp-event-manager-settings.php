@@ -755,234 +755,244 @@ class WP_Event_Manager_Settings {
 		$this->init_settings();
 
 		?>
-		
-	
-       
-		<div class="wrap event-manager-settings-wrap">	
 
-			<form method="post" name="event-manager-settings-form" action="options.php">	
+		<div class="wrap event-manager-settings-wrap">
 
-				<?php settings_fields( $this->settings_group ); ?>
+			<h1 class="wp-heading-inline"><?php 
+			$page_title = isset($_GET['page']) ? $_GET['page'] : 'Settings';
+			$page_title = str_replace('-', ' ', $page_title);
+			$page_title = str_replace('_', ' ', $page_title);
+			$page_title = ucwords($page_title);
+			echo $page_title;
+			?></h1>
 
-			    <h2 class="nav-tab-wrapper">
+			<div class="wpem-wrap event-manager-settings-wrap">
 
-			    	<?php
+				<form method="post" name="event-manager-settings-form" action="options.php">	
 
-			    		foreach ( $this->settings as $key => $section ) {
+					<?php settings_fields( $this->settings_group ); ?>
 
-			    			echo '<a href="#settings-' . sanitize_title( $key ) . '" class="nav-tab">' . esc_html( $section[0] ) . '</a>';
-			    		}
-			    	?>
-			    </h2>
-			    
-			 <div class="admin-setting-left">
-			     	
-			     <div class="white-background">
-			     		
-				<?php
+				    <h2 class="nav-tab-wrapper">
 
-					if ( ! empty( $_GET['settings-updated'] ) ) {
+				    	<?php
 
-						flush_rewrite_rules();
+				    		foreach ( $this->settings as $key => $section ) {
 
-						echo '<div class="updated fade event-manager-updated"><p>' . __( 'Settings successfully saved', 'wp-event-manager' ) . '</p></div>';
-					}
-					
-					foreach ( $this->settings as $key => $section ) {
+				    			echo '<a href="#settings-' . sanitize_title( $key ) . '" class="nav-tab">' . esc_html( $section[0] ) . '</a>';
+				    		}
+				    	?>
+				    </h2>
+				    
+					 <div class="admin-setting-left">
+					     	
+					     <div class="white-background">
+					     		
+						<?php
 
-						echo '<div id="settings-' . sanitize_title( $key ) . '" class="settings_panel">';
+							if ( ! empty( $_GET['settings-updated'] ) ) {
 
-						echo '<table class="form-table">';
+								flush_rewrite_rules();
 
-						foreach ( $section[1] as $option ) {
+								echo '<div class="updated fade event-manager-updated"><p>' . __( 'Settings successfully saved', 'wp-event-manager' ) . '</p></div>';
+							}
+							
+							foreach ( $this->settings as $key => $section ) {
 
-							$placeholder    = ( ! empty( $option['placeholder'] ) ) ? 'placeholder="' . $option['placeholder'] . '"' : '';
+								echo '<div id="settings-' . sanitize_title( $key ) . '" class="settings_panel">';
 
-							$class          = ! empty( $option['class'] ) ? $option['class'] : '';
+								echo '<table class="form-table">';
 
-							$value          = get_option( $option['name'] );
+								foreach ( $section[1] as $option ) {
 
-							$option['type'] = ! empty( $option['type'] ) ? $option['type'] : '';
+									$placeholder    = ( ! empty( $option['placeholder'] ) ) ? 'placeholder="' . $option['placeholder'] . '"' : '';
 
-							$attributes     = array();
+									$class          = ! empty( $option['class'] ) ? $option['class'] : '';
 
-							if ( ! empty( $option['attributes'] ) && is_array( $option['attributes'] ) )
+									$value          = get_option( $option['name'] );
 
-								foreach ( $option['attributes'] as $attribute_name => $attribute_value )
+									$option['type'] = ! empty( $option['type'] ) ? $option['type'] : '';
 
-									$attributes[] = esc_attr( $attribute_name ) . '="' . esc_attr( $attribute_value ) . '"';
+									$attributes     = array();
 
-							echo '<tr valign="top" class="' . $class . '"><th scope="row"><label for="setting-' . $option['name'] . '">' . $option['label'] . '</a></th><td>';
+									if ( ! empty( $option['attributes'] ) && is_array( $option['attributes'] ) )
 
-							switch ( $option['type'] ) {
+										foreach ( $option['attributes'] as $attribute_name => $attribute_value )
 
-								case "checkbox" :
+											$attributes[] = esc_attr( $attribute_name ) . '="' . esc_attr( $attribute_value ) . '"';
 
-									?><label><input id="setting-<?php echo $option['name']; ?>" name="<?php echo $option['name']; ?>" type="checkbox" value="1" <?php echo implode( ' ', $attributes ); ?> <?php checked( '1', $value ); ?> /> <?php echo $option['cb_label']; ?></label><?php
+									echo '<tr valign="top" class="' . $class . '"><th scope="row"><label for="setting-' . $option['name'] . '">' . $option['label'] . '</a></th><td>';
 
-									if ( $option['desc'] )
+									switch ( $option['type'] ) {
 
-										echo ' <p class="description">' . $option['desc'] . '</p>';
+										case "checkbox" :
 
-								break;
+											?><label><input id="setting-<?php echo $option['name']; ?>" name="<?php echo $option['name']; ?>" type="checkbox" value="1" <?php echo implode( ' ', $attributes ); ?> <?php checked( '1', $value ); ?> /> <?php echo $option['cb_label']; ?></label><?php
 
-								case "textarea" :
+											if ( $option['desc'] )
 
-									?><textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="3" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea><?php
+												echo ' <p class="description">' . $option['desc'] . '</p>';
 
-									if ( $option['desc'] )
+										break;
 
-										echo ' <p class="description">' . $option['desc'] . '</p>';
+										case "textarea" :
 
-								break;
+											?><textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="3" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea><?php
 
-								case "select" :
+											if ( $option['desc'] )
 
-									?><select id="setting-<?php echo $option['name']; ?>" class="regular-text" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?>><?php
+												echo ' <p class="description">' . $option['desc'] . '</p>';
 
-										foreach( $option['options'] as $key => $name )
+										break;
 
-											echo '<option value="' . esc_attr( $key ) . '" ' . selected( $value, $key, false ) . '>' . esc_html( $name ) . '</option>';
+										case "select" :
 
-									?></select><?php
+											?><select id="setting-<?php echo $option['name']; ?>" class="regular-text" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?>><?php
 
-									if ( $option['desc'] ) {
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-									}
+												foreach( $option['options'] as $key => $name )
 
-								break;
+													echo '<option value="' . esc_attr( $key ) . '" ' . selected( $value, $key, false ) . '>' . esc_html( $name ) . '</option>';
 
-								case "multiselect" :
+											?></select><?php
 
-									?><select id="setting-<?php echo $option['name']; ?>" multiple="multiple" class="regular-text" name="<?php echo $option['name']; ?>[]" <?php echo implode( ' ', $attributes ); ?>><?php
-
-										foreach( $option['options'] as $key => $name )
-										{
-											$selected = '';
-											if(in_array($key, $value))
-											{
-												$selected = ' selected ';
+											if ( $option['desc'] ) {
+												echo ' <p class="description">' . $option['desc'] . '</p>';
 											}
 
-											echo '<option value="' . esc_attr( $key ) . '" ' . $selected . ' >' . esc_html( $name ) . '</option>';
+										break;
+
+										case "multiselect" :
+
+											?><select id="setting-<?php echo $option['name']; ?>" multiple="multiple" class="regular-text" name="<?php echo $option['name']; ?>[]" <?php echo implode( ' ', $attributes ); ?>><?php
+
+												foreach( $option['options'] as $key => $name )
+												{
+													$selected = '';
+													if(in_array($key, $value))
+													{
+														$selected = ' selected ';
+													}
+
+													echo '<option value="' . esc_attr( $key ) . '" ' . $selected . ' >' . esc_html( $name ) . '</option>';
+												}
+
+											?></select><?php
+
+											if ( $option['desc'] ) {
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+											}
+
+										break;
+
+										case "radio":
+											?><fieldset>
+												<legend class="screen-reader-text">
+													<span><?php echo esc_html( $option['label'] ); ?></span>
+												</legend><?php
+
+											if ( $option['desc'] ) {
+												echo '<p class="description">' . $option['desc'] . '</p>';
+											}
+
+											foreach( $option['options'] as $key => $name )
+												echo '<label><input name="' . esc_attr( $option['name'] ) . '" type="radio" value="' . esc_attr( $key ) . '" ' . checked( $value, $key, false ) . ' />' . esc_html( $name ) . '</label><br>';
+
+											?></fieldset><?php
+
+										break;
+
+										case "page" :
+
+											$args = array(
+
+												'name'             => $option['name'],
+
+												'id'               => $option['name'],
+
+												'sort_column'      => 'menu_order',
+
+												'sort_order'       => 'ASC',
+
+												'show_option_none' => __( '--no page--', 'wp-event-manager' ),
+
+												'echo'             => false,
+
+												'selected'         => absint( $value )
+
+											);
+
+											echo str_replace(' id=', " data-placeholder='" . __( 'Select a page&hellip;', 'wp-event-manager' ) .  "' id=", wp_dropdown_pages( $args ) );
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+
+											}
+											
+										break;
+
+										case "password" :
+
+											?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="password" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+											}
+
+										break;
+
+										case "" :
+
+										case "input" :
+
+										case "text" :
+
+											?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="text" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
 										}
 
-									?></select><?php
+										break;
 
-									if ( $option['desc'] ) {
-										echo ' <p class="description">' . $option['desc'] . '</p>';
+										case "number" :
+
+											?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="number" min="0" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+										}
+
+										break;
+										
+										case "multi-select-checkbox":
+										    $this->create_multi_select_checkbox($option);
+											break;
+
+										default :
+
+											do_action( 'wp_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder );
+
+										break;
 									}
-
-								break;
-
-								case "radio":
-									?><fieldset>
-										<legend class="screen-reader-text">
-											<span><?php echo esc_html( $option['label'] ); ?></span>
-										</legend><?php
-
-									if ( $option['desc'] ) {
-										echo '<p class="description">' . $option['desc'] . '</p>';
-									}
-
-									foreach( $option['options'] as $key => $name )
-										echo '<label><input name="' . esc_attr( $option['name'] ) . '" type="radio" value="' . esc_attr( $key ) . '" ' . checked( $value, $key, false ) . ' />' . esc_html( $name ) . '</label><br>';
-
-									?></fieldset><?php
-
-								break;
-
-								case "page" :
-
-									$args = array(
-
-										'name'             => $option['name'],
-
-										'id'               => $option['name'],
-
-										'sort_column'      => 'menu_order',
-
-										'sort_order'       => 'ASC',
-
-										'show_option_none' => __( '--no page--', 'wp-event-manager' ),
-
-										'echo'             => false,
-
-										'selected'         => absint( $value )
-
-									);
-
-									echo str_replace(' id=', " data-placeholder='" . __( 'Select a page&hellip;', 'wp-event-manager' ) .  "' id=", wp_dropdown_pages( $args ) );
-
-									if ( $option['desc'] ) {
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-
-									}
-									
-								break;
-
-								case "password" :
-
-									?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="password" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
-
-									if ( $option['desc'] ) {
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-									}
-
-								break;
-
-								case "" :
-
-								case "input" :
-
-								case "text" :
-
-									?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="text" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
-
-									if ( $option['desc'] ) {
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
+									echo '</td></tr>';
 								}
-
-								break;
-
-								case "number" :
-
-									?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="number" min="0" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
-
-									if ( $option['desc'] ) {
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-								}
-
-								break;
-								
-								case "multi-select-checkbox":
-								    $this->create_multi_select_checkbox($option);
-									break;
-
-								default :
-
-									do_action( 'wp_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder );
-
-								break;
+								echo '</table></div>';
 							}
-							echo '</td></tr>';
-						}
-						echo '</table></div>';
-					}
-				?>
-				 </div>   <!-- .white-background- -->
-				<p class="submit">
-					<input type="submit" class="button-primary" id="save-changes" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
-				</p>
-			 </div>  <!-- .admin-setting-left -->						
-		    </form>
-		    
-            <div id="plugin_info" class="box-info">
-                <div class="box-title" title="Click to toggle"><br></div><h3><span>Plugin Info</span></h3>
+						?>
+						 </div>   <!-- .white-background- -->
+						<p class="submit">
+							<input type="submit" class="button-primary" id="save-changes" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
+						</p>
+					 </div>  <!-- .admin-setting-left -->
+
+			    </form>
+			    
+	            <div id="plugin_info" class="box-info">
+                	<div class="box-title" title="Click to toggle"><br></div>
+                	<h3><span><?php _e('Plugin Info', 'wp-event-manager'); ?></span></h3>
                     <div class="inside">
                         <p> 
                              <span class="premium-icon"></span><b><?php _e('Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 stars rating this plugin on <a href="https://wordpress.org/plugins/wp-event-manager/" target="_blank" >wordpress.org.','wp-event-manager') ?></a>
@@ -998,9 +1008,10 @@ class WP_Event_Manager_Settings {
                         <p><span class="light-grey"><?php _e('This plugin was made by','wp-event-manager');?></span> <a href="https://wp-eventmanager.com/" target="_blank"><?php _e('WP Event Manager','wp-event-manager');?></a>.
                         </p>
                     </div>
-                </div>
-            </div>
-	  	
+	            </div>
+
+	        </div>
+	    </div>
 
 		<?php  wp_enqueue_script( 'wp-event-manager-admin-settings');
 	}
