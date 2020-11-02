@@ -44,6 +44,7 @@ var Organizers = function () {
                 if (currentClickedLetterId == showAllLetterId) {
                     //show all organizer block which has clas show-organizer-info
                     jQuery('.show-organizer-info').show();
+                    jQuery('.no-organizer').addClass('wpem-d-none');
                 }
                 else if(jQuery('#show_' + currentClickedLetterId).length ) {	//show clicked letter organizer only       
                     jQuery('#show_' + currentClickedLetterId).css({ "display": "block" });
