@@ -1358,6 +1358,7 @@ class WP_Event_Manager_Shortcodes {
 			'show_count'	=> true,
 
 		) ), $atts ) );
+		ob_start();
 
 		$args = [
 			'orderby' 	=> $orderby,
