@@ -764,15 +764,12 @@ class WP_Event_Manager_Shortcodes {
 		}
 		
 		//set value for the event datetimes
-
 		$datetimes=WP_Event_Manager_Filters::get_datetimes_filter();
 
 		//Set value for the ticket prices		
-
-		$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
+		//$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
 
 		// Array handling
-
 		$datetimes            = is_array( $datetimes) ? $datetimes: array_filter( array_map( 'trim', explode( ',', $datetimes) ) );		
 
 		$categories           = is_array( $categories ) ? $categories : array_filter( array_map( 'trim', explode( ',', $categories ) ) );
@@ -878,11 +875,11 @@ class WP_Event_Manager_Shortcodes {
 
 				'search_datetimes'  => $datetimes,
 
-				'search_categories' => !empty($selected_category) ? explode(',', $selected_category) : '',
+				'search_categories' => !empty($categories) ? $categories : '',
 
-				'search_event_types'	=> !empty($selected_event_type) ? explode(',', $selected_event_type) : '',
+				'search_event_types'	=> !empty($event_types) ? $event_types : '',
 
-				'search_ticket_prices'  => $ticket_prices,
+				'search_ticket_prices'  => !empty($ticket_prices) ? $ticket_prices : '',
 
 				'orderby'           => $orderby,
 
@@ -955,11 +952,11 @@ class WP_Event_Manager_Shortcodes {
 
 			'datetimes'       => $selected_datetime,
 
-			'categories'      => !empty($selected_category) ? $selected_category : '',
+			'categories'      => !empty($categories) ? implode(',', $categories) : '',
 
-			'event_types'     => !empty($selected_event_type) ? $selected_event_type : '',
+			'event_types'     => !empty($event_types) ? implode(',', $event_types) : '',
 
-			'ticket_prices'   => !empty($selected_ticket_price) ? $selected_ticket_price : '',
+			'ticket_prices'   => !empty($ticket_prices) ? implode(',', $ticket_prices) : '',
 
 			'event_online'    => $event_online,
 		);
