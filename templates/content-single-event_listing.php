@@ -5,6 +5,7 @@ $end_date   = get_event_end_date();
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style('wp-event-manager-slick-style');
 do_action('set_single_listing_view_count');
+$event = $post;
 ?>
 <div class="single_event_listing">
 
@@ -94,8 +95,6 @@ do_action('set_single_listing_view_count');
                                 </div>
                             </div>
 
-
-
                             <?php do_action('single_event_overview_before'); ?>
 
                             <div class="wpem-single-event-body-content">
@@ -108,12 +107,18 @@ do_action('set_single_listing_view_count');
                             <?php
                             $show_additional_details = apply_filters('event_manager_show_additional_details', true);
 
-                            if( $show_additional_details && is_single() ) :
+                            if( $show_additional_details ) :
 
-                                $GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
+                                if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) 
+                                {
+                                    include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+                                    include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
+                                }
+
                                 $form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
                                 $custom_fields = $form_submit_event_instance->get_event_manager_fieldeditor_fields();
                                 $default_fields = $form_submit_event_instance->get_default_event_fields();
+
                                 
                                 $additional_fields = [];
                                 if( !empty($custom_fields) && isset($custom_fields) && !empty($custom_fields['event']) )
@@ -123,7 +128,7 @@ do_action('set_single_listing_view_count');
                                         if( !array_key_exists($field_name, $default_fields['event']) )
                                         {
                                             $meta_key = '_'.$field_name;
-                                            $field_value = $post->$meta_key;
+                                            $field_value = $event->$meta_key;
 
                                             if(!empty( $field_value ))
                                             {
@@ -158,7 +163,7 @@ do_action('set_single_listing_view_count');
                                                 
                                                 <?php
                                                 $field_key = '_'.$name;
-                                                $field_value = $post->$field_key;
+                                                $field_value = $event->$field_key;
                                                 ?>
 
                                                 <?php if( !empty($field_value) ) : ?>
