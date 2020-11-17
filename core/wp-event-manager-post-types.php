@@ -81,6 +81,9 @@ class WP_Event_Manager_Post_Types {
  
         //view count action
         add_action( 'set_single_listing_view_count', array( $this, 'set_single_listing_view_count' ));
+
+        // Admin notices.
+        add_filter( 'bulk_post_updated_messages', array( $this, 'bulk_post_updated_messages' ), 10, 2 );
 	}
 
 	/**
@@ -1391,7 +1394,7 @@ class WP_Event_Manager_Post_Types {
 		}
 	}
 
-		/**
+	/**
 	 * Retrieves permalink settings.
 	 *
 	 * @see https://github.com/woocommerce/woocommerce/blob/3.0.8/includes/wc-core-functions.php#L1573
@@ -1424,4 +1427,63 @@ class WP_Event_Manager_Post_Types {
 		}
 		return $permalinks;
 	}
+
+	/**
+	 * Specify custom bulk actions messages for different post types.
+	 *
+	 * @param  array $bulk_messages Array of messages.
+	 * @param  array $bulk_counts Array of how many objects were updated.
+	 * @since 3.18
+	 * @return array
+	 */
+	public function bulk_post_updated_messages($bulk_messages, $bulk_counts) {
+
+		$bulk_messages['event_listing'] = array(
+			/* translators: %s: product count */
+			'updated'   => _n( '%s event updated.', '%s events updated.', $bulk_counts['updated'], 'wp-event-manager' ),
+			/* translators: %s: product count */
+			'locked'    => _n( '%s event not updated, somebody is editing it.', '%s events not updated, somebody is editing them.', $bulk_counts['locked'], 'wp-event-manager' ),
+			/* translators: %s: product count */
+			'deleted'   => _n( '%s event permanently deleted.', '%s events permanently deleted.', $bulk_counts['deleted'], 'wp-event-manager' ),
+			/* translators: %s: product count */
+			'trashed'   => _n( '%s event moved to the Trash.', '%s events moved to the Trash.', $bulk_counts['trashed'], 'wp-event-manager' ),
+			/* translators: %s: product count */
+			'untrashed' => _n( '%s event restored from the Trash.', '%s events restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager' ),
+		);
+
+		if(get_option('enable_event_organizer'))
+		{
+			$bulk_messages['event_organizer'] = array(
+				/* translators: %s: product count */
+				'updated'   => _n( '%s organizer updated.', '%s organizers updated.', $bulk_counts['updated'], 'wp-event-manager' ),
+				/* translators: %s: product count */
+				'locked'    => _n( '%s organizer not updated, somebody is editing it.', '%s organizers not updated, somebody is editing them.', $bulk_counts['locked'], 'wp-event-manager' ),
+				/* translators: %s: product count */
+				'deleted'   => _n( '%s organizer permanently deleted.', '%s organizers permanently deleted.', $bulk_counts['deleted'], 'wp-event-manager' ),
+				/* translators: %s: product count */
+				'trashed'   => _n( '%s organizer moved to the Trash.', '%s organizers moved to the Trash.', $bulk_counts['trashed'], 'wp-event-manager' ),
+				/* translators: %s: product count */
+				'untrashed' => _n( '%s organizer restored from the Trash.', '%s organizers restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager' ),
+			);
+		}
+
+		if(get_option('enable_event_venue'))
+		{
+			$bulk_messages['event_venue'] = array(
+				/* translators: %s: product count */
+				'updated'   => _n( '%s venue updated.', '%s venues updated.', $bulk_counts['updated'], 'wp-event-manager' ),
+				/* translators: %s: product count */
+				'locked'    => _n( '%s venue not updated, somebody is editing it.', '%s venues not updated, somebody is editing them.', $bulk_counts['locked'], 'wp-event-manager' ),
+				/* translators: %s: product count */
+				'deleted'   => _n( '%s venue permanently deleted.', '%s venues permanently deleted.', $bulk_counts['deleted'], 'wp-event-manager' ),
+				/* translators: %s: product count */
+				'trashed'   => _n( '%s venue moved to the Trash.', '%s venues moved to the Trash.', $bulk_counts['trashed'], 'wp-event-manager' ),
+				/* translators: %s: product count */
+				'untrashed' => _n( '%s venue restored from the Trash.', '%s venues restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager' ),
+			);
+		}
+
+		return $bulk_messages;
+	}
+
 }
