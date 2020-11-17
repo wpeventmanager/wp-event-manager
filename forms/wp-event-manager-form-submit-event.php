@@ -398,7 +398,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
           	{
 				if ( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) 
 				{	    
-					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'wp-event-manager' ), $field['label'] ) );
+					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field.', 'wp-event-manager' ), $field['label'] ) );
 				}
 
 			    if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) 
@@ -416,7 +416,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					{
 						if ( ! term_exists( $term, $field['taxonomy'] ) ) 
 						{
-							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid', 'wp-event-manager' ), $field['label'] ) );    
+							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid.', 'wp-event-manager' ), $field['label'] ) );    
 						}
 					}
 				}
@@ -462,7 +462,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			switch ( $allowed_registration_method ) {
 				case 'email' :
 					if ( ! is_email( $values['event']['registration'] ) ) {
-						throw new Exception( __( 'Please enter a valid registration email address', 'wp-event-manager' ) );
+						throw new Exception( __( 'Please enter a valid registration email address.', 'wp-event-manager' ) );
 					}
 				break;
 				case 'url' :
@@ -471,7 +471,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						$values['event']['registration'] = 'http://' . $values['event']['registration'];
 					}
 					if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
-						throw new Exception( __( 'Please enter a valid registration URL', 'wp-event-manager' ) );
+						throw new Exception( __( 'Please enter a valid registration URL.', 'wp-event-manager' ) );
 					}
 				break;
 				default :
@@ -481,7 +481,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$values['event']['registration'] = 'http://' . $values['event']['registration'];
 						}
 						if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
-							throw new Exception( __( 'Please enter a valid registration email address or URL', 'wp-event-manager' ) );
+							throw new Exception( __( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
 						}
 					}
 				break;
