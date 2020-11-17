@@ -1866,12 +1866,11 @@ function event_manager_get_password_rules_hint() {
  */
 function get_all_event_organizer($user_id = '', $args = []) 
 {
-	$query_args = apply_filters('get_all_event_organizer_arg',array(
+	$query_args = array(
 					'post_type'   => 'event_organizer',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
-			));
-
+				);
 
 	if( isset($user_id) && !empty($user_id) && !is_admin() )
 	{
@@ -1882,6 +1881,8 @@ function get_all_event_organizer($user_id = '', $args = [])
 	{
 		$query_args = array_merge($query_args,$args);
 	}
+
+	$query_args = apply_filters('get_all_event_organizer_args', $query_args);
 
 	$all_organizer = get_posts( $query_args );
 
@@ -1964,11 +1965,11 @@ function get_event_by_organizer_id($organizer_id = '')
  */
 function get_all_event_venue($user_id = '', $args = []) 
 {
-	$query_args = apply_filters('get_all_event_venue_arg',array(
+	$query_args = array(
 					'post_type'   => 'event_venue',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
-			));
+				);
 
 	if( isset($user_id) && !empty($user_id) && !is_admin() )
 	{
@@ -1979,6 +1980,8 @@ function get_all_event_venue($user_id = '', $args = [])
 	{
 		$query_args = array_merge($query_args,$args);
 	}
+
+	$query_args = apply_filters('get_all_event_venue_args', $query_args);
 
 	$all_venue = get_posts( $query_args );
 
