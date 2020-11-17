@@ -26,7 +26,7 @@ var EventRegistration= function () {
     			   {                   
     			   	     event.preventDefault();
 
-                         jQuery( event.target ).addClass('wpem-active-button');
+                         jQuery( event.target ).toggleClass('wpem-active-button');
     			   	     jQuery( '.registration_details' ).slideToggle();
     			   }    			  
     	}
