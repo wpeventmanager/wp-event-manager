@@ -1243,23 +1243,6 @@ function is_wpem_event_listing() {
 function is_wpem_taxonomy() {
 	return is_tax( get_object_taxonomies( 'event_listing' ) );
 }
-/**
- * True if only one type allowed per event
- *
- * @return bool
- */
-function event_manager_multiselect_event_type() {
-	return apply_filters( 'event_manager_multiselect_event_type', get_option( 'event_manager_multiselect_event_type' ) == 1 ? true : false );
-}
-
-/**
- * True if only one category allowed per event
- *
- * @return bool
- */
-function event_manager_multiselect_event_category() {
-	return apply_filters( 'event_manager_multiselect_event_category', get_option( 'event_manager_multiselect_event_category' ) == 1 ? true : false );
-}
 
 /**
  * True if registration is enabled.

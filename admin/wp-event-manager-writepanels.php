@@ -165,10 +165,6 @@ class WP_Event_Manager_Writepanels {
 		
 		if ( ! get_option( 'event_manager_enable_event_types' ) ) {
 			remove_meta_box( 'event_listing_typediv', 'event_listing', 'side');
-		} elseif ( false == event_manager_multiselect_event_type() ) {
-			remove_meta_box( 'event_listing_typediv', 'event_listing', 'side');
-			$event_listing_type = get_taxonomy( 'event_listing_type' );
-			add_meta_box( 'event_listing_type', $event_listing_type->labels->menu_name, array( $this, 'event_listing_metabox' ),'event_listing' ,'side','core');
 		}
 		
 		if(isset($wp_post_types['event_organizer']))

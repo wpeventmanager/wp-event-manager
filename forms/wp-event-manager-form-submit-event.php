@@ -158,7 +158,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 				'event_type' => array(
 					'label'       => __( 'Event Type', 'wp-event-manager' ),
-					'type'        =>  get_option('event_manager_multiselect_event_type') ?  'term-multiselect' : 'term-select',
+					'type'        =>  'term-select',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 2,
@@ -168,7 +168,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 				'event_category' => array(
 					'label'       => __( 'Event Category', 'wp-event-manager' ),
-					'type'        => get_option('event_manager_multiselect_event_category') ?  'term-multiselect' : 'term-select',
+					'type'        => 'term-select',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 3,
@@ -546,9 +546,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							
 						case 'event_type' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_type', array( 'fields' => 'ids' ) );
-							if ( ! event_manager_multiselect_event_type() ) {
-								$this->fields[ $group_key ][ $key ]['value'] = current( $this->fields[ $group_key ][ $key ]['value'] );
-							}
 						break;
 						case 'event_category' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_category', array( 'fields' => 'ids' ) );
@@ -706,7 +703,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			} */
 			// Prepend with event type
 			if ( apply_filters( 'submit_event_form_prefix_post_name_with_event_type', true ) && ! empty( $values['event']['event_type'] ) ) {
-				if ( event_manager_multiselect_event_type() && is_array($values['event']['event_type']) ) {
+				if ( is_array($values['event']['event_type']) ) {
 					
 					$event_type = array_values($values['event']['event_type'])[0];
 					if( is_int ($event_type) ){

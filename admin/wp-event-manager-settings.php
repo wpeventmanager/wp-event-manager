@@ -486,39 +486,6 @@ class WP_Event_Manager_Settings {
 					        
 					        'attributes' => array()
 					    ),
-					    
-						array(
-									
-								'name'       => 'event_manager_multiselect_event_type',
-									
-								'std'        => '0',
-									
-								'label'      => __( 'Multi-select Event Types For Submission', 'wp-event-manager' ),
-									
-								'cb_label'   => __( 'Enable multi select event type for event listing submission', 'wp-event-manager' ),
-									
-								'desc'       => __( 'If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this.', 'wp-event-manager' ),
-									
-								'type'       => 'checkbox',
-									
-								'attributes' => array()
-						),
-						array(
-									
-								'name'       => 'event_manager_multiselect_event_category',
-									
-								'std'        => '0',
-									
-								'label'      => __( 'Multi-select Event Category For Submission', 'wp-event-manager' ),
-									
-								'cb_label'   => __( 'Enable multi select event category for event listing submission', 'wp-event-manager' ),
-									
-								'desc'       => __( 'If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this.', 'wp-event-manager' ),
-									
-								'type'       => 'checkbox',
-									
-								'attributes' => array()
-						)
 					)
 				),
 
