@@ -758,12 +758,14 @@ class WP_Event_Manager_Settings {
 
 		<div class="wrap event-manager-settings-wrap">
 
-			<h1 class="wp-heading-inline"><?php 
+			<h1 class="wp-heading-inline"><?php
+			/* 
 			$page_title = isset($_GET['page']) ? $_GET['page'] : 'Settings';
 			$page_title = str_replace('-', ' ', $page_title);
 			$page_title = str_replace('_', ' ', $page_title);
 			$page_title = ucwords($page_title);
-			echo $page_title;
+			echo $page_title; */
+			_e('Settings', 'wp-event-manager');
 			?></h1>
 
 			<div class="wpem-wrap event-manager-settings-wrap">
