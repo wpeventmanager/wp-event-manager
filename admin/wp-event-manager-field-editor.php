@@ -122,7 +122,7 @@ class WP_Event_Manager_Field_Editor {
 
 			<div class="wp-event-manager-event-form-field-editor">
 					
-				<h3><?php printf(__('%s fields','wp-event-manager'), ucfirst($group_key));?></h3>
+				<h3><?php printf(__('%s form fields','wp-event-manager'), ucfirst($group_key));?></h3>
 				<table class="widefat">
 					<thead>
 						<tr>
