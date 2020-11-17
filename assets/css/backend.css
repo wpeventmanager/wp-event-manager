@@ -1251,3 +1251,6 @@ ul.wpem-product-action-list {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+.wrap.event-manager-settings-wrap h2.nav-tab-wrapper {
+  margin-bottom: 20px;
+}
