@@ -62,7 +62,7 @@ class WP_Event_Manager_Settings {
 										'name'       => 'enable_event_organizer',
 										'std'        => '1',
 										'label'      => __( 'Enable organizer', 'wp-event-manager' ),
-										'cb_label'   => __( 'Disable this to remove the functionality of Organizers on Your Event Website', 'wp-event-manager' ),
+										'cb_label'   => __( 'Disable this to remove the functionality of Organizers on Your Event Website.', 'wp-event-manager' ),
 										'desc'       => '',
 										'type'       => 'checkbox',
 										'attributes' => array(),
@@ -156,7 +156,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Hide Expired Listings Content', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Hide expired listing content in single event listing (singular)', 'wp-event-manager' ),
+							'cb_label'   => __( 'Hide expired listing content in single event listing (singular).', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area).', 'wp-event-manager' ),
 
@@ -173,7 +173,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Multi-select Categories', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Enable category multiselect by default', 'wp-event-manager' ),
+							'cb_label'   => __( 'Enable category multiselect by default.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, the category select box will default to a multi select on the [events] shortcode.', 'wp-event-manager' ),
 
@@ -190,7 +190,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Multi-select Event Types', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Enable event type multiselect by default', 'wp-event-manager' ),
+							'cb_label'   => __( 'Enable event type multiselect by default.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, the event type select box will default to a multi select on the [events] shortcode.', 'wp-event-manager' ),
 
@@ -213,9 +213,9 @@ class WP_Event_Manager_Settings {
 
 							'options' => array(
 
-								'any'  => __( 'Events will be shown if within ANY selected category', 'wp-event-manager' ),
+								'any'  => __( 'Events will be shown if within ANY selected category.', 'wp-event-manager' ),
 
-								'all' => __( 'Events will be shown if within ALL selected categories', 'wp-event-manager' ),
+								'all' => __( 'Events will be shown if within ALL selected categories.', 'wp-event-manager' ),
 							)
 						),
 
@@ -233,9 +233,9 @@ class WP_Event_Manager_Settings {
 
 							'options' => array(
 
-								'any'  => __( 'Events will be shown if within ANY selected event type', 'wp-event-manager' ),
+								'any'  => __( 'Events will be shown if within ANY selected event type.', 'wp-event-manager' ),
 
-								'all' => __( 'Events will be shown if within ALL selected event types', 'wp-event-manager' ),
+								'all' => __( 'Events will be shown if within ALL selected event types.', 'wp-event-manager' ),
 							)
 						)			
 					),
@@ -255,7 +255,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Account Required', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Submitting listings requires an account', 'wp-event-manager' ),
+							'cb_label'   => __( 'Submitting listings requires an account.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If disabled, non-logged in users will be able to submit listings without creating an account.', 'wp-event-manager' ),
 
@@ -272,7 +272,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Account Creation', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Allow account creation', 'wp-event-manager' ),
+							'cb_label'   => __( 'Allow account creation.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, non-logged in users will be able to create an account by entering their email address on the submission form.', 'wp-event-manager' ),
 
@@ -289,7 +289,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Account Username', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Automatically Generate Username from Email Address', 'wp-event-manager' ),
+							'cb_label'   => __( 'Automatically Generate Username from Email Address.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, a username will be generated from the first part of the user email address. Otherwise, a username field will be shown.', 'wp-event-manager' ),
 
@@ -301,7 +301,7 @@ class WP_Event_Manager_Settings {
 								'name'       => 'event_manager_use_standard_password_setup_email',
 								'std'        => '1',
 								'label'      => __( 'Account Password', 'wp-event-manager' ),
-								'cb_label'   => __( 'Use WordPress\' default behavior and email new users link to set a password', 'wp-event-manager' ),
+								'cb_label'   => __( 'Use WordPress\' default behavior and email new users link to set a password.', 'wp-event-manager' ),
 								'desc'       => __( 'If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won\'t be verified.', 'wp-event-manager' ),
 								'type'       => 'checkbox',
 								'attributes' => array()
@@ -330,7 +330,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Moderate New Listings', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'New listing submissions require admin approval', 'wp-event-manager' ),
+							'cb_label'   => __( 'New listing submissions require admin approval.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, new submissions will be inactive, pending admin approval.', 'wp-event-manager' ),
 
@@ -347,7 +347,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Allow Pending Edits', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Submissions awaiting approval can be edited', 'wp-event-manager' ),
+							'cb_label'   => __( 'Submissions awaiting approval can be edited.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, submissions awaiting admin approval can be edited by the user.', 'wp-event-manager' ),
 
@@ -362,7 +362,7 @@ class WP_Event_Manager_Settings {
 	
 								'label'      => __( 'Allow Multiple Banners', 'wp-event-manager' ),
 	
-								'cb_label'   => __( 'User can submit multiple banner', 'wp-event-manager' ),
+								'cb_label'   => __( 'User can submit multiple banner.', 'wp-event-manager' ),
 
 								'desc'       => __( 'If enabled, Multiple banner can add at frontend by user and backend side by admin.', 'wp-event-manager' ),
 	
@@ -378,7 +378,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Delete listings after finished', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Delete listings after finished', 'wp-event-manager' ),
+							'cb_label'   => __( 'Delete listings after finished.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, expired listings will automatically deleted after finished.', 'wp-event-manager' ),
 
@@ -394,7 +394,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Delete Expired listings', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Expired listings are deleted after 30 days', 'wp-event-manager' ),
+							'cb_label'   => __( 'Expired listings are deleted after 30 days.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, expired listings will automatically deleted after 30 days.', 'wp-event-manager' ),
 
@@ -444,7 +444,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Categories', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable Categories for listing and submission form', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Categories for listing and submission form.', 'wp-event-manager' ),
 					        
 					        'desc'       => __( 'Choose whether to enable categories on the event listing and submission page. If enabled, it needs to be prior created at the backend.', 'wp-event-manager' ),
 					        
@@ -461,7 +461,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Event Types', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable Event types for listing and submission form', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Event types for listing and submission form.', 'wp-event-manager' ),
 					        
 					        'desc'       => __( 'Choose whether to enable event types on the event listing and submission page. If enabled, it needs to be prior created at the backend.', 'wp-event-manager' ),
 					        
@@ -478,7 +478,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Ticket prices', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable Ticket prices for listing and submission form', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Ticket prices for listing and submission form.', 'wp-event-manager' ),
 					        
 					        'desc'       => __( 'Choose whether to enable ticket prices on the event listing and submission page.', 'wp-event-manager' ),
 					        
@@ -611,7 +611,7 @@ class WP_Event_Manager_Settings {
 				
 										'label' 	=> __( 'Datepicker Date Format', 'wp-event-manager' ),
 				
-										'desc'		=> __( 'Select the date format to use in datepickers', 'wp-event-manager' ),
+										'desc'		=> __( 'Select the date format to use in datepickers.', 'wp-event-manager' ),
 				
 										'type'      => 'select',
 				
@@ -623,7 +623,7 @@ class WP_Event_Manager_Settings {
 										'std' 		=> '12',
 										'label' 	=> __( 'Timepicker Format', 'wp-event-manager' ),
 				
-										'desc'		=> __( 'Select the time format to use in timepickers', 'wp-event-manager' ),
+										'desc'		=> __( 'Select the time format to use in timepickers.', 'wp-event-manager' ),
 				
 										'type'      => 'radio',
 				
@@ -650,7 +650,7 @@ class WP_Event_Manager_Settings {
 				
 										'label' 	=> __( 'Date Format', 'wp-event-manager' ),
 				
-										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://wordpress.org/support/article/formatting-date-and-time/'),
+										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>.', 'wp-event-manager' ),'https://wordpress.org/support/article/formatting-date-and-time/'),
 				
 										'type'      => 'text',
 								),
@@ -672,7 +672,7 @@ class WP_Event_Manager_Settings {
 								
 										'label' 	=> __( 'Event Timezone', 'wp-event-manager' ),
 								
-										'desc'		=> __( 'Timezone for the event date and time', 'wp-event-manager' ),
+										'desc'		=> __( 'Timezone for the event date and time.', 'wp-event-manager' ),
 								
 										'type'      => 'radio',
 										'options'	=> array(
