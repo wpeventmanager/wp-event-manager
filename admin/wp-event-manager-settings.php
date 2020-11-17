@@ -857,13 +857,13 @@ class WP_Event_Manager_Settings {
 												<legend class="screen-reader-text">
 													<span><?php echo esc_html( $option['label'] ); ?></span>
 												</legend><?php
+											
+											foreach( $option['options'] as $key => $name )
+												echo '<label><input name="' . esc_attr( $option['name'] ) . '" type="radio" value="' . esc_attr( $key ) . '" ' . checked( $value, $key, false ) . ' />' . esc_html( $name ) . '</label><br>';
 
 											if ( $option['desc'] ) {
 												echo '<p class="description">' . $option['desc'] . '</p>';
 											}
-
-											foreach( $option['options'] as $key => $name )
-												echo '<label><input name="' . esc_attr( $option['name'] ) . '" type="radio" value="' . esc_attr( $key ) . '" ' . checked( $value, $key, false ) . ' />' . esc_html( $name ) . '</label><br>';
 
 											?></fieldset><?php
 
