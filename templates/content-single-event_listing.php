@@ -206,7 +206,7 @@ $event = $post;
                                                                         <?php if( in_array(pathinfo($file, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg']) ) : ?>
                                                                             <div><img src="<?php echo $file; ?>"></div>
                                                                         <?php else : ?>
-                                                                            <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $field_value; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a></div>
+                                                                            <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $file; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a></div>
                                                                         <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                 <?php else : ?>
