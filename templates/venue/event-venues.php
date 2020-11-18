@@ -15,8 +15,8 @@
             </div>
 
 
-            <div class="available-events-number-icon">
-                <a href="<?php echo get_the_permalink(get_option('event_manager_events_page_id')); ?>" class="list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
+            <div class="wpem-available-events-number-icon">
+                <a href="<?php echo get_the_permalink(get_option('event_manager_events_page_id')); ?>" class="wpem-list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
                     <div class="venue-counter-upper-wrap">
                         <div class="venue-counter-icon-wrap"><i class="wpem-icon-calendar"></i></div>
                         <div class="venue-counter-number-wrap"><?php echo $countAllEvents; ?></div>
@@ -55,7 +55,7 @@
                     foreach ($venues_array as $letter => $venues) : ?>
                         <div id="show_<?php echo $letter; ?>" class="show-venue-info show-venue-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
                             <div class="wpem-list-group">
-                                <div class="venue-group-header list-group-item list-group-item-success">
+                                <div class="venue-group-header wpem-list-group-item wpem-list-group-item-success">
                                     <div><?php echo sprintf( __( '%s', 'wp-event-manager' ), $letter ); ?></div>
                                 </div>
 
@@ -65,7 +65,7 @@
                                         $count = get_event_venue_count($venue_id); ?>
                                         
                                         <div class="venue-list-items">
-                                            <a href="<?php echo get_the_permalink($venue_id) ?>" class="list-group-item list-color" title="<?php _e('Click here, for more info.', 'wp-event-manager'); ?>" >
+                                            <a href="<?php echo get_the_permalink($venue_id) ?>" class="wpem-list-group-item list-color" title="<?php _e('Click here, for more info.', 'wp-event-manager'); ?>" >
                                                 <?php $venue = get_post($venue_id); ?>
                                                 <?php if ( $show_thumb && $show_thumb == 'true' ) : ?>
                                                     <div class="wpem-venue-logo"><?php display_venue_logo('', '', $venue); ?></div>

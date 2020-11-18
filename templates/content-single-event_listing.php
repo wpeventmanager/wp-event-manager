@@ -118,7 +118,6 @@ $event = $post;
                                 $form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
                                 $custom_fields = $form_submit_event_instance->get_event_manager_fieldeditor_fields();
                                 $default_fields = $form_submit_event_instance->get_default_event_fields();
-
                                 
                                 $additional_fields = [];
                                 if( !empty($custom_fields) && isset($custom_fields) && !empty($custom_fields['event']) )
