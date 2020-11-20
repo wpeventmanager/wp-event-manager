@@ -3403,3 +3403,398 @@ p.post-submitted-success-green-message a {
   font-size: 20px;
   line-height: 1.42;
 }
+
+
+/* Vertical Menu */
+.wpem-main-vmenu-dashboard-wrapper {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.wpem-main-vmenu-dashboard-nav {
+  position: relative;
+}
+
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-nav-menu .wpem-main-vmenu-dashboard-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-nav ul.wpem-main-vmenu-dashboard-ul {
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  list-style: none;
+}
+.wpem-main-vmenu-dashboard-nav ul li {
+  margin: 0;
+}
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li {
+  /* Sub Menu */
+  list-style: none;
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-link {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 10px 15px;
+  color: #1f2d41;
+  font-size: 16px;
+  word-break: break-word;
+  text-decoration: none;
+  border-bottom: 1px solid #dfe1e5;
+  -webkit-transition: 0.2s linear;
+  -moz-transition: 0.2s linear;
+  -ms-transition: 0.2s linear;
+  -o-transition: 0.2s linear;
+  transition: 0.2s linear;
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-link:hover {
+  color: #00a5fa;
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-link .wpem-main-vmenu-dashboard-nav-caret {
+  width: 10px;
+  text-align: center;
+  margin-right: 5px;
+  display: block;
+  margin-left: auto;
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-submenu-ul {
+  margin: 0;
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-submenu-ul .wpem-main-vmenu-dashboard-submenu-li .wpem-main-vmenu-dashboard-link {
+  background: #ffffff;
+  padding: 10px 18px;
+  padding-left: 36px;
+  border-left: 4px solid transparent;
+}
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-link i {
+  margin-right: 10px;
+  color: #a2acba;
+  font-size: 14px;
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li.wpem-main-vmenu-dashboard-sub-menu .wpem-main-vmenu-dashboard-link i.wpem-main-vmenu-caret {
+  margin-right: 0;
+  font-size: 10px;
+}
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-submenu-ul .wpem-main-vmenu-dashboard-submenu-li .wpem-main-vmenu-dashboard-link:hover {
+  border-left: 4px solid;
+}
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li:first-child .wpem-main-vmenu-dashboard-link {
+  border-top: 1px solid #dfe1e5;
+}
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-submenu-ul .wpem-main-vmenu-dashboard-submenu-li .wpem-main-vmenu-dashboard-link.wpem-main-vmenu-dashboard-link-active {
+  color: #00a5fa;
+  font-weight: 600;
+  border-left: 4px solid #00a5fa;
+  padding-left: 36px;
+}
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-caret {
+  margin-left: auto;
+  font-size: 11px;
+  color: #a2acba;
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-caret-up {
+  transform: rotate(90deg);
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-caret-down {
+  transform: rotate(270deg);
+}
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-link:hover i {
+  color: #00a5fa;
+}
+
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li.wpem-main-vmenu-dashboard-sub-menu .wpem-main-vmenu-dashboard-link:hover i.wpem-main-vmenu-caret {
+  color: #a2acba;
+}
+
+/*Inner Container*/
+
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap form.wpem-form-wrapper {
+  margin-bottom: 0;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #dfe1e5;
+  border-radius: 3px;
+  margin: 20px 0px;
+  overflow: hidden;
+  transition: 0.2s all ease;
+  font-size: 13px;
+  line-height: 1.42;
+  margin-top: 5px;
+  color: #404040;
+}
+
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-name a {
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 600;
+  color: #404040;
+  transition: 0.2s all ease;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-name a:hover {
+  color: #00a5fb;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action {
+  display: flex;
+}
+
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn {
+  display: inline-block;
+  margin: 2px;
+  height: 25px;
+  width: 25px;
+  position: relative;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a {
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  text-align: center;
+  line-height: normal;
+  font-size: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #00a5fb;
+  cursor: pointer;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a:hover {
+  color: #333;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 25px;
+  width: 25px;
+  font-family: wp-event-manager;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 25px;
+  font-size: 16px;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-edit::before {
+  content: "\e906";
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-mark_cancelled::before {
+  content: "\ea0e";
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-mark_not_cancelled::before {
+  content: "\ea10";
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-duplicate::before {
+  content: "\e92c";
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-delete::before {
+  content: "\e9ad";
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-details::before {
+  content: "\e9bd";
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list:hover {
+  box-shadow: 0px 0px 8px 3px #00000020;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information {
+  padding: 10px 38px 20px 15px;
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information a.hide_section {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+  height: 25px;
+  background: #555555;
+  color: #fff;
+  min-width: 25px;
+  line-height: 22px;
+  text-align: center;
+  border: 2px solid #555555;
+  font-size: 0;
+  font-weight: 500;
+  z-index: 1;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px rgb(0 0 0 / 10%);
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table h4.wpem-event-dashboard-information-title-box {
+  color: #00a5fb;
+  border-bottom: 3px solid #00a5fb;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.42;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  align-items: center;
+  border-radius: 3px;
+  width: 100%;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information a.hide_section:before {
+  content: "\ea0f";
+  font-family: wp-event-manager;
+  font-size: 10px;
+  color: #fff;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information a.hide_section:hover {
+  background: red;
+  border-color: red;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  align-items: center;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter h3.wpem-theme-text {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter i.wpem-icon-filter {
+  border: 1px solid #dfe1e5;
+  padding: 10px;
+  border-radius: 3px;
+  color: #00a5fa;
+  transition: 0.2s all ease;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter i.wpem-icon-filter:hover {
+  color: #333;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter a.wpem-dashboard-event-filter {
+  display: inline-flex;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table .wpem-event-dashboard-information-table-row .wpem-event-dashboard-information-table-lines {
+  border-bottom: 1px solid #dfe1e5;
+  padding: 5px;
+  height: 100%;
+  font-size: 14px;
+  line-height: 26px;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap strong {
+  color: #444;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location {
+  display: flex;
+  border-top: 1px solid #dfe1e5;
+  padding: 5px 15px;
+  width: 100%;
+}
+
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location .wpem-dashboard-event-date-time,
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location .wpem-dashboard-event-location {
+  margin: 5px 0 0px 0px;
+  min-height: 18px;
+  position: relative;
+  width: 50%;
+  padding-left: 20px;
+  color: #666;
+}
+
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap .wpem-dashboard-event-name {
+  margin-right: 20px;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location .wpem-dashboard-event-date-time:before {
+  content: "\e94e";
+  font-family: wp-event-manager;
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+  line-height: 20px;
+  color: #00a5fb;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location .wpem-dashboard-event-location:before {
+  content: "\e947";
+  font-family: wp-event-manager;
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: #00a5fb;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list-body .wpem-dashboard-event-placeholder strong {
+  border-bottom: 1px solid #00a5fa;
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+  display: inline-block;
+}
+.wpem-dashboard-events-block-wrap .event-manager-pagination-2 ul.page-numbers li .page-numbers {
+  margin: 10px 0px;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list-body .wpem-dashboard-event-placeholder {
+  margin-bottom: 5px;
+  color: #404040;
+  font-size: 13px;
+}
+.wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter {
+  background: #eee;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter .wpem-form-group {
+  margin: 5px 0;
+}
+@media only screen and (max-width: 600px) {
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap .wpem-dboard-event-action {
+    margin-top: 10px;
+  }
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location {
+    flex-wrap: wrap;
+  }
+
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location .wpem-dashboard-event-date-time,
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location .wpem-dashboard-event-location {
+    width: 100%;
+    margin: 5px 0px;
+  }
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-datetime-location br {
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table .wpem-event-dashboard-information-table-row .wpem-event-dashboard-information-table-lines {
+    border: none;
+    padding-bottom: 0;
+  }
+
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table .wpem-event-dashboard-information-table-row div + div .wpem-event-dashboard-information-table-lines {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+  }
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter {
+    margin-top: 30px;
+  }
+}
+
+/*Inner Container*/
+
+/* Registration Start */
+
+/* Registration */
+
+/* Vertical Menu */
