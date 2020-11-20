@@ -221,6 +221,8 @@ class WP_Event_Manager_Shortcodes {
 	 */	 
 	public function event_dashboard( $atts ) {
 
+		global $wpdb, $event_manager_keyword;
+
 		if ( ! is_user_logged_in() ) {
 
 			ob_start();
@@ -240,55 +242,59 @@ class WP_Event_Manager_Shortcodes {
 
 		ob_start();
 
-		// If doing an action, show conditional content if needed....
+		$search_order_by = 	isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
 
-		if ( ! empty( $_REQUEST['action'] ) ) {
+		if( isset($search_order_by) && !empty($search_order_by) )
+		{
+			$search_order_by = explode('|', $search_order_by);
 
-			$action = sanitize_title( $_REQUEST['action'] );
-
-			// Show alternative content if a plugin wants to
-
-			if ( has_action( 'event_manager_event_dashboard_content_' . $action ) ) {
-
-				do_action( 'event_manager_event_dashboard_content_' . $action, $atts );
-
-				return ob_get_clean();
-			}
+			$orderby = $search_order_by[0];
+			$order = $search_order_by[1];
 		}
+		else
+		{
+			$orderby = 'date';
+			$order = 'desc';
+		}
+
 		
 		// ....If not show the event dashboard
 
-		$args     = apply_filters( 'event_manager_get_dashboard_events_args', array(
+		$args = apply_filters( 'event_manager_get_dashboard_events_args', array(
 			'post_type'           => 'event_listing',
 			'post_status'         => array( 'publish', 'expired', 'pending' ),
 			'ignore_sticky_posts' => 1,
 			'posts_per_page'      => $posts_per_page,
 			'offset'              => ( max( 1, get_query_var('paged') ) - 1 ) * $posts_per_page,
-			'orderby'             => 'date',
-			'order'               => isset($_GET['order']) ? $_GET['order'] : 'desc' ,
+			'orderby'             => $orderby,
+			'order'               => $order,
 			'author'              => get_current_user_id()
 		) );
 
-		if( isset($_GET['orderby']) && !empty($_GET['orderby']) )
+		$event_manager_keyword = isset($_GET['search_keywords']) ? sanitize_text_field( $_GET['search_keywords'] ) : ''; 
+		if ( ! empty($event_manager_keyword ) && strlen($event_manager_keyword) >= apply_filters( 'event_manager_get_listings_keyword_length_threshold', 2 ) ) 
 		{
-			if($_GET['orderby'] == 'event_title')
-			{
-				$args['orderby'] = 'title';
-			}
-			elseif($_GET['orderby'] == 'event_location')
+			$args['s'] = $event_manager_keyword;
+			
+			add_filter( 'posts_search', 'get_event_listings_keyword_search' );
+		}
+
+		if( isset($args['orderby']) && !empty($args['orderby']) )
+		{
+			if($args['orderby'] == 'event_location')
 			{
 				$args['meta_key'] = '_event_location';
 				$args['orderby'] = 'meta_value';
 			}
-			elseif($_GET['orderby'] == 'event_start_date')
+			elseif($args['orderby'] == 'event_start_date')
 			{
 				$args['meta_key'] = '_event_start_date';
 				$args['orderby'] = 'meta_value';
 				$args['meta_type'] ='DATETIME';
 			}
-		}
+		}	
 
-		$events = new WP_Query;
+		$events = new WP_Query($args);
 
 		echo $this->event_dashboard_message;
 
@@ -302,7 +308,13 @@ class WP_Event_Manager_Shortcodes {
 			'event_action' => __( 'Action', 'wp-event-manager' ), 
 		) );
 
-		get_event_manager_template( 'event-dashboard.php', array( 'events' => $events->query( $args ), 'max_num_pages' => $events->max_num_pages, 'event_dashboard_columns' => $event_dashboard_columns ) );
+		$event_dashboard_columns = apply_filters( 'event_manager_event_dashboard_columns', array(
+			'view_count' => __( 'Viewed', 'wp-event-manager' ),
+		) );
+
+		get_event_manager_template( 'event-dashboard.php', array( 'events' => $events->query( $args ), 'max_num_pages' => $events->max_num_pages, 'event_dashboard_columns' => $event_dashboard_columns, 'atts' => $atts ) );
+
+		remove_filter( 'posts_search', 'get_event_listings_keyword_search' );
 
 		return ob_get_clean();
 	}

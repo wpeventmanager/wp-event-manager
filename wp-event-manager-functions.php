@@ -2173,3 +2173,45 @@ function get_event_venue_ids( $post = null )
 
 	return !empty($post->_event_venue_ids) ? $post->_event_venue_ids : '';
 }
+
+/**
+ * 
+ * @since 3.1.18
+ * @param null
+ * @return array
+ */
+function get_event_order_by() 
+{
+	$args = [
+				'title'   => [
+					'label' => __('Event Title', 'wp-event-manager'),
+					'type' => [
+						'title|asc' => __('Ascending (ASC)', 'wp-event-manager'),
+						'title|desc' => __('Descending (DESC)', 'wp-event-manager'),
+					]
+				],
+				'event_start_date'   => [
+					'label' => __('Event Start Date', 'wp-event-manager'),
+					'type' => [
+						'event_start_date|asc' => __('Ascending (ASC)', 'wp-event-manager'),
+						'event_start_date|desc' => __('Descending (DESC)', 'wp-event-manager'),
+					]
+				],
+				'event_end_date'   => [
+					'label' => __('Event End Date', 'wp-event-manager'),
+					'type' => [
+						'event_end_date|asc' => __('Ascending (ASC)', 'wp-event-manager'),
+						'event_end_date|desc' => __('Descending (DESC)', 'wp-event-manager'),
+					]
+				],
+				'event_location'   => [
+					'label' => __('Event Location Date', 'wp-event-manager'),
+					'type' => [
+						'event_location|asc' => __('Ascending (ASC)', 'wp-event-manager'),
+						'event_location|desc' => __('Descending (DESC)', 'wp-event-manager'),
+					]
+				],
+			];
+
+	return apply_filters('get_event_order_by_args', $args);
+}
