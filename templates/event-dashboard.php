@@ -6,16 +6,33 @@
 			<ul class="wpem-main-vmenu-dashboard-ul">
 				<?php
 
-				$current_action = isset($_GET['action']) ? $_GET['action'] : 'wpem_dashboard';
+				$current_action = isset($_GET['action']) ? $_GET['action'] : 'event_dashboard';
 				$event_id = isset($_GET['event_id']) ? absint($_GET['event_id']) : '';
 
 				$menus = [
-					'wpem_dashboard' => [
+					'event_dashboard' => [
 						'title' => __('Dashboard', 'wp-event-manager'),
 						'icon' => 'wpem-icon-meter',
-						'query_arg' => ['action' => 'wpem_dashboard'],
+						'query_arg' => ['action' => 'event_dashboard'],
 					],
 				];
+
+				if(get_option('enable_event_organizer'))
+				{
+					$menus['wpem_organizer'] = [
+						'title' => __('Organizer', 'wp-event-manager'),
+						'icon' => 'wpem-icon-users',
+						'query_arg' => ['action' => 'organizer_dashboard'],
+					];
+				}
+				if(get_option('enable_event_venue'))
+				{
+					$menus['wpem_venue'] = [
+						'title' => __('Venue', 'wp-event-manager'),
+						'icon' => 'wpem-icon-users',
+						'query_arg' => ['action' => 'venue_dashboard'],
+					];
+				}
 
 				$menus = apply_filters('wpem_dashboard_menu',$menus);
 
@@ -76,10 +93,16 @@
 
 			<?php do_action('event_manager_event_dashboard_before'); ?>
 
-			<?php if ( $current_action != 'wpem_dashboard' && !empty($current_action) ) : ?>
+			<?php if ( $current_action === 'organizer_dashboard' && !empty($current_action) ) : ?>
+				<?php echo do_shortcode('[organizer_dashboard]'); ?>
+
+			<?php elseif ( $current_action === 'venue_dashboard' && !empty($current_action) ) : ?>
+				<?php echo do_shortcode('[venue_dashboard]'); ?>
+
+			<?php elseif ( $current_action != 'event_dashboard' && !empty($current_action) ) : ?>
 				<?php if ( has_action( 'event_manager_event_dashboard_content_' . $current_action ) ) : ?>
 					<?php do_action( 'event_manager_event_dashboard_content_' . $current_action, $atts ); ?>
-				<?php endif; ?>
+				<?php endif; ?>			
 
 			<?php else : ?>
 				<div class="wpem-dashboard-main-header">
