@@ -21,7 +21,7 @@
 				{
 					$menus['wpem_organizer'] = [
 						'title' => __('Organizer', 'wp-event-manager'),
-						'icon' => 'wpem-icon-users',
+						'icon' => 'wpem-icon-user-plus',
 						'query_arg' => ['action' => 'organizer_dashboard'],
 					];
 				}
@@ -29,7 +29,7 @@
 				{
 					$menus['wpem_venue'] = [
 						'title' => __('Venue', 'wp-event-manager'),
-						'icon' => 'wpem-icon-users',
+						'icon' => 'wpem-icon-location',
 						'query_arg' => ['action' => 'venue_dashboard'],
 					];
 				}
