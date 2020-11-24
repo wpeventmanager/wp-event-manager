@@ -3826,8 +3826,12 @@ p.post-submitted-success-green-message a {
   background: #fff4d7;
   color: #6b4e00;
 }
-
-.wpem-dashboard-event-name small.wpem-event-status-expired {
+.wpem-dashboard-event-name small.wpem-event-status-expired,
+.wpem-dashboard-event-name small.wpem-event-status-cancelled {
   background: #ffd7d7;
   color: #940000;
+}
+.wpem-dashboard-event-name small.wpem-event-status-featured {
+  background: #d1ecf1;
+  color: #0c5460;
 }

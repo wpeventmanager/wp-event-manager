@@ -119,7 +119,7 @@
 			<?php elseif ( $current_action === 'venue_dashboard' && !empty($current_action) ) : ?>
 				<?php echo do_shortcode('[venue_dashboard]'); ?>
 
-			<?php elseif ( $current_action != 'event_dashboard' && !empty($current_action) ) : ?>
+			<?php elseif ( !in_array($current_action, ['event_dashboard', 'delete', 'mark_cancelled', 'mark_not_cancelled']) && !empty($current_action) ) : ?>
 				<?php if ( has_action( 'event_manager_event_dashboard_content_' . $current_action ) ) : ?>
 					<?php do_action( 'event_manager_event_dashboard_content_' . $current_action, $atts ); ?>
 				<?php endif; ?>			
@@ -195,6 +195,15 @@
 													<?php else : ?>
 														<?php echo $event->post_title; ?> <small class="wpem-event-status-<?php echo sanitize_title(get_event_status($event)); ?>"><?php display_event_status( $event ); ?></small>
 													<?php endif; ?>
+
+													<?php if ( is_event_cancelled($event) ) : ?>
+														<small class="wpem-event-status-cancelled"><?php _e('Cancelled', 'wp-event-manager'); ?></small>
+													<?php endif; ?>
+
+													<?php if ( is_event_featured($event) ) : ?>
+														<small class="wpem-event-status-featured"><?php _e('Featured', 'wp-event-manager'); ?></small>
+													<?php endif; ?>
+
 												</div>
 											</div>
 											<div class="wpem-dboard-event-action">
