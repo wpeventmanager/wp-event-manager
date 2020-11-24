@@ -49,10 +49,20 @@
 						printf( '<ul class="wpem-main-vmenu-dashboard-submenu-ul">' );
 						foreach ($menu['submenu'] as $sub_name => $submenu) 
 						{
-							$action_url = add_query_arg( 
-								$submenu['query_arg'], 
-								get_permalink($event_dashboard)
-							);
+							if( isset($submenu['query_arg']) && !empty($submenu['query_arg']) && is_array($submenu['query_arg']) )
+							{
+								$action_url = add_query_arg( 
+									$submenu['query_arg'], 
+									get_permalink($event_dashboard)
+								);	
+							}
+							else
+							{
+								$action_url = add_query_arg( 
+									array(), 
+									get_permalink($event_dashboard)
+								);
+							}
 
 							$active_menu = '';
 							if($current_action === $sub_name)
@@ -68,10 +78,20 @@
 					}
 					else
 					{
-						$action_url = add_query_arg( 
-							$menu['query_arg'], 
-							get_permalink($event_dashboard)
-						);
+						if( isset($menu['query_arg']) && !empty($menu['query_arg']) && is_array($menu['query_arg']) )
+						{
+							$action_url = add_query_arg( 
+								$menu['query_arg'], 
+								get_permalink($event_dashboard)
+							);	
+						}
+						else
+						{
+							$action_url = add_query_arg( 
+								array(), 
+								get_permalink($event_dashboard)
+							);
+						}
 
 						$active_menu = '';
 						if($current_action === $name)
