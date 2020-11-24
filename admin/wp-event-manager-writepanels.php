@@ -651,7 +651,7 @@ class WP_Event_Manager_Writepanels {
 		do_action( 'event_manager_event_listing_data_start', $thepostid );
 		foreach ( $this->event_listing_fields() as $key => $field ) {
 			$type = ! empty( $field['type'] ) ? $field['type'] : 'text';
-			if($type == 'wp-editor') $type = 'textarea';
+			if($type == 'wp-editor') $type = 'wp_editor';
 			
 			if ( has_action( 'event_manager_input_' . $type ) ) {
 				do_action( 'event_manager_input_' . $type, $key, $field );
