@@ -102,7 +102,7 @@ class WP_Event_Manager_Setup {
 
 	public function admin_enqueue_scripts() {
 	    
-		wp_enqueue_style( 'event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.css', array( 'dashicons' ) );
+		wp_enqueue_style( 'event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array( 'dashicons' ) );
 	}
 
 	/**
@@ -195,7 +195,7 @@ class WP_Event_Manager_Setup {
 		<div class="wrap wp_event_manager wp_event_manager_addons_wrap">
 		
 			<h2><?php _e( 'WP Event Manager Setup', 'wp-event-manager' ); ?></h2>
-
+			<div class="wpem-setup-wrapper">
 			<ul class="wp-event-manager-setup-steps">
 
 				<li class="<?php if ( $step === 1 ) echo 'wp-event-manager-setup-active-step'; ?>"><?php _e( '1. Introduction', 'wp-event-manager' ); ?></li>
@@ -207,7 +207,7 @@ class WP_Event_Manager_Setup {
 			</ul>
 
 			<?php if ( 1 === $step ) : ?>
-
+				<div class="wpem-step-window">
 				<h3><?php _e( 'Setup Wizard Introduction', 'wp-event-manager' ); ?></h3>
 
 				<p><?php _e( 'Thanks for installing <em>WP Event Manager</em>!', 'wp-event-manager' ); ?></p>
@@ -215,7 +215,7 @@ class WP_Event_Manager_Setup {
 				<p><?php _e( 'This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events.', 'wp-event-manager' ); ?></p>
 
 				<p><?php printf( __( 'If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>' ); ?></p>
-
+				</div>
 				<p class="submit">
 
 					<a href="<?php echo esc_url( add_query_arg( 'step', 2 ) ); ?>" class="button button-primary"><?php _e( 'Continue to page setup', 'wp-event-manager' ); ?></a>
@@ -394,50 +394,52 @@ class WP_Event_Manager_Setup {
 
 			<?php if ( 3 === $step ) : ?>
 
-				<h3><?php _e( 'All Done!', 'wp-event-manager' ); ?></h3>
-				
+				<div class="wpem-setup-done"><i class="wpem-icon-checkmark"></i><h3><?php _e( 'All Done!', 'wp-event-manager' ); ?></h3></div>
+				<div class="wpem-setup-next-block-wrapper">
+				<div class="wpem-setup-next-points">
+					<h3><?php _e( 'Where To Go Next', 'wp-event-manager' ); ?></h3>
 				<p><?php _e( 'Looks like you\'re all set to start using the plugin. In case you\'re wondering where to go next:', 'wp-event-manager' ); ?></p>
 
 				<ul class="wp-event-manager-next-steps">
 
-					<li><a href="<?php echo admin_url( 'edit.php?post_type=event_listing&page=event-manager-settings' ); ?>"><?php _e( 'Tweak the plugin settings', 'wp-event-manager' ); ?></a></li>
+					<li class="wpem-icon-plugin-setting"><a href="<?php echo admin_url( 'edit.php?post_type=event_listing&page=event-manager-settings' ); ?>"><?php _e( 'Tweak the plugin settings', 'wp-event-manager' ); ?></a></li>
 
-					<li><a href="<?php echo admin_url( 'post-new.php?post_type=event_listing' ); ?>"><?php _e( 'Add an event via the back-end', 'wp-event-manager' ); ?></a></li>
+					<li class="wpem-icon-event-backend"><a href="<?php echo admin_url( 'post-new.php?post_type=event_listing' ); ?>"><?php _e( 'Add an event via the back-end', 'wp-event-manager' ); ?></a></li>
 
 					<?php if ( $permalink = event_manager_get_permalink( 'submit_event_form' ) ) : ?>
 
-						<li><a href="<?php echo esc_url( $permalink ); ?>"><?php _e( 'Add an event via the front-end', 'wp-event-manager' ); ?></a></li>
+						<li class="wpem-icon-event-frontend"><a href="<?php echo esc_url( $permalink ); ?>"><?php _e( 'Add an event via the front-end', 'wp-event-manager' ); ?></a></li>
 
 					<?php else : ?>
 
-						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-submission-form/"><?php _e( 'Find out more about the front-end event submission form', 'wp-event-manager' ); ?></a></li>
+						<li class="wpem-icon-event-frontend"><a href="https://wp-eventmanager.com/knowledge-base/the-event-submission-form/"><?php _e( 'Find out more about the front-end event submission form', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
 					<?php if ( $permalink = event_manager_get_permalink( 'events' ) ) : ?>
 
-						<li><a href="<?php echo esc_url( $permalink ); ?>"><?php _e( 'View submitted event listings', 'wp-event-manager' ); ?></a></li>
+						<li class="wpem-icon-event-listing"><a href="<?php echo esc_url( $permalink ); ?>"><?php _e( 'View submitted event listings', 'wp-event-manager' ); ?></a></li>
 
 					<?php else : ?>
 
-						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-listings/"><?php _e( 'Add the [events] shortcode to a page to list events', 'wp-event-manager' ); ?></a></li>
+						<li class="wpem-icon-event-listing"><a href="https://wp-eventmanager.com/knowledge-base/the-event-listings/"><?php _e( 'Add the [events] shortcode to a page to list events', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
 					<?php if ( $permalink = event_manager_get_permalink( 'event_dashboard' ) ) : ?>
 
-						<li><a href="<?php echo esc_url( $permalink ); ?>"><?php _e( 'View the event dashboard', 'wp-event-manager' ); ?></a></li>
+						<li class="wpem-icon-event-dashboard"><a href="<?php echo esc_url( $permalink ); ?>"><?php _e( 'View the event dashboard', 'wp-event-manager' ); ?></a></li>
 
 					<?php else : ?>
 
-						<li><a href="https://wp-eventmanager.com/knowledge-base/the-event-dashboard/"><?php _e( 'Find out more about the front-end event dashboard', 'wp-event-manager' ); ?></a></li>
+						<li class="wpem-icon-event-dashboard"><a href="https://wp-eventmanager.com/knowledge-base/the-event-dashboard/"><?php _e( 'Find out more about the front-end event dashboard', 'wp-event-manager' ); ?></a></li>
 
 					<?php endif; ?>
 
 				</ul>
 
 				<p><?php printf( __( 'And don\'t forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>', '<a href="https://wordpress.org/support/plugin/wp-event-manager">' ); ?></p>
-
+				</div>
 				<div class="wp-event-manager-support-the-plugin">
 
 					<h3><?php _e( 'Support the Ongoing Development of this Plugin', 'wp-event-manager' ); ?></h3>
@@ -457,9 +459,10 @@ class WP_Event_Manager_Setup {
 					</ul>
 
 				</div>
+				</div>
 
 			<?php endif; ?>
-
+			</div>
 		</div>
 
 		<?php
