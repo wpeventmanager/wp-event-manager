@@ -116,45 +116,43 @@
 
 							<?php $submit_event = get_option('event_manager_submit_event_form_page_id');
 							if(!empty($submit_event )) : ?>					
-								<a class="wpem-dashboard-header-btn" title="<?php _e('Add Event','wp-event-manager');?>" href="<?php echo get_permalink($submit_event);?>"><i class="wpem-icon-plus"></i></a>
+								<a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php _e('Add Event','wp-event-manager');?>" href="<?php echo get_permalink($submit_event);?>"><i class="wpem-icon-plus"></i></a>
 							<?php endif; ?>
 
 							<?php do_action('event_manager_event_dashboard_button_action_end'); ?>
 
-							<a href="javascript:void(0)" title="<?php _e('Filter','wp-event-manager');?>" class="wpem-dashboard-event-filter"><i class="wpem-icon-filter"></i></a>
+							<a href="javascript:void(0)" title="<?php _e('Filter','wp-event-manager');?>" class="wpem-dashboard-event-filter wpem-dashboard-header-btn"><i class="wpem-icon-filter"></i></a>
 						</div>
 					</div>
 
 					<form action="" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block" method="get">
-						<div class="wpem-events-filter">
-							<div class="wpem-row">
-								<div class="wpem-col-md-4">
-									<?php $search_keywords = isset($_GET['search_keywords']) ? $_GET['search_keywords'] : ''; ?>
-									<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo $search_keywords; ?>" placeholder="<?php _e('Keywords','wp-event-manager');?>"></div>
-								</div>
-								<div class="wpem-col-md-4">
-									<div class="wpem-form-group">
-										<select name="search_order_by" id="search_order_by">
-											<option value=""><?php _e('Order by','wp-event-manager');?></option>
-											<?php $search_order_by = isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
-											foreach ( get_event_order_by() as $order_by ) : ?>
-												<?php if( isset($order_by['type']) && !empty($order_by['type']) ) : ?>
-													<optgroup label="<?php echo esc_html( $order_by['label'] ); ?>">
-													<?php foreach ( $order_by['type'] as $order_key => $order_value ) : ?>
-														<option value="<?php echo esc_html( $order_key ); ?>" <?php selected( $order_key, $search_order_by ); ?>><?php echo esc_html( $order_value ); ?></option>
-													<?php endforeach; ?>
-													</optgroup>
-												<?php endif; ?>
-											<?php endforeach; ?>
-										</select>
-									</div>
-								</div>
-								<div class="wpem-col-md-4">
-									<div class="wpem-form-group">
-										<button type="submit" class="wpem-theme-button"><?php _e('Filter','wp-event-manager');?></button>
-									</div>
+						<div class="wpem-events-filter">							
+							<div class="wpem-events-filter-block">
+								<?php $search_keywords = isset($_GET['search_keywords']) ? $_GET['search_keywords'] : ''; ?>
+								<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo $search_keywords; ?>" placeholder="<?php _e('Keywords','wp-event-manager');?>"></div>
+							</div>
+							<div class="wpem-events-filter-block">
+								<div class="wpem-form-group">
+									<select name="search_order_by" id="search_order_by">
+										<option value=""><?php _e('Order by','wp-event-manager');?></option>
+										<?php $search_order_by = isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
+										foreach ( get_event_order_by() as $order_by ) : ?>
+											<?php if( isset($order_by['type']) && !empty($order_by['type']) ) : ?>
+												<optgroup label="<?php echo esc_html( $order_by['label'] ); ?>">
+												<?php foreach ( $order_by['type'] as $order_key => $order_value ) : ?>
+													<option value="<?php echo esc_html( $order_key ); ?>" <?php selected( $order_key, $search_order_by ); ?>><?php echo esc_html( $order_value ); ?></option>
+												<?php endforeach; ?>
+												</optgroup>
+											<?php endif; ?>
+										<?php endforeach; ?>
+									</select>
 								</div>
 							</div>
+							<div class="wpem-events-filter-block wpem-events-filter-submit">
+								<div class="wpem-form-group">
+									<button type="submit" class="wpem-theme-button"><?php _e('Filter','wp-event-manager');?></button>
+								</div>
+							</div>							
 						</div>
 					</form>
 				</div>
