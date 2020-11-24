@@ -104,21 +104,14 @@ if (!empty($submit_venue)) :
                                         // echo get_event_venue_count($venue->ID);
                                         $events = get_event_by_venue_id($venue->ID);
                                         ?>
-                                        <div  class="event-venue-count wpem-tooltip wpem-tooltip-bottom">
-                                            <a href="javaScript:void(0)"><?php echo sizeof($events); ?></a>
-                                            <span class="venue-events-list wpem-tooltiptext">
-                                                <?php $i      = 1; ?>
-                                                <?php foreach ($events as $event) : ?>
-
-                                                    <?php if ($i > 1) : ?>
-                                                        <span>, </span>
-                                                    <?php endif; ?>
-
-                                                    <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php echo get_the_title($event->ID); ?></a></span>
-
-                                                    <?php $i++; ?>
-                                                <?php endforeach; ?>
-                                            </span>
+                                        <div  class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo sizeof($events); ?></a>
+                                            <?php if(!empty($events)) : ?>
+                                                <span class="venue-events-list wpem-tooltiptext">
+                                                    <?php foreach ($events as $event) : ?>
+                                                        <span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
+                                                    <?php endforeach; ?>
+                                                </span>
+                                            <?php endif; ?>
 
                                         <?php elseif ('venue_action' === $key) : ?>
                                             <div class="wpem-dboard-event-action">
