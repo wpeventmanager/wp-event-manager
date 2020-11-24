@@ -118,6 +118,12 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 					$event_date = get_post_meta( $event->ID, '_' . $key, true );
 					$this->fields[ $group_key ][ $key ]['value'] = !empty($event_date) ? date($php_date_format ,strtotime($event_date) ) :'';
 				}
+				if(! empty( $field['type'] ) &&  $field['type'] == 'button'){
+					if(isset($this->fields[ $group_key ][ $key ]['value']) && empty($this->fields[ $group_key ][ $key ]['value']))
+					{
+						$this->fields[ $group_key ][ $key ]['value'] = $field['placeholder'];
+					}
+				}
 			}
 		}
 

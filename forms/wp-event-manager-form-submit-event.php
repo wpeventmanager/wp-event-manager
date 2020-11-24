@@ -562,6 +562,13 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						$event_date = get_post_meta( $event->ID, '_' . $key, true );
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );
 					}
+
+					if(! empty( $field['type'] ) &&  $field['type'] == 'button'){
+						if(isset($this->fields[ $group_key ][ $key ]['value']) && empty($this->fields[ $group_key ][ $key ]['value']))
+						{
+							$this->fields[ $group_key ][ $key ]['value'] = $field['placeholder'];
+						}
+					}
 				}
 			}
 
