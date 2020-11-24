@@ -237,7 +237,8 @@ class WP_Event_Manager_Field_Editor {
 
 				$GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
 				$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
-				$event_fields =	$form_submit_event_instance->get_default_fields('backend');
+				//$event_fields =	$form_submit_event_instance->get_default_fields('backend');
+				$event_fields =	$form_submit_event_instance->get_default_event_fields();
 
 				$GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
 				$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_organizer', 'instance' ) );
