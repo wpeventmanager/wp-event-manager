@@ -287,8 +287,7 @@
 .wpem-form-wrapper .wpem-form-group input[type="time"]:focus,
 .wpem-form-wrapper .wpem-form-group input[type="url"]:focus,
 .wpem-form-wrapper .wpem-form-group input[type="week"]:focus,
-.wpem-form-wrapper .wpem-form-group select:focus,
-.wpem-form-wrapper .wpem-form-group textarea:focus {
+.wpem-form-wrapper .wpem-form-group select:focus{
   border-color: #00a5fa;
   background-color: #efefef;
 }
