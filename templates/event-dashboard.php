@@ -116,39 +116,40 @@
 
 							<?php $submit_event = get_option('event_manager_submit_event_form_page_id');
 							if(!empty($submit_event )) : ?>					
-								<a class="wpem-theme-button" href="<?php echo get_permalink($submit_event);?>"><span><?php _e('Add event','wp-event-manager');?></span></a>
+								<a class="wpem-dashboard-header-btn" title="<?php _e('Add Event','wp-event-manager');?>" href="<?php echo get_permalink($submit_event);?>"><i class="wpem-icon-plus"></i></a>
 							<?php endif; ?>
 
 							<?php do_action('event_manager_event_dashboard_button_action_end'); ?>
 
-							<a href="javascript:void(0)" class="wpem-dashboard-event-filter"><i class="wpem-icon-filter"></i></a>
+							<a href="javascript:void(0)" title="<?php _e('Filter','wp-event-manager');?>" class="wpem-dashboard-event-filter"><i class="wpem-icon-filter"></i></a>
 						</div>
 					</div>
 
 					<form action="" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block" method="get">
 						<div class="wpem-events-filter">
 							<div class="wpem-row">
-								<div class="wpem-col-md-5">
+								<div class="wpem-col-md-4">
 									<?php $search_keywords = isset($_GET['search_keywords']) ? $_GET['search_keywords'] : ''; ?>
 									<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo $search_keywords; ?>" placeholder="<?php _e('Keywords','wp-event-manager');?>"></div>
 								</div>
-								<div class="wpem-col-md-5">
+								<div class="wpem-col-md-4">
 									<div class="wpem-form-group">
 										<select name="search_order_by" id="search_order_by">
 											<option value=""><?php _e('Order by','wp-event-manager');?></option>
 											<?php $search_order_by = isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
 											foreach ( get_event_order_by() as $order_by ) : ?>
 												<?php if( isset($order_by['type']) && !empty($order_by['type']) ) : ?>
-													<optgroup label="<?php echo esc_html( $order_by['label'] ); ?>"></optgroup>
+													<optgroup label="<?php echo esc_html( $order_by['label'] ); ?>">
 													<?php foreach ( $order_by['type'] as $order_key => $order_value ) : ?>
 														<option value="<?php echo esc_html( $order_key ); ?>" <?php selected( $order_key, $search_order_by ); ?>><?php echo esc_html( $order_value ); ?></option>
 													<?php endforeach; ?>
+													</optgroup>
 												<?php endif; ?>
 											<?php endforeach; ?>
 										</select>
 									</div>
 								</div>
-								<div class="wpem-col-md-2">
+								<div class="wpem-col-md-4">
 									<div class="wpem-form-group">
 										<button type="submit" class="wpem-theme-button"><?php _e('Filter','wp-event-manager');?></button>
 									</div>
@@ -174,7 +175,7 @@
 													<?php if ( $event->post_status == 'publish' ) : ?>
 														<a href="<?php echo get_permalink( $event->ID ); ?>"><?php echo esc_html( $event->post_title ); ?></a>
 													<?php else : ?>
-														<?php echo $event->post_title; ?> <small>(<?php display_event_status( $event ); ?>)</small>
+														<?php echo $event->post_title; ?> <small class="wpem-event-status-<?php echo sanitize_title(get_event_status($event)); ?>"><?php display_event_status( $event ); ?></small>
 													<?php endif; ?>
 												</div>
 											</div>
