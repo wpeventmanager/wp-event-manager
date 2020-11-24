@@ -677,7 +677,7 @@ class WP_Event_Manager_Settings {
 										'type'      => 'radio',
 										'options'	=> array(
 												'site_timezone' 	=> __( 'Use website timezone.', 'wp-event-manager' ),
-												'each_event' 		=> __( 'Select timezone on each event', 'wp-event-manager' )
+												'each_event' 		=> __( 'Select timezone on each event.', 'wp-event-manager' )
 										)
 								)
 						)
