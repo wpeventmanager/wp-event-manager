@@ -136,7 +136,7 @@
 
     </div>
 
-<?php elseif( get_event_venue_name() != '' ) : ?>
+<?php elseif( get_event_venue_name() != '' && !is_event_online() ) : ?>
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
             <div class="wpem-col-md-12">
