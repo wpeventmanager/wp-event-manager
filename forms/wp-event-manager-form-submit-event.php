@@ -445,9 +445,23 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			}
 		}
 
+		
+
 		if( isset($values['event']['event_start_date']) && !empty($values['event']['event_start_date']) && isset($values['event']['event_end_date']) && !empty($values['event']['event_end_date']) )
 		{
-			if( $values['event']['event_start_date'] > $values['event']['event_end_date'] )
+			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+			
+			//covert datepicker format  into php date() function date format
+			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+
+			$event_start_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event']['event_start_date']);
+			$event_start_date = !empty($event_start_date) ? $event_start_date : $values['event']['event_start_date'];
+
+			$event_end_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event']['event_end_date']);
+			$event_end_date = !empty($event_end_date) ? $event_end_date : $values['event']['event_end_date'];
+
+			if( $event_start_date > $event_end_date )
 			{
 				return new WP_Error( 'validation-error', __( 'Event end date must be greater than the event start date.', 'wp-event-manager' ) );
 			}	
@@ -560,7 +574,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					
 					if(! empty( $field['type'] ) &&  $field['type'] == 'date' ){
 						$event_date = get_post_meta( $event->ID, '_' . $key, true );
-						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );
+						if(!empty($event_date))
+						{
+							$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );	
+						}						
 					}
 
 					if(! empty( $field['type'] ) &&  $field['type'] == 'button'){
