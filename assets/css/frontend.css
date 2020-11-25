@@ -3768,6 +3768,31 @@ p.post-submitted-success-green-message a {
 .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter .wpem-events-filter-block:last-child {
   margin-right: 0;
 }
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title .wpem-theme-button i {
+  font-size: 14px;
+  line-height: 1.42;
+}
+.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter .wpem-d-inline-block.wpem-dashboard-i-block-btn {
+  margin: 0;
+  margin-left: auto;
+}
+.wpem-dashboard-event-name small.wpem-event-status-pending-approval {
+  background: #fff4d7;
+  color: #6b4e00;
+}
+.wpem-dashboard-event-name small.wpem-event-status-expired,
+.wpem-dashboard-event-name small.wpem-event-status-cancelled {
+  background: #ffd7d7;
+  color: #940000;
+}
+.wpem-dashboard-event-name small.wpem-event-status-featured {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-submenu-ul li {
+    margin: 0;
+    list-style: none;
+}
 @media only screen and (max-width: 600px) {
   .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap {
     flex-direction: column;
@@ -3812,26 +3837,4 @@ p.post-submitted-success-green-message a {
   .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter {
     flex-wrap: wrap;
   }
-}
-
-.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title .wpem-theme-button i {
-  font-size: 14px;
-  line-height: 1.42;
-}
-.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter .wpem-d-inline-block.wpem-dashboard-i-block-btn {
-  margin: 0;
-  margin-left: auto;
-}
-.wpem-dashboard-event-name small.wpem-event-status-pending-approval {
-  background: #fff4d7;
-  color: #6b4e00;
-}
-.wpem-dashboard-event-name small.wpem-event-status-expired,
-.wpem-dashboard-event-name small.wpem-event-status-cancelled {
-  background: #ffd7d7;
-  color: #940000;
-}
-.wpem-dashboard-event-name small.wpem-event-status-featured {
-  background: #d1ecf1;
-  color: #0c5460;
 }
