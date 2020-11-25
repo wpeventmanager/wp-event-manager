@@ -1443,6 +1443,7 @@ class WP_Event_Manager_Shortcodes {
 		$organizer    = $organizers->posts[0];
 
         $paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $current_page    = isset($_REQUEST['pagination']) ? $_REQUEST['pagination'] : $paged;
         $per_page        = 10;
         $today_date      = date("Y-m-d");
         $organizer_id    = $organizer->ID;
@@ -1452,7 +1453,7 @@ class WP_Event_Manager_Shortcodes {
             'post_type'      => 'event_listing',
             'post_status'    => 'publish',
             'posts_per_page' => $per_page,
-            'paged'          => $paged
+            'paged'          => $current_page
         );
 
         $args_upcoming['meta_query'] = array(
@@ -1528,14 +1529,18 @@ class WP_Event_Manager_Shortcodes {
         wp_enqueue_script('wp-event-manager-organizer');
 
         get_event_manager_template(
-            'content-single-event_organizer.php', array(
-            'organizer_id'    => $organizer_id,
-            'per_page'        => $per_page,
-            'show_pagination' => $show_pagination,
-            'upcomingEvents'  => $upcomingEvents,
-            'currentEvents'   => $currentEvents,
-            'pastEvents'      => $pastEvents,
-                ), 'wp-event-manager', EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
+            'content-single-event_organizer.php', 
+            array(
+	            'organizer_id'    => $organizer_id,
+	            'per_page'        => $per_page,
+	            'show_pagination' => $show_pagination,
+	            'upcomingEvents'  => $upcomingEvents,
+	            'currentEvents'   => $currentEvents,
+	            'pastEvents'      => $pastEvents,
+	            'current_page'    => $current_page,
+            ), 
+            'wp-event-manager', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
         );
 
         wp_reset_postdata();

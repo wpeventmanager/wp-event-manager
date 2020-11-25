@@ -25,7 +25,7 @@
                     </div>
                     <?php if ($upcomingEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <div class="event-organizer-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $upcomingEvents->max_num_pages)); ?></div> 
+                            <div class="event-organizer-pagination"><?php display_wpem_get_query_pagination($upcomingEvents->max_num_pages, $current_page); ?></div> 
                         <?php endif; ?>
                     <?php endif; ?>      
                     <?php
@@ -47,7 +47,7 @@
 
                     <?php if ($currentEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <div class="event-organizer-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $currentEvents->max_num_pages)); ?></div> 
+                            <div class="event-organizer-pagination"><?php display_wpem_get_query_pagination($upcomingEvents->max_num_pages, $current_page); ?></div> 
                         <?php endif; ?>
                     <?php endif; ?>      
                     <?php
@@ -68,7 +68,7 @@
                     </div>
                     <?php if ($pastEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <div class="event-organizer-pagination"><?php get_event_manager_template('pagination.php', array('max_num_pages' => $pastEvents->max_num_pages)); ?></div> 
+                            <div class="event-organizer-pagination"><?php display_wpem_get_query_pagination($upcomingEvents->max_num_pages, $current_page); ?></div> 
                         <?php endif; ?>
                     <?php endif; ?>
                     <?php
