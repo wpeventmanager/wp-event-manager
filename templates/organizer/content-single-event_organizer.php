@@ -111,6 +111,6 @@ get_event_manager_template(
         'pastEvents'      => $pastEvents,
         'current_page'    => $current_page,
     ), 
-    'wp-event-manager', 
+    'wp-event-manager/organizer', 
     EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
 );

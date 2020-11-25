@@ -1397,7 +1397,7 @@ class WP_Event_Manager_Shortcodes {
             	'show_thumb'		=> $show_thumb,
             	'show_count'		=> $show_count,
 			), 
-			'wp-event-manager', 
+			'wp-event-manager/organizer', 
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/' 
 		);
               
@@ -1539,7 +1539,7 @@ class WP_Event_Manager_Shortcodes {
 	            'pastEvents'      => $pastEvents,
 	            'current_page'    => $current_page,
             ), 
-            'wp-event-manager', 
+            'wp-event-manager/organizer', 
             EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
         );
 
@@ -1601,7 +1601,7 @@ class WP_Event_Manager_Shortcodes {
             	'show_thumb'		=> $show_thumb,
             	'show_count'		=> $show_count,
 			), 
-			'wp-event-manager', 
+			'wp-event-manager/venue', 
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/' 
 		);
 
@@ -1739,7 +1739,9 @@ class WP_Event_Manager_Shortcodes {
             	'upcomingEvents'  => $upcomingEvents,
             	'currentEvents'   => $currentEvents,
             	'pastEvents'      => $pastEvents,
-		    ), 'wp-event-manager', EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
+		    ), 
+		    'wp-event-manager/venue', 
+		    EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
 		);
 
 		wp_reset_postdata();
