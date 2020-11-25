@@ -47,7 +47,7 @@
 
                     <?php if ($currentEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <div class="event-organizer-pagination"><?php display_wpem_get_query_pagination($upcomingEvents->max_num_pages, $current_page); ?></div> 
+                            <div class="event-organizer-pagination"><?php display_wpem_get_query_pagination($currentEvents->max_num_pages, $current_page); ?></div> 
                         <?php endif; ?>
                     <?php endif; ?>      
                     <?php
@@ -68,7 +68,7 @@
                     </div>
                     <?php if ($pastEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <div class="event-organizer-pagination"><?php display_wpem_get_query_pagination($upcomingEvents->max_num_pages, $current_page); ?></div> 
+                            <div class="event-organizer-pagination"><?php display_wpem_get_query_pagination($pastEvents->max_num_pages, $current_page); ?></div> 
                         <?php endif; ?>
                     <?php endif; ?>
                     <?php
