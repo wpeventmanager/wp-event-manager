@@ -21,7 +21,7 @@
 				{
 					$menus['wpem_organizer'] = [
 						'title' => __('Organizer', 'wp-event-manager'),
-						'icon' => 'wpem-icon-user-plus',
+						'icon' => 'wpem-icon-user-tie',
 						'query_arg' => ['action' => 'organizer_dashboard'],
 					];
 				}
@@ -44,9 +44,10 @@
 				{
 					if( isset($menu['submenu']) && !empty($menu['submenu']) )
 					{
-						printf( '<li class="wpem-main-vmenu-dashboard-li wpem-main-vmenu-dashboard-sub-menu"><a class="wpem-main-vmenu-dashboard-link" href="javascript:void(0)"><i class="%s"></i>%s<i class="wpem-icon-play3 wpem-main-vmenu-caret wpem-main-vmenu-caret-up"></i></a>',  $menu['icon'], $menu['title'] );
+						$active_parent_menu = '';
 
-						printf( '<ul class="wpem-main-vmenu-dashboard-submenu-ul">' );
+						$child_menu_html = '<ul class="wpem-main-vmenu-dashboard-submenu-ul">';
+						
 						foreach ($menu['submenu'] as $sub_name => $submenu) 
 						{
 							if( isset($submenu['query_arg']) && !empty($submenu['query_arg']) && is_array($submenu['query_arg']) )
@@ -68,11 +69,18 @@
 							if($current_action === $sub_name)
 							{
 								$active_menu = 'wpem-main-vmenu-dashboard-link-active';
+								$active_parent_menu = 'wpem-main-vmenu-dashboard-link-active';
 							}
 
-							printf( '<li class="wpem-main-vmenu-dashboard-submenu-li"><a class="wpem-main-vmenu-dashboard-link %s" href="%s">%s</a></li>', $active_menu, $action_url, $submenu['title'] );		
+							$child_menu_html .= '<li class="wpem-main-vmenu-dashboard-submenu-li"><a class="wpem-main-vmenu-dashboard-link '.$active_menu.'" href="'.$action_url.'">'.$submenu['title'].'</a></li>';
 						}
-						printf( '</ul>' );
+
+						$child_menu_html .= '</ul>';
+
+
+						printf( '<li class="wpem-main-vmenu-dashboard-li wpem-main-vmenu-dashboard-sub-menu"><a class="wpem-main-vmenu-dashboard-link %s" href="javascript:void(0)"><i class="%s"></i>%s<i class="wpem-icon-play3 wpem-main-vmenu-caret wpem-main-vmenu-caret-up"></i></a>', $active_parent_menu, $menu['icon'], $menu['title'] );
+
+						echo $child_menu_html;
 
 						printf( '</li>' );
 					}
