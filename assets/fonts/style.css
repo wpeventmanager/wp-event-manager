@@ -1500,3 +1500,6 @@ i[class*="wpem-"] {
 .wpem-icon-stripe:before {
   content: "\eaec";
 }
+.wpem-icon-ical:before {
+  content: "\eaed";
+}

@@ -154,7 +154,10 @@
 					</div>
 
 					<form action="" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block" method="get">
-						<div class="wpem-events-filter">							
+						<div class="wpem-events-filter">
+
+							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
+
 							<div class="wpem-events-filter-block">
 								<?php $search_keywords = isset($_GET['search_keywords']) ? $_GET['search_keywords'] : ''; ?>
 								<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo $search_keywords; ?>" placeholder="<?php _e('Keywords','wp-event-manager');?>"></div>
@@ -176,6 +179,9 @@
 									</select>
 								</div>
 							</div>
+
+							<?php do_action('event_manager_event_dashboard_event_filter_end'); ?>
+
 							<div class="wpem-events-filter-block wpem-events-filter-submit">
 								<div class="wpem-form-group">
 									<button type="submit" class="wpem-theme-button"><?php _e('Filter','wp-event-manager');?></button>
