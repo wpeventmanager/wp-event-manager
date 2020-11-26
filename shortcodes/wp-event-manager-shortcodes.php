@@ -326,7 +326,18 @@ class WP_Event_Manager_Shortcodes {
 
 		global $event_manager;
 
-		echo $event_manager->forms->get_form( 'edit-event' );
+		if(isset($_REQUEST['organizer_id']) && !empty($_REQUEST['organizer_id']))
+		{
+			echo $event_manager->forms->get_form( 'edit-organizer' );
+		}
+		else if(isset($_REQUEST['venue_id']) && !empty($_REQUEST['venue_id']))
+		{
+			echo $event_manager->forms->get_form( 'edit-venue' );
+		}
+		else
+		{
+			echo $event_manager->forms->get_form( 'edit-event' );
+		}
 	}
 
 	/**
