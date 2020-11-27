@@ -287,7 +287,7 @@
 .wpem-form-wrapper .wpem-form-group input[type="time"]:focus,
 .wpem-form-wrapper .wpem-form-group input[type="url"]:focus,
 .wpem-form-wrapper .wpem-form-group input[type="week"]:focus,
-.wpem-form-wrapper .wpem-form-group select:focus{
+.wpem-form-wrapper .wpem-form-group select:focus {
   border-color: #00a5fa;
   background-color: #efefef;
 }
@@ -664,47 +664,7 @@ input.wpem-theme-button:hover span {
 .wpem-tabs-wrapper .wpem-tab-content .wpem-tab-pane.active {
   display: block;
 }
-@media only screen and (max-width: 575px) {
-  .wpem-form-wrapper .wpem-col {
-    width: 100%;
-    flex: unset;
-  }
-  .wpem-form-wrapper .filter_wide.filter_by_tag {
-    text-align: center;
-  }
-  .wpem-form-wrapper .filter_wide.filter_by_tag .filter_by_tag_cloud {
-    margin-top: 5px;
-  }
-  .wpem-form-wrapper .filter_wide.filter_by_tag .filter_by_tag_cloud .tag-cloud-link {
-    margin: 2px;
-  }
-  .wpem-form-wrapper .showing_applied_filters {
-    text-align: center;
-    line-height: 18px;
-    padding: 5px 10px;
-  }
-  .wpem-form-wrapper .showing_applied_filters a {
-    float: none;
-    margin: 7px;
-  }
-  .wpem-event-listings-header .wpem-event-listing-header-title .wpem-heading-text {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  .wpem-event-listings-header .wpem-event-layout-action-wrapper .wpem-event-layout-action {
-    margin: auto;
-    width: 100%;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  .wpem-event-listings-header .wpem-event-layout-action-wrapper .wpem-event-layout-action .wpem-event-layout-icon {
-    height: 35px;
-    line-height: 35px;
-    width: 33.3%;
-    margin: 0;
-    border-radius: 0;
-  }
-}
+
 .wpem-event-listing-list-view {
   border: none;
   border-radius: 0;
@@ -925,27 +885,13 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings .wpem-event-layout-wrapper:hover .wpem-event-action-url {
   border-width: 7px;
 }
-@media only screen and (max-width: 575px) {
-  .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-date {
-    display: none;
-  }
-  .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details {
-    padding-left: 0;
-  }
-  .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-title {
-    margin-bottom: 10px;
-  }
-  .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-title .wpem-heading-text {
-    font-size: 21px;
-    line-height: 25px;
-  }
-}
+
 .wpem-event-listings.wpem-event-listing-box-view {
   display: flex;
   flex-wrap: wrap;
 }
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper:hover {
-  background: #fff;
+  background: #fafafa;
 }
 .wpem-event-listings.wpem-event-listing-box-view #googleMap {
   margin: 0 15px 25px;
@@ -1895,17 +1841,11 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   color: #222;
 }
 .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions {
-  display: inline-block;
-  margin: 0 auto;
+  display: flex;
   margin-top: 15px;
 }
-.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-organizer-page-url-button {
-  display: inline-block;
-  margin: 4px 0;
-}
-.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-organizer-contact-button {
-  display: inline-block;
-  margin: 4px 0;
+.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions div + div {
+  margin-left: 5px;
 }
 .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-form-group {
   text-align: left;
@@ -2138,14 +2078,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   visibility: visible;
   opacity: 1;
 }
-@media screen and (min-width: 768px) {
-  .wpem-modal {
-    width: 100%;
-    margin: 0;
-    top: 0;
-    left: 0;
-  }
-}
+
 table.wpem-responsive-table-wrapper {
   font-weight: 500;
   font-size: 17px;
@@ -2255,56 +2188,7 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-delete::before {
   content: "\e9ad";
 }
-@media only screen and (max-width: 800px) {
-  table.wpem-responsive-table-wrapper {
-    border: none;
-  }
-  table.wpem-responsive-table-wrapper,
-  table.wpem-responsive-table-wrapper tbody,
-  table.wpem-responsive-table-wrapper td,
-  table.wpem-responsive-table-wrapper th,
-  table.wpem-responsive-table-wrapper thead,
-  table.wpem-responsive-table-wrapper tr {
-    display: block;
-  }
-  table.wpem-responsive-table-wrapper thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-  table.wpem-responsive-table-wrapper tr {
-    border: 1px solid #ccc;
-  }
-  table.wpem-responsive-table-wrapper td {
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50% !important;
-    white-space: normal;
-    text-align: left;
-  }
-  table.wpem-responsive-table-wrapper td:before {
-    position: absolute;
-    top: 15px;
-    left: 16px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: normal;
-    text-align: left;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    max-height: 52px;
-    line-height: 20px;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    content: attr(data-title);
-  }
-  table.wpem-responsive-table-wrapper .wpem-tbody-th-label {
-    display: none;
-  }
-}
+
 .wpem-responsive-table-block {
   overflow: auto;
   border: 1px solid #e4e4e4;
@@ -2314,135 +2198,7 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
   border: none;
   margin: 0;
 }
-@media screen and (max-width: 1024px) {
-  .wpem-single-event-page .wpem-single-event-body .wpem-single-event-left-content {
-    max-width: 60%;
-    flex: 0 0 60%;
-  }
-  .wpem-single-event-page .wpem-single-event-body .wpem-single-event-right-content {
-    max-width: 40%;
-    flex: 0 0 40%;
-  }
-}
-@media screen and (max-width: 992px) {
-  .wpem-single-event-page .wpem-single-event-body .wpem-single-event-left-content,
-  .wpem-single-event-page .wpem-single-event-header-top .wpem-single-event-images {
-    max-width: 100%;
-    flex: 0 0 100%;
-  }
-  .wpem-single-event-page .wpem-single-event-body .wpem-single-event-right-content {
-    max-width: 100%;
-    flex: 0 0 100%;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-single-image-wrapper .wpem-event-single-image img {
-    height: auto;
-    width: 100%;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-short-info {
-    padding: 25px 35px;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-short-info .wpem-event-date {
-    width: 100%;
-    margin-bottom: 5px;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-details {
-    width: 100%;
-    margin-bottom: 0;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-details .wpem-event-title {
-    margin-bottom: 0;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-details .wpem-event-ticket {
-    position: static;
-    margin-top: 15px;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-body-content {
-    padding: 20px;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar {
-    padding: 20px;
-  }
-  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content::after {
-    display: none;
-  }
-  .event_listing_preview_title {
-    margin: 0;
-  }
-  .event_listing_preview_title .event-manager-button-edit-listing,
-  .event_listing_preview_title .event-manager-button-submit-listing {
-    width: 100%;
-    margin: 5px;
-  }
-  .event_listing_preview_title h2 {
-    color: #fff;
-    margin: 10px 20px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .single-event-attendee-container .wpem-event-registrations-list-wrapper .wpem-event-regi-list-body .wpem-event-regi-list {
-    width: 100%;
-  }
-  .wpem-single-event-page .wpem-single-event-sidebar-info {
-    margin-bottom: 0;
-  }
-  .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar .wpem-theme-button,
-  .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar a.wpem-theme-button,
-  .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar button.wpem-theme-button,
-  .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar input.wpem-theme-button {
-    padding: 15px;
-  }
-  .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-col-md-6 {
-    max-width: 100%;
-    flex: 0 0 100%;
-  }
-  .wpem-tabs-wrapper .wpem-tabs-wrap {
-    display: inline-block;
-    width: 100%;
-  }
-  .wpem-event-organizer-tabs .wpem-tabs-wrapper .wpem-tabs-wrap,
-  .wpem-event-venue-tabs .wpem-tabs-wrapper .wpem-tabs-wrap {
-    background: 0 0;
-    padding: 0 3%;
-  }
-  .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link {
-    border-top: 1px solid #ccc;
-  }
-  .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link:first-child {
-    border-top: 0;
-  }
-  .wpem-add-tickets-tab-wrapper .wpem-tabs-action-buttons {
-    position: relative;
-    right: 5px;
-    top: 5px;
-    float: right;
-  }
-}
-@media screen and (max-width: 600px) {
-  .event-manager-pagination ul.page-numbers {
-    display: inline-block;
-    text-align: center;
-  }
-  .event-manager-pagination ul.page-numbers li {
-    padding: 3px;
-  }
-  .event-manager-pagination ul.page-numbers li .page-numbers {
-    margin: 0;
-  }
-  .event-manager-pagination-2 ul.page-numbers {
-    display: inline-block;
-    text-align: center;
-  }
-  .event-manager-pagination-2 ul.page-numbers li {
-    padding: 3px;
-  }
-  .event-manager-pagination-2 ul.page-numbers li .page-numbers {
-    margin: 0;
-  }
-  .wpem-modal .wpem-modal-content-wrapper .wpem-modal-content .wpem-theme-button {
-    margin: 5px 0;
-    width: 100%;
-  }
-}
+
 .organizer-letters,
 .venue-letters {
   display: flex;
@@ -2908,12 +2664,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-single-event-page .wpem-single-event-footer .wpem-venue-wrapper .wpem-venue-profile {
   padding: 20px 30px;
 }
-@media screen and (max-width: 768px) {
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-contact-form-wrapper .wpem-organizer-contact-form .wpem-col-md-6 {
-    max-width: 100%;
-    flex: 0 0 100%;
-  }
-}
+
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-body-content {
   padding: 30px;
 }
@@ -3003,38 +2754,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   border: 2px solid #dedede;
   border-radius: 3px;
 }
-@media screen and (max-width: 768px) and (max-width: 937px) {
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon,
-  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon {
-    margin: 2px;
-    height: 30px;
-    width: 30px;
-  }
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon a,
-  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon a {
-    height: 30px;
-    width: 30px;
-  }
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-facebook a::before,
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-instagram a::before,
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a::before,
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-weblink a::before,
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-youtube a::before,
-  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-facebook a::before,
-  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-instagram a::before,
-  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a::before,
-  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-weblink a::before,
-  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-youtube a::before {
-    height: 30px;
-    width: 30px;
-  }
-}
-@media screen and (min-width: 600px) and (max-width: 768px) {
-  .wpem-event-organizer-tabs .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link,
-  .wpem-event-venue-tabs .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link {
-    display: inline-flex;
-  }
-}
+
 .wpem-single-event-page .wpem-event-organizer-info-title {
   background: #eeedf2;
   border-top: 1px solid #e4e4e4;
@@ -3154,17 +2874,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   font-weight: 700;
   padding: 10px;
 }
-@media (max-width: 600px) {
-  .organizer-related-data-counter,
-  .venue-related-data-counter {
-    display: inline-block;
-  }
-  .organizer-counter-number-icon,
-  .venue-counter-number-icon,
-  .wpem-available-events-number-icon {
-    display: block;
-  }
-}
+
 div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-logo,
 div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-logo {
   display: table-cell;
@@ -3210,42 +2920,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
 div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext span:last-child {
   border: none;
 }
-@media only screen and (max-width: 500px) {
-  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon,
-  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-facebook a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-instagram a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-weblink a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-youtube a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon a,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-facebook a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-weblink a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-youtube a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block td .wpem-social-icon {
-    height: 30px;
-    width: 30px;
-  }
-}
-@media only screen and (max-width: 370px) {
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-facebook a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-instagram a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-weblink a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-youtube a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon a,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-facebook a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-weblink a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-youtube a::before,
-  div#event-manager-event-dashboard .wpem-responsive-table-block td .wpem-social-icon {
-    margin: 2px;
-    height: 20px;
-    width: 20px;
-    -webkit-mask-size: 10px;
-  }
-}
+
 .wpem-form-group .comiseo-daterangepicker-triggerbutton.ui-button {
   overflow: hidden;
   position: relative;
@@ -3642,26 +3317,26 @@ p.post-submitted-success-green-message a {
   background: red;
   border-color: red;
 }
-.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter {
+.wpem-dashboard-main-title.wpem-dashboard-main-filter {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   margin-bottom: 15px;
   align-items: center;
 }
-.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter h3.wpem-theme-text {
+.wpem-dashboard-main-title.wpem-dashboard-main-filter h3.wpem-theme-text {
   margin: 0;
   padding: 0;
   font-weight: 700;
 }
-.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title .wpem-dashboard-header-btn i {
+.wpem-dashboard-main-title.wpem-dashboard-main-filter a.wpem-dashboard-header-btn i[class^="wpem-icon-"] {
   color: #00a5fa;
   transition: 0.2s all ease;
 }
-.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title .wpem-dashboard-header-btn:hover i {
+.wpem-dashboard-main-title.wpem-dashboard-main-filter a.wpem-dashboard-header-btn:hover i[class^="wpem-icon-"] {
   color: #333;
 }
-.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title a {
+.wpem-dashboard-main-title.wpem-dashboard-main-filter a.wpem-dashboard-header-btn {
   display: inline-flex;
   border: 1px solid #dfe1e5;
   padding: 10px;
@@ -3772,7 +3447,7 @@ p.post-submitted-success-green-message a {
   font-size: 14px;
   line-height: 1.42;
 }
-.wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter .wpem-d-inline-block.wpem-dashboard-i-block-btn {
+.wpem-dashboard-main-title.wpem-dashboard-main-filter .wpem-d-inline-block.wpem-dashboard-i-block-btn {
   margin: 0;
   margin-left: auto;
 }
@@ -3790,8 +3465,272 @@ p.post-submitted-success-green-message a {
   color: #0c5460;
 }
 .wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-submenu-ul li {
+  margin: 0;
+  list-style: none;
+}
+
+/* Responsive CSS */
+
+@media screen and (max-width: 1024px) {
+  .wpem-single-event-page .wpem-single-event-body .wpem-single-event-left-content {
+    max-width: 60%;
+    flex: 0 0 60%;
+  }
+  .wpem-single-event-page .wpem-single-event-body .wpem-single-event-right-content {
+    max-width: 40%;
+    flex: 0 0 40%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .wpem-single-event-page .wpem-single-event-body .wpem-single-event-left-content,
+  .wpem-single-event-page .wpem-single-event-header-top .wpem-single-event-images {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  .wpem-single-event-page .wpem-single-event-body .wpem-single-event-right-content {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-single-image-wrapper .wpem-event-single-image img {
+    height: auto;
+    width: 100%;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-short-info {
+    padding: 25px 35px;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-short-info .wpem-event-date {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-details {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-details .wpem-event-title {
+    margin-bottom: 0;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-details .wpem-event-ticket {
+    position: static;
+    margin-top: 15px;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-body-content {
+    padding: 20px;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar {
+    padding: 20px;
+  }
+  .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content::after {
+    display: none;
+  }
+  .event_listing_preview_title {
     margin: 0;
-    list-style: none;
+  }
+  .event_listing_preview_title .event-manager-button-edit-listing,
+  .event_listing_preview_title .event-manager-button-submit-listing {
+    width: 100%;
+    margin: 5px;
+  }
+  .event_listing_preview_title h2 {
+    color: #fff;
+    margin: 10px 20px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  table.wpem-responsive-table-wrapper {
+    border: none;
+  }
+  table.wpem-responsive-table-wrapper,
+  table.wpem-responsive-table-wrapper tbody,
+  table.wpem-responsive-table-wrapper td,
+  table.wpem-responsive-table-wrapper th,
+  table.wpem-responsive-table-wrapper thead,
+  table.wpem-responsive-table-wrapper tr {
+    display: block;
+  }
+  table.wpem-responsive-table-wrapper thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  table.wpem-responsive-table-wrapper tr {
+    border: 1px solid #ccc;
+  }
+  table.wpem-responsive-table-wrapper td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50% !important;
+    white-space: normal;
+    text-align: left;
+  }
+  table.wpem-responsive-table-wrapper td:before {
+    position: absolute;
+    top: 15px;
+    left: 16px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: normal;
+    text-align: left;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 52px;
+    line-height: 20px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    content: attr(data-title);
+  }
+  table.wpem-responsive-table-wrapper .wpem-tbody-th-label {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) and (max-width: 937px) {
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon,
+  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon {
+    margin: 2px;
+    height: 30px;
+    width: 30px;
+  }
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon a,
+  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon a {
+    height: 30px;
+    width: 30px;
+  }
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-facebook a::before,
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-instagram a::before,
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a::before,
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-weblink a::before,
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-youtube a::before,
+  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-facebook a::before,
+  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-instagram a::before,
+  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a::before,
+  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-weblink a::before,
+  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-youtube a::before {
+    height: 30px;
+    width: 30px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .wpem-modal {
+    width: 100%;
+    margin: 0;
+    top: 0;
+    left: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .single-event-attendee-container .wpem-event-registrations-list-wrapper .wpem-event-regi-list-body .wpem-event-regi-list {
+    width: 100%;
+  }
+  .wpem-single-event-page .wpem-single-event-sidebar-info {
+    margin-bottom: 0;
+  }
+  .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar .wpem-theme-button,
+  .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar a.wpem-theme-button,
+  .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar button.wpem-theme-button,
+  .wpem-single-event-page .wpem-single-event-right-content .wpem-single-event-body-sidebar input.wpem-theme-button {
+    padding: 15px;
+  }
+  .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-col-md-6 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  .wpem-tabs-wrapper .wpem-tabs-wrap {
+    display: inline-block;
+    width: 100%;
+  }
+  .wpem-event-organizer-tabs .wpem-tabs-wrapper .wpem-tabs-wrap,
+  .wpem-event-venue-tabs .wpem-tabs-wrapper .wpem-tabs-wrap {
+    background: 0 0;
+    padding: 0 3%;
+  }
+  .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link {
+    border-top: 1px solid #ccc;
+  }
+  .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link:first-child {
+    border-top: 0;
+  }
+  .wpem-add-tickets-tab-wrapper .wpem-tabs-action-buttons {
+    position: relative;
+    right: 5px;
+    top: 5px;
+    float: right;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-contact-form-wrapper .wpem-organizer-contact-form .wpem-col-md-6 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table .wpem-event-dashboard-information-table-row .wpem-event-dashboard-information-table-lines {
+    border: none;
+    padding-bottom: 0;
+  }
+  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table .wpem-event-dashboard-information-table-row div + div .wpem-event-dashboard-information-table-lines {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+  }
+  .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter .wpem-events-filter-block {
+    margin-right: 0px;
+  }
+  .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter {
+    flex-direction: column;
+  }
+  .wpem-dashboard-main-title.wpem-dashboard-main-filter {
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-left: 0;
+  }
+  .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions div + div {
+    margin-left: 0px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .wpem-event-organizer-tabs .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link,
+  .wpem-event-venue-tabs .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link {
+    display: inline-flex;
+  }
+}
+@media screen and (max-width: 600px) {
+  .event-manager-pagination ul.page-numbers {
+    display: inline-block;
+    text-align: center;
+  }
+  .event-manager-pagination ul.page-numbers li {
+    padding: 3px;
+  }
+  .event-manager-pagination ul.page-numbers li .page-numbers {
+    margin: 0;
+  }
+  .event-manager-pagination-2 ul.page-numbers {
+    display: inline-block;
+    text-align: center;
+  }
+  .event-manager-pagination-2 ul.page-numbers li {
+    padding: 3px;
+  }
+  .event-manager-pagination-2 ul.page-numbers li .page-numbers {
+    margin: 0;
+  }
+  .wpem-modal .wpem-modal-content-wrapper .wpem-modal-content .wpem-theme-button {
+    margin: 5px 0;
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .organizer-related-data-counter,
+  .venue-related-data-counter {
+    display: inline-block;
+  }
+  .organizer-counter-number-icon,
+  .venue-counter-number-icon,
+  .wpem-available-events-number-icon {
+    display: block;
+  }
 }
 @media only screen and (max-width: 600px) {
   .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap {
@@ -3814,27 +3753,96 @@ p.post-submitted-success-green-message a {
     display: none;
   }
 }
-@media only screen and (max-width: 768px) {
-  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table .wpem-event-dashboard-information-table-row .wpem-event-dashboard-information-table-lines {
-    border: none;
-    padding-bottom: 0;
+@media only screen and (max-width: 575px) {
+  .wpem-form-wrapper .wpem-col {
+    width: 100%;
+    flex: unset;
   }
-  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table .wpem-event-dashboard-information-table-row div + div .wpem-event-dashboard-information-table-lines {
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+  .wpem-form-wrapper .filter_wide.filter_by_tag {
+    text-align: center;
   }
-  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter {
-    margin-top: 30px;
-    margin-left: 0;
+  .wpem-form-wrapper .filter_wide.filter_by_tag .filter_by_tag_cloud {
+    margin-top: 5px;
   }
-
-  .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter .wpem-events-filter-block {
-    margin-right: 0px;
+  .wpem-form-wrapper .filter_wide.filter_by_tag .filter_by_tag_cloud .tag-cloud-link {
+    margin: 2px;
   }
-  .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter {
-    flex-direction: column;
+  .wpem-form-wrapper .showing_applied_filters {
+    text-align: center;
+    line-height: 18px;
+    padding: 5px 10px;
   }
-  .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-title.wpem-dashboard-main-filter {
-    flex-wrap: wrap;
+  .wpem-form-wrapper .showing_applied_filters a {
+    float: none;
+    margin: 7px;
+  }
+  .wpem-event-listings-header .wpem-event-listing-header-title .wpem-heading-text {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .wpem-event-listings-header .wpem-event-layout-action-wrapper .wpem-event-layout-action {
+    margin: auto;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .wpem-event-listings-header .wpem-event-layout-action-wrapper .wpem-event-layout-action .wpem-event-layout-icon {
+    height: 35px;
+    line-height: 35px;
+    width: 33.3%;
+    margin: 0;
+    border-radius: 0;
   }
 }
+@media only screen and (max-width: 575px) {
+  .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-date {
+    display: none;
+  }
+  .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details {
+    padding-left: 0;
+  }
+  .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-title {
+    margin-bottom: 10px;
+  }
+  .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-title .wpem-heading-text {
+    font-size: 21px;
+    line-height: 25px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon,
+  .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-facebook a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-instagram a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-weblink a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-youtube a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon a,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-facebook a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-weblink a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-youtube a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block td .wpem-social-icon {
+    height: 30px;
+    width: 30px;
+  }
+}
+@media only screen and (max-width: 370px) {
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-facebook a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-instagram a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-weblink a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-youtube a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon a,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-facebook a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-weblink a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-youtube a::before,
+  div#event-manager-event-dashboard .wpem-responsive-table-block td .wpem-social-icon {
+    margin: 2px;
+    height: 20px;
+    width: 20px;
+    -webkit-mask-size: 10px;
+  }
+}
+/* Responsive CSS */
