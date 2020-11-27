@@ -324,6 +324,14 @@ $event = $post;
                                         </span>
                                     </div>
 
+                                    <!-- Event Registration End Date start-->
+                                    <?php if (get_event_registration_end_date()): ?>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <h3 class="wpem-heading-text"><?php _e('Registration End Date', 'wp-event-manager'); ?></h3>
+                                        <?php display_event_registration_end_date(); ?>
+                                    <?php endif; ?>                                    
+                                    <!-- Registration End Date End-->
+
                                     <div>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
@@ -350,15 +358,6 @@ $event = $post;
                                         <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
                                         <div class="wpem-event-category"><?php display_event_category(); ?></div>
                                     <?php endif; ?>
-
-                                    <!-- Event Registration End Date start-->
-                                    <?php if (get_event_registration_end_date()): ?>
-                                        <div class="clearfix">&nbsp;</div>
-                                        <h3 class="wpem-heading-text"><?php _e('Registration End Date', 'wp-event-manager'); ?></h3>
-                                        <?php display_event_registration_end_date(); ?>
-                                    <?php endif; ?>                                    
-                                    <!-- Registration End Date End-->
-
 
                                     <?php if (get_organizer_youtube()) : ?>
                                         <div class="clearfix">&nbsp;</div>

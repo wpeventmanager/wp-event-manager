@@ -297,10 +297,27 @@
 										</div>
 										<div class="wpem-dashboard-event-datetime-location">
 											<div class="wpem-dashboard-event-date-time">
-												<div class="wpem-dashboard-event-placeholder"><strong>Date / Time</strong></div> <?php display_event_start_date ( '', '', true, $event ); display_event_start_time ( '', '', true, $event ); ?> -<br> <?php display_event_end_date ( '', '', true, $event ); display_event_end_time ( '', '', true, $event ); ?>
+												<div class="wpem-dashboard-event-placeholder"><strong><?php _e('Date And Time', 'wp-event-manager') ?></strong></div> 
+												<?php display_event_start_date ( '', '', true, $event );?> <?php
+													if (get_event_start_time($event))
+                                        			{
+                                            			display_date_time_separator();
+                                            			?> <?php
+                                            			display_event_start_time ( '', '', true, $event );
+                                            		} ?>
+                                            	
+                                            	-<br>
+
+												<?php display_event_end_date ( '', '', true, $event ); ?> <?php
+													if (get_event_start_time($event))
+                                        			{
+                                            			display_date_time_separator();
+                                            			?> <?php
+                                            			display_event_end_time ( '', '', true, $event );
+                                            		} ?>
 											</div>
 											<div class="wpem-dashboard-event-location">
-												<div class="wpem-dashboard-event-placeholder"><strong>Location</strong></div>
+												<div class="wpem-dashboard-event-placeholder"><strong><?php _e('Location', 'wp-event-manager') ?></strong></div>
 												<?php
 												if (get_event_location ( $event ) === 'Online Event') :
 													_e( 'Online Event', 'wp-event-manager' );
