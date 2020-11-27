@@ -418,7 +418,9 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 			}?>
 			<div class="wpem_editor">
+				<p class="form-field">
 				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>
+				</p>
 			
 	
 			<?php
