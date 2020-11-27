@@ -1256,6 +1256,58 @@ function is_wpem_taxonomy() {
 }
 
 /**
+ * True if only one type allowed per event
+ *
+ * @return bool
+ */
+function event_manager_multiselect_event_type() {
+
+	if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) 
+    {
+        include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+        include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
+    }
+
+    $form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+    $event_fields = $form_submit_event_instance->merge_with_custom_fields();
+
+    if( isset($event_fields['event']['event_type']['type']) && $event_fields['event']['event_type']['type'] === 'term-multiselect' )
+    {
+    	return apply_filters( 'event_manager_multiselect_event_type', true );
+    }
+    else
+    {
+    	return apply_filters( 'event_manager_multiselect_event_type', false );
+    }
+}
+
+/**
+ * True if only one category allowed per event
+ *
+ * @return bool
+ */
+function event_manager_multiselect_event_category() {
+
+	if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) 
+    {
+        include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+        include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
+    }
+
+    $form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+    $event_fields = $form_submit_event_instance->merge_with_custom_fields();
+
+    if( isset($event_fields['event']['event_category']['type']) && $event_fields['event']['event_category']['type'] === 'term-multiselect' )
+    {
+    	return apply_filters( 'event_manager_multiselect_event_category', true );
+    }
+    else
+    {
+    	return apply_filters( 'event_manager_multiselect_event_category', false );
+    }
+}
+
+/**
  * True if registration is enabled.
  *
  * @return bool
