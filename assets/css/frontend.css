@@ -3630,15 +3630,14 @@ p.post-submitted-success-green-message a {
     width: 30px;
   }
 }
-@media screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
   .wpem-modal {
     width: 100%;
     margin: 0;
     top: 0;
     left: 0;
   }
-}
-@media screen and (max-width: 768px) {
+
   .single-event-attendee-container .wpem-event-registrations-list-wrapper .wpem-event-regi-list-body .wpem-event-regi-list {
     width: 100%;
   }
@@ -3676,14 +3675,11 @@ p.post-submitted-success-green-message a {
     top: 5px;
     float: right;
   }
-}
-@media screen and (max-width: 768px) {
+
   .wpem-single-organizer-profile-wrapper .wpem-organizer-contact-form-wrapper .wpem-organizer-contact-form .wpem-col-md-6 {
     max-width: 100%;
     flex: 0 0 100%;
   }
-}
-@media only screen and (max-width: 768px) {
   .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-event-dashboard-information .wpem-event-dashboard-information-wrapper .wpem-event-dashboard-information-table .wpem-event-dashboard-information-table-row .wpem-event-dashboard-information-table-lines {
     border: none;
     padding-bottom: 0;
@@ -3713,7 +3709,7 @@ p.post-submitted-success-green-message a {
     display: inline-flex;
   }
 }
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .event-manager-pagination ul.page-numbers {
     display: inline-block;
     text-align: center;
@@ -3738,8 +3734,6 @@ p.post-submitted-success-green-message a {
     margin: 5px 0;
     width: 100%;
   }
-}
-@media (max-width: 600px) {
   .organizer-related-data-counter,
   .venue-related-data-counter {
     display: inline-block;
@@ -3749,8 +3743,6 @@ p.post-submitted-success-green-message a {
   .wpem-available-events-number-icon {
     display: block;
   }
-}
-@media only screen and (max-width: 600px) {
   .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap {
     flex-direction: column;
     align-items: start;
@@ -3811,8 +3803,6 @@ p.post-submitted-success-green-message a {
     margin: 0;
     border-radius: 0;
   }
-}
-@media only screen and (max-width: 575px) {
   .wpem-event-listings.wpem-event-listing-list-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-date {
     display: none;
   }

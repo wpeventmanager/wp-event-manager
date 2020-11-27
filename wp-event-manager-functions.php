@@ -2268,7 +2268,7 @@ function get_event_order_by()
 					]
 				],
 				'event_location'   => [
-					'label' => __('Event Location Date', 'wp-event-manager'),
+					'label' => __('Event Location', 'wp-event-manager'),
 					'type' => [
 						'event_location|asc' => __('Ascending (ASC)', 'wp-event-manager'),
 						'event_location|desc' => __('Descending (DESC)', 'wp-event-manager'),
