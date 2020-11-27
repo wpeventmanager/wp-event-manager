@@ -409,7 +409,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_wp_editor( $key, $field ) {
 		global $thepostid;
-		if ( ! isset( $field['value'] ) ) {
+		if ( !isset( $field['value'] ) || empty($field['value']) ) {
 			$field['value'] = get_post_meta( $thepostid, $key, true );
 		}
 		if ( ! empty( $field['name'] ) ) {
