@@ -523,6 +523,7 @@ input.wpem-theme-button {
   cursor: pointer;
   overflow-wrap: break-word;
   transition: all 0.2s;
+  vertical-align: middle;
 }
 .wpem-theme-button span,
 a.wpem-theme-button span,
@@ -1841,8 +1842,15 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   color: #222;
 }
 .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions {
-  display: flex;
+  display: block;
   margin-top: 15px;
+}
+.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-organizer-page-url-button {
+  display: inline-block;
+}
+
+.wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-organizer-contact-button {
+  display: inline-block;
 }
 .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions div + div {
   margin-left: 5px;
@@ -3076,6 +3084,9 @@ p.post-submitted-success-green-message a {
   font-size: 20px;
   line-height: 1.42;
 }
+/* New Dashboard UI Start */
+
+/* New Dashboard Vertical Menu Start*/
 .wpem-main-vmenu-dashboard-wrapper {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -3128,6 +3139,10 @@ p.post-submitted-success-green-message a {
 .wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-submenu-ul {
   margin: 0;
 }
+.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-submenu-ul li {
+  margin: 0;
+  list-style: none;
+}
 .wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-submenu-ul .wpem-main-vmenu-dashboard-submenu-li .wpem-main-vmenu-dashboard-link {
   background: #fff;
   padding: 10px 18px;
@@ -3179,6 +3194,9 @@ p.post-submitted-success-green-message a {
 .wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li.wpem-main-vmenu-dashboard-sub-menu .wpem-main-vmenu-dashboard-link:hover i.wpem-main-vmenu-caret {
   color: #a2acba;
 }
+
+/* New Dashboard Vertical Menu End*/
+/* New Dashboard Content Style CSS Start*/
 .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap form.wpem-form-wrapper {
   margin-bottom: 0;
 }
@@ -3464,10 +3482,10 @@ p.post-submitted-success-green-message a {
   background: #d1ecf1;
   color: #0c5460;
 }
-.wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-submenu-ul li {
-  margin: 0;
-  list-style: none;
-}
+
+/* New Dashboard Content Style CSS End*/
+
+/* New Dashboard UI */
 
 /* Responsive CSS */
 
