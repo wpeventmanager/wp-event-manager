@@ -322,14 +322,14 @@ class WP_Event_Manager_Writepanels {
 		} else {
 			$name = $key;
 			}?>
-			<p class="form-field">
+			<div class="wpem_editor">
 				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>
 			
 	
 			<?php
 			wp_editor( $field['value'], $name, array("media_buttons" => false) );
 			?>
-			</p>
+			</div>
 			<?php
 		}
 	

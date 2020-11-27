@@ -1254,3 +1254,9 @@ ul.wpem-product-action-list {
 .wrap.event-manager-settings-wrap h2.nav-tab-wrapper {
   margin-bottom: 20px;
 }
+.wpem_editor{
+  width: 100%;
+  min-width: 463px;
+  float: left;
+  position: relative;
+}
