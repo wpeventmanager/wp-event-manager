@@ -73,8 +73,8 @@ class WP_Event_Manager_Field_Editor {
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           		=> __( 'Text', 'wp-event-manager' ),
 			'time'           		=> __( 'Time', 'wp-event-manager' ),
-			'button'           		=> __( 'Button', 'wp-event-manager' ),
-			'button-options'       	=> __( 'Button Options', 'wp-event-manager' ),			
+			/* 'button'           		=> __( 'Button', 'wp-event-manager' ),
+			'button-options'       	=> __( 'Button Options', 'wp-event-manager' ), */
 			'checkbox'       		=> __( 'Checkbox', 'wp-event-manager' ),			
 			'date'       			=> __( 'Date', 'wp-event-manager' ),
 			'timezone'           	=> __( 'Timezone', 'wp-event-manager' ),			
