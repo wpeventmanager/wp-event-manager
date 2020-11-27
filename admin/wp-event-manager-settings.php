@@ -114,6 +114,8 @@ class WP_Event_Manager_Settings {
 
 							'desc'        => __( 'How many listings should be shown per page by default?', 'wp-event-manager' ),
 
+							'type'       => 'number',
+
 							'attributes'  => array()
 						),
 
@@ -125,7 +127,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Cancelled Events', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Hide cancelled events', 'wp-event-manager' ),
+							'cb_label'   => __( 'Hide cancelled events.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, cancelled events will be hidden from archives.', 'wp-event-manager' ),
 
@@ -139,7 +141,7 @@ class WP_Event_Manager_Settings {
 								'std'        => get_option( 'event_manager_hide_expired_content' ) ? '1' : '0', // back compat
 								'label'      => __( 'Hide Expired Listings', 'wp-event-manager' ),
 								
-								'cb_label'   => __( 'Hide expired listings in event archive/search', 'wp-event-manager' ),
+								'cb_label'   => __( 'Hide expired listings in event archive/search.', 'wp-event-manager' ),
 								
 								'desc'       => __( 'If enabled, expired event listing is not searchable.', 'wp-event-manager' ),
 								
@@ -641,7 +643,7 @@ class WP_Event_Manager_Settings {
 				
 										'desc'		=> __( 'Select the time step to use in timepickers. Time step must have to be in between 1 to 60.', 'wp-event-manager' ),
 				
-										'type'      => 'text',
+										'type'      => 'number',
 								),
 								array(
 										'name' 		=> 'event_manager_view_date_format',
