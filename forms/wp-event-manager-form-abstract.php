@@ -566,6 +566,14 @@ abstract class WP_Event_Manager_Form {
 		    if(isset($default_fields['event']['event_ticket_price']))
 		        unset($default_fields['event']['event_ticket_price']);
 		}
+
+
+		//unset timezone field if setting is site wise timezone
+		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
+		if ( $timezone_setting != 'each_event' && isset($custom_fields['event']['event_timezone']) ) {
+			unset( $custom_fields['event']['event_timezone'] );
+		}
+
 		if ( !get_option( 'event_manager_enable_categories') || (wp_count_terms( 'event_listing_category' ) == 0 && isset($custom_fields['event']['event_category'])) ) {
 			
 			if(isset( $custom_fields['event']['event_category']))
