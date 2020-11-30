@@ -260,15 +260,19 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		
 
 		wp_enqueue_script( 'wp-event-manager-event-submission' );
-		get_event_manager_template( 'organizer-submit.php', array(
-			'form'               => $this->form_name,
-			'organizer_id'       => $this->get_organizer_id(),
-			'resume_edit'        => $this->resume_edit,
-			'action'             => $this->get_action(),
-			'organizer_fields'     => $this->get_fields( 'organizer' ),
-			'step'               => $this->get_step(),
-			'submit_button_text' => apply_filters( 'submit_organizer_form_submit_button_text',  __( 'Submit', 'wp-event-manager' ) )
-		) );
+		get_event_manager_template( 'organizer-submit.php', 
+			array(
+				'form'               => $this->form_name,
+				'organizer_id'       => $this->get_organizer_id(),
+				'resume_edit'        => $this->resume_edit,
+				'action'             => $this->get_action(),
+				'organizer_fields'     => $this->get_fields( 'organizer' ),
+				'step'               => $this->get_step(),
+				'submit_button_text' => apply_filters( 'submit_organizer_form_submit_button_text',  __( 'Submit', 'wp-event-manager' ) )
+			),
+			'wp-event-manager/organizer', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+		);
 
 		
 	}
@@ -539,6 +543,13 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 */
 	public function done() {
 		do_action( 'event_manager_organizer_submitted', $this->organizer_id );
-		get_event_manager_template( 'organizer-submitted.php', array( 'organizer' => get_post( $this->organizer_id ) ) );
+		get_event_manager_template( 
+			'organizer-submitted.php', 
+			array( 
+				'organizer' => get_post( $this->organizer_id ),
+			),
+			'wp-event-manager/organizer', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+		);
 	}
 }

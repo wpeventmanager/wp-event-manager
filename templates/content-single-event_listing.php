@@ -429,7 +429,12 @@ $event = $post;
 
                 <?php
                 if(get_option('enable_event_organizer')){
-                    get_event_manager_template_part('content', 'single-event_listing-organizer');
+                    get_event_manager_template( 
+                        'content-single-event_listing-organizer.php', 
+                        array(), 
+                        'wp-event-manager/organizer', 
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+                    );
                 }
 
                 if(get_option('enable_event_venue')){

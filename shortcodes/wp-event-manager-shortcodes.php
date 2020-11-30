@@ -485,7 +485,16 @@ class WP_Event_Manager_Shortcodes {
 			'organizer_action' => __( 'Action', 'wp-event-manager' ), 
 		) );
 
-		get_event_manager_template( 'organizer-dashboard.php', array( 'organizers' => $organizers->query( $args ), 'max_num_pages' => $organizers->max_num_pages, 'organizer_dashboard_columns' => $organizer_dashboard_columns ) );
+		get_event_manager_template( 
+			'organizer-dashboard.php', 
+			array( 
+				'organizers' => $organizers->query( $args ), 
+				'max_num_pages' => $organizers->max_num_pages, 
+				'organizer_dashboard_columns' => $organizer_dashboard_columns 
+			),
+			'wp-event-manager/organizer', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer' 
+		);
 
 		return ob_get_clean();
 	}
