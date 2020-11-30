@@ -2140,6 +2140,9 @@ function has_event_organizer_ids( $post = null )
 	{
 		$organizer = get_post($post->_event_organizer_ids[0]);
 
+		if(empty($organizer))
+			return;
+
 		if($organizer->post_status != 'publish')
 			return;
 	}
@@ -2213,6 +2216,9 @@ function has_event_venue_ids( $post = null )
 	if(!empty($post->_event_venue_ids))
 	{
 		$venue = get_post($post->_event_venue_ids);
+
+		if(empty($venue))
+			return;
 
 		if($venue->post_status != 'publish')
 			return;
