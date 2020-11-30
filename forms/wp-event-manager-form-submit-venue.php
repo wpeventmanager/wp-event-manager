@@ -251,15 +251,19 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		
 
 		//wp_enqueue_script( 'wp-event-manager-venue-submission' );
-		get_event_manager_template( 'venue-submit.php', array(
-			'form'               => $this->form_name,
-			'venue_id'       => $this->get_venue_id(),
-			'resume_edit'        => $this->resume_edit,
-			'action'             => $this->get_action(),
-			'venue_fields'     => $this->get_fields( 'venue' ),
-			'step'               => $this->get_step(),
-			'submit_button_text' => apply_filters( 'submit_venue_form_submit_button_text',  __( 'Submit', 'wp-event-manager' ) )
-		) );
+		get_event_manager_template( 'venue-submit.php', 
+			array(
+				'form'               => $this->form_name,
+				'venue_id'       	=> $this->get_venue_id(),
+				'resume_edit'        => $this->resume_edit,
+				'action'             => $this->get_action(),
+				'venue_fields'     	=> $this->get_fields( 'venue' ),
+				'step'               => $this->get_step(),
+				'submit_button_text' => apply_filters( 'submit_venue_form_submit_button_text',  __( 'Submit', 'wp-event-manager' ) )
+			),
+			'wp-event-manager/venue', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+		);
 
 		
 	}
@@ -531,6 +535,13 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 */
 	public function done() {
 		do_action( 'event_manager_venue_submitted', $this->venue_id );
-		get_event_manager_template( 'venue-submitted.php', array( 'venue' => get_post( $this->venue_id ) ) );
+		get_event_manager_template( 
+			'venue-submitted.php', 
+			array( 
+				'venue' => get_post( $this->venue_id ) 
+			),
+			'wp-event-manager/venue', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+		);
 	}
 }

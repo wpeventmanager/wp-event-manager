@@ -438,7 +438,12 @@ $event = $post;
                 }
 
                 if(get_option('enable_event_venue')){
-                    get_event_manager_template_part('content', 'single-event_listing-venue');
+                    get_event_manager_template( 
+                        'content-single-event_listing-venue.php', 
+                        array(), 
+                        'wp-event-manager/venue', 
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+                    );
                 }
 
                 /**

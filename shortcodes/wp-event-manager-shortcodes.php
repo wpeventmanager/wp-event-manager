@@ -654,7 +654,16 @@ class WP_Event_Manager_Shortcodes {
 			'venue_action' => __( 'Action', 'wp-event-manager' ), 
 		) );
 
-		get_event_manager_template( 'venue-dashboard.php', array( 'venues' => $venues->query( $args ), 'max_num_pages' => $venues->max_num_pages, 'venue_dashboard_columns' => $venue_dashboard_columns ) );
+		get_event_manager_template( 
+			'venue-dashboard.php', 
+			array( 
+				'venues' => $venues->query( $args ), 
+				'max_num_pages' => $venues->max_num_pages, 
+				'venue_dashboard_columns' => $venue_dashboard_columns
+			),
+			'wp-event-manager/venue', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+		);
 
 		return ob_get_clean();
 	}
