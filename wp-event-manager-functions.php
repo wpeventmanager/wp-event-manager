@@ -2011,6 +2011,7 @@ function get_event_by_organizer_id($organizer_id = '')
 		'post_type'      => 'event_listing',
 		'post_status'    => array( 'publish' ),
 		'posts_per_page' => -1,
+		'suppress_filters' => 0,
 	];
 
 	if(!empty($organizer_id))
@@ -2041,6 +2042,7 @@ function get_all_event_venue($user_id = '', $args = [])
 					'post_type'   => 'event_venue',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
+					'suppress_filters' => 0,
 				);
 
 	if( isset($user_id) && !empty($user_id) && !is_admin() )
@@ -2121,6 +2123,7 @@ function get_event_by_venue_id($venue_id = '')
 		'post_type'      => 'event_listing',
 		'post_status'    => array( 'publish' ),
 		'posts_per_page' => -1,
+		'suppress_filters' => 0,
 	];
 
 	if(!empty($venue_id))
@@ -2189,6 +2192,7 @@ function check_organizer_exist($organizer_email)
 	$args = [
 			'post_type' 	=> 'event_organizer',
 			'post_status' 	=> ['publish'],
+			'suppress_filters' => 0,
 			'meta_query' => [
 	        [
 	            'key'     => '_organizer_email',
