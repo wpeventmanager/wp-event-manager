@@ -183,13 +183,9 @@ class WP_Event_Manager_Setup {
 
 				'submit_organizer_form'	=> '[submit_organizer_form]',
 
-				'organizer_dashboard'   => '[organizer_dashboard]',
-
 				'event_organizers'   	=> '[event_organizers]',
 
 				'submit_venue_form'		=> '[submit_venue_form]',
-
-				'venue_dashboard'   	=> '[venue_dashboard]',
 
 				'event_venues'   		=> '[event_venues]',
 			);
@@ -333,20 +329,6 @@ class WP_Event_Manager_Setup {
 								</tr>
 
 								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[organizer_dashboard]" /></td>
-
-									<td><input type="text" value="<?php echo esc_attr( _x( 'Organizer Dashboard', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[organizer_dashboard]" /></td>
-
-									<td>
-										<p><?php _e( 'This page allows people to manage (edit, delete and duplicate) the organizers form the frontend.', 'wp-event-manager' ); ?></p>
-
-										<p><?php _e( 'In case if you do not want to allow your users to manage organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
-									</td>
-
-									<td><code>[organizer_dashboard]</code></td>
-								</tr>
-
-								<tr>
 									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_organizers]" /></td>
 
 									<td><input type="text" value="<?php echo esc_attr( _x( 'Event Organizers', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
@@ -372,20 +354,6 @@ class WP_Event_Manager_Setup {
 									</td>
 
 									<td><code>[submit_venue_form]</code></td>
-								</tr>
-
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[venue_dashboard]" /></td>
-
-									<td><input type="text" value="<?php echo esc_attr( _x( 'Venue Dashboard', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[venue_dashboard]" /></td>
-
-									<td>
-										<p><?php _e( 'This page allows people to manage (edit, delete and duplicate) the venues form the frontend.', 'wp-event-manager' ); ?></p>
-
-										<p><?php _e( 'In case if you do not want to allow your users to manage venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
-									</td>
-
-									<td><code>[venue_dashboard]</code></td>
 								</tr>
 
 								<tr>
