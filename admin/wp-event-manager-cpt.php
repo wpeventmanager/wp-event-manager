@@ -656,38 +656,41 @@ class WP_Event_Manager_CPT {
 			if ( 'event_expires' === $vars['orderby'] ) {
 
 				$vars = array_merge( $vars, array(
-
 					'meta_key' 	=> '_event_expiry_date',
-
-					'orderby' 	=> 'meta_value'
+					'orderby' 	=> 'meta_value',
+					'meta_type' => 'DATE',
 				) );
 				
-			} elseif ( 'event_end_date' === $vars['orderby'] ) {
+			} elseif ( 'event_start_date' === $vars['orderby'] ) {
 
 				$vars = array_merge( $vars, array(
+					'meta_key' 	=> '_event_start_date',					
+					'orderby' 	=> 'meta_value',
+					'meta_type' => 'DATETIME',
+				) );
+			}
 
-					'meta_key' 	=> '_event_end_date',
-					
-					'orderby' 	=> 'meta_value'
+			elseif ( 'event_end_date' === $vars['orderby'] ) {
+
+				$vars = array_merge( $vars, array(
+					'meta_key' 	=> '_event_end_date',					
+					'orderby' 	=> 'meta_value',
+					'meta_type' => 'DATETIME',
 				) );
 			}
 
 			elseif ( 'event_location' === $vars['orderby'] ) {
 
 				$vars = array_merge( $vars, array(
-
 					'meta_key' 	=> '_event_location',
-
-					'orderby' 	=> 'meta_value'
+					'orderby' 	=> 'meta_value',
 				) );
 
 			} elseif ( 'event_organizer' === $vars['orderby'] ) {
 
 				$vars = array_merge( $vars, array(
-
-					'meta_key' 	=> '_organizer_name',
-					
-					'orderby' 	=> 'meta_value'
+					'meta_key' 	=> '_organizer_name',					
+					'orderby' 	=> 'meta_value',
 				) );
 			}
 		}
