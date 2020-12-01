@@ -11,7 +11,7 @@
 
 				$menus = [
 					'event_dashboard' => [
-						'title' => __('Dashboard', 'wp-event-manager'),
+						'title' => __('Events Dashboard', 'wp-event-manager'),
 						'icon' => 'wpem-icon-meter',
 						'query_arg' => ['action' => 'event_dashboard'],
 					],
@@ -20,7 +20,7 @@
 				if(get_option('enable_event_organizer'))
 				{
 					$menus['organizer_dashboard'] = [
-						'title' => __('Organizer', 'wp-event-manager'),
+						'title' => __('Organizers', 'wp-event-manager'),
 						'icon' => 'wpem-icon-user-tie',
 						'query_arg' => ['action' => 'organizer_dashboard'],
 					];
@@ -28,7 +28,7 @@
 				if(get_option('enable_event_venue'))
 				{
 					$menus['venue_dashboard'] = [
-						'title' => __('Venue', 'wp-event-manager'),
+						'title' => __('Venues', 'wp-event-manager'),
 						'icon' => 'wpem-icon-location',
 						'query_arg' => ['action' => 'venue_dashboard'],
 					];
