@@ -400,9 +400,14 @@ class WP_Event_Manager_CPT {
 
 		$columns['event_actions']          = __( "Actions", 'wp-event-manager' );
 		
-		if ( ! get_option( 'event_manager_enable_event_types' ) ) {
+		if ( !get_option( 'event_manager_enable_event_types' ) ) {
 		
 			unset( $columns["event_listing_type"] );
+		}
+
+		if ( !get_option( 'enable_event_organizer' ) ) {
+		
+			unset( $columns["event_organizer"] );
 		}
 		
 		return $columns;

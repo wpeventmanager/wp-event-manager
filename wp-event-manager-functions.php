@@ -1929,6 +1929,9 @@ function event_manager_get_password_rules_hint() {
  */
 function get_all_event_organizer($user_id = '', $args = []) 
 {
+	if ( !get_option( 'enable_event_organizer' ) )
+		return false;
+
 	$query_args = array(
 					'post_type'   => 'event_organizer',
 					'post_status' => 'publish',
@@ -2001,6 +2004,9 @@ function get_event_organizer_count($organizer_id = '')
  */
 function get_event_by_organizer_id($organizer_id = '') 
 {
+	if ( !get_option( 'enable_event_organizer' ) )
+		return false;
+
 	$args = [
 		'post_type'      => 'event_listing',
 		'post_status'    => array( 'publish' ),
@@ -2028,6 +2034,9 @@ function get_event_by_organizer_id($organizer_id = '')
  */
 function get_all_event_venue($user_id = '', $args = []) 
 {
+	if ( !get_option( 'enable_event_venue' ) )
+		return false;
+
 	$query_args = array(
 					'post_type'   => 'event_venue',
 					'post_status' => 'publish',
@@ -2105,6 +2114,9 @@ function get_event_venue_count($venue_id = '')
  */
 function get_event_by_venue_id($venue_id = '') 
 {
+	if ( !get_option( 'enable_event_venue' ) )
+		return false;
+	
 	$args = [
 		'post_type'      => 'event_listing',
 		'post_status'    => array( 'publish' ),
