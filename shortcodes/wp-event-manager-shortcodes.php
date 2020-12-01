@@ -1600,6 +1600,8 @@ class WP_Event_Manager_Shortcodes {
 
 		) ), $atts ) );
 
+		ob_start();
+
 		$args = [
 			'orderby' 	=> $orderby,
 			'order'		=> $order,
