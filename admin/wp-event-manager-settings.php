@@ -962,23 +962,44 @@ class WP_Event_Manager_Settings {
 			    </form>
 			    
 	            <div id="plugin_info" class="box-info">
-                	<div class="box-title" title="Click to toggle"><br></div>
-                	<h3><span><?php _e('Plugin Info', 'wp-event-manager'); ?></span></h3>
-                    <div class="inside">
-                        <p> 
-                             <span class="premium-icon"></span><b><?php _e('Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 stars rating this plugin on <a href="https://wordpress.org/plugins/wp-event-manager/" target="_blank" >wordpress.org.','wp-event-manager') ?></a>
-                        </p>
-                        <p>  
-                           <?php _e('<span class="help-icon"></span><b>Need help?</b> <br>Read the <a href="https://wp-eventmanager.com/documentation/" target="_blank" >Documentation.</a><br>Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>','wp-event-manager'); ?>
-                        </p>
-                        <p>  
-                           <span class="connect-icon"></span><b><?php _e('Demo','wp-event-manager');?></b> <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank"><?_e('Plugin Demo.','wp-event-manager');?></a><br>
-                           <?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/plugins/" target="_blank"><?php _e('Premium Add-ons','wp-event-manager'); ?></a>.<br>                           
-                        </p>
-                        
-                        <p><span class="light-grey"><?php _e('This plugin was made by','wp-event-manager');?></span> <a href="https://wp-eventmanager.com/" target="_blank"><?php _e('WP Event Manager','wp-event-manager');?></a>.
-                        </p>
-                    </div>
+
+	            	<h3><span><?php _e('Helpful Resources', 'wp-event-manager'); ?></span></h3>
+
+                	<div class="wpem-plugin_info-inside">
+						<div class="wpem-setup-help-center-block-wrap">
+							<div class="wpem-setup-help-center-block">
+								<div class="wpem-setup-help-center-block-icon">
+									<span class="wpem-setup-help-center-knowledge-base-icon"></span>
+								</div>
+								<div class="wpem-setup-help-center-block-content">
+									<div class="wpem-setup-help-center-block-heading"><?php _e('Knowledge Base', 'wp-event-manager'); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php _e('Solve your queries by browsing our documentation.', 'wp-event-manager'); ?></div>
+									<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Browse More', 'wp-event-manager'); ?> »</span></a>
+								</div>
+							</div>
+							<div class="wpem-setup-help-center-block">
+								<div class="wpem-setup-help-center-block-icon">
+									<span class="wpem-setup-help-center-faqs-icon"></span>
+								</div>
+								<div class="wpem-setup-help-center-block-content">
+									<div class="wpem-setup-help-center-block-heading"><?php _e('FAQs', 'wp-event-manager'); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php _e('Explore through the frequently asked questions.', 'wp-event-manager'); ?></div>
+									<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Get Answers', 'wp-event-manager'); ?> »</span></a>
+								</div>
+							</div>
+							<div class="wpem-setup-help-center-block">
+								<div class="wpem-setup-help-center-block-icon">
+									<span class="wpem-setup-help-center-video-tutorial-icon"></span>
+								</div>
+								<div class="wpem-setup-help-center-block-content">
+									<div class="wpem-setup-help-center-block-heading"><?php _e('Video Tutorials', 'wp-event-manager'); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php _e('Learn different skills by examining attractive video tutorials.', 'wp-event-manager'); ?></div>
+									<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Watch all', 'wp-event-manager'); ?> »</span></a>
+								</div>
+							</div>
+						</div>
+						<span class="light-grey"><?php _e('This plugin was made by', 'wp-event-manager'); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
+					</div>
 	            </div>
 
 	        </div>

@@ -435,10 +435,8 @@ a {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: 1px solid #ddd;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
   position: relative;
   opacity: 0.8;
@@ -521,21 +519,16 @@ th.sorted a span {
   float: right !important;
   box-sizing: border-box;
   width: 28%;
-  padding: 0 15px 15px;
+  padding: 15px;
 }
-.box-info .box-title {
-  float: right;
-  width: 27px;
-  height: 30px;
-}
+
 .box-info h3 {
   padding: 0 0 10px 10px;
-  font-size: 13px;
+  font-size: 14px;
+  margin-top: 5px;
   border-bottom: 1px solid #efefef;
 }
-.box-info b {
-  font-size: 16px;
-}
+
 .admin-setting-left {
   float: left;
   width: 70%;
@@ -829,16 +822,11 @@ h3.nav-tab-wrapper {
     line-height: 30px;
     padding: 10px 20px;
   }
-  .wp-core-ui
-    .wp-event-manager-notice
-    > .wp-event-manager-notice-cta
-    > input[type="email"],
+  .wp-core-ui .wp-event-manager-notice > .wp-event-manager-notice-cta > input[type="email"],
   .wp-event-manager-notice > .wp-event-manager-notice-cta > button {
     font-size: 14px;
   }
-  .wp-event-manager-notice
-    > .wp-event-manager-notice-cta
-    > .wp-event-manager-notice-dismiss {
+  .wp-event-manager-notice > .wp-event-manager-notice-cta > .wp-event-manager-notice-dismiss {
     display: inline-block;
     float: none;
     line-height: 26px;
@@ -848,10 +836,7 @@ h3.nav-tab-wrapper {
   }
 }
 @media only all and (max-width: 500px) {
-  .wp-core-ui
-    .wp-event-manager-notice
-    > .wp-event-manager-notice-cta
-    > input[type="email"],
+  .wp-core-ui .wp-event-manager-notice > .wp-event-manager-notice-cta > input[type="email"],
   .wp-event-manager-notice > .wp-event-manager-notice-cta > button {
     display: block;
     width: 100% !important;
@@ -860,9 +845,7 @@ h3.nav-tab-wrapper {
     font-size: 16px;
     height: 34px;
   }
-  .wp-event-manager-notice
-    > .wp-event-manager-notice-cta
-    > .wp-event-manager-notice-dismiss {
+  .wp-event-manager-notice > .wp-event-manager-notice-cta > .wp-event-manager-notice-dismiss {
     margin-top: 5px;
     font-size: 14px;
     height: 23px;
@@ -889,19 +872,10 @@ h3.nav-tab-wrapper {
   color: #ccc;
   text-align: center;
 }
-.wp-event-manager-event-form-field-editor
-  table
-  td
-  .file-options
-  .allowed_mime_types {
+.wp-event-manager-event-form-field-editor table td .file-options .allowed_mime_types {
   margin-bottom: 0.5em;
 }
-.wp-event-manager-event-form-field-editor
-  table
-  td
-  .file-options
-  .multiple-files
-  input {
+.wp-event-manager-event-form-field-editor table td .file-options .multiple-files input {
   width: auto;
   display: inline-block;
   min-width: 16px;
@@ -933,10 +907,7 @@ h3.nav-tab-wrapper {
   display: inline-block;
   position: relative;
 }
-.wp-event-manager-event-form-field-editor
-  table
-  .field-actions
-  a.delete-field:before {
+.wp-event-manager-event-form-field-editor table .field-actions a.delete-field:before {
   content: "\f153";
   font-family: dashicons;
   font-size: 1em;
@@ -946,10 +917,7 @@ h3.nav-tab-wrapper {
   top: 0;
   left: 0;
 }
-.wp-event-manager-event-form-field-editor
-  table
-  .field-actions
-  a.delete-field:hover {
+.wp-event-manager-event-form-field-editor table .field-actions a.delete-field:hover {
   color: red;
 }
 .wp-event-manager-event-form-field-editor table tfoot th {
@@ -978,44 +946,33 @@ h3.nav-tab-wrapper {
 .wp-event-manager-event-form-field-editor .save-actions .reset:hover {
   color: red;
 }
-.wp-event-manager-event-form-field-editor
-  .wp-event-registrations-email-content-wrapper {
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content-wrapper {
   overflow: hidden;
 }
-.wp-event-manager-event-form-field-editor
-  .wp-event-registrations-email-content {
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content {
   width: 100%;
   display: block;
   float: left;
 }
-.wp-event-manager-event-form-field-editor
-  .wp-event-registrations-email-content
-  p {
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content p {
   margin-top: 0;
 }
-.wp-event-manager-event-form-field-editor
-  .wp-event-registrations-email-content
-  input {
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content input {
   width: 100%;
   font-size: 1.5em;
 }
-.wp-event-manager-event-form-field-editor
-  .wp-event-registrations-email-content
-  textarea {
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content textarea {
   height: 400px;
   width: 100%;
   font-family: monospace;
 }
-.wp-event-manager-event-form-field-editor
-  .wp-event-registrations-email-content-tags {
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content-tags {
   width: 100%;
   padding: 20px 0 0 1em;
   box-sizing: border-box;
   float: right;
 }
-.wp-event-manager-event-form-field-editor
-  .wp-event-registrations-email-content-tags
-  p {
+.wp-event-manager-event-form-field-editor .wp-event-registrations-email-content-tags p {
   margin-top: 0;
 }
 .wp-event-manager-event-form-field-editor p.submit-email {
@@ -1157,13 +1114,7 @@ ul.wpem-product-action-list {
   margin-left: -5px;
   justify-content: center;
 }
-.wp_event_manager_addons_wrap
-  .products
-  .wp_event_manager_addons_wrap
-  .products
-  li
-  .wpem-product-footer
-  li {
+.wp_event_manager_addons_wrap .products .wp_event_manager_addons_wrap .products li .wpem-product-footer li {
   width: 100%;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
@@ -1172,11 +1123,7 @@ ul.wpem-product-action-list {
   position: relative;
   padding: 5px;
 }
-.wp_event_manager_addons_wrap
-  .products
-  li
-  .wpem-product-footer
-  li.wpem-product-action-item.wpem-product-action-item-1 {
+.wp_event_manager_addons_wrap .products li .wpem-product-footer li.wpem-product-action-item.wpem-product-action-item-1 {
   background: #e6e6e6;
   color: #111;
   font-family: sans-serif;
@@ -1193,11 +1140,7 @@ ul.wpem-product-action-list {
   padding: 12px 10px;
   border-radius: 5px;
 }
-.wp_event_manager_addons_wrap
-  .products
-  li
-  .wpem-product-footer
-  li.wpem-product-action-item.wpem-product-action-item-2 {
+.wp_event_manager_addons_wrap .products li .wpem-product-footer li.wpem-product-action-item.wpem-product-action-item-2 {
   -ms-flex-preferred-size: 0;
   flex-basis: 0;
   -ms-flex-positive: 1;
@@ -1210,12 +1153,7 @@ ul.wpem-product-action-list {
   padding: 4px;
   margin-right: 0 !important;
 }
-.wp_event_manager_addons_wrap
-  .products
-  li
-  .wpem-product-footer
-  li.wpem-product-action-item.wpem-product-action-item-2
-  a {
+.wp_event_manager_addons_wrap .products li .wpem-product-footer li.wpem-product-action-item.wpem-product-action-item-2 a {
   background: #0096ff;
   color: #fff;
   font-family: sans-serif;
@@ -1254,9 +1192,109 @@ ul.wpem-product-action-list {
 .wrap.event-manager-settings-wrap h2.nav-tab-wrapper {
   margin-bottom: 20px;
 }
-.wpem_editor{
+.wpem_editor {
   width: 100%;
   min-width: 463px;
   float: left;
   position: relative;
+}
+.wpem-plugin_info-box-img img {
+  max-width: 230px;
+  height: auto;
+  width: 100%;
+}
+
+.wpem-plugin_info-inside {
+  max-width: 100%;
+  overflow: hidden;
+}
+.wpem-plugin_info-inside .wpem-plugin_info-box-img {
+  padding: 0 0 10px 10px;
+  border-bottom: 1px solid #efefef;
+}
+
+.wpem-plugin_info-inside .wpem-setup-help-center-block {
+  background: #fff;
+  border: 1px solid #e1e1e4;
+  box-sizing: border-box;
+  border-radius: 7px;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  text-align: left;
+  align-items: center;
+}
+.wpem-plugin_info-inside .wpem-setup-help-center-block-content .wpem-setup-help-center-block-heading {
+  font-weight: 600;
+  line-height: 1.42;
+  color: #111;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.wpem-plugin_info-inside .wpem-setup-help-center-block-content .wpem-setup-help-center-block-desc {
+  font-size: 14px;
+  line-height: 1.42;
+  color: #555;
+}
+.wpem-plugin_info-inside .wpem-setup-help-center-block-content a.wpem-setup-help-center-block-link {
+  display: inline-block;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  margin-top: 10px;
+  position: relative;
+  text-decoration: none;
+  color: #0096ff;
+  transition: 0.2s color ease;
+}
+.wpem-plugin_info-inside .wpem-setup-help-center-block-content a.wpem-setup-help-center-block-link:hover {
+  color: #111;
+}
+.wpem-plugin_info-inside .wpem-setup-help-center-faqs-icon,
+.wpem-plugin_info-inside .wpem-setup-help-center-knowledge-base-icon,
+.wpem-plugin_info-inside .wpem-setup-help-center-support-icon,
+.wpem-plugin_info-inside .wpem-setup-help-center-video-tutorial-icon {
+  display: inline-block;
+  background: url(../images/support-page-sprites-img.png) no-repeat;
+  background-size: 140px;
+  overflow: hidden;
+  text-indent: -9999px;
+  text-align: left;
+}
+.wpem-plugin_info-inside .wpem-setup-help-center-knowledge-base-icon {
+  background-position: -68px 1px;
+  width: 60px;
+  height: 60px;
+}
+
+.wpem-plugin_info-inside .wpem-setup-help-center-faqs-icon {
+  background-position: -5px 1px;
+  width: 60px;
+  height: 60px;
+}
+
+.wpem-plugin_info-inside .wpem-setup-help-center-video-tutorial-icon {
+  background-position: -72px -62px;
+  width: 60px;
+  height: 60px;
+}
+.wpem-plugin_info-inside .wpem-setup-help-center-block .wpem-setup-help-center-block-icon {
+  margin-right: 25px;
+}
+.wpem-plugin_info-inside a img {
+  width: 100%;
+  display: block;
+  max-width: 200px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+.wpem-plugin_info-inside span.light-grey {
+  text-align: center;
+  display: block;
+  padding-top: 10px;
+  font-size: 14px;
+  margin-top: 5px;
+  border-top: 1px solid #efefef;
 }
