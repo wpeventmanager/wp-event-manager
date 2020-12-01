@@ -109,7 +109,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			unset( $this->fields['organizer']['event_organizer_ids'] );
 
 		$venue_enabled = get_option( 'enable_event_venue');
-		$venue_submit_page = get_option('event_manager_submit_organizer_form_page_id',false);
+		$venue_submit_page = get_option('event_manager_submit_venue_form_page_id',false);
 		if(!$venue_enabled || !$venue_submit_page)
 			unset( $this->fields['venue']['event_venue_ids'] );
 
