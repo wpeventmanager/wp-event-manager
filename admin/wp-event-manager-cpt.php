@@ -178,12 +178,23 @@ class WP_Event_Manager_CPT {
 
 			$post_id = absint( $_GET['approve_event'] );
 
-			$event_data = array(
+			$event_end_date = get_post_meta($post_id, '_event_end_date', true);
+			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
 
-				'ID'          => $post_id,
-
-				'post_status' => 'publish'
-			);
+			if( strtotime($event_end_date) > $current_timestamp )
+			{
+				$event_data = array(
+					'ID'          => $post_id,
+					'post_status' => 'publish'
+				);
+			}
+			else
+			{
+				$event_data = array(
+					'ID'          => $post_id,
+					'post_status' => 'expired'
+				);
+			}
 
 			wp_update_post( $event_data );
 
