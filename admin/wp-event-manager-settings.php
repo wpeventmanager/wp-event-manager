@@ -674,12 +674,12 @@ class WP_Event_Manager_Settings {
 								
 										'label' 	=> __( 'Event Timezone', 'wp-event-manager' ),
 								
-										'desc'		=> __( 'Timezone for the event date and time.', 'wp-event-manager' ),
+										'desc'		=> __( 'In case while submitting an event, if the timezone for each event is not selected, the WP Event Manager will take the default WordPress (website) timezone.', 'wp-event-manager' ),
 								
 										'type'      => 'radio',
 										'options'	=> array(
 												'site_timezone' 	=> __( 'Use website timezone.', 'wp-event-manager' ),
-												'each_event' 		=> __( 'Select timezone on each event.', 'wp-event-manager' )
+												'each_event' 		=> __( 'Select a timezone on each event.', 'wp-event-manager' )
 										)
 								)
 						)
