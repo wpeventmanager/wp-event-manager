@@ -65,6 +65,17 @@ class WP_Event_Manager_Setup {
 	 
 	public function redirect() {
 
+		global $pagenow;
+
+		if(isset($_GET['page']) && $_GET['page'] === 'event-manager-setup')
+		{
+			if(get_option('wpem_installation', false))
+			{
+				wp_redirect( admin_url( 'index.php' ) );
+				exit;
+			}	
+		}		
+
 		// Bail if no activation redirect transient is set
 
 	    if ( ! get_transient( '_event_manager_activation_redirect' ) ) {
@@ -158,12 +169,6 @@ class WP_Event_Manager_Setup {
 			exit;
 		}
 
-		if(get_option('wpem_installation', false))
-		{
-			wp_redirect( admin_url( 'index.php' ) );
-			exit;
-		}
-
 		if ( 3 === $step && !empty( $_POST ) ) 
 		{
 			if ( false == wp_verify_nonce( $_REQUEST[ 'setup_wizard' ], 'step_3' ) )
@@ -239,9 +244,9 @@ class WP_Event_Manager_Setup {
 
 						<p><?php _e( 'Thanks for installing <em>WP Event Manager</em>!', 'wp-event-manager' ); ?></p>
 
-						<p><?php _e( 'This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events.', 'wp-event-manager' ); ?></p>
+						<p><?php _e( 'This setup wizard will help you get started by creating various pages for event submission, event management, and listing your events, along with setting up organizers and venues pages.' ); ?></p>
 
-						<p><?php printf( __( 'If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>' ); ?></p>
+						<p><?php printf( __( 'The process is still relatively simple if you want to skip the wizard and manually set up the pages and shortcodes yourself. Please refer to the %sdocumentation%s for support.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>' ); ?></p>
 					</div>
 					<p class="submit">
 
@@ -257,7 +262,7 @@ class WP_Event_Manager_Setup {
 
 					<h3><?php _e( 'Page Setup', 'wp-event-manager' ); ?></h3>
 
-					<p><?php printf( __( '<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/knowledge-base/" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="https://wordpress.org/support/article/pages/" target="_blank" class="help-page-link">', '<a href="https://wp-eventmanager.com/knowledge-base/the-event-dashboard/" target="_blank" class="help-page-link">' ); ?></p>
+					<p><?php printf( __( 'The <em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used to output content within your %3$spages%2$s. These can be generated directly as mentioned below. Check the shortcode documentation for more information on event %4$sshortcodes%2$s.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/knowledge-base/" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="https://wordpress.org/support/article/pages/" target="_blank" class="help-page-link">', '<a href="https://wp-eventmanager.com/knowledge-base/the-event-dashboard/" target="_blank" class="help-page-link">' ); ?></p>
 
 					<form action="<?php echo esc_url( add_query_arg( 'step', 3 ) ); ?>" method="post">
 						<?php wp_nonce_field( 'step_3', 'setup_wizard' ); ?>
@@ -288,7 +293,7 @@ class WP_Event_Manager_Setup {
 									<td>
 										<p><?php _e( 'This page allows peoples to post events to your website from the front-end.', 'wp-event-manager' ); ?></p>
 
-										<p><?php _e( 'If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager' ); ?></p>
+										<p><?php _e( 'If you do not wish to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager' ); ?></p>
 									</td>
 									<td><code>[submit_event_form]</code></td>
 								</tr>
@@ -324,7 +329,7 @@ class WP_Event_Manager_Setup {
 									<td><input type="text" value="<?php echo esc_attr( _x( 'Submit Organizer Form', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[submit_organizer_form]" /></td>
 
 									<td>
-										<p><?php _e( 'This page allows people to Submit the organizers form the frontend.', 'wp-event-manager' ); ?></p>
+										<p><?php _e( 'This page allows users to Submit the organizers form the frontend.', 'wp-event-manager' ); ?></p>
 										
 										<p><?php _e( 'In case if you do not want to allow your users to submit organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
 									</td>
@@ -366,7 +371,7 @@ class WP_Event_Manager_Setup {
 									<td><input type="text" value="<?php echo esc_attr( _x( 'Submit Venue Form', 'Default page title (wizard)', 'wp-event-manager' ) ); ?>" name="wp-event-manager-page-title[submit_venue_form]" /></td>
 
 									<td>
-										<p><?php _e( 'This page allows people to Submit the venues form the frontend.', 'wp-event-manager' ); ?></p>
+										<p><?php _e( 'This page allows people to Submit the venues from the frontend.', 'wp-event-manager' ); ?></p>
 										
 										<p><?php _e( 'In case if you do not want to allow your users to submit venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager' ); ?></p>
 									</td>
@@ -428,7 +433,7 @@ class WP_Event_Manager_Setup {
 							<div class="wpem-setup-intro-block-welcome">
 
 								<img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager">
-								<p><?php _e('Thanks for installing WP Event Manager! Here are some handy resources for getting started with our plugins.', 'wp-event-manager'); ?></p>
+								<p><?php _e('Thanks for installing WP Event Manager! Here are some valuable resources that will assist you in getting started with our plugins.', 'wp-event-manager'); ?></p>
 								<div class="wpem-backend-video-wrap">
 									<iframe width="560" height="315" src="https://www.youtube.com/embed/hlDVYtEDOgQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 								</div>
