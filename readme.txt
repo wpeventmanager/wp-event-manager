@@ -4,7 +4,7 @@ Contributors: wpeventmanager,ashokdudhat,hiteshmakvana,sapnamd,priyagoenka,kisha
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 5.5
+Tested up to: 5.5.3
 Stable tag: 3.1.18
 Requires PHP: 5.4
 License: GPLv3
