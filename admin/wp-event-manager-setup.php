@@ -252,7 +252,7 @@ class WP_Event_Manager_Setup {
 
 						<a href="<?php echo esc_url( add_query_arg( 'step', 2 ) ); ?>" class="button button-primary"><?php _e( 'Continue to page setup', 'wp-event-manager' ); ?></a>
 
-						<a href="<?php echo esc_url( add_query_arg( 'skip-event-manager-setup', 1, admin_url( 'index.php?page=event-manager-setup&step=3' ) ) ); ?>" class="button"><?php _e( 'Skip setup. I will setup the plugin manually', 'wp-event-manager' ); ?></a>
+						<a href="<?php echo esc_url( add_query_arg( 'skip-event-manager-setup', 1, admin_url( 'index.php?page=event-manager-setup&step=3' ) ) ); ?>" class="button"><?php _e( 'Skip for now', 'wp-event-manager' ); ?></a>
 
 					</p>
 					
