@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
 Tested up to: 5.5
-Stable tag: 3.1.17
+Stable tag: 3.1.18
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -310,6 +310,22 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 
 == Changelog ==
+
+
+= 3.1.18 [ Dec 2nd, 2020 ] =
+
+Fixed - Additional fields with file type improved at single event page.
+Fixed - Multiple event category and type  must be enable only from field editor.
+Fixed - Timezone field conflict with timezone settings.
+Fixed - Do not show venue if event is online.
+Fixed - Organizer pagination.
+Fixed - WP Editor admin side added in event data.
+Added - Event dashboard design improved.
+Fixed - Admin side events table improved.
+Fixed - Hardcoded strings improved.
+Removed - Multiple event category and type settings.
+Fixed - Some js and css tweaks.
+
 
 = 3.1.17 [Sep 24TH, 2020] =
 
