@@ -482,13 +482,15 @@ class WP_Event_Manager_CPT {
 
 			case "cancelled" :
 			    
-				if ( is_event_cancelled( $post ) ) echo '<span class="dashicons dashicons-no"></span>'; else echo '&ndash;';
+				if ( is_event_cancelled( $post ) ) echo '<span class="tips dashicons dashicons-no" data-tip="' . __( "Cancelled", 'wp-event-manager' ) . '">' . __( "Cancelled", 'wp-event-manager' ) . '</span>'; else echo '&ndash;';
 
 			break;
 
+			'<span class="tips dashicons dashicons-format-image" data-tip="' . __( "Banner", 'wp-event-manager' ) . '">' . __( "Banner", 'wp-event-manager' ) . '</span>';
+
 			case "featured_event" :
 
-				if ( is_event_featured( $post ) ) echo '<span class="dashicons dashicons-star-filled"></span>'; else echo '<span class="dashicons dashicons-star-empty"></span>';
+				if ( is_event_featured( $post ) ) echo '<span class="tips dashicons dashicons-star-filled" data-tip="' . __( "Featured", 'wp-event-manager' ) . '">' . __( "Featured", 'wp-event-manager' ) . '</span>'; else echo '<span class="tips dashicons dashicons-star-empty" data-tip="' . __( "Not Featured", 'wp-event-manager' ) . '">' . __( "Not Featured", 'wp-event-manager' ) . '</span>';
 
 			break;
 
@@ -496,7 +498,7 @@ class WP_Event_Manager_CPT {
 			    
 				echo '<div class="event_banner">';
 
-				display_event_banner();
+				//display_event_banner();
 
 				echo '</div>';
 				
