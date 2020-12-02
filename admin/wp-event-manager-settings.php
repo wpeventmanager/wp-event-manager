@@ -998,7 +998,7 @@ class WP_Event_Manager_Settings {
 								</div>
 							</div>
 						</div>
-						<span class="light-grey"><?php _e('This plugin was made by', 'wp-event-manager'); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
+						<span class="light-grey"><?php _e('Owned and Managed by', 'wp-event-manager'); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
 					</div>
 	            </div>
 
