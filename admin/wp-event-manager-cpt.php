@@ -55,6 +55,11 @@ class WP_Event_Manager_CPT {
 			add_action( "restrict_manage_posts", array( $this, "events_by_category" ) );
 		}
 
+		if ( get_option( 'event_manager_enable_event_types' ) ) {
+			
+			add_action( "restrict_manage_posts", array( $this, "events_by_event_type" ) );
+		}
+
 		foreach ( array( 'post', 'post-new' ) as $hook ) {
 		    
 			add_action( "admin_footer-{$hook}.php", array( $this,'extend_submitdiv_post_status' ) );
@@ -268,7 +273,6 @@ class WP_Event_Manager_CPT {
 	/**
 	 * Show category dropdown
 	 */
-
 	public function events_by_category() {
 
 		global $typenow, $wp_query;
@@ -315,12 +319,43 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
+	 * Show Event type dropdown
+	 */
+	public function events_by_event_type() {
+		global $typenow, $wp_query;
+	    
+	    if ( $typenow != 'event_listing' || ! taxonomy_exists( 'event_listing_type' ) ) {
+	    	return;
+	    }
+		
+		$r= array();
+		$r['pad_counts']   = 1;
+		$r['hierarchical'] = 1;
+		$r['hide_empty']   = 0;
+		$r['show_count']   = 1;
+		$r['selected']     = ( isset( $wp_query->query['event_listing_type'] ) ) ? $wp_query->query['event_listing_type'] : '';
+		$r['menu_order']   = false;
+		$terms             = get_terms( 'event_listing_type', $r );
+		$walker            = new WP_Event_Manager_Category_Walker;
+		
+		if ( ! $terms ) {
+			return;
+		}
+		
+		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
+		$output .= '<option value="" ' . selected( isset( $_GET['event_listing_type'] ) ? $_GET['event_listing_type'] : '', '', false ) . '>' . __( 'Select Event Type', 'wp-event-manager' ) . '</option>';
+		$output .= $walker->walk( $terms, 0, $r );
+		$output .= "</select>";
+		
+		echo $output;
+	}
+
+	/**
 	 * enter_title_here function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-
 	public function enter_title_here( $text, $post ) {
 
 		if ( $post->post_type == 'event_listing' )
