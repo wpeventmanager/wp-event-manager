@@ -43,6 +43,8 @@ class WP_Event_Manager_Writepanels {
 		add_action( 'event_manager_save_venue_listing', array( $this, 'save_venue_listing_data' ), 20, 2 );
 
 		add_action( 'before_delete_post', array( $this, 'delete_event_with_attachment' ), 10);
+
+		add_filter( 'rest_prepare_taxonomy', array( $this, 'wpem_hide_taxonomy_metabox' ), 10, 2 );
 	}
 
 	/**
@@ -165,10 +167,18 @@ class WP_Event_Manager_Writepanels {
 		
 		if ( ! get_option( 'event_manager_enable_event_types' ) ) {
 			remove_meta_box( 'event_listing_typediv', 'event_listing', 'side');
-		} elseif ( false == event_manager_multiselect_event_type() ) {
+		}elseif ( false == event_manager_multiselect_event_type() ) {
 			remove_meta_box( 'event_listing_typediv', 'event_listing', 'side');
 			$event_listing_type = get_taxonomy( 'event_listing_type' );
-			add_meta_box( 'event_listing_type', $event_listing_type->labels->menu_name, array( $this, 'event_listing_metabox' ),'event_listing' ,'side','core');
+			add_meta_box( 'event_listing_type', $event_listing_type->labels->menu_name, array( $this, 'event_listing_type_metabox' ),'event_listing' ,'side','core');
+		}
+
+		if ( ! get_option( 'event_manager_enable_categories' ) ) {
+			remove_meta_box( 'event_listing_categorydiv', 'event_listing', 'side');
+		}elseif ( false == event_manager_multiselect_event_category() ) {
+			remove_meta_box( 'event_listing_categorydiv', 'event_listing', 'side');
+			$event_listing_category = get_taxonomy( 'event_listing_category' );
+			add_meta_box( 'event_listing_category', $event_listing_category->labels->menu_name, array( $this, 'event_listing_category_metabox' ),'event_listing' ,'side','core');
 		}
 		
 		if(isset($wp_post_types['event_organizer']))
@@ -179,17 +189,35 @@ class WP_Event_Manager_Writepanels {
 		if(isset($wp_post_types['event_venue']))
 		{
 			add_meta_box( 'event_venue_data', sprintf( __( '%s Data', 'wp-event-manager' ), $wp_post_types['event_venue']->labels->singular_name ), array( $this, 'event_venue_data' ), 'event_venue', 'normal', 'high' );
+		}	
+	}
+
+	public function wpem_hide_taxonomy_metabox( $response, $taxonomy )
+	{
+		if ( false == event_manager_multiselect_event_type() ) {
+			if ( 'event_listing_type' === $taxonomy->name ) 
+			{
+				$response->data['visibility']['show_ui'] = false;
+			}
 		}
-	
+
+		if ( false == event_manager_multiselect_event_category() ) {
+			if ( 'event_listing_category' === $taxonomy->name ) 
+			{
+				$response->data['visibility']['show_ui'] = false;
+			}
+		}
+
+		return $response;
 	}
 	
 	/**
-	 * event_listing_metabox function.
+	 * event_listing_type_metabox function.
 	 *
 	 * @param mixed $post
 	 * @param 
 	 */
-	function event_listing_metabox( $post ) {
+	function event_listing_type_metabox( $post ) {
 		//Set up the taxonomy object and get terms
 		$taxonomy = 'event_listing_type';
 		$tax = get_taxonomy( $taxonomy );//This is the taxonomy object event
@@ -209,41 +237,104 @@ class WP_Event_Manager_Writepanels {
 		$current = ($current ? $current->term_id : 0);
 		?>
 	
-			<div id="taxonomy-<?php echo $taxonomy; ?>" class="categorydiv">
-	
-				<!-- Display tabs-->
-				<ul id="<?php echo $taxonomy; ?>-tabs" class="category-tabs">
-					<li class="tabs"><a href="#<?php echo $taxonomy; ?>-all" tabindex="3"><?php echo $tax->labels->all_items; ?></a></li>
-					<li class="hide-if-no-js"><a href="#<?php echo $taxonomy; ?>-pop" tabindex="3"><?php _e( 'Most Used','wp-event-manager' ); ?></a></li>
-				</ul>
-	
-				<!-- Display taxonomy terms -->
-				<div id="<?php echo $taxonomy; ?>-all" class="tabs-panel">
-					<ul id="<?php echo $taxonomy; ?>checklist" class="list:<?php echo $taxonomy?> categorychecklist form-no-clear">
-						<?php   foreach($terms as $term){
-							$id = $taxonomy.'-'.$term->term_id;
-							echo "<li id='$id'><label class='selectit'>";
-							echo "<input type='radio' id='in-$id' name='{$name}'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
-						   echo "</label></li>";
-						}?>
-				   </ul>
-				</div>
-	
-				<!-- Display popular taxonomy terms -->
-				<div id="<?php echo $taxonomy; ?>-pop" class="tabs-panel" style="display: none;">
-					<ul id="<?php echo $taxonomy; ?>checklist-pop" class="categorychecklist form-no-clear" >
-						<?php   foreach($popular as $term){
-							$id = 'popular-'.$taxonomy.'-'.$term->term_id;
-							echo "<li id='$id'><label class='selectit'>";
-							echo "<input type='radio' id='in-$id'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
-							echo "</label></li>";
-						}?>
-				   </ul>
-			   </div>
-	
+		<div id="taxonomy-<?php echo $taxonomy; ?>" class="categorydiv">
+
+			<!-- Display tabs-->
+			<ul id="<?php echo $taxonomy; ?>-tabs" class="category-tabs">
+				<li class="tabs"><a href="#<?php echo $taxonomy; ?>-all" tabindex="3"><?php echo $tax->labels->all_items; ?></a></li>
+				<li class="hide-if-no-js"><a href="#<?php echo $taxonomy; ?>-pop" tabindex="3"><?php _e( 'Most Used','wp-event-manager' ); ?></a></li>
+			</ul>
+
+			<!-- Display taxonomy terms -->
+			<div id="<?php echo $taxonomy; ?>-all" class="tabs-panel">
+				<ul id="<?php echo $taxonomy; ?>checklist" class="list:<?php echo $taxonomy?> categorychecklist form-no-clear">
+					<?php   foreach($terms as $term){
+						$id = $taxonomy.'-'.$term->term_id;
+						echo "<li id='$id'><label class='selectit'>";
+						echo "<input type='radio' id='in-$id' name='{$name}'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
+					   echo "</label></li>";
+					}?>
+			   </ul>
 			</div>
-			<?php
-		}
+
+			<!-- Display popular taxonomy terms -->
+			<div id="<?php echo $taxonomy; ?>-pop" class="tabs-panel" style="display: none;">
+				<ul id="<?php echo $taxonomy; ?>checklist-pop" class="categorychecklist form-no-clear" >
+					<?php   foreach($popular as $term){
+						$id = 'popular-'.$taxonomy.'-'.$term->term_id;
+						echo "<li id='$id'><label class='selectit'>";
+						echo "<input type='radio' id='in-$id'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
+						echo "</label></li>";
+					}?>
+			   </ul>
+		   </div>
+
+		</div>
+		<?php
+	}
+
+	/**
+	 * event_listing_category_metabox function.
+	 *
+	 * @param mixed $post
+	 * @param 
+	 */
+	function event_listing_category_metabox( $post ) 
+	{
+		//Set up the taxonomy object and get terms
+		$taxonomy = 'event_listing_category';
+		$tax = get_taxonomy( $taxonomy );//This is the taxonomy object event
+	
+		//The name of the form
+		$name = 'tax_input[' . $taxonomy . '][]';
+	
+		//Get all the terms for this taxonomy
+		$terms = get_terms( $taxonomy, array( 'hide_empty' => 0 ) );
+		$postterms = get_the_terms( $post->ID, $taxonomy );
+		$current = ( $postterms ? array_pop( $postterms ) : false );
+		$current = ( $current ? $current->term_id : 0 );
+		//Get current and popular terms
+		$popular = get_terms( $taxonomy, array( 'orderby' => 'count', 'order' => 'DESC', 'number' => 10, 'hierarchical' => false ) );
+		$postterms = get_the_terms( $post->ID,$taxonomy );
+		$current = ($postterms ? array_pop($postterms) : false);
+		$current = ($current ? $current->term_id : 0);
+		?>
+	
+		<div id="taxonomy-<?php echo $taxonomy; ?>" class="categorydiv">
+
+			<!-- Display tabs-->
+			<ul id="<?php echo $taxonomy; ?>-tabs" class="category-tabs">
+				<li class="tabs"><a href="#<?php echo $taxonomy; ?>-all" tabindex="3"><?php echo $tax->labels->all_items; ?></a></li>
+				<li class="hide-if-no-js"><a href="#<?php echo $taxonomy; ?>-pop" tabindex="3"><?php _e( 'Most Used','wp-event-manager' ); ?></a></li>
+			</ul>
+
+			<!-- Display taxonomy terms -->
+			<div id="<?php echo $taxonomy; ?>-all" class="tabs-panel">
+				<ul id="<?php echo $taxonomy; ?>checklist" class="list:<?php echo $taxonomy?> categorychecklist form-no-clear">
+					<?php   foreach($terms as $term){
+						$id = $taxonomy.'-'.$term->term_id;
+						echo "<li id='$id'><label class='selectit'>";
+						echo "<input type='radio' id='in-$id' name='{$name}'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
+					   echo "</label></li>";
+					}?>
+			   </ul>
+			</div>
+
+			<!-- Display popular taxonomy terms -->
+			<div id="<?php echo $taxonomy; ?>-pop" class="tabs-panel" style="display: none;">
+				<ul id="<?php echo $taxonomy; ?>checklist-pop" class="categorychecklist form-no-clear" >
+					<?php   foreach($popular as $term){
+						$id = 'popular-'.$taxonomy.'-'.$term->term_id;
+						echo "<li id='$id'><label class='selectit'>";
+						echo "<input type='radio' id='in-$id'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
+						echo "</label></li>";
+					}?>
+			   </ul>
+		   </div>
+
+		</div>
+		<?php
+	}
 		
 	/**
 	 * input_file function.
@@ -318,7 +409,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_wp_editor( $key, $field ) {
 		global $thepostid;
-		if ( ! isset( $field['value'] ) ) {
+		if ( !isset( $field['value'] ) || empty($field['value']) ) {
 			$field['value'] = get_post_meta( $thepostid, $key, true );
 		}
 		if ( ! empty( $field['name'] ) ) {
@@ -326,14 +417,16 @@ class WP_Event_Manager_Writepanels {
 		} else {
 			$name = $key;
 			}?>
-			<p class="form-field">
+			<div class="wpem_editor">
+				<p class="form-field">
 				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>
+				</p>
 			
 	
 			<?php
 			wp_editor( $field['value'], $name, array("media_buttons" => false) );
 			?>
-			</p>
+			</div>
 			<?php
 		}
 	
@@ -547,7 +640,7 @@ class WP_Event_Manager_Writepanels {
 			?>
 				<p class="form-field">
 					<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>
-					<input type="number" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" />
+					<input type="number" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" min="<?php echo isset( $field['min'] ) ? esc_attr( $field['min'] ) : '0'; ?>"  max="<?php echo isset( $field['max'] ) ? esc_attr( $field['max'] ) : ''; ?>" />
 				</p>
 				<?php
 			}
@@ -655,7 +748,7 @@ class WP_Event_Manager_Writepanels {
 		do_action( 'event_manager_event_listing_data_start', $thepostid );
 		foreach ( $this->event_listing_fields() as $key => $field ) {
 			$type = ! empty( $field['type'] ) ? $field['type'] : 'text';
-			if($type == 'wp-editor') $type = 'textarea';
+			if($type == 'wp-editor') $type = 'wp_editor';
 			
 			if ( has_action( 'event_manager_input_' . $type ) ) {
 				do_action( 'event_manager_input_' . $type, $key, $field );
@@ -994,7 +1087,7 @@ class WP_Event_Manager_Writepanels {
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 
 		update_post_meta( $post_id, '_organizer_name', sanitize_text_field( $_POST[ 'post_title' ] ) );
-		update_post_meta( $post_id, '_organizer_description', sanitize_text_field( $_POST[ 'content' ] ) );
+		update_post_meta( $post_id, '_organizer_description', $_POST[ 'content' ] );
 		
 		// Save fields
 		foreach ( $this->organizer_listing_fields() as $key => $field ) {
@@ -1140,7 +1233,7 @@ class WP_Event_Manager_Writepanels {
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 
 		update_post_meta( $post_id, '_venue_name', sanitize_text_field( $_POST[ 'post_title' ] ) );
-		update_post_meta( $post_id, '_venue_description', sanitize_text_field( $_POST[ 'content' ] ) );
+		update_post_meta( $post_id, '_venue_description', $_POST[ 'content' ] );
 		
 		// Save fields
 		foreach ( $this->venue_listing_fields() as $key => $field ) 

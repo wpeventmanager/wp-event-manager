@@ -5,12 +5,14 @@ $end_date   = get_event_end_date();
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style('wp-event-manager-slick-style');
 do_action('set_single_listing_view_count');
+$event = $post;
 ?>
 <div class="single_event_listing">
 
     <div class="wpem-main wpem-single-event-page">
         <?php if (get_option('event_manager_hide_expired_content', 1) && 'expired' === $post->post_status): ?>
-            <div class="event-manager-info wpem-alert wpem-alert-danger" ><?php _e('This listing has been expired.', 'wp-event-manager'); ?></div>
+            <div class="wpem-alert wpem-alert-danger" ><?php _e('This listing has been expired.', 'wp-event-manager'); ?></div>
+        
         <?php else: ?>
             <?php if (is_event_cancelled()): ?>
                 <div class="wpem-alert wpem-alert-danger">
@@ -54,6 +56,7 @@ do_action('set_single_listing_view_count');
 
                     </div>
                 </div>
+
                 <div class="wpem-single-event-body">
                     <div class="wpem-row">
                         <div class="wpem-col-xs-12 wpem-col-sm-7 wpem-col-md-8 wpem-single-event-left-content">
@@ -92,8 +95,6 @@ do_action('set_single_listing_view_count');
                                 </div>
                             </div>
 
-
-
                             <?php do_action('single_event_overview_before'); ?>
 
                             <div class="wpem-single-event-body-content">
@@ -106,9 +107,14 @@ do_action('set_single_listing_view_count');
                             <?php
                             $show_additional_details = apply_filters('event_manager_show_additional_details', true);
 
-                            if( $show_additional_details && is_single() ) :
+                            if( $show_additional_details ) :
 
-                                $GLOBALS['event_manager']->forms->get_form( 'submit-event', array() );
+                                if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) 
+                                {
+                                    include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+                                    include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
+                                }
+
                                 $form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
                                 $custom_fields = $form_submit_event_instance->get_event_manager_fieldeditor_fields();
                                 $default_fields = $form_submit_event_instance->get_default_event_fields();
@@ -121,7 +127,7 @@ do_action('set_single_listing_view_count');
                                         if( !array_key_exists($field_name, $default_fields['event']) )
                                         {
                                             $meta_key = '_'.$field_name;
-                                            $field_value = $post->$meta_key;
+                                            $field_value = $event->$meta_key;
 
                                             if(!empty( $field_value ))
                                             {
@@ -156,7 +162,7 @@ do_action('set_single_listing_view_count');
                                                 
                                                 <?php
                                                 $field_key = '_'.$name;
-                                                $field_value = $post->$field_key;
+                                                $field_value = $event->$field_key;
                                                 ?>
 
                                                 <?php if( !empty($field_value) ) : ?>
@@ -172,7 +178,14 @@ do_action('set_single_listing_view_count');
                                                     <?php elseif($field['type'] == 'multiselect') : ?>
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
+                                                                <?php
+                                                                $my_value_arr = [];
+                                                                foreach ($field_value as $key => $my_value) 
+                                                                {
+                                                                    $my_value_arr[] = $field['options'][$my_value];
+                                                                }
+                                                                ?>
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  implode(', ', $my_value_arr)); ?></p>
                                                             </div>
                                                         </div>
 
@@ -192,7 +205,7 @@ do_action('set_single_listing_view_count');
                                                                         <?php if( in_array(pathinfo($file, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg']) ) : ?>
                                                                             <div><img src="<?php echo $file; ?>"></div>
                                                                         <?php else : ?>
-                                                                            <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $field_value; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a></div>
+                                                                            <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $file; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a></div>
                                                                         <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                 <?php else : ?>
@@ -206,11 +219,19 @@ do_action('set_single_listing_view_count');
                                                         </div>
 
                                                     <?php else : ?>
-                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                            <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo $field_value; ?></p>
+                                                        <?php if(is_array($field_value)) : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo implode(', ', $field_value); ?></p>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        <?php else : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo $field_value; ?></p>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
 
                                                     <?php endif; ?>
 
@@ -311,6 +332,14 @@ do_action('set_single_listing_view_count');
                                         </span>
                                     </div>
 
+                                    <!-- Event Registration End Date start-->
+                                    <?php if (get_event_registration_end_date()): ?>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <h3 class="wpem-heading-text"><?php _e('Registration End Date', 'wp-event-manager'); ?></h3>
+                                        <?php display_event_registration_end_date(); ?>
+                                    <?php endif; ?>                                    
+                                    <!-- Registration End Date End-->
+
                                     <div>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
@@ -337,15 +366,6 @@ do_action('set_single_listing_view_count');
                                         <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
                                         <div class="wpem-event-category"><?php display_event_category(); ?></div>
                                     <?php endif; ?>
-
-                                    <!-- Event Registration End Date start-->
-                                    <?php if (get_event_registration_end_date()): ?>
-                                        <div class="clearfix">&nbsp;</div>
-                                        <h3 class="wpem-heading-text"><?php _e('Registration End Date', 'wp-event-manager'); ?></h3>
-                                        <?php display_event_registration_end_date(); ?>
-                                    <?php endif; ?>                                    
-                                    <!-- Registration End Date End-->
-
 
                                     <?php if (get_organizer_youtube()) : ?>
                                         <div class="clearfix">&nbsp;</div>
@@ -402,22 +422,28 @@ do_action('set_single_listing_view_count');
                                         </div>
                                     </div>
                                 <?php endif; ?>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
 
                 <?php
                 if(get_option('enable_event_organizer')){
-                    get_event_manager_template_part('content', 'single-event_listing-organizer');
+                    get_event_manager_template( 
+                        'content-single-event_listing-organizer.php', 
+                        array(), 
+                        'wp-event-manager/organizer', 
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+                    );
                 }
 
                 if(get_option('enable_event_venue')){
-                    get_event_manager_template_part('content', 'single-event_listing-venue');
+                    get_event_manager_template( 
+                        'content-single-event_listing-venue.php', 
+                        array(), 
+                        'wp-event-manager/venue', 
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+                    );
                 }
 
                 /**
@@ -425,11 +451,11 @@ do_action('set_single_listing_view_count');
                  */
                 do_action('single_event_listing_end');
                 ?>
-            <?php endif; ?>
-            <!-- Main if condition end -->
-        </div>
-        <!-- / wpem-wrapper end  -->
-
+            
+            </div>
+            <!-- / wpem-wrapper end  -->            
+        <?php endif; ?>
+        <!-- Main if condition end -->
     </div>
     <!-- / wpem-main end  -->
 </div>

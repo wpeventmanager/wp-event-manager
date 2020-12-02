@@ -45,6 +45,7 @@ var Venues = function () {
                 if (currentClickedLetterId == showAllLetterId) {
                     //show all venue block which has clas show-venue-info
                     jQuery('.show-venue-info').show();
+                    jQuery('.no-venue').addClass('wpem-d-none');
                 }
                 else if(jQuery('#show_' + currentClickedLetterId).length ) {	//show clicked letter venue only       
                     jQuery('#show_' + currentClickedLetterId).css({ "display": "block" });

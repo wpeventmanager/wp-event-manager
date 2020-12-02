@@ -48,6 +48,11 @@ class WP_Event_Manager_Admin {
 			add_action( 'admin_notices', array( $this, 'upgrade_database_notice' ) );
 		}
 
+		if ( get_option( 'wpem_installation_skip', false ) )
+		{
+			add_action( 'admin_notices', array( $this, 'wpem_installation_notices' ) );
+		}
+
 		// Ajax
 		add_action( 'wp_ajax_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );		
 		//add_action( 'wp_ajax_nopriv_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );
@@ -65,11 +70,29 @@ class WP_Event_Manager_Admin {
 		{
 			?>
 		    <div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
-		        <p><?php echo sprintf( __( 'Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager-migration' ), admin_url( 'edit.php?post_type=event_listing&page=event-manager-upgrade-database' ) ); ?></p>
+		        <p><?php echo sprintf( __( 'Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager' ), admin_url( 'edit.php?post_type=event_listing&page=event-manager-upgrade-database' ) ); ?></p>
 		    </div>
 		    <?php	
 		}
-   		
+	}
+
+	/**
+	 * wpem_installation_notices function.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function wpem_installation_notices() {
+
+		if ( get_option( 'wpem_installation_skip', false ) )
+		{
+			?>
+		    <div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
+		        <p><?php echo sprintf( __( '<strong>Welcome to WP Event Manager</strong> – All in One Event Management Plugin for WordPress', 'wp-event-manager' ) ); ?></p>
+		        <p><?php echo sprintf( __( '<a class="button button-primary" href="%s">Run the Setup Wizard</a> <a class="button" href="%s">Skip setup</a>', 'wp-event-manager' ), admin_url( 'index.php?page=event-manager-setup&step=1' ), admin_url( 'index.php?page=event-manager-setup&step=3&skip-event-manager-setup=1' ) ); ?></p>
+		    </div>
+		    <?php	
+		}
 	}
 
 	/**
@@ -82,7 +105,7 @@ class WP_Event_Manager_Admin {
 
 		global $wp_scripts;
 
-		$screen = get_current_screen();	
+		$screen = get_current_screen();
 
 		//main frontend style 	
 		wp_enqueue_style( 'event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css' );	
@@ -100,6 +123,8 @@ class WP_Event_Manager_Admin {
 
 				'ajax_url' 	 => admin_url( 'admin-ajax.php' ),
 
+				'start_of_week' => get_option( 'start_of_week' ),
+
 				'upgrade_database_before_send_text' 	 => __( 'Your database upgrading now', 'wp-event-manager' ),
 				'upgrade_database_success_send_text'  	=> __( 'Your database has been upgraded successfully! In order to take advantage, save the permalink and proceed.', 'wp-event-manager'),
 			
@@ -109,7 +134,7 @@ class WP_Event_Manager_Admin {
 				
 				'i18n_timepicker_step' => WP_Event_Manager_Date_Time::get_timepicker_step(),
 
-				'show_past_date' => apply_filters( 'event_manager_show_past_date', false ),
+				'show_past_date' => apply_filters( 'event_manager_show_past_date', true ),
 				
 				) );
 			wp_enqueue_script('wp-event-manager-admin-js');			

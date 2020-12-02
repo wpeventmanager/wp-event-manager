@@ -24,8 +24,10 @@ var EventRegistration= function () {
     			   /// <since>1.0.0</since>    
     			   toggleDetails: function(event) 
     			   {                   
-    			   	 event.preventDefault();
-    			   	 jQuery( '.registration_details' ).slideToggle();
+    			   	     event.preventDefault();
+
+                         jQuery( event.target ).toggleClass('wpem-active-button');
+    			   	     jQuery( '.registration_details' ).slideToggle();
     			   }    			  
     	}
 

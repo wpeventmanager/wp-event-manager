@@ -103,13 +103,14 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
 get_event_manager_template( 
     'organizer-event_listing.php', 
     array(
-        'organizer_id'  => $organizer_id,
-        'per_page'      => $per_page,
-        'show_pagination'   => $show_pagination,
-        'upcomingEvents' => $upcomingEvents,
-        'currentEvents' => $currentEvents,
-        'pastEvents'    => $pastEvents,
+        'organizer_id'    => $organizer_id,
+        'per_page'        => $per_page,
+        'show_pagination' => $show_pagination,
+        'upcomingEvents'  => $upcomingEvents,
+        'currentEvents'   => $currentEvents,
+        'pastEvents'      => $pastEvents,
+        'current_page'    => $current_page,
     ), 
-    'wp-event-manager', 
+    'wp-event-manager/organizer', 
     EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
 );

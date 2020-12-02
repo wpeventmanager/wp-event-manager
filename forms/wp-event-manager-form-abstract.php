@@ -566,6 +566,7 @@ abstract class WP_Event_Manager_Form {
 		    if(isset($default_fields['event']['event_ticket_price']))
 		        unset($default_fields['event']['event_ticket_price']);
 		}
+
 		if ( !get_option( 'event_manager_enable_categories') || (wp_count_terms( 'event_listing_category' ) == 0 && isset($custom_fields['event']['event_category'])) ) {
 			
 			if(isset( $custom_fields['event']['event_category']))
@@ -630,6 +631,12 @@ abstract class WP_Event_Manager_Form {
 			uasort( $updated_fields[$group_key], array( $this, 'sort_by_priority' ) );
 		}
 		
+		//unset timezone field if setting is site wise timezone
+		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
+		if ( $timezone_setting != 'each_event' && isset($updated_fields['event']['event_timezone']) ) {
+			unset( $updated_fields['event']['event_timezone'] );
+		}
+
 		$this->fields = apply_filters('merge_with_custom_fields',$updated_fields,$default_fields) ;
 	
 		return $this->fields;

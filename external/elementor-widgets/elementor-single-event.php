@@ -95,6 +95,7 @@ class Elementor_Single_Event extends Widget_Base {
 				'post_type'		=> 'event_listing',
 				'post_status'	=> 'publish',
 				'posts_per_page'=> -1,
+				'suppress_filters' => 0,
 		);
 
 		$events = get_posts( $args );

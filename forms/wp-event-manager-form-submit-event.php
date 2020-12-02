@@ -109,7 +109,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			unset( $this->fields['organizer']['event_organizer_ids'] );
 
 		$venue_enabled = get_option( 'enable_event_venue');
-		$venue_submit_page = get_option('event_manager_submit_organizer_form_page_id',false);
+		$venue_submit_page = get_option('event_manager_submit_venue_form_page_id',false);
 		if(!$venue_enabled || !$venue_submit_page)
 			unset( $this->fields['venue']['event_venue_ids'] );
 
@@ -158,7 +158,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 				'event_type' => array(
 					'label'       => __( 'Event Type', 'wp-event-manager' ),
-					'type'        =>  get_option('event_manager_multiselect_event_type') ?  'term-multiselect' : 'term-select',
+					'type'        =>  'term-select',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 2,
@@ -168,7 +168,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 				'event_category' => array(
 					'label'       => __( 'Event Category', 'wp-event-manager' ),
-					'type'        => get_option('event_manager_multiselect_event_category') ?  'term-multiselect' : 'term-select',
+					'type'        => 'term-select',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 3,
@@ -398,7 +398,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
           	{
 				if ( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) 
 				{	    
-					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'wp-event-manager' ), $field['label'] ) );
+					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field.', 'wp-event-manager' ), $field['label'] ) );
 				}
 
 			    if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) 
@@ -416,7 +416,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					{
 						if ( ! term_exists( $term, $field['taxonomy'] ) ) 
 						{
-							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid', 'wp-event-manager' ), $field['label'] ) );    
+							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid.', 'wp-event-manager' ), $field['label'] ) );    
 						}
 					}
 				}
@@ -445,9 +445,23 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			}
 		}
 
+		
+
 		if( isset($values['event']['event_start_date']) && !empty($values['event']['event_start_date']) && isset($values['event']['event_end_date']) && !empty($values['event']['event_end_date']) )
 		{
-			if( $values['event']['event_start_date'] > $values['event']['event_end_date'] )
+			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+			
+			//covert datepicker format  into php date() function date format
+			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+
+			$event_start_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event']['event_start_date']);
+			$event_start_date = !empty($event_start_date) ? $event_start_date : $values['event']['event_start_date'];
+
+			$event_end_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event']['event_end_date']);
+			$event_end_date = !empty($event_end_date) ? $event_end_date : $values['event']['event_end_date'];
+
+			if( $event_start_date > $event_end_date )
 			{
 				return new WP_Error( 'validation-error', __( 'Event end date must be greater than the event start date.', 'wp-event-manager' ) );
 			}	
@@ -462,7 +476,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			switch ( $allowed_registration_method ) {
 				case 'email' :
 					if ( ! is_email( $values['event']['registration'] ) ) {
-						throw new Exception( __( 'Please enter a valid registration email address', 'wp-event-manager' ) );
+						throw new Exception( __( 'Please enter a valid registration email address.', 'wp-event-manager' ) );
 					}
 				break;
 				case 'url' :
@@ -471,7 +485,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						$values['event']['registration'] = 'http://' . $values['event']['registration'];
 					}
 					if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
-						throw new Exception( __( 'Please enter a valid registration URL', 'wp-event-manager' ) );
+						throw new Exception( __( 'Please enter a valid registration URL.', 'wp-event-manager' ) );
 					}
 				break;
 				default :
@@ -481,7 +495,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$values['event']['registration'] = 'http://' . $values['event']['registration'];
 						}
 						if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
-							throw new Exception( __( 'Please enter a valid registration email address or URL', 'wp-event-manager' ) );
+							throw new Exception( __( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
 						}
 					}
 				break;
@@ -546,9 +560,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							
 						case 'event_type' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_type', array( 'fields' => 'ids' ) );
-							if ( ! event_manager_multiselect_event_type() ) {
-								$this->fields[ $group_key ][ $key ]['value'] = current( $this->fields[ $group_key ][ $key ]['value'] );
-							}
 						break;
 						case 'event_category' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_category', array( 'fields' => 'ids' ) );
@@ -563,7 +574,17 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					
 					if(! empty( $field['type'] ) &&  $field['type'] == 'date' ){
 						$event_date = get_post_meta( $event->ID, '_' . $key, true );
-						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );
+						if(!empty($event_date))
+						{
+							$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );	
+						}						
+					}
+
+					if(! empty( $field['type'] ) &&  $field['type'] == 'button'){
+						if(isset($this->fields[ $group_key ][ $key ]['value']) && empty($this->fields[ $group_key ][ $key ]['value']))
+						{
+							$this->fields[ $group_key ][ $key ]['value'] = $field['placeholder'];
+						}
 					}
 				}
 			}
@@ -706,7 +727,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			} */
 			// Prepend with event type
 			if ( apply_filters( 'submit_event_form_prefix_post_name_with_event_type', true ) && ! empty( $values['event']['event_type'] ) ) {
-				if ( event_manager_multiselect_event_type() && is_array($values['event']['event_type']) ) {
+				if ( is_array($values['event']['event_type']) ) {
 					
 					$event_type = array_values($values['event']['event_type'])[0];
 					if( is_int ($event_type) ){

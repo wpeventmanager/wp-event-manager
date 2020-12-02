@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.16
+Version: 3.1.18
 
 Since: 1.0
 
@@ -80,7 +80,7 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
-		define( 'EVENT_MANAGER_VERSION', '3.1.17' );
+		define( 'EVENT_MANAGER_VERSION', '3.1.18' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -267,14 +267,18 @@ class WP_Event_Manager {
 		//event submission forms and validation js
 		wp_register_script( 'wp-event-manager-event-submission', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-submission.min.js', array('jquery','jquery-ui-core','jquery-ui-datepicker') , EVENT_MANAGER_VERSION, true );
 		wp_localize_script( 'wp-event-manager-event-submission', 'wp_event_manager_event_submission', array(
+
+		'start_of_week' => get_option( 'start_of_week' ),
 			
 		'i18n_datepicker_format' => WP_Event_Manager_Date_Time::get_datepicker_format(),
 		
 		'i18n_timepicker_format' => WP_Event_Manager_Date_Time::get_timepicker_format(),
 		
-		'i18n_timepicker_step'	=> WP_Event_Manager_Date_Time::get_timepicker_step(),
+		'i18n_timepicker_step' => WP_Event_Manager_Date_Time::get_timepicker_step(),
 
 		'ajax_url' 	 => admin_url( 'admin-ajax.php' ),
+
+		'show_past_date' => apply_filters('event_manager_show_past_date_frontend', false),
 		
 		) );
 

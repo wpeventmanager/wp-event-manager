@@ -55,6 +55,11 @@ class WP_Event_Manager_CPT {
 			add_action( "restrict_manage_posts", array( $this, "events_by_category" ) );
 		}
 
+		if ( get_option( 'event_manager_enable_event_types' ) ) {
+			
+			add_action( "restrict_manage_posts", array( $this, "events_by_event_type" ) );
+		}
+
 		foreach ( array( 'post', 'post-new' ) as $hook ) {
 		    
 			add_action( "admin_footer-{$hook}.php", array( $this,'extend_submitdiv_post_status' ) );
@@ -178,12 +183,23 @@ class WP_Event_Manager_CPT {
 
 			$post_id = absint( $_GET['approve_event'] );
 
-			$event_data = array(
+			$event_end_date = get_post_meta($post_id, '_event_end_date', true);
+			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
 
-				'ID'          => $post_id,
-
-				'post_status' => 'publish'
-			);
+			if( strtotime($event_end_date) > $current_timestamp )
+			{
+				$event_data = array(
+					'ID'          => $post_id,
+					'post_status' => 'publish'
+				);
+			}
+			else
+			{
+				$event_data = array(
+					'ID'          => $post_id,
+					'post_status' => 'expired'
+				);
+			}
 
 			wp_update_post( $event_data );
 
@@ -257,7 +273,6 @@ class WP_Event_Manager_CPT {
 	/**
 	 * Show category dropdown
 	 */
-
 	public function events_by_category() {
 
 		global $typenow, $wp_query;
@@ -304,12 +319,43 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
+	 * Show Event type dropdown
+	 */
+	public function events_by_event_type() {
+		global $typenow, $wp_query;
+	    
+	    if ( $typenow != 'event_listing' || ! taxonomy_exists( 'event_listing_type' ) ) {
+	    	return;
+	    }
+		
+		$r= array();
+		$r['pad_counts']   = 1;
+		$r['hierarchical'] = 1;
+		$r['hide_empty']   = 0;
+		$r['show_count']   = 1;
+		$r['selected']     = ( isset( $wp_query->query['event_listing_type'] ) ) ? $wp_query->query['event_listing_type'] : '';
+		$r['menu_order']   = false;
+		$terms             = get_terms( 'event_listing_type', $r );
+		$walker            = new WP_Event_Manager_Category_Walker;
+		
+		if ( ! $terms ) {
+			return;
+		}
+		
+		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
+		$output .= '<option value="" ' . selected( isset( $_GET['event_listing_type'] ) ? $_GET['event_listing_type'] : '', '', false ) . '>' . __( 'Select Event Type', 'wp-event-manager' ) . '</option>';
+		$output .= $walker->walk( $terms, 0, $r );
+		$output .= "</select>";
+		
+		echo $output;
+	}
+
+	/**
 	 * enter_title_here function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-
 	public function enter_title_here( $text, $post ) {
 
 		if ( $post->post_type == 'event_listing' )
@@ -378,31 +424,38 @@ class WP_Event_Manager_CPT {
 
 		unset( $columns['title'], $columns['date'], $columns['author'] );
 
+		$columns["event_title"]            = __( "Title", 'wp-event-manager' );
+
+		$columns["event_banner"]            = '<span class="tips dashicons dashicons-format-image" data-tip="' . __( "Banner", 'wp-event-manager' ) . '">' . __( "Banner", 'wp-event-manager' ) . '</span>';
+
+		$columns["event_listing_type"]     = __( "Type", 'wp-event-manager' );
+
+		$columns["event_location"]         = __( "Location", 'wp-event-manager' );	
+
+	    $columns["event_organizer"]        = __( "Organizer", 'wp-event-manager' );		
+
+	    $columns["event_start_date"]       = __( "Start Date", 'wp-event-manager' );
+
+		$columns["event_end_date"]         = __( "End Date", 'wp-event-manager' );
+		
+		$columns["event_expires"]          = __( "Expiry Date", 'wp-event-manager' );
+
 		$columns['event_status']           = '<span class="tips" data-tip="' . __( "Status", 'wp-event-manager' ) . '">' . __( "Status", 'wp-event-manager' ) . '</span>';
 
 		$columns['cancelled']              = '<span class="tips" data-tip="' . __( "Cancelled?", 'wp-event-manager' ) . '">' . __( "Cancelled?", 'wp-event-manager' ) . '</span>';
 
 		$columns['featured_event']         = '<span class="tips" data-tip="' . __( "Featured?", 'wp-event-manager' ) . '">' . __( "Featured?", 'wp-event-manager' ) . '</span>';
 
-		$columns["event_title"]            = __( "Event Title", 'wp-event-manager' );
-
-		$columns["event_listing_type"]     = __( "Event Type", 'wp-event-manager' );
-
-		$columns["event_location"]         = __( "Event Location", 'wp-event-manager' );	
-
-	    $columns["event_organizer"]        = __( "Event Organizer", 'wp-event-manager' );		
-
-	    $columns["event_start_date"]       = __( "Event Start Date", 'wp-event-manager' );
-
-		$columns["event_end_date"]         = __( "Event End Date", 'wp-event-manager' );
-		
-		$columns["event_expires"]          = __( "Event Expiry Date", 'wp-event-manager' );	
-
 		$columns['event_actions']          = __( "Actions", 'wp-event-manager' );
 		
-		if ( ! get_option( 'event_manager_enable_event_types' ) ) {
+		if ( !get_option( 'event_manager_enable_event_types' ) ) {
 		
 			unset( $columns["event_listing_type"] );
+		}
+
+		if ( !get_option( 'enable_event_organizer' ) ) {
+		
+			unset( $columns["event_organizer"] );
 		}
 		
 		return $columns;
@@ -417,6 +470,12 @@ class WP_Event_Manager_CPT {
 	 * @return string
 	 */
 	public function primary_column( $column, $screen ) {
+
+		// if we want to set the primary column for CPT
+	    if ( 'edit-event_listing' === $screen ) {
+	        $column = 'event_title';
+	    }
+
 		return $column;
 	}
 	
@@ -458,14 +517,26 @@ class WP_Event_Manager_CPT {
 
 			case "cancelled" :
 			    
-				if ( is_event_cancelled( $post ) ) echo '&#10004;'; else echo '&ndash;';
+				if ( is_event_cancelled( $post ) ) echo '<span class="tips dashicons dashicons-no" data-tip="' . __( "Cancelled", 'wp-event-manager' ) . '">' . __( "Cancelled", 'wp-event-manager' ) . '</span>'; else echo '&ndash;';
 
 			break;
 
+			'<span class="tips dashicons dashicons-format-image" data-tip="' . __( "Banner", 'wp-event-manager' ) . '">' . __( "Banner", 'wp-event-manager' ) . '</span>';
+
 			case "featured_event" :
 
-				if ( is_event_featured( $post ) ) echo '&#10004;'; else echo '&ndash;';
+				if ( is_event_featured( $post ) ) echo '<span class="tips dashicons dashicons-star-filled" data-tip="' . __( "Featured", 'wp-event-manager' ) . '">' . __( "Featured", 'wp-event-manager' ) . '</span>'; else echo '<span class="tips dashicons dashicons-star-empty" data-tip="' . __( "Not Featured", 'wp-event-manager' ) . '">' . __( "Not Featured", 'wp-event-manager' ) . '</span>';
 
+			break;
+
+			case "event_banner" :
+			    
+				echo '<div class="event_banner">';
+
+				display_event_banner();
+
+				echo '</div>';
+				
 			break;
 
 			case "event_title" :
@@ -474,9 +545,9 @@ class WP_Event_Manager_CPT {
 
 				echo '<a href="' . admin_url('post.php?post=' . $post->ID . '&action=edit') . '" class="tips event_title" data-tip="' . sprintf( __( 'ID: %d', 'wp-event-manager' ), $post->ID ) . '">' .  esc_html( $post->post_title ). '</a>';
 
-			    display_event_banner();
-
 				echo '</div>';
+
+				echo '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details', 'wp-event-manager' ) . '</span></button>';
 				
 			break;
 
@@ -486,7 +557,7 @@ class WP_Event_Manager_CPT {
 				
 				if ( $types && ! empty( $types ) ) {
 					foreach ( $types as $type ) {
-						echo '<span class="event-type ' . $type->slug . '"><strong>' . $type->name . '</strong></span>';
+						echo '<span class="event-type ' . $type->slug . '">' . $type->name . '</span>';
 					}
 				}
 			break;		
@@ -499,11 +570,11 @@ class WP_Event_Manager_CPT {
 
 			case "event_organizer" :
 
-			    echo '<div class="organizer"><strong>';
+			    echo '<div class="organizer">';
 
-				display_organizer_name();
+				echo get_organizer_name('', true, 'backend');
 
-				echo '</strong></div>';
+				echo '</div>';
 
 			break;		
 
@@ -511,7 +582,7 @@ class WP_Event_Manager_CPT {
 				
 				if ( $post->_event_start_date )
 					
-					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_start_date ) ) . '</strong>';
+					echo date_i18n( get_option( 'date_format' ), strtotime( $post->_event_start_date ) );
 					else
 						echo '&ndash;';
 			break;
@@ -520,7 +591,7 @@ class WP_Event_Manager_CPT {
 
 				if ( $post->_event_end_date )
 
-					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_end_date ) ) . '</strong>';
+					echo date_i18n( get_option( 'date_format' ), strtotime( $post->_event_end_date ) );
 				else
 					echo '&ndash;';
 			break;
@@ -529,7 +600,7 @@ class WP_Event_Manager_CPT {
 
 				if ( $post->_event_expiry_date )
 				
-					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_expiry_date ) ) . '</strong>';
+					echo date_i18n( get_option( 'date_format' ), strtotime( $post->_event_expiry_date ) );
 					
 					//echo '<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
 				else
@@ -630,8 +701,6 @@ class WP_Event_Manager_CPT {
 			'event_title' => 'title',
 
 			'event_location' => 'event_location',
-
-			'event_organizer' => 'event_organizer',	
 				
 			'event_start_date'  => 'event_start_date',
 
@@ -658,38 +727,41 @@ class WP_Event_Manager_CPT {
 			if ( 'event_expires' === $vars['orderby'] ) {
 
 				$vars = array_merge( $vars, array(
-
 					'meta_key' 	=> '_event_expiry_date',
-
-					'orderby' 	=> 'meta_value'
+					'orderby' 	=> 'meta_value',
+					'meta_type' => 'DATE',
 				) );
 				
-			} elseif ( 'event_end_date' === $vars['orderby'] ) {
+			} elseif ( 'event_start_date' === $vars['orderby'] ) {
 
 				$vars = array_merge( $vars, array(
+					'meta_key' 	=> '_event_start_date',					
+					'orderby' 	=> 'meta_value',
+					'meta_type' => 'DATETIME',
+				) );
+			}
 
-					'meta_key' 	=> '_event_end_date',
-					
-					'orderby' 	=> 'meta_value'
+			elseif ( 'event_end_date' === $vars['orderby'] ) {
+
+				$vars = array_merge( $vars, array(
+					'meta_key' 	=> '_event_end_date',					
+					'orderby' 	=> 'meta_value',
+					'meta_type' => 'DATETIME',
 				) );
 			}
 
 			elseif ( 'event_location' === $vars['orderby'] ) {
 
 				$vars = array_merge( $vars, array(
-
 					'meta_key' 	=> '_event_location',
-
-					'orderby' 	=> 'meta_value'
+					'orderby' 	=> 'meta_value',
 				) );
 
 			} elseif ( 'event_organizer' === $vars['orderby'] ) {
 
 				$vars = array_merge( $vars, array(
-
-					'meta_key' 	=> '_organizer_name',
-					
-					'orderby' 	=> 'meta_value'
+					'meta_key' 	=> '_organizer_name',					
+					'orderby' 	=> 'meta_value',
 				) );
 			}
 		}

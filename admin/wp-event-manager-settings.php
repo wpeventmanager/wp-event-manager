@@ -62,7 +62,7 @@ class WP_Event_Manager_Settings {
 										'name'       => 'enable_event_organizer',
 										'std'        => '1',
 										'label'      => __( 'Enable organizer', 'wp-event-manager' ),
-										'cb_label'   => __( 'Disable this to remove the functionality of Organizers on Your Event Website', 'wp-event-manager' ),
+										'cb_label'   => __( 'Disable this to remove the functionality of Organizers on Your Event Website.', 'wp-event-manager' ),
 										'desc'       => '',
 										'type'       => 'checkbox',
 										'attributes' => array(),
@@ -114,6 +114,8 @@ class WP_Event_Manager_Settings {
 
 							'desc'        => __( 'How many listings should be shown per page by default?', 'wp-event-manager' ),
 
+							'type'       => 'number',
+
 							'attributes'  => array()
 						),
 
@@ -125,7 +127,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Cancelled Events', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Hide cancelled events', 'wp-event-manager' ),
+							'cb_label'   => __( 'Hide cancelled events.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, cancelled events will be hidden from archives.', 'wp-event-manager' ),
 
@@ -139,7 +141,7 @@ class WP_Event_Manager_Settings {
 								'std'        => get_option( 'event_manager_hide_expired_content' ) ? '1' : '0', // back compat
 								'label'      => __( 'Hide Expired Listings', 'wp-event-manager' ),
 								
-								'cb_label'   => __( 'Hide expired listings in event archive/search', 'wp-event-manager' ),
+								'cb_label'   => __( 'Hide expired listings in event archive/search.', 'wp-event-manager' ),
 								
 								'desc'       => __( 'If enabled, expired event listing is not searchable.', 'wp-event-manager' ),
 								
@@ -156,7 +158,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Hide Expired Listings Content', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Hide expired listing content in single event listing (singular)', 'wp-event-manager' ),
+							'cb_label'   => __( 'Hide expired listing content in single event listing (singular).', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area).', 'wp-event-manager' ),
 
@@ -173,7 +175,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Multi-select Categories', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Enable category multiselect by default', 'wp-event-manager' ),
+							'cb_label'   => __( 'Enable category multiselect by default.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, the category select box will default to a multi select on the [events] shortcode.', 'wp-event-manager' ),
 
@@ -190,7 +192,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Multi-select Event Types', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Enable event type multiselect by default', 'wp-event-manager' ),
+							'cb_label'   => __( 'Enable event type multiselect by default.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, the event type select box will default to a multi select on the [events] shortcode.', 'wp-event-manager' ),
 
@@ -213,9 +215,9 @@ class WP_Event_Manager_Settings {
 
 							'options' => array(
 
-								'any'  => __( 'Events will be shown if within ANY selected category', 'wp-event-manager' ),
+								'any'  => __( 'Events will be shown if within ANY selected category.', 'wp-event-manager' ),
 
-								'all' => __( 'Events will be shown if within ALL selected categories', 'wp-event-manager' ),
+								'all' => __( 'Events will be shown if within ALL selected categories.', 'wp-event-manager' ),
 							)
 						),
 
@@ -233,9 +235,9 @@ class WP_Event_Manager_Settings {
 
 							'options' => array(
 
-								'any'  => __( 'Events will be shown if within ANY selected event type', 'wp-event-manager' ),
+								'any'  => __( 'Events will be shown if within ANY selected event type.', 'wp-event-manager' ),
 
-								'all' => __( 'Events will be shown if within ALL selected event types', 'wp-event-manager' ),
+								'all' => __( 'Events will be shown if within ALL selected event types.', 'wp-event-manager' ),
 							)
 						)			
 					),
@@ -255,7 +257,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Account Required', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Submitting listings requires an account', 'wp-event-manager' ),
+							'cb_label'   => __( 'Submitting listings requires an account.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If disabled, non-logged in users will be able to submit listings without creating an account.', 'wp-event-manager' ),
 
@@ -272,7 +274,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Account Creation', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Allow account creation', 'wp-event-manager' ),
+							'cb_label'   => __( 'Allow account creation.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, non-logged in users will be able to create an account by entering their email address on the submission form.', 'wp-event-manager' ),
 
@@ -289,7 +291,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Account Username', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Automatically Generate Username from Email Address', 'wp-event-manager' ),
+							'cb_label'   => __( 'Automatically Generate Username from Email Address.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, a username will be generated from the first part of the user email address. Otherwise, a username field will be shown.', 'wp-event-manager' ),
 
@@ -301,7 +303,7 @@ class WP_Event_Manager_Settings {
 								'name'       => 'event_manager_use_standard_password_setup_email',
 								'std'        => '1',
 								'label'      => __( 'Account Password', 'wp-event-manager' ),
-								'cb_label'   => __( 'Use WordPress\' default behavior and email new users link to set a password', 'wp-event-manager' ),
+								'cb_label'   => __( 'Use WordPress\' default behavior and email new users link to set a password.', 'wp-event-manager' ),
 								'desc'       => __( 'If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won\'t be verified.', 'wp-event-manager' ),
 								'type'       => 'checkbox',
 								'attributes' => array()
@@ -330,7 +332,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Moderate New Listings', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'New listing submissions require admin approval', 'wp-event-manager' ),
+							'cb_label'   => __( 'New listing submissions require admin approval.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, new submissions will be inactive, pending admin approval.', 'wp-event-manager' ),
 
@@ -347,7 +349,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Allow Pending Edits', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Submissions awaiting approval can be edited', 'wp-event-manager' ),
+							'cb_label'   => __( 'Submissions awaiting approval can be edited.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, submissions awaiting admin approval can be edited by the user.', 'wp-event-manager' ),
 
@@ -362,7 +364,7 @@ class WP_Event_Manager_Settings {
 	
 								'label'      => __( 'Allow Multiple Banners', 'wp-event-manager' ),
 	
-								'cb_label'   => __( 'User can submit multiple banner', 'wp-event-manager' ),
+								'cb_label'   => __( 'User can submit multiple banner.', 'wp-event-manager' ),
 
 								'desc'       => __( 'If enabled, Multiple banner can add at frontend by user and backend side by admin.', 'wp-event-manager' ),
 	
@@ -378,7 +380,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Delete listings after finished', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Delete listings after finished', 'wp-event-manager' ),
+							'cb_label'   => __( 'Delete listings after finished.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, expired listings will automatically deleted after finished.', 'wp-event-manager' ),
 
@@ -394,7 +396,7 @@ class WP_Event_Manager_Settings {
 
 							'label'      => __( 'Delete Expired listings', 'wp-event-manager' ),
 
-							'cb_label'   => __( 'Expired listings are deleted after 30 days', 'wp-event-manager' ),
+							'cb_label'   => __( 'Expired listings are deleted after 30 days.', 'wp-event-manager' ),
 
 							'desc'       => __( 'If enabled, expired listings will automatically deleted after 30 days.', 'wp-event-manager' ),
 
@@ -444,7 +446,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Categories', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable Categories for listing and submission form', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Categories for listing and submission form.', 'wp-event-manager' ),
 					        
 					        'desc'       => __( 'Choose whether to enable categories on the event listing and submission page. If enabled, it needs to be prior created at the backend.', 'wp-event-manager' ),
 					        
@@ -461,7 +463,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Event Types', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable Event types for listing and submission form', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Event types for listing and submission form.', 'wp-event-manager' ),
 					        
 					        'desc'       => __( 'Choose whether to enable event types on the event listing and submission page. If enabled, it needs to be prior created at the backend.', 'wp-event-manager' ),
 					        
@@ -478,7 +480,7 @@ class WP_Event_Manager_Settings {
 					        
 					        'label'      => __( 'Ticket prices', 'wp-event-manager' ),
 					        
-					        'cb_label'   => __( 'Enable Ticket prices for listing and submission form', 'wp-event-manager' ),
+					        'cb_label'   => __( 'Enable Ticket prices for listing and submission form.', 'wp-event-manager' ),
 					        
 					        'desc'       => __( 'Choose whether to enable ticket prices on the event listing and submission page.', 'wp-event-manager' ),
 					        
@@ -486,39 +488,6 @@ class WP_Event_Manager_Settings {
 					        
 					        'attributes' => array()
 					    ),
-					    
-						array(
-									
-								'name'       => 'event_manager_multiselect_event_type',
-									
-								'std'        => '0',
-									
-								'label'      => __( 'Multi-select Event Types For Submission', 'wp-event-manager' ),
-									
-								'cb_label'   => __( 'Enable multi select event type for event listing submission', 'wp-event-manager' ),
-									
-								'desc'       => __( 'If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this.', 'wp-event-manager' ),
-									
-								'type'       => 'checkbox',
-									
-								'attributes' => array()
-						),
-						array(
-									
-								'name'       => 'event_manager_multiselect_event_category',
-									
-								'std'        => '0',
-									
-								'label'      => __( 'Multi-select Event Category For Submission', 'wp-event-manager' ),
-									
-								'cb_label'   => __( 'Enable multi select event category for event listing submission', 'wp-event-manager' ),
-									
-								'desc'       => __( 'If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this.', 'wp-event-manager' ),
-									
-								'type'       => 'checkbox',
-									
-								'attributes' => array()
-						)
 					)
 				),
 
@@ -644,7 +613,7 @@ class WP_Event_Manager_Settings {
 				
 										'label' 	=> __( 'Datepicker Date Format', 'wp-event-manager' ),
 				
-										'desc'		=> __( 'Select the date format to use in datepickers', 'wp-event-manager' ),
+										'desc'		=> __( 'Select the date format to use in datepickers.', 'wp-event-manager' ),
 				
 										'type'      => 'select',
 				
@@ -656,7 +625,7 @@ class WP_Event_Manager_Settings {
 										'std' 		=> '12',
 										'label' 	=> __( 'Timepicker Format', 'wp-event-manager' ),
 				
-										'desc'		=> __( 'Select the time format to use in timepickers', 'wp-event-manager' ),
+										'desc'		=> __( 'Select the time format to use in timepickers.', 'wp-event-manager' ),
 				
 										'type'      => 'radio',
 				
@@ -674,7 +643,7 @@ class WP_Event_Manager_Settings {
 				
 										'desc'		=> __( 'Select the time step to use in timepickers. Time step must have to be in between 1 to 60.', 'wp-event-manager' ),
 				
-										'type'      => 'text',
+										'type'      => 'number',
 								),
 								array(
 										'name' 		=> 'event_manager_view_date_format',
@@ -683,7 +652,7 @@ class WP_Event_Manager_Settings {
 				
 										'label' 	=> __( 'Date Format', 'wp-event-manager' ),
 				
-										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>', 'wp-event-manager' ),'https://wordpress.org/support/article/formatting-date-and-time/'),
+										'desc'		=> sprintf( __( 'This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>.', 'wp-event-manager' ),'https://wordpress.org/support/article/formatting-date-and-time/'),
 				
 										'type'      => 'text',
 								),
@@ -705,12 +674,12 @@ class WP_Event_Manager_Settings {
 								
 										'label' 	=> __( 'Event Timezone', 'wp-event-manager' ),
 								
-										'desc'		=> __( 'Timezone for the event date and time', 'wp-event-manager' ),
+										'desc'		=> __( 'In case while submitting an event, if the timezone for each event is not selected, the WP Event Manager will take the default WordPress (website) timezone.', 'wp-event-manager' ),
 								
 										'type'      => 'radio',
 										'options'	=> array(
 												'site_timezone' 	=> __( 'Use website timezone.', 'wp-event-manager' ),
-												'each_event' 		=> __( 'Select timezone on each event', 'wp-event-manager' )
+												'each_event' 		=> __( 'Select a timezone on each event.', 'wp-event-manager' )
 										)
 								)
 						)
@@ -755,219 +724,289 @@ class WP_Event_Manager_Settings {
 		$this->init_settings();
 
 		?>
-		
-	
-       
-		<div class="wrap event-manager-settings-wrap">	
 
-			<form method="post" name="event-manager-settings-form" action="options.php">	
+		<div class="wrap event-manager-settings-wrap">
 
-				<?php settings_fields( $this->settings_group ); ?>
+			<h1 class="wp-heading-inline"><?php
+			/* 
+			$page_title = isset($_GET['page']) ? $_GET['page'] : 'Settings';
+			$page_title = str_replace('-', ' ', $page_title);
+			$page_title = str_replace('_', ' ', $page_title);
+			$page_title = ucwords($page_title);
+			echo $page_title; */
+			_e('Settings', 'wp-event-manager');
+			?></h1>
 
-			    <h2 class="nav-tab-wrapper">
+			<div class="wpem-wrap event-manager-settings-wrap">
 
-			    	<?php
+				<form method="post" name="event-manager-settings-form" action="options.php">	
 
-			    		foreach ( $this->settings as $key => $section ) {
+					<?php settings_fields( $this->settings_group ); ?>
 
-			    			echo '<a href="#settings-' . sanitize_title( $key ) . '" class="nav-tab">' . esc_html( $section[0] ) . '</a>';
-			    		}
-			    	?>
-			    </h2>
-			    
-			 <div class="admin-setting-left">
-			     	
-			     <div class="white-background">
-			     		
-				<?php
+				    <h2 class="nav-tab-wrapper">
 
-					if ( ! empty( $_GET['settings-updated'] ) ) {
+				    	<?php
 
-						flush_rewrite_rules();
+				    		foreach ( $this->settings as $key => $section ) {
 
-						echo '<div class="updated fade event-manager-updated"><p>' . __( 'Settings successfully saved', 'wp-event-manager' ) . '</p></div>';
-					}
-					
-					foreach ( $this->settings as $key => $section ) {
+				    			echo '<a href="#settings-' . sanitize_title( $key ) . '" class="nav-tab">' . esc_html( $section[0] ) . '</a>';
+				    		}
+				    	?>
+				    </h2>
+				    
+					 <div class="admin-setting-left">
+					     	
+					     <div class="white-background">
+					     		
+						<?php
 
-						echo '<div id="settings-' . sanitize_title( $key ) . '" class="settings_panel">';
+							if ( ! empty( $_GET['settings-updated'] ) ) {
 
-						echo '<table class="form-table">';
+								flush_rewrite_rules();
 
-						foreach ( $section[1] as $option ) {
-
-							$placeholder    = ( ! empty( $option['placeholder'] ) ) ? 'placeholder="' . $option['placeholder'] . '"' : '';
-
-							$class          = ! empty( $option['class'] ) ? $option['class'] : '';
-
-							$value          = get_option( $option['name'] );
-
-							$option['type'] = ! empty( $option['type'] ) ? $option['type'] : '';
-
-							$attributes     = array();
-
-							if ( ! empty( $option['attributes'] ) && is_array( $option['attributes'] ) )
-
-								foreach ( $option['attributes'] as $attribute_name => $attribute_value )
-
-									$attributes[] = esc_attr( $attribute_name ) . '="' . esc_attr( $attribute_value ) . '"';
-
-							echo '<tr valign="top" class="' . $class . '"><th scope="row"><label for="setting-' . $option['name'] . '">' . $option['label'] . '</a></th><td>';
-
-							switch ( $option['type'] ) {
-
-								case "checkbox" :
-
-									?><label><input id="setting-<?php echo $option['name']; ?>" name="<?php echo $option['name']; ?>" type="checkbox" value="1" <?php echo implode( ' ', $attributes ); ?> <?php checked( '1', $value ); ?> /> <?php echo $option['cb_label']; ?></label><?php
-
-									if ( $option['desc'] )
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-
-								break;
-
-								case "textarea" :
-
-									?><textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="3" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea><?php
-
-									if ( $option['desc'] )
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-
-								break;
-
-								case "select" :
-
-									?><select id="setting-<?php echo $option['name']; ?>" class="regular-text" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?>><?php
-
-										foreach( $option['options'] as $key => $name )
-
-											echo '<option value="' . esc_attr( $key ) . '" ' . selected( $value, $key, false ) . '>' . esc_html( $name ) . '</option>';
-
-									?></select><?php
-
-									if ( $option['desc'] ) {
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-
-									}
-
-								break;
-								case "radio":
-									?><fieldset>
-										<legend class="screen-reader-text">
-											<span><?php echo esc_html( $option['label'] ); ?></span>
-										</legend><?php
-
-									if ( $option['desc'] ) {
-										echo '<p class="description">' . $option['desc'] . '</p>';
-									}
-
-									foreach( $option['options'] as $key => $name )
-										echo '<label><input name="' . esc_attr( $option['name'] ) . '" type="radio" value="' . esc_attr( $key ) . '" ' . checked( $value, $key, false ) . ' />' . esc_html( $name ) . '</label><br>';
-
-									?></fieldset><?php
-
-								break;
-
-								case "page" :
-
-									$args = array(
-
-										'name'             => $option['name'],
-
-										'id'               => $option['name'],
-
-										'sort_column'      => 'menu_order',
-
-										'sort_order'       => 'ASC',
-
-										'show_option_none' => __( '--no page--', 'wp-event-manager' ),
-
-										'echo'             => false,
-
-										'selected'         => absint( $value )
-
-									);
-
-									echo str_replace(' id=', " data-placeholder='" . __( 'Select a page&hellip;', 'wp-event-manager' ) .  "' id=", wp_dropdown_pages( $args ) );
-
-									if ( $option['desc'] ) {
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-
-									}
-									
-								break;
-
-								case "password" :
-
-									?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="password" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
-
-									if ( $option['desc'] ) {
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-									}
-
-								break;
-
-								case "" :
-
-								case "input" :
-
-								case "text" :
-
-									?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="text" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
-
-									if ( $option['desc'] ) {
-
-										echo ' <p class="description">' . $option['desc'] . '</p>';
-								}
-
-								break;		
-								
-								case "multi-select-checkbox":
-								    $this->create_multi_select_checkbox($option);
-									break;
-
-								default :
-
-									do_action( 'wp_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder );
-
-								break;
+								echo '<div class="updated fade event-manager-updated"><p>' . __( 'Settings successfully saved', 'wp-event-manager' ) . '</p></div>';
 							}
-							echo '</td></tr>';
-						}
-						echo '</table></div>';
-					}
-				?>
-				 </div>   <!-- .white-background- -->
-				<p class="submit">
-					<input type="submit" class="button-primary" id="save-changes" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
-				</p>
-			 </div>  <!-- .admin-setting-left -->						
-		    </form>
-		    
-            <div id="plugin_info" class="box-info">
-                <div class="box-title" title="Click to toggle"><br></div><h3><span>Plugin Info</span></h3>
-                    <div class="inside">
-                        <p> 
-                             <span class="premium-icon"></span><b><?php _e('Help to improve this plugin!</b> <br>Enjoyed this plugin? You can help by 5 stars rating this plugin on <a href="https://wordpress.org/plugins/wp-event-manager/" target="_blank" >wordpress.org.','wp-event-manager') ?></a>
-                        </p>
-                        <p>  
-                           <?php _e('<span class="help-icon"></span><b>Need help?</b> <br>Read the <a href="https://wp-eventmanager.com/documentation/" target="_blank" >Documentation.</a><br>Check the <a href="https://wp-eventmanager.com/faqs/" target="_blank">FAQs.</a><br>','wp-event-manager'); ?>
-                        </p>
-                        <p>  
-                           <span class="connect-icon"></span><b><?php _e('Demo','wp-event-manager');?></b> <a href="http://www.wp-eventmanager.com/select-demo/" target="_blank"><?_e('Plugin Demo.','wp-event-manager');?></a><br>
-                           <?php _e('Visit the','wp-event-manager');?> <a href="http://www.wp-eventmanager.com/plugins/" target="_blank"><?php _e('Premium Add-ons','wp-event-manager'); ?></a>.<br>                           
-                        </p>
-                        
-                        <p><span class="light-grey"><?php _e('This plugin was made by','wp-event-manager');?></span> <a href="https://wp-eventmanager.com/" target="_blank"><?php _e('WP Event Manager','wp-event-manager');?></a>.
-                        </p>
-                    </div>
-                </div>
-            </div>
-	  	
+							
+							foreach ( $this->settings as $key => $section ) {
+
+								echo '<div id="settings-' . sanitize_title( $key ) . '" class="settings_panel">';
+
+								echo '<table class="form-table">';
+
+								foreach ( $section[1] as $option ) {
+
+									$placeholder    = ( ! empty( $option['placeholder'] ) ) ? 'placeholder="' . $option['placeholder'] . '"' : '';
+
+									$class          = ! empty( $option['class'] ) ? $option['class'] : '';
+
+									$value          = get_option( $option['name'] );
+
+									$option['type'] = ! empty( $option['type'] ) ? $option['type'] : '';
+
+									$attributes     = array();
+
+									if ( ! empty( $option['attributes'] ) && is_array( $option['attributes'] ) )
+
+										foreach ( $option['attributes'] as $attribute_name => $attribute_value )
+
+											$attributes[] = esc_attr( $attribute_name ) . '="' . esc_attr( $attribute_value ) . '"';
+
+									echo '<tr valign="top" class="' . $class . '"><th scope="row"><label for="setting-' . $option['name'] . '">' . $option['label'] . '</a></th><td>';
+
+									switch ( $option['type'] ) {
+
+										case "checkbox" :
+
+											?><label><input id="setting-<?php echo $option['name']; ?>" name="<?php echo $option['name']; ?>" type="checkbox" value="1" <?php echo implode( ' ', $attributes ); ?> <?php checked( '1', $value ); ?> /> <?php echo $option['cb_label']; ?></label><?php
+
+											if ( $option['desc'] )
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+
+										break;
+
+										case "textarea" :
+
+											?><textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="3" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea><?php
+
+											if ( $option['desc'] )
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+
+										break;
+
+										case "select" :
+
+											?><select id="setting-<?php echo $option['name']; ?>" class="regular-text" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?>><?php
+
+												foreach( $option['options'] as $key => $name )
+
+													echo '<option value="' . esc_attr( $key ) . '" ' . selected( $value, $key, false ) . '>' . esc_html( $name ) . '</option>';
+
+											?></select><?php
+
+											if ( $option['desc'] ) {
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+											}
+
+										break;
+
+										case "multiselect" :
+
+											?><select id="setting-<?php echo $option['name']; ?>" multiple="multiple" class="regular-text" name="<?php echo $option['name']; ?>[]" <?php echo implode( ' ', $attributes ); ?>><?php
+
+												foreach( $option['options'] as $key => $name )
+												{
+													$selected = '';
+													if(!empty($value))
+													{
+														if(in_array($key, $value))
+														{
+															$selected = ' selected ';
+														}	
+													}
+
+													echo '<option value="' . esc_attr( $key ) . '" ' . $selected . ' >' . esc_html( $name ) . '</option>';
+												}
+
+											?></select><?php
+
+											if ( $option['desc'] ) {
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+											}
+
+										break;
+
+										case "radio":
+											?><fieldset>
+												<legend class="screen-reader-text">
+													<span><?php echo esc_html( $option['label'] ); ?></span>
+												</legend><?php
+											
+											foreach( $option['options'] as $key => $name )
+												echo '<label><input name="' . esc_attr( $option['name'] ) . '" type="radio" value="' . esc_attr( $key ) . '" ' . checked( $value, $key, false ) . ' />' . esc_html( $name ) . '</label><br>';
+
+											if ( $option['desc'] ) {
+												echo '<p class="description">' . $option['desc'] . '</p>';
+											}
+
+											?></fieldset><?php
+
+										break;
+
+										case "page" :
+
+											$args = array(
+
+												'name'             => $option['name'],
+
+												'id'               => $option['name'],
+
+												'sort_column'      => 'menu_order',
+
+												'sort_order'       => 'ASC',
+
+												'show_option_none' => __( '--no page--', 'wp-event-manager' ),
+
+												'echo'             => false,
+
+												'selected'         => absint( $value )
+
+											);
+
+											echo str_replace(' id=', " data-placeholder='" . __( 'Select a page&hellip;', 'wp-event-manager' ) .  "' id=", wp_dropdown_pages( $args ) );
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+
+											}
+											
+										break;
+
+										case "password" :
+
+											?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="password" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+											}
+
+										break;
+
+										case "" :
+
+										case "input" :
+
+										case "text" :
+
+											?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="text" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+										}
+
+										break;
+
+										case "number" :
+
+											?><input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="number" min="0" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> /><?php
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+										}
+
+										break;
+										
+										case "multi-select-checkbox":
+										    $this->create_multi_select_checkbox($option);
+											break;
+
+										default :
+
+											do_action( 'wp_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder );
+
+										break;
+									}
+									echo '</td></tr>';
+								}
+								echo '</table></div>';
+							}
+						?>
+						 </div>   <!-- .white-background- -->
+						<p class="submit">
+							<input type="submit" class="button-primary" id="save-changes" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
+						</p>
+					 </div>  <!-- .admin-setting-left -->
+
+			    </form>
+			    
+	            <div id="plugin_info" class="box-info">
+
+	            	<h3><span><?php _e('Helpful Resources', 'wp-event-manager'); ?></span></h3>
+
+                	<div class="wpem-plugin_info-inside">
+						<div class="wpem-setup-help-center-block-wrap">
+							<div class="wpem-setup-help-center-block">
+								<div class="wpem-setup-help-center-block-icon">
+									<span class="wpem-setup-help-center-knowledge-base-icon"></span>
+								</div>
+								<div class="wpem-setup-help-center-block-content">
+									<div class="wpem-setup-help-center-block-heading"><?php _e('Knowledge Base', 'wp-event-manager'); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php _e('Solve your queries by browsing our documentation.', 'wp-event-manager'); ?></div>
+									<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Browse More', 'wp-event-manager'); ?> »</span></a>
+								</div>
+							</div>
+							<div class="wpem-setup-help-center-block">
+								<div class="wpem-setup-help-center-block-icon">
+									<span class="wpem-setup-help-center-faqs-icon"></span>
+								</div>
+								<div class="wpem-setup-help-center-block-content">
+									<div class="wpem-setup-help-center-block-heading"><?php _e('FAQs', 'wp-event-manager'); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php _e('Explore through the frequently asked questions.', 'wp-event-manager'); ?></div>
+									<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Get Answers', 'wp-event-manager'); ?> »</span></a>
+								</div>
+							</div>
+							<div class="wpem-setup-help-center-block">
+								<div class="wpem-setup-help-center-block-icon">
+									<span class="wpem-setup-help-center-video-tutorial-icon"></span>
+								</div>
+								<div class="wpem-setup-help-center-block-content">
+									<div class="wpem-setup-help-center-block-heading"><?php _e('Video Tutorials', 'wp-event-manager'); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php _e('Learn different skills by examining attractive video tutorials.', 'wp-event-manager'); ?></div>
+									<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Watch all', 'wp-event-manager'); ?> »</span></a>
+								</div>
+							</div>
+						</div>
+						<span class="light-grey"><?php _e('Owned and Managed by', 'wp-event-manager'); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
+					</div>
+	            </div>
+
+	        </div>
+	    </div>
 
 		<?php  wp_enqueue_script( 'wp-event-manager-admin-settings');
 	}

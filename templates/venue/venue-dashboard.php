@@ -1,17 +1,21 @@
 <?php do_action('event_manager_venue_dashboard_before'); ?>
 
-<?php do_action('event_manager_venue_dashboard_button_action_start'); ?>
+<div class="wpem-dashboard-main-title wpem-dashboard-main-filter">
+    <h3 class="wpem-theme-text"><?php _e('Venue Dashboard','wp-event-manager');?></h3>
 
-<?php
-$submit_venue = get_option('event_manager_submit_venue_form_page_id');
-if (!empty($submit_venue)) :
-    ?>
     <div class="wpem-d-inline-block wpem-dashboard-i-block-btn">
-        <a class="wpem-theme-button" href="<?php echo get_permalink($submit_venue); ?>"><span><?php _e('Add venue', 'wp-event-manager'); ?></span></a>
-    </div>
-<?php endif; ?>
 
-<?php do_action('event_manager_venue_dashboard_button_action_end'); ?>
+        <?php do_action('event_manager_venue_dashboard_button_action_start'); ?>
+
+        <?php $submit_venue = get_option('event_manager_submit_venue_form_page_id');
+        if(!empty($submit_venue )) : ?>
+            <a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php _e('Add venue','wp-event-manager');?>" href="<?php echo get_permalink($submit_venue);?>"><i class="wpem-icon-plus"></i></a>
+        <?php endif; ?>
+
+        <?php do_action('event_manager_venue_dashboard_button_action_end'); ?>
+
+    </div>
+</div>
 
 <div id="event-manager-event-dashboard">
     <div class="wpem-responsive-table-block">
@@ -26,7 +30,7 @@ if (!empty($submit_venue)) :
             <tbody>
                 <?php if (!$venues) : ?>
                     <tr>
-                        <td colspan="4"><?php _e('There are not venue.', 'wp-event-manager'); ?></td>
+                        <td colspan="4"><?php _e('There are no venues.', 'wp-event-manager'); ?></td>
                     </tr>
                 <?php else : ?>
                     <?php foreach ($venues as $venue) : ?>
@@ -104,21 +108,14 @@ if (!empty($submit_venue)) :
                                         // echo get_event_venue_count($venue->ID);
                                         $events = get_event_by_venue_id($venue->ID);
                                         ?>
-                                        <div  class="event-venue-count wpem-tooltip wpem-tooltip-bottom">
-                                            <a href="javaScript:void(0)"><?php echo sizeof($events); ?></a>
-                                            <span class="venue-events-list wpem-tooltiptext">
-                                                <?php $i      = 1; ?>
-                                                <?php foreach ($events as $event) : ?>
-
-                                                    <?php if ($i > 1) : ?>
-                                                        <span>, </span>
-                                                    <?php endif; ?>
-
-                                                    <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php echo get_the_title($event->ID); ?></a></span>
-
-                                                    <?php $i++; ?>
-                                                <?php endforeach; ?>
-                                            </span>
+                                        <div  class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo sizeof($events); ?></a>
+                                            <?php if(!empty($events)) : ?>
+                                                <span class="venue-events-list wpem-tooltiptext">
+                                                    <?php foreach ($events as $event) : ?>
+                                                        <span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
+                                                    <?php endforeach; ?>
+                                                </span>
+                                            <?php endif; ?>
 
                                         <?php elseif ('venue_action' === $key) : ?>
                                             <div class="wpem-dboard-event-action">

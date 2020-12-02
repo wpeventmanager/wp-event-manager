@@ -116,21 +116,18 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 		//wp_enqueue_script( 'wp-event-manager-event-submission' );
 
-		get_event_manager_template( 'venue-submit.php', array(
-
-			'form'               	=> $this->form_name,
-
-			'venue_id'          => $this->get_venue_id(),
-
-			'action'             	=> $this->get_action(),
-
-			'venue_fields'     	=> $this->get_fields( 'venue' ),
-
-			'step'               	=> $this->get_step(),
-
-			'submit_button_text' 	=> __( 'Save changes', 'wp-event-manager' )
-
-			) );
+		get_event_manager_template( 'venue-submit.php', 
+			array(
+				'form'               	=> $this->form_name,
+				'venue_id'          => $this->get_venue_id(),
+				'action'             	=> $this->get_action(),
+				'venue_fields'     	=> $this->get_fields( 'venue' ),
+				'step'               	=> $this->get_step(),
+				'submit_button_text' 	=> __( 'Save changes', 'wp-event-manager' )
+			),
+			'wp-event-manager/venue', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+		);
 	}
 
 	/**

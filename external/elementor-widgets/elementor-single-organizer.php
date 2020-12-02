@@ -95,6 +95,7 @@ class Elementor_Single_Organizer extends Widget_Base {
 				'post_type'		=> 'event_organizer',
 				'post_status'	=> 'publish',
 				'posts_per_page'=> -1,
+				'suppress_filters' => 0,
 		);
 
 		$rganizers = get_posts( $args );
