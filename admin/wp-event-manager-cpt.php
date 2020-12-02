@@ -391,7 +391,7 @@ class WP_Event_Manager_CPT {
 
 		$columns["event_title"]            = __( "Title", 'wp-event-manager' );
 
-		$columns["event_banner"]            = '<span class="tips dashicons dashicons-format-image" data-tip="' . __( "Banner", 'wp-event-manager' ) . '">' . __( "Banner", 'wp-event-manager' ) . '</span>';;
+		$columns["event_banner"]            = '<span class="tips dashicons dashicons-format-image" data-tip="' . __( "Banner", 'wp-event-manager' ) . '">' . __( "Banner", 'wp-event-manager' ) . '</span>';
 
 		$columns["event_listing_type"]     = __( "Type", 'wp-event-manager' );
 
@@ -510,7 +510,7 @@ class WP_Event_Manager_CPT {
 
 				echo '</div>';
 
-				echo '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details', 'wp-job-manager' ) . '</span></button>';
+				echo '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details', 'wp-event-manager' ) . '</span></button>';
 				
 			break;
 
