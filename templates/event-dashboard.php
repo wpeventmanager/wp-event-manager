@@ -153,7 +153,18 @@
 						</div>
 					</div>
 
-					<form action="" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block" method="get">
+					<?php 
+					$search_keywords = isset($_GET['search_keywords']) ? $_GET['search_keywords'] : ''; 
+					$search_order_by = isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
+
+					$display_block = '';
+					if(!empty($search_keywords) || !empty($search_order_by))
+					{
+						$display_block = 'wpem-d-block';
+					}
+					?>
+
+					<form action="" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php echo $display_block;?>" >
 						<div class="wpem-events-filter">
 
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
@@ -166,7 +177,7 @@
 								<div class="wpem-form-group">
 									<select name="search_order_by" id="search_order_by">
 										<option value=""><?php _e('Order by','wp-event-manager');?></option>
-										<?php $search_order_by = isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
+										<?php
 										foreach ( get_event_order_by() as $order_by ) : ?>
 											<?php if( isset($order_by['type']) && !empty($order_by['type']) ) : ?>
 												<optgroup label="<?php echo esc_html( $order_by['label'] ); ?>">
