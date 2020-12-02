@@ -235,6 +235,7 @@
 .wpem-form-wrapper .wpem-form-group input[type="url"],
 .wpem-form-wrapper .wpem-form-group input[type="week"],
 .wpem-form-wrapper .wpem-form-group select,
+.wpem-form-wrapper .wpem-form-group select optgroup,
 .wpem-form-wrapper .wpem-form-group textarea {
   height: 45px;
   width: 100%;
@@ -290,6 +291,9 @@
 .wpem-form-wrapper .wpem-form-group select:focus {
   border-color: #00a5fa;
   background-color: #efefef;
+}
+.wpem-form-wrapper .wpem-form-group select optgroup {
+  background: initial;
 }
 .wpem-form-wrapper .wp-editor-container:focus {
   border-color: #00a5fa;
@@ -665,7 +669,6 @@ input.wpem-theme-button:hover span {
 .wpem-tabs-wrapper .wpem-tab-content .wpem-tab-pane.active {
   display: block;
 }
-
 .wpem-event-listing-list-view {
   border: none;
   border-radius: 0;
@@ -886,7 +889,6 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings .wpem-event-layout-wrapper:hover .wpem-event-action-url {
   border-width: 7px;
 }
-
 .wpem-event-listings.wpem-event-listing-box-view {
   display: flex;
   flex-wrap: wrap;
@@ -1848,7 +1850,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-organizer-page-url-button {
   display: inline-block;
 }
-
 .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions .wpem-organizer-contact-button {
   display: inline-block;
 }
@@ -2086,7 +2087,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   visibility: visible;
   opacity: 1;
 }
-
 table.wpem-responsive-table-wrapper {
   font-weight: 500;
   font-size: 17px;
@@ -2196,7 +2196,6 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-dboard-event-act-btn a.event-dashboard-action-delete::before {
   content: "\e9ad";
 }
-
 .wpem-responsive-table-block {
   overflow: auto;
   border: 1px solid #e4e4e4;
@@ -2206,7 +2205,6 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
   border: none;
   margin: 0;
 }
-
 .organizer-letters,
 .venue-letters {
   display: flex;
@@ -2672,7 +2670,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-single-event-page .wpem-single-event-footer .wpem-venue-wrapper .wpem-venue-profile {
   padding: 20px 30px;
 }
-
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-body-content {
   padding: 30px;
 }
@@ -2762,7 +2759,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   border: 2px solid #dedede;
   border-radius: 3px;
 }
-
 .wpem-single-event-page .wpem-event-organizer-info-title {
   background: #eeedf2;
   border-top: 1px solid #e4e4e4;
@@ -2882,7 +2878,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   font-weight: 700;
   padding: 10px;
 }
-
 div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-organizer-logo,
 div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-venue-logo {
   display: table-cell;
@@ -2928,7 +2923,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.organizer-ev
 div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events-list.wpem-tooltiptext span:last-child {
   border: none;
 }
-
 .wpem-form-group .comiseo-daterangepicker-triggerbutton.ui-button {
   overflow: hidden;
   position: relative;
@@ -3084,9 +3078,6 @@ p.post-submitted-success-green-message a {
   font-size: 20px;
   line-height: 1.42;
 }
-/* New Dashboard UI Start */
-
-/* New Dashboard Vertical Menu Start*/
 .wpem-main-vmenu-dashboard-wrapper {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -3194,9 +3185,6 @@ p.post-submitted-success-green-message a {
 .wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li.wpem-main-vmenu-dashboard-sub-menu .wpem-main-vmenu-dashboard-link:hover i.wpem-main-vmenu-caret {
   color: #a2acba;
 }
-
-/* New Dashboard Vertical Menu End*/
-/* New Dashboard Content Style CSS Start*/
 .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap form.wpem-form-wrapper {
   margin-bottom: 0;
 }
@@ -3397,7 +3385,7 @@ p.post-submitted-success-green-message a {
 .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap .wpem-dashboard-event-name small {
   font-weight: 400;
   display: inline-block;
-  margin: 3px 0px 3px 5px;
+  margin: 3px 0 3px 5px;
   padding: 3px 8px;
   font-size: 13px;
   border-radius: 3px;
@@ -3457,7 +3445,6 @@ p.post-submitted-success-green-message a {
   width: 100%;
   margin-right: 5px;
 }
-
 .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter .wpem-events-filter-block:last-child {
   margin-right: 0;
 }
@@ -3473,8 +3460,8 @@ p.post-submitted-success-green-message a {
   background: #fff4d7;
   color: #6b4e00;
 }
-.wpem-dashboard-event-name small.wpem-event-status-expired,
-.wpem-dashboard-event-name small.wpem-event-status-cancelled {
+.wpem-dashboard-event-name small.wpem-event-status-cancelled,
+.wpem-dashboard-event-name small.wpem-event-status-expired {
   background: #ffd7d7;
   color: #940000;
 }
@@ -3482,13 +3469,6 @@ p.post-submitted-success-green-message a {
   background: #d1ecf1;
   color: #0c5460;
 }
-
-/* New Dashboard Content Style CSS End*/
-
-/* New Dashboard UI */
-
-/* Responsive CSS */
-
 @media screen and (max-width: 1024px) {
   .wpem-single-event-page .wpem-single-event-body .wpem-single-event-left-content {
     max-width: 60%;
@@ -3499,7 +3479,6 @@ p.post-submitted-success-green-message a {
     flex: 0 0 40%;
   }
 }
-
 @media screen and (max-width: 992px) {
   .wpem-single-event-page .wpem-single-event-body .wpem-single-event-left-content,
   .wpem-single-event-page .wpem-single-event-header-top .wpem-single-event-images {
@@ -3637,7 +3616,6 @@ p.post-submitted-success-green-message a {
     top: 0;
     left: 0;
   }
-
   .single-event-attendee-container .wpem-event-registrations-list-wrapper .wpem-event-regi-list-body .wpem-event-regi-list {
     width: 100%;
   }
@@ -3675,7 +3653,6 @@ p.post-submitted-success-green-message a {
     top: 5px;
     float: right;
   }
-
   .wpem-single-organizer-profile-wrapper .wpem-organizer-contact-form-wrapper .wpem-organizer-contact-form .wpem-col-md-6 {
     max-width: 100%;
     flex: 0 0 100%;
@@ -3689,7 +3666,7 @@ p.post-submitted-success-green-message a {
     padding-bottom: 5px;
   }
   .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter .wpem-events-filter-block {
-    margin-right: 0px;
+    margin-right: 0;
   }
   .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-main-content .wpem-dashboard-main-header .wpem-events-filter {
     flex-direction: column;
@@ -3700,7 +3677,7 @@ p.post-submitted-success-green-message a {
     margin-left: 0;
   }
   .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-contact-actions div + div {
-    margin-left: 0px;
+    margin-left: 0;
   }
 }
 @media screen and (min-width: 600px) and (max-width: 768px) {
@@ -3853,4 +3830,3 @@ p.post-submitted-success-green-message a {
     -webkit-mask-size: 10px;
   }
 }
-/* Responsive CSS */
