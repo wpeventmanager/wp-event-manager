@@ -498,7 +498,7 @@ class WP_Event_Manager_CPT {
 			    
 				echo '<div class="event_banner">';
 
-				//display_event_banner();
+				display_event_banner();
 
 				echo '</div>';
 				
@@ -522,7 +522,7 @@ class WP_Event_Manager_CPT {
 				
 				if ( $types && ! empty( $types ) ) {
 					foreach ( $types as $type ) {
-						echo '<span class="event-type ' . $type->slug . '"><strong>' . $type->name . '</strong></span>';
+						echo '<span class="event-type ' . $type->slug . '">' . $type->name . '</span>';
 					}
 				}
 			break;		
@@ -535,11 +535,11 @@ class WP_Event_Manager_CPT {
 
 			case "event_organizer" :
 
-			    echo '<div class="organizer"><strong>';
+			    echo '<div class="organizer">';
 
 				echo get_organizer_name('', true, 'backend');
 
-				echo '</strong></div>';
+				echo '</div>';
 
 			break;		
 
@@ -547,7 +547,7 @@ class WP_Event_Manager_CPT {
 				
 				if ( $post->_event_start_date )
 					
-					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_start_date ) ) . '</strong>';
+					echo date_i18n( get_option( 'date_format' ), strtotime( $post->_event_start_date ) );
 					else
 						echo '&ndash;';
 			break;
@@ -556,7 +556,7 @@ class WP_Event_Manager_CPT {
 
 				if ( $post->_event_end_date )
 
-					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_end_date ) ) . '</strong>';
+					echo date_i18n( get_option( 'date_format' ), strtotime( $post->_event_end_date ) );
 				else
 					echo '&ndash;';
 			break;
@@ -565,7 +565,7 @@ class WP_Event_Manager_CPT {
 
 				if ( $post->_event_expiry_date )
 				
-					echo '<strong>' . date_i18n( get_option( 'date_format' ), strtotime( $post->_event_expiry_date ) ) . '</strong>';
+					echo date_i18n( get_option( 'date_format' ), strtotime( $post->_event_expiry_date ) );
 					
 					//echo '<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
 				else
