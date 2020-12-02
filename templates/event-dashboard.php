@@ -11,7 +11,7 @@
 
 				$menus = [
 					'event_dashboard' => [
-						'title' => __('Events Dashboard', 'wp-event-manager'),
+						'title' => __('Events', 'wp-event-manager'),
 						'icon' => 'wpem-icon-meter',
 						'query_arg' => ['action' => 'event_dashboard'],
 					],
