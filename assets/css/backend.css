@@ -97,8 +97,9 @@ a {
   text-transform: none;
   line-height: 1em;
 }
-.widefat td.column-event_status span,
-.widefat td.column-cancelled span {
+
+.widefat td.column-cancelled span,
+.widefat td.column-event_status span {
   position: relative;
   font-size: 1em;
   line-height: 1.5em;
@@ -109,8 +110,8 @@ a {
   display: block;
 }
 
-.widefat td.column-event_status span:before,
-.widefat td.column-cancelled span:before {
+.widefat td.column-cancelled span:before,
+.widefat td.column-event_status span:before {
   font-family: wp-event-manager !important;
   font-style: normal;
   font-weight: 400;
@@ -129,8 +130,9 @@ a {
   color: #999;
   content: "\e9cc";
 }
+
 .widefat td.column-cancelled span:before {
-  color: #ff0000;
+  color: red;
   content: "\ea0e";
 }
 
@@ -173,7 +175,7 @@ a {
 
 .widefat .column-event_listing_type {
   text-align: left;
-  width: 8%;
+  width: 10%;
   word-wrap: normal !important;
 }
 
@@ -188,32 +190,24 @@ a {
 
 .widefat td.column-event_title {
   width: 20%;
-  height: 34px;
-}
-
-.widefat td.column-event_title .event_title {
-  position: relative;
-  padding-right: 50px !important;
 }
 
 .widefat td.column-event_title a.event_title {
   font-weight: 700;
 }
 
-.widefat td.column-event_title img {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  right: 7px;
-  top: 0;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1);
-  border: 1px solid #fff;
+.widefat .column-event_organizer {
+  width: 10%;
+  text-align: left;
 }
 
+.widefat .column-event_start_date,
+.widefat .column-event_end_date,
+.widefat .column-event_start_date,
+.widefat .column-event_expires {
+  width: 10%;
+  text-align: left;
+}
 .widefat td.column-event_title .organizer {
   margin-top: 0.2em;
   display: block;
@@ -227,6 +221,7 @@ a {
 
 .widefat .column-event_actions {
   text-align: right;
+  width: 120px;
 }
 
 .widefat .column-event_actions strong {
@@ -594,12 +589,13 @@ a {
   right: 0;
 }
 
-.manage-column.column-event_title.sortable.desc {
-  width: 358px;
+table.wp-list-table .column-event_title {
+  width: 18%;
 }
 
 .widefat .column-event_location {
-  width: 111px;
+  width: 10%;
+  text-align: left;
 }
 
 th.sortable a span,
@@ -1509,6 +1505,7 @@ ul.wpem-product-action-list {
   margin-top: 5px;
   border-top: 1px solid #efefef;
 }
+
 .widefat td.event_banner.column-event_banner img {
   max-width: 56px;
   height: auto;
@@ -1547,6 +1544,7 @@ ul.wpem-product-action-list {
   height: 100%;
   text-align: center;
 }
+
 .widefat td.column-featured_event span {
   position: relative;
   font-size: 1em;
@@ -1557,6 +1555,7 @@ ul.wpem-product-action-list {
   overflow: hidden;
   display: block;
 }
+
 .widefat td.column-featured_event span.dashicons:before {
   font-style: normal;
   font-weight: 700;
@@ -1574,6 +1573,7 @@ ul.wpem-product-action-list {
   vertical-align: middle;
   color: #0071a1;
 }
+
 @media screen and (max-width: 782px) {
   .widefat .column-event_actions {
     text-align: left;
