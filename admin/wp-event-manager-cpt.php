@@ -389,25 +389,27 @@ class WP_Event_Manager_CPT {
 
 		unset( $columns['title'], $columns['date'], $columns['author'] );
 
+		$columns["event_title"]            = __( "Title", 'wp-event-manager' );
+
+		$columns["event_banner"]            = '<span class="tips dashicons dashicons-format-image" data-tip="' . __( "Banner", 'wp-event-manager' ) . '">' . __( "Banner", 'wp-event-manager' ) . '</span>';;
+
+		$columns["event_listing_type"]     = __( "Type", 'wp-event-manager' );
+
+		$columns["event_location"]         = __( "Location", 'wp-event-manager' );	
+
+	    $columns["event_organizer"]        = __( "Organizer", 'wp-event-manager' );		
+
+	    $columns["event_start_date"]       = __( "Start Date", 'wp-event-manager' );
+
+		$columns["event_end_date"]         = __( "End Date", 'wp-event-manager' );
+		
+		$columns["event_expires"]          = __( "Expiry Date", 'wp-event-manager' );
+
 		$columns['event_status']           = '<span class="tips" data-tip="' . __( "Status", 'wp-event-manager' ) . '">' . __( "Status", 'wp-event-manager' ) . '</span>';
 
 		$columns['cancelled']              = '<span class="tips" data-tip="' . __( "Cancelled?", 'wp-event-manager' ) . '">' . __( "Cancelled?", 'wp-event-manager' ) . '</span>';
 
 		$columns['featured_event']         = '<span class="tips" data-tip="' . __( "Featured?", 'wp-event-manager' ) . '">' . __( "Featured?", 'wp-event-manager' ) . '</span>';
-
-		$columns["event_title"]            = __( "Event Title", 'wp-event-manager' );
-
-		$columns["event_listing_type"]     = __( "Event Type", 'wp-event-manager' );
-
-		$columns["event_location"]         = __( "Event Location", 'wp-event-manager' );	
-
-	    $columns["event_organizer"]        = __( "Event Organizer", 'wp-event-manager' );		
-
-	    $columns["event_start_date"]       = __( "Event Start Date", 'wp-event-manager' );
-
-		$columns["event_end_date"]         = __( "Event End Date", 'wp-event-manager' );
-		
-		$columns["event_expires"]          = __( "Event Expiry Date", 'wp-event-manager' );	
 
 		$columns['event_actions']          = __( "Actions", 'wp-event-manager' );
 		
@@ -433,6 +435,12 @@ class WP_Event_Manager_CPT {
 	 * @return string
 	 */
 	public function primary_column( $column, $screen ) {
+
+		// if we want to set the primary column for CPT
+	    if ( 'edit-event_listing' === $screen ) {
+	        $column = 'event_title';
+	    }
+
 		return $column;
 	}
 	
@@ -474,14 +482,24 @@ class WP_Event_Manager_CPT {
 
 			case "cancelled" :
 			    
-				if ( is_event_cancelled( $post ) ) echo '&#10004;'; else echo '&ndash;';
+				if ( is_event_cancelled( $post ) ) echo '<span class="dashicons dashicons-no"></span>'; else echo '&ndash;';
 
 			break;
 
 			case "featured_event" :
 
-				if ( is_event_featured( $post ) ) echo '&#10004;'; else echo '&ndash;';
+				if ( is_event_featured( $post ) ) echo '<span class="dashicons dashicons-star-filled"></span>'; else echo '<span class="dashicons dashicons-star-empty"></span>';
 
+			break;
+
+			case "event_banner" :
+			    
+				echo '<div class="event_banner">';
+
+				display_event_banner();
+
+				echo '</div>';
+				
 			break;
 
 			case "event_title" :
@@ -490,9 +508,9 @@ class WP_Event_Manager_CPT {
 
 				echo '<a href="' . admin_url('post.php?post=' . $post->ID . '&action=edit') . '" class="tips event_title" data-tip="' . sprintf( __( 'ID: %d', 'wp-event-manager' ), $post->ID ) . '">' .  esc_html( $post->post_title ). '</a>';
 
-			    display_event_banner();
-
 				echo '</div>';
+
+				echo '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details', 'wp-job-manager' ) . '</span></button>';
 				
 			break;
 
