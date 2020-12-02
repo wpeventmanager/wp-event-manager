@@ -838,9 +838,12 @@ class WP_Event_Manager_Settings {
 												foreach( $option['options'] as $key => $name )
 												{
 													$selected = '';
-													if(in_array($key, $value))
+													if(!empty($value))
 													{
-														$selected = ' selected ';
+														if(in_array($key, $value))
+														{
+															$selected = ' selected ';
+														}	
 													}
 
 													echo '<option value="' . esc_attr( $key ) . '" ' . $selected . ' >' . esc_html( $name ) . '</option>';
