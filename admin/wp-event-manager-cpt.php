@@ -55,7 +55,7 @@ class WP_Event_Manager_CPT {
 			add_action( "restrict_manage_posts", array( $this, "events_by_category" ) );
 		}
 
-		if ( get_option( 'event_manager_enable_event_types' ) ) {
+		if ( get_option( 'event_manager_enable_event_types' ) && get_option( 'event_manager_enable_categories' ) ) {
 			
 			add_action( "restrict_manage_posts", array( $this, "events_by_event_type" ) );
 		}
