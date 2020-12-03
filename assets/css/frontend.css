@@ -3473,6 +3473,12 @@ p.post-submitted-success-green-message a {
   background: #d1ecf1;
   color: #0c5460;
 }
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-additional-info-block .wpem-heading-text {
+    font-size: 20px;
+    line-height: 1.42;
+}
+
+
 @media screen and (max-width: 1024px) {
   .wpem-single-event-page .wpem-single-event-body .wpem-single-event-left-content {
     max-width: 60%;
