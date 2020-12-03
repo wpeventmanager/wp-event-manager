@@ -999,12 +999,16 @@ input.wpem-theme-button:hover span {
   color: #333;
   line-height: 1.42;
 }
-.wpem-event-listings .wpem-event-layout-wrapper.event_featured,
-.wpem-event-listings .wpem-event-layout-wrapper.event_featured:hover {
+.wpem-event-listings .wpem-event-layout-wrapper .event_listing{
+  width: 100%;
+  height: 100%;
+}
+.wpem-event-listings .wpem-event-layout-wrapper .event_featured,
+.wpem-event-listings .wpem-event-layout-wrapper .event_featured:hover {
   background: #ffffe4;
 }
-.wpem-event-listings .wpem-event-layout-wrapper.event_cancelled,
-.wpem-event-listings .wpem-event-layout-wrapper.event_cancelled:hover {
+.wpem-event-listings .wpem-event-layout-wrapper .event_cancelled,
+.wpem-event-listings .wpem-event-layout-wrapper .event_cancelled:hover {
   background: #ffe5e5;
 }
 .wpem-event-listing-box-view .no_event_listings_found,
