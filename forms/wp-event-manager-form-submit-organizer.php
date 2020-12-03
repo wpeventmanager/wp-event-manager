@@ -101,7 +101,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		$this->fields = apply_filters( 'submit_organizer_form_fields', array(
 			'organizer' => array(
 				'organizer_name' => array(
-								'label'       => __( 'Organization name', 'wp-event-manager' ),
+								'label'       => __( 'Organizer name', 'wp-event-manager' ),
 								'type'        => 'text',
 								'required'    => true,
 								'placeholder' => __( 'Enter the name of the organization', 'wp-event-manager' ),
@@ -133,7 +133,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 				),	
 
 				'organizer_email' => array(
-								'label'       => __( 'Organization Email', 'wp-event-manager' ),
+								'label'       => __( 'Organizer Email', 'wp-event-manager' ),
 								'type'        => 'text',
 								'required'    => true,
 								'placeholder' => __( 'Enter your email address', 'wp-event-manager' ),
