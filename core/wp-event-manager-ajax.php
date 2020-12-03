@@ -352,8 +352,8 @@ class WP_Event_Manager_Ajax {
         	$message = sprintf( _n( 'Search completed. Found %d matching record.', 'Search completed. Found %d matching records.', $events->found_posts, 'wp-event-manager' ), $events->found_posts);
 			$result['showing_applied_filters'] = true;
 		} else {
-		   
-			$message = "";
+			
+			$message = sprintf( _n( 'Showing all %d matching record.', 'Showing all %d matching records.', $events->found_posts, 'wp-event-manager' ), $events->found_posts);
 			$result['showing_applied_filters'] = false;			
 		}
 		
