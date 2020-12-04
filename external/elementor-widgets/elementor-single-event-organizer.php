@@ -96,7 +96,7 @@ class Elementor_Single_Event_Organizer extends Widget_Base {
 			'single_event_venue',
 			[
 				'type' => Controls_Manager::RAW_HTML,
-				'raw' => sprintf( __( 'Note: This widget only affects when this use with single event template in Elementor Pro.', 'wp-event-manager' )),
+				'raw' => sprintf( __( 'Note: The widget only works for single event template in Elementor Pro.', 'wp-event-manager' )),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
 			]
 		);
