@@ -315,6 +315,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 Fixed - Events listing show_filter false attribute issue.
 Fixed - Category walker with event type dropdown compatiblity.
+Fixed - Elementor widgets improved.
 Fixed - some js and css tweaks.
 Added - URL field type.
 
