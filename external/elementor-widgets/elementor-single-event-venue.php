@@ -45,7 +45,7 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-map-pin';		
+		return 'eicon-image-hotspot';		
 	}
 	/**
 	 * Get widget keywords.
@@ -91,6 +91,15 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'single_event_venue',
+			[
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => sprintf( __( 'Note: The widget only works for single event template in Elementor Pro.', 'wp-event-manager' )),
+				'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+			]
+		);
+		
 		$this->end_controls_section();
 
 	}

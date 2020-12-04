@@ -137,7 +137,9 @@ function get_event_listings( $args = array() ) {
 		);
 	}
 
-	if ( isset($args['event_online']) && $args['event_online'] == true ) {
+	
+
+	if ( isset($args['event_online']) && !empty($args['event_online']) && $args['event_online'] == 'true' ) {
 
 		$query_args['meta_query'][] = array(
 
@@ -147,8 +149,9 @@ function get_event_listings( $args = array() ) {
 
 			'compare' => '='
 		);
-	}
-	else if ( isset($args['event_online']) && $args['event_online'] == false ) {
+	}	
+	
+	if ( isset($args['event_online']) && !empty($args['event_online'] && $args['event_online'] === 'false' ) ) {
 		
 		$query_args['meta_query'][] = array(
 
