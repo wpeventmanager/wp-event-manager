@@ -45,7 +45,7 @@ class Elementor_Event_Venues extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-map-pin';		
+		return 'eicon-post-list';		
 	}
 	/**
 	 * Get widget keywords.
