@@ -311,7 +311,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
-= 3.1.19 [ Dec 4nd, 2020 ] =
+= 3.1.19 [ Dec 4th, 2020 ] =
 
 Fixed - Events listing show_filter false attribute issue.
 Fixed - Category walker with event type dropdown compatiblity.
