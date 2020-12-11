@@ -11,6 +11,50 @@ class WP_Event_Manager_Field_Editor {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+
+		add_action( 'wp_ajax_get_group_field_html', array( $this, 'get_group_field_html' ) );
+	}
+
+	/**
+	* get_on_demand_label_size function.
+	*
+	* @access public
+	* @param 
+	* @return 
+	* @since 1.0.0
+	*/
+	public function get_group_field_html()
+	{
+		check_ajax_referer( '_nonce_wp_event_manager_form_editor_security', 'security' );
+
+		$field_types = apply_filters( 'event_manager_form_group_field_types', array(
+			'text'           		=> __( 'Text', 'wp-event-manager' ),
+			'time'           		=> __( 'Time', 'wp-event-manager' ),
+			'checkbox'       		=> __( 'Checkbox', 'wp-event-manager' ),			
+			'date'       			=> __( 'Date', 'wp-event-manager' ),
+			'timezone'           	=> __( 'Timezone', 'wp-event-manager' ),			
+			'file'       			=> __( 'File', 'wp-event-manager' ),			
+			'hidden'       			=> __( 'Hidden', 'wp-event-manager' ),			
+			'multiselect'       	=> __( 'Multiselect', 'wp-event-manager' ),			
+			'number'       			=> __( 'Number', 'wp-event-manager' ),			
+			'password'       		=> __( 'Password', 'wp-event-manager' ),			
+			'radio'       			=> __( 'Radio', 'wp-event-manager' ),
+			'select'         		=> __( 'Select', 'wp-event-manager' ),
+			'textarea'    			=> __( 'Textarea', 'wp-event-manager' ),
+		) );
+
+		ob_start();
+		$child_index     = -1;
+		$child_field_key = '';
+		$child_field     = array(
+			'type'        => 'text',
+			'label'       => '',
+			'placeholder' => ''
+		);
+		include( 'wp-event-manager-form-field-editor-group-field-row.php' );
+		echo ob_get_clean();
+
+        wp_die();
 	}
 	
 	/**
@@ -28,7 +72,9 @@ class WP_Event_Manager_Field_Editor {
 		wp_register_script( 'wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL .'/assets/js/field-editor.min.js' , array( 'jquery', 'jquery-ui-sortable', 'chosen' ), EVENT_MANAGER_VERSION, true );
 		wp_localize_script( 'wp-event-manager-form-field-editor', 'wp_event_manager_form_editor', array(
 				'cofirm_delete_i18n' => __( 'Are you sure you want to delete this row?', 'wp-event-manager' ),
-				'cofirm_reset_i18n'  => __( 'Are you sure you want to reset your changes? This cannot be undone.', 'wp-event-manager' )
+				'cofirm_reset_i18n'  => __( 'Are you sure you want to reset your changes? This cannot be undone.', 'wp-event-manager' ),
+				'ajax_url' 	 => admin_url( 'admin-ajax.php' ),
+				'wp_event_manager_form_editor_security'  => wp_create_nonce( "_nonce_wp_event_manager_form_editor_security" ),
 		) );
 		
 	}
@@ -57,11 +103,19 @@ class WP_Event_Manager_Field_Editor {
 	 * Output the fronted form editor
 	 */
 	private function form_editor() {
-		if ( ! empty( $_GET['reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
+		
+		if ( ! empty( $_GET['event-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_event_form_fields' );
+			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
+		}
+
+		if ( ! empty( $_GET['organizer-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_organizer_form_fields' );
+			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
+		}
+
+		if ( ! empty( $_GET['venue-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_venue_form_fields' );
-			delete_option( 'event_manager_form_fields' );
 			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
 
@@ -78,8 +132,7 @@ class WP_Event_Manager_Field_Editor {
 			'checkbox'       		=> __( 'Checkbox', 'wp-event-manager' ),			
 			'date'       			=> __( 'Date', 'wp-event-manager' ),
 			'timezone'           	=> __( 'Timezone', 'wp-event-manager' ),			
-			'file'       			=> __( 'File', 'wp-event-manager' ),	
-			'url'       			=> __( 'URL', 'wp-event-manager' ),			
+			'file'       			=> __( 'File', 'wp-event-manager' ),			
 			'hidden'       			=> __( 'Hidden', 'wp-event-manager' ),			
 			'multiselect'       	=> __( 'Multiselect', 'wp-event-manager' ),			
 			'number'       			=> __( 'Number', 'wp-event-manager' ),			
@@ -91,7 +144,8 @@ class WP_Event_Manager_Field_Editor {
 			'term-multiselect'    	=> __( 'Term Multiselect', 'wp-event-manager' ),
 			'term-select'    		=> __( 'Term Select', 'wp-event-manager' ),
 			'textarea'    			=> __( 'Textarea', 'wp-event-manager' ),
-			'wp-editor'       		=> __( 'WP Editor', 'wp-event-manager' )
+			'wp-editor'       		=> __( 'WP Editor', 'wp-event-manager' ),
+			'group'       			=> __( 'Group', 'wp-event-manager' ),	
 		) );
 
 		
@@ -116,9 +170,11 @@ class WP_Event_Manager_Field_Editor {
 			$venue_fields = array();
 
 		$fields = array_merge($event_fields,$organizer_fields,$venue_fields );
-		foreach($fields  as $group_key => $group_fields){ 
-				if(empty($group_fields))
-					continue;
+
+		foreach($fields  as $group_key => $group_fields)
+		{
+			if(empty($group_fields))
+				continue;
 			?>
 
 			<div class="wp-event-manager-event-form-field-editor">
@@ -146,7 +202,7 @@ class WP_Event_Manager_Field_Editor {
 							</th>
 							
 							<th colspan="6" class="save-actions">
-								<a href="<?php echo wp_nonce_url( add_query_arg( 'reset-fields', 1 ), 'reset' ); ?>" class="reset"><?php _e( 'Reset to default', 'wp-event-manager' ); ?></a>
+								<a href="<?php echo wp_nonce_url( add_query_arg( $group_key.'-reset-fields', 1 ), 'reset' ); ?>" class="reset"><?php _e( 'Reset to default', 'wp-event-manager' ); ?></a>
 								<input type="submit" class="save-fields button-primary" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
 							</th>
 						
@@ -163,20 +219,88 @@ class WP_Event_Manager_Field_Editor {
 						);
 						include( 'wp-event-manager-form-field-editor-field.php' );
 						echo esc_attr( ob_get_clean() );
-					?>"><?php
-							if(isset($group_fields))
-							foreach ( $group_fields as $field_key => $field ) {
-								$index ++;
-								include( 'wp-event-manager-form-field-editor-field.php' );
+					?>" >
+						<?php
+							if(isset($group_fields) && !empty($group_fields))
+							{
+								foreach ( $group_fields as $field_key => $field ) 
+								{
+									$index ++;
+
+									include( 'wp-event-manager-form-field-editor-field.php' );
+								}	
 							}
-					?></tbody>
+						?>						
+					</tbody>
 				</table>
-		<?php
-		}?>
 
-		
+			</div>
+			<?php
+		}
+	}
 
-<?php	 
+	/**
+	 * Save the form fields
+	 */
+	private function child_form_editor_save($field) {
+
+		$index = 0;
+
+		$child_fields = [];
+
+		foreach( $field['fields'] as $field_key => $field_value ) 
+		{
+			$index++;
+
+			$field['fields'][$field_key]['priority'] = $index;
+
+			$field['fields'][$field_key]['label'] = trim($field_value['label']);
+				
+			if ( isset($field_value['type']) && ! in_array($field_value['type'],  array('term-select', 'term-multiselect', 'term-checklist') ) ) 
+			{
+				unset($field['fields'][$field_key]['taxonomy']);
+			}
+				
+			if(isset($field_value['type']) && $field_value['type'] == 'select'  || $field_value['type'] == 'radio'  || $field_value['type'] == 'multiselect' || $field_value['type'] == 'button-options')
+			{
+				if(isset($field_value['options']) && !empty($field_value['options']))
+				{
+					$field_value['options'] = explode( '|', $field_value['options']);
+
+					$temp_options = array();
+
+					foreach($field_value['options'] as $val)
+					{
+						$option_key = explode( ':', $val);
+
+						if(isset($option_key[1]))
+							$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[1]);
+						else
+							$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[0]);
+					}
+
+					$field['fields'][$field_key]['options'] = $temp_options;
+				}
+			}
+			else
+			{
+				unset($field['fields'][$field_key]['options']);
+			}
+			
+			if(!is_int($field_key)) continue;
+			 
+			if(isset($field_value['label']))
+			{
+				$label_key =  str_replace(' ',"_",$field_value['label']);
+
+				$field['fields'][strtolower($label_key)] = $field['fields'][$field_key];
+			}
+
+			unset($field['fields'][$field_key]);
+		}
+
+		return $field['fields'];
+
 	}	
 	
 	/**
@@ -185,52 +309,76 @@ class WP_Event_Manager_Field_Editor {
 	private function form_editor_save() {
 		if( wp_verify_nonce( $_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor' ) )
 		{
-			$event_field          	  = ! empty( $_POST['event'] ) ?  $_POST['event'] 				: array();
-			$event_organizer          = ! empty( $_POST['organizer'] ) ?  $_POST['organizer']   	: array();
-			$event_venue          = ! empty( $_POST['venue'] ) ?  $_POST['venue']   	: array();
+
+			$event_field        = ! empty( $_POST['event'] ) ?  $_POST['event'] : array();
+			$event_organizer 	= ! empty( $_POST['organizer'] ) ?  $_POST['organizer'] : array();
+			$event_venue        = ! empty( $_POST['venue'] ) ?  $_POST['venue'] : array();
 			$index = 0;
 
-
-
-			if(!empty($event_field) ){
+			if( !empty($event_field) )
+			{
 				$new_fields = array('event' => $event_field ,'organizer' =>$event_organizer, 'venue' => $event_venue);
 				
 				//find the numers keys from the fields array and replace with lable if label not exist remove that field
-				 foreach($new_fields as $group_key => $group_fields) {
-					 foreach( $group_fields as $field_key => $field_value ) {
-							$index++;
-							$new_fields[$group_key][$field_key]['priority'] = $index;
+				foreach($new_fields as $group_key => $group_fields) 
+				{
+					foreach( $group_fields as $field_key => $field_value ) 
+					{
+						$index++;
 
-							$new_fields[$group_key][$field_key]['label'] = trim($new_fields[$group_key][$field_key]['label']);
-							
-							if ( isset($new_fields[$group_key][$field_key]['type']) && ! in_array($new_fields[$group_key][$field_key]['type'],  array('term-select', 'term-multiselect', 'term-checklist') ) ) {
-								unset($new_fields[$group_key][$field_key]['taxonomy']);
+						if ( isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group' )
+						{
+							if( isset($field_value['fields']) && !empty($field_value['fields']) )
+							{
+								$child_fields = $this->child_form_editor_save($field_value);
+								$new_fields[$group_key][$field_key]['fields'] = $child_fields;	
 							}
-							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] == 'select'  || $new_fields[$group_key][$field_key]['type'] == 'radio'  || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options') {
-								if(isset($new_fields[$group_key][$field_key]['options'])){
-									$new_fields[$group_key][$field_key]['options'] = explode( '|', $new_fields[$group_key][$field_key]['options']);
-									$temp_options = array();
-									foreach($new_fields[$group_key][$field_key]['options'] as $val){
-										$option_key = explode( ':', $val);
-										if(isset($option_key[1]))
-											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[1]);
-										else
-											$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[0]);
-									}
-									$new_fields[$group_key][$field_key]['options'] = $temp_options;
+						}
+
+						$new_fields[$group_key][$field_key]['priority'] = $index;
+
+						$new_fields[$group_key][$field_key]['label'] = trim($new_fields[$group_key][$field_key]['label']);
+							
+						if ( isset($new_fields[$group_key][$field_key]['type']) && ! in_array($new_fields[$group_key][$field_key]['type'],  array('term-select', 'term-multiselect', 'term-checklist') ) ) 
+						{
+							unset($new_fields[$group_key][$field_key]['taxonomy']);
+						}
+							
+						if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] == 'select'  || $new_fields[$group_key][$field_key]['type'] == 'radio'  || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options')
+						{
+							if(isset($new_fields[$group_key][$field_key]['options']))
+							{
+								$new_fields[$group_key][$field_key]['options'] = explode( '|', $new_fields[$group_key][$field_key]['options']);
+
+								$temp_options = array();
+
+								foreach($new_fields[$group_key][$field_key]['options'] as $val)
+								{
+									$option_key = explode( ':', $val);
+
+									if(isset($option_key[1]))
+										$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[1]);
+									else
+										$temp_options[strtolower(str_replace(' ', '_',trim($option_key[0])) )] =  trim($option_key[0]);
 								}
+
+								$new_fields[$group_key][$field_key]['options'] = $temp_options;
 							}
-							else{
-								unset($new_fields[$group_key][$field_key]['options']);
-							}
-							
-							if(!is_int($field_key)) continue;
-							 
-							if(isset($new_fields[$group_key][$field_key]['label'])){
-								$label_key =  str_replace(' ',"_",$new_fields[$group_key][$field_key]['label']);
-								$new_fields[$group_key][strtolower($label_key)]= $new_fields[$group_key][$field_key];
-							}
-							unset($new_fields[$group_key][$field_key]);
+						}
+						else
+						{
+							unset($new_fields[$group_key][$field_key]['options']);
+						}
+						
+						if(!is_int($field_key)) continue;
+						 
+						if(isset($new_fields[$group_key][$field_key]['label']))
+						{
+							$label_key =  str_replace(' ',"_",$new_fields[$group_key][$field_key]['label']);
+							$new_fields[$group_key][strtolower($label_key)]= $new_fields[$group_key][$field_key];
+						}
+
+						unset($new_fields[$group_key][$field_key]);
 					}
 				}
 				

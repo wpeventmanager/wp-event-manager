@@ -935,6 +935,7 @@ class WP_Event_Manager_Writepanels {
 					case 'textarea' :
 						update_post_meta( $post_id, $key,wp_kses_post( stripslashes( $_POST[ $key ] ) ) );
 					break;
+
 					case 'checkbox' :
 						if ( isset( $_POST[ $key ] ) ) {
 							update_post_meta( $post_id, $key, 1 );
@@ -942,6 +943,7 @@ class WP_Event_Manager_Writepanels {
 							update_post_meta( $post_id, $key, 0 );
 						}
 					break;
+
 					case 'date' :
 						if ( isset( $_POST[ $key ] ) ) {
 							$date = $_POST[ $key ];
@@ -950,9 +952,20 @@ class WP_Event_Manager_Writepanels {
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format   , $date );
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 							update_post_meta( $post_id, $key, $date_dbformatted );
-
 						}
 					break;
+
+					case 'time' :
+						if(!empty($_POST[ $key ]))
+						{
+							$time = $_POST[ $key ];
+
+							$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( $time );
+							$time_dbformatted = !empty($time_dbformatted) ? $time_dbformatted : $time;
+							update_post_meta( $post_id, $key, $time_dbformatted );
+						}
+					break;
+
 					default :
 						if ( ! isset( $_POST[ $key ] ) ) {
 							continue 2;

@@ -187,7 +187,27 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'priority'    => 4,
 			        'required'=>true
 		 		),
-		 		
+
+		 		/*
+		 		'event_venue_name' => array(
+					'label'       => __( 'Venue Name', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => 'true',					
+					'placeholder' => __( 'Please enter the venue name', 'wp-event-manager' ),
+					'priority'    => 5
+				),
+				*/
+
+				/*	
+				'event_address' => array(
+					'label'       => __( 'Address', 'wp-event-manager' ),
+					'type'        => 'text',
+					'required'    => 'true',
+					'placeholder' => __( 'Please enter street name and number', 'wp-event-manager' ),
+					'priority'    => 6
+				),
+				*/	
+				
 				'event_pincode' => array(
 					'label'       => __( 'Zip Code', 'wp-event-manager' ),
 					'type'        => 'text',
@@ -924,7 +944,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}					
 				}
 				elseif ( $field['type'] == 'date' ) {
-					$date = $values[ $group_key ][ $key ];	
+					$date = $values[ $group_key ][ $key ];
 					if(!empty($date)) {
 						//Convert date and time value into DB formatted format and save eg. 1970-01-01
 						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format  , $date );
@@ -934,7 +954,19 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					else
 						update_post_meta( $this->event_id, '_' . $key, '' );
 					
-				}				
+				}
+				elseif ( $field['type'] == 'time' ) {
+					$time = $values[ $group_key ][ $key ];	
+					if(!empty($time)) {
+						//Convert date and time value into DB formatted format and save eg. 1970-01-01
+						$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( $time );
+						$time_dbformatted = !empty($time_dbformatted) ? $time_dbformatted : $time;
+						update_post_meta( $this->event_id, '_' . $key, $time_dbformatted );
+					}
+					else
+						update_post_meta( $this->event_id, '_' . $key, '' );
+					
+				}
 				else { 
 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
