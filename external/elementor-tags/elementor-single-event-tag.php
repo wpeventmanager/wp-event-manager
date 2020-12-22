@@ -299,7 +299,40 @@ class Elementor_Event_Tag extends Tag {
 			}
 			else
 			{
-				echo get_post_meta($post_id, '_'.$settings['event_field'], true);
+				$field_value = get_post_meta($post_id, '_'.$event_tag, true);
+
+				if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) {
+					include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
+					include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );	
+				}
+				$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+				$fields = $form_submit_event_instance->merge_with_custom_fields('backend');
+				
+				foreach($fields  as $group_key => $group_fields)
+				{
+					foreach ( $group_fields as $field_key => $field )
+					{
+						//if(in_array($field['type'], ['text', 'term-select', 'radio', 'wp-editor', 'date', 'time', 'select', 'multiselect']))
+						if( in_array($field['type'], ['select', 'multiselect']) && $event_tag ==   $field_key )
+						{
+							
+							if(is_array($field_value) && !empty($field_value)){
+								foreach ($field_value as $key => $value) {
+									if(isset($field['options'][$value]) )
+										echo __($field['options'][$value],'wp-event-manager');
+								}
+									
+
+							}else
+							if(isset($field['options'][$field_value]) )
+									echo __($field['options'][$field_value],'wp-event-manager');
+							
+						}
+						elseif($event_tag ==   $field_key )
+							echo __($field_value,'wp-event-manager');
+						
+					}
+				}
 			}
 		}
 		else
