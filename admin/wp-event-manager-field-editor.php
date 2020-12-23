@@ -344,7 +344,7 @@ class WP_Event_Manager_Field_Editor {
 							unset($new_fields[$group_key][$field_key]['taxonomy']);
 						}
 							
-						if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] == 'select'  || $new_fields[$group_key][$field_key]['type'] == 'radio'  || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options')
+						if(isset($new_fields[$group_key][$field_key]['type']) && ($new_fields[$group_key][$field_key]['type'] == 'select'  || $new_fields[$group_key][$field_key]['type'] == 'radio'  || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options') )
 						{
 							if(isset($new_fields[$group_key][$field_key]['options']))
 							{
