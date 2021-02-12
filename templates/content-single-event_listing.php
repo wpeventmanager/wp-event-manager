@@ -306,14 +306,14 @@ $event = $post;
                                                             </div>
                                                         </div>
 
-                                                    <?php elseif($child_field['type'] == 'date') : ?>
+                                                    <?php elseif(isset($child_field['type']) && $child_field['type'] == 'date') : ?>
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $child_field['label']); ?> - </strong> <?php echo date_i18n( $date_format, strtotime($field_value)); ?></p>
                                                                 </div>
                                                             </div>
 
-                                                        <?php elseif($child_field['type'] == 'time') : ?>
+                                                        <?php elseif(isset($child_field['type']) && $child_field['type'] == 'time') : ?>
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $child_field['label']); ?> - </strong> <?php echo date( $time_format, strtotime($field_value)); ?></p>
@@ -329,13 +329,17 @@ $event = $post;
                                                                         <?php if( in_array(pathinfo($file, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg']) ) : ?>
                                                                             <div><img src="<?php echo $file; ?>"></div>
                                                                         <?php else : ?>
-                                                                            <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $file; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a></div>
+                                                                            <div class="wpem-icon">
+                                                                                <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr(wp_basename($file)); ?></strong></p>
+                                                                                <a target="_blank" class="wpem-icon-download3" href="<?php echo $file; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a>
+                                                                            </div>
                                                                         <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                 <?php else : ?>
                                                                     <?php if( in_array(pathinfo($field_value, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg']) ) : ?>
                                                                         <div><img src="<?php echo $field_value; ?>"></div>
                                                                     <?php else : ?>
+                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr(wp_basename($field_value)); ?></strong></p>
                                                                         <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $field_value; ?>"> <?php _e( 'Download', 'wp-event-manager' ); ?></a></div>
                                                                     <?php endif; ?>
                                                                 <?php endif; ?>
