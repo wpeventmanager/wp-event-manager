@@ -295,6 +295,8 @@ abstract class WP_Event_Manager_Form {
 	 */
 	protected function get_repeated_field( $field_prefix, $fields ) 
 	{	
+		if(empty($fields))
+		return;
 		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 		
@@ -397,6 +399,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	protected function get_posted_repeated_field( $key, $field ) {
+		if(isset($field['fields']) && !empty($field['fields']))
 		return  $this->get_repeated_field( $key, $field['fields'] );
 	}
 
