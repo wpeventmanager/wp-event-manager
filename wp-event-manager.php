@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 Plugin Name: WP Event Manager
 
 Plugin URI: https://www.wp-eventmanager.com/

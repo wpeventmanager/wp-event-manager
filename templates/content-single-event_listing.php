@@ -389,9 +389,8 @@ $event = $post;
 
                                 <?php
                                 $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
-                                $registration_end_date = get_event_registration_end_date(). ' 23:59:59';
-                                /* $registration_end_date = WP_Event_Manager_Date_Time::date_parse_from_format ( $date_format, $registration_end_date ); */
-
+                                $registration_end_date = get_event_registration_end_date();
+                                $registration_end_date = !empty($registration_end_date) ? $registration_end_date.' 23:59:59' : '';
                                 $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
                                 $event_timezone          = get_event_timezone();
 
@@ -411,7 +410,7 @@ $event = $post;
                                 {
                                     get_event_manager_template('event-registration.php');
                                 }
-                                else if (strtotime($registration_end_date) < $current_timestamp)
+                                else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp)
                                 {
                                     echo '<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>';
                                 }
