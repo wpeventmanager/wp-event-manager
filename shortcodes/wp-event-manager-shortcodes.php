@@ -1526,7 +1526,7 @@ class WP_Event_Manager_Shortcodes {
                 'compare' => '>='
             )
         );
-
+		$args_current = apply_filters( 'wpem_single_organizer_current_event_listing_query_args',$args_current);
         $currentEvents = new WP_Query($args_current);
         wp_reset_query();
 
