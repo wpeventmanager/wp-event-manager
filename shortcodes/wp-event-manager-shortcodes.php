@@ -1478,12 +1478,13 @@ class WP_Event_Manager_Shortcodes {
         $organizer_id    = $organizer->ID;
         $show_pagination = true;
 
-        $args_upcoming = array(
+        $args_upcoming =	apply_filters( 'wpem_single_organizer_upcoming_event_listing_query_args', array(
             'post_type'      => 'event_listing',
             'post_status'    => 'publish',
             'posts_per_page' => $per_page,
-            'paged'          => $current_page
-        );
+            'paged'          => $current_page,
+			'orderby'		 => 'date'
+        ) );
 
         $args_upcoming['meta_query'] = array(
             'relation' => 'AND',
@@ -1550,6 +1551,7 @@ class WP_Event_Manager_Shortcodes {
                 'compare' => '<'
             )
         );
+		$args_past = apply_filters( 'wpem_single_organizer_past_event_listing_query_args',$args_past);
         $pastEvents              = new WP_Query($args_past);
         wp_reset_query();
 
