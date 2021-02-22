@@ -1871,7 +1871,7 @@ function event_manager_use_standard_password_setup_email() {
 	$use_standard_password_setup_email = true;
 	
 	// If username is being automatically generated, force them to send password setup email.
-	if ( ! event_manager_generate_username_from_email() ) {
+	if ( event_manager_generate_username_from_email() ) {
 		$use_standard_password_setup_email = get_option( 'event_manager_use_standard_password_setup_email' ) == 1 ? true : false;
 	}
 	
