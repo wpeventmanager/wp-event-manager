@@ -95,6 +95,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 */
 	public function init_fields() {
             $user    =  wp_get_current_user();
+            $username = !empty($user->display_name) ? $user->display_name : $user->user_login;
 		if ( $this->fields ) {
 			return;
 		}
@@ -107,7 +108,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'required'    => true,
 								'placeholder' => __( 'Enter the name of the organization', 'wp-event-manager' ),
 								'priority'    => 1,
-                                                                'value'       => $user->display_name
+                                                                'value'       => $username
 				),
 
 				'organizer_logo' => array(
