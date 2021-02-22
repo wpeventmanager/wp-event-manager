@@ -94,6 +94,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * init_fields function.
 	 */
 	public function init_fields() {
+            $user    =  wp_get_current_user();
 		if ( $this->fields ) {
 			return;
 		}
@@ -105,7 +106,8 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => true,
 								'placeholder' => __( 'Enter the name of the organization', 'wp-event-manager' ),
-								'priority'    => 1
+								'priority'    => 1,
+                                                                'value'       => $user->display_name
 				),
 
 				'organizer_logo' => array(
@@ -137,7 +139,8 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => true,
 								'placeholder' => __( 'Enter your email address', 'wp-event-manager' ),
-								'priority'    => 5
+								'priority'    => 5,
+                                                                'value'       => $user->user_email
 				),
 
 				'organizer_website' => array(
