@@ -9,6 +9,14 @@ global $event_manager;
 
 <form action="<?php echo esc_url( $action ); ?>" method="post" id="submit-organizer-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if(is_user_logged_in()){
+            
+            // if field value is not set apply current user details
+            $user    =  wp_get_current_user();
+            $username = !empty($user->display_name) ? $user->display_name : $user->user_login;
+            
+            $organizer_fields['organizer_name']['value'] = $username;
+            $organizer_fields['organizer_email']['value'] = $user->user_email;
+            
 	?>
 	<h2 class="wpem-form-title wpem-heading-text"><?php _e( 'Organizer Details', 'wp-event-manager' ); ?></h2>
 	<?php
@@ -18,7 +26,8 @@ global $event_manager;
 	?>
 
 	<?php do_action( 'submit_organizer_form_organizer_fields_start' ); ?>
-		<?php foreach ( $organizer_fields as $key => $field ) : ?>
+		<?php 
+                foreach ( $organizer_fields as $key => $field ) : ?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr( $key ); ?>">
 				<label for="<?php esc_attr_e( $key ); ?>"><?php echo __($field['label'], 'wp-event-manager') . apply_filters( 'submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __( '(optional)', 'wp-event-manager' ) . '</small>', $field ); ?></label>
 				<div class="field <?php echo $field['required'] ? 'required-field' : ''; ?>">
