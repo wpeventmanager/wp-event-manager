@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 Plugin Name: WP Event Manager
 
 Plugin URI: https://www.wp-eventmanager.com/
@@ -181,7 +181,7 @@ class WP_Event_Manager {
 
         	$locale = apply_filters('plugin_locale', get_locale(), $domain);
 
-		load_textdomain( $domain, WP_LANG_DIR . "/wp-event-manager-stripe-split-payment/".$domain."-" .$locale. ".mo" );
+		load_textdomain( $domain, WP_LANG_DIR . "/wp-event-manager/".$domain."-" .$locale. ".mo" );
 
 		load_plugin_textdomain($domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
