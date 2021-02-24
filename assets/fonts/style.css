@@ -1503,3 +1503,18 @@ i[class*="wpem-"] {
 .wpem-icon-ical:before {
   content: "\eaed";
 }
+.wpem-icon-mailchimp:before {
+  content: "\eaee";
+}
+.wpem-icon-sync:before {
+  content: "\eaef";
+}
+.wpem-icon-no-sync:before {
+  content: "\eaf0";
+}
+.wpem-icon-sendinblue:before {
+  content: "\eaf1";
+}
+.wpem-icon-zoom:before {
+  content: "\eaf2";
+}
