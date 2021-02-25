@@ -115,7 +115,7 @@ class Elementor_Single_Event_Organizer extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		
-		get_event_manager_template_part('content', 'single-event_listing-organizer');
+		get_event_manager_template_part('organizer/content', 'single-event_listing-organizer');
 	}
 
 	/**
