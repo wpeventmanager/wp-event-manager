@@ -10,7 +10,7 @@
  */
 function wpml_event_manager_init() {
 	add_action( 'get_event_listings_init', 'wpml_event_manager_set_language' );
-	add_filter( 'event_manager_lang', 'wpml_event_manager_get_event_listings_lang' );
+	add_filter( 'wpem_lang', 'wpml_event_manager_get_event_listings_lang' );
 	add_filter( 'event_manager_page_id', 'wpml_event_manager_page_id' );
 }
 add_action( 'wpml_loaded', 'wpml_event_manager_init' );

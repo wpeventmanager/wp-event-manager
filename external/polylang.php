@@ -9,7 +9,7 @@
  * @since 1.6
  */
 function polylang_event_manager_init() {
-	add_filter( 'event_manager_lang', 'polylang_event_manager_get_event_listings_lang' );
+	add_filter( 'wpem_lang', 'polylang_event_manager_get_event_listings_lang' );
 	add_filter( 'event_manager_page_id', 'polylang_event_manager_page_id' );
 }
 add_action( 'pll_init', 'polylang_event_manager_init' );
