@@ -2439,7 +2439,6 @@ function event_manager_get_registration_fields() {
 	$generate_username_from_email      = event_manager_generate_username_from_email();
 	$use_standard_password_setup_email = event_manager_use_standard_password_setup_email();
 	$account_required  = event_manager_user_requires_account();
-var_dump($use_standard_password_setup_email);
 	$registration_fields = array();
 	if ( event_manager_enable_registration() ) {
 		if ( ! $generate_username_from_email ) {
