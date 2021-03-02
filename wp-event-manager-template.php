@@ -390,9 +390,18 @@ function wp_event_manager_get_registration_fields() {
 	$generate_username_from_email      = event_manager_generate_username_from_email();
 	$use_standard_password_setup_email = event_manager_use_standard_password_setup_email();
 	$account_required  = event_manager_user_requires_account();
+	var_dump($use_standard_password_setup_email);
 
 	$registration_fields = array();
 	if ( event_manager_enable_registration() ) {
+
+		$registration_fields['create_account_email'] = array(
+				'type'        => 'text',
+				'label'       => __( 'Your email', 'wp-event-manager' ),
+				'placeholder' => __( 'you@yourdomain.com', 'wp-event-manager' ),
+				'required'    => $account_required,
+				'value'       => isset( $_POST['create_account_email'] ) ? $_POST['create_account_email'] : '',
+		);
 
 		if ( ! $generate_username_from_email ) {
 			$registration_fields['create_account_username'] = array(
@@ -402,7 +411,7 @@ function wp_event_manager_get_registration_fields() {
 					'value'    => isset( $_POST['create_account_username'] ) ? $_POST['create_account_username'] : '',
 			);
 		}
-		if ( ! $use_standard_password_setup_email ) {
+		if ( !$use_standard_password_setup_email ) {
 			$registration_fields['create_account_password'] = array(
 					'type'         => 'password',
 					'label'        => __( 'Password', 'wp-event-manager' ),
@@ -422,13 +431,7 @@ function wp_event_manager_get_registration_fields() {
 					'required'     => $account_required,
 			);
 		}
-		$registration_fields['create_account_email'] = array(
-				'type'        => 'text',
-				'label'       => __( 'Your email', 'wp-event-manager' ),
-				'placeholder' => __( 'you@yourdomain.com', 'wp-event-manager' ),
-				'required'    => $account_required,
-				'value'       => isset( $_POST['create_account_email'] ) ? $_POST['create_account_email'] : '',
-		);
+		
 	}
 	return apply_filters( 'event_manager_get_registration_fields', $registration_fields );
 }
@@ -2436,7 +2439,7 @@ function event_manager_get_registration_fields() {
 	$generate_username_from_email      = event_manager_generate_username_from_email();
 	$use_standard_password_setup_email = event_manager_use_standard_password_setup_email();
 	$account_required  = event_manager_user_requires_account();
-
+var_dump($use_standard_password_setup_email);
 	$registration_fields = array();
 	if ( event_manager_enable_registration() ) {
 		if ( ! $generate_username_from_email ) {

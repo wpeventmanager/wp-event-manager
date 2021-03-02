@@ -1861,11 +1861,11 @@ add_filter( 'post_types_to_delete_with_user', 'event_manager_add_post_types', 10
  * @return bool True if they are to use standard email, false to allow user to set password at first event creation.
  */
 function event_manager_use_standard_password_setup_email() {
-	$use_standard_password_setup_email = true;
+	$use_standard_password_setup_email = false;
 	
 	// If username is being automatically generated, force them to send password setup email.
 	if ( event_manager_generate_username_from_email() ) {
-		$use_standard_password_setup_email = get_option( 'event_manager_use_standard_password_setup_email' ) == 1 ? true : false;
+		$use_standard_password_setup_email = get_option( 'event_manager_use_standard_password_setup_email', 1 ) == 1 ? true : false;
 	}
 	
 	/**
