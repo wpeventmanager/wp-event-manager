@@ -2550,12 +2550,12 @@ function event_manager_get_event_listing_structured_data( $post = null ) {
 	$data = array();
 	$data['@context'] = 'http://schema.org/';
 	$data['@type'] = 'Event';
-	/* $data['datePosted'] = get_post_time( 'c', false, $post ); */
+
 	$event_expires = get_post_meta( $post->ID, '_event_expires', true );
 	if ( ! empty( $event_expires ) ) {
 		$data[ 'validThrough' ] = date( 'c', strtotime( $event_expires ) );
 	}
-	/* $data['title'] = strip_tags( get_event_title( $post )); */
+
 	$data['description'] = get_event_description( $post );
 
 	$data['name'] = strip_tags( get_event_title( $post ));
@@ -2566,7 +2566,6 @@ function event_manager_get_event_listing_structured_data( $post = null ) {
 	$data['eventAttendanceMode'] = is_event_online($post) ? 'Online' : 'offline';
 	$data['eventStatus'] = 'EventScheduled';
 
-	/* $data['hiringOrganization'] = array(); */
 	$data['Organizer']['@type'] = 'Organization';
 	$data['Organizer']['name'] = get_organizer_name( $post );
 	if ( $organizer_website = get_organizer_website( $post ) ) {
@@ -2574,15 +2573,8 @@ function event_manager_get_event_listing_structured_data( $post = null ) {
 		$data['Organizer']['url'] = $organizer_website;
 	}
 
-	/*
-	$data['identifier'] = array();
-	$data['identifier']['@type'] = 'PropertyValue';
-	$data['identifier']['name'] = get_organizer_name( $post );
-	$data['identifier']['value'] = get_the_guid( $post );
-	*/
-
 	$location = get_event_location( $post );
-	if ( ! empty( $location ) ) {
+	if ( ! empty( $location ) && !is_event_online($post) ) {
 		$data['Location'] = array();
 		$data['Location']['@type'] = 'Place';
 		$data['Location']['name'] = get_event_venue_name( $post );
@@ -2590,6 +2582,12 @@ function event_manager_get_event_listing_structured_data( $post = null ) {
 		if ( empty( $data['Location']['address'] ) ) {
 			$data['Location']['address'] = $location;
 		}
+	}
+	else{
+
+		$data['Location'] = array();
+		$data['Location']['@type'] = 'VirtualLocation';
+		$data['Location']['url'] = get_permalink( $post->ID );
 	}
 	
 	/**
@@ -2616,6 +2614,8 @@ function event_manager_get_event_listing_location_structured_data( $post ) {
 	if ( $post && $post->post_type !== 'event_listing' ) {
 		return false;
 	}
+
+	
 	$mapping = array();
 	$mapping['streetAddress'] = array( 'street_number', 'street' );
 	$mapping['addressLocality'] = 'city';
