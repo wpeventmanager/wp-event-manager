@@ -1734,31 +1734,24 @@ function get_event_expiry_date( $event_id )
 	//get set listing expiry time duration
 
 	$option=get_option( 'event_manager_submission_expire_options' );
+	$event_end_date = get_post_meta( $event_id, '_event_end_date', true );
 
 	if($option=='event_end_date')
 	{
-	   $event_end_date = get_post_meta( $event_id, '_event_end_date', true );
-
 	   if($event_end_date)
-	   {
 	        return date( 'Y-m-d', strtotime( $event_end_date ) );
-	    	//return date_i18n( __( 'M j, Y', 'wp-event-manager' ), strtotime(  $event_end_date ) );
-	   }
 	}
 	else
 	{
 		// Get duration from the admin settings if set.
-
 		$duration = get_post_meta( $event_id, '_event_duration', true );		
 
 		if ( ! $duration ) {		   
 			$duration = absint( get_option( 'event_manager_submission_duration' ) );
 		}
 		
-		if ( $duration ) {
-			//return date( 'Y-m-d', strtotime( "+{$duration} days", current_time( 'timestamp' ) ) );			
-			return date( 'Y-m-d', strtotime( "+{$duration} days", strtotime(get_the_date('',$event_id) ) ) );
-		}
+		if ( $duration ) 
+			return date( 'Y-m-d', strtotime( "+{$duration} days", strtotime( $event_end_date ) ) );
 	}
 	return '';
 }
