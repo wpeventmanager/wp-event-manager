@@ -2679,8 +2679,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider .wpem-slider-items img {
   width: 100%;
   height: auto;
-}
-.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-single-image-wrapper .wpem-event-single-image {
   display: block;
 }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-event-organizer {
