@@ -199,6 +199,19 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'event_description') {
                 echo get_event_description($event);
             } else if ($settings['event_field'] == 'registration') {
+
+                $registration_end_date = get_event_registration_end_date($event);
+                                $registration_end_date = !empty($registration_end_date) ? $registration_end_date.' 23:59:59' : '';
+             // check if timezone settings is enabled as each event then set current time stamp according to the timezone
+            // for eg. if each event selected then Berlin timezone will be different then current site timezone.
+            $current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
+
+
+            if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp)
+            {
+                echo '<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>';
+            }
+            else
                 get_event_manager_template('event-registration.php');
             } else if ($settings['event_field'] == 'event_start_date') {
                 display_event_start_date('', '', true, $event);

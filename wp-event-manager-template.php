@@ -2591,7 +2591,6 @@ function event_manager_get_event_listing_structured_data( $post = null ) {
 		$data['Location']['@type'] = 'VirtualLocation';
 		$data['Location']['url'] = get_permalink( $post->ID );
 	}
-	
 	/**
 	 * Filter the structured data for a event listing.
 	 *
