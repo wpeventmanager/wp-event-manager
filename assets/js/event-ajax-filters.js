@@ -278,6 +278,8 @@ var EventAjaxFilters = function() {
                                         target.append(result.pagination)
                                     }
                                 } else {
+                                    localStorage.setItem( 'total_event_page', result.max_num_pages );
+                                    localStorage.setItem( 'current_event_page', page );
                                     if (!result.found_events || result.max_num_pages <= page) {
                                         jQuery('.load_more_events:not(.load_previous)', target).hide()
                                     } else if (!loading_previous) {
