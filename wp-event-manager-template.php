@@ -2579,7 +2579,7 @@ function event_manager_get_event_listing_structured_data( $post = null ) {
 	if ( ! empty( $location ) && !is_event_online($post) ) {
 		$data['Location'] = array();
 		$data['Location']['@type'] = 'Place';
-		$data['Location']['name'] = get_event_venue_name( $post );
+		$data['Location']['name'] = $location;
 		$data['Location']['address'] = event_manager_get_event_listing_location_structured_data( $post );
 		if ( empty( $data['Location']['address'] ) ) {
 			$data['Location']['address'] = $location;
