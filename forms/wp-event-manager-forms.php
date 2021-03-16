@@ -105,4 +105,22 @@ class WP_Event_Manager_Forms {
 			return ob_get_clean();
 		}
 	}
+
+		/**
+	 * get_fields function.
+	 *
+	 * @param string $key
+	 * @return array
+	 */
+
+	public function get_fields( $form_name ) {
+
+		if ( $form = $this->load_form_class( $form_name ) ) {
+
+			 $fields = $form->merge_with_custom_fields( 'frontend' );
+
+		}
+		
+		return $fields;
+	}
 }

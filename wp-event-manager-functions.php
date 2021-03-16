@@ -123,8 +123,11 @@ function get_event_listings( $args = array() ) {
 
 			'compare' => $args['featured'] ? '=' : '!='
 		);
-	}
 
+		$query_args['meta_query']['relation'] = 'AND';
+
+
+	}
 	if ( ! is_null( $args['cancelled'] ) || 1 === absint( get_option( 'event_manager_hide_cancelled_events' ) ) ) {
 
 		$query_args['meta_query'][] = array(

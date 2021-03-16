@@ -80,9 +80,15 @@ global $event_manager;
 <?php if(get_option('enable_event_organizer')) : ?>
 
 <?php
-$GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
-$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Organizer', 'instance' ) );
-$organizer_fields =	$form_submit_organizer_instance->merge_with_custom_fields('backend');
+$organizer_fields =	$GLOBALS['event_manager']->forms->get_fields('submit-organizer');
+if(is_user_logged_in()){
+	$current_user = wp_get_current_user();
+	if(isset($organizer_fields['organizer']['organizer_name']))
+		$organizer_fields['organizer']['organizer_name']['value'] =  $current_user->display_name;
+	if(isset($organizer_fields['organizer']['organizer_email']))
+		$organizer_fields['organizer']['organizer_email']['value'] =  $current_user->user_email;
+
+}
 ?>
 
 <div id="wpem_add_organizer_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Add Organizer', 'wp-event-manager'); ?>">
