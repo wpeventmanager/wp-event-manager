@@ -909,14 +909,47 @@ class WP_Event_Manager_Shortcodes {
 			}
 			
 		} else {
-		    
+			$arr_selected_datetime = [];
+				if(!empty($selected_datetime))
+				{
+					$selected_datetime = explode(',', $selected_datetime);
+
+					$start_date = esc_attr( strip_tags( $selected_datetime[0] ) );
+					$end_date = esc_attr( strip_tags( $selected_datetime[1] ) );
+
+					
+
+					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+		
+					//covert datepicker format  into php date() function date format
+					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+
+					if($start_date == 'today')
+					{
+						$start_date = date($php_date_format);
+					}
+					else if($start_date == 'tomorrow')
+					{
+						$start_date = date($php_date_format, strtotime('+1 day'));
+					}
+
+					$arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $start_date );
+					$arr_selected_datetime['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $end_date );
+
+					$arr_selected_datetime['start'] 	= date_i18n( $php_date_format, strtotime( $arr_selected_datetime['start'] ) );
+					$arr_selected_datetime['end'] 	= date_i18n( $php_date_format, strtotime( $arr_selected_datetime['end'] ) );
+
+					$selected_datetime = json_encode($arr_selected_datetime);
+				}
+
 			$events = get_event_listings( apply_filters( 'event_manager_output_events_args', array(
 
 				'search_location'   => $location,
 
 				'search_keywords'   => $keywords,
 
-				'search_datetimes'  => $datetimes,
+				'search_datetimes'  => array($selected_datetime),
 
 				'search_categories' => !empty($categories) ? $categories : '',
 
@@ -940,6 +973,8 @@ class WP_Event_Manager_Shortcodes {
 
 			if ( $events->have_posts() ) : ?>
 
+				<?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
+
 				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>$layout_type)); ?>			
 
 				<?php while ( $events->have_posts() ) : $events->the_post(); ?>
@@ -952,7 +987,7 @@ class WP_Event_Manager_Shortcodes {
 
 				<?php if ( $events->found_posts > $per_page && $show_more ) : ?>
 
-					<?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
+					
 
 					<?php if ( $show_pagination ) : ?>
 

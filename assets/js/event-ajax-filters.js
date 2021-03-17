@@ -69,7 +69,6 @@ var EventAjaxFilters = function() {
                     var index = jQuery('div.event_listings').index(target);
                     if (window.history.state && window.location.hash) {
                         var state = window.history.state;
-                        console.log(form.deserialize(state.data));
                         if (state.id && 'event_manager_state' === state.id && index == state.index) {
                            //set initial_page with 1 on page refresh
                             inital_page = 1;
@@ -82,7 +81,7 @@ var EventAjaxFilters = function() {
                     }
                     target.triggerHandler('update_event_listings', [inital_page, false])
                 });
-                event.preventDefault()
+                //event.preventDefault()
             },
             eventAjaxFiltersReset: function(event) {
                 Common.logInfo("EventAjaxFilters.actions.eventAjaxFiltersReset...");
@@ -206,6 +205,8 @@ var EventAjaxFilters = function() {
                         form_data: form.serialize()
                     }
                 } else {
+                    alert(
+                        'sd');
                     var keywords = target.data('keywords');
                     var location = target.data('location');
                     var datetimes = target.data('datetimes');
@@ -310,7 +311,7 @@ var EventAjaxFilters = function() {
                         }
                     }
                 });
-                event.preventDefault()
+                event.preventDefault();
             }
         }
     }

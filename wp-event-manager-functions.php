@@ -165,7 +165,6 @@ function get_event_listings( $args = array() ) {
 			'compare' => '='
 		);
 	}
-
 	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
 	    $date_search=array();
