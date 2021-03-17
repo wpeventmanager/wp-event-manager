@@ -1537,7 +1537,7 @@ class WP_Event_Manager_Shortcodes {
             )
         );
 
-        $upcomingEvents = new WP_Query($args_upcoming);
+        $upcomingEvents = new WP_Query(apply_filters( 'wpem_single_organizer_upcoming_event_listing_query_args',$args_upcoming));
         wp_reset_query();
 
         $args_current = $args_upcoming;
@@ -1563,7 +1563,7 @@ class WP_Event_Manager_Shortcodes {
             )
         );
 
-        $currentEvents = new WP_Query($args_current);
+        $currentEvents = new WP_Query(apply_filters( 'wpem_single_organizer_current_event_listing_query_args',$args_current));
         wp_reset_query();
 
         $args_past = array(
@@ -1587,7 +1587,7 @@ class WP_Event_Manager_Shortcodes {
                 'compare' => '<'
             )
         );
-        $pastEvents              = new WP_Query($args_past);
+        $pastEvents              = new WP_Query(apply_filters( 'wpem_single_organizer_past_event_listing_query_args',$args_past) );
         wp_reset_query();
 
         do_action('organizer_content_start');
