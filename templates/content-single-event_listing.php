@@ -511,7 +511,7 @@ $event = $post;
                                                     <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                                                 </div>
                                                 <div class="wpem-modal-content">
-                                                    <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => 1, 'rel' => 0)); ?>
+                                                    <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => '1', 'rel' => 0)); ?>
                                                 </div>
                                             </div>
                                             <a href="#"><div class="wpem-modal-overlay"></div></a>
@@ -617,5 +617,25 @@ $event = $post;
                     }
                 }]
         });
+
+
+    /* Get iframe src attribute value i.e. YouTube video url
+    and store it in a variable */
+    var url = jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src');
+    
+    /* Assign empty url value to the iframe src attribute when
+    modal hide, which stop the video playing */
+    jQuery(".wpem-modal-close").on('click', function(){
+        jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', '');
+    });
+    
+    /* Assign the initially stored url back to the iframe src
+    attribute when modal is displayed again */
+    jQuery("#event-youtube-button").on('click', function(){
+        jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', url);
+    });
+
+
+
     });
 </script>

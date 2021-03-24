@@ -518,8 +518,14 @@ function get_event_ticket_option( $post = null ) {
 
 	if ( $post->post_type !== 'event_listing' )
 		return;
+	if($post->_event_ticket_options == 'paid')
+		$ticket_option = __('Paid','wp-event-manager');
+	elseif($post->_event_ticket_options == 'free')
+		$ticket_option = __('Free','wp-event-manager');
+	elseif($post->_event_ticket_options == 'paid/free')
+		$ticket_option = __('Paid/Free','wp-event-manager');
 
-	return apply_filters( 'display_event_ticket_option', $post->_event_ticket_options, $post );
+	return apply_filters( 'display_event_ticket_option', $ticket_option, $post );
 }
 
 /**
