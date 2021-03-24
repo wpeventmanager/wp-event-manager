@@ -644,6 +644,33 @@ class WP_Event_Manager_Writepanels {
 				</p>
 				<?php
 			}
+
+
+			/**
+		 * input_number function.
+		 *
+		 * @param mixed $key
+		 * @param mixed $field
+		 */
+		public static function input_url( $key, $field ) {
+			global $thepostid;
+			if ( ! isset( $field['value'] ) ) {
+				$field['value'] = get_post_meta( $thepostid, $key, true );
+			}
+			if ( ! empty( $field['name'] ) ) {
+				$name = $field['name'];
+			} else {
+				$name = $key;
+			}
+			?>
+				<p class="form-field">
+					<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>
+					<input type="url" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" />
+				</p>
+				<?php
+			}
+
+
 			/**
 			 * input_button function.
 			 *
