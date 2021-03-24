@@ -748,7 +748,7 @@ function get_event_start_time( $post = null ) {
 	
 	$event_timezone 	= get_event_timezone_abbr( $post );
 	$time_format 		= WP_Event_Manager_Date_Time::get_timepicker_format();
-	$event_start_time 	= date( $time_format ,strtotime($post->_event_start_time) );
+	$event_start_time 	= date_i18n( $time_format ,strtotime($post->_event_start_time) );
 
 	if( $event_timezone )
 		$event_start_time = $event_start_time.' (' . $event_timezone.')';
@@ -843,7 +843,7 @@ function get_event_end_time( $post = null ) {
 
 	$event_timezone 	= get_event_timezone_abbr( $post );
 	$time_format 		= WP_Event_Manager_Date_Time::get_timepicker_format();
-	$event_end_time 	= date( $time_format ,strtotime($post->_event_end_time) );
+	$event_end_time 	= date_i18n( $time_format ,strtotime($post->_event_end_time) );
 
 	if( $event_timezone )
 		$event_end_time = $event_end_time.' (' . $event_timezone.')';
