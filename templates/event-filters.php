@@ -30,26 +30,7 @@
 
 			<!-- Search by location section end -->
 
-			<?php /* ?>
-			<!-- Search by date section start -->
-			<?php if ( $datetimes) : ?>				
-				<div class="wpem-col">
-					<div class="wpem-form-group">
-						<label for="search_datetimes" class="wpem-form-label"><?php _e( 'Any dates', 'wp-event-manager' ); ?></label>
-						<select name="search_datetimes[]" id="search_datetimes" class="event-manager-category-dropdown" data-placeholder="Choose any date…" data-no_results_text="No results match" data-multiple_text="<?php _e('Select Some Options','wp-event-manager'); ?>" >
-						<?php foreach ( $datetimes as $key => $value  ) :
-							if(!strcasecmp($selected_datetime, $value) || $selected_datetime==$key) : ?>
-								<option selected=selected  value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
-							<?php else : ?>
-								<option value="<?php echo $key !='datetime_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
-							<?php endif;						
-						 endforeach; ?>
-						</select>
-						</div>
-				</div>
-			<?php endif; ?>	  			
-			<!-- Search by date section end -->
-			<?php */ ?>
+			
 
 			<!-- Search by date section start -->
 			<?php if ( $datetimes) : ?>	
@@ -114,7 +95,17 @@
 					<?php if ( $show_category_multiselect ) : ?>
 						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'hide_empty' => false) ); ?>
 					<?php else : ?>
-						<?php event_manager_dropdown_selection( array( 'value'=>'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'show_option_all' => __( 'Choose a Category', 'wp-event-manager' ), 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'multiple' => false, 'hide_empty' => false) ); ?>
+						<?php event_manager_dropdown_selection( array( 
+								'value'=>'slug', 
+								'taxonomy' => 'event_listing_category', 
+								'hierarchical' => 1,
+								'show_option_all' => __( 'Choose a Category', 'wp-event-manager' ), 
+								'name' => 'search_categories', 
+								'orderby' => 'name', 
+								'selected' => $selected_category, 
+								'multiple' => false, 
+								'hide_empty' => false) 
+							); ?>
 					<?php endif; ?>
 					</div>
 				</div>

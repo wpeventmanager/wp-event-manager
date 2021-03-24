@@ -1398,7 +1398,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 		'show_option_all' => false,
 
-		'placeholder'     => __( 'Choose a Category&hellip;', 'wp-event-manager' ),
+		'placeholder'     => __( 'Choose a Category', 'wp-event-manager' ),
 
 		'no_results_text' => __( 'No results match', 'wp-event-manager' ),
 
@@ -1449,7 +1449,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 	$id = $r['id'] ? $r['id'] : $r['name'];
 
 	if($taxonomy=='event_listing_type'):
-		$placeholder=__( 'Choose an event type&hellip;', 'wp-event-manager' );
+		$placeholder=__( 'Choose an event type', 'wp-event-manager' );
 
 
 	endif;
@@ -1458,7 +1458,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 	if ( $show_option_all ) {
 
-		$output .= '<option value="">' . esc_html( $show_option_all ) . '</option>';
+		$output .= '<option value="">' . $show_option_all . '</option>';
 	}
 
 	if ( ! empty( $categories ) ) {

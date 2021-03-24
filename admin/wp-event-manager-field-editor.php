@@ -144,7 +144,7 @@ class WP_Event_Manager_Field_Editor {
 			'textarea'    			=> __( 'Textarea', 'wp-event-manager' ),
 			'wp-editor'       		=> __( 'WP Editor', 'wp-event-manager' ),
 			'url'       			=> __( 'URL', 'wp-event-manager' ),	
-			'group'       			=> __( 'Group', 'wp-event-manager' ),	
+			/*'group'       			=> __( 'Group', 'wp-event-manager' ),	*/
 		) );
 
 		
