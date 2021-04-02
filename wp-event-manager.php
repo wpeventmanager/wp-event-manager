@@ -14,9 +14,9 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.19
+Version: 3.1.20
 
-Since: 1.0
+Since: 1.0.0
 
 Requires WordPress Version at least: 4.1
 
@@ -80,7 +80,7 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
-		define( 'EVENT_MANAGER_VERSION', '3.1.19' );
+		define( 'EVENT_MANAGER_VERSION', '3.1.20' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 

@@ -96,10 +96,10 @@ class Plugin {
 			wp_register_script( 'wp-event-manager-term-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/term-multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
 			wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
 			if (!wp_script_is( 'chosen', 'enqueued' ))
-			wp_enqueue_script( 'chosen');
+				wp_enqueue_script( 'chosen');
 			//wp_enqueue_script( 'wp-event-manager-term-multiselect');
 			if (!wp_script_is( 'wp-event-manager-multiselect', 'enqueued' ))
-			wp_enqueue_script( 'wp-event-manager-multiselect');
+				wp_enqueue_script( 'wp-event-manager-multiselect');
 
 			$ajax_filter_deps[] = 'chosen';
 		}
@@ -110,7 +110,7 @@ class Plugin {
 		wp_register_script('wp-event-manager-common', EVENT_MANAGER_PLUGIN_URL . '/assets/js/common.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);	
 
 		if (!wp_script_is( 'wp-event-manager-common', 'enqueued' ))
-		wp_enqueue_script('wp-event-manager-common'); 
+			wp_enqueue_script('wp-event-manager-common'); 
 
 		//jQuery UI date rang picker
 		wp_enqueue_style( 'wp-event-manager-jquery-ui-daterangepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui-daterangepicker/jquery.comiseo.daterangepicker.css');
@@ -118,7 +118,7 @@ class Plugin {
 		wp_register_script( 'wp-event-manager-jquery-ui-daterangepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui-daterangepicker/jquery.comiseo.daterangepicker.js', array('jquery-ui-core', 'jquery-ui-button', 'jquery-ui-datepicker', 'jquery-ui-menu', 'jquery-ui-widget', 'moment') , EVENT_MANAGER_VERSION, true );
 
 		if (!wp_script_is( 'wp-event-manager-jquery-ui-daterangepicker', 'enqueued' ))
-		wp_enqueue_script( 'wp-event-manager-jquery-ui-daterangepicker');
+			wp_enqueue_script( 'wp-event-manager-jquery-ui-daterangepicker');
 
 		
 		wp_register_script( 'wp-event-manager-content-event-listing', EVENT_MANAGER_PLUGIN_URL . '/assets/js/content-event-listing.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true );					
@@ -140,7 +140,7 @@ class Plugin {
 		) );
 
 		if (!wp_script_is( 'wp-event-manager-content-event-listing', 'enqueued' ))
-		wp_enqueue_script( 'wp-event-manager-content-event-listing');
+			wp_enqueue_script( 'wp-event-manager-content-event-listing');
 
 		//ajax filters js
 		wp_register_script( 'wp-event-manager-ajax-filters', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-ajax-filters.min.js', $ajax_filter_deps, EVENT_MANAGER_VERSION, true );
