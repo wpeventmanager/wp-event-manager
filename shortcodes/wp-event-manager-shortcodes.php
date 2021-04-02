@@ -144,7 +144,7 @@ class WP_Event_Manager_Shortcodes {
 
 						// Message
 
-						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been cancelled.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 
@@ -153,7 +153,7 @@ class WP_Event_Manager_Shortcodes {
 						// Check status
 						if ( $event->_cancelled != 1 ) {
 
-							throw new Exception( __( 'This event is not cancelled', 'wp-event-manager' ) );
+							throw new Exception( __( 'This event is not cancelled.', 'wp-event-manager' ) );
 
 						}
 
@@ -161,7 +161,7 @@ class WP_Event_Manager_Shortcodes {
 						update_post_meta( $event_id, '_cancelled', 0 );
 						
 						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been marked as not cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been marked as not cancelled.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 
@@ -175,7 +175,7 @@ class WP_Event_Manager_Shortcodes {
 						if(!in_array($events_status, ['trash']))
 						{
 							// Message
-							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been 	deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
+							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been 	deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
 						}
 						
 
