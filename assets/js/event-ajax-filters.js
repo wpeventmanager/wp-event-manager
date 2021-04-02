@@ -205,8 +205,7 @@ var EventAjaxFilters = function() {
                         form_data: form.serialize()
                     }
                 } else {
-                    alert(
-                        'sd');
+                    
                     var keywords = target.data('keywords');
                     var location = target.data('location');
                     var datetimes = target.data('datetimes');
