@@ -524,6 +524,9 @@ function get_event_ticket_option( $post = null ) {
 		$ticket_option = __('Free','wp-event-manager');
 	elseif($post->_event_ticket_options == 'paid/free')
 		$ticket_option = __('Paid/Free','wp-event-manager');
+	elseif($post->_event_ticket_options == '')
+		$ticket_option = '';
+
 
 	return apply_filters( 'display_event_ticket_option', $ticket_option, $post );
 }
