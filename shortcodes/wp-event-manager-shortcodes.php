@@ -987,8 +987,6 @@ class WP_Event_Manager_Shortcodes {
 
 				<?php if ( $events->found_posts > $per_page && $show_more ) : ?>
 
-					
-
 					<?php if ( $show_pagination ) : ?>
 
 						<?php echo get_event_listing_pagination( $events->max_num_pages ); ?>
@@ -1389,6 +1387,8 @@ class WP_Event_Manager_Shortcodes {
 					<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
 					
 				<?php endwhile; ?>
+
+				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
 				<?php if ($past_events->found_posts > $per_page) : ?>
 	                <?php if ($show_pagination == "true") : ?>
@@ -1950,6 +1950,8 @@ class WP_Event_Manager_Shortcodes {
 					<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
 					
 				<?php endwhile; ?>
+
+				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
 				<?php if ($upcoming_events->found_posts > $per_page) : ?>
 	                <?php if ($show_pagination == "true") : ?>
