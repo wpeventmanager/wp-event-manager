@@ -134,7 +134,7 @@ class WP_Event_Manager_Field_Editor {
 			'hidden'       			=> __( 'Hidden', 'wp-event-manager' ),			
 			'multiselect'       	=> __( 'Multiselect', 'wp-event-manager' ),			
 			'number'       			=> __( 'Number', 'wp-event-manager' ),			
-			'password'       		=> __( 'Password', 'wp-event-manager' ),			
+			/*'password'       		=> __( 'Password', 'wp-event-manager' ),*/			
 			'radio'       			=> __( 'Radio', 'wp-event-manager' ),			
 			'repeated'       		=> __( 'Repeated', 'wp-event-manager' ),			
 			'select'         		=> __( 'Select', 'wp-event-manager' ),
