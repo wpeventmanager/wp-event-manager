@@ -123,8 +123,11 @@ function get_event_listings( $args = array() ) {
 
 			'compare' => $args['featured'] ? '=' : '!='
 		);
-	}
 
+		$query_args['meta_query']['relation'] = 'AND';
+
+
+	}
 	if ( ! is_null( $args['cancelled'] ) || 1 === absint( get_option( 'event_manager_hide_cancelled_events' ) ) ) {
 
 		$query_args['meta_query'][] = array(
@@ -162,7 +165,6 @@ function get_event_listings( $args = array() ) {
 			'compare' => '='
 		);
 	}
-
 	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
 	    $date_search=array();
@@ -1396,7 +1398,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 		'show_option_all' => false,
 
-		'placeholder'     => __( 'Choose a Category&hellip;', 'wp-event-manager' ),
+		'placeholder'     => __( 'Choose a Category', 'wp-event-manager' ),
 
 		'no_results_text' => __( 'No results match', 'wp-event-manager' ),
 
@@ -1447,7 +1449,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 	$id = $r['id'] ? $r['id'] : $r['name'];
 
 	if($taxonomy=='event_listing_type'):
-		$placeholder=__( 'Choose an event type&hellip;', 'wp-event-manager' );
+		$placeholder=__( 'Choose an event type', 'wp-event-manager' );
 
 
 	endif;
@@ -1456,7 +1458,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 	if ( $show_option_all ) {
 
-		$output .= '<option value="">' . esc_html( $show_option_all ) . '</option>';
+		$output .= '<option value="">' . $show_option_all . '</option>';
 	}
 
 	if ( ! empty( $categories ) ) {
@@ -1734,31 +1736,24 @@ function get_event_expiry_date( $event_id )
 	//get set listing expiry time duration
 
 	$option=get_option( 'event_manager_submission_expire_options' );
+	$event_end_date = get_post_meta( $event_id, '_event_end_date', true );
 
 	if($option=='event_end_date')
 	{
-	   $event_end_date = get_post_meta( $event_id, '_event_end_date', true );
-
 	   if($event_end_date)
-	   {
 	        return date( 'Y-m-d', strtotime( $event_end_date ) );
-	    	//return date_i18n( __( 'M j, Y', 'wp-event-manager' ), strtotime(  $event_end_date ) );
-	   }
 	}
 	else
 	{
 		// Get duration from the admin settings if set.
-
 		$duration = get_post_meta( $event_id, '_event_duration', true );		
 
 		if ( ! $duration ) {		   
 			$duration = absint( get_option( 'event_manager_submission_duration' ) );
 		}
 		
-		if ( $duration ) {
-			//return date( 'Y-m-d', strtotime( "+{$duration} days", current_time( 'timestamp' ) ) );			
-			return date( 'Y-m-d', strtotime( "+{$duration} days", strtotime(get_the_date('',$event_id) ) ) );
-		}
+		if ( $duration ) 
+			return date( 'Y-m-d', strtotime( "+{$duration} days", strtotime( $event_end_date ) ) );
 	}
 	return '';
 }
@@ -1868,11 +1863,11 @@ add_filter( 'post_types_to_delete_with_user', 'event_manager_add_post_types', 10
  * @return bool True if they are to use standard email, false to allow user to set password at first event creation.
  */
 function event_manager_use_standard_password_setup_email() {
-	$use_standard_password_setup_email = true;
+	$use_standard_password_setup_email = false;
 	
 	// If username is being automatically generated, force them to send password setup email.
-	if ( ! event_manager_generate_username_from_email() ) {
-		$use_standard_password_setup_email = get_option( 'event_manager_use_standard_password_setup_email' ) == 1 ? true : false;
+	if ( event_manager_generate_username_from_email() ) {
+		$use_standard_password_setup_email = get_option( 'event_manager_use_standard_password_setup_email', 1 ) == 1 ? true : false;
 	}
 	
 	/**

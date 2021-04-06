@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 Plugin Name: WP Event Manager
 
 Plugin URI: https://www.wp-eventmanager.com/
@@ -14,9 +14,9 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.19
+Version: 3.1.20
 
-Since: 1.0
+Since: 1.0.0
 
 Requires WordPress Version at least: 4.1
 
@@ -80,7 +80,7 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
-		define( 'EVENT_MANAGER_VERSION', '3.1.19' );
+		define( 'EVENT_MANAGER_VERSION', '3.1.20' );
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -181,7 +181,7 @@ class WP_Event_Manager {
 
         	$locale = apply_filters('plugin_locale', get_locale(), $domain);
 
-		load_textdomain( $domain, WP_LANG_DIR . "/wp-event-manager-stripe-split-payment/".$domain."-" .$locale. ".mo" );
+		load_textdomain( $domain, WP_LANG_DIR . "/wp-event-manager/".$domain."-" .$locale. ".mo" );
 
 		load_plugin_textdomain($domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
@@ -308,7 +308,7 @@ class WP_Event_Manager {
 				'i18n_nextYear' => __( 'Next Year', 'wp-event-manager' )
 		) );
 		//ajax filters js
-		wp_register_script( 'wp-event-manager-ajax-filters', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-ajax-filters.min.js', $ajax_filter_deps, EVENT_MANAGER_VERSION, true );
+		wp_register_script( 'wp-event-manager-ajax-filters', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-ajax-filters.js', $ajax_filter_deps, EVENT_MANAGER_VERSION, true );
 		wp_localize_script( 'wp-event-manager-ajax-filters', 'event_manager_ajax_filters', array(
 			'ajax_url'                => $ajax_url,
 			'is_rtl'                  => is_rtl() ? 1 : 0,

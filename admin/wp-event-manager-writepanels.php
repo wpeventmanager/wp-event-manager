@@ -644,6 +644,33 @@ class WP_Event_Manager_Writepanels {
 				</p>
 				<?php
 			}
+
+
+			/**
+		 * input_number function.
+		 *
+		 * @param mixed $key
+		 * @param mixed $field
+		 */
+		public static function input_url( $key, $field ) {
+			global $thepostid;
+			if ( ! isset( $field['value'] ) ) {
+				$field['value'] = get_post_meta( $thepostid, $key, true );
+			}
+			if ( ! empty( $field['name'] ) ) {
+				$name = $field['name'];
+			} else {
+				$name = $key;
+			}
+			?>
+				<p class="form-field">
+					<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ) ; ?>: <?php if ( ! empty( $field['description'] ) ) : ?><span class="tips" data-tip="<?php echo esc_attr( $field['description'] ); ?>">[?]</span><?php endif; ?></label>
+					<input type="url" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" />
+				</p>
+				<?php
+			}
+
+
 			/**
 			 * input_button function.
 			 *
@@ -935,6 +962,7 @@ class WP_Event_Manager_Writepanels {
 					case 'textarea' :
 						update_post_meta( $post_id, $key,wp_kses_post( stripslashes( $_POST[ $key ] ) ) );
 					break;
+
 					case 'checkbox' :
 						if ( isset( $_POST[ $key ] ) ) {
 							update_post_meta( $post_id, $key, 1 );
@@ -942,6 +970,7 @@ class WP_Event_Manager_Writepanels {
 							update_post_meta( $post_id, $key, 0 );
 						}
 					break;
+
 					case 'date' :
 						if ( isset( $_POST[ $key ] ) ) {
 							$date = $_POST[ $key ];
@@ -950,9 +979,20 @@ class WP_Event_Manager_Writepanels {
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format   , $date );
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 							update_post_meta( $post_id, $key, $date_dbformatted );
-
 						}
 					break;
+
+					case 'time' :
+						if(!empty($_POST[ $key ]))
+						{
+							$time = $_POST[ $key ];
+
+							$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( $time );
+							$time_dbformatted = !empty($time_dbformatted) ? $time_dbformatted : $time;
+							update_post_meta( $post_id, $key, $time_dbformatted );
+						}
+					break;
+
 					default :
 						if ( ! isset( $_POST[ $key ] ) ) {
 							continue 2;

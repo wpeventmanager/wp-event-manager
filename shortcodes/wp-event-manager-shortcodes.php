@@ -69,6 +69,8 @@ class WP_Event_Manager_Shortcodes {
 		
 		if ( is_page() && strstr( $post->post_content, '[event_dashboard' ) ) {
 			$this->event_dashboard_handler();
+                        $this->organizer_dashboard_handler();
+                        $this->venue_dashboard_handler();
 		}
 		elseif ( is_page() && strstr( $post->post_content, '[organizer_dashboard' )) {
 			$this->organizer_dashboard_handler();
@@ -142,7 +144,7 @@ class WP_Event_Manager_Shortcodes {
 
 						// Message
 
-						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been cancelled.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 
@@ -151,7 +153,7 @@ class WP_Event_Manager_Shortcodes {
 						// Check status
 						if ( $event->_cancelled != 1 ) {
 
-							throw new Exception( __( 'This event is not cancelled', 'wp-event-manager' ) );
+							throw new Exception( __( 'This event is not cancelled.', 'wp-event-manager' ) );
 
 						}
 
@@ -159,7 +161,7 @@ class WP_Event_Manager_Shortcodes {
 						update_post_meta( $event_id, '_cancelled', 0 );
 						
 						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been marked as not cancelled', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf( __( '%s has been marked as not cancelled.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 
@@ -173,7 +175,7 @@ class WP_Event_Manager_Shortcodes {
 						if(!in_array($events_status, ['trash']))
 						{
 							// Message
-							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been 	deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
+							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been 	deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
 						}
 						
 
@@ -907,14 +909,47 @@ class WP_Event_Manager_Shortcodes {
 			}
 			
 		} else {
-		    
+			$arr_selected_datetime = [];
+				if(!empty($selected_datetime))
+				{
+					$selected_datetime = explode(',', $selected_datetime);
+
+					$start_date = esc_attr( strip_tags( $selected_datetime[0] ) );
+					$end_date = esc_attr( strip_tags( $selected_datetime[1] ) );
+
+					
+
+					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+		
+					//covert datepicker format  into php date() function date format
+					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+
+					if($start_date == 'today')
+					{
+						$start_date = date($php_date_format);
+					}
+					else if($start_date == 'tomorrow')
+					{
+						$start_date = date($php_date_format, strtotime('+1 day'));
+					}
+
+					$arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $start_date );
+					$arr_selected_datetime['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $end_date );
+
+					$arr_selected_datetime['start'] 	= date_i18n( $php_date_format, strtotime( $arr_selected_datetime['start'] ) );
+					$arr_selected_datetime['end'] 	= date_i18n( $php_date_format, strtotime( $arr_selected_datetime['end'] ) );
+
+					$selected_datetime = json_encode($arr_selected_datetime);
+				}
+
 			$events = get_event_listings( apply_filters( 'event_manager_output_events_args', array(
 
 				'search_location'   => $location,
 
 				'search_keywords'   => $keywords,
 
-				'search_datetimes'  => $datetimes,
+				'search_datetimes'  => array($selected_datetime),
 
 				'search_categories' => !empty($categories) ? $categories : '',
 
@@ -938,6 +973,8 @@ class WP_Event_Manager_Shortcodes {
 
 			if ( $events->have_posts() ) : ?>
 
+				<?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
+
 				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>$layout_type)); ?>			
 
 				<?php while ( $events->have_posts() ) : $events->the_post(); ?>
@@ -949,8 +986,6 @@ class WP_Event_Manager_Shortcodes {
 				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
 				<?php if ( $events->found_posts > $per_page && $show_more ) : ?>
-
-					<?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
 
 					<?php if ( $show_pagination ) : ?>
 
@@ -1353,6 +1388,8 @@ class WP_Event_Manager_Shortcodes {
 					
 				<?php endwhile; ?>
 
+				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
+
 				<?php if ($past_events->found_posts > $per_page) : ?>
 	                <?php if ($show_pagination == "true") : ?>
 	                    <div class="event-organizer-pagination wpem-col-12">
@@ -1500,7 +1537,7 @@ class WP_Event_Manager_Shortcodes {
             )
         );
 
-        $upcomingEvents = new WP_Query($args_upcoming);
+        $upcomingEvents = new WP_Query(apply_filters( 'wpem_single_organizer_upcoming_event_listing_query_args',$args_upcoming));
         wp_reset_query();
 
         $args_current = $args_upcoming;
@@ -1526,7 +1563,7 @@ class WP_Event_Manager_Shortcodes {
             )
         );
 
-        $currentEvents = new WP_Query($args_current);
+        $currentEvents = new WP_Query(apply_filters( 'wpem_single_organizer_current_event_listing_query_args',$args_current));
         wp_reset_query();
 
         $args_past = array(
@@ -1550,7 +1587,7 @@ class WP_Event_Manager_Shortcodes {
                 'compare' => '<'
             )
         );
-        $pastEvents              = new WP_Query($args_past);
+        $pastEvents              = new WP_Query(apply_filters( 'wpem_single_organizer_past_event_listing_query_args',$args_past) );
         wp_reset_query();
 
         do_action('organizer_content_start');
@@ -1814,7 +1851,7 @@ class WP_Event_Manager_Shortcodes {
 			'selected_event_types'     => '',
 		), $atts ) );
 
-		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+		$paged = is_front_page() ? max( 1, get_query_var('page') ) : max( 1, get_query_var('paged') );
 
 		$args = array(
 			'post_type'  	=> 'event_listing',
@@ -1913,6 +1950,8 @@ class WP_Event_Manager_Shortcodes {
 					<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
 					
 				<?php endwhile; ?>
+
+				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
 				<?php if ($upcoming_events->found_posts > $per_page) : ?>
 	                <?php if ($show_pagination == "true") : ?>

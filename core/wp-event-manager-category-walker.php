@@ -33,7 +33,7 @@ class WP_Event_Manager_Category_Walker extends Walker {
 
 			$pad = '';
 
-		$cat_name = apply_filters( 'list_product_cats', $object->name, $object );
+		$cat_name = apply_filters( 'list_event_cats', $object->name, $object );
 
 		$value = isset( $args['value'] ) && $args['value'] == 'id' ? $object->term_id : $object->slug;
 

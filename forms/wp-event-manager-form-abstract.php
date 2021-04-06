@@ -295,6 +295,14 @@ abstract class WP_Event_Manager_Form {
 	 */
 	protected function get_repeated_field( $field_prefix, $fields ) 
 	{	
+		if(empty($fields))
+		return;
+		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+		
+		//covert datepicker format  into php date() function date format
+		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
+
 		$items       = array();
 		$field_keys  = array_keys( $fields );
 
@@ -302,7 +310,7 @@ abstract class WP_Event_Manager_Form {
 			$indexes = array_map( 'absint', $_POST[ 'repeated-row-' . $field_prefix ] );
 			foreach ( $indexes as $index ) {
 				$item = array();
-										
+
 				foreach ( $fields as $key => $field ) {
 					$field_name = $field_prefix . '_' . $key . '_' . $index;
 					
@@ -310,6 +318,34 @@ abstract class WP_Event_Manager_Form {
 						case 'textarea' :
 							$item[ $key ] = wp_kses_post( stripslashes( $_POST[ $field_name ] ) );
 						break;
+
+						case 'date' :
+							if(!empty($_POST[ $field_name ]))
+							{
+								//Convert date and time value into DB formatted format and save eg. 1970-01-01
+								$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $_POST[ $field_name ]);	
+
+								$item[ $key ] = !empty($date_dbformatted) ? $date_dbformatted : $_POST[ $field_name ];
+							}
+							else
+							{
+								$item[ $key ] = '';
+							}
+						break;
+
+						case 'time' :
+							if(!empty($_POST[ $field_name ]))
+							{
+								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( $_POST[ $field_name ] );
+
+								$item[ $key ] = !empty($time_dbformatted) ? $time_dbformatted : $_POST[ $field_name ];
+							}
+							else
+							{
+								$item[ $key ] = '';
+							}
+						break;	
+
 						case 'file' :
 							$file = $this->upload_file( $field_name, $field );
 
@@ -325,16 +361,21 @@ abstract class WP_Event_Manager_Form {
 						case 'checkbox':
 								if(! empty( $_POST[ $field_name ] ) && $_POST[ $field_name ] > 0 )
 								{
-
-										$item[ $key ] = wp_kses_post( stripslashes( $_POST[ $field_name ] ) );			
+									$item[ $key ] = wp_kses_post( stripslashes( $_POST[ $field_name ] ) );			
 								}
 						break;
 
 						default :
-							if ( is_array( $_POST[ $field_name ] ) ) {
-								$item[ $key ] = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $_POST[ $field_name ] ) ) );
-							} else {
-								$item[ $key ] = sanitize_text_field( stripslashes( $_POST[ $field_name ] ) );
+							if(!empty($_POST[ $field_name ]))
+							{
+								if ( is_array( $_POST[ $field_name ] ) ) {
+									$item[ $key ] = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $_POST[ $field_name ] ) ) );
+								} else {
+									$item[ $key ] = sanitize_text_field( stripslashes( $_POST[ $field_name ] ) );
+								}	
+							}
+							else{
+								$item[ $key ] = '';
 							}
 						break;
 					}
@@ -345,6 +386,7 @@ abstract class WP_Event_Manager_Form {
 				$items[] = $item;
 			}
 		}
+
 		return $items;
 
 	}
@@ -357,6 +399,18 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	protected function get_posted_repeated_field( $key, $field ) {
+		if(isset($field['fields']) && !empty($field['fields']))
+		return  $this->get_repeated_field( $key, $field['fields'] );
+	}
+
+	/**
+	 * Get the value of a posted group field
+	 * @since  3.1.19
+	 * @param  string $key
+	 * @param  array $field
+	 * @return string
+	 */
+	protected function get_posted_group_field( $key, $field ) {
 		return  $this->get_repeated_field( $key, $field['fields'] );
 	}
 

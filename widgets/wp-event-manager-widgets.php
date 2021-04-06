@@ -673,8 +673,196 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget {
 
 } //end of widget class
 
+/** 
+ * This widget display Upcoming Events.
+ * @since : 1.0.0
+ */ 
+
+class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget {
+
+   /**
+	* Sets up the widgets name etc
+	* Upcoming events Widget class.
+	* This class handles everything that needs to be handled with the widget:
+ 	* the settings, form, display, and update.  Nice!
+	*/
+
+	public function __construct() {
+
+	   global $wp_post_types;
+
+		$this->widget_cssclass    = 'event_manager widget_past_events';
+
+		$this->widget_description = __( 'Display a list of Past listings on your site.', 'wp-event-manager' );
+
+		$this->widget_id          = 'widget_past_events';
+
+		$this->widget_name        = sprintf( __( 'Past %s', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->name );
+
+		$this->settings           = array(
+
+			'title' => array(
+
+				'type'  => 'text',
+
+				'std'   => sprintf( __( 'Past %s', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->name ),
+
+				'label' => __( 'Title', 'wp-event-manager' )
+			),
+
+			'number' => array(
+
+				'type'  => 'number',
+
+				'step'  => 1,
+
+				'min'   => 1,
+
+				'max'   => '',
+
+				'std'   => 10,
+
+				'label' => __( 'Number of listings to show', 'wp-event-manager' )
+			),
+			'order' => array(
+					
+					'type'  => 'select',
+					
+					'std'   => 10,
+					
+					'label' => __( 'Order', 'wp-event-manager' ),
+					'options'=> array(
+							'ASC' => __( 'Ascending (ASC)', 'wp-event-manager' ),
+							'DESC' => __( 'Descending  (DESC)', 'wp-event-manager' )
+					)
+			),
+			'orderby' => array(
+			
+					'type'  => 'select',
+			
+					'std'   => 1,
+			
+					'label' => __( 'Order by', 'wp-event-manager' ),
+					'options'=> array(
+							'title' => __( 'Title', 'wp-event-manager' ),
+							'ID' => __( 'ID', 'wp-event-manager' ),
+							'name' => __( 'Name', 'wp-event-manager' ),
+							'modified' => __( 'Modified', 'wp-event-manager' ),
+							'parent' => __( 'Parent', 'wp-event-manager' ),
+							'event_start_date' => __( 'Event Start Date', 'wp-event-manager' ),
+							'rand' => __( 'Random', 'wp-event-manager' )
+					)
+			)
+		);
+		
+		$this->register();
+	}
+	
+	/**
+	 * widget function.
+	 *
+	 * @see WP_Widget
+	 * @access public
+	 * @param array $args
+	 * @param array $instance
+	 * @return void
+	 */
+
+	public function widget( $args, $instance ) 
+
+	{
+// 		if ( $this->get_cached_widget( $args ) ) 
+// 		{
+// 			return;
+// 		}
+		
+		ob_start();
+
+		extract( $args );
+
+		if (! empty( $instance['title'] ) )
+		    $title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base ) ;
+		else
+		    $title = sprintf( __( 'Past Events', 'wp-event-manager' ));
+	        
+        if (! empty( $instance['number'] ) )
+            $number = absint( $instance['number'] );
+        else
+            $number = 4 ;
+
+		//$today_date=date('Y-m-d g:i:s');
+		$today_date = current_time('Y-m-d H:i:s');
+		
+		$args = array(
+		    'post_type'   => 'event_listing',
+		    'post_status' => 'publish',
+		    'posts_per_page'    => $number,
+		    'orderby'           => isset( $instance['orderby'] ) ? $instance['orderby'] : 'event_start_date',
+		    'order'             => isset( $instance['order'] ) ? $instance['order'] : 'ASC',
+		    
+		);
+		
+		$args['meta_query'] = array(
+		    array(
+		        'key'     => '_event_start_date',
+		        'value'   => $today_date,
+		        'type'    => 'DATETIME',
+		        'compare' => '<'
+		    ),
+		    array(
+		        'key'     => '_cancelled',
+		        'value'   => '1',
+		        'compare' => '!='
+		    ),
+		);
+
+		if ( 'event_start_date' === $args['orderby'] ) {
+			$args['orderby'] ='meta_value';
+			$args['meta_key'] ='_event_start_date';
+			$args['meta_type'] ='DATETIME';
+		}
+		
+		$events = new WP_Query( $args );
+
+		if ( $events->have_posts() ) : ?>
+
+			<?php echo $before_widget; ?>
+
+			<?php if ( $title ) echo $before_title . $title . $after_title; ?>
+		
+			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
+
+				<?php while ( $events->have_posts() ) : $events->the_post(); ?>
+
+					<?php  get_event_manager_template_part( 'content-widget', 'event_listing' ); ?>
+
+				<?php endwhile; ?>
+
+			</div>		
+
+			<?php echo $after_widget; ?>
+
+		<?php else : ?>
+
+			<?php get_event_manager_template_part( 'content-widget', 'no-events-found' ); ?>
+
+		<?php endif;
+		
+		wp_reset_postdata();
+
+		$content = ob_get_clean();
+
+		echo $content;
+
+// 		$this->cache_widget( $args, $content );
+	}
+
+} //end of widget class
+
 register_widget( 'WP_Event_Manager_Widget_Recent_Events' );
 
 register_widget( 'WP_Event_Manager_Widget_Featured_Events' );
 
 register_widget( 'WP_Event_Manager_Widget_Upcoming_Events' );
+
+register_widget( 'WP_Event_Manager_Widget_Past_Events' );
