@@ -312,7 +312,7 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 == Changelog ==
 
 
-= 3.1.20 [ Apr 5th, 2021 ] =
+= 3.1.20 [ Apr 6th, 2021 ] =
 
 Added - URL field type.
 Fixed - Elementor elements improvements.
