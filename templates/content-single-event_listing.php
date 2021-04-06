@@ -312,7 +312,7 @@ $event = $post;
                                                                 <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php 
 
                                                                 if(isset($field['options'][$field_value]))
-                                                                printf( __( '%s', 'wp-event-manager' ),  $field['options'][$field_value]); 
+                                                                    printf( __( '%s', 'wp-event-manager' ),  $field['options'][$field_value]); 
                                                                 else 
                                                                      printf( __( '%s', 'wp-event-manager' ),$field_value); 
                                                                  ?></p>

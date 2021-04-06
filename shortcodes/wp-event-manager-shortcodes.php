@@ -1851,7 +1851,7 @@ class WP_Event_Manager_Shortcodes {
 			'selected_event_types'     => '',
 		), $atts ) );
 
-		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+		$paged = is_front_page() ? max( 1, get_query_var('page') ) : max( 1, get_query_var('paged') );
 
 		$args = array(
 			'post_type'  	=> 'event_listing',
