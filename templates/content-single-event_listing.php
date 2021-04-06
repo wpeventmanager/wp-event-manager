@@ -309,21 +309,27 @@ $event = $post;
                                                     <?php elseif($field['type'] == 'select') : ?>
                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php printf( __( '%s', 'wp-event-manager' ),  $field_value); ?></p>
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php 
+
+                                                                if(isset($field['options'][$field_value]))
+                                                                printf( __( '%s', 'wp-event-manager' ),  $field['options'][$field_value]); 
+                                                                else 
+                                                                     printf( __( '%s', 'wp-event-manager' ),$field_value); 
+                                                                 ?></p>
                                                             </div>
                                                         </div>
 
-                                                    <?php elseif(isset($child_field['type']) && $child_field['type'] == 'date') : ?>
+                                                    <?php elseif(isset($field['type']) && $field['type'] == 'date') : ?>
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
-                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $child_field['label']); ?> - </strong> <?php echo date_i18n( $date_format, strtotime($field_value)); ?></p>
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php echo date_i18n( $date_format, strtotime($field_value)); ?></p>
                                                                 </div>
                                                             </div>
 
-                                                        <?php elseif(isset($child_field['type']) && $child_field['type'] == 'time') : ?>
+                                                        <?php elseif(isset($field['type']) && $field['type'] == 'time') : ?>
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
-                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $child_field['label']); ?> - </strong> <?php echo date( $time_format, strtotime($field_value)); ?></p>
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?> - </strong> <?php echo date( $time_format, strtotime($field_value)); ?></p>
                                                                 </div>
                                                             </div>
 
