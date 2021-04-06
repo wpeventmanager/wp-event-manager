@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2021-03-24 13:47+0530\n"
-"PO-Revision-Date: 2021-03-24 13:47+0530\n"
+"POT-Creation-Date: 2021-04-06 18:43+0530\n"
+"PO-Revision-Date: 2021-04-06 18:43+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -234,7 +234,7 @@ msgstr ""
 #: external/elementor-widgets/elementor-past-event-listing.php:150
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:150
 #: shortcodes/wp-event-manager-shortcodes.php:306
-#: templates/content-single-event_listing.php:479
+#: templates/content-single-event_listing.php:485
 #: templates/event-dashboard.php:331 templates/event-filters.php:26
 #: templates/event-filters.php:27 widgets/wp-event-manager-widgets.php:235
 msgid "Location"
@@ -384,10 +384,9 @@ msgid "Number"
 msgstr ""
 
 #: admin/wp-event-manager-field-editor.php:40
-#: admin/wp-event-manager-field-editor.php:137
 #: admin/wp-event-manager-form-field-editor-field.php:109
 #: wp-event-manager-template.php:417 wp-event-manager-template.php:418
-#: wp-event-manager-template.php:2461
+#: wp-event-manager-template.php:2464
 msgid "Password"
 msgstr ""
 
@@ -453,10 +452,6 @@ msgstr ""
 
 #: admin/wp-event-manager-field-editor.php:146
 msgid "URL"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:147
-msgid "Group"
 msgstr ""
 
 #: admin/wp-event-manager-field-editor.php:181
@@ -555,16 +550,18 @@ msgstr ""
 #: templates/content-single-event_listing.php:291
 #: templates/content-single-event_listing.php:305
 #: templates/content-single-event_listing.php:312
-#: templates/content-single-event_listing.php:319
-#: templates/content-single-event_listing.php:326
+#: templates/content-single-event_listing.php:315
+#: templates/content-single-event_listing.php:317
+#: templates/content-single-event_listing.php:325
 #: templates/content-single-event_listing.php:332
+#: templates/content-single-event_listing.php:338
 #: templates/organizer/content-single-event_listing-organizer.php:54
 #: templates/organizer/content-single-event_listing-organizer.php:158
 #: templates/organizer/content-single-event_organizer.php:85
 #: templates/organizer/event-organizers.php:59
 #: templates/venue/content-single-event_listing-venue.php:57
 #: templates/venue/content-single-event_venue.php:21
-#: templates/venue/event-venues.php:59 wp-event-manager-template.php:2794
+#: templates/venue/event-venues.php:59 wp-event-manager-template.php:2797
 #, php-format
 msgid "%s"
 msgstr ""
@@ -955,7 +952,7 @@ msgid ""
 msgstr ""
 
 #: admin/wp-event-manager-settings.php:464
-#: templates/content-single-event_listing.php:494
+#: templates/content-single-event_listing.php:500
 msgid "Event Types"
 msgstr ""
 
@@ -1559,19 +1556,19 @@ msgstr ""
 msgid "Any Date"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:23 external/elementor.php:127
+#: core/wp-event-manager-filters.php:23 external/elementor.php:132
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:270
 #: wp-event-manager.php:301
 msgid "Today"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:25 external/elementor.php:128
+#: core/wp-event-manager-filters.php:25 external/elementor.php:133
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:271
 #: wp-event-manager.php:302
 msgid "Tomorrow"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:27 external/elementor.php:129
+#: core/wp-event-manager-filters.php:27 external/elementor.php:134
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:272
 #: wp-event-manager.php:303
 msgid "This Week"
@@ -1582,19 +1579,19 @@ msgstr ""
 msgid "This Weekend"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:31 external/elementor.php:131
+#: core/wp-event-manager-filters.php:31 external/elementor.php:136
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:274
 #: wp-event-manager.php:305
 msgid "This Month"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:33 external/elementor.php:133
+#: core/wp-event-manager-filters.php:33 external/elementor.php:138
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:275
 #: wp-event-manager.php:307
 msgid "This Year"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:35 external/elementor.php:130
+#: core/wp-event-manager-filters.php:35 external/elementor.php:135
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:276
 #: wp-event-manager.php:304
 msgid "Next Week"
@@ -1605,8 +1602,8 @@ msgstr ""
 msgid "Next Weekend"
 msgstr ""
 
-#: core/wp-event-manager-filters.php:39 external/elementor.php:132
-#: external/elementor.php:134
+#: core/wp-event-manager-filters.php:39 external/elementor.php:137
+#: external/elementor.php:139
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:278
 #: wp-event-manager.php:306
 msgid "Next Month"
@@ -2318,24 +2315,24 @@ msgid "Online Event"
 msgstr ""
 
 #: external/elementor-widgets/elementor-single-event-field.php:212
-#: templates/content-single-event_listing.php:422
+#: templates/content-single-event_listing.php:428
 msgid "Event registration closed."
 msgstr ""
 
 #: external/elementor-widgets/elementor-single-event-field.php:248
 #: external/elementor-widgets/elementor-single-event-field.php:249
 #: external/elementor-widgets/elementor-single-event-field.php:252
-#: templates/content-single-event_listing.php:506
-#: templates/content-single-event_listing.php:507
-#: templates/content-single-event_listing.php:510
+#: templates/content-single-event_listing.php:512
+#: templates/content-single-event_listing.php:513
+#: templates/content-single-event_listing.php:516
 msgid "Watch video"
 msgstr ""
 
 #: external/elementor-widgets/elementor-single-event-field.php:344
 #: templates/content-single-event_listing.php:240
 #: templates/content-single-event_listing.php:247
-#: templates/content-single-event_listing.php:341
-#: templates/content-single-event_listing.php:350
+#: templates/content-single-event_listing.php:347
+#: templates/content-single-event_listing.php:356
 msgid "Download"
 msgstr ""
 
@@ -2451,19 +2448,19 @@ msgstr ""
 msgid "Venue Dashboard"
 msgstr ""
 
-#: external/elementor.php:122
+#: external/elementor.php:127
 msgid "Select date range"
 msgstr ""
 
-#: external/elementor.php:123 wp-event-manager.php:297
+#: external/elementor.php:128 wp-event-manager.php:297
 msgid "Apply"
 msgstr ""
 
-#: external/elementor.php:124 wp-event-manager.php:298
+#: external/elementor.php:129 wp-event-manager.php:298
 msgid "Clear"
 msgstr ""
 
-#: external/elementor.php:125 wp-event-manager.php:299 wp-event-manager.php:324
+#: external/elementor.php:130 wp-event-manager.php:299 wp-event-manager.php:324
 #: wp-event-manager.php:336 wp-event-manager.php:348
 msgid "Cancel"
 msgstr ""
@@ -2550,7 +2547,7 @@ msgid "Registration email"
 msgstr ""
 
 #: forms/wp-event-manager-form-submit-event.php:137
-#: wp-event-manager-template.php:401 wp-event-manager-template.php:2479
+#: wp-event-manager-template.php:401 wp-event-manager-template.php:2482
 msgid "you@yourdomain.com"
 msgstr ""
 
@@ -2580,7 +2577,7 @@ msgid "Event Type"
 msgstr ""
 
 #: forms/wp-event-manager-form-submit-event.php:170
-#: templates/content-single-event_listing.php:500
+#: templates/content-single-event_listing.php:506
 msgid "Event Category"
 msgstr ""
 
@@ -2793,7 +2790,7 @@ msgstr ""
 
 #: forms/wp-event-manager-form-submit-organizer.php:153
 #: forms/wp-event-manager-form-submit-venue.php:142
-#: templates/content-single-event_listing.php:537
+#: templates/content-single-event_listing.php:543
 #: templates/organizer/content-single-event_organizer.php:41
 #: templates/organizer/organizer-dashboard.php:70
 #: templates/venue/content-single-event_listing-venue.php:86
@@ -2840,7 +2837,7 @@ msgstr ""
 
 #: forms/wp-event-manager-form-submit-organizer.php:177
 #: forms/wp-event-manager-form-submit-venue.php:166
-#: templates/content-single-event_listing.php:541
+#: templates/content-single-event_listing.php:547
 #: templates/organizer/content-single-event_listing-organizer.php:90
 #: templates/organizer/content-single-event_listing-organizer.php:194
 #: templates/organizer/content-single-event_organizer.php:59
@@ -2924,21 +2921,21 @@ msgstr ""
 
 #: shortcodes/wp-event-manager-shortcodes.php:147
 #, php-format
-msgid "%s has been cancelled"
+msgid "%s has been cancelled."
 msgstr ""
 
 #: shortcodes/wp-event-manager-shortcodes.php:156
-msgid "This event is not cancelled"
+msgid "This event is not cancelled."
 msgstr ""
 
 #: shortcodes/wp-event-manager-shortcodes.php:164
 #, php-format
-msgid "%s has been marked as not cancelled"
+msgid "%s has been marked as not cancelled."
 msgstr ""
 
 #: shortcodes/wp-event-manager-shortcodes.php:178
 #, php-format
-msgid "%s has been \tdeleted"
+msgid "%s has been \tdeleted."
 msgstr ""
 
 #: shortcodes/wp-event-manager-shortcodes.php:185
@@ -2978,11 +2975,11 @@ msgstr ""
 msgid "Load more events"
 msgstr ""
 
-#: shortcodes/wp-event-manager-shortcodes.php:998
+#: shortcodes/wp-event-manager-shortcodes.php:996
 msgid "Load more listings"
 msgstr ""
 
-#: shortcodes/wp-event-manager-shortcodes.php:1087
+#: shortcodes/wp-event-manager-shortcodes.php:1085
 msgid "More info"
 msgstr ""
 
@@ -3072,32 +3069,32 @@ msgstr ""
 msgid "Additional Details"
 msgstr ""
 
-#: templates/content-single-event_listing.php:432
+#: templates/content-single-event_listing.php:438
 #: templates/event-dashboard.php:311
 msgid "Date And Time"
 msgstr ""
 
-#: templates/content-single-event_listing.php:445
+#: templates/content-single-event_listing.php:451
 msgid " to"
 msgstr ""
 
-#: templates/content-single-event_listing.php:472
+#: templates/content-single-event_listing.php:478
 msgid "Registration End Date"
 msgstr ""
 
-#: templates/content-single-event_listing.php:531
+#: templates/content-single-event_listing.php:537
 msgid "Share With Friends"
 msgstr ""
 
-#: templates/content-single-event_listing.php:545
+#: templates/content-single-event_listing.php:551
 msgid "Linkedin"
 msgstr ""
 
-#: templates/content-single-event_listing.php:549
+#: templates/content-single-event_listing.php:555
 msgid "Xing"
 msgstr ""
 
-#: templates/content-single-event_listing.php:553
+#: templates/content-single-event_listing.php:559
 msgid "Pinterest"
 msgstr ""
 
@@ -3612,15 +3609,15 @@ msgstr ""
 msgid "Registration via \"%s\" listing on %s"
 msgstr ""
 
-#: wp-event-manager-template.php:400 wp-event-manager-template.php:2478
+#: wp-event-manager-template.php:400 wp-event-manager-template.php:2481
 msgid "Your email"
 msgstr ""
 
-#: wp-event-manager-template.php:409 wp-event-manager-template.php:2453
+#: wp-event-manager-template.php:409 wp-event-manager-template.php:2456
 msgid "Username"
 msgstr ""
 
-#: wp-event-manager-template.php:428 wp-event-manager-template.php:2471
+#: wp-event-manager-template.php:428 wp-event-manager-template.php:2474
 msgid "Verify Password"
 msgstr ""
 
