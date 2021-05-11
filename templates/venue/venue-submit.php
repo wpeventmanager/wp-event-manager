@@ -28,17 +28,20 @@ global $event_manager;
 		<?php endforeach; ?>
 		<?php do_action( 'submit_venue_form_venue_fields_end' ); ?>
 
-		<div class="wpem-form-footer">
-			<input type="hidden" name="event_manager_form" value="<?php echo $form; ?>" />
-			<input type="hidden" name="venue_id" value="<?php echo esc_attr( $venue_id ); ?>" />
-			<input type="hidden" name="step" value="<?php echo esc_attr( $step ); ?>" />
-			<input type="submit" name="submit_venue" class="wpem-theme-button" value="<?php esc_attr_e( $submit_button_text ); ?>" />
-		</div>
-
 	<?php		
 	}
-	else{
-		get_event_manager_template( 'account-signin.php' );
+	else {
+            $account_required = event_manager_user_requires_account();
+        ?>
+        <div class="wpem-form-group">
+            <div class="field account-sign-in wpem-alert wpem-alert-info">
+                <a href="<?php echo!empty(get_option('event_manager_login_page_url')) ? apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url')) : home_url() . '/wp-login.php'; ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>			
+                <?php if ($account_required) : ?>				
+                    <?php echo apply_filters('submit_event_form_login_required_message', __(' to Submit the List of Venue from your account.', 'wp-event-manager')); ?>
+                <?php endif; ?>		
+            </div>
+        </div>
+    <?php
 	}
 	?>
 </form>
