@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2021-04-06 18:43+0530\n"
-"PO-Revision-Date: 2021-04-06 18:43+0530\n"
+"POT-Creation-Date: 2021-05-13 17:45+0530\n"
+"PO-Revision-Date: 2021-05-13 17:45+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wp-event-manager.php\n"
@@ -385,8 +385,8 @@ msgstr ""
 
 #: admin/wp-event-manager-field-editor.php:40
 #: admin/wp-event-manager-form-field-editor-field.php:109
-#: wp-event-manager-template.php:417 wp-event-manager-template.php:418
-#: wp-event-manager-template.php:2464
+#: wp-event-manager-template.php:416 wp-event-manager-template.php:417
+#: wp-event-manager-template.php:2463
 msgid "Password"
 msgstr ""
 
@@ -561,7 +561,7 @@ msgstr ""
 #: templates/organizer/event-organizers.php:59
 #: templates/venue/content-single-event_listing-venue.php:57
 #: templates/venue/content-single-event_venue.php:21
-#: templates/venue/event-venues.php:59 wp-event-manager-template.php:2797
+#: templates/venue/event-venues.php:59 wp-event-manager-template.php:2796
 #, php-format
 msgid "%s"
 msgstr ""
@@ -1478,8 +1478,8 @@ msgid "Please enter event expiry date"
 msgstr ""
 
 #: admin/wp-event-manager-writepanels.php:137
-#: admin/wp-event-manager-writepanels.php:1074
-#: admin/wp-event-manager-writepanels.php:1221
+#: admin/wp-event-manager-writepanels.php:1083
+#: admin/wp-event-manager-writepanels.php:1230
 msgid "Posted by"
 msgstr ""
 
@@ -1623,14 +1623,14 @@ msgstr ""
 #: core/wp-event-manager-filters.php:75
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:315
-#: wp-event-manager-template.php:522
+#: wp-event-manager-template.php:521
 msgid "Paid"
 msgstr ""
 
 #: core/wp-event-manager-filters.php:77
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:316
-#: wp-event-manager-template.php:524
+#: wp-event-manager-template.php:523
 msgid "Free"
 msgstr ""
 
@@ -2310,7 +2310,7 @@ msgstr ""
 #: templates/content-summary-event_listing.php:1
 #: templates/content-widget-event_listing.php:1
 #: templates/event-dashboard.php:334 templates/event-dashboard.php:379
-#: wp-event-manager-template.php:496
+#: wp-event-manager-template.php:495
 msgid "Online Event"
 msgstr ""
 
@@ -2547,7 +2547,7 @@ msgid "Registration email"
 msgstr ""
 
 #: forms/wp-event-manager-form-submit-event.php:137
-#: wp-event-manager-template.php:401 wp-event-manager-template.php:2482
+#: wp-event-manager-template.php:400 wp-event-manager-template.php:2481
 msgid "you@yourdomain.com"
 msgstr ""
 
@@ -2996,7 +2996,7 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
-#: templates/account-signin.php:11
+#: templates/account-signin.php:11 templates/organizer/organizer-submit.php:55
 msgid "Have an account?"
 msgstr ""
 
@@ -3419,6 +3419,16 @@ msgstr ""
 msgid "Create A New organizer"
 msgstr ""
 
+#: templates/organizer/organizer-submit.php:57
+#: templates/venue/venue-submit.php:44
+msgid "Log In"
+msgstr ""
+
+#: templates/organizer/organizer-submit.php:58
+#: templates/venue/venue-submit.php:45
+msgid " to Submit the List of Organizers from your account."
+msgstr ""
+
 #: templates/organizer/organizer-submitted.php:9
 #, php-format
 msgid ""
@@ -3609,32 +3619,32 @@ msgstr ""
 msgid "Registration via \"%s\" listing on %s"
 msgstr ""
 
-#: wp-event-manager-template.php:400 wp-event-manager-template.php:2481
+#: wp-event-manager-template.php:399 wp-event-manager-template.php:2480
 msgid "Your email"
 msgstr ""
 
-#: wp-event-manager-template.php:409 wp-event-manager-template.php:2456
+#: wp-event-manager-template.php:408 wp-event-manager-template.php:2455
 msgid "Username"
 msgstr ""
 
-#: wp-event-manager-template.php:428 wp-event-manager-template.php:2474
+#: wp-event-manager-template.php:427 wp-event-manager-template.php:2473
 msgid "Verify Password"
 msgstr ""
 
-#: wp-event-manager-template.php:429
+#: wp-event-manager-template.php:428
 msgid "Confirm Password"
 msgstr ""
 
-#: wp-event-manager-template.php:447
+#: wp-event-manager-template.php:446
 msgid "Posted on "
 msgstr ""
 
-#: wp-event-manager-template.php:449 wp-event-manager-template.php:464
+#: wp-event-manager-template.php:448 wp-event-manager-template.php:463
 #, php-format
 msgid "Posted %s ago"
 msgstr ""
 
-#: wp-event-manager-template.php:526
+#: wp-event-manager-template.php:525
 msgid "Paid/Free"
 msgstr ""
 

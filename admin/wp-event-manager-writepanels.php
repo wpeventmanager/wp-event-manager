@@ -993,6 +993,15 @@ class WP_Event_Manager_Writepanels {
 						}
 					break;
 
+					case 'wp-editor' :
+						if(!empty($_POST[ $key ]))
+						{
+							$v_text = wp_kses_post($_POST[ $key ]);
+							update_post_meta( $post_id, $key, $v_text );
+						}
+					break;
+
+
 					default :
 						if ( ! isset( $_POST[ $key ] ) ) {
 							continue 2;
