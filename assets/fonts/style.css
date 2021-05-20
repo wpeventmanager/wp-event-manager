@@ -1518,3 +1518,21 @@ i[class*="wpem-"] {
 .wpem-icon-zoom:before {
   content: "\eaf2";
 }
+.wpem-icon-chatting:before {
+  content: "\eaf3";
+}
+.wpem-icon-event:before {
+  content: "\eaf4";
+}
+.wpem-icon-bell1:before {
+  content: "\eaf5";
+}
+.wpem-icon-cinema:before {
+  content: "\eaf6";
+}
+.wpem-icon-menu5:before {
+  content: "\eaf7";
+}
+.wpem-icon-send:before {
+  content: "\eaf8";
+}
