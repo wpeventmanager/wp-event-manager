@@ -453,7 +453,7 @@ function get_event_listings( $args = array() ) {
 		$query_args['lang'] = pll_current_language();
 	}
 	/** This filter is documented in wp-event-manager.php */
-	$query_args['lang'] = apply_filters( 'wpjm_lang', null );
+	$query_args['lang'] = apply_filters( 'wpem_lang', null );
 	// Filter args
 
 	$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );

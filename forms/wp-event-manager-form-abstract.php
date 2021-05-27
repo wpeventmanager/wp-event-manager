@@ -323,9 +323,9 @@ abstract class WP_Event_Manager_Form {
 							if(!empty($_POST[ $field_name ]))
 							{
 								//Convert date and time value into DB formatted format and save eg. 1970-01-01
-								$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $_POST[ $field_name ]);	
+								//$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $_POST[ $field_name ]);	
 
-								$item[ $key ] = !empty($date_dbformatted) ? $date_dbformatted : $_POST[ $field_name ];
+								$item[ $key ] = sanitize_text_field($_POST[ $field_name ]);
 							}
 							else
 							{
