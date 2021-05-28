@@ -1180,7 +1180,7 @@ function is_wpem_page() {
 	 *
 	 * @since 1.5
 	 *
-	 * @param bool $is_wpjm_page
+	 * @param bool $is_wpem_page
 	 */
 	return apply_filters( 'is_wpem_page', $is_wpem_page );
 }
