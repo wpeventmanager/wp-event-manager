@@ -1536,3 +1536,15 @@ i[class*="wpem-"] {
 .wpem-icon-send:before {
   content: "\eaf8";
 }
+.wpem-icon-cheveron-right:before {
+  content: "\eaf9";
+}
+.wpem-icon-booth:before {
+  content: "\eafa";
+}
+.wpem-icon-counter:before {
+  content: "\eafb";
+}
+.wpem-icon-meeting:before {
+  content: "\eafc";
+}
