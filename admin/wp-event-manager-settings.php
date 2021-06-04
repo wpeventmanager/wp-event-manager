@@ -807,7 +807,7 @@ class WP_Event_Manager_Settings {
 
 										case "textarea" :
 
-											?><textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="3" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea><?php
+											?><textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="<?php echo isset($option['row']) ? $option['row'] : 3; ?>" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea><?php
 
 											if ( $option['desc'] )
 

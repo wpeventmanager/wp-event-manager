@@ -1075,8 +1075,11 @@ function wp_event_manager_create_account( $args, $deprecated = '' ) {
 	do_action( 'event_manager_notify_new_user', $user_id, $password, $new_user );
 	
 	// Login
-	wp_set_auth_cookie( $user_id, true, is_ssl() );
-	$current_user = get_user_by( 'id', $user_id );
+	if(!is_user_logged_in()){
+		wp_set_auth_cookie( $user_id, true, is_ssl() );
+		$current_user = get_user_by( 'id', $user_id );
+	}
+	
 	
 	return true;
 }
