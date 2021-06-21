@@ -940,6 +940,16 @@ class WP_Event_Manager_Settings {
 										}
 
 										break;
+										case "button" :
+
+											?><button class="button" id="setting-<?php echo $option['name']; ?>" class="regular-text" type="button"  name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> ><?php echo $option['cb_label']; ?></button><?php
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+										}
+
+										break;
 										
 										case "multi-select-checkbox":
 										    $this->create_multi_select_checkbox($option);
