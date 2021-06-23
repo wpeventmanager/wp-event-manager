@@ -21,6 +21,54 @@ i[class*="wpem-"] {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.wpem-icon-people:before {
+  content: "\eafe";
+}
+.wpem-icon-events:before {
+  content: "\eafd";
+}
+.wpem-icon-users2:before {
+  content: "\eafe";
+}
+.wpem-icon-reception:before {
+  content: "\eb01";
+}
+.wpem-icon-expo:before {
+  content: "\eb02";
+}
+.wpem-icon-lounge:before {
+  content: "\eb03";
+}
+.wpem-icon-sessions:before {
+  content: "\eb04";
+}
+.wpem-icon-booth:before {
+  content: "\eafa";
+}
+.wpem-icon-counter:before {
+  content: "\eafb";
+}
+.wpem-icon-meeting:before {
+  content: "\eafc";
+}
+.wpem-icon-menu5:before {
+  content: "\eaf7";
+}
+.wpem-icon-send:before {
+  content: "\eaf8";
+}
+.wpem-icon-chatting:before {
+  content: "\eaf3";
+}
+.wpem-icon-event:before {
+  content: "\eaf4";
+}
+.wpem-icon-bell1:before {
+  content: "\eaf5";
+}
+.wpem-icon-cinema:before {
+  content: "\eaf6";
+}
 .wpem-icon-home:before {
   content: "\e900";
 }
@@ -1518,33 +1566,6 @@ i[class*="wpem-"] {
 .wpem-icon-zoom:before {
   content: "\eaf2";
 }
-.wpem-icon-chatting:before {
-  content: "\eaf3";
-}
-.wpem-icon-event:before {
-  content: "\eaf4";
-}
-.wpem-icon-bell1:before {
-  content: "\eaf5";
-}
-.wpem-icon-cinema:before {
-  content: "\eaf6";
-}
-.wpem-icon-menu5:before {
-  content: "\eaf7";
-}
-.wpem-icon-send:before {
-  content: "\eaf8";
-}
 .wpem-icon-cheveron-right:before {
   content: "\eaf9";
-}
-.wpem-icon-booth:before {
-  content: "\eafa";
-}
-.wpem-icon-counter:before {
-  content: "\eafb";
-}
-.wpem-icon-meeting:before {
-  content: "\eafc";
 }
