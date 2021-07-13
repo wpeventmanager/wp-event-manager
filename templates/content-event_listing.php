@@ -65,6 +65,7 @@ $thumbnail  = get_event_thumbnail($post,'full');
                     </div>
 
                     <div class="wpem-event-details">
+                        <?php do_action('wpem_event_listing_event_detail_start');?>
                         <div class="wpem-event-title"><h3 class="wpem-heading-text"><?php echo esc_html(get_the_title()); ?></h3></div>
 
                         <div class="wpem-event-date-time">
@@ -127,6 +128,7 @@ $thumbnail  = get_event_thumbnail($post,'full');
                             </div>
                         <?php } ?>
                         <!-- Show in list View // Hide in Box View -->
+                        <?php do_action('wpem_event_listing_event_detail_end');?>
                     </div>
                 </div>   
             </a>
