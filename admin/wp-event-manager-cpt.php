@@ -457,7 +457,6 @@ class WP_Event_Manager_CPT {
 		
 			unset( $columns["event_organizer"] );
 		}
-		
 		return $columns;
 	}
 	
