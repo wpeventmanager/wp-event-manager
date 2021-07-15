@@ -20,7 +20,51 @@ i[class*="wpem-"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.wpem-icon-bronze-medal:before {
+  content: "\eb11";
+}
+.wpem-icon-vidoe-call:before {
+  content: "\eb10";
+}
+.wpem-icon-constant-contact:before {
+  content: "\eb0f";
+}
+.wpem-icon-send1:before {
+  content: "\eaff";
+}
+.wpem-icon-sponsors:before {
+  content: "\eb00";
+}
+.wpem-icon-announcement:before {
+  content: "\eb05";
+}
+.wpem-icon-bell2:before {
+  content: "\eb06";
+}
+.wpem-icon-close-round:before {
+  content: "\eb07";
+}
+.wpem-icon-emoji-smile:before {
+  content: "\eb08";
+}
+.wpem-icon-feed1:before {
+  content: "\eb09";
+}
+.wpem-icon-filter1:before {
+  content: "\eb0a";
+}
+.wpem-icon-grid:before {
+  content: "\eb0b";
+}
+.wpem-icon-messages:before {
+  content: "\eb0c";
+}
+.wpem-icon-0mic-mute:before {
+  content: "\eb0d";
+}
+.wpem-icon-raise-hands:before {
+  content: "\eb0e";
+}
 .wpem-icon-people:before {
   content: "\eafe";
 }
