@@ -20,6 +20,69 @@ i[class*="wpem-"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.wpem-icon-message-square:before {
+  content: "\eb24";
+}
+.wpem-icon-message-circle:before {
+  content: "\eb25";
+}
+.wpem-icon-bar:before {
+  content: "\eb26";
+}
+.wpem-icon-booth1:before {
+  content: "\eb12";
+}
+.wpem-icon-close:before {
+  content: "\eb13";
+}
+.wpem-icon-eye1:before {
+  content: "\eb14";
+}
+.wpem-icon-eye-off:before {
+  content: "\eb15";
+}
+.wpem-icon-maximize:before {
+  content: "\eb16";
+}
+.wpem-icon-mic1:before {
+  content: "\eb17";
+}
+.wpem-icon-mic-off:before {
+  content: "\eb18";
+}
+.wpem-icon-minimize:before {
+  content: "\eb19";
+}
+.wpem-icon-phone1:before {
+  content: "\eb1a";
+}
+.wpem-icon-phone-off:before {
+  content: "\eb1b";
+}
+.wpem-icon-pin:before {
+  content: "\eb1c";
+}
+.wpem-icon-pin-off:before {
+  content: "\eb1d";
+}
+.wpem-icon-screenshare:before {
+  content: "\eb1e";
+}
+.wpem-icon-screenshare-off:before {
+  content: "\eb1f";
+}
+.wpem-icon-settings:before {
+  content: "\eb20";
+}
+.wpem-icon-trash:before {
+  content: "\eb21";
+}
+.wpem-icon-videoicon:before {
+  content: "\eb22";
+}
+.wpem-icon-videooff:before {
+  content: "\eb23";
+}
 .wpem-icon-bronze-medal:before {
   content: "\eb11";
 }
