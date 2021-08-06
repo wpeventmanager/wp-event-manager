@@ -1374,7 +1374,7 @@ class WP_Event_Manager_Post_Types {
 		if ( event_manager_allow_indexing_event_listing() ) {
 			return;
 		}
-		wp_no_robots();
+		add_filter( 'wp_robots', 'wp_robots_no_robots' );
 	}
 	
 	/**
