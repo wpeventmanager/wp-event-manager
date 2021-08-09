@@ -502,7 +502,7 @@ class WP_Event_Manager_Ajax {
 		{
 			$data = [
 				'code' => 404,
-				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Organizer Name is a required field') . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Organizer Name is a required field.') . '</div>',
 			];
 		}
 
@@ -571,7 +571,7 @@ class WP_Event_Manager_Ajax {
 		{
 			$data = [
 				'code' => 404,
-				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Venue Name is a required field') . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Venue Name is a required field.') . '</div>',
 			];
 		}
 

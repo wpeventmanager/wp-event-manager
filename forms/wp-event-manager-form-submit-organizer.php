@@ -292,7 +292,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		        foreach ( $group_fields as $key => $field ) 
               	{
     				if ( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {	    
-    					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'wp-event-manager' ), $field['label'] ) );
+    					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field.', 'wp-event-manager' ), $field['label'] ) );
     				}
 
 				    if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) {
