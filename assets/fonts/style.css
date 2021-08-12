@@ -20,6 +20,12 @@ i[class*="wpem-"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.wpem-icon-file-share:before {
+  content: "\eb27";
+}
+.wpem-icon-file-share-off:before {
+  content: "\eb28";
+}
 .wpem-icon-message-square:before {
   content: "\eb24";
 }
