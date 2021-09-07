@@ -20,6 +20,21 @@ i[class*="wpem-"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.wpem-icon-salesforce:before {
+  content: "\eb29";
+}
+.wpem-icon-zapier:before {
+  content: "\eb2a";
+}
+.wpem-icon-zoho:before {
+  content: "\eb2b";
+}
+.wpem-icon-hubspot:before {
+  content: "\eb2c";
+}
+.wpem-icon-active-campaign:before {
+  content: "\eb2d";
+}
 .wpem-icon-file-share:before {
   content: "\eb27";
 }
