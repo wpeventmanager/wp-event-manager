@@ -307,6 +307,7 @@
 											</div>
 										</div>
 										<div class="wpem-dashboard-event-datetime-location">
+											<?php do_action('wpem_event_dashboard_event_info_start',$event);?>
 											<div class="wpem-dashboard-event-date-time">
 												<div class="wpem-dashboard-event-placeholder"><strong><?php _e('Date And Time', 'wp-event-manager') ?></strong></div> 
 												<?php display_event_start_date ( '', '', true, $event );?> <?php
@@ -337,6 +338,9 @@
 												endif;
 												?>
 											</div>
+											<?php do_action('wpem_event_dashboard_event_info_end',$event);?>
+											
+
 										</div>
 
 										<section class="wpem-event-dashboard-information wpem-event-dashboard-information-toggle"><a href="#" class="hide_section" title="<?php _e( 'Hide', 'wp-event-manager' ); ?>"><?php _e( 'Hide', 'wp-event-manager' ); ?></a>
