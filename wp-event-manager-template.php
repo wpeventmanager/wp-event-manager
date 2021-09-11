@@ -521,8 +521,16 @@ function get_event_ticket_option( $post = null ) {
 		$ticket_option = __('Paid','wp-event-manager');
 	elseif($post->_event_ticket_options == 'free')
 		$ticket_option = __('Free','wp-event-manager');
+	elseif($post->_event_ticket_options == 'donation')
+		$ticket_option = __('Donation','wp-event-manager');
 	elseif($post->_event_ticket_options == 'paid/free')
 		$ticket_option = __('Paid/Free','wp-event-manager');
+	elseif($post->_event_ticket_options == 'paid/donation')
+		$ticket_option = __('Paid/Donation','wp-event-manager');
+	elseif($post->_event_ticket_options == 'free/donation')
+		$ticket_option = __('Free/Donation','wp-event-manager');
+	elseif($post->_event_ticket_options == 'paid/free/donation')
+		$ticket_option = __('Paid/Free/Donation','wp-event-manager');
 	elseif($post->_event_ticket_options == '')
 		$ticket_option = '';
 

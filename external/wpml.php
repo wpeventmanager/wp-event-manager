@@ -14,6 +14,7 @@ function wpml_event_manager_init() {
 	add_filter( 'event_manager_page_id', 'wpml_event_manager_page_id' );
 }
 add_action( 'wpml_loaded', 'wpml_event_manager_init' );
+add_action( 'wpml_loaded', 'wpml_event_manager_set_language' );
 
 /**
  * Sets Event Manager's language if it is sent in the Ajax request.
@@ -21,10 +22,14 @@ add_action( 'wpml_loaded', 'wpml_event_manager_init' );
  * @since 1.6
  */
 function wpml_event_manager_set_language() {
-	if ( ( strstr( $_SERVER['REQUEST_URI'], '/em-ajax/' ) || ! empty( $_GET['em-ajax'] ) ) && isset( $_POST['lang'] ) ) {
+
+	$input_lang = isset( $_POST['lang'] ) ? sanitize_text_field( wp_unslash( $_POST['lang'] ) ) : false;
+
+	if ( isset( $_SERVER['REQUEST_URI'] ) && ( strstr( $_SERVER['REQUEST_URI'], '/em-ajax/' ) || ! empty( $_GET['em-ajax'] ) ) && $input_lang)  {
 		do_action( 'wpml_switch_language', sanitize_text_field( $_POST['lang'] ) );
 	}
 }
+
 
 /**
  * Returns WPML's current language.

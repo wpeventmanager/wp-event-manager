@@ -240,7 +240,6 @@ class Elementor_Event_Tag extends Tag {
                 <?php
             } else {
                 $field_value = get_post_meta($post_id, '_' . $event_tag, true);
-error_log(print_r($field_value,true));
                 if (!class_exists('WP_Event_Manager_Form_Submit_Event')) {
                     include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
                     include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );

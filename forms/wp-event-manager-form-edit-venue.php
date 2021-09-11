@@ -114,7 +114,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 		$this->fields = apply_filters( 'submit_venue_form_fields_get_venue_data', $this->fields, $venue );
 
-		//wp_enqueue_script( 'wp-event-manager-event-submission' );
+		wp_enqueue_script( 'wp-event-manager-event-submission' );
 
 		get_event_manager_template( 'venue-submit.php', 
 			array(

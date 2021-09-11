@@ -20,7 +20,183 @@ i[class*="wpem-"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.wpem-icon-salesforce:before {
+  content: "\eb29";
+}
+.wpem-icon-zapier:before {
+  content: "\eb2a";
+}
+.wpem-icon-zoho:before {
+  content: "\eb2b";
+}
+.wpem-icon-hubspot:before {
+  content: "\eb2c";
+}
+.wpem-icon-active-campaign:before {
+  content: "\eb2d";
+}
+.wpem-icon-file-share:before {
+  content: "\eb27";
+}
+.wpem-icon-file-share-off:before {
+  content: "\eb28";
+}
+.wpem-icon-message-square:before {
+  content: "\eb24";
+}
+.wpem-icon-message-circle:before {
+  content: "\eb25";
+}
+.wpem-icon-bar:before {
+  content: "\eb26";
+}
+.wpem-icon-booth1:before {
+  content: "\eb12";
+}
+.wpem-icon-close:before {
+  content: "\eb13";
+}
+.wpem-icon-eye1:before {
+  content: "\eb14";
+}
+.wpem-icon-eye-off:before {
+  content: "\eb15";
+}
+.wpem-icon-maximize:before {
+  content: "\eb16";
+}
+.wpem-icon-mic1:before {
+  content: "\eb17";
+}
+.wpem-icon-mic-off:before {
+  content: "\eb18";
+}
+.wpem-icon-minimize:before {
+  content: "\eb19";
+}
+.wpem-icon-phone1:before {
+  content: "\eb1a";
+}
+.wpem-icon-phone-off:before {
+  content: "\eb1b";
+}
+.wpem-icon-pin:before {
+  content: "\eb1c";
+}
+.wpem-icon-pin-off:before {
+  content: "\eb1d";
+}
+.wpem-icon-screenshare:before {
+  content: "\eb1e";
+}
+.wpem-icon-screenshare-off:before {
+  content: "\eb1f";
+}
+.wpem-icon-settings:before {
+  content: "\eb20";
+}
+.wpem-icon-trash:before {
+  content: "\eb21";
+}
+.wpem-icon-videoicon:before {
+  content: "\eb22";
+}
+.wpem-icon-videooff:before {
+  content: "\eb23";
+}
+.wpem-icon-bronze-medal:before {
+  content: "\eb11";
+}
+.wpem-icon-vidoe-call:before {
+  content: "\eb10";
+}
+.wpem-icon-constant-contact:before {
+  content: "\eb0f";
+}
+.wpem-icon-send1:before {
+  content: "\eaff";
+}
+.wpem-icon-sponsors:before {
+  content: "\eb00";
+}
+.wpem-icon-announcement:before {
+  content: "\eb05";
+}
+.wpem-icon-bell2:before {
+  content: "\eb06";
+}
+.wpem-icon-close-round:before {
+  content: "\eb07";
+}
+.wpem-icon-emoji-smile:before {
+  content: "\eb08";
+}
+.wpem-icon-feed1:before {
+  content: "\eb09";
+}
+.wpem-icon-filter1:before {
+  content: "\eb0a";
+}
+.wpem-icon-grid:before {
+  content: "\eb0b";
+}
+.wpem-icon-messages:before {
+  content: "\eb0c";
+}
+.wpem-icon-0mic-mute:before {
+  content: "\eb0d";
+}
+.wpem-icon-raise-hands:before {
+  content: "\eb0e";
+}
+.wpem-icon-people:before {
+  content: "\eafe";
+}
+.wpem-icon-events:before {
+  content: "\eafd";
+}
+.wpem-icon-users2:before {
+  content: "\eafe";
+}
+.wpem-icon-reception:before {
+  content: "\eb01";
+}
+.wpem-icon-expo:before {
+  content: "\eb02";
+}
+.wpem-icon-lounge:before {
+  content: "\eb03";
+}
+.wpem-icon-sessions:before {
+  content: "\eb04";
+}
+.wpem-icon-booth:before {
+  content: "\eafa";
+}
+.wpem-icon-counter:before {
+  content: "\eafb";
+}
+.wpem-icon-meeting:before {
+  content: "\eafc";
+}
+.wpem-icon-menu5:before {
+  content: "\eaf7";
+}
+.wpem-icon-send:before {
+  content: "\eaf8";
+}
+.wpem-icon-chatting:before {
+  content: "\eaf3";
+}
+.wpem-icon-event:before {
+  content: "\eaf4";
+}
+.wpem-icon-bell1:before {
+  content: "\eaf5";
+}
+.wpem-icon-cinema:before {
+  content: "\eaf6";
+}
 .wpem-icon-home:before {
   content: "\e900";
 }
@@ -1517,4 +1693,7 @@ i[class*="wpem-"] {
 }
 .wpem-icon-zoom:before {
   content: "\eaf2";
+}
+.wpem-icon-cheveron-right:before {
+  content: "\eaf9";
 }

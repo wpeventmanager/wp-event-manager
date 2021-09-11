@@ -453,7 +453,7 @@ function get_event_listings( $args = array() ) {
 		$query_args['lang'] = pll_current_language();
 	}
 	/** This filter is documented in wp-event-manager.php */
-	$query_args['lang'] = apply_filters( 'wpjm_lang', null );
+	$query_args['lang'] = apply_filters( 'wpem_lang', null );
 	// Filter args
 
 	$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );
@@ -1075,8 +1075,11 @@ function wp_event_manager_create_account( $args, $deprecated = '' ) {
 	do_action( 'event_manager_notify_new_user', $user_id, $password, $new_user );
 	
 	// Login
-	wp_set_auth_cookie( $user_id, true, is_ssl() );
-	$current_user = get_user_by( 'id', $user_id );
+	if(!is_user_logged_in()){
+		wp_set_auth_cookie( $user_id, true, is_ssl() );
+		$current_user = get_user_by( 'id', $user_id );
+	}
+	
 	
 	return true;
 }
@@ -1180,7 +1183,7 @@ function is_wpem_page() {
 	 *
 	 * @since 1.5
 	 *
-	 * @param bool $is_wpjm_page
+	 * @param bool $is_wpem_page
 	 */
 	return apply_filters( 'is_wpem_page', $is_wpem_page );
 }
@@ -1934,6 +1937,8 @@ function get_all_event_organizer($user_id = '', $args = [])
 					'post_type'   => 'event_organizer',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
+					'suppress_filters' => 0
+
 				);
 
 	if( isset($user_id) && !empty($user_id) && !is_admin() )
@@ -2297,4 +2302,51 @@ function get_event_order_by()
 			];
 
 	return apply_filters('get_event_order_by_args', $args);
+}
+
+
+
+function wpem_convert_php_to_moment_format($format)
+{
+    $replacements = [
+        'd' => 'DD',
+        'D' => 'ddd',
+        'j' => 'D',
+        'l' => 'dddd',
+        'N' => 'E',
+        'S' => 'o',
+        'w' => 'e',
+        'z' => 'DDD',
+        'W' => 'W',
+        'F' => 'MMMM',
+        'm' => 'MM',
+        'M' => 'MMM',
+        'n' => 'M',
+        't' => '', // no equivalent
+        'L' => '', // no equivalent
+        'o' => 'YYYY',
+        'Y' => 'YYYY',
+        'y' => 'YY',
+        'a' => 'a',
+        'A' => 'A',
+        'B' => '', // no equivalent
+        'g' => 'h',
+        'G' => 'H',
+        'h' => 'hh',
+        'H' => 'HH',
+        'i' => 'mm',
+        's' => 'ss',
+        'u' => 'SSS',
+        'e' => 'zz', // deprecated since version 1.6.0 of moment.js
+        'I' => '', // no equivalent
+        'O' => '', // no equivalent
+        'P' => '', // no equivalent
+        'T' => '', // no equivalent
+        'Z' => '', // no equivalent
+        'c' => '', // no equivalent
+        'r' => '', // no equivalent
+        'U' => 'X',
+    ];
+    $momentFormat = strtr($format, $replacements);
+    return $momentFormat;
 }

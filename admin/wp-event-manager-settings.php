@@ -807,7 +807,7 @@ class WP_Event_Manager_Settings {
 
 										case "textarea" :
 
-											?><textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="3" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea><?php
+											?><textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="<?php echo isset($option['row']) ? $option['row'] : 3; ?>" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea><?php
 
 											if ( $option['desc'] )
 
@@ -940,6 +940,16 @@ class WP_Event_Manager_Settings {
 										}
 
 										break;
+										case "button" :
+
+											?><button class="button" id="setting-<?php echo $option['name']; ?>" class="regular-text" type="button"  name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> ><?php echo $option['cb_label']; ?></button><?php
+
+											if ( $option['desc'] ) {
+
+												echo ' <p class="description">' . $option['desc'] . '</p>';
+										}
+
+										break;
 										
 										case "multi-select-checkbox":
 										    $this->create_multi_select_checkbox($option);
@@ -963,7 +973,7 @@ class WP_Event_Manager_Settings {
 					 </div>  <!-- .admin-setting-left -->
 
 			    </form>
-			    
+			    <?php do_action('wpem_admin_seting_side_box_start');?>
 	            <div id="plugin_info" class="box-info">
 
 	            	<h3><span><?php _e('Helpful Resources', 'wp-event-manager'); ?></span></h3>
@@ -1004,6 +1014,7 @@ class WP_Event_Manager_Settings {
 						<span class="light-grey"><?php _e('Powered By', 'wp-event-manager'); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
 					</div>
 	            </div>
+	            <?php do_action('wpem_admin_seting_side_box_end');?>
 
 	        </div>
 	    </div>
