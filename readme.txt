@@ -4,8 +4,8 @@ Contributors: wpeventmanager,ashokdudhat,hiteshmakvana,sapnamd,priyagoenka,kisha
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: event manager, calendar, Event, events, event management, google maps, registration, maps, listings
 Requires at least: 4.1
-Tested up to: 5.7.2
-Stable tag: 3.1.21
+Tested up to: 5.8.1
+Stable tag: 3.1.22
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -311,6 +311,12 @@ If you wish to be notified of new postings on your site you can use a plugin suc
 
 == Changelog ==
 
+
+= 3.1.22 [ Sep 11th, 2021 ] =
+
+Fixed - Expo and virtual compatiblitity.
+Fixed - Date format issue.
+Fixed - some js and css tweaks.
 
 = 3.1.21 [ May 13th, 2021 ] =
 
