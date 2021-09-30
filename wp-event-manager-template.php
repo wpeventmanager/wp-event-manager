@@ -682,6 +682,7 @@ function display_event_banner( $size = 'full', $default = null, $post = null ) {
 				
 			$banner = event_manager_get_resized_image( $banner, $size );
 		}
+		echo '<link rel="image_src" href="' . esc_attr( $banner ) . '"/>';
 		echo '<img itemprop="image" content="' . esc_attr( $banner ) . '" src="' . esc_attr( $banner ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
 
 	} else if ( $default ) {
