@@ -1,6 +1,8 @@
-<?php wp_enqueue_style( 'wp-event-manager-jquery-ui-daterangepicker' ); ?>
+<!-- <?php wp_enqueue_style( 'wp-event-manager-jquery-ui-daterangepicker' ); ?>
 <?php wp_enqueue_style( 'wp-event-manager-jquery-ui-daterangepicker-style' ); ?>
-<?php wp_enqueue_script( 'wp-event-manager-jquery-ui-daterangepicker' ); ?>
+<?php wp_enqueue_script( 'wp-event-manager-jquery-ui-daterangepicker' ); ?> -->
+<?php wp_enqueue_style( 'wp-event-manager-lightpick-datepicker-style' ); ?>
+<?php wp_enqueue_script( 'wp-event-manager-lightpick-datepicker' ); ?>
 <?php wp_enqueue_script( 'wp-event-manager-ajax-filters' ); ?>
 
 <?php do_action( 'event_manager_event_filters_before', $atts ); ?>

@@ -1199,7 +1199,7 @@ input.wpem-theme-button:hover span {
   border-radius: 4px;
 }
 .wpem-single-event-page .wpem-single-event-wrapper {
-  border: 1px solid #e4e4e4;
+  border: 1px solid var(--wpem-gray-border-color);
 }
 .wpem-single-event-page .event-manager-info {
   border: 1px solid var(--wpem-gray-border-color);
@@ -1328,7 +1328,7 @@ input.wpem-theme-button:hover span {
   top: 0;
   height: 100%;
   width: 1px;
-  background: #e4e4e4;
+  background: var(--wpem-gray-border-color);
 }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-body-content .wpem-heading-text {
   font-size: 20px;
@@ -3128,7 +3128,6 @@ p.post-submitted-success-green-message a {
 .wpem-main-vmenu-dashboard-nav .wpem-main-vmenu-dashboard-ul .wpem-main-vmenu-dashboard-li .wpem-main-vmenu-dashboard-link {
   display: flex;
   align-items: center;
-  background: var(--wpem-white-color);
   padding: 10px 15px;
   color: var(--wpem-dark-color);
   font-size: 16px;
