@@ -4,6 +4,16 @@ var EventAjaxFilters = function() {
     return {
         init: function() {
             Common.logInfo("EventAjaxFilters.init...");
+
+            //more filters
+             if (jQuery('.wpem-search-event-more-filter').length > 0) {
+                //hide advance filter
+                jQuery('.wpem-event-advace-filter').hide();
+                jQuery('.wpem-search-event-more-filter').on('click',function(){
+                    jQuery('.wpem-event-advace-filter').toggle();
+                })
+             }
+
             if (jQuery.isFunction(jQuery.fn.chosen)) {
                 if (event_manager_ajax_filters.is_rtl == 1) {
                     jQuery('select[name^="search_datetimes"]').addClass('chosen-rtl');
