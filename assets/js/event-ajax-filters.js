@@ -10,7 +10,7 @@ var EventAjaxFilters = function() {
                 //hide advance filter
                 jQuery('.wpem-event-advace-filter').hide();
                 jQuery('.wpem-search-event-more-filter').on('click',function(){
-                    jQuery('.wpem-event-advace-filter').toggle();
+                    jQuery('.wpem-event-advace-filter').slideToggle( "slow");
                 })
              }
 
