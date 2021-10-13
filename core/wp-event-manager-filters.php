@@ -18,7 +18,7 @@ class WP_Event_Manager_Filters {
 	{	
 		$datetimes=array();		
 
-		$datetimes["datetime_any"]=__("Any Date",'wp-event-manager');
+		//$datetimes["datetime_any"]=__("Any Date",'wp-event-manager');
 
 		$datetimes["datetime_today"]=__("Today",'wp-event-manager');
 
@@ -58,7 +58,7 @@ class WP_Event_Manager_Filters {
 		}
 		else
 		{
-		  return  $datetimes["datetime_any"];
+		  return  $datetimes["datetime_thismonth"];
 		}		
 	}
 

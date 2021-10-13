@@ -259,7 +259,7 @@
 .wpem-form-wrapper .wpem-form-group select,
 .wpem-form-wrapper .wpem-form-group select optgroup,
 .wpem-form-wrapper .wpem-form-group textarea {
-  height: 45px;
+  height: 42px;
   width: 100%;
   margin: 0;
   border: 1px solid var(--wpem-gray-border-color);
@@ -450,7 +450,7 @@
 .wpem-form-wrapper .chosen-container .chosen-single {
   padding: 0 15px;
   font-size: 16px;
-  line-height: 43px;
+  line-height: 42px;
   font-weight: 400;
   color: var(--wpem-dark-color);
   background: 0 0;
@@ -558,7 +558,7 @@ input.wpem-theme-button {
   width: auto;
   text-transform: uppercase;
   font-weight: 600;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 16px;
   line-height: 1.42;
   margin: 5px 0;
@@ -1064,7 +1064,7 @@ input.wpem-theme-button:hover span {
   padding: 30px 0 20px;
 }
 .wpem-event-listing-calendar-view #googleMap {
-  margin: 0 15px;
+  margin: 0 15px 25px;
 }
 .event_listings a.load_more_events {
   text-align: center;
@@ -1082,23 +1082,6 @@ input.wpem-theme-button:hover span {
 .event_listings a.load_more_events:hover {
     background: var(--wpem-gray-color);
     color: var(--wpem-white-color);
-}
-.wpem-calendar-view-container .calendar-contents-container table.calendar th,
-.wpem-calendar-widget-wrapper.wpem-calendar-view-container .calendar-contents-container table.calendar td {
-  height: auto;
-}
-.wpem-calendar-view-container .calendar-widget-event-details-link {
-  background: var(--wpem-dark-color) !important;
-  padding: 4px;
-  border-radius: 100%;
-  height: 25px;
-  width: 25px;
-  font-size: 13px;
-  font-weight: 600;
-  display: inline-block;
-  color: var(--wpem-white-color) !important;
-  text-align: center;
-  line-height: 19px;
 }
 .wpem-single-event-widget {
   margin-bottom: 30px;
