@@ -8,9 +8,9 @@ var EventAjaxFilters = function() {
             //more filters
              if (jQuery('.wpem-search-event-more-filter').length > 0) {
                 //hide advance filter
-                jQuery('.wpem-event-advace-filter').hide();
+                jQuery('.wpem-event-advance-filter').hide();
                 jQuery('.wpem-search-event-more-filter').on('click',function(){
-                    jQuery('.wpem-event-advace-filter').slideToggle( "slow");
+                    jQuery('.wpem-event-advance-filter').slideToggle( "slow");
                 })
              }
 

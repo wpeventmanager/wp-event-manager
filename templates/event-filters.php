@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<div class="wpem-event-advace-filter">
+		<div class="wpem-event-advance-filter">
 			<div class="wpem-row">
 				<div class="wpem-col-sm-4">
 					<div class="wpem-form-group">
