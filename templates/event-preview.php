@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <form method="post" id="event_preview" action="<?php echo esc_url( $form->get_action() ); ?>">
 	<div class="event_listing_preview_title">
-		<input type="submit" name="edit_event" class="button event-manager-button-edit-listing" value="<?php esc_attr_e( '← Edit listing', 'wp-event-manager' ); ?>" />
+		<input type="submit" name="edit_event" class="button event-manager-button-edit-listing wpem-theme-button" value="<?php esc_attr_e( '← Edit listing', 'wp-event-manager' ); ?>" />
 		<h2><?php esc_html_e( 'Preview', 'wp-event-manager' ); ?></h2>
-		<input type="submit" name="continue" id="event_preview_submit_button" class="button event-manager-button-submit-listing" value="<?php echo esc_attr( apply_filters( 'submit_event_step_preview_submit_text', __( 'Submit Listing →', 'wp-event-manager' ) ) ); ?>" />		
+		<input type="submit" name="continue" id="event_preview_submit_button" class="button event-manager-button-submit-listing wpem-theme-button" value="<?php echo esc_attr( apply_filters( 'submit_event_step_preview_submit_text', __( 'Submit Listing →', 'wp-event-manager' ) ) ); ?>" />		
 	</div>
 	<div class="event_listing_preview single_event_listing">
 		<?php get_event_manager_template_part( 'content-single', 'event_listing' ); ?>

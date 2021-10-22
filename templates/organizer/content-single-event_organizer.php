@@ -14,6 +14,19 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                         <a><?php display_organizer_logo('', '', $organizer); ?></a>
                     </div>
                     <?php /** <div class="wpem-organizer-logo-title wpem-heading-text"><a><span><?php echo $organizer_name; ?></span></a></div> */ ?>
+                    
+                </div>
+            </div>
+
+            <div class="wpem-col-md-9 wpem-col-sm-12">
+                <div class="wpem-organizer-infomation-wrapper">
+
+                    <div class="wpem-organizer-name wpem-heading-text">
+                        <span><?php echo $organizer->post_title; ?></span>
+                    </div>
+
+                    <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), get_organizer_description($organizer)); ?></div>
+                        
                     <div class="wpem-organizer-social-links">
                         <div class="wpem-organizer-social-lists">
                             <?php do_action('single_event_listing_organizer_social_start', $organizer_id); ?>
@@ -72,18 +85,7 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
 
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="wpem-col-md-9 wpem-col-sm-12">
-                <div class="wpem-organizer-infomation-wrapper">
-
-                    <div class="wpem-organizer-name wpem-heading-text">
-                        <span><?php echo $organizer->post_title; ?></span>
-                    </div>
-
-                    <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), get_organizer_description($organizer)); ?></div>
-                    
                     <div class="wpem-organizer-contact-actions">                    
                         <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>
 
