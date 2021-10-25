@@ -16,11 +16,11 @@ $event = $post;
         <?php else: ?>
             <?php if (is_event_cancelled()): ?>
                 <div class="wpem-alert wpem-alert-danger">
-                    <span class="event-cancelled"><?php _e('This event has been cancelled', 'wp-event-manager'); ?></span>
+                    <span class="event-cancelled"><?php _e('This event has been cancelled.', 'wp-event-manager'); ?></span>
                 </div>
             <?php elseif (!attendees_can_apply() && 'preview' !== $post->post_status): ?>
                 <div class="wpem-alert wpem-alert-danger">
-                    <span class="listing-expired"><?php _e('Registrations have closed', 'wp-event-manager'); ?></span>
+                    <span class="listing-expired"><?php _e('Registrations have closed.', 'wp-event-manager'); ?></span>
                 </div>
             <?php endif; ?>
             <?php

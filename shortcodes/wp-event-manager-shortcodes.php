@@ -136,7 +136,7 @@ class WP_Event_Manager_Shortcodes {
 
 						if ( $event->_cancelled == 1 )
 
-							throw new Exception( __( 'This event has already been cancelled', 'wp-event-manager' ) );
+							throw new Exception( __( 'This event has already been cancelled.', 'wp-event-manager' ) );
 
 						// Update
 
@@ -175,7 +175,7 @@ class WP_Event_Manager_Shortcodes {
 						if(!in_array($events_status, ['trash']))
 						{
 							// Message
-							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been 	deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
+							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
 						}
 						
 
@@ -376,7 +376,7 @@ class WP_Event_Manager_Shortcodes {
 						wp_trash_post( $organizer_id );
 
 						// Message
-						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 					case 'duplicate' :
@@ -545,7 +545,7 @@ class WP_Event_Manager_Shortcodes {
 						wp_trash_post( $venue_id );
 
 						// Message
-						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $venue->post_title ) ) . '</div>';
+						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $venue->post_title ) ) . '</div>';
 
 						break;
 					case 'duplicate' :
