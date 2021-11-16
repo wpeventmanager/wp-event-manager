@@ -1739,7 +1739,13 @@ function get_event_expiry_date( $event_id )
 	//get set listing expiry time duration
 
 	$option=get_option( 'event_manager_submission_expire_options' );
+	$event_start_date = get_post_meta( $event_id, '_event_start_date', true );
 	$event_end_date = get_post_meta( $event_id, '_event_end_date', true );
+
+	if($event_start_date>$event_end_date)
+	{
+	   $event_end_date = $event_start_date;
+	}
 
 	if($option=='event_end_date')
 	{
