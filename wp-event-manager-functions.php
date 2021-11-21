@@ -1741,16 +1741,12 @@ function get_event_expiry_date( $event_id )
 	$option=get_option( 'event_manager_submission_expire_options' );
 	$event_start_date = get_post_meta( $event_id, '_event_start_date', true );
 	$event_end_date = get_post_meta( $event_id, '_event_end_date', true );
-
-	if($event_start_date>$event_end_date)
-	{
-	   $event_end_date = $event_start_date;
-	}
+	$expiry_base_date = $event_end_date ? $event_end_date : $event_start_date;
 
 	if($option=='event_end_date')
 	{
-	   if($event_end_date)
-	        return date( 'Y-m-d', strtotime( $event_end_date ) );
+		if ($expiry_base_date)
+			return date( 'Y-m-d', strtotime( $expiry_base_date ) );
 	}
 	else
 	{
@@ -1762,7 +1758,7 @@ function get_event_expiry_date( $event_id )
 		}
 		
 		if ( $duration ) 
-			return date( 'Y-m-d', strtotime( "+{$duration} days", strtotime( $event_end_date ) ) );
+			return date( 'Y-m-d', strtotime( "+{$duration} days", strtotime( $expiry_base_date ) ) );
 	}
 	return '';
 }
