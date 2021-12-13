@@ -123,7 +123,7 @@ class WP_Event_Manager_Field_Editor {
 			echo $this->form_editor_save();
 		}
 		
-		$disbled_fields = array('event_title','event_description','organizer_name','organizer_description','venue_name','venue_description');
+		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields',array('event_title','event_description','organizer_name','organizer_description','venue_name','venue_description'));
 		$field_types = apply_filters( 'event_manager_form_field_types', array(
 			'text'           		=> __( 'Text', 'wp-event-manager' ),
 			'time'           		=> __( 'Time', 'wp-event-manager' ),
