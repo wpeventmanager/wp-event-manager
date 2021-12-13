@@ -983,12 +983,17 @@ class WP_Event_Manager_Writepanels {
 					break;
 
 					case 'time' :
-						if(!empty($_POST[ $key ]))
+						if(isset($_POST[ $key ]))
 						{
-							$time = $_POST[ $key ];
-
-							$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( $time );
-							$time_dbformatted = !empty($time_dbformatted) ? $time_dbformatted : $time;
+							
+							$time = sanitize_text_field($_POST[ $key ]);
+							if(empty($_POST[ $key ])){
+								$time_dbformatted = '';
+							}
+							else{
+								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( $time );
+								$time_dbformatted = !empty($time_dbformatted) ? $time_dbformatted : $time;
+							}
 							update_post_meta( $post_id, $key, $time_dbformatted );
 						}
 					break;
