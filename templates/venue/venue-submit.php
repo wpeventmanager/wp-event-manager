@@ -42,7 +42,7 @@ global $event_manager;
         <div class="wpem-form-group">
             <div class="field account-sign-in wpem-alert wpem-alert-info">
                 <a href="<?php echo!empty(get_option('event_manager_login_page_url')) ? apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url')) : home_url() . '/wp-login.php'; ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>			
-                <?php echo __(" to Submit the List of Organizers from your account.", "wp-event-manager"); ?>	
+                <?php echo __(" to Submit the List of Venue from your account.", "wp-event-manager"); ?>	
             </div>
         </div>
     <?php

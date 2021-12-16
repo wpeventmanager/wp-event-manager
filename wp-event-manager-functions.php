@@ -2304,8 +2304,6 @@ function get_event_order_by()
 	return apply_filters('get_event_order_by_args', $args);
 }
 
-
-
 function wpem_convert_php_to_moment_format($format)
 {
     $replacements = [

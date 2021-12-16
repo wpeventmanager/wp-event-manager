@@ -16,11 +16,11 @@ $event = $post;
         <?php else: ?>
             <?php if (is_event_cancelled()): ?>
                 <div class="wpem-alert wpem-alert-danger">
-                    <span class="event-cancelled"><?php _e('This event has been cancelled', 'wp-event-manager'); ?></span>
+                    <span class="event-cancelled"><?php _e('This event has been cancelled.', 'wp-event-manager'); ?></span>
                 </div>
             <?php elseif (!attendees_can_apply() && 'preview' !== $post->post_status): ?>
                 <div class="wpem-alert wpem-alert-danger">
-                    <span class="listing-expired"><?php _e('Registrations have closed', 'wp-event-manager'); ?></span>
+                    <span class="listing-expired"><?php _e('Registrations have closed.', 'wp-event-manager'); ?></span>
                 </div>
             <?php endif; ?>
             <?php
@@ -253,7 +253,7 @@ $event = $post;
                                                                             <?php elseif( $child_field['type'] == 'url' ) : ?>
                                                                                 <div class="wpem-col-12 wpem-additional-info-block-textarea">
                                                                                     <div class="wpem-additional-info-block-details-content-items">
-                                                                                        <p class="wpem-additional-info-block-textarea-text"><a href="<?php   if(isset($child_value[$child_field_name])) echo $child_value[$child_field_name]; ?>"><?php printf( __( '%s', 'wp-event-manager' ),  $child_field['label']); ?></a></p>
+                                                                                        <p class="wpem-additional-info-block-textarea-text"><a href="<?php if(isset($child_value[$child_field_name])) echo $child_value[$child_field_name]; ?>"><?php printf( __( '%s', 'wp-event-manager' ),  $child_field['label']); ?></a></p>
                                                                                     </div>
                                                                                 </div>
 
@@ -358,6 +358,13 @@ $event = $post;
                                                                 <?php endif; ?>
                                                             </div>
                                                         </div>
+
+                                                        <?php elseif( $field['type'] == 'url' ) : ?>
+                                                                                <div class="wpem-col-12 wpem-additional-info-block-textarea">
+                                                                                    <div class="wpem-additional-info-block-details-content-items">
+                                                                                        <p class="wpem-additional-info-block-textarea-text"><a target="_blank" href="<?php if(isset($field_value)) echo esc_url($field_value); ?>"><?php printf( __( '%s', 'wp-event-manager' ),  $field['label']); ?></a></p>
+                                                                                    </div>
+                                                                                </div>
 
                                                     <?php else : ?>
                                                         <?php if(is_array($field_value)) : ?>

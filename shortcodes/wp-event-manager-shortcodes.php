@@ -136,7 +136,7 @@ class WP_Event_Manager_Shortcodes {
 
 						if ( $event->_cancelled == 1 )
 
-							throw new Exception( __( 'This event has already been cancelled', 'wp-event-manager' ) );
+							throw new Exception( __( 'This event has already been cancelled.', 'wp-event-manager' ) );
 
 						// Update
 
@@ -175,7 +175,7 @@ class WP_Event_Manager_Shortcodes {
 						if(!in_array($events_status, ['trash']))
 						{
 							// Message
-							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been 	deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
+							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';	
 						}
 						
 
@@ -376,7 +376,7 @@ class WP_Event_Manager_Shortcodes {
 						wp_trash_post( $organizer_id );
 
 						// Message
-						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
 
 						break;
 					case 'duplicate' :
@@ -545,7 +545,7 @@ class WP_Event_Manager_Shortcodes {
 						wp_trash_post( $venue_id );
 
 						// Message
-						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted', 'wp-event-manager' ), esc_html( $venue->post_title ) ) . '</div>';
+						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $venue->post_title ) ) . '</div>';
 
 						break;
 					case 'duplicate' :
@@ -702,6 +702,7 @@ class WP_Event_Manager_Shortcodes {
 			// Filters + cats
 
 			'show_filters'              => true,			
+			'filter_style'              => '',			
 
 			'show_categories'           => true,
 
@@ -855,6 +856,54 @@ class WP_Event_Manager_Shortcodes {
 
 		if ( $show_filters ) {
 
+			if(!empty($filter_style) && $filter_style == 2 )
+				get_event_manager_template( 'event-filters-2.php', array( 
+
+										'per_page' => $per_page, 
+
+										'orderby' => $orderby, 
+
+										'order' => $order, 
+
+										'datetimes' => $datetimes,
+
+										'selected_datetime' => $selected_datetime, 
+
+										'show_categories' => $show_categories, 
+
+										'show_category_multiselect' => $show_category_multiselect,
+
+										'categories' => $categories,
+
+										'selected_category' => !empty($selected_category) ? explode(',', $selected_category) : '',
+
+										'show_event_types' => $show_event_types ,
+
+										'show_event_type_multiselect' => $show_event_type_multiselect,
+
+										'event_types' => $event_types, 
+
+										'selected_event_type' => !empty($selected_event_type) ? explode(',', $selected_event_type) : '',
+
+										'show_ticket_prices' => $show_ticket_prices ,
+
+										'ticket_prices' => $ticket_prices, 
+
+										'selected_ticket_price' => $selected_ticket_price , 
+
+										'atts' => $atts, 
+
+										'location' => $location, 
+
+										'keywords' => $keywords,
+
+										'event_online' => $event_online,
+										
+									      ),'wp-event-manager',EVENT_MANAGER_PLUGIN_DIR . '/templates/filters/');
+
+			
+
+			else
 			get_event_manager_template( 'event-filters.php', array( 
 
 										'per_page' => $per_page, 
