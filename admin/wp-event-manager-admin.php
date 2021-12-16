@@ -37,7 +37,7 @@ class WP_Event_Manager_Admin {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		
-		//add_action( 'admin_notices', array( $this,'rating_showcase_admin_notice') );
+		add_action( 'admin_notices', array( $this,'run_setup_wizard_admin_notice') );
 		
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 
@@ -357,20 +357,19 @@ A prior Backup does no harm before updating the plugin!','wp-event-manager');?>.
 	}
 	
 	/**
-	 * Show showcase admin notice
+	 * Show Installtion setup wizard admin notice
 	 */
-	public function rating_showcase_admin_notice(){
-	    
-		$showcase = get_option('event_manager_rating_showcase_admin_notices_dismiss', 0);	
+	public function run_setup_wizard_admin_notice(){
+		$installation 		= get_option( 'wpem_installation', 0 );
+		$skip_intallation 	= get_option( 'wpem_installation_skip', 0 );
 	
-		if(! $showcase == true )
-		{
+		if ( !$installation || !$skip_intallation  ) {
     	 ?>
         <div class="notice wp-event-manager-notice">
 		    <div class="wp-event-manager-notice-logo"><span></span></div>
 		    <div class="wp-event-manager-notice-message wp-wp-event-manager-fresh"><?php _e( 'We\'ve noticed you\'ve been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We\'d be thrilled if you could <strong><a href="https://wordpress.org/support/plugin/wp-event-manager/reviews/" target="_blank">give us a nice rating on WordPress.org!</a></strong> Don\'t forget to submit your site to <strong><a href="https://wp-eventmanager.com/showcase/" target="_blank">our showcase</a></strong> and generate more traffic from our site.', 'wp-event-manager' ); ?></div>
 		    <div class="wp-event-manager-notice-cta">
-		        <a href="https://wp-eventmanager.com/plugins/" target="_blank" class="wp-event-manager-notice-act button-primary"><?php _e('Try Great Add-Ons','wp-event-manager');?></a>
+		        <a href="https://wp-eventmanager.com/plugins/" target="_blank" class="wp-event-manager-notice-act button-primary"><?php _e('Run Setup','wp-event-manager');?></a>
 		        <button class="wp-event-manager-notice-dismiss wp-event-manager-dismiss-welcome"><a href="<?php echo esc_url( add_query_arg( 'event-manager-main-admin-dismiss' ,'1' ) ) ?>"><?php _e('Dismiss','wp-event-manager');?></a></span></button>
 			</div>
 		</div>
