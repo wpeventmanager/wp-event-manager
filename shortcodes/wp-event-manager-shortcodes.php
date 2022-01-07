@@ -299,6 +299,10 @@ class WP_Event_Manager_Shortcodes {
 		$events = new WP_Query($args);
 
 		echo $this->event_dashboard_message;
+		//display organiser delete message
+		echo $this->organizer_dashboard_message;
+		//display venue delete message
+		echo $this->venue_dashboard_message;
 
 		$event_dashboard_columns = apply_filters( 'event_manager_event_dashboard_columns', array(
 
