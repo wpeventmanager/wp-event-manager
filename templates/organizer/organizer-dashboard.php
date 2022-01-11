@@ -114,6 +114,8 @@
 												<span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
 											<?php endforeach; ?>
 										</span>
+									<?php else: ?> 
+										<span class="organizer-events-list wpem-tooltiptext"><span><a href="#"><?php echo "There is no event."; ?></a></span></span>
 									<?php endif; ?>
 								</div>
 
