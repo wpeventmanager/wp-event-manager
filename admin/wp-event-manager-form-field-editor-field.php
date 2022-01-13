@@ -44,7 +44,7 @@
 		<input type="text" class="input-text options" name="<?php echo $group_key;?>[<?php echo $field_key;?>][options]" placeholder="<?php _e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( $options); ?>" />
 
 		<div class="file-options">
-			<label class="multiple-files"><input type="checkbox" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][multiple]" value="1" <?php checked( ! empty( $field['multiple'] ), true ); ?> /> <?php _e( 'Multiple Files?', 'wp-event-manager' ); ?></label>
+			<label class="multiple-files"><input type='hidden' value='0' name="<?php echo $group_key;?>[<?php echo $field_key;?>][multiple]"><input type="checkbox" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][multiple]" value="1" <?php checked( ! empty( $field['multiple'] ), true ); ?> /> <?php _e( 'Multiple Files?', 'wp-event-manager' ); ?></label>
 		</div>
 		<div class="taxonomy-options">
 			<label class="taxonomy-option">
