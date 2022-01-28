@@ -48,7 +48,7 @@
 			else 
 				$child_options = '';	
 		?>
-		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][placeholder]" value="<?php if(isset($child_field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $child_field['placeholder'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][placeholder]" value="<?php if(isset($child_field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  esc_attr( stripslashes($child_field['placeholder'])) );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
 		<input type="text" class="input-text options" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][options]" placeholder="<?php _e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( $child_options); ?>" />
 
 		<div class="file-options">
@@ -68,7 +68,7 @@
 		<span class="na">&ndash;</span>
 	</td>
 
-	<td> <input type="text" value="_<?php echo $child_field_key; ?>" readonly></td>
+	<td> <input type="text" value="_<?php echo esc_attr($child_field_key); ?>" readonly></td>
 
 	<td>
 	<?php if( !in_array($child_field_key, $disbled_fields) ) : ?> 
@@ -77,7 +77,7 @@
 	</td>
 
 	<td>
-		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][priority]" value="<?php if(isset($child_field['priority'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $child_field['priority'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
+		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][priority]" value="<?php if(isset($child_field['priority'])) printf( esc_html__( '%s', 'wp-event-manager' ),  esc_attr( stripslashes($child_field['priority'])) );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
 	</td>
 
 	<td class="field-rules">
