@@ -92,6 +92,8 @@ $options = array(
 		'wpem_permalinks',
 		'event_manager_upgrade_database',
 		'wp_event_manager_db_version',
+		'wpem_installation',
+		'wpem_installation_skip',
 );
 
 foreach ( $options as $option ) {
