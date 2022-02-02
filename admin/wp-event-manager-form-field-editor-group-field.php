@@ -6,7 +6,7 @@
 	<td class="sort-column">&nbsp;</td>
 
 	<td>
-		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][label]" value="<?php echo esc_attr( stripslashes($child_field['label']) ); ?>" />
+		<input type="text" class="input-text" name="<?php echo esc_attr($group_key);?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][label]" value="<?php echo esc_attr( stripslashes($child_field['label']) ); ?>" />
 	</td>
 
 	<td class="field-type">
