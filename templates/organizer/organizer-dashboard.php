@@ -115,7 +115,7 @@
 											<?php endforeach; ?>
 										</span>
 									<?php else: ?> 
-										<span class="organizer-events-list wpem-tooltiptext"><span><a href="#"><?php echo "There is no event."; ?></a></span></span>
+										<span class="organizer-events-list wpem-tooltiptext"><span><a href="#"><?php  _e('There is no event.','wp-event-manager'); ?></a></span></span>
 									<?php endif; ?>
 								</div>
 
