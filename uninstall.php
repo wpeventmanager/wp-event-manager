@@ -87,6 +87,7 @@ $options = array(
 		'event_manager_timepicker_step',
 		'event_manager_timezone_setting',
 		'event_manager_venue_dashboard_page_id',
+		'event_manager_event_venues_page_id',
 		'event_manager_view_date_format',
 		'wp_event_manager_version',
 		'wpem_permalinks',

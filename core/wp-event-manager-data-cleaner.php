@@ -322,6 +322,13 @@ class WP_Event_Manager_Data_Cleaner {
 		if ( $venue_dashboard_page_id ) {
 			wp_delete_post( $venue_dashboard_page_id, true );
 		}
+
+		// Trash the event venue page.
+		$event_venues_page_id = get_option( 'event_manager_event_venues_page_id' );
+		if ( $event_venues_page_id ) {
+			wp_delete_post( $event_venues_page_id, true );
+		}
+		
 	}
 
 	/**
