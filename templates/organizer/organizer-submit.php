@@ -16,10 +16,10 @@ global $event_manager;
         $user = wp_get_current_user();
         $username = !empty($user->display_name) ? $user->display_name : $user->user_login;
 
-        if (!isset($organizer_fields['organizer_name']['value']) && empty($organizer_fields['organizer_name']['value'])) {
+         if (!isset($organizer_fields['organizer_name']['value']) && empty($organizer_fields['organizer_name']['value']) && (isset($organizer_fields['organizer_name']['visibility']) && $organizer_fields['organizer_name']['visibility'] != 0)) {
             $organizer_fields['organizer_name']['value'] = $username;
         }
-        if (!isset($organizer_fields['organizer_email']['value']) && empty($organizer_fields['organizer_email']['value'])) {
+        if (!isset($organizer_fields['organizer_email']['value']) && empty($organizer_fields['organizer_email']['value']) && (isset($organizer_fields['organizer_email']['visibility']) && $organizer_fields['organizer_email']['visibility'] != 0)) {
             $organizer_fields['organizer_email']['value'] = $user->user_email;
         }
         ?>

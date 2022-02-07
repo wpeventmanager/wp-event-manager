@@ -36,7 +36,7 @@ $event = $post;
                         <div class="wpem-col-xs-12 wpem-col-sm-12 wpem-col-md-12 wpem-single-event-images">
                             <?php
                             $event_banners = get_event_banner();
-                            if (is_array($event_banners) && sizeof($event_banners) > 1):
+                            if (is_array($event_banners) && sizeof($event_banners) >= 1):
                                 ?>
                                 <div class="wpem-single-event-slider-wrapper">
                                     <div class="wpem-single-event-slider">

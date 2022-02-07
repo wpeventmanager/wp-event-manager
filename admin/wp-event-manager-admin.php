@@ -37,7 +37,7 @@ class WP_Event_Manager_Admin {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		
-		add_action( 'admin_notices', array( $this,'run_setup_wizard_admin_notice') );
+		//add_action( 'admin_notices', array( $this,'run_setup_wizard_admin_notice') );
 		
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 

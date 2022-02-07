@@ -6,11 +6,11 @@
 	<td class="sort-column">&nbsp;</td>
 
 	<td>
-		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][label]" value="<?php echo esc_attr( stripslashes($child_field['label']) ); ?>" />
+		<input type="text" class="input-text" name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][fields][<?php echo esc_attr($child_field_key);?>][label]" value="<?php echo esc_attr( stripslashes($child_field['label']) ); ?>" />
 	</td>
 
 	<td class="field-type">
-		<select name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][type]" class="field_type" >
+		<select name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][fields][<?php echo esc_attr($child_field_key);?>][type]" class="field_type" >
 			<?php
 			foreach ( $field_types as $key => $type ) 
 			{
@@ -32,7 +32,7 @@
 	</td>
 
 	<td>
-		<input type="text" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][description]" value="<?php echo esc_attr( isset( $child_field['description'] ) ? stripslashes($child_field['description']) : '' ); ?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+		<input type="text" class="input-text" name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][fields][<?php echo esc_attr($child_field_key);?>][description]" value="<?php echo esc_attr( isset( $child_field['description'] ) ? stripslashes($child_field['description']) : '' ); ?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
 	</td>
 
 	<td class="field-options">
@@ -48,16 +48,16 @@
 			else 
 				$child_options = '';	
 		?>
-		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][placeholder]" value="<?php if(isset($child_field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $child_field['placeholder'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][fields][<?php echo esc_attr($child_field_key);?>][placeholder]" value="<?php if(isset($child_field['placeholder'])) printf( esc_html__( '%s', 'wp-event-manager' ),  esc_attr( stripslashes($child_field['placeholder'])) );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
 		<input type="text" class="input-text options" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][options]" placeholder="<?php _e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( $child_options); ?>" />
 
 		<div class="file-options">
-			<label class="multiple-files"><input type="checkbox" class="input-text" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][multiple]" value="1" <?php checked( ! empty( $child_field['multiple'] ), true ); ?> /> <?php _e( 'Multiple Files?', 'wp-event-manager' ); ?></label>
+			<label class="multiple-files"><input type="checkbox" class="input-text" name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][fields][<?php echo esc_attr($child_field_key);?>][multiple]" value="1" <?php checked( ! empty( $child_field['multiple'] ), true ); ?> /> <?php _e( 'Multiple Files?', 'wp-event-manager' ); ?></label>
 		</div>
 		<div class="taxonomy-options">
 			<label class="taxonomy-option">
 				<?php if ($taxonomies) : ?>
-					<select class="input-text taxonomy-select" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][taxonomy]">
+					<select class="input-text taxonomy-select" name="<?php echo $group_key;?>[<?php echo esc_attr($field_key);?>][fields][<?php echo esc_attr($child_field_key);?>][taxonomy]">
 						<?php foreach ($taxonomies  as $taxonomy ) : ?>
 							<option value="<?php echo esc_attr( $taxonomy  ); ?>" <?php if(isset($child_field['taxonomy'])) echo selected( $child_field['taxonomy'], $taxonomy, false );?> ><?php echo $taxonomy;?></option>
 						<?php endforeach; ?>
@@ -68,22 +68,22 @@
 		<span class="na">&ndash;</span>
 	</td>
 
-	<td> <input type="text" value="_<?php echo $child_field_key; ?>" readonly></td>
+	<td> <input type="text" value="_<?php echo esc_attr($child_field_key); ?>" readonly></td>
 
 	<td>
 	<?php if( !in_array($child_field_key, $disbled_fields) ) : ?> 
-		<input type="checkbox" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][admin_only]" value="1" <?php checked( ! empty( $child_field['admin_only'] ), true ); ?> />
+		<input type="checkbox" name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][fields][<?php echo esc_attr($child_field_key);?>][admin_only]" value="1" <?php checked( ! empty( $child_field['admin_only'] ), true ); ?> />
 	<?php endif; ?>
 	</td>
 
 	<td>
-		<input type="text" class="input-text placeholder" name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][priority]" value="<?php if(isset($child_field['priority'])) printf( esc_html__( '%s', 'wp-event-manager' ),  $child_field['priority'] );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
+		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][fields][<?php echo esc_attr($child_field_key);?>][priority]" value="<?php if(isset($child_field['priority'])) printf( esc_html__( '%s', 'wp-event-manager' ),  esc_attr( stripslashes($child_field['priority'])) );?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
 	</td>
 
 	<td class="field-rules">
 		<?php if( !in_array($child_field_key, $disbled_fields) ) : ?> 
 			<div class="rules">
-				<select name="<?php echo $group_key;?>[<?php echo $field_key;?>][fields][<?php echo $child_field_key;?>][required]">
+				<select name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][fields][<?php echo $child_field_key;?>][required]">
 					<?php $child_field['required'] =  ( isset( $child_field['required'] ) ? $child_field['required'] : false );?>
 					<option value="0" <?php if($child_field['required'] == false) echo 'selected="selected"';?> ><?php  _e( 'Not Required', 'wp-event-manager' );?></option>
 					<option value="1" <?php if($child_field['required'] == true) echo 'selected="selected"';?> ><?php  _e( 'Required', 'wp-event-manager' );?></option>

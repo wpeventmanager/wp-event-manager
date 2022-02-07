@@ -115,7 +115,10 @@
                                                         <span><a href="<?php echo get_the_permalink($event->ID);?>"><?php echo get_the_title($event->ID);?></a></span>
                                                     <?php endforeach; ?>
                                                 </span>
+                                            <?php else: ?> 
+                                            <span class="venue-events-list wpem-tooltiptext"><span><a href="#"><?php  _e('There is no event.','wp-event-manager'); ?></a></span></span>
                                             <?php endif; ?>
+                                        </div>
 
                                         <?php elseif ('venue_action' === $key) : ?>
                                             <div class="wpem-dboard-event-action">
