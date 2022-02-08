@@ -44,10 +44,10 @@ abstract class WP_Event_Manager_Form {
     			isset( $_COOKIE[ 'wp-event-manager-submitting-event-key' ] ) &&
     			get_post_meta( $_COOKIE[ 'wp-event-manager-submitting-event-id' ], '_submitting_key', true ) == $_COOKIE['wp-event-manager-submitting-event-key']
     			) {
-    				delete_post_meta( $_COOKIE[ 'wp-event-manager-submitting-event-id' ], '_submitting_key' );
+    				delete_post_meta( sanitize_text_field($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_submitting_key' );
     				setcookie( 'wp-event-manager-submitting-event-id', '', 0, COOKIEPATH, COOKIE_DOMAIN, false );
     				setcookie( 'wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false );
-    				wp_redirect( remove_query_arg( array( 'new', 'key' ), $_SERVER[ 'REQUEST_URI' ] ) );
+    				wp_redirect( esc_url(remove_query_arg( array( 'new', 'key' ), $_SERVER[ 'REQUEST_URI' ] ) ));
     			}
     			
     	$step_key = $this->get_step_key( $this->step );
@@ -323,7 +323,7 @@ abstract class WP_Event_Manager_Form {
 							if(!empty($_POST[ $field_name ]))
 							{
 								//Convert date and time value into DB formatted format and save eg. 1970-01-01
-								//$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $_POST[ $field_name ]);	
+								//$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, sanitize_text_field($_POST[ $field_name ]));	
 
 								$item[ $key ] = sanitize_text_field($_POST[ $field_name ]);
 							}
@@ -336,9 +336,9 @@ abstract class WP_Event_Manager_Form {
 						case 'time' :
 							if(!empty($_POST[ $field_name ]))
 							{
-								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( $_POST[ $field_name ] );
+								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( sanitize_text_field($_POST[ $field_name ] ));
 
-								$item[ $key ] = !empty($time_dbformatted) ? $time_dbformatted : $_POST[ $field_name ];
+								$item[ $key ] = !empty($time_dbformatted) ? $time_dbformatted : sanitize_text_field($_POST[ $field_name ]);
 							}
 							else
 							{

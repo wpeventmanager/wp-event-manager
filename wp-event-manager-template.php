@@ -399,7 +399,7 @@ function wp_event_manager_get_registration_fields() {
 				'label'       => __( 'Your email', 'wp-event-manager' ),
 				'placeholder' => __( 'you@yourdomain.com', 'wp-event-manager' ),
 				'required'    => $account_required,
-				'value'       => isset( $_POST['create_account_email'] ) ? $_POST['create_account_email'] : '',
+				'value'       => isset( $_POST['create_account_email'] ) ? sanitize_email($_POST['create_account_email']) : '',
 		);
 
 		if ( ! $generate_username_from_email ) {
@@ -2463,7 +2463,7 @@ function event_manager_get_registration_fields() {
 					'type'     => 'text',
 					'label'    => __( 'Username', 'wp-event-manager' ),
 					'required' => $account_required,
-					'value'    => isset( $_POST['create_account_username'] ) ? $_POST['create_account_username'] : '',
+					'value'    => isset( $_POST['create_account_username'] ) ? sanitize_text_field($_POST['create_account_username']) : '',
 			);
 		}
 		if ( ! $use_standard_password_setup_email ) {
@@ -2489,7 +2489,7 @@ function event_manager_get_registration_fields() {
 				'label'       => __( 'Your email', 'wp-event-manager' ),
 				'placeholder' => __( 'you@yourdomain.com', 'wp-event-manager' ),
 				'required'    => $account_required,
-				'value'       => isset( $_POST['create_account_email'] ) ? $_POST['create_account_email'] : '',
+				'value'       => isset( $_POST['create_account_email'] ) ? sanitize_email( $_POST['create_account_email']) : '',
 		);
 	}
 
