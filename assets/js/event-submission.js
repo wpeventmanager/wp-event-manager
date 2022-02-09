@@ -456,7 +456,9 @@ EventSubmission = function ()
                         var organizer_description = tinyMCE.get('organizer_description').getContent();
 
                         var fd = new FormData();
+                        if(jQuery('#organizer_logo'))
                         fd.append("organizer_logo", jQuery('#organizer_logo')[0].files[0]);
+                        
                         fd.append("action", 'add_organizer');
                         fd.append("form_data", formData);
                         fd.append("organizer_description", organizer_description);

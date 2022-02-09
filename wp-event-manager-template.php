@@ -407,7 +407,7 @@ function wp_event_manager_get_registration_fields() {
 					'type'     => 'text',
 					'label'    => __( 'Username', 'wp-event-manager' ),
 					'required' => $account_required,
-					'value'    => isset( $_POST['create_account_username'] ) ? $_POST['create_account_username'] : '',
+					'value'    => isset( $_POST['create_account_username'] ) ? sanitize_text_field($_POST['create_account_username']) : '',
 			);
 		}
 		if ( !$use_standard_password_setup_email ) {
@@ -447,7 +447,7 @@ function display_event_publish_date( $post = null ) {
 	} else {
 		$display_date = sprintf( __( 'Posted %s ago', 'wp-event-manager' ), human_time_diff( get_post_time( 'U' ), current_time( 'timestamp' ) ) );
 	}
-	echo '<time datetime="' . get_post_time( 'Y-m-d' ) . '">' . $display_date . '</time>';
+	echo '<time datetime="' . get_post_time( 'Y-m-d' ) . '">' . esc_html($display_date) . '</time>';
 }
 
 /**
