@@ -208,6 +208,20 @@ class WP_Event_Manager {
 	}
 
 	/**
+	 * Format array for the datepicker
+	 *
+	 * WordPress stores the locale information in an array with a alphanumeric index, and
+	 * the datepicker wants a numerical index. This function replaces the index with a number
+	 */
+	public function strip_array_indices( $ArrayToStrip ) {
+	    foreach( $ArrayToStrip as $objArrayItem) {
+	        $NewArray[] =  $objArrayItem;
+	    }
+	 
+	    return( $NewArray );
+	}
+
+	/**
 	 * Register and enqueue scripts and css
 	 */
 
@@ -265,6 +279,9 @@ class WP_Event_Manager {
 		wp_enqueue_script('wp-event-manager-common'); 		
 
 		//event submission forms and validation js
+		 
+		global $wp_locale; //
+
 		wp_register_script( 'wp-event-manager-event-submission', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-submission.min.js', array('jquery','jquery-ui-core','jquery-ui-datepicker') , EVENT_MANAGER_VERSION, true );
 		wp_localize_script( 'wp-event-manager-event-submission', 'wp_event_manager_event_submission', array(
 
@@ -276,11 +293,13 @@ class WP_Event_Manager {
 		
 		'i18n_timepicker_step' => WP_Event_Manager_Date_Time::get_timepicker_step(),
 
+		'monthNames'           => $this->strip_array_indices( $wp_locale->month ),
+
 		'ajax_url' 	 => admin_url( 'admin-ajax.php' ),
 
 		'show_past_date' => apply_filters('event_manager_show_past_date_frontend', false),
 		
-		) );
+		) );		
 
 		// Lightpick Date range picker
 		wp_register_style( 'wp-event-manager-lightpick-datepicker-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/lightpick-datepicker/lightpick.css');
