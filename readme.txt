@@ -1,10 +1,10 @@
 === WP Event Manager – Easily Build your Calendar of Events! ===
 
-Contributors: wpeventmanager,ashokdudhat,hiteshmakvana,sapnamd,priyagoenka,kishankothari,krinay
+Contributors: wpeventmanager,ashokdudhat,hiteshmakvana,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: events, event, calendar, event manager, calendar event, tickets
 Requires at least: 4.1
-Tested up to: 5.8.1
+Tested up to: 5.9
 Stable tag: 3.1.23
 Requires PHP: 5.6
 License: GPLv3
@@ -311,13 +311,11 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
-
 = 3.1.23 [ Feb 8th, 2022 ] =
 
 Fixed - Installation improved.
 Fixed - Improved security and escaping output.
 Fixed - some js and css tweaks.
-
 
 = 3.1.22 [ Sep 11th, 2021 ] =
 
