@@ -454,7 +454,7 @@ class WP_Event_Manager_Ajax {
 
 		$params = array();
 		parse_str($_REQUEST['form_data'], $params);
-		$params['organizer_description'] = $_REQUEST['organizer_description'];
+		$params['organizer_description'] = sanitize_text_field($_REQUEST['organizer_description']);
 		$params['submit_organizer'] = 'Submit';
 
 		$data = [];
@@ -523,7 +523,7 @@ class WP_Event_Manager_Ajax {
 
 		$params = array();
 		parse_str($_REQUEST['form_data'], $params);
-		$params['venue_description'] = $_REQUEST['venue_description'];
+		$params['venue_description'] = sanitize_text_field($_REQUEST['venue_description']);
 		$params['submit_venue'] = 'Submit';
 
 		$data = [];

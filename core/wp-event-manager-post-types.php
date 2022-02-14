@@ -590,7 +590,7 @@ class WP_Event_Manager_Post_Types {
 
 			$organizer_id = get_the_ID();
             
-            echo do_shortcode('[event_organizer id="'.$organizer_id.'"]');
+            echo do_shortcode('[event_organizer id="'.esc_attr($organizer_id).'"]');
 
 			$content = ob_get_clean();
 		}
@@ -620,7 +620,7 @@ class WP_Event_Manager_Post_Types {
 
 			$venue_id = get_the_ID();
 
-			echo do_shortcode('[event_venue id="'.$venue_id.'"]');
+			echo do_shortcode('[event_venue id="'.esc_attr($venue_id).'"]');
 
 			$content = ob_get_clean();
 		}

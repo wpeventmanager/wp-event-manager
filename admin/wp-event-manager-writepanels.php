@@ -300,17 +300,17 @@ class WP_Event_Manager_Writepanels {
 		$current = ($current ? $current->term_id : 0);
 		?>
 	
-		<div id="taxonomy-<?php echo $taxonomy; ?>" class="categorydiv">
+		<div id="taxonomy-<?php echo esc_attr($taxonomy); ?>" class="categorydiv">
 
 			<!-- Display tabs-->
-			<ul id="<?php echo $taxonomy; ?>-tabs" class="category-tabs">
-				<li class="tabs"><a href="#<?php echo $taxonomy; ?>-all" tabindex="3"><?php echo $tax->labels->all_items; ?></a></li>
-				<li class="hide-if-no-js"><a href="#<?php echo $taxonomy; ?>-pop" tabindex="3"><?php _e( 'Most Used','wp-event-manager' ); ?></a></li>
+			<ul id="<?php echo esc_attr($taxonomy); ?>-tabs" class="category-tabs">
+				<li class="tabs"><a href="#<?php echo esc_attr($taxonomy); ?>-all" tabindex="3"><?php echo $tax->labels->all_items; ?></a></li>
+				<li class="hide-if-no-js"><a href="#<?php echo esc_attr($taxonomy); ?>-pop" tabindex="3"><?php _e( 'Most Used','wp-event-manager' ); ?></a></li>
 			</ul>
 
 			<!-- Display taxonomy terms -->
-			<div id="<?php echo $taxonomy; ?>-all" class="tabs-panel">
-				<ul id="<?php echo $taxonomy; ?>checklist" class="list:<?php echo $taxonomy?> categorychecklist form-no-clear">
+			<div id="<?php echo esc_attr($taxonomy); ?>-all" class="tabs-panel">
+				<ul id="<?php echo esc_attr($taxonomy); ?>checklist" class="list:<?php echo $taxonomy?> categorychecklist form-no-clear">
 					<?php   foreach($terms as $term){
 						$id = $taxonomy.'-'.$term->term_id;
 						echo "<li id='$id'><label class='selectit'>";
@@ -321,12 +321,12 @@ class WP_Event_Manager_Writepanels {
 			</div>
 
 			<!-- Display popular taxonomy terms -->
-			<div id="<?php echo $taxonomy; ?>-pop" class="tabs-panel" style="display: none;">
-				<ul id="<?php echo $taxonomy; ?>checklist-pop" class="categorychecklist form-no-clear" >
+			<div id="<?php echo esc_attr($taxonomy); ?>-pop" class="tabs-panel" style="display: none;">
+				<ul id="<?php echo esc_attr($taxonomy); ?>checklist-pop" class="categorychecklist form-no-clear" >
 					<?php   foreach($popular as $term){
-						$id = 'popular-'.$taxonomy.'-'.$term->term_id;
+						$id = 'popular-'.esc_attr($taxonomy).'-'.esc_attr($term->term_id);
 						echo "<li id='$id'><label class='selectit'>";
-						echo "<input type='radio' id='in-$id'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
+						echo "<input type='radio' id='in-$id'".checked($current,$term->term_id,false)."value='$term->term_id' />".esc_html($term->name)."<br />";
 						echo "</label></li>";
 					}?>
 			   </ul>

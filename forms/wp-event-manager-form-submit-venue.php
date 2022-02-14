@@ -92,9 +92,9 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * init_fields function.
 	 */
 	public function init_fields() {
-		if ( $this->fields ) {
+		/*if ( $this->fields ) {
 			return;
-		}
+		}*/
 		
 		$this->fields = apply_filters( 'submit_venue_form_fields', array(
 			'venue' => array(
@@ -425,15 +425,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					}				
 				// oragnizer logo is a featured image
 				}
-				elseif ( 'venue_logo' === $key ) {
-					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
-					if ( empty( $attachment_id ) ) {
-						delete_post_thumbnail( $this->venue_id );
-					} else {
-						set_post_thumbnail( $this->venue_id, $attachment_id );
-					}
-					update_user_meta( get_current_user_id(), '_venue_logo', $attachment_id );
-				}
+			
 				elseif ( $field['type'] == 'date' ) {
 					$date = $values[ $group_key ][ $key ];	
 					if(!empty($date)) {
@@ -493,6 +485,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		include_once( ABSPATH . 'wp-admin/includes/media.php' );
 	
 		$upload_dir     = wp_upload_dir();
+		
 		$attachment_url = esc_url( $attachment_url, array( 'http', 'https' ) );
 		if ( empty( $attachment_url ) ) {
 			return 0;

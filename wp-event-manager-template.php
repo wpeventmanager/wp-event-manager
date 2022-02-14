@@ -12,7 +12,7 @@
 
 /**
  * Returns the translated role of the current user. If that user has
- * no role for the current blog, it returns false.
+ * no role for the current `log, it returns false.
  *
  * @return string The name of the current role
  * @since 1.0.0
@@ -399,7 +399,7 @@ function wp_event_manager_get_registration_fields() {
 				'label'       => __( 'Your email', 'wp-event-manager' ),
 				'placeholder' => __( 'you@yourdomain.com', 'wp-event-manager' ),
 				'required'    => $account_required,
-				'value'       => isset( $_POST['create_account_email'] ) ? $_POST['create_account_email'] : '',
+				'value'       => isset( $_POST['create_account_email'] ) ? sanitize_email($_POST['create_account_email']) : '',
 		);
 
 		if ( ! $generate_username_from_email ) {
@@ -407,7 +407,7 @@ function wp_event_manager_get_registration_fields() {
 					'type'     => 'text',
 					'label'    => __( 'Username', 'wp-event-manager' ),
 					'required' => $account_required,
-					'value'    => isset( $_POST['create_account_username'] ) ? $_POST['create_account_username'] : '',
+					'value'    => isset( $_POST['create_account_username'] ) ? sanitize_text_field($_POST['create_account_username']) : '',
 			);
 		}
 		if ( !$use_standard_password_setup_email ) {
@@ -447,7 +447,7 @@ function display_event_publish_date( $post = null ) {
 	} else {
 		$display_date = sprintf( __( 'Posted %s ago', 'wp-event-manager' ), human_time_diff( get_post_time( 'U' ), current_time( 'timestamp' ) ) );
 	}
-	echo '<time datetime="' . get_post_time( 'Y-m-d' ) . '">' . $display_date . '</time>';
+	echo '<time datetime="' . get_post_time( 'Y-m-d' ) . '">' . esc_html($display_date) . '</time>';
 }
 
 /**
@@ -1260,7 +1260,7 @@ function display_organizer_logo( $size = 'full', $default = null, $post = null )
 		echo '<img class="organizer_logo" src="' . esc_attr( $logo ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
 
 		// Before 1.0., logo URLs were stored in post meta.
-	} elseif ( ! empty( $logo ) && ( strstr( $logo, 'http' ) || file_exists( $logo ) ) ) {
+	} elseif ( ! empty( $logo ) && !is_array($logo) && ( strstr( $logo, 'http' ) || file_exists( $logo ) ) ) {
 
 		if ( $size !== 'full' ) {
 				
@@ -1273,7 +1273,10 @@ function display_organizer_logo( $size = 'full', $default = null, $post = null )
 
 		echo '<img src="' . esc_attr( $default ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
 
-	} else {
+	}else if(is_array($logo) && isset($logo[0]) ){
+		echo '<img itemprop="image" content="' . esc_attr( $logo[0] ) . '" src="' . esc_attr( $logo[0] ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
+	}
+	 else {
 
 		echo '<img src="' . esc_attr( apply_filters( 'event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg' ) ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
 	}
@@ -1343,7 +1346,7 @@ function display_venue_logo( $size = 'full', $default = null, $post = null ) {
 		echo '<img class="venue_logo" src="' . esc_attr( $logo ) . '" alt="' . esc_attr( get_event_venue_name( $post ) ) . '" />';
 
 		// Before 1.0., logo URLs were stored in post meta.
-	} elseif ( ! empty( $logo ) && ( strstr( $logo, 'http' ) || file_exists( $logo ) ) ) {
+	} elseif ( ! empty( $logo ) && ! is_array( $logo ) && ( strstr( $logo, 'http' ) || file_exists( $logo ) ) ) {
 
 		if ( $size !== 'full' ) {
 				
@@ -1356,7 +1359,15 @@ function display_venue_logo( $size = 'full', $default = null, $post = null ) {
 
 		echo '<img src="' . esc_attr( $default ) . '" alt="' . esc_attr( get_event_venue_name( $post ) ) . '" />';
 
-	} else {
+	}
+
+
+
+	else if(is_array($logo) && isset($logo[0]) ){
+		echo '<img itemprop="image" content="' . esc_attr( $logo[0] ) . '" src="' . esc_attr( $logo[0] ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
+	}
+
+	 else {
 
 		echo '<img src="' . esc_attr( apply_filters( 'event_manager_default_venue_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg' ) ) . '" alt="' . esc_attr( get_event_venue_name( $post ) ) . '" />';
 	}
@@ -2463,7 +2474,7 @@ function event_manager_get_registration_fields() {
 					'type'     => 'text',
 					'label'    => __( 'Username', 'wp-event-manager' ),
 					'required' => $account_required,
-					'value'    => isset( $_POST['create_account_username'] ) ? $_POST['create_account_username'] : '',
+					'value'    => isset( $_POST['create_account_username'] ) ? sanitize_text_field($_POST['create_account_username']) : '',
 			);
 		}
 		if ( ! $use_standard_password_setup_email ) {
@@ -2489,7 +2500,7 @@ function event_manager_get_registration_fields() {
 				'label'       => __( 'Your email', 'wp-event-manager' ),
 				'placeholder' => __( 'you@yourdomain.com', 'wp-event-manager' ),
 				'required'    => $account_required,
-				'value'       => isset( $_POST['create_account_email'] ) ? $_POST['create_account_email'] : '',
+				'value'       => isset( $_POST['create_account_email'] ) ? sanitize_email( $_POST['create_account_email']) : '',
 		);
 	}
 
