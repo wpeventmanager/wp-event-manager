@@ -12,7 +12,7 @@
 
 /**
  * Returns the translated role of the current user. If that user has
- * no role for the current blog, it returns false.
+ * no role for the current `log, it returns false.
  *
  * @return string The name of the current role
  * @since 1.0.0
@@ -1260,7 +1260,7 @@ function display_organizer_logo( $size = 'full', $default = null, $post = null )
 		echo '<img class="organizer_logo" src="' . esc_attr( $logo ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
 
 		// Before 1.0., logo URLs were stored in post meta.
-	} elseif ( ! empty( $logo ) && ( strstr( $logo, 'http' ) || file_exists( $logo ) ) ) {
+	} elseif ( ! empty( $logo ) && !is_array($logo) && ( strstr( $logo, 'http' ) || file_exists( $logo ) ) ) {
 
 		if ( $size !== 'full' ) {
 				
@@ -1273,7 +1273,10 @@ function display_organizer_logo( $size = 'full', $default = null, $post = null )
 
 		echo '<img src="' . esc_attr( $default ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
 
-	} else {
+	}else if(is_array($logo) && isset($logo[0]) ){
+		echo '<img itemprop="image" content="' . esc_attr( $logo[0] ) . '" src="' . esc_attr( $logo[0] ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
+	}
+	 else {
 
 		echo '<img src="' . esc_attr( apply_filters( 'event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg' ) ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
 	}
@@ -1343,7 +1346,7 @@ function display_venue_logo( $size = 'full', $default = null, $post = null ) {
 		echo '<img class="venue_logo" src="' . esc_attr( $logo ) . '" alt="' . esc_attr( get_event_venue_name( $post ) ) . '" />';
 
 		// Before 1.0., logo URLs were stored in post meta.
-	} elseif ( ! empty( $logo ) && ( strstr( $logo, 'http' ) || file_exists( $logo ) ) ) {
+	} elseif ( ! empty( $logo ) && ! is_array( $logo ) && ( strstr( $logo, 'http' ) || file_exists( $logo ) ) ) {
 
 		if ( $size !== 'full' ) {
 				
@@ -1356,7 +1359,15 @@ function display_venue_logo( $size = 'full', $default = null, $post = null ) {
 
 		echo '<img src="' . esc_attr( $default ) . '" alt="' . esc_attr( get_event_venue_name( $post ) ) . '" />';
 
-	} else {
+	}
+
+
+
+	else if(is_array($logo) && isset($logo[0]) ){
+		echo '<img itemprop="image" content="' . esc_attr( $logo[0] ) . '" src="' . esc_attr( $logo[0] ) . '" alt="' . esc_attr( get_organizer_name( $post ) ) . '" />';
+	}
+
+	 else {
 
 		echo '<img src="' . esc_attr( apply_filters( 'event_manager_default_venue_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg' ) ) . '" alt="' . esc_attr( get_event_venue_name( $post ) ) . '" />';
 	}
