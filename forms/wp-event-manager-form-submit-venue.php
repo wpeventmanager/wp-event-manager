@@ -92,9 +92,9 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * init_fields function.
 	 */
 	public function init_fields() {
-		if ( $this->fields ) {
+		/*if ( $this->fields ) {
 			return;
-		}
+		}*/
 		
 		$this->fields = apply_filters( 'submit_venue_form_fields', array(
 			'venue' => array(

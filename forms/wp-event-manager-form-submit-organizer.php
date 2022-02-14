@@ -95,9 +95,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 */
 	public function init_fields() {
             
-		if ( $this->fields ) {
+		/*if ( $this->fields ) {
 			return;
-		}
+		}*/
 		
 		$this->fields = apply_filters( 'submit_organizer_form_fields', array(
 			'organizer' => array(

@@ -390,8 +390,8 @@ class WP_Event_Manager_Field_Editor {
 
 				if(get_option('enable_event_organizer')){
 					$GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
-					$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_organizer', 'instance' ) );
-					$organizer_fields =	$form_submit_organizer_instance->get_default_fields('backend');
+					$form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Organizer', 'instance' ) );
+					$organizer_fields =	$form_submit_organizer_instance->init_fields();
 				}
 				else
 					$organizer_fields = array();
@@ -399,7 +399,7 @@ class WP_Event_Manager_Field_Editor {
 				if(get_option('enable_event_venue')){
 					$GLOBALS['event_manager']->forms->get_form( 'submit-venue', array() );
 					$form_submit_venue_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Venue', 'instance' ) );
-					$venue_fields =	$form_submit_venue_instance->get_default_fields('backend');
+					$venue_fields =	$form_submit_venue_instance->init_fields();
 				}
 				else
 					$venue_fields = array();
