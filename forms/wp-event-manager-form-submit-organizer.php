@@ -435,15 +435,15 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					}				
 				// oragnizer logo is a featured image
 				}
-				elseif ( 'organizer_logo' === $key ) {
-					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
-					if ( empty( $attachment_id ) ) {
-						delete_post_thumbnail( $this->organizer_id );
-					} else {
-						set_post_thumbnail( $this->organizer_id, $attachment_id );
-					}
-					update_user_meta( get_current_user_id(), '_organizer_logo', $attachment_id );
-				}
+				// elseif ( 'organizer_logo' === $key ) {
+				// 	$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
+				// 	if ( empty( $attachment_id ) ) {
+				// 		delete_post_thumbnail( $this->organizer_id );
+				// 	} else {
+				// 		set_post_thumbnail( $this->organizer_id, $attachment_id );
+				// 	}
+				// 	update_user_meta( get_current_user_id(), '_organizer_logo', $attachment_id );
+				// }
 				elseif ( $field['type'] == 'date' ) {
 					$date = $values[ $group_key ][ $key ];	
 					if(!empty($date)) {
