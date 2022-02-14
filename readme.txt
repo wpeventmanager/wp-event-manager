@@ -311,6 +311,13 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
+
+= 3.1.24 [ Feb 14th, 2022 ] =
+
+Fixed - Field editor.
+Fixed - Improved input and output esc.
+Fixed - some js and css tweaks.
+
 = 3.1.23 [ Feb 8th, 2022 ] =
 
 Fixed - Installation improved.
