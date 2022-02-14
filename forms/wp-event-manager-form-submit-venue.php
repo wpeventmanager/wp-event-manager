@@ -486,8 +486,6 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	
 		$upload_dir     = wp_upload_dir();
 		
-		print_r($attachment_url);
-
 		$attachment_url = esc_url( $attachment_url, array( 'http', 'https' ) );
 		if ( empty( $attachment_url ) ) {
 			return 0;
