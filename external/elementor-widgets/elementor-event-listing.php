@@ -325,7 +325,7 @@ class Elementor_Event_Listing extends Widget_Base {
         $featured = !empty($settings['featured']) ? ' featured="'.$settings['featured'].'"' : '';
         $cancelled = !empty($settings['cancelled']) ? ' cancelled="'.$settings['cancelled'].'"' : '';
             
-        $shortcode = '[events show_pagination="'.$settings['show_pagination'].'" per_page="'.$settings['per_page'].'" order="'.$settings['order'].'" orderby="'.$settings['orderby'].'" featured="'.$settings['featured'].'" cancelled="'.$settings['cancelled'].'" show_filters="'.$settings['show_filters'].'" show_categories="'.$settings['show_categories'].'" show_event_types="'.$settings['show_event_types'].'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' ]';
+        $shortcode = '[events show_pagination="'.$settings['show_pagination'].'" per_page="'.$settings['per_page'].'" order="'.$settings['order'].'" orderby="'.$settings['orderby'].'" '.$featured.' '.$cancelled.' show_filters="'.$settings['show_filters'].'" show_categories="'.$settings['show_categories'].'" show_event_types="'.$settings['show_event_types'].'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' ]';
 
         echo do_shortcode($shortcode);
 	}
