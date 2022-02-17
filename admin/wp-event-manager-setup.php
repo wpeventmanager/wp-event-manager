@@ -160,7 +160,7 @@ class WP_Event_Manager_Setup {
 
 		$step = ! empty( $_GET['step'] ) ? absint( $_GET['step'] ) : 1;
 
-		if( isset($_GET['skip-event-manager-setup']) )
+		if( isset($_GET['skip-event-manager-setup']) === 1 )
 		{
 			update_option( 'wpem_installation', 0 );
 			update_option( 'wpem_installation_skip', 1 );
