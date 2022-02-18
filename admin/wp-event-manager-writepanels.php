@@ -250,20 +250,20 @@ class WP_Event_Manager_Writepanels {
 				<ul id="<?php echo $taxonomy; ?>checklist" class="list:<?php echo $taxonomy?> categorychecklist form-no-clear">
 					<?php   foreach($terms as $term){
 						$id = $taxonomy.'-'.$term->term_id;
-						echo "<li id='$id'><label class='selectit'>";
-						echo "<input type='radio' id='in-$id' name='{$name}'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
+						echo "<li id='".esc_attr($id)."'><label class='selectit'>";
+						echo "<input type='radio' id='in-".esc_attr($id)."' name='".esc_attr($name)."' ".checked($current,$term->term_id,false)."value='".esc_attr($term->term_id)."' />".esc_html($term->name)."<br />";
 					   echo "</label></li>";
 					}?>
 			   </ul>
 			</div>
 
 			<!-- Display popular taxonomy terms -->
-			<div id="<?php echo $taxonomy; ?>-pop" class="tabs-panel" style="display: none;">
-				<ul id="<?php echo $taxonomy; ?>checklist-pop" class="categorychecklist form-no-clear" >
+			<div id="<?php echo esc_attr($taxonomy); ?>-pop" class="tabs-panel" style="display: none;">
+				<ul id="<?php echo esc_attr($taxonomy); ?>checklist-pop" class="categorychecklist form-no-clear" >
 					<?php   foreach($popular as $term){
-						$id = 'popular-'.$taxonomy.'-'.$term->term_id;
-						echo "<li id='$id'><label class='selectit'>";
-						echo "<input type='radio' id='in-$id'".checked($current,$term->term_id,false)."value='$term->term_id' />$term->name<br />";
+						$id = 'popular-'.esc_attr($taxonomy).'-'.esc_attr($term->term_id);
+						echo "<li id='".esc_attr($id)."'><label class='selectit'>";
+						echo "<input type='radio' id='in-".esc_attr($id)."'".checked($current,$term->term_id,false)."value='".esc_attr($term->term_id)."' />".esc_html($term->name)."<br />";
 						echo "</label></li>";
 					}?>
 			   </ul>
