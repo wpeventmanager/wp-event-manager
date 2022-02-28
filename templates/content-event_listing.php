@@ -15,7 +15,7 @@ $thumbnail  = get_event_thumbnail($post,'full');
     <!----- wpem-col-lg-4 value can be change by admin settings ------->
     <div class="wpem-event-layout-wrapper">
         <div <?php event_listing_class(''); ?>>
-            <a href="<?php display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo $event_type; ?>">
+            <a href="<?php display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo esc_attr($event_type); ?>">
                 <div class="wpem-event-banner">
                     <div class="wpem-event-banner-img" style="background-image: url(<?php echo $thumbnail ?>)">
 
