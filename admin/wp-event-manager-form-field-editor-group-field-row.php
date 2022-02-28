@@ -22,18 +22,20 @@
 					</th>			
 				</tr>
 			</tfoot>
-			<tbody class="child-form-fields" data-field="<?php
+			<tbody class="child-form-fields" data-field="
+			<?php
 							ob_start();
 							$child_index     = -1;
 							$child_field_key = '';
 							$child_field     = array(
 								'type'        => 'text',
 								'label'       => '',
-								'placeholder' => ''
+								'placeholder' => '',
 							);
-							include( 'wp-event-manager-form-field-editor-group-field.php' );
+							require 'wp-event-manager-form-field-editor-group-field.php';
 							echo esc_attr( ob_get_clean() );
-						?>">
+							?>
+						">
 			</tbody>
 		</table>
 	</td>

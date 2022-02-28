@@ -117,7 +117,7 @@ class WP_Event_Manager_Permalink_Settings {
 			}
 
 			$permalinks                  = (array) get_option( 'wpem_permalinks', array() );
-			$permalinks['event_base']      = sanitize_title_with_dashes( $_POST['wpem_event_base_slug'] );
+			$permalinks['event_base']    = sanitize_title_with_dashes( $_POST['wpem_event_base_slug'] );
 			$permalinks['category_base'] = sanitize_title_with_dashes( $_POST['wpem_event_category_slug'] );
 			$permalinks['type_base']     = sanitize_title_with_dashes( $_POST['wpem_event_type_slug'] );
 

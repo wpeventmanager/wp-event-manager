@@ -5,13 +5,13 @@
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    
+
 	exit;
 }
 
 /**
  * WP_Event_Manager_Setup class.
-*/
+ */
 
 class WP_Event_Manager_Setup {
 
@@ -53,7 +53,7 @@ class WP_Event_Manager_Setup {
 	 * @access public
 	 * @return void
 	 */
-	 
+
 	public function admin_head() {
 
 		remove_submenu_page( 'index.php', 'event-manager-setup' );
@@ -62,31 +62,29 @@ class WP_Event_Manager_Setup {
 	/**
 	 * Sends user to the setup page on first activation
 	 */
-	 
+
 	public function redirect() {
 
 		global $pagenow;
 
-		if(isset($_GET['page']) && $_GET['page'] === 'event-manager-setup')
-		{
-			if(get_option('wpem_installation', false))
-			{
+		if ( isset( $_GET['page'] ) && $_GET['page'] === 'event-manager-setup' ) {
+			if ( get_option( 'wpem_installation', false ) ) {
 				wp_redirect( admin_url( 'index.php' ) );
 				exit;
-			}	
-		}		
+			}
+		}
 
 		// Bail if no activation redirect transient is set
 
-	    if ( ! get_transient( '_event_manager_activation_redirect' ) ) {
+		if ( ! get_transient( '_event_manager_activation_redirect' ) ) {
 
 			return;
-	    }
+		}
 
-	    if ( ! current_user_can( 'manage_options' ) ) {
-	    	
-	    	return;
-	    }
+		if ( ! current_user_can( 'manage_options' ) ) {
+
+			return;
+		}
 
 		// Delete the redirect transient
 		delete_transient( '_event_manager_activation_redirect' );
@@ -103,7 +101,7 @@ class WP_Event_Manager_Setup {
 		}
 
 		wp_redirect( admin_url( 'index.php?page=event-manager-setup' ) );
-		
+
 		exit;
 	}
 
@@ -112,17 +110,18 @@ class WP_Event_Manager_Setup {
 	 */
 
 	public function admin_enqueue_scripts() {
-	    
+
 		wp_enqueue_style( 'event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array( 'dashicons' ) );
 	}
 
 	/**
 	 * Create a page.
+	 *
 	 * @param  string $title
 	 * @param  string $content
 	 * @param  string $option
 	 */
-	 
+
 	public function create_page( $title, $content, $option ) {
 
 		$page_data = array(
@@ -141,7 +140,7 @@ class WP_Event_Manager_Setup {
 
 			'post_parent'    => 0,
 
-			'comment_status' => 'closed'
+			'comment_status' => 'closed',
 		);
 
 		$page_id = wp_insert_post( $page_data );
@@ -155,13 +154,12 @@ class WP_Event_Manager_Setup {
 	/**
 	 * Output addons page
 	 */
-	 
+
 	public function output() {
 
 		$step = ! empty( $_GET['step'] ) ? absint( $_GET['step'] ) : 1;
 
-		if( isset($_GET['skip-event-manager-setup']) === 1 )
-		{
+		if ( isset( $_GET['skip-event-manager-setup'] ) === 1 ) {
 			update_option( 'wpem_installation', 0 );
 			update_option( 'wpem_installation_skip', 1 );
 
@@ -169,34 +167,34 @@ class WP_Event_Manager_Setup {
 			exit;
 		}
 
-		if ( 3 === $step && !empty( $_POST ) ) 
-		{
-			if ( false == wp_verify_nonce( $_REQUEST[ 'setup_wizard' ], 'step_3' ) )
-				wp_die( __('Error in nonce. Try again.', 'wp-event-manager') );
+		if ( 3 === $step && ! empty( $_POST ) ) {
+			if ( false == wp_verify_nonce( $_REQUEST['setup_wizard'], 'step_3' ) ) {
+				wp_die( __( 'Error in nonce. Try again.', 'wp-event-manager' ) );
+			}
 
-			$create_pages    = isset( $_POST['wp-event-manager-create-page'] ) ? $_POST['wp-event-manager-create-page'] : array();
+			$create_pages = isset( $_POST['wp-event-manager-create-page'] ) ? $_POST['wp-event-manager-create-page'] : array();
 
-			$page_titles     = $_POST['wp-event-manager-page-title'];
+			$page_titles = $_POST['wp-event-manager-page-title'];
 
 			$pages_to_create = array(
 
-				'submit_event_form' => '[submit_event_form]',
+				'submit_event_form'     => '[submit_event_form]',
 
-				'event_dashboard'   => '[event_dashboard]',
+				'event_dashboard'       => '[event_dashboard]',
 
-				'events'            => '[events]',
+				'events'                => '[events]',
 
-				'submit_organizer_form'	=> '[submit_organizer_form]',
+				'submit_organizer_form' => '[submit_organizer_form]',
 
 				'organizer_dashboard'   => '[organizer_dashboard]',
 
-				'event_organizers'   	=> '[event_organizers]',
+				'event_organizers'      => '[event_organizers]',
 
-				'submit_venue_form'		=> '[submit_venue_form]',
+				'submit_venue_form'     => '[submit_venue_form]',
 
-				'venue_dashboard'   	=> '[venue_dashboard]',
+				'venue_dashboard'       => '[venue_dashboard]',
 
-				'event_venues'   		=> '[event_venues]',
+				'event_venues'          => '[event_venues]',
 			);
 
 			foreach ( $pages_to_create as $page => $content ) {
@@ -246,7 +244,7 @@ class WP_Event_Manager_Setup {
 
 						<p><?php _e( 'This setup wizard will help you get started by creating various pages for event submission, event management, and listing your events, along with setting up organizers and venues pages.' ); ?></p>
 
-						<p><?php printf( __( 'The process is still relatively simple if you want to skip the wizard and manually set up the pages and shortcodes yourself. Please refer to the %sdocumentation%s for support.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>' ); ?></p>
+						<p><?php printf( __( 'The process is still relatively simple if you want to skip the wizard and manually set up the pages and shortcodes yourself. Please refer to the %1$sdocumentation%2$s for support.', 'wp-event-manager' ), '<a href="https://wp-eventmanager.com/help-center/">', '</a>' ); ?></p>
 					</div>
 					<p class="submit">
 
@@ -428,31 +426,31 @@ class WP_Event_Manager_Setup {
 										<div class="wpem-setup-next-block-wrap">
 						<div class="wpem-setup-intro-block">
 							<div class="wpem-setup-done"><i class="wpem-icon-checkmark"></i>
-								<h3><?php _e('All Done!', 'wp-event-manager'); ?></h3>
+								<h3><?php _e( 'All Done!', 'wp-event-manager' ); ?></h3>
 							</div>
 							<div class="wpem-setup-intro-block-welcome">
 
 								<img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager">
-								<p><?php _e('Thanks for installing WP Event Manager! Here are some valuable resources that will assist you in getting started with our plugins.', 'wp-event-manager'); ?></p>
+								<p><?php _e( 'Thanks for installing WP Event Manager! Here are some valuable resources that will assist you in getting started with our plugins.', 'wp-event-manager' ); ?></p>
 								<div class="wpem-backend-video-wrap">
 									<iframe width="560" height="315" src="https://www.youtube.com/embed/hlDVYtEDOgQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 								</div>
 								<div class="wpem-setup-intro-block-btn">
-									<a href="<?php echo admin_url( 'post-new.php?post_type=event_listing' ); ?>" class="button button-primary button-hero"><?php _e('Create Your First Event', 'wp-event-manager'); ?></a>
-									<a href="<?php echo admin_url( 'edit.php?post_type=event_listing&page=event-manager-settings' ); ?>" class="button button-secondary button-hero"><?php _e('Settings', 'wp-event-manager'); ?></a>
+									<a href="<?php echo admin_url( 'post-new.php?post_type=event_listing' ); ?>" class="button button-primary button-hero"><?php _e( 'Create Your First Event', 'wp-event-manager' ); ?></a>
+									<a href="<?php echo admin_url( 'edit.php?post_type=event_listing&page=event-manager-settings' ); ?>" class="button button-secondary button-hero"><?php _e( 'Settings', 'wp-event-manager' ); ?></a>
 								</div>
 							</div>
 							<div class="wpem-setup-help-center">
-								<h1><?php _e('Helpful Resources', 'wp-event-manager'); ?></h1>
+								<h1><?php _e( 'Helpful Resources', 'wp-event-manager' ); ?></h1>
 								<div class="wpem-setup-help-center-block-wrap">
 									<div class="wpem-setup-help-center-block">
 										<div class="wpem-setup-help-center-block-icon">
 											<span class="wpem-setup-help-center-knowledge-base-icon"></span>
 										</div>
 										<div class="wpem-setup-help-center-block-content">
-											<div class="wpem-setup-help-center-block-heading"><?php _e('Knowledge Base', 'wp-event-manager'); ?></div>
-											<div class="wpem-setup-help-center-block-desc"><?php _e('Solve your queries by browsing our documentation.', 'wp-event-manager'); ?></div>
-											<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Browse More', 'wp-event-manager'); ?> »</span></a>
+											<div class="wpem-setup-help-center-block-heading"><?php _e( 'Knowledge Base', 'wp-event-manager' ); ?></div>
+											<div class="wpem-setup-help-center-block-desc"><?php _e( 'Solve your queries by browsing our documentation.', 'wp-event-manager' ); ?></div>
+											<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e( 'Browse More', 'wp-event-manager' ); ?> »</span></a>
 										</div>
 									</div>
 									<div class="wpem-setup-help-center-block">
@@ -460,9 +458,9 @@ class WP_Event_Manager_Setup {
 											<span class="wpem-setup-help-center-faqs-icon"></span>
 										</div>
 										<div class="wpem-setup-help-center-block-content">
-											<div class="wpem-setup-help-center-block-heading"><?php _e('FAQs', 'wp-event-manager'); ?></div>
-											<div class="wpem-setup-help-center-block-desc"><?php _e('Explore through the frequently asked questions.', 'wp-event-manager'); ?></div>
-											<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Get Answers', 'wp-event-manager'); ?> »</span></a>
+											<div class="wpem-setup-help-center-block-heading"><?php _e( 'FAQs', 'wp-event-manager' ); ?></div>
+											<div class="wpem-setup-help-center-block-desc"><?php _e( 'Explore through the frequently asked questions.', 'wp-event-manager' ); ?></div>
+											<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e( 'Get Answers', 'wp-event-manager' ); ?> »</span></a>
 										</div>
 									</div>
 									<div class="wpem-setup-help-center-block">
@@ -470,9 +468,9 @@ class WP_Event_Manager_Setup {
 											<span class="wpem-setup-help-center-video-tutorial-icon"></span>
 										</div>
 										<div class="wpem-setup-help-center-block-content">
-											<div class="wpem-setup-help-center-block-heading"><?php _e('Video Tutorials', 'wp-event-manager'); ?></div>
-											<div class="wpem-setup-help-center-block-desc"><?php _e('Learn different skills by examining attractive video tutorials.', 'wp-event-manager'); ?></div>
-											<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Watch all', 'wp-event-manager'); ?> »</span></a>
+											<div class="wpem-setup-help-center-block-heading"><?php _e( 'Video Tutorials', 'wp-event-manager' ); ?></div>
+											<div class="wpem-setup-help-center-block-desc"><?php _e( 'Learn different skills by examining attractive video tutorials.', 'wp-event-manager' ); ?></div>
+											<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e( 'Watch all', 'wp-event-manager' ); ?> »</span></a>
 										</div>
 									</div>
 								</div>
@@ -482,9 +480,9 @@ class WP_Event_Manager_Setup {
 											<span class="wpem-setup-help-center-support-icon"></span>
 										</div>
 										<div class="wpem-setup-help-center-block-content">
-											<div class="wpem-setup-help-center-block-heading"><?php _e('Add ons Support', 'wp-event-manager'); ?></div>
-											<div class="wpem-setup-help-center-block-desc"><?php _e('Get support for all the Add ons related queries with our experienced/ talented support team.', 'wp-event-manager'); ?></div>
-											<a href="https://support.wp-eventmanager.com/" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e('Get Add ons Support', 'wp-event-manager'); ?> »</span></a>
+											<div class="wpem-setup-help-center-block-heading"><?php _e( 'Add ons Support', 'wp-event-manager' ); ?></div>
+											<div class="wpem-setup-help-center-block-desc"><?php _e( 'Get support for all the Add ons related queries with our experienced/ talented support team.', 'wp-event-manager' ); ?></div>
+											<a href="https://support.wp-eventmanager.com/" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e( 'Get Add ons Support', 'wp-event-manager' ); ?> »</span></a>
 										</div>
 									</div>
 								</div>
