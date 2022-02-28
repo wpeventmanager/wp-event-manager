@@ -170,7 +170,7 @@ class WP_Event_Manager_Widget extends WP_Widget {
 				        <?php
 				            if(isset($setting['options'])){
 				                foreach($setting['options'] as $option_key => $option_value){ ?>
-				                     <option value="<?php echo $option_key;?>" <?php if( $option_key ==  $value ) echo 'selected';?> ><?php echo $option_value;?></option>
+				                     <option value="<?php echo $option_key;?>" <?php if( $option_key ==  $value ) echo 'selected';?> ><?php echo esc_html($option_value);?></option>
 				                <?php
 				                }
 				            }
