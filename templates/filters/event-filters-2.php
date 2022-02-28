@@ -128,9 +128,9 @@
                         $ticket_prices  =   WP_Event_Manager_Filters::get_ticket_prices_filter();
                         foreach ( $ticket_prices as $key => $value ) :
                             if(!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price==$key) : ?>
-                                <option selected=selected value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+                                <option selected=selected value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  esc_html($value); ?></option>
                             <?php else : ?>
-                                <option value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+                                <option value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  esc_html($value); ?></option>
                             <?php endif;
                         endforeach; ?>
                         </select>

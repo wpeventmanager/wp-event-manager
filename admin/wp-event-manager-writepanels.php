@@ -755,7 +755,7 @@ class WP_Event_Manager_Writepanels {
 			<?php foreach ( $field['options'] as $option_key => $value ) : ?>
 				<label><input type="radio" class="radio" name="<?php echo esc_attr( isset( $field['name'] ) ? $field['name'] : $key ); ?>" value="<?php echo esc_attr( $option_key ); ?>" <?php checked( $field['value'], $option_key ); ?> /> <?php echo esc_html( $value ); ?></label>
 			<?php endforeach; ?>
-			<?php if ( ! empty( $field['description'] ) ) : ?><span class="description"><?php echo $field['description']; ?></span><?php endif; ?>
+			<?php if ( ! empty( $field['description'] ) ) : ?><span class="description"><?php echo esc_html($field['description']); ?></span><?php endif; ?>
 		</p>
 		<?php
 	}

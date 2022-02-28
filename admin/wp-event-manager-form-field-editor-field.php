@@ -51,7 +51,7 @@
 				<?php if ($taxonomies) : ?>
 					<select class="input-text taxonomy-select" name="<?php echo esc_attr($group_key);?>[<?php echo esc_attr($field_key);?>][taxonomy]">
 						<?php foreach ($taxonomies  as $taxonomy ) : ?>
-							<option value="<?php echo esc_attr( $taxonomy  ); ?>" <?php if(isset($field['taxonomy'])) echo selected( $field['taxonomy'], $taxonomy, false );?> ><?php echo $taxonomy;?></option>
+							<option value="<?php echo esc_attr( $taxonomy  ); ?>" <?php if(isset($field['taxonomy'])) echo selected( $field['taxonomy'], $taxonomy, false );?> ><?php echo esc_html($taxonomy);?></option>
 						<?php endforeach; ?>
 					</select>
 				<?php endif; ?>
