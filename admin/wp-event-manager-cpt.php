@@ -81,13 +81,13 @@ class WP_Event_Manager_CPT {
 
 			  jQuery(document).ready(function() {
 
-				jQuery('<option>').val('approve_events').text('<?php printf( __( 'Approve %s', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->name ); ?>').appendTo("select[name='action']");
+				jQuery('<option>').val('approve_events').text('<?php printf( esc_attr__( 'Approve %s', 'wp-event-manager' ), esc_attr( $wp_post_types['event_listing']->labels->name ) ); ?>').appendTo("select[name='action']");
 
-				jQuery('<option>').val('approve_events').text('<?php printf( __( 'Approve %s', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->name ); ?>').appendTo("select[name='action2']");
+				jQuery('<option>').val('approve_events').text('<?php printf( esc_attr__( 'Approve %s', 'wp-event-manager' ), esc_attr( $wp_post_types['event_listing']->labels->name ) ); ?>').appendTo("select[name='action2']");
 
-				jQuery('<option>').val('expire_events').text('<?php printf( __( 'Expire %s', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->name ); ?>').appendTo("select[name='action']");
+				jQuery('<option>').val('expire_events').text('<?php printf( esc_attr__( 'Expire %s', 'wp-event-manager' ), esc_attr( $wp_post_types['event_listing']->labels->name ) ); ?>').appendTo("select[name='action']");
 
-				jQuery('<option>').val('expire_events').text('<?php printf( __( 'Expire %s', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->name ); ?>').appendTo("select[name='action2']");
+				jQuery('<option>').val('expire_events').text('<?php printf( esc_attr__( 'Expire %s', 'wp-event-manager' ), esc_attr( $wp_post_types['event_listing']->labels->name ) ); ?>').appendTo("select[name='action2']");
 
 			  });
 
@@ -230,11 +230,11 @@ class WP_Event_Manager_CPT {
 					$titles[] = get_the_title( $event_id );
 				}
 
-				echo '<div class="updated"><p>' . sprintf( __( '%s approved', 'wp-event-manager' ), '&quot;' . implode( '&quot;, &quot;', $titles ) . '&quot;' ) . '</p></div>';
+				echo '<div class="updated"><p>' . sprintf( esc_attr__( '%s approved', 'wp-event-manager' ), '&quot;' . implode( '&quot;, &quot;', $titles ) . '&quot;' ) . '</p></div>';
 
 			} else {
 
-				echo '<div class="updated"><p>' . sprintf( __( '%s approved', 'wp-event-manager' ), '&quot;' . get_the_title( $approved_events ) . '&quot;' ) . '</p></div>';
+				echo '<div class="updated"><p>' . sprintf( esc_attr__( '%s approved', 'wp-event-manager' ), '&quot;' . get_the_title( $approved_events ) . '&quot;' ) . '</p></div>';
 			}
 		}
 	}
@@ -262,11 +262,11 @@ class WP_Event_Manager_CPT {
 					$titles[] = get_the_title( $event_id );
 				}
 
-				echo '<div class="updated"><p>' . sprintf( __( '%s expired', 'wp-event-manager' ), '&quot;' . implode( '&quot;, &quot;', $titles ) . '&quot;' ) . '</p></div>';
+				echo '<div class="updated"><p>' . sprintf( esc_attr__( '%s expired', 'wp-event-manager' ), '&quot;' . implode( '&quot;, &quot;', $titles ) . '&quot;' ) . '</p></div>';
 
 			} else {
 
-				echo '<div class="updated"><p>' . sprintf( __( '%s expired', 'wp-event-manager' ), '&quot;' . get_the_title( $expired_events ) . '&quot;' ) . '</p></div>';
+				echo '<div class="updated"><p>' . sprintf( esc_attr__( '%s expired', 'wp-event-manager' ), '&quot;' . get_the_title( $expired_events ) . '&quot;' ) . '</p></div>';
 			}
 		}
 	}
@@ -310,7 +310,7 @@ class WP_Event_Manager_CPT {
 
 		$output = "<select name='event_listing_category' id='dropdown_event_listing_category'>";
 
-		$output .= '<option value="" ' . selected( isset( $_GET['event_listing_category'] ) ? $_GET['event_listing_category'] : '', '', false ) . '>' . __( 'Select category', 'wp-event-manager' ) . '</option>';
+		$output .= '<option value="" ' . selected( isset( $_GET['event_listing_category'] ) ? $_GET['event_listing_category'] : '', '', false ) . '>' . esc_attr__( 'Select category', 'wp-event-manager' ) . '</option>';
 
 		$output .= $walker->walk( $terms, 0, $r );
 
@@ -344,7 +344,7 @@ class WP_Event_Manager_CPT {
 		}
 
 		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected( isset( $_GET['event_listing_type'] ) ? $_GET['event_listing_type'] : '', '', false ) . '>' . __( 'Select Event Type', 'wp-event-manager' ) . '</option>';
+		$output .= '<option value="" ' . selected( isset( $_GET['event_listing_type'] ) ? $_GET['event_listing_type'] : '', '', false ) . '>' . esc_attr__( 'Select Event Type', 'wp-event-manager' ) . '</option>';
 		$output .= $walker->walk( $terms, 0, $r );
 		$output .= '</select>';
 
@@ -361,7 +361,7 @@ class WP_Event_Manager_CPT {
 
 		if ( $post->post_type == 'event_listing' ) {
 
-			return __( 'Event Title', 'wp-event-manager' );
+			return esc_attr__( 'Event Title', 'wp-event-manager' );
 		}
 
 		return $text;
@@ -385,28 +385,28 @@ class WP_Event_Manager_CPT {
 
 			1  => sprintf( __( '%1$s updated. <a href="%2$s">View</a>', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, esc_url( get_permalink( $post_ID ) ) ),
 
-			2  => __( 'Custom field updated.', 'wp-event-manager' ),
+			2  => esc_attr__( 'Custom field updated.', 'wp-event-manager' ),
 
-			3  => __( 'Custom field deleted.', 'wp-event-manager' ),
+			3  => esc_attr__( 'Custom field deleted.', 'wp-event-manager' ),
 
-			4  => sprintf( __( '%s updated.', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name ),
+			4  => sprintf( esc_attr__( '%s updated.', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name ),
 
-			5  => isset( $_GET['revision'] ) ? sprintf( __( '%1$s restored to revision from %2$s', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			5  => isset( $_GET['revision'] ) ? sprintf( esc_attr__( '%1$s restored to revision from %2$s', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 
-			6  => sprintf( __( '%1$s published. <a href="%2$s">View</a>', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, esc_url( get_permalink( $post_ID ) ) ),
+			6  => sprintf( esc_attr__( '%1$s published. <a href="%2$s">View</a>', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, esc_url( get_permalink( $post_ID ) ) ),
 
-			7  => sprintf( __( '%s saved.', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name ),
+			7  => sprintf( esc_attr__( '%s saved.', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name ),
 
-			8  => sprintf( __( '%1$s submitted. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+			8  => sprintf( esc_attr__( '%1$s submitted. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
 
 			9  => sprintf(
-				__( '%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager' ),
+				esc_attr__( '%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager' ),
 				$wp_post_types['event_listing']->labels->singular_name,
 				date_i18n( __( 'M j, Y @ G:i', 'wp-event-manager' ), strtotime( $post->post_date ) ),
 				esc_url( get_permalink( $post_ID ) )
 			),
 
-			10 => sprintf( __( '%1$s draft updated. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+			10 => sprintf( esc_attr__( '%1$s draft updated. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager' ), $wp_post_types['event_listing']->labels->singular_name, esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
 
 		);
 
@@ -429,29 +429,29 @@ class WP_Event_Manager_CPT {
 
 		unset( $columns['title'], $columns['date'], $columns['author'] );
 
-		$columns['event_title'] = __( 'Title', 'wp-event-manager' );
+		$columns['event_title'] = esc_attr__( 'Title', 'wp-event-manager' );
 
-		$columns['event_banner'] = '<span class="tips dashicons dashicons-format-image" data-tip="' . __( 'Banner', 'wp-event-manager' ) . '">' . __( 'Banner', 'wp-event-manager' ) . '</span>';
+		$columns['event_banner'] = '<span class="tips dashicons dashicons-format-image" data-tip="' . __( 'Banner', 'wp-event-manager' ) . '">' . esc_attr__( 'Banner', 'wp-event-manager' ) . '</span>';
 
-		$columns['event_listing_type'] = __( 'Type', 'wp-event-manager' );
+		$columns['event_listing_type'] = esc_attr__( 'Type', 'wp-event-manager' );
 
-		$columns['event_location'] = __( 'Location', 'wp-event-manager' );
+		$columns['event_location'] = esc_attr__( 'Location', 'wp-event-manager' );
 
-		$columns['event_organizer'] = __( 'Organizer', 'wp-event-manager' );
+		$columns['event_organizer'] = esc_attr__( 'Organizer', 'wp-event-manager' );
 
-		$columns['event_start_date'] = __( 'Start Date', 'wp-event-manager' );
+		$columns['event_start_date'] = esc_attr__( 'Start Date', 'wp-event-manager' );
 
-		$columns['event_end_date'] = __( 'End Date', 'wp-event-manager' );
+		$columns['event_end_date'] = esc_attr__( 'End Date', 'wp-event-manager' );
 
-		$columns['event_expires'] = __( 'Expiry Date', 'wp-event-manager' );
+		$columns['event_expires'] = esc_attr__( 'Expiry Date', 'wp-event-manager' );
 
-		$columns['event_status'] = '<span class="tips" data-tip="' . __( 'Status', 'wp-event-manager' ) . '">' . __( 'Status', 'wp-event-manager' ) . '</span>';
+		$columns['event_status'] = '<span class="tips" data-tip="' . esc_attr__( 'Status', 'wp-event-manager' ) . '">' . esc_attr__( 'Status', 'wp-event-manager' ) . '</span>';
 
-		$columns['cancelled'] = '<span class="tips" data-tip="' . __( 'Cancelled?', 'wp-event-manager' ) . '">' . __( 'Cancelled?', 'wp-event-manager' ) . '</span>';
+		$columns['cancelled'] = '<span class="tips" data-tip="' . esc_attr__( 'Cancelled?', 'wp-event-manager' ) . '">' . esc_attr__( 'Cancelled?', 'wp-event-manager' ) . '</span>';
 
-		$columns['featured_event'] = '<span class="tips" data-tip="' . __( 'Featured?', 'wp-event-manager' ) . '">' . __( 'Featured?', 'wp-event-manager' ) . '</span>';
+		$columns['featured_event'] = '<span class="tips" data-tip="' . esc_attr__( 'Featured?', 'wp-event-manager' ) . '">' . esc_attr__( 'Featured?', 'wp-event-manager' ) . '</span>';
 
-		$columns['event_actions'] = __( 'Actions', 'wp-event-manager' );
+		$columns['event_actions'] = esc_attr__( 'Actions', 'wp-event-manager' );
 
 		if ( ! get_option( 'event_manager_enable_event_types' ) ) {
 
@@ -514,26 +514,26 @@ class WP_Event_Manager_CPT {
 		switch ( $column ) {
 
 			case 'event_status':
-				echo '<span data-tip="' . esc_attr( get_event_status( $post ) ) . '" class="tips status-' . esc_attr( $post->post_status ) . '">' . get_event_status( $post ) . '</span>';
+				echo '<span data-tip="' . esc_attr( get_event_status( $post ) ) . '" class="tips status-' . esc_attr( $post->post_status ) . '">' . esc_attr( get_event_status( $post ) ) . '</span>';
 
 				break;
 
 			case 'cancelled':
 				if ( is_event_cancelled( $post ) ) {
-					echo '<span class="tips dashicons dashicons-no" data-tip="' . __( 'Cancelled', 'wp-event-manager' ) . '">' . __( 'Cancelled', 'wp-event-manager' ) . '</span>';
+					echo '<span class="tips dashicons dashicons-no" data-tip="' . esc_attr__( 'Cancelled', 'wp-event-manager' ) . '">' . esc_attr__( 'Cancelled', 'wp-event-manager' ) . '</span>';
 				} else {
 					echo '&ndash;';
 				}
 
 				break;
 
-			'<span class="tips dashicons dashicons-format-image" data-tip="' . __( 'Banner', 'wp-event-manager' ) . '">' . __( 'Banner', 'wp-event-manager' ) . '</span>';
+			'<span class="tips dashicons dashicons-format-image" data-tip="' . esc_attr__( 'Banner', 'wp-event-manager' ) . '">' . esc_attr__( 'Banner', 'wp-event-manager' ) . '</span>';
 
 			case 'featured_event':
 				if ( is_event_featured( $post ) ) {
-					echo '<span class="tips dashicons dashicons-star-filled" data-tip="' . __( 'Featured', 'wp-event-manager' ) . '">' . __( 'Featured', 'wp-event-manager' ) . '</span>';
+					echo '<span class="tips dashicons dashicons-star-filled" data-tip="' . esc_attr__( 'Featured', 'wp-event-manager' ) . '">' . esc_attr__( 'Featured', 'wp-event-manager' ) . '</span>';
 				} else {
-					echo '<span class="tips dashicons dashicons-star-empty" data-tip="' . __( 'Not Featured', 'wp-event-manager' ) . '">' . __( 'Not Featured', 'wp-event-manager' ) . '</span>';
+					echo '<span class="tips dashicons dashicons-star-empty" data-tip="' . esc_attr__( 'Not Featured', 'wp-event-manager' ) . '">' . esc_attr__( 'Not Featured', 'wp-event-manager' ) . '</span>';
 				}
 
 				break;
@@ -550,7 +550,7 @@ class WP_Event_Manager_CPT {
 			case 'event_title':
 				echo '<div class="event_title">';
 
-				echo '<a href="' . admin_url( 'post.php?post=' . $post->ID . '&action=edit' ) . '" class="tips event_title" data-tip="' . sprintf( __( 'ID: %d', 'wp-event-manager' ), $post->ID ) . '">' . esc_html( $post->post_title ) . '</a>';
+				echo '<a href="' . esc_url( admin_url( 'post.php?post=' . $post->ID . '&action=edit' ) ) . '" class="tips event_title" data-tip="' . sprintf( esc_attr__( 'ID: %d', 'wp-event-manager' ), $post->ID ) . '">' . esc_html( $post->post_title ) . '</a>';
 
 				echo '</div>';
 
@@ -623,7 +623,7 @@ class WP_Event_Manager_CPT {
 
 						'action' => 'approve',
 
-						'name'   => __( 'Approve', 'wp-event-manager' ),
+						'name'   => esc_attr__( 'Approve', 'wp-event-manager' ),
 
 						'url'    => wp_nonce_url( add_query_arg( 'approve_event', $post->ID ), 'approve_event' ),
 					);
@@ -637,7 +637,7 @@ class WP_Event_Manager_CPT {
 
 							'action' => 'view',
 
-							'name'   => __( 'View', 'wp-event-manager' ),
+							'name'   => esc_attr__( 'View', 'wp-event-manager' ),
 
 							'url'    => get_permalink( $post->ID ),
 						);
@@ -649,7 +649,7 @@ class WP_Event_Manager_CPT {
 
 							'action' => 'edit',
 
-							'name'   => __( 'Edit', 'wp-event-manager' ),
+							'name'   => esc_attr__( 'Edit', 'wp-event-manager' ),
 
 							'url'    => get_edit_post_link( $post->ID ),
 						);
@@ -661,7 +661,7 @@ class WP_Event_Manager_CPT {
 
 							'action' => 'delete',
 
-							'name'   => __( 'Delete', 'wp-event-manager' ),
+							'name'   => esc_attr__( 'Delete', 'wp-event-manager' ),
 
 							'url'    => get_delete_post_link( $post->ID ),
 						);
