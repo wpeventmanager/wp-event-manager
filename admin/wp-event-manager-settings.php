@@ -737,7 +737,7 @@ class WP_Event_Manager_Settings {
 			$page_title = str_replace('_', ' ', $page_title);
 			$page_title = ucwords($page_title);
 			echo $page_title; */
-			_e( 'Settings', 'wp-event-manager' );
+			esc_attr_e( 'Settings', 'wp-event-manager' );
 			?>
 			</h1>
 
@@ -768,7 +768,7 @@ class WP_Event_Manager_Settings {
 
 							flush_rewrite_rules();
 
-							echo '<div class="updated fade event-manager-updated"><p>' . __( 'Settings successfully saved', 'wp-event-manager' ) . '</p></div>';
+							echo '<div class="updated fade event-manager-updated"><p>' . esc_attr__( 'Settings successfully saved', 'wp-event-manager' ) . '</p></div>';
 						}
 
 						foreach ( $this->settings as $key => $section ) {
@@ -797,37 +797,37 @@ class WP_Event_Manager_Settings {
 									}
 								}
 
-								echo '<tr valign="top" class="' . $class . '"><th scope="row"><label for="setting-' . $option['name'] . '">' . $option['label'] . '</a></th><td>';
+								echo '<tr valign="top" class="' . esc_attr( $class ) . '"><th scope="row"><label for="setting-' . esc_attr( $option['name'] ) . '">' . esc_attr( $option['label'] ) . '</a></th><td>';
 
 								switch ( $option['type'] ) {
 
 									case 'checkbox':
 										?>
-											<label><input id="setting-<?php echo $option['name']; ?>" name="<?php echo $option['name']; ?>" type="checkbox" value="1" <?php echo implode( ' ', $attributes ); ?> <?php checked( '1', $value ); ?> /> <?php echo $option['cb_label']; ?></label>
+											<label><input id="setting-<?php echo esc_attr( $option['name'] ); ?>" name="<?php echo esc_attr( $option['name'] ); ?>" type="checkbox" value="1" <?php echo implode( ' ', $attributes ); ?> <?php checked( '1', $value ); ?> /> <?php echo esc_attr( $option['cb_label'] ); ?></label>
 																				 <?php
 
 																					if ( $option['desc'] ) {
 
-																						echo ' <p class="description">' . $option['desc'] . '</p>';
+																						echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 																					}
 
 										break;
 
 									case 'textarea':
 										?>
-											<textarea id="setting-<?php echo $option['name']; ?>" class="large-text" cols="50" rows="<?php echo isset( $option['row'] ) ? $option['row'] : 3; ?>" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?>><?php echo esc_textarea( $value ); ?></textarea>
+											<textarea id="setting-<?php echo esc_attr( $option['name'] ); ?>" class="large-text" cols="50" rows="<?php echo isset( $option['row'] ) ? esc_attr( $option['row'] ) : 3; ?>" name="<?php echo esc_attr( $option['name'] ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo esc_attr( $placeholder ); ?>><?php echo esc_textarea( $value ); ?></textarea>
 																			 <?php
 
 																				if ( $option['desc'] ) {
 
-																					echo ' <p class="description">' . $option['desc'] . '</p>';
+																					echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 																				}
 
 										break;
 
 									case 'select':
 										?>
-											<select id="setting-<?php echo $option['name']; ?>" class="regular-text" name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?>>
+											<select id="setting-<?php echo esc_attr( $option['name'] ); ?>" class="regular-text" name="<?php echo esc_attr( $option['name'] ); ?>" <?php echo implode( ' ', $attributes ); ?>>
 																		   <?php
 
 																			foreach ( $option['options'] as $key => $name ) {
@@ -840,14 +840,14 @@ class WP_Event_Manager_Settings {
 											<?php
 
 											if ( $option['desc'] ) {
-												echo ' <p class="description">' . $option['desc'] . '</p>';
+												echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 											}
 
 										break;
 
 									case 'multiselect':
 										?>
-											<select id="setting-<?php echo $option['name']; ?>" multiple="multiple" class="regular-text" name="<?php echo $option['name']; ?>[]" <?php echo implode( ' ', $attributes ); ?>>
+											<select id="setting-<?php echo esc_attr( $option['name'] ); ?>" multiple="multiple" class="regular-text" name="<?php echo esc_attr( $option['name'] ); ?>[]" <?php echo implode( ' ', $attributes ); ?>>
 																		   <?php
 
 																			foreach ( $option['options'] as $key => $name ) {
@@ -866,7 +866,7 @@ class WP_Event_Manager_Settings {
 											<?php
 
 											if ( $option['desc'] ) {
-												echo ' <p class="description">' . $option['desc'] . '</p>';
+												echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 											}
 
 										break;
@@ -884,7 +884,7 @@ class WP_Event_Manager_Settings {
 												}
 
 												if ( $option['desc'] ) {
-													echo '<p class="description">' . $option['desc'] . '</p>';
+													echo '<p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 												}
 
 												?>
@@ -916,7 +916,7 @@ class WP_Event_Manager_Settings {
 
 										if ( $option['desc'] ) {
 
-											echo ' <p class="description">' . $option['desc'] . '</p>';
+											echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 
 										}
 
@@ -924,12 +924,12 @@ class WP_Event_Manager_Settings {
 
 									case 'password':
 										?>
-											<input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="password" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr( $option['name'] ); ?>" class="regular-text" type="password" name="<?php echo esc_attr( $option['name'] ); ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> />
 																		  <?php
 
 																			if ( $option['desc'] ) {
 
-																				echo ' <p class="description">' . $option['desc'] . '</p>';
+																				echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 																			}
 
 										break;
@@ -938,35 +938,35 @@ class WP_Event_Manager_Settings {
 									case 'input':
 									case 'text':
 										?>
-											<input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="text" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr( $option['name'] ); ?>" class="regular-text" type="text" name="<?php echo esc_attr( $option['name'] ); ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> />
 																		  <?php
 
 																			if ( $option['desc'] ) {
 
-																				echo ' <p class="description">' . $option['desc'] . '</p>';
+																				echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 																			}
 
 										break;
 
 									case 'number':
 										?>
-											<input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="number" min="0" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr( $option['name'] ); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr( $option['name'] ); ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo esc_attr( $placeholder ); ?> />
 																		  <?php
 
 																			if ( $option['desc'] ) {
 
-																				echo ' <p class="description">' . $option['desc'] . '</p>';
+																				echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 																			}
 
 										break;
 									case 'button':
 										?>
-											<button class="button" id="setting-<?php echo $option['name']; ?>" class="regular-text" type="button"  name="<?php echo $option['name']; ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> ><?php echo $option['cb_label']; ?></button>
+											<button class="button" id="setting-<?php echo esc_attr( $option['name'] ); ?>" class="regular-text" type="button"  name="<?php echo esc_attr( $option['name'] ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo esc_attr( $placeholder ); ?> ><?php echo esc_attr( $option['cb_label'] ); ?></button>
 																						  <?php
 
 																							if ( $option['desc'] ) {
 
-																								echo ' <p class="description">' . $option['desc'] . '</p>';
+																								echo ' <p class="description">' . esc_attr( $option['desc'] ) . '</p>';
 																							}
 
 										break;
@@ -987,7 +987,7 @@ class WP_Event_Manager_Settings {
 						?>
 						 </div>   <!-- .white-background- -->
 						<p class="submit">
-							<input type="submit" class="button-primary" id="save-changes" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
+							<input type="submit" class="button-primary" id="save-changes" value="<?php esc_attr_e( 'Save Changes', 'wp-event-manager' ); ?>" />
 						</p>
 					 </div>  <!-- .admin-setting-left -->
 
@@ -995,7 +995,7 @@ class WP_Event_Manager_Settings {
 				<?php do_action( 'wpem_admin_seting_side_box_start' ); ?>
 				<div id="plugin_info" class="box-info">
 
-					<h3><span><?php _e( 'Helpful Resources', 'wp-event-manager' ); ?></span></h3>
+					<h3><span><?php esc_attr_e( 'Helpful Resources', 'wp-event-manager' ); ?></span></h3>
 
 					<div class="wpem-plugin_info-inside">
 						<div class="wpem-setup-help-center-block-wrap">
@@ -1004,9 +1004,9 @@ class WP_Event_Manager_Settings {
 									<span class="wpem-setup-help-center-knowledge-base-icon"></span>
 								</div>
 								<div class="wpem-setup-help-center-block-content">
-									<div class="wpem-setup-help-center-block-heading"><?php _e( 'Knowledge Base', 'wp-event-manager' ); ?></div>
-									<div class="wpem-setup-help-center-block-desc"><?php _e( 'Solve your queries by browsing our documentation.', 'wp-event-manager' ); ?></div>
-									<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e( 'Browse More', 'wp-event-manager' ); ?> »</span></a>
+									<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e( 'Knowledge Base', 'wp-event-manager' ); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e( 'Solve your queries by browsing our documentation.', 'wp-event-manager' ); ?></div>
+									<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e( 'Browse More', 'wp-event-manager' ); ?> »</span></a>
 								</div>
 							</div>
 							<div class="wpem-setup-help-center-block">
@@ -1014,9 +1014,9 @@ class WP_Event_Manager_Settings {
 									<span class="wpem-setup-help-center-faqs-icon"></span>
 								</div>
 								<div class="wpem-setup-help-center-block-content">
-									<div class="wpem-setup-help-center-block-heading"><?php _e( 'FAQs', 'wp-event-manager' ); ?></div>
-									<div class="wpem-setup-help-center-block-desc"><?php _e( 'Explore through the frequently asked questions.', 'wp-event-manager' ); ?></div>
-									<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e( 'Get Answers', 'wp-event-manager' ); ?> »</span></a>
+									<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e( 'FAQs', 'wp-event-manager' ); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e( 'Explore through the frequently asked questions.', 'wp-event-manager' ); ?></div>
+									<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e( 'Get Answers', 'wp-event-manager' ); ?> »</span></a>
 								</div>
 							</div>
 							<div class="wpem-setup-help-center-block">
@@ -1024,13 +1024,13 @@ class WP_Event_Manager_Settings {
 									<span class="wpem-setup-help-center-video-tutorial-icon"></span>
 								</div>
 								<div class="wpem-setup-help-center-block-content">
-									<div class="wpem-setup-help-center-block-heading"><?php _e( 'Video Tutorials', 'wp-event-manager' ); ?></div>
-									<div class="wpem-setup-help-center-block-desc"><?php _e( 'Learn different skills by examining attractive video tutorials.', 'wp-event-manager' ); ?></div>
-									<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php _e( 'Watch all', 'wp-event-manager' ); ?> »</span></a>
+									<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e( 'Video Tutorials', 'wp-event-manager' ); ?></div>
+									<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e( 'Learn different skills by examining attractive video tutorials.', 'wp-event-manager' ); ?></div>
+									<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e( 'Watch all', 'wp-event-manager' ); ?> »</span></a>
 								</div>
 							</div>
 						</div>
-						<span class="light-grey"><?php _e( 'Powered By', 'wp-event-manager' ); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
+						<span class="light-grey"><?php esc_attr_e( 'Powered By', 'wp-event-manager' ); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
 					</div>
 				</div>
 				<?php do_action( 'wpem_admin_seting_side_box_end' ); ?>
@@ -1050,7 +1050,7 @@ class WP_Event_Manager_Settings {
 	 * @return void
 	 */
 	public function create_multi_select_checkbox( $value ) {
-		echo '<ul class="mnt-checklist" id="' . $value['name'] . '" >' . "\n";
+		echo '<ul class="mnt-checklist" id="' . esc_attr( $value['name'] ) . '" >' . "\n";
 		foreach ( $value['options'] as $option_value => $option_list ) {
 			$checked = ' ';
 			if ( get_option( $value['name'] ) ) {
@@ -1066,7 +1066,7 @@ class WP_Event_Manager_Settings {
 			}
 			echo "<li>\n";
 
-			echo '<input id="setting-' . $option_list['name'] . '" name="' . $option_list['name'] . '" type="checkbox" ' . $checked . '/>' . $option_list['cb_label'] . "\n";
+			echo '<input id="setting-' . esc_attr( $option_list['name'] ) . '" name="' . esc_attr( $option_list['name'] ) . '" type="checkbox" ' . $checked . '/>' . esc_attr( $option_list['cb_label'] ) . "\n";
 			echo "</li>\n";
 		}
 		echo "</ul>\n";
