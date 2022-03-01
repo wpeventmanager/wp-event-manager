@@ -12,7 +12,7 @@ $thumbnail     = get_event_thumbnail();
     <!----- wpem-col-lg-4 value can be change by admin settings ------->
     <div class="wpem-event-layout-wrapper">
         <div <?php event_listing_class(''); ?>>
-            <a href="<?php display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo $event_type; ?>">
+            <a href="<?php display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo esc_attr($event_type); ?>">
                 <div class="wpem-event-banner">
                     <div class="wpem-event-banner-img" style="background-image: url(<?php echo $thumbnail; ?> ) ">
                         <!-- Hide in list View // Show in Box View -->
@@ -79,7 +79,7 @@ $thumbnail     = get_event_thumbnail();
                         {
                             ?>
                             <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text">
-                                <span class="wpem-event-ticket-type-text"><?php echo '#' . get_event_ticket_option(); ?></span>
+                                <span class="wpem-event-ticket-type-text"><?php echo '#' . esc_html(get_event_ticket_option()); ?></span>
                             </div>
                         <?php }
                         ?>
