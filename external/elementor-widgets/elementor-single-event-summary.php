@@ -173,22 +173,22 @@ class Elementor_Event_Summary extends Widget_Base {
 		$settings = $this->get_settings_for_display();	
 		
 		if($settings['event_id']>0)
-		    $event_id = 'id="'.$settings['event_id'].'"';
+		    $event_id = 'id="'.esc_attr($settings['event_id']).'"';
 	    else
 	        $event_id = '';
 
 	    if($settings['width']>0)
-		    $width = 'width="'.$settings['width'].'"';
+		    $width = 'width="'.esc_attr($settings['width']).'"';
 	    else
 	        $width = '';
 
 	    if($settings['align'] != '')
-		    $align = 'align="'.$settings['align'].'"';
+		    $align = 'align="'.esc_attr($settings['align']).'"';
 	    else
 	        $align = '';
 
 	    if($settings['featured'] != '')
-		    $featured = 'featured="'.$settings['featured'].'"';
+		    $featured = 'featured="'.esc_attr($settings['featured']).'"';
 	    else
 	        $featured = '';
 

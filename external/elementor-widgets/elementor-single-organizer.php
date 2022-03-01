@@ -136,8 +136,8 @@ class Elementor_Single_Organizer extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		if($settings['organizer_id']>0){
-		    $organizer_id = 'id='.$settings['organizer_id'];
-		    $settings['organizer_id']='id='.$settings['organizer_id'];
+		    $organizer_id = 'id='.esc_attr($settings['organizer_id']);
+		    $settings['organizer_id']='id='.esc_attr($settings['organizer_id']);
 		}
 		else{
 		    $organizer_id = '';

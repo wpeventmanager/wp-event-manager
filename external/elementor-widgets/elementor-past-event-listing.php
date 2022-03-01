@@ -199,26 +199,26 @@ class Elementor_Past_Event_Listing extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		if(strlen($settings['location'])>0)
-		    $location = 'location="'.$settings['location'].'"';
+		    $location = 'location="'.esc_attr($settings['location']).'"';
 	    else
 	        $location = '';
 	        
         if(strlen($settings['keywords'])>0)
-            $keywords = 'keywords="'.$settings['keywords'].'"';
+            $keywords = 'keywords="'.esc_attr($settings['keywords']).'"';
         else
             $keywords = '';
 
         if(strlen($settings['selected_categories'])>0)
-            $categories = 'selected_categories="'.$settings['selected_categories'].'"';
+            $categories = 'selected_categories="'.esc_attr($settings['selected_categories']).'"';
         else
             $categories = '';
             
         if(strlen($settings['selected_event_types'])>0)
-            $event_types = 'selected_event_types="'.$settings['selected_event_types'].'"';
+            $event_types = 'selected_event_types="'.esc_attr($settings['selected_event_types']).'"';
         else
             $event_types = '';
 		
-		$shortcode = '[past_events show_pagination="'.$settings['show_pagination'].'" per_page="'.$settings['per_page'].'" order="'.$settings['order'].'" meta_key="'.$settings['meta_key'].'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.']';
+		$shortcode = '[past_events show_pagination="'.esc_attr($settings['show_pagination']).'" per_page="'.esc_attr($settings['per_page']).'" order="'.esc_attr($settings['order']).'" meta_key="'.esc_attr($settings['meta_key']).'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.']';
 
 		echo do_shortcode($shortcode);
 	}

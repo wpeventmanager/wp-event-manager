@@ -160,7 +160,7 @@ class Elementor_Event_Venues extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		
-		echo do_shortcode('[event_venues order="'.$settings['order'].'" orderby="'.$settings['orderby'].'" show_thumb="'.$settings['show_thumb'].'" show_count="'.$settings['show_count'].'"]');
+		echo do_shortcode('[event_venues order="'.esc_attr($settings['order']).'" orderby="'.esc_attr($settings['orderby']).'" show_thumb="'.esc_attr($settings['show_thumb']).'" show_count="'.esc_attr($settings['show_count']).'"]');
 	}
 
 	/**

@@ -268,7 +268,7 @@ class Elementor_Event_Field extends Widget_Base {
 
                 if ($view_count) :
                     ?>
-                    <i class="wpem-icon-eye"></i> <?php echo $view_count; ?>
+                    <i class="wpem-icon-eye"></i> <?php echo esc_html($view_count); ?>
                     <?php
                 endif;
             } else if ($settings['event_field'] == 'event_ticket_type') {
@@ -346,10 +346,10 @@ class Elementor_Event_Field extends Widget_Base {
                                         </div>
                                         <?php
                                     } else {
-                                        echo $event_field[$key];
+                                        echo esc_attr($event_field[$key]);
                                     }
                                 } else {
-                                    echo $event_field[$key];
+                                    echo esc_attr($event_field[$key]);
                                 }
                                 ?>
                             </div>
@@ -396,7 +396,7 @@ class Elementor_Event_Field extends Widget_Base {
                         }elseif($event_field == 'specific_time'){
                             _e( 'specific day','wp-event-manager') ;    
                         }else{
-                            echo $event_field;
+                            echo esc_attr($event_field);
                         }
                     }
                 }
