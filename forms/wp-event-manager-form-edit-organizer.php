@@ -180,7 +180,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 
 		} catch ( Exception $e ) {
 
-			echo '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $e->getMessage() . '</div>';
+			echo '<div class="event-manager-error wpem-alert wpem-alert-danger">' .  esc_html($e->getMessage()) . '</div>';
 
 			return;
 		}

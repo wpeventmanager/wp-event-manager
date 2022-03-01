@@ -113,7 +113,7 @@ class Elementor_Event_Dashboard extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		if($settings['posts_per_page']>0)
+		if($settings['posts_per_page'] > 0)
 			$posts_per_page = 'posts_per_page='.(int)$settings['posts_per_page'];
 		else
 		    $posts_per_page = 'posts_per_page=10';
