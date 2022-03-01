@@ -26,7 +26,7 @@
 	</td>
 
 	<td>
-		<input type="text" class="input-text" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][description]" value="<?php echo esc_attr( isset( $field['description'] ) ? stripslashes( $field['description'] ) : '' ); ?>" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
+		<input type="text" class="input-text" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][description]" value="<?php echo esc_attr( isset( $field['description'] ) ? stripslashes( $field['description'] ) : '' ); ?>" placeholder="<?php esc_attr_e( 'N/A', 'wp-event-manager' ); ?>" />
 	</td>
 
 	<td class="field-options">
@@ -50,11 +50,11 @@
 																			if ( isset( $field['placeholder'] ) ) {
 																				printf( esc_html__( '%s', 'wp-event-manager' ), esc_attr( stripslashes( $field['placeholder'] ) ) );}
 																			?>
-		" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>" />
-		<input type="text" class="input-text options" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][options]" placeholder="<?php _e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( $options ); ?>" />
+		" placeholder="<?php esc_attr_e( 'N/A', 'wp-event-manager' ); ?>" />
+		<input type="text" class="input-text options" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][options]" placeholder="<?php esc_attr_e( 'Pipe (|) separate options.', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( $options ); ?>" />
 
 		<div class="file-options">
-			<label class="multiple-files"><input type='hidden' value='0' name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][multiple]"><input type="checkbox" class="input-text" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][multiple]" value="1" <?php checked( ! empty( $field['multiple'] ), true ); ?> /> <?php _e( 'Multiple Files?', 'wp-event-manager' ); ?></label>
+			<label class="multiple-files"><input type='hidden' value='0' name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][multiple]"><input type="checkbox" class="input-text" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][multiple]" value="1" <?php checked( ! empty( $field['multiple'] ), true ); ?> /> <?php esc_attr_e( 'Multiple Files?', 'wp-event-manager' ); ?></label>
 		</div>
 		<div class="taxonomy-options">
 			<label class="taxonomy-option">
@@ -89,7 +89,7 @@
 																			if ( isset( $field['priority'] ) ) {
 																				printf( esc_html__( '%s', 'wp-event-manager' ), $field['priority'] );}
 																			?>
-		" placeholder="<?php _e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
+		" placeholder="<?php esc_attr_e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
 	</td>
 
 	<td class="field-rules">
@@ -102,13 +102,13 @@
 					if ( $field['required'] == false ) {
 						echo 'selected="selected"';}
 					?>
-					 ><?php _e( 'Not Required', 'wp-event-manager' ); ?></option>
+					 ><?php esc_attr_e( 'Not Required', 'wp-event-manager' ); ?></option>
 					<option value="1" 
 					<?php
 					if ( $field['required'] == true ) {
 						echo 'selected="selected"';}
 					?>
-					 ><?php _e( 'Required', 'wp-event-manager' ); ?></option>
+					 ><?php esc_attr_e( 'Required', 'wp-event-manager' ); ?></option>
 				</select>
 			</div>
 		<?php endif; ?>
@@ -152,21 +152,21 @@ if ( isset( $field['type'] ) && $field['type'] == 'group' ) {
 				<thead>
 					<tr>
 						<th width="1%">&nbsp;</th>
-						<th><?php _e( 'Field Label', 'wp-event-manager' ); ?></th>
-						<th width="1%"><?php _e( 'Type', 'wp-event-manager' ); ?></th>
-						<th><?php _e( 'Description', 'wp-event-manager' ); ?></th>
-						<th><?php _e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
-						<th width="1%"><?php _e( 'Meta Key', 'wp-event-manager' ); ?></th>
-						<th width="1%"><?php _e( 'Only For Admin', 'wp-event-manager' ); ?></th>
-						<th width="1%"><?php _e( 'Priority', 'wp-event-manager' ); ?></th>
-						<th width="1%"><?php _e( 'Validation', 'wp-event-manager' ); ?></th>
+						<th><?php esc_attr_e( 'Field Label', 'wp-event-manager' ); ?></th>
+						<th width="1%"><?php esc_attr_e( 'Type', 'wp-event-manager' ); ?></th>
+						<th><?php esc_attr_e( 'Description', 'wp-event-manager' ); ?></th>
+						<th><?php esc_attr_e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
+						<th width="1%"><?php esc_attr_e( 'Meta Key', 'wp-event-manager' ); ?></th>
+						<th width="1%"><?php esc_attr_e( 'Only For Admin', 'wp-event-manager' ); ?></th>
+						<th width="1%"><?php esc_attr_e( 'Priority', 'wp-event-manager' ); ?></th>
+						<th width="1%"><?php esc_attr_e( 'Validation', 'wp-event-manager' ); ?></th>
 						<th width="1%" class="field-actions">&nbsp;</th>
 					</tr>
 				</thead>
 				<tfoot>
 					<tr>
 						<th colspan="4">
-							<a class="button child-add-field" href="javascript:void(0)"><?php _e( 'Add Child field', 'wp-event-manager' ); ?></a>
+							<a class="button child-add-field" href="javascript:void(0)"><?php esc_attr_e( 'Add Child field', 'wp-event-manager' ); ?></a>
 						</th>			
 					</tr>
 				</tfoot>

@@ -240,17 +240,17 @@ class WP_Event_Manager_Writepanels {
 		$current   = ( $current ? $current->term_id : 0 );
 		?>
 	
-		<div id="taxonomy-<?php echo $taxonomy; ?>" class="categorydiv">
+		<div id="taxonomy-<?php echo esc_attr( $taxonomy ); ?>" class="categorydiv">
 
 			<!-- Display tabs-->
-			<ul id="<?php echo $taxonomy; ?>-tabs" class="category-tabs">
-				<li class="tabs"><a href="#<?php echo $taxonomy; ?>-all" tabindex="3"><?php echo $tax->labels->all_items; ?></a></li>
-				<li class="hide-if-no-js"><a href="#<?php echo $taxonomy; ?>-pop" tabindex="3"><?php _e( 'Most Used', 'wp-event-manager' ); ?></a></li>
+			<ul id="<?php echo esc_attr( $taxonomy ); ?>-tabs" class="category-tabs">
+				<li class="tabs"><a href="#<?php echo esc_attr( $taxonomy ); ?>-all" tabindex="3"><?php echo esc_attr( $tax->labels->all_items ); ?></a></li>
+				<li class="hide-if-no-js"><a href="#<?php echo esc_attr( $taxonomy ); ?>-pop" tabindex="3"><?php esc_attr_e( 'Most Used', 'wp-event-manager' ); ?></a></li>
 			</ul>
 
 			<!-- Display taxonomy terms -->
-			<div id="<?php echo $taxonomy; ?>-all" class="tabs-panel">
-				<ul id="<?php echo $taxonomy; ?>checklist" class="list:<?php echo $taxonomy; ?> categorychecklist form-no-clear">
+			<div id="<?php echo esc_attr( $taxonomy ); ?>-all" class="tabs-panel">
+				<ul id="<?php echo esc_attr( $taxonomy ); ?>checklist" class="list:<?php echo esc_attr( $taxonomy ); ?> categorychecklist form-no-clear">
 					<?php
 					foreach ( $terms as $term ) {
 						$id = $taxonomy . '-' . $term->term_id;
@@ -318,13 +318,13 @@ class WP_Event_Manager_Writepanels {
 
 			<!-- Display tabs-->
 			<ul id="<?php echo esc_attr( $taxonomy ); ?>-tabs" class="category-tabs">
-				<li class="tabs"><a href="#<?php echo esc_attr( $taxonomy ); ?>-all" tabindex="3"><?php echo $tax->labels->all_items; ?></a></li>
-				<li class="hide-if-no-js"><a href="#<?php echo esc_attr( $taxonomy ); ?>-pop" tabindex="3"><?php _e( 'Most Used', 'wp-event-manager' ); ?></a></li>
+				<li class="tabs"><a href="#<?php echo esc_attr( $taxonomy ); ?>-all" tabindex="3"><?php echo esc_attr( $tax->labels->all_items ); ?></a></li>
+				<li class="hide-if-no-js"><a href="#<?php echo esc_attr( $taxonomy ); ?>-pop" tabindex="3"><?php esc_attr_e( 'Most Used', 'wp-event-manager' ); ?></a></li>
 			</ul>
 
 			<!-- Display taxonomy terms -->
 			<div id="<?php echo esc_attr( $taxonomy ); ?>-all" class="tabs-panel">
-				<ul id="<?php echo esc_attr( $taxonomy ); ?>checklist" class="list:<?php echo $taxonomy; ?> categorychecklist form-no-clear">
+				<ul id="<?php echo esc_attr( $taxonomy ); ?>checklist" class="list:<?php echo esc_attr( $taxonomy ); ?> categorychecklist form-no-clear">
 					<?php
 					foreach ( $terms as $term ) {
 						$id = $taxonomy . '-' . $term->term_id;
@@ -385,7 +385,7 @@ class WP_Event_Manager_Writepanels {
 			if ( ! empty( $field['multiple'] ) ) {
 				foreach ( (array) $field['value'] as $value ) {
 					?>
-					<span class="file_url"><input type="text" name="<?php echo esc_attr( $name ); ?>[]" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $value ); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php _e( 'Use file', 'wp-event-manager' ); ?>"><?php _e( 'Upload', 'wp-event-manager' ); ?></button></span>
+					<span class="file_url"><input type="text" name="<?php echo esc_attr( $name ); ?>[]" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $value ); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e( 'Use file', 'wp-event-manager' ); ?>"><?php esc_attr_e( 'Upload', 'wp-event-manager' ); ?></button></span>
 																			   <?php
 				}
 			} else {
@@ -393,12 +393,12 @@ class WP_Event_Manager_Writepanels {
 					$field['value'] = array_shift( $field['value'] );
 				}
 				?>
-				<span class="file_url"><input type="text" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php _e( 'Use file', 'wp-event-manager' ); ?>"><?php _e( 'Upload', 'wp-event-manager' ); ?></button></span>
+				<span class="file_url"><input type="text" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e( 'Use file', 'wp-event-manager' ); ?>"><?php esc_attr_e( 'Upload', 'wp-event-manager' ); ?></button></span>
 																		   <?php
 			}
 			if ( ! empty( $field['multiple'] ) ) {
 				?>
-				<button class="button button-small wp_event_manager_add_another_file_button" data-field_name="<?php echo esc_attr( $key ); ?>" data-field_placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" data-uploader_button_text="<?php _e( 'Use file', 'wp-event-manager' ); ?>" data-uploader_button="<?php _e( 'Upload', 'wp-event-manager' ); ?>"><?php _e( 'Add file', 'wp-event-manager' ); ?></button>
+				<button class="button button-small wp_event_manager_add_another_file_button" data-field_name="<?php echo esc_attr( $key ); ?>" data-field_placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" data-uploader_button_text="<?php esc_attr_e( 'Use file', 'wp-event-manager' ); ?>" data-uploader_button="<?php esc_attr_e( 'Upload', 'wp-event-manager' ); ?>"><?php esc_attr_e( 'Add file', 'wp-event-manager' ); ?></button>
 																														 <?php
 			}
 			?>
@@ -813,16 +813,16 @@ class WP_Event_Manager_Writepanels {
 			<span class="current-author">
 				<?php
 				if ( $posted_by ) {
-					echo '<a href="' . admin_url( 'user-edit.php?user_id=' . absint( $author_id ) ) . '">#' . absint( $author_id ) . ' &ndash; ' . $posted_by->user_login . '</a>';
+					echo '<a href="' .esc_url( admin_url( 'user-edit.php?user_id=' . absint( $author_id ) ) ) . '">#' . absint( $author_id ) . ' &ndash; ' . esc_attr( $posted_by->user_login ) . '</a>';
 				} else {
-					 _e( 'Guest User', 'wp-event-manager' );
+					 esc_attr_e( 'Guest User', 'wp-event-manager' );
 				}
 				?>
-				 <a href="#" class="change-author button button-small"><?php _e( 'Change', 'wp-event-manager' ); ?></a>
+				 <a href="#" class="change-author button button-small"><?php esc_attr_e( 'Change', 'wp-event-manager' ); ?></a>
 			</span>
 			<span class="hidden change-author">
 				<input type="number" name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $key ); ?>" step="1" value="<?php echo esc_attr( $author_id ); ?>" style="width: 4em;" />
-				<span class="description"><?php _e( 'Enter the ID of the user, or leave blank if submitted by a guest.', 'wp-event-manager' ); ?></span>
+				<span class="description"><?php esc_attr_e( 'Enter the ID of the user, or leave blank if submitted by a guest.', 'wp-event-manager' ); ?></span>
 			</span>
 		</p>
 		<?php

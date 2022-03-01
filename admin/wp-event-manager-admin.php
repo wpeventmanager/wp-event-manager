@@ -69,7 +69,7 @@ class WP_Event_Manager_Admin {
 		if ( version_compare( get_option( 'wp_event_manager_db_version', 0 ), '3.1.13', '<' ) ) {
 			?>
 			<div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
-				<p><?php echo sprintf( __( 'Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager' ), admin_url( 'edit.php?post_type=event_listing&page=event-manager-upgrade-database' ) ); ?></p>
+				<p><?php echo sprintf(  esc_attr__( 'Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager' ), esc_url( admin_url( 'edit.php?post_type=event_listing&page=event-manager-upgrade-database' ) ) ); ?></p>
 			</div>
 			<?php
 		}
@@ -86,8 +86,8 @@ class WP_Event_Manager_Admin {
 		if ( get_option( 'wpem_installation_skip', false ) ) {
 			?>
 			<div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
-				<p><?php echo sprintf( __( '<strong>Welcome to WP Event Manager</strong> – All in One Event Management Plugin for WordPress', 'wp-event-manager' ) ); ?></p>
-				<p><?php echo sprintf( __( '<a class="button button-primary" href="%1$s">Run the Setup Wizard</a> <a class="button" href="%2$s">Skip setup</a>', 'wp-event-manager' ), admin_url( 'index.php?page=event-manager-setup&step=1' ), admin_url( 'index.php?page=event-manager-setup&step=3&skip-event-manager-setup=1' ) ); ?></p>
+				<p><?php echo sprintf( esc_attr__( '<strong>Welcome to WP Event Manager</strong> – All in One Event Management Plugin for WordPress', 'wp-event-manager' ) ); ?></p>
+				<p><?php echo sprintf( esc_attr__( '<a class="button button-primary" href="%1$s">Run the Setup Wizard</a> <a class="button" href="%2$s">Skip setup</a>', 'wp-event-manager' ), esc_url(admin_url( 'index.php?page=event-manager-setup&step=1' ) ), esc_url( admin_url( 'index.php?page=event-manager-setup&step=3&skip-event-manager-setup=1' ) ) ); ?></p>
 			</div>
 			<?php
 		}
@@ -183,7 +183,7 @@ class WP_Event_Manager_Admin {
 
 				<thead>
 					<tr>
-						<th><h3><?php _e( 'Upgrade yor database for new version of WP Event Manager', 'wp-event-manager' ); ?></h3></th>
+						<th><h3><?php esc_attr_e( 'Upgrade yor database for new version of WP Event Manager', 'wp-event-manager' ); ?></h3></th>
 					</tr>
 				</thead>
 
@@ -191,7 +191,7 @@ class WP_Event_Manager_Admin {
 					<td>
 						<p>
 						<?php
-						_e(
+						esc_attr_e(
 							'3.1.15 has released!
 We are constantly working to improve your event management experience, We have a new release focusing on a handle of fixes and updates & here is a summary of what has been improved...
 
@@ -208,7 +208,7 @@ A prior Backup does no harm before updating the plugin!',
 				<tfoot>
 					<tr>
 						<td>
-							<a class="button-primary" id="wp_event_manager_upgrade_database" href="javascript:void(0)"><?php _e( 'Upgrade', 'wp-event-manager' ); ?></a>
+							<a class="button-primary" id="wp_event_manager_upgrade_database" href="javascript:void(0)"><?php esc_attr_e( 'Upgrade', 'wp-event-manager' ); ?></a>
 						</td>
 					</tr>
 				</tfoot>
@@ -357,10 +357,10 @@ A prior Backup does no harm before updating the plugin!',
 			?>
 		<div class="notice wp-event-manager-notice">
 			<div class="wp-event-manager-notice-logo"><span></span></div>
-			<div class="wp-event-manager-notice-message wp-wp-event-manager-fresh"><?php _e( 'We\'ve noticed you\'ve been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We\'d be thrilled if you could <strong><a href="https://wordpress.org/support/plugin/wp-event-manager/reviews/" target="_blank">give us a nice rating on WordPress.org!</a></strong> Don\'t forget to submit your site to <strong><a href="https://wp-eventmanager.com/showcase/" target="_blank">our showcase</a></strong> and generate more traffic from our site.', 'wp-event-manager' ); ?></div>
+			<div class="wp-event-manager-notice-message wp-wp-event-manager-fresh"><?php esc_attr_e( 'We\'ve noticed you\'ve been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We\'d be thrilled if you could <strong><a href="https://wordpress.org/support/plugin/wp-event-manager/reviews/" target="_blank">give us a nice rating on WordPress.org!</a></strong> Don\'t forget to submit your site to <strong><a href="https://wp-eventmanager.com/showcase/" target="_blank">our showcase</a></strong> and generate more traffic from our site.', 'wp-event-manager' ); ?></div>
 			<div class="wp-event-manager-notice-cta">
-				<a href="https://wp-eventmanager.com/plugins/" target="_blank" class="wp-event-manager-notice-act button-primary"><?php _e( 'Run Setup', 'wp-event-manager' ); ?></a>
-				<button class="wp-event-manager-notice-dismiss wp-event-manager-dismiss-welcome"><a href="<?php echo esc_url( add_query_arg( 'event-manager-main-admin-dismiss', '1' ) ); ?>"><?php _e( 'Dismiss', 'wp-event-manager' ); ?></a></span></button>
+				<a href="https://wp-eventmanager.com/plugins/" target="_blank" class="wp-event-manager-notice-act button-primary"><?php esc_attr_e( 'Run Setup', 'wp-event-manager' ); ?></a>
+				<button class="wp-event-manager-notice-dismiss wp-event-manager-dismiss-welcome"><a href="<?php echo esc_url( add_query_arg( 'event-manager-main-admin-dismiss', '1' ) ); ?>"><?php esc_attr_e( 'Dismiss', 'wp-event-manager' ); ?></a></span></button>
 			</div>
 		</div>
 			<?php

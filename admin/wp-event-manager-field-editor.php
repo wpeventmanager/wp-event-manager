@@ -93,7 +93,7 @@ class WP_Event_Manager_Field_Editor {
 		wp_enqueue_script( 'wp-event-manager-form-field-editor' );
 		?>
 		<div class="wrap wp-event-manager-registrations-form-editor">
-			<h1 class="wp-heading-inline"><?php _e( 'Form fields' ); ?></h1>
+			<h1 class="wp-heading-inline"><?php esc_attr_e( 'Form fields' ); ?></h1>
 
 			<div class="wpem-wrap wp-event-manager-form-field-editor">
 				<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor">
@@ -112,17 +112,17 @@ class WP_Event_Manager_Field_Editor {
 
 		if ( ! empty( $_GET['event-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_event_form_fields' );
-			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
+			echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
 
 		if ( ! empty( $_GET['organizer-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_organizer_form_fields' );
-			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
+			echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
 
 		if ( ! empty( $_GET['venue-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_venue_form_fields' );
-			echo '<div class="updated"><p>' . __( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
+			echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
 
 		if ( ! empty( $_POST ) && ! empty( $_POST['_wpnonce'] ) ) {
@@ -184,31 +184,31 @@ class WP_Event_Manager_Field_Editor {
 
 			<div class="wp-event-manager-event-form-field-editor">
 					
-				<h3><?php printf( __( '%s form fields', 'wp-event-manager' ), ucfirst( $group_key ) ); ?></h3>
+				<h3><?php printf( esc_attr__( '%s form fields', 'wp-event-manager' ), ucfirst( $group_key ) ); ?></h3>
 				<table class="widefat">
 					<thead>
 						<tr>
 							<th width="1%">&nbsp;</th>
-							<th><?php _e( 'Field Label', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Type', 'wp-event-manager' ); ?></th>
-							<th><?php _e( 'Description', 'wp-event-manager' ); ?></th>
-							<th><?php _e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Meta Key', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Only For Admin', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Priority', 'wp-event-manager' ); ?></th>
-							<th width="1%"><?php _e( 'Validation', 'wp-event-manager' ); ?></th>
+							<th><?php esc_attr_e( 'Field Label', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php esc_attr_e( 'Type', 'wp-event-manager' ); ?></th>
+							<th><?php esc_attr_e( 'Description', 'wp-event-manager' ); ?></th>
+							<th><?php esc_attr_e( 'Placeholder / Options', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php esc_attr_e( 'Meta Key', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php esc_attr_e( 'Only For Admin', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php esc_attr_e( 'Priority', 'wp-event-manager' ); ?></th>
+							<th width="1%"><?php esc_attr_e( 'Validation', 'wp-event-manager' ); ?></th>
 							<th width="1%" class="field-actions">&nbsp;</th>
 						</tr>
 					</thead>
 					<tfoot>
 						<tr>
 							<th colspan="4">
-								<a class="button add-field" href="#"><?php _e( 'Add field', 'wp-event-manager' ); ?></a>
+								<a class="button add-field" href="#"><?php esc_attr_e( 'Add field', 'wp-event-manager' ); ?></a>
 							</th>
 							
 							<th colspan="6" class="save-actions">
-								<a href="<?php echo wp_nonce_url( add_query_arg( $group_key . '-reset-fields', 1 ), 'reset' ); ?>" class="reset"><?php _e( 'Reset to default', 'wp-event-manager' ); ?></a>
-								<input type="submit" class="save-fields button-primary" value="<?php _e( 'Save Changes', 'wp-event-manager' ); ?>" />
+								<a href="<?php echo wp_nonce_url( add_query_arg( $group_key . '-reset-fields', 1 ), 'reset' ); ?>" class="reset"><?php esc_attr_e( 'Reset to default', 'wp-event-manager' ); ?></a>
+								<input type="submit" class="save-fields button-primary" value="<?php esc_attr_e( 'Save Changes', 'wp-event-manager' ); ?>" />
 							</th>
 						
 						</tr>
@@ -432,7 +432,7 @@ class WP_Event_Manager_Field_Editor {
 			}
 		}
 
-		echo '<div class="updated"><p>' . __( 'The fields were successfully saved.', 'wp-event-manager' ) . '</p></div>';
+		echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully saved.', 'wp-event-manager' ) . '</p></div>';
 
 	}
 
