@@ -197,7 +197,11 @@ $event = $post;
 
 <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
 <div class="wpem-additional-info-block-details-content-items">                                                                                   <?php
-}                                                                                        ?>
+    $my_value_arr = []; 
+    foreach ($child_value[$child_field_name] as $key => $my_value) {
+         $my_value_arr[] = $child_field['options'][$my_value];
+    }
+?>
  <p class="wpem-additional-info-block-title"><strong><?php printf( __( '%s', 'wp-event-manager' ),  $child_field['label']); ?> -</strong> <?php printf( __( '%s', 'wp-event-manager' ),  implode(', ', $my_value_arr)); ?></p>
  </div>
  </div>
