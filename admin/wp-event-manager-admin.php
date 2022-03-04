@@ -52,7 +52,7 @@ class WP_Event_Manager_Admin
 		}
 
 		if (get_option('wpem_installation_skip', false)) {
-			add_action('admin_notices', array($this, 'wpem_installation_notices'));
+			//add_action('admin_notices', array($this, 'wpem_installation_notices'));
 		}
 
 		// Ajax
