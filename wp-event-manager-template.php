@@ -611,7 +611,7 @@ function get_event_registration_end_date($post = null)
 	if ($post->post_type !== 'event_listing')
 		return;
 
-	return apply_filters('display_event_registration_end_date', 'test' . $post->_event_registration_deadline, $post);
+	return apply_filters('display_event_registration_end_date', $post->_event_registration_deadline, $post);
 }
 
 /**
