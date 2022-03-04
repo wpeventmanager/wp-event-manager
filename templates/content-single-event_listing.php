@@ -178,412 +178,412 @@ $event = $post;
 
                                                                         <?php foreach ($field['fields'] as $child_field_name => $child_field) : ?>
 
-                                                                            <<<<<<< HEAD <?php if (!empty($child_value[$child_field_name])) : ?>=======<div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                                <div class="wpem-additional-info-block-details-content-items"> <?php
-                                                                                                                                                $my_value_arr = [];
-                                                                                                                                                foreach ($child_value[$child_field_name] as $key => $my_value) {
-                                                                                                                                                    $my_value_arr[] = $child_field['options'][$my_value];
-                                                                                                                                                }
-                                                                                                                                                ?>
-                                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> -</strong> <?php printf(__('%s', 'wp-event-manager'),  implode(', ', $my_value_arr)); ?></p>
+                                                                            <?php if (!empty($child_value[$child_field_name])) : ?><div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                    <div class="wpem-additional-info-block-details-content-items"> <?php
+                                                                                                                                                    $my_value_arr = [];
+                                                                                                                                                    foreach ($child_value[$child_field_name] as $key => $my_value) {
+                                                                                                                                                        $my_value_arr[] = $child_field['options'][$my_value];
+                                                                                                                                                    }
+                                                                                                                                                    ?>
+                                                                                        <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> -</strong> <?php printf(__('%s', 'wp-event-manager'),  implode(', ', $my_value_arr)); ?></p>
+                                                                                    </div>
                                                                                 </div>
-                                                                </div>
-                                                            <?php elseif ($child_field['type'] == 'select') : ?>
-                                                                <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                    <div class="wpem-additional-info-block-details-content-items">
-                                                                        <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong> <?php printf(__('%s', 'wp-event-manager'),  $child_value[$child_field_name]); ?></p>
-                                                                    </div>
-                                                                </div>
-                                                                >>>>>>> 430b412d301e80a074f6227e017f61e90914a335
+                                                                            <?php elseif ($child_field['type'] == 'select') : ?>
+                                                                                <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                    <div class="wpem-additional-info-block-details-content-items">
+                                                                                        <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong> <?php printf(__('%s', 'wp-event-manager'),  $child_value[$child_field_name]); ?></p>
+                                                                                    </div>
+                                                                                </div>
 
-                                                                <?php if ($child_field['type'] == 'textarea' || $child_field['type'] == 'wp-editor') : ?>
-                                                                    <div class="wpem-col-12 wpem-additional-info-block-textarea">
-                                                                        <div class="wpem-additional-info-block-details-content-items">
-                                                                            <p class="wpem-additional-info-block-title"><strong> <?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?></strong></p>
-                                                                            <p class="wpem-additional-info-block-textarea-text"><?php printf(__('%s', 'wp-event-manager'),  $child_value[$child_field_name]); ?></p>
-                                                                        </div>
-                                                                    </div>
 
-                                                                <?php elseif ($child_field['type'] == 'multiselect') : ?>
+                                                                                <?php if ($child_field['type'] == 'textarea' || $child_field['type'] == 'wp-editor') : ?>
+                                                                                    <div class="wpem-col-12 wpem-additional-info-block-textarea">
+                                                                                        <div class="wpem-additional-info-block-details-content-items">
+                                                                                            <p class="wpem-additional-info-block-title"><strong> <?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?></strong></p>
+                                                                                            <p class="wpem-additional-info-block-textarea-text"><?php printf(__('%s', 'wp-event-manager'),  $child_value[$child_field_name]); ?></p>
+                                                                                        </div>
+                                                                                    </div>
 
-                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                        <div class="wpem-additional-info-block-details-content-items">
-                                                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> -</strong> <?php printf(__('%s', 'wp-event-manager'),  implode(', ', $my_value_arr)); ?></p>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php elseif ($child_field['type'] == 'select') : ?>
-                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                        <div class="wpem-additional-info-block-details-content-items">
-                                                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong> <?php printf(__('%s', 'wp-event-manager'),  $child_value[$child_field_name]); ?></p>
-                                                                        </div>
-                                                                    </div>
+                                                                                <?php elseif ($child_field['type'] == 'multiselect') : ?>
 
-                                                                <?php elseif ($child_field['type'] == 'date') : ?>
-                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                        <div class="wpem-additional-info-block-details-content-items">
-                                                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong> <?php echo date_i18n($date_format, strtotime($child_value[$child_field_name])); ?></p>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php elseif ($child_field['type'] == 'time') : ?>
-                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                        <div class="wpem-additional-info-block-details-content-items">
-                                                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong> <?php echo date($time_format, strtotime($child_value[$child_field_name])); ?></p>
-                                                                        </div>
-                                                                    </div>
+                                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                        <div class="wpem-additional-info-block-details-content-items">
+                                                                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> -</strong> <?php printf(__('%s', 'wp-event-manager'),  implode(', ', $my_value_arr)); ?></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <?php elseif ($child_field['type'] == 'select') : ?>
+                                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                        <div class="wpem-additional-info-block-details-content-items">
+                                                                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong> <?php printf(__('%s', 'wp-event-manager'),  $child_value[$child_field_name]); ?></p>
+                                                                                        </div>
+                                                                                    </div>
 
-                                                                <?php elseif ($child_field['type'] == 'file') : ?>
-                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                        <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong></p>
-                                                                        <div class="wpem-additional-info-block-details-content-items wpem-additional-file-slider">
-                                                                            <?php if (is_array($child_value[$child_field_name])) : ?>
-                                                                                <?php foreach ($child_value[$child_field_name] as $file) : ?>
-                                                                                    <?php if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) : ?>
-                                                                                        <div><img src="<?php echo $file; ?>"></div>
-                                                                                    <?php else : ?>
-                                                                                        <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $file; ?>"> <?php _e('Download', 'wp-event-manager'); ?></a></div>
-                                                                                    <?php endif; ?>
-                                                                                <?php endforeach; ?>
-                                                                            <?php else : ?>
-                                                                                <?php if (in_array(pathinfo($child_value[$child_field_name], PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) : ?>
-                                                                                    <div><img src="<?php echo $child_value[$child_field_name]; ?>"></div>
+                                                                                <?php elseif ($child_field['type'] == 'date') : ?>
+                                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                        <div class="wpem-additional-info-block-details-content-items">
+                                                                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong> <?php echo date_i18n($date_format, strtotime($child_value[$child_field_name])); ?></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <?php elseif ($child_field['type'] == 'time') : ?>
+                                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                        <div class="wpem-additional-info-block-details-content-items">
+                                                                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong> <?php echo date($time_format, strtotime($child_value[$child_field_name])); ?></p>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                <?php elseif ($child_field['type'] == 'file') : ?>
+                                                                                    <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                        <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?> - </strong></p>
+                                                                                        <div class="wpem-additional-info-block-details-content-items wpem-additional-file-slider">
+                                                                                            <?php if (is_array($child_value[$child_field_name])) : ?>
+                                                                                                <?php foreach ($child_value[$child_field_name] as $file) : ?>
+                                                                                                    <?php if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) : ?>
+                                                                                                        <div><img src="<?php echo $file; ?>"></div>
+                                                                                                    <?php else : ?>
+                                                                                                        <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $file; ?>"> <?php _e('Download', 'wp-event-manager'); ?></a></div>
+                                                                                                    <?php endif; ?>
+                                                                                                <?php endforeach; ?>
+                                                                                            <?php else : ?>
+                                                                                                <?php if (in_array(pathinfo($child_value[$child_field_name], PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) : ?>
+                                                                                                    <div><img src="<?php echo $child_value[$child_field_name]; ?>"></div>
+                                                                                                <?php else : ?>
+                                                                                                    <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $child_value[$child_field_name]; ?>"> <?php _e('Download', 'wp-event-manager'); ?></a></div>
+                                                                                                <?php endif; ?>
+                                                                                            <?php endif; ?>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <?php elseif ($child_field['type'] == 'url') : ?>
+                                                                                    <div class="wpem-col-12 wpem-additional-info-block-textarea">
+                                                                                        <div class="wpem-additional-info-block-details-content-items">
+                                                                                            <p class="wpem-additional-info-block-textarea-text"><a href="<?php if (isset($child_value[$child_field_name])) echo $child_value[$child_field_name]; ?>"><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?></a></p>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 <?php else : ?>
-                                                                                    <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $child_value[$child_field_name]; ?>"> <?php _e('Download', 'wp-event-manager'); ?></a></div>
+                                                                                    <?php if (is_array($child_value[$child_field_name])) : ?>
+                                                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                            <div class="wpem-additional-info-block-details-content-items">
+                                                                                                <p class="wpem-additional-info-block-title"><strong><?php echo $child_field['label']; ?> -</strong> <?php echo implode(', ', $child_value[$child_field_name]); ?></p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <?php else : ?>
+                                                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                                            <div class="wpem-additional-info-block-details-content-items">
+                                                                                                <p class="wpem-additional-info-block-title"><strong><?php echo $child_field['label']; ?> -</strong> <?php echo $child_value[$child_field_name]; ?></p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <?php endif; ?>
+
                                                                                 <?php endif; ?>
                                                                             <?php endif; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php elseif ($child_field['type'] == 'url') : ?>
-                                                                    <div class="wpem-col-12 wpem-additional-info-block-textarea">
-                                                                        <div class="wpem-additional-info-block-details-content-items">
-                                                                            <p class="wpem-additional-info-block-textarea-text"><a href="<?php if (isset($child_value[$child_field_name])) echo $child_value[$child_field_name]; ?>"><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?></a></p>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php else : ?>
-                                                                    <?php if (is_array($child_value[$child_field_name])) : ?>
-                                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                            <div class="wpem-additional-info-block-details-content-items">
-                                                                                <p class="wpem-additional-info-block-title"><strong><?php echo $child_field['label']; ?> -</strong> <?php echo implode(', ', $child_value[$child_field_name]); ?></p>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php else : ?>
-                                                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                                            <div class="wpem-additional-info-block-details-content-items">
-                                                                                <p class="wpem-additional-info-block-title"><strong><?php echo $child_field['label']; ?> -</strong> <?php echo $child_value[$child_field_name]; ?></p>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php endif; ?>
-
-                                                                <?php endif; ?>
+                                                                        <?php endforeach; ?>
+                                                                    <?php endforeach; ?>
+                                                                </div>
                                                             <?php endif; ?>
-                                                        <?php endforeach; ?>
-                                                    <?php endforeach; ?>
-                                            </div>
-                                        <?php endif; ?>
-                                    <?php elseif ($field['type'] == 'textarea' || $field['type'] == 'wp-editor') : ?>
-                                        <div class="wpem-col-12 wpem-additional-info-block-textarea">
-                                            <div class="wpem-additional-info-block-details-content-items">
-                                                <p class="wpem-additional-info-block-title"><strong> <?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?></strong></p>
-                                                <p class="wpem-additional-info-block-textarea-text"><?php printf(__('%s', 'wp-event-manager'),  $field_value); ?></p>
-                                            </div>
-                                        </div>
-                                    <?php elseif ($field['type'] == 'multiselect') : ?>
-                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                            <div class="wpem-additional-info-block-details-content-items">
-                                                <?php
-                                                            $my_value_arr = [];
-                                                            foreach ($field_value as $key => $my_value) {
-                                                                $my_value_arr[] = $field['options'][$my_value];
-                                                            }
-                                                ?>
-                                                <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', '-event-manager'),  $field['label']); ?> -</strong> <?php printf(__('%s', 'wp-event-manager'),  implode(', ', $my_value_arr)); ?></p>
-                                            </div>
-                                        </div>
-
-                                    <?php elseif ($field['type'] == 'select') : ?>
-                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                            <div class="wpem-additional-info-block-details-content-items">
-                                                <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong> <?php
-
-                                                                                                                                                                                    if (isset($field['options'][$field_value]))
-                                                                                                                                                                                        printf(__('%s', 'wp-event-manager'),  $field['options'][$field_value]);
-                                                                                                                                                                                    else
-                                                                                                                                                                                        printf(__('%s', 'wp-event-manager'), $field_value);
-                                                                                                                                                                                    ?></p>
-                                            </div>
-                                        </div>
-
-                                    <?php elseif (isset($field['type']) && $field['type'] == 'date') : ?>
-                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                            <div class="wpem-additional-info-block-details-content-items">
-                                                <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong> <?php echo date_i18n($date_format, strtotime($field_value)); ?></p>
-                                            </div>
-                                        </div>
-
-                                    <?php elseif (isset($field['type']) && $field['type'] == 'time') : ?>
-                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                            <div class="wpem-additional-info-block-details-content-items">
-                                                <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong> <?php echo date($time_format, strtotime($field_value)); ?></p>
-                                            </div>
-                                        </div>
-
-                                    <?php elseif ($field['type'] == 'file') : ?>
-                                        <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                            <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong></p>
-                                            <div class="wpem-additional-info-block-details-content-items wpem-additional-file-slider">
-                                                <?php if (is_array($field_value)) : ?>
-                                                    <?php foreach ($field_value as $file) : ?>
-                                                        <?php if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) : ?>
-                                                            <div><img src="<?php echo $file; ?>"></div>
-                                                        <?php else : ?>
-                                                            <div class="wpem-icon">
-                                                                <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr(wp_basename($file)); ?></strong></p>
-                                                                <a target="_blank" class="wpem-icon-download3" href="<?php echo $file; ?>"> <?php _e('Download', 'wp-event-manager'); ?></a>
+                                                        <?php elseif ($field['type'] == 'textarea' || $field['type'] == 'wp-editor') : ?>
+                                                            <div class="wpem-col-12 wpem-additional-info-block-textarea">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title"><strong> <?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?></strong></p>
+                                                                    <p class="wpem-additional-info-block-textarea-text"><?php printf(__('%s', 'wp-event-manager'),  $field_value); ?></p>
+                                                                </div>
                                                             </div>
+                                                        <?php elseif ($field['type'] == 'multiselect') : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <?php
+                                                                    $my_value_arr = [];
+                                                                    foreach ($field_value as $key => $my_value) {
+                                                                        $my_value_arr[] = $field['options'][$my_value];
+                                                                    }
+                                                                    ?>
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', '-event-manager'),  $field['label']); ?> -</strong> <?php printf(__('%s', 'wp-event-manager'),  implode(', ', $my_value_arr)); ?></p>
+                                                                </div>
+                                                            </div>
+
+                                                        <?php elseif ($field['type'] == 'select') : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong> <?php
+
+                                                                                                                                                                                                        if (isset($field['options'][$field_value]))
+                                                                                                                                                                                                            printf(__('%s', 'wp-event-manager'),  $field['options'][$field_value]);
+                                                                                                                                                                                                        else
+                                                                                                                                                                                                            printf(__('%s', 'wp-event-manager'), $field_value);
+                                                                                                                                                                                                        ?></p>
+                                                                </div>
+                                                            </div>
+
+                                                        <?php elseif (isset($field['type']) && $field['type'] == 'date') : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong> <?php echo date_i18n($date_format, strtotime($field_value)); ?></p>
+                                                                </div>
+                                                            </div>
+
+                                                        <?php elseif (isset($field['type']) && $field['type'] == 'time') : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong> <?php echo date($time_format, strtotime($field_value)); ?></p>
+                                                                </div>
+                                                            </div>
+
+                                                        <?php elseif ($field['type'] == 'file') : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong></p>
+                                                                <div class="wpem-additional-info-block-details-content-items wpem-additional-file-slider">
+                                                                    <?php if (is_array($field_value)) : ?>
+                                                                        <?php foreach ($field_value as $file) : ?>
+                                                                            <?php if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) : ?>
+                                                                                <div><img src="<?php echo $file; ?>"></div>
+                                                                            <?php else : ?>
+                                                                                <div class="wpem-icon">
+                                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr(wp_basename($file)); ?></strong></p>
+                                                                                    <a target="_blank" class="wpem-icon-download3" href="<?php echo $file; ?>"> <?php _e('Download', 'wp-event-manager'); ?></a>
+                                                                                </div>
+                                                                            <?php endif; ?>
+                                                                        <?php endforeach; ?>
+                                                                    <?php else : ?>
+                                                                        <?php if (in_array(pathinfo($field_value, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) : ?>
+                                                                            <div><img src="<?php echo $field_value; ?>"></div>
+                                                                        <?php else : ?>
+                                                                            <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr(wp_basename($field_value)); ?></strong></p>
+                                                                            <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $field_value; ?>"> <?php _e('Download', 'wp-event-manager'); ?></a></div>
+                                                                        <?php endif; ?>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </div>
+
+                                                        <?php elseif ($field['type'] == 'url') : ?>
+                                                            <div class="wpem-col-12 wpem-additional-info-block-textarea">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-textarea-text"><a target="_blank" href="<?php if (isset($field_value)) echo esc_url($field_value); ?>"><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?></a></p>
+                                                                </div>
+                                                            </div>
+                                                        <?php else : ?>
+                                                            <?php if (is_array($field_value)) : ?>
+                                                                <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                    <div class="wpem-additional-info-block-details-content-items">
+                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo implode(', ', $field_value); ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            <?php else : ?>
+                                                                <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                    <div class="wpem-additional-info-block-details-content-items">
+                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo $field_value; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            <?php endif; ?>
+
                                                         <?php endif; ?>
-                                                    <?php endforeach; ?>
-                                                <?php else : ?>
-                                                    <?php if (in_array(pathinfo($field_value, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) : ?>
-                                                        <div><img src="<?php echo $field_value; ?>"></div>
-                                                    <?php else : ?>
-                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr(wp_basename($field_value)); ?></strong></p>
-                                                        <div class="wpem-icon"><a target="_blank" class="wpem-icon-download3" href="<?php echo $field_value; ?>"> <?php _e('Download', 'wp-event-manager'); ?></a></div>
+
                                                     <?php endif; ?>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
 
-                                    <?php elseif ($field['type'] == 'url') : ?>
-                                        <div class="wpem-col-12 wpem-additional-info-block-textarea">
-                                            <div class="wpem-additional-info-block-details-content-items">
-                                                <p class="wpem-additional-info-block-textarea-text"><a target="_blank" href="<?php if (isset($field_value)) echo esc_url($field_value); ?>"><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?></a></p>
-                                            </div>
-                                        </div>
-                                    <?php else : ?>
-                                        <?php if (is_array($field_value)) : ?>
-                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                <div class="wpem-additional-info-block-details-content-items">
-                                                    <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo implode(', ', $field_value); ?></p>
-                                                </div>
-                                            </div>
-                                        <?php else : ?>
-                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
-                                                <div class="wpem-additional-info-block-details-content-items">
-                                                    <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?> -</strong> <?php echo $field_value; ?></p>
-                                                </div>
-                                            </div>
-                                        <?php endif; ?>
+                                                <?php endforeach; ?>
 
-                                    <?php endif; ?>
+                                            </div>
 
-                                <?php endif; ?>
-
-                            <?php endforeach; ?>
+                                            <?php do_action('single_event_additional_details_end'); ?>
 
                                         </div>
-
-                                        <?php do_action('single_event_additional_details_end'); ?>
 
                                     </div>
+                                <?php endif; ?>
+
+                            <?php endif; ?>
+
+                            <!-- Additional Info Block End  -->
+
+                            <?php do_action('single_event_overview_after'); ?>
 
                         </div>
-                    <?php endif; ?>
+                        <div class="wpem-col-xs-12 wpem-col-sm-5 wpem-col-md-4 wpem-single-event-right-content">
+                            <div class="wpem-single-event-body-sidebar">
+                                <?php do_action('single_event_listing_button_start'); ?>
 
-                <?php endif; ?>
+                                <?php
+                                $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
+                                $registration_end_date = get_event_registration_end_date();
+                                $registration_end_date = !empty($registration_end_date) ? $registration_end_date . ' 23:59:59' : '';
+                                $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
+                                $event_timezone          = get_event_timezone();
 
-                <!-- Additional Info Block End  -->
+                                // check if timezone settings is enabled as each event then set current time stamp according to the timezone
+                                // for eg. if each event selected then Berlin timezone will be different then current site timezone.
+                                if (WP_Event_Manager_Date_Time::get_event_manager_timezone_setting() == 'each_event') {
+                                    $current_timestamp = WP_Event_Manager_Date_Time::current_timestamp_from_event_timezone($event_timezone);
+                                } else {
+                                    $current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
+                                }
+                                // If site wise timezone selected
 
-                <?php do_action('single_event_overview_after'); ?>
+                                if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
+                                    get_event_manager_template('event-registration.php');
+                                } else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
+                                    echo '<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>';
+                                }
+                                ?>
 
-                    </div>
-                    <div class="wpem-col-xs-12 wpem-col-sm-5 wpem-col-md-4 wpem-single-event-right-content">
-                        <div class="wpem-single-event-body-sidebar">
-                            <?php do_action('single_event_listing_button_start'); ?>
+                                <?php do_action('single_event_listing_button_end'); ?>
 
-                            <?php
-                            $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
-                            $registration_end_date = get_event_registration_end_date();
-                            $registration_end_date = !empty($registration_end_date) ? $registration_end_date . ' 23:59:59' : '';
-                            $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
-                            $event_timezone          = get_event_timezone();
+                                <div class="wpem-single-event-sidebar-info">
 
-                            // check if timezone settings is enabled as each event then set current time stamp according to the timezone
-                            // for eg. if each event selected then Berlin timezone will be different then current site timezone.
-                            if (WP_Event_Manager_Date_Time::get_event_manager_timezone_setting() == 'each_event') {
-                                $current_timestamp = WP_Event_Manager_Date_Time::current_timestamp_from_event_timezone($event_timezone);
-                            } else {
-                                $current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
-                            }
-                            // If site wise timezone selected
-
-                            if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
-                                get_event_manager_template('event-registration.php');
-                            } else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
-                                echo '<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>';
-                            }
-                            ?>
-
-                            <?php do_action('single_event_listing_button_end'); ?>
-
-                            <div class="wpem-single-event-sidebar-info">
-
-                                <?php do_action('single_event_sidebar_start'); ?>
-                                <div class="clearfix">&nbsp;</div>
-                                <h3 class="wpem-heading-text"><?php _e('Date And Time', 'wp-event-manager') ?></h3>
-                                <div class="wpem-event-date-time">
-                                    <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?> <?php
-                                                                                                                    if (get_event_start_time()) {
-                                                                                                                        display_date_time_separator();
-                                                                                                                    ?> <?php
-                                                                                                                        display_event_start_time();
-                                                                                                                    }
-                                                                                                                        ?></span>
-                                    <?php
-                                    if (get_event_end_date() != '' || get_event_end_time()) {
-                                        _e(' to', 'wp-event-manager');
-                                    }
-                                    ?>
-                                    <br />
-                                    <span class="wpem-event-date-time-text">
+                                    <?php do_action('single_event_sidebar_start'); ?>
+                                    <div class="clearfix">&nbsp;</div>
+                                    <h3 class="wpem-heading-text"><?php _e('Date And Time', 'wp-event-manager') ?></h3>
+                                    <div class="wpem-event-date-time">
+                                        <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?> <?php
+                                                                                                                        if (get_event_start_time()) {
+                                                                                                                            display_date_time_separator();
+                                                                                                                        ?> <?php
+                                                                                                                            display_event_start_time();
+                                                                                                                        }
+                                                                                                                            ?></span>
                                         <?php
-                                        if (get_event_start_date() != get_event_end_date()) {
-                                            display_event_end_date();
+                                        if (get_event_end_date() != '' || get_event_end_time()) {
+                                            _e(' to', 'wp-event-manager');
                                         }
-                                        ?> <?php
-                                            if (get_event_end_date() != '' && get_event_end_time()) {
-                                                display_date_time_separator();
+                                        ?>
+                                        <br />
+                                        <span class="wpem-event-date-time-text">
+                                            <?php
+                                            if (get_event_start_date() != get_event_end_date()) {
+                                                display_event_end_date();
                                             }
                                             ?> <?php
+                                                if (get_event_end_date() != '' && get_event_end_time()) {
+                                                    display_date_time_separator();
+                                                }
+                                                ?> <?php
                                                 if (get_event_end_time()) {
                                                     display_event_end_time();
                                                 }
                                                 ?>
-                                    </span>
-                                </div>
+                                        </span>
+                                    </div>
 
-                                <!-- Event Registration End Date start-->
-                                <?php if (get_event_registration_end_date()) : ?>
-                                    <div class="clearfix">&nbsp;</div>
-                                    <h3 class="wpem-heading-text"><?php _e('Registration End Date', 'wp-event-manager'); ?></h3>
-                                    <?php display_event_registration_end_date(); ?>
-                                <?php endif; ?>
-                                <!-- Registration End Date End-->
+                                    <!-- Event Registration End Date start-->
+                                    <?php if (get_event_registration_end_date()) : ?>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <h3 class="wpem-heading-text"><?php _e('Registration End Date', 'wp-event-manager'); ?></h3>
+                                        <?php display_event_registration_end_date(); ?>
+                                    <?php endif; ?>
+                                    <!-- Registration End Date End-->
 
-                                <div>
-                                    <div class="clearfix">&nbsp;</div>
-                                    <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
                                     <div>
-                                        <?php
-                                        if (get_event_address()) {
-                                            display_event_address();
-                                            echo ',';
-                                        }
-                                        ?>
-                                        <?php display_event_location(); ?>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
+                                        <div>
+                                            <?php
+                                            if (get_event_address()) {
+                                                display_event_address();
+                                                echo ',';
+                                            }
+                                            ?>
+                                            <?php display_event_location(); ?>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <?php if (get_option('event_manager_enable_event_types') && get_event_type()) : ?>
-                                    <div class="clearfix">&nbsp;</div>
-                                    <h3 class="wpem-heading-text"><?php _e('Event Types', 'wp-event-manager'); ?></h3>
-                                    <div class="wpem-event-type"><?php display_event_type(); ?></div>
-                                <?php endif; ?>
+                                    <?php if (get_option('event_manager_enable_event_types') && get_event_type()) : ?>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <h3 class="wpem-heading-text"><?php _e('Event Types', 'wp-event-manager'); ?></h3>
+                                        <div class="wpem-event-type"><?php display_event_type(); ?></div>
+                                    <?php endif; ?>
 
-                                <?php if (get_option('event_manager_enable_categories') && get_event_category()) : ?>
-                                    <div class="clearfix">&nbsp;</div>
-                                    <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
-                                    <div class="wpem-event-category"><?php display_event_category(); ?></div>
-                                <?php endif; ?>
+                                    <?php if (get_option('event_manager_enable_categories') && get_event_category()) : ?>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
+                                        <div class="wpem-event-category"><?php display_event_category(); ?></div>
+                                    <?php endif; ?>
 
-                                <?php if (get_organizer_youtube()) : ?>
-                                    <div class="clearfix">&nbsp;</div>
-                                    <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></button>
-                                    <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Watch video', 'wp-event-manager'); ?>">
-                                        <div class="wpem-modal-content-wrapper">
-                                            <div class="wpem-modal-header">
-                                                <div class="wpem-modal-header-title">
-                                                    <h3 class="wpem-modal-header-title-text"><?php _e('Watch video', 'wp-event-manager'); ?></h3>
+                                    <?php if (get_organizer_youtube()) : ?>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></button>
+                                        <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Watch video', 'wp-event-manager'); ?>">
+                                            <div class="wpem-modal-content-wrapper">
+                                                <div class="wpem-modal-header">
+                                                    <div class="wpem-modal-header-title">
+                                                        <h3 class="wpem-modal-header-title-text"><?php _e('Watch video', 'wp-event-manager'); ?></h3>
+                                                    </div>
+                                                    <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                                                 </div>
-                                                <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
+                                                <div class="wpem-modal-content">
+                                                    <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => '1', 'rel' => 0)); ?>
+                                                </div>
                                             </div>
-                                            <div class="wpem-modal-content">
-                                                <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => '1', 'rel' => 0)); ?>
-                                            </div>
+                                            <a href="#">
+                                                <div class="wpem-modal-overlay"></div>
+                                            </a>
                                         </div>
-                                        <a href="#">
-                                            <div class="wpem-modal-overlay"></div>
-                                        </a>
-                                    </div>
-                                    <div class="clearfix">&nbsp;</div>
-                                <?php endif; ?>
+                                        <div class="clearfix">&nbsp;</div>
+                                    <?php endif; ?>
 
-                                <?php do_action('single_event_sidebar_end'); ?>
+                                    <?php do_action('single_event_sidebar_end'); ?>
 
-                            </div>
-
-                            <?php
-                            $is_friend_share = apply_filters('event_manager_event_friend_share', true);
-
-                            if ($is_friend_share) :
-                            ?>
-                                <h3 class="wpem-heading-text"><?php _e('Share With Friends', 'wp-event-manager'); ?></h3>
-                                <div class="wpem-share-this-event">
-                                    <div class="wpem-event-share-lists">
-                                        <?php do_action('single_event_listing_social_share_start'); ?>
-                                        <div class="wpem-social-icon wpem-facebook">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink(); ?>" title="Share this page on Facebook"><?php _e('Facebook', 'wp-event-manager'); ?></a>
-                                        </div>
-                                        <div class="wpem-social-icon wpem-twitter">
-                                            <a href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink(); ?>" title="Share this page on Twitter"><?php _e('Twitter', 'wp-event-manager'); ?></a>
-                                        </div>
-                                        <div class="wpem-social-icon wpem-linkedin">
-                                            <a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php display_event_permalink(); ?>" title="Share this page on Linkedin"><?php _e('Linkedin', 'wp-event-manager'); ?></a>
-                                        </div>
-                                        <div class="wpem-social-icon wpem-xing">
-                                            <a href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink(); ?>" title="Share this page on Xing"><?php _e('Xing', 'wp-event-manager'); ?></a>
-                                        </div>
-                                        <div class="wpem-social-icon wpem-pinterest">
-                                            <a href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink(); ?>" title="Share this page on Pinterest"><?php _e('Pinterest', 'wp-event-manager'); ?></a>
-                                        </div>
-                                        <?php do_action('single_event_listing_social_share_end'); ?>
-                                    </div>
                                 </div>
-                            <?php endif; ?>
+
+                                <?php
+                                $is_friend_share = apply_filters('event_manager_event_friend_share', true);
+
+                                if ($is_friend_share) :
+                                ?>
+                                    <h3 class="wpem-heading-text"><?php _e('Share With Friends', 'wp-event-manager'); ?></h3>
+                                    <div class="wpem-share-this-event">
+                                        <div class="wpem-event-share-lists">
+                                            <?php do_action('single_event_listing_social_share_start'); ?>
+                                            <div class="wpem-social-icon wpem-facebook">
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink(); ?>" title="Share this page on Facebook"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+                                            </div>
+                                            <div class="wpem-social-icon wpem-twitter">
+                                                <a href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink(); ?>" title="Share this page on Twitter"><?php _e('Twitter', 'wp-event-manager'); ?></a>
+                                            </div>
+                                            <div class="wpem-social-icon wpem-linkedin">
+                                                <a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php display_event_permalink(); ?>" title="Share this page on Linkedin"><?php _e('Linkedin', 'wp-event-manager'); ?></a>
+                                            </div>
+                                            <div class="wpem-social-icon wpem-xing">
+                                                <a href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink(); ?>" title="Share this page on Xing"><?php _e('Xing', 'wp-event-manager'); ?></a>
+                                            </div>
+                                            <div class="wpem-social-icon wpem-pinterest">
+                                                <a href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink(); ?>" title="Share this page on Pinterest"><?php _e('Pinterest', 'wp-event-manager'); ?></a>
+                                            </div>
+                                            <?php do_action('single_event_listing_social_share_end'); ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <?php
+                if (get_option('enable_event_organizer')) {
+                    get_event_manager_template(
+                        'content-single-event_listing-organizer.php',
+                        array(),
+                        'wp-event-manager/organizer',
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+                    );
+                }
+
+                if (get_option('enable_event_venue')) {
+                    get_event_manager_template(
+                        'content-single-event_listing-venue.php',
+                        array(),
+                        'wp-event-manager/venue',
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+                    );
+                }
+
+                /**
+                 * single_event_listing_end hook
+                 */
+                do_action('single_event_listing_end');
+                ?>
+
             </div>
-
-            <?php
-            if (get_option('enable_event_organizer')) {
-                get_event_manager_template(
-                    'content-single-event_listing-organizer.php',
-                    array(),
-                    'wp-event-manager/organizer',
-                    EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
-                );
-            }
-
-            if (get_option('enable_event_venue')) {
-                get_event_manager_template(
-                    'content-single-event_listing-venue.php',
-                    array(),
-                    'wp-event-manager/venue',
-                    EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
-                );
-            }
-
-            /**
-             * single_event_listing_end hook
-             */
-            do_action('single_event_listing_end');
-            ?>
-
+            <!-- / wpem-wrapper end  -->
+        <?php endif; ?>
+        <!-- Main if condition end -->
     </div>
-    <!-- / wpem-wrapper end  -->
-<?php endif; ?>
-<!-- Main if condition end -->
-</div>
-<!-- / wpem-main end  -->
+    <!-- / wpem-main end  -->
 </div>
 <!-- override the script if needed -->
 
