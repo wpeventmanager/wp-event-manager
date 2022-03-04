@@ -136,8 +136,8 @@ class Elementor_Single_Venue extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		if($settings['venue_id']>0){
-		    $venue_id = 'id='.$settings['venue_id'];
-		    $settings['venue_id']='id='.$settings['venue_id'];
+		    $venue_id = 'id='.esc_attr($settings['venue_id']);
+		    $settings['venue_id']='id='.esc_attr($settings['venue_id']);
 		}
 		else{
 		    $venue_id = '';

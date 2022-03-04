@@ -145,7 +145,7 @@ class Elementor_Event_Tag extends Tag {
                 $is_event_online = is_event_online($event);
 
                 if (!$is_event_online) {
-                    echo $is_event_online;
+                    echo  esc_html($is_event_online);
                 }
             } else if ($event_tag == 'event_venue_name') {
                 display_event_venue_name('', '', true, $event);
@@ -156,7 +156,7 @@ class Elementor_Event_Tag extends Tag {
             } else if ($event_tag == 'event_location') {
                 display_event_location(true, $event);
             } else if ($event_tag == 'event_description') {
-                echo get_event_description($event);
+                echo  get_event_description($event);
             } else if ($event_tag == 'registration') {
                 get_event_manager_template('event-registration.php');
             } else if ($event_tag == 'event_start_date') {
@@ -192,7 +192,7 @@ class Elementor_Event_Tag extends Tag {
 
                 if ($view_count) :
                     ?>
-                    <i class="wpem-icon-eye"></i> <?php echo $view_count; ?>
+                    <i class="wpem-icon-eye"></i> <?php echo esc_html($view_count); ?>
                     <?php
                 endif;
             } else if ($event_tag == 'event_ticket_type') {
@@ -255,12 +255,12 @@ class Elementor_Event_Tag extends Tag {
                             if (is_array($field_value) && !empty($field_value)) {
                                 foreach ($field_value as $key => $value) {
                                     if (isset($field['options'][$value]))
-                                        echo __($field['options'][$value], 'wp-event-manager');
+                                        echo sprintf(__('%s', 'wp-event-manager'),esc_attr($field['options'][$value]));
                                 }
                             } elseif (isset($field['options'][$field_value]))
-                                echo __($field['options'][$field_value], 'wp-event-manager');
+                                echo sprintf(__('%s', 'wp-event-manager'),esc_attr($field['options'][$field_value]));
                         } elseif ($event_tag == $field_key)
-                            echo __($field_value, 'wp-event-manager');
+                            echo sprintf(__('%s', 'wp-event-manager'),esc_attr($field_value));
                     }
                 }
             }

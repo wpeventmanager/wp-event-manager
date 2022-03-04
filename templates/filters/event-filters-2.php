@@ -13,7 +13,6 @@
         <div class="wpem-form-group">
             <i class="wpem-icon-location"></i>
              <input type="text" name="search_location" id="search_location"  placeholder="<?php esc_attr_e( 'Location', 'wp-event-manager' ); ?>" value="<?php echo esc_attr( $location ); ?>" />
-           <!--  <button class="wpem-my-location" type="button"><img class="wpem-my-location-img" src="http://localhost/wpem2021/wp-content/plugins/wp-event-manager-google-maps/assets/images/wpem-my-location-black.png" alt="My Location"></button> -->
         </div>
         <a href="#" class="wpem-event-filter2-show-hide-link"><i class="wpem-icon-equalizer2"></i> Show More</a>
     </div>
@@ -59,7 +58,7 @@
                 ?>
 
         <div class="wpem-form-group">
-             <input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo $selected_datetime; ?>' class="event-manager-category-dropdown date_range_picker form-control" placeholder="<?php _('Select Date','wp-event-manager');?>">
+             <input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo esc_attr($selected_datetime); ?>' class="event-manager-category-dropdown date_range_picker form-control" placeholder="<?php _('Select Date','wp-event-manager');?>">
         </div>
         <?php endif; ?>
         <div class="wpem-form-group">
@@ -86,12 +85,6 @@
                             ); ?>
                     <?php endif; ?>
                 <?php endif; ?>
-
-            <!-- <select class="form-control">
-                <option>Event Category</option>
-                <option>Business</option>
-                <option>Charity</option>
-            </select> -->
         </div>
         <div class="wpem-form-group">
 
@@ -107,12 +100,6 @@
                      endif; 
                  
              endif; ?>       
-
-           <!--  <select class="form-control">
-                <option>Event Type</option>
-                <option>Business</option>
-                <option>Charity</option>
-            </select> -->
         </div>
         <div class="wpem-form-group">
             <?php if ( $show_ticket_prices) : ?>
@@ -128,9 +115,9 @@
                         $ticket_prices  =   WP_Event_Manager_Filters::get_ticket_prices_filter();
                         foreach ( $ticket_prices as $key => $value ) :
                             if(!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price==$key) : ?>
-                                <option selected=selected value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+                                <option selected=selected value="<?php echo $key !='ticket_price_any' ? esc_attr($key) : ""; ?>" ><?php echo  esc_html($value); ?></option>
                             <?php else : ?>
-                                <option value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  $value; ?></option>
+                                <option value="<?php echo $key !='ticket_price_any' ? $key : ""; ?>" ><?php echo  esc_html($value); ?></option>
                             <?php endif;
                         endforeach; ?>
                         </select>
@@ -140,18 +127,7 @@
         </div>
     </div>
     <?php do_action( 'event_manager_event_filters_search_events_end', $atts ); ?>
-    <!-- <div class="wpem-event-show-filter2-data">
-        
-        <div class="wpem-event-show-filter2-data-title">Filter by</div>
-        <div class="wpem-event-show-filter2-data-box"><span>India</span></div>
-        <div class="wpem-event-show-filter2-data-box"><span>Business </span></div>
-        <div class="wpem-event-show-filter2-data-right">
-            <div class="wpem-event-show-filter2-data-result">0 Matching Records</div>
-            <div class="wpem-event-filter2-alert"><a href="#">Add Alert</a></div>
-            <div class="wpem-event-filter2-rss"><a href="#">RSS</a></div>
-            <div class="wpem-event-filter2-clear-all"><a href="#">Clear All</a></div>
-        </div>
-    </div> -->
+
      <?php do_action( 'event_manager_event_filters_end', $atts ); ?>
 </form>
 <?php do_action( 'event_manager_event_filters_after', $atts ); ?>

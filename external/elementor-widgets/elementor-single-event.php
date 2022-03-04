@@ -136,8 +136,8 @@ class Elementor_Single_Event extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		if($settings['event_id']>0){
-		    $event_id = 'id='.$settings['event_id'];
-		    $settings['event_id']='id='.$settings['event_id'];
+		    $event_id = 'id='.esc_attr($settings['event_id']);
+		    $settings['event_id']='id='.esc_attr($settings['event_id']);
 		}
 		else{
 		    $event_id = '';

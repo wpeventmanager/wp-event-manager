@@ -68,7 +68,7 @@ class WP_Event_Manager_Widget extends WP_Widget {
 
 		if ( isset( $cache[ $args['widget_id'] ] ) ) {
 
-			echo $cache[ $args['widget_id'] ];
+			echo esc_html($cache[ $args['widget_id'] ]);
 
 			return true;
 		}
@@ -149,7 +149,7 @@ class WP_Event_Manager_Widget extends WP_Widget {
 				case 'text' :
 	                ?>
 					<p>
-						<label for="<?php echo $this->get_field_id( $key ); ?>"><?php echo $setting['label']; ?></label>
+						<label for="<?php echo $this->get_field_id( $key ); ?>"><?php echo esc_attr($setting['label']); ?></label>
 
 						<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo $this->get_field_name( $key ); ?>" type="text" value="<?php echo esc_attr( $value ); ?>" />
 					</p>
@@ -170,7 +170,7 @@ class WP_Event_Manager_Widget extends WP_Widget {
 				        <?php
 				            if(isset($setting['options'])){
 				                foreach($setting['options'] as $option_key => $option_value){ ?>
-				                     <option value="<?php echo $option_key;?>" <?php if( $option_key ==  $value ) echo 'selected';?> ><?php echo $option_value;?></option>
+				                     <option value="<?php echo $option_key;?>" <?php if( $option_key ==  $value ) echo 'selected';?> ><?php echo esc_html($option_value);?></option>
 				                <?php
 				                }
 				            }

@@ -298,34 +298,34 @@ class Elementor_Event_Listing extends Widget_Base {
 		
 		
 		if(strlen($settings['location'])>0)
-		    $location = 'location="'.$settings['location'].'"';
+		    $location = 'location="'.esc_attr($settings['location']).'"';
 	    else
 	        $location = '';
 	        
         if(strlen($settings['keywords'])>0)
-            $keywords = 'keywords="'.$settings['keywords'].'"';
+            $keywords = 'keywords="'.esc_attr($settings['keywords']).'"';
         else
             $keywords = '';
             
         if(strlen($settings['categories'])>0)
-            $categories = 'selected_category="'.$settings['categories'].'"';
+            $categories = 'selected_category="'.esc_attr($settings['categories']).'"';
         else
             $categories = '';
             
         if(strlen($settings['event_types'])>0)
-            $event_types = 'selected_event_type="'.$settings['event_types'].'"';
+            $event_types = 'selected_event_type="'.esc_attr($settings['event_types']).'"';
         else
             $event_types = '';
 
         if(strlen($settings['selected_datetime'])>0)
-            $selected_datetime = 'selected_datetime="'.$settings['selected_datetime'].'"';
+            $selected_datetime = 'selected_datetime="'.esc_attr($settings['selected_datetime']).'"';
         else
             $selected_datetime = '';
           
-        $featured = !empty($settings['featured']) ? ' featured="'.$settings['featured'].'"' : '';
-        $cancelled = !empty($settings['cancelled']) ? ' cancelled="'.$settings['cancelled'].'"' : '';
+        $featured = !empty($settings['featured']) ? ' featured="'.esc_attr($settings['featured']).'"' : '';
+        $cancelled = !empty($settings['cancelled']) ? ' cancelled="'.esc_attr($settings['cancelled']).'"' : '';
             
-        $shortcode = '[events show_pagination="'.$settings['show_pagination'].'" per_page="'.$settings['per_page'].'" order="'.$settings['order'].'" orderby="'.$settings['orderby'].'" featured="'.$settings['featured'].'" cancelled="'.$settings['cancelled'].'" show_filters="'.$settings['show_filters'].'" show_categories="'.$settings['show_categories'].'" show_event_types="'.$settings['show_event_types'].'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' ]';
+        $shortcode = '[events show_pagination="'.esc_attr($settings['show_pagination']).'" per_page="'.esc_attr($settings['per_page']).'" order="'.esc_attr($settings['order']).'" orderby="'.esc_attr($settings['orderby']).'" '.$featured.' '.$cancelled.' show_filters="'.esc_attr($settings['show_filters']).'" show_categories="'.esc_attr($settings['show_categories']).'" show_event_types="'.esc_attr($settings['show_event_types']).'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' ]';
 
         echo do_shortcode($shortcode);
 	}

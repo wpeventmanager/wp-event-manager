@@ -268,7 +268,7 @@ class Elementor_Event_Field extends Widget_Base {
 
                 if ($view_count) :
                     ?>
-                    <i class="wpem-icon-eye"></i> <?php echo $view_count; ?>
+                    <i class="wpem-icon-eye"></i> <?php echo esc_html($view_count); ?>
                     <?php
                 endif;
             } else if ($settings['event_field'] == 'event_ticket_type') {
@@ -346,17 +346,58 @@ class Elementor_Event_Field extends Widget_Base {
                                         </div>
                                         <?php
                                     } else {
-                                        echo $event_field[$key];
+                                        echo esc_attr($event_field[$key]);
                                     }
                                 } else {
-                                    echo $event_field[$key];
+                                    echo esc_attr($event_field[$key]);
                                 }
                                 ?>
                             </div>
                             <?php
                         }
                     } else {
-                        echo $event_field;
+                        //for recurring event translation
+                        if($event_field == 'no'){
+                            _e( 'Dont\'t repeat','wp-event-manager') ;
+                        }elseif($event_field == 'daily'){
+                            _e( 'Daily','wp-event-manager') ;    
+                        }elseif($event_field == 'weekly'){
+                            _e( 'Weekly','wp-event-manager') ;
+                        }elseif($event_field == 'monthly'){
+                            _e( 'Monthly','wp-event-manager') ;    
+                        }elseif($event_field == 'yearly'){
+                            _e( 'Yearly','wp-event-manager') ;    
+                        }elseif($event_field == 'first'){
+                            _e( 'First','wp-event-manager') ;    
+                        }elseif($event_field == 'second'){
+                            _e( 'Second','wp-event-manager') ;    
+                        }elseif($event_field == 'third'){
+                            _e( 'Third','wp-event-manager') ;    
+                        }elseif($event_field == 'fourth'){
+                            _e( 'Fourth','wp-event-manager') ;    
+                        }elseif($event_field == 'last'){
+                            _e( 'Last','wp-event-manager') ;    
+                        }elseif($event_field == 'mon'){
+                            _e( 'Monday','wp-event-manager') ;    
+                        }elseif($event_field == 'tue'){
+                            _e( 'Tuesday','wp-event-manager') ;    
+                        }elseif($event_field == 'wed'){
+                            _e( 'Wednesday','wp-event-manager') ;    
+                        }elseif($event_field == 'thu'){
+                            _e( 'Thrusday','wp-event-manager') ;    
+                        }elseif($event_field == 'fri'){
+                            _e( 'Friday','wp-event-manager') ;    
+                        }elseif($event_field == 'sat'){
+                            _e( 'Saturday','wp-event-manager') ;    
+                        }elseif($event_field == 'sun'){
+                            _e( 'Sunday','wp-event-manager') ;    
+                        }elseif($event_field == 'same_time'){
+                            _e( 'same day','wp-event-manager') ;    
+                        }elseif($event_field == 'specific_time'){
+                            _e( 'specific day','wp-event-manager') ;    
+                        }else{
+                            echo esc_attr($event_field);
+                        }
                     }
                 }
             }
