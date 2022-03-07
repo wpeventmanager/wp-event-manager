@@ -1039,7 +1039,7 @@ class WP_Event_Manager_Writepanels
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
-					update_post_meta($post_id, $key, sanitize_text_field(($date_dbformatted));
+					update_post_meta($post_id, $key, sanitize_text_field(($date_dbformatted)));
 				} else {
 					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 				}

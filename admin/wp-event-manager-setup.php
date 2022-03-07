@@ -172,7 +172,7 @@ class WP_Event_Manager_Setup {
 				wp_die( esc_attr__( 'Error in nonce. Try again.', 'wp-event-manager' ) );
 			}
 
-			$create_pages = isset( $_POST['wp-event-manager-create-page'] ) ? $this->sanitize_array(($_POST['wp-event-manager-create-page']) : array();
+			$create_pages = isset($_POST['wp-event-manager-create-page']) ? $this->sanitize_array($_POST['wp-event-manager-create-page']) : array();
 
 			$page_titles = $this->sanitize_array($_POST['wp-event-manager-page-title']);
 
