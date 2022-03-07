@@ -172,9 +172,9 @@ class WP_Event_Manager_Setup {
 				wp_die( esc_attr__( 'Error in nonce. Try again.', 'wp-event-manager' ) );
 			}
 
-			$create_pages = isset( $_POST['wp-event-manager-create-page'] ) ? $_POST['wp-event-manager-create-page'] : array();
+			$create_pages = isset( $_POST['wp-event-manager-create-page'] ) ? $this->sanitize_array(($_POST['wp-event-manager-create-page']) : array();
 
-			$page_titles = $_POST['wp-event-manager-page-title'];
+			$page_titles = $this->sanitize_array($_POST['wp-event-manager-page-title']);
 
 			$pages_to_create = array(
 
@@ -496,6 +496,25 @@ class WP_Event_Manager_Setup {
 		</div>
 
 		<?php
+	}
+
+
+	/**
+	 * Sanitize a 2d array
+	 *
+	 * @param  array $array
+	 * @return array
+	 */
+	private function sanitize_array($input)
+	{
+		if (is_array($input)) {
+			foreach ($input as $k => $v) {
+				$input[$k] = $this->sanitize_array($v);
+			}
+			return $input;
+		} else {
+			return sanitize_text_field($input);
+		}
 	}
 }
 new WP_Event_Manager_Setup();
