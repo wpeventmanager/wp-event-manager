@@ -670,10 +670,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 
 					if ( ! empty( $_POST['create_account_email'] ) ) {
-						$create_account = wp_event_manager_create_account( array(
-							'username' => ( event_manager_generate_username_from_email() || empty( $_POST['create_account_username'] ) ) ? '' : $_POST['create_account_username'],
-							'password' => ( event_manager_use_standard_password_setup_email() || empty( $_POST['create_account_password'] ) ) ? '' : $_POST['create_account_password'],
-							'email'    => $_POST['create_account_email'],
+						$create_account = wp_event_manager_create_account(array(
+							'username' => (event_manager_generate_username_from_email() || empty($_POST['create_account_username'])) ? '' : sanitize_user($_POST['create_account_username']),
+							'password' => (event_manager_use_standard_password_setup_email() || empty($_POST['create_account_password'])) ? '' : md5($_POST['create_account_password']),
+							'email'    => sanitize_email($_POST['create_account_email']),
 							'role'     => get_option( 'event_manager_registration_role','organizer' )
 						) );
 					}

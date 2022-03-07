@@ -310,9 +310,9 @@ function display_event_type($post = null, $after = '')
 			$numType = count($event_type);
 			$i = 0;
 			foreach ($event_type as $type) {
-				echo '<a href="' . get_term_link($type->term_id) . '"><span class="wpem-event-type-text event-type ' . esc_attr(sanitize_title($type->slug)) . ' ">' . $type->name . '</span></a>';
+				echo esc_html('<a href="' . get_term_link($type->term_id) . '"><span class="wpem-event-type-text event-type ' . esc_attr(sanitize_title($type->slug)) . ' ">' . $type->name . '</span></a>');
 				if ($numType > ++$i) {
-					echo $after;
+					echo esc_html($after);
 				}
 			}
 		}
@@ -360,9 +360,9 @@ function display_event_category($post = null, $after = '')
 			$numCategory = count($event_category);
 			$i = 0;
 			foreach ($event_category as $cat) {
-				echo '<a href="' . get_term_link($cat->term_id) . '"><span class="wpem-event-category-text event-category ' . esc_attr(sanitize_title($cat->slug)) . ' ">' . $cat->name . '</span></a>';
+				echo esc_html('<a href="' . get_term_link($cat->term_id) . '"><span class="wpem-event-category-text event-category ' . esc_attr(sanitize_title($cat->slug)) . ' ">' . $cat->name . '</span></a>');
 				if ($numCategory > ++$i) {
-					echo $after;
+					echo esc_html($after);
 				}
 			}
 		}

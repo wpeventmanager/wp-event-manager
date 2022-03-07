@@ -310,9 +310,9 @@ class WP_Event_Manager_Field_Editor {
 	private function form_editor_save() {
 		if ( wp_verify_nonce( $_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor' ) ) {
 
-			$event_field     = ! empty( $_POST['event'] ) ? $_POST['event'] : array();
-			$event_organizer = ! empty( $_POST['organizer'] ) ? $_POST['organizer'] : array();
-			$event_venue     = ! empty( $_POST['venue'] ) ? $_POST['venue'] : array();
+			$event_field     = !empty($_POST['event']) ? sanitize_array($_POST['event']) : array();
+			$event_organizer = !empty($_POST['organizer']) ? sanitize_array($_POST['organizer']) : array();
+			$event_venue     = !empty($_POST['venue']) ? sanitize_array($_POST['venue']) : array();
 			$index           = 0;
 
 			if ( ! empty( $event_field ) ) {
