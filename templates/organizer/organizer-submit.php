@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Event Submission Form
  */
@@ -16,13 +17,13 @@ global $event_manager;
         $user = wp_get_current_user();
         $username = !empty($user->display_name) ? $user->display_name : $user->user_login;
 
-         if (!isset($organizer_fields['organizer_name']['value']) && empty($organizer_fields['organizer_name']['value']) && (isset($organizer_fields['organizer_name']['visibility']) && $organizer_fields['organizer_name']['visibility'] != 0)) {
+        if (!isset($organizer_fields['organizer_name']['value']) && empty($organizer_fields['organizer_name']['value']) && (isset($organizer_fields['organizer_name']['visibility']) && $organizer_fields['organizer_name']['visibility'] != 0)) {
             $organizer_fields['organizer_name']['value'] = $username;
         }
         if (!isset($organizer_fields['organizer_email']['value']) && empty($organizer_fields['organizer_email']['value']) && (isset($organizer_fields['organizer_email']['visibility']) && $organizer_fields['organizer_email']['visibility'] != 0)) {
             $organizer_fields['organizer_email']['value'] = $user->user_email;
         }
-        ?>
+    ?>
         <h2 class="wpem-form-title wpem-heading-text"><?php _e('Organizer Details', 'wp-event-manager'); ?></h2>
         <?php
         if (isset($resume_edit) && $resume_edit) {
@@ -40,22 +41,22 @@ global $event_manager;
             </fieldset>
         <?php endforeach; ?>
         <?php do_action('submit_organizer_form_organizer_fields_end'); ?>
-      
-                <div class="wpem-form-footer">
-                    <input type="hidden" name="event_manager_form" value="<?php echo $form; ?>" />
-                    <input type="hidden" name="organizer_id" value="<?php echo esc_attr($organizer_id); ?>" />
-                    <input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
-                    <input type="submit" name="submit_organizer" class="wpem-theme-button" value="<?php esc_attr_e($submit_button_text); ?>" />
-                </div>
 
-        <?php
+        <div class="wpem-form-footer">
+            <input type="hidden" name="event_manager_form" value="<?php echo $form; ?>" />
+            <input type="hidden" name="organizer_id" value="<?php echo esc_attr($organizer_id); ?>" />
+            <input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
+            <input type="submit" name="submit_organizer" id="submit-organizer-button" class="wpem-theme-button" value="<?php esc_attr_e($submit_button_text); ?>" />
+        </div>
+
+    <?php
     } else {
-        ?>
+    ?>
         <div class="wpem-form-group">
             <label class="wpem-form-label-text"><?php _e('Have an account?', 'wp-event-manager'); ?></label>
             <div class="field account-sign-in wpem-alert wpem-alert-info">
-                <a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url')) : home_url() . '/wp-login.php'; ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>			
-                <?php echo __(" to Submit the List of Organizers from your account.", "wp-event-manager"); ?>				
+                <a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url')) : home_url() . '/wp-login.php'; ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>
+                <?php echo __(" to Submit the List of Organizers from your account.", "wp-event-manager"); ?>
             </div>
         </div>
     <?php }
