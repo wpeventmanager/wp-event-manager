@@ -2431,6 +2431,7 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-description,
 .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-description {
   margin-bottom: 20px;
+  word-break: break-all;
   color: var(--wpem-gray-color);
 }
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists,
