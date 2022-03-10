@@ -133,10 +133,10 @@ class Elementor_Upcoming_Event_Listing extends Widget_Base {
 				'type' => Controls_Manager::SELECT,
 				'default' => 'event_start_date',
 				'options' => [
-					'title' => __( 'Title', 'wp-event-manager' ),
+					'title' => __('Title', 'wp-event-manager'),
 					'ID' => __( 'ID', 'wp-event-manager' ),
 					'name' => __( 'Name', 'wp-event-manager' ),
-					'modified' => __( 'Modified', 'wp-event-manager' ),
+					'modified' => __('Modified', 'wp-event-manager'),
 					'parent' => __( 'Parent', 'wp-event-manager' ),
 					'event_start_date' => __( 'Event Start Date', 'wp-event-manager' ),
 					'rand' => __( 'Rand', 'wp-event-manager' ),
@@ -217,9 +217,10 @@ class Elementor_Upcoming_Event_Listing extends Widget_Base {
             $event_types = 'selected_event_types="'.esc_attr($settings['selected_event_types']).'"';
         else
             $event_types = '';
-		
-		$shortcode = '[upcoming_events show_pagination="'.esc_attr($settings['show_pagination']).'" per_page="'.esc_attr($settings['per_page']).'" order="'.esc_attr($settings['order']).'" meta_key="'.esc_attr($settings['meta_key']).'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.']';
 
+
+
+		$shortcode = '[upcoming_events show_pagination="' . esc_attr($settings['show_pagination']) . '" per_page="' . esc_attr($settings['per_page']) . '" order="' . esc_attr($settings['order']) . '" meta_key="' . esc_attr($settings['meta_key']) . '" ' . $location . ' ' . $keywords . ' ' . $categories . ' ' . $event_types . ']';
 		echo do_shortcode($shortcode);
 	}
 

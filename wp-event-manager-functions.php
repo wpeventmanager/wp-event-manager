@@ -12,6 +12,7 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 function get_event_listings( $args = array() ) {
 
 	global $wpdb, $event_manager_keyword;
+	
 
 	$args = wp_parse_args( $args, array(
 

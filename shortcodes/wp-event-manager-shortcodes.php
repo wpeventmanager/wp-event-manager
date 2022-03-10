@@ -1882,7 +1882,6 @@ class WP_Event_Manager_Shortcodes {
 	public function output_upcoming_events( $atts ) {
 
 		ob_start();
-
 		extract( shortcode_atts ( array(
 
 			'show_pagination'           => true,
@@ -1891,7 +1890,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'order'                     => 'DESC',
 
-			'orderby'                   => 'event_start_date', // meta_value
+			'orderby'                   => $atts['meta_key'], // meta_value
 
 			'location'                  => '',
 
@@ -1983,8 +1982,7 @@ class WP_Event_Manager_Shortcodes {
 			$args['meta_type'] ='DATETIME';
 		}
 
-		$args = apply_filters( 'event_manager_upcoming_event_listings_args', $args );
-
+		$args = apply_filters('event_manager_upcoming_event_listings_args', $args);
 		$upcoming_events = new WP_Query( $args );
 
 		wp_reset_query();
