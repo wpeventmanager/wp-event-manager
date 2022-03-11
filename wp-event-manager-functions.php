@@ -1406,7 +1406,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 		'no_results_text' => __( 'No results match', 'wp-event-manager' ),
 
-		'multiple_text'   => __( 'Select Some Options', 'wp-event-manager' )
+		'multiple_text'   => __('Choose Categories', 'wp-event-manager'),
 	);
 
 	$r = wp_parse_args( $args, $defaults );
@@ -1454,6 +1454,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 	if($taxonomy=='event_listing_type'):
 		$placeholder=__( 'Choose an event type', 'wp-event-manager' );
+		$multiple_text = __('Choose event types', 'wp-event-manager');
 
 
 	endif;
