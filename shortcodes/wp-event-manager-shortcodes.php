@@ -71,11 +71,9 @@ class WP_Event_Manager_Shortcodes {
 			$this->event_dashboard_handler();
                         $this->organizer_dashboard_handler();
                         $this->venue_dashboard_handler();
-		}
-		elseif ( is_page() && strstr( $post->post_content, '[organizer_dashboard' )) {
+		} elseif (is_page() || strstr($post->post_content, '[organizer_dashboard')) {
 			$this->organizer_dashboard_handler();
-		}
-		elseif ( is_page() && strstr( $post->post_content, '[venue_dashboard' )) {
+		} elseif (is_page() || strstr($post->post_content, '[venue_dashboard')) {
 			$this->venue_dashboard_handler();
 		}
 	}
