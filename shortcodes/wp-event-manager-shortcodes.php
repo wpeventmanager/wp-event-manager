@@ -1890,7 +1890,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'order'                     => 'DESC',
 
-			'orderby'                   => $atts['meta_key'], // meta_value
+			'orderby'                   => sanitize_text_field($atts['meta_key']), // meta_value
 
 			'location'                  => '',
 
