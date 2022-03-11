@@ -42,7 +42,11 @@
 					$selected_datetime = explode(',', $selected_datetime);
 
 					$start_date = esc_attr( strip_tags( $selected_datetime[0] ) );
-					$end_date = esc_attr( strip_tags( $selected_datetime[1] ) );
+					if (isset($selected_datetime[1]) == false) {
+						$end_date = esc_attr(strip_tags($selected_datetime[0]));
+					} else {
+						$end_date = esc_attr(strip_tags($selected_datetime[1]));
+					}
 
 					
 
