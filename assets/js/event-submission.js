@@ -408,7 +408,7 @@ EventSubmission = function () {
                 fd.append("action", 'add_organizer');
                 fd.append("form_data", formData);
                 fd.append("organizer_description", organizer_description);
-
+                jQuery('#wpem_add_organizer_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
                 jQuery.ajax({
                     url: wp_event_manager_event_submission.ajax_url,
                     type: 'POST',
@@ -418,7 +418,7 @@ EventSubmission = function () {
                     data: fd,
                     success: function (responce) {
                         if (responce.code == 200) {
-                            jQuery('#wpem_add_organizer_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
+
 
                             jQuery('select#event_organizer_ids').prepend('<option selected="selected" value="' + responce.organizer.organizer_id + '">' + responce.organizer.organizer_name + '</option>');
 
@@ -451,7 +451,7 @@ EventSubmission = function () {
                 fd.append("action", 'add_venue');
                 fd.append("form_data", formData);
                 fd.append("venue_description", venue_description);
-
+                jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
                 jQuery.ajax({
                     url: wp_event_manager_event_submission.ajax_url,
                     type: 'POST',
@@ -461,7 +461,7 @@ EventSubmission = function () {
                     data: fd,
                     success: function (responce) {
                         if (responce.code == 200) {
-                            jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
+
 
                             jQuery('select#event_venue_ids').append('<option selected="selected" value="' + responce.venue.venue_id + '">' + responce.venue.venue_name + '</option>');
 
