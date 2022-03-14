@@ -320,7 +320,7 @@ function get_event_listings( $args = array() ) {
 				    'type'    => 'date'
 				);
 
-				$date_search['relation'] = 'OR';
+				$date_search['relation'] = 'AND';
 			}
 
 			$query_args['meta_query'][] = $date_search;
