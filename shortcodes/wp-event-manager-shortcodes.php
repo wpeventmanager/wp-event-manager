@@ -66,14 +66,14 @@ class WP_Event_Manager_Shortcodes {
 	public function shortcode_action_handler() {
 
 		global $post;
-		
+
 		if ( is_page() && strstr( $post->post_content, '[event_dashboard' ) ) {
 			$this->event_dashboard_handler();
                         $this->organizer_dashboard_handler();
                         $this->venue_dashboard_handler();
-		} elseif (is_page() && strstr($post->post_content, '[organizer_dashboard')) {
+		} elseif (is_page() && (strstr($post->post_content, '[organizer_dashboard') || stristr($post->post_content, 'organizer dashboard'))) {
 			$this->organizer_dashboard_handler();
-		} elseif (is_page() && strstr($post->post_content, '[venue_dashboard')) {
+		} elseif (is_page() && (strstr($post->post_content, '[venue_dashboard') || stristr($post->post_content, 'venue dashboard'))) {
 			$this->venue_dashboard_handler();
 		}
 	}
