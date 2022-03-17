@@ -248,7 +248,7 @@ class WP_Event_Manager_Setup
 					<div class="wpem-step-window">
 						<h3><?php esc_attr_e('Setup Wizard Introduction', 'wp-event-manager'); ?></h3>
 
-						<p><?php printf(esc_attr_e('Thanks for installing <em>WP Event Manager</em>!', 'wp-event-manager')); ?></p>
+						<p><?php printf(esc_attr_e('Thanks for installing WP Event Manager!', 'wp-event-manager')); ?></p>
 
 						<p><?php esc_attr_e('This setup wizard will help you get started by creating various pages for event submission, event management, and listing your events, along with setting up organizers and venues pages.'); ?></p>
 
