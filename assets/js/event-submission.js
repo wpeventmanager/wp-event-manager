@@ -396,6 +396,8 @@ EventSubmission = function () {
             /// <returns type="initialization ticket price settings" />
             /// <since>3.1.16</since>
             addOrganizer: function (event) {
+                jQuery('.wpem_add_organizer').css('pointer-events', 'none');
+                jQuery('#wpem_add_organizer_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
                 jQuery('body #submit-organizer-form .wpem-form-footer .wpem-alert-danger').remove();
 
                 var formData = jQuery('body #submit-organizer-form').serialize();
@@ -408,7 +410,7 @@ EventSubmission = function () {
                 fd.append("action", 'add_organizer');
                 fd.append("form_data", formData);
                 fd.append("organizer_description", organizer_description);
-                jQuery('#wpem_add_organizer_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
+
                 jQuery.ajax({
                     url: wp_event_manager_event_submission.ajax_url,
                     type: 'POST',
@@ -441,6 +443,8 @@ EventSubmission = function () {
             /// <returns type="initialization ticket price settings" />
             /// <since>3.1.16</since>
             addVenue: function (event) {
+                jQuery('.wpem_add_venue').css('pointer-events', 'none');
+                jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
                 jQuery('body #submit-venue-form .wpem-form-footer .wpem-alert-danger').remove();
 
                 var formData = jQuery('body #submit-venue-form').serialize();
@@ -451,7 +455,7 @@ EventSubmission = function () {
                 fd.append("action", 'add_venue');
                 fd.append("form_data", formData);
                 fd.append("venue_description", venue_description);
-                jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
+
                 jQuery.ajax({
                     url: wp_event_manager_event_submission.ajax_url,
                     type: 'POST',
