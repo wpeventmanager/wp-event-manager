@@ -627,27 +627,26 @@ msgstr ""
 
 #: admin/wp-event-manager-settings.php:74
 msgid "Enable venue"
-msgstr ""
+msgstr "स्थल सक्षम करें"
 
 #: admin/wp-event-manager-settings.php:75
 msgid "Disable this to remove the functionality of Venue on your Event Website."
-msgstr ""
+msgstr "अपनी ईवेंट वेबसाइट पर स्थान की कार्यक्षमता को निकालने के लिए इसे अक्षम करें।"
 
 #: admin/wp-event-manager-settings.php:84
 msgid "Delete Data On Uninstall"
-msgstr ""
+msgstr "अनइंस्टॉल करने पर डेटा हटाएं"
 
 #: admin/wp-event-manager-settings.php:85
 msgid ""
-"Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be "
-"restored."
-msgstr ""
+"Delete WP Event Manager data when the plugin is deleted. Once removed, this data cannot be restored."
+msgstr "प्लगइन हटाए जाने पर WP इवेंट मैनेजर डेटा हटाएं। एक बार हटा दिए जाने के बाद, इस डेटा को पुनर्स्थापित नहीं किया जा सकता है।"
 
 #: admin/wp-event-manager-settings.php:93
 #, fuzzy
 #| msgid "Google Maps API Key"
 msgid "Google API Key"
-msgstr "गूगल मैप्स API कुंजी"
+msgstr "गूगल API कुंजी"
 
 #: admin/wp-event-manager-settings.php:94
 #, php-format
@@ -1204,17 +1203,16 @@ msgstr "इवेंट शीर्षक"
 
 #: admin/wp-event-manager-settings.php:677
 msgid ""
-"In case while submitting an event, if the timezone for each event is not selected, the WP "
-"Event Manager will take the default WordPress (website) timezone."
-msgstr ""
+"In case while submitting an event, if the timezone for each event is not selected, the WP Event Manager will take the default WordPress (website) timezone."
+msgstr "किसी ईवेंट को सबमिट करते समय, यदि प्रत्येक ईवेंट के लिए समय क्षेत्र का चयन नहीं किया जाता है, तो WP इवेंट मैनेजर डिफ़ॉल्ट वर्डप्रेस (वेबसाइट) टाइमज़ोन लेगा।"
 
 #: admin/wp-event-manager-settings.php:681
 msgid "Use website timezone."
-msgstr ""
+msgstr "वेबसाइट टाइमज़ोन का उपयोग करें"
 
 #: admin/wp-event-manager-settings.php:682
 msgid "Select a timezone on each event."
-msgstr ""
+msgstr "प्रत्येक घटना पर एक समय क्षेत्र चुनें।"
 
 #: admin/wp-event-manager-settings.php:767
 msgid "Settings successfully saved"
@@ -1230,19 +1228,19 @@ msgstr "एक पेज चुने"
 
 #: admin/wp-event-manager-settings.php:969 admin/wp-event-manager-setup.php:446
 msgid "Helpful Resources"
-msgstr ""
+msgstr "सहायक संसाधन"
 
 #: admin/wp-event-manager-settings.php:978 admin/wp-event-manager-setup.php:453
 msgid "Knowledge Base"
-msgstr ""
+msgstr "ज्ञानधार"
 
 #: admin/wp-event-manager-settings.php:979 admin/wp-event-manager-setup.php:454
 msgid "Solve your queries by browsing our documentation."
-msgstr ""
+msgstr "हमारे दस्तावेज़ों को ब्राउज़ करके अपने प्रश्नों का समाधान करें।"
 
 #: admin/wp-event-manager-settings.php:980 admin/wp-event-manager-setup.php:455
 msgid "Browse More"
-msgstr ""
+msgstr "अधिक ब्राउज़ करें"
 
 #: admin/wp-event-manager-settings.php:988 admin/wp-event-manager-setup.php:463
 msgid "FAQs"
@@ -1250,19 +1248,19 @@ msgstr "अक्सर पूछे जाने वाले प्रश्�
 
 #: admin/wp-event-manager-settings.php:989 admin/wp-event-manager-setup.php:464
 msgid "Explore through the frequently asked questions."
-msgstr ""
+msgstr "अक्सर पूछे जाने वाले प्रश्नों के माध्यम से अन्वेषण करें।"
 
 #: admin/wp-event-manager-settings.php:990 admin/wp-event-manager-setup.php:465
 msgid "Get Answers"
-msgstr ""
+msgstr "उत्तर प्राप्त करें"
 
 #: admin/wp-event-manager-settings.php:998 admin/wp-event-manager-setup.php:473
 msgid "Video Tutorials"
-msgstr ""
+msgstr "वीडियो शिक्षण"
 
 #: admin/wp-event-manager-settings.php:999 admin/wp-event-manager-setup.php:474
 msgid "Learn different skills by examining attractive video tutorials."
-msgstr ""
+msgstr "आकर्षक वीडियो ट्यूटोरियल की जांच करके विभिन्न कौशल सीखें।"
 
 #: admin/wp-event-manager-settings.php:1000 admin/wp-event-manager-setup.php:475
 #, fuzzy
@@ -1272,7 +1270,7 @@ msgstr "वीडियो देखें"
 
 #: admin/wp-event-manager-settings.php:1004
 msgid "Powered By"
-msgstr ""
+msgstr "द्वारा संचालित"
 
 #: admin/wp-event-manager-setup.php:47
 msgid "Setup"
@@ -1339,7 +1337,7 @@ msgstr "पृष्ठ सेटअप पर जारी रखें"
 
 #: admin/wp-event-manager-setup.php:255
 msgid "Skip for now"
-msgstr ""
+msgstr "अभी के लिए छोड़ दे"
 
 #: admin/wp-event-manager-setup.php:263
 msgid "Page Setup"

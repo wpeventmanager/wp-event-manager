@@ -41,7 +41,7 @@ msgstr "Ticket-Preis: %s"
 
 #: admin/wp-event-manager-settings.php:105
 msgid "Google API Key"
-msgstr "Google API Key"
+msgstr "Google API-Schlüssel"
 
 #: admin/wp-event-manager-field-editor.php:74
 msgid "Time"
@@ -69,7 +69,7 @@ msgstr "Veranstaltungs-Typ-Basis"
 
 #: templates/event-registration-email.php:12
 msgid "Outlook"
-msgstr "Outlook"
+msgstr "Ausblick"
 
 #: templates/event-registration-email.php:10
 msgid "Yahoo"
