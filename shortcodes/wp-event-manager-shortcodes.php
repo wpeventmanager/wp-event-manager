@@ -379,6 +379,8 @@ class WP_Event_Manager_Shortcodes {
 
 						// Message
 						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						wp_redirect(add_query_arg(array('venue_id' => absint($$organizer_id), 'action' => 'organizer_dahsboard'), event_manager_get_permalink('event_dashboard')));
+
 
 						break;
 					case 'duplicate' :
@@ -544,10 +546,11 @@ class WP_Event_Manager_Shortcodes {
 					case 'delete' :
 
 						// Trash it
-						wp_trash_post( $venue_id );
-
+						wp_trash_post($venue_id);
 						// Message
 						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $venue->post_title ) ) . '</div>';
+						wp_redirect(add_query_arg(array('venue_id' => absint($new_venue_id), 'action' => 'venue_dashboard'), event_manager_get_permalink('event_dashboard')));
+
 
 						break;
 					case 'duplicate' :
