@@ -216,12 +216,12 @@ var EventAjaxFilters = function() {
                     }
                 } else {
                     
-                    var keywords = target.data('keywords');
-                    var location = target.data('location');
-                    var datetimes = target.data('datetimes');
-                    var categories = target.data('categories');
-                    var event_types = target.data('event_types');
-                    var ticket_prices = target.data('ticket_prices');
+                    var keywords = JSON.stringify(target.data('keywords'));
+                    var location = JSON.stringify(target.data('location'));
+                    var datetimes = JSON.stringify(target.data('datetimes'));
+                    var categories = JSON.stringify(target.data('categories'));
+                    var event_types = JSON.stringify(target.data('event_types'));
+                    var ticket_prices = JSON.stringify(target.data('ticket_prices'));
                     if (categories) {
                         categories = categories.split(',')
                     }
