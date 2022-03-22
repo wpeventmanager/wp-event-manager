@@ -1177,14 +1177,24 @@ class WP_Event_Manager_Shortcodes {
 		if ( ! $id )
 
 			return;
+
+
+
+		if ('' === get_option('event_manager_hide_expired_content', 1)
+		) {
+			$post_status = array('publish', 'expired');
+		} else {
+			$post_status = 'publish';
+		}
 			
 		ob_start();
 
+		
 		$args = array(
 
 			'post_type'   => 'event_listing',
 
-			'post_status' => 'publish',
+			'post_status' => $post_status,
 
 			'p'           => $id
 		);
