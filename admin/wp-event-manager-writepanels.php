@@ -276,7 +276,7 @@ class WP_Event_Manager_Writepanels
 					foreach ($popular as $term) {
 						$id = 'popular-' . esc_attr($taxonomy) . '-' . esc_attr($term->term_id);
 						echo "<li id='" . esc_attr($id) . "'><label class='selectit'>";
-						echo "<input type='radio' id='in-" . esc_attr($id) . "'" . checked($current, $term->term_id, false) . "value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . '<br />';
+						echo "<input type='radio' name='" . esc_attr($name) . "' id='in-" . esc_attr($id) . "' value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . '<br />';
 						echo '</label></li>';
 					}
 					?>
