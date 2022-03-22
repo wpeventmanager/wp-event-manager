@@ -2,6 +2,11 @@
 global $post;
 $start_date = get_event_start_date();
 $end_date   = get_event_end_date();
+$start_time = get_event_start_time();
+$end_time   = get_event_end_time();
+$address = get_event_address();
+$location =  get_event_location();
+$separator = get_wpem_date_time_separator();
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style('wp-event-manager-slick-style');
 do_action('set_single_listing_view_count');
@@ -430,33 +435,23 @@ $event = $post;
                                     <div class="clearfix">&nbsp;</div>
                                     <h3 class="wpem-heading-text"><?php _e('Date And Time', 'wp-event-manager') ?></h3>
                                     <div class="wpem-event-date-time">
-                                        <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?> <?php
-                                                                                                                        if (get_event_start_time()) {
-                                                                                                                            display_date_time_separator();
-                                                                                                                        ?> <?php
-                                                                                                                            display_event_start_time();
-                                                                                                                        }
-                                                                                                                            ?></span>
+                                        <span class="wpem-event-date-time-text"><?php echo date_i18n($date_format, strtotime($start_date)); ?>
+                                            <?php if ($start_time) {
+                                                echo $separator . ' ' . $start_time;
+                                            }
+                                            ?>
+                                        </span>
                                         <?php
                                         if (get_event_end_date() != '' || get_event_end_time()) {
                                             _e(' to', 'wp-event-manager');
                                         }
                                         ?>
                                         <br />
-                                        <span class="wpem-event-date-time-text">
-                                            <?php
-                                            if (get_event_start_date() != get_event_end_date()) {
-                                                display_event_end_date();
+                                        <span class="wpem-event-date-time-text"><?php echo date_i18n($date_format, strtotime($end_date)); ?>
+                                            <?php if ($end_time) {
+                                                echo $separator . ' ' . $end_time;
                                             }
-                                            ?> <?php
-                                                if (get_event_end_date() != '' && get_event_end_time()) {
-                                                    display_date_time_separator();
-                                                }
-                                                ?> <?php
-                                                if (get_event_end_time()) {
-                                                    display_event_end_time();
-                                                }
-                                                ?>
+                                            ?>
                                         </span>
                                     </div>
 
