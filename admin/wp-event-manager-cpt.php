@@ -595,8 +595,14 @@ class WP_Event_Manager_CPT
 
 			case 'event_start_date':
 				if ($post->_event_start_date) {
-
-					echo date_i18n(get_option('date_format'), strtotime($post->_event_start_date));
+					$format = get_option('date_format');
+					$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+					if ($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_start_date.'")) {
+						$date = 	$datetime->format($format);
+					} else {
+						$date = date_i18n(get_option('date_format'), strtotime($post->_event_start_date));
+					}
+					echo $date;
 				} else {
 					echo '&ndash;';
 				}
@@ -604,8 +610,15 @@ class WP_Event_Manager_CPT
 
 			case 'event_end_date':
 				if ($post->_event_end_date) {
+					$format = get_option('date_format');
+					$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+					if ($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_end_date.'")) {
+						$date = 	$datetime->format($format);
+					} else {
+						$date = date_i18n(get_option('date_format'), strtotime($post->_event_end_date));
+					}
 
-					echo date_i18n(get_option('date_format'), strtotime($post->_event_end_date));
+					echo $date;
 				} else {
 					echo '&ndash;';
 				}
@@ -613,8 +626,15 @@ class WP_Event_Manager_CPT
 
 			case 'event_expires':
 				if ($post->_event_expiry_date) {
+					$format = get_option('date_format');
+					$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+					if ($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_expiry_date.'")) {
+						$date = 	$datetime->format($format);
+					} else {
+						$date = date_i18n(get_option('date_format'), strtotime($post->_event_expiry_date));
+					}
 
-					echo date_i18n(get_option('date_format'), strtotime($post->_event_expiry_date));
+					echo $date;
 				}
 
 				// echo '<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
