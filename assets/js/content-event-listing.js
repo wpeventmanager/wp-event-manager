@@ -72,6 +72,9 @@ var ContentEventListing= function () {
 		                    cancelButtonText: event_manager_content_event_listing.i18n_cancelButtonText,
 		                    dateFormat: event_manager_content_event_listing.i18n_datepicker_format,
 		                    altFormat: event_manager_content_event_listing.i18n_datepicker_format,
+									clear: function (e, t) {
+										jQuery('.comiseo-daterangepicker-triggerbutton').click();
+									},
 		                    rangeSplitter: ' : ',
 		                    presetRanges: [
 		                      {
