@@ -309,14 +309,14 @@ function get_event_listings( $args = array() ) {
 				$date_search[] = array(
 					'key'     => '_event_start_date',
 					'value'   => [$dates['start'], $dates['end']],
-				    'compare' => 'BETWEEN',
+					'compare' => '<=',
 				    'type'    => 'date'
 				);
 
 				$date_search[] = array(
 					'key'     => '_event_end_date',
 					'value'   => [$dates['start'], $dates['end']],
-				    'compare' => 'BETWEEN',
+					'compare' => '>=',
 				    'type'    => 'date'
 				);
 
