@@ -498,7 +498,6 @@ class WP_Event_Manager_Writepanels
 				if ($datetime =  DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$date.'")) {
 					$date = 	$datetime->format($php_date_format);
 				}
-				$date = 	$datetime->format($php_date_format);
 				$field['value']         = $date;
 			}
 		}
