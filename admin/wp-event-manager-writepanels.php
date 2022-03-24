@@ -504,8 +504,6 @@ class WP_Event_Manager_Writepanels
 				} else {
 					$conversion_format = $php_date_format;
 				}
-				//$datetime =  DateTime::createFromFormat('Y-m-d H:i:s', $date)
-				//$datetime =  DateTime::createFromFormat('Y-m-d H:i:s', $date)
 				if ($datetime = DateTime::createFromFormat($conversion_format, $date)) {
 			
 					$date = 	$datetime->format($php_date_format);
