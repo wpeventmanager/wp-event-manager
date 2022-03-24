@@ -1035,11 +1035,12 @@ class WP_Event_Manager_Writepanels
 						$start_time = '';
 					}
 					// combine event start date value with event start time
-					$date = date($datepicker_date_format, strtotime($_POST[$key])) . ' ' . $start_time;
-
+					$date = explode(' ', $_POST[$key])[0] . ' ' . $start_time;
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
+				
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+					
 
 					update_post_meta($post_id, $key, sanitize_text_field(($date_dbformatted)));
 					$date_dbformatted = $date;
@@ -1054,7 +1055,7 @@ class WP_Event_Manager_Writepanels
 						$start_time = '';
 					}
 					// combine event start date value with event start time
-					$date = date($datepicker_date_format, strtotime($_POST[$key])) . ' ' . $start_time;
+					$date = explode(' ', $_POST[$key])[0] . ' ' . $start_time;
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
