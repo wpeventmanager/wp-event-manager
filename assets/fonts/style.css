@@ -1,9 +1,13 @@
 @font-face {
-  font-family: "wp-event-manager";
-  src: url("wp-event-manager.eot?6oinus");
-  src: url("wp-event-manager.eot?6oinus#iefix") format("embedded-opentype"), url("wp-event-manager.ttf?6oinus") format("truetype"), url("wp-event-manager.woff?6oinus") format("woff"), url("wp-event-manager.svg?6oinus#wp-event-manager") format("svg");
+  font-family: 'wp-event-manager';
+  src:  url('wp-event-manager.eot?oiy7qg');
+  src:  url('wp-event-manager.eot?oiy7qg#iefix') format('embedded-opentype'),
+		url('wp-event-manager.ttf?oiy7qg') format('truetype'),
+		url('wp-event-manager.woff?oiy7qg') format('woff'),
+		url('wp-event-manager.svg?oiy7qg#wp-event-manager') format('svg');
   font-weight: normal;
   font-style: normal;
+  font-display: block;
 }
 
 i[class*="wpem-"] {
@@ -19,6 +23,28 @@ i[class*="wpem-"] {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.wpem-icon-help:before {
+  content: "\eaf9";
+}
+.wpem-icon-cheveron-right:before {
+  content: "\eb33";
+}
+.wpem-icon-activity-grid:before {
+  content: "\eb32";
+}
+.wpem-icon-user-outline:before {
+  content: "\eb30";
+}
+.wpem-icon-add-friend:before {
+  content: "\eb31";
+}
+.wpem-icon-user-rectangle:before {
+  content: "\eb2f";
+}
+.wpem-icon-two-people:before {
+  content: "\eb2e";
 }
 .wpem-icon-salesforce:before {
   content: "\eb29";
@@ -154,9 +180,6 @@ i[class*="wpem-"] {
 }
 .wpem-icon-events:before {
   content: "\eafd";
-}
-.wpem-icon-users2:before {
-  content: "\eafe";
 }
 .wpem-icon-reception:before {
   content: "\eb01";
@@ -1693,7 +1716,4 @@ i[class*="wpem-"] {
 }
 .wpem-icon-zoom:before {
   content: "\eaf2";
-}
-.wpem-icon-cheveron-right:before {
-  content: "\eaf9";
 }
