@@ -492,9 +492,8 @@ class WP_Event_Manager_Writepanels
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$date = get_post_meta($thepostid, $key, true);
-		
+
 			if (!empty($date)) {
-				var_dump($date);
 			
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
