@@ -14,7 +14,7 @@ class WP_Event_Manager_Date_Time {
 
 	/**
 	* Get datepicker format function will return all the date formats for datepicker
-	* 
+	*
 	* @param null
 	* @return format of datepicker
 	* @since 3.0
@@ -33,7 +33,7 @@ class WP_Event_Manager_Date_Time {
 	/**
 	* function get_default_date_formats will return all the date formats
 	* This function has both type of format jquery-ui-datepicker as well as for php date format
-	* 
+	*
 	* @return array
 	* @since 3.0
 	**/
@@ -46,7 +46,7 @@ class WP_Event_Manager_Date_Time {
 																			'mm-dd-yy',
 																			'd-m-yy',
 																			'dd-mm-yy',
-																			
+
 																			'm/d/yy',
 																			'mm/dd/yy',
 																			'd/m/yy',
@@ -57,11 +57,11 @@ class WP_Event_Manager_Date_Time {
 																			'dd.mm.yy'
 
 
-																		) 
+																		)
 															);
 
 		$date_formats['view_date_formats'] = apply_filters('wp_event_manager_view_date_formats',
-											 	array( 
+											 	array(
 											 		'Y-m-d',
 													'n-j-Y',
 													'm-d-Y',
@@ -76,7 +76,7 @@ class WP_Event_Manager_Date_Time {
 													'Y.m.d',
 													'm.d.Y',
 													'd.m.Y',
-											 		
+
 											 ));
 
 
@@ -89,7 +89,7 @@ class WP_Event_Manager_Date_Time {
 	 * Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 	 * php date format parsing has error so we need to parse via our custom parsing method
 	 * Ref. https://stackoverflow.com/questions/6668223/php-date-parse-from-format-alternative-in-php-5-2
-	 *  
+	 *
 	 *  @since 3.0
 	*/
 	public static function date_parse_from_format($format, $date) {
@@ -163,7 +163,7 @@ class WP_Event_Manager_Date_Time {
         }
 
         $dt = array();
-        
+
         // now try to match it
         if( preg_match('#^'.$regex.'$#', $date, $dt) ){
             foreach ( $dt AS $k => $v ){
@@ -198,27 +198,27 @@ class WP_Event_Manager_Date_Time {
 	* This function will return php formatted date format from datepicker formatted date
 	* For eg. in date picker date format is yy-mm-dd where this format in php will be Y-m-d
 	* So, We need one central function will allow to convert datepicker format in to php formatted format.
-	* 
+	*
 	* @since 3.0
 	**/
 	public static function get_view_date_format_from_datepicker_date_format( $datepicker_format = 'yy-mm-dd' ){
 
 		$all_formats = self::get_default_date_formats();
-		$indexof_view_date_format = array_search( $datepicker_format, $all_formats['datepicker_date_formats'] ); 
+		$indexof_view_date_format = array_search( $datepicker_format, $all_formats['datepicker_date_formats'] );
 
 		return $all_formats['view_date_formats'][$indexof_view_date_format];
 	}
 
 	/**
 	* Get timepicker format function will return all the date formats for timepicker
-	* 
+	*
 	* @since 3.0
 	* @param null
 	* @return string format
 	**/
 	public static function get_timepicker_format() {
 		$selected_format = get_option('event_manager_timepicker_format',12);
-		
+
 		$formats =  array('h:i A','H:i');
 		if($selected_format && $selected_format == 24  ){
 			return $formats[1];
@@ -238,7 +238,7 @@ class WP_Event_Manager_Date_Time {
 		$time = is_numeric( $time ) ? $time : strtotime( $time );
 		return date( self::DBTIMEFORMAT, $time );
 	}
-	
+
 	/**
 	 * Returns the date time DB formatted.
 	 *
@@ -251,46 +251,46 @@ class WP_Event_Manager_Date_Time {
 			return;
 			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 			$datepicker_date_format 	= self::get_datepicker_format();
-			
+
 			//covert datepicker format  into php date() function date format
 			$php_date_format 		= self::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 			$time = self::get_db_formatted_time( $time );
 			//Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 			$db_date_time = self::date_parse_from_format( $php_date_format . ' H:i:s'  , $date .' '.$time );
-			
+
 			return $db_date_time;
 	}
 
 	/**
 	* Get timepicker format function will return all the date formats for timepicker
-	* 
+	*
 	* @since 3.0
 	**/
 	public static function get_timepicker_step() {
 		$selected_step = get_option('event_manager_timepicker_step',30);
-		
+
 		return isset($selected_step) && $selected_step >= 1 && $selected_step <= 60 ? $selected_step : 30;
 	}
 
 	/**
 	 * Get wp event manager view date format
 	 * This format is set by user from event listing -> settings -> date and time
-	 * 
+	 *
 	 * @return string
 	 * @since 3.0
-	 * 
+	 *
 	 **/
 	public static function get_event_manager_view_date_format(){
 		return get_option('event_manager_view_date_format','M d ,Y');
 	}
-	
+
 	/**
-	 * Get Wp event manager date admin setting where you can get array of dummy date 
+	 * Get Wp event manager date admin setting where you can get array of dummy date
 	 * The key of each value will be a php date format which is generated from the get_default_date_formats()
 	 * It will just make array for dropdown for showing dummy date and key as php formatted so we can save it
 	 * Currentrly it is used at event listing -> settings -> date and time - datepicker format
 	 * In wp event manager settings we don't have way to generate html so we have generated array for select option
-	 * 
+	 *
 	 * @since 3.0
 	 * @return array
 	 */
@@ -298,15 +298,15 @@ class WP_Event_Manager_Date_Time {
 				$dummy_date = strtotime( 'January 15 ' . date( 'Y' ) );
 				$default_foramts = self::get_default_date_formats();
 				$setting_values = array();
-				foreach($default_foramts['view_date_formats'] as $key => $value ){	
+				foreach($default_foramts['view_date_formats'] as $key => $value ){
 					$setting_values[$key] = date( $value, $dummy_date );
 				}
 				return $setting_values;
 	}
 
 	/**
-	 * Get event manager timezone setting defined in event listing -> settings 
-	 * 
+	 * Get event manager timezone setting defined in event listing -> settings
+	 *
 	 * @since 3.0
 	 * @return string $selected_timezone
 	 */
@@ -315,7 +315,7 @@ class WP_Event_Manager_Date_Time {
 		return $selected_timezone;
 	}
 	/**
-	 * 
+	 *
 	 * @return string
 	 */
 	public static function get_current_site_timezone(){
@@ -341,7 +341,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param string $tzstring
 	 */
 	public static function wp_event_manager_timezone_choice($tzstring = null){
@@ -350,9 +350,9 @@ class WP_Event_Manager_Date_Time {
 
 		return apply_filters( 'wp_event_manager_timezone_choice', wp_timezone_choice( $tzstring, get_user_locale() ));
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param string $event_timezone
 	 */
 	public static function convert_event_timezone_into_abbr( $event_timezone ){
@@ -361,12 +361,12 @@ class WP_Event_Manager_Date_Time {
 
 		$date_time 	= new DateTime('NOW');
 		$date_time->setTimeZone(new DateTimeZone( $tzstring ));
-		return $date_time->format('T'); 
+		return $date_time->format('T');
 	}
 
 
 	/**
-	* current_timestamp_from_event_timezone will return the current timestamp according to the 
+	* current_timestamp_from_event_timezone will return the current timestamp according to the
 	*	timezone selected in event or passed in argument
 	* @since 3.0
 	* @param $event_timezone
@@ -379,10 +379,10 @@ class WP_Event_Manager_Date_Time {
 		$tzstring 	= self::generate_timezone_string_from_utc_offset( $event_timezone );
 
 		$date_time = new DateTime( "now" );
-		
+
 		$date_time->setTimezone( new DateTimeZone( $tzstring ) );
-		
-		return strtotime( $date_time->format('Y-m-d H:i:s') ); 
+
+		return strtotime( $date_time->format('Y-m-d H:i:s') );
 	}
 
 
@@ -409,7 +409,7 @@ class WP_Event_Manager_Date_Time {
 	 * @return string
 	 */
 	public static function generate_timezone_string_from_utc_offset( $offset ) {
-		
+
 		if ( ! self::is_utc_offset( $offset ) ) {
 			return $offset;
 		}
@@ -465,18 +465,68 @@ class WP_Event_Manager_Date_Time {
 
 		if(empty($timezone))
 			$timezone = self::get_current_site_timezone();
-		
+
 		$timezone = self::generate_timezone_string_from_utc_offset( $timezone );
-		
+
 		try {
 			$date = new DateTime( strtotime($date) );
 			$date->setTimezone( new DateTimeZone( $timezone ) );
-			
+
 		} catch ( Exception $e ) {
 			return false;
 		}
 
 		return $date->format( $format );
+	}
+
+    /**
+     * Converts PHP/Wordpress default datetime format selectors to Moment.js/Date.js usable formats
+     * @param string $format PHP/Wordpress datetime format selector
+     * @return string Converted Datetime selectors to use with Moment.js/Date.js
+     * @since 3.1.26
+     */
+	public static function wpem_convert_php_to_moment_format($format) {
+		$replacements = [
+			'd' => 'DD',
+			'D' => 'ddd',
+			'j' => 'D',
+			'l' => 'dddd',
+			'N' => 'E',
+			'S' => 'o',
+			'w' => 'e',
+			'z' => 'DDD',
+			'W' => 'W',
+			'F' => 'MMMM',
+			'm' => 'MM',
+			'M' => 'MMM',
+			'n' => 'M',
+			't' => '', // no equivalent
+			'L' => '', // no equivalent
+			'o' => 'YYYY',
+			'Y' => 'YYYY',
+			'y' => 'YY',
+			'a' => 'a',
+			'A' => 'A',
+			'B' => '', // no equivalent
+			'g' => 'h',
+			'G' => 'H',
+			'h' => 'hh',
+			'H' => 'HH',
+			'i' => 'mm',
+			's' => 'ss',
+			'u' => 'SSS',
+			'e' => 'zz', // deprecated since version 1.6.0 of moment.js
+			'I' => '', // no equivalent
+			'O' => '', // no equivalent
+			'P' => '', // no equivalent
+			'T' => '', // no equivalent
+			'Z' => '', // no equivalent
+			'c' => '', // no equivalent
+			'r' => '', // no equivalent
+			'U' => 'X',
+		];
+		$momentFormat = strtr($format, $replacements);
+		return $momentFormat;
 	}
 }
 
