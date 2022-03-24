@@ -495,7 +495,7 @@ class WP_Event_Manager_Writepanels
 			if (!empty($date)) {
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 				$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-				if ($datetime =  DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$date.'")) {
+				if ($datetime =  DateTime::createFromFormat('Y-m-d H:i:s', $date)) {
 					$date = 	$datetime->format($php_date_format);
 				}
 				$field['value']         = $date;
@@ -1035,13 +1035,14 @@ class WP_Event_Manager_Writepanels
 						$start_time = '';
 					}
 					// combine event start date value with event start time
-					$date = $_POST[$key] . ' ' . $start_time;
+					$date = date($datepicker_date_format, strtotime($_POST[$key])) . ' ' . $start_time;
 
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, $key, sanitize_text_field(($date_dbformatted)));
+					$date_dbformatted = $date;
 				} else {
 					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 				}
@@ -1053,13 +1054,13 @@ class WP_Event_Manager_Writepanels
 						$start_time = '';
 					}
 					// combine event start date value with event start time
-					$date = $_POST[$key] . ' ' . $start_time;
-
+					$date = date($datepicker_date_format, strtotime($_POST[$key])) . ' ' . $start_time;
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
+					$date_dbformatted = $date;
 				} else {
 					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 				}
@@ -1097,9 +1098,10 @@ class WP_Event_Manager_Writepanels
 							$date = $_POST[$key];
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
-							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
+							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 							update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
+							$date_dbformatted = date($php_date_format, strtotime($date_dbformatted));
 						}
 						break;
 
