@@ -492,10 +492,22 @@ class WP_Event_Manager_Writepanels
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$date = get_post_meta($thepostid, $key, true);
+		
 			if (!empty($date)) {
+				var_dump($date);
+			
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+
 				$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-				if ($datetime =  DateTime::createFromFormat('Y-m-d H:i:s', $date)) {
+				if (isset(explode(" ", $date)[1])) {
+					$conversion_format = $php_date_format . ' H:i:s';
+				} else {
+					$conversion_format = $php_date_format;
+				}
+				//$datetime =  DateTime::createFromFormat('Y-m-d H:i:s', $date)
+				//$datetime =  DateTime::createFromFormat('Y-m-d H:i:s', $date)
+				if ($datetime = DateTime::createFromFormat($conversion_format, $date)) {
+			
 					$date = 	$datetime->format($php_date_format);
 				}
 				$field['value']         = $date;
