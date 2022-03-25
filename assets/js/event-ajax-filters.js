@@ -160,9 +160,10 @@ var EventAjaxFilters = function() {
                 }
                 if (true == target.data('show_filters')) {
                     var filter_event_type = [];
-                    var datetimes = form.find(':input[name^="search_datetimes"]').map(function() {
+                    var datetime = [];
+                    datetime.push(form.find(':input[name^="search_datetimes"]').map(function () {
                         return jQuery(this).val()
-                    }).get();
+                    }).get());
                     if(jQuery( 'input.date_range_picker' ).length > 0)
                     {
                         jQuery( 'input.date_range_picker' ).daterangepicker();
@@ -216,12 +217,12 @@ var EventAjaxFilters = function() {
                     }
                 } else {
                     
-                    var keywords = JSON.stringify(target.data('keywords'));
-                    var location = JSON.stringify(target.data('location'));
+                    var keywords = target.data('keywords');
+                    var location = target.data('location');
                     var datetimes = JSON.stringify(target.data('datetimes'));
-                    var categories = JSON.stringify(target.data('categories'));
-                    var event_types = JSON.stringify(target.data('event_types'));
-                    var ticket_prices = JSON.stringify(target.data('ticket_prices'));
+                    var categories = target.data('categories');
+                    var event_types = target.data('event_types');
+                    var ticket_prices = target.data('ticket_prices');
                     if (categories) {
                         categories = categories.split(',')
                     }
