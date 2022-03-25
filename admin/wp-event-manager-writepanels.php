@@ -498,7 +498,7 @@ class WP_Event_Manager_Writepanels
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
 				$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-				$date = date($date, strtotime($php_date_format));
+				$date = date($php_date_format, strtotime($date));
 				$field['value']         = $date;
 			}
 		}
