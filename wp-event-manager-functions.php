@@ -297,49 +297,44 @@ function get_event_listings( $args = array() ) {
 			}
 			else
 			{
-		
+
 				$dates = json_decode($args['search_datetimes'][0], true);
 				//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 				$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
-	
+
 				//covert datepicker format  into php date() function date format
-				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
-				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']) . ' 00:00:00';
-				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']) . ' 23:59:00';
-				if (count(array_unique($dates)) > 0) {
-
-					$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   =>  $dates['start'], $dates['end'],
-						'compare' => '==',
-						'type'    => 'date'
-					);
-
-					$date_search[] = array(
-						'key'     => '_event_end_date',
-						'value'   => $dates['start'],
-						'compare' => '==',
-						'type'    => 'date'
-					);
-
-					$date_search['relation'] = 'OR';
-				} else {
-					$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   =>  [$dates['start'], $dates['end']],
-						'compare' => 'BETWEEN',
-						'type'    => 'date'
-					);
-
-					$date_search[] = array(
-						'key'     => '_event_end_date',
-						'value'   => [$dates['start'], $dates['end']],
-						'compare' => 'BETWEEN',
-				    'type'    => 'date'
+				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
+				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
+				$date_search['relation'] = 'OR';
+				$date_search1[] = array(
+					'key'     => '_event_start_date',
+					'value'   =>  $dates['end'],
+					'compare' => '<=',
+					'type'    => 'date'
 				);
-
-				$date_search['relation'] = 'AND';
-			}
+				$date_search1[] = array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['start'],
+					'compare' => '>=',
+					'type'    => 'date'
+				);
+				$date_search1['relation'] = 'AND';
+				$date_search[] = $date_search1;
+				$date_search2[] = array(
+					'key'     => '_event_end_date',
+					'value'   => $dates['start'],
+					'compare' => '>=',
+					'type'    => 'date'
+				);
+				$date_search2[] = array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['end'],
+					'compare' => '<=',
+					'type'    => 'date'
+				);
+				$date_search2['relation'] = 'AND';
+				$date_search[] = $date_search2;
 			}
 
 			$query_args['meta_query'][] = $date_search;
