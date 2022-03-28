@@ -490,16 +490,11 @@ class WP_Event_Manager_Writepanels
 	public static function input_date($key, $field)
 	{
 		global $thepostid;
+		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+		$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 		if (!isset($field['value'])) {
-			
 			$date = get_post_meta($thepostid, $key, true);
-
 			if (!empty($date)) {
-			
-				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
-
-				$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-		
 				$date = date($php_date_format, strtotime($date));
 				$field['value']         = $date;
 			}
@@ -516,6 +511,7 @@ class WP_Event_Manager_Writepanels
 				if (!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+			<input type="hidden" name="date_format" id="date_format" value="<?php echo $php_date_format   ?>" />
 			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
 		</p>
 	<?php
@@ -977,9 +973,9 @@ class WP_Event_Manager_Writepanels
 
 			// Event Expiry date
 			if ('_event_expiry_date' === $key) {
-				
+
 				if (!empty($_POST[$key])) {
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $_POST[$key]);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'], $_POST[$key]);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, $key, trim($date_dbformatted));
@@ -1041,8 +1037,7 @@ class WP_Event_Manager_Writepanels
 					// combine event start date value with event start time
 					$date = explode(' ', $_POST[$key])[0] . ' ' . $start_time;
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
-
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'] . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 					update_post_meta($post_id, $key, sanitize_text_field(($date_dbformatted)));
 				} else {
@@ -1058,7 +1053,7 @@ class WP_Event_Manager_Writepanels
 					// combine event start date value with event start time
 					$date = explode(' ', $_POST[$key])[0] . ' ' . $start_time;
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'] . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
@@ -1071,7 +1066,7 @@ class WP_Event_Manager_Writepanels
 					// combine event start date value with event start time
 					$date = explode(' ', $_POST[$key])[0];
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'], $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
