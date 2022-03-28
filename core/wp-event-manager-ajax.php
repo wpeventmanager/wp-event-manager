@@ -161,7 +161,7 @@ class WP_Event_Manager_Ajax {
 		$search_ticket_prices = '';
 
 		if (isset($_REQUEST['search_datetimes'])) {
-
+		
 			$search_datetimes = is_array($_REQUEST['search_datetimes']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_REQUEST['search_datetimes']))) :
 				array_filter(array(sanitize_text_field(stripslashes($_REQUEST['search_datetimes']))));
 		}

@@ -160,10 +160,9 @@ var EventAjaxFilters = function() {
                 }
                 if (true == target.data('show_filters')) {
                     var filter_event_type = [];
-                    var datetime = [];
-                    datetime.push(form.find(':input[name^="search_datetimes"]').map(function () {
+                    var datetimes = form.find(':input[name^="search_datetimes"]').map(function () {
                         return jQuery(this).val()
-                    }).get());
+                    }).get();
                     if(jQuery( 'input.date_range_picker' ).length > 0)
                     {
                         jQuery( 'input.date_range_picker' ).daterangepicker();
