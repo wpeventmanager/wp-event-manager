@@ -612,7 +612,7 @@ class WP_Event_Manager_Shortcodes {
 
 		), $atts ) );
 
-		//wp_enqueue_script( 'wp-event-manager-venue-dashboard' );
+		wp_enqueue_script('wp-event-manager-venue-dashboard');
 
 		ob_start();
 
