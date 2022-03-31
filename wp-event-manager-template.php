@@ -2665,7 +2665,7 @@ function event_manager_get_event_listing_structured_data($post = null)
 	$data['startDate'] = get_event_start_date($post);
 	$data['endDate'] = get_event_end_date($post);
 	$data['performer'] = get_organizer_name($post);
-	$data['eventAttendanceMode'] = is_event_online($post) ? 'Online' : 'offline';
+	$data['eventAttendanceMode'] = is_event_online($post) ? 'OnlineEventAttendanceMode' : 'OfflineEventAttendanceMode';
 	$data['eventStatus'] = 'EventScheduled';
 
 	$data['Organizer']['@type'] = 'Organization';
