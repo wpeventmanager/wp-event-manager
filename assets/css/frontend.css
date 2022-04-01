@@ -61,13 +61,13 @@
   border: 5px solid var(--wpem-gray-bg-color);
   border-top: 5px solid var(--wpem-primary-color);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: wpem-spin 1s linear infinite;
 }
-@-webkit-keyframes spin {
+@-webkit-keyframes wpem-spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
-@keyframes spin {
+@keyframes wpem-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
