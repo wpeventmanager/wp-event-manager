@@ -707,6 +707,7 @@ input.wpem-theme-button:hover span {
   border: none;
   border-radius: 0;
   overflow: hidden;
+  margin-bottom: 30px;
 }
 .wpem-event-listing-list-view .wpem-listing-google-map-wrapper {
   padding: 0;
@@ -4002,6 +4003,10 @@ p.post-submitted-success-green-message a {
     width: 20px;
     -webkit-mask-size: 10px;
   }
+}
+table.wp-list-table th#aioseo-details {
+  max-width: 20%;
+  width: 100%;
 }
 
 
