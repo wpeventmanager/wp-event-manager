@@ -45,6 +45,7 @@ function get_event_listings( $args = array() ) {
 		'post_status'       => array(),
 	) );
 
+		
 		/**
 		 * Perform actions that need to be done prior to the start of the event listings query.
 		 *
@@ -141,10 +142,10 @@ function get_event_listings( $args = array() ) {
 		);
 	}
 
-	
 
-	if ( isset($args['event_online']) && !empty($args['event_online']) && $args['event_online'] == 'true' ) {
 
+		if (isset($args['event_online']) && $args['event_online'] == 'true') {
+		
 		$query_args['meta_query'][] = array(
 
 			'key'     => '_event_online',
@@ -153,10 +154,10 @@ function get_event_listings( $args = array() ) {
 
 			'compare' => '='
 		);
-	}	
-	
-	if ( isset($args['event_online']) && !empty($args['event_online'] && $args['event_online'] === 'false' ) ) {
-		
+		}
+
+		if (isset($args['event_online']) && $args['event_online'] == false) {
+
 		$query_args['meta_query'][] = array(
 
 			'key'     => '_event_online',
