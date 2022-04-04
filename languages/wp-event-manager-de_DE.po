@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2022-03-30 17:15+0530\n"
-"PO-Revision-Date: 2022-03-30 17:20+0530\n"
+"POT-Creation-Date: 2022-04-04 15:47+0530\n"
+"PO-Revision-Date: 2022-04-04 15:49+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +17,7 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "Last-Translator: \n"
-"Language: de\n"
+"Language: de_DE@formal\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
@@ -621,7 +621,7 @@ msgstr " : %s "
 #: templates/content-single-event_listing.php:363
 #: templates/organizer/content-single-event_listing-organizer.php:54
 #: templates/organizer/content-single-event_listing-organizer.php:158
-#: templates/organizer/content-single-event_organizer.php:28
+#: templates/organizer/content-single-event_organizer.php:29
 #: templates/organizer/event-organizers.php:59
 #: templates/venue/content-single-event_listing-venue.php:57
 #: templates/venue/content-single-event_venue.php:21
@@ -3184,7 +3184,7 @@ msgstr "%s ist ein Pflichtfeld."
 #: forms/wp-event-manager-form-submit-event.php:419
 #, fuzzy, php-format
 msgid "%s is invalid."
-msgstr "%s ist ungültig."
+msgstr "% s ist ungültig"
 
 #: forms/wp-event-manager-form-submit-event.php:440
 #: forms/wp-event-manager-form-submit-organizer.php:322
@@ -3273,7 +3273,7 @@ msgstr "Geben Sie Ihre E-Mail-Adresse ein"
 #: forms/wp-event-manager-form-submit-venue.php:134
 #: templates/organizer/content-single-event_listing-organizer.php:72
 #: templates/organizer/content-single-event_listing-organizer.php:176
-#: templates/organizer/content-single-event_organizer.php:44
+#: templates/organizer/content-single-event_organizer.php:45
 #: templates/organizer/organizer-dashboard.php:68
 #: templates/venue/content-single-event_listing-venue.php:77
 #: templates/venue/content-single-event_venue.php:37
@@ -3289,7 +3289,7 @@ msgstr "Website-URL z.B. http://www.yourorganization.com"
 #: forms/wp-event-manager-form-submit-organizer.php:153
 #: forms/wp-event-manager-form-submit-venue.php:142
 #: templates/content-single-event_listing.php:528
-#: templates/organizer/content-single-event_organizer.php:52
+#: templates/organizer/content-single-event_organizer.php:53
 #: templates/organizer/organizer-dashboard.php:76
 #: templates/venue/content-single-event_listing-venue.php:86
 #: templates/venue/content-single-event_venue.php:46
@@ -3306,7 +3306,7 @@ msgstr "Facebook URL z.B. http://www.facebook.com/yourorganizer"
 #: forms/wp-event-manager-form-submit-venue.php:150
 #: templates/organizer/content-single-event_listing-organizer.php:84
 #: templates/organizer/content-single-event_listing-organizer.php:188
-#: templates/organizer/content-single-event_organizer.php:60
+#: templates/organizer/content-single-event_organizer.php:61
 #: templates/organizer/organizer-dashboard.php:84
 #: templates/venue/content-single-event_listing-venue.php:95
 #: templates/venue/content-single-event_venue.php:55
@@ -3323,7 +3323,7 @@ msgstr "Instagram URL z.B. http://www.instagram.com/yourorganizer"
 #: forms/wp-event-manager-form-submit-venue.php:158
 #: templates/organizer/content-single-event_listing-organizer.php:96
 #: templates/organizer/content-single-event_listing-organizer.php:200
-#: templates/organizer/content-single-event_organizer.php:75
+#: templates/organizer/content-single-event_organizer.php:76
 #: templates/organizer/organizer-dashboard.php:100
 #: templates/venue/content-single-event_listing-venue.php:113
 #: templates/venue/content-single-event_venue.php:72
@@ -3341,7 +3341,7 @@ msgstr "Youtube Kanal URL z.B. http://www.youtube.com/channel/yourorganizer"
 #: templates/content-single-event_listing.php:531
 #: templates/organizer/content-single-event_listing-organizer.php:90
 #: templates/organizer/content-single-event_listing-organizer.php:194
-#: templates/organizer/content-single-event_organizer.php:68
+#: templates/organizer/content-single-event_organizer.php:69
 #: templates/organizer/organizer-dashboard.php:92
 #: templates/venue/content-single-event_listing-venue.php:104
 #: templates/venue/content-single-event_venue.php:64
@@ -3835,7 +3835,7 @@ msgstr "entfernen"
 
 #: templates/organizer/content-single-event_listing-organizer.php:72
 #: templates/organizer/content-single-event_listing-organizer.php:176
-#: templates/organizer/content-single-event_organizer.php:44
+#: templates/organizer/content-single-event_organizer.php:45
 #: templates/organizer/organizer-dashboard.php:68
 #: templates/venue/content-single-event_listing-venue.php:77
 #: templates/venue/content-single-event_venue.php:37
@@ -3846,7 +3846,7 @@ msgstr "Holen Sie sich Connect auf der Website"
 
 #: templates/organizer/content-single-event_listing-organizer.php:78
 #: templates/organizer/content-single-event_listing-organizer.php:182
-#: templates/organizer/content-single-event_organizer.php:52
+#: templates/organizer/content-single-event_organizer.php:53
 #: templates/organizer/organizer-dashboard.php:76
 #: templates/venue/content-single-event_listing-venue.php:86
 #: templates/venue/content-single-event_venue.php:46
@@ -3863,7 +3863,7 @@ msgstr "Faceboo"
 
 #: templates/organizer/content-single-event_listing-organizer.php:84
 #: templates/organizer/content-single-event_listing-organizer.php:188
-#: templates/organizer/content-single-event_organizer.php:60
+#: templates/organizer/content-single-event_organizer.php:61
 #: templates/organizer/organizer-dashboard.php:84
 #: templates/venue/content-single-event_listing-venue.php:95
 #: templates/venue/content-single-event_venue.php:55
@@ -3874,7 +3874,7 @@ msgstr "Holen Sie sich Connect auf Instagram"
 
 #: templates/organizer/content-single-event_listing-organizer.php:90
 #: templates/organizer/content-single-event_listing-organizer.php:194
-#: templates/organizer/content-single-event_organizer.php:68
+#: templates/organizer/content-single-event_organizer.php:69
 #: templates/organizer/organizer-dashboard.php:92
 #: templates/venue/content-single-event_listing-venue.php:104
 #: templates/venue/content-single-event_venue.php:64
@@ -3885,7 +3885,7 @@ msgstr "Holen Sie sich Connect auf Twitter"
 
 #: templates/organizer/content-single-event_listing-organizer.php:96
 #: templates/organizer/content-single-event_listing-organizer.php:200
-#: templates/organizer/content-single-event_organizer.php:75
+#: templates/organizer/content-single-event_organizer.php:76
 #: templates/organizer/organizer-dashboard.php:100
 #: templates/venue/content-single-event_listing-venue.php:113
 #: templates/venue/content-single-event_venue.php:72
