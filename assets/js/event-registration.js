@@ -13,6 +13,7 @@ var EventRegistration= function () {
 	        jQuery( '.registration_details' ).hide();
 
 			jQuery(".registration_button").on('click',EventRegistration.actions.toggleDetails);			
+				jQuery('form.event-manager-registration-form').on('submit', EventRegistration.actions.disableSubmit);
 	    },
     	actions :
     	{
@@ -28,7 +29,10 @@ var EventRegistration= function () {
 
                          jQuery( event.target ).toggleClass('wpem-active-button');
     			   	     jQuery( '.registration_details' ).slideToggle();
-    			   }    			  
+				},
+				disableSubmit: function (event) {
+					jQuery('p button[type="submit"]').attr('style', 'pointer-events: none;');
+				}
     	}
 
     } //enf of return
