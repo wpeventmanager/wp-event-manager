@@ -1132,7 +1132,7 @@ class WP_Event_Manager_Writepanels
 					case 'wp-editor':
 						if (!empty($_POST[$key])) {
 							$v_text = wp_kses_post($_POST[$key]);
-							update_post_meta($post_id, $key, sanitize_text_field($v_text));
+							update_post_meta($post_id, $key, $v_text);
 						}
 						break;
 
