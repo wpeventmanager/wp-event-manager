@@ -1106,11 +1106,16 @@ class WP_Event_Manager_Writepanels
 					case 'date':
 						if (isset($_POST[$key])) {
 							$date = $_POST[$key];
+						 $datetime = explode('',$_POST[$key]);
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
+							if(!isset($datetime[1])){
+								$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
+							}
+							
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-							update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
+							update_post_meta($post_id, $key, trim($date_dbformatted));
 							$date_dbformatted = date($php_date_format, strtotime($date_dbformatted));
 						}
 						break;
