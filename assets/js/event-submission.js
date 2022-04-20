@@ -428,6 +428,7 @@ EventSubmission = function () {
 
                             jQuery('body #submit-organizer-form .event-manager-uploaded-files').remove();
                             jQuery('body #submit-organizer-form')[0].reset();
+                            jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
                         }
                         else {
                             jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
