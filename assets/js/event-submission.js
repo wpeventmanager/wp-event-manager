@@ -475,8 +475,10 @@ EventSubmission = function () {
 
                             jQuery('body #submit-venue-form .event-manager-uploaded-files').remove();
                             jQuery('body #submit-venue-form')[0].reset();
+                            jQuery('.wpem_add_venue').css('pointer-events', 'auto');
                         }
                         else {
+                            jQuery('.wpem_add_venue').css('pointer-events', 'auto');
                             jQuery('body #submit-venue-form .wpem-form-footer .wpem_add_venue').after(responce.message);
                         }
                     }
