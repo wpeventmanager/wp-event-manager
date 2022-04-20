@@ -430,6 +430,8 @@ EventSubmission = function () {
                             jQuery('body #submit-organizer-form')[0].reset();
                         }
                         else {
+                            alert(responce.message);
+                            jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
                             jQuery('body #submit-organizer-form .wpem-form-footer .wpem_add_organizer').after(responce.message);
                         }
                     }
