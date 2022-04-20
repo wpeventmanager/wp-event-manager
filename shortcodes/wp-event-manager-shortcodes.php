@@ -1342,7 +1342,7 @@ class WP_Event_Manager_Shortcodes {
 	 * @return void
 	 */
 	public function output_past_events( $atts ) {
-
+	
 		ob_start();
 
 		extract( shortcode_atts ( array(
@@ -1351,9 +1351,9 @@ class WP_Event_Manager_Shortcodes {
 
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
-			'order'                     => 'DESC',
+			'order'                     =>  $atts['order'] ? $atts['order'] :  'DESC',
 
-			'orderby'                   => 'event_start_date', // meta_value
+			'orderby'                   => $atts['meta_key'] ? $atts['meta_key'] : 'event_start_date', // meta_value
 
 			'location'                  => '',
 
