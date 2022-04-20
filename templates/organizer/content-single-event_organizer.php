@@ -1,6 +1,8 @@
 <?php $organizer = get_post($organizer_id);
 //$organizer_fields =    get_metadata('post', $organizer_id);
+if(get_option('event_manager_form_fields', true)){
 $organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
+}
 $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
 ?>
 
@@ -83,14 +85,17 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                         </div>
                     </div>
                     <?php do_action('submit_organizer_form_organizer_fields_start'); ?>
-                    <?php foreach ($organizer_fields as $key => $field) : ?>
+                    <?php
+                    if(isset($organizer_fields)){ 
+                    foreach ($organizer_fields as $key => $field) : ?>
                         <?php if (!strstr($key, 'organizer') && !strstr($key, 'vcv') && !strstr($key, 'submitting')) : ?>
                             <div class="wpem-organizer-additional-information">
                                 <strong><?= $key ?></strong>
                                 <span><?= get_post_meta($organizer_id, '_' . $key, true) ? get_post_meta($organizer_id, '_' . $key, true) : '-'  ?></span></span>
                             </div>
                         <?php endif; ?>
-                    <?php endforeach; ?>
+                    <?php endforeach;
+                    } ?>
                     <?php do_action('submit_organizer_form_organizer_fields_end'); ?>
                     <div class="wpem-organizer-contact-actions">
                         <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>

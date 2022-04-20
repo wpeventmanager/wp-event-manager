@@ -1106,11 +1106,16 @@ class WP_Event_Manager_Writepanels
 					case 'date':
 						if (isset($_POST[$key])) {
 							$date = $_POST[$key];
+						 $datetime = explode('',$_POST[$key]);
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
+							if(!isset($datetime[1])){
+								$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
+							}
+							
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-							update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
+							update_post_meta($post_id, $key, trim($date_dbformatted));
 							$date_dbformatted = date($php_date_format, strtotime($date_dbformatted));
 						}
 						break;
@@ -1488,6 +1493,11 @@ class WP_Event_Manager_Writepanels
 			return;
 		}
 
+		$args = array('posts_per_page' => -1,
+		'post_parent'    => $post_id,
+		'post_type'=>'event_listing');
+		$children = get_children($args,ARRAY_A);
+		if(sizeof($children) ==0){
 		$event_banner = get_event_banner($post_id);
 
 		if (!empty($event_banner)) {
@@ -1510,6 +1520,7 @@ class WP_Event_Manager_Writepanels
 
 					if (!empty($attachments)) {
 						foreach ($attachments as $attachment) {
+							
 							wp_delete_attachment($attachment->ID, true);
 						}
 					}
@@ -1538,6 +1549,7 @@ class WP_Event_Manager_Writepanels
 		if (!empty($thumbnail_id)) {
 			wp_delete_attachment($thumbnail_id, true);
 		}
+	}
 	}
 }
 WP_Event_Manager_Writepanels::instance();
