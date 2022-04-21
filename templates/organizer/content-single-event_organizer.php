@@ -1,6 +1,6 @@
 <?php $organizer = get_post($organizer_id);
 //$organizer_fields =    get_metadata('post', $organizer_id);
-if(get_option('event_manager_form_fields', true)){
+if (get_option('event_manager_form_fields')) {
 $organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
 }
 $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
