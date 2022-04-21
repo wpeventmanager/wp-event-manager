@@ -208,9 +208,7 @@ There are [lots of ways](https://wp-eventmanager.com/help-center/) to find out t
 As with every WordPress plugin, you can ask for general support from the free version of WP Event Manager on the dedicated [WordPress.org support forum](https://wordpress.org/support/plugin/wp-event-manager/). Premium support customers have a [specific point on our site](https://support.wp-eventmanager.com/) to direct tickets.
 
 
-== Frequently Asked Questions (FAQ) ==
-
-
+== Frequently Asked Questions ==
 
 = What does the free version of WP Event Manager give me? =
 
@@ -222,23 +220,17 @@ For all other functionality, you’ll want to make use of any of our premium add
 
 Our [installation guide](https://wp-eventmanager.com/knowledge-base/install-wp-event-manager/) will help you get WP Event Manager onto your WordPress system. [Adding your first event](https://wp-eventmanager.com/knowledge-base/adding-your-first-event/) is straightforward, and for most cases, you’ll simply need to insert a shortcode into your content.
 
-
 = Can I use WP Event Manager without front-end submissions? =
 
 Of course! You can use WP Event Manager without submitting anything from the front end by omitting the [submit_event_form] shortcode. You’ll still get the full experience of listing events.
-
-
 
 = How can I customize the event submission form? =
 
 We have [full documentation](https://wp-eventmanager.com/knowledge-base/the-event-submission-form/) on the event submission form shortcode within our knowledge base. However, to customize the form itself, you can follow the same process we recommend for [editing fields](https://wp-eventmanager.com/knowledge-base/event-fields/).
 
-
-
 = Is there a way to add more functionalities to WP Event Manager? =
 
 Yes – WP Event Manager is a full-featured event management plugin, but you can also add even more to the feature set.
-
 
 A wide variety of [add-ons are available](https://wp-eventmanager.com/plugins/) to help you add live streaming, a calendar, more customizability, and Google Maps functionality (among others). You can even sell tickets, manage attendees, and much more.
 
@@ -254,13 +246,11 @@ For example, you can show upcoming calendar events, single-date calendar events,
 
 Yes! WP Event Manager is a full-scale [virtual event platform](https://wp-eventmanager.com/virtual-event-platform/) that lets you carry out live streaming. We package a number of related add-ons together in [our Virtual Bundle](https://wp-eventmanager.com/product/virtual-bundle-package/). This lets you access the features in our Expo Networking and Speaker and Schedule add-ons. What’s more, you can sell tickets, collect attendee data, manage those attendees, provide virtual name tags, and even add users to either Zoho or HubSpot CRMs.
 
-
 = Can I sell tickets to events using WP Event Manager? =
 
 You can sell tickets using the [WP Event Manager Sell Tickets add-on](https://wp-eventmanager.com/product/wp-event-manager-sell-tickets/). This combines with the WooCommerce plugin to let you set up multi-level pricing tiers, and track the ticket sales you make.
 
 You could sell tickets live too, as the interface lets you add new paid tickets to WP Event Manager. In fact, there are a number of ticket options you can use to refine the experience for both you and your attendees.
-
 
 = Can I pass on my ideas and thoughts about WP Event Manager to you? =
 
@@ -311,181 +301,185 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
+= 3.1.26 [ Apr 20th, 2022 ] =
+
+Fixed - Event image duplicate issue.
+Fixed - Event category selection box issue.
+Fixed - Event order shortcode and date-related issues.
+Fixed - Event custom field issues with field editor.
+Fixed - Event Translations issues.
+Fixed - Event location related issues with radius filter.
+Fixed - Some js and CSS tweaks for the Event calendar.
+
 = 3.1.25 [ Mar 4th, 2022 ] =
 
-Fixed - Security update.
+Fixed - Security update for Event calendar.
 
 = 3.1.24 [ Feb 14th, 2022 ] =
 
-Fixed - Field editor.
+Fixed - Event Manager Field editor issues.
 Fixed - Improved input and output esc.
-Fixed - some js and css tweaks.
+Fixed - Some js and css tweaks for Event calendar.
 
 = 3.1.23 [ Feb 8th, 2022 ] =
 
 Fixed - Installation improved.
 Fixed - Improved security and escaping output.
-Fixed - some js and css tweaks.
+Fixed - Some js and css tweaks for Event calendar.
 
 = 3.1.22 [ Sep 11th, 2021 ] =
 
-Fixed - Expo and virtual compatiblitity.
-Fixed - Date format issue.
-Fixed - some js and css tweaks.
+Fixed - Event Manager Expo and virtual compatiblitity.
+Fixed - Event date format issue.
+Fixed - Some js and css tweaks for Event calendar.
 
 = 3.1.21 [ May 13th, 2021 ] =
 
-Fixed - var_dump on submission page.
-Fixed - Organizer and venue sumbmission page message.
-Fixed - Some css and js tweaks.
+Fixed - var_dump on event submission page.
+Fixed - Event rganizer and venue sumbmission page message.
+Fixed - Some css and js tweaks for Event calendar. 
 
 
 = 3.1.20 [ Apr 6th, 2021 ] =
 
-Added - URL field type.
-Fixed - Elementor elements improvements.
+Added - Event URL field type.
+Fixed - Elementor Event Listing and calendar elements improvements.
 Fixed - Custom fields improvements at single event page.
-Fixed - Jquery conflict with listing.
-Fixed - Some js and css tweaks.
+Fixed - Jquery conflict with Event listing in calendar.
+Fixed - Some js and css tweaks for Event calendar.
 
 
 = 3.1.19 [ Dec 4th, 2020 ] =
 
 Fixed - Events listing show_filter false attribute issue.
 Fixed - Category walker with event type dropdown compatiblity.
-Fixed - Elementor widgets improved.
-Fixed - some js and css tweaks.
-Added - URL field type.
+Fixed - Elementor Event and Calander widgets improved.
+Fixed - some js and css tweaks for Event calendar.
+Added - Event URL field type.
 
 
 = 3.1.18 [ Dec 2nd, 2020 ] =
 
 Fixed - Additional fields with file type improved at single event page.
 Fixed - Multiple event category and type  must be enable only from field editor.
-Fixed - Timezone field conflict with timezone settings.
-Fixed - Do not show venue if event is online.
-Fixed - Organizer pagination.
+Fixed - Timezone field conflict with timezone settings in Event Manager. 
+Fixed - Do not show event venue if event is online.
+Fixed - Event organizer pagination issues.
 Fixed - WP Editor admin side added in event data.
 Added - Event dashboard design improved.
 Fixed - Admin side events table improved.
-Fixed - Hardcoded strings improved.
+Fixed - Hardcoded strings improved in Event Manager and calendar.
 Removed - Multiple event category and type settings.
-Fixed - Some js and css tweaks.
+Fixed - Some js and css tweaks for Event calendar.
 
 
 = 3.1.17 [Sep 24TH, 2020] =
 
 Fixed - Date and event type search filter improved.
-Fixed - Repeated field updated. 
-Fixed - Venue and orgaizer single template improved.
-Fixed - Elementor shortcode improved.
-Fixed - Some js and css tweaks.
+Fixed - Repeated field updated for Sell Ticket. 
+Fixed - Event venue and orgaizer single template improved.
+Fixed - Elementor shortcode improved for Event calendar.
+Fixed - Some js and css tweaks for Event calendar.
 
 
 = 3.1.16 [Sep 16TH, 2020] =
 
-* Added - Separate venue listing with dashbaord.
-* Fixed - Organizer and venue adding at submit an event page.
-* Fixed - Widget sorting by time.
+* Added - Separate Event venue listing with dashbaord.
+* Fixed - Event organizer and venue adding at submit an event page.
+* Fixed - Event widget sorting by time.
 * Fixed - Event thumbanil syncronized with event banner.
-* Fixed - WPML compatiblity improved.
+* Fixed - WPML compatiblity with Event Manager improved.
 * Fixed - Elementor single event template and widgets improved.
-* Fixed - Some string,js and css tweaks.
-* Fixed - single event section improved.
-* Fixed - improved taxonomy archive template.
-* Fixed - All files optimized and reduced the size of plugin.
+* Fixed - Some string,js and css tweaks for Event calendar.
+* Fixed - Single event section improved.
+* Fixed - Improved Event calendar taxonomy archive template.
+* Fixed - All Event Manager files optimized and reduced the size of plugin.
 
 
 = 3.1.15 [Aug 25TH, 2020] =
 
 * Fixed - Migration from event meta to separte organizer improved.
 * Fixed - Event filter false issue.
-* Fixed - Some css and js tweaks.
-
+* Fixed - Some css and js tweaks for Event calendar.
 
 = 3.1.14 [Aug 22TH, 2020] =
 
 * Added - Multiple organizer selection with event.
 * Fixed - Admin can add past date events.
 * Fixed - Past events shortcode improved with attributes.
-* Fixed - Field editor improved with organizer.
-* Fixed - Attachment not deleting.
-* Fixed - Pagination issue with filters.
-* Fixed - Delete data on uninstall.
-* Remove - Address fields removed.
-* Fixed - Field editor related issues.
-* Fixed - Schema duplication and schema warnings.
+* Fixed - Field editor improved with Event organizer.
+* Fixed - Events attachment not deleting.
+* Fixed - Event Listing pagination issue with filters.
+* Fixed - Delete Events data on uninstall.
+* Remove - Address fields removed from Event calendar.
+* Fixed - Event field editor related issues.
+* Fixed - Event schema duplication and warnings.
 * Fixed - Single event page banner section improvements.
-* Fixed - Google search console warning.
-* Fixed - Some css and js tweaks.
+* Fixed - Events Google search console warning.
+* Fixed - Some css and js tweaks for Event calendar.
 
 = 3.1.13 =
 
 * Fixed - Event description duplication.
 
-
 = 3.1.12 =
 
-* Fixed - Banner attachment issue.
-* Fixed - Elementor featured issue.
-* Added - Filter by date range.
+* Fixed - Event banner attachment issue.
+* Fixed - Elementor featured issue with Event calendar.
+* Added - Filter by date range implement for Event listing.
 * Fixed - Registration button improved.
-* Fixed - Some string translation improved.
-* Added - REST API added.
+* Fixed - Some string translation improved for Event calendar.
+* Added - REST API added for Event Organiser.
 
 = 3.1.11 =
 
-* Fixed - Registration button conflict.
-* Fixed - Some js and css tweaks.
+* Fixed - Registration button conflict issue with Tickets.
+* Fixed - Some js and css tweaks for Event calendar.
 
 = 3.1.10 =
 
 * Fixed - Same day event start end date fixed.
 * Fixed - Media files duplicate issue fixed.
 * Fixed - Chosen at backend side improved.
-* Fixed - RSS feed item hooks added.
-* Fixed - One day event duplicate date improved.
-* Fixed - Elementor listing settings improved.
-* Fixed - Registration button conditions improved with method type.
-* Fixed - Gutenberg category compatiblity.
+* Fixed - Events RSS feed item hooks added.
+* Fixed - One day event duplicate date improved for recurring event.
+* Fixed - Elementor listing settings improved for Event Manager.
+* Fixed - Registration button conditions improved with method and Ticket type.
+* Fixed - Event Manager Gutenberg category compatiblity.
 
 = 3.1.9 =
 
-* Fixed - Field editor conflict with category
-* Fixed - POT strings are improved
-* Fixed - Some css and js tweaks
+* Fixed - Event Manager Field editor conflict with category.
+* Fixed - Event Manager POT strings are improved.
+* Fixed - Some css and js tweaks for Event calendar.
 
 = 3.1.8 =
 
-* Added - Visual composer compatiblity added
-* Added - View count added
-* Fixed - Layout improved
+* Added - Visual composer compatiblity for Event Manager.
+* Added - View Event count.
+* Fixed - Ticket listing layout improved.
 * Fixed - Field editor option value added with key and translation
 * Fixed - Date format issue with multilingual
-* Fixed - Layout improved 
-* Fixed - placeholder image improved 
-* Fixed - WPML config file im proved 
-
+* Fixed - Event listing and Calander layout improved.
+* Fixed - Event Placeholder image improved.
+* Fixed - WPML config file improved for Event calendar.
 
 = 3.1.7 =
 
-* Added - Time at single event page
-* Fixed - Minor Bugs
+* Added - Time at single event submission page.
+* Fixed - Minor Bugs Calander, Ticket types and Event submission.
 
 = 3.1.6 =
 
-* Added - New design responsive structure
-* Added - Layout type attribute in events shortcode
-* Added - CSS Improved
-* Added - All Templates Improved
-* Fixed - Minor Bugs
-
-
+* Added - New design responsive structure for Event listing and Calander.
+* Added - Layout type attribute in events shortcode.
+* Added - Event linsting and Calander CSS improved.
+* Added - Event Listing templates improved.
+* Fixed - Minor Bugs of Calander, Ticket types and Event submission.
 
 = 3.1.5 =
 
-* Fixed - field editor improved.
-
+* Fixed - Field editor improved for Event Calander.
 
 = 3.1.4 =
 
@@ -495,35 +489,35 @@ Fixed - Some js and css tweaks.
 
 = 3.1.3 =
 
-* Fixed - Widget title, number undefined solved
-* Fixed - event type meta box fixed
-* Added - event-slug added at event add/update time (Admin-side) 
+* Fixed - Events widget title, number undefined solved.
+* Fixed - Event type meta box fixed
+* Added - Event-slug added at event add/update time (Admin-side) 
 
 = 3.1.2 =
 
-* Added - shortcode Widget of elementor compitible.
-* Added - convert start date into date_i18n.
+* Added - Events and Calander shortcode Widget of elementor compitible.
+* Added - Convert Event start date into date_i18n.
 * Added - Shortcode for past event listing added.
 * Fixed - Events shortcode atts filter false fixed.
-* Added - Date i18n added
-* Fixed - POT file fixed with missing string
+* Added - Date i18n added in Event Calander.
+* Fixed - POT file fixed with missing string in Event Calander.
 
 
 = 3.1.1 =
 
-* Added - Setting link at plugin page added.
+* Added - Event setting link at plugin page added.
 * Fixed - Upcoming Event listing Widget fixed.
-* Fixed - Improvement in custom fields Field editor
-* Fixed - Ticket price option will be set using settings
+* Fixed - Improvement in Event custom fields for Field editor.
+* Fixed - Event Ticket price option will be set using settings.
 * Added - Featured Event Background Color changed
-* Added - Settings added for frontend login link
-* Fixed - some css tweaks
+* Added - Settings added for frontend event calendar site login link.
+* Fixed - Some css tweaks with Calander and Event Listing.
 
 = 3.1 =
 
-* Fixed - Date format issue fixed.
-* Fixed - Event slug improved.
-* Added - Widget settings added
+* Fixed - Calander date format issue fixed.
+* Fixed - Event slug improved for event listing.
+* Added - Widget settings added for Events and Calander view.
 
 = 3.0 =
 
@@ -537,103 +531,104 @@ Fixed - Some js and css tweaks.
 
 = 2.9 =
 
-* Fixed - Event listing result filter added.
+* Added - Event listing result filter.
+* Added - Event listing result filter in calendar as well.
 
 = 2.8 =
 
 * Fixed - Field editor issue.
 * Fixed - Registration button compatiblity with registration addon.
-* Fixed - Date field type
-* Fixed - Registration deadline
-* Fixed - backend and submit event js improved
+* Fixed - Date field type for Event submission
+* Fixed - Registration deadline issue with Event expiry date and calendar.
+* Fixed - Backend and submit event js improved.
 
 
 = 2.7 =
 
 * Fixed - Datepicker format changed to default as it is.
-* Fixed - taxonomy editing fields.
-* Fixed - Date filter fixed.
+* Fixed - Taxonomy editing fields for Event manager and Calander.
+* Fixed - Date filter issue fixed.
 
 = 2.6 =
 
-* Fixed - Field editor improved.
+* Fixed - Field editor improved in Event Manager.
 * Fixed - Time field type issue fixed.
-* Fixed - Admin expiry date and other date field improved.
-* Fixed - Admin panel css issue fixed.
+* Fixed - Admin expiry date and other date field improved  for Calander.
+* Fixed - Admin panel css issue fixed for Admin Events view.
 
 = 2.5 =
 
-* Fixed - Merged Frontend and Backed Field editor.
-* Added - jQuery datepicker added.
+* Fixed - Merged Frontend and Backed Field editor in Event Manager.
+* Added - jQuery datepicker added for Calander and Event Manager.
 * Fixed - Boostrap depandancy date-timepicker removed.
-* Improved - SEO and lang translation compatiblity improved.
+* Improved - SEO and lang translation compatiblity improved for Event Calander.
 * Improved - Order by clause improved.
 * Added - GDPR data cleaner improved.
 * Added - Permalink setting added. 
-* Added - Third Party Support separated folder. 
+* Added - Third Party Support folder separated to simply codeing structure. 
 * Fixed - POT file translation issue fixed. 
 
 
 = 2.4 =
 
-* Fixed - All string related issue and POT file.
-* Fixed - Admin form fields improvements.
+* Fixed - All string related issue and POT file in Event Manager.
+* Fixed - Admin form fields improvements for Event Manager and calendar.
 * Fixed - Language files added for Bulgarian,Hindi,Indonesian,Italian,Lithuanian,Polish,Portuguese (Brazil),Serbian,Vietnamese,Chinese 
 
 
 = 2.3 =
 
 * Added - Language files for German, Japanese, Russian, and Spanish (Mexico).
-* Fixed - Account creation settings and fields issue.
-* Fixed - Backend form fields issue.
+* Fixed - Fixed Account creation settings and fields issue.
+* Fixed - Fixed backend form fields issue.
 
 = 2.2 =
 
-* Fixed - Taxonomy conflict with custom fields fixed.
+* Fixed - Event Manager Taxonomy conflict with custom fields fixed.
 
 = 2.1 =
 
-* Fixed - Field value not showing in backend. 
-* Added - Field editor compatiblity with taxonomy.
+* Fixed - Event Manager Field value not showing in backend. 
+* Added - Event Manager Field editor compatiblity with taxonomy.
 
 = 2.0 =
 
-* Fixed - Expired listing issue fixed on events shortcode. 
+* Fixed - Expired event listing issue fixed on events shortcode. 
 * Fixed - Organizer logo MIME Type error.
-* Fixed - POT file and some string improved.
-* Fixed - Organizer section css improved.
-* Fixed - Improved cashe helper and expiry date
+* Fixed - POT file and some calendar string improved.
+* Fixed - Organizer section css improved in Event Manager.
+* Fixed - Improved cashe helper and event expiry date.
 
 = 1.9 =
 
 * Added - GUI form field editor added.
-* Fixed - Some CSS tweeks.  
+* Fixed - Some CSS tweeks with Calander and Event Manager.  
  
 = 1.8 =
 
 * Fixed - Preview and expired status in admin panel issue fixed.
 * Fixed - Expired events removed from seo indexing.
-* Fixed - Google map api issue solved.
-* Fixed - Geocodding API improved.
-* Fixed - Rss feed problem solved 
+* Fixed - Google map api issue solved for Google Map.
+* Fixed - Geocodding API improved for Event Listing.
+* Fixed - Rss feed problem solved for Events.
 
 = 1.7 =
 
-* Fixed - Google api issue fixed.
+* Fixed - Google api issue fixed for Google map and Event Calendar.
 * Fixed - Some string tweaks.
 
 = 1.6 =
 
-* Fixed - Start date validation issue.
+* Fixed - Fixed Start date validation issue for Event and Calendar.
 * Fixed - Set organizer logo as event featured image.
-* Fixed - CSS tweeks.
+* Fixed - Fixed CSS tweeks with Calendar and other addons.
 
 = 1.5 =
 
-* Fixed - Fixed Watch video button blue color removed..
-* Fixed - Fixed Auto categories and types re-activate plugin problem.
-* Fixed - Fixed css problem with theme.
-* Fixed - Fixed jQuery Deserialize - vendor assign js file.
+* Fixed - Watch video button blue color removed.
+* Fixed - Auto categories and types re-activate plugin problem.
+* Fixed - CSS problem with theme.
+* Fixed - jQuery Deserialize - vendor assign js file.
 
 = 1.4 =
 
@@ -641,26 +636,26 @@ Fixed - Some js and css tweaks.
 
 = 1.3 =
 
-* Fixed - Widget (Recent,Upcomming and Featured Events) Sort by date.
+* Fixed - Widget (Recent,Upcomming and Featured Events) Sort by date for Event Manager and Calendar.
 
 = 1.2 =
 
-* Fixed - Improve WPML compatibility. 
+* Fixed - Improve Event Manager compatibility with WPML . 
 * Fixed - Add an implicit whitelist for API requests.
 * Fixed - Taxonomy search conditions. 
 * Fixed - Admin Addon page addon listing.
 * Added - Allow event types to be optional, just like categories. 
 * Added - Add get_event_listing_types filter. 
-* Added - Various date format setting improvements. 
-* Added - Pass search values filter. 
-* Added - Multiple event type and category settings.
+* Added - Various date format setting improvements for Events and Calendar. 
+* Added - Pass search values filter for Events. 
+* Added - Multiple event type and category settings for Calendar.
 * Added - Admin notification added for showcase and rating.
 
 = 1.1 =
 
-* Fixed - Tweak settings page.
-* Fixed - Tweak css updated.
+* Fixed - Tweak settings page for Events Listing.
+* Fixed - Tweak css updated for Event Manager and Calendar.
 
 = 1.0 =
 
-* First stable release.
+* First stable release of Event Manager.
