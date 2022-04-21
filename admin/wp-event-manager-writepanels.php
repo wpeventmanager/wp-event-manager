@@ -276,7 +276,7 @@ class WP_Event_Manager_Writepanels
 					foreach ($popular as $term) {
 						$id = 'popular-' . esc_attr($taxonomy) . '-' . esc_attr($term->term_id);
 						echo "<li id='" . esc_attr($id) . "'><label class='selectit'>";
-						echo "<input type='radio' id='in-" . esc_attr($id) . "'" . checked($current, $term->term_id, false) . "value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . '<br />';
+						echo "<input type='radio' name='" . esc_attr($name) . "' id='in-" . esc_attr($id) . "' value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . '<br />';
 						echo '</label></li>';
 					}
 					?>
@@ -351,7 +351,7 @@ class WP_Event_Manager_Writepanels
 					foreach ($popular as $term) {
 						$id = 'popular-' . esc_attr($taxonomy) . '-' . esc_attr($term->term_id);
 						echo "<li id='$id'><label class='selectit'>";
-						echo "<input type='radio' id='in-$id'" . checked($current, $term->term_id, false) . "value='$term->term_id' />" . esc_html($term->name) . '<br />';
+						echo "<input type='radio'  name='{$name}' id='in-$id'  value='$term->term_id' />" . esc_html($term->name) . '<br />';
 						echo '</label></li>';
 					}
 					?>
@@ -490,12 +490,12 @@ class WP_Event_Manager_Writepanels
 	public static function input_date($key, $field)
 	{
 		global $thepostid;
+		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+		$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 		if (!isset($field['value'])) {
 			$date = get_post_meta($thepostid, $key, true);
 			if (!empty($date)) {
-				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
-				$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-				$date                   = date($php_date_format, strtotime($date));
+				$date = date($php_date_format, strtotime($date));
 				$field['value']         = $date;
 			}
 		}
@@ -511,6 +511,7 @@ class WP_Event_Manager_Writepanels
 				if (!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+			<input type="hidden" name="date_format" id="date_format" value="<?php echo $php_date_format   ?>" />
 			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
 		</p>
 	<?php
@@ -570,7 +571,8 @@ class WP_Event_Manager_Writepanels
 				if (!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
-			<select name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
+			<input name="<?php echo esc_attr($name); ?>_hidden" type="hidden" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" />
+			<select name=" <?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php foreach ($field['options'] as $key => $value) : ?>
 					<option value="<?php echo esc_attr($key); ?>" <?php
 																												if (isset($field['value'])) {
@@ -972,8 +974,9 @@ class WP_Event_Manager_Writepanels
 
 			// Event Expiry date
 			if ('_event_expiry_date' === $key) {
+
 				if (!empty($_POST[$key])) {
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $_POST[$key]);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'], $_POST[$key]);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, $key, trim($date_dbformatted));
@@ -1028,38 +1031,48 @@ class WP_Event_Manager_Writepanels
 			} elseif ('_event_start_date' === $key) {
 				if (isset($_POST[$key]) && !empty($_POST[$key])) {
 					if (isset($_POST['_event_start_time']) && !empty($_POST['_event_start_time'])) {
-						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time($_POST['_event_start_time']);
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($_POST['_event_start_time']));
 					} else {
-						$start_time = '';
+						$start_time = date('H:i:s');
 					}
 					// combine event start date value with event start time
-					$date = $_POST[$key] . ' ' . $start_time;
-
+					$date = explode(' ', $_POST[$key])[0] . ' ' . $start_time;
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'] . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-
-					update_post_meta($post_id, $key, trim($date_dbformatted));
+					update_post_meta($post_id, $key, sanitize_text_field(($date_dbformatted)));
 				} else {
-					update_post_meta($post_id, $key, $_POST[$key]);
+					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 				}
 			} elseif ('_event_end_date' === $key) {
 				if (isset($_POST[$key]) && !empty($_POST[$key])) {
 					if (isset($_POST['_event_end_time']) && !empty($_POST['_event_end_time'])) {
-						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time($_POST['_event_end_time']);
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($_POST['_event_end_time']));
 					} else {
-						$start_time = '';
+						$start_time = date('H:i:s');
 					}
 					// combine event start date value with event start time
-					$date = $_POST[$key] . ' ' . $start_time;
-
+					$date = explode(' ', $_POST[$key])[0] . ' ' . $start_time;
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'] . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
-					update_post_meta($post_id, $key, trim($date_dbformatted));
+					update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
 				} else {
-					update_post_meta($post_id, $key, $_POST[$key]);
+					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
+				}
+			} elseif ('_event_registration_deadline' === $key) {
+				if (isset($_POST[$key]) && !empty($_POST[$key])) {
+
+					// combine event start date value with event start time
+					$date = explode(' ', $_POST[$key])[0];
+					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'], $date);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+
+					update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
+				} else {
+					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 				}
 			} elseif ('_event_organizer_ids' === $key) {
 				if (!empty($_POST[$key])) {
@@ -1069,7 +1082,7 @@ class WP_Event_Manager_Writepanels
 				}
 			} elseif ('_event_venue_ids' === $key) {
 				if (!empty($_POST[$key])) {
-					update_post_meta($post_id, $key, $_POST[$key]);
+					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 				} else {
 					update_post_meta($post_id, $key, '');
 				}
@@ -1093,11 +1106,17 @@ class WP_Event_Manager_Writepanels
 					case 'date':
 						if (isset($_POST[$key])) {
 							$date = $_POST[$key];
+							$datetime = explode(' ', $_POST[$key]);
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
-							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
+							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
+							if(!isset($datetime[1])){
+								$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
+							}
+							
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 							update_post_meta($post_id, $key, trim($date_dbformatted));
+							$date_dbformatted = date($php_date_format, strtotime($date_dbformatted));
 						}
 						break;
 
@@ -1264,7 +1283,7 @@ class WP_Event_Manager_Writepanels
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		update_post_meta($post_id, '_organizer_name', sanitize_text_field($_POST['post_title']));
-		update_post_meta($post_id, '_organizer_description', $_POST['content']);
+		update_post_meta($post_id, '_organizer_description', sanitize_text_field($_POST['content']));
 
 		// Save fields
 		foreach ($this->organizer_listing_fields() as $key => $field) {
@@ -1293,7 +1312,7 @@ class WP_Event_Manager_Writepanels
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-							update_post_meta($post_id, $key, trim($date_dbformatted));
+							update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
 						}
 						break;
 					default:
@@ -1415,7 +1434,7 @@ class WP_Event_Manager_Writepanels
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		update_post_meta($post_id, '_venue_name', sanitize_text_field($_POST['post_title']));
-		update_post_meta($post_id, '_venue_description', $_POST['content']);
+		update_post_meta($post_id, '_venue_description', sanitize_text_field($_POST['content']));
 
 		// Save fields
 		foreach ($this->venue_listing_fields() as $key => $field) {
@@ -1443,7 +1462,7 @@ class WP_Event_Manager_Writepanels
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-							update_post_meta($post_id, $key, trim($date_dbformatted));
+							update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
 						}
 						break;
 					default:
@@ -1474,6 +1493,11 @@ class WP_Event_Manager_Writepanels
 			return;
 		}
 
+		$args = array('posts_per_page' => -1,
+		'post_parent'    => $post_id,
+		'post_type'=>'event_listing');
+		$children = get_children($args,ARRAY_A);
+		if(sizeof($children) ==0){
 		$event_banner = get_event_banner($post_id);
 
 		if (!empty($event_banner)) {
@@ -1496,6 +1520,7 @@ class WP_Event_Manager_Writepanels
 
 					if (!empty($attachments)) {
 						foreach ($attachments as $attachment) {
+							
 							wp_delete_attachment($attachment->ID, true);
 						}
 					}
@@ -1524,6 +1549,7 @@ class WP_Event_Manager_Writepanels
 		if (!empty($thumbnail_id)) {
 			wp_delete_attachment($thumbnail_id, true);
 		}
+	}
 	}
 }
 WP_Event_Manager_Writepanels::instance();

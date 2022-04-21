@@ -239,7 +239,7 @@
 												switch ($event->post_status) {
 													case 'publish' :
 														$actions ['details'] = array (
-																'label' => __ ( 'Details', 'wp-event-manager' ),
+															'label' => __('Details', 'wp-event-manager'),
 																'nonce' => false
 														);
 														$actions ['edit'] = array (

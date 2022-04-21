@@ -310,9 +310,18 @@ function display_event_type($post = null, $after = '')
 			$numType = count($event_type);
 			$i = 0;
 			foreach ($event_type as $type) {
-				echo '<a href="' . get_term_link($type->term_id) . '"><span class="wpem-event-type-text event-type ' . esc_attr(sanitize_title($type->slug)) . ' ">' . $type->name . '</span></a>';
+				echo wp_kses(__('<a href="' . get_term_link($type->term_id) . '"><span class="wpem-event-type-text event-type ' . esc_attr(sanitize_title($type->slug)) . ' ">' . $type->name . '</span></a>'), array(
+					'a' => array(
+						'href' => array(),
+						'title' => array()
+					),
+					'span' => array(
+						'class'       => array()
+					),
+
+				));
 				if ($numType > ++$i) {
-					echo $after;
+					echo esc_html($after);
 				}
 			}
 		}
@@ -360,9 +369,18 @@ function display_event_category($post = null, $after = '')
 			$numCategory = count($event_category);
 			$i = 0;
 			foreach ($event_category as $cat) {
-				echo '<a href="' . get_term_link($cat->term_id) . '"><span class="wpem-event-category-text event-category ' . esc_attr(sanitize_title($cat->slug)) . ' ">' . $cat->name . '</span></a>';
+				echo wp_kses(__('<a href="' . get_term_link($cat->term_id) . '"><span class="wpem-event-category-text event-category ' . esc_attr(sanitize_title($cat->slug)) . ' ">' . $cat->name . '</span></a>'), array(
+					'a' => array(
+						'href' => array(),
+						'title' => array()
+					),
+					'span' => array(
+						'class'       => array()
+					),
+
+				));
 				if ($numCategory > ++$i) {
-					echo $after;
+					echo esc_html($after);
 				}
 			}
 		}
@@ -611,7 +629,7 @@ function get_event_registration_end_date($post = null)
 	if ($post->post_type !== 'event_listing')
 		return;
 
-	return apply_filters('display_event_registration_end_date', 'test' . $post->_event_registration_deadline, $post);
+	return apply_filters('display_event_registration_end_date', $post->_event_registration_deadline, $post);
 }
 
 /**
@@ -2647,7 +2665,7 @@ function event_manager_get_event_listing_structured_data($post = null)
 	$data['startDate'] = get_event_start_date($post);
 	$data['endDate'] = get_event_end_date($post);
 	$data['performer'] = get_organizer_name($post);
-	$data['eventAttendanceMode'] = is_event_online($post) ? 'Online' : 'offline';
+	$data['eventAttendanceMode'] = is_event_online($post) ? 'OnlineEventAttendanceMode' : 'OfflineEventAttendanceMode';
 	$data['eventStatus'] = 'EventScheduled';
 
 	$data['Organizer']['@type'] = 'Organization';

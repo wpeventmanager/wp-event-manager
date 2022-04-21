@@ -61,13 +61,13 @@
   border: 5px solid var(--wpem-gray-bg-color);
   border-top: 5px solid var(--wpem-primary-color);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: wpem-spin 1s linear infinite;
 }
-@-webkit-keyframes spin {
+@-webkit-keyframes wpem-spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
-@keyframes spin {
+@keyframes wpem-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
@@ -707,6 +707,7 @@ input.wpem-theme-button:hover span {
   border: none;
   border-radius: 0;
   overflow: hidden;
+  margin-bottom: 30px;
 }
 .wpem-event-listing-list-view .wpem-listing-google-map-wrapper {
   padding: 0;
@@ -2431,6 +2432,7 @@ table.wpem-responsive-table-wrapper tbody tr td .wpem-dboard-event-action .wpem-
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-description,
 .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-description {
   margin-bottom: 20px;
+  word-break: break-all;
   color: var(--wpem-gray-color);
 }
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists,
@@ -4002,7 +4004,14 @@ p.post-submitted-success-green-message a {
     -webkit-mask-size: 10px;
   }
 }
+table.wp-list-table th#aioseo-details {
+  max-width: 20%;
+  width: 100%;
+}
 
+.wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-body-sidebar .wpem-single-event-sidebar-info a.wpem-modal-button {
+  color: #fff;
+}
 
 
 

@@ -148,54 +148,41 @@ class WP_Event_Manager_Ajax {
 
 		$search_keywords   = sanitize_text_field( stripslashes( $_REQUEST['search_keywords'] ) );
 
-		$search_datetimes= isset( $_REQUEST['search_datetimes'] ) ? $_REQUEST['search_datetimes'] : '';
-
-		$search_categories = isset( $_REQUEST['search_categories'] ) ? $_REQUEST['search_categories'] : '';
-
-		$search_event_types= isset( $_REQUEST['search_event_types'] ) ? $_REQUEST['search_event_types'] : '';
-
-		$search_ticket_prices= isset( $_REQUEST['search_ticket_prices'] ) ? $_REQUEST['search_ticket_prices'] : '';			
-
 		$post_type_label   = $wp_post_types['event_listing']->labels->name;
 
 		$orderby           = sanitize_text_field( $_REQUEST['orderby'] );
 
-		if ( is_array( $search_datetimes) ) {
+		$search_datetimes = '';
 
-			$search_datetimes= array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_datetimes) ) );
+		$search_categories = '';
 
-		} else {
+		$search_event_types = '';
 
-			$search_datetimes= array_filter( array( sanitize_text_field( stripslashes( $search_datetimes) ) ) );
+		$search_ticket_prices = '';
+
+		if (isset($_REQUEST['search_datetimes'])) {
+		
+			$search_datetimes = is_array($_REQUEST['search_datetimes']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_REQUEST['search_datetimes']))) :
+				array_filter(array(sanitize_text_field(stripslashes($_REQUEST['search_datetimes']))));
 		}
 
-		if ( is_array( $search_categories ) ) {
+		if (isset($_REQUEST['search_categories'])) {
 
-			$search_categories = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_categories ) ) );
-
-		} else {
-
-			$search_categories = array_filter( array( sanitize_text_field( stripslashes( $search_categories ) ) ) );
+			$search_categories = is_array($_REQUEST['search_categories']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_REQUEST['search_categories']))) : array_filter(array(sanitize_text_field(stripslashes($_REQUEST['search_categories']))));
 		}
 
-		if ( is_array( $search_event_types) ) {
+		if (isset($_REQUEST['search_event_types'])) {
 
-			$search_event_types= array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_event_types) ) );
+			$search_event_types =  is_array($_REQUEST['search_event_types']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_REQUEST['search_event_types']))) :
+				array_filter(array(sanitize_text_field(stripslashes($_REQUEST['search_event_types']))));
 
-		} else {
-
-			$search_event_types= array_filter( array( sanitize_text_field( stripslashes( $search_event_types) ) ) );
-		}		
-
-		if ( is_array( $search_ticket_prices) ) {
-
-			$search_ticket_prices= array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_ticket_prices) ) );
-
-		} else {
-
-			$search_ticket_prices= array_filter( array( sanitize_text_field( stripslashes( $search_ticket_prices) ) ) );
 		}
 
+		if (isset($_REQUEST['search_ticket_prices'])) {
+
+			$search_ticket_prices = is_array($_REQUEST['search_ticket_prices']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_REQUEST['search_ticket_prices']))) :
+			array_filter(array(sanitize_text_field(stripslashes($_REQUEST['search_ticket_prices']))));
+		} 
 		$args = array(
 
 			'search_location'    	=> $search_location,

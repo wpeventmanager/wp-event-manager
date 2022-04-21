@@ -12,6 +12,7 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 function get_event_listings( $args = array() ) {
 
 	global $wpdb, $event_manager_keyword;
+	
 
 	$args = wp_parse_args( $args, array(
 
@@ -44,6 +45,7 @@ function get_event_listings( $args = array() ) {
 		'post_status'       => array(),
 	) );
 
+		
 		/**
 		 * Perform actions that need to be done prior to the start of the event listings query.
 		 *
@@ -140,10 +142,10 @@ function get_event_listings( $args = array() ) {
 		);
 	}
 
-	
 
-	if ( isset($args['event_online']) && !empty($args['event_online']) && $args['event_online'] == 'true' ) {
 
+		if (isset($args['event_online']) && $args['event_online'] == 'true') {
+		
 		$query_args['meta_query'][] = array(
 
 			'key'     => '_event_online',
@@ -152,10 +154,10 @@ function get_event_listings( $args = array() ) {
 
 			'compare' => '='
 		);
-	}	
-	
-	if ( isset($args['event_online']) && !empty($args['event_online'] && $args['event_online'] === 'false' ) ) {
-		
+		}
+
+		if (isset($args['event_online']) && $args['event_online'] == false) {
+
 		$query_args['meta_query'][] = array(
 
 			'key'     => '_event_online',
@@ -296,30 +298,44 @@ function get_event_listings( $args = array() ) {
 			}
 			else
 			{
+
 				$dates = json_decode($args['search_datetimes'][0], true);
 				//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 				$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
-	
+
 				//covert datepicker format  into php date() function date format
-				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
-				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start'] );
-				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end'] );
-
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => [$dates['start'], $dates['end']],
-				    'compare' => 'BETWEEN',
-				    'type'    => 'date'
-				);
-
-				$date_search[] = array(
-					'key'     => '_event_end_date',
-					'value'   => [$dates['start'], $dates['end']],
-				    'compare' => 'BETWEEN',
-				    'type'    => 'date'
-				);
-
+				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
+				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
 				$date_search['relation'] = 'OR';
+				$date_search1[] = array(
+					'key'     => '_event_start_date',
+					'value'   =>  $dates['end'],
+					'compare' => '<=',
+					'type'    => 'date'
+				);
+				$date_search1[] = array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['start'],
+					'compare' => '>=',
+					'type'    => 'date'
+				);
+				$date_search1['relation'] = 'AND';
+				$date_search[] = $date_search1;
+				$date_search2[] = array(
+					'key'     => '_event_end_date',
+					'value'   => $dates['start'],
+					'compare' => '>=',
+					'type'    => 'date'
+				);
+				$date_search2[] = array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['end'],
+					'compare' => '<=',
+					'type'    => 'date'
+				);
+				$date_search2['relation'] = 'AND';
+				$date_search[] = $date_search2;
 			}
 
 			$query_args['meta_query'][] = $date_search;
@@ -1405,7 +1421,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 		'no_results_text' => __( 'No results match', 'wp-event-manager' ),
 
-		'multiple_text'   => __( 'Select Some Options', 'wp-event-manager' )
+		'multiple_text'   => __('Choose Categories', 'wp-event-manager'),
 	);
 
 	$r = wp_parse_args( $args, $defaults );
@@ -1453,11 +1469,12 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 	if($taxonomy=='event_listing_type'):
 		$placeholder=__( 'Choose an event type', 'wp-event-manager' );
+		$multiple_text = __('Choose event types', 'wp-event-manager');
 
 
 	endif;
 
-	$output = "<select name='" . esc_attr( $name ) . "[]' id='" . esc_attr( $id ) . "' class='" . esc_attr( $class ) . "' " . ( $multiple ? "multiple='multiple'" : '' ) . " data-placeholder='" . esc_attr( $placeholder ) . "' data-no_results_text='" . esc_attr( $no_results_text ) . "' data-multiple_text='" . esc_attr( $multiple_text ) . "'>\n";
+	$output = "<select name='" . esc_attr($name) . "[]' id='" . esc_attr($id) . "' class='" . esc_attr($class) . "' " . ($multiple ? "multiple='multiple'" : '') . " data-placeholder='" . esc_attr($placeholder) . "' data-no_results_text='" . esc_attr($no_results_text) . "' data-multiple_text='" . esc_attr($placeholder) . "'>\n";
 
 	if ( $show_option_all ) {
 
@@ -2306,8 +2323,7 @@ function get_event_order_by()
 	return apply_filters('get_event_order_by_args', $args);
 }
 
-function wpem_convert_php_to_moment_format($format)
-{
+function wpem_convert_php_to_moment_format($format) {
     $replacements = [
         'd' => 'DD',
         'D' => 'ddd',

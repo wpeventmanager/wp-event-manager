@@ -1579,3 +1579,6 @@ ul.wpem-product-action-list {
     text-align: left;
   }
 }
+.post-type-event_listing table.wp-list-table th {
+width: 30%;
+}

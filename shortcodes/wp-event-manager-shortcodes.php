@@ -66,16 +66,14 @@ class WP_Event_Manager_Shortcodes {
 	public function shortcode_action_handler() {
 
 		global $post;
-		
+
 		if ( is_page() && strstr( $post->post_content, '[event_dashboard' ) ) {
 			$this->event_dashboard_handler();
                         $this->organizer_dashboard_handler();
                         $this->venue_dashboard_handler();
-		}
-		elseif ( is_page() && strstr( $post->post_content, '[organizer_dashboard' )) {
+		} elseif (is_page() && (strstr($post->post_content, '[organizer_dashboard') || stristr($post->post_content, 'organizer dashboard'))) {
 			$this->organizer_dashboard_handler();
-		}
-		elseif ( is_page() && strstr( $post->post_content, '[venue_dashboard' )) {
+		} elseif (is_page() && (strstr($post->post_content, '[venue_dashboard') || stristr($post->post_content, 'venue dashboard'))) {
 			$this->venue_dashboard_handler();
 		}
 	}
@@ -381,6 +379,8 @@ class WP_Event_Manager_Shortcodes {
 
 						// Message
 						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $event->post_title ) ) . '</div>';
+						wp_redirect(add_query_arg(array('venue_id' => absint($$organizer_id), 'action' => 'organizer_dashboard'), event_manager_get_permalink('event_dashboard')));
+
 
 						break;
 					case 'duplicate' :
@@ -546,10 +546,11 @@ class WP_Event_Manager_Shortcodes {
 					case 'delete' :
 
 						// Trash it
-						wp_trash_post( $venue_id );
-
+						wp_trash_post($venue_id);
 						// Message
 						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf( __( '%s has been deleted.', 'wp-event-manager' ), esc_html( $venue->post_title ) ) . '</div>';
+						wp_redirect(add_query_arg(array('venue_id' => absint($new_venue_id), 'action' => 'venue_dashboard'), event_manager_get_permalink('event_dashboard')));
+
 
 						break;
 					case 'duplicate' :
@@ -611,7 +612,7 @@ class WP_Event_Manager_Shortcodes {
 
 		), $atts ) );
 
-		//wp_enqueue_script( 'wp-event-manager-venue-dashboard' );
+		wp_enqueue_script('wp-event-manager-venue-dashboard');
 
 		ob_start();
 
@@ -1176,14 +1177,24 @@ class WP_Event_Manager_Shortcodes {
 		if ( ! $id )
 
 			return;
+
+
+
+		if ('' === get_option('event_manager_hide_expired_content', 1)
+		) {
+			$post_status = array('publish', 'expired');
+		} else {
+			$post_status = 'publish';
+		}
 			
 		ob_start();
 
+		
 		$args = array(
 
 			'post_type'   => 'event_listing',
 
-			'post_status' => 'publish',
+			'post_status' => $post_status,
 
 			'p'           => $id
 		);
@@ -1331,7 +1342,7 @@ class WP_Event_Manager_Shortcodes {
 	 * @return void
 	 */
 	public function output_past_events( $atts ) {
-
+	
 		ob_start();
 
 		extract( shortcode_atts ( array(
@@ -1340,9 +1351,9 @@ class WP_Event_Manager_Shortcodes {
 
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
-			'order'                     => 'DESC',
+			'order'                     =>  $atts['order'] ? $atts['order'] :  'DESC',
 
-			'orderby'                   => 'event_start_date', // meta_value
+			'orderby'                   => $atts['meta_key'] ? $atts['meta_key'] : 'event_start_date', // meta_value
 
 			'location'                  => '',
 
@@ -1882,7 +1893,6 @@ class WP_Event_Manager_Shortcodes {
 	public function output_upcoming_events( $atts ) {
 
 		ob_start();
-
 		extract( shortcode_atts ( array(
 
 			'show_pagination'           => true,
@@ -1891,7 +1901,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'order'                     => 'DESC',
 
-			'orderby'                   => 'event_start_date', // meta_value
+			'orderby'                   => sanitize_text_field($atts['meta_key']), // meta_value
 
 			'location'                  => '',
 
@@ -1983,8 +1993,7 @@ class WP_Event_Manager_Shortcodes {
 			$args['meta_type'] ='DATETIME';
 		}
 
-		$args = apply_filters( 'event_manager_upcoming_event_listings_args', $args );
-
+		$args = apply_filters('event_manager_upcoming_event_listings_args', $args);
 		$upcoming_events = new WP_Query( $args );
 
 		wp_reset_query();
