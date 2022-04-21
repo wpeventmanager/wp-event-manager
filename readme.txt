@@ -301,7 +301,7 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
-= 3.1.26 [ Apr 20th, 2022 ] =
+= 3.1.26 [ Apr 21th, 2022 ] =
 
 Fixed - Event image duplicate issue.
 Fixed - Event category selection box issue.
