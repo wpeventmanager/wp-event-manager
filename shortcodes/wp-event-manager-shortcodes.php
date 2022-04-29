@@ -1901,7 +1901,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'order'                     => 'DESC',
 
-			'orderby'                   => sanitize_text_field($atts['meta_key']), // meta_value
+			'orderby'                   => isset($atts['meta_key']) ? sanitize_text_field($atts['meta_key']) : 'event_start_date', // meta_value
 
 			'location'                  => '',
 
