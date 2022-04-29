@@ -225,6 +225,9 @@ var EventAjaxFilters = function() {
                     if (categories) {
                         categories = categories.split(',')
                     }
+                    if (event_types) {
+                        event_types = event_types.split(',')
+                    }
                     data = {
                         lang: event_manager_ajax_filters.lang,
                         search_keywords: keywords,
