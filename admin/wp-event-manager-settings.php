@@ -813,7 +813,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . esc_attr($option['desc']) . '</p>';
+												echo ' <p class="description">' . $option['desc'] . '</p>';
 											}
 
 											break;
