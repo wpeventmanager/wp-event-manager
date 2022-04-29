@@ -1,7 +1,7 @@
 <?php $organizer = get_post($organizer_id);
 //$organizer_fields =    get_metadata('post', $organizer_id);
 if (get_option('event_manager_form_fields')) {
-$organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
+    $organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
 }
 $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
 ?>
@@ -86,14 +86,14 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                     </div>
                     <?php do_action('submit_organizer_form_organizer_fields_start'); ?>
                     <?php
-                    if(isset($organizer_fields)){ 
-                    foreach ($organizer_fields as $key => $field) : ?>
-                        <?php if (!strstr($key, 'organizer') && !strstr($key, 'vcv') && !strstr($key, 'submitting')) : ?>
-                            <div class="wpem-organizer-additional-information">
-                                <strong><?= $key ?></strong>
-                                <span><?= get_post_meta($organizer_id, '_' . $key, true) ? get_post_meta($organizer_id, '_' . $key, true) : '-'  ?></span></span>
-                            </div>
-                        <?php endif; ?>
+                    if (isset($organizer_fields)) {
+                        foreach ($organizer_fields as $key => $field) : ?>
+                            <?php if (!strstr($key, 'organizer') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($organizer_id, '_' . $key))) : ?>
+                                <div class="wpem-organizer-additional-information">
+                                    <strong><?= $field['label'] ?>:</strong>
+                                    <span><?= get_post_meta($organizer_id, '_' . $key, true) ? get_post_meta($organizer_id, '_' . $key, true) : '-'  ?></span></span>
+                                </div>
+                            <?php endif; ?>
                     <?php endforeach;
                     } ?>
                     <?php do_action('submit_organizer_form_organizer_fields_end'); ?>
