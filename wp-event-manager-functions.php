@@ -156,7 +156,7 @@ function get_event_listings( $args = array() ) {
 		);
 		}
 
-		if (isset($args['event_online']) && $args['event_online'] == false) {
+		if (isset($args['event_online']) && $args['event_online'] == 'false') {
 
 		$query_args['meta_query'][] = array(
 
