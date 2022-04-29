@@ -170,7 +170,7 @@ class WP_Event_Manager_Post_Types {
 	            	),
 
 		            'show_ui' 				=> true,
-	       	 		'show_in_rest'          => true,
+					'show_in_rest'          => false,
 
 		            'public' 	     		=> $public,
 
@@ -258,8 +258,8 @@ class WP_Event_Manager_Post_Types {
 	            	),
 
 		            'show_ui' 				=> true,
-		        		
-		        	'show_in_rest'          => true,
+
+					'show_in_rest'          => false,
 
 		            'public' 			    => $public,
 
