@@ -156,7 +156,7 @@ function get_event_listings( $args = array() ) {
 		);
 		}
 
-		if (isset($args['event_online']) && $args['event_online'] == false) {
+		if (isset($args['event_online']) && $args['event_online'] == 'false') {
 
 		$query_args['meta_query'][] = array(
 
@@ -305,6 +305,9 @@ function get_event_listings( $args = array() ) {
 
 				//covert datepicker format  into php date() function date format
 				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+				if (
+					!empty($dates)
+				) {
 				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
 				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
 				$date_search['relation'] = 'OR';
@@ -337,8 +340,10 @@ function get_event_listings( $args = array() ) {
 				$date_search2['relation'] = 'AND';
 				$date_search[] = $date_search2;
 			}
+			
 
 			$query_args['meta_query'][] = $date_search;
+			}
 	}
 
 	if ( ! empty( $args['search_categories'][0] ) ) 

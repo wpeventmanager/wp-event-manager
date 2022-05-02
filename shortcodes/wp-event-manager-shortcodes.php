@@ -1351,9 +1351,9 @@ class WP_Event_Manager_Shortcodes {
 
 			'per_page'                  => get_option( 'event_manager_per_page' ),
 
-			'order'                     =>  $atts['order'] ? $atts['order'] :  'DESC',
+			'order'                     =>  isset($atts['order']) ? $atts['order'] :  'DESC',
 
-			'orderby'                   => $atts['meta_key'] ? $atts['meta_key'] : 'event_start_date', // meta_value
+			'orderby'                   => isset($atts['meta_key']) ? $atts['meta_key'] : 'event_start_date', // meta_value
 
 			'location'                  => '',
 
@@ -1901,7 +1901,7 @@ class WP_Event_Manager_Shortcodes {
 
 			'order'                     => 'DESC',
 
-			'orderby'                   => sanitize_text_field($atts['meta_key']), // meta_value
+			'orderby'                   => isset($atts['meta_key']) ? sanitize_text_field($atts['meta_key']) : 'event_start_date', // meta_value
 
 			'location'                  => '',
 
