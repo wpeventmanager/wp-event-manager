@@ -101,14 +101,14 @@ function get_event_listings( $args = array() ) {
 		$location_meta_keys = array( 'geolocation_formatted_address', '_event_location', 'geolocation_state_long' );
 
 		$location_search    = array( 'relation' => 'OR' );
-
+			
 		foreach ( $location_meta_keys as $meta_key ) {
 
 			$location_search[] = array(
 
 				'key'     => $meta_key,
 
-				'value'   => $args['search_location'],
+					'value'   => 	trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ','),
 
 				'compare' => 'like'
 			);
