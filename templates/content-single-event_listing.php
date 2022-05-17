@@ -444,15 +444,16 @@ $event = $post;
                                         <?php
                                         if (get_event_end_date() != '' || get_event_end_time()) {
                                             _e(' to', 'wp-event-manager');
-                                        }
+
                                         ?>
-                                        <br />
-                                        <span class="wpem-event-date-time-text"><?php echo date_i18n($date_format, strtotime($end_date)); ?>
-                                            <?php if ($end_time) {
-                                                echo $separator . ' ' . $end_time;
-                                            }
-                                            ?>
-                                        </span>
+                                            <br />
+                                            <span class="wpem-event-date-time-text"><?php echo date_i18n($date_format, strtotime($end_date)); ?>
+                                                <?php if ($end_time) {
+                                                    echo $separator . ' ' . $end_time;
+                                                }
+                                                ?>
+                                            </span>
+                                        <?php } ?>
                                     </div>
 
                                     <!-- Event Registration End Date start-->
