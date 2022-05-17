@@ -403,6 +403,8 @@ class Elementor_Event_Field extends Widget_Base {
             }
         } else {
             display_event_title($event);
+
+             
         }
 
         echo $settings['event_field_after_html'];
