@@ -396,7 +396,7 @@ class Elementor_Event_Field extends Widget_Base {
                         }elseif($event_field == 'specific_time'){
                             _e( 'specific day','wp-event-manager') ;    
                         }else{
-                            echo esc_attr($event_field);
+                            echo $event_field;
                         }
                     }
                 }
