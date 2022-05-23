@@ -18,7 +18,7 @@
                     <div class="wpem-venue-name wpem-heading-text">
                         <span><?php echo $venue->post_title; ?></span>
                     </div>
-                    <div class="wpem-venue-description"><?php printf(__('%s', 'wp-event-manager'), get_venue_description($venue)); ?></div>
+                    <div class="wpem-venue-description"><?php printf(__('%s', 'wp-event-manager'), $venue->post_content ); ?></div>
                     <div class="wpem-venue-social-links">
                         <div class="wpem-venue-social-lists">
                             <?php do_action('single_event_listing_venue_social_start'); ?>
