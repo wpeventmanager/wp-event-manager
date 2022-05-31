@@ -1926,12 +1926,23 @@ class WP_Event_Manager_Shortcodes {
 		);
 
 		$args['meta_query'] = array(
-		    array(
-		        'key'     => '_event_start_date',
-		        'value'   => current_time('Y-m-d H:i:s'),
-		        'type'    => 'DATETIME',
-		        'compare' => '>'
-		    ),
+			array(
+				'relation'=> 'OR',
+				array(
+					'key'     => '_event_start_date',
+					'value'   => current_time('Y-m-d H:i:s'),
+					'type'    => 'DATETIME',
+					'compare' => '>='
+				),
+				array(
+					'key'     => '_event_end_date',
+					'value'   => current_time('Y-m-d H:i:s'),
+					'type'    => 'DATETIME',
+					'compare' => '>='
+				)
+
+				),
+		   
 		    array(
 		        'key'     => '_cancelled',
 		        'value'   => '1',
@@ -1951,10 +1962,10 @@ class WP_Event_Manager_Shortcodes {
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
 				'field'   	=> 'name',
-				'terms'   	=> $categories,
+				'terms'   	=> $categories,	
 			];
 		}
-
+	
 		if(!empty($selected_event_types))
 		{
 			$event_types = explode(',', sanitize_text_field($selected_event_types) );
@@ -1965,7 +1976,7 @@ class WP_Event_Manager_Shortcodes {
 				'terms'   	=> $event_types,
 			];
 		}
-
+	
 		if(!empty($selected_datetime))
 		{
 			$datetimes = explode(',', $selected_datetime);
@@ -1992,10 +2003,10 @@ class WP_Event_Manager_Shortcodes {
 			$args['meta_key'] ='_event_start_date';
 			$args['meta_type'] ='DATETIME';
 		}
-
+		
 		$args = apply_filters('event_manager_upcoming_event_listings_args', $args);
 		$upcoming_events = new WP_Query( $args );
-
+		
 		wp_reset_query();
 
 		// remove calender view
