@@ -1446,7 +1446,7 @@ class WP_Event_Manager_Shortcodes {
 
 				<?php get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>'all')); ?>
 
-				<?php while ( $past_events->have_posts() ) : $past_events->the_post(); ?>
+				<?php while ( $past_events->have_posts() ) : $past_events->the_post();  ?> 
 
 					<?php  get_event_manager_template_part( 'content', 'past_event_listing' ); ?>
 					
