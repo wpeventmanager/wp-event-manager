@@ -2016,7 +2016,7 @@ class WP_Event_Manager_Shortcodes {
 				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
 				<?php if ($upcoming_events->found_posts > $per_page) : ?>
-	                <?php if ($show_pagination == "true") : ?>
+	                <?php if ($show_pagination == "true" || $show_pagination == "on") : ?>
 	                    <div class="event-organizer-pagination">
 	                    	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $upcoming_events->max_num_pages)); ?>
 	                    </div> 
