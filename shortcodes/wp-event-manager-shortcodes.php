@@ -1455,7 +1455,7 @@ class WP_Event_Manager_Shortcodes {
 				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
 				<?php if ($past_events->found_posts > $per_page) : ?>
-	                <?php if ($show_pagination == "true") : ?>
+	                <?php if ($show_pagination == "true") :  ?>
 	                    <div class="event-organizer-pagination wpem-col-12">
 	                    	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
 	                    </div> 
