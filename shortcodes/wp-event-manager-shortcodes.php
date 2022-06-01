@@ -315,6 +315,7 @@ class WP_Event_Manager_Shortcodes {
 		$event_dashboard_columns = apply_filters( 'event_manager_event_dashboard_columns', array(
 			'view_count' => __( 'Viewed', 'wp-event-manager' ),
 		) );
+	
 
 		get_event_manager_template( 'event-dashboard.php', array( 'events' => $events->query( $args ), 'max_num_pages' => $events->max_num_pages, 'event_dashboard_columns' => $event_dashboard_columns, 'atts' => $atts ) );
 
@@ -1455,7 +1456,7 @@ class WP_Event_Manager_Shortcodes {
 				<?php get_event_manager_template( 'event-listings-end.php' ); ?>
 
 				<?php if ($past_events->found_posts > $per_page) : ?>
-	                <?php if ($show_pagination == "true") :  ?>
+	                <?php if ($show_pagination == "true"  || $show_pagination == "on") :  ?>
 	                    <div class="event-organizer-pagination wpem-col-12">
 	                    	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
 	                    </div> 
