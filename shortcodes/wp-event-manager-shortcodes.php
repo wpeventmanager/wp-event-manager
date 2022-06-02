@@ -1389,7 +1389,7 @@ class WP_Event_Manager_Shortcodes {
 
 			$args_past['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
-				'field'   	=> 'name',
+				'field'   	=> 'term_id',
 				'terms'   	=> $categories,
 			];
 		}
@@ -1400,7 +1400,7 @@ class WP_Event_Manager_Shortcodes {
 
 			$args_past['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_type',
-				'field'   	=> 'name',
+				'field'   	=> 'term_id',
 				'terms'   	=> $event_types,
 			];
 		}
@@ -1951,7 +1951,7 @@ class WP_Event_Manager_Shortcodes {
 
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
-				'field'   	=> 'name',
+				'field'   	=> 'term_id',
 				'terms'   	=> $categories,
 			];
 		}
