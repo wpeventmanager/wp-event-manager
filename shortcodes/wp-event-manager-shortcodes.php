@@ -1599,7 +1599,7 @@ class WP_Event_Manager_Shortcodes {
                 'value'   => $today_date,
                 'type'    => 'date',
                 'compare' => '>'
-            )
+			)
         );
 
         $upcomingEvents = new WP_Query(apply_filters( 'wpem_single_organizer_upcoming_event_listing_query_args',$args_upcoming));
@@ -1959,15 +1959,15 @@ class WP_Event_Manager_Shortcodes {
 		if(!empty($selected_event_types))
 		{
 			$event_types = explode(',', sanitize_text_field($selected_event_types) );
-
+			
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_type',
-				'field'   	=> 'name',
+				'field'   	=> 'term_id',
 				'terms'   	=> $event_types,
 			];
-		}
-
-		if(!empty($selected_datetime))
+		}			
+		
+		if(!empty($selected_datetime))	
 		{
 			$datetimes = explode(',', $selected_datetime);
 
