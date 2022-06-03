@@ -237,9 +237,7 @@ class WP_Event_Manager_Shortcodes {
 			'posts_per_page' => '10',
 		    'show_pagination' => true,
 			'per_page'=> get_option( 'event_manager_per_page' ),
-
-
-		), $atts ) );
+     	), $atts ) );
 
 		wp_enqueue_script( 'wp-event-manager-event-dashboard' );
 
