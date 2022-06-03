@@ -235,6 +235,9 @@ class WP_Event_Manager_Shortcodes {
 		extract( shortcode_atts( array(
 
 			'posts_per_page' => '10',
+		    'show_pagination'           => true,
+			'per_page'                  => get_option( 'event_manager_per_page' ),
+
 
 		), $atts ) );
 
@@ -264,8 +267,8 @@ class WP_Event_Manager_Shortcodes {
 			'post_type'           => 'event_listing',
 			'post_status'         => array( 'publish', 'expired', 'pending' ),
 			'ignore_sticky_posts' => 1,
-			'posts_per_page'      => $posts_per_page,
-			'offset'              => ( max( 1, get_query_var('paged') ) - 1 ) * $posts_per_page,
+			'posts_per_page'      => $per_page,
+			'offset'              => ( max( 1, get_query_var('paged') ) - 1 ) * $per_page,
 			'orderby'             => $orderby,
 			'order'               => $order,
 			'author'              => get_current_user_id()
