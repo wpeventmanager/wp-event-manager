@@ -235,8 +235,8 @@ class WP_Event_Manager_Shortcodes {
 		extract( shortcode_atts( array(
 
 			'posts_per_page' => '10',
-		    'show_pagination'           => true,
-			'per_page'                  => get_option( 'event_manager_per_page' ),
+		    'show_pagination' => true,
+			'per_page'=> get_option( 'event_manager_per_page' ),
 
 
 		), $atts ) );
