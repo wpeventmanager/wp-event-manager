@@ -83,7 +83,7 @@ class Elementor_Event_Tag extends Tag {
      *
      * @return void
      */
-    protected function _register_controls() {
+    protected function register_controls() {
 
         $arrOption = [];
 

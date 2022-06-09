@@ -152,7 +152,7 @@ class Elementor_Event_Gallery_Tag extends Data_Tag {
 	*
 	* @return void
 	*/
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$arrOption = [];
 
