@@ -342,7 +342,7 @@
 																		<?php if ($event->post_status == 'publish') : ?>
 																			<a href="<?php echo get_permalink($event->ID); ?>"><?php echo esc_html($event->post_title); ?></a>
 																		<?php else : ?>
-																			<?php echo esc_attr($event)->post_title; ?> <small>(<?php display_event_status($event); ?>)</small>
+																			<?php echo esc_attr($event->post_title); ?> <small>(<?php display_event_status($event); ?>)</small>
 																		<?php endif; ?>
 
 																	<?php elseif ('event_start_date' === $key) :

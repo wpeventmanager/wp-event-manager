@@ -158,28 +158,28 @@ class WP_Event_Manager_Widget extends WP_Widget
 				case 'text':
 ?>
 					<p>
-						<label for="<?php echo esc_attr($this->get_field_id($key)); ?>"><?php echo esc_attr($setting['label']); ?></label>
+						<label for="<?php echo $this->get_field_id($key); ?>"><?php echo esc_attr($setting['label']); ?></label>
 
-						<input class="widefat" id="<?php echo esc_attr($this->get_field_id($key)); ?>" name="<?php echo esc_attr($this->get_field_name($key)); ?>" type="text" value="<?php echo esc_attr($value); ?>" />
+						<input class="widefat" id="<?php echo esc_attr($this->get_field_id($key)); ?>" name="<?php echo $this->get_field_name($key); ?>" type="text" value="<?php echo esc_attr($value); ?>" />
 					</p>
 				<?php
 					break;
 				case 'number':
 				?><p>
-						<label for="<?php echo esc_attr($this->get_field_id($key)); ?>"><?php echo esc_attr($setting)['label']; ?></label>
+						<label for="<?php echo $this->get_field_id($key); ?>"><?php echo $setting['label']; ?></label>
 
-						<input class="widefat" id="<?php echo esc_attr($this->get_field_id($key)); ?>" name="<?php echo esc_attr($this->get_field_name($key)); ?>" type="number" step="<?php echo esc_attr($setting['step']); ?>" min="<?php echo esc_attr($setting['min']); ?>" max="<?php echo esc_attr($setting['max']); ?>" value="<?php echo esc_attr($value); ?>" />
+						<input class="widefat" id="<?php echo esc_attr($this->get_field_id($key)); ?>" name="<?php echo $this->get_field_name($key); ?>" type="number" step="<?php echo esc_attr($setting['step']); ?>" min="<?php echo esc_attr($setting['min']); ?>" max="<?php echo esc_attr($setting['max']); ?>" value="<?php echo esc_attr($value); ?>" />
 					</p>
 				<?php
 					break;
 				case 'select':
 				?><p>
-						<label for="<?php echo esc_attr($this->get_field_id($key)); ?>"><?php echo esc_attr($setting)['label']; ?> </label>
-						<select class="widefat" id="<?php echo esc_attr($this->get_field_id($key)); ?>" name="<?php echo esc_attr($this->get_field_name($key)); ?>">
+						<label for="<?php echo $this->get_field_id($key); ?>"><?php echo $setting['label']; ?> </label>
+						<select class="widefat" id="<?php echo esc_attr($this->get_field_id($key)); ?>" name="<?php echo $this->get_field_name($key); ?>">
 							<?php
 							if (isset($setting['options'])) {
 								foreach ($setting['options'] as $option_key => $option_value) { ?>
-									<option value="<?php echo esc_attr($option_key); ?>" <?php if ($option_key ==  $value) echo 'selected'; ?>><?php echo esc_html($option_value); ?></option>
+									<option value="<?php echo $option_key; ?>" <?php if ($option_key ==  $value) echo 'selected'; ?>><?php echo esc_html($option_value); ?></option>
 							<?php
 								}
 							}
@@ -324,9 +324,9 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 		if ($events->have_posts()) : ?>
 
-			<?php echo esc_attr($before_widget); ?>
+			<?php echo $before_widget; ?>
 
-			<?php if ($title) echo esc_attr($before_title) . $title . $after_title; ?>
+			<?php if ($title) echo $before_title . $title . $after_title; ?>
 
 			<ul class="event_listings">
 
@@ -338,7 +338,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 			</ul>
 
-			<?php echo esc_attr($after_widget); ?>
+			<?php echo $after_widget; ?>
 
 		<?php else : ?>
 
@@ -350,7 +350,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 		$content = ob_get_clean();
 
-		echo esc_attr($content);
+		echo $content;
 
 		$this->cache_widget($args, $content);
 	}
@@ -469,9 +469,9 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 		if ($featured_events->have_posts()) : ?>
 
-			<?php echo esc_attr($before_widget); ?>
+			<?php echo $before_widget; ?>
 
-			<?php if ($title) echo esc_attr($before_title) . $title . $after_title;   ?>
+			<?php if ($title) echo $before_title . $title . $after_title;   ?>
 
 			<ul class="event_listings">
 
@@ -483,7 +483,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 			</ul>
 
-			<?php echo esc_attr($after_widget); ?>
+			<?php echo $after_widget; ?>
 
 		<?php else : ?>
 
@@ -495,7 +495,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 		$content = ob_get_clean();
 
-		echo esc_attr($content);
+		echo $content;
 
 		$this->cache_widget($args, $content);
 	}
@@ -656,9 +656,9 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 		if ($events->have_posts()) : ?>
 
-			<?php echo esc_attr($before_widget); ?>
+			<?php echo $before_widget; ?>
 
-			<?php if ($title) echo esc_attr($before_title) . $title . $after_title; ?>
+			<?php if ($title) echo $before_title . $title . $after_title; ?>
 
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 
@@ -670,7 +670,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 			</div>
 
-			<?php echo esc_attr($after_widget); ?>
+			<?php echo $after_widget; ?>
 
 		<?php else : ?>
 
@@ -682,7 +682,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 		$content = ob_get_clean();
 
-		echo esc_attr($content);
+		echo $content;
 
 		// 		$this->cache_widget( $args, $content );
 	}
@@ -843,9 +843,9 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 		if ($events->have_posts()) : ?>
 
-			<?php echo esc_attr($before_widget); ?>
+			<?php echo $before_widget; ?>
 
-			<?php if ($title) echo esc_attr($before_title) . $title . $after_title; ?>
+			<?php if ($title) echo $before_title . $title . $after_title; ?>
 
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 
@@ -857,7 +857,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 			</div>
 
-			<?php echo esc_attr($after_widget); ?>
+			<?php echo $after_widget; ?>
 
 		<?php else : ?>
 
@@ -869,7 +869,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 		$content = ob_get_clean();
 
-		echo esc_attr($content);
+		echo $content;
 
 		// 		$this->cache_widget( $args, $content );
 	}

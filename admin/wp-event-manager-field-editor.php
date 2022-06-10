@@ -224,7 +224,7 @@ class WP_Event_Manager_Field_Editor {
 							'placeholder' => '',
 						);
 						include 'wp-event-manager-form-field-editor-field.php';
-				echo wp_kses_post(ob_get_clean());
+				echo ob_get_clean();
 						?>
 					" >
 						<?php
