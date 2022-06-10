@@ -26,7 +26,6 @@ if ( isset( $field['value'] ) ) {
 
 
 	$selected = '';
-	echo wp_kses_post($field);
 
 
 }
