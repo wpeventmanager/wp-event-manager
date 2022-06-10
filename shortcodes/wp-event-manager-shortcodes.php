@@ -297,11 +297,11 @@ class WP_Event_Manager_Shortcodes {
 
 		$events = new WP_Query($args);
 
-		echo $this->event_dashboard_message;
+		echo esc_attr($this)->event_dashboard_message;
 		//display organiser delete message #905
-		echo $this->organizer_dashboard_message;
+		echo esc_attr($this)->organizer_dashboard_message;
 		//display venue delete message #905
-		echo $this->venue_dashboard_message;
+		echo esc_attr($this)->venue_dashboard_message;
 
 		$event_dashboard_columns = apply_filters( 'event_manager_event_dashboard_columns', array(
 
@@ -334,15 +334,15 @@ class WP_Event_Manager_Shortcodes {
 
 		if(isset($_REQUEST['organizer_id']) && !empty($_REQUEST['organizer_id']))
 		{
-			echo $event_manager->forms->get_form( 'edit-organizer' );
+			echo esc_attr($event_manager)->forms->get_form('edit-organizer');
 		}
 		else if(isset($_REQUEST['venue_id']) && !empty($_REQUEST['venue_id']))
 		{
-			echo $event_manager->forms->get_form( 'edit-venue' );
+			echo esc_attr($event_manager)->forms->get_form('edit-venue');
 		}
 		else
 		{
-			echo $event_manager->forms->get_form( 'edit-event' );
+			echo esc_attr($event_manager)->forms->get_form('edit-event');
 		}
 	}
 
@@ -480,7 +480,7 @@ class WP_Event_Manager_Shortcodes {
 		) );
 
 		$organizers = new WP_Query;
-		echo $this->organizer_dashboard_message;
+		echo esc_attr($this)->organizer_dashboard_message;
 
 		$organizer_dashboard_columns = apply_filters( 'event_manager_organizer_dashboard_columns', array(
 
@@ -514,7 +514,7 @@ class WP_Event_Manager_Shortcodes {
 
 		global $event_manager;
 
-		echo $event_manager->forms->get_form( 'edit-organizer' );
+		echo esc_attr($event_manager)->forms->get_form('edit-organizer');
 	}
 
 	/**
@@ -650,7 +650,7 @@ class WP_Event_Manager_Shortcodes {
 		) );
 
 		$venues = new WP_Query;
-		echo $this->venue_dashboard_message;
+		echo esc_attr($this)->venue_dashboard_message;
 
 		$venue_dashboard_columns = apply_filters( 'event_manager_venue_dashboard_columns', array(
 
@@ -684,7 +684,7 @@ class WP_Event_Manager_Shortcodes {
 
 		global $event_manager;
 
-		echo $event_manager->forms->get_form( 'edit-venue' );
+		echo esc_attr($event_manager)->forms->get_form('edit-venue');
 	}
 
 	/**

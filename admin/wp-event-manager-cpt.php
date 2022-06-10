@@ -320,7 +320,7 @@ class WP_Event_Manager_CPT
 
 		$output .= '</select>';
 
-		echo $output;
+		echo esc_attr($output);
 	}
 
 	/**
@@ -353,7 +353,7 @@ class WP_Event_Manager_CPT
 		$output .= $walker->walk($terms, 0, $r);
 		$output .= '</select>';
 
-		echo $output;
+		echo esc_attr($output);
 	}
 
 	/**
@@ -602,7 +602,7 @@ class WP_Event_Manager_CPT
 					} else {
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_start_date));
 					}
-					echo $date;
+					echo esc_attr($date);
 				} else {
 					echo '&ndash;';
 				}
@@ -618,7 +618,7 @@ class WP_Event_Manager_CPT
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_end_date));
 					}
 
-					echo $date;
+					echo esc_attr($date);
 				} else {
 					echo '&ndash;';
 				}
@@ -634,7 +634,7 @@ class WP_Event_Manager_CPT
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_expiry_date));
 					}
 
-					echo $date;
+					echo esc_attr($date);
 				}
 
 				// echo '<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
@@ -887,13 +887,13 @@ class WP_Event_Manager_CPT
 
 				<?php if (!empty($display)) : ?>
 
-					jQuery('#post-status-display').html('<?php echo $display; ?>');
+					jQuery('#post-status-display').html('<?php echo esc_attr($display); ?>');
 
 				<?php endif; ?>
 
 				var select = jQuery('#post-status-select').find('select');
 
-				jQuery(select).html("<?php echo $options; ?>");
+				jQuery(select).html("<?php echo esc_attr($options); ?>");
 			});
 		</script>
 <?php

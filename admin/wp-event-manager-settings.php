@@ -741,7 +741,7 @@ class WP_Event_Manager_Settings
 			$page_title = str_replace('-', ' ', $page_title);
 			$page_title = str_replace('_', ' ', $page_title);
 			$page_title = ucwords($page_title);
-			echo $page_title; */
+			echo esc_attr($page_title); */
 				esc_attr_e('Settings', 'wp-event-manager');
 				?>
 			</h1>
@@ -825,7 +825,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 											}
 
 											break;
@@ -845,7 +845,7 @@ class WP_Event_Manager_Settings
 											<?php
 
 											if ($option['desc']) {
-												echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 											}
 
 											break;
@@ -871,7 +871,7 @@ class WP_Event_Manager_Settings
 											<?php
 
 											if ($option['desc']) {
-												echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 											}
 
 											break;
@@ -889,7 +889,7 @@ class WP_Event_Manager_Settings
 												}
 
 												if ($option['desc']) {
-													echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+													echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 												}
 
 												?>
@@ -921,19 +921,19 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 											}
 
 											break;
 
 										case 'password':
 										?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 											}
 
 											break;
@@ -942,12 +942,12 @@ class WP_Event_Manager_Settings
 										case 'input':
 										case 'text':
 											?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 											}
 
 											break;
@@ -959,7 +959,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 											}
 
 											break;
@@ -970,7 +970,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s','wp-event-manager'),$option['desc']) . '</p>';
+												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 											}
 
 											break;

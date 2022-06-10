@@ -608,7 +608,7 @@ function display_event_ticket_option($before = '', $after = '', $echo = true, $p
 
 	if ($echo)
 
-		echo $event_ticket_option;
+		echo esc_attr($event_ticket_option);
 
 	else
 		return $event_ticket_option;
@@ -654,7 +654,7 @@ function display_event_registration_end_date($before = '', $after = '', $echo = 
 
 	if ($echo)
 
-		echo $event_registration_end_date;
+		echo esc_attr($event_registration_end_date);
 
 	else
 
@@ -780,7 +780,7 @@ function display_event_start_date($before = '', $after = '', $echo = true, $post
 	$event_start_date = $before . $event_start_date . $after;
 
 	if ($echo)
-		echo $event_start_date;
+		echo esc_attr($event_start_date);
 	else
 		return $event_start_date;
 }
@@ -832,7 +832,7 @@ function display_event_start_time($before = '', $after = '', $echo = true, $post
 	$event_start_time = $before . $event_start_time . $after;
 
 	if ($echo)
-		echo $event_start_time;
+		echo esc_attr($event_start_time);
 	else
 		return $event_start_time;
 }
@@ -878,7 +878,7 @@ function display_event_end_date($before = '', $after = '', $echo = true, $post =
 	$event_end_date = $before . $event_end_date . $after;
 
 	if ($echo)
-		echo $event_end_date;
+		echo esc_attr($event_end_date);
 	else
 		return $event_end_date;
 }
@@ -930,7 +930,7 @@ function display_event_end_time($before = '', $after = '', $echo = true, $post =
 	$event_end_time = $before . $event_end_time . $after;
 
 	if ($echo)
-		echo $event_end_time;
+		echo esc_attr($event_end_time);
 	else
 		return $event_end_time;
 }
@@ -983,7 +983,7 @@ function display_event_timezone($before = '', $after = '', $echo = true, $post =
 	$event_timezone = $before . $event_timezone . $after;
 
 	if ($echo)
-		echo $event_timezone;
+		echo esc_attr($event_timezone);
 	else
 		return $event_timezone;
 }
@@ -1025,7 +1025,7 @@ function display_event_timezone_abbr($before = '', $after = '', $echo = true, $p
 	$event_timezone = $before . $event_timezone . $after;
 
 	if ($echo)
-		echo $event_timezone;
+		echo esc_attr($event_timezone);
 	else
 		return $event_timezone;
 }
@@ -1088,7 +1088,7 @@ function display_event_venue_name($before = '', $after = '', $echo = true, $post
 	$event_venue_name = $before . $event_venue_name . $after;
 
 	if ($echo)
-		echo $event_venue_name;
+		echo esc_attr($event_venue_name);
 	else
 		return $event_venue_name;
 }
@@ -1151,7 +1151,7 @@ function display_event_address($before = '', $after = '', $echo = true, $post = 
 	$event_address = $before . $event_address . $after;
 
 	if ($echo)
-		echo $event_address;
+		echo esc_attr($event_address);
 	else
 		return $event_address;
 }
@@ -1195,7 +1195,7 @@ function display_event_pincode($before = '', $after = '', $echo = true, $post = 
 
 	if ($echo)
 
-		echo $event_pincode;
+		echo esc_attr($event_pincode);
 
 	else
 
@@ -1267,7 +1267,7 @@ function display_organizer_name($before = '', $after = '', $echo = true, $post =
 	$organizer_name = $before . $organizer_name . $after;
 
 	if ($echo)
-		echo $organizer_name;
+		echo esc_attr($organizer_name);
 	else
 		return $organizer_name;
 }
@@ -1553,7 +1553,7 @@ function display_organizer_contact_person_name($before = '', $after = '', $echo 
 
 	if ($echo)
 
-		echo $organizer_contact_person_name;
+		echo esc_attr($organizer_contact_person_name);
 
 	else
 		return $organizer_contact_person_name;
@@ -1612,7 +1612,7 @@ function display_organizer_email($before = '', $after = '', $echo = true, $post 
 
 	if ($echo)
 
-		echo $organizer_email;
+		echo esc_attr($organizer_email);
 
 	else
 		return $organizer_email;
@@ -1720,7 +1720,7 @@ function display_organizer_website($before = '', $after = '', $echo = true, $pos
 	$organizer_website = $before . $organizer_website . $after;
 
 	if ($echo)
-		echo $organizer_website;
+		echo esc_attr($organizer_website);
 	else
 		return $organizer_website;
 }
@@ -1783,7 +1783,7 @@ function display_venue_website($before = '', $after = '', $echo = true, $post = 
 	$venue_website = $before . $venue_website . $after;
 
 	if ($echo)
-		echo $venue_website;
+		echo esc_attr($venue_website);
 	else
 		return $venue_website;
 }
@@ -1808,7 +1808,7 @@ function display_organizer_tagline($before = '', $after = '', $echo = true, $pos
 	$organizer_tagline = $before . $organizer_tagline . $after;
 
 	if ($echo)
-		echo $organizer_tagline;
+		echo esc_attr($organizer_tagline);
 	else
 		return $organizer_tagline;
 }
@@ -1879,7 +1879,7 @@ function display_organizer_twitter($before = '', $after = '', $echo = true, $pos
 	$organizer_twitter = $before . '<a href="http://twitter.com/' . $organizer_twitter . '" class="organizer_twitter" target="_blank">' . $organizer_twitter . '</a>' . $after;
 
 	if ($echo)
-		echo $organizer_twitter;
+		echo esc_attr($organizer_twitter);
 	else
 		return $organizer_twitter;
 }
@@ -1932,7 +1932,7 @@ function display_venue_twitter($before = '', $after = '', $echo = true, $post = 
 	$venue_twitter = $before . '<a href="http://twitter.com/' . $venue_twitter . '" class="venue_twitter" target="_blank">' . $venue_twitter . '</a>' . $after;
 
 	if ($echo)
-		echo $venue_twitter;
+		echo esc_attr($venue_twitter);
 	else
 		return $venue_twitter;
 }
@@ -1981,7 +1981,7 @@ function display_organizer_facebook($before = '', $after = '', $echo = true, $po
 	$organizer_facebook = $before . $organizer_facebook . $after;
 
 	if ($echo)
-		echo $organizer_facebook;
+		echo esc_attr($organizer_facebook);
 	else
 		return $organizer_facebook;
 }
@@ -2030,7 +2030,7 @@ function display_venue_facebook($before = '', $after = '', $echo = true, $post =
 	$venue_facebook = $before . $venue_facebook . $after;
 
 	if ($echo)
-		echo $venue_facebook;
+		echo esc_attr($venue_facebook);
 	else
 		return $venue_facebook;
 }
@@ -2078,7 +2078,7 @@ function display_organizer_linkedin($before = '', $after = '', $echo = true, $po
 	$organizer_linkedin = $before . $organizer_linkedin . $after;
 
 	if ($echo)
-		echo $organizer_linkedin;
+		echo esc_attr($organizer_linkedin);
 	else
 		return $organizer_linkedin;
 }
@@ -2126,7 +2126,7 @@ function display_organizer_xing($before = '', $after = '', $echo = true, $post =
 	$organizer_xing = $before . $organizer_xing . $after;
 
 	if ($echo)
-		echo $organizer_xing;
+		echo esc_attr($organizer_xing);
 	else
 		return $organizer_xing;
 }
@@ -2174,7 +2174,7 @@ function display_organizer_instagram($before = '', $after = '', $echo = true, $p
 	$organizer_instagram = $before . $organizer_instagram . $after;
 
 	if ($echo)
-		echo $organizer_instagram;
+		echo esc_attr($organizer_instagram);
 	else
 		return $organizer_instagram;
 }
@@ -2222,7 +2222,7 @@ function display_venue_instagram($before = '', $after = '', $echo = true, $post 
 	$venue_instagram = $before . $venue_instagram . $after;
 
 	if ($echo)
-		echo $venue_instagram;
+		echo esc_attr($venue_instagram);
 	else
 		return $venue_instagram;
 }
@@ -2270,7 +2270,7 @@ function display_organizer_pinterest($before = '', $after = '', $echo = true, $p
 	$organizer_pinterest = $before . $organizer_pinterest . $after;
 
 	if ($echo)
-		echo $organizer_pinterest;
+		echo esc_attr($organizer_pinterest);
 	else
 		return $organizer_pinterest;
 }
@@ -2325,7 +2325,7 @@ function display_organizer_youtube($before = '', $after = '', $echo = true, $pos
 	$organizer_youtube = $before . $organizer_youtube . $after;
 
 	if ($echo)
-		echo $organizer_youtube;
+		echo esc_attr($organizer_youtube);
 	else
 		return $organizer_youtube;
 }
@@ -2375,7 +2375,7 @@ function display_venue_youtube($before = '', $after = '', $echo = true, $post = 
 	$venue_youtube = $before . $venue_youtube . $after;
 
 	if ($echo)
-		echo $venue_youtube;
+		echo esc_attr($venue_youtube);
 	else
 		return $venue_youtube;
 }
@@ -2423,7 +2423,7 @@ function display_organizer_google_plus($before = '', $after = '', $echo = true, 
 	$organizer_google_plus = $before . $organizer_google_plus . $after;
 
 	if ($echo)
-		echo $organizer_google_plus;
+		echo esc_attr($organizer_google_plus);
 	else
 		return $organizer_google_plus;
 }
@@ -2768,7 +2768,7 @@ function event_manager_get_event_listing_location_structured_data($post)
 function display_event_title($post = null)
 {
 	if ($event_title = get_event_title($post)) {
-		echo $event_title;
+		echo esc_attr($event_title);
 	}
 }
 
@@ -2808,7 +2808,7 @@ function get_event_title($post = null)
 function display_event_description($post = null)
 {
 	if ($event_description = get_event_description($post)) {
-		echo $event_description;
+		echo esc_attr($event_description);
 	}
 }
 
@@ -2869,7 +2869,7 @@ function display_event_ticket_price($before = '', $after = '', $echo = true, $po
 	$event_ticket_price = $before . $event_ticket_price . $after;
 
 	if ($echo)
-		echo $event_ticket_price;
+		echo esc_attr($event_ticket_price);
 	else
 		return $event_ticket_price;
 }
@@ -2948,7 +2948,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 					)
 				);
 				?>
-				<li><a href="<?php echo $prev_page_link; ?>" class="page-numbers">&larr;</a></li>
+				<li><a href="<?php echo esc_attr($prev_page_link); ?>" class="page-numbers">&larr;</a></li>
 			<?php endif; ?>
 
 			<?php
@@ -2984,7 +2984,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 					)
 				);
 				?>
-				<li><a href="<?php echo $next_page_link; ?>" class="page-numbers">&rarr;</a></li>
+				<li><a href="<?php echo esc_attr($next_page_link); ?>" class="page-numbers">&rarr;</a></li>
 			<?php endif; ?>
 		</ul>
 	</nav>

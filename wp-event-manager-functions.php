@@ -1519,7 +1519,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 	if ( $echo ) {
 
-		echo $output;
+		echo esc_attr($output);
 	}
 
 	return $output;
