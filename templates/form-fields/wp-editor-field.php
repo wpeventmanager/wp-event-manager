@@ -1,4 +1,4 @@
-<?php echo wp_kses_post($field);
+<?php
 
 $editor = apply_filters( 'submit_event_form_wp_editor_args', array(
 	'textarea_name' => isset( $field['name'] ) ? $field['name'] : $key,

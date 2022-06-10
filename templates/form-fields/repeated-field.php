@@ -39,7 +39,7 @@
                     <?php endif; ?>
                     <fieldset class="wpem-form-group fieldset-<?php esc_attr_e($subkey); ?>">
                         <?php if (!empty($subfield['label'])) : ?>
-                            <label for="<?php esc_attr_e($subkey); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield)['label'] . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
+                            <label for="<?php esc_attr_e($subkey); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
                         <?php endif; ?>
 
                         <div class="field">
@@ -100,7 +100,7 @@
 
                 <fieldset class="wpem-form-group fieldset-<?php esc_attr_e($subkey); ?>">
                     <?php if (!empty($subfield['label'])) : ?>
-                        <label for="<?php esc_attr_e($subkey); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield)['label'] . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
+                        <label for="<?php esc_attr_e($subkey); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
                     <?php endif; ?>
 
                     <div class="field">

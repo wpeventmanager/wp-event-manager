@@ -51,7 +51,7 @@ if (!class_exists('WP_Event_Manager_Addons')) :
 						break;
 					}
 
-					$addons = wp_kses_post($addons);
+					$addons = print_r($addons);
 
 					if ($addons) {
 						set_transient('wp_event_manager_addons_html1', $addons, 60 * 60 * 24 * 7); // Cached for a week
