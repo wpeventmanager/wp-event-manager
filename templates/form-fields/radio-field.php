@@ -1,4 +1,5 @@
-<?phpecho $field
+<?php
+
 
 /**
 
