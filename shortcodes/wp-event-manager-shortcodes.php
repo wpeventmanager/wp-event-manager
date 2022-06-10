@@ -334,15 +334,15 @@ class WP_Event_Manager_Shortcodes {
 
 		if(isset($_REQUEST['organizer_id']) && !empty($_REQUEST['organizer_id']))
 		{
-			echo esc_attr($event_manager)->forms->get_form('edit-organizer');
+			echo wp_kses_post($event_manager->forms->get_form('edit-organizer'));
 		}
 		else if(isset($_REQUEST['venue_id']) && !empty($_REQUEST['venue_id']))
 		{
-			echo esc_attr($event_manager)->forms->get_form('edit-venue');
+			echo wp_kses_post($event_manager->forms->get_form('edit-venue'));
 		}
 		else
 		{
-			echo esc_attr($event_manager)->forms->get_form('edit-event');
+			echo wp_kses_post($event_manager->forms->get_form('edit-event'));
 		}
 	}
 
@@ -514,7 +514,7 @@ class WP_Event_Manager_Shortcodes {
 
 		global $event_manager;
 
-		echo esc_attr($event_manager)->forms->get_form('edit-organizer');
+		echo wp_kses_post($event_manager->forms->get_form('edit-organizer'));
 	}
 
 	/**
@@ -684,7 +684,7 @@ class WP_Event_Manager_Shortcodes {
 
 		global $event_manager;
 
-		echo esc_attr($event_manager)->forms->get_form('edit-venue');
+		echo wp_kses_post($event_manager->forms->get_form('edit-venue'));
 	}
 
 	/**
