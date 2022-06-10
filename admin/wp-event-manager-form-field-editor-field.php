@@ -1,4 +1,5 @@
-<?php if (empty($field_key)) {
+<?php
+if (empty($field_key)) {
 	$field_key = $index;
 }
 $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing'));
