@@ -71,7 +71,7 @@
 
 						printf('<li class="wpem-main-vmenu-dashboard-li wpem-main-vmenu-dashboard-sub-menu"><a class="wpem-main-vmenu-dashboard-link %s" href="javascript:void(0)"><i class="%s"></i>%s<i class="wpem-icon-play3 wpem-main-vmenu-caret wpem-main-vmenu-caret-up"></i></a>', $active_parent_menu, $menu['icon'], $menu['title']);
 
-						echo esc_attr($child_menu_html);
+						echo printf($child_menu_html);
 
 						printf('</li>');
 					} else {
@@ -148,7 +148,7 @@
 					}
 					?>
 
-					<form action="" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php echo esc_attr($display_block); ?>">
+					<form action="" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php echo printf($display_block); ?>">
 						<div class="wpem-events-filter">
 
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
@@ -202,7 +202,7 @@
 													<?php if ($event->post_status == 'publish') : ?>
 														<a href="<?php echo get_permalink($event->ID); ?>"><?php echo esc_html($event->post_title); ?></a>
 													<?php else : ?>
-														<?php echo esc_attr($event)->post_title; ?> <small class="wpem-event-status-<?php echo sanitize_title(get_event_status($event)); ?>"><?php display_event_status($event); ?></small>
+														<?php echo esc_attr($event->post_title); ?> <small class="wpem-event-status-<?php echo sanitize_title(get_event_status($event)); ?>"><?php display_event_status($event); ?></small>
 													<?php endif; ?>
 
 													<?php if (is_event_cancelled($event)) : ?>
@@ -294,18 +294,18 @@
 											<div class="wpem-dashboard-event-date-time">
 												<div class="wpem-dashboard-event-placeholder"><strong><?php _e('Date And Time', 'wp-event-manager') ?></strong></div>
 												<?php display_event_start_date('', '', true, $event); ?> <?php
-																																										if (get_event_start_time($event)) {
-																																											display_date_time_separator();
-																																										?> <?php
+																																									if (get_event_start_time($event)) {
+																																										display_date_time_separator();
+																																									?> <?php
 																																											display_event_start_time('', '', true, $event);
 																																										} ?>
 
 												-<br>
 
 												<?php display_event_end_date('', '', true, $event); ?> <?php
-																																									if (get_event_start_time($event)) {
-																																										display_date_time_separator();
-																																									?> <?php
+																																								if (get_event_start_time($event)) {
+																																									display_date_time_separator();
+																																								?> <?php
 																																										display_event_end_time('', '', true, $event);
 																																									} ?>
 											</div>
@@ -349,8 +349,8 @@
 																		display_event_start_date('', '', true, $event);
 																	?> &nbsp; <?php
 
-																							display_event_start_time('', '', true, $event);
-																							?>
+																						display_event_start_time('', '', true, $event);
+																						?>
 
 																		<?php elseif ('event_end_date' === $key) :
 																		display_event_end_date('', '', true, $event);
