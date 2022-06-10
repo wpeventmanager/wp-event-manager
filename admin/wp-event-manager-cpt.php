@@ -887,13 +887,13 @@ class WP_Event_Manager_CPT
 
 				<?php if (!empty($display)) : ?>
 
-					jQuery('#post-status-display').html('<?php echo esc_attr($display); ?>');
+					jQuery('#post-status-display').html('<?php echo wp_kses_post($display); ?>');
 
 				<?php endif; ?>
 
 				var select = jQuery('#post-status-select').find('select');
 
-				jQuery(select).html("<?php echo esc_attr($options); ?>");
+				jQuery(select).html("<?php echo wp_kses_post($options); ?>");
 			});
 		</script>
 <?php

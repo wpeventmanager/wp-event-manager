@@ -25,7 +25,8 @@ if ( isset( $field['value'] ) ) {
 } else {
 
 
-	$selected = '';echo esc_attr($field)
+	$selected = '';
+	echo wp_kses_post($field);
 
 
 }

@@ -367,13 +367,13 @@ $event = $post;
                                                             <?php if (is_array($field_value)) : ?>
                                                                 <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                     <div class="wpem-additional-info-block-details-content-items">
-                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field)['label']; ?> -</strong> <?php echo implode(', ', $field_value); ?></p>
+                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?> -</strong> <?php echo implode(', ', $field_value); ?></p>
                                                                     </div>
                                                                 </div>
                                                             <?php else : ?>
                                                                 <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                     <div class="wpem-additional-info-block-details-content-items">
-                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field)['label']; ?> -</strong> <?php echo esc_attr($field_value); ?></p>
+                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?> -</strong> <?php echo esc_attr($field_value); ?></p>
                                                                     </div>
                                                                 </div>
                                                             <?php endif; ?>

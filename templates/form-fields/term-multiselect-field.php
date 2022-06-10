@@ -25,7 +25,7 @@ if ( isset( $field['value'] ) ) {
 wp_enqueue_script( 'wp-event-manager-term-multiselect' );
 
 
-echo esc_attr($field)
+
 $args = array(
 
 	'taxonomy'     => $field['taxonomy'],
