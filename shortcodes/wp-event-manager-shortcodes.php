@@ -297,11 +297,11 @@ class WP_Event_Manager_Shortcodes {
 
 		$events = new WP_Query($args);
 
-		echo esc_attr($this)->event_dashboard_message;
+		echo esc_attr($this->event_dashboard_message);
 		//display organiser delete message #905
-		echo esc_attr($this)->organizer_dashboard_message;
+		echo esc_attr($this->organizer_dashboard_message);
 		//display venue delete message #905
-		echo esc_attr($this)->venue_dashboard_message;
+		echo esc_attr($this->venue_dashboard_message);
 
 		$event_dashboard_columns = apply_filters( 'event_manager_event_dashboard_columns', array(
 
@@ -480,7 +480,7 @@ class WP_Event_Manager_Shortcodes {
 		) );
 
 		$organizers = new WP_Query;
-		echo esc_attr($this)->organizer_dashboard_message;
+		echo esc_attr($this->organizer_dashboard_message);
 
 		$organizer_dashboard_columns = apply_filters( 'event_manager_organizer_dashboard_columns', array(
 
@@ -650,7 +650,7 @@ class WP_Event_Manager_Shortcodes {
 		) );
 
 		$venues = new WP_Query;
-		echo esc_attr($this)->venue_dashboard_message;
+		echo esc_attr($this->venue_dashboard_message);
 
 		$venue_dashboard_columns = apply_filters( 'event_manager_venue_dashboard_columns', array(
 
