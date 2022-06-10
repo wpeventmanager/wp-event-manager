@@ -177,7 +177,7 @@ $event = $post;
 
                                                                 <div class="wpem-col-12 wpem-additional-info-block-group">
 
-                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field)['label']; ?></strong></p>
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?></strong></p>
 
                                                                     <?php foreach ($field_value as $child_index => $child_value) : ?>
 

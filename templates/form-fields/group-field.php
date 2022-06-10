@@ -109,8 +109,8 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
         echo esc_attr(ob_get_clean());
         ?>">+ <?php
                 if (!empty($field['label'])) {
-                    echo esc_attr($field)['label'];
+                    echo $field['label'];
                 };
                 ?>
 </a>
-<?php if (!empty($field['description'])) : ?><small class="description"><?php echo esc_attr($field)['description']; ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?><small class="description"><?php echo $field['description']; ?></small><?php endif; ?>

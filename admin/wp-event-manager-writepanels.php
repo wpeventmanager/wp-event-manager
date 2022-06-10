@@ -646,7 +646,7 @@ class WP_Event_Manager_Writepanels
 			<?php
 			if (!empty($field['description'])) :
 			?>
-				<span class="description"><?php echo esc_attr($field)['description']; ?></span><?php endif; ?>
+				<span class="description"><?php echo esc_attr($field['description']); ?></span><?php endif; ?>
 		</p>
 	<?php
 	}

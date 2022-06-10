@@ -1,4 +1,4 @@
-<?phpecho esc_attr($field)
+<?phpecho $field
 
 
 $classes            = array( 'input-text' );
