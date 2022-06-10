@@ -16,7 +16,7 @@
             <div class="wpem-col-md-9 wpem-col-sm-12">
                 <div class="wpem-venue-infomation-wrapper">
                     <div class="wpem-venue-name wpem-heading-text">
-                        <span><?php echo esc_attr($venue)->post_title; ?></span>
+                        <span><?php echo esc_attr($venue->post_title); ?></span>
                     </div>
                     <div class="wpem-venue-description"><?php printf(__('%s', 'wp-event-manager'), $venue->post_content); ?></div>
                     <div class="wpem-venue-social-links">
