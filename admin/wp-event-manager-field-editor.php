@@ -125,7 +125,7 @@ class WP_Event_Manager_Field_Editor {
 			echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
 
-		if ( ! empty( $_POST ) && ! empty( $_POST['_wpnonce'] ) ) {
+		if ( ! empty( $_POST ) && sanitize_text_field(! empty( $_POST['_wpnonce'] ) ) ){
 			echo wp_kses_post($this->form_editor_save());
 		}
 
@@ -308,7 +308,7 @@ class WP_Event_Manager_Field_Editor {
 	 * Save the form fields
 	 */
 	private function form_editor_save() {
-		if ( wp_verify_nonce( $_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor' ) ) {
+		if ( wp_verify_nonce(sanitize_title( $_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor' ) ) ){
 
 			$event_field     = !empty($_POST['event']) ? $this->sanitize_array($_POST['event']) : array();
 			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array($_POST['organizer']) : array();

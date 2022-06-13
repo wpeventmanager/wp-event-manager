@@ -928,7 +928,7 @@ class WP_Event_Manager_Writepanels
 		if (is_int(wp_is_post_autosave($post))) {
 			return;
 		}
-		if (empty($_POST['event_manager_nonce']) || !wp_verify_nonce($_POST['event_manager_nonce'], 'save_meta_data')) {
+		if (empty($_POST['event_manager_nonce']) || !wp_verify_nonce(sanitize_text_field($_POST['event_manager_nonce'], 'save_meta_data'))) {
 			return;
 		}
 		if (!current_user_can('edit_post', $post_id)) {
@@ -998,7 +998,7 @@ class WP_Event_Manager_Writepanels
 					$thumbnail_image = $_POST[$key][0];
 					update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
 				} else {
-					$thumbnail_image = $_POST[$key];
+				$thumbnail_image = $_POST[$key];
 					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 				}
 
@@ -1136,7 +1136,7 @@ class WP_Event_Manager_Writepanels
 
 					case 'wp-editor':
 						if (!empty($_POST[$key])) {
-							$v_text = wp_kses_post($_POST[$key]);
+							$v_text = wp_kses_post(stripslashes($_POST[$key]));
 							update_post_meta($post_id, $key, $v_text);
 						}
 						break;
