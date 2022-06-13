@@ -1518,8 +1518,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 	$output .= "</select>\n";
 
 	if ( $echo ) {
-
-		echo $output;
+		printf($output);
 	}
 
 	return $output;

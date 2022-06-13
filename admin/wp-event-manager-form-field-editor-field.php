@@ -1,4 +1,5 @@
-<?php if (empty($field_key)) {
+<?php
+if (empty($field_key)) {
 	$field_key = $index;
 }
 $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing'));
@@ -178,7 +179,7 @@ if (isset($field['type']) && $field['type'] == 'group') {
 																				'placeholder' => '',
 																			);
 																			include 'wp-event-manager-form-field-editor-group-field.php';
-																			echo esc_attr(ob_get_clean());
+	echo ob_get_clean();
 																			?>
 							">
 

@@ -563,7 +563,7 @@ abstract class WP_Event_Manager_Form {
 
 			if ( ! empty( $field['allowed_mime_types'] ) ) {
 
-				$allowed_mime_types = $field['allowed_mime_types'];
+				$allowed_mime_types =sanitize_text_field( $field['allowed_mime_types']);
 
 			} else {
 

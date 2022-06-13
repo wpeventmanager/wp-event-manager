@@ -17,7 +17,7 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                     <div class="wpem-organizer-logo">
                         <a><?php display_organizer_logo('', '', $organizer); ?></a>
                     </div>
-                    <?php /** <div class="wpem-organizer-logo-title wpem-heading-text"><a><span><?php echo $organizer_name; ?></span></a></div> */ ?>
+                    <?php /** <div class="wpem-organizer-logo-title wpem-heading-text"><a><span><?php echo esc_attr($organizer_name); ?></span></a></div> */ ?>
 
                 </div>
             </div>

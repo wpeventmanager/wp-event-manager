@@ -243,7 +243,7 @@ class WP_Event_Manager_Shortcodes {
 
 		ob_start();
 
-		$search_order_by = 	isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
+		$search_order_by = 	isset($_GET['search_order_by']) ?sanitize_text_field( $_GET['search_order_by'] ): '';
 
 		if( isset($search_order_by) && !empty($search_order_by) )
 		{
@@ -351,7 +351,7 @@ class WP_Event_Manager_Shortcodes {
 	 */
 	public function organizer_dashboard_handler() {
 
-		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'event_manager_my_organizer_actions' ) ) {
+		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'], 'event_manager_my_organizer_actions' ) ) )) {
 
 			$action = sanitize_title( $_REQUEST['action'] );
 
@@ -522,7 +522,7 @@ class WP_Event_Manager_Shortcodes {
 	 */
 	public function venue_dashboard_handler() {
 
-		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'event_manager_my_venue_actions' ) ) {
+		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'], 'event_manager_my_venue_actions' ) ))) {
 
 			$action = sanitize_title( $_REQUEST['action'] );
 

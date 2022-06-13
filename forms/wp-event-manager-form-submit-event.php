@@ -660,7 +660,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							throw new Exception( __( 'Passwords must match.', 'wp-event-manager' ) );
 						}
 						if ( ! event_manager_validate_new_password( $_POST['create_account_password'] ) ) {
-							$password_hint = event_manager_get_password_rules_hint();
+							$password_hint = sanitize_text_field(event_manager_get_password_rules_hint());
 							if ( $password_hint ) {
 								throw new Exception( sprintf( __( 'Invalid Password: %s', 'wp-event-manager' ), $password_hint ) );
 							} else {
