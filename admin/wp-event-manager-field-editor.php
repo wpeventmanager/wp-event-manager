@@ -125,13 +125,8 @@ class WP_Event_Manager_Field_Editor {
 			echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
 		}
 
-<<<<<<< HEAD
-		if ( ! empty( $_POST ) && sanitize_text_field(! empty( $_POST['_wpnonce'] ) ) ){
-			echo wp_kses_post($this->form_editor_save());
-=======
 		if ( ! empty( $_POST ) && ! empty( $_POST['_wpnonce'] ) ) {
 			echo $this->form_editor_save();
->>>>>>> 6e1327a75b78dca2c5f510e9ce28a74aa5154f90
 		}
 
 		$disbled_fields = apply_filters( 'wpem_admin_field_editor_disabled_fields', array( 'event_title', 'event_description', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description' ) );
