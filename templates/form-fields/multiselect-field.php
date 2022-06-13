@@ -1,4 +1,4 @@
-<?php wp_enqueue_script('wp-event-manager-multiselect'); ?>echo $field
+<?php wp_enqueue_script('wp-event-manager-multiselect'); ?>
 
 
 

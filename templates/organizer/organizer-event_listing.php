@@ -1,5 +1,5 @@
 <?php
-$active_tab = isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'upcoming';
+$active_tab = sanitize_text_field(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'upcoming');
 ?>
 
 <div class="wpem-event-organizer-tabs">
