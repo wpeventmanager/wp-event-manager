@@ -71,7 +71,7 @@
 
 						printf('<li class="wpem-main-vmenu-dashboard-li wpem-main-vmenu-dashboard-sub-menu"><a class="wpem-main-vmenu-dashboard-link %s" href="javascript:void(0)"><i class="%s"></i>%s<i class="wpem-icon-play3 wpem-main-vmenu-caret wpem-main-vmenu-caret-up"></i></a>', $active_parent_menu, $menu['icon'], $menu['title']);
 
-						echo printf($child_menu_html);
+						echo wp_kses_post($child_menu_html);
 
 						printf('</li>');
 					} else {
