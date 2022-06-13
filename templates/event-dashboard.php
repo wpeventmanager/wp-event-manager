@@ -6,7 +6,7 @@
 			<ul class="wpem-main-vmenu-dashboard-ul">
 				<?php
 
-				$current_action = isset($_GET['action']) ? $_GET['action'] : 'event_dashboard';
+				$current_action = isset($_GET['action']) ? sanitize_title( $_GET['action'] ): 'event_dashboard';
 				$event_id = isset($_GET['event_id']) ? absint($_GET['event_id']) : '';
 
 				$menus = [
@@ -139,8 +139,8 @@
 					</div>
 
 					<?php
-					$search_keywords = isset($_GET['search_keywords']) ? $_GET['search_keywords'] : '';
-					$search_order_by = isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
+					$search_keywords = isset($_GET['search_keywords']) ? sanitize_text_field($_GET['search_keywords']) : '';
+					$search_order_by = isset($_GET['search_order_by']) ? sanitize_text_field($_GET['search_order_by']) : '';
 
 					$display_block = '';
 					if (!empty($search_keywords) || !empty($search_order_by)) {
