@@ -243,7 +243,7 @@ class WP_Event_Manager_Shortcodes {
 
 		ob_start();
 
-		$search_order_by = 	isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
+		$search_order_by = 	isset($_GET['search_order_by']) ?sanitize_text_field( $_GET['search_order_by'] ): '';
 
 		if( isset($search_order_by) && !empty($search_order_by) )
 		{
