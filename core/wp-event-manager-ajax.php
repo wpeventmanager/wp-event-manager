@@ -384,7 +384,7 @@ class WP_Event_Manager_Ajax {
 			$result['pagination'] = get_event_listing_pagination( $events->max_num_pages, absint( $_REQUEST['page'] ) );
 		}
 
-		$result['max_num_pages'] = $events->max_num_pages;
+		$result['max_num_pages'] = sanitize_event_field($events->max_num_pages);
 
 		wp_send_json( apply_filters( 'event_manager_get_listings_result', $result, $events ) );
 	}
