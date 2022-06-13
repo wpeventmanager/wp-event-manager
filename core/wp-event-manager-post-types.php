@@ -101,10 +101,6 @@ class WP_Event_Manager_Post_Types {
 		$admin_capability = 'manage_event_listings';
 		$permalink_structure = WP_Event_Manager_Post_Types::get_permalink_structure();
 
-		/*function to enable term-multiselect and term-select
-		 in block editor for event type and categories*/
-		include_once(EVENT_MANAGER_PLUGIN_DIR . '/wp-event-manager-functions.php');
-
 		/**
 		 * Taxonomies
 		 */
@@ -133,12 +129,6 @@ class WP_Event_Manager_Post_Types {
 				$rewrite   = true;
 
 				$public    = true;
-			}
-
-			if(true == event_manager_multiselect_event_category()){
-				$show_in_rest = true;
-			}else{
-				$show_in_rest = false;
 			}
 
 			register_taxonomy( "event_listing_category",
@@ -180,7 +170,7 @@ class WP_Event_Manager_Post_Types {
 	            	),
 
 		            'show_ui' 				=> true,
-					'show_in_rest'          => $show_in_rest,
+					'show_in_rest'          => false,
 
 		            'public' 	     		=> $public,
 
@@ -232,12 +222,6 @@ class WP_Event_Manager_Post_Types {
 
 			}
 
-			if(true == event_manager_multiselect_event_type()){
-				$show_in_rest = true;
-			}else{
-				$show_in_rest = false;
-			}
-
 			register_taxonomy( "event_listing_type",
 
 			apply_filters( 'register_taxonomy_event_listing_type_object_type', array( 'event_listing' ) ),
@@ -275,7 +259,7 @@ class WP_Event_Manager_Post_Types {
 
 		            'show_ui' 				=> true,
 
-					'show_in_rest'          => $show_in_rest,
+					'show_in_rest'          => false,
 
 		            'public' 			    => $public,
 
