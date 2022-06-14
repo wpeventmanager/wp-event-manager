@@ -301,12 +301,12 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
-= 3.1.28 [ May 2nd, 2022 ] =
+= 3.1.28 [ June 14th, 2022 ] =
 
 Fixed - Event shortcodes related issue.
 Fixed - Security fixes
-Fixed - Elementor compatibility with latest Elementor version
-Fixed - Datepicker Compatibility with boostrap themes
+Fixed - Compatible with latest Elementor version
+Fixed - Datepicker Compatibility with bootstrap themes
 
 = 3.1.27 [ May 2nd, 2022 ] =
 
