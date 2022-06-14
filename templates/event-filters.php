@@ -74,7 +74,7 @@
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_datetimes" class="wpem-form-label"><?php _e('Any dates', 'wp-event-manager'); ?></label>
-						<input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo $selected_datetime; ?>' class="event-manager-category-dropdown date_range_picker">
+						<input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo esc_attr($selected_datetime); ?>' class="event-manager-category-dropdown date_range_picker">
 					</div>
 				</div>
 			<?php endif; ?>
@@ -150,9 +150,9 @@
 								$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
 								foreach ($ticket_prices as $key => $value) :
 									if (!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price == $key) : ?>
-										<option selected=selected value="<?php echo $key != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
+										<option selected=selected value="<?php echo esc_attr($key) != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
 									<?php else : ?>
-										<option value="<?php echo $key != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
+										<option value="<?php echo esc_attr($key) != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
 								<?php endif;
 								endforeach; ?>
 							</select>

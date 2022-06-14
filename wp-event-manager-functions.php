@@ -91,6 +91,7 @@ function get_event_listings( $args = array() ) {
 		'fields'                 => $args['fields']
 	);
 
+	
 	if ( $args['posts_per_page'] < 0 ) {
 		$query_args['no_found_rows'] = true;
 	}
@@ -100,14 +101,14 @@ function get_event_listings( $args = array() ) {
 		$location_meta_keys = array( 'geolocation_formatted_address', '_event_location', 'geolocation_state_long' );
 
 		$location_search    = array( 'relation' => 'OR' );
-
+			
 		foreach ( $location_meta_keys as $meta_key ) {
 
 			$location_search[] = array(
 
 				'key'     => $meta_key,
 
-				'value'   => $args['search_location'],
+					'value'   => 	trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ','),
 
 				'compare' => 'like'
 			);
@@ -116,6 +117,7 @@ function get_event_listings( $args = array() ) {
 	}
 
 	if ( ! is_null( $args['featured'] ) ) {
+		
 
 		$query_args['meta_query'][] = array(
 
@@ -467,6 +469,10 @@ function get_event_listings( $args = array() ) {
 	if ( empty( $query_args['tax_query'] ) ) {
 
 		unset( $query_args['tax_query'] );
+		} else {
+			$query_args['meta_query']['tax_query'] = array($query_args['tax_query']);
+			$query_args['meta_query']['relation'] = 'AND';
+
 	}
 	
 	// Polylang LANG arg
@@ -480,6 +486,8 @@ function get_event_listings( $args = array() ) {
 	$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );
 	do_action( 'before_get_event_listings', $query_args, $args );
 
+	
+
 	// Cache results.
 	if ( apply_filters( 'get_event_listings_cache_results', true ) ) 
 	{
@@ -492,6 +500,7 @@ function get_event_listings( $args = array() ) {
 
 		if ( is_string( $cached_query_posts ) ) 
 		{
+			
 			$cached_query_posts = json_decode( $cached_query_posts, false );
 
 			if ( $cached_query_posts
@@ -505,6 +514,7 @@ function get_event_listings( $args = array() ) {
 				$result = new WP_Query();
 				$result->parse_query( $query_args );
 				$result->posts         = $posts;
+				
 				$result->found_posts   = intval( $cached_query_posts->found_posts );
 				$result->max_num_pages = intval( $cached_query_posts->max_num_pages );
 				$result->post_count    = count( $posts );
@@ -534,6 +544,7 @@ function get_event_listings( $args = array() ) {
 	else 
 	{
 		$result = new WP_Query( $query_args );
+		
 	}
 	
 	$result = apply_filters('get_event_listings_result_args',$result,$query_args );
@@ -1507,8 +1518,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 	$output .= "</select>\n";
 
 	if ( $echo ) {
-
-		echo $output;
+		printf($output);
 	}
 
 	return $output;

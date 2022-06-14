@@ -17,7 +17,7 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                     <div class="wpem-organizer-logo">
                         <a><?php display_organizer_logo('', '', $organizer); ?></a>
                     </div>
-                    <?php /** <div class="wpem-organizer-logo-title wpem-heading-text"><a><span><?php echo $organizer_name; ?></span></a></div> */ ?>
+                    <?php /** <div class="wpem-organizer-logo-title wpem-heading-text"><a><span><?php echo esc_attr($organizer_name); ?></span></a></div> */ ?>
 
                 </div>
             </div>
@@ -29,7 +29,7 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                         <span><?php echo esc_html($organizer->post_title); ?></span>
                     </div>
 
-                    <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), get_organizer_description($organizer)); ?></div>
+                    <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), $organizer->post_content); ?></div>
 
                     <div class="wpem-organizer-social-links">
                         <div class="wpem-organizer-social-lists">

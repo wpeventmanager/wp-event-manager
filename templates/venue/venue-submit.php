@@ -30,7 +30,7 @@ global $event_manager;
 		<?php do_action('submit_venue_form_venue_fields_end'); ?>
 
 		<div class="wpem-form-footer">
-			<input type="hidden" name="event_manager_form" value="<?php echo $form; ?>" />
+			<input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
 			<input type="hidden" name="venue_id" value="<?php echo esc_attr($venue_id); ?>" />
 			<input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
 			<input type="submit" name="submit_venue" class="wpem-theme-button" id="submit-venue-button" value="<?php esc_attr_e($submit_button_text); ?>" />

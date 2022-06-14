@@ -221,7 +221,7 @@ class WP_Event_Manager_CPT
 
 		if ($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['approved_events'])) {
 
-			$approved_events = $_REQUEST['approved_events'];
+			$approved_events = sanitize_text_field($_REQUEST['approved_events']);
 
 			if (is_array($approved_events)) {
 
@@ -253,7 +253,7 @@ class WP_Event_Manager_CPT
 
 		if ($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events'])) {
 
-			$expired_events = $_REQUEST['expired_events'];
+			$expired_events =sanitize_text_field($_REQUEST['expired_events']);
 
 			if (is_array($expired_events)) {
 

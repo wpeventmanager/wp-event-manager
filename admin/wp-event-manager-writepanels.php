@@ -511,7 +511,7 @@ class WP_Event_Manager_Writepanels
 				if (!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
-			<input type="hidden" name="date_format" id="date_format" value="<?php echo $php_date_format   ?>" />
+			<input type="hidden" name="date_format" id="date_format" value="<?php echo esc_attr($php_date_format)   ?>" />
 			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
 		</p>
 	<?php
@@ -646,7 +646,7 @@ class WP_Event_Manager_Writepanels
 			<?php
 			if (!empty($field['description'])) :
 			?>
-				<span class="description"><?php echo $field['description']; ?></span><?php endif; ?>
+				<span class="description"><?php echo esc_attr($field['description']); ?></span><?php endif; ?>
 		</p>
 	<?php
 	}
@@ -928,7 +928,7 @@ class WP_Event_Manager_Writepanels
 		if (is_int(wp_is_post_autosave($post))) {
 			return;
 		}
-		if (empty($_POST['event_manager_nonce']) || !wp_verify_nonce($_POST['event_manager_nonce'], 'save_meta_data')) {
+		if (empty($_POST['event_manager_nonce']) || !wp_verify_nonce(sanitize_text_field($_POST['event_manager_nonce'], 'save_meta_data'))) {
 			return;
 		}
 		if (!current_user_can('edit_post', $post_id)) {
@@ -998,7 +998,7 @@ class WP_Event_Manager_Writepanels
 					$thumbnail_image = $_POST[$key][0];
 					update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
 				} else {
-					$thumbnail_image = $_POST[$key];
+				$thumbnail_image = $_POST[$key];
 					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 				}
 
@@ -1110,10 +1110,10 @@ class WP_Event_Manager_Writepanels
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
-							if(!isset($datetime[1])){
+							if (!isset($datetime[1])) {
 								$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
 							}
-							
+
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 							update_post_meta($post_id, $key, trim($date_dbformatted));
 							$date_dbformatted = date($php_date_format, strtotime($date_dbformatted));
@@ -1136,7 +1136,7 @@ class WP_Event_Manager_Writepanels
 
 					case 'wp-editor':
 						if (!empty($_POST[$key])) {
-							$v_text = wp_kses_post($_POST[$key]);
+							$v_text = wp_kses_post(stripslashes($_POST[$key]));
 							update_post_meta($post_id, $key, $v_text);
 						}
 						break;
@@ -1493,21 +1493,42 @@ class WP_Event_Manager_Writepanels
 			return;
 		}
 
-		$args = array('posts_per_page' => -1,
-		'post_parent'    => $post_id,
-		'post_type'=>'event_listing');
-		$children = get_children($args,ARRAY_A);
-		if(sizeof($children) ==0){
-		$event_banner = get_event_banner($post_id);
+		$args = array(
+			'posts_per_page' => -1,
+			'post_parent'    => $post_id,
+			'post_type' => 'event_listing'
+		);
+		$children = get_children($args, ARRAY_A);
+		if (sizeof($children) == 0) {
+			$event_banner = get_event_banner($post_id);
 
-		if (!empty($event_banner)) {
-			$wp_upload_dir = wp_get_upload_dir();
+			if (!empty($event_banner)) {
+				$wp_upload_dir = wp_get_upload_dir();
 
-			$baseurl = $wp_upload_dir['baseurl'] . '/';
+				$baseurl = $wp_upload_dir['baseurl'] . '/';
 
-			if (is_array($event_banner)) {
-				foreach ($event_banner as $banner) {
-					$wp_attached_file = str_replace($baseurl, '', $banner);
+				if (is_array($event_banner)) {
+					foreach ($event_banner as $banner) {
+						$wp_attached_file = str_replace($baseurl, '', $banner);
+
+						$args = array(
+							'meta_key'       => '_wp_attached_file',
+							'meta_value'     => $wp_attached_file,
+							'post_type'      => 'attachment',
+							'posts_per_page' => 1,
+						);
+
+						$attachments = get_posts($args);
+
+						if (!empty($attachments)) {
+							foreach ($attachments as $attachment) {
+
+								wp_delete_attachment($attachment->ID, true);
+							}
+						}
+					}
+				} else {
+					$wp_attached_file = str_replace($baseurl, '', $event_banner);
 
 					$args = array(
 						'meta_key'       => '_wp_attached_file',
@@ -1520,36 +1541,17 @@ class WP_Event_Manager_Writepanels
 
 					if (!empty($attachments)) {
 						foreach ($attachments as $attachment) {
-							
 							wp_delete_attachment($attachment->ID, true);
 						}
 					}
 				}
-			} else {
-				$wp_attached_file = str_replace($baseurl, '', $event_banner);
+			}
 
-				$args = array(
-					'meta_key'       => '_wp_attached_file',
-					'meta_value'     => $wp_attached_file,
-					'post_type'      => 'attachment',
-					'posts_per_page' => 1,
-				);
-
-				$attachments = get_posts($args);
-
-				if (!empty($attachments)) {
-					foreach ($attachments as $attachment) {
-						wp_delete_attachment($attachment->ID, true);
-					}
-				}
+			$thumbnail_id = get_post_thumbnail_id($post_id);
+			if (!empty($thumbnail_id)) {
+				wp_delete_attachment($thumbnail_id, true);
 			}
 		}
-
-		$thumbnail_id = get_post_thumbnail_id($post_id);
-		if (!empty($thumbnail_id)) {
-			wp_delete_attachment($thumbnail_id, true);
-		}
-	}
 	}
 }
 WP_Event_Manager_Writepanels::instance();

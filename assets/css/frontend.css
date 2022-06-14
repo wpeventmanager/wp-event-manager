@@ -928,15 +928,11 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.wpem-event-listings.wpem-event-listing-box-view #googleMap {
-  margin: 0 15px 25px;
-}
-.wpem-event-listing-list-view #googleMap{
-  margin-bottom: 25px;
-}
+
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-box-col {
   padding-bottom: 30px;
 }
+
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper {
   border: 1px solid var(--wpem-gray-border-color);
   width: 100%;
@@ -2731,11 +2727,11 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-form-group .comiseo-daterangepicker-triggerbutton.ui-button {
   font-family: inherit;
   min-width: auto;
-  width: calc(100% - 35px) !important;
+  width: calc(100% - 32px) !important;
   height: 41px;
   margin: 0;
   outline: 0;
-  border: 1px solid #aeaeae;
+  border: 1px solid var(--wpem-gray-border-color);
   border-radius: 4px;
   font-size: 17px;
   font-weight: 400;

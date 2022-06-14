@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single view organizer information box
  *
@@ -9,7 +10,7 @@
 ?>
 
 
-<?php if(has_event_organizer_ids()) : ?>
+<?php if (has_event_organizer_ids()) : ?>
 
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
@@ -20,9 +21,9 @@
                     $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-organizer-info-title';
                     ?>
 
-                    <div class="<?php echo $event_content_toggle_class; ?> active">
+                    <div class="<?php echo esc_attr($event_content_toggle_class); ?> active">
                         <h3 class="wpem-heading-text"><?php _e('Organizer', 'wp-event-manager'); ?></h3>
-                        <?php if($event_content_toggle) : ?>
+                        <?php if ($event_content_toggle) : ?>
                             <i class="wpem-icon-minus"></i><i class="wpem-icon-plus"></i>
                         <?php endif; ?>
                     </div>
@@ -34,7 +35,7 @@
 
                             <?php $organizer_ids = get_event_organizer_ids(); ?>
 
-                            <?php if(!empty($organizer_ids)) : ?>
+                            <?php if (!empty($organizer_ids)) : ?>
                                 <?php foreach ($organizer_ids as $key => $organizer_id) : ?>
 
                                     <div class="wpem-organizer-inner-wrapper">
@@ -51,8 +52,8 @@
 
                                                 <?php do_action('single_event_listing_organizer_description_before', $organizer_id); ?>
 
-                                                <div class="wpem-organizer-short-info"><?php printf( __('%s', 'wp-event-manager'), get_organizer_description($organizer_id) ); ?></div>
-                                    
+                                                <div class="wpem-organizer-short-info"><?php printf(__('%s', 'wp-event-manager'), get_organizer_description($organizer_id)); ?></div>
+
                                                 <?php do_action('single_event_listing_organizer_description_after', $organizer_id); ?>
 
                                                 <div class="wpem-organizer-social-links">
@@ -66,40 +67,35 @@
                                                         $organizer_youtube  = get_organizer_youtube($organizer_id);
                                                         ?>
                                                         <?php
-                                                        if (!empty($organizer_website))
-                                                        {
-                                                            ?>
+                                                        if (!empty($organizer_website)) {
+                                                        ?>
                                                             <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php _e('Website', 'wp-event-manager'); ?></a></div>
-                                                            <?php
+                                                        <?php
                                                         }
-                                                        if (!empty($organizer_facebook))
-                                                        {
-                                                            ?> 
+                                                        if (!empty($organizer_facebook)) {
+                                                        ?>
                                                             <div class="wpem-social-icon wpem-facebook"><a href="<?php echo esc_url($organizer_facebook); ?>" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>" target="_blank"><?php _e('Faceboo', 'wp-event-manager'); ?></a></div>
-                                                            <?php
+                                                        <?php
                                                         }
-                                                        if (!empty($organizer_instagram))
-                                                        {
-                                                            ?> 
+                                                        if (!empty($organizer_instagram)) {
+                                                        ?>
                                                             <div class="wpem-social-icon wpem-instagram"><a href="<?php echo esc_url($organizer_instagram); ?>" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>" target="_blank"><?php _e('Instagram', 'wp-event-manager'); ?></a></div>
-                                                            <?php
+                                                        <?php
                                                         }
-                                                        if (!empty($organizer_twitter))
-                                                        {
-                                                            ?>
+                                                        if (!empty($organizer_twitter)) {
+                                                        ?>
                                                             <div class="wpem-social-icon wpem-twitter"><a href="<?php echo esc_url($organizer_twitter); ?>" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>" target="_blank"><?php _e('Twitter', 'wp-event-manager'); ?></a></div>
-                                                            <?php
+                                                        <?php
                                                         }
-                                                        if (!empty($organizer_youtube))
-                                                        {
-                                                            ?>
+                                                        if (!empty($organizer_youtube)) {
+                                                        ?>
                                                             <div class="wpem-social-icon wpem-youtube"><a href="<?php echo esc_url($organizer_youtube); ?>" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>" target="_blank"><?php _e('Youtube', 'wp-event-manager'); ?></a></div>
                                                         <?php } ?>
 
                                                         <?php do_action('single_event_listing_organizer_single_social_end', $organizer_id); ?>
 
-                                                    </div>                                    
-                                            
+                                                    </div>
+
                                                 </div>
 
                                                 <div class="wpem-organizer-contact-actions">
@@ -127,7 +123,7 @@
     </div>
 <?php else : ?>
 
-    <?php if( get_organizer_name() ) : ?>
+    <?php if (get_organizer_name()) : ?>
 
         <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
             <div class="wpem-row">
@@ -150,7 +146,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="wpem-col-md-9 wpem-col-sm-12">                            
+                                    <div class="wpem-col-md-9 wpem-col-sm-12">
                                         <div class="wpem-organizer-name wpem-heading-text"><span><?php display_organizer_name(); ?></span></div>
 
                                         <?php do_action('single_event_listing_organizer_description_before'); ?>
@@ -170,37 +166,32 @@
                                                 $organizer_youtube  = get_organizer_youtube();
                                                 ?>
                                                 <?php
-                                                if (!empty($organizer_website))
-                                                {
-                                                    ?>
+                                                if (!empty($organizer_website)) {
+                                                ?>
                                                     <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php _e('Website', 'wp-event-manager'); ?></a></div>
-                                                    <?php
+                                                <?php
                                                 }
-                                                if (!empty($organizer_facebook))
-                                                {
-                                                    ?> 
+                                                if (!empty($organizer_facebook)) {
+                                                ?>
                                                     <div class="wpem-social-icon wpem-facebook"><a href="<?php echo esc_url($organizer_facebook); ?>" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>" target="_blank"><?php _e('Faceboo', 'wp-event-manager'); ?></a></div>
-                                                    <?php
+                                                <?php
                                                 }
-                                                if (!empty($organizer_instagram))
-                                                {
-                                                    ?> 
+                                                if (!empty($organizer_instagram)) {
+                                                ?>
                                                     <div class="wpem-social-icon wpem-instagram"><a href="<?php echo esc_url($organizer_instagram); ?>" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>" target="_blank"><?php _e('Instagram', 'wp-event-manager'); ?></a></div>
-                                                    <?php
+                                                <?php
                                                 }
-                                                if (!empty($organizer_twitter))
-                                                {
-                                                    ?>
+                                                if (!empty($organizer_twitter)) {
+                                                ?>
                                                     <div class="wpem-social-icon wpem-twitter"><a href="<?php echo esc_url($organizer_twitter); ?>" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>" target="_blank"><?php _e('Twitter', 'wp-event-manager'); ?></a></div>
-                                                    <?php
+                                                <?php
                                                 }
-                                                if (!empty($organizer_youtube))
-                                                {
-                                                    ?>
+                                                if (!empty($organizer_youtube)) {
+                                                ?>
                                                     <div class="wpem-social-icon wpem-youtube"><a href="<?php echo esc_url($organizer_youtube); ?>" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>" target="_blank"><?php _e('Youtube', 'wp-event-manager'); ?></a></div>
                                                 <?php } ?>
                                                 <?php do_action('single_event_listing_organizer_single_social_end'); ?>
-                                            </div>                            
+                                            </div>
                                         </div>
 
                                         <div class="wpem-organizer-contact-actions">

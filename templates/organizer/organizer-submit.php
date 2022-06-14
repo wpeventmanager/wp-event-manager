@@ -43,7 +43,7 @@ global $event_manager;
         <?php do_action('submit_organizer_form_organizer_fields_end'); ?>
 
         <div class="wpem-form-footer">
-            <input type="hidden" name="event_manager_form" value="<?php echo $form; ?>" />
+            <input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
             <input type="hidden" name="organizer_id" value="<?php echo esc_attr($organizer_id); ?>" />
             <input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
             <input type="submit" name="submit_organizer" id="submit-organizer-button" class="wpem-theme-button" value="<?php esc_attr_e($submit_button_text); ?>" />
