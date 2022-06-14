@@ -111,19 +111,19 @@ body button.ui-button:focus {
 
 
 @media screen and (min-device-width: 420px) and (max-device-width: 575px) { 
-	.comiseo-daterangepicker-calendar{
+	.datepicker-mobile .comiseo-daterangepicker-calendar{
 		overflow: auto;
 	    max-width: 260px;
 	}
 }
 
 
-@media only screen and (max-width: 575px){
+@media only screen and (max-width: 420px){
     .comiseo-daterangepicker-presets{
         display: block;
         height: auto;
     }
-    .comiseo-daterangepicker-calendar{
+    .datepicker-mobile .comiseo-daterangepicker-calendar{
 		overflow: auto;
 	    max-width: 280px;
 	}
