@@ -2727,11 +2727,11 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-form-group .comiseo-daterangepicker-triggerbutton.ui-button {
   font-family: inherit;
   min-width: auto;
-  width: calc(100% - 35px) !important;
+  width: calc(100% - 32px) !important;
   height: 41px;
   margin: 0;
   outline: 0;
-  border: 1px solid #aeaeae;
+  border: 1px solid var(--wpem-gray-border-color);
   border-radius: 4px;
   font-size: 17px;
   font-weight: 400;
