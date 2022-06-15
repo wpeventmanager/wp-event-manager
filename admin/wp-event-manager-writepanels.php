@@ -928,7 +928,7 @@ class WP_Event_Manager_Writepanels
 		if (is_int(wp_is_post_autosave($post))) {
 			return;
 		}
-		if (empty($_POST['event_manager_nonce']) || !wp_verify_nonce(sanitize_text_field($_POST['event_manager_nonce'], 'save_meta_data'))) {
+		if (empty($_POST['event_manager_nonce']) || !wp_verify_nonce($_POST['event_manager_nonce'], 'save_meta_data')) {
 			return;
 		}
 		if (!current_user_can('edit_post', $post_id)) {
