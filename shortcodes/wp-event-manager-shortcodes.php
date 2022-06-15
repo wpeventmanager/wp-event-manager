@@ -534,8 +534,7 @@ class WP_Event_Manager_Shortcodes {
 
 				// Check ownership
 
-				if ( ! event_manager_user_can_edit_event( $venue_id ) ) {
-
+				if (!event_manager_user_can_edit_event($venue_id)) {
 					throw new Exception( __( 'Invalid ID', 'wp-event-manager' ) );
 				}
 
