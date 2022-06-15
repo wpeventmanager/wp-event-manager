@@ -47,4 +47,4 @@ foreach ($field['options'] as $option_key => $value) : ?>
 
 <?php endforeach; ?>
 
-<?php if (!empty($field['description'])) : ?><small class="description"><?php echo sanitize_textarea_field($field['description']); ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?><small class="description"><?php echo wp_kses_post($field['description']); ?></small><?php endif; ?>
