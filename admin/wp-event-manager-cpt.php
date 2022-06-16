@@ -320,7 +320,7 @@ class WP_Event_Manager_CPT
 
 		$output .= '</select>';
 
-		echo wp_kses_post($output);
+		printf($output);
 	}
 
 	/**
@@ -353,7 +353,7 @@ class WP_Event_Manager_CPT
 		$output .= $walker->walk($terms, 0, $r);
 		$output .= '</select>';
 
-		echo wp_kses_post($output);
+		printf($output);
 	}
 
 	/**

@@ -1,30 +1,28 @@
 <?php
 
 
-$classes            = array( 'input-text' );
+$classes            = array('input-text');
 
 
-$allowed_mime_types = array_keys( ! empty( $field['allowed_mime_types'] ) ? $field['allowed_mime_types'] : get_allowed_mime_types() );
+$allowed_mime_types = array_keys(!empty($field['allowed_mime_types']) ? $field['allowed_mime_types'] : get_allowed_mime_types());
 
 
-$field_name         = isset( $field['name'] ) ? $field['name'] : $key;
+$field_name         = isset($field['name']) ? $field['name'] : $key;
 
 
-$field_name         .= ! empty( $field['multiple'] ) ? '[]' : '';
+$field_name         .= !empty($field['multiple']) ? '[]' : '';
 
 
 
 
 
-if ( ! empty( $field['ajax'] ) && event_manager_user_can_upload_file_via_ajax() ) {
+if (!empty($field['ajax']) && event_manager_user_can_upload_file_via_ajax()) {
 
 
-	wp_enqueue_script( 'wp-event-manager-ajax-file-upload' );
+	wp_enqueue_script('wp-event-manager-ajax-file-upload');
 
 
 	$classes[] = 'wp-event-manager-file-upload';
-
-
 }
 
 
@@ -34,25 +32,25 @@ if ( ! empty( $field['ajax'] ) && event_manager_user_can_upload_file_via_ajax() 
 <div class="event-manager-uploaded-files">
 
 
-	<?php if ( ! empty( $field['value'] ) ) : ?>
+	<?php if (!empty($field['value'])) : ?>
 
 
-		<?php if ( is_array( $field['value'] ) ) : ?>
+		<?php if (is_array($field['value'])) : ?>
 
 
-			<?php foreach ( $field['value'] as $value ) : ?>
+			<?php foreach ($field['value'] as $value) : ?>
 
 
-				<?php get_event_manager_template( 'form-fields/uploaded-file-html.php', array( 'key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field ) ); ?>
+				<?php get_event_manager_template('form-fields/uploaded-file-html.php', array('key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field)); ?>
 
 
 			<?php endforeach; ?>
 
 
-		<?php elseif ( $value = $field['value'] ) : ?>
+		<?php elseif ($value = $field['value']) : ?>
 
 
-			<?php get_event_manager_template( 'form-fields/uploaded-file-html.php', array( 'key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field ) ); ?>
+			<?php get_event_manager_template('form-fields/uploaded-file-html.php', array('key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field)); ?>
 
 
 		<?php endif; ?>
@@ -67,13 +65,13 @@ if ( ! empty( $field['ajax'] ) && event_manager_user_can_upload_file_via_ajax() 
 
 
 
-<input type="file" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-file_types="<?php echo esc_attr( implode( '|', $allowed_mime_types ) ); ?>" <?php if ( ! empty( $field['multiple'] ) ) echo wp_kses_post('multiple'; ?> name="<?php echo esc_attr( isset( $field['name'] ) ? $field['name'] : $key ); ?><?php if ( ! empty( $field['multiple'] ) ) echo '[]'); ?>" id="<?php echo esc_attr( $key ); ?>" placeholder="<?php echo empty( $field['placeholder'] ) ? '' : esc_attr( $field['placeholder'] ); ?>" />
+<input type="file" class="<?php echo esc_attr(implode(' ', $classes)); ?>" data-file_types="<?php echo esc_attr(implode('|', $allowed_mime_types)); ?>" <?php if (!empty($field['multiple'])) echo esc_attr('multiple'); ?> name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?><?php if (!empty($field['multiple'])) echo esc_attr('[]'); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo empty($field['placeholder']) ? '' : esc_attr($field['placeholder']); ?>" />
 
 
 <small class="description">
 
 
-	<?php if ( ! empty( $field['description'] ) ) : ?>
+	<?php if (!empty($field['description'])) : ?>
 
 
 		<?php echo $field['description']; ?>
@@ -82,7 +80,7 @@ if ( ! empty( $field['ajax'] ) && event_manager_user_can_upload_file_via_ajax() 
 	<?php else : ?>
 
 
-		<?php printf( __( 'Maximum file size: %s.', 'wp-event-manager' ), size_format( wp_max_upload_size() ) ); ?>
+		<?php printf(__('Maximum file size: %s.', 'wp-event-manager'), size_format(wp_max_upload_size())); ?>
 
 
 	<?php endif; ?>
