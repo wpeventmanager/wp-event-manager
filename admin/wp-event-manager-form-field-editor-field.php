@@ -8,7 +8,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 	<td class="sort-column">&nbsp;</td>
 
 	<td>
-		<input type="text" class="input-text" name="<?php echo $group_key; ?>[<?php echo esc_attr($field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($field['label'])); ?>" />
+		<input type="text" class="input-text" name="<?php echo wp_kses_post($group_key); ?>[<?php echo esc_attr($field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($field['label'])); ?>" />
 	</td>
 
 	<td class="field-type">
@@ -179,7 +179,7 @@ if (isset($field['type']) && $field['type'] == 'group') {
 																				'placeholder' => '',
 																			);
 																			include 'wp-event-manager-form-field-editor-group-field.php';
-	echo ob_get_clean();
+																			echo ob_get_clean();
 																			?>
 							">
 

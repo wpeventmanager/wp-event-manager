@@ -179,7 +179,7 @@ class WP_Event_Manager_Widget extends WP_Widget
 							<?php
 							if (isset($setting['options'])) {
 								foreach ($setting['options'] as $option_key => $option_value) { ?>
-									<option value="<?php echo $option_key; ?>" <?php if ($option_key ==  $value) echo 'selected'; ?>><?php echo esc_html($option_value); ?></option>
+									<option value="<?php echo wp_kses_post($option_key); ?>" <?php if ($option_key ==  $value) echo 'selected'; ?>><?php echo esc_html($option_value); ?></option>
 							<?php
 								}
 							}
@@ -324,7 +324,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 		if ($events->have_posts()) : ?>
 
-			<?php echo $before_widget; ?>
+			<?php echo wp_kses_post($before_widget); ?>
 
 			<?php if ($title) echo $before_title . $title . $after_title; ?>
 
@@ -338,7 +338,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 			</ul>
 
-			<?php echo $after_widget; ?>
+			<?php echo wp_kses_post($after_widget); ?>
 
 		<?php else : ?>
 
@@ -350,7 +350,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 		$content = ob_get_clean();
 
-		echo $content;
+		echo wp_kses_post($content);
 
 		$this->cache_widget($args, $content);
 	}
@@ -469,7 +469,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 		if ($featured_events->have_posts()) : ?>
 
-			<?php echo $before_widget; ?>
+			<?php echo wp_kses_post($before_widget); ?>
 
 			<?php if ($title) echo $before_title . $title . $after_title;   ?>
 
@@ -483,7 +483,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 			</ul>
 
-			<?php echo $after_widget; ?>
+			<?php echo wp_kses_post($after_widget); ?>
 
 		<?php else : ?>
 
@@ -495,7 +495,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 		$content = ob_get_clean();
 
-		echo $content;
+		echo wp_kses_post($content);
 
 		$this->cache_widget($args, $content);
 	}
@@ -656,7 +656,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 		if ($events->have_posts()) : ?>
 
-			<?php echo $before_widget; ?>
+			<?php echo wp_kses_post($before_widget); ?>
 
 			<?php if ($title) echo $before_title . $title . $after_title; ?>
 
@@ -670,7 +670,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 			</div>
 
-			<?php echo $after_widget; ?>
+			<?php echo wp_kses_post($after_widget); ?>
 
 		<?php else : ?>
 
@@ -682,7 +682,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 		$content = ob_get_clean();
 
-		echo $content;
+		echo wp_kses_post($content);
 
 		// 		$this->cache_widget( $args, $content );
 	}
@@ -843,7 +843,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 		if ($events->have_posts()) : ?>
 
-			<?php echo $before_widget; ?>
+			<?php echo wp_kses_post($before_widget); ?>
 
 			<?php if ($title) echo $before_title . $title . $after_title; ?>
 
@@ -857,7 +857,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 			</div>
 
-			<?php echo $after_widget; ?>
+			<?php echo wp_kses_post($after_widget); ?>
 
 		<?php else : ?>
 
@@ -869,7 +869,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 		$content = ob_get_clean();
 
-		echo $content;
+		echo wp_kses_post($content);
 
 		// 		$this->cache_widget( $args, $content );
 	}
