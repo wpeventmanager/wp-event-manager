@@ -52,8 +52,8 @@ body button.ui-button:focus {
     border-color: transparent;
 }
 
-.comiseo-daterangepicker .ui-state-default,
-.comiseo-daterangepicker .ui-widget-header{
+.comiseo-daterangepicker .ui-widget-content .ui-state-default,
+.comiseo-daterangepicker .ui-widget-content .ui-widget-header{
 	background: var(--wpem-gray-bg-color);
 	border: 0;
 	text-align: center;
@@ -69,13 +69,15 @@ body button.ui-button:focus {
     margin: 0;
     list-style: none;
 }
-.comiseo-daterangepicker-presets .ui-state-active {
+.comiseo-daterangepicker-presets .ui-widget-content .ui-state-active {
     border: 0;
     font-weight: inherit;
     background-color: var(--wpem-primary-color);
 }
 .comiseo-daterangepicker-presets .ui-menu-item-wrapper {
     padding: 5px;
+    cursor: pointer;
+    line-height: normal;
 }
 .ui-datepicker-multi .ui-datepicker-group table {
     border: 0;
@@ -110,32 +112,17 @@ body button.ui-button:focus {
 }
 
 
-@media screen and (min-device-width: 420px) and (max-device-width: 575px) { 
-	.datepicker-mobile .comiseo-daterangepicker-calendar{
+@media only screen and (max-device-width: 767px) { 
+	.comiseo-daterangepicker-calendar{
 		overflow: auto;
 	    max-width: 260px;
 	}
-}
-
-
-@media only screen and (max-width: 420px){
-    .comiseo-daterangepicker-presets{
+	.comiseo-daterangepicker-presets{
         display: block;
         height: auto;
     }
-    .datepicker-mobile .comiseo-daterangepicker-calendar{
-		overflow: auto;
-	    max-width: 280px;
-	}
-    /*.comiseo-daterangepicker > .comiseo-daterangepicker-main.ui-widget-content {
-	    max-width: 300px;
-	    overflow: auto;
-	}*/
-	/*.ui-datepicker-multi .ui-datepicker-group {
-	    width: 100%;
-	}
-	.comiseo-daterangepicker .ui-widget-content{
-		width: inherit !important;
-	}*/
 }
 
+
+
+	
