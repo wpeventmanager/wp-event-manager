@@ -65,4 +65,4 @@
 </ul>
 
 
-<?php if (!empty($field['description'])) : ?><small class="description"><?php echo $field['description']; ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?><small class="description"><?php echo wp_kses_post($field['description']); ?></small><?php endif; ?>
