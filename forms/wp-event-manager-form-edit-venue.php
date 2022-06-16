@@ -166,20 +166,20 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 				case 'publish' :
 
-					echo '<div class="event-manager-message wpem-alert wpem-alert-success">' . __( 'Your changes have been saved.', 'wp-event-manager' ) . ' <a href="' . get_permalink( $this->venue_id ) . '">' . __( 'View &rarr;', 'wp-event-manager' ) . '</a>' . '</div>';
+					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . get_permalink($this->venue_id) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>' . '</div>');
 
 				break;
 
 				default :
 
-					echo '<div class="event-manager-message wpem-alert wpem-alert-success">' . __( 'Your changes have been saved.', 'wp-event-manager' ) . '</div>';
+					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . '</div>');
 
 				break;
 			}
 
 		} catch ( Exception $e ) {
 
-			echo '<div class="event-manager-error wpem-alert wpem-alert-danger">' .  esc_html($e->getMessage()) . '</div>';
+			echo wp_kses_post('<div class="event-manager-error wpem-alert wpem-alert-danger">' .  esc_html($e->getMessage()) . '</div>');
 
 			return;
 		}

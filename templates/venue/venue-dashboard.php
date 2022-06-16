@@ -53,7 +53,7 @@
                                         $venue_youtube  = get_venue_youtube($venue);
 
                                         if (empty($venue_website) && empty($venue_facebook) && empty($venue_instagram) && empty($venue_twitter) && empty($venue_youtube)) {
-                                            echo '<h1 class="text-center">-</h1>';
+                                            echo wp_kses_post('<h1 class="text-center">-</h1>');
                                         } else {
                                         ?>
                                             <div class="wpem-venue-social-links">
@@ -151,7 +151,7 @@
                                                 if ($value['nonce']) {
                                                     $action_url = wp_nonce_url($action_url, 'event_manager_my_venue_actions');
                                                 }
-                                                echo '<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>';
+                                                echo wp_kses_post('<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>');
                                             }
                                             ?>
                                         </div>

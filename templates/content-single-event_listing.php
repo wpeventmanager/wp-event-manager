@@ -423,7 +423,7 @@ $event = $post;
                                 if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
                                     get_event_manager_template('event-registration.php');
                                 } else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
-                                    echo '<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>';
+                                    echo wp_kses_post('<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>');
                                 }
                                 ?>
 
@@ -471,7 +471,7 @@ $event = $post;
                                             <?php
                                             if (get_event_address()) {
                                                 display_event_address();
-                                                echo ',';
+                                                echo wp_kses_post(',');
                                             }
                                             ?>
                                             <?php display_event_location(); ?>

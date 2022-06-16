@@ -17,10 +17,10 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 			foreach ($field_types as $key => $type) {
 				if (in_array($field_key, $disbled_fields)) {
 					if ($key == $field['type']) {
-						echo '<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>';
+						echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 					}
 				} else {
-					echo '<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>';
+					echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 				}
 			}
 			?>
@@ -99,12 +99,12 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 					<?php $field['required'] = (isset($field['required']) ? $field['required'] : false); ?>
 					<option value="0" <?php
 														if ($field['required'] == false) {
-															echo 'selected="selected"';
+															echo wp_kses_post('selected="selected"');
 														}
 														?>><?php esc_attr_e('Not Required', 'wp-event-manager'); ?></option>
 					<option value="1" <?php
 														if ($field['required'] == true) {
-															echo 'selected="selected"';
+															echo wp_kses_post('selected="selected"');
 														}
 														?>><?php esc_attr_e('Required', 'wp-event-manager'); ?></option>
 				</select>

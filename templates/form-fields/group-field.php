@@ -79,7 +79,7 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
         <div class="wpem-tabs-action-buttons">
 
             <div class="wpem-group-counter-wrapper">
-                <div class="wpem-group-counter"><?php echo '%%group-row-index%%'; ?></div>
+                <div class="wpem-group-counter"><?php echo wp_kses_post('%%group-row-index%%'); ?></div>
             </div>
 
             <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php _e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($key . '_%%group-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>

@@ -758,7 +758,7 @@ class WP_Event_Manager_Settings
 
 						foreach ($this->settings as $key => $section) {
 
-							echo '<a href="#settings-' . sanitize_title($key) . '" class="nav-tab">' . esc_html($section[0]) . '</a>';
+							echo wp_kses_post('<a href="#settings-' . sanitize_title($key) . '" class="nav-tab">' . esc_html($section[0]) . '</a>');
 						}
 						?>
 					</h2>
@@ -773,14 +773,14 @@ class WP_Event_Manager_Settings
 
 								flush_rewrite_rules();
 
-								echo '<div class="updated fade event-manager-updated"><p>' . esc_attr__('Settings successfully saved', 'wp-event-manager') . '</p></div>';
+								echo wp_kses_post('<div class="updated fade event-manager-updated"><p>' . esc_attr__('Settings successfully saved', 'wp-event-manager') . '</p></div>');
 							}
 
 							foreach ($this->settings as $key => $section) {
 
-								echo '<div id="settings-' . sanitize_title($key) . '" class="settings_panel">';
+								echo wp_kses_post('<div id="settings-' . sanitize_title($key) . '" class="settings_panel">');
 
-								echo '<table class="form-table">';
+								echo wp_kses_post('<table class="form-table">');
 
 								foreach ($section[1] as $option) {
 
@@ -802,7 +802,7 @@ class WP_Event_Manager_Settings
 										}
 									}
 
-									echo '<tr valign="top" class="' . esc_attr($class) . '"><th scope="row"><label for="setting-' . esc_attr($option['name']) . '">' . esc_attr($option['label']) . '</a></th><td>';
+									echo wp_kses_post('<tr valign="top" class="' . esc_attr($class) . '"><th scope="row"><label for="setting-' . esc_attr($option['name']) . '">' . esc_attr($option['label']) . '</a></th><td>');
 
 									switch ($option['type']) {
 
@@ -813,7 +813,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . $option['desc'] . '</p>';
+												echo wp_kses_post(' <p class="description">' . $option['desc'] . '</p>');
 											}
 
 											break;
@@ -825,7 +825,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 											}
 
 											break;
@@ -837,7 +837,7 @@ class WP_Event_Manager_Settings
 
 												foreach ($option['options'] as $key => $name) {
 
-													echo '<option value="' . esc_attr($key) . '" ' . selected($value, $key, false) . '>' . esc_html($name) . '</option>';
+													echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . selected($value, $key, false) . '>' . esc_html($name) . '</option>');
 												}
 
 												?>
@@ -845,7 +845,7 @@ class WP_Event_Manager_Settings
 											<?php
 
 											if ($option['desc']) {
-												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 											}
 
 											break;
@@ -863,7 +863,7 @@ class WP_Event_Manager_Settings
 														}
 													}
 
-													echo '<option value="' . esc_attr($key) . '" ' . $selected . ' >' . esc_html($name) . '</option>';
+													echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . $selected . ' >' . esc_html($name) . '</option>');
 												}
 
 												?>
@@ -871,7 +871,7 @@ class WP_Event_Manager_Settings
 											<?php
 
 											if ($option['desc']) {
-												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 											}
 
 											break;
@@ -885,11 +885,11 @@ class WP_Event_Manager_Settings
 												<?php
 
 												foreach ($option['options'] as $key => $name) {
-													echo '<label><input name="' . esc_attr($option['name']) . '" type="radio" value="' . esc_attr($key) . '" ' . checked($value, $key, false) . ' />' . esc_html($name) . '</label><br>';
+													echo wp_kses_post('<label><input name="' . esc_attr($option['name']) . '" type="radio" value="' . esc_attr($key) . '" ' . checked($value, $key, false) . ' />' . esc_html($name) . '</label><br>');
 												}
 
 												if ($option['desc']) {
-													echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+													echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 												}
 
 												?>
@@ -921,7 +921,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 											}
 
 											break;
@@ -933,7 +933,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 											}
 
 											break;
@@ -947,7 +947,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 											}
 
 											break;
@@ -959,7 +959,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 											}
 
 											break;
@@ -970,7 +970,7 @@ class WP_Event_Manager_Settings
 
 											if ($option['desc']) {
 
-												echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
+												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
 											}
 
 											break;
@@ -984,9 +984,9 @@ class WP_Event_Manager_Settings
 
 											break;
 									}
-									echo '</td></tr>';
+									echo wp_kses_post('</td></tr>');
 								}
-								echo '</table></div>';
+								echo wp_kses_post('</table></div>');
 							}
 							?>
 						</div> <!-- .white-background- -->

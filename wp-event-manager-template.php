@@ -1409,7 +1409,7 @@ function display_venue_logo($size = 'full', $default = null, $post = null)
 		echo wp_kses_post('<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else {
 
-		echo '<img src="' . esc_attr(apply_filters('event_manager_default_venue_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />';
+		echo wp_kses_post('<img src="' . esc_attr(apply_filters('event_manager_default_venue_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
 	}
 }
 
@@ -1656,7 +1656,7 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
 	}
 	$video_embed = apply_filters('display_organizer_video_embed', $video_embed, $post);
 	if ($video_embed) {
-		echo '<div class="organizer_video">' . $video_embed . '</div>';
+		echo wp_kses_post('<div class="organizer_video">' . $video_embed . '</div>');
 	}
 }
 
@@ -2440,7 +2440,7 @@ function event_listing_class($class = '', $post_id = null)
 {
 
 	// Separates classes with a single space, collates classes for post DIV
-	echo 'class="' . join(' ', get_event_listing_class($class, $post_id)) . '"';
+	echo wp_kses_post('class="' . join(' ', get_event_listing_class($class, $post_id)) . '"');
 }
 
 /**
@@ -2954,11 +2954,11 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 			<?php
 			foreach ($pages as $page) {
 				if ($prev_page != $page - 1) {
-					echo '<li><span class="gap">...</span></li>';
+					echo wp_kses_post('<li><span class="gap">...</span></li>');
 				}
 
 				if ($current_page == $page) {
-					echo '<li><span class="page-numbers current">' . $page . '</span></li>';
+					echo wp_kses_post('<li><span class="page-numbers current">' . $page . '</span></li>');
 				} else {
 					$page_link = add_query_arg(
 						array(
@@ -2967,7 +2967,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 
 						)
 					);
-					echo '<li><a href="' . $page_link . '" class="page-numbers">' . $page . '</a></li>';
+					echo wp_kses_post('<li><a href="' . $page_link . '" class="page-numbers">' . $page . '</a></li>');
 				}
 
 				$prev_page = $page;

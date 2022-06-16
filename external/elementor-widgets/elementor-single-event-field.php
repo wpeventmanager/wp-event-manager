@@ -209,7 +209,7 @@ class Elementor_Event_Field extends Widget_Base {
 
             if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp)
             {
-                echo '<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>';
+                    echo wp_kses_post('<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>');
             }
             else
                 get_event_manager_template('event-registration.php');

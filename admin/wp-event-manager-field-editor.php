@@ -112,17 +112,17 @@ class WP_Event_Manager_Field_Editor {
 
 		if ( ! empty( $_GET['event-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_event_form_fields' );
-			echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
+			echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
 		if ( ! empty( $_GET['organizer-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_organizer_form_fields' );
-			echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
+			echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
 		if ( ! empty( $_GET['venue-reset-fields'] ) && ! empty( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'reset' ) ) {
 			delete_option( 'event_manager_submit_venue_form_fields' );
-			echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully reset.', 'wp-event-manager' ) . '</p></div>';
+			echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
 		if ( ! empty( $_POST ) && ! empty( $_POST['_wpnonce'] ) ) {
@@ -432,7 +432,7 @@ class WP_Event_Manager_Field_Editor {
 			}
 		}
 
-		echo '<div class="updated"><p>' . esc_attr__( 'The fields were successfully saved.', 'wp-event-manager' ) . '</p></div>';
+		echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully saved.', 'wp-event-manager') . '</p></div>');
 
 	}
 
