@@ -186,18 +186,3 @@ jQuery(document).ready(function($)
 {
    ContentEventListing.init();
 });
-
-
-// mobile view
-jQuery(document).ready( function() {
-    if ( jQuery(window).width() < 575) {
-     jQuery('html').addClass('datepicker-mobile');
-    }
-    else {}
-});
-
-jQuery(window).resize(function() {
-	if (jQuery(window).width() < 575) {
-	 jQuery('html').removeClass('datepicker-mobile');
-	}
-});
