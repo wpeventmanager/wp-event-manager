@@ -84,13 +84,12 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 	</td>
 
 	<td>
-		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][priority]" value="
-																		   <?php
-																				if (isset($field['priority'])) {
-																					printf(esc_html__('%s', 'wp-event-manager'), $field['priority']);
-																				}
-																				?>
-		" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" disabled />
+
+		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][priority]" value="<?php
+																																																																												if (isset($field['priority'])) {
+																																																																													echo esc_attr($field['priority']);
+																																																																												}
+																																																																												?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" />
 	</td>
 
 	<td class="field-rules">
