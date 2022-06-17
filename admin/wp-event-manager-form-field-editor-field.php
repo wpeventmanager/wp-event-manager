@@ -17,10 +17,10 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 			foreach ($field_types as $key => $type) {
 				if (in_array($field_key, $disbled_fields)) {
 					if ($key == $field['type']) {
-						echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
+						printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 					}
 				} else {
-					echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
+					printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 				}
 			}
 			?>
@@ -30,6 +30,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 	<td>
 		<input type="text" class="input-text" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][description]" value="<?php echo esc_attr(isset($field['description']) ? stripslashes($field['description']) : ''); ?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" />
 	</td>
+
 
 	<td class="field-options">
 		<?php
