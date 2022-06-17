@@ -156,7 +156,7 @@ class Elementor_Event_Tag extends Tag {
             } else if ($event_tag == 'event_location') {
                 display_event_location(true, $event);
             } else if ($event_tag == 'event_description') {
-                echo  get_event_description($event);
+                echo esc_attr(get_event_description($event));
             } else if ($event_tag == 'registration') {
                 get_event_manager_template('event-registration.php');
             } else if ($event_tag == 'event_start_date') {
@@ -174,11 +174,11 @@ class Elementor_Event_Tag extends Tag {
             } else if ($event_tag == 'organizer_logo') {
                 display_organizer_logo('full', '', $event);
             } else if ($event_tag == 'organizer_description') {
-                echo get_organizer_description($event);
+                echo esc_attr(get_organizer_description($event));
             } else if ($event_tag == 'organizer_email') {
                 display_organizer_email('', '', true, $event);
             } else if ($event_tag == 'event_organizer_ids') {
-                echo get_organizer_name($event, true);
+                echo esc_attr(get_organizer_name($event, true));
             } else if ($event_tag == 'organizer_website') {
                 display_organizer_website('', '', true, $event);
             } else if ($event_tag == 'organizer_twitter') {

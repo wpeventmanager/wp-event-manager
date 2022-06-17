@@ -507,7 +507,7 @@ class WP_Event_Manager_Shortcodes
 
 		global $event_manager;
 
-		echo $event_manager->forms->get_form('edit-organizer');
+		printf($event_manager->forms->get_form('edit-organizer'));
 	}
 
 	/**
@@ -678,7 +678,7 @@ class WP_Event_Manager_Shortcodes
 
 		global $event_manager;
 
-		echo $event_manager->forms->get_form('edit-venue');
+		printf($event_manager->forms->get_form('edit-venue'));
 	}
 
 	/**
@@ -953,7 +953,7 @@ class WP_Event_Manager_Shortcodes
 
 			if (!$show_pagination && $show_more) {
 
-				echo '<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong>' . __('Load more events', 'wp-event-manager') . '</strong></a>';
+				echo wp_kses_post('<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong>' . __('Load more events', 'wp-event-manager') . '</strong></a>');
 			}
 		} else {
 			$arr_selected_datetime = [];
@@ -1032,7 +1032,7 @@ class WP_Event_Manager_Shortcodes
 
 					<?php if ($show_pagination) : ?>
 
-						<?php echo get_event_listing_pagination($events->max_num_pages); ?>
+						<?php echo  wp_kses_post(get_event_listing_pagination($events->max_num_pages)); ?>
 
 					<?php else : ?>
 
@@ -1147,7 +1147,7 @@ class WP_Event_Manager_Shortcodes
 	public function event_filter_results()
 	{
 
-		echo '<div class="showing_applied_filters"></div>';
+		echo wp_kses_post('<div class="showing_applied_filters"></div>');
 	}
 
 	/**
@@ -1269,11 +1269,11 @@ class WP_Event_Manager_Shortcodes
 
 			<?php while ($events->have_posts()) : $events->the_post();
 
-				echo '<div class="event_summary_shortcode align' . esc_attr($align) . '" style="width: ' . esc_attr($width) . '">';
+				echo wp_kses_post('<div class="event_summary_shortcode align' . esc_attr($align) . '" style="width: ' . esc_attr($width) . '">');
 
 				get_event_manager_template_part('content-summary', 'event_listing');
 
-				echo '</div>';
+				echo wp_kses_post('</div>');
 
 			endwhile; ?>
 

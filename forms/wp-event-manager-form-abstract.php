@@ -108,7 +108,7 @@ abstract class WP_Event_Manager_Form {
 
 		foreach ( $this->errors as $error ) {
 
-			echo '<div class="event-manager-error wpem-alert wpem-alert-danger">' .  esc_html($error) . '</div>';
+			echo wp_kses_post('<div class="event-manager-error wpem-alert wpem-alert-danger">' .  esc_html($error) . '</div>');
 		}
 	}
 

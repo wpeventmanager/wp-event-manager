@@ -37,11 +37,11 @@
 
             <?php
             foreach (range('0', '9') as $letter) :
-                echo '<div class="organizer-letters-list"><a id="' . $letter . '" href="#' . $letter . '">' . $letter . '</a></div>';
+                echo wp_kses_post('<div class="organizer-letters-list"><a id="' . $letter . '" href="#' . $letter . '">' . $letter . '</a></div>');
             endforeach;
 
             foreach (range('A', 'Z') as $letter) :
-                echo '<div class="organizer-letters-list"><a id="' . $letter . '" href="#' . $letter . '">' . $letter . '</a></div>';
+                echo wp_kses_post('<div class="organizer-letters-list"><a id="' . $letter . '" href="#' . $letter . '">' . $letter . '</a></div>');
             endforeach;
             ?>
 

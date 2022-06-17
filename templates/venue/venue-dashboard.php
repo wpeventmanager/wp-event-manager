@@ -53,7 +53,7 @@
                                         $venue_youtube  = get_venue_youtube($venue);
 
                                         if (empty($venue_website) && empty($venue_facebook) && empty($venue_instagram) && empty($venue_twitter) && empty($venue_youtube)) {
-                                            echo '<h1 class="text-center">-</h1>';
+                                            echo wp_kses_post('<h1 class="text-center">-</h1>');
                                         } else {
                                         ?>
                                             <div class="wpem-venue-social-links">
@@ -110,11 +110,11 @@
                                         // echo get_event_venue_count($venue->ID);
                                         $events = get_event_by_venue_id($venue->ID);
                                         ?>
-                                        <div class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo sizeof($events); ?></a>
+                                        <div class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo  wp_kses_post(sizeof($events)); ?></a>
                                             <?php if (!empty($events)) : ?>
                                                 <span class="venue-events-list wpem-tooltiptext">
                                                     <?php foreach ($events as $event) : ?>
-                                                        <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php echo get_the_title($event->ID); ?></a></span>
+                                                        <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php  echo wp_kses_post(get_the_title($event->ID)); ?></a></span>
                                                     <?php endforeach; ?>
                                                 </span>
                                             <?php else : ?>
@@ -151,7 +151,7 @@
                                                 if ($value['nonce']) {
                                                     $action_url = wp_nonce_url($action_url, 'event_manager_my_venue_actions');
                                                 }
-                                                echo '<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>';
+                                                echo wp_kses_post('<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>');
                                             }
                                             ?>
                                         </div>

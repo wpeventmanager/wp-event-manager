@@ -263,7 +263,7 @@ class WP_Event_Manager_Writepanels
 						$id = $taxonomy . '-' . $term->term_id;
 						echo "<li id='" . esc_attr($id) . "'><label class='selectit'>";
 						echo "<input type='radio' id='in-" . esc_attr($id) . "' name='" . esc_attr($name) . "' " . checked($current, $term->term_id, false) . "value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . '<br />';
-						echo '</label></li>';
+						echo wp_kses_post('</label></li>');
 					}
 					?>
 				</ul>
@@ -277,7 +277,7 @@ class WP_Event_Manager_Writepanels
 						$id = 'popular-' . esc_attr($taxonomy) . '-' . esc_attr($term->term_id);
 						echo "<li id='" . esc_attr($id) . "'><label class='selectit'>";
 						echo "<input type='radio' name='" . esc_attr($name) . "' id='in-" . esc_attr($id) . "' value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . '<br />';
-						echo '</label></li>';
+						echo wp_kses_post('</label></li>');
 					}
 					?>
 				</ul>
@@ -336,9 +336,9 @@ class WP_Event_Manager_Writepanels
 					<?php
 					foreach ($terms as $term) {
 						$id = $taxonomy . '-' . $term->term_id;
-						echo "<li id='$id'><label class='selectit'>";
+						echo wp_kses_post("<li id='$id'><label class='selectit'>");
 						echo "<input type='radio' id='in-$id' name='{$name}'" . checked($current, $term->term_id, false) . "value='$term->term_id' />$term->name<br />";
-						echo '</label></li>';
+						echo wp_kses_post('</label></li>');
 					}
 					?>
 				</ul>
@@ -349,10 +349,10 @@ class WP_Event_Manager_Writepanels
 				<ul id="<?php echo esc_attr($taxonomy); ?>checklist-pop" class="categorychecklist form-no-clear">
 					<?php
 					foreach ($popular as $term) {
-						$id = 'popular-' . esc_attr($taxonomy) . '-' . esc_attr($term->term_id);
+						$id = wp_kses_post('popular-' . esc_attr($taxonomy) . '-' . esc_attr($term->term_id));
 						echo "<li id='$id'><label class='selectit'>";
 						echo "<input type='radio'  name='{$name}' id='in-$id'  value='$term->term_id' />" . esc_html($term->name) . '<br />';
-						echo '</label></li>';
+						echo wp_kses_post('</label></li>');
 					}
 					?>
 				</ul>
@@ -707,7 +707,7 @@ class WP_Event_Manager_Writepanels
 			<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php
 				$value = isset($field['value']) ? $field['value'] : $field['default'];
-				echo WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice($value);
+				echo ess_attr(WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice($value));
 				?>
 			</select>
 		</p>
@@ -830,7 +830,7 @@ class WP_Event_Manager_Writepanels
 			<span class="current-author">
 				<?php
 				if ($posted_by) {
-					echo '<a href="' . esc_url(admin_url('user-edit.php?user_id=' . absint($author_id))) . '">#' . absint($author_id) . ' &ndash; ' . esc_attr($posted_by->user_login) . '</a>';
+					echo wp_kses_post('<a href="' . esc_url(admin_url('user-edit.php?user_id=' . absint($author_id))) . '">#' . absint($author_id) . ' &ndash; ' . esc_attr($posted_by->user_login) . '</a>');
 				} else {
 					esc_attr_e('Guest User', 'wp-event-manager');
 				}
@@ -887,7 +887,7 @@ class WP_Event_Manager_Writepanels
 	{
 		global $post, $thepostid;
 		$thepostid = $post->ID;
-		echo '<div class="wp_event_manager_meta_data">';
+		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
 		do_action('event_manager_event_listing_data_start', $thepostid);
 		foreach ($this->event_listing_fields() as $key => $field) {
@@ -903,7 +903,7 @@ class WP_Event_Manager_Writepanels
 			}
 		}
 		do_action('event_manager_event_listing_data_end', $thepostid);
-		echo '</div>';
+		echo wp_kses_post('</div>');
 	}
 
 	/**
@@ -1245,7 +1245,7 @@ class WP_Event_Manager_Writepanels
 	{
 		global $post, $thepostid;
 		$thepostid = $post->ID;
-		echo '<div class="wp_event_manager_meta_data">';
+		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
 		do_action('event_manager_event_organizer_data_start', $thepostid);
 		foreach ($this->organizer_listing_fields() as $key => $field) {
@@ -1261,7 +1261,7 @@ class WP_Event_Manager_Writepanels
 			}
 		}
 		do_action('event_manager_event_organizer_data_end', $thepostid);
-		echo '</div>';
+		echo wp_kses_post('</div>');
 	}
 
 	/**
@@ -1396,7 +1396,7 @@ class WP_Event_Manager_Writepanels
 	{
 		global $post, $thepostid;
 		$thepostid = $post->ID;
-		echo '<div class="wp_event_manager_meta_data">';
+		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
 		do_action('event_manager_event_venue_data_start', $thepostid);
 		foreach ($this->venue_listing_fields() as $key => $field) {
@@ -1412,7 +1412,7 @@ class WP_Event_Manager_Writepanels
 			}
 		}
 		do_action('event_manager_event_venue_data_end', $thepostid);
-		echo '</div>';
+		echo wp_kses_post('</div>');
 	}
 
 	/**

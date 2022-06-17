@@ -16,10 +16,10 @@
 				if ( ! in_array( $key, array( 'group' ) ) ) {
 					if ( in_array( $child_field_key, $disbled_fields ) ) {
 						if ( $key == $child_field['type'] ) {
-							echo '<option value="' . esc_attr( $key ) . '" ' . selected( $child_field['type'], $key, false ) . '>' . esc_html( $type ) . '</option>';
+							echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . selected($child_field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 						}
 					} else {
-						echo '<option value="' . esc_attr( $key ) . '" ' . selected( $child_field['type'], $key, false ) . '>' . esc_html( $type ) . '</option>';
+						echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . selected($child_field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 					}
 				}
 			}
@@ -102,13 +102,15 @@
 					<option value="0" 
 					<?php
 					if ( $child_field['required'] == false ) {
-						echo 'selected="selected"';}
+						echo wp_kses_post('selected="selected"');
+					}
 					?>
 					 ><?php esc_attr_e( 'Not Required', 'wp-event-manager' ); ?></option>
 					<option value="1" 
 					<?php
 					if ( $child_field['required'] == true ) {
-						echo 'selected="selected"';}
+						echo wp_kses_post('selected="selected"');
+					}
 					?>
 					 ><?php esc_attr_e( 'Required', 'wp-event-manager' ); ?></option>
 				</select>

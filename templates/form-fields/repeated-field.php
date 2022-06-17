@@ -77,7 +77,7 @@
             <div class="wpem-tabs-action-buttons">
 
                 <div class="wpem-ticket-counter-wrapper">
-                    <div class="wpem-ticket-counter"><?php echo '%%repeated-row-index%%'; ?></div>
+                    <div class="wpem-ticket-counter"><?php echo wp_kses_post('%%repeated-row-index%%'); ?></div>
                 </div>
 
                 <div class="wpem-ticket-close-button"><a href="#remove" class="remove-row" title="<?php _e('Remove', 'wp-event-manager'); ?>" id="repeated-row-<?php echo esc_attr($key . '_%%repeated-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
