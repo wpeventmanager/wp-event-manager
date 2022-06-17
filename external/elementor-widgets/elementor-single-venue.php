@@ -143,7 +143,7 @@ class Elementor_Single_Venue extends Widget_Base {
 		    $venue_id = '';
 		    $settings['venue_id']='';
 		}
-		echo do_shortcode('[event_venue '.$venue_id.' ]');
+		echo  wp_kses_post(do_shortcode('[event_venue '.$venue_id.' ]'));
 	}
 
 	/**

@@ -107,10 +107,10 @@
 			<?php do_action('event_manager_event_dashboard_before'); ?>
 
 			<?php if ($current_action === 'organizer_dashboard' && !empty($current_action)) : ?>
-				<?php echo do_shortcode('[organizer_dashboard]'); ?>
+				<?php echo  wp_kses_post(do_shortcode('[organizer_dashboard]')); ?>
 
 			<?php elseif ($current_action === 'venue_dashboard' && !empty($current_action)) : ?>
-				<?php echo do_shortcode('[venue_dashboard]'); ?>
+				<?php echo  wp_kses_post(do_shortcode('[venue_dashboard]')); ?>
 
 			<?php elseif (!in_array($current_action, ['event_dashboard', 'delete', 'mark_cancelled', 'mark_not_cancelled']) && !empty($current_action)) : ?>
 				<?php if (has_action('event_manager_event_dashboard_content_' . $current_action)) : ?>
@@ -148,7 +148,7 @@
 					}
 					?>
 
-					<form action="" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php echo printf($display_block); ?>">
+					<form action="" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf($display_block); ?>">
 						<div class="wpem-events-filter">
 
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
@@ -200,7 +200,7 @@
 											<div class="wpem-dashboard-event-detail-front-block">
 												<div class="wpem-dashboard-event-name">
 													<?php if ($event->post_status == 'publish') : ?>
-														<a href="<?php echo get_permalink($event->ID); ?>"><?php echo esc_html($event->post_title); ?></a>
+														<a href="<?php echo esc_attr(get_permalink($event->ID)); ?>"><?php echo esc_html($event->post_title); ?></a>
 													<?php else : ?>
 														<?php echo esc_attr($event->post_title); ?> <small class="wpem-event-status-<?php echo sanitize_title(get_event_status($event)); ?>"><?php display_event_status($event); ?></small>
 													<?php endif; ?>
@@ -340,7 +340,7 @@
 
 																	<?php if ('event_title' === $key) : ?>
 																		<?php if ($event->post_status == 'publish') : ?>
-																			<a href="<?php echo get_permalink($event->ID); ?>"><?php echo esc_html($event->post_title); ?></a>
+																			<a href="<?php echo esc_attr(get_permalink($event->ID)); ?>"><?php echo esc_html($event->post_title); ?></a>
 																		<?php else : ?>
 																			<?php echo esc_attr($event->post_title); ?> <small>(<?php display_event_status($event); ?>)</small>
 																		<?php endif; ?>
@@ -368,7 +368,7 @@
 																	?>
 
 																	<?php elseif ('view_count' === $key) :
-																		echo get_post_views_count($event);
+																		echo  wp_kses_post(get_post_views_count($event));
 																	?>
 
 																	<?php else : ?>

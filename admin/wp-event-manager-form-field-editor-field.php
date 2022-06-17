@@ -179,7 +179,7 @@ if (isset($field['type']) && $field['type'] == 'group') {
 																				'placeholder' => '',
 																			);
 																			include 'wp-event-manager-form-field-editor-group-field.php';
-																			echo ob_get_clean();
+																			echo wp_kses_post(ob_get_clean());
 																			?>
 							">
 

@@ -182,7 +182,7 @@ class Elementor_Event_Field extends Widget_Base {
                 $is_event_online = is_event_online($event);
 
                 if (!$is_event_online) {
-                    echo get_event_location();
+                    echo  wp_kses_post(get_event_location());
                 } else {
                     echo __('Online Event', 'wp-event-manager');
                 }
@@ -197,7 +197,7 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'event_banner') {
                 display_event_banner('full', '', $event);
             } else if ($settings['event_field'] == 'event_description') {
-                echo get_event_description($event);
+                echo  wp_kses_post( get_event_description($event));
             } else if ($settings['event_field'] == 'registration') {
 
                 $registration_end_date = get_event_registration_end_date($event);
@@ -230,11 +230,11 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'organizer_logo') {
                 display_organizer_logo('full', '', $event);
             } else if ($settings['event_field'] == 'organizer_description') {
-                echo get_organizer_description($event);
+                echo  wp_kses_post( get_organizer_description($event));
             } else if ($settings['event_field'] == 'organizer_email') {
                 display_organizer_email('', '', true, $event);
             } else if ($settings['event_field'] == 'event_organizer_ids') {
-                echo get_organizer_name($event, true);
+                echo  wp_kses_post(get_organizer_name($event, true));
             } else if ($settings['event_field'] == 'organizer_website') {
                 display_organizer_website('', '', true, $event);
             } else if ($settings['event_field'] == 'organizer_twitter') {
@@ -253,7 +253,7 @@ class Elementor_Event_Field extends Widget_Base {
                                 <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                             </div>
                             <div class="wpem-modal-content">
-                                <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => 1, 'rel' => 0)); ?>
+                                <?php echo  wp_kses_post(wp_oembed_get(get_organizer_youtube(), array('autoplay' => 1, 'rel' => 0))); ?>
                             </div>
                         </div>
                         <a href="#"><div class="wpem-modal-overlay"></div></a>
@@ -315,7 +315,7 @@ class Elementor_Event_Field extends Widget_Base {
                 </div>
                 <?php
             } else if ($settings['event_field'] == 'event_venue_ids') {
-                echo get_event_venue_name($event, true);
+                echo  wp_kses_post(get_event_venue_name($event, true));
             } else {
 
                 $event_field = get_post_meta($post_id, '_' . $settings['event_field'], true);

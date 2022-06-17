@@ -40,5 +40,5 @@ foreach ( $field['options'] as $option_key => $value ) : ?>
 
 <?php endforeach; ?>
 
-<?php if ( ! empty( $field['description'] ) ) : ?><small class="description"><?php echo $field['description']; ?></small><?php endif; ?>
+<?php if ( ! empty( $field['description'] ) ) : ?><small class="description"><?php echo esc_attr($field['description']); ?></small><?php endif; ?>
 

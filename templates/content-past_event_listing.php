@@ -20,8 +20,8 @@ $thumbnail     = get_event_thumbnail();
                         <div class="wpem-event-date">
                             <div class="wpem-event-date-type">
                                 <div class="wpem-from-date">
-                                    <div class="wpem-date"><?php echo date_i18n('d', strtotime($start_date)); ?></div>
-                                    <div class="wpem-month"><?php echo date_i18n('M', strtotime($start_date)); ?></div>
+                                    <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($start_date))); ?></div>
+                                    <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($start_date))); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -34,13 +34,13 @@ $thumbnail     = get_event_thumbnail();
                         <div class="wpem-event-date-type">
 
                             <div class="wpem-from-date">
-                                <div class="wpem-date"><?php echo date_i18n('d', strtotime($start_date)); ?></div>
-                                <div class="wpem-month"><?php echo date_i18n('M', strtotime($start_date)); ?></div>
+                                <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($start_date))); ?></div>
+                                <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($start_date))); ?></div>
                             </div>
                             <div class="wpem-to-date">
                                 <div class="wpem-date-separator">-</div>
-                                <div class="wpem-date"><?php echo date_i18n('d', strtotime($end_date)); ?></div>
-                                <div class="wpem-month"><?php echo date_i18n('M', strtotime($end_date)); ?></div>
+                                <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($end_date))); ?></div>
+                                <div class="wpem-month"><?php echo  wp_kses_post(ate_i18n('M', strtotime($end_date))); ?></div>
                             </div>
 
                         </div>
@@ -79,7 +79,7 @@ $thumbnail     = get_event_thumbnail();
                         if (get_event_ticket_option()) {
                         ?>
                             <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text">
-                                <span class="wpem-event-ticket-type-text"><?php echo '#' . esc_html(get_event_ticket_option()); ?></span>
+                                <span class="wpem-event-ticket-type-text"><?php echo  wp_kses_post('#' . esc_html(get_event_ticket_option())); ?></span>
                             </div>
                         <?php }
                         ?>

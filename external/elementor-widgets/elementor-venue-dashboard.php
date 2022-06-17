@@ -119,7 +119,7 @@ class Elementor_Venue_Dashboard extends Widget_Base {
 		else
 		    $posts_per_page = 'posts_per_page=10';
 		
-		echo do_shortcode('[venue_dashboard '.$posts_per_page.' ]');
+		echo  wp_kses_post(do_shortcode('[venue_dashboard '.$posts_per_page.' ]'));
 	}
 
 

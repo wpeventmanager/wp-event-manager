@@ -27,8 +27,8 @@ $thumbnail  = get_event_thumbnail($post, 'full');
                                 if (!empty($start_date)) {
                                 ?>
                                     <div class="wpem-from-date">
-                                        <div class="wpem-date"><?php echo date_i18n('d', strtotime($start_date)); ?></div>
-                                        <div class="wpem-month"><?php echo date_i18n('M', strtotime($start_date)); ?></div>
+                                        <div class="wpem-date"><?php echo  wp_kses_post( ate_i18n('d', strtotime($start_date))); ?></div>
+                                        <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($start_date))); ?></div>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -44,8 +44,8 @@ $thumbnail  = get_event_thumbnail($post, 'full');
                             if (!empty($start_date)) {
                             ?>
                                 <div class="wpem-from-date">
-                                    <div class="wpem-date"><?php echo date_i18n('d', strtotime($start_date)); ?></div>
-                                    <div class="wpem-month"><?php echo date_i18n('M', strtotime($start_date)); ?></div>
+                                    <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($start_date))); ?></div>
+                                    <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($start_date))); ?></div>
                                 </div>
                             <?php } ?>
 
@@ -54,8 +54,8 @@ $thumbnail  = get_event_thumbnail($post, 'full');
                             ?>
                                 <div class="wpem-to-date">
                                     <div class="wpem-date-separator">-</div>
-                                    <div class="wpem-date"><?php echo date_i18n('d', strtotime($end_date)); ?></div>
-                                    <div class="wpem-month"><?php echo date_i18n('M', strtotime($end_date)); ?></div>
+                                    <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($end_date))); ?></div>
+                                    <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($end_date))); ?></div>
                                 </div>
                             <?php } ?>
                         </div>

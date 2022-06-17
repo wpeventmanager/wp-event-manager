@@ -33,7 +33,7 @@
 								'placeholder' => '',
 							);
 							require 'wp-event-manager-form-field-editor-group-field.php';
-			echo  ob_get_clean();
+			echo wp_kses_post(ob_get_clean());
 							?>
 						">
 			</tbody>

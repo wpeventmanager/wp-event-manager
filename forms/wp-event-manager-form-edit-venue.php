@@ -62,7 +62,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 		if ( empty( $this->venue_id  ) || ( $venue->post_status !== 'publish') ) {
 
-			echo wpautop( __( 'Invalid listing', 'wp-event-manager' ) );
+			echo  wp_kses_post(wpautop( __( 'Invalid listing', 'wp-event-manager' ) ));
 
 			return;
 		}

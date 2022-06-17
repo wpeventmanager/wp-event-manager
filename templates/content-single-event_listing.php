@@ -367,7 +367,7 @@ $event = $post;
                                                             <?php if (is_array($field_value)) : ?>
                                                                 <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                     <div class="wpem-additional-info-block-details-content-items">
-                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?> -</strong> <?php echo implode(', ', $field_value); ?></p>
+                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?> -</strong> <?php echo  esc_attr(implode(', ', $field_value)); ?></p>
                                                                     </div>
                                                                 </div>
                                                             <?php else : ?>
@@ -435,7 +435,7 @@ $event = $post;
                                     <div class="clearfix">&nbsp;</div>
                                     <h3 class="wpem-heading-text"><?php _e('Date And Time', 'wp-event-manager') ?></h3>
                                     <div class="wpem-event-date-time">
-                                        <span class="wpem-event-date-time-text"><?php echo date_i18n($date_format, strtotime($start_date)); ?>
+                                        <span class="wpem-event-date-time-text"><?php echo  wp_kses_post(date_i18n($date_format, strtotime($start_date))); ?>
                                             <?php if ($start_time) {
                                                 echo esc_attr($separator) . ' ' . $start_time;
                                             }
@@ -447,7 +447,7 @@ $event = $post;
 
                                         ?>
                                             <br />
-                                            <span class="wpem-event-date-time-text"><?php echo date_i18n($date_format, strtotime($end_date)); ?>
+                                            <span class="wpem-event-date-time-text"><?php echo  wp_kses_post(date_i18n($date_format, strtotime($end_date))); ?>
                                                 <?php if ($end_time) {
                                                     echo esc_attr($separator) . ' ' . $end_time;
                                                 }

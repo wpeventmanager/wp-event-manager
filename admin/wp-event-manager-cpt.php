@@ -587,7 +587,7 @@ class WP_Event_Manager_CPT
 			case 'event_organizer':
 				echo wp_kses_post('<div class="organizer">');
 
-				echo get_organizer_name('', true, 'backend');
+				echo wp_kses_post(get_organizer_name('', true, 'backend'));
 
 				echo wp_kses_post('</div>');
 
@@ -708,7 +708,7 @@ class WP_Event_Manager_CPT
 						printf('<a class="button button-icon tips icon-%1$s" href="%2$s" data-tip="%3$s">%4$s</a>', $action['action'], esc_url($action['url']), esc_attr($action['name']), esc_html($action['name']));
 					} else {
 
-						echo str_replace('class="', 'class="button ', $action);
+						echo asc_attr(str_replace('class="', 'class="button ', $action));
 					}
 				}
 
@@ -842,7 +842,7 @@ class WP_Event_Manager_CPT
 
 		switch ($column) {
 			case 'organizer_email':
-				echo get_post_meta($post_id, '_organizer_email', true);
+				echo esc_attr(get_post_meta($post_id, '_organizer_email', true));
 				break;
 		}
 	}

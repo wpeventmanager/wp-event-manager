@@ -110,11 +110,11 @@
                                         // echo get_event_venue_count($venue->ID);
                                         $events = get_event_by_venue_id($venue->ID);
                                         ?>
-                                        <div class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo sizeof($events); ?></a>
+                                        <div class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo  wp_kses_post(sizeof($events)); ?></a>
                                             <?php if (!empty($events)) : ?>
                                                 <span class="venue-events-list wpem-tooltiptext">
                                                     <?php foreach ($events as $event) : ?>
-                                                        <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php echo get_the_title($event->ID); ?></a></span>
+                                                        <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php  wp_kses_post(echo get_the_title($event->ID)); ?></a></span>
                                                     <?php endforeach; ?>
                                                 </span>
                                             <?php else : ?>

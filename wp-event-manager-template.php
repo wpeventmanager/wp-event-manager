@@ -162,7 +162,7 @@ function get_event_listing_pagination($max_num_pages, $current_page = 1)
 function display_event_status($post = null)
 {
 
-	echo get_event_status($post);
+	echo esc_attr(get_event_status($post));
 }
 
 /**
@@ -238,7 +238,7 @@ function attendees_can_apply($post = null)
 function display_event_permalink($post = null)
 {
 
-	echo get_event_permalink($post);
+	echo esc_attr(get_event_permalink($post));
 }
 
 /**
@@ -531,13 +531,13 @@ function display_event_location($map_link = true, $post = null)
 	$location = get_event_location($post);
 
 	if (is_event_online($post)) {
-		echo apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager'));
+		echo wp_kses_post(apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
 	} else {
 
 		if ($map_link)
-			echo apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post);
+			echo wp_kses_post(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
 		else
-			echo  $location;
+			echo wp_kses_post($location);
 	}
 }
 
@@ -2990,5 +2990,5 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 	</nav>
 <?php
 
-	echo ob_get_clean();
+	echo esc_sttr(ob_get_clean());
 }

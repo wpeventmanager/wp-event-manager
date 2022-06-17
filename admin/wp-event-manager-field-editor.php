@@ -57,7 +57,7 @@ class WP_Event_Manager_Field_Editor
 			'placeholder' => '',
 		);
 		include 'wp-event-manager-form-field-editor-group-field-row.php';
-		echo ob_get_clean();
+		echo esc_attr(ob_get_clean());
 
 		wp_die();
 	}
@@ -132,7 +132,7 @@ class WP_Event_Manager_Field_Editor
 		}
 
 		if (!empty($_POST) && !empty($_POST['_wpnonce'])) {
-			echo $this->form_editor_save();
+			echo wp_kses_post($this->form_editor_save());
 		}
 
 		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description'));

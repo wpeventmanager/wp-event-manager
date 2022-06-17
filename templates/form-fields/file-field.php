@@ -74,7 +74,7 @@ if (!empty($field['ajax']) && event_manager_user_can_upload_file_via_ajax()) {
 	<?php if (!empty($field['description'])) : ?>
 
 
-		<?php echo $field['description']; ?>
+		<?php echo esc_attr($field['description']); ?>
 
 
 	<?php else : ?>

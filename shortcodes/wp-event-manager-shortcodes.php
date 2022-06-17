@@ -678,7 +678,7 @@ class WP_Event_Manager_Shortcodes
 
 		global $event_manager;
 
-		echo $event_manager->forms->get_form('edit-venue');
+	echo  wp_kses_post($event_manager->forms->get_form('edit-venue'));
 	}
 
 	/**
@@ -1032,7 +1032,7 @@ class WP_Event_Manager_Shortcodes
 
 					<?php if ($show_pagination) : ?>
 
-						<?php echo get_event_listing_pagination($events->max_num_pages); ?>
+						<?php echo  wp_kses_post(get_event_listing_pagination($events->max_num_pages)); ?>
 
 					<?php else : ?>
 
