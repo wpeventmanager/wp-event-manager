@@ -34,7 +34,7 @@ global $event_manager;
         <?php do_action('submit_organizer_form_organizer_fields_start'); ?>
         <?php foreach ($organizer_fields as $key => $field) : ?>
             <fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-                <label for="<?php esc_attr_e($key); ?>"><?php echo __($field['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
+                <label for="<?php esc_attr_e($key); ?>"><?php echo esc_attr($field['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
                 <div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
                     <?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
                 </div>
