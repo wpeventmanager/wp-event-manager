@@ -885,11 +885,11 @@ class WP_Event_Manager_Settings
 												<?php
 
 												foreach ($option['options'] as $key => $name) {
-													echo wp_kses_post('<label><input name="' . esc_attr($option['name']) . '" type="radio" value="' . esc_attr($key) . '" ' . checked($value, $key, false) . ' />' . esc_html($name) . '</label><br>');
+													echo '<label><input name="' . esc_attr($option['name']) . '" type="radio" value="' . esc_attr($key) . '" ' . checked($value, $key, false) . ' />' . esc_html($name) . '</label><br>';
 												}
 
 												if ($option['desc']) {
-													echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
+													echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
 												}
 
 												?>
