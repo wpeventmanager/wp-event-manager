@@ -143,7 +143,7 @@ class Elementor_Single_Event extends Widget_Base {
 		    $event_id = '';
 		    $settings['event_id']='';
 		}
-		echo  wp_kses_post(do_shortcode('[event '.$event_id.' ]'));
+		echo do_shortcode('[event '.$event_id.' ]');
 	}
 
 	/**

@@ -327,7 +327,7 @@ class Elementor_Event_Listing extends Widget_Base {
             
         $shortcode = '[events show_pagination="'.esc_attr($settings['show_pagination']).'" per_page="'.esc_attr($settings['per_page']).'" order="'.esc_attr($settings['order']).'" orderby="'.esc_attr($settings['orderby']).'" '.$featured.' '.$cancelled.' show_filters="'.esc_attr($settings['show_filters']).'" show_categories="'.esc_attr($settings['show_categories']).'" show_event_types="'.esc_attr($settings['show_event_types']).'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' ]';
 
-        echo wp_kses_post(do_shortcode($shortcode));
+        echo do_shortcode($shortcode);
 	}
 
 	/**

@@ -192,7 +192,7 @@ class Elementor_Event_Summary extends Widget_Base {
 	    else
 	        $featured = '';
 
-	    echo  wp_kses_post(do_shortcode('[event_summary '.$event_id.' '.$width.' '.$align.' '.$featured.' ]'));
+	    echo do_shortcode('[event_summary '.$event_id.' '.$width.' '.$align.' '.$featured.' ]');
 	}
 
 	/**

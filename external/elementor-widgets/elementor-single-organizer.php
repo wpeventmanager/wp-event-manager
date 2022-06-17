@@ -143,7 +143,7 @@ class Elementor_Single_Organizer extends Widget_Base {
 		    $organizer_id = '';
 		    $settings['organizer_id']='';
 		}
-		echo  wp_kses_post(do_shortcode('[event_organizer '.$organizer_id.' ]'));
+		echo do_shortcode('[event_organizer '.$organizer_id.' ]');
 	}
 
 	/**

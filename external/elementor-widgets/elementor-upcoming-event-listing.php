@@ -221,7 +221,7 @@ class Elementor_Upcoming_Event_Listing extends Widget_Base {
 
 
 		$shortcode = '[upcoming_events show_pagination="' . esc_attr($settings['show_pagination']) . '" per_page="' . esc_attr($settings['per_page']) . '" order="' . esc_attr($settings['order']) . '" meta_key="' . esc_attr($settings['meta_key']) . '" ' . $location . ' ' . $keywords . ' ' . $categories . ' ' . $event_types . ']';
-		echo  wp_kses_post(do_shortcode($shortcode));
+		echo do_shortcode($shortcode);
 	}
 
 	/**

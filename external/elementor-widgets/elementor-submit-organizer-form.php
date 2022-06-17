@@ -104,7 +104,7 @@ class Elementor_Submit_Organizer_Form extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo  wp_kses_post( do_shortcode('[submit_organizer_form]'));
+		echo do_shortcode('[submit_organizer_form]');
 	}
 
 	/**

@@ -107,10 +107,10 @@
 			<?php do_action('event_manager_event_dashboard_before'); ?>
 
 			<?php if ($current_action === 'organizer_dashboard' && !empty($current_action)) : ?>
-				<?php echo  wp_kses_post(do_shortcode('[organizer_dashboard]')); ?>
+				<?php echo do_shortcode('[organizer_dashboard]'); ?>
 
 			<?php elseif ($current_action === 'venue_dashboard' && !empty($current_action)) : ?>
-				<?php echo  wp_kses_post(do_shortcode('[venue_dashboard]')); ?>
+				<?php echo do_shortcode('[venue_dashboard]'); ?>
 
 			<?php elseif (!in_array($current_action, ['event_dashboard', 'delete', 'mark_cancelled', 'mark_not_cancelled']) && !empty($current_action)) : ?>
 				<?php if (has_action('event_manager_event_dashboard_content_' . $current_action)) : ?>
