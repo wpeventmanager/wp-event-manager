@@ -114,7 +114,7 @@
                                             <?php if (!empty($events)) : ?>
                                                 <span class="venue-events-list wpem-tooltiptext">
                                                     <?php foreach ($events as $event) : ?>
-                                                        <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php  wp_kses_post(echo get_the_title($event->ID)); ?></a></span>
+                                                        <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php  echo wp_kses_post(get_the_title($event->ID)); ?></a></span>
                                                     <?php endforeach; ?>
                                                 </span>
                                             <?php else : ?>
