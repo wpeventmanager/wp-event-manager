@@ -531,13 +531,13 @@ function display_event_location($map_link = true, $post = null)
 	$location = get_event_location($post);
 
 	if (is_event_online($post)) {
-		printf(apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
+		echo wp_kses_post(apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
 	} else {
 
 		if ($map_link)
-		printf(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
+		echo wp_kses_post(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
 		else
-			printf($location);
+			echo wp_kses_post($location);
 	}
 }
 
