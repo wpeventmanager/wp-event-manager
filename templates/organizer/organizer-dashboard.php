@@ -56,7 +56,7 @@
 										$organizer_youtube  = get_organizer_youtube($organizer);
 
 										if (empty($organizer_website) && empty($organizer_facebook) && empty($organizer_instagram) && empty($organizer_twitter) && empty($organizer_youtube)) {
-											echo '<h1 class="text-center">-</h1>';
+											echo wp_kses_post('<h1 class="text-center">-</h1>');
 										} else {
 										?>
 											<div class="wpem-organizer-social-links">
@@ -152,7 +152,7 @@
 												if ($value['nonce']) {
 													$action_url = wp_nonce_url($action_url, 'event_manager_my_organizer_actions');
 												}
-												echo '<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>';
+												echo wp_kses_post('<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>');
 											}
 											?>
 										</div>

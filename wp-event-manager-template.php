@@ -162,7 +162,7 @@ function get_event_listing_pagination($max_num_pages, $current_page = 1)
 function display_event_status($post = null)
 {
 
-	echo get_event_status($post);
+	echo esc_attr(get_event_status($post));
 }
 
 /**
@@ -238,7 +238,7 @@ function attendees_can_apply($post = null)
 function display_event_permalink($post = null)
 {
 
-	echo get_event_permalink($post);
+	echo esc_attr(get_event_permalink($post));
 }
 
 /**
@@ -484,7 +484,7 @@ function display_event_publish_date($post = null)
 	} else {
 		$display_date = sprintf(__('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
 	}
-	echo '<time datetime="' . get_post_time('Y-m-d') . '">' . esc_html($display_date) . '</time>';
+	printf('<time datetime="' . get_post_time('Y-m-d') . '">' . esc_html($display_date) . '</time>');
 }
 
 /**
@@ -531,13 +531,13 @@ function display_event_location($map_link = true, $post = null)
 	$location = get_event_location($post);
 
 	if (is_event_online($post)) {
-		echo apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager'));
+		echo wp_kses_post(apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
 	} else {
 
 		if ($map_link)
-			echo apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post);
+		echo wp_kses_post(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
 		else
-			echo  $location;
+			echo wp_kses_post($location);
 	}
 }
 
@@ -725,15 +725,15 @@ function display_event_banner($size = 'full', $default = null, $post = null)
 
 			$banner = event_manager_get_resized_image($banner, $size);
 		}
-		echo '<link rel="image_src" href="' . esc_attr($banner) . '"/>';
-		echo '<img itemprop="image" content="' . esc_attr($banner) . '" src="' . esc_attr($banner) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<link rel="image_src" href="' . esc_attr($banner) . '"/>');
+		printf('<img itemprop="image" content="' . esc_attr($banner) . '" src="' . esc_attr($banner) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else if ($default) {
 
-		echo '<img itemprop="image" content="' . esc_attr($default) . '" src="' . esc_attr($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<img itemprop="image" content="' . esc_attr($default) . '" src="' . esc_attr($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else if (is_array($banner) && isset($banner[0])) {
-		echo '<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else {
-		echo '<img itemprop="image" content="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" src="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_the_title()) . '" />';
+		printf('<img itemprop="image" content="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" src="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_the_title()) . '" />');
 	}
 }
 
@@ -1307,7 +1307,7 @@ function display_organizer_logo($size = 'full', $default = null, $post = null)
 	$logo = get_organizer_logo($post, $size);
 
 	if (has_post_thumbnail($post)) {
-		echo '<img class="organizer_logo" src="' . esc_attr($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<img class="organizer_logo" src="' . esc_attr($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 
 		// Before 1.0., logo URLs were stored in post meta.
 	} elseif (!empty($logo) && !is_array($logo) && (strstr($logo, 'http') || file_exists($logo))) {
@@ -1317,15 +1317,15 @@ function display_organizer_logo($size = 'full', $default = null, $post = null)
 			$logo = event_manager_get_resized_image($logo, $size);
 		}
 
-		echo '<img src="' . esc_attr($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<img src="' . esc_attr($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} elseif ($default) {
 
-		echo '<img src="' . esc_attr($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<img src="' . esc_attr($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else if (is_array($logo) && isset($logo[0])) {
-		echo '<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else {
 
-		echo '<img src="' . esc_attr(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<img src="' . esc_attr(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	}
 }
 
@@ -1391,7 +1391,7 @@ function display_venue_logo($size = 'full', $default = null, $post = null)
 	$logo = get_venue_logo($post, $size);
 
 	if (has_post_thumbnail($post)) {
-		echo '<img class="venue_logo" src="' . esc_attr($logo) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />';
+		printf('<img class="venue_logo" src="' . esc_attr($logo) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
 
 		// Before 1.0., logo URLs were stored in post meta.
 	} elseif (!empty($logo) && !is_array($logo) && (strstr($logo, 'http') || file_exists($logo))) {
@@ -1401,15 +1401,15 @@ function display_venue_logo($size = 'full', $default = null, $post = null)
 			$logo = event_manager_get_resized_image($logo, $size);
 		}
 
-		echo '<img src="' . esc_attr($logo) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />';
+		printf('<img src="' . esc_attr($logo) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
 	} elseif ($default) {
 
-		echo '<img src="' . esc_attr($default) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />';
+		printf('<img src="' . esc_attr($default) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
 	} else if (is_array($logo) && isset($logo[0])) {
-		echo '<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		printf('<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else {
 
-		echo '<img src="' . esc_attr(apply_filters('event_manager_default_venue_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />';
+		printf('<img src="' . esc_attr(apply_filters('event_manager_default_venue_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
 	}
 }
 
@@ -1656,7 +1656,7 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
 	}
 	$video_embed = apply_filters('display_organizer_video_embed', $video_embed, $post);
 	if ($video_embed) {
-		echo '<div class="organizer_video">' . $video_embed . '</div>';
+		printf('<div class="organizer_video">' . $video_embed . '</div>');
 	}
 }
 
@@ -2440,7 +2440,7 @@ function event_listing_class($class = '', $post_id = null)
 {
 
 	// Separates classes with a single space, collates classes for post DIV
-	echo 'class="' . join(' ', get_event_listing_class($class, $post_id)) . '"';
+	printf('class="' . join(' ', get_event_listing_class($class, $post_id)) . '"');
 }
 
 /**
@@ -2864,7 +2864,7 @@ function display_event_ticket_price($before = '', $after = '', $echo = true, $po
 	if (strlen($event_ticket_price) == 0)
 		return;
 
-	$event_ticket_price = esc_attr(strip_tags($event_ticket_price));
+	$event_ticket_price = strip_tags($event_ticket_price);
 
 	$event_ticket_price = $before . $event_ticket_price . $after;
 
@@ -2954,11 +2954,11 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 			<?php
 			foreach ($pages as $page) {
 				if ($prev_page != $page - 1) {
-					echo '<li><span class="gap">...</span></li>';
+					printf('<li><span class="gap">...</span></li>');
 				}
 
 				if ($current_page == $page) {
-					echo '<li><span class="page-numbers current">' . $page . '</span></li>';
+					printf('<li><span class="page-numbers current">' . $page . '</span></li>');
 				} else {
 					$page_link = add_query_arg(
 						array(
@@ -2967,7 +2967,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 
 						)
 					);
-					echo '<li><a href="' . $page_link . '" class="page-numbers">' . $page . '</a></li>';
+					printf('<li><a href="' . $page_link . '" class="page-numbers">' . $page . '</a></li>');
 				}
 
 				$prev_page = $page;

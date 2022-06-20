@@ -26,7 +26,7 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
 
                 <div class="wpem-tabs-action-buttons">
                     <div class="wpem-group-counter-wrapper">
-                        <div class="wpem-group-counter"><?php echo absint($index + 1); ?></div>
+                        <div class="wpem-group-counter"><?php echo  esc_attr(absint($index + 1)); ?></div>
                     </div>
                     <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php _e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($index); ?>"><i class="wpem-icon-cross"></i></a></div>
                 </div>
@@ -79,7 +79,7 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
         <div class="wpem-tabs-action-buttons">
 
             <div class="wpem-group-counter-wrapper">
-                <div class="wpem-group-counter"><?php echo '%%group-row-index%%'; ?></div>
+                <div class="wpem-group-counter"><?php echo wp_kses_post('%%group-row-index%%'); ?></div>
             </div>
 
             <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php _e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($key . '_%%group-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
@@ -109,8 +109,9 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
         echo esc_attr(ob_get_clean());
         ?>">+ <?php
                 if (!empty($field['label'])) {
-                    echo $field['label'];
+                    echo esc_attr($field['label']);
                 };
                 ?>
 </a>
-<?php if (!empty($field['description'])) : ?><small class="description"><?php echo $field['description']; ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?><small class="description"><?php echo esc_
+attr($field['description']); ?></small><?php endif; ?>

@@ -234,10 +234,10 @@ class WP_Event_Manager_CPT
 					$titles[] = get_the_title($event_id);
 				}
 
-				echo '<div class="updated"><p>' . sprintf(__('%s approved', 'wp-event-manager'), '&quot;' . implode('&quot;, &quot;', $titles) . '&quot;') . '</p></div>';
+				echo wp_kses_post('<div class="updated"><p>' . sprintf(__('%s approved', 'wp-event-manager'), '&quot;' . implode('&quot;, &quot;', $titles) . '&quot;') . '</p></div>');
 			} else {
 
-				echo '<div class="updated"><p>' . sprintf(__('%s approved', 'wp-event-manager'), '&quot;' . get_the_title($approved_events) . '&quot;') . '</p></div>';
+				echo wp_kses_post('<div class="updated"><p>' . sprintf(__('%s approved', 'wp-event-manager'), '&quot;' . get_the_title($approved_events) . '&quot;') . '</p></div>');
 			}
 		}
 	}
@@ -253,7 +253,7 @@ class WP_Event_Manager_CPT
 
 		if ($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events'])) {
 
-			$expired_events =sanitize_text_field($_REQUEST['expired_events']);
+			$expired_events = sanitize_text_field($_REQUEST['expired_events']);
 
 			if (is_array($expired_events)) {
 
@@ -266,10 +266,10 @@ class WP_Event_Manager_CPT
 					$titles[] = get_the_title($event_id);
 				}
 
-				echo '<div class="updated"><p>' . sprintf(__('%s expired', 'wp-event-manager'), '&quot;' . implode('&quot;, &quot;', $titles) . '&quot;') . '</p></div>';
+				echo wp_kses_post('<div class="updated"><p>' . sprintf(__('%s expired', 'wp-event-manager'), '&quot;' . implode('&quot;, &quot;', $titles) . '&quot;') . '</p></div>');
 			} else {
 
-				echo '<div class="updated"><p>' . sprintf(__('%s expired', 'wp-event-manager'), '&quot;' . get_the_title($expired_events) . '&quot;') . '</p></div>';
+				echo wp_kses_post('<div class="updated"><p>' . sprintf(__('%s expired', 'wp-event-manager'), '&quot;' . get_the_title($expired_events) . '&quot;') . '</p></div>');
 			}
 		}
 	}
@@ -320,7 +320,7 @@ class WP_Event_Manager_CPT
 
 		$output .= '</select>';
 
-		echo $output;
+		printf($output);
 	}
 
 	/**
@@ -353,7 +353,7 @@ class WP_Event_Manager_CPT
 		$output .= $walker->walk($terms, 0, $r);
 		$output .= '</select>';
 
-		echo $output;
+		printf($output);
 	}
 
 	/**
@@ -525,15 +525,15 @@ class WP_Event_Manager_CPT
 		switch ($column) {
 
 			case 'event_status':
-				echo '<span data-tip="' . esc_attr(get_event_status($post)) . '" class="tips status-' . esc_attr($post->post_status) . '">' . esc_attr(get_event_status($post)) . '</span>';
+				echo wp_kses_post('<span data-tip="' . esc_attr(get_event_status($post)) . '" class="tips status-' . esc_attr($post->post_status) . '">' . esc_attr(get_event_status($post)) . '</span>');
 
 				break;
 
 			case 'cancelled':
 				if (is_event_cancelled($post)) {
-					echo '<span class="tips dashicons dashicons-no" data-tip="' . __('Cancelled', 'wp-event-manager') . '">' . __('Cancelled', 'wp-event-manager') . '</span>';
+					echo wp_kses_post('<span class="tips dashicons dashicons-no" data-tip="' . __('Cancelled', 'wp-event-manager') . '">' . __('Cancelled', 'wp-event-manager') . '</span>');
 				} else {
-					echo '&ndash;';
+					echo wp_kses_post('&ndash;');
 				}
 
 				break;
@@ -542,30 +542,30 @@ class WP_Event_Manager_CPT
 
 			case 'featured_event':
 				if (is_event_featured($post)) {
-					echo '<span class="tips dashicons dashicons-star-filled" data-tip="' . __('Featured', 'wp-event-manager') . '">' . __('Featured', 'wp-event-manager') . '</span>';
+					echo wp_kses_post('<span class="tips dashicons dashicons-star-filled" data-tip="' . __('Featured', 'wp-event-manager') . '">' . __('Featured', 'wp-event-manager') . '</span>');
 				} else {
-					echo '<span class="tips dashicons dashicons-star-empty" data-tip="' . __('Not Featured', 'wp-event-manager') . '">' . __('Not Featured', 'wp-event-manager') . '</span>';
+					echo wp_kses_post('<span class="tips dashicons dashicons-star-empty" data-tip="' . __('Not Featured', 'wp-event-manager') . '">' . __('Not Featured', 'wp-event-manager') . '</span>');
 				}
 
 				break;
 
 			case 'event_banner':
-				echo '<div class="event_banner">';
+				echo wp_kses_post('<div class="event_banner">');
 
 				display_event_banner();
 
-				echo '</div>';
+				echo wp_kses_post('</div>');
 
 				break;
 
 			case 'event_title':
-				echo '<div class="event_title">';
+				echo wp_kses_post('<div class="event_title">');
 
-				echo '<a href="' . esc_url(admin_url('post.php?post=' . $post->ID . '&action=edit')) . '" class="tips event_title" data-tip="' . sprintf(__('ID: %d', 'wp-event-manager'), $post->ID) . '">' . esc_html($post->post_title) . '</a>';
+				echo wp_kses_post('<a href="' . esc_url(admin_url('post.php?post=' . $post->ID . '&action=edit')) . '" class="tips event_title" data-tip="' . sprintf(__('ID: %d', 'wp-event-manager'), $post->ID) . '">' . esc_html($post->post_title) . '</a>');
 
-				echo '</div>';
+				echo wp_kses_post('</div>');
 
-				echo '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__('Show more details', 'wp-event-manager') . '</span></button>';
+				echo wp_kses_post('<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__('Show more details', 'wp-event-manager') . '</span></button>');
 
 				break;
 
@@ -574,7 +574,7 @@ class WP_Event_Manager_CPT
 
 				if ($types && !empty($types)) {
 					foreach ($types as $type) {
-						echo '<span class="event-type ' . $type->slug . '">' . $type->name . '</span>';
+						echo wp_kses_post('<span class="event-type ' . $type->slug . '">' . $type->name . '</span>');
 					}
 				}
 				break;
@@ -585,11 +585,11 @@ class WP_Event_Manager_CPT
 				break;
 
 			case 'event_organizer':
-				echo '<div class="organizer">';
+				echo wp_kses_post('<div class="organizer">');
 
-				echo get_organizer_name('', true, 'backend');
+				echo wp_kses_post(get_organizer_name('', true, 'backend'));
 
-				echo '</div>';
+				echo wp_kses_post('</div>');
 
 				break;
 
@@ -602,9 +602,9 @@ class WP_Event_Manager_CPT
 					} else {
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_start_date));
 					}
-					echo $date;
+					echo wp_kses_post($date);
 				} else {
-					echo '&ndash;';
+					echo wp_kses_post('&ndash;');
 				}
 				break;
 
@@ -618,9 +618,9 @@ class WP_Event_Manager_CPT
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_end_date));
 					}
 
-					echo $date;
+					echo wp_kses_post($date);
 				} else {
-					echo '&ndash;';
+					echo wp_kses_post('&ndash;');
 				}
 				break;
 
@@ -634,17 +634,17 @@ class WP_Event_Manager_CPT
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_expiry_date));
 					}
 
-					echo $date;
+					echo wp_kses_post($date);
 				}
 
-				// echo '<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>';
+				// echo wp_kses_post('<strong>' .date_i18n( get_option( 'date_format' ), strtotime( get_event_expiry_date($post->ID)) )  . '</strong>');
 				else {
-					echo '&ndash;';
+					echo wp_kses_post('&ndash;');
 				}
 				break;
 
 			case 'event_actions':
-				echo '<div class="actions">';
+				echo wp_kses_post('<div class="actions">');
 
 				$admin_actions = apply_filters('post_row_actions', array(), $post);
 
@@ -708,11 +708,11 @@ class WP_Event_Manager_CPT
 						printf('<a class="button button-icon tips icon-%1$s" href="%2$s" data-tip="%3$s">%4$s</a>', $action['action'], esc_url($action['url']), esc_attr($action['name']), esc_html($action['name']));
 					} else {
 
-						echo str_replace('class="', 'class="button ', $action);
+						echo asc_attr(str_replace('class="', 'class="button ', $action));
 					}
 				}
 
-				echo '</div>';
+				echo wp_kses_post('</div>');
 
 				break;
 		}
@@ -842,7 +842,7 @@ class WP_Event_Manager_CPT
 
 		switch ($column) {
 			case 'organizer_email':
-				echo get_post_meta($post_id, '_organizer_email', true);
+				echo esc_attr(get_post_meta($post_id, '_organizer_email', true));
 				break;
 		}
 	}
@@ -887,13 +887,13 @@ class WP_Event_Manager_CPT
 
 				<?php if (!empty($display)) : ?>
 
-					jQuery('#post-status-display').html('<?php echo $display; ?>');
+					jQuery('#post-status-display').html('<?php echo wp_kses_post($display); ?>');
 
 				<?php endif; ?>
 
 				var select = jQuery('#post-status-select').find('select');
 
-				jQuery(select).html("<?php echo $options; ?>");
+				jQuery(select).html("<?php echo wp_kses_post($options); ?>");
 			});
 		</script>
 <?php

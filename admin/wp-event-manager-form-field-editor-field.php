@@ -8,7 +8,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 	<td class="sort-column">&nbsp;</td>
 
 	<td>
-		<input type="text" class="input-text" name="<?php echo $group_key; ?>[<?php echo esc_attr($field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($field['label'])); ?>" />
+		<input type="text" class="input-text" name="<?php echo wp_kses_post($group_key); ?>[<?php echo esc_attr($field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($field['label'])); ?>" />
 	</td>
 
 	<td class="field-type">
@@ -17,10 +17,10 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 			foreach ($field_types as $key => $type) {
 				if (in_array($field_key, $disbled_fields)) {
 					if ($key == $field['type']) {
-						echo '<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>';
+						printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 					}
 				} else {
-					echo '<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>';
+					printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 				}
 			}
 			?>
@@ -30,6 +30,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 	<td>
 		<input type="text" class="input-text" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][description]" value="<?php echo esc_attr(isset($field['description']) ? stripslashes($field['description']) : ''); ?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" />
 	</td>
+
 
 	<td class="field-options">
 		<?php
@@ -83,13 +84,12 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 	</td>
 
 	<td>
-		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][priority]" value="
-																		   <?php
-																				if (isset($field['priority'])) {
-																					printf(esc_html__('%s', 'wp-event-manager'), $field['priority']);
-																				}
-																				?>
-		" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" disabled />
+
+		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][priority]" value="<?php
+																																																																												if (isset($field['priority'])) {
+																																																																													echo esc_attr($field['priority']);
+																																																																												}
+																																																																												?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" />
 	</td>
 
 	<td class="field-rules">
@@ -99,12 +99,12 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 					<?php $field['required'] = (isset($field['required']) ? $field['required'] : false); ?>
 					<option value="0" <?php
 														if ($field['required'] == false) {
-															echo 'selected="selected"';
+															echo wp_kses_post('selected="selected"');
 														}
 														?>><?php esc_attr_e('Not Required', 'wp-event-manager'); ?></option>
 					<option value="1" <?php
 														if ($field['required'] == true) {
-															echo 'selected="selected"';
+															echo wp_kses_post('selected="selected"');
 														}
 														?>><?php esc_attr_e('Required', 'wp-event-manager'); ?></option>
 				</select>
@@ -179,7 +179,7 @@ if (isset($field['type']) && $field['type'] == 'group') {
 																				'placeholder' => '',
 																			);
 																			include 'wp-event-manager-form-field-editor-group-field.php';
-	echo ob_get_clean();
+																			echo wp_kses_post(ob_get_clean());
 																			?>
 							">
 
