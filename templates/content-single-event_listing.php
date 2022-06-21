@@ -167,7 +167,7 @@ $event = $post;
                                                     <?php
                                                     $field_key = '_' . $name;
                                                     $field_value = $event->$field_key;
-                                             ?>
+                                                    ?>
 
                                                     <?php if (!empty($field_value)) : ?>
 
@@ -177,7 +177,7 @@ $event = $post;
 
                                                                 <div class="wpem-col-12 wpem-additional-info-block-group">
 
-                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?></strong></p>
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?></strong></p>
 
                                                                     <?php foreach ($field_value as $child_index => $child_value) : ?>
 
@@ -363,7 +363,7 @@ $event = $post;
                                                                     <p class="wpem-additional-info-block-textarea-text"><a target="_blank" href="<?php if (isset($field_value)) echo esc_url($field_value); ?>"><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?></a></p>
                                                                 </div>
                                                             </div>
-                                                            <?php else : ?>
+                                                        <?php else : ?>
                                                             <?php if (is_array($field_value)) : ?>
                                                                 <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                     <div class="wpem-additional-info-block-details-content-items">

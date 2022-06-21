@@ -26,7 +26,6 @@ $prev_page   = 0;
 		<?php
 			foreach ( $pages as $page ) {
 
-
 				if ( $prev_page != $page - 1 ) {
 					echo  wp_kses_post('<li><span class="gap">...</span></li>');
 				}
