@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-$editor = apply_filters( 'submit_event_form_wp_editor_args', array(
-	'textarea_name' => isset( $field['name'] ) ? $field['name'] : $key,
+$editor = apply_filters('submit_event_form_wp_editor_args', array(
+	'textarea_name' => isset($field['name']) ? $field['name'] : $key,
 	'media_buttons' => false,
 	'textarea_rows' => 8,
 	'quicktags'     => false,
@@ -18,8 +18,8 @@ $editor = apply_filters( 'submit_event_form_wp_editor_args', array(
 		'toolbar3'                      => '',
 		'toolbar4'                      => ''
 	),
-) );
+));
 
-wp_editor( isset( $field['value'] ) ? wp_kses_post( $field['value'] ) : '', $key, $editor );
+wp_editor(isset($field['value']) ?  $field['value']  : '', $key, $editor);
 
-if ( ! empty( $field['description'] ) ) : ?><small class="description"><?php echo $field['description']; ?></small><?php endif; ?>
+if (!empty($field['description'])) : ?><small class="description"><?php echo esc_attr_e($field['description']); ?></small><?php endif; ?>
