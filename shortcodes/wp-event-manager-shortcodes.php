@@ -247,7 +247,7 @@ class WP_Event_Manager_Shortcodes
 
 		ob_start();
 
-		$search_order_by = 	isset($_GET['search_order_by']) ? $_GET['search_order_by'] : '';
+		$search_order_by = 	isset($_GET['search_order_by']) ? sanitize_text_field($_GET['search_order_by']) : '';
 
 		if (isset($search_order_by) && !empty($search_order_by)) {
 			$search_order_by = explode('|', $search_order_by);
@@ -293,11 +293,11 @@ class WP_Event_Manager_Shortcodes
 
 		$events = new WP_Query($args);
 
-		echo $this->event_dashboard_message;
+		echo apply_filters('wp_kses_allowed_html', $this->event_dashboard_message);
 		//display organiser delete message #905
-		echo $this->organizer_dashboard_message;
+		echo apply_filters('wp_kses_allowed_html', $this->organizer_dashboard_message);
 		//display venue delete message #905
-		echo $this->venue_dashboard_message;
+		echo apply_filters('wp_kses_allowed_html', $this->venue_dashboard_message);
 
 		$event_dashboard_columns = apply_filters('event_manager_event_dashboard_columns', array(
 
@@ -1560,7 +1560,7 @@ class WP_Event_Manager_Shortcodes
 		$organizer    = $organizers->posts[0];
 
 		$paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
-		$current_page    = isset($_REQUEST['pagination']) ? $_REQUEST['pagination'] : $paged;
+		$current_page    = isset($_REQUEST['pagination']) ? sanitize_text_field($_REQUEST['pagination']) : sanitize_text_field($paged);
 		$per_page        = 10;
 		$today_date      = date("Y-m-d");
 		$organizer_id    = $organizer->ID;

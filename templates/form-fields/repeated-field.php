@@ -118,7 +118,7 @@
             echo esc_attr(ob_get_clean());
             ?>">+ <?php
                     if (!empty($field['label'])) {
-                        echo $field['label'];
+                        echo esc_attr($field['label']);
                     };
                     ?>
     </a>

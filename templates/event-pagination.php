@@ -1,4 +1,4 @@
-<?phpecho wp_kses_post('<li><span class="gap">...</span></li>');echo wp_kses_post('<li><span  data-page="' . $page . '" class="page-numbers current">' . $page . '</span></li>');echo wp_kses_post('<li><a href="#" data-page="' . $page . '" class="page-numbers">' . $page . '</a></li>');
+<?php
 /**
  * Pagination - Show numbered pagination for the [events] shortcode
  */
@@ -25,7 +25,6 @@ $prev_page   = 0;
 		
 		<?php
 			foreach ( $pages as $page ) {
-
 
 				if ( $prev_page != $page - 1 ) {
 					echo  wp_kses_post('<li><span class="gap">...</span></li>');

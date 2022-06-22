@@ -4,7 +4,7 @@
 	<?php foreach ($field['options'] as $key => $value) : ?>
 
 
-		<option value="<?php echo esc_attr($key); ?>" <?php if (isset($field['value']) || isset($field['default'])) selected(isset($field['value']) ? $field['value'] : $field['default'], $key); ?>><?php echo esc_html($value); ?></option>
+		<option value="<?php echo esc_attr($key); ?>" <?php if (isset($field['value']) || isset($field['default'])) selected(isset($field['value']) ? $field['value'] : $field['default'], $key); ?>><?php echo esc_attr($value); ?></option>
 
 
 	<?php endforeach; ?>
@@ -13,4 +13,4 @@
 </select>
 
 
-<?php if (!empty($field['description'])) : ?><small class="description"><?php echo $field['description']; ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?><small class="description"><?php echo apply_filters('wp_kses_allowed_html', $field['description']); ?></small><?php endif; ?>

@@ -1,4 +1,4 @@
-<ul class="event-manager-term-checklist event-manager-term-checklist-<?php echo $key ?>">
+<ul class="event-manager-term-checklist event-manager-term-checklist-<?php echo esc_attr($key) ?>">
 
 
 	<?php

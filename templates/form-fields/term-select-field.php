@@ -4,30 +4,22 @@ $field['default'] = isset($field['default']) ? $field['default'] : '';
 // Get selected value
 
 
-if ( isset( $field['value'] ) ) {
+if (isset($field['value'])) {
 
 
 	$selected = $field['value'];
-
-
-} elseif ( is_int( $field['default'] ) ) {
+} elseif (is_int($field['default'])) {
 
 
 	$selected = $field['default'];
-
-
-} elseif ( ! empty( $field['default'] ) && ( $term = get_term_by( 'slug', $field['default'], $field['taxonomy'] ) ) ) {
+} elseif (!empty($field['default']) && ($term = get_term_by('slug', $field['default'], $field['taxonomy']))) {
 
 
 	$selected = $term->term_id;
-
-
 } else {
 
 
 	$selected = '';
-
-
 }
 
 
@@ -37,19 +29,17 @@ if ( isset( $field['value'] ) ) {
 // Select only supports 1 value
 
 
-if ( is_array( $selected ) ) {
+if (is_array($selected)) {
 
 
-	$selected = current( $selected );
-
-
+	$selected = current($selected);
 }
 
 
 
 
 
-wp_dropdown_categories( apply_filters( 'event_manager_term_select_field_wp_dropdown_categories_args', array(
+wp_dropdown_categories(apply_filters('event_manager_term_select_field_wp_dropdown_categories_args', array(
 
 
 	'taxonomy'         => $field['taxonomy'],
@@ -64,7 +54,7 @@ wp_dropdown_categories( apply_filters( 'event_manager_term_select_field_wp_dropd
 	'show_option_none' => $field['required'] ? '' : '-',
 
 
-	'name'             => isset( $field['name'] ) ? $field['name'] : $key,
+	'name'             => isset($field['name']) ? $field['name'] : $key,
 
 
 	'orderby'          => 'name',
@@ -76,9 +66,7 @@ wp_dropdown_categories( apply_filters( 'event_manager_term_select_field_wp_dropd
 	'hide_empty'       => false
 
 
-), $key, $field ) );
+), $key, $field));
 
 
-if ( ! empty( $field['description'] ) ) : ?><small class="description"><?php echo $field['description']; ?></small><?php endif; ?>
-
-
+if (!empty($field['description'])) : ?><small class="description"><?php echo esc_textarea($field['description']); ?></small><?php endif; ?>

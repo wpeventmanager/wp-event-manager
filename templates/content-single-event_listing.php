@@ -167,7 +167,7 @@ $event = $post;
                                                     <?php
                                                     $field_key = '_' . $name;
                                                     $field_value = $event->$field_key;
-                                             ?>
+                                                    ?>
 
                                                     <?php if (!empty($field_value)) : ?>
 
@@ -177,7 +177,7 @@ $event = $post;
 
                                                                 <div class="wpem-col-12 wpem-additional-info-block-group">
 
-                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo $field['label']; ?></strong></p>
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?></strong></p>
 
                                                                     <?php foreach ($field_value as $child_index => $child_value) : ?>
 
@@ -363,7 +363,7 @@ $event = $post;
                                                                     <p class="wpem-additional-info-block-textarea-text"><a target="_blank" href="<?php if (isset($field_value)) echo esc_url($field_value); ?>"><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?></a></p>
                                                                 </div>
                                                             </div>
-                                                            <?php else : ?>
+                                                        <?php else : ?>
                                                             <?php if (is_array($field_value)) : ?>
                                                                 <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                     <div class="wpem-additional-info-block-details-content-items">
@@ -405,8 +405,9 @@ $event = $post;
                                 <?php do_action('single_event_listing_button_start'); ?>
 
                                 <?php
+            $post = $event;
                                 $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
-                                $registration_end_date = get_event_registration_end_date();
+            $registration_end_date = get_event_registration_end_date();
                                 $registration_end_date = !empty($registration_end_date) ? $registration_end_date . ' 23:59:59' : '';
                                 $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
                                 $event_timezone          = get_event_timezone();
@@ -474,23 +475,23 @@ $event = $post;
                                                 echo wp_kses_post(',');
                                             }
                                             ?>
-                                            <?php display_event_location(); ?>
+                                            <?php echo esc_attr($location); ?>
                                         </div>
                                     </div>
 
-                                    <?php if (get_option('event_manager_enable_event_types') && get_event_type()) : ?>
+                                    <?php if (get_option('event_manager_enable_event_types') && get_event_type($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Types', 'wp-event-manager'); ?></h3>
-                                        <div class="wpem-event-type"><?php display_event_type(); ?></div>
+                                        <div class="wpem-event-type"><?php display_event_type($event); ?></div>
                                     <?php endif; ?>
 
-                                    <?php if (get_option('event_manager_enable_categories') && get_event_category()) : ?>
+                                    <?php if (get_option('event_manager_enable_categories') && get_event_category($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
-                                        <div class="wpem-event-category"><?php display_event_category(); ?></div>
+                                        <div class="wpem-event-category"><?php display_event_category($event); ?></div>
                                     <?php endif; ?>
 
-                                    <?php if (get_organizer_youtube()) : ?>
+                                    <?php if (get_organizer_youtube($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <a id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></a>
                                         <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Watch video', 'wp-event-manager'); ?>">
@@ -502,7 +503,7 @@ $event = $post;
                                                     <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                                                 </div>
                                                 <div class="wpem-modal-content">
-                                                    <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => '1', 'rel' => 0)); ?>
+                                                    <?php echo wp_oembed_get(get_organizer_youtube($event), array('autoplay' => '1', 'rel' => 0)); ?>
                                                 </div>
                                             </div>
                                             <a href="#">
@@ -550,6 +551,7 @@ $event = $post;
                 </div>
 
                 <?php
+                $post = $event;
                 if (get_option('enable_event_organizer')) {
                     get_event_manager_template(
                         'content-single-event_listing-organizer.php',

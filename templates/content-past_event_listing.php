@@ -40,7 +40,7 @@ $thumbnail     = get_event_thumbnail();
                             <div class="wpem-to-date">
                                 <div class="wpem-date-separator">-</div>
                                 <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($end_date))); ?></div>
-                                <div class="wpem-month"><?php echo  wp_kses_post(ate_i18n('M', strtotime($end_date))); ?></div>
+                                <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($end_date))); ?></div>
                             </div>
 
                         </div>

@@ -89,7 +89,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 																																																																												if (isset($field['priority'])) {
 																																																																													echo esc_attr($field['priority']);
 																																																																												}
-																																																																												?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" />
+																																																																												?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" disabled />
 	</td>
 
 	<td class="field-rules">
