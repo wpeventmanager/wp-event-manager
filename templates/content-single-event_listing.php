@@ -490,7 +490,7 @@ $event = $post;
                                         <div class="wpem-event-category"><?php display_event_category($event); ?></div>
                                     <?php endif; ?>
 
-                                    <?php if (get_organizer_youtube()) : ?>
+                                    <?php if (get_organizer_youtube($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <a id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></a>
                                         <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Watch video', 'wp-event-manager'); ?>">
