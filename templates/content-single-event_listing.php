@@ -478,16 +478,16 @@ $event = $post;
                                         </div>
                                     </div>
 
-                                    <?php if (get_option('event_manager_enable_event_types') && get_event_type()) : ?>
+                                    <?php if (get_option('event_manager_enable_event_types') && get_event_type($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Types', 'wp-event-manager'); ?></h3>
-                                        <div class="wpem-event-type"><?php display_event_type(); ?></div>
+                                        <div class="wpem-event-type"><?php display_event_type($event); ?></div>
                                     <?php endif; ?>
 
-                                    <?php if (get_option('event_manager_enable_categories') && get_event_category()) : ?>
+                                    <?php if (get_option('event_manager_enable_categories') && get_event_category($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
-                                        <div class="wpem-event-category"><?php display_event_category(); ?></div>
+                                        <div class="wpem-event-category"><?php display_event_category($post); ?></div>
                                     <?php endif; ?>
 
                                     <?php if (get_organizer_youtube()) : ?>
@@ -550,6 +550,7 @@ $event = $post;
                 </div>
 
                 <?php
+                $post = $event;
                 if (get_option('enable_event_organizer')) {
                     get_event_manager_template(
                         'content-single-event_listing-organizer.php',
