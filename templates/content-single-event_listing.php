@@ -474,7 +474,7 @@ $event = $post;
                                                 echo wp_kses_post(',');
                                             }
                                             ?>
-                                            <?php display_event_location(); ?>
+                                            <?php echo esc_attr($location); ?>
                                         </div>
                                     </div>
 
