@@ -406,7 +406,7 @@ $event = $post;
 
                                 <?php
                                 $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
-                                $registration_end_date = get_event_registration_end_date();
+            $registration_end_date = get_event_registration_end_date($event);
                                 $registration_end_date = !empty($registration_end_date) ? $registration_end_date . ' 23:59:59' : '';
                                 $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
                                 $event_timezone          = get_event_timezone();
