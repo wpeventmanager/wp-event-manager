@@ -305,7 +305,7 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 Fixed - Add/Edit Event bug fixes
 Fixed - Security fixes
-Fixed - Event shortcode details missing bug fixes
+Fixed - Event shortcode details missing bug fixes 
 
 = 3.1.28 [ June 14th, 2022 ] =
 

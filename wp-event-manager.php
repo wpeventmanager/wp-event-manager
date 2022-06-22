@@ -76,7 +76,7 @@ class WP_Event_Manager {
 	/**
 	 * Constructor - get the plugin hooked in and ready
 	 */
-
+ 
 	public function __construct() 
 	{
 		// Define constants
