@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: events, event, calendar, event manager, calendar event, tickets
 Requires at least: 4.1
 Tested up to: 6.0
-Stable tag: 3.1.28
+Stable tag: 3.1.29
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -300,6 +300,12 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= 3.1.29 [ June 22nd, 2022 ] =
+
+Fixed - Add/Edit Event bug fixes
+Fixed - Security fixes
+Fixed - Event shortcode details missing bug fixes
 
 = 3.1.28 [ June 14th, 2022 ] =
 
