@@ -487,7 +487,7 @@ $event = $post;
                                     <?php if (get_option('event_manager_enable_categories') && get_event_category($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
-                                        <div class="wpem-event-category"><?php display_event_category($post); ?></div>
+                                        <div class="wpem-event-category"><?php display_event_category($event); ?></div>
                                     <?php endif; ?>
 
                                     <?php if (get_organizer_youtube()) : ?>
@@ -502,7 +502,7 @@ $event = $post;
                                                     <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                                                 </div>
                                                 <div class="wpem-modal-content">
-                                                    <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => '1', 'rel' => 0)); ?>
+                                                    <?php echo wp_oembed_get(get_organizer_youtube($event), array('autoplay' => '1', 'rel' => 0)); ?>
                                                 </div>
                                             </div>
                                             <a href="#">
