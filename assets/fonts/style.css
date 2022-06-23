@@ -28,6 +28,12 @@ i[class*="wpem-"] {
 .wpem-icon-help:before {
   content: "\eaf9";
 }
+.wpem-icon-cheveron-down:before {
+  content: "\eb35";
+}
+.wpem-icon-cheveron-left:before {
+  content: "\eb34";
+}
 .wpem-icon-cheveron-right:before {
   content: "\eb33";
 }

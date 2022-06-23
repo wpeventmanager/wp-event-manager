@@ -1061,9 +1061,6 @@ input.wpem-theme-button:hover span {
 .wpem-event-listing-calendar-view .no_event_listings_found {
   padding: 30px 0 20px;
 }
-.wpem-event-listing-calendar-view #googleMap {
-  margin: 0 15px 25px;
-}
 .event_listings a.load_more_events {
   text-align: center;
   background: var(--wpem-gray-bg-color);
