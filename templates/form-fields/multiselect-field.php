@@ -18,5 +18,4 @@
 
 </select>
 
-
-<?php if (!empty($field['description'])) : ?><small class="description"><?php echo apply_filters('wp_kses_allowed_html', $field['description']); ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?><small class="description"><?php echo wp_kses($field['description'], wp_kses_allowed_html($field['description'])); ?></small><?php endif; ?>
