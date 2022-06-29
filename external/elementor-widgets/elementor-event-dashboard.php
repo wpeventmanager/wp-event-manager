@@ -129,5 +129,5 @@ class Elementor_Event_Dashboard extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {}
+	protected function content_template() {}
 }

@@ -114,5 +114,5 @@ class Elementor_Submit_Organizer_Form extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {}
+	protected function content_template() {}
 }
