@@ -464,7 +464,7 @@ $event = $post;
                                         <?php display_event_registration_end_date(); ?>
                                     <?php endif; ?>
                                     <!-- Registration End Date End-->
-
+                                 <?php if(!is_event_online()) { ?>
                                     <div>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
@@ -474,11 +474,13 @@ $event = $post;
                                                 display_event_address();
                                                 echo wp_kses_post(',');
                                             }
+
+                                
                                             ?>
                                             <?php echo esc_attr($location); ?>
                                         </div>
                                     </div>
-
+                                    <?php  } ?>
                                     <?php if (get_option('event_manager_enable_event_types') && get_event_type($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Types', 'wp-event-manager'); ?></h3>
