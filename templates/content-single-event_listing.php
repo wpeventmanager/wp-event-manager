@@ -130,7 +130,7 @@ $event = $post;
                                             $meta_key = '_' . $field_name;
                                             $field_value = $event->$meta_key;
 
-                                            if (!empty($field_value)) {
+                                            if (isset($field_value)) {
                                                 $additional_fields[$field_name] = $field_data;
                                             }
                                         }
@@ -169,7 +169,7 @@ $event = $post;
                                                     $field_value = $event->$field_key;
                                                     ?>
 
-                                                    <?php if (!empty($field_value)) : ?>
+                                                    <?php if (isset($field_value)) : ?>
 
                                                         <?php if ($field['type'] == 'group') : ?>
 
@@ -260,7 +260,7 @@ $event = $post;
                                                                                 <?php elseif ($child_field['type'] == 'url') : ?>
                                                                                     <div class="wpem-col-12 wpem-additional-info-block-textarea">
                                                                                         <div class="wpem-additional-info-block-details-content-items">
-                                                                                            <p class="wpem-additional-info-block-textarea-text"><a href="<?php if (isset($child_value[$child_field_name])) echo esc_attr($child_value[$child_field_name]); ?>"><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?></a></p>
+                                                                                        <p class="wpem-additional-info-block-textarea-text"><a href="<?php if (isset($child_value[$child_field_name])) echo esc_attr($child_value[$child_field_name]); ?>"><?php printf(__('%s', 'wp-event-manager'),  $child_field['label']); ?></a></p>
                                                                                         </div>
                                                                                     </div>
                                                                                 <?php else : ?>
@@ -363,11 +363,32 @@ $event = $post;
                                                                     <p class="wpem-additional-info-block-textarea-text"><a target="_blank" href="<?php if (isset($field_value)) echo esc_url($field_value); ?>"><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?></a></p>
                                                                 </div>
                                                             </div>
+                                                            <?php elseif ($field['type'] == 'checkbox') : ?>
+                                                            <div class="wpem-col-12 wpem-additional-info-block-textarea">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-textarea-text">
+                                                                        <strong><?php echo $field['label']; ?></strong> - <?php
+                                                                            if ($field_value==1){
+                                                                                  echo "Yes";
+                                                                                } else {
+                                                                                   echo "No";
+                                                                                };
+                                                                        ?>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+
+
+
+
+
+
                                                         <?php else : ?>
                                                             <?php if (is_array($field_value)) : ?>
                                                                 <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                     <div class="wpem-additional-info-block-details-content-items">
-                                                                        <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?> -</strong> <?php echo  esc_attr(implode(', ', $field_value)); ?></p>
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?> -</strong> <?php echo  esc_attr(implode(', ', $field_value)); ?></p>
                                                                     </div>
                                                                 </div>
                                                             <?php else : ?>
@@ -405,9 +426,9 @@ $event = $post;
                                 <?php do_action('single_event_listing_button_start'); ?>
 
                                 <?php
-            $post = $event;
+                                   $post = $event;
                                 $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
-            $registration_end_date = get_event_registration_end_date();
+                                $registration_end_date = get_event_registration_end_date();
                                 $registration_end_date = !empty($registration_end_date) ? $registration_end_date . ' 23:59:59' : '';
                                 $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
                                 $event_timezone          = get_event_timezone();
@@ -464,7 +485,7 @@ $event = $post;
                                         <?php display_event_registration_end_date(); ?>
                                     <?php endif; ?>
                                     <!-- Registration End Date End-->
-                                 <?php if(!is_event_online()) { ?>
+                                    <?php if(!is_event_online()) { ?>
                                     <div>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
