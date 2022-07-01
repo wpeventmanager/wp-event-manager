@@ -22,4 +22,4 @@ $editor = apply_filters('submit_event_form_wp_editor_args', array(
 
 wp_editor(isset($field['value']) ?  $field['value']  : '', $key, $editor);
 
-if (!empty($field['description'])) : ?><small class="description"><?php echo esc_attr_e($field['description']); ?></small><?php endif; ?>
+if (!empty($field['description'])) : ?><small class="description"><?php printf($field['description']); ?></small><?php endif; ?>
