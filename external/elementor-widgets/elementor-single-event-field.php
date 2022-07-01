@@ -346,10 +346,10 @@ class Elementor_Event_Field extends Widget_Base {
                                         </div>
                                         <?php
                                     } else {
-                                        echo esc_attr($event_field[$key]);
+                                        echo wp_kses_post($event_field[$key]);
                                     }
                                 } else {
-                                    echo esc_attr($event_field[$key]);
+                                    echo wp_kses_post($event_field[$key]);
                                 }
                                 ?>
                             </div>
@@ -407,11 +407,11 @@ class Elementor_Event_Field extends Widget_Base {
              
         }
 
-        echo wp_kses_post($settings['event_field_after_html']);
+       echo wp_kses_post($settings['event_field_after_html']);
     }
-
     /**
-     * Render the widget output in the editor.
+     * Render the widget output in the edit
+or.
      *
      * Written as a Backbone JavaScript template and used to generate the live preview.
      *
