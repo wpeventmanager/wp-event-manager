@@ -125,5 +125,5 @@ class Elementor_Single_Event_Organizer extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {}
+	protected function content_template() {}
 }

@@ -293,11 +293,11 @@ class WP_Event_Manager_Shortcodes
 
 		$events = new WP_Query($args);
 
-		echo apply_filters('wp_kses_allowed_html', $this->event_dashboard_message);
+		echo  wp_kses($this->event_dashboard_message, wp_kses_allowed_html($this->event_dashboard_message));
 		//display organiser delete message #905
-		echo apply_filters('wp_kses_allowed_html', $this->organizer_dashboard_message);
+		echo    wp_kses($this->organizer_dashboard_message, wp_kses_allowed_html($this->organizer_dashboard_message));
 		//display venue delete message #905
-		echo apply_filters('wp_kses_allowed_html', $this->venue_dashboard_message);
+		echo wp_kses($this->venue_dashboard_message, wp_kses_allowed_html($this->venue_dashboard_message));
 
 		$event_dashboard_columns = apply_filters('event_manager_event_dashboard_columns', array(
 

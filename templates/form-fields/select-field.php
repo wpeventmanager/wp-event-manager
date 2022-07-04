@@ -13,4 +13,4 @@
 </select>
 
 
-<?php if (!empty($field['description'])) : ?><small class="description"><?php wp_kses($field['description'], wp_kses_allowed_html($field['description'])); ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?><small class="description"><?php printf ($field['description']); ?></small><?php endif; ?>
