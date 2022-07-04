@@ -311,22 +311,32 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 = 3.1.29 [ June 22nd, 2022 ] =
 
-Fixed - Add/Edit Event bug fixes
-Fixed - Security fixes
-Fixed - Event shortcode details missing bug fixes 
+* Fixed - Add/Edit Event bug fixes.
+* Fixed - Event manager security fixes.
+* Fixed - Event shortcode details missing bug fixes. 
+* Fixed - Jquery conflict with Event listing in calendar.
+* Fixed - Some js and css tweaks for Event calendar.
 
 = 3.1.28 [ June 14th, 2022 ] =
 
-Fixed - Event shortcodes related issue.
-Fixed - Security fixes
-Fixed - Compatible with latest Elementor version
-Fixed - Datepicker Compatibility with bootstrap themes
+* Fixed - Event shortcodes related issue.
+* Fixed - Event Manager ecurity fixes.
+* Fixed - Compatible with latest Elementor version.
+* Fixed - Datepicker Compatibility with bootstrap themes.
+* Fixed - Boostrap depandancy date-timepicker removed for Event calendar.
+* Improved - SEO and lang translation compatiblity improved for Event calendar.
+* Fixed - Jquery conflict with Event listing in calendar.
+* Fixed - Some js and css tweaks for Event calendar.
 
 = 3.1.27 [ May 2nd, 2022 ] =
 
-Fixed - Event shortcodes related issue.
-Fixed - Event organizers listing related issues.
-Fixed - Some js and CSS tweaks for the Event calendar.
+* Fixed - Event shortcodes related issue.
+* Fixed - Event organizers listing related issues.
+* Fixed - Boostrap depandancy date-timepicker removed for Event calendar.
+* Improved - SEO and lang translation compatiblity improved for Event calendar.
+* Fixed - Some js and CSS tweaks for the Event calendar.
+* Fixed - Jquery conflict with Event listing in calendar.
+* Fixed - Some js and css tweaks for Event calendar.
 
 = 3.1.26 [ Apr 21th, 2022 ] =
 
