@@ -301,6 +301,8 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
+= 3.1.30 [ July 4th, 2022 ] =
+
 * Fixed - Event location bug on event details page.
 * Fixed - Security fixes for event manager.
 * Fixed - Elementor show html code with Event Manager.
