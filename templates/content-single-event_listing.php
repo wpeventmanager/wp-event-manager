@@ -464,7 +464,7 @@ $event = $post;
                                             ?>
                                         </span>
                                         <?php
-                                        if (get_event_end_date() != '' || get_event_end_time()) {
+            if (get_event_end_date() != '' && get_event_end_time()) {
                                             _e(' to', 'wp-event-manager');
 
                                         ?>
