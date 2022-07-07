@@ -37,7 +37,7 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
                         foreach ($field['fields'] as $subkey => $subfield) : ?>
                             <fieldset class="wpem-form-group fieldset-<?php esc_attr_e($subkey); ?>">
                                 <?php if (!empty($subfield['label'])) : ?>
-                                    <label for="<?php esc_attr_e($subkey); ?>"><?php echo __($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
+                                    <label for="<?php esc_attr_e($subkey); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
                                 <?php endif; ?>
 
                                 <div class="field">
@@ -91,7 +91,7 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
                 foreach ($field['fields'] as $subkey => $subfield) : ?>
                     <fieldset class="wpem-form-group fieldset-<?php esc_attr_e($subkey); ?>">
                         <?php if (!empty($subfield['label'])) : ?>
-                            <label for="<?php esc_attr_e($subkey); ?>"><?php echo __($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
+                            <label for="<?php esc_attr_e($subkey); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
                         <?php endif; ?>
 
                         <div class="field">
