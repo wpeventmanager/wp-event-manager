@@ -53,10 +53,9 @@
                                             <a href="<?php echo esc_attr(get_the_permalink($venue_id)); ?>"><span><?php display_event_venue_name('', '', true, $venue_id); ?></span></a>
                                         </div>
 
-                                        <?php do_action('single_event_listing_venue_description_before', $venue_id); ?>
-
-                                        <div class="wpem-venue-short-info"><?php printf(__('%s', 'wp-event-manager'), get_venue_description($venue_id)); ?></div>
-
+                                        <?php do_action('single_event_listing_venue_description_before', $venue_id);
+                                         $venue = get_post($venue_id);  ?>
+                                        <div class="wpem-venue-description"><?php printf(__('%s', 'wp-event-manager'), $venue->post_content); ?></div>
                                         <?php do_action('single_event_listing_venue_description_after', $venue_id); ?>
 
                                         <div class="wpem-venue-social-links">

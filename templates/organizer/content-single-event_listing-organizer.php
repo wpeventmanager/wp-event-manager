@@ -50,10 +50,10 @@
                                             <div class="wpem-col-md-9 wpem-col-sm-12">
                                                 <div class="wpem-organizer-name wpem-heading-text"><span><?php display_organizer_name('', '', true, $organizer_id); ?></span></div>
 
-                                                <?php do_action('single_event_listing_organizer_description_before', $organizer_id); ?>
-
-                                                <div class="wpem-organizer-short-info"><?php printf(__('%s', 'wp-event-manager'), get_organizer_description($organizer_id)); ?></div>
-
+                                                <?php do_action('single_event_listing_organizer_description_before', $organizer_id);
+                                                $organizer = get_post($organizer_id); ?>
+                                                <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), $organizer->post_content); ?></div>
+                         
                                                 <?php do_action('single_event_listing_organizer_description_after', $organizer_id); ?>
 
                                                 <div class="wpem-organizer-social-links">
