@@ -453,7 +453,11 @@ EventSubmission = function () {
                 var venue_description = tinyMCE.get('venue_description').getContent();
 
                 var fd = new FormData();
-                fd.append("venue_logo", jQuery('#venue_logo')[0].files[0]);
+                console.log(jQuery('#venue_logo')[0]);
+                if(jQuery('#venue_logo')[0] !== undefined){
+                    fd.append("venue_logo", jQuery('#venue_logo')[0].files[0]);
+                    }
+               
                 fd.append("action", 'add_venue');
                 fd.append("form_data", formData);
                 fd.append("venue_description", venue_description);
