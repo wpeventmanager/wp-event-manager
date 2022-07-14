@@ -56,7 +56,7 @@
                         <div id="show_<?php echo esc_attr($letter); ?>" class="show-organizer-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
                             <div class="wpem-list-group">
                                 <div class="organizer-group-header wpem-list-group-item wpem-list-group-item-success">
-                                    <div><?php echo sprintf('%s', 'wp-event-manager'), $letter; ?></div>
+                                    <div><?php echo sprintf(__('%s', 'wp-event-manager'), $letter); ?></div>
                                 </div>
 
                                 <div class="organizer-name-list">
