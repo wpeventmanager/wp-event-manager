@@ -893,7 +893,7 @@ class WP_Event_Manager_CPT
 
 				var select = jQuery('#post-status-select').find('select');
 
-				jQuery(select).html("<?php echo wp_kses_post($options); ?>");
+				jQuery(select).html("<?php echo $options; ?>");
 			});
 		</script>
 <?php
