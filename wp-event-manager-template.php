@@ -2992,3 +2992,24 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 
 	echo ob_get_clean();
 }
+
+/**
+ * Get All Fields of Event Organizer Form
+ * @since 3.1.31
+ * @param string
+ * @return array
+ **/
+function get_hidden_form_fields($form_option, $key_name)
+{
+	$form_fields_array = get_option( $form_option, true );
+	$form_fields = array();
+	if (!empty($form_fields_array)) :
+		foreach ($form_fields_array[$key_name] as $key => $option):
+			if(isset($option['visibility']) && $option['visibility'] ==0):
+				array_push($form_fields, $key);
+			endif;
+		endforeach;
+	endif;
+
+	return $form_fields;
+}
