@@ -28,10 +28,10 @@
                              $venue_fields = get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
 
                              $venue_website  = !in_array('venue_website', $venue_fields)?get_venue_website($venue):'';
-                             $venue_facebook = !in_array('venue_facebook', $venue_fields)?get_venue_website($venue):'';
-                             $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_website($venue):'';
-                             $venue_twitter  = !in_array('venue_twitter', $venue_fields)?get_venue_website($venue):'';
-                             $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_website($venue):'';
+                             $venue_facebook = !in_array('venue_facebook', $venue_fields)?get_venue_facebook($venue):'';
+                             $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_instagram($venue):'';
+                             $venue_twitter  = !in_array('venue_twitter', $venue_fields)?get_venue_twitter($venue):'';
+                             $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_youtube($venue):'';
                             ?>
                             <?php
                             if (!empty($venue_website)) {
