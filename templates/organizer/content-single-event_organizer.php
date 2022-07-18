@@ -29,7 +29,8 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                         <span><?php echo esc_html($organizer->post_title); ?></span>
                     </div>
 
-                    <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), $organizer->post_content); ?></div>
+                    <div class="wpem-organizer-description"><?php $description = the_content();
+                    printf(__('%s', 'wp-event-manager'), wp_kses_post( $description )); ?></div>
 
                     <div class="wpem-organizer-social-links">
                         <div class="wpem-organizer-social-lists">
