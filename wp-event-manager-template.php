@@ -310,7 +310,7 @@ function display_event_type($post = null, $after = '')
 			$numType = count($event_type);
 			$i = 0;
 			foreach ($event_type as $type) {
-				echo wp_kses(__('<a href="' . get_term_link($type->term_id) . '"><span class="wpem-event-type-text event-type ' . esc_attr(sanitize_title($type->slug)) . ' ">' . $type->name . '</span></a>'), array(
+				echo wp_kses(('<a href="' . get_term_link($type->term_id) . '"><span class="wpem-event-type-text event-type ' . esc_attr(sanitize_title($type->slug)) . ' ">' . $type->name . '</span></a>'), array(
 					'a' => array(
 						'href' => array(),
 						'title' => array()
@@ -369,7 +369,7 @@ function display_event_category($post = null, $after = '')
 			$numCategory = count($event_category);
 			$i = 0;
 			foreach ($event_category as $cat) {
-				echo wp_kses(__('<a href="' . get_term_link($cat->term_id) . '"><span class="wpem-event-category-text event-category ' . esc_attr(sanitize_title($cat->slug)) . ' ">' . $cat->name . '</span></a>'), array(
+				echo wp_kses(('<a href="' . get_term_link($cat->term_id) . '"><span class="wpem-event-category-text event-category ' . esc_attr(sanitize_title($cat->slug)) . ' ">' . $cat->name . '</span></a>'), array(
 					'a' => array(
 						'href' => array(),
 						'title' => array()
@@ -2991,4 +2991,25 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 <?php
 
 	echo ob_get_clean();
+}
+
+/**
+ * Get All Fields of Event Organizer Form
+ * @since 3.1.31
+ * @param string
+ * @return array
+ **/
+function get_hidden_form_fields($form_option, $key_name)
+{
+	$form_fields_array = get_option( $form_option, true );
+	$form_fields = array();
+	if (!empty($form_fields_array)) :
+		foreach ($form_fields_array[$key_name] as $key => $option):
+			if(isset($option['visibility']) && $option['visibility'] ==0):
+				array_push($form_fields, $key);
+			endif;
+		endforeach;
+	endif;
+
+	return $form_fields;
 }

@@ -184,7 +184,7 @@ class Elementor_Event_Field extends Widget_Base {
                 if (!$is_event_online) {
                     echo  wp_kses_post(get_event_location());
                 } else {
-                    echo __('Online Event', 'wp-event-manager');
+                    echo esc_attr('Online Event', 'wp-event-manager');
                 }
             } else if ($settings['event_field'] == 'event_venue_name') {
                 display_event_venue_name('', '', true, $event);

@@ -367,7 +367,7 @@ $event = $post;
                                                             <div class="wpem-col-12 wpem-additional-info-block-textarea">
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-textarea-text">
-                                                                        <strong><?php echo $field['label']; ?></strong> - <?php
+                                                                        <strong><?php echo esc_attr($field['label']); ?></strong> - <?php
                                                                                                                             if ($field_value == 1) {
                                                                                                                                 echo "Yes";
                                                                                                                             } else {

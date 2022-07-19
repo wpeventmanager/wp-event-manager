@@ -53,11 +53,11 @@
                                             <a href="<?php echo esc_attr(get_the_permalink($venue_id)); ?>"><span><?php display_event_venue_name('', '', true, $venue_id); ?></span></a>
                                         </div>
 
-                                        <?php do_action('single_event_listing_venue_description_before', $venue_id); ?>
-
-                                        <div class="wpem-venue-short-info"><?php printf(__('%s', 'wp-event-manager'), get_venue_description($venue_id)); ?></div>
-
-                                        <?php do_action('single_event_listing_venue_description_after', $venue_id); ?>
+                                        <?php do_action('single_event_listing_venue_description_before', $venue_id);
+                                         $venue = get_post($venue_id);  ?>
+                                        <div class="wpem-venue-description"><?php  
+                                            $venue_content = get_post( $venue_id );
+                                            printf(__('%s', 'wp-event-manager'), wp_kses_post( $venue_content->post_content )); ?>
 
                                         <div class="wpem-venue-social-links">
                                             <div class="wpem-venue-social-lists">
@@ -65,11 +65,14 @@
                                                 <?php do_action('single_event_listing_venue_social_start', $venue_id); ?>
 
                                                 <?php
-                                                $venue_website  = get_venue_website($venue_id);
-                                                $venue_facebook = get_venue_facebook($venue_id);
-                                                $venue_instagram = get_venue_instagram($venue_id);
-                                                $venue_twitter  = get_venue_twitter($venue_id);
-                                                $venue_youtube  = get_venue_youtube($venue_id);
+                                                 //get disable venue fields
+                                                 $venue_fields = get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
+
+                                                 $venue_website  = !in_array('venue_website', $venue_fields)?get_venue_website($venue_id):'';
+                                                 $venue_facebook = !in_array('venue_facebook', $venue_fields)?get_venue_facebook($venue_id):'';
+                                                 $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_instagram($venue_id):'';
+                                                 $venue_twitter  = !in_array('venue_twitter', $venue_fields)?get_venue_twitter($venue_id):'';
+                                                 $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_youtube($venue_id):'';
 
                                                 if (!empty($venue_website)) {
                                                 ?>

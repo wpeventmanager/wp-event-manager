@@ -3,6 +3,7 @@
 $editor = apply_filters('submit_event_form_wp_editor_args', array(
 	'textarea_name' => isset($field['name']) ? $field['name'] : $key,
 	'media_buttons' => false,
+	'wpautop' 		=> false,
 	'textarea_rows' => 8,
 	'quicktags'     => false,
 	'tinymce'       => array(

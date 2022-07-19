@@ -58,7 +58,7 @@ $thumbnail     = get_event_thumbnail();
                             <span class="wpem-event-location-text">
                                 <?php
                                 if (get_event_location() == 'Online Event' || get_event_location() == '') :
-                                    echo __('Online Event', 'wp-event-manager');
+                                    echo esc_attr('Online Event', 'wp-event-manager');
                                 else :
                                     display_event_location(false);
                                 endif;

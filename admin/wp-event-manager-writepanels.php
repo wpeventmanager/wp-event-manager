@@ -1283,7 +1283,7 @@ class WP_Event_Manager_Writepanels
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		update_post_meta($post_id, '_organizer_name', sanitize_text_field($_POST['post_title']));
-		update_post_meta($post_id, '_organizer_description', sanitize_text_field($_POST['content']));
+		update_post_meta($post_id, '_organizer_description',  $_POST['content']);
 
 		// Save fields
 		foreach ($this->organizer_listing_fields() as $key => $field) {
@@ -1315,6 +1315,12 @@ class WP_Event_Manager_Writepanels
 							update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
 						}
 						break;
+					case 'wp-editor':
+                        if (!empty($_POST[$key])) {
+                            $v_text = wp_kses_post(stripslashes($_POST[$key]));
+                            update_post_meta($post_id, $key, $v_text);
+                        }
+                        break;
 					default:
 						if (!isset($_POST[$key])) {
 							continue 2;
@@ -1465,6 +1471,12 @@ class WP_Event_Manager_Writepanels
 							update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
 						}
 						break;
+						case 'wp-editor':
+							if (!empty($_POST[$key])) {
+								$v_text = wp_kses_post(stripslashes($_POST[$key]));
+								update_post_meta($post_id, $key, $v_text);
+							}
+							break;
 					default:
 						if (!isset($_POST[$key])) {
 							continue 2;
