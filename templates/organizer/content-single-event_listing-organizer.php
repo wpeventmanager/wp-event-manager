@@ -52,7 +52,9 @@
 
                                                 <?php do_action('single_event_listing_organizer_description_before', $organizer_id);
                                                 $organizer = get_post($organizer_id); ?>
-                                                <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), $organizer->post_content); ?></div>
+                                                <div class="wpem-organizer-description"><?php 
+                                                $organizer_content = get_post( $organizer_id );
+                                                printf(__('%s', 'wp-event-manager'), wp_kses_post( $organizer_content->post_content )); ?></div>
                          
                                                 <?php do_action('single_event_listing_organizer_description_after', $organizer_id); ?>
 
@@ -60,11 +62,14 @@
                                                     <div class="wpem-organizer-social-lists">
                                                         <?php do_action('single_event_listing_organizer_social_start', $organizer_id); ?>
                                                         <?php
-                                                        $organizer_website  = get_organizer_website($organizer_id);
-                                                        $organizer_facebook = get_organizer_facebook($organizer_id);
-                                                        $organizer_instagram = get_organizer_instagram($organizer_id);
-                                                        $organizer_twitter  = get_organizer_twitter($organizer_id);
-                                                        $organizer_youtube  = get_organizer_youtube($organizer_id);
+                                                         //get disable organizer fields
+                                                         $organizer_fields = get_hidden_form_fields( 'event_manager_submit_organizer_form_fields', 'organizer');
+
+                                                         $organizer_website  = !in_array('organizer_website', $organizer_fields)?get_organizer_website($organizer_id):'';
+                                                         $organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?get_organizer_facebook($organizer_id):'';
+                                                         $organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?get_organizer_instagram($organizer_id):'';
+                                                         $organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?get_organizer_twitter($organizer_id):'';
+                                                         $organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?get_organizer_youtube($organizer_id):'';
                                                         ?>
                                                         <?php
                                                         if (!empty($organizer_website)) {

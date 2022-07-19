@@ -751,7 +751,7 @@ class WP_Event_Manager_Shortcodes
 			'event_online'      		=> '',
 
 		)), $atts));
-
+		
 		//Categories
 
 		if (!get_option('event_manager_enable_categories')) {
@@ -852,7 +852,6 @@ class WP_Event_Manager_Shortcodes
 
 			$selected_ticket_price = sanitize_text_field($_GET['search_ticket_price']);
 		}
-
 		if ($show_filters) {
 
 			if (!empty($filter_style) && $filter_style == 2)
@@ -1337,7 +1336,6 @@ class WP_Event_Manager_Shortcodes
 	 */
 	public function output_past_events($atts)
 	{
-
 		ob_start();
 
 		extract(shortcode_atts(array(
@@ -1356,9 +1354,9 @@ class WP_Event_Manager_Shortcodes
 
 			'selected_datetime'         => '',
 
-			'selected_categories'       => '',
+			'selected_categories'       =>  isset($atts['selected_categories']) ? $atts['selected_categories'] :  '',
 
-			'selected_event_types'     => '',
+			'selected_event_types'     => isset($atts['selected_event_types']) ? $atts['selected_event_types'] :  '',
 		), $atts));
 
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -1371,7 +1369,7 @@ class WP_Event_Manager_Shortcodes
 			'order'			=> $order,
 			'orderby'		=> $orderby,
 		);
-
+	
 		if (!empty($keywords)) {
 			$args_past['s'] = $keywords;
 		}
@@ -1381,17 +1379,17 @@ class WP_Event_Manager_Shortcodes
 
 			$args_past['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
-				'field'   	=> 'name',
+				'field'   	=> 'slug',
 				'terms'   	=> $categories,
 			];
 		}
-
+		
 		if (!empty($selected_event_types)) {
 			$event_types = explode(',', sanitize_text_field($selected_event_types));
 
 			$args_past['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_type',
-				'field'   	=> 'name',
+				'field'   	=> 'slug',
 				'terms'   	=> $event_types,
 			];
 		}
@@ -1422,7 +1420,6 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		$args_past = apply_filters('event_manager_past_event_listings_args', $args_past);
-
 		$past_events = new WP_Query($args_past);
 
 		wp_reset_query();
