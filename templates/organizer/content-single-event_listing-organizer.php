@@ -52,7 +52,9 @@
 
                                                 <?php do_action('single_event_listing_organizer_description_before', $organizer_id);
                                                 $organizer = get_post($organizer_id); ?>
-                                                <div class="wpem-organizer-description"><?php printf(__('%s', 'wp-event-manager'), $organizer->post_content); ?></div>
+                                                <div class="wpem-organizer-description"><?php 
+                                                $organizer_content = get_post( $organizer_id );
+                                                printf(__('%s', 'wp-event-manager'), wp_kses_post( $organizer_content->post_content )); ?></div>
                          
                                                 <?php do_action('single_event_listing_organizer_description_after', $organizer_id); ?>
 
