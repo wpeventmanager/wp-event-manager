@@ -1348,7 +1348,7 @@ class WP_Event_Manager_Shortcodes
 
 			'orderby'                   => isset($atts['meta_key']) ? $atts['meta_key'] : 'event_start_date', // meta_value
 
-			'location'                  => '',
+			'location'                  => $location,
 
 			'keywords'                  => '',
 
