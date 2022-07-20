@@ -1893,9 +1893,10 @@ class WP_Event_Manager_Shortcodes
 
 			'selected_datetime'         => '',
 
-			'selected_categories'       => '',
+			'selected_categories'       => isset($atts['selected_categories']) ? $atts['selected_categories'] :  '',
+			
+			'selected_event_types'     => isset($atts['selected_types']) ? $atts['selected_types'] :  '',
 
-			'selected_event_types'     => '',
 		), $atts));
 
 		$paged = is_front_page() ? max(1, get_query_var('page')) : max(1, get_query_var('paged'));
@@ -1944,6 +1945,7 @@ class WP_Event_Manager_Shortcodes
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
 				'field'   	=> 'name',
+				'field'   	=> 'slug',
 				'terms'   	=> $categories,
 			];
 		}
@@ -1954,6 +1956,7 @@ class WP_Event_Manager_Shortcodes
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_type',
 				'field'   	=> 'name',
+				'field'   	=> 'slug',
 				'terms'   	=> $event_types,
 			];
 		}
