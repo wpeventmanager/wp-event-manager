@@ -289,6 +289,11 @@ class WP_Event_Manager_Shortcodes
 				$args['orderby'] = 'meta_value';
 				$args['meta_type'] = 'DATETIME';
 			}
+			elseif ($args['orderby'] == 'event_end_date') {
+				$args['meta_key'] = '_event_end_date';
+				$args['orderby'] = 'meta_value';
+				$args['meta_type'] = 'DATETIME';
+			}
 		}
 
 		$events = new WP_Query($args);
