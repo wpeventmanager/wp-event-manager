@@ -3004,7 +3004,8 @@ function get_hidden_form_fields($form_option, $key_name)
 	$form_fields_array = get_option( $form_option, true );
 	$form_fields = array();
 	if (!empty($form_fields_array)) :
-		foreach ($form_fields_array[$key_name] as $key => $option):
+		$form_field_key = $form_fields_array[$key_name] ?? array();
+		foreach ($form_field_key as $key => $option):
 			if(isset($option['visibility']) && $option['visibility'] ==0):
 				array_push($form_fields, $key);
 			endif;
