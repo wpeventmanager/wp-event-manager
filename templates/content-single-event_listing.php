@@ -487,24 +487,24 @@ $event = $post;
                                     <!-- Registration End Date End-->
 
                                     <div>
-                                        <div class="clearfix">&nbsp;</div>
-                                        <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
-                                        <div>
-                                            <?php
-                                            if (get_event_address()) {
-                                                display_event_address();
-                                                echo wp_kses_post(',');
-                                            }
-                                            if (!is_event_online()) {
-
-
-
+                                        <?php 
+                                        if (get_event_address()) {
                                             ?>
-                                            <?php display_event_location();
-                                            } else {
-                                                echo esc_attr('Online event');
-                                            } ?>
-                                        </div>
+                                            <div class="clearfix">&nbsp;</div>
+                                            <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
+                                            <div>
+                                                <?php
+                                                if (get_event_address()) {
+                                                    display_event_address();
+                                                    echo wp_kses_post(',');
+                                                }
+                                                if (!is_event_online()) {
+                                                    display_event_location();
+                                                } else {
+                                                    echo esc_attr('Online event');
+                                                } ?>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                     <?php ?>
                                     <?php if (get_option('event_manager_enable_event_types') && get_event_type($event)) : ?>
