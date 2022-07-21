@@ -1850,6 +1850,9 @@ function event_manager_duplicate_listing( $post_id ) {
 			if ( in_array( $meta_key, apply_filters( 'event_manager_duplicate_listing_ignore_keys', array( '_cancelled', '_featured', '_event_expires', '_event_duration' ) ) ) ) {
 				continue;
 			}
+			if($meta_key == '_view_count'){
+				$meta_value=0;
+			  }
 			update_post_meta( $new_post_id, $meta_key, maybe_unserialize( $meta_value ) );
 		}
 	}
