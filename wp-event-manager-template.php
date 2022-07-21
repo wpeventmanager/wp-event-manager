@@ -529,6 +529,8 @@ function display_event_location($map_link = true, $post = null)
 {
 
 	$location = get_event_location($post);
+	
+	empty($location)?"-":$location;
 
 	if (is_event_online($post)) {
 		echo wp_kses_post(apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
@@ -1107,7 +1109,7 @@ function is_event_online($post = null)
 	if ($post->post_type !== 'event_listing')
 		return;
 
-	if (get_event_location($post) == 'Online Event' || get_event_location($post) == '' || $post->_event_online == 'yes')
+	if (get_event_location($post) == 'Online Event' || $post->_event_online == 'yes')
 		return true;
 	else
 		return false;
