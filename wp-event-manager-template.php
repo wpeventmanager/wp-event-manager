@@ -516,8 +516,10 @@ function get_event_location($post = null)
 
 	if ($post->post_type !== 'event_listing')
 		return;
-
-	return apply_filters('display_event_location', $post->_event_location, $post);
+	if(!empty($post->_event_location))
+		return apply_filters('display_event_location', $post->_event_location, $post);
+	else 
+		return apply_filters('display_event_location', '-', $post);
 }
 
 /**
@@ -530,14 +532,14 @@ function display_event_location($map_link = true, $post = null)
 
 	$location = get_event_location($post);
 	
-	empty($location)?"-":$location;
+	// empty($location)?"-":$location;
 
 	if (is_event_online($post)) {
 		echo wp_kses_post(apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
 	} else {
 
-		if ($map_link)
-		echo wp_kses_post(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
+		if ($map_link && $map_link!='-')
+			echo wp_kses_post(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
 		else
 			echo wp_kses_post($location);
 	}
