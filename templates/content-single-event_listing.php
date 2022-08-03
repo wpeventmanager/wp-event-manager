@@ -497,8 +497,6 @@ $event = $post;
                                             }
                                             if (!is_event_online()) {
 
-
-
                                             ?>
                                             <?php display_event_location();
                                             } else {

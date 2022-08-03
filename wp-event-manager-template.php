@@ -516,8 +516,10 @@ function get_event_location($post = null)
 
 	if ($post->post_type !== 'event_listing')
 		return;
-
-	return apply_filters('display_event_location', $post->_event_location, $post);
+	if(!empty($post->_event_location))
+		return apply_filters('display_event_location', $post->_event_location, $post);
+	else 
+		return apply_filters('display_event_location', '-', $post);
 }
 
 /**
@@ -529,13 +531,15 @@ function display_event_location($map_link = true, $post = null)
 {
 
 	$location = get_event_location($post);
+	
+	// empty($location)?"-":$location;
 
 	if (is_event_online($post)) {
 		echo wp_kses_post(apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
 	} else {
 
-		if ($map_link)
-		echo wp_kses_post(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
+		if ($map_link && $map_link!='-')
+			echo wp_kses_post(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
 		else
 			echo wp_kses_post($location);
 	}
@@ -1107,7 +1111,7 @@ function is_event_online($post = null)
 	if ($post->post_type !== 'event_listing')
 		return;
 
-	if (get_event_location($post) == 'Online Event' || get_event_location($post) == '' || $post->_event_online == 'yes')
+	if (get_event_location($post) == 'Online Event' || $post->_event_online == 'yes')
 		return true;
 	else
 		return false;
@@ -3004,7 +3008,8 @@ function get_hidden_form_fields($form_option, $key_name)
 	$form_fields_array = get_option( $form_option, true );
 	$form_fields = array();
 	if (!empty($form_fields_array)) :
-		foreach ($form_fields_array[$key_name] as $key => $option):
+		$form_field_key = $form_fields_array[$key_name] ?? array();
+		foreach ($form_field_key as $key => $option):
 			if(isset($option['visibility']) && $option['visibility'] ==0):
 				array_push($form_fields, $key);
 			endif;

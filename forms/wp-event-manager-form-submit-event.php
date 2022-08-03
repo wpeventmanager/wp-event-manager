@@ -554,8 +554,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$event_date = get_post_meta( $event->ID, '_' . $key, true );
 							$default_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 							$default_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $default_date_format );
-						
-							$this->fields[ $group_key ][ $key ]['value'] = date($default_date_format ,strtotime($event_date) );
+							if(isset($event_date) && $event_date!=""){
+								$this->fields[ $group_key ][ $key ]['value'] = date($default_date_format ,strtotime($event_date) );
+							}else{
+								$this->fields[ $group_key ][ $key ]['value'] = '';
+							}
+							
 						break;
 							
 						case 'event_type' :
@@ -600,7 +604,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					$this->fields['event']['registration']['value'] = $current_user->user_email;
 				}
 			}
-			
+			 
 			
 			$this->fields = apply_filters( 'submit_event_form_fields_get_user_data', $this->fields, get_current_user_id() );
 		}
