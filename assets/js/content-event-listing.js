@@ -64,7 +64,8 @@ var ContentEventListing= function () {
 		                    datepickerOptions : {
 		                        numberOfMonths : 2,
 		                        minDate: null,
-						        maxDate: null
+						        maxDate: null,
+						        monthNames: event_manager_content_event_listing.i18n_monthNames
 		                    },
 		                    initialText: event_manager_content_event_listing.i18n_initialText,
 		                    applyButtonText: event_manager_content_event_listing.i18n_applyButtonText,

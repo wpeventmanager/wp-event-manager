@@ -320,6 +320,7 @@ class WP_Event_Manager {
 				'i18n_applyButtonText' => __( 'Apply', 'wp-event-manager' ),
 				'i18n_clearButtonText' => __( 'Clear', 'wp-event-manager' ),
 				'i18n_cancelButtonText' => __( 'Cancel', 'wp-event-manager' ),
+				'i18n_monthNames' => $this->strip_array_indices( $wp_locale->month ),
 				
 				'i18n_today' => __( 'Today', 'wp-event-manager' ),
 				'i18n_tomorrow' => __( 'Tomorrow', 'wp-event-manager' ),
