@@ -39,7 +39,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 				'|',
 				array_map(
 					function ($v, $k) {
-						return sprintf(__($k . ' : %s ', 'wp-event-manager'), $v);
+						return sprintf(($k . ' : %s ', 'wp-event-manager'), $v);
 					},
 					$field['options'],
 					array_keys($field['options'])
