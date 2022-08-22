@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: events, event, calendar, event manager, calendar event, tickets
 Requires at least: 4.1
 Tested up to: 6.0
-Stable tag: 3.1.30
+Stable tag: 3.1.31
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -300,6 +300,30 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= 3.1.31 [ Aug 22nd, 2022 ] =
+
+* Fixed - Multiselect field issue in the post an event form.
+* Fixed - Elementor custom field ticket link issue.
+* Fixed - Event date range month is not translating.
+* Fixed - Email id field validation issue in an Event setting.
+* Fixed - Event location issue on the Event details page.
+* Fixed - Display warning message in event and venue.
+* Fixed - Post an event page dropdown is not available.
+* Fixed - Vanishing details while making changes in the event submission form.
+* Fixed - Event fields disappear when an error occurs.
+* Fixed - Event backend setting Text description improved.
+* Fixed - Event organizer page extra titles are available on the page.
+* Fixed - Missing description text at an Event setting.
+* Fixed - Elementor deprecated error messages.
+* Fixed - Unable to create a new venue to post an event page.
+* Fixed - Unable login into the application using username & password.
+* Fixed - Backend- Edit event - Status dropbox is displaying blank.
+* Fixed - Event is not changed from Private to Public.
+* Fixed - By default took an Event end date as per today's date.
+* Fixed - Problem after updating WP Event Manager with sell ticket display.
+* Fixed - Ticket description issue after an Event Manager update.
+* Fixed - Add new Event - Venue/Organizer- Second time selected logo file is not visible.
 
 = 3.1.30 [ July 4th, 2022 ] =
 
