@@ -169,7 +169,7 @@ class Elementor_Event_Field extends Widget_Base {
 
         $event = get_post($post_id);
 
-        echo wp_kses_post($settings['event_field_before_html']);
+        echo $settings['event_field_before_html'];
 
         if (isset($settings['event_field']) && $settings['event_field'] != '') {
             if ($settings['event_field'] == 'event_title') {
@@ -407,7 +407,7 @@ class Elementor_Event_Field extends Widget_Base {
              
         }
 
-       echo wp_kses_post($settings['event_field_after_html']);
+       echo $settings['event_field_after_html'];
     }
     /**
      * Render the widget output in the edit

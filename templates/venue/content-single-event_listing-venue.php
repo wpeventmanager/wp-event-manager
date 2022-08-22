@@ -55,9 +55,15 @@
 
                                         <?php do_action('single_event_listing_venue_description_before', $venue_id);
                                          $venue = get_post($venue_id);  ?>
-                                        <div class="wpem-venue-description"><?php  
-                                            $venue_content = get_post( $venue_id );
-                                            printf(__('%s', 'wp-event-manager'), wp_kses_post( $venue_content->post_content )); ?>
+                                        <div class="wpem-venue-description"><?php
+
+                                         $venue_content = get_post( $venue_id );
+                                         $content = apply_filters('the_content',$venue_content->post_content);
+                                         printf(__('%s', 'wp-event-manager'), wp_kses_post( $content ));
+
+                                         ?></div>
+
+                                         <?php do_action('single_event_listing_venue_description_after', $venue_id); ?>
 
                                         <div class="wpem-venue-social-links">
                                             <div class="wpem-venue-social-lists">

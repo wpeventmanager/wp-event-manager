@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.30
+Version: 3.1.31
 
 Since: 1.0.0
 
@@ -80,7 +80,7 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
-		define('EVENT_MANAGER_VERSION', '3.1.30');
+		define('EVENT_MANAGER_VERSION', '3.1.31');
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -237,7 +237,7 @@ class WP_Event_Manager {
 		//jQuery Chosen - vendor
 		if ( apply_filters( 'event_manager_chosen_enabled', $chosen_used_on_page ) ) {
 
-			wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . ' assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
+			wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
 			wp_register_script( 'wp-event-manager-term-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/term-multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
 			wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
 			wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
@@ -320,6 +320,7 @@ class WP_Event_Manager {
 				'i18n_applyButtonText' => __( 'Apply', 'wp-event-manager' ),
 				'i18n_clearButtonText' => __( 'Clear', 'wp-event-manager' ),
 				'i18n_cancelButtonText' => __( 'Cancel', 'wp-event-manager' ),
+				'i18n_monthNames' => $this->strip_array_indices( $wp_locale->month ),
 				
 				'i18n_today' => __( 'Today', 'wp-event-manager' ),
 				'i18n_tomorrow' => __( 'Tomorrow', 'wp-event-manager' ),

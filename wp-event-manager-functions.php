@@ -1686,8 +1686,10 @@ function event_manager_upload_file( $file, $args = array() ) {
 			return new WP_Error( 'upload', sprintf( __( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $args['file_label'], $file['type'], implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) );
 
 		} else {
+			if(is_array( $args['allowed_mime_types'])){
 
 			return new WP_Error( 'upload', sprintf( __( 'Uploaded files need to be one of the following file types: %s', 'wp-event-manager' ), implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) );
+			}
 		}
 
 	} else {
@@ -1850,6 +1852,9 @@ function event_manager_duplicate_listing( $post_id ) {
 			if ( in_array( $meta_key, apply_filters( 'event_manager_duplicate_listing_ignore_keys', array( '_cancelled', '_featured', '_event_expires', '_event_duration' ) ) ) ) {
 				continue;
 			}
+			if($meta_key == '_view_count'){
+				$meta_value=0;
+			  }
 			update_post_meta( $new_post_id, $meta_key, maybe_unserialize( $meta_value ) );
 		}
 	}
