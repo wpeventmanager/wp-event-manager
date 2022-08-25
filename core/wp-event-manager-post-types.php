@@ -151,21 +151,21 @@ class WP_Event_Manager_Post_Types {
 
 						'menu_name'         => ucwords( $plural ),
 
-						'search_items'      => sprintf( __( 'Search %s', 'wp-event-manager' ), $plural ),
+						'search_items'      => sprintf( 'Search %s', 'wp-event-manager' , $plural ),
 
-						'all_items'         => sprintf( __( 'All %s', 'wp-event-manager' ), $plural ),
+						'all_items'         => sprintf( 'All %s', 'wp-event-manager' , $plural ),
 
-						'parent_item'       => sprintf( __( 'Parent %s', 'wp-event-manager' ), $singular ),
+						'parent_item'       => sprintf( 'Parent %s', 'wp-event-manager' , $singular ),
 
-						'parent_item_colon' => sprintf( __( 'Parent %s:', 'wp-event-manager' ), $singular ),
+						'parent_item_colon' => sprintf( 'Parent %s:', 'wp-event-manager' , $singular ),
 
-						'edit_item'         => sprintf( __( 'Edit %s', 'wp-event-manager' ), $singular ),
+						'edit_item'         => sprintf( 'Edit %s', 'wp-event-manager' , $singular ),
 
-						'update_item'       => sprintf( __( 'Update %s', 'wp-event-manager' ), $singular ),
+						'update_item'       => sprintf( 'Update %s', 'wp-event-manager' , $singular ),
 
-						'add_new_item'      => sprintf( __( 'Add New %s', 'wp-event-manager' ), $singular ),
+						'add_new_item'      => sprintf( 'Add New %s', 'wp-event-manager' , $singular ),
 
-						'new_item_name'     => sprintf( __( 'New %s Name', 'wp-event-manager' ),  $singular )
+						'new_item_name'     => sprintf( 'New %s Name', 'wp-event-manager' ,  $singular )
 
 	            	),
 

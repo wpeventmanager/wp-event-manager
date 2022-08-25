@@ -557,7 +557,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return  string or array
 	 */
 
-	protected function upload_file( $field_key, $field ) {
+	protected function upload_file( $field_key, $field) {
 
 		if ( isset( $_FILES[ $field_key ] ) && ! empty( $_FILES[ $field_key ] ) && ! empty( $_FILES[ $field_key ]['name'] ) ) {
 

@@ -38,7 +38,7 @@
 				'|',
 				array_map(
 					function ( $child_v, $child_k ) {
-						return sprintf( __( $child_k . ' : %s ', 'wp-event-manager' ), $child_v ); },
+						return sprintf( $child_k . ' : %s ', 'wp-event-manager' , $child_v) ; },
 					$child_field['options'],
 					array_keys( $child_field['options'] )
 				)

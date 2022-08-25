@@ -168,7 +168,7 @@ class WP_Event_Manager_Writepanels
 	{
 		global $wp_post_types;
 
-		add_meta_box('event_listing_data', sprintf(__('%s Data', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name), array($this, 'event_listing_data'), 'event_listing', 'normal', 'high');
+		add_meta_box('event_listing_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name), array($this, 'event_listing_data'), 'event_listing', 'normal', 'high');
 
 		if (!get_option('event_manager_enable_event_types')) {
 			remove_meta_box('event_listing_typediv', 'event_listing', 'side');
@@ -187,11 +187,11 @@ class WP_Event_Manager_Writepanels
 		}
 
 		if (isset($wp_post_types['event_organizer'])) {
-			add_meta_box('event_organizer_data', sprintf(__('%s Data', 'wp-event-manager'), $wp_post_types['event_organizer']->labels->singular_name), array($this, 'event_organizer_data'), 'event_organizer', 'normal', 'high');
+			add_meta_box('event_organizer_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_organizer']->labels->singular_name), array($this, 'event_organizer_data'), 'event_organizer', 'normal', 'high');
 		}
 
 		if (isset($wp_post_types['event_venue'])) {
-			add_meta_box('event_venue_data', sprintf(__('%s Data', 'wp-event-manager'), $wp_post_types['event_venue']->labels->singular_name), array($this, 'event_venue_data'), 'event_venue', 'normal', 'high');
+			add_meta_box('event_venue_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_venue']->labels->singular_name), array($this, 'event_venue_data'), 'event_venue', 'normal', 'high');
 		}
 	}
 
@@ -1105,8 +1105,8 @@ class WP_Event_Manager_Writepanels
 
 					case 'date':
 						if (isset($_POST[$key])) {
-							$date = $_POST[$key];
-							$datetime = explode(' ', $_POST[$key]);
+							$date = sanitize_text_field($_POST[$key]);
+							$datetime = sanitize_text_field(explode(' ', $_POST[$key]));
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
