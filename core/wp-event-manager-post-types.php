@@ -161,7 +161,7 @@ class WP_Event_Manager_Post_Types {
 
 						'edit_item'         => sprintf(wp_kses( 'Edit %s', 'wp-event-manager' ), $singular ),
 
-						'update_item'       => sprint (wp_kses( 'Update %s', 'wp-event-manager' ), $singular ),
+						'update_item'       => sprintf(wp_kses( 'Update %s', 'wp-event-manager' ), $singular ),
 
 						'add_new_item'      => sprintf(wp_kses( 'Add New %s', 'wp-event-manager' ), $singular ),
 
@@ -250,7 +250,7 @@ class WP_Event_Manager_Post_Types {
 
 	                    'edit_item' 		=> sprintf(wp_kses( 'Edit %s', 'wp-event-manager' ), $singular ),
 
-	                    'update_item' 		=> sprintf(wp_kses_( 'Update %s', 'wp-event-manager' ), $singular ),
+	                    'update_item' 		=> sprintf(wp_kses( 'Update %s', 'wp-event-manager' ), $singular ),
 
 	                    'add_new_item' 		=> sprintf(wp_kses( 'Add New %s', 'wp-event-manager' ), $singular ),
 
