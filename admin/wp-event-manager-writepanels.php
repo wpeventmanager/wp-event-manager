@@ -1463,7 +1463,7 @@ class WP_Event_Manager_Writepanels
 						break;
 					case 'date':
 						if (isset($_POST[$key])) {
-							$date = $_POST[$key];
+							$date = wp_kses_post($_POST[$key]);
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
