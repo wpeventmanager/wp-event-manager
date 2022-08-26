@@ -500,14 +500,16 @@ a {
   overflow: hidden;
 }
 
-.wp_event_manager_addons_wrap .products li {
+
+
+.wp_event_manager_addons_wrap .products > li {
   display: inline-block;
-  margin: 0 1% 10px 0 !important;
+  margin: 10px !important;
   padding: 0;
   vertical-align: top;
-  width: 24%;
+  width: calc(25% - 20px);
+  flex: 0 0 calc(25% - 20px);
   background: #fff;
-  min-width: 250px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -517,10 +519,6 @@ a {
   overflow: hidden;
   position: relative;
   opacity: 0.8;
-}
-
-.wp_event_manager_addons_wrap .products li:nth-child(4n + 0) {
-  margin-right: 0 !important;
 }
 
 .wp_event_manager_addons_wrap .products li a {
@@ -551,6 +549,7 @@ a {
   font-size: 18px;
   text-shadow: none;
 }
+
 
 .wp_event_manager_addons_wrap .products li:focus,
 .wp_event_manager_addons_wrap .products li:hover {
@@ -1239,7 +1238,11 @@ h3.nav-tab-wrapper {
   text-indent: 2px;
   transform: translate(-50%, -50%);
 }
-
+.wpem-product-box-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 .wpem-product-body {
   margin: 0 0 25px;
   padding: 0 20px;
@@ -1247,8 +1250,11 @@ h3.nav-tab-wrapper {
   filter: grayscale(1);
   opacity: 0.8;
   transition: all 0.3s;
+  flex: 1;
 }
-
+.wpem-product-free-action {
+  margin-bottom: 14px;
+}
 .wp_event_manager_addons_wrap .products li:hover .wpem-product-body {
   -webkit-filter: grayscale(0);
   filter: grayscale(0);
@@ -1261,7 +1267,7 @@ h3.nav-tab-wrapper {
 }
 
 .wpem-product-footer {
-  margin: 0 0 25px;
+  margin: 0 0 10px;
   padding: 0 20px;
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
@@ -1295,12 +1301,15 @@ h3.nav-tab-wrapper {
 ul.wpem-product-action-list {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
   margin-right: -5px;
   margin-left: -5px;
   justify-content: center;
+  margin-bottom: 5px;
 }
+ul.wpem-product-action-list li {
+  margin: 0;
+}
+
 
 .wp_event_manager_addons_wrap .products .wp_event_manager_addons_wrap .products li .wpem-product-footer li {
   width: 100%;
@@ -1360,29 +1369,14 @@ ul.wpem-product-action-list {
   white-space: nowrap;
 }
 
-@media (max-width: 852px) {
-  .wp_event_manager_addons_wrap .products li {
-    min-width: 30%;
-  }
-}
-
-@media (max-width: 700px) {
-  .wp_event_manager_addons_wrap .products li {
-    min-width: 49%;
-  }
-}
-
-@media (max-width: 414px) {
-  .wp_event_manager_addons_wrap .products li {
-    min-width: 100%;
-  }
-}
 
 .wpem-product-description {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  font-size: 14px;
+  line-height: 21px;
 }
 
 .wrap.event-manager-settings-wrap h2.nav-tab-wrapper {
@@ -1581,4 +1575,68 @@ ul.wpem-product-action-list {
 }
 .post-type-event_listing table.wp-list-table th {
 width: 30%;
+}
+
+
+
+.menu-item-highlight, .wpem-new-addon-release {
+  position: absolute;
+  margin: 0 0 0 4px;
+  font-size: 10px;
+  line-height: 18px;
+  color: #000;
+  background: #ffc800;
+  padding: 0 4px;
+  display: inline-block;
+  border-radius: 3px;
+  height: 18px;
+}
+.wpem-new-addon-release {
+  right: 0;
+  top: 0;
+  font-size: 14px;
+  padding: 6px 10px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.wp_event_manager_addons_wrap .products li .wpem-product-footer li.wpem-product-action-item.wpem-product-action-item-1 {
+  width: 50%;
+  padding: 10px;
+  height: inherit;
+  align-items: center;
+  max-height: 45px;
+  border: 0;
+  box-shadow: none;
+}
+
+.wp_event_manager_addons_wrap .products.columns-4 {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+  width: calc(100% + 20px);
+}
+
+
+
+@media screen and (max-width: 1300px) {
+  .wp_event_manager_addons_wrap .products > li{
+    width: calc(33.33% - 20px);
+    flex: 0 0 calc(33.33% - 20px);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .wp_event_manager_addons_wrap .products > li{
+    width: calc(50% - 20px);
+    flex: 0 0 calc(50% - 20px);
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  .wp_event_manager_addons_wrap .products > li{
+    width: calc(100% - 20px);
+    flex: 0 0 calc(100% - 20px);
+  }
 }
