@@ -561,7 +561,7 @@ class WP_Event_Manager_CPT
 			case 'event_title':
 				echo wp_kses_post('<div class="event_title">');
 
-				echo wp_kses_post('<a href="' . esc_url(admin_url('post.php?post=' . $post->ID . '&action=edit')) . '" class="tips event_title" data-tip="' . sprintf(__('ID: %d', 'wp-event-manager'), $post->ID) . '">' . esc_html($post->post_title) . '</a>');
+				echo wp_kses_post('<a href="' . esc_url(admin_url('post.php?post=' . $post->ID . '&action=edit')) . '" class="tips event_title" data-tip="' . sprintf(wp_kses('ID: %d', 'wp-event-manager'), $post->ID) . '">' . esc_html($post->post_title) . '</a>');
 
 				echo wp_kses_post('</div>');
 

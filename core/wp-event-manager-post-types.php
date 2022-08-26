@@ -324,29 +324,29 @@ class WP_Event_Manager_Post_Types {
 
 					'menu_name'             => __( 'Event Manager', 'wp-event-manager' ),
 
-					'all_items'             => sprintf( __( 'All %s', 'wp-event-manager' ), $plural ),
+					'all_items'             => sprintf( wp_kses( 'All %s', 'wp-event-manager' ), $plural ),
 
 					'add_new' 				=> __( 'Add New', 'wp-event-manager' ),
 
-					'add_new_item' 			=> sprintf( __( 'Add %s', 'wp-event-manager' ), $singular ),
+					'add_new_item' 			=> sprintf( wp_kses( 'Add %s', 'wp-event-manager' ), $singular ),
 
 					'edit' 					=> __( 'Edit', 'wp-event-manager' ),
 
-					'edit_item' 			=> sprintf( __( 'Edit %s', 'wp-event-manager' ), $singular ),
+					'edit_item' 			=> sprintf( wp_kses( 'Edit %s', 'wp-event-manager' ), $singular ),
 
-					'new_item' 				=> sprintf( __( 'New %s', 'wp-event-manager' ), $singular ),
+					'new_item' 				=> sprintf( wp_kses( 'New %s', 'wp-event-manager' ), $singular ),
 
-					'view' 					=> sprintf( __( 'View %s', 'wp-event-manager' ), $singular ),
+					'view' 					=> sprintf( wp_kses( 'View %s', 'wp-event-manager' ), $singular ),
 
-					'view_item' 			=> sprintf( __( 'View %s', 'wp-event-manager' ), $singular ),
+					'view_item' 			=> sprintf( wp_kses( 'View %s', 'wp-event-manager' ), $singular ),
 
-					'search_items' 			=> sprintf( __( 'Search %s', 'wp-event-manager' ), $plural ),
+					'search_items' 			=> sprintf( wp_kses( 'Search %s', 'wp-event-manager' ), $plural ),
 
-					'not_found' 			=> sprintf( __( 'No %s found', 'wp-event-manager' ), $plural ),
+					'not_found' 			=> sprintf( wp_kses( 'No %s found', 'wp-event-manager' ), $plural ),
 
-					'not_found_in_trash' 	=> sprintf( __( 'No %s found in trash', 'wp-event-manager' ), $plural ),
+					'not_found_in_trash' 	=> sprintf( wp_kses( 'No %s found in trash', 'wp-event-manager' ), $plural ),
 
-					'parent' 				=> sprintf( __( 'Parent %s', 'wp-event-manager' ), $singular ),
+					'parent' 				=> sprintf( wp_kses( 'Parent %s', 'wp-event-manager' ), $singular ),
 					
 					'featured_image'        => __( 'Event Thumbnail', 'wp-event-manager' ),
 					
@@ -357,7 +357,7 @@ class WP_Event_Manager_Post_Types {
 					'use_featured_image'    => __( 'Use as event thumbnail', 'wp-event-manager' ),
 				),
 
-				'description' => sprintf( __( 'This is where you can create and manage %s.', 'wp-event-manager' ), $plural ),
+				'description' => sprintf( wp_kses( 'This is where you can create and manage %s.', 'wp-event-manager' ), $plural ),
 
 				'public' 				=> true,
 
@@ -437,9 +437,9 @@ class WP_Event_Manager_Post_Types {
 
 						'singular_name' 		=> $singular,
 
-						'add_new_item' 			=> sprintf( __( 'Add %s', 'wp-event-manager' ), $singular ),
+						'add_new_item' 			=> sprintf(wp_kses( 'Add %s', 'wp-event-manager' ), $singular ),
 
-						'edit_item' 			=> sprintf( __( 'Edit %s', 'wp-event-manager' ), $singular ),
+						'edit_item' 			=> sprintf(wp_kses( 'Edit %s', 'wp-event-manager' ), $singular ),
 						
 						'featured_image'        => __( 'Organizer Logo', 'wp-event-manager' ),
 						
@@ -478,9 +478,9 @@ class WP_Event_Manager_Post_Types {
 
 						'singular_name' 		=> $singular,
 
-						'add_new_item' 			=> sprintf( __( 'Add %s', 'wp-event-manager' ), $singular ),
+						'add_new_item' 			=> sprintf( wp_kses( 'Add %s', 'wp-event-manager' ), $singular ),
 
-						'edit_item' 			=> sprintf( __( 'Edit %s', 'wp-event-manager' ), $singular ),
+						'edit_item' 			=> sprintf( wp_kses( 'Edit %s', 'wp-event-manager' ), $singular ),
 						
 						'featured_image'        => __( 'Venue Logo', 'wp-event-manager' ),
 						

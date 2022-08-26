@@ -223,7 +223,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 				'type'  => 'text',
 
-				'std'   => sprintf(__('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(wp_kses('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 
 				'label' => __('Title', 'wp-event-manager')
 			),
