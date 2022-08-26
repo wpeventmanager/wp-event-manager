@@ -268,7 +268,7 @@ function get_event_registration_method($post = null)
 		$method->type      = 'email';
 		$method->raw_email = $register;
 		$method->email     = antispambot($register);
-		$method->subject   = apply_filters('event_manager_registration_email_subject', sprintf(__('Registration via "%s" listing on %s', 'wp-event-manager'), $post->post_title, home_url()), $post);
+		$method->subject   = apply_filters('event_manager_registration_email_subject', sprintf(wp_kses('Registration via "%s" listing on %s', 'wp-event-manager'), $post->post_title, home_url()), $post);
 	} else {
 		if (strpos($register, 'http') !== 0)
 			$register = 'http://' . $register;

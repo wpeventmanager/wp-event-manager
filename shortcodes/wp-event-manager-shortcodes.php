@@ -149,7 +149,7 @@ class WP_Event_Manager_Shortcodes
 
 						// Message
 
-						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf('%s has been cancelled.', 'wp-event-manager', esc_html($event->post_title)) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(wp_kses('%s has been cancelled.', 'wp-event-manager', esc_html($event->post_title))). '</div>';
 
 						break;
 
@@ -165,7 +165,7 @@ class WP_Event_Manager_Shortcodes
 						update_post_meta($event_id, '_cancelled', 0);
 
 						// Message
-						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf('%s has been marked as not cancelled.', 'wp-event-manager', esc_html($event->post_title)) . '</div>';
+						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(wp_kses('%s has been marked as not cancelled.', 'wp-event-manager', esc_html($event->post_title))) . '</div>';
 
 						break;
 
@@ -178,7 +178,7 @@ class WP_Event_Manager_Shortcodes
 
 						if (!in_array($events_status, ['trash'])) {
 							// Message
-							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf('%s has been deleted.', 'wp-event-manager', esc_html($event->post_title)) . '</div>';
+							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager', esc_html($event->post_title))) . '</div>';
 						}
 
 
@@ -377,7 +377,7 @@ class WP_Event_Manager_Shortcodes
 						wp_trash_post($organizer_id);
 
 						// Message
-						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(__('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
+						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						wp_redirect(add_query_arg(array('venue_id' => absint($$organizer_id), 'action' => 'organizer_dashboard'), event_manager_get_permalink('event_dashboard')));
 
 
@@ -548,7 +548,7 @@ class WP_Event_Manager_Shortcodes
 						// Trash it
 						wp_trash_post($venue_id);
 						// Message
-						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(__('%s has been deleted.', 'wp-event-manager'), esc_html($venue->post_title)) . '</div>';
+						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager'), esc_html($venue->post_title)) . '</div>';
 						wp_redirect(add_query_arg(array('venue_id' => absint($new_venue_id), 'action' => 'venue_dashboard'), event_manager_get_permalink('event_dashboard')));
 
 
