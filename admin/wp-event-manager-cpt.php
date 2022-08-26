@@ -114,7 +114,7 @@ class WP_Event_Manager_CPT
 			case 'approve_events':
 				check_admin_referer('bulk-posts');
 
-				$post_ids = array_map('absint', array_filter((array) $_GET['post']));
+				$post_ids = array_map('absint', array_filter((array) sanitize_text_field($_GET['post'])));
 
 				$approved_events = array();
 
@@ -145,7 +145,7 @@ class WP_Event_Manager_CPT
 			case 'expire_events':
 				check_admin_referer('bulk-posts');
 
-				$post_ids = array_map('absint', array_filter((array) $_GET['post']));
+				$post_ids = array_map('absint', array_filter((array) sanitize_text_field($_GET['post'])));
 
 				$expired_events = array();
 
