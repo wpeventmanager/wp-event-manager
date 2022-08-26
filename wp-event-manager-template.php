@@ -482,7 +482,7 @@ function display_event_publish_date($post = null)
 	if ($date_format === 'default') {
 		$display_date = __('Posted on ', 'wp-event-manager') . get_post_time(get_option('date_format'));
 	} else {
-		$display_date = sprintf(__('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
+		$display_date = sprintf(wp_kses('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
 	}
 	printf('<time datetime="' . get_post_time('Y-m-d') . '">' . esc_html($display_date) . '</time>');
 }
@@ -498,7 +498,7 @@ function get_event_publish_date($post = null)
 	if ($date_format === 'default') {
 		return get_post_time(get_option('date_format'));
 	} else {
-		return sprintf(__('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
+		return sprintf(wp_kses('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
 	}
 }
 

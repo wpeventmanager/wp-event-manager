@@ -1683,12 +1683,12 @@ function event_manager_upload_file( $file, $args = array() ) {
 
 		if ( $args['file_label'] ) {
 
-			return new WP_Error( 'upload', sprintf( __( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $args['file_label'], $file['type'], implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) );
+			return new WP_Error( 'upload', sprintf( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $args['file_label'], $file['type'], implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) ;
 
 		} else {
 			if(is_array( $args['allowed_mime_types'])){
 
-			return new WP_Error( 'upload', sprintf( __( 'Uploaded files need to be one of the following file types: %s', 'wp-event-manager' ), implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) );
+			return new WP_Error( 'upload', sprintf( 'Uploaded files need to be one of the following file types: %s', 'wp-event-manager' ), implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) ;
 			}
 		}
 
