@@ -114,7 +114,7 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		
-		get_event_manager_template_part('content', 'single-event_listing-venue');
+		get_event_manager_template_part('venue/content', 'single-event_listing-venue');
 	}
 
 	/**
