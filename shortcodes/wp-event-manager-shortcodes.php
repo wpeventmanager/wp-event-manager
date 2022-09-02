@@ -44,6 +44,7 @@ class WP_Event_Manager_Shortcodes
 
 			add_shortcode('event_organizers', array($this, 'output_event_organizers'));
 			add_shortcode('event_organizer', array($this, 'output_event_organizer'));
+			add_shortcode('single_event_organizer', array($this, 'output_single_event_organizer'));
 		}
 
 		if (get_option('enable_event_venue')) {
@@ -52,6 +53,7 @@ class WP_Event_Manager_Shortcodes
 
 			add_shortcode('event_venues', array($this, 'output_event_venues'));
 			add_shortcode('event_venue', array($this, 'output_event_venue'));
+			add_shortcode('single_event_venue', array($this, 'output_single_event_venue'));
 		}
 
 		add_shortcode('events', array($this, 'output_events'));
@@ -2032,6 +2034,112 @@ class WP_Event_Manager_Shortcodes
 		$event_listings_output = apply_filters('event_manager_upcoming_event_listings_output', ob_get_clean());
 
 		return  $event_listings_output;
+	}
+
+	/**
+	 *  It is very simply a plugin that outputs a list of all organizers that have listed in selected event on your website. 
+	 *  Once you have added a title to your page add the this shortcode: [single_event_organizer]
+	 *  This will output selected event's all organizers.
+	 *
+	 * @access public
+	 * @param array $atts
+	 * @return string
+	 * @since 3.1.32
+	 */
+	public function output_single_event_organizer($atts)
+	{
+		extract(shortcode_atts(array(
+			'id' => '',
+		), $atts));
+
+		if (!$id)
+			return;
+
+		ob_start();
+
+		$args = array(
+			'post_type'   => 'event_listing',
+			'post_status' => 'publish',
+			'p'           => $id
+		);
+
+		$event = new WP_Query($args);
+
+		if (empty($event->posts))
+			return;
+
+		ob_start();
+
+		do_action('single_event_organizers_content_start');
+
+		get_event_manager_template(
+			'content-single-event-organizers.php',
+			array(
+				'event'    	  => $event,
+				'event_id'    => $id,
+			),
+			'wp-event-manager/organizer',
+			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+		);
+
+		wp_reset_postdata();
+
+		do_action('single_event_organizers_content_end');
+
+		return ob_get_clean();
+	}
+
+	/**
+	 *  It is very simply a plugin that outputs a list of all venues that have listed in selected event on your website. 
+	 *  Once you have added a title to your page add the this shortcode: [single_event_venue]
+	 *  This will output selected event's all venues.
+	 *
+	 * @access public
+	 * @param array $atts
+	 * @return string
+	 * @since 3.1.32
+	 */
+	public function output_single_event_venue($atts)
+	{
+		extract(shortcode_atts(array(
+			'id' => '',
+		), $atts));
+
+		if (!$id)
+			return;
+
+		ob_start();
+
+		$args = array(
+			'post_type'   => 'event_listing',
+			'post_status' => 'publish',
+			'p'           => $id
+		);
+
+		$event = new WP_Query($args);
+
+		if (empty($event->posts))
+			return;
+
+		ob_start();
+
+		do_action('single_event_venues_content_start');
+
+		get_event_manager_template(
+			'content-single-event-venues.php',
+			array(
+				'event'    	  => $event,
+				'event_id'    => $id,
+			),
+			'wp-event-manager/venue',
+			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+		);
+
+		wp_reset_postdata();
+
+		do_action('single_event_venues_content_end');
+
+		return ob_get_clean();
 	}
 }
 
