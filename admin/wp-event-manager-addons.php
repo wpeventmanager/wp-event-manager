@@ -48,6 +48,7 @@ class WP_Event_Manager_Addons
 				$tags  = $xpath->query('//ul[@class="products columns-4"]');
 				foreach ($tags as $tag) {
 					$addons = $tag->ownerDocument->saveXML($tag);
+					print_r($addons);
 					break;
 				}
 
