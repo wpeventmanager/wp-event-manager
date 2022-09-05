@@ -50,10 +50,10 @@
                                         $venue_fields = get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
 
                                         $venue_website  = !in_array('venue_website', $venue_fields)?get_venue_website($venue):'';
-                                        $venue_facebook = !in_array('venue_facebook', $venue_fields)?get_venue_website($venue):'';
-                                        $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_website($venue):'';
-                                        $venue_twitter  = !in_array('venue_twitter', $venue_fields)?get_venue_website($venue):'';
-                                        $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_website($venue):'';
+                                        $venue_facebook = !in_array('venue_facebook', $venue_fields)?get_venue_facebook($venue):'';
+                                        $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_instagram($venue):'';
+                                        $venue_twitter  = !in_array('venue_twitter', $venue_fields)?get_venue_twitter($venue):'';
+                                        $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_youtube($venue):'';
 
                                         if (empty($venue_website) && empty($venue_facebook) && empty($venue_instagram) && empty($venue_twitter) && empty($venue_youtube)) {
                                             echo wp_kses_post('<h1 class="text-center">-</h1>');
@@ -63,7 +63,7 @@
                                                 <div class="wpem-venue-social-lists">
 
                                                     <?php
-                                                    if (!empty($venue_website)) {
+                                                    if (!empty($venue_website)) { 
                                                     ?>
                                                         <div class="wpem-social-icon wpem-weblink">
                                                             <a href="<?php echo esc_url($venue_website); ?>" target="_blank" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>"><?php _e('Website', 'wp-event-manager'); ?></a>
