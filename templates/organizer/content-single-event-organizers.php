@@ -55,8 +55,9 @@
                                                     <span><?php echo esc_attr($organizer->post_title); ?></span>
                                                     </div>
 
-                                                    <div class="wpem-organizer-description">
-                                                    <?php printf(esc_html('%s', 'wp-event-manager'), wp_kses_post( $organizer->post_content ));?>
+                                                    <div class="wpem-organizer-description"> 
+                                                    <?php $content = apply_filters('wpem_the_content',$organizer->post_content);
+                                                    printf(esc_html('%s', 'wp-event-manager'), wp_kses_post( $content ));?>
                                                 </div>
                                                     <div class="wpem-organizer-social-links">
                                                         <div class="wpem-organizer-social-lists">

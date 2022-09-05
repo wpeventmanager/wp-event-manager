@@ -30,7 +30,7 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                     </div>
 
                     <div class="wpem-organizer-description">
-                    <?php $content = apply_filters('the_content',$organizer->post_content);
+                    <?php $content = apply_filters('wpem_the_content',$organizer->post_content);
                         printf(esc_html('%s', 'wp-event-manager'), wp_kses_post( $content ));?>
                 </div>
                     <div class="wpem-organizer-social-links">

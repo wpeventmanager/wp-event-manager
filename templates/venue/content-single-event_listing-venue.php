@@ -58,7 +58,7 @@
                                         <div class="wpem-venue-description"><?php
 
                                          $venue_content = get_post( $venue_id );
-                                         $content = apply_filters('the_content',$venue_content->post_content);
+                                         $content = apply_filters('wpem_the_content',$venue_content->post_content);
                                          printf(__('%s', 'wp-event-manager'), wp_kses_post( $content ));
 
                                          ?></div>

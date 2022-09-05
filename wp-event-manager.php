@@ -135,6 +135,16 @@ class WP_Event_Manager {
 		
 		// Defaults for core actions
 		add_action( 'event_manager_notify_new_user', 'wp_event_manager_notify_new_user', 10, 2 );
+
+		// duplicate the_content filter for Wp event Manager plugin
+		global $wp_embed;
+		add_filter( 'wpem_the_content', array( $wp_embed, 'run_shortcode' ), 8 );
+		add_filter( 'wpem_the_content', array( $wp_embed, 'autoembed'     ), 8 );
+		add_filter( 'wpem_the_content', 'wptexturize'        );
+		add_filter( 'wpem_the_content', 'convert_chars'      );
+		add_filter( 'wpem_the_content', 'wpautop'            );
+		add_filter( 'wpem_the_content', 'shortcode_unautop'  );
+		add_filter( 'wpem_the_content', 'do_shortcode'       );
 		
 		// Schedule cron events
 		self::check_schedule_crons();

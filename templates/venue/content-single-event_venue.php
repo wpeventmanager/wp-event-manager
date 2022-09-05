@@ -19,7 +19,7 @@
                         <span><?php echo esc_attr($venue->post_title); ?></span>
                     </div>
                     <div class="wpem-venue-description">
-                    <?php $content = apply_filters('the_content',$venue->post_content);
+                    <?php $content = apply_filters('wpem_the_content',$venue->post_content);
                         printf(esc_html('%s', 'wp-event-manager'), wp_kses_post( $content ));?>
                 </div>
                     <div class="wpem-venue-social-links">
