@@ -491,15 +491,17 @@ $event = $post;
                                         <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
                                         <div>
                                             <?php
-                                            if (get_event_address()) {
-                                                display_event_address();
-                                                echo wp_kses_post(',');
+                                            if (get_event_address()) { ?>
+                                                <a href="http://maps.google.com/maps?q=<?php display_event_address();?>">  
+                                                    <?php display_event_address();
+                                                    echo wp_kses_post(',');?>
+                                                </a><?php
                                             }
-                                            if (!is_event_online()) {
-
-                                            ?>
-                                            <?php display_event_location();
-                                            } else {
+                                            if (!is_event_online()) {?>
+                                                <a href="http://maps.google.com/maps?q=<?php display_event_location();?>" target="_blank">  
+                                                    <?php display_event_location();?>
+                                                </a>
+                                            <?php } else {
                                                 echo esc_attr('Online event');
                                             } ?>
                                         </div>
