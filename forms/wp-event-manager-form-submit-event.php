@@ -213,7 +213,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => __( 'Please enter zip code (Area code)', 'wp-event-manager' ),
-					'priority'    => 8
+					'priority'    => 5
 				),
 					
 				'event_location' => array(
@@ -221,7 +221,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => __( 'Location for google map', 'wp-event-manager' ),
-					'priority'    => 7
+					'priority'    => 6
 				),
 					
 				'event_banner' => array(
@@ -229,7 +229,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'file',
 					'required'    => true,
 					'placeholder' => '',
-					'priority'    => 9,
+					'priority'    => 7,
 					'ajax'        => true,
 					'multiple'    => get_option( 'event_manager_user_can_add_multiple_banner' ) == 1 ? true : false,
 					'allowed_mime_types' => array(
@@ -245,7 +245,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'wp-editor',
 					'required'    => true,
 					'placeholder' => '',
-					'priority'    => 10
+					'priority'    => 8
 				),
 					
 				'registration' => array(
@@ -253,7 +253,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => $registration_method_placeholder,
-					'priority'    => 11
+					'priority'    => 9
 				),
 
 				'event_video_url' => array(
@@ -261,14 +261,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => false,
 					'placeholder'=> __( 'Please enter event video url', 'wp-event-manager' ),
-					'priority'    => 11
+					'priority'    => 10
 				),
 					
 				'event_start_date' => array(  
 					'label'=> __( 'Start Date', 'wp-event-manager' ),
 					'placeholder'  => __( 'Please enter event start date', 'wp-event-manager' ),								
 					'type'  => 'date',
-					'priority'    => 12,
+					'priority'    => 11,
 					'required'=>true	  
 				),
 
@@ -276,7 +276,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'=> __( 'Start Time', 'wp-event-manager' ),
 					'placeholder'  => __( 'Please enter event start time', 'wp-event-manager' ),								
 					'type'  => 'time',
-					'priority'    => 13,
+					'priority'    => 12,
 					'required'=>true	  
 				),
 
@@ -284,7 +284,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			        'label'=> __( 'End Date', 'wp-event-manager' ),
 			        'placeholder'  => __( 'Please enter event end date', 'wp-event-manager' ),							        
 			        'type'  => 'date',
-				    'priority'    => 14,
+				    'priority'    => 13,
 			        'required'=>true
 			  	),
 							  
@@ -292,19 +292,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'=> __( 'End Time', 'wp-event-manager' ),
 					'placeholder'  => __( 'Please enter event end time', 'wp-event-manager' ),								
 					'type'  => 'time',
-					'priority'    => 15,
+					'priority'    => 14,
 					'required'=>true	  
-				),
-
-				'event_timezone' => array(
-					'label'=> __( 'Event timezone', 'wp-event-manager' ),
-					'placeholder'  	=> __( 'Please select timezone for event', 'wp-event-manager' ),
-					'type'  		=> 'timezone',
-					'priority'    	=> 15,
-					'required'	=> true,
-					'class'		=> 'event-manager-category-dropdown',
-					'default'	=> '+5:00'
-					//'value'		=> ''
 				),
 
 				'event_ticket_options' => array(
@@ -315,7 +304,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							    'paid' => __( 'Paid', 'wp-event-manager' ),
 							    'free' => __( 'Free', 'wp-event-manager' )
 				 		    ),
-				    'priority'    => 16,
+				    'priority'    => 15,
 			        'required'=>true
 		 		),
 
@@ -323,7 +312,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			        'label'=> __( 'Ticket Price', 'wp-event-manager' ),                              
 			        'placeholder'  => __( 'Please enter ticket price', 'wp-event-manager' ),							        
 			        'type'  => 'text',
-					'priority'    => 17,
+					'priority'    => 16,
 			        'required'=>true
 				),
 
@@ -332,10 +321,19 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'date',
 					'required'    => false,					
 					'placeholder' => __( 'Please enter registration deadline', 'wp-event-manager' ),
-					'priority'    => 20
+					'priority'    => 17
 				),
-										 
-			),
+
+				'event_timezone' => array(
+					'label'=> __( 'Event timezone', 'wp-event-manager' ),
+					'placeholder'  	=> __( 'Please select timezone for event', 'wp-event-manager' ),
+					'type'  		=> 'timezone',
+					'priority'    	=> 18,
+					'required'	=> true,
+					'class'		=> 'event-manager-category-dropdown',
+					'default'	=> '+5:00'
+				),
+			),			
 
 			'organizer' => array(
 				'event_organizer_ids' => array(
@@ -344,7 +342,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'default'  		=> '',
 				    'options'  		=> ($current_user_id) ? get_all_organizer_array($current_user_id) : [],
 				    'description'	=> __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="javascript:void(0)" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager'),
-				    'priority'   	=> 21,
+				    'priority'   	=> 19,
 			        'required'		=>false
 				),
 			),			
