@@ -457,11 +457,15 @@ $event = $post;
                                     <div class="clearfix">&nbsp;</div>
                                     <h3 class="wpem-heading-text"><?php _e('Date And Time', 'wp-event-manager') ?></h3>
                                     <div class="wpem-event-date-time">
-                                        <span class="wpem-event-date-time-text"><?php echo  wp_kses_post(date_i18n($date_format, strtotime($start_date))); ?>
-                                            <?php if ($start_time) {
-                                                echo esc_attr($separator) . ' ' . $start_time;
-                                            }
-                                            ?>
+                                        <span class="wpem-event-date-time-text">
+                                            <?php if($start_date){ 
+                                                echo  wp_kses_post(date_i18n($date_format, strtotime($start_date))); ?>
+                                                <?php if ($start_time) {
+                                                    echo esc_attr($separator) . ' ' . $start_time;
+                                                }
+                                            }else{?>
+                                                <div class="wpem-empty-date"><?php echo wp_kses_post('-'); ?></div>
+                                            <?php } ?>
                                         </span>
                                         <?php
                                         if (get_event_end_date() != '' && get_event_end_time()) {

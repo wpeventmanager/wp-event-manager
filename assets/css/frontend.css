@@ -4006,9 +4006,7 @@ table.wp-list-table th#aioseo-details {
   color: #fff;
 }
 
-
-
-
-
-
-
+div.wpem-empty-date{
+  text-align: center;
+  width: 40%;
+}
