@@ -1246,7 +1246,6 @@ class WP_Event_Manager_Shortcodes
 			'post_status' => 'publish'
 		);
 
-
 		if (!$id) {
 
 			$args['posts_per_page'] = $limit;
@@ -1254,14 +1253,15 @@ class WP_Event_Manager_Shortcodes
 			$args['orderby']        = 'rand';
 
 			if (!is_null($featured)) {
-
+				
 				$args['meta_query'] = array(array(
 
 					'key'     => '_featured',
 
 					'value'   => '1',
 
-					'compare' => $featured ? '=' : '!='
+					'compare' => ($featured == "true") ? '=' : '!='
+
 				));
 			}
 		} else {
