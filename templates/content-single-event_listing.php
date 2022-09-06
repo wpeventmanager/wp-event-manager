@@ -463,9 +463,7 @@ $event = $post;
                                                 <?php if ($start_time) {
                                                     echo esc_attr($separator) . ' ' . $start_time;
                                                 }
-                                            }else{?>
-                                                <div class="wpem-empty-date"><?php echo wp_kses_post('-'); ?></div>
-                                            <?php } ?>
+                                            }else{echo wp_kses_post('-');  } ?>
                                         </span>
                                         <?php
                                         if (get_event_end_date() != '' && get_event_end_time()) {
