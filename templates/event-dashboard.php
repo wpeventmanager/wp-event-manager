@@ -139,6 +139,7 @@
 					</div>
 
 					<?php
+					$_GET = array_map('stripslashes_deep', $_GET);
 					$search_keywords = isset($_GET['search_keywords']) ? sanitize_text_field($_GET['search_keywords']) : '';
 					$search_order_by = isset($_GET['search_order_by']) ? sanitize_text_field($_GET['search_order_by']) : '';
 
