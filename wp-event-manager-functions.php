@@ -486,8 +486,6 @@ function get_event_listings( $args = array() ) {
 	$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );
 	do_action( 'before_get_event_listings', $query_args, $args );
 
-	print_r($query_args);
-
 	// Cache results.
 	if ( apply_filters( 'get_event_listings_cache_results', true ) ) 
 	{
