@@ -172,7 +172,7 @@ function get_event_listings( $args = array() ) {
 	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
 	    $date_search=array();
-			if($args['search_datetimes'][0]=='datetime_today')
+			if($args['search_datetimes'][0]==='datetime_today')
 			{	
 				$datetime=date('Y-m-d');
 				
@@ -182,7 +182,7 @@ function get_event_listings( $args = array() ) {
 						'compare' => 'LIKE',
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_tomorrow')
+			elseif($args['search_datetimes'][0]==='datetime_tomorrow')
 			{ 
 				$datetime=date('Y-m-d',strtotime("+1 day")); 
 				
@@ -192,7 +192,7 @@ function get_event_listings( $args = array() ) {
 						'compare' => 'LIKE',
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_thisweek')
+			elseif($args['search_datetimes'][0]==='datetime_thisweek')
 			{					
 				$year=date('Y');
 				$weekNumber=date('W');                 
@@ -206,7 +206,7 @@ function get_event_listings( $args = array() ) {
 					'type'    => 'date'
 				);
 			} 
-			elseif($args['search_datetimes'][0]=='datetime_thisweekend')
+			elseif($args['search_datetimes'][0]==='datetime_thisweekend')
 			{
 				$saturday_date=date('Y-m-d', strtotime('this Saturday', time()));
 				$sunday_date=date('Y-m-d', strtotime('this Saturday +1 day', time()));
@@ -220,7 +220,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			} 
-			elseif($args['search_datetimes'][0]=='datetime_thismonth')
+			elseif($args['search_datetimes'][0]==='datetime_thismonth')
 			{	
                 $dates[0]= date('Y-m-d', strtotime('first day of this month', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of this month', time()));				
@@ -232,7 +232,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_thisyear')
+			elseif($args['search_datetimes'][0]==='datetime_thisyear')
 			{
 				$dates[0]= date('Y-m-d', strtotime('first day of january', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of december', time()));	
@@ -244,7 +244,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_nextweek')
+			elseif($args['search_datetimes'][0]==='datetime_nextweek')
 			{
 			    $year=date('Y');
 				$weekNumber=date('W')+1;                 
@@ -259,7 +259,7 @@ function get_event_listings( $args = array() ) {
 				);		    
 			
 			}
-			elseif($args['search_datetimes'][0]=='datetime_nextweekend')
+			elseif($args['search_datetimes'][0]==='datetime_nextweekend')
 			{
 				$next_saturday_date=date('Y-m-d', strtotime('next week Saturday', time()));
 				$next_sunday_date=date('Y-m-d', strtotime('next week Sunday', time()));
@@ -273,7 +273,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			} 
-			elseif($args['search_datetimes'][0]=='datetime_nextmonth')
+			elseif($args['search_datetimes'][0]==='datetime_nextmonth')
 			{
 				$dates[0]= date('Y-m-d', strtotime('first day of next month', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of next month', time()));	
@@ -285,7 +285,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_nextyear')
+			elseif($args['search_datetimes'][0]==='datetime_nextyear')
 			{
 			    $year=date('Y')+1;
 			    $dates[0]= date('Y-m-d', strtotime('first day of January ' . $year, time()));
@@ -312,7 +312,7 @@ function get_event_listings( $args = array() ) {
 				) {
 				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
 				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
-				$date_search['relation'] = 'OR';
+				$date_search['relation'] = 'AND';
 				$date_search1[] = array(
 					'key'     => '_event_start_date',
 					'value'   =>  $dates['end'],
