@@ -284,8 +284,23 @@ class WP_Event_Manager_Shortcodes
 
 		if (isset($args['orderby']) && !empty($args['orderby'])) {
 			if ($args['orderby'] == 'event_location') {
-				$args['meta_key'] = '_event_location';
-				$args['orderby'] = 'meta_value';
+				
+				$args['meta_query'] = array(
+					'relation' => 'AND',
+					'event_start_date_clause' => array(
+						'key'     => '_event_online',
+						'compare' => 'EXISTS',
+					),
+					'event_start_time_clause' => array(
+						'key'     => '_event_location',
+						'compare' => 'EXISTS',
+					), 
+				);
+				$args['orderby'] = array(
+					'event_start_date_clause' => ($search_order_by[1]==='desc') ? 'asc' : 'desc',
+					'event_start_time_clause' => $search_order_by[1],
+				);
+				
 			} elseif ($args['orderby'] == 'event_start_date') {
 				$args['meta_key'] = '_event_start_date';
 				$args['orderby'] = 'meta_value';
