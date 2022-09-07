@@ -56,7 +56,7 @@ function get_event_listings( $args = array() ) {
 		do_action( 'get_event_listings_init', $args );
 
 
-	if ( false == get_option( 'event_manager_hide_expired', get_option( 'event_manager_hide_expired_content', 1 ) ) ) {
+	if ( false === get_option( 'event_manager_hide_expired', get_option( 'event_manager_hide_expired_content', 1 ) ) ) {
 		$post_status = array( 'publish', 'expired' );
 	} else {
 		$post_status = 'publish';
@@ -146,7 +146,7 @@ function get_event_listings( $args = array() ) {
 
 
 
-		if (isset($args['event_online']) && $args['event_online'] == 'true') {
+		if (isset($args['event_online']) && $args['event_online'] === 'true') {
 		
 		$query_args['meta_query'][] = array(
 
@@ -158,7 +158,7 @@ function get_event_listings( $args = array() ) {
 		);
 		}
 
-		if (isset($args['event_online']) && $args['event_online'] == 'false') {
+		if (isset($args['event_online']) && $args['event_online'] === 'false') {
 
 		$query_args['meta_query'][] = array(
 
@@ -410,11 +410,11 @@ function get_event_listings( $args = array() ) {
 	if ( ! empty( $args['search_ticket_prices'][0] ) ) 
 	{	
 	    $ticket_price_value='';
-		if($args['search_ticket_prices'][0]=='ticket_price_paid')
+		if($args['search_ticket_prices'][0]==='ticket_price_paid')
 		{  
 		  $ticket_price_value='paid';     
 		}
-		else if ($args['search_ticket_prices'][0]=='ticket_price_free')
+		else if ($args['search_ticket_prices'][0]==='ticket_price_free')
 		{
 		  $ticket_price_value='free';
 		}
@@ -1483,7 +1483,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 	$id = $r['id'] ? $r['id'] : $r['name'];
 
-	if($taxonomy=='event_listing_type'):
+	if($taxonomy==='event_listing_type'):
 		$placeholder=__( 'Choose an event type', 'wp-event-manager' );
 		$multiple_text = __('Choose event types', 'wp-event-manager');
 
@@ -1777,7 +1777,7 @@ function get_event_expiry_date( $event_id )
 	$event_end_date = get_post_meta( $event_id, '_event_end_date', true );
 	$expiry_base_date = $event_end_date ? $event_end_date : $event_start_date;
 
-	if($option=='event_end_date')
+	if($option==='event_end_date')
 	{
 		if ($expiry_base_date)
 			return date( 'Y-m-d', strtotime( $expiry_base_date ) );
@@ -1852,7 +1852,7 @@ function event_manager_duplicate_listing( $post_id ) {
 			if ( in_array( $meta_key, apply_filters( 'event_manager_duplicate_listing_ignore_keys', array( '_cancelled', '_featured', '_event_expires', '_event_duration' ) ) ) ) {
 				continue;
 			}
-			if($meta_key == '_view_count'){
+			if($meta_key === '_view_count'){
 				$meta_value=0;
 			  }
 			update_post_meta( $new_post_id, $meta_key, maybe_unserialize( $meta_value ) );
