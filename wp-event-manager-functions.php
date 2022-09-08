@@ -431,10 +431,26 @@ function get_event_listings( $args = array() ) {
 	}
 
 	if ( 'featured' === $args['orderby'] ) {
+
+		$query_args['meta_query'] = array(
+			'relation' => 'AND',
+			'featured_clause' => array(
+				'key'     => '_featured',
+				'compare' => 'EXISTS',
+			),
+			'event_start_date_clause' => array(
+				'key'     => '_event_start_date',
+				'compare' => 'EXISTS',
+			), 
+			'event_start_time_clause' => array(
+				'key'     => '_event_start_time',
+				'compare' => 'EXISTS',
+			), 
+		);
 		$query_args['orderby'] = array(
-			'menu_order' => 'ASC',
-			'date'       => 'DESC',
-			'ID'         => 'DESC',
+			'featured_clause' => $args['order'],
+			'event_start_date_clause' => $args['order'],
+			'event_start_time_clause' => $args['order'],
 		);
 	}
 
@@ -446,6 +462,7 @@ function get_event_listings( $args = array() ) {
 	}
 	//if orderby meta key _event_start_date 
 	if ( 'event_start_date' === $args['orderby'] ) {
+
 		$query_args['orderby'] ='meta_value';
 		$query_args['meta_key'] ='_event_start_date';
 		$query_args['meta_type'] ='DATETIME';
