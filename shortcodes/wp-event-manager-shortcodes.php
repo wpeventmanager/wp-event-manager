@@ -773,23 +773,20 @@ class WP_Event_Manager_Shortcodes
 			'event_online'      		=> '',
 
 		)), $atts));
-		
-		//Categories
 
+		//Categories
 		if (!get_option('event_manager_enable_categories')) {
 
 			$show_categories = false;
 		}
 
 		//Event types
-
 		if (!get_option('event_manager_enable_event_types')) {
 
 			$show_event_types = false;
 		}
 
 		//Event ticket prices		
-
 		if (!get_option('event_manager_enable_event_ticket_prices')) {
 
 			$show_ticket_prices = false;

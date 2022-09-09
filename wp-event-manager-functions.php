@@ -410,11 +410,11 @@ function get_event_listings( $args = array() ) {
 	if ( ! empty( $args['search_ticket_prices'][0] ) ) 
 	{	
 	    $ticket_price_value='';
-		if($args['search_ticket_prices'][0]==='ticket_price_paid')
+		if($args['search_ticket_prices'][0]==='paid')
 		{  
 		  $ticket_price_value='paid';     
 		}
-		else if ($args['search_ticket_prices'][0]==='ticket_price_free')
+		else if ($args['search_ticket_prices'][0]==='free')
 		{
 		  $ticket_price_value='free';
 		}

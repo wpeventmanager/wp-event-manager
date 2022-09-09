@@ -97,8 +97,20 @@
 
                 endif;
 
-            endif; ?>
+            endif; 
+            
+            if ($ticket_prices) : ?>
+                <?php foreach ($ticket_prices as $ticket_price) : ?>
+                    <input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
+                <?php endforeach;?>
         </div>
+
+        <?php if ($ticket_prices) : ?>
+            <?php foreach ($ticket_prices as $ticket_price) : ?>
+                <input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
+            <?php endforeach;?>
+        <?php endif; /*?>
+
         <div class="wpem-form-group">
             <?php if ($show_ticket_prices) : ?>
 
@@ -108,7 +120,7 @@
                     <?php endforeach; ?>
 
                 <?php else : ?>
-                    <select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php _e('No results match', 'wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options', 'wp-event-manager'); ?>">
+                    <select name="search_ticket_prices1[]" id="search_ticket_prices1" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php _e('No results match', 'wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options', 'wp-event-manager'); ?>">
                         <?php
                         $ticket_prices  =   WP_Event_Manager_Filters::get_ticket_prices_filter();
                         foreach ($ticket_prices as $key => $value) :
@@ -121,7 +133,7 @@
                     </select>
 
                 <?php endif; ?>
-            <?php endif; ?>
+            <?php endif; */?>
         </div>
     </div>
     <?php do_action('event_manager_event_filters_search_events_end', $atts); ?>
