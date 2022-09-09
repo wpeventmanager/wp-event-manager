@@ -448,7 +448,7 @@ function get_event_listings( $args = array() ) {
 			), 
 		);
 		$query_args['orderby'] = array(
-			'featured_clause' => $args['order'],
+			'featured_clause' => 'desc',
 			'event_start_date_clause' => $args['order'],
 			'event_start_time_clause' => $args['order'],
 		);
@@ -522,7 +522,7 @@ function get_event_listings( $args = array() ) {
 
 	$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );
 	do_action( 'before_get_event_listings', $query_args, $args );
-print_r($query_args);
+
 	// Cache results.
 	if ( apply_filters( 'get_event_listings_cache_results', true ) ) 
 	{
