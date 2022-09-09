@@ -24,23 +24,17 @@ class WP_Event_Manager_Addons
 	public function output() {?>
 		<div class="wrap wp_event_manager wp_event_manager_addons_wrap">
 		<h2><?php _e('WP Event Manager Add-ons', 'wp-event-manager'); ?></h2>
-		<?php $url = array(
-			'http://www.wp-eventmanager.com/plugins',
-			'http://www.wp-eventmanager.com/plugins/page/2',
-			'http://www.wp-eventmanager.com/plugins/page/3'
-		);
+		<?php 
 		
 		if (false === ($addons = get_transient('wp_event_manager_addons_html'))) {
-			for( $i = 0; $i <= 2; $i++ ){
-				
 				$raw_addons = wp_remote_get(
-					$url[$i],
+					'http://www.wp-eventmanager.com/plugins',
 						array(
 								'timeout'     => 10,
 								'redirection' => 5,
 								'sslverify'   => false
 						)
-						);
+					);
 					
 				if (!is_wp_error($raw_addons)) {
 					$raw_addons = wp_remote_retrieve_body($raw_addons);
@@ -63,7 +57,6 @@ class WP_Event_Manager_Addons
 					}
 				}
 				echo $addons; 
-			}
 		} ?>
 		</div>
 	<?php
