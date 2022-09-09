@@ -287,18 +287,18 @@ class WP_Event_Manager_Shortcodes
 				
 				$args['meta_query'] = array(
 					'relation' => 'AND',
-					'event_start_date_clause' => array(
+					'event_location_type_clause' => array(
 						'key'     => '_event_online',
 						'compare' => 'EXISTS',
 					),
-					'event_start_time_clause' => array(
+					'event_location_clause' => array(
 						'key'     => '_event_location',
 						'compare' => 'EXISTS',
 					), 
 				);
 				$args['orderby'] = array(
-					'event_start_date_clause' => ($search_order_by[1]==='desc') ? 'asc' : 'desc',
-					'event_start_time_clause' => $search_order_by[1],
+					'event_location_type_clause' => ($search_order_by[1]==='desc') ? 'asc' : 'desc',
+					'event_location_clause' => $search_order_by[1],
 				);
 				
 			} elseif ($args['orderby'] == 'event_start_date') {
@@ -832,7 +832,7 @@ class WP_Event_Manager_Shortcodes
 		$datetimes = WP_Event_Manager_Filters::get_datetimes_filter();
 
 		//Set value for the ticket prices		
-		//$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
+		// $ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
 
 		// Array handling
 		$datetimes            = is_array($datetimes) ? $datetimes : array_filter(array_map('trim', explode(',', $datetimes)));
