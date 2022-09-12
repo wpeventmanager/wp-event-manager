@@ -438,7 +438,7 @@ class WP_Event_Manager_Setup
 							</div>
 							<div class="wpem-setup-intro-block-welcome">
 
-								<img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager">
+								<img src="<?php echo esc_url(EVENT_MANAGER_PLUGIN_URL.'/assets/images/wpem-logo.svg'); ?>" alt="WP Event Manager">
 								<p><?php esc_attr_e('Thanks for installing WP Event Manager! Here are some valuable resources that will assist you in getting started with our plugins.', 'wp-event-manager'); ?></p>
 								<div class="wpem-backend-video-wrap">
 									<iframe width="560" height="315" src="https://www.youtube.com/embed/hlDVYtEDOgQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

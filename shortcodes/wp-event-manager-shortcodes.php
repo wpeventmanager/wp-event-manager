@@ -494,7 +494,7 @@ class WP_Event_Manager_Shortcodes
 		));
 
 		$organizers = new WP_Query;
-		echo $this->organizer_dashboard_message;
+		echo esc_html($this->organizer_dashboard_message);
 
 		$organizer_dashboard_columns = apply_filters('event_manager_organizer_dashboard_columns', array(
 
@@ -665,7 +665,8 @@ class WP_Event_Manager_Shortcodes
 		));
 
 		$venues = new WP_Query;
-		echo $this->venue_dashboard_message;
+
+		echo esc_html($this->venue_dashboard_message);
 
 		$venue_dashboard_columns = apply_filters('event_manager_venue_dashboard_columns', array(
 

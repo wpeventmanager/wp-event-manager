@@ -736,12 +736,7 @@ class WP_Event_Manager_Settings
 
 			<h1 class="wp-heading-inline">
 				<?php
-				/*
-			$page_title = isset($_GET['page']) ? $_GET['page'] : 'Settings';
-			$page_title = str_replace('-', ' ', $page_title);
-			$page_title = str_replace('_', ' ', $page_title);
-			$page_title = ucwords($page_title);
-			echo esc_attr($page_title); */
+			
 				esc_attr_e('Settings', 'wp-event-manager');
 				?>
 			</h1>
@@ -876,7 +871,7 @@ class WP_Event_Manager_Settings
 
 											break;
 
-										case 'radio':
+										case 'radio': 
 											?>
 											<fieldset>
 												<legend class="screen-reader-text">
@@ -1054,9 +1049,9 @@ class WP_Event_Manager_Settings
 	 * @return void
 	 */
 	public function create_multi_select_checkbox($value)
-	{
-		echo '<ul class="mnt-checklist" id="' . esc_attr($value['name']) . '" >' . "\n";
-		foreach ($value['options'] as $option_value => $option_list) {
+	{ ?>
+		<ul class="mnt-checklist" id="<?php echo esc_attr($value['name']);?>" >
+		<?php foreach ($value['options'] as $option_value => $option_list) {
 			$checked = ' ';
 			if (get_option($value['name'])) {
 
@@ -1067,12 +1062,13 @@ class WP_Event_Manager_Settings
 				if ($coutry_exist) {
 					$checked = " checked='checked' ";
 				}
-			}
-			echo "<li>\n";
+			}?>
+			<li>
 
-			echo '<input id="setting-' . esc_attr($option_list['name']) . '" name="' . esc_attr($option_list['name']) . '" type="checkbox" ' . $checked . '/>' . esc_attr($option_list['cb_label']) . "\n";
-			echo "</li>\n";
-		}
-		echo "</ul>\n";
-	}
+			<input id="setting-<?php echo esc_attr($option_list['name']);?>" name="<?php echo esc_attr($option_list['name']);?>" type="checkbox" <?php echo esc_attr($checked);?> />
+				<?php echo esc_attr($option_list['cb_label']); ?>
+			</li>
+		<?php } ?>
+		</ul>
+	<?php }
 }

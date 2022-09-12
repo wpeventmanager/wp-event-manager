@@ -57,7 +57,7 @@
 
                                                     <div class="wpem-organizer-description"> 
                                                     <?php $content = apply_filters('wpem_the_content',$organizer->post_content);
-                                                    printf(esc_html('%s', 'wp-event-manager'), wp_kses_post( $content ));?>
+                                                    echo wp_kses_post( $content );?>
                                                 </div>
                                                     <div class="wpem-organizer-social-links">
                                                         <div class="wpem-organizer-social-lists">

@@ -9,7 +9,7 @@
 
 		<?php $submit_organizer = get_option('event_manager_submit_organizer_form_page_id');
 		if (!empty($submit_organizer)) : ?>
-			<a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php _e('Add organizer', 'wp-event-manager'); ?>" href="<?php echo get_permalink($submit_organizer); ?>"><i class="wpem-icon-plus"></i></a>
+			<a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php _e('Add organizer', 'wp-event-manager'); ?>" href="<?php echo esc_url(get_permalink($submit_organizer)); ?>"><i class="wpem-icon-plus"></i></a>
 		<?php endif; ?>
 
 		<?php do_action('event_manager_organizer_dashboard_button_action_end'); ?>
@@ -30,7 +30,7 @@
 			<tbody>
 				<?php if (!$organizers) : ?>
 					<tr>
-						<td colspan="<?php echo count($organizer_dashboard_columns); ?>"><?php _e('There are no organizers.', 'wp-event-manager'); ?></td>
+						<td colspan="<?php echo esc_attr(count($organizer_dashboard_columns)); ?>"><?php _e('There are no organizers.', 'wp-event-manager'); ?></td>
 					</tr>
 				<?php else : ?>
 					<?php foreach ($organizers as $organizer) : ?>
@@ -40,7 +40,7 @@
 								<td data-title="<?php echo esc_html($column); ?>" class="<?php echo esc_attr($key); ?>">
 									<?php if ('organizer_name' === $key) : ?>
 										<div class="wpem-organizer-logo"><?php display_organizer_logo('', '', $organizer); ?></div>
-										<a href="<?php echo get_permalink($organizer->ID); ?>"><?php echo esc_html($organizer->post_title); ?></a>
+										<a href="<?php echo esc_url(get_permalink($organizer->ID)); ?>"><?php echo esc_html($organizer->post_title); ?></a>
 
 									<?php elseif ('organizer_details' === $key) : ?>
 
@@ -108,16 +108,15 @@
 											</div>
 										<?php } ?>
 
-									<?php elseif ('organizer_events' === $key) : ?>
-										<?php // echo get_event_organizer_count($organizer->ID);
+									<?php elseif ('organizer_events' === $key) : 
 										$events = get_event_by_organizer_id($organizer->ID);
 										?>
 
-										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo sizeof($events); ?></a>
+										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_attr(sizeof($events)); ?></a>
 											<?php if (!empty($events)) : ?>
 												<span class="organizer-events-list wpem-tooltiptext">
 													<?php foreach ($events as $event) : ?>
-														<span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php echo get_the_title($event->ID); ?></a></span>
+														<span><a href="<?php echo esc_url(get_the_permalink($event->ID)); ?>"><?php echo esc_attr(get_the_title($event->ID)); ?></a></span>
 													<?php endforeach; ?>
 												</span>
 											<?php else : ?>

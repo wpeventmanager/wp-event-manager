@@ -79,7 +79,7 @@ $thumbnail     = get_event_thumbnail();
                         if (get_event_ticket_option()) {
                         ?>
                             <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text">
-                                <span class="wpem-event-ticket-type-text"><?php echo  wp_kses_post('#' . esc_html(get_event_ticket_option())); ?></span>
+                                <span class="wpem-event-ticket-type-text"><?php echo  esc_attr('#' . esc_html(get_event_ticket_option())); ?></span>
                             </div>
                         <?php }
                         ?>

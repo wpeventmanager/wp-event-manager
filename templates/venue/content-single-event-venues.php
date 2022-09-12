@@ -39,10 +39,7 @@
                             <div class="wpem-venue-description">
                             <?php 
                             $content = apply_filters('wpem_the_content',$venue->post_content);
-                            printf(esc_html('%s', 'wp-event-manager'), wp_kses_post( $content ));
-
-                            
-                            // printf(esc_html('%s', 'wp-event-manager'), wp_kses_post( $venue->post_content ));?>
+                            echo wp_kses_post( $content );?>
                         </div>
                             <div class="wpem-venue-social-links">
                                 <div class="wpem-venue-social-lists">

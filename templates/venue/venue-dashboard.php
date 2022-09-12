@@ -9,7 +9,7 @@
 
         <?php $submit_venue = get_option('event_manager_submit_venue_form_page_id');
         if (!empty($submit_venue)) : ?>
-            <a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php _e('Add venue', 'wp-event-manager'); ?>" href="<?php echo get_permalink($submit_venue); ?>"><i class="wpem-icon-plus"></i></a>
+            <a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php _e('Add venue', 'wp-event-manager'); ?>" href="<?php echo esc_url(get_permalink($submit_venue)); ?>"><i class="wpem-icon-plus"></i></a>
         <?php endif; ?>
 
         <?php do_action('event_manager_venue_dashboard_button_action_end'); ?>
@@ -40,7 +40,7 @@
                                 <td data-title="<?php echo esc_html($column); ?>" class="<?php echo esc_attr($key); ?>">
                                     <?php if ('venue_name' === $key) : ?>
                                         <div class="wpem-venue-logo"><?php display_venue_logo('', '', $venue); ?></div>
-                                        <a href="<?php echo get_permalink($venue->ID); ?>"><?php echo esc_html($venue->post_title); ?></a>
+                                        <a href="<?php echo esc_url(get_permalink($venue->ID)); ?>"><?php echo esc_html($venue->post_title); ?></a>
 
 
                                     <?php elseif ('venue_details' === $key) : ?>
@@ -117,7 +117,7 @@
                                             <?php if (!empty($events)) : ?>
                                                 <span class="venue-events-list wpem-tooltiptext">
                                                     <?php foreach ($events as $event) : ?>
-                                                        <span><a href="<?php echo get_the_permalink($event->ID); ?>"><?php  echo wp_kses_post(get_the_title($event->ID)); ?></a></span>
+                                                        <span><a href="<?php echo esc_url(get_the_permalink($event->ID)); ?>"><?php  echo wp_kses_post(get_the_title($event->ID)); ?></a></span>
                                                     <?php endforeach; ?>
                                                 </span>
                                             <?php else : ?>

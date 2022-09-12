@@ -1390,7 +1390,7 @@ class WP_Event_Manager_Post_Types {
 		}
 		$structured_data = event_manager_get_event_listing_structured_data();
 		if ( ! empty( $structured_data ) ) {
-			printf('<script type="application/ld+json">' . wp_json_encode($structured_data) . '</script>');
+			printf('<script type="application/ld+json">%s</script>',wp_json_encode($structured_data));
 		}
 	}
 

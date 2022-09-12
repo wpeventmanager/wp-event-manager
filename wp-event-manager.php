@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.31
+Version: 3.1.32
 
 Since: 1.0.0
 
@@ -50,6 +50,14 @@ class WP_Event_Manager {
 	private static $_instance = null;
 
 	/**
+	 * version of plugin.
+	 *
+	 * @var plugin version
+	 * @since  3.1.32
+	 */
+	private static $wpem_verion = '3.1.32';
+
+	/**
 	 * REST API instance.
 	 *
 	 * @var WP_Event_Manager_REST_API
@@ -80,7 +88,7 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
-		define('EVENT_MANAGER_VERSION', '3.1.31');
+		define('EVENT_MANAGER_VERSION', self::$wpem_verion);
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 

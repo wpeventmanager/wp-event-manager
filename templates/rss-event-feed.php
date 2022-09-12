@@ -27,4 +27,4 @@ if ( $organizer ) {
 
 	echo "<event_listing:organizer><![CDATA[" . esc_html( $organizer ) . "]]></event_listing:organizer>\n";
 }
-do_action('event_fee_item_end');
+do_action('event_fee_item_end');    

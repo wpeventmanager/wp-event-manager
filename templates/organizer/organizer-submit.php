@@ -55,7 +55,7 @@ global $event_manager;
         <div class="wpem-form-group">
             <label class="wpem-form-label-text"><?php _e('Have an account?', 'wp-event-manager'); ?></label>
             <div class="field account-sign-in wpem-alert wpem-alert-info">
-                <a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url')) : home_url() . '/wp-login.php'; ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>
+                <a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) :esc_url(home_url() . '/wp-login.php'); ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>
                 <?php echo esc_attr(" to Submit the List of Organizers from your account.", "wp-event-manager"); ?>
             </div>
         </div>

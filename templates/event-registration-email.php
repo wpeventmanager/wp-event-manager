@@ -11,4 +11,4 @@
 
 	<a href="https://outlook.live.com/mail/0/deeplink/compose?to=<?php echo esc_attr($register->email); ?>&subject=<?php echo urlencode($register->subject); ?>" target="_blank" class="event_registration_email"><?php _e('Outlook', 'wp-event-manager'); ?></a>
 
-</p>
+</p>  

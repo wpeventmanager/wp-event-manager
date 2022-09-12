@@ -41,7 +41,7 @@
                                     <div class="wpem-col-md-3 wpem-col-sm-12">
                                         <div class="wpem-venue-logo-wrapper">
                                             <div class="wpem-venue-logo">
-                                                <a href="<?php echo get_the_permalink($venue_id); ?>">
+                                                <a href="<?php echo esc_url(get_the_permalink($venue_id)); ?>">
                                                     <?php display_venue_logo('', '', $venue_id); ?>
                                                 </a>
                                             </div>
@@ -59,7 +59,7 @@
 
                                          $venue_content = get_post( $venue_id );
                                          $content = apply_filters('wpem_the_content',$venue_content->post_content);
-                                         printf(__('%s', 'wp-event-manager'), wp_kses_post( $content ));
+                                        echo wp_kses_post( $content );
 
                                          ?></div>
 

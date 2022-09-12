@@ -63,10 +63,10 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 					<select class="input-text taxonomy-select" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][taxonomy]">
 						<?php foreach ($taxonomies  as $taxonomy) : ?>
 							<option value="<?php echo esc_attr($taxonomy); ?>" <?php
-																																	if (isset($field['taxonomy'])) {
-																																		echo selected($field['taxonomy'], $taxonomy, false);
-																																	}
-																																	?>><?php echo esc_html($taxonomy); ?></option>
+								if (isset($field['taxonomy'])) {
+									echo esc_attr(selected($field['taxonomy'], $taxonomy, false)); 
+								}
+								?>><?php echo esc_html($taxonomy); ?></option>
 						<?php endforeach; ?>
 					</select>
 				<?php endif; ?>

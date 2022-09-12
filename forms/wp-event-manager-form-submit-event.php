@@ -941,8 +941,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						);
 						wp_update_post($my_post);
 
-						update_post_meta( $values[ $group_key ][ $key ], '_venue_location', $values['event']['event_location'] );
-						update_post_meta( $values[ $group_key ][ $key ], '_venue_zipcode', $values['event']['event_pincode'] );
+						update_post_meta( $values[ $group_key ][ $key ], '_venue_location', sanitize_text_field($values['event']['event_location'] )); 
+						update_post_meta( $values[ $group_key ][ $key ], '_venue_zipcode', sanitize_text_field($values['event']['event_pincode'] ));
 					}					
 				}
 				elseif ( $field['type'] == 'date' ) {

@@ -326,7 +326,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) echo $before_title . $title . $after_title; ?>
+			<?php if ($title) wp_kses_post($before_title . $title . $after_title); ?>
 
 			<ul class="event_listings">
 
@@ -471,7 +471,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) echo $before_title . $title . $after_title;   ?>
+			<?php if ($title) echo wp_kses_post($before_title . $title . $after_title);   ?>
 
 			<ul class="event_listings">
 
@@ -658,7 +658,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) echo $before_title . $title . $after_title; ?>
+			<?php if ($title) echo wp_kses_post($before_title . $title . $after_title); ?>
 
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 
@@ -845,7 +845,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) echo $before_title . $title . $after_title; ?>
+			<?php if ($title) echo wp_kses_post($before_title . $title . $after_title); ?>
 
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 

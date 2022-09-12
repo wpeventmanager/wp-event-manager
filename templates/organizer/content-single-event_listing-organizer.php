@@ -21,7 +21,7 @@
                     $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-organizer-info-title';
                     ?>
 
-                    <div class="<?php echo $event_content_toggle_class; ?> active">
+                    <div class="<?php echo esc_attr($event_content_toggle_class); ?> active">
                         <h3 class="wpem-heading-text"><?php _e('Organizer', 'wp-event-manager'); ?></h3>
                         <?php if ($event_content_toggle) : ?>
                             <i class="wpem-icon-minus"></i><i class="wpem-icon-plus"></i>
@@ -56,8 +56,7 @@
 
                                                 $organizer_content = get_post( $organizer_id );
                                                 $content = apply_filters('wpem_the_content',$organizer_content->post_content);
-                                                printf(__('%s', 'wp-event-manager'), wp_kses_post( $content ));
-                                                 
+                                                echo wp_kses_post($content);                                            
                                                 ?></div>
                          
                                                 <?php do_action('single_event_listing_organizer_description_after', $organizer_id); ?>
