@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 4.1
 Tested up to: 6.0
-Stable tag: 3.1.31
+Stable tag: 3.1.32
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -300,6 +300,29 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
+= [3.1.32] 12-09-2022 =
+
+Fix - Event Manager Security issues. 
+Fix - Event manager Add-on page special symbol is display.
+Fix - Event details page end date issue.
+Fix - Event organizer ditelse visibility issue.
+Fix - Waring errors fix while adding event organizers and vanue.
+Fix - Compatibility with Elementor like users can add Single Event vanue.
+Fix - Compatibility with Elementor like users can add Single Event organizer list.
+Fix - Create Event Details Page issue with Elemento.
+Fix - WordPress Org : WP Event Manager JS File issue
+Fix - Upcoming events widgets and sell ticket Order issue.
+Fix - Featured/Recent Events Widget - Expired events are display in the Featured Events list.
+Fix - Add file button Event submission form.
+Fix - Location issue in Event detail page.
+Fix - Event Organizer short code issue.
+Fix - Event Dashboard loading issue.
+Fix - Event Listing shortcode issue.
+Fix - Warning message in WP Event Manager.
+Fix - ASC/DESC filter is not working
+Fix - Google structured data issue in WP Event Manager.
+Fix - Event time wise sorting issue.
+Fix - Event banner update issue in WP Event Manager.
 
 = [3.1.31] 22-8-2022 =
 

@@ -88,7 +88,11 @@ class WP_Event_Manager {
 	public function __construct() 
 	{
 		// Define constants
+<<<<<<< HEAD
 		define('EVENT_MANAGER_VERSION', self::$wpem_verion);
+=======
+		define('EVENT_MANAGER_VERSION', '3.1.32');
+>>>>>>> 51ecba2c14470901e18e31c952de7e63ab75e876
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
