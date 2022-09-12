@@ -109,7 +109,7 @@
             <?php foreach ($ticket_prices as $ticket_price) : ?>
                 <input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
             <?php endforeach;?>
-        <?php endif; /*?>
+        <?php endif; ?>
 
         <div class="wpem-form-group">
             <?php if ($show_ticket_prices) : ?>
@@ -133,7 +133,7 @@
                     </select>
 
                 <?php endif; ?>
-            <?php endif; */?>
+            <?php endif; ?>
         </div>
     </div>
     <?php do_action('event_manager_event_filters_search_events_end', $atts); ?>
