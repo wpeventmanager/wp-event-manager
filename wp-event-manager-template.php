@@ -1660,7 +1660,7 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
 	}
 	$video_embed = apply_filters('display_organizer_video_embed', $video_embed, $post);
 	if ($video_embed) {
-		printf('<div class="organizer_video">' . $video_embed . '</div>');
+		printf('<div class="organizer_video">%s</div>',esc_attr( $video_embed));
 	}
 }
 
@@ -2962,7 +2962,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 				}
 
 				if ($current_page == $page) {
-					printf('<li><span class="page-numbers current">' . $page . '</span></li>');
+					printf('<li><span class="page-numbers current">%s</span></li>',esc_attr($page));
 				} else {
 					$page_link = add_query_arg(
 						array(
@@ -2971,7 +2971,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 
 						)
 					);
-					printf('<li><a href="' . $page_link . '" class="page-numbers">' . $page . '</a></li>');
+					printf('<li><a href="%s" class="page-numbers">%s</a></li>',esc_url($page_link),esc_attr($page));
 				}
 
 				$prev_page = $page;

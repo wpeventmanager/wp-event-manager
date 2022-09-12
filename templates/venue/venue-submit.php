@@ -14,7 +14,7 @@ global $event_manager;
 		<h2 class="wpem-form-title wpem-heading-text"><?php _e('Venue Details', 'wp-event-manager'); ?></h2>
 		<?php
 		if (isset($resume_edit) && $resume_edit) {
-			printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing venue. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=' . $resume_edit . '">' . __('Create A New venue', 'wp-event-manager') . '</a>');
+			printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing venue. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . __('Create A New venue', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
 		}
 		?>
 

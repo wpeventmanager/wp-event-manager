@@ -326,7 +326,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) wp_kses_post($before_title . $title . $after_title); ?>
+			<?php if ($title) echo wp_kses_post($before_title . $title . $after_title); ?>
 
 			<ul class="event_listings">
 

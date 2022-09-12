@@ -396,7 +396,7 @@ class WP_Event_Manager_CPT
 
 			3  => __('Custom field deleted.', 'wp-event-manager'),
 
-			4  => sprintf('%s updated.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name,
+			4  => sprintf(wp_kses('%s updated.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name),
 
 			5  => isset($_GET['revision']) ? sprintf(wp_kses('%1$s restored to revision from %2$s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, wp_post_revision_title((int) $_GET['revision'], false)) : false,
 
@@ -406,8 +406,7 @@ class WP_Event_Manager_CPT
 
 			8  => sprintf(wp_kses('%1$s submitted. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
 
-			9  => sprintf(wp_kses
-			('%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'),
+			9  => sprintf(wp_kses('%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'),
 				$wp_post_types['event_listing']->labels->singular_name,
 				date_i18n(__('M j, Y @ G:i', 'wp-event-manager'), strtotime($post->post_date)),
 				esc_url(get_permalink($post_ID)))
