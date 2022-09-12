@@ -1,5 +1,5 @@
 <?php $organizer = get_post($organizer_id);
-//$organizer_fields =    get_metadata('post', $organizer_id);
+
 if (get_option('event_manager_form_fields')) {
     $organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
 }
@@ -26,12 +26,13 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                 <div class="wpem-organizer-infomation-wrapper">
 
                     <div class="wpem-organizer-name wpem-heading-text">
-                        <span><?php echo esc_html($organizer->post_title); ?></span>
+                    <span><?php echo esc_attr($organizer->post_title); ?></span>
                     </div>
 
-                    <div class="wpem-organizer-description"><?php $description = the_content();
-                    printf(__('%s', 'wp-event-manager'), wp_kses_post( $description )); ?></div>
-
+                    <div class="wpem-organizer-description">
+                    <?php $content = apply_filters('wpem_the_content',$organizer->post_content);
+                        echo wp_kses_post($content);?>
+                </div>
                     <div class="wpem-organizer-social-links">
                         <div class="wpem-organizer-social-lists">
                             <?php do_action('single_event_listing_organizer_social_start', $organizer_id); ?>
@@ -110,6 +111,8 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true)
                 </div>
             </div>
 
+
+       
         </div>
 
         <?php do_action('single_event_listing_organizer_end'); ?>

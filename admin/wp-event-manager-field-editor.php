@@ -118,17 +118,17 @@ class WP_Event_Manager_Field_Editor
 
 		if (!empty($_GET['event-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
 			delete_option('event_manager_submit_event_form_fields');
-			echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
+			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
 		if (!empty($_GET['organizer-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
 			delete_option('event_manager_submit_organizer_form_fields');
-			echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
+			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
 		if (!empty($_GET['venue-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
 			delete_option('event_manager_submit_venue_form_fields');
-			echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
+			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
 		if (!empty($_POST) && !empty($_POST['_wpnonce'])) {
@@ -261,8 +261,9 @@ class WP_Event_Manager_Field_Editor
 		$child_fields = array();
 
 		foreach ($field['fields'] as $field_key => $field_value) {
+			echo $field_key;
 			$index++;
-
+			echo $index;
 			$field['fields'][$field_key]['priority'] = $index;
 
 			$field['fields'][$field_key]['label'] = trim($field_value['label']);
@@ -327,9 +328,9 @@ class WP_Event_Manager_Field_Editor
 					'organizer' => $event_organizer,
 					'venue'     => $event_venue,
 				);
-
 				// find the numers keys from the fields array and replace with lable if label not exist remove that field
 				foreach ($new_fields as $group_key => $group_fields) {
+					$index = 0;
 					foreach ($group_fields as $field_key => $field_value) {
 						$index++;
 

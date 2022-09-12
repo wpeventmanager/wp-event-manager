@@ -91,12 +91,30 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'single_event_venue',
+		$args = [
+            'post_type'   => 'event_listing',
+			'post_status' => 'publish',
+			'posts_per_page'	=> -1
+        ];
+
+        $events = get_posts($args);
+
+        $options = [];
+        $options[''] =  __( 'Select event', 'wp-event-manager' );
+        if(!empty( $events))
+        {
+            foreach ($events as $event) {
+                $options[$event->ID] = $event->post_title;
+            }
+        }
+
+        $this->add_control(
+			'event_id',
 			[
-				'type' => Controls_Manager::RAW_HTML,
-				'raw' => sprintf( __( 'Note: The widget only works for single event template in Elementor Pro.', 'wp-event-manager' )),
-				'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+				'label'     => __( 'Select event', 'wp-event-manager' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'	=> $options
 			]
 		);
 		
@@ -114,7 +132,15 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		
-		get_event_manager_template_part('content', 'single-event_listing-venue');
+		if($settings['event_id']>0){
+		    $event_id = esc_attr($settings['event_id']);
+		    $settings['event_id']='id='.esc_attr($settings['event_id']);
+		}
+		else{
+		    $event_id = get_the_ID();
+		    $settings['event_id']='id='.esc_attr($event_id);
+		}
+		echo do_shortcode('[single_event_venue id="'.$event_id.'"]');
 	}
 
 	/**

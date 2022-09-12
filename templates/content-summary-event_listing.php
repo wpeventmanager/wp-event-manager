@@ -18,7 +18,7 @@
 
 			    <?php if (get_event_ticket_option()) : ?>
 			    <div class="wpem-event-ticket-type">
-					<span class="wpem-event-ticket-type-text"><?php echo '#'.esc_html(get_event_ticket_option()); ?></span>
+					<span class="wpem-event-ticket-type-text"><?php echo esc_attr('#').esc_html(get_event_ticket_option()); ?></span>
 				</div>
 				<?php endif; ?>
 			</div>

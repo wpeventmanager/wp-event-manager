@@ -44,6 +44,7 @@ class WP_Event_Manager_Shortcodes
 
 			add_shortcode('event_organizers', array($this, 'output_event_organizers'));
 			add_shortcode('event_organizer', array($this, 'output_event_organizer'));
+			add_shortcode('single_event_organizer', array($this, 'output_single_event_organizer'));
 		}
 
 		if (get_option('enable_event_venue')) {
@@ -52,6 +53,7 @@ class WP_Event_Manager_Shortcodes
 
 			add_shortcode('event_venues', array($this, 'output_event_venues'));
 			add_shortcode('event_venue', array($this, 'output_event_venue'));
+			add_shortcode('single_event_venue', array($this, 'output_single_event_venue'));
 		}
 
 		add_shortcode('events', array($this, 'output_events'));
@@ -282,8 +284,23 @@ class WP_Event_Manager_Shortcodes
 
 		if (isset($args['orderby']) && !empty($args['orderby'])) {
 			if ($args['orderby'] == 'event_location') {
-				$args['meta_key'] = '_event_location';
-				$args['orderby'] = 'meta_value';
+				
+				$args['meta_query'] = array(
+					'relation' => 'AND',
+					'event_location_type_clause' => array(
+						'key'     => '_event_online',
+						'compare' => 'EXISTS',
+					),
+					'event_location_clause' => array(
+						'key'     => '_event_location',
+						'compare' => 'EXISTS',
+					), 
+				);
+				$args['orderby'] = array(
+					'event_location_type_clause' => ($search_order_by[1]==='desc') ? 'asc' : 'desc',
+					'event_location_clause' => $search_order_by[1],
+				);
+				
 			} elseif ($args['orderby'] == 'event_start_date') {
 				$args['meta_key'] = '_event_start_date';
 				$args['orderby'] = 'meta_value';
@@ -377,7 +394,7 @@ class WP_Event_Manager_Shortcodes
 						wp_trash_post($organizer_id);
 
 						// Message
-						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(__('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
+						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						wp_redirect(add_query_arg(array('venue_id' => absint($$organizer_id), 'action' => 'organizer_dashboard'), event_manager_get_permalink('event_dashboard')));
 
 
@@ -477,7 +494,7 @@ class WP_Event_Manager_Shortcodes
 		));
 
 		$organizers = new WP_Query;
-		echo $this->organizer_dashboard_message;
+		echo esc_html($this->organizer_dashboard_message);
 
 		$organizer_dashboard_columns = apply_filters('event_manager_organizer_dashboard_columns', array(
 
@@ -548,7 +565,7 @@ class WP_Event_Manager_Shortcodes
 						// Trash it
 						wp_trash_post($venue_id);
 						// Message
-						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(__('%s has been deleted.', 'wp-event-manager'), esc_html($venue->post_title)) . '</div>';
+						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager'), esc_html($venue->post_title)) . '</div>';
 						wp_redirect(add_query_arg(array('venue_id' => absint($new_venue_id), 'action' => 'venue_dashboard'), event_manager_get_permalink('event_dashboard')));
 
 
@@ -648,7 +665,8 @@ class WP_Event_Manager_Shortcodes
 		));
 
 		$venues = new WP_Query;
-		echo $this->venue_dashboard_message;
+
+		echo esc_html($this->venue_dashboard_message);
 
 		$venue_dashboard_columns = apply_filters('event_manager_venue_dashboard_columns', array(
 
@@ -756,23 +774,20 @@ class WP_Event_Manager_Shortcodes
 			'event_online'      		=> '',
 
 		)), $atts));
-		
-		//Categories
 
+		//Categories
 		if (!get_option('event_manager_enable_categories')) {
 
 			$show_categories = false;
 		}
 
 		//Event types
-
 		if (!get_option('event_manager_enable_event_types')) {
 
 			$show_event_types = false;
 		}
 
 		//Event ticket prices		
-
 		if (!get_option('event_manager_enable_event_ticket_prices')) {
 
 			$show_ticket_prices = false;
@@ -815,7 +830,7 @@ class WP_Event_Manager_Shortcodes
 		$datetimes = WP_Event_Manager_Filters::get_datetimes_filter();
 
 		//Set value for the ticket prices		
-		//$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
+		// $ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
 
 		// Array handling
 		$datetimes            = is_array($datetimes) ? $datetimes : array_filter(array_map('trim', explode(',', $datetimes)));
@@ -1244,7 +1259,6 @@ class WP_Event_Manager_Shortcodes
 			'post_status' => 'publish'
 		);
 
-
 		if (!$id) {
 
 			$args['posts_per_page'] = $limit;
@@ -1252,14 +1266,15 @@ class WP_Event_Manager_Shortcodes
 			$args['orderby']        = 'rand';
 
 			if (!is_null($featured)) {
-
+				
 				$args['meta_query'] = array(array(
 
 					'key'     => '_featured',
 
 					'value'   => '1',
 
-					'compare' => $featured ? '=' : '!='
+					'compare' => ($featured == "true") ? '=' : '!='
+
 				));
 			}
 		} else {
@@ -1353,7 +1368,7 @@ class WP_Event_Manager_Shortcodes
 
 			'orderby'                   => isset($atts['meta_key']) ? $atts['meta_key'] : 'event_start_date', // meta_value
 
-			'location'                  => $location,
+			'location'                  => '',
 
 			'keywords'                  => '',
 
@@ -2032,6 +2047,112 @@ class WP_Event_Manager_Shortcodes
 		$event_listings_output = apply_filters('event_manager_upcoming_event_listings_output', ob_get_clean());
 
 		return  $event_listings_output;
+	}
+
+	/**
+	 *  It is very simply a plugin that outputs a list of all organizers that have listed in selected event on your website. 
+	 *  Once you have added a title to your page add the this shortcode: [single_event_organizer]
+	 *  This will output selected event's all organizers.
+	 *
+	 * @access public
+	 * @param array $atts
+	 * @return string
+	 * @since 3.1.32
+	 */
+	public function output_single_event_organizer($atts)
+	{
+		extract(shortcode_atts(array(
+			'id' => '',
+		), $atts));
+
+		if (!$id)
+			return;
+
+		ob_start();
+
+		$args = array(
+			'post_type'   => 'event_listing',
+			'post_status' => 'publish',
+			'p'           => $id
+		);
+
+		$event = new WP_Query($args);
+
+		if (empty($event->posts))
+			return;
+
+		ob_start();
+
+		do_action('single_event_organizers_content_start');
+
+		get_event_manager_template(
+			'content-single-event-organizers.php',
+			array(
+				'event'    	  => $event,
+				'event_id'    => $id,
+			),
+			'wp-event-manager/organizer',
+			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+		);
+
+		wp_reset_postdata();
+
+		do_action('single_event_organizers_content_end');
+
+		return ob_get_clean();
+	}
+
+	/**
+	 *  It is very simply a plugin that outputs a list of all venues that have listed in selected event on your website. 
+	 *  Once you have added a title to your page add the this shortcode: [single_event_venue]
+	 *  This will output selected event's all venues.
+	 *
+	 * @access public
+	 * @param array $atts
+	 * @return string
+	 * @since 3.1.32
+	 */
+	public function output_single_event_venue($atts)
+	{
+		extract(shortcode_atts(array(
+			'id' => '',
+		), $atts));
+
+		if (!$id)
+			return;
+
+		ob_start();
+
+		$args = array(
+			'post_type'   => 'event_listing',
+			'post_status' => 'publish',
+			'p'           => $id
+		);
+
+		$event = new WP_Query($args);
+
+		if (empty($event->posts))
+			return;
+
+		ob_start();
+
+		do_action('single_event_venues_content_start');
+
+		get_event_manager_template(
+			'content-single-event-venues.php',
+			array(
+				'event'    	  => $event,
+				'event_id'    => $id,
+			),
+			'wp-event-manager/venue',
+			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+		);
+
+		wp_reset_postdata();
+
+		do_action('single_event_venues_content_end');
+
+		return ob_get_clean();
 	}
 }
 

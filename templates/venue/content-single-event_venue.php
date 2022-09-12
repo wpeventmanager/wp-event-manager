@@ -18,8 +18,10 @@
                     <div class="wpem-venue-name wpem-heading-text">
                         <span><?php echo esc_attr($venue->post_title); ?></span>
                     </div>
-                    <div class="wpem-venue-description"><?php $description = the_content();
-                    printf(__('%s', 'wp-event-manager'), wp_kses_post( $description )); ?></div>
+                    <div class="wpem-venue-description">
+                    <?php $content = apply_filters('wpem_the_content',$venue->post_content);
+                        echo wp_kses_post( $content );?>
+                </div>
                     <div class="wpem-venue-social-links">
                         <div class="wpem-venue-social-lists">
                             <?php do_action('single_event_listing_venue_social_start'); ?>

@@ -131,10 +131,15 @@
 					</div>
 				</div>
 			<?php endif; ?>
+			<?php if ($ticket_prices) : ?>
+					<?php foreach ($ticket_prices as $ticket_price) : ?>
+						<input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
+					<?php endforeach; ?>
+			<?php endif; ?>	
 			<!-- Search by event type section end -->
 
 			<!-- Search by any ticket price section start -->
-			<?php if ($show_ticket_prices) : ?>
+			<?php /*if ($show_ticket_prices) : ?>
 
 				<?php if ($ticket_prices) : ?>
 					<?php foreach ($ticket_prices as $ticket_price) : ?>
@@ -159,7 +164,7 @@
 						</div>
 					</div>
 				<?php endif; ?>
-			<?php endif; ?>
+			<?php endif; */?>
 			<!-- Search by any ticket price section end -->
 
 			<?php /* ?>	  

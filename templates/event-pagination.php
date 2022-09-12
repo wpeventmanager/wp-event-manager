@@ -20,28 +20,28 @@ $prev_page   = 0;
 <nav class="event-manager-pagination">
 	<ul class="page-numbers">
 		<?php if ( $current_page && $current_page > 1 ) : ?>
-			<li><a href="#" data-page="<?php echo  wp_kses_post($current_page - 1); ?>" class="page-numbers">&larr;</a></li>
+			<li><a href="#" data-page="<?php echo  esc_attr($current_page - 1); ?>" class="page-numbers">&larr;</a></li>
 		<?php endif; ?>
 		
 		<?php
 			foreach ( $pages as $page ) {
 
-				if ( $prev_page != $page - 1 ) {
-					echo  wp_kses_post('<li><span class="gap">...</span></li>');
-				}
+				if ( $prev_page != $page - 1 ) { ?>
+					<li><span class="gap">...</span></li>
+				<?php }
 
-				if ( $current_page == $page ) {
-					echo  wp_kses_post('<li><span  data-page="' . $page . '" class="page-numbers current">' . $page . '</span></li>');
-				} else {
-					echo  wp_kses_post('<li><a href="#" data-page="' . $page . '" class="page-numbers">' . $page . '</a></li>');
-				}
+				if ( $current_page == $page ) { ?>
+					<li><span  data-page="<?php echo esc_attr($page);?>" class="page-numbers current"><?php echo esc_attr($page);?></span></li>
+				<?php } else { ?>
+					<li><a href="#" data-page="<?php echo esc_attr($page);?>" class="page-numbers"><?php echo esc_attr($page);?></a></li>
+				<?php }
 
 				$prev_page = $page;
 			}
 		?>
 
 		<?php if ( $current_page && $current_page < $max_num_pages ) : ?>
-			<li><a href="#" data-page="<?php echo  wp_kses_post($current_page + 1); ?>" class="page-numbers">&rarr;</a></li>
+			<li><a href="#" data-page="<?php echo  esc_attr($current_page + 1); ?>" class="page-numbers">&rarr;</a></li>
 		<?php endif; ?>
 	</ul>
 </nav>

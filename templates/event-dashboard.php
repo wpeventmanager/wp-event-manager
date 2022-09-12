@@ -139,6 +139,7 @@
 					</div>
 
 					<?php
+					$_GET = array_map('stripslashes_deep', $_GET);
 					$search_keywords = isset($_GET['search_keywords']) ? sanitize_text_field($_GET['search_keywords']) : '';
 					$search_order_by = isset($_GET['search_order_by']) ? sanitize_text_field($_GET['search_order_by']) : '';
 
@@ -282,10 +283,10 @@
 
 													if ($value['nonce']) {
 														$action_url = wp_nonce_url($action_url, 'event_manager_my_event_actions');
-													}
+													} ?>
 
-													echo wp_kses_post('<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>');
-												}
+													<div class="wpem-dboard-event-act-btn"><a href="<?php echo esc_url($action_url);?>" class="event-dashboard-action-<?php echo esc_attr($action);?>" title="<?php echo esc_html($value['label']);?>" ><?php echo esc_html($value['label']);?></a></div>
+												<?php }
 												?>
 											</div>
 										</div>
@@ -294,20 +295,20 @@
 											<div class="wpem-dashboard-event-date-time">
 												<div class="wpem-dashboard-event-placeholder"><strong><?php _e('Date And Time', 'wp-event-manager') ?></strong></div>
 												<?php display_event_start_date('', '', true, $event); ?> <?php
-																																									if (get_event_start_time($event)) {
-																																										display_date_time_separator();
-																																									?> <?php
-																																											display_event_start_time('', '', true, $event);
-																																										} ?>
+													if (get_event_start_time($event)) {
+														display_date_time_separator();
+													?> <?php
+															display_event_start_time('', '', true, $event);
+														} ?>
 
 												-<br>
 
-												<?php display_event_end_date('', '', true, $event); ?> <?php
-																																								if (get_event_start_time($event)) {
-																																									display_date_time_separator();
-																																								?> <?php
-																																										display_event_end_time('', '', true, $event);
-																																									} ?>
+													<?php display_event_end_date('', '', true, $event); ?> <?php
+													if (get_event_start_time($event)) {
+														display_date_time_separator();
+													?> <?php
+															display_event_end_time('', '', true, $event);
+														} ?>
 											</div>
 											<div class="wpem-dashboard-event-location">
 												<div class="wpem-dashboard-event-placeholder"><strong><?php _e('Location', 'wp-event-manager') ?></strong></div>
@@ -348,16 +349,14 @@
 																	<?php elseif ('event_start_date' === $key) :
 																		display_event_start_date('', '', true, $event);
 																	?> &nbsp; <?php
-
-																						display_event_start_time('', '', true, $event);
-																						?>
+																		display_event_start_time('', '', true, $event);
+																		?>
 
 																		<?php elseif ('event_end_date' === $key) :
 																		display_event_end_date('', '', true, $event);
 																		?>&nbsp;<?php
-
-																						display_event_end_time('', '', true, $event);
-																						?>
+																			display_event_end_time('', '', true, $event);
+																			?>
 
 																	<?php elseif ('event_location' === $key) :
 																		if (get_event_location($event) == 'Online Event') :

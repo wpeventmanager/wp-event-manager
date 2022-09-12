@@ -38,7 +38,7 @@
 				'|',
 				array_map(
 					function ( $child_v, $child_k ) {
-						return sprintf( __( $child_k . ' : %s ', 'wp-event-manager' ), $child_v ); },
+						return sprintf( $child_k . ' : %s ', 'wp-event-manager' , $child_v) ; },
 					$child_field['options'],
 					array_keys( $child_field['options'] )
 				)
@@ -64,10 +64,10 @@
 					<select class="input-text taxonomy-select" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][fields][<?php echo esc_attr( $child_field_key ); ?>][taxonomy]">
 						<?php foreach ( $taxonomies  as $taxonomy ) : ?>
 							<option value="<?php echo esc_attr( $taxonomy ); ?>" 
-													  <?php
-														if ( isset( $child_field['taxonomy'] ) ) {
-															echo selected( $child_field['taxonomy'], $taxonomy, false );}
-														?>
+								<?php
+								if ( isset( $child_field['taxonomy'] ) ) {
+									echo esc_attr(selected( $child_field['taxonomy'], $taxonomy, false ));}
+								?>
 							 ><?php echo esc_attr( $taxonomy ); ?></option>
 						<?php endforeach; ?>
 					</select>
@@ -102,14 +102,14 @@
 					<option value="0" 
 					<?php
 					if ( $child_field['required'] == false ) {
-						echo wp_kses_post('selected="selected"');
+						echo esc_attr('selected="selected"');
 					}
 					?>
 					 ><?php esc_attr_e( 'Not Required', 'wp-event-manager' ); ?></option>
 					<option value="1" 
 					<?php
 					if ( $child_field['required'] == true ) {
-						echo wp_kses_post('selected="selected"');
+						echo esc_attr('selected="selected"');
 					}
 					?>
 					 ><?php esc_attr_e( 'Required', 'wp-event-manager' ); ?></option>

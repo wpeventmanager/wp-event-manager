@@ -1,4 +1,4 @@
-<p><?php printf(__('To register for this event <strong>email your details to</strong> <a class="event_registration_email" href="mailto:%1$s%2$s">%1$s</a>', 'wp-event-manager'), $register->email, '?subject=' . rawurlencode($register->subject)); ?></p>
+<p><?php printf(__('To register for this event <strong>email your details to</strong> <a class="event_registration_email" href="mailto:%1$s%2$s">%1$s</a>', 'wp-event-manager'), esc_attr($register->email), '?subject=' . rawurlencode($register->subject)); ?></p>
 
 <p>
 	<?php _e('Register using webmail: ', 'wp-event-manager'); ?>
@@ -11,4 +11,4 @@
 
 	<a href="https://outlook.live.com/mail/0/deeplink/compose?to=<?php echo esc_attr($register->email); ?>&subject=<?php echo urlencode($register->subject); ?>" target="_blank" class="event_registration_email"><?php _e('Outlook', 'wp-event-manager'); ?></a>
 
-</p>
+</p>  

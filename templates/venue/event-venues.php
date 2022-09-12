@@ -8,7 +8,7 @@
             <div class="venue-counter-number-icon">
                 <div class="venue-counter-upper-wrap">
                     <div class="venue-counter-icon-wrap"><i class="wpem-icon-location2"></i></div>
-                    <div class="venue-counter-number-wrap"><?php echo count($venues); ?></div>
+                    <div class="venue-counter-number-wrap"><?php echo esc_attr(count($venues)); ?></div>
                 </div>
 
                 <div class="venue-counter-bottom-wrap"><?php _e('Venues', 'wp-event-manager'); ?></div>
@@ -16,7 +16,7 @@
 
 
             <div class="wpem-available-events-number-icon">
-                <a href="<?php echo get_the_permalink(get_option('event_manager_events_page_id')); ?>" class="wpem-list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
+                <a href="<?php echo esc_url(get_the_permalink(get_option('event_manager_events_page_id'))); ?>" class="wpem-list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
                     <div class="venue-counter-upper-wrap">
                         <div class="venue-counter-icon-wrap"><i class="wpem-icon-calendar"></i></div>
                         <div class="venue-counter-number-wrap"><?php echo esc_attr($countAllEvents); ?></div>
@@ -36,14 +36,13 @@
             </div>
 
             <?php
-            foreach (range('0', '9') as $letter) :
-                echo wp_kses_post('<div class="venue-letters-list"><a id="' . $letter . '" href="#' . $letter . '">' . $letter . '</a></div>');
+            foreach (range('0', '9') as $letter) :?>
+                <div class="venue-letters-list"><a id="<?php echo esc_attr($letter);?>" href="#<?php echo esc_attr($letter);?>"><?php echo esc_attr($letter);?></a></div> <?php
             endforeach;
 
-            foreach (range('A', 'Z') as $letter) :
-                echo  wp_kses_post('<div class="venue-letters-list"><a id="' . $letter . '" href="#' . $letter . '">' . $letter . '</a></div>');
-            endforeach;
-            ?>
+            foreach (range('A', 'Z') as $letter) : ?>
+                <div class="venue-letters-list"><a id="<?php echo esc_attr($letter);?>" href="#<?php echo esc_attr($letter);?>"><?php echo esc_attr($letter);?></a></div>
+            <?php endforeach; ?>
 
         </div>
 
@@ -56,7 +55,7 @@
                         <div id="show_<?php echo esc_attr($letter); ?>" class="show-venue-info show-venue-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
                             <div class="wpem-list-group">
                                 <div class="venue-group-header wpem-list-group-item wpem-list-group-item-success">
-                                    <div><?php echo sprintf(__('%s', 'wp-event-manager'), $letter); ?></div>
+                                    <div><?php echo esc_attr($letter); ?></div>
                                 </div>
 
                                 <div class="venue-name-list">
@@ -65,16 +64,16 @@
                                         $count = get_event_venue_count($venue_id); ?>
 
                                         <div class="venue-list-items">
-                                            <a href="<?php echo get_the_permalink($venue_id) ?>" class="wpem-list-group-item list-color" title="<?php _e('Click here, for more info.', 'wp-event-manager'); ?>">
+                                            <a href="<?php echo esc_url(get_the_permalink($venue_id)) ?>" class="wpem-list-group-item list-color" title="<?php _e('Click here, for more info.', 'wp-event-manager'); ?>">
                                                 <?php $venue = get_post($venue_id); ?>
                                                 <?php if ($show_thumb && $show_thumb == 'true') : ?>
                                                     <div class="wpem-venue-logo"><?php display_venue_logo('', '', $venue); ?></div>
                                                 <?php endif; ?>
 
-                                                <div class="wpem-venue-name"><?php echo esc_attr($venue_name) ?></div>
+                                                <div class="wpem-venue-name"><?php echo esc_attr($venue_name); ?></div>
 
                                                 <?php if ($count != 0 && $show_count && $show_count == 'true') : ?>
-                                                    <div class="wpem-event-venue-conunt-number"><?php echo esc_attr($count) ?></div>
+                                                    <div class="wpem-event-venue-conunt-number"><?php echo esc_attr($count); ?></div>
                                                 <?php endif; ?>
                                             </a>
                                         </div>

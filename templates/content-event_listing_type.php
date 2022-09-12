@@ -14,7 +14,7 @@ global $wp_query;
 <div class="wpem-col-12 wpem-event-listing-type-page-wrapper">
 
 <div class="wpem-my-5 wpem-event-listing-type-page-title">
-                <h1 class="wpem-heading-text"><?php echo get_the_archive_title(); ?></h1>
+                <h1 class="wpem-heading-text"><?php echo esc_html(get_the_archive_title()); ?></h1>
                 </div>
 
         <?php

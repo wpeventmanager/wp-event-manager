@@ -331,7 +331,7 @@ class WP_Event_Manager_Ajax {
         
 		if ( $search_location ) {
 
-			$result['filter_value'][] = sprintf( __( 'located in &ldquo;%s&rdquo;', 'wp-event-manager' ), $search_location );
+			$result['filter_value'][] = sprintf(wp_kses( 'located in &ldquo;%s&rdquo;', 'wp-event-manager') , $search_location) ;
 		}
 
 		if(sizeof( $result['filter_value'] ) > 1 ) 

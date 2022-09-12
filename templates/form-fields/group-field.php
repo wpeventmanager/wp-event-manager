@@ -20,7 +20,7 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
     <?php foreach ($field['value'] as $index => $value) : ?>
 
         <div class="group-row-<?php echo esc_attr($index); ?>">
-            <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo absint($index); ?>" />
+            <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo esc_attr(absint($index)); ?>" />
 
             <div class="wpem-tabs-wrapper wpem-add-group-tab-wrapper">
 

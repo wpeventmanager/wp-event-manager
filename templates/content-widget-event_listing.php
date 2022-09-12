@@ -3,7 +3,7 @@
 	<a href="<?php the_permalink(); ?>"
 		class="wpem-event-action-url event-widget">
 		<div class="wpem-event-banner">
-			<div class="wpem-event-banner-img"><img src="<?php echo get_event_thumbnail(); ?>" title="<?php echo esc_html( get_the_title() ); ?>" /></div>
+			<div class="wpem-event-banner-img"><img src="<?php echo esc_url(get_event_thumbnail()); ?>" title="<?php echo esc_html( get_the_title() ); ?>" /></div>
 		</div>
 		<div class="wpem-event-infomation">
 			<div class="wpem-event-details">
@@ -23,7 +23,7 @@
 				<?php endif; ?>
 				<?php if (get_event_ticket_option()) : ?>
 			    <div class="wpem-event-ticket-type">
-					<span class="wpem-event-ticket-type-text"><?php echo '#'.get_event_ticket_option(); ?></span>
+					<span class="wpem-event-ticket-type-text"><?php echo esc_attr('#').esc_html(get_event_ticket_option()); ?></span>
 				</div>
 				<?php endif; ?>
 			</div>

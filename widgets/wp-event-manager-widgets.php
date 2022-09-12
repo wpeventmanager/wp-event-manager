@@ -215,7 +215,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 		$this->widget_id          = 'widget_recent_events';
 
-		$this->widget_name        = sprintf(__('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		$this->widget_name        = sprintf(wp_kses('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
 
 		$this->settings           = array(
 
@@ -223,7 +223,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 				'type'  => 'text',
 
-				'std'   => sprintf(__('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(wp_kses('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 
 				'label' => __('Title', 'wp-event-manager')
 			),
@@ -302,7 +302,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 		if (!empty($instance['title']))
 			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 		else
-			$title = sprintf(__('Recent Events', 'wp-event-manager'));
+			$title = sprintf(wp_kses('Recent Events', 'wp-event-manager'));
 
 		if (!empty($instance['number']))
 			$number = absint($instance['number']);
@@ -326,7 +326,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) echo $before_title . $title . $after_title; ?>
+			<?php if ($title) echo wp_kses_post($before_title . $title . $after_title); ?>
 
 			<ul class="event_listings">
 
@@ -378,7 +378,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 		$this->widget_id          = 'widget_featured_events';
 
-		$this->widget_name        = sprintf(__('Featured %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		$this->widget_name        = sprintf(wp_kses('Featured %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
 
 		$this->settings           = array(
 
@@ -386,7 +386,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 				'type'  => 'text',
 
-				'std'   => sprintf(__('Featured %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(wp_kses('Featured %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 
 				'label' => __('Title', 'wp-event-manager')
 			),
@@ -447,7 +447,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 		if (!empty($instance['title']))
 			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 		else
-			$title = sprintf(__('Featured Events', 'wp-event-manager'));
+			$title = sprintf(wp_kses('Featured Events', 'wp-event-manager'));
 
 		if (!empty($instance['number']))
 			$number = absint($instance['number']);
@@ -471,7 +471,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) echo $before_title . $title . $after_title;   ?>
+			<?php if ($title) echo wp_kses_post($before_title . $title . $after_title);   ?>
 
 			<ul class="event_listings">
 
@@ -527,7 +527,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 		$this->widget_id          = 'widget_upcoming_events';
 
-		$this->widget_name        = sprintf(__('Upcoming %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		$this->widget_name        = sprintf(wp_kses('Upcoming %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
 
 		$this->settings           = array(
 
@@ -535,7 +535,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 				'type'  => 'text',
 
-				'std'   => sprintf(__('Upcoming %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(wp_kses('Upcoming %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 
 				'label' => __('Title', 'wp-event-manager')
 			),
@@ -613,7 +613,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 		if (!empty($instance['title']))
 			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 		else
-			$title = sprintf(__('Upcoming Events', 'wp-event-manager'));
+			$title = sprintf(wp_kses('Upcoming Events', 'wp-event-manager'));
 
 		if (!empty($instance['number']))
 			$number = absint($instance['number']);
@@ -658,7 +658,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) echo $before_title . $title . $after_title; ?>
+			<?php if ($title) echo wp_kses_post($before_title . $title . $after_title); ?>
 
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 
@@ -714,7 +714,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 		$this->widget_id          = 'widget_past_events';
 
-		$this->widget_name        = sprintf(__('Past %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		$this->widget_name        = sprintf(wp_kses('Past %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
 
 		$this->settings           = array(
 
@@ -722,7 +722,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 				'type'  => 'text',
 
-				'std'   => sprintf(__('Past %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(wp_kses('Past %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 
 				'label' => __('Title', 'wp-event-manager')
 			),
@@ -800,7 +800,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 		if (!empty($instance['title']))
 			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 		else
-			$title = sprintf(__('Past Events', 'wp-event-manager'));
+			$title = sprintf(wp_kses('Past Events', 'wp-event-manager'));
 
 		if (!empty($instance['number']))
 			$number = absint($instance['number']);
@@ -845,7 +845,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 			<?php echo wp_kses_post($before_widget); ?>
 
-			<?php if ($title) echo $before_title . $title . $after_title; ?>
+			<?php if ($title) echo wp_kses_post($before_title . $title . $after_title); ?>
 
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 

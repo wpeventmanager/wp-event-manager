@@ -56,7 +56,7 @@
 	$checklist = ob_get_clean();
 
 
-	echo str_replace("disabled='disabled'", '', $checklist);
+	echo asc_attr(str_replace("disabled='disabled'", '', $checklist));
 
 
 	?>

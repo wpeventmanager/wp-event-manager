@@ -56,7 +56,7 @@ function get_event_listings( $args = array() ) {
 		do_action( 'get_event_listings_init', $args );
 
 
-	if ( false == get_option( 'event_manager_hide_expired', get_option( 'event_manager_hide_expired_content', 1 ) ) ) {
+	if ( false === get_option( 'event_manager_hide_expired', get_option( 'event_manager_hide_expired_content', 1 ) ) ) {
 		$post_status = array( 'publish', 'expired' );
 	} else {
 		$post_status = 'publish';
@@ -146,7 +146,7 @@ function get_event_listings( $args = array() ) {
 
 
 
-		if (isset($args['event_online']) && $args['event_online'] == 'true') {
+		if (isset($args['event_online']) && $args['event_online'] === 'true') {
 		
 		$query_args['meta_query'][] = array(
 
@@ -158,7 +158,7 @@ function get_event_listings( $args = array() ) {
 		);
 		}
 
-		if (isset($args['event_online']) && $args['event_online'] == 'false') {
+		if (isset($args['event_online']) && $args['event_online'] === 'false') {
 
 		$query_args['meta_query'][] = array(
 
@@ -172,7 +172,7 @@ function get_event_listings( $args = array() ) {
 	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
 	    $date_search=array();
-			if($args['search_datetimes'][0]=='datetime_today')
+			if($args['search_datetimes'][0]==='datetime_today')
 			{	
 				$datetime=date('Y-m-d');
 				
@@ -182,7 +182,7 @@ function get_event_listings( $args = array() ) {
 						'compare' => 'LIKE',
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_tomorrow')
+			elseif($args['search_datetimes'][0]==='datetime_tomorrow')
 			{ 
 				$datetime=date('Y-m-d',strtotime("+1 day")); 
 				
@@ -192,7 +192,7 @@ function get_event_listings( $args = array() ) {
 						'compare' => 'LIKE',
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_thisweek')
+			elseif($args['search_datetimes'][0]==='datetime_thisweek')
 			{					
 				$year=date('Y');
 				$weekNumber=date('W');                 
@@ -206,7 +206,7 @@ function get_event_listings( $args = array() ) {
 					'type'    => 'date'
 				);
 			} 
-			elseif($args['search_datetimes'][0]=='datetime_thisweekend')
+			elseif($args['search_datetimes'][0]==='datetime_thisweekend')
 			{
 				$saturday_date=date('Y-m-d', strtotime('this Saturday', time()));
 				$sunday_date=date('Y-m-d', strtotime('this Saturday +1 day', time()));
@@ -220,7 +220,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			} 
-			elseif($args['search_datetimes'][0]=='datetime_thismonth')
+			elseif($args['search_datetimes'][0]==='datetime_thismonth')
 			{	
                 $dates[0]= date('Y-m-d', strtotime('first day of this month', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of this month', time()));				
@@ -232,7 +232,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_thisyear')
+			elseif($args['search_datetimes'][0]==='datetime_thisyear')
 			{
 				$dates[0]= date('Y-m-d', strtotime('first day of january', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of december', time()));	
@@ -244,7 +244,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_nextweek')
+			elseif($args['search_datetimes'][0]==='datetime_nextweek')
 			{
 			    $year=date('Y');
 				$weekNumber=date('W')+1;                 
@@ -259,7 +259,7 @@ function get_event_listings( $args = array() ) {
 				);		    
 			
 			}
-			elseif($args['search_datetimes'][0]=='datetime_nextweekend')
+			elseif($args['search_datetimes'][0]==='datetime_nextweekend')
 			{
 				$next_saturday_date=date('Y-m-d', strtotime('next week Saturday', time()));
 				$next_sunday_date=date('Y-m-d', strtotime('next week Sunday', time()));
@@ -273,7 +273,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			} 
-			elseif($args['search_datetimes'][0]=='datetime_nextmonth')
+			elseif($args['search_datetimes'][0]==='datetime_nextmonth')
 			{
 				$dates[0]= date('Y-m-d', strtotime('first day of next month', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of next month', time()));	
@@ -285,7 +285,7 @@ function get_event_listings( $args = array() ) {
 					    'type'    => 'date'
 					);
 			}
-			elseif($args['search_datetimes'][0]=='datetime_nextyear')
+			elseif($args['search_datetimes'][0]==='datetime_nextyear')
 			{
 			    $year=date('Y')+1;
 			    $dates[0]= date('Y-m-d', strtotime('first day of January ' . $year, time()));
@@ -312,7 +312,7 @@ function get_event_listings( $args = array() ) {
 				) {
 				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
 				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
-				$date_search['relation'] = 'OR';
+				$date_search['relation'] = 'AND';
 				$date_search1[] = array(
 					'key'     => '_event_start_date',
 					'value'   =>  $dates['end'],
@@ -410,11 +410,11 @@ function get_event_listings( $args = array() ) {
 	if ( ! empty( $args['search_ticket_prices'][0] ) ) 
 	{	
 	    $ticket_price_value='';
-		if($args['search_ticket_prices'][0]=='ticket_price_paid')
+		if($args['search_ticket_prices'][0]==='paid')
 		{  
 		  $ticket_price_value='paid';     
 		}
-		else if ($args['search_ticket_prices'][0]=='ticket_price_free')
+		else if ($args['search_ticket_prices'][0]==='free')
 		{
 		  $ticket_price_value='free';
 		}
@@ -431,10 +431,26 @@ function get_event_listings( $args = array() ) {
 	}
 
 	if ( 'featured' === $args['orderby'] ) {
+
+		$query_args['meta_query'] = array(
+			'relation' => 'AND',
+			'featured_clause' => array(
+				'key'     => '_featured',
+				'compare' => 'EXISTS',
+			),
+			'event_start_date_clause' => array(
+				'key'     => '_event_start_date',
+				'compare' => 'EXISTS',
+			), 
+			'event_start_time_clause' => array(
+				'key'     => '_event_start_time',
+				'compare' => 'EXISTS',
+			), 
+		);
 		$query_args['orderby'] = array(
-			'menu_order' => 'ASC',
-			'date'       => 'DESC',
-			'ID'         => 'DESC',
+			'featured_clause' => 'desc',
+			'event_start_date_clause' => $args['order'],
+			'event_start_time_clause' => $args['order'],
 		);
 	}
 
@@ -446,9 +462,30 @@ function get_event_listings( $args = array() ) {
 	}
 	//if orderby meta key _event_start_date 
 	if ( 'event_start_date' === $args['orderby'] ) {
+
 		$query_args['orderby'] ='meta_value';
 		$query_args['meta_key'] ='_event_start_date';
 		$query_args['meta_type'] ='DATETIME';
+	}
+	//if orderby event_start_date and time  both
+	if ( 'event_start_date_time' === $args['orderby'] ) {
+
+		$query_args['meta_query'] = array(
+			'relation' => 'AND',
+			'event_start_date_clause' => array(
+				'key'     => '_event_start_date',
+				'compare' => 'EXISTS',
+			),
+			'event_start_time_clause' => array(
+				'key'     => '_event_start_time',
+				'compare' => 'EXISTS',
+			), 
+		);
+		$query_args['orderby'] = array(
+			'event_start_date_clause' => $args['order'],
+			'event_start_time_clause' => $args['order'],
+		);
+
 	}
 	
 	$event_manager_keyword = sanitize_text_field( $args['search_keywords'] ); 
@@ -485,8 +522,6 @@ function get_event_listings( $args = array() ) {
 
 	$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );
 	do_action( 'before_get_event_listings', $query_args, $args );
-
-	
 
 	// Cache results.
 	if ( apply_filters( 'get_event_listings_cache_results', true ) ) 
@@ -1483,7 +1518,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 
 	$id = $r['id'] ? $r['id'] : $r['name'];
 
-	if($taxonomy=='event_listing_type'):
+	if($taxonomy==='event_listing_type'):
 		$placeholder=__( 'Choose an event type', 'wp-event-manager' );
 		$multiple_text = __('Choose event types', 'wp-event-manager');
 
@@ -1683,12 +1718,12 @@ function event_manager_upload_file( $file, $args = array() ) {
 
 		if ( $args['file_label'] ) {
 
-			return new WP_Error( 'upload', sprintf( __( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $args['file_label'], $file['type'], implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) );
+			return new WP_Error( 'upload', sprintf( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $args['file_label'], $file['type'], implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) ;
 
 		} else {
 			if(is_array( $args['allowed_mime_types'])){
 
-			return new WP_Error( 'upload', sprintf( __( 'Uploaded files need to be one of the following file types: %s', 'wp-event-manager' ), implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) );
+			return new WP_Error( 'upload', sprintf( 'Uploaded files need to be one of the following file types: %s', 'wp-event-manager' ), implode( ', ', array_keys( $args['allowed_mime_types'] ) ) ) ;
 			}
 		}
 
@@ -1777,7 +1812,7 @@ function get_event_expiry_date( $event_id )
 	$event_end_date = get_post_meta( $event_id, '_event_end_date', true );
 	$expiry_base_date = $event_end_date ? $event_end_date : $event_start_date;
 
-	if($option=='event_end_date')
+	if($option==='event_end_date')
 	{
 		if ($expiry_base_date)
 			return date( 'Y-m-d', strtotime( $expiry_base_date ) );
@@ -1852,7 +1887,7 @@ function event_manager_duplicate_listing( $post_id ) {
 			if ( in_array( $meta_key, apply_filters( 'event_manager_duplicate_listing_ignore_keys', array( '_cancelled', '_featured', '_event_expires', '_event_duration' ) ) ) ) {
 				continue;
 			}
-			if($meta_key == '_view_count'){
+			if($meta_key === '_view_count'){
 				$meta_value=0;
 			  }
 			update_post_meta( $new_post_id, $meta_key, maybe_unserialize( $meta_value ) );

@@ -138,7 +138,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => true,
 								'placeholder' => __( 'Enter your email address', 'wp-event-manager' ),
-								'priority'    => 5,
+								'priority'    => 4,
 				),
 
 				'organizer_website' => array(
@@ -146,7 +146,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => false,
 								'placeholder' => __( 'Website URL e.g http://www.yourorganization.com', 'wp-event-manager' ),
-								'priority'    => 6
+								'priority'    => 5
 				),
 
 				'organizer_facebook' => array(
@@ -154,7 +154,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => false,
 								'placeholder' => __( 'Facebook URL e.g http://www.facebook.com/yourorganizer', 'wp-event-manager' ),
-								'priority'    => 7
+								'priority'    => 6
 				),
 
 				'organizer_instagram' => array(
@@ -162,7 +162,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => false,
 								'placeholder' => __( 'Instagram URL e.g http://www.instagram.com/yourorganizer', 'wp-event-manager' ),
-								'priority'    => 8
+								'priority'    => 7
 				),
 
 				'organizer_youtube' => array(
@@ -170,7 +170,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => false,
 								'placeholder' => __( 'Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer', 'wp-event-manager' ),
-								'priority'    => 9
+								'priority'    => 8
 				),
 
 				'organizer_twitter' => array(
@@ -178,7 +178,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'type'        => 'text',
 								'required'    => false,
 								'placeholder' => __( 'Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager' ),
-								'priority'    => 10
+								'priority'    => 9
 				),
 			)
 		) );
@@ -292,7 +292,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		        foreach ( $group_fields as $key => $field ) 
               	{
     				if ( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {	    
-    					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field.', 'wp-event-manager' ), $field['label'] ) );
+    					return new WP_Error( 'validation-error', sprintf(wp_kses('%s is a required field.', 'wp-event-manager' ), $field['label'] )) ;
     				}
 
 				    if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) {
@@ -303,7 +303,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
     					}
     					foreach ( $check_value as $term ) {    
     						if ( ! term_exists( $term, $field['taxonomy'] ) ) {
-    							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid', 'wp-event-manager' ), $field['label'] ) );    
+    							return new WP_Error( 'validation-error', sprintf(wp_kses('%s is invalid', 'wp-event-manager' ), $field['label'] )) ;    
     						}
     					}
     				}
@@ -319,7 +319,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 							$file_url = current( explode( '?', $file_url ) );
 							$file_info = wp_check_filetype( $file_url );
 							if ( ! is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'] ) ) {
-								throw new Exception( sprintf( __( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $field['label'], $info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
+								throw new Exception( sprintf(wp_kses('"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $field['label'], $info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) ) ;
 							}
 						}
 					}

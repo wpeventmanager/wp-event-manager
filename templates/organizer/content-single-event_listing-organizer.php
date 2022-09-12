@@ -55,9 +55,8 @@
                                                 <div class="wpem-organizer-description"><?php
 
                                                 $organizer_content = get_post( $organizer_id );
-                                                $content = apply_filters('the_content',$organizer_content->post_content);
-                                                printf(__('%s', 'wp-event-manager'), wp_kses_post( $content ));
-                                                 
+                                                $content = apply_filters('wpem_the_content',$organizer_content->post_content);
+                                                echo wp_kses_post($content);                                            
                                                 ?></div>
                          
                                                 <?php do_action('single_event_listing_organizer_description_after', $organizer_id); ?>

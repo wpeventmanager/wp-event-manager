@@ -104,7 +104,7 @@ $event = $post;
 
                             <div class="wpem-single-event-body-content">
                                 <?php do_action('single_event_overview_start'); ?>
-                                <?php echo apply_filters('display_event_description', get_the_content()); ?>
+                                <?php echo wp_kses_post(apply_filters('display_event_description', get_the_content())); ?>
                                 <?php do_action('single_event_overview_end'); ?>
                             </div>
 
@@ -267,7 +267,7 @@ $event = $post;
                                                                                     <?php if (is_array($child_value[$child_field_name])) : ?>
                                                                                         <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                                             <div class="wpem-additional-info-block-details-content-items">
-                                                                                                <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($child_field['label']); ?> -</strong> <?php echo implode(', ', $child_value[$child_field_name]); ?></p>
+                                                                                                <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($child_field['label']); ?> -</strong> <?php echo esc_attr(implode(', ', $child_value[$child_field_name])); ?></p>
                                                                                             </div>
                                                                                         </div>
                                                                                     <?php else : ?>
@@ -369,9 +369,9 @@ $event = $post;
                                                                     <p class="wpem-additional-info-block-textarea-text">
                                                                         <strong><?php echo esc_attr($field['label']); ?></strong> - <?php
                                                                                                                             if ($field_value == 1) {
-                                                                                                                                echo "Yes";
+                                                                                                                                echo esc_attr("Yes");
                                                                                                                             } else {
-                                                                                                                                echo "No";
+                                                                                                                                echo esc_attr("No");
                                                                                                                             };
                                                                                                                             ?>
                                                                     </p>
@@ -457,21 +457,23 @@ $event = $post;
                                     <div class="clearfix">&nbsp;</div>
                                     <h3 class="wpem-heading-text"><?php _e('Date And Time', 'wp-event-manager') ?></h3>
                                     <div class="wpem-event-date-time">
-                                        <span class="wpem-event-date-time-text"><?php echo  wp_kses_post(date_i18n($date_format, strtotime($start_date))); ?>
-                                            <?php if ($start_time) {
-                                                echo esc_attr($separator) . ' ' . $start_time;
-                                            }
-                                            ?>
+                                        <span class="wpem-event-date-time-text">
+                                            <?php if($start_date){ 
+                                                echo  wp_kses_post(date_i18n($date_format, strtotime($start_date))); ?>
+                                                <?php if ($start_time) {
+                                                    echo esc_attr($separator) . ' ' . esc_attr($start_time);
+                                                }
+                                            }else{echo esc_attr('-');  } ?>
                                         </span>
                                         <?php
-                                        if (get_event_end_date() != '' && get_event_end_time()) {
+                                        if (get_event_end_date() != '') {
                                             _e(' to', 'wp-event-manager');
 
                                         ?>
                                             <br />
                                             <span class="wpem-event-date-time-text"><?php echo  wp_kses_post(date_i18n($date_format, strtotime($end_date))); ?>
                                                 <?php if ($end_time) {
-                                                    echo esc_attr($separator) . ' ' . $end_time;
+                                                    echo esc_attr($separator) . ' ' . esc_attr($end_time);
                                                 }
                                                 ?>
                                             </span>
@@ -491,15 +493,17 @@ $event = $post;
                                         <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
                                         <div>
                                             <?php
-                                            if (get_event_address()) {
-                                                display_event_address();
-                                                echo wp_kses_post(',');
+                                            if (get_event_address()) { ?>
+                                                <a href="http://maps.google.com/maps?q=<?php display_event_address();?>">  
+                                                    <?php display_event_address();
+                                                    echo esc_attr(',');?>
+                                                </a><?php
                                             }
-                                            if (!is_event_online()) {
-
-                                            ?>
-                                            <?php display_event_location();
-                                            } else {
+                                            if (!is_event_online()) {?>
+                                                <a href="http://maps.google.com/maps?q=<?php display_event_location();?>" target="_blank">  
+                                                    <?php display_event_location();?>
+                                                </a>
+                                            <?php } else {
                                                 echo esc_attr('Online event');
                                             } ?>
                                         </div>

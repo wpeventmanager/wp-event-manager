@@ -14,7 +14,7 @@ global $event_manager;
 		<h2 class="wpem-form-title wpem-heading-text"><?php _e('Venue Details', 'wp-event-manager'); ?></h2>
 		<?php
 		if (isset($resume_edit) && $resume_edit) {
-			printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing venue. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=' . $resume_edit . '">' . __('Create A New venue', 'wp-event-manager') . '</a>');
+			printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing venue. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . __('Create A New venue', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
 		}
 		?>
 
@@ -41,7 +41,7 @@ global $event_manager;
 	?>
 		<div class="wpem-form-group">
 			<div class="field account-sign-in wpem-alert wpem-alert-info">
-				<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url')) : home_url() . '/wp-login.php'; ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>
+				<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) : esc_url(home_url() . '/wp-login.php'); ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>
 				<?php echo esc_attr(" to Submit the List of Venue from your account.", "wp-event-manager"); ?>
 			</div>
 		</div>

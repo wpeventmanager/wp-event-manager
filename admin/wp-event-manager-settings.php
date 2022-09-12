@@ -96,7 +96,7 @@ class WP_Event_Manager_Settings
 							'name'       => 'event_manager_google_maps_api_key',
 							'std'        => '',
 							'label'      => __('Google API Key', 'wp-event-manager'),
-							'desc'       => sprintf(__('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="%1$s " target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%2$s" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'), esc_url('https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/'), esc_url('https://developers.google.com/maps/documentation/geocoding/get-api-key')),
+							'desc'       => sprintf(wp_kses('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="%1$s " target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%2$s" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'), esc_url('https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/'), esc_url('https://developers.google.com/maps/documentation/geocoding/get-api-key')),
 							'attributes' => array(),
 						),
 					),
@@ -656,7 +656,7 @@ class WP_Event_Manager_Settings
 
 							'label' => __('Date Format', 'wp-event-manager'),
 
-							'desc'  => sprintf(__('This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>.', 'wp-event-manager'), 'https://wordpress.org/support/article/formatting-date-and-time/'),
+							'desc'  => sprintf(wp_kses('This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>.', 'wp-event-manager'), 'https://wordpress.org/support/article/formatting-date-and-time/'),
 
 							'type'  => 'text',
 						),
@@ -736,12 +736,7 @@ class WP_Event_Manager_Settings
 
 			<h1 class="wp-heading-inline">
 				<?php
-				/*
-			$page_title = isset($_GET['page']) ? $_GET['page'] : 'Settings';
-			$page_title = str_replace('-', ' ', $page_title);
-			$page_title = str_replace('_', ' ', $page_title);
-			$page_title = ucwords($page_title);
-			echo esc_attr($page_title); */
+			
 				esc_attr_e('Settings', 'wp-event-manager');
 				?>
 			</h1>
@@ -823,10 +818,9 @@ class WP_Event_Manager_Settings
 											<textarea id="setting-<?php echo esc_attr($option['name']); ?>" class="large-text" cols="50" rows="<?php echo isset($option['row']) ? esc_attr($option['row']) : 3; ?>" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_textarea($value); ?></textarea>
 											<?php
 
-											if ($option['desc']) {
-
-												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
-											}
+											if ($option['desc']) {?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+											<?php }
 
 											break;
 
@@ -844,9 +838,9 @@ class WP_Event_Manager_Settings
 											</select>
 											<?php
 
-											if ($option['desc']) {
-												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
-											}
+											if ($option['desc']) {?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+										<?php	}
 
 											break;
 
@@ -870,13 +864,13 @@ class WP_Event_Manager_Settings
 											</select>
 											<?php
 
-											if ($option['desc']) {
-												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
-											}
+											if ($option['desc']) {?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+											<?php }
 
 											break;
 
-										case 'radio':
+										case 'radio': 
 											?>
 											<fieldset>
 												<legend class="screen-reader-text">
@@ -888,9 +882,9 @@ class WP_Event_Manager_Settings
 													echo '<label><input name="' . esc_attr($option['name']) . '" type="radio" value="' . esc_attr($key) . '" ' . checked($value, $key, false) . ' />' . esc_html($name) . '</label><br>';
 												}
 
-												if ($option['desc']) {
-													echo ' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>';
-												}
+												if ($option['desc']) {?>
+													<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+												<?php }
 
 												?>
 											</fieldset>
@@ -919,10 +913,9 @@ class WP_Event_Manager_Settings
 
 											echo str_replace(' id=', " data-placeholder='" . __('Select a page&hellip;', 'wp-event-manager') . "' id=", wp_dropdown_pages($args));
 
-											if ($option['desc']) {
-
-												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
-											}
+											if ($option['desc']) {?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+											<?php }
 
 											break;
 
@@ -931,10 +924,9 @@ class WP_Event_Manager_Settings
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 
-											if ($option['desc']) {
-
-												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
-											}
+											if ($option['desc']) { ?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+											<?php }
 
 											break;
 
@@ -945,10 +937,9 @@ class WP_Event_Manager_Settings
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 
-											if ($option['desc']) {
-
-												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
-											}
+											if ($option['desc']) { ?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+											<?php }
 
 											break;
 
@@ -957,10 +948,9 @@ class WP_Event_Manager_Settings
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 
-											if ($option['desc']) {
-
-												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
-											}
+											if ($option['desc']) { ?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+											<?php }
 
 											break;
 										case 'button':
@@ -968,10 +958,9 @@ class WP_Event_Manager_Settings
 											<button class="button" id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="button" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_attr($option['cb_label']); ?></button>
 							<?php
 
-											if ($option['desc']) {
-
-												echo wp_kses_post(' <p class="description">' . sprintf(__('%s', 'wp-event-manager'), $option['desc']) . '</p>');
-											}
+											if ($option['desc']) { ?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+											<?php }
 
 											break;
 
@@ -983,12 +972,11 @@ class WP_Event_Manager_Settings
 											do_action('wp_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder);
 
 											break;
-									}
-									echo wp_kses_post('</td></tr>');
-								}
-								echo wp_kses_post('</table></div>');
-							}
-							?>
+									}?>
+									</td></tr>
+								<?php } ?>
+								</table></div>
+							<?php }?>
 						</div> <!-- .white-background- -->
 						<p class="submit">
 							<input type="submit" class="button-primary" id="save-changes" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
@@ -1054,9 +1042,9 @@ class WP_Event_Manager_Settings
 	 * @return void
 	 */
 	public function create_multi_select_checkbox($value)
-	{
-		echo '<ul class="mnt-checklist" id="' . esc_attr($value['name']) . '" >' . "\n";
-		foreach ($value['options'] as $option_value => $option_list) {
+	{ ?>
+		<ul class="mnt-checklist" id="<?php echo esc_attr($value['name']);?>" >
+		<?php foreach ($value['options'] as $option_value => $option_list) {
 			$checked = ' ';
 			if (get_option($value['name'])) {
 
@@ -1067,12 +1055,13 @@ class WP_Event_Manager_Settings
 				if ($coutry_exist) {
 					$checked = " checked='checked' ";
 				}
-			}
-			echo "<li>\n";
+			}?>
+			<li>
 
-			echo '<input id="setting-' . esc_attr($option_list['name']) . '" name="' . esc_attr($option_list['name']) . '" type="checkbox" ' . $checked . '/>' . esc_attr($option_list['cb_label']) . "\n";
-			echo "</li>\n";
-		}
-		echo "</ul>\n";
-	}
+			<input id="setting-<?php echo esc_attr($option_list['name']);?>" name="<?php echo esc_attr($option_list['name']);?>" type="checkbox" <?php echo esc_attr($checked);?> />
+				<?php echo esc_attr($option_list['cb_label']); ?>
+			</li>
+		<?php } ?>
+		</ul>
+	<?php }
 }

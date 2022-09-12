@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.31
+Version: 3.1.32
 
 Since: 1.0.0
 
@@ -50,6 +50,14 @@ class WP_Event_Manager {
 	private static $_instance = null;
 
 	/**
+	 * version of plugin.
+	 *
+	 * @var plugin version
+	 * @since  3.1.32
+	 */
+	private static $wpem_verion = '3.1.32';
+
+	/**
 	 * REST API instance.
 	 *
 	 * @var WP_Event_Manager_REST_API
@@ -76,11 +84,11 @@ class WP_Event_Manager {
 	/**
 	 * Constructor - get the plugin hooked in and ready
 	 */
- 
+
 	public function __construct() 
 	{
 		// Define constants
-		define('EVENT_MANAGER_VERSION', '3.1.31');
+		define('EVENT_MANAGER_VERSION', self::$wpem_verion);
 		define( 'EVENT_MANAGER_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
@@ -135,6 +143,16 @@ class WP_Event_Manager {
 		
 		// Defaults for core actions
 		add_action( 'event_manager_notify_new_user', 'wp_event_manager_notify_new_user', 10, 2 );
+
+		// duplicate the_content filter for Wp event Manager plugin
+		global $wp_embed;
+		add_filter( 'wpem_the_content', array( $wp_embed, 'run_shortcode' ), 8 );
+		add_filter( 'wpem_the_content', array( $wp_embed, 'autoembed'     ), 8 );
+		add_filter( 'wpem_the_content', 'wptexturize'        );
+		add_filter( 'wpem_the_content', 'convert_chars'      );
+		add_filter( 'wpem_the_content', 'wpautop'            );
+		add_filter( 'wpem_the_content', 'shortcode_unautop'  );
+		add_filter( 'wpem_the_content', 'do_shortcode'       );
 		
 		// Schedule cron events
 		self::check_schedule_crons();
@@ -248,9 +266,9 @@ class WP_Event_Manager {
 		//file upload - vendor
 		if ( apply_filters( 'event_manager_ajax_file_upload_enabled', true ) ) {
 
-			//  wp_register_script( 'jquery-iframe-transport', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-fileupload/jquery.iframe-transport.js', array( 'jquery' ), '1.8.3', true );
-			//  wp_register_script( 'jquery-fileupload', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-fileupload/jquery.fileupload.js', array( 'jquery', 'jquery-iframe-transport', 'jquery-ui-widget' ), '5.42.3', true );
-			 wp_register_script( 'wp-event-manager-ajax-file-upload', EVENT_MANAGER_PLUGIN_URL . '/assets/js/ajax-file-upload.min.js', array( 'jquery', 'jquery-fileupload' ), EVENT_MANAGER_VERSION, true );
+			wp_register_script( 'jquery-iframe-transport', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-fileupload/jquery.iframe-transport.js', array( 'jquery' ), '1.8.3', true );
+			wp_register_script( 'jquery-fileupload', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-fileupload/jquery.fileupload.js', array( 'jquery', 'jquery-iframe-transport', 'jquery-ui-widget' ), '5.42.3', true );
+			wp_register_script( 'wp-event-manager-ajax-file-upload', EVENT_MANAGER_PLUGIN_URL . '/assets/js/ajax-file-upload.min.js', array( 'jquery', 'jquery-fileupload' ), EVENT_MANAGER_VERSION, true );
 
 			ob_start();
 			get_event_manager_template( 'form-fields/uploaded-file-html.php', array( 'name' => '', 'value' => '', 'extension' => 'jpg' ) );
@@ -321,7 +339,7 @@ class WP_Event_Manager {
 				'i18n_clearButtonText' => __( 'Clear', 'wp-event-manager' ),
 				'i18n_cancelButtonText' => __( 'Cancel', 'wp-event-manager' ),
 				'i18n_monthNames' => $this->strip_array_indices( $wp_locale->month ),
-				
+
 				'i18n_today' => __( 'Today', 'wp-event-manager' ),
 				'i18n_tomorrow' => __( 'Tomorrow', 'wp-event-manager' ),
 				'i18n_thisWeek' => __( 'This Week', 'wp-event-manager' ),
