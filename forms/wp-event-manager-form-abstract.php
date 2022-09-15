@@ -79,7 +79,6 @@ abstract class WP_Event_Manager_Form {
 	 */
 
 	public function output( $atts = array() ) {
-
 		$step_key = $this->get_step_key( $this->step );
 
 		$this->show_errors();
@@ -257,16 +256,16 @@ abstract class WP_Event_Manager_Form {
 			//Get merged fields from db and default fields.
 			$this->merge_with_custom_fields('frontend' );
 
-		$values = array();
+			$values = array();
 
 		foreach ( $this->fields as $group_key => $group_fields ) {
+			
 
 			foreach ( $group_fields as $key => $field ) {
 
 				// Get the value
-
 				$field_type = str_replace( '-', '_', $field['type'] );
-
+				
 				if ( $handler = apply_filters( "event_manager_get_posted_{$field_type}_field", false ) ) {
 
 					$values[ $group_key ][ $key ] = call_user_func( $handler, $key, $field );
@@ -279,7 +278,6 @@ abstract class WP_Event_Manager_Form {
 
 					$values[ $group_key ][ $key ] = $this->get_posted_field( $key, $field );
 				}
-
 				// Set fields value
 
 				$this->fields[ $group_key ][ $key ]['value'] = $values[ $group_key ][ $key ];
@@ -318,7 +316,13 @@ abstract class WP_Event_Manager_Form {
 						case 'textarea' :
 							$item[ $key ] = wp_kses_post( stripslashes( $_POST[ $field_name ] ) );
 						break;
-
+						case 'number' :
+							if ( is_array( $_POST[ $field_name ] )) {
+								$item[ $key ] = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $_POST[ $field_name ] ) ) );
+							} else {
+								$item[ $key ] = sanitize_text_field( stripslashes( $_POST[ $field_name ] ) );
+							}	
+						break;
 						case 'date' :
 							if(!empty($_POST[ $field_name ]))
 							{
@@ -368,25 +372,26 @@ abstract class WP_Event_Manager_Form {
 						default :
 							if(!empty($_POST[ $field_name ]))
 							{
-								if ( is_array( $_POST[ $field_name ] ) ) {
+								if ( is_array( $_POST[ $field_name ] )) {
 									$item[ $key ] = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $_POST[ $field_name ] ) ) );
 								} else {
 									$item[ $key ] = sanitize_text_field( stripslashes( $_POST[ $field_name ] ) );
 								}	
 							}
 							else{
-								$item[ $key ] = '';
+									$item[ $key ] = '';
 							}
 						break;
+						
 					}
-					if ( empty( $item[ $key ] ) && ! empty( $field['required'] ) ) {
+					if ( empty( $item[ $key ] ) && ! empty( $field['required'] ) && $field['type'] != 'number') {
 						continue 2;
 					}
 				}
 				$items[] = $item;
 			}
 		}
-
+		
 		return $items;
 
 	}
