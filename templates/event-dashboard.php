@@ -276,10 +276,13 @@
 												$actions = apply_filters('event_manager_my_event_actions', $actions, $event);
 
 												foreach ($actions as $action => $value) {
-													$action_url = add_query_arg(array(
-														'action' => $action,
-														'event_id' => $event->ID
-													));
+													$action_url = add_query_arg(
+														array(
+															'action' => $action,
+															'event_id' => $event->ID
+														),
+														get_permalink($event_dashboard)
+													);
 
 													if ($value['nonce']) {
 														$action_url = wp_nonce_url($action_url, 'event_manager_my_event_actions');
