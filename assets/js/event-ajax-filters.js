@@ -5,6 +5,10 @@ var EventAjaxFilters = function() {
         init: function() {
             Common.logInfo("EventAjaxFilters.init...");
 
+            //set datepicker default range 
+            var form = jQuery(this).closest('form');
+            form.find(':input[name^="search_datetimes"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
+
             //more filters
              if (jQuery('.wpem-search-event-more-filter').length > 0) {
                 //hide advance filter
@@ -13,7 +17,7 @@ var EventAjaxFilters = function() {
                     jQuery('.wpem-event-advance-filter').slideToggle( "slow");
                 })
              }
-
+             
             if (jQuery.isFunction(jQuery.fn.chosen)) {
                 if (event_manager_ajax_filters.is_rtl == 1) {
                     jQuery('select[name^="search_datetimes"]').addClass('chosen-rtl');
@@ -160,9 +164,11 @@ var EventAjaxFilters = function() {
                 }
                 if (true == target.data('show_filters')) {
                     var filter_event_type = [];
+
                     var datetimes = form.find(':input[name^="search_datetimes"]').map(function () {
                         return jQuery(this).val()
                     }).get();
+
                     if(jQuery( 'input.date_range_picker' ).length > 0)
                     {
                         jQuery( 'input.date_range_picker' ).daterangepicker();
