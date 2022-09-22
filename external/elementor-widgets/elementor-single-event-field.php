@@ -429,7 +429,7 @@ class Elementor_Event_Field extends Widget_Base {
              
         }
 
-       echo esc_attr($settings['event_field_after_html']);
+       echo $settings['event_field_after_html'];
     }
     /**
      * Render the widget output in the edit
