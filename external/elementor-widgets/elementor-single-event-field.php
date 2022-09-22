@@ -260,6 +260,27 @@ class Elementor_Event_Field extends Widget_Base {
                         <a href="#"><div class="wpem-modal-overlay"></div></a>
                     </div>
                     <div class="clearfix">&nbsp;</div>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function() {
+                        
+                            /* Get iframe src attribute value i.e. YouTube video url
+                            and store it in a variable */
+                            var url = jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src');
+
+                            /* Assign empty url value to the iframe src attribute when
+                            modal hide, which stop the video playing */
+                            jQuery(".wpem-modal-close").on('click', function() {
+                                jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', '');
+                            });
+
+                            /* Assign the initially stored url back to the iframe src
+                            attribute when modal is displayed again */
+                            jQuery("#event-youtube-button").on('click', function() {
+                                jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', url);
+                            });
+
+                        });
+                    </script>
                 <?php endif; ?>
                 <?php
             } else if ($settings['event_field'] == 'organizer_facebook') {
