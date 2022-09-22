@@ -149,7 +149,7 @@
 					}
 					?>
 
-					<form action="" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf($display_block); ?>">
+					<form action="<?php echo esc_url(get_permalink( get_the_ID()));?>" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf($display_block); ?>">
 						<div class="wpem-events-filter">
 
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
