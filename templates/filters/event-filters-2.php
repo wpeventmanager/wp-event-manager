@@ -91,25 +91,20 @@
                     <input type="hidden" name="search_event_types[]" value="<?php echo sanitize_title($event_type); ?>" />
                 <?php endforeach; ?>
             <?php elseif ($show_event_types && !is_tax('event_listing_type') && get_terms('event_listing_type', ['hide_empty' => false])) :
-                if ($show_event_type_multiselect) :  event_manager_dropdown_selection(array('value' => 'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'hide_empty' => false));
-                else :
+                if ($show_event_type_multiselect) {  
+                    event_manager_dropdown_selection(array('value' => 'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'hide_empty' => false));
+                }else{
                     event_manager_dropdown_selection(array('value' => 'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'show_option_all' => __('Choose an Event Type', 'wp-event-manager'), 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'multiple' => false, 'hide_empty' => false));
+                }
 
-                endif;
-
-            endif; 
-            
-            if ($ticket_prices) : ?>
-                <?php foreach ($ticket_prices as $ticket_price) : ?>
-                    <input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
-                <?php endforeach;?>
-        </div>
+            endif; ?>
+         
 
         <?php if ($ticket_prices) : ?>
             <?php foreach ($ticket_prices as $ticket_price) : ?>
                 <input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
             <?php endforeach;?>
-        <?php endif; /*?>
+        <?php endif; ?>
 
         <div class="wpem-form-group">
             <?php if ($show_ticket_prices) : ?>
@@ -133,7 +128,7 @@
                     </select>
 
                 <?php endif; ?>
-            <?php endif; */?>
+            <?php endif; ?>
         </div>
     </div>
     <?php do_action('event_manager_event_filters_search_events_end', $atts); ?>
