@@ -167,7 +167,6 @@ $event = $post;
                                                     <?php
                                                     $field_key = '_' . $name;
                                                     $field_value = $event->$field_key; ?>
-
                                                     <?php if (isset($field_value)) : ?>
 
                                                         <?php if ($field['type'] == 'group') : ?>
@@ -365,6 +364,26 @@ $event = $post;
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?> -</strong> <?php echo esc_attr($field['options'][$field_value]); ?></p>
+                                                                </div>
+                                                            </div>
+                                                        <?php elseif ($field['type'] == 'term-checklist' && array_key_exists('taxonomy',$field)) : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong>
+                                                                    <?php 
+                                                                    $terms = wp_get_post_terms($post->ID, $field['taxonomy']);
+                                                                    $term_checklist = '';
+                                                                    if (!empty($terms)):
+                                                                        $numTerm = count($terms);
+                                                                        $i = 0;
+                                                                        foreach ($terms as $term) :
+                                                                            $term_checklist .= $term->name;
+                                                                            if ($numTerm > ++$i)
+                                                                            $term_checklist .= ', ';
+                                                                        endforeach;
+                                                                    endif;
+                                                                    echo esc_attr($term_checklist); ?>
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         <?php elseif ($field['type'] == 'checkbox') : ?>
