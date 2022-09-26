@@ -241,9 +241,7 @@ class Elementor_Event_Field extends Widget_Base {
                 display_organizer_twitter('', '', true, $event);
             } else if ($settings['event_field'] == 'organizer_youtube') {
                 display_organizer_youtube('', '', true, $event);
-            } else if ($settings['event_field'] == 'event_video_url') {
-                display_event_start_date('', '', true, $event);
-                ?>
+            } else if ($settings['event_field'] == 'event_video_url') { ?>
                 <?php if (get_organizer_youtube($event)) : ?>
                     <div class="clearfix">&nbsp;</div>
                     <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></button>
