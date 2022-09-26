@@ -166,8 +166,7 @@ $event = $post;
 
                                                     <?php
                                                     $field_key = '_' . $name;
-                                                    $field_value = $event->$field_key;
-                                                    ?>
+                                                    $field_value = $event->$field_key; ?>
 
                                                     <?php if (isset($field_value)) : ?>
 
@@ -308,12 +307,11 @@ $event = $post;
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-title"><strong><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?> - </strong> <?php
-
-                                                                                                                                                                                                        if (isset($field['options'][$field_value]))
-                                                                                                                                                                                                            printf(__('%s', 'wp-event-manager'),  $field['options'][$field_value]);
-                                                                                                                                                                                                        else
-                                                                                                                                                                                                            printf(__('%s', 'wp-event-manager'), $field_value);
-                                                                                                                                                                                                        ?></p>
+                                                                        if (isset($field['options'][$field_value]))
+                                                                            printf(__('%s', 'wp-event-manager'),  $field['options'][$field_value]);
+                                                                        else
+                                                                            printf(__('%s', 'wp-event-manager'), $field_value);
+                                                                        ?></p>
                                                                 </div>
                                                             </div>
 
@@ -363,27 +361,25 @@ $event = $post;
                                                                     <p class="wpem-additional-info-block-textarea-text"><a target="_blank" href="<?php if (isset($field_value)) echo esc_url($field_value); ?>"><?php printf(__('%s', 'wp-event-manager'),  $field['label']); ?></a></p>
                                                                 </div>
                                                             </div>
+                                                        <?php elseif ($field['type'] == 'radio' && array_key_exists('options',$field)) : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title"><strong><?php echo esc_attr($field['label']); ?> -</strong> <?php echo esc_attr($field['options'][$field_value]); ?></p>
+                                                                </div>
+                                                            </div>
                                                         <?php elseif ($field['type'] == 'checkbox') : ?>
                                                             <div class="wpem-col-12 wpem-additional-info-block-textarea">
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-textarea-text">
                                                                         <strong><?php echo esc_attr($field['label']); ?></strong> - <?php
-                                                                                                                            if ($field_value == 1) {
-                                                                                                                                echo esc_attr("Yes");
-                                                                                                                            } else {
-                                                                                                                                echo esc_attr("No");
-                                                                                                                            };
-                                                                                                                            ?>
+                                                                        if ($field_value == 1) {
+                                                                            echo esc_attr("Yes");
+                                                                        } else {
+                                                                            echo esc_attr("No");
+                                                                        } ?> 
                                                                     </p>
                                                                 </div>
                                                             </div>
-
-
-
-
-
-
-
                                                         <?php else : ?>
                                                             <?php if (is_array($field_value)) : ?>
                                                                 <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
