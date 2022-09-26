@@ -662,6 +662,9 @@ $event = $post;
         jQuery(".wpem-modal-close").on('click', function() {
             jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', '');
         });
+        jQuery(".wpem-modal-overlay").on('click', function() {
+            jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', '');
+        });
 
         /* Assign the initially stored url back to the iframe src
         attribute when modal is displayed again */
