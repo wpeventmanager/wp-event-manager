@@ -40,6 +40,8 @@ function get_event_listings( $args = array() ) {
 
 		'cancelled'         => null,
 
+		'event_online'      => null,
+
 		'fields'            => 'all',
 
 		'post_status'       => array(),
@@ -146,7 +148,7 @@ function get_event_listings( $args = array() ) {
 
 
 
-		if (isset($args['event_online']) && $args['event_online'] === 'true') {
+		if (! is_null( $args['event_online'] ) || isset($args['event_online']) && $args['event_online'] === 'true') {
 		
 		$query_args['meta_query'][] = array(
 
@@ -154,11 +156,11 @@ function get_event_listings( $args = array() ) {
 
 			'value'   => 'yes',
 
-			'compare' => '='
+			'compare' => $args['event_online'] ? '=' : '!='
 		);
 		}
 
-		if (isset($args['event_online']) && $args['event_online'] === 'false') {
+		/*if (isset($args['event_online']) && $args['event_online'] === 'false') {
 
 		$query_args['meta_query'][] = array(
 
@@ -168,7 +170,7 @@ function get_event_listings( $args = array() ) {
 
 			'compare' => '='
 		);
-	}
+		}*/
 	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
 	    $date_search=array();
