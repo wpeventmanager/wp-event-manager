@@ -5,6 +5,9 @@ var EventAjaxFilters = function() {
         init: function() {
             Common.logInfo("EventAjaxFilters.init...");
 
+            //hide load more button on event listing page load
+            jQuery('.load_more_events').hide();
+            
             //set datepicker default range 
             var form = jQuery(this).closest('form');
             form.find(':input[name^="search_datetimes"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
@@ -117,7 +120,7 @@ var EventAjaxFilters = function() {
                 var target = jQuery(this).closest('div.event_listings');
                 var page = parseInt(jQuery(this).data('page') || 1);
                 var loading_previous = false;
-                jQuery(this).addClass('wpem-loading');               
+                jQuery(this).parent().addClass('wpem-loading');               
                 page = page + 1;
                 jQuery(this).data('page', page);
                 EventAjaxFilters.event_manager_store_state(target, page);
@@ -139,6 +142,8 @@ var EventAjaxFilters = function() {
             },
             getEventListings: function(event, page, append, loading_previous) {
                 Common.logInfo("EventAjaxFilters.actions.getEventListings...");
+
+                jQuery('.load_more_events').hide();
                 var data = '';
                 var target = jQuery(this);
                 var form = target.find('.event_filters');
@@ -158,7 +163,8 @@ var EventAjaxFilters = function() {
                     xmlHttpRequest[index].abort()
                 }
                 if (!append) {
-                    jQuery(results).addClass('wpem-loading');
+                    
+                    jQuery(results).parent().addClass('wpem-loading');
                     jQuery('div.event_listing, div.no_event_listings_found', results).css('visibility', 'hidden');         
                     target.find('.load_more_events').data('page', page)
                 }
@@ -304,10 +310,11 @@ var EventAjaxFilters = function() {
                                     } else if (!loading_previous) {
                                         jQuery('.load_more_events', target).show()
                                     }
-                                    jQuery('.load_more_events', target).removeClass('wpem-loading');
+                                    jQuery('#load_more_events_loader').removeClass('wpem-loading');
+                                    // jQuery('.load_more_events_loader', target).removeClass('wpem-loading');
                                     jQuery('li.event_listing', results).css('visibility', 'visible')
                                 }
-                                jQuery(results).removeClass('wpem-loading');
+                                jQuery(results).parent().removeClass('wpem-loading');
                                 target.triggerHandler('updated_results', result)
                             } catch (err) {
                                 if (window.console) {

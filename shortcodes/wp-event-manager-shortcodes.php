@@ -971,8 +971,9 @@ class WP_Event_Manager_Shortcodes
 			get_event_manager_template('event-listings-end.php');
 
 			if (!$show_pagination && $show_more) {
-
-				echo wp_kses_post('<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong>' . __('Load more events', 'wp-event-manager') . '</strong></a>');
+				echo '<div id="load_more_events_loader">';
+					echo wp_kses_post('<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong>' . __('Load more events', 'wp-event-manager') . '</strong></a>');
+				echo '</div>';
 			}
 		} else {
 			$arr_selected_datetime = [];
@@ -1054,9 +1055,9 @@ class WP_Event_Manager_Shortcodes
 						<?php echo  wp_kses_post(get_event_listing_pagination($events->max_num_pages)); ?>
 
 					<?php else : ?>
-
-						<a class="load_more_events" id="load_more_events" href="#"><strong><?php _e('Load more listings', 'wp-event-manager'); ?></strong></a>
-
+						<div id="load_more_events_loader">
+							<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong><?php _e('Load more listings', 'wp-event-manager'); ?></strong></a>
+						</div>
 					<?php endif; ?>
 
 				<?php endif; ?>
