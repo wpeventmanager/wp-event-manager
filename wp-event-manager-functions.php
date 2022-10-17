@@ -112,7 +112,9 @@ function get_event_listings( $args = array() ) {
 
 					'value'   => 	trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ','),
 
-				'compare' => 'like'
+				'compare' => 'like',
+				
+				'type'    => 'char',
 			);
 		}
 		$query_args['meta_query'][] = $location_search;
