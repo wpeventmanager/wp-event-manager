@@ -863,7 +863,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 
 		<?php endif;
 		
-		<?php echo wp_kses_post($after_widget); 
+		echo wp_kses_post($after_widget); 
 		
 		wp_reset_postdata();
 
