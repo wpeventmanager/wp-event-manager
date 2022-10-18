@@ -874,97 +874,49 @@ class WP_Event_Manager_Shortcodes
 		}
 		if ($show_filters) {
 
-			if (!empty($filter_style) && $filter_style == 2)
-				get_event_manager_template('event-filters-2.php', array(
+			get_event_manager_template('event-filters.php', array(
 
-					'per_page' => $per_page,
+				'per_page' => $per_page,
 
-					'orderby' => $orderby,
+				'orderby' => $orderby,
 
-					'order' => $order,
+				'order' => $order,
 
-					'datetimes' => $datetimes,
+				'datetimes' => $datetimes,
 
-					'selected_datetime' => $selected_datetime,
+				'selected_datetime' => $selected_datetime,
 
-					'show_categories' => $show_categories,
+				'show_categories' => $show_categories,
 
-					'show_category_multiselect' => $show_category_multiselect,
+				'show_category_multiselect' => $show_category_multiselect,
 
-					'categories' => $categories,
+				'categories' => $categories,
 
-					'selected_category' => !empty($selected_category) ? explode(',', $selected_category) : '',
+				'selected_category' => !empty($selected_category) ? explode(',', $selected_category) : '',
 
-					'show_event_types' => $show_event_types,
+				'show_event_types' => $show_event_types,
 
-					'show_event_type_multiselect' => $show_event_type_multiselect,
+				'show_event_type_multiselect' => $show_event_type_multiselect,
 
-					'event_types' => $event_types,
+				'event_types' => $event_types,
 
-					'selected_event_type' => !empty($selected_event_type) ? explode(',', $selected_event_type) : '',
+				'selected_event_type' => !empty($selected_event_type) ? explode(',', $selected_event_type) : '',
 
-					'show_ticket_prices' => $show_ticket_prices,
+				'show_ticket_prices' => $show_ticket_prices,
 
-					'ticket_prices' => $ticket_prices,
+				'ticket_prices' => $ticket_prices,
 
-					'selected_ticket_price' => $selected_ticket_price,
+				'selected_ticket_price' => $selected_ticket_price,
 
-					'atts' => $atts,
+				'atts' => $atts,
 
-					'location' => $location,
+				'location' => $location,
 
-					'keywords' => $keywords,
+				'keywords' => $keywords,
 
-					'event_online' => $event_online,
+				'event_online' => $event_online,
 
-				), 'wp-event-manager', EVENT_MANAGER_PLUGIN_DIR . '/templates/filters/');
-
-
-
-			else
-				get_event_manager_template('event-filters.php', array(
-
-					'per_page' => $per_page,
-
-					'orderby' => $orderby,
-
-					'order' => $order,
-
-					'datetimes' => $datetimes,
-
-					'selected_datetime' => $selected_datetime,
-
-					'show_categories' => $show_categories,
-
-					'show_category_multiselect' => $show_category_multiselect,
-
-					'categories' => $categories,
-
-					'selected_category' => !empty($selected_category) ? explode(',', $selected_category) : '',
-
-					'show_event_types' => $show_event_types,
-
-					'show_event_type_multiselect' => $show_event_type_multiselect,
-
-					'event_types' => $event_types,
-
-					'selected_event_type' => !empty($selected_event_type) ? explode(',', $selected_event_type) : '',
-
-					'show_ticket_prices' => $show_ticket_prices,
-
-					'ticket_prices' => $ticket_prices,
-
-					'selected_ticket_price' => $selected_ticket_price,
-
-					'atts' => $atts,
-
-					'location' => $location,
-
-					'keywords' => $keywords,
-
-					'event_online' => $event_online,
-
-				));
+			));
 
 			get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
 
