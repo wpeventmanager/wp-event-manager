@@ -45,7 +45,8 @@ class WP_Event_Manager_CPT
 
 		add_action('admin_footer-edit.php', array($this, 'add_bulk_actions'));
 
-		add_action('load-edit.php', array($this, 'do_bulk_actions'));
+		// add_action('load-edit.php', array($this, 'do_bulk_actions'), 10, 3);
+		add_filter('handle_bulk_actions-edit-event_listing', array($this, 'do_bulk_actions'), 10, 3);
 
 		add_action('admin_init', array($this, 'approve_event'));
 
@@ -68,7 +69,7 @@ class WP_Event_Manager_CPT
 			add_action("admin_footer-{$hook}.php", array($this, 'extend_submitdiv_post_status'));
 		}
 	}
-
+	
 	/**
 	 * Edit bulk actions
 	 */
@@ -102,19 +103,15 @@ class WP_Event_Manager_CPT
 	 * Do custom bulk actions
 	 */
 
-	public function do_bulk_actions()
+	public function do_bulk_actions($redirect_url, $action, $post_ids)
 	{
-
 		$wp_list_table = _get_list_table('WP_Posts_List_Table');
 
-		$action = $wp_list_table->current_action();
-
+		// $action = $wp_list_table->current_action();
 		switch ($action) {
-
+			
 			case 'approve_events':
 				check_admin_referer('bulk-posts');
-
-				$post_ids = array_map('absint', array_filter((array) sanitize_text_field($_GET['post'])));
 
 				$approved_events = array();
 
@@ -136,7 +133,7 @@ class WP_Event_Manager_CPT
 					}
 				}
 
-				wp_redirect(add_query_arg('approved_events', $approved_events, remove_query_arg(array('approved_events', 'expired_events'), admin_url('edit.php?post_type=event_listing'))));
+				wp_redirect(add_query_arg('approved_events', count($approved_events), $redirect_url));
 
 				exit;
 
@@ -144,8 +141,6 @@ class WP_Event_Manager_CPT
 
 			case 'expire_events':
 				check_admin_referer('bulk-posts');
-
-				$post_ids = array_map('absint', array_filter((array) sanitize_text_field($_GET['post'])));
 
 				$expired_events = array();
 
@@ -167,13 +162,12 @@ class WP_Event_Manager_CPT
 					}
 				}
 
-				wp_redirect(add_query_arg('expired_events', $expired_events, remove_query_arg(array('approved_events', 'expired_events'), admin_url('edit.php?post_type=event_listing'))));
+				wp_redirect(add_query_arg('expire_events', count($expired_events), $redirect_url));
 
 				exit;
 
 				break;
 		}
-
 		return;
 	}
 
