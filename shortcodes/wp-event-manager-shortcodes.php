@@ -1056,7 +1056,7 @@ class WP_Event_Manager_Shortcodes
 
 					<?php else : ?>
 						<div id="load_more_events_loader">
-							<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong><?php _e('Load more listings', 'wp-event-manager'); ?></strong></a>
+							<a class="load_more_events" id="load_more_events" href="#" ><strong><?php _e('Load more listings', 'wp-event-manager'); ?></strong></a>
 						</div>
 					<?php endif; ?>
 

@@ -6,7 +6,7 @@ var EventAjaxFilters = function() {
             Common.logInfo("EventAjaxFilters.init...");
 
             //hide load more button on event listing page load
-            jQuery('.load_more_events').hide();
+            // jQuery('.load_more_events').hide();
             
             //set datepicker default range 
             var form = jQuery(this).closest('form');
@@ -168,6 +168,7 @@ var EventAjaxFilters = function() {
                     jQuery('div.event_listing, div.no_event_listings_found', results).css('visibility', 'hidden');         
                     target.find('.load_more_events').data('page', page)
                 }
+
                 if (true == target.data('show_filters')) {
                     var filter_event_type = [];
 
@@ -257,6 +258,7 @@ var EventAjaxFilters = function() {
                         event_online: event_online,
                         show_pagination: target.data('show_pagination')
                     }
+                    
                 }
                 xmlHttpRequest[index] = jQuery.ajax({
                     type: 'POST',
