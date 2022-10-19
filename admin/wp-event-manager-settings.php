@@ -96,7 +96,7 @@ class WP_Event_Manager_Settings
 							'name'       => 'event_manager_google_maps_api_key',
 							'std'        => '',
 							'label'      => __('Google API Key', 'wp-event-manager'),
-							'desc'       => sprintf(wp_kses('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="%1$s " target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%2$s" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'), esc_url('https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/'), esc_url('https://developers.google.com/maps/documentation/geocoding/get-api-key')),
+							'desc'       => __('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'),
 							'attributes' => array(),
 						),
 					),
@@ -656,7 +656,7 @@ class WP_Event_Manager_Settings
 
 							'label' => __('Date Format', 'wp-event-manager'),
 
-							'desc'  => sprintf(wp_kses('This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>.', 'wp-event-manager'), 'https://wordpress.org/support/article/formatting-date-and-time/'),
+							'desc'  => __('This date format will be used at the frontend date display. <a href="https://wordpress.org/support/article/formatting-date-and-time/" target="__blank">For more information click here</a>.', 'wp-event-manager'),
 
 							'type'  => 'text',
 						),
