@@ -57,11 +57,11 @@ function get_event_listings( $args = array() ) {
 		 */
 		do_action( 'get_event_listings_init', $args );
 
-
-	if ( false === get_option( 'event_manager_hide_expired', get_option( 'event_manager_hide_expired_content', 1 ) ) ) {
-		$post_status = array( 'publish', 'expired' );
-	} else {
+	if ( get_option( 'event_manager_hide_expired')) {
 		$post_status = 'publish';
+	} else {
+		$post_status = array( 'publish', 'expired' );
+		
 	}
 	
 	$query_args = array(
