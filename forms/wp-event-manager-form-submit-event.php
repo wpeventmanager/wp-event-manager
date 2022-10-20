@@ -975,8 +975,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 					//set event online or not
 					if( $key == 'event_online') {
-						error_log($key);
-						error_log($values[ $group_key ][ $key] );
 						$event_online = $values[ $group_key ][ $key ];
 					}
 					// Handle attachments.
