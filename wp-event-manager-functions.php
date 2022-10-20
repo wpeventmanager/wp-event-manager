@@ -92,7 +92,6 @@ function get_event_listings( $args = array() ) {
 
 		'fields'                 => $args['fields']
 	);
-
 	
 	if ( $args['posts_per_page'] < 0 ) {
 		$query_args['no_found_rows'] = true;
@@ -148,31 +147,22 @@ function get_event_listings( $args = array() ) {
 		);
 	}
 
-
-
-		if (! is_null( $args['event_online'] ) || isset($args['event_online']) && $args['event_online'] === 'true') {
-		
+	if (isset($args['event_online']) && !empty($args['event_online'])) {
+	
+		if($args['event_online'] == 'true')
+			$event_online = 'yes';
+		elseif($args['event_online'] == 'false')
+			$event_online = 'no';
 		$query_args['meta_query'][] = array(
 
 			'key'     => '_event_online',
 
-			'value'   => 'yes',
+			'value'   => $event_online,
 
 			'compare' => $args['event_online'] ? '=' : '!='
 		);
-		}
-
-		/*if (isset($args['event_online']) && $args['event_online'] === 'false') {
-
-		$query_args['meta_query'][] = array(
-
-			'key'     => '_event_online',
-
-			'value'   => 'no',
-
-			'compare' => '='
-		);
-		}*/
+	}
+		
 	if ( ! empty( $args['search_datetimes'][0] ) ) 
 	{		
 	    $date_search=array();
