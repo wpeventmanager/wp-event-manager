@@ -962,7 +962,6 @@ class WP_Event_Manager_Writepanels
 		// These need to exist
 		add_post_meta($post_id, '_cancelled', 0, true);
 		add_post_meta($post_id, '_featured', 0, true);
-
 		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
@@ -1142,16 +1141,25 @@ class WP_Event_Manager_Writepanels
 						break;
 
 					default:
-						if (!isset($_POST[$key])) {
+						if (!isset($_POST[$key]) ) {
 							continue 2;
 						} elseif (is_array($_POST[$key])) {
 							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
 						} else {
 							update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 						}
+						//set event online or not
+						if( $key == '_event_online') 
+							$event_online = $_POST[$key];
 						break;
 				}
 			}
+		}
+
+		//delete location meta if event is online
+		if( $event_online == 'yes') {
+			delete_post_meta($post_id, '_event_location');
+			delete_post_meta($post_id, '_event_pincode');
 		}
 
 		/* Set Post Status To Expired If Already Expired */

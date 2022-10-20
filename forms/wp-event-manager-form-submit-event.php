@@ -716,7 +716,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'post_type'      => 'event_listing',
 			'comment_status' => apply_filters( 'event_manager_allowed_comment', 'closed' ),
 		);
-
 	if ( $update_slug ) {
 			$event_slug   = array();
 			// Prepend with organizer name
@@ -970,10 +969,15 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					
 				}
 				else { 
-
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
 					    $ticket_type=$values[ $group_key ][ $key ];
+					}
+					//set event online or not
+					if( $key == 'event_online') {
+						error_log($key);
+						error_log($values[ $group_key ][ $key] );
+						$event_online = $values[ $group_key ][ $key ];
 					}
 					// Handle attachments.
 					if ( 'file' === $field['type']  ) {
@@ -987,6 +991,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 				}
 			}
+		}
+
+		//delete location meta if event is online
+		if( $event_online == 'yes') {
+			delete_post_meta($this->event_id, '_event_location');
+			delete_post_meta($this->event_id, '_event_pincode');
 		}
 
 		$maybe_attach = array_filter( $maybe_attach );
