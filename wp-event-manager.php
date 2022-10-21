@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.32
+Version: 3.1.33
 
 Since: 1.0.0
 
@@ -53,9 +53,9 @@ class WP_Event_Manager {
 	 * version of plugin.
 	 *
 	 * @var plugin version
-	 * @since  3.1.32
+	 * @since  3.1.33
 	 */
-	private static $wpem_verion = '3.1.32';
+	private static $wpem_verion = '3.1.33';
 
 	/**
 	 * REST API instance.
