@@ -49,7 +49,7 @@ class WP_Event_Manager_Addons
 					$div_array = array("wpem-container feature 1", "wpem-container ticket 2", "wpem-container marketing 3", "wpem-container virtual 4");
 					for($i = 0 ; $i <= 3 ; $i++){
 						$tags  = $xpath->query('//div[@class="'.$div_array[$i].'"]/ul[@class="products columns-4"]//li');
-						foreach ($tags as $tag) { Add ons menu has still problem #1223 
+						foreach ($tags as $tag) {
 							$addons .= $tag->ownerDocument->saveXML($tag);
 						}
 					}
