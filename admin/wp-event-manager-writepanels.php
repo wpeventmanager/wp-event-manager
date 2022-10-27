@@ -61,6 +61,7 @@ class WP_Event_Manager_Writepanels
 	public function event_listing_fields()
 	{
 		global $post;
+		
 		$current_user = wp_get_current_user();
 		if (isset($post->ID)) {
 			$registration = metadata_exists('post', $post->ID, '_registration') ? get_post_meta($post->ID, '_registration', true) : $current_user->user_email;
@@ -99,7 +100,7 @@ class WP_Event_Manager_Writepanels
 		}
 
 		$fields = apply_filters('event_manager_event_listing_data_fields', $fields);
-
+		// error_log(print_r($fields, true));
 		if (isset($fields['_event_title'])) {
 			unset($fields['_event_title']);
 		}
@@ -1088,12 +1089,19 @@ class WP_Event_Manager_Writepanels
 			}
 			// Everything else
 			else {
+				
 				$type = !empty($field['type']) ? $field['type'] : '';
 				switch ($type) {
 					case 'textarea':
 						update_post_meta($post_id, $key, wp_kses_post(stripslashes($_POST[$key])));
 						break;
-
+					case 'multiselect':
+						if (!empty($_POST[$key])) {
+							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
+						} else {
+							update_post_meta($post_id, $key, '');
+						}
+						break;
 					case 'checkbox':
 						if (isset($_POST[$key])) {
 							update_post_meta($post_id, $key, 1);
