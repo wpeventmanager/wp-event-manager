@@ -45,18 +45,23 @@ class WP_Event_Manager_Addons
 					$dom->loadHTML($raw_addons);
 	
 					$xpath = new DOMXPath($dom);
-					$tags  = $xpath->query('//ul[@class="products columns-4"]');
-					foreach ($tags as $tag) {
-						$addons = $tag->ownerDocument->saveXML($tag);
-						break;
+
+					$div_array = array("wpem-container feature 1", "wpem-container ticket 2", "wpem-container marketing 3", "wpem-container virtual 4");
+					for($i = 0 ; $i <= 3 ; $i++){
+						$tags  = $xpath->query('//div[@class="'.$div_array[$i].'"]/ul[@class="products columns-4"]//li');
+						foreach ($tags as $tag) { Add ons menu has still problem #1223 
+							$addons .= $tag->ownerDocument->saveXML($tag);
+						}
 					}
-	
+				
 					$addons = wp_kses_post($addons);
 					if ($addons) {
 						set_transient('wp_event_manager_addons_html1', $addons, 60 * 60 * 24 * 7); // Cached for a week
 					}
 				}
+				echo '<ul class="products columns-4">';
 				echo $addons; 
+				echo '</ul>';
 		} ?>
 		</div>
 	<?php
