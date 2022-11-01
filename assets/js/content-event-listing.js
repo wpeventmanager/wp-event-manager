@@ -165,13 +165,10 @@ var ContentEventListing= function () {
                         jQuery("#wpem-event-list-layout").removeClass("wpem-active-layout");
                         
                     jQuery(".wpem-event-box-col").show();
-                    //jQuery("#calendar-layout-view-container").hide();
 
                     jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
-                   // jQuery(".wpem-event-listings").addClass("wpem-row wpem-event-listing-box-view");
                     
                      jQuery(".wpem-event-listings").addClass('wpem-row wpem-event-listing-box-view');
-                    // jQuery(".wpem-event-listings").addClass('wpem-event-listing-box-view');
                     
     		       localStorage.setItem("layout", "box-layout"); 
     		       event.preventDefault();

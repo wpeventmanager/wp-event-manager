@@ -433,14 +433,11 @@ class Elementor_Event_Field extends Widget_Base {
     }
     /**
      * Render the widget output in the edit
-or.
+     * or.
      *
      * Written as a Backbone JavaScript template and used to generate the live preview.
      *
      * @access protected
      */
-    protected function content_template() {
-        
-    }
-
+    protected function content_template() {  }
 }

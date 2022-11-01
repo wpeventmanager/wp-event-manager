@@ -1,5 +1,5 @@
 <?php do_action('event_manager_venue_dashboard_before'); ?>
-
+<!-- Venue dashboard title section start-->
 <div class="wpem-dashboard-main-title wpem-dashboard-main-filter">
     <h3 class="wpem-theme-text"><?php _e('Venue Dashboard', 'wp-event-manager'); ?></h3>
 
@@ -16,7 +16,9 @@
 
     </div>
 </div>
+<!-- Venue dashboard title section end-->
 
+<!-- Venue list section start-->
 <div id="event-manager-event-dashboard">
     <div class="wpem-responsive-table-block">
         <table class="wpem-main wpem-responsive-table-wrapper">
@@ -35,16 +37,14 @@
                 <?php else : ?>
                     <?php foreach ($venues as $venue) : ?>
                         <tr>
-
                             <?php foreach ($venue_dashboard_columns as $key => $column) : ?>
                                 <td data-title="<?php echo esc_html($column); ?>" class="<?php echo esc_attr($key); ?>">
                                     <?php if ('venue_name' === $key) : ?>
                                         <div class="wpem-venue-logo"><?php display_venue_logo('', '', $venue); ?></div>
                                         <a href="<?php echo esc_url(get_permalink($venue->ID)); ?>"><?php echo esc_html($venue->post_title); ?></a>
 
-
-                                    <?php elseif ('venue_details' === $key) : ?>
-                                        <?php do_action('single_event_listing_venue_social_start', $venue->ID);
+                                    <?php elseif ('venue_details' === $key) : 
+                                        do_action('single_event_listing_venue_social_start', $venue->ID);
 
                                         //get disable venue fields
                                         $venue_fields = get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
@@ -57,46 +57,35 @@
 
                                         if (empty($venue_website) && empty($venue_facebook) && empty($venue_instagram) && empty($venue_twitter) && empty($venue_youtube)) {
                                             echo wp_kses_post('<h1 class="text-center">-</h1>');
-                                        } else {
-                                        ?>
+                                        } else { ?>
                                             <div class="wpem-venue-social-links">
                                                 <div class="wpem-venue-social-lists">
 
-                                                    <?php
-                                                    if (!empty($venue_website)) { 
-                                                    ?>
+                                                    <?php if (!empty($venue_website)) {  ?>
                                                         <div class="wpem-social-icon wpem-weblink">
                                                             <a href="<?php echo esc_url($venue_website); ?>" target="_blank" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>"><?php _e('Website', 'wp-event-manager'); ?></a>
                                                         </div>
-                                                    <?php
-                                                    }
+                                                    <?php }
 
-                                                    if (!empty($venue_facebook)) {
-                                                    ?>
+                                                    if (!empty($venue_facebook)) { ?>
                                                         <div class="wpem-social-icon wpem-facebook">
                                                             <a href="<?php echo esc_url($venue_facebook); ?>" target="_blank" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php _e('Facebook', 'wp-event-manager'); ?></a>
                                                         </div>
-                                                    <?php
-                                                    }
+                                                    <?php }
 
-                                                    if (!empty($venue_instagram)) {
-                                                    ?>
+                                                    if (!empty($venue_instagram)) { ?>
                                                         <div class="wpem-social-icon wpem-instagram">
                                                             <a href="<?php echo esc_url($venue_instagram); ?>" target="_blank" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php _e('Instagram', 'wp-event-manager'); ?></a>
                                                         </div>
-                                                    <?php
-                                                    }
+                                                    <?php }
 
-                                                    if (!empty($venue_twitter)) {
-                                                    ?>
+                                                    if (!empty($venue_twitter)) { ?>
                                                         <div class="wpem-social-icon wpem-twitter">
                                                             <a href="<?php echo esc_url($venue_twitter); ?>" target="_blank" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php _e('Twitter', 'wp-event-manager'); ?></a>
                                                         </div>
-                                                    <?php
-                                                    }
+                                                    <?php }
 
-                                                    if (!empty($venue_youtube)) {
-                                                    ?>
+                                                    if (!empty($venue_youtube)) { ?>
                                                         <div class="wpem-social-icon wpem-youtube">
                                                             <a href="<?php echo esc_url($venue_youtube); ?>" target="_blank" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php _e('Youtube', 'wp-event-manager'); ?></a>
                                                         </div>
@@ -107,12 +96,9 @@
                                             </div>
                                         <?php } ?>
 
-                                    <?php elseif ('venue_events' === $key) : ?>
+                                    <?php elseif ('venue_events' === $key) : 
 
-                                        <?php
-                                        // echo get_event_venue_count($venue->ID);
-                                        $events = get_event_by_venue_id($venue->ID);
-                                        ?>
+                                        $events = get_event_by_venue_id($venue->ID); ?>
                                         <div class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo  wp_kses_post(sizeof($events)); ?></a>
                                             <?php if (!empty($events)) : ?>
                                                 <span class="venue-events-list wpem-tooltiptext">
@@ -164,7 +150,6 @@
                                     <?php endif; ?>
                                 </td>
                             <?php endforeach; ?>
-
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -172,7 +157,6 @@
         </table>
     </div>
     <?php get_event_manager_template('pagination.php', array('max_num_pages' => $max_num_pages)); ?>
-
-
 </div>
+<!-- Venue list section end-->
 <?php do_action('event_manager_venue_dashboard_after'); ?>

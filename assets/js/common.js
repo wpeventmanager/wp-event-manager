@@ -248,7 +248,6 @@ var Common = function () {
         {
              	Common.logInfo("Common.actions.showToggleContent...");  
                    jQuery(this).toggleClass("wpem-active-button");
-                   //jQuery('#wpem_contact_organizer_form').slideToggle("slow");
 
  			    event.preventDefault();    
   		},	
@@ -262,8 +261,6 @@ var Common = function () {
   	   hideToggleContent: function(event) 
        {
           Common.logInfo("Common.actions.hideToggleContent...");  
-            //jQuery('#wpem_contact_organizer').removeClass("wpem-active-button");
-            //jQuery('#wpem_contact_organizer_form').slideUp("slow");
    			event.preventDefault();    
 	   },	
 	         

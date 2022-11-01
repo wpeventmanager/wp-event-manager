@@ -5,9 +5,6 @@ var EventAjaxFilters = function() {
         init: function() {
             Common.logInfo("EventAjaxFilters.init...");
 
-            //hide load more button on event listing page load
-            // jQuery('.load_more_events').hide();
-            
             //set datepicker default range 
             var form = jQuery(this).closest('form');
             form.find(':input[name^="search_datetimes"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
@@ -98,7 +95,6 @@ var EventAjaxFilters = function() {
                     }
                     target.triggerHandler('update_event_listings', [inital_page, false])
                 });
-                //event.preventDefault()
             },
             eventAjaxFiltersReset: function(event) {
                 Common.logInfo("EventAjaxFilters.actions.eventAjaxFiltersReset...");
@@ -313,7 +309,6 @@ var EventAjaxFilters = function() {
                                         jQuery('.load_more_events', target).show()
                                     }
                                     jQuery('#load_more_events_loader').removeClass('wpem-loading');
-                                    // jQuery('.load_more_events_loader', target).removeClass('wpem-loading');
                                     jQuery('li.event_listing', results).css('visibility', 'visible')
                                 }
                                 jQuery(results).parent().removeClass('wpem-loading');

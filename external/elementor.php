@@ -97,7 +97,6 @@ class Plugin {
 			wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
 			if (!wp_script_is( 'chosen', 'enqueued' ))
 				wp_enqueue_script( 'chosen');
-			//wp_enqueue_script( 'wp-event-manager-term-multiselect');
 			if (!wp_script_is( 'wp-event-manager-multiselect', 'enqueued' ))
 				wp_enqueue_script( 'wp-event-manager-multiselect');
 
@@ -152,7 +151,6 @@ class Plugin {
 
 		if (!wp_script_is( 'wp-event-manager-ajax-filters', 'enqueued' ))
 			wp_enqueue_script( 'wp-event-manager-ajax-filters');
-
 
 		wp_enqueue_style( 'wp-event-manager-jquery-ui-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.css');
 		
@@ -270,7 +268,6 @@ class Plugin {
 		$dynamic_tags->register_tag( new Tags\Elementor_Event_Image_Tag() );
 		$dynamic_tags->register_tag( new Tags\Elementor_Event_Gallery_Tag() );
 	}
-
 }
 
 // Instantiate Plugin Class

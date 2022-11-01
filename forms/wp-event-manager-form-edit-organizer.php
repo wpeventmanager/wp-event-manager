@@ -21,7 +21,6 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	public static function instance() {
 
 		if ( is_null( self::$_instance ) ) {
-
 			self::$_instance = new self();
 		}
 		
@@ -35,9 +34,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	public function __construct() {
 
 		$this->organizer_id = ! empty( $_REQUEST['organizer_id'] ) ? absint( $_REQUEST[ 'organizer_id' ] ) : 0;
-
 		if  ( ! event_manager_user_can_edit_event( $this->organizer_id ) ) {
-
 			$this->organizer_id = 0;
 		}
 	}
@@ -47,9 +44,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	*/
 
 	public function output( $atts = array() ) {
-
 		$this->submit_handler();
-
 		$this->submit();
 	}
 
@@ -62,9 +57,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 		$organizer = get_post( $this->organizer_id );
 
 		if ( empty( $this->organizer_id  ) || ( $organizer->post_status !== 'publish') ) {
-
 			echo wpautop( __( 'Invalid listing', 'wp-event-manager' ) );
-
 			return;
 		}
 
@@ -138,50 +131,37 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	public function submit_handler() {
 
 		if ( empty( $_POST['submit_organizer'] ) ) {
-
 			return;
 		}
 
 		try {
-
 			// Get posted values
-
 			$values = $this->get_posted_fields();
 
 			// Validate required
-
 			if ( is_wp_error( ( $return = $this->validate_fields( $values ) ) ) ) {
-
 				throw new Exception( $return->get_error_message() );
 			}
 			
 			// Update the event
-
 			$this->save_organizer( $values['organizer']['organizer_name'], $values['organizer']['organizer_description'], '', $values, false );
 
 			$this->update_organizer_data( $values );
 
 			// Successful
-
 			switch ( get_post_status( $this->organizer_id ) ) {
 
 				case 'publish' :
-
 					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . get_permalink($this->organizer_id) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>' . '</div>');
-
-				break;
+					break;
 
 				default :
-
 					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . '</div>');
-
-				break;
+					break;
 			}
 
 		} catch ( Exception $e ) {
-
 			echo wp_kses_post('<div class="event-manager-error wpem-alert wpem-alert-danger">' .  esc_html($e->getMessage()) . '</div>');
-
 			return;
 		}
 	}

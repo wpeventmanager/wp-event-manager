@@ -27,10 +27,7 @@
 					<input type="text" name="search_location" id="search_location" placeholder="<?php esc_attr_e('Location', 'wp-event-manager'); ?>" value="<?php echo esc_attr($location); ?>" />
 				</div>
 			</div>
-
 			<!-- Search by location section end -->
-
-
 
 			<!-- Search by date section start -->
 			<?php if ($datetimes) : ?>
@@ -46,8 +43,6 @@
 					} else {
 						$end_date = esc_attr(strip_tags($selected_datetime[1]));
 					}
-
-
 
 					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
@@ -79,7 +74,6 @@
 				</div>
 			<?php endif; ?>
 			<!-- Search by date section end -->
-
 
 		</div> <!-- /row -->
 		<div class="wpem-row">
@@ -137,51 +131,6 @@
 					<?php endforeach; ?>
 			<?php endif; ?>	
 			<!-- Search by event type section end -->
-
-			<!-- Search by any ticket price section start -->
-			<?php /*if ($show_ticket_prices) : ?>
-
-				<?php if ($ticket_prices) : ?>
-					<?php foreach ($ticket_prices as $ticket_price) : ?>
-						<input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
-					<?php endforeach; ?>
-
-				<?php else : ?>
-					<div class="wpem-col">
-						<div class="wpem-form-group">
-							<label for="search_ticket_prices" class="wpem-form-label"><?php _e('Ticket Prices', 'wp-event-manager'); ?></label>
-							<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php _e('No results match', 'wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options', 'wp-event-manager'); ?>">
-								<?php
-								$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
-								foreach ($ticket_prices as $key => $value) :
-									if (!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price == $key) : ?>
-										<option selected=selected value="<?php echo esc_attr($key) != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
-									<?php else : ?>
-										<option value="<?php echo esc_attr($key) != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
-								<?php endif;
-								endforeach; ?>
-							</select>
-						</div>
-					</div>
-				<?php endif; ?>
-			<?php endif; */?>
-			<!-- Search by any ticket price section end -->
-
-			<?php /* ?>	  
-			<!-- Search by Online Event start -->  
-			<div class="wpem-col">
-				<div class="wpem-form-group">
-					<label for="event_online" class="wpem-form-label"></label>
-					<?php if($event_online) : ?>
-						<input type="checkbox" name="event_online" id="event_online" value='1' class="event-manager-filter" checked="checked" > <?php _e( 'Online Event', 'wp-event-manager' ); ?>
-					<?php else: ?>
-						<input type="checkbox" name="event_online" id="event_online" value='1' class="event-manager-filter" > <?php _e( 'Online Event', 'wp-event-manager' ); ?>
-					<?php endif; ?>
-					
-				</div>
-			</div>
-			<!-- Search by Online Event end -->
-			<?php */ ?>
 
 		</div> <!-- /row -->
 

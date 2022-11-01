@@ -7,10 +7,8 @@
  *
  * @since  3.1.6
  */
-?>
 
-
-<?php if (has_event_organizer_ids()) : ?>
+if (has_event_organizer_ids()) : ?>
 
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
@@ -31,12 +29,12 @@
                     <div class="wpem-organizer-wrapper wpem-listing-accordion-panel active" style="display: block;">
                         <div class="wpem-organizer-profile">
 
-                            <?php do_action('single_event_listing_organizer_start'); ?>
+                            <?php do_action('single_event_listing_organizer_start'); 
 
-                            <?php $organizer_ids = get_event_organizer_ids(); ?>
+                            $organizer_ids = get_event_organizer_ids(); 
 
-                            <?php if (!empty($organizer_ids)) : ?>
-                                <?php foreach ($organizer_ids as $key => $organizer_id) : ?>
+                            if (!empty($organizer_ids)) : 
+                                foreach ($organizer_ids as $key => $organizer_id) : ?>
 
                                     <div class="wpem-organizer-inner-wrapper">
                                         <div class="wpem-row">
@@ -53,11 +51,10 @@
                                                 <?php do_action('single_event_listing_organizer_description_before', $organizer_id);
                                                 $organizer = get_post($organizer_id); ?>
                                                 <div class="wpem-organizer-description"><?php
-
-                                                $organizer_content = get_post( $organizer_id );
-                                                $content = apply_filters('wpem_the_content',$organizer_content->post_content);
-                                                echo wp_kses_post($content);                                            
-                                                ?></div>
+                                                    $organizer_content = get_post( $organizer_id );
+                                                    $content = apply_filters('wpem_the_content',$organizer_content->post_content);
+                                                    echo wp_kses_post($content); ?>
+                                                </div>
                          
                                                 <?php do_action('single_event_listing_organizer_description_after', $organizer_id); ?>
 
@@ -73,30 +70,20 @@
                                                          $organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?get_organizer_instagram($organizer_id):'';
                                                          $organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?get_organizer_twitter($organizer_id):'';
                                                          $organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?get_organizer_youtube($organizer_id):'';
-                                                        ?>
-                                                        <?php
-                                                        if (!empty($organizer_website)) {
-                                                        ?>
+                                                        
+                                                        if (!empty($organizer_website)) { ?>
                                                             <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php _e('Website', 'wp-event-manager'); ?></a></div>
-                                                        <?php
-                                                        }
-                                                        if (!empty($organizer_facebook)) {
-                                                        ?>
+                                                        <?php  }
+                                                        if (!empty($organizer_facebook)) { ?>
                                                             <div class="wpem-social-icon wpem-facebook"><a href="<?php echo esc_url($organizer_facebook); ?>" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>" target="_blank"><?php _e('Faceboo', 'wp-event-manager'); ?></a></div>
-                                                        <?php
-                                                        }
-                                                        if (!empty($organizer_instagram)) {
-                                                        ?>
+                                                        <?php }
+                                                        if (!empty($organizer_instagram)) { ?>
                                                             <div class="wpem-social-icon wpem-instagram"><a href="<?php echo esc_url($organizer_instagram); ?>" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>" target="_blank"><?php _e('Instagram', 'wp-event-manager'); ?></a></div>
-                                                        <?php
-                                                        }
-                                                        if (!empty($organizer_twitter)) {
-                                                        ?>
+                                                        <?php  }
+                                                        if (!empty($organizer_twitter)) { ?>
                                                             <div class="wpem-social-icon wpem-twitter"><a href="<?php echo esc_url($organizer_twitter); ?>" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>" target="_blank"><?php _e('Twitter', 'wp-event-manager'); ?></a></div>
-                                                        <?php
-                                                        }
-                                                        if (!empty($organizer_youtube)) {
-                                                        ?>
+                                                        <?php }
+                                                        if (!empty($organizer_youtube)) { ?>
                                                             <div class="wpem-social-icon wpem-youtube"><a href="<?php echo esc_url($organizer_youtube); ?>" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>" target="_blank"><?php _e('Youtube', 'wp-event-manager'); ?></a></div>
                                                         <?php } ?>
 
@@ -127,7 +114,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 <?php else : ?>
 
@@ -165,37 +151,27 @@
 
                                         <div class="wpem-organizer-social-links">
                                             <div class="wpem-organizer-social-lists">
-                                                <?php do_action('single_event_listing_organizer_social_start'); ?>
-                                                <?php
+                                                <?php do_action('single_event_listing_organizer_social_start');
+                                                
                                                 $organizer_website  = get_organizer_website();
                                                 $organizer_facebook = get_organizer_facebook();
                                                 $organizer_instagram = get_organizer_instagram();
                                                 $organizer_twitter  = get_organizer_twitter();
                                                 $organizer_youtube  = get_organizer_youtube();
-                                                ?>
-                                                <?php
-                                                if (!empty($organizer_website)) {
-                                                ?>
+                                                
+                                                if (!empty($organizer_website)) { ?>
                                                     <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php _e('Website', 'wp-event-manager'); ?></a></div>
-                                                <?php
-                                                }
-                                                if (!empty($organizer_facebook)) {
-                                                ?>
+                                                <?php }
+                                                if (!empty($organizer_facebook)) { ?>
                                                     <div class="wpem-social-icon wpem-facebook"><a href="<?php echo esc_url($organizer_facebook); ?>" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>" target="_blank"><?php _e('Faceboo', 'wp-event-manager'); ?></a></div>
-                                                <?php
-                                                }
-                                                if (!empty($organizer_instagram)) {
-                                                ?>
+                                                <?php }
+                                                if (!empty($organizer_instagram)) { ?>
                                                     <div class="wpem-social-icon wpem-instagram"><a href="<?php echo esc_url($organizer_instagram); ?>" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>" target="_blank"><?php _e('Instagram', 'wp-event-manager'); ?></a></div>
-                                                <?php
-                                                }
-                                                if (!empty($organizer_twitter)) {
-                                                ?>
+                                                <?php }
+                                                if (!empty($organizer_twitter)) { ?>
                                                     <div class="wpem-social-icon wpem-twitter"><a href="<?php echo esc_url($organizer_twitter); ?>" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>" target="_blank"><?php _e('Twitter', 'wp-event-manager'); ?></a></div>
-                                                <?php
-                                                }
-                                                if (!empty($organizer_youtube)) {
-                                                ?>
+                                                <?php }
+                                                if (!empty($organizer_youtube)) { ?>
                                                     <div class="wpem-social-icon wpem-youtube"><a href="<?php echo esc_url($organizer_youtube); ?>" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>" target="_blank"><?php _e('Youtube', 'wp-event-manager'); ?></a></div>
                                                 <?php } ?>
                                                 <?php do_action('single_event_listing_organizer_single_social_end'); ?>
@@ -219,9 +195,6 @@
                 </div>
             </div>
         </div>
+    <?php endif; 
 
-
-
-    <?php endif; ?>
-
-<?php endif; ?>
+endif; ?>

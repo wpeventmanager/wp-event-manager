@@ -1,9 +1,8 @@
 <?php
 /**
  * Adds additional compatibility with Yoast SEO.
- */
-// Yoast SEO will by default include the `event_listing` post type because it is flagged as public.
-/**
+ *
+ * Yoast SEO will by default include the `event_listing` post type because it is flagged as public.
  * Skip filled event listings.
  *
  * @param array  $url  Array of URL parts.

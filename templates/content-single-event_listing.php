@@ -15,7 +15,9 @@ $event = $post;
 <div class="single_event_listing">
 
     <div class="wpem-main wpem-single-event-page">
-        <?php if (get_option('event_manager_hide_expired_content', 1) && 'expired' === $post->post_status) : ?>
+        <?php 
+        //check if event is expired/cancelled/preview mode then display message else display event details
+        if (get_option('event_manager_hide_expired_content', 1) && 'expired' === $post->post_status) : ?>
             <div class="wpem-alert wpem-alert-danger"><?php _e('This listing has been expired.', 'wp-event-manager'); ?></div>
 
         <?php else : ?>
@@ -37,7 +39,7 @@ $event = $post;
             <div class="wpem-single-event-wrapper">
                 <div class="wpem-single-event-header-top">
                     <div class="wpem-row">
-
+                         <!-- Event banner section start-->
                         <div class="wpem-col-xs-12 wpem-col-sm-12 wpem-col-md-12 wpem-single-event-images">
                             <?php
                             $event_banners = get_event_banner();
@@ -58,7 +60,7 @@ $event = $post;
                                 </div>
                             <?php endif; ?>
                         </div>
-
+                        <!-- Event banner section end-->
                     </div>
                 </div>
 
@@ -101,13 +103,14 @@ $event = $post;
                             </div>
 
                             <?php do_action('single_event_overview_before'); ?>
-
+                            <!-- Event description section start-->
                             <div class="wpem-single-event-body-content">
                                 <?php do_action('single_event_overview_start'); ?>
                                 <?php echo wp_kses_post(apply_filters('display_event_description', get_the_content())); ?>
                                 <?php do_action('single_event_overview_end'); ?>
                             </div>
-
+                            <!-- Event description section end-->
+                            
                             <!-- Additional Info Block Start -->
                             <?php
                             $show_additional_details = apply_filters('event_manager_show_additional_details', true);
@@ -439,8 +442,8 @@ $event = $post;
                         <div class="wpem-col-xs-12 wpem-col-sm-5 wpem-col-md-4 wpem-single-event-right-content">
                             <div class="wpem-single-event-body-sidebar">
                                 <?php do_action('single_event_listing_button_start'); ?>
-
-                                <?php
+                                <!-- Event registration button section start-->
+                               <?php
                                 $post = $event;
                                 $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
                                 $registration_end_date = get_event_registration_end_date();
@@ -456,20 +459,20 @@ $event = $post;
                                     $current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
                                 }
                                 // If site wise timezone selected
-
                                 if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
                                     get_event_manager_template('event-registration.php');
                                 } else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
                                     echo wp_kses_post('<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>');
                                 }
                                 ?>
-
+                                <!-- Event registration button section end-->
                                 <?php do_action('single_event_listing_button_end'); ?>
 
                                 <div class="wpem-single-event-sidebar-info">
 
                                     <?php do_action('single_event_sidebar_start'); ?>
                                     <div class="clearfix">&nbsp;</div>
+                                    <!-- Event date section start-->
                                     <h3 class="wpem-heading-text"><?php _e('Date And Time', 'wp-event-manager') ?></h3>
                                     <div class="wpem-event-date-time">
                                         <span class="wpem-event-date-time-text">
@@ -494,6 +497,7 @@ $event = $post;
                                             </span>
                                         <?php } ?>
                                     </div>
+                                    <!-- Event date section end-->
 
                                     <!-- Event Registration End Date start-->
                                     <?php if (get_event_registration_end_date()) : ?>
@@ -502,7 +506,7 @@ $event = $post;
                                         <?php display_event_registration_end_date(); ?>
                                     <?php endif; ?>
                                     <!-- Registration End Date End-->
-
+                                     <!-- Event location section start-->
                                     <div>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
@@ -523,20 +527,21 @@ $event = $post;
                                             } ?>
                                         </div>
                                     </div>
-                                    <?php ?>
+                                    <!-- Event location section end-->
+                                    <?php /*event types section */ ?>
                                     <?php if (get_option('event_manager_enable_event_types') && get_event_type($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Types', 'wp-event-manager'); ?></h3>
                                         <div class="wpem-event-type"><?php display_event_type($event); ?></div>
-                                    <?php endif; ?>
-
-                                    <?php if (get_option('event_manager_enable_categories') && get_event_category($event)) : ?>
+                                    <?php endif;
+                                    /* event categories section */
+                                    if (get_option('event_manager_enable_categories') && get_event_category($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
                                         <div class="wpem-event-category"><?php display_event_category($event); ?></div>
-                                    <?php endif; ?>
-
-                                    <?php if (get_organizer_youtube($event)) : ?>
+                                    <?php endif; 
+                                    /* youtube video button section */    
+                                    if (get_organizer_youtube($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <a id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></a>
                                         <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Watch video', 'wp-event-manager'); ?>">
@@ -563,6 +568,7 @@ $event = $post;
                                 </div>
 
                                 <?php
+                                /* social share section */
                                 $is_friend_share = apply_filters('event_manager_event_friend_share', true);
 
                                 if ($is_friend_share) :
@@ -597,6 +603,7 @@ $event = $post;
 
                 <?php
                 $post = $event;
+                //if organizer setting is enable then display organizer section on single event listing
                 if (get_option('enable_event_organizer')) {
                     get_event_manager_template(
                         'content-single-event_listing-organizer.php',
@@ -605,7 +612,7 @@ $event = $post;
                         EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
                     );
                 }
-
+                //if venue setting is enable then display venue section on single event listing
                 if (get_option('enable_event_venue')) {
                     get_event_manager_template(
                         'content-single-event_listing-venue.php',
@@ -652,7 +659,6 @@ $event = $post;
             }]
         });
 
-
         /* Get iframe src attribute value i.e. YouTube video url
         and store it in a variable */
         var url = jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src');
@@ -671,8 +677,6 @@ $event = $post;
         jQuery("#event-youtube-button").on('click', function() {
             jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', url);
         });
-
-
 
     });
 </script>

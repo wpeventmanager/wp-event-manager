@@ -1,8 +1,7 @@
 <?php
 /**
  * Adds additional compatibility with All in One SEO Pack.
- */
-/**
+ *
  * Skip expired event listings.
  *
  * @param WP_Post[] $posts

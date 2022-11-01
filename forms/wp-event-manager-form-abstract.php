@@ -19,7 +19,6 @@ abstract class WP_Event_Manager_Form {
 	 */
 
 	public function __clone() {
-
 		_doing_it_wrong( __FUNCTION__ );
 	}
 
@@ -28,14 +27,12 @@ abstract class WP_Event_Manager_Form {
 	 */
 
 	public function __wakeup() {
-
 		_doing_it_wrong( __FUNCTION__ );
 	}
 
 	/**
      * Process function. all processing code if needed - can also change view if step is complete
      */
- 
     public function process() {
     		// reset cookie
     		if (
@@ -53,7 +50,6 @@ abstract class WP_Event_Manager_Form {
     	$step_key = $this->get_step_key( $this->step );
  
         if ( $step_key && is_callable( $this->steps[ $step_key ]['handler'] ) ) {
- 
             call_user_func( $this->steps[ $step_key ]['handler'] );
         }
  
@@ -80,11 +76,8 @@ abstract class WP_Event_Manager_Form {
 
 	public function output( $atts = array() ) {
 		$step_key = $this->get_step_key( $this->step );
-
 		$this->show_errors();
-
 		if ( $step_key && is_callable( $this->steps[ $step_key ]['view'] ) ) {
- 
             call_user_func( $this->steps[ $step_key ]['view'], $atts );
         }
 	}
@@ -93,20 +86,15 @@ abstract class WP_Event_Manager_Form {
 	 * Add an error
 	 * @param string $error
 	 */
-
 	public function add_error( $error ) {
-
 		$this->errors[] = $error;
 	}
 
 	/**
 	 * Show errors
 	 */
-
 	public function show_errors() {
-
 		foreach ( $this->errors as $error ) {
-
 			echo wp_kses_post('<div class="event-manager-error wpem-alert wpem-alert-danger">' .  esc_html($error) . '</div>');
 		}
 	}
@@ -115,9 +103,7 @@ abstract class WP_Event_Manager_Form {
 	 * Get errors
 	 */
 	public function get_errors() {
-
 		foreach ( $this->errors as $error ) {
-
 			return $error;
 		}
 	}
@@ -128,9 +114,7 @@ abstract class WP_Event_Manager_Form {
 	 *
 	 * @return string
 	 */
-
 	public function get_action() {
-
 		return esc_url_raw( $this->action ? $this->action : wp_unslash( $_SERVER['REQUEST_URI'] ) );
 	}
 
@@ -139,7 +123,6 @@ abstract class WP_Event_Manager_Form {
 	 */
 
 	public function get_step() {
-	    
 		return $this->step;
 	}
 	/**
@@ -173,7 +156,6 @@ abstract class WP_Event_Manager_Form {
 	 */
 
 	public function next_step() {
-
 		$this->step ++;
 	}
 
@@ -182,7 +164,6 @@ abstract class WP_Event_Manager_Form {
 	 */
 
 	public function previous_step() {
-	    
 		$this->step --;
 	}
 
@@ -196,14 +177,11 @@ abstract class WP_Event_Manager_Form {
 	public function get_fields( $key ) {
 
 		if ( empty( $this->fields[ $key ] ) ) {
-
 			return array();
 		}
 
 		$fields = $this->fields[ $key ];
-		
 		uasort( $fields, array( $this, 'sort_by_priority' ) );
-		
 		return $fields;
 	}
 
@@ -215,12 +193,9 @@ abstract class WP_Event_Manager_Form {
 	 */
 
 	protected function sort_by_priority( $a, $b ) {
-
 	    if ( $a['priority'] == $b['priority'] ) {
-
 	        return 0;
 	    }
-	    
 	    return ( $a['priority'] < $b['priority'] ) ? -1 : 1;
 	}
 	
@@ -229,7 +204,6 @@ abstract class WP_Event_Manager_Form {
 	 */
 
 	protected function init_fields() {
-
 		$this->fields = array();
 	}
 	
@@ -247,19 +221,17 @@ abstract class WP_Event_Manager_Form {
 	 *
 	 * @return array of data
 	 */
-
 	public function get_posted_fields() {
 	    
-			// Init fields
-			//$this->init_fields(); We dont need to initialize with this function because of field edior
-			// Now field editor function will return all the fields 
-			//Get merged fields from db and default fields.
-			$this->merge_with_custom_fields('frontend' );
+		// Init fields
+		//$this->init_fields(); We dont need to initialize with this function because of field edior
+		// Now field editor function will return all the fields 
+		//Get merged fields from db and default fields.
+		$this->merge_with_custom_fields('frontend' );
 
-			$values = array();
+		$values = array();
 
 		foreach ( $this->fields as $group_key => $group_fields ) {
-			
 
 			foreach ( $group_fields as $key => $field ) {
 
@@ -279,11 +251,9 @@ abstract class WP_Event_Manager_Form {
 					$values[ $group_key ][ $key ] = $this->get_posted_field( $key, $field );
 				}
 				// Set fields value
-
 				$this->fields[ $group_key ][ $key ]['value'] = $values[ $group_key ][ $key ];
 			}
 		}
-		
 		return $values;
 	}
 	
@@ -315,27 +285,28 @@ abstract class WP_Event_Manager_Form {
 					switch ( $field['type'] ) {
 						case 'textarea' :
 							$item[ $key ] = wp_kses_post( stripslashes( $_POST[ $field_name ] ) );
-						break;
+							break;
+
 						case 'number' :
 							if ( is_array( $_POST[ $field_name ] )) {
 								$item[ $key ] = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $_POST[ $field_name ] ) ) );
 							} else {
 								$item[ $key ] = sanitize_text_field( stripslashes( $_POST[ $field_name ] ) );
 							}	
-						break;
+							break;
+
 						case 'date' :
 							if(!empty($_POST[ $field_name ]))
 							{
 								//Convert date and time value into DB formatted format and save eg. 1970-01-01
 								//$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, sanitize_text_field($_POST[ $field_name ]));	
-
 								$item[ $key ] = sanitize_text_field($_POST[ $field_name ]);
 							}
 							else
 							{
 								$item[ $key ] = '';
 							}
-						break;
+							break;
 
 						case 'time' :
 							if(!empty($_POST[ $field_name ]))
@@ -348,7 +319,7 @@ abstract class WP_Event_Manager_Form {
 							{
 								$item[ $key ] = '';
 							}
-						break;	
+							break;	
 
 						case 'file' :
 							$file = $this->upload_file( $field_name, $field );
@@ -360,14 +331,14 @@ abstract class WP_Event_Manager_Form {
 							}
 
 							$item[ $key ] = $file;
-						break;
+							break;
 
 						case 'checkbox':
 								if(! empty( $_POST[ $field_name ] ) && $_POST[ $field_name ] > 0 )
 								{
 									$item[ $key ] = wp_kses_post( stripslashes( $_POST[ $field_name ] ) );			
 								}
-						break;
+							break;
 
 						default :
 							if(!empty($_POST[ $field_name ]))
@@ -381,8 +352,7 @@ abstract class WP_Event_Manager_Form {
 							else{
 									$item[ $key ] = '';
 							}
-						break;
-						
+							break;
 					}
 					if ( empty( $item[ $key ] ) && ! empty( $field['required'] ) && $field['type'] != 'number') {
 						continue 2;
@@ -391,9 +361,7 @@ abstract class WP_Event_Manager_Form {
 				$items[] = $item;
 			}
 		}
-		
 		return $items;
-
 	}
 	
 	/**
@@ -419,27 +387,21 @@ abstract class WP_Event_Manager_Form {
 		return  $this->get_repeated_field( $key, $field['fields'] );
 	}
 
-
 	/**
 	 * Navigates through an array and sanitizes the field.
 	 *
 	 * @param array|string $value The array or string to be sanitized.
 	 * @return array|string $value The sanitized array (or string from the callback).
 	 */
-
 	protected function sanitize_posted_field( $value ) {
 
 		// Decode URLs
-
 		if ( is_string( $value ) && ( strstr( $value, 'http:' ) || strstr( $value, 'https:' ) ) ) {
-
 			$value = urldecode( $value );
 		}
 
 		// Santize value
-
 		$value = is_array( $value ) ? array_map( array( $this, 'sanitize_posted_field' ), $value ) : sanitize_text_field( stripslashes( trim( $value ) ) );
-
 		return $value;
 	}
 
@@ -449,9 +411,7 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return string|array
 	 */
-
 	protected function get_posted_field( $key, $field ) {
-	    
 		return isset( $_POST[ $key ] ) ? $this->sanitize_posted_field( $_POST[ $key ] ) : '';
 	}
 	
@@ -461,9 +421,7 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return array
 	 */
-
 	protected function get_posted_multiselect_field( $key, $field ) {
-
 		return isset( $_POST[ $key ] ) ? array_map( 'sanitize_text_field', $_POST[ $key ] ) : array();
 	}
 
@@ -473,17 +431,13 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return string|array
 	 */
-
 	protected function get_posted_file_field( $key, $field ) {
 
 		$file = $this->upload_file( $key, $field );
 
 		if ( ! $file ) {
-
 			$file = $this->get_posted_field( 'current_' . $key, $field );
-
 		} elseif ( is_array( $file ) ) {
-
 			$file = array_filter( array_merge( $file, (array) $this->get_posted_field( 'current_' . $key, $field ) ) );
 		}
 		
@@ -496,9 +450,7 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return string
 	 */
-	 
 	protected function get_posted_textarea_field( $key, $field ) {
-	    
 		return isset( $_POST[ $key ] ) ? wp_kses_post( trim( stripslashes( $_POST[ $key ] ) ) ) : '';
 	}
 
@@ -508,9 +460,7 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return string
 	 */
-
 	protected function get_posted_wp_editor_field( $key, $field ) {
-
 		return $this->get_posted_textarea_field( $key, $field );
 	}
 	
@@ -520,15 +470,11 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return array
 	 */
-	 
 	protected function get_posted_term_checklist_field( $key, $field ) {
 
 		if ( isset( $_POST[ 'tax_input' ] ) && isset( $_POST[ 'tax_input' ][ $field['taxonomy'] ] ) ) {
-
 			return array_map( 'absint', $_POST[ 'tax_input' ][ $field['taxonomy'] ] );
-
 		} else {
-
 			return array();
 		}
 	}
@@ -539,9 +485,7 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return int
 	 */
-
 	protected function get_posted_term_multiselect_field( $key, $field ) {
-
 		return isset( $_POST[ $key ] ) ? array_map( 'absint', $_POST[ $key ] ) : array();
 	}
 
@@ -551,9 +495,7 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return int
 	 */
-
 	protected function get_posted_term_select_field( $key, $field ) {
-
 		return ! empty( $_POST[ $key ] ) && $_POST[ $key ] > 0 ? absint( $_POST[ $key ] ) : '';
 	}
 
@@ -561,7 +503,6 @@ abstract class WP_Event_Manager_Form {
 	 * Upload a file
 	 * @return  string or array
 	 */
-
 	protected function upload_file( $field_key, $field) {
 
 		if ( isset( $_FILES[ $field_key ] ) && ! empty( $_FILES[ $field_key ] ) && ! empty( $_FILES[ $field_key ]['name'] ) ) {
@@ -584,21 +525,15 @@ abstract class WP_Event_Manager_Form {
 				$uploaded_file = event_manager_upload_file( $file_to_upload, array( 'file_key' => $field_key ,'allowed_mime_types' => $allowed_mime_types) );
 
 				if ( is_wp_error( $uploaded_file ) ) {
-
 					throw new Exception( $uploaded_file->get_error_message() );
-
 				} else {
-
 					$file_urls[] = $uploaded_file->url;
 				}
 			}
 
 			if ( ! empty( $field['multiple'] ) ) {
-
 				return $file_urls;
-
 			} else {
-
 				return current( $file_urls );
 			}
 		}
@@ -674,28 +609,27 @@ abstract class WP_Event_Manager_Form {
 		 * If user selected admin only fields then we need to unset that fields from the frontend user.
 		 **/
 		if(!empty($updated_fields))
-		foreach ( $updated_fields as $group_key => $group_fields ) {
-			foreach ($group_fields as $key => $field) {
+			foreach ( $updated_fields as $group_key => $group_fields ) {
+				foreach ($group_fields as $key => $field) {
 
-			    $updated_fields[$group_key][$key]=array_map('stripslashes_deep',$updated_fields[$group_key][$key]);				
-			    
-				//remove if visiblity is false
-				if(isset($field['visibility']) && $field['visibility'] == false )
-					unset($updated_fields[$group_key][$key]);
+					$updated_fields[$group_key][$key]=array_map('stripslashes_deep',$updated_fields[$group_key][$key]);				
 					
-				//remove admin fields if view type is frontend
-				if( isset($field['admin_only']) &&  $field_view == 'frontend' &&  $field['admin_only'] == true )
-					unset($updated_fields[$group_key][$key]);
+					//remove if visiblity is false
+					if(isset($field['visibility']) && $field['visibility'] == false )
+						unset($updated_fields[$group_key][$key]);
+						
+					//remove admin fields if view type is frontend
+					if( isset($field['admin_only']) &&  $field_view == 'frontend' &&  $field['admin_only'] == true )
+						unset($updated_fields[$group_key][$key]);
+				}
+				uasort( $updated_fields[$group_key], array( $this, 'sort_by_priority' ) );
 			}
-			uasort( $updated_fields[$group_key], array( $this, 'sort_by_priority' ) );
-		}
 		
 		//unset timezone field if setting is site wise timezone
 		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
 		if ( $timezone_setting != 'each_event' && isset($updated_fields['event']['event_timezone']) ) {
 			unset( $updated_fields['event']['event_timezone'] );
 		}
-
 		$this->fields = apply_filters('merge_with_custom_fields',$updated_fields,$default_fields) ;
 	
 		return $this->fields;

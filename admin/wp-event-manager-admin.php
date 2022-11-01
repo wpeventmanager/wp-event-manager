@@ -3,7 +3,6 @@
 * Main Admin functions class which responsible for the entire amdin functionality and scripts loaded and files.
 *
 */
-
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
@@ -11,17 +10,14 @@ if (!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_Admin class.
  */
-
 class WP_Event_Manager_Admin
 {
-
 	/**
 	 * __construct function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-
 	public function __construct()
 	{
 
@@ -41,8 +37,6 @@ class WP_Event_Manager_Admin
 
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
 
-		// add_action( 'admin_notices', array( $this,'run_setup_wizard_admin_notice') );
-
 		add_action('admin_init', array($this, 'admin_init'));
 
 		add_action('current_screen', array($this, 'conditional_includes'));
@@ -57,7 +51,6 @@ class WP_Event_Manager_Admin
 
 		// Ajax
 		add_action('wp_ajax_wpem_upgrade_database', array($this, 'wpem_upgrade_database'));
-		// add_action( 'wp_ajax_nopriv_wpem_upgrade_database', array( $this, 'wpem_upgrade_database' ) );
 	}
 
 	/**
@@ -68,9 +61,7 @@ class WP_Event_Manager_Admin
 	 */
 	public function upgrade_database_notice()
 	{
-
-		if (version_compare(get_option('wp_event_manager_db_version', 0), '3.1.13', '<')) {
-?>
+		if (version_compare(get_option('wp_event_manager_db_version', 0), '3.1.13', '<')) { ?>
 			<div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
 				<p><?php echo sprintf(wp_kses('Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager'), esc_url(admin_url('edit.php?post_type=event_listing&page=event-manager-upgrade-database'))); ?></p>
 			</div>
@@ -86,9 +77,7 @@ class WP_Event_Manager_Admin
 	 */
 	public function wpem_installation_notices()
 	{
-
-		if (get_option('wpem_installation_skip', false)) {
-		?>
+		if (get_option('wpem_installation_skip', false)) { ?>
 			<div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
 				<p><?php echo sprintf(wp_kses('<strong>Welcome to WP Event Manager</strong> – All in One Event Management Plugin for WordPress', 'wp-event-manager')); ?></p>
 				<p><?php echo sprintf(wp_kses('<a class="button button-primary" href="%1$s">Run the Setup Wizard</a> <a class="button" href="%2$s">Skip setup</a>', 'wp-event-manager'), esc_url(admin_url('index.php?page=event-manager-setup&step=1')), esc_url(admin_url('index.php?page=event-manager-setup&step=3&skip-event-manager-setup=1'))); ?></p>
@@ -183,8 +172,7 @@ class WP_Event_Manager_Admin
 	 * Upgrade database page
 	 */
 	public function upgrade_database()
-	{
-		?>
+	{ ?>
 		<div class="wrap wp_event_manager wp_event_manager_upgrade_database">
 			<table class="widefat">
 
@@ -208,8 +196,7 @@ Manage your Organizers directly at the frontend and backend.
 Migration of Old Organizer data would be transferred to the list Automatically.
 A prior Backup does no harm before updating the plugin!',
 								'wp-event-manager'
-							);
-							?>
+							); ?>
 							.</p>
 					</td>
 				</tbody>
@@ -221,7 +208,6 @@ A prior Backup does no harm before updating the plugin!',
 						</td>
 					</tr>
 				</tfoot>
-
 			</table>
 		</div>
 		<?php
@@ -259,17 +245,13 @@ A prior Backup does no harm before updating the plugin!',
 						}
 
 						$this->migrate_organizer_from_event_meta($event, $organizer_data);
-
 						$this->banner_image_set_thumnail($event);
 					}
 				}
 			}
-
 			update_option('wp_event_manager_db_version', '3.1.13');
 		}
-
 		wp_send_json(__('Your database upgraded successfully!', 'wp-event-manager'));
-
 		wp_die();
 	}
 
@@ -278,9 +260,7 @@ A prior Backup does no harm before updating the plugin!',
 	 */
 	public function migrate_organizer_from_event_meta($event, $organizer_data)
 	{
-
 		$organizer_id = check_organizer_exist($organizer_data['organizer_email']);
-
 		if (!$organizer_id) {
 			$args = apply_filters(
 				'wpem_create_event_organizer_data',
@@ -293,7 +273,6 @@ A prior Backup does no harm before updating the plugin!',
 					'post_author'    => $event->post_author,
 				)
 			);
-
 			$organizer_id = wp_insert_post($args);
 		}
 
@@ -315,7 +294,6 @@ A prior Backup does no harm before updating the plugin!',
 	 */
 	public function banner_image_set_thumnail($event)
 	{
-
 		$banner = get_event_banner($event);
 
 		if (is_array($banner)) {
@@ -353,9 +331,7 @@ A prior Backup does no harm before updating the plugin!',
 	 */
 	public function addons_page()
 	{
-
 		$addons = include 'wp-event-manager-addons.php';
-
 		$addons->output();
 	}
 
@@ -367,8 +343,7 @@ A prior Backup does no harm before updating the plugin!',
 		$installation     = get_option('wpem_installation', 0);
 		$skip_intallation = get_option('wpem_installation_skip', 0);
 
-		if (!$installation || !$skip_intallation) {
-		?>
+		if (!$installation || !$skip_intallation) { ?>
 			<div class="notice wp-event-manager-notice">
 				<div class="wp-event-manager-notice-logo"><span></span></div>
 				<div class="wp-event-manager-notice-message wp-wp-event-manager-fresh"><?php esc_attr_e('We\'ve noticed you\'ve been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We\'d be thrilled if you could <strong><a href="https://wordpress.org/support/plugin/wp-event-manager/reviews/" target="_blank">give us a nice rating on WordPress.org!</a></strong> Don\'t forget to submit your site to <strong><a href="https://wp-eventmanager.com/showcase/" target="_blank">our showcase</a></strong> and generate more traffic from our site.', 'wp-event-manager'); ?></div>

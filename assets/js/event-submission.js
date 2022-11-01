@@ -36,9 +36,6 @@ EventSubmission = function () {
                 });
             }
 
-
-            //EventSubmission.timeFormatSettings();
-
             if (jQuery('input[data-picker="datepicker"]#event_start_date').length > 0) {
                 wp_event_manager_event_submission.start_of_week = parseInt(wp_event_manager_event_submission.start_of_week);
 
@@ -389,7 +386,6 @@ EventSubmission = function () {
                 }
             },
 
-
             /// <summary>
             /// add organizer.
             /// </summary>
@@ -437,7 +433,6 @@ EventSubmission = function () {
                     }
                 });
             },
-
 
             /// <summary>
             /// add venue.
@@ -489,9 +484,7 @@ EventSubmission = function () {
                 });
             },
 
-
         } //end of action
-
 
     } //enf of return
 }; //end of class

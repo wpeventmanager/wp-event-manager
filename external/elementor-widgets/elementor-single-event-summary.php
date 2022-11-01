@@ -159,7 +159,6 @@ class Elementor_Event_Summary extends Widget_Base {
 		);
 
 		$this->end_controls_section();
-
 	}
 
 	/**

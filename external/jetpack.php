@@ -1,8 +1,7 @@
 <?php
 /**
  * Adds additional compatibility with Jetpack.
- */
-/**
+ *
  * Skip filled event listings.
  *
  * @param bool    $skip_post

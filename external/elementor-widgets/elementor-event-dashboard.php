@@ -121,7 +121,6 @@ class Elementor_Event_Dashboard extends Widget_Base {
 		echo do_shortcode('[event_dashboard '.$posts_per_page.' ]');
 	}
 
-
 	/**
 	 * Render the widget output in the editor.
 	 *

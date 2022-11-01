@@ -1,9 +1,7 @@
 <?php
 /**
  * Only load these if WPML plugin is installed and active.
- */
-
-/**
+ *
  * Load routines only if WPML is loaded.
  *
  * @since 1.6
@@ -30,12 +28,10 @@ function wpml_event_manager_set_language() {
 	}
 }
 
-
 /**
  * Returns WPML's current language.
  *
  * @since 1.6
- *
  * @param string $lang
  * @return string
  */

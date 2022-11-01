@@ -1,9 +1,7 @@
 <?php
-
 /**
- * 
+ * this is used for time selection field
  * @since 3.0
- * 
  */
 ?>
 <div class="controls" style="position: relative">

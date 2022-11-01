@@ -128,7 +128,7 @@ class Elementor_Event_Listing extends Widget_Base {
 				],
 			]
 		);
-
+		
 		$this->add_control(
 			'orderby',
 			[
@@ -160,7 +160,6 @@ class Elementor_Event_Listing extends Widget_Base {
 				],
 			]
 		);
-		
 
 		$this->add_control(
 			'cancelled',
@@ -234,23 +233,7 @@ class Elementor_Event_Listing extends Widget_Base {
 				'default'     => '',
 			]
 		);
-		/*
-		$this->add_control(
-			'selected_datetime',
-			[
-				'label'       => __( 'Selected Date', 'wp-event-manager' ),
-				'type'        => Controls_Manager::DATE_TIME,
-				'placeholder' => __( 'Enter Date', 'wp-event-manager' ),
-				'default'     => '',
-				'picker_options' => array(
-										'mode' => 'range',
-										'minDate' => 'today',
-										'dateFormat' => 'Y-m-d',
-										'enableTime' => false,
-									)
-			]
-		);
-		*/
+		
 		$this->add_control(
 			'selected_datetime',
 			[
