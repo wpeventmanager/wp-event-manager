@@ -300,14 +300,14 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
-= [3.1.33] 31-10-2022 =
+= [3.1.33] 1-11-2022 =
 
 Fix - Language translation issues. 
 Fix - Featured search issue on listing page.
 Fix - Elemetor -Single venue/organizer issue.
 Fix - Speed issue.
-Fix - start/end date not added then on event detail page remove date time details.
-Fix - Field editor - Priority values issue.
+Fix - Remove date time details from single event page when start/end date not added.
+Fix - Priority values issue in field editor at admin side.
 Fix - Issue with event listing shortcode attributes.
 Fix - Removed unwated files.
 Fix - Issue of spelling mistake and security fixes.
@@ -317,10 +317,10 @@ Fix - Issue of elementor compitibility.
 Fix - Event listing page - Need to remove load more event button.
 Fix - Event Dashboard filter issue.
 Fix - Video playing issue on single event page.
-Fix - Location donot considering the special characters on event listing filter search.
-Fix - Setting issue of Expired events on event listin page.
+Fix - Location does not considering the special characters on event listing filter search.
+Fix - Setting issue of expired events on event listing page.
 Fix - Bulk action issue - Approve Events and Expire Events
-Fix - event location is still there after event set as online - in database.
+Fix - Remove Event location from database after update event as online.
 
 = [3.1.32] 12-09-2022 =
 
