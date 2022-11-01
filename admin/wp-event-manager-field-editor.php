@@ -234,7 +234,7 @@ class WP_Event_Manager_Field_Editor
 								include 'wp-event-manager-form-field-editor-field.php';
 							}
 						}
-						?>" >												
+						?>												
 					</tbody>
 				</table>
 			</div>
