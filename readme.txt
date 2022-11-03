@@ -311,11 +311,12 @@ Fix - Priority values issue in field editor at admin side.
 Fix - Issue with event listing shortcode attributes.
 Fix - Removed unwated files.
 Fix - Issue of spelling mistake and security fixes.
-Fix - Issueu with radio selected value display in small latter.
+Fix - Issue with radio selected value display in small latter.
 Fix - Organizer & venue not listing on submit event form when edit event from frontend dashboard.
 Fix - Issue of elementor compitibility.
 Fix - Event listing page - Need to remove load more event button.
 Fix - Event Dashboard filter issue.
+Fix - Event listing page datetime filter issue.
 Fix - Video playing issue on single event page.
 Fix - Location does not considering the special characters on event listing filter search.
 Fix - Setting issue of expired events on event listing page.
