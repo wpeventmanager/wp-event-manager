@@ -10,7 +10,6 @@ if (!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_Settings class.
  */
-
 class WP_Event_Manager_Settings
 {
 
@@ -20,12 +19,9 @@ class WP_Event_Manager_Settings
 	 * @access public
 	 * @return void
 	 */
-
 	public function __construct()
 	{
-
 		$this->settings_group = 'event_manager';
-
 		add_action('admin_init', array($this, 'register_settings'));
 	}
 
@@ -35,19 +31,16 @@ class WP_Event_Manager_Settings
 	 * @access protected
 	 * @return void
 	 */
-
 	protected function init_settings()
 	{
 
 		// Prepare roles option
-
 		$roles = get_editable_roles();
 
 		$account_roles = array();
 		foreach ($roles as $key => $role) {
 
 			if ($key == 'administrator') {
-
 				continue;
 			}
 
@@ -96,7 +89,7 @@ class WP_Event_Manager_Settings
 							'name'       => 'event_manager_google_maps_api_key',
 							'std'        => '',
 							'label'      => __('Google API Key', 'wp-event-manager'),
-							'desc'       => sprintf(wp_kses('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="%1$s " target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="%2$s" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'), esc_url('https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/'), esc_url('https://developers.google.com/maps/documentation/geocoding/get-api-key')),
+							'desc'       => __('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'),
 							'attributes' => array(),
 						),
 					),
@@ -656,7 +649,7 @@ class WP_Event_Manager_Settings
 
 							'label' => __('Date Format', 'wp-event-manager'),
 
-							'desc'  => sprintf(wp_kses('This date format will be used at the frontend date display. <a href="%s" target="__blank">For more information click here</a>.', 'wp-event-manager'), 'https://wordpress.org/support/article/formatting-date-and-time/'),
+							'desc'  => __('This date format will be used at the frontend date display. <a href="https://wordpress.org/support/article/formatting-date-and-time/" target="__blank">For more information click here</a>.', 'wp-event-manager'),
 
 							'type'  => 'text',
 						),
@@ -698,21 +691,13 @@ class WP_Event_Manager_Settings
 	 * @access public
 	 * @return void
 	 */
-
 	public function register_settings()
-	{
-
-		$this->init_settings();
-
+	{		$this->init_settings();
 		foreach ($this->settings as $section) {
-
 			foreach ($section[1] as $option) {
-
 				if (isset($option['std'])) {
-
 					add_option($option['name'], $option['std']);
 				}
-
 				register_setting($this->settings_group, $option['name']);
 			}
 		}
@@ -727,18 +712,12 @@ class WP_Event_Manager_Settings
 
 	public function output()
 	{
-
-		$this->init_settings();
-
-?>
+		$this->init_settings(); ?>
 
 		<div class="wrap event-manager-settings-wrap">
 
 			<h1 class="wp-heading-inline">
-				<?php
-			
-				esc_attr_e('Settings', 'wp-event-manager');
-				?>
+				<?php esc_attr_e('Settings', 'wp-event-manager');?>
 			</h1>
 
 			<div class="wpem-wrap event-manager-settings-wrap">
@@ -762,12 +741,8 @@ class WP_Event_Manager_Settings
 
 						<div class="white-background">
 
-							<?php
-
-							if (!empty($_GET['settings-updated'])) {
-
+							<?php if (!empty($_GET['settings-updated'])) {
 								flush_rewrite_rules();
-
 								echo wp_kses_post('<div class="updated fade event-manager-updated"><p>' . esc_attr__('Settings successfully saved', 'wp-event-manager') . '</p></div>');
 							}
 
@@ -801,54 +776,42 @@ class WP_Event_Manager_Settings
 
 									switch ($option['type']) {
 
-										case 'checkbox':
-							?>
+										case 'checkbox':?>
 											<label><input id="setting-<?php echo esc_attr($option['name']); ?>" name="<?php echo esc_attr($option['name']); ?>" type="checkbox" value="1" <?php echo implode(' ', $attributes); ?> <?php checked('1', $value); ?> /> <?php echo esc_attr($option['cb_label']); ?></label>
 											<?php
 
 											if ($option['desc']) {
-
 												echo wp_kses_post(' <p class="description">' . $option['desc'] . '</p>');
 											}
-
 											break;
 
-										case 'textarea':
-											?>
+										case 'textarea': ?>
 											<textarea id="setting-<?php echo esc_attr($option['name']); ?>" class="large-text" cols="50" rows="<?php echo isset($option['row']) ? esc_attr($option['row']) : 3; ?>" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_textarea($value); ?></textarea>
 											<?php
 
 											if ($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
-
 											break;
 
-										case 'select':
-											?>
+										case 'select': ?>
 											<select id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?>>
 												<?php
 
 												foreach ($option['options'] as $key => $name) {
-
 													printf('<option value="' . esc_attr($key) . '" ' . selected($value, $key, false) . '>' . esc_html($name) . '</option>');
 												}
-
 												?>
 											</select>
 											<?php
-
 											if ($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 										<?php	}
-
 											break;
 
-										case 'multiselect':
-											?>
+										case 'multiselect': ?>
 											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="regular-text" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo implode(' ', $attributes); ?>>
 												<?php
-
 												foreach ($option['options'] as $key => $name) {
 													$selected = '';
 													if (!empty($value)) {
@@ -856,22 +819,17 @@ class WP_Event_Manager_Settings
 															$selected = ' selected ';
 														}
 													}
-
 													printf('<option value="' . esc_attr($key) . '" ' . $selected . ' >' . esc_html($name) . '</option>');
 												}
-
 												?>
 											</select>
 											<?php
-
 											if ($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
-
 											break;
 
-										case 'radio': 
-											?>
+										case 'radio':  ?>
 											<fieldset>
 												<legend class="screen-reader-text">
 													<span><?php echo esc_html($option['label']); ?></span>
@@ -885,11 +843,9 @@ class WP_Event_Manager_Settings
 												if ($option['desc']) {?>
 													<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 												<?php }
-
 												?>
 											</fieldset>
 										<?php
-
 											break;
 
 										case 'page':
@@ -916,52 +872,44 @@ class WP_Event_Manager_Settings
 											if ($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
-
 											break;
 
-										case 'password':
-										?>
+										case 'password': ?>
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 
 											if ($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
-
 											break;
 
 										case '':
 										case 'input':
-										case 'text':
-											?>
+										case 'text': ?>
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 
 											if ($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
-
 											break;
 
-										case 'number':
-											?>
+										case 'number': ?>
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 
 											if ($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
-
 											break;
-										case 'button':
-											?>
+
+										case 'button': ?>
 											<button class="button" id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="button" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_attr($option['cb_label']); ?></button>
-							<?php
+											<?php
 
 											if ($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
-
 											break;
 
 										case 'multi-select-checkbox':
@@ -970,7 +918,6 @@ class WP_Event_Manager_Settings
 
 										default:
 											do_action('wp_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder);
-
 											break;
 									}?>
 									</td></tr>
@@ -1026,10 +973,8 @@ class WP_Event_Manager_Settings
 					</div>
 				</div>
 				<?php do_action('wpem_admin_seting_side_box_end'); ?>
-
 			</div>
 		</div>
-
 <?php
 		wp_enqueue_script('wp-event-manager-admin-settings');
 	}

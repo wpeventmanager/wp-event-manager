@@ -1,6 +1,6 @@
 <?php
 global $wp_post_types;
-
+//print appropriate message accroding to post status or post description
 switch ( $venue->post_status ) :
 
 	case 'publish' :

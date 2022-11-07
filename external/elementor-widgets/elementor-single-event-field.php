@@ -241,8 +241,7 @@ class Elementor_Event_Field extends Widget_Base {
                 display_organizer_twitter('', '', true, $event);
             } else if ($settings['event_field'] == 'organizer_youtube') {
                 display_organizer_youtube('', '', true, $event);
-            } else if ($settings['event_field'] == 'event_video_url') {
-                ?>
+            } else if ($settings['event_field'] == 'event_video_url') { ?>
                 <?php if (get_organizer_youtube($event)) : ?>
                     <div class="clearfix">&nbsp;</div>
                     <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></button>
@@ -253,12 +252,35 @@ class Elementor_Event_Field extends Widget_Base {
                                 <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                             </div>
                             <div class="wpem-modal-content">
-                                <?php echo  wp_kses_post(wp_oembed_get(get_organizer_youtube(), array('autoplay' => 1, 'rel' => 0))); ?>
+                                <?php echo  wp_oembed_get(get_organizer_youtube(), array('autoplay' => 1, 'rel' => 0)); ?>
                             </div>
                         </div>
                         <a href="#"><div class="wpem-modal-overlay"></div></a>
                     </div>
                     <div class="clearfix">&nbsp;</div>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function() {
+                        
+                            /* Get iframe src attribute value i.e. YouTube video url
+                            and store it in a variable */
+                            var url = jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src');
+
+                            /* Assign empty url value to the iframe src attribute when
+                            modal hide, which stop the video playing */
+                            jQuery(".wpem-modal-close").on('click', function() {
+                                jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', '');
+                            });
+                            jQuery(".wpem-modal-overlay").on('click', function() {
+                                jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', '');
+                            });
+                            /* Assign the initially stored url back to the iframe src
+                            attribute when modal is displayed again */
+                            jQuery("#event-youtube-button").on('click', function() {
+                                jQuery("#wpem-youtube-modal-popup .wpem-modal-content iframe").attr('src', url);
+                            });
+
+                        });
+                    </script>
                 <?php endif; ?>
                 <?php
             } else if ($settings['event_field'] == 'organizer_facebook') {
@@ -407,18 +429,15 @@ class Elementor_Event_Field extends Widget_Base {
              
         }
 
-       echo esc_attr($settings['event_field_after_html']);
+       echo $settings['event_field_after_html'];
     }
     /**
      * Render the widget output in the edit
-or.
+     * or.
      *
      * Written as a Backbone JavaScript template and used to generate the live preview.
      *
      * @access protected
      */
-    protected function content_template() {
-        
-    }
-
+    protected function content_template() {  }
 }

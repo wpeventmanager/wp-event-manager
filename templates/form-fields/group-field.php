@@ -5,19 +5,16 @@
  * group fields for the paid and free group.
  * This field is used in submit event form.
  * */
-?>
 
-<?php
 //get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 $datepicker_date_format     = WP_Event_Manager_Date_Time::get_datepicker_format();
 
 //covert datepicker format  into php date() function date format
 $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-?>
 
-<?php if (!empty($field['value']) && is_array($field['value'])) : ?>
+if (!empty($field['value']) && is_array($field['value'])) : 
 
-    <?php foreach ($field['value'] as $index => $value) : ?>
+    foreach ($field['value'] as $index => $value) : ?>
 
         <div class="group-row-<?php echo esc_attr($index); ?>">
             <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo esc_attr(absint($index)); ?>" />
@@ -66,7 +63,6 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
 
 <?php endif; ?>
 
-
 <a href="javascript:void(0)" class="wpem-theme-text-button add-group-row add-group-<?php echo esc_attr($key); ?>" data-row="<?php
                                                                                                                             ob_start();
                                                                                                                             ?>
@@ -105,12 +101,15 @@ $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_
                 <?php endforeach; ?>
             </div>
         </div>
-        <?php
-        echo esc_attr(ob_get_clean());
+        <?php echo esc_attr(ob_get_clean());
         ?>">+ <?php
                 if (!empty($field['label'])) {
                     echo esc_attr($field['label']);
                 };
                 ?>
 </a>
-<?php if (!empty($field['description'])) : ?><small class="description"><?php echo esc_attr($field['description']); ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?>
+    <small class="description">
+        <?php echo esc_attr($field['description']); ?>
+    </small>
+<?php endif; ?>

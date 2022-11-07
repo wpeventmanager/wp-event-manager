@@ -119,7 +119,6 @@ class Elementor_Single_Event_Organizer extends Widget_Base {
 		);
 
 		$this->end_controls_section();
-
 	}
 
 	/**

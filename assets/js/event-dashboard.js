@@ -86,7 +86,6 @@ var EventDashboard= function () {
 
 	    },//end of comfirmation
 	    
-
 	    actions:{
 
 	    	openSubmenu: function(event) 

@@ -149,7 +149,7 @@
 					}
 					?>
 
-					<form action="" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf($display_block); ?>">
+					<form action="<?php echo esc_url(get_permalink( get_the_ID()));?>" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf($display_block); ?>">
 						<div class="wpem-events-filter">
 
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
@@ -276,10 +276,13 @@
 												$actions = apply_filters('event_manager_my_event_actions', $actions, $event);
 
 												foreach ($actions as $action => $value) {
-													$action_url = add_query_arg(array(
-														'action' => $action,
-														'event_id' => $event->ID
-													));
+													$action_url = add_query_arg(
+														array(
+															'action' => $action,
+															'event_id' => $event->ID
+														),
+														get_permalink($event_dashboard)
+													);
 
 													if ($value['nonce']) {
 														$action_url = wp_nonce_url($action_url, 'event_manager_my_event_actions');

@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 4.1
 Tested up to: 6.0
-Stable tag: 3.1.32
+Stable tag: 3.1.33
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -299,6 +299,29 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= [3.1.33] 7-11-2022 =
+
+Fix - Events language translation issues. 
+Fix - Featured event search issue on the event listing page.
+Fix - Single event venue and organizer issue with elementor.
+Fix - Event listing speed issue.
+Fix - Remove date time details from the single event page when the event start & end date is not added.
+Fix - Priority values issue in the event field editor on the admin side.
+Fix - Issue with event listing shortcode attributes.
+Fix - Removed unwanted files from the event manager.
+Fix - Issue of spelling mistakes and security fixes.
+Fix - Issue with radio selected value display in small later on the post-event form.
+Fix - Organizers & venues not listing on submit event form when editing events from the frontend dashboard.
+Fix - Event listing and calendar Issue of elementor compatibility.
+Fix - Load more button was hide during page loading on the event listing page.
+Fix - Event listing filter issue on the event dashboard.
+Fix - Event listing page DateTime filter issue.
+Fix - Video playing issue on the single event page.
+Fix - Location does not consider the special characters on the event listing filter search.
+Fix - Setting the issue of expired events on the event listing page.
+Fix - Approve Events and Expire Events bulk actions were not working on the admin side.
+Fix - Event location removed from the database after updating the event as online.
 
 = [3.1.32] 12-09-2022 =
 

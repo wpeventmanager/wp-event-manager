@@ -9,7 +9,6 @@ var VenueDashboard= function () {
         /// <since>1.0.0</since> 
         init: function() 
         {
-          
 	  	    Common.logInfo("VenueDashboard.init...");  
 	  	    if(jQuery('.event-dashboard-action-delete').length >0)
 		    {
@@ -28,8 +27,6 @@ var VenueDashboard= function () {
 				});	
 
 	        }
-
-
  	 }, 
 
 	confirmation:{	    

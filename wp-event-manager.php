@@ -14,7 +14,7 @@ Text Domain: wp-event-manager
 
 Domain Path: /languages
 
-Version: 3.1.32
+Version: 3.1.33
 
 Since: 1.0.0
 
@@ -53,9 +53,9 @@ class WP_Event_Manager {
 	 * version of plugin.
 	 *
 	 * @var plugin version
-	 * @since  3.1.32
+	 * @since  3.1.33
 	 */
-	private static $wpem_verion = '3.1.32';
+	private static $wpem_verion = '3.1.33';
 
 	/**
 	 * REST API instance.
@@ -350,7 +350,7 @@ class WP_Event_Manager {
 				'i18n_nextYear' => __( 'Next Year', 'wp-event-manager' )
 		) );
 		//ajax filters js
-		wp_register_script( 'wp-event-manager-ajax-filters', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-ajax-filters.js', $ajax_filter_deps, EVENT_MANAGER_VERSION, true );
+		wp_register_script( 'wp-event-manager-ajax-filters', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-ajax-filters.min.js', $ajax_filter_deps, EVENT_MANAGER_VERSION, true );
 		wp_localize_script( 'wp-event-manager-ajax-filters', 'event_manager_ajax_filters', array(
 			'ajax_url'                => $ajax_url,
 			'is_rtl'                  => is_rtl() ? 1 : 0,

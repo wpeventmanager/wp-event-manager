@@ -10,7 +10,6 @@
                     <div class="wpem-venue-logo">
                         <a><?php display_venue_logo('', '', $venue); ?></a>
                     </div>
-                    <?php /** <div class="wpem-venue-logo-title wpem-heading-text"><a><span><?php echo esc_attr($venue_name); ?></span></a></div> */ ?>
                 </div>
             </div>
             <div class="wpem-col-md-9 wpem-col-sm-12">
@@ -34,41 +33,31 @@
                              $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_instagram($venue):'';
                              $venue_twitter  = !in_array('venue_twitter', $venue_fields)?get_venue_twitter($venue):'';
                              $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_youtube($venue):'';
-                            ?>
-                            <?php
-                            if (!empty($venue_website)) {
-                            ?>
+                            
+                            if (!empty($venue_website)) { ?>
                                 <div class="wpem-social-icon wpem-weblink">
                                     <a href="<?php echo esc_url($venue_website); ?>" target="_blank" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>"><?php _e('Website', 'wp-event-manager'); ?></a>
                                 </div>
-                            <?php
-                            }
+                            <?php  }
 
-                            if (!empty($venue_facebook)) {
-                            ?>
+                            if (!empty($venue_facebook)) { ?>
                                 <div class="wpem-social-icon wpem-facebook">
                                     <a href="<?php echo esc_url($venue_facebook); ?>" target="_blank" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php _e('Facebook', 'wp-event-manager'); ?></a>
                                 </div>
-                            <?php
-                            }
+                            <?php }
 
-                            if (!empty($venue_instagram)) {
-                            ?>
+                            if (!empty($venue_instagram)) { ?>
                                 <div class="wpem-social-icon wpem-instagram">
                                     <a href="<?php echo esc_url($venue_instagram); ?>" target="_blank" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php _e('Instagram', 'wp-event-manager'); ?></a>
                                 </div>
-                            <?php
-                            }
+                            <?php }
 
-                            if (!empty($venue_twitter)) {
-                            ?>
+                            if (!empty($venue_twitter)) { ?>
                                 <div class="wpem-social-icon wpem-twitter">
                                     <a href="<?php echo esc_url($venue_twitter); ?>" target="_blank" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php _e('Twitter', 'wp-event-manager'); ?></a>
                                 </div>
-                            <?php
-                            }
-                            if (!empty($venue_youtube)) {
-                            ?>
+                            <?php }
+                            if (!empty($venue_youtube)) { ?>
                                 <div class="wpem-social-icon wpem-youtube">
                                     <a href="<?php echo esc_url($venue_youtube); ?>" target="_blank" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php _e('Youtube', 'wp-event-manager'); ?></a>
                                 </div>

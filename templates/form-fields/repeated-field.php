@@ -1,14 +1,13 @@
 <?php
-
 /**
  * Repeated fields is generated from this page .
  * Repeated fields for the paid and free tickets.
  * This field is used in submit event form.
  * */
-?>
-<?php if (!empty($field['value']) && is_array($field['value'])) : ?>
 
-    <?php foreach ($field['value'] as $index => $value) : ?>
+if (!empty($field['value']) && is_array($field['value'])) : 
+
+    foreach ($field['value'] as $index => $value) : ?>
 
         <div class="repeated-row-<?php echo esc_attr($key); ?>">
             <input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo absint($index); ?>" />
@@ -65,9 +64,7 @@
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
-    <a href="#" class="wpem-theme-text-button event_ticket_add_link" data-row="<?php
-                                                                                ob_start();
-                                                                                ?>
+    <a href="#" class="wpem-theme-text-button event_ticket_add_link" data-row="<?php ob_start();  ?>
        <div class=" repeated-row-<?php echo esc_attr($key . '_%%repeated-row-index%%'); ?>">
 
         <input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="%%repeated-row-index%%" />
@@ -114,12 +111,15 @@
             <?php endforeach; ?>
                 </div>
             </div>
-            <?php
-            echo esc_attr(ob_get_clean());
+            <?php  echo esc_attr(ob_get_clean());
             ?>">+ <?php
                     if (!empty($field['label'])) {
                         echo esc_attr($field['label']);
                     };
                     ?>
     </a>
-    <?php if (!empty($field['description'])) : ?><small class="description"><?php echo esc_attr($field['description']); ?></small><?php endif; ?>
+<?php if (!empty($field['description'])) : ?>
+    <small class="description">
+        <?php echo esc_attr($field['description']); ?>
+    </small>
+<?php endif; ?>

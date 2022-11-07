@@ -13,7 +13,6 @@ class WP_Event_Manager_Field_Editor
 	{
 		add_action('admin_menu', array($this, 'admin_menu'));
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
-
 		add_action('wp_ajax_get_group_field_html', array($this, 'get_group_field_html'));
 	}
 
@@ -95,11 +94,9 @@ class WP_Event_Manager_Field_Editor
 	public function output()
 	{
 		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.min.css');
-		wp_enqueue_script('wp-event-manager-form-field-editor');
-?>
+		wp_enqueue_script('wp-event-manager-form-field-editor'); ?>
 		<div class="wrap wp-event-manager-registrations-form-editor">
 			<h1 class="wp-heading-inline"><?php esc_attr_e('Form fields'); ?></h1>
-
 			<div class="wpem-wrap wp-event-manager-form-field-editor">
 				<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor">
 					<?php $this->form_editor(); ?>
@@ -185,11 +182,9 @@ class WP_Event_Manager_Field_Editor
 		foreach ($fields  as $group_key => $group_fields) {
 			if (empty($group_fields)) {
 				continue;
-			}
-		?>
+			} ?>
 
 			<div class="wp-event-manager-event-form-field-editor">
-
 				<h3><?php printf(esc_attr__('%s form fields', 'wp-event-manager'), ucfirst($group_key)); ?></h3>
 				<table class="widefat">
 					<thead>
@@ -220,19 +215,18 @@ class WP_Event_Manager_Field_Editor
 						</tr>
 					</tfoot>
 					<tbody id="form-fields" data-field="
-					<?php
-					ob_start();
-					$index     = -1;
-					$field_key = '';
-					$field     = array(
-						'type'        => 'text',
-						'label'       => '',
-						'placeholder' => '',
-					);
-					include 'wp-event-manager-form-field-editor-field.php';
-					echo esc_attr(ob_get_clean());
-					?>
 						<?php
+						ob_start();
+						$index     = -1;
+						$field_key = '';
+						$field     = array(
+							'type'        => 'text',
+							'label'       => '',
+							'placeholder' => '',
+						);
+						include 'wp-event-manager-form-field-editor-field.php';
+						echo esc_attr(ob_get_clean());
+						
 						if (isset($group_fields) && !empty($group_fields)) {
 							foreach ($group_fields as $field_key => $field) {
 								$index++;
@@ -240,11 +234,9 @@ class WP_Event_Manager_Field_Editor
 								include 'wp-event-manager-form-field-editor-field.php';
 							}
 						}
-						?>
-												
+						?>												
 					</tbody>
 				</table>
-
 			</div>
 			<?php
 		}
@@ -385,7 +377,6 @@ class WP_Event_Manager_Field_Editor
 				}
 
 				// merge field with default fields
-
 				$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 				$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 				// $event_fields =   $form_submit_event_instance->get_default_fields('backend');

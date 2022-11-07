@@ -10,7 +10,6 @@ var FieldEditor = function() {
 			
             jQuery('.wp-event-manager-event-form-field-editor').on( 'init',FieldEditor.actions.initSortable );
 			jQuery(	'.wp-event-manager-event-form-field-editor').trigger( 'init' );
-			
 
 			jQuery('.add-field').on( 'click', FieldEditor.actions.addNewFields); //add new field
 			jQuery('body').on('click', '.child-add-field', FieldEditor.actions.addNewChildFields);
@@ -52,7 +51,6 @@ var FieldEditor = function() {
 				jQuery(this).find( '.field-rules select:visible' ).chosen();
 			},
 			
-				
 			///<summary>
 			///remove current field
 			///</summary>     
@@ -168,7 +166,6 @@ var FieldEditor = function() {
 	                        },
 	                        success: function (responce)
 	                        {
-	                        	//console.log(responce);
 	                        	obj.closest('tr').attr('data-field-type', 'group');
 	                            obj.closest('tr').after(responce);
 	                        }

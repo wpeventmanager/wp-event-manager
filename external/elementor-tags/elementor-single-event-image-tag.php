@@ -87,7 +87,6 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 		return 'event_image_tag';
 	}
 
-
 	/**
 	* Get Value
 	*
@@ -112,13 +111,10 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 
 		if(isset($event_image_tag) && $event_image_tag != '')
 		{
-			if($event_image_tag == 'event_banner')
-			{
+			if($event_image_tag == 'event_banner'){
 				$value['id']  	= 0;
 				$value['url'] 	= get_event_banner($event);
-			}
-			else if($event_image_tag == 'organizer_logo')
-			{
+			} else if($event_image_tag == 'organizer_logo')	{
 				$value['id'] 	= 0;
 				$value['url'] 	= get_organizer_logo( $event, 'full' );
 			}
@@ -135,8 +131,6 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 
 		return $image_data;
 	}
-
-
 
 	/**
 	* Register Controls
@@ -159,12 +153,9 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
 		$fields = $form_submit_event_instance->merge_with_custom_fields('backend');
 
-		foreach($fields  as $group_key => $group_fields)
-		{
-			foreach ( $group_fields as $field_key => $field )
-			{
-				if(in_array($field['type'], ['file']))
-				{
+		foreach($fields  as $group_key => $group_fields){
+			foreach ( $group_fields as $field_key => $field ){
+				if(in_array($field['type'], ['file'])){
 					$arrOption[$field_key] = $field['label'];	
 				}
 			}
@@ -188,13 +179,9 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 		);
 	}
 
-	
-
 	protected function get_supported_fields() {
 		return [
 			'image',
 		];
 	}
-
-	
 }

@@ -4,11 +4,9 @@
 ?>
 <tr>
 	<td class="sort-column">&nbsp;</td>
-
 	<td>
 		<input type="text" class="input-text" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][fields][<?php echo esc_attr( $child_field_key ); ?>][label]" value="<?php echo esc_attr( stripslashes( $child_field['label'] ) ); ?>" />
 	</td>
-
 	<td class="field-type">
 		<select name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][fields][<?php echo esc_attr( $child_field_key ); ?>][type]" class="field_type" >
 			<?php
@@ -26,11 +24,9 @@
 			?>
 		</select>
 	</td>
-
 	<td>
 		<input type="text" class="input-text" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][fields][<?php echo esc_attr( $child_field_key ); ?>][description]" value="<?php echo esc_attr( isset( $child_field['description'] ) ? stripslashes( $child_field['description'] ) : '' ); ?>" placeholder="<?php esc_attr_e( 'N/A', 'wp-event-manager' ); ?>" />
 	</td>
-
 	<td class="field-options">
 		<?php
 		if ( isset( $child_field['options'] ) && ! empty( $child_field['options'] ) ) {
@@ -76,24 +72,20 @@
 		</div>
 		<span class="na">&ndash;</span>
 	</td>
-
 	<td> <input type="text" value="_<?php echo esc_attr( $child_field_key ); ?>" readonly></td>
-
 	<td>
-	<?php if ( ! in_array( $child_field_key, $disbled_fields ) ) : ?> 
-		<input type="checkbox" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][fields][<?php echo esc_attr( $child_field_key ); ?>][admin_only]" value="1" <?php checked( ! empty( $child_field['admin_only'] ), true ); ?> />
-	<?php endif; ?>
+		<?php if ( ! in_array( $child_field_key, $disbled_fields ) ) : ?> 
+			<input type="checkbox" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][fields][<?php echo esc_attr( $child_field_key ); ?>][admin_only]" value="1" <?php checked( ! empty( $child_field['admin_only'] ), true ); ?> />
+		<?php endif; ?>
 	</td>
-
 	<td>
 		<input type="text" class="input-text placeholder" name="<?php echo esc_attr( $group_key ); ?>[<?php echo esc_attr( $field_key ); ?>][fields][<?php echo esc_attr( $child_field_key ); ?>][priority]" value="
-																		   <?php
-																			if ( isset( $child_field['priority'] ) ) {
-																				printf( esc_html__( '%s', 'wp-event-manager' ), esc_attr( stripslashes( $child_field['priority'] ) ) );}
-																			?>
+							<?php
+							if ( isset( $child_field['priority'] ) ) {
+								printf( esc_html__( '%s', 'wp-event-manager' ), esc_attr( stripslashes( $child_field['priority'] ) ) );}
+							?>
 		" placeholder="<?php esc_attr_e( 'N/A', 'wp-event-manager' ); ?>"  disabled />
 	</td>
-
 	<td class="field-rules">
 		<?php if ( ! in_array( $child_field_key, $disbled_fields ) ) : ?> 
 			<div class="rules">
@@ -118,11 +110,9 @@
 		<?php endif; ?>
 		<span class="na">&ndash;</span>
 	</td>
-
 	<td class="field-actions">
 		<?php if ( ! in_array( $child_field_key, $disbled_fields ) ) : ?> 
 			<a class="delete-field" href="javascript:void(0)">X</a>
 		<?php endif; ?>
 	</td>
-
 </tr>

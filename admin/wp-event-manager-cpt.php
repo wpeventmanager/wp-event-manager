@@ -3,7 +3,6 @@
 * Admin UI for creating custom post types(CPT) and custom taxonomies in WordPress.
 *
 */
-
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
@@ -11,7 +10,6 @@ if (!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_CPT class.
  */
-
 class WP_Event_Manager_CPT
 {
 
@@ -21,7 +19,6 @@ class WP_Event_Manager_CPT
 	 * @access public
 	 * @return void
 	 */
-
 	public function __construct()
 	{
 
@@ -45,7 +42,7 @@ class WP_Event_Manager_CPT
 
 		add_action('admin_footer-edit.php', array($this, 'add_bulk_actions'));
 
-		add_action('load-edit.php', array($this, 'do_bulk_actions'));
+		add_filter('handle_bulk_actions-edit-event_listing', array($this, 'do_bulk_actions'), 10, 3);
 
 		add_action('admin_init', array($this, 'approve_event'));
 
@@ -54,32 +51,27 @@ class WP_Event_Manager_CPT
 		add_action('admin_notices', array($this, 'expired_notice'));
 
 		if (get_option('event_manager_enable_categories')) {
-
 			add_action('restrict_manage_posts', array($this, 'events_by_category'));
 		}
 
 		if (get_option('event_manager_enable_event_types') && get_option('event_manager_enable_categories')) {
-
 			add_action('restrict_manage_posts', array($this, 'events_by_event_type'));
 		}
 
 		foreach (array('post', 'post-new') as $hook) {
-
 			add_action("admin_footer-{$hook}.php", array($this, 'extend_submitdiv_post_status'));
 		}
 	}
-
+	
 	/**
 	 * Edit bulk actions
 	 */
 
 	public function add_bulk_actions()
 	{
-
 		global $post_type, $wp_post_types;
 
-		if ($post_type == 'event_listing') {
-?>
+		if ($post_type == 'event_listing') { ?>
 			<script type="text/javascript">
 				jQuery(document).ready(function() {
 
@@ -93,7 +85,6 @@ class WP_Event_Manager_CPT
 
 				});
 			</script>
-
 		<?php
 		}
 	}
@@ -102,50 +93,35 @@ class WP_Event_Manager_CPT
 	 * Do custom bulk actions
 	 */
 
-	public function do_bulk_actions()
+	public function do_bulk_actions($redirect_url, $action, $post_ids)
 	{
-
 		$wp_list_table = _get_list_table('WP_Posts_List_Table');
 
-		$action = $wp_list_table->current_action();
-
 		switch ($action) {
-
+			
 			case 'approve_events':
 				check_admin_referer('bulk-posts');
 
-				$post_ids = array_map('absint', array_filter((array) sanitize_text_field($_GET['post'])));
-
 				$approved_events = array();
-
 				if (!empty($post_ids)) {
 
 					foreach ($post_ids as $post_id) {
-
 						$event_data = array(
-
 							'ID'          => $post_id,
-
 							'post_status' => 'publish',
 						);
 
 						if (in_array(get_post_status($post_id), array('pending', 'pending_payment')) && current_user_can('publish_post', $post_id) && wp_update_post($event_data)) {
-
 							$approved_events[] = $post_id;
 						}
 					}
 				}
-
-				wp_redirect(add_query_arg('approved_events', $approved_events, remove_query_arg(array('approved_events', 'expired_events'), admin_url('edit.php?post_type=event_listing'))));
-
+				wp_redirect(add_query_arg('approved_events', count($approved_events), $redirect_url));
 				exit;
-
 				break;
 
 			case 'expire_events':
 				check_admin_referer('bulk-posts');
-
-				$post_ids = array_map('absint', array_filter((array) sanitize_text_field($_GET['post'])));
 
 				$expired_events = array();
 
@@ -154,33 +130,26 @@ class WP_Event_Manager_CPT
 					foreach ($post_ids as $post_id) {
 
 						$event_data = array(
-
 							'ID'          => $post_id,
-
 							'post_status' => 'expired',
 						);
 
 						if (current_user_can('manage_event_listings') && wp_update_post($event_data)) {
-
 							$expired_events[] = $post_id;
 						}
 					}
 				}
 
-				wp_redirect(add_query_arg('expired_events', $expired_events, remove_query_arg(array('approved_events', 'expired_events'), admin_url('edit.php?post_type=event_listing'))));
-
+				wp_redirect(add_query_arg('expire_events', count($expired_events), $redirect_url));
 				exit;
-
 				break;
 		}
-
 		return;
 	}
 
 	/**
 	 * Approve a single event
 	 */
-
 	public function approve_event()
 	{
 
@@ -204,9 +173,7 @@ class WP_Event_Manager_CPT
 			}
 
 			wp_update_post($event_data);
-
 			wp_redirect(remove_query_arg('approve_event', add_query_arg('approved_events', $post_id, admin_url('edit.php?post_type=event_listing'))));
-
 			exit;
 		}
 	}
@@ -230,13 +197,11 @@ class WP_Event_Manager_CPT
 				$titles = array();
 
 				foreach ($approved_events as $event_id) {
-
 					$titles[] = get_the_title($event_id);
 				}
 
 				echo wp_kses_post('<div class="updated"><p>' . sprintf('%s approved', 'wp-event-manager'), '&quot;' . implode('&quot;, &quot;', $titles) . '&quot;') . '</p></div>';
 			} else {
-
 				echo wp_kses_post('<div class="updated"><p>' . sprintf('%s approved', 'wp-event-manager'), '&quot;' . get_the_title($approved_events) . '&quot;') . '</p></div>';
 			}
 		}
@@ -245,10 +210,8 @@ class WP_Event_Manager_CPT
 	/**
 	 * Show a notice if we did a bulk action or approval
 	 */
-
 	public function expired_notice()
 	{
-
 		global $post_type, $pagenow;
 
 		if ($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events'])) {
@@ -265,10 +228,8 @@ class WP_Event_Manager_CPT
 
 					$titles[] = get_the_title($event_id);
 				}
-
 				echo wp_kses_post('<div class="updated"><p>' . sprintf('%s expired', 'wp-event-manager'), '&quot;' . implode('&quot;, &quot;', $titles) . '&quot;') . '</p></div>';
 			} else {
-
 				echo wp_kses_post('<div class="updated"><p>' . sprintf('%s expired', 'wp-event-manager'), '&quot;' . get_the_title($expired_events) . '&quot;') . '</p></div>';
 			}
 		}
@@ -283,7 +244,6 @@ class WP_Event_Manager_CPT
 		global $typenow, $wp_query;
 
 		if ($typenow != 'event_listing' || !taxonomy_exists('event_listing_category')) {
-
 			return;
 		}
 
@@ -308,7 +268,6 @@ class WP_Event_Manager_CPT
 		$walker = new WP_Event_Manager_Category_Walker();
 
 		if (!$terms) {
-
 			return;
 		}
 
@@ -366,7 +325,6 @@ class WP_Event_Manager_CPT
 	{
 
 		if ($post->post_type == 'event_listing') {
-
 			return __('Event Title', 'wp-event-manager');
 		}
 
@@ -707,7 +665,7 @@ class WP_Event_Manager_CPT
 						printf('<a class="button button-icon tips icon-%1$s" href="%2$s" data-tip="%3$s">%4$s</a>', $action['action'], esc_url($action['url']), esc_attr($action['name']), esc_html($action['name']));
 					} else {
 
-						echo esc_attr(str_replace('class="', 'class="button ', $action));
+						echo str_replace('class="', 'class="button ', $action);
 					}
 				}
 
@@ -729,15 +687,10 @@ class WP_Event_Manager_CPT
 	{
 
 		$custom = array(
-
 			'event_posted'     => 'date',
-
 			'event_title'      => 'title',
-
 			'event_location'   => 'event_location',
-
 			'event_start_date' => 'event_start_date',
-
 			'event_end_date'   => 'event_end_date',
 			'event_expires'    => 'event_expires',
 		);
@@ -822,9 +775,7 @@ class WP_Event_Manager_CPT
 	 */
 	public function organizer_columns($columns)
 	{
-
 		$columns = array_slice($columns, 0, 2, true) + array('organizer_email' => __('Email', 'wp-event-manager')) + array_slice($columns, 2, count($columns) - 2, true);
-
 		return $columns;
 	}
 
@@ -857,14 +808,11 @@ class WP_Event_Manager_CPT
 		global $post, $post_type;
 
 		// Abort if we're on the wrong post type, but only if we got a restriction
-
 		if ('event_listing' !== $post_type) {
-
 			return;
 		}
 
 		// Get all non-builtin post status and add them as <option>
-
 		$options = $display = '';
 
 		foreach (get_event_listing_post_statuses() as $status => $name) {
@@ -872,11 +820,9 @@ class WP_Event_Manager_CPT
 			$selected = selected($post->post_status, $status, false);
 
 			// If we one of our custom post status is selected, remember it
-
 			$selected and $display = $name;
 
 			// Build the options
-
 			$options .= "<option{$selected} value='{$status}'>{$name}</option>";
 		}
 

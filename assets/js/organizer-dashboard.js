@@ -26,10 +26,7 @@ var OrganizerDashboard= function () {
 				jQuery('.event-organizer-count').on('click', function(){
 					jQuery(this).next('.organizer-events-list').slideToggle();
 				});	
-
 	        }
-
-
  	 }, 
 
 	confirmation:{	    

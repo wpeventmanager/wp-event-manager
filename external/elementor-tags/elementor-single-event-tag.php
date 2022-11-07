@@ -96,7 +96,6 @@ class Elementor_Event_Tag extends Tag {
 
         foreach ($fields as $group_key => $group_fields) {
             foreach ($group_fields as $field_key => $field) {
-                //if(in_array($field['type'], ['text', 'term-select', 'radio', 'wp-editor', 'date', 'time', 'select', 'multiselect']))
                 if (!in_array($field['type'], ['file', 'hidden'])) {
                     $arrOption[$field_key] = $field['label'];
                 }
@@ -249,7 +248,6 @@ class Elementor_Event_Tag extends Tag {
 
                 foreach ($fields as $group_key => $group_fields) {
                     foreach ($group_fields as $field_key => $field) {
-                        //if(in_array($field['type'], ['text', 'term-select', 'radio', 'wp-editor', 'date', 'time', 'select', 'multiselect']))
                         
                         if (in_array($field['type'], ['select', 'multiselect']) && $event_tag == $field_key) {
                             if (is_array($field_value) && !empty($field_value)) {
@@ -268,5 +266,4 @@ class Elementor_Event_Tag extends Tag {
             display_event_title($event);
         }
     }
-
 }

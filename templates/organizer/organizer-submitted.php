@@ -1,6 +1,6 @@
 <?php
 global $wp_post_types;
-
+//print appropriate message accroding to post status or post description
 $organizer_dashboard_page_id = get_option('event_manager_organizer_dashboard_page_id');
 
 switch ( $organizer->post_status ) :

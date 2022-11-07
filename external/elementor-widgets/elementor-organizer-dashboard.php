@@ -122,7 +122,6 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 		echo do_shortcode('[organizer_dashboard '.$posts_per_page.' ]');
 	}
 
-
 	/**
 	 * Render the widget output in the editor.
 	 *

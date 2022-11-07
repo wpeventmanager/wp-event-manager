@@ -1,5 +1,5 @@
 <?php do_action('event_manager_organizer_dashboard_before'); ?>
-
+<!-- organizer dashboard title section start-->
 <div class="wpem-dashboard-main-title wpem-dashboard-main-filter">
 	<h3 class="wpem-theme-text"><?php _e('Organizer Dashboard', 'wp-event-manager'); ?></h3>
 
@@ -16,7 +16,9 @@
 
 	</div>
 </div>
+<!-- organizer dashboard title section start-->
 
+<!-- organizer list section end-->
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">
@@ -35,16 +37,13 @@
 				<?php else : ?>
 					<?php foreach ($organizers as $organizer) : ?>
 						<tr>
-
 							<?php foreach ($organizer_dashboard_columns as $key => $column) : ?>
 								<td data-title="<?php echo esc_html($column); ?>" class="<?php echo esc_attr($key); ?>">
 									<?php if ('organizer_name' === $key) : ?>
 										<div class="wpem-organizer-logo"><?php display_organizer_logo('', '', $organizer); ?></div>
 										<a href="<?php echo esc_url(get_permalink($organizer->ID)); ?>"><?php echo esc_html($organizer->post_title); ?></a>
 
-									<?php elseif ('organizer_details' === $key) : ?>
-
-										<?php
+									<?php elseif ('organizer_details' === $key) : 
 
 										do_action('single_event_listing_organizer_social_start', $organizer->ID);
 
@@ -59,45 +58,35 @@
 
 										if (empty($organizer_website) && empty($organizer_facebook) && empty($organizer_instagram) && empty($organizer_twitter) && empty($organizer_youtube)) {
 											echo wp_kses_post('<h1 class="text-center">-</h1>');
-										} else {
-										?>
+										} else { ?>
 											<div class="wpem-organizer-social-links">
 												<div class="wpem-organizer-social-lists">
 
-													<?php if (!empty($organizer_website)) {
-													?>
+													<?php if (!empty($organizer_website)) { ?>
 														<div class="wpem-social-icon wpem-weblink">
 															<a href="<?php echo esc_url($organizer_website); ?>" target="_blank" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>"><?php _e('Website', 'wp-event-manager'); ?></a>
 														</div>
-													<?php
-													}
+													<?php }
 
-													if (!empty($organizer_facebook)) {
-													?>
+													if (!empty($organizer_facebook)) { ?>
 														<div class="wpem-social-icon wpem-facebook">
 															<a href="<?php echo esc_url($organizer_facebook); ?>" target="_blank" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php _e('Facebook', 'wp-event-manager'); ?></a>
 														</div>
-													<?php
-													}
+													<?php }
 
-													if (!empty($organizer_instagram)) {
-													?>
+													if (!empty($organizer_instagram)) { ?>
 														<div class="wpem-social-icon wpem-instagram">
 															<a href="<?php echo esc_url($organizer_instagram); ?>" target="_blank" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php _e('Instagram', 'wp-event-manager'); ?></a>
 														</div>
-													<?php
-													}
+													<?php }
 
-													if (!empty($organizer_twitter)) {
-													?>
+													if (!empty($organizer_twitter)) { ?>
 														<div class="wpem-social-icon wpem-twitter">
 															<a href="<?php echo esc_url($organizer_twitter); ?>" target="_blank" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php _e('Twitter', 'wp-event-manager'); ?></a>
 														</div>
-													<?php
-													}
+													<?php }
 
-													if (!empty($organizer_youtube)) {
-													?>
+													if (!empty($organizer_youtube)) { ?>
 														<div class="wpem-social-icon wpem-youtube">
 															<a href="<?php echo esc_url($organizer_youtube); ?>" target="_blank" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php _e('Youtube', 'wp-event-manager'); ?></a>
 														</div>
@@ -109,8 +98,7 @@
 										<?php } ?>
 
 									<?php elseif ('organizer_events' === $key) : 
-										$events = get_event_by_organizer_id($organizer->ID);
-										?>
+										$events = get_event_by_organizer_id($organizer->ID); ?>
 
 										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_attr(sizeof($events)); ?></a>
 											<?php if (!empty($events)) : ?>
@@ -163,7 +151,6 @@
 									<?php endif; ?>
 								</td>
 							<?php endforeach; ?>
-
 						</tr>
 					<?php endforeach; ?>
 				<?php endif; ?>
@@ -171,7 +158,6 @@
 		</table>
 	</div>
 	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $max_num_pages)); ?>
-
-
+<!-- organizer list section end-->
 </div>
 <?php do_action('event_manager_organizer_dashboard_after'); ?>

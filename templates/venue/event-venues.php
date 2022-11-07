@@ -10,10 +10,8 @@
                     <div class="venue-counter-icon-wrap"><i class="wpem-icon-location2"></i></div>
                     <div class="venue-counter-number-wrap"><?php echo esc_attr(count($venues)); ?></div>
                 </div>
-
                 <div class="venue-counter-bottom-wrap"><?php _e('Venues', 'wp-event-manager'); ?></div>
             </div>
-
 
             <div class="wpem-available-events-number-icon">
                 <a href="<?php echo esc_url(get_the_permalink(get_option('event_manager_events_page_id'))); ?>" class="wpem-list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
@@ -21,7 +19,6 @@
                         <div class="venue-counter-icon-wrap"><i class="wpem-icon-calendar"></i></div>
                         <div class="venue-counter-number-wrap"><?php echo esc_attr($countAllEvents); ?></div>
                     </div>
-
                     <div class="venue-counter-bottom-wrap"><?php _e('Available events', 'wp-event-manager'); ?></div>
                 </a>
             </div>

@@ -1,4 +1,6 @@
-<?php if (is_user_logged_in()) : ?>
+<?php 
+//if user loggedin then display message and logout link else display login link
+if (is_user_logged_in()) : ?>
 	<div class="wpem-form-group ">
 		<label class="wpem-form-label-text"><?php _e('Your account', 'wp-event-manager'); ?></label>
 		<div class="field account-sign-in wpem-alert wpem-alert-info"> <?php $user = wp_get_current_user();
@@ -33,8 +35,7 @@
 						<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key'   => $key, 'field' => $field)); ?>
 					</div>
 				</div>
-<?php
-			}
+		<?php	}
 			do_action('event_manager_register_form');
 		}
 	endif;

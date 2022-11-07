@@ -102,7 +102,6 @@ var Organizers = function () {
                     if(jQuery(".normal-section-title").length >0)
                        jQuery(".normal-section-title").html(event_manager_organizer.i18n_upcomingEventsTitle);
                 }
-               	//jQuery(this).tab('show');
                 event.preventDefault();
             }                        
         }
