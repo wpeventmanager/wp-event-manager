@@ -300,28 +300,28 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
-= [3.1.33] 1-11-2022 =
+= [3.1.33] 7-11-2022 =
 
-Fix - Language translation issues. 
-Fix - Featured search issue on listing page.
-Fix - Elemetor -Single venue/organizer issue.
-Fix - Speed issue.
-Fix - Remove date time details from single event page when start/end date not added.
-Fix - Priority values issue in field editor at admin side.
+Fix - Events language translation issues. 
+Fix - Featured event search issue on the event listing page.
+Fix - Single event venue and organizer issue with elementor.
+Fix - Event listing speed issue.
+Fix - Remove date time details from the single event page when the event start & end date is not added.
+Fix - Priority values issue in the event field editor on the admin side.
 Fix - Issue with event listing shortcode attributes.
-Fix - Removed unwated files.
-Fix - Issue of spelling mistake and security fixes.
-Fix - Issue with radio selected value display in small latter.
-Fix - Organizer & venue not listing on submit event form when edit event from frontend dashboard.
-Fix - Issue of elementor compitibility.
-Fix - Event listing page - Need to remove load more event button.
-Fix - Event Dashboard filter issue.
-Fix - Event listing page datetime filter issue.
-Fix - Video playing issue on single event page.
-Fix - Location does not considering the special characters on event listing filter search.
-Fix - Setting issue of expired events on event listing page.
-Fix - Bulk action issue - Approve Events and Expire Events
-Fix - Remove Event location from database after update event as online.
+Fix - Removed unwanted files from the event manager.
+Fix - Issue of spelling mistakes and security fixes.
+Fix - Issue with radio selected value display in small later on the post-event form.
+Fix - Organizers & venues not listing on submit event form when editing events from the frontend dashboard.
+Fix - Event listing and calendar Issue of elementor compatibility.
+Fix - Load more button was hide during page loading on the event listing page.
+Fix - Event listing filter issue on the event dashboard.
+Fix - Event listing page DateTime filter issue.
+Fix - Video playing issue on the single event page.
+Fix - Location does not consider the special characters on the event listing filter search.
+Fix - Setting the issue of expired events on the event listing page.
+Fix - Approve Events and Expire Events bulk actions were not working on the admin side.
+Fix - Event location removed from the database after updating the event as online.
 
 = [3.1.32] 12-09-2022 =
 
