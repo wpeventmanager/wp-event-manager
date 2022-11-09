@@ -1150,8 +1150,8 @@ class WP_Event_Manager_Writepanels
 		}
 
 		$expiry_date = get_post_meta($post_id, '_event_expiry_date', true);
-		$today_date  = date('Y-m-d', $current_timestamp);
-		$post_status = $expiry_date && $current_timestamp > strtotime($expiry_date) ? 'expired' : false;
+		$today_date  = date('Y-m-d H:i:s', $current_timestamp);
+		$post_status = $expiry_date && $today_date > strtotime($expiry_date) ? 'expired' : false;
 		if ($post_status) {
 			remove_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);
 			$event_data = array(
