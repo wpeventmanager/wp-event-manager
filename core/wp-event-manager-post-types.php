@@ -994,7 +994,7 @@ class WP_Event_Manager_Post_Types {
 
 			AND posts.post_type = 'event_listing'
 
-		", date( 'Y-m-d', current_time( 'timestamp' ) ) ) );
+		", date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ) ) );
 
 		if ( $event_ids ) {
 
@@ -1024,7 +1024,7 @@ class WP_Event_Manager_Post_Types {
 
 				AND posts.post_status = 'expired'
 
-			", date( 'Y-m-d', strtotime( '-' . apply_filters( 'event_manager_delete_expired_events_days', 30 ) . ' days', current_time( 'timestamp' ) ) ) ) );
+			", date( 'Y-m-d H:i:s', strtotime( '-' . apply_filters( 'event_manager_delete_expired_events_days', 30 ) . ' days', current_time( 'timestamp' ) ) ) ) );
 			
 			if ( $event_ids ) {
 
