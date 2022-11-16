@@ -18,8 +18,7 @@
  * @return string The name of the current role
  * @since 1.0.0
  **/
-function get_event_manager_current_user_role()
-{
+function get_event_manager_current_user_role(){
 	global $wp_roles;
 	$current_user = wp_get_current_user();
 	$roles = $current_user->roles;
@@ -36,8 +35,7 @@ function get_event_manager_current_user_role()
  * @param string $default_path (default: '')
  * @return void
  */
-function get_event_manager_template($template_name, $args = array(), $template_path = 'wp-event-manager', $default_path = '')
-{
+function get_event_manager_template($template_name, $args = array(), $template_path = 'wp-event-manager', $default_path = ''){
 
 	if ($args && is_array($args)) {
 
@@ -60,8 +58,7 @@ function get_event_manager_template($template_name, $args = array(), $template_p
  * @param string|bool $default_path (default: '') False to not load a default
  * @return string
  */
-function locate_event_manager_template($template_name, $template_path = 'wp-event-manager', $default_path = '')
-{
+function locate_event_manager_template($template_name, $template_path = 'wp-event-manager', $default_path = ''){
 
 	// Look within passed path within the theme - this is priority
 
@@ -100,8 +97,7 @@ function locate_event_manager_template($template_name, $template_path = 'wp-even
  * @param string $template_path (default: 'wp-event-manager')
  * @param string|bool $default_path (default: '') False to not load a default
  */
-function get_event_manager_template_part($slug, $name = '', $template_path = 'wp-event-manager', $default_path = '')
-{
+function get_event_manager_template_part($slug, $name = '', $template_path = 'wp-event-manager', $default_path = ''){
 
 	$template = '';
 
@@ -128,8 +124,7 @@ function get_event_manager_template_part($slug, $name = '', $template_path = 'wp
  * @param  array $classes
  * @return array
  */
-function event_manager_body_class($classes)
-{
+function event_manager_body_class($classes){
 
 	$classes   = (array) $classes;
 
@@ -144,8 +139,7 @@ add_filter('body_class', 'event_manager_body_class');
  * Get events pagination for [events] shortcode
  * @return [type] [description]
  */
-function get_event_listing_pagination($max_num_pages, $current_page = 1)
-{
+function get_event_listing_pagination($max_num_pages, $current_page = 1){
 
 	ob_start();
 
@@ -159,8 +153,7 @@ function get_event_listing_pagination($max_num_pages, $current_page = 1)
  *
  * @return void
  */
-function display_event_status($post = null)
-{
+function display_event_status($post = null){
 
 	echo esc_attr(get_event_status($post));
 }
@@ -170,8 +163,7 @@ function display_event_status($post = null)
  *
  * @return string
  */
-function get_event_status($post = null)
-{
+function get_event_status($post = null){
 
 	$post     = get_post($post);
 
@@ -195,8 +187,7 @@ function get_event_status($post = null)
  * @param  object $post
  * @return boolean
  */
-function is_event_cancelled($post = null)
-{
+function is_event_cancelled($post = null){
 
 	$post = get_post($post);
 
@@ -209,8 +200,7 @@ function is_event_cancelled($post = null)
  * @param  object $post
  * @return boolean
  */
-function is_event_featured($post = null)
-{
+function is_event_featured($post = null){
 
 	$post = get_post($post);
 
@@ -223,8 +213,7 @@ function is_event_featured($post = null)
  * @param  object $post
  * @return boolean
  */
-function attendees_can_apply($post = null)
-{
+function attendees_can_apply($post = null){
 	$post = get_post($post);
 	return apply_filters('event_manager_attendees_can_register', (!is_event_cancelled() && !in_array($post->post_status, array('preview', 'expired'))), $post);
 }
@@ -235,8 +224,7 @@ function attendees_can_apply($post = null)
  * @access public
  * @return void
  */
-function display_event_permalink($post = null)
-{
+function display_event_permalink($post = null){
 
 	echo esc_attr(get_event_permalink($post));
 }
@@ -248,8 +236,7 @@ function display_event_permalink($post = null)
  * @param mixed $post (default: null)
  * @return object
  */
-function get_event_registration_method($post = null)
-{
+function get_event_registration_method($post = null){
 	$post = get_post($post);
 
 	if ($post && $post->post_type !== 'event_listing') {
@@ -286,8 +273,7 @@ function get_event_registration_method($post = null)
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_permalink($post = null)
-{
+function get_event_permalink($post = null){
 
 	$post = get_post($post);
 
@@ -302,8 +288,7 @@ function get_event_permalink($post = null)
  * @access public
  * @return void
  */
-function display_event_type($post = null, $after = '')
-{
+function display_event_type($post = null, $after = ''){
 
 	if ($event_type = get_event_type($post)) {
 		if (!empty($event_type)) {
@@ -335,8 +320,7 @@ function display_event_type($post = null, $after = '')
  * @param mixed $post (default: null)
  * @return void
  */
-function get_event_type($post = null)
-{
+function get_event_type($post = null){
 
 	$post = get_post($post);
 
@@ -360,8 +344,7 @@ function get_event_type($post = null)
  * @access public
  * @return void
  */
-function display_event_category($post = null, $after = '')
-{
+function display_event_category($post = null, $after = ''){
 
 	if ($event_category = get_event_category($post)) {
 
@@ -394,8 +377,7 @@ function display_event_category($post = null, $after = '')
  * @param mixed $post (default: null)
  * @return void
  */
-function get_event_category($post = null)
-{
+function get_event_category($post = null){
 
 	$post = get_post($post);
 
@@ -422,8 +404,7 @@ function get_event_category($post = null)
  *
  * @return array $registration_fields
  */
-function wp_event_manager_get_registration_fields()
-{
+function wp_event_manager_get_registration_fields(){
 	$generate_username_from_email      = event_manager_generate_username_from_email();
 	$use_standard_password_setup_email = event_manager_use_standard_password_setup_email();
 	$account_required  = event_manager_user_requires_account();
@@ -476,8 +457,7 @@ function wp_event_manager_get_registration_fields()
  * @param mixed $post (default: null)
  * @return [type]
  */
-function display_event_publish_date($post = null)
-{
+function display_event_publish_date($post = null){
 	$date_format = get_option('event_manager_date_format');
 	if ($date_format === 'default') {
 		$display_date = __('Posted on ', 'wp-event-manager') . get_post_time(get_option('date_format'));
@@ -492,8 +472,7 @@ function display_event_publish_date($post = null)
  * @param mixed $post (default: null)
  * @return [type]
  */
-function get_event_publish_date($post = null)
-{
+function get_event_publish_date($post = null){
 	$date_format = get_option('event_manager_date_format');
 	if ($date_format === 'default') {
 		return get_post_time(get_option('date_format'));
@@ -509,8 +488,7 @@ function get_event_publish_date($post = null)
  * @param mixed $post (default: null)
  * @return void
  */
-function get_event_location($post = null)
-{
+function get_event_location($post = null){
 
 	$post = get_post($post);
 
@@ -527,8 +505,7 @@ function get_event_location($post = null)
  * @param  boolean $map_link whether or not to link to the map on google maps
  * @return [type]
  */
-function display_event_location($map_link = true, $post = null)
-{
+function display_event_location($map_link = true, $post = null){
 
 	$location = get_event_location($post);
 	
@@ -552,8 +529,7 @@ function display_event_location($map_link = true, $post = null)
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_ticket_option($post = null)
-{
+function get_event_ticket_option($post = null){
 
 	$post = get_post($post);
 
@@ -587,8 +563,7 @@ function get_event_ticket_option($post = null)
  * @param mixed $id (default: null
  * @return void
  */
-function display_event_ticket_option($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_ticket_option($before = '', $after = '', $echo = true, $post = null){
 
 	$event_ticket_option = get_event_ticket_option($post);
 
@@ -625,8 +600,7 @@ function display_event_ticket_option($before = '', $after = '', $echo = true, $p
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_registration_end_date($post = null)
-{
+function get_event_registration_end_date($post = null){
 
 	$post = get_post($post);
 
@@ -643,8 +617,7 @@ function get_event_registration_end_date($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_registration_end_date($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_registration_end_date($before = '', $after = '', $echo = true, $post = null){
 
 	$event_registration_end_date = get_event_registration_end_date($post);
 
@@ -672,8 +645,7 @@ function display_event_registration_end_date($before = '', $after = '', $echo = 
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_banner($post = null)
-{
+function get_event_banner($post = null){
 
 	$post = get_post($post);
 
@@ -695,8 +667,7 @@ function get_event_banner($post = null)
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_thumbnail($post = null, $size = 'full')
-{
+function get_event_thumbnail($post = null, $size = 'full'){
 
 	$post = get_post($post);
 
@@ -705,9 +676,18 @@ function get_event_thumbnail($post = null, $size = 'full')
 
 	$event_thumbnail = get_the_post_thumbnail_url($post, $size);
 
-	if (isset($event_thumbnail) && empty($event_thumbnail))
-		$event_thumbnail = apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg');
-
+	//if thumbnail is not set then check for banner
+	if (isset($event_thumbnail) && empty($event_thumbnail)){
+		if (isset($post->_event_banner) && empty($post->_event_banner)){
+			$event_thumbnail = apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder-wide.jpg');
+		}else{
+			$event_banner = $post->_event_banner;
+			if(is_array($event_banner))
+				$event_thumbnail = $event_banner[0];
+			else
+				$event_thumbnail = $event_banner;
+		}
+	}
 	return apply_filters('display_event_thumbnail', $event_thumbnail, $post);
 }
 
@@ -719,8 +699,7 @@ function get_event_thumbnail($post = null, $size = 'full')
  * @param mixed $default (default: null)
  * @return void
  */
-function display_event_banner($size = 'full', $default = null, $post = null)
-{
+function display_event_banner($size = 'full', $default = null, $post = null){
 
 	$banner = get_event_banner($post);
 
@@ -748,8 +727,7 @@ function display_event_banner($size = 'full', $default = null, $post = null)
  * @param int $post (default: null)
  * @return string
  */
-function get_event_start_date($post = null)
-{
+function get_event_start_date($post = null){
 
 	$post = get_post($post);
 
@@ -770,8 +748,7 @@ function get_event_start_date($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_start_date($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_start_date($before = '', $after = '', $echo = true, $post = null){
 
 	$event_start_date = get_event_start_date($post);
 
@@ -796,8 +773,7 @@ function display_event_start_date($before = '', $after = '', $echo = true, $post
  * @param int $post (default: null)
  * @return string
  */
-function get_event_start_time($post = null)
-{
+function get_event_start_time($post = null){
 
 	$post = get_post($post);
 	if ($post->post_type !== 'event_listing'  || empty($post->_event_start_time)) {
@@ -823,8 +799,7 @@ function get_event_start_time($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_start_time($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_start_time($before = '', $after = '', $echo = true, $post = null){
 
 	$event_start_time = get_event_start_time($post);
 
@@ -848,8 +823,7 @@ function display_event_start_time($before = '', $after = '', $echo = true, $post
  * @param int $post (default: null)
  * @return string
  */
-function get_event_end_date($post = null)
-{
+function get_event_end_date($post = null){
 
 	$post = get_post($post);
 
@@ -868,8 +842,7 @@ function get_event_end_date($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_end_date($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_end_date($before = '', $after = '', $echo = true, $post = null){
 
 	$event_end_date = get_event_end_date($post);
 	if (strlen($event_end_date) == 0)
@@ -894,8 +867,7 @@ function display_event_end_date($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: null)
  * @return string
  */
-function get_event_end_time($post = null)
-{
+function get_event_end_time($post = null){
 
 	$post = get_post($post);
 
@@ -922,8 +894,7 @@ function get_event_end_time($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_end_time($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_end_time($before = '', $after = '', $echo = true, $post = null){
 
 	$event_end_time = get_event_end_time($post);
 	if (strlen($event_end_time) == 0)
@@ -947,9 +918,7 @@ function display_event_end_time($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: null)
  * @return string
  */
-function get_event_timezone($post = null, $abbr = true)
-{
-
+function get_event_timezone($post = null, $abbr = true){	
 	$post = get_post($post);
 
 	if ($post->post_type !== 'event_listing') {
@@ -976,8 +945,7 @@ function get_event_timezone($post = null, $abbr = true)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_timezone($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_timezone($before = '', $after = '', $echo = true, $post = null){
 
 	$event_timezone = get_event_timezone($post);
 
@@ -1000,8 +968,7 @@ function display_event_timezone($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: null)
  * @return string
  */
-function get_event_timezone_abbr($post = null)
-{
+function get_event_timezone_abbr($post = null){
 
 	$event_timezone = get_event_timezone($post);
 
@@ -1018,8 +985,7 @@ function get_event_timezone_abbr($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_timezone_abbr($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_timezone_abbr($before = '', $after = '', $echo = true, $post = null){
 
 	$event_timezone = get_event_timezone_abbr($post);
 
@@ -1041,8 +1007,7 @@ function display_event_timezone_abbr($before = '', $after = '', $echo = true, $p
  * @param mixed $post (default: null)
  * @return void
  */
-function get_event_venue_name($post = null, $link = false)
-{
+function get_event_venue_name($post = null, $link = false){
 
 	$post = get_post($post);
 	/* if ( $post->post_type !== 'event_listing' ) */
@@ -1079,8 +1044,7 @@ function get_event_venue_name($post = null, $link = false)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_venue_name($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_venue_name($before = '', $after = '', $echo = true, $post = null){
 
 	$event_venue_name = get_event_venue_name($post);
 
@@ -1104,8 +1068,7 @@ function display_event_venue_name($before = '', $after = '', $echo = true, $post
  * @param mixed $post (default: null)
  * @return void
  */
-function is_event_online($post = null)
-{
+function is_event_online($post = null){
 
 	$post = get_post($post);
 	if ($post->post_type !== 'event_listing')
@@ -1124,8 +1087,7 @@ function is_event_online($post = null)
  * @param mixed $post (default: null)
  * @return void
  */
-function get_event_address($post = null)
-{
+function get_event_address($post = null){
 
 	$post = get_post($post);
 	if ($post->post_type !== 'event_listing')
@@ -1142,8 +1104,7 @@ function get_event_address($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_address($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_address($before = '', $after = '', $echo = true, $post = null){
 
 	$event_address = get_event_address($post);
 
@@ -1167,8 +1128,7 @@ function display_event_address($before = '', $after = '', $echo = true, $post = 
  * @param mixed $post (default: null)
  * @return void
  */
-function get_event_pincode($post = null)
-{
+function get_event_pincode($post = null){
 
 	$post = get_post($post);
 
@@ -1185,8 +1145,7 @@ function get_event_pincode($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_pincode($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_pincode($before = '', $after = '', $echo = true, $post = null){
 
 	$event_pincode = get_event_pincode($post);
 
@@ -1213,8 +1172,7 @@ function display_event_pincode($before = '', $after = '', $echo = true, $post = 
  * @param int $post (default: null)
  * @return string
  */
-function get_organizer_name($post = null, $link = false, $link_type = 'frontend')
-{
+function get_organizer_name($post = null, $link = false, $link_type = 'frontend'){
 
 	$post = get_post($post);
 
@@ -1259,8 +1217,7 @@ function get_organizer_name($post = null, $link = false, $link_type = 'frontend'
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_name($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_name($before = '', $after = '', $echo = true, $post = null){
 	$organizer_name = get_organizer_name($post);
 
 	if (strlen($organizer_name) == 0)
@@ -1283,8 +1240,7 @@ function display_organizer_name($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: null)
  * @return string
  */
-function get_organizer_description($post = null)
-{
+function get_organizer_description($post = null){
 
 	$post = get_post($post);
 
@@ -1304,8 +1260,7 @@ function get_organizer_description($post = null)
  * @param mixed $default (default: null)
  * @return void
  */
-function display_organizer_logo($size = 'full', $default = null, $post = null)
-{
+function display_organizer_logo($size = 'full', $default = null, $post = null){ 
 
 	/* $logo = get_organizer_logo( $post = null, $size = 'full'  ); */
 	$logo = get_organizer_logo($post, $size);
@@ -1328,7 +1283,8 @@ function display_organizer_logo($size = 'full', $default = null, $post = null)
 	} else if (is_array($logo) && isset($logo[0])) {
 		printf('<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else {
-
+		echo $post->ID;
+		echo get_post_meta($post->ID, '_organizer_logo', true);
 		printf('<img src="' . esc_attr(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	}
 }
@@ -1340,8 +1296,7 @@ function display_organizer_logo($size = 'full', $default = null, $post = null)
  * @param mixed $post (default: null)
  * @return string
  */
-function get_organizer_logo($post = null, $size = 'full')
-{
+function get_organizer_logo($post = null, $size = 'full'){
 
 	$post = get_post($post);
 
@@ -1351,8 +1306,13 @@ function get_organizer_logo($post = null, $size = 'full')
 
 	if (has_post_thumbnail($post->ID)) {
 		$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size);
-		return $src ? $src[0] : '';
+		if(!isset($src) || empty($src)){
+			return $src ? $src[0] : '';
+		}else{
+			return $src ? $src[0] : '';
+		}
 	} elseif (!empty($post->_organizer_logo)) {
+		return $post->_organizer_logo;
 		// Before were stored in post meta.
 		return apply_filters('display_organizer_logo', $post->_organizer_logo, $post);
 	}
@@ -1367,8 +1327,7 @@ function get_organizer_logo($post = null, $size = 'full')
  * @param int $post (default: null)
  * @return string
  */
-function get_venue_description($post = null)
-{
+function get_venue_description($post = null){
 
 	$post = get_post($post);
 
@@ -1388,8 +1347,7 @@ function get_venue_description($post = null)
  * @param mixed $default (default: null)
  * @return void
  */
-function display_venue_logo($size = 'full', $default = null, $post = null)
-{
+function display_venue_logo($size = 'full', $default = null, $post = null){
 
 	/* $logo = get_venue_logo( $post = null, $size = 'full'  ); */
 	$logo = get_venue_logo($post, $size);
@@ -1424,8 +1382,7 @@ function display_venue_logo($size = 'full', $default = null, $post = null)
  * @param mixed $post (default: null)
  * @return string
  */
-function get_venue_logo($post = null, $size = 'full')
-{
+function get_venue_logo($post = null, $size = 'full'){
 
 	$post = get_post($post);
 
@@ -1451,8 +1408,7 @@ function get_venue_logo($post = null, $size = 'full')
  * @param  string $size
  * @return string
  */
-function event_manager_get_resized_image($logo, $size)
-{
+function event_manager_get_resized_image($logo, $size){
 
 	global $_wp_additional_image_sizes;
 
@@ -1525,8 +1481,7 @@ function event_manager_get_resized_image($logo, $size)
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_organizer_contact_person_name($post = null)
-{
+function get_event_organizer_contact_person_name($post = null){
 
 	$post = get_post($post);
 
@@ -1543,8 +1498,7 @@ function get_event_organizer_contact_person_name($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_contact_person_name($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_contact_person_name($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_contact_person_name = get_event_organizer_contact_person_name($post);
 
@@ -1570,8 +1524,7 @@ function display_organizer_contact_person_name($before = '', $after = '', $echo 
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_organizer_email($post = null)
-{
+function get_event_organizer_email($post = null){
 
 	$post = get_post($post);
 
@@ -1602,8 +1555,7 @@ function get_event_organizer_email($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_email($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_email($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_email = get_event_organizer_email($post);
 
@@ -1628,8 +1580,7 @@ function display_organizer_email($before = '', $after = '', $echo = true, $post 
  * @param mixed $post (default: null)
  * @return string
  */
-function get_organizer_video($post = null)
-{
+function get_organizer_video($post = null){
 
 	$post = get_post($post);
 
@@ -1642,8 +1593,7 @@ function get_organizer_video($post = null)
 /**
  * Output the organizer video
  */
-function display_organizer_video($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_video($before = '', $after = '', $echo = true, $post = null){
 
 	$video_embed = false;
 	$video       = get_organizer_video($post);
@@ -1671,8 +1621,7 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
  * @param int $post (default: null)
  * @return void
  */
-function get_organizer_website($post = null)
-{
+function get_organizer_website($post = null){
 
 	$post = get_post($post);
 
@@ -1713,7 +1662,6 @@ function get_organizer_website($post = null)
  */
 function display_organizer_website($before = '', $after = '', $echo = true, $post = null)
 {
-
 	$organizer_website = get_organizer_website($post);
 
 	if (strlen($organizer_website) == 0)
@@ -1736,8 +1684,7 @@ function display_organizer_website($before = '', $after = '', $echo = true, $pos
  * @param int $post (default: null)
  * @return void
  */
-function get_venue_website($post = null)
-{
+function get_venue_website($post = null){
 
 	$post = get_post($post);
 
@@ -1774,8 +1721,7 @@ function get_venue_website($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_website($before = '', $after = '', $echo = true, $post = null)
-{
+function display_venue_website($before = '', $after = '', $echo = true, $post = null){
 
 	$venue_website = get_venue_website($post);
 
@@ -1799,8 +1745,7 @@ function display_venue_website($before = '', $after = '', $echo = true, $post = 
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_tagline($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_tagline($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_tagline = get_organizer_tagline($post);
 
@@ -1824,8 +1769,7 @@ function display_organizer_tagline($before = '', $after = '', $echo = true, $pos
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_tagline($post = null)
-{
+function get_organizer_tagline($post = null){
 
 	$post = get_post($post);
 
@@ -1842,8 +1786,7 @@ function get_organizer_tagline($post = null)
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_twitter($post = null)
-{
+function get_organizer_twitter($post = null){
 
 	$post = get_post($post);
 
@@ -1869,8 +1812,7 @@ function get_organizer_twitter($post = null)
  * @access public
  * @param mixed $id (default: null)
  * @return void
- */
-function display_organizer_twitter($before = '', $after = '', $echo = true, $post = null)
+ */function display_organizer_twitter($before = '', $after = '', $echo = true, $post = null)
 {
 
 	$organizer_twitter = get_organizer_twitter($post);
@@ -1895,8 +1837,7 @@ function display_organizer_twitter($before = '', $after = '', $echo = true, $pos
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_twitter($post = null)
-{
+function get_venue_twitter($post = null){
 
 	$post = get_post($post);
 
@@ -1923,8 +1864,7 @@ function get_venue_twitter($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_twitter($before = '', $after = '', $echo = true, $post = null)
-{
+function display_venue_twitter($before = '', $after = '', $echo = true, $post = null){
 
 	$venue_twitter = get_venue_twitter($post);
 
@@ -1948,8 +1888,7 @@ function display_venue_twitter($before = '', $after = '', $echo = true, $post = 
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_facebook($post = null)
-{
+function get_organizer_facebook($post = null){
 
 	$post = get_post($post);
 
@@ -1972,8 +1911,7 @@ function get_organizer_facebook($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_facebook($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_facebook($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_facebook = get_organizer_facebook($post);
 
@@ -1997,8 +1935,7 @@ function display_organizer_facebook($before = '', $after = '', $echo = true, $po
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_facebook($post = null)
-{
+function get_venue_facebook($post = null){
 
 	$post = get_post($post);
 
@@ -2021,8 +1958,7 @@ function get_venue_facebook($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_facebook($before = '', $after = '', $echo = true, $post = null)
-{
+function display_venue_facebook($before = '', $after = '', $echo = true, $post = null){
 
 	$venue_facebook = get_venue_facebook($post);
 
@@ -2046,8 +1982,7 @@ function display_venue_facebook($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_linkedin($post = null)
-{
+function get_organizer_linkedin($post = null){
 
 	$post = get_post($post);
 
@@ -2069,8 +2004,7 @@ function get_organizer_linkedin($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_linkedin($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_linkedin($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_linkedin = get_organizer_linkedin($post);
 
@@ -2094,8 +2028,7 @@ function display_organizer_linkedin($before = '', $after = '', $echo = true, $po
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_xing($post = null)
-{
+function get_organizer_xing($post = null){
 
 	$post = get_post($post);
 
@@ -2117,8 +2050,7 @@ function get_organizer_xing($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_xing($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_xing($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_xing = get_organizer_xing($post);
 
@@ -2142,8 +2074,7 @@ function display_organizer_xing($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_instagram($post = null)
-{
+function get_organizer_instagram($post = null){
 
 	$post = get_post($post);
 
@@ -2165,8 +2096,7 @@ function get_organizer_instagram($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_instagram($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_instagram($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_instagram = get_organizer_instagram($post);
 
@@ -2190,8 +2120,7 @@ function display_organizer_instagram($before = '', $after = '', $echo = true, $p
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_instagram($post = null)
-{
+function get_venue_instagram($post = null){
 
 	$post = get_post($post);
 
@@ -2213,8 +2142,7 @@ function get_venue_instagram($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_instagram($before = '', $after = '', $echo = true, $post = null)
-{
+function display_venue_instagram($before = '', $after = '', $echo = true, $post = null){
 
 	$venue_instagram = get_venue_instagram($post);
 
@@ -2238,8 +2166,7 @@ function display_venue_instagram($before = '', $after = '', $echo = true, $post 
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_pinterest($post = null)
-{
+function get_organizer_pinterest($post = null){
 
 	$post = get_post($post);
 
@@ -2261,8 +2188,7 @@ function get_organizer_pinterest($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_pinterest($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_pinterest($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_pinterest = get_organizer_pinterest($post);
 
@@ -2287,8 +2213,7 @@ function display_organizer_pinterest($before = '', $after = '', $echo = true, $p
  * @return void
  */
 
-function get_organizer_youtube($post = null)
-{
+function get_organizer_youtube($post = null){
 
 	$post = get_post($post);
 
@@ -2316,8 +2241,7 @@ function get_organizer_youtube($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_youtube($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_youtube($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_youtube = get_organizer_youtube($post);
 
@@ -2342,8 +2266,7 @@ function display_organizer_youtube($before = '', $after = '', $echo = true, $pos
  * @return void
  */
 
-function get_venue_youtube($post = null)
-{
+function get_venue_youtube($post = null){
 
 	$post = get_post($post);
 
@@ -2366,9 +2289,7 @@ function get_venue_youtube($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_youtube($before = '', $after = '', $echo = true, $post = null)
-{
-
+function display_venue_youtube($before = '', $after = '', $echo = true, $post = null){
 	$venue_youtube = get_venue_youtube($post);
 
 	if (strlen($venue_youtube) == 0)
@@ -2391,8 +2312,7 @@ function display_venue_youtube($before = '', $after = '', $echo = true, $post = 
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_google_plus($post = null)
-{
+function get_organizer_google_plus($post = null){
 
 	$post = get_post($post);
 
@@ -2414,8 +2334,7 @@ function get_organizer_google_plus($post = null)
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_google_plus($before = '', $after = '', $echo = true, $post = null)
-{
+function display_organizer_google_plus($before = '', $after = '', $echo = true, $post = null){
 
 	$organizer_google_plus = get_organizer_google_plus($post);
 
@@ -2440,8 +2359,7 @@ function display_organizer_google_plus($before = '', $after = '', $echo = true, 
  * @param mixed $post_id (default: null)
  * @return void
  */
-function event_listing_class($class = '', $post_id = null)
-{
+function event_listing_class($class = '', $post_id = null){
 
 	// Separates classes with a single space, collates classes for post DIV
 	printf('class="' . join(' ', get_event_listing_class($class, $post_id)) . '"');
@@ -2453,8 +2371,7 @@ function event_listing_class($class = '', $post_id = null)
  * @access public
  * @return array
  */
-function get_event_listing_class($class = '', $post_id = null)
-{
+function get_event_listing_class($class = '', $post_id = null){
 
 	$post = get_post($post_id);
 
@@ -2506,8 +2423,7 @@ function get_event_listing_class($class = '', $post_id = null)
  *   @return number counted view.
  *   @param $post
  **/
-function get_post_views_count($post)
-{
+function get_post_views_count($post){
 	$count_key = '_view_count';
 	$count = get_post_meta($post->ID, $count_key, true);
 
@@ -2522,8 +2438,7 @@ function get_post_views_count($post)
 /**
  * Count event view on the single event page
  */
-function get_single_listing_view_count($post)
-{
+function get_single_listing_view_count($post){
 
 	get_post_views_count($post);
 }
@@ -2535,8 +2450,7 @@ function get_single_listing_view_count($post)
  *
  * @return array $registration_fields
  */
-function event_manager_get_registration_fields()
-{
+function event_manager_get_registration_fields(){
 	$generate_username_from_email      = event_manager_generate_username_from_email();
 	$use_standard_password_setup_email = event_manager_use_standard_password_setup_email();
 	$account_required  = event_manager_user_requires_account();
@@ -2596,8 +2510,7 @@ function event_manager_get_registration_fields()
  * @param WP_Post|int|null $post
  * @return bool
  */
-function event_manager_allow_indexing_event_listing($post = null)
-{
+function event_manager_allow_indexing_event_listing($post = null){
 	$post = get_post($post);
 	if ($post && $post->post_type !== 'event_listing') {
 		return true;
@@ -2621,8 +2534,7 @@ function event_manager_allow_indexing_event_listing($post = null)
  * @param WP_Post|int|null $post
  * @return bool
  */
-function event_manager_output_event_listing_structured_data($post = null)
-{
+function event_manager_output_event_listing_structured_data($post = null){
 	$post = get_post($post);
 	if ($post && $post->post_type !== 'event_listing') {
 		return false;
@@ -2647,8 +2559,7 @@ function event_manager_output_event_listing_structured_data($post = null)
  * @param WP_Post|int|null $post
  * @return bool|array False if functionality is disabled; otherwise array of structured data.
  */
-function event_manager_get_event_listing_structured_data($post = null)
-{
+function event_manager_get_event_listing_structured_data($post = null){
 	$post = get_post($post);
 	if ($post && $post->post_type !== 'event_listing') {
 		return false;
@@ -2713,8 +2624,7 @@ function event_manager_get_event_listing_structured_data($post = null)
  * @param WP_Post $post
  * @return array|bool
  */
-function event_manager_get_event_listing_location_structured_data($post)
-{
+function event_manager_get_event_listing_location_structured_data($post){
 	$post = get_post($post);
 	if ($post && $post->post_type !== 'event_listing') {
 		return false;
@@ -2769,8 +2679,7 @@ function event_manager_get_event_listing_location_structured_data($post)
  * @param int|WP_Post $post
  * @return string
  */
-function display_event_title($post = null)
-{
+function display_event_title($post = null){
 	if ($event_title = get_event_title($post)) {
 		echo esc_attr($event_title);
 	}
@@ -2783,8 +2692,7 @@ function display_event_title($post = null)
  * @param int|WP_Post $post (default: null)
  * @return string|bool|null
  */
-function get_event_title($post = null)
-{
+function get_event_title($post = null){
 	$post = get_post($post);
 	if (!$post || 'event_listing' !== $post->post_type) {
 		return;
@@ -2809,8 +2717,7 @@ function get_event_title($post = null)
  * @param int|WP_Post $post
  * @return string
  */
-function display_event_description($post = null)
-{
+function display_event_description($post = null){
 	if ($event_description = get_event_description($post)) {
 		echo esc_attr($event_description);
 	}
@@ -2823,8 +2730,7 @@ function display_event_description($post = null)
  * @param int|WP_Post $post (default: null)
  * @return string|bool|null
  */
-function get_event_description($post = null)
-{
+function get_event_description($post = null){
 	$post = get_post($post);
 	if (!$post || 'event_listing' !== $post->post_type) {
 		return;
@@ -2846,8 +2752,7 @@ function get_event_description($post = null)
  * Get event ticket price
  * @return event ticket price
  **/
-function get_event_ticket_price($post = null)
-{
+function get_event_ticket_price($post = null){
 
 	$post = get_post($post);
 	if ($post->post_type !== 'event_listing' || get_event_ticket_option() == 'free')
@@ -2860,8 +2765,7 @@ function get_event_ticket_price($post = null)
  * Display event ticket price
  * @return
  **/
-function display_event_ticket_price($before = '', $after = '', $echo = true, $post = null)
-{
+function display_event_ticket_price($before = '', $after = '', $echo = true, $post = null){
 
 	$event_ticket_price = get_event_ticket_price($post);
 
@@ -2884,8 +2788,7 @@ function display_event_ticket_price($before = '', $after = '', $echo = true, $po
  * @param null
  * @return string 
  **/
-function get_wpem_date_time_separator()
-{
+function get_wpem_date_time_separator(){
 	return	apply_filters('event_manager_date_time_format_separator', get_option('event_manager_date_time_format_separator', '@'));
 }
 
@@ -2895,8 +2798,7 @@ function get_wpem_date_time_separator()
  * @param
  * @return
  **/
-function display_date_time_separator()
-{
+function display_date_time_separator(){
 	printf(__('%s', 'wp-event-manager'), get_wpem_date_time_separator());
 }
 
@@ -2907,8 +2809,7 @@ function display_date_time_separator()
  * @return
  **/
 add_filter('post_thumbnail_html', 'hide_feature_image_single_page', 10, 3);
-function hide_feature_image_single_page($html, $post_id, $post_image_id)
-{
+function hide_feature_image_single_page($html, $post_id, $post_image_id){
 	if (is_singular('event_listing')) {
 		return '';
 	} else if (is_singular('event_organizer')) {
@@ -2926,8 +2827,7 @@ function hide_feature_image_single_page($html, $post_id, $post_image_id)
  * @param
  * @return
  **/
-function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1, $tab = '')
-{
+function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1, $tab = ''){
 	ob_start();
 
 	// Calculate pages to output 
@@ -2937,9 +2837,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 	$end_pages   = range($max_num_pages - $end_size + 1, $max_num_pages);
 	$mid_pages   = range($current_page - $mid_size, $current_page + $mid_size);
 	$pages       = array_intersect(range(1, $max_num_pages), array_merge($start_pages, $end_pages, $mid_pages));
-	$prev_page   = 0;
-
-?>
+	$prev_page   = 0;?>
 	<nav class="event-manager-pagination-2 wpem-mt-3">
 		<ul class="page-numbers">
 			<?php if ($current_page && $current_page > 1) : ?>
@@ -3003,8 +2901,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
  * @param string
  * @return array
  **/
-function get_hidden_form_fields($form_option, $key_name)
-{
+function get_hidden_form_fields($form_option, $key_name){
 	$form_fields_array = get_option( $form_option, true );
 	$form_fields = array();
 	if (!empty($form_fields_array)) :
