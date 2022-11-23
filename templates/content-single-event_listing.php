@@ -7,6 +7,7 @@ $end_time   = get_event_end_time();
 $address = get_event_address();
 $location =  get_event_location();
 $separator = get_wpem_date_time_separator();
+$check_ticket_visibility = get_option('event_manager_enable_event_ticket_prices', true);
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style('wp-event-manager-slick-style');
 do_action('set_single_listing_view_count');
@@ -92,12 +93,14 @@ $event = $post;
                                         </div>
                                     <?php endif; ?>
 
-                                    <?php if (get_event_ticket_price()) : ?>
-                                        <div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price('', '', true, $post); ?></div>
-                                    <?php endif; ?>
+                                    <?php if(isset($check_ticket_visibility) && !empty($check_ticket_visibility)) : ?>
+                                        <?php if (get_event_ticket_price()) : ?>
+                                            <div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price('', '', true, $post); ?></div>
+                                        <?php endif; ?>
 
-                                    <?php if (get_event_ticket_option()) : ?>
-                                        <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
+                                        <?php if (get_event_ticket_option()) : ?>
+                                            <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
                             </div>
