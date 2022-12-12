@@ -1283,8 +1283,6 @@ function display_organizer_logo($size = 'full', $default = null, $post = null){
 	} else if (is_array($logo) && isset($logo[0])) {
 		printf('<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else {
-		echo $post->ID;
-		echo get_post_meta($post->ID, '_organizer_logo', true);
 		printf('<img src="' . esc_attr(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	}
 }
