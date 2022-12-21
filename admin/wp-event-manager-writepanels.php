@@ -1125,6 +1125,11 @@ class WP_Event_Manager_Writepanels
 						} else {
 							update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 						}
+						error_log($key.' '.$_POST[$key]);
+						if($key=='_event_ticket_options' && $_POST[$key]=='free'){
+							error_log($key.' '.$_POST[$key]);
+							$ticket_type=$_POST[$key];
+						}
 						//set event online or not
 						if( $key == '_event_online') 
 							$event_online = $_POST[$key];
@@ -1138,7 +1143,10 @@ class WP_Event_Manager_Writepanels
 			delete_post_meta($post_id, '_event_location');
 			delete_post_meta($post_id, '_event_pincode');
 		}
-
+		// reset meta value if ticket type is free
+		if(isset($ticket_type) && $ticket_type=='free'){
+			update_post_meta( $post_id, '_event_ticket_price', '');
+		}
 		/* Set Post Status To Expired If Already Expired */
 		$event_timezone = get_post_meta($post_id, '_event_timezone', true);
 		// check if timezone settings is enabled as each event then set current time stamp according to the timezone
