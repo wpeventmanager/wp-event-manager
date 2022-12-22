@@ -885,8 +885,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function save_post($post_id, $post)
-	{
+	public function save_post($post_id, $post){
 		if (empty($post_id) || empty($post) || empty($_POST)) {
 			return;
 		}
@@ -927,8 +926,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function save_event_listing_data($post_id, $post)
-	{
+	public function save_event_listing_data($post_id, $post){
 		global $wpdb;
 		// These need to exist
 		add_post_meta($post_id, '_cancelled', 0, true);
@@ -1125,9 +1123,7 @@ class WP_Event_Manager_Writepanels
 						} else {
 							update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 						}
-						error_log($key.' '.$_POST[$key]);
 						if($key=='_event_ticket_options' && $_POST[$key]=='free'){
-							error_log($key.' '.$_POST[$key]);
 							$ticket_type=$_POST[$key];
 						}
 						//set event online or not
@@ -1139,7 +1135,7 @@ class WP_Event_Manager_Writepanels
 		}
 
 		//delete location meta if event is online
-		if( $event_online == 'yes') {
+		if( isset($event_online) && $event_online == 'yes') {
 			delete_post_meta($post_id, '_event_location');
 			delete_post_meta($post_id, '_event_pincode');
 		}
