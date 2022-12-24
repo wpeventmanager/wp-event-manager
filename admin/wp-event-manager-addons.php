@@ -18,7 +18,7 @@ if (!class_exists('WP_Event_Manager_Addons')) :
 		 * Handles output of the reports page in admin.
 		 */
 		public function output() { ?>
-			<div class="wrap wp_event_manager wp_event_manager_addons_wrap">
+			<div class="wrap technology">
 			<h2><?php _e('WP Event Manager Add-ons', 'wp-event-manager'); ?></h2>
 			<?php 
 			
