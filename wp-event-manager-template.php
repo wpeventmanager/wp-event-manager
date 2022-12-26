@@ -535,23 +535,13 @@ function get_event_ticket_option($post = null){
 
 	if ($post->post_type !== 'event_listing')
 		return;
+	$ticket_option = '';
 	if ($post->_event_ticket_options == 'paid')
 		$ticket_option = __('Paid', 'wp-event-manager');
 	elseif ($post->_event_ticket_options == 'free')
 		$ticket_option = __('Free', 'wp-event-manager');
-	elseif ($post->_event_ticket_options == 'donation')
-		$ticket_option = __('Donation', 'wp-event-manager');
-	elseif ($post->_event_ticket_options == 'paid/free')
-		$ticket_option = __('Paid/Free', 'wp-event-manager');
-	elseif ($post->_event_ticket_options == 'paid/donation')
-		$ticket_option = __('Paid/Donation', 'wp-event-manager');
-	elseif ($post->_event_ticket_options == 'free/donation')
-		$ticket_option = __('Free/Donation', 'wp-event-manager');
-	elseif ($post->_event_ticket_options == 'paid/free/donation')
-		$ticket_option = __('Paid/Free/Donation', 'wp-event-manager');
 	elseif ($post->_event_ticket_options == '')
 		$ticket_option = '';
-
 
 	return apply_filters('display_event_ticket_option', $ticket_option, $post);
 }
@@ -566,7 +556,6 @@ function get_event_ticket_option($post = null){
 function display_event_ticket_option($before = '', $after = '', $echo = true, $post = null){
 
 	$event_ticket_option = get_event_ticket_option($post);
-
 	if (strlen($event_ticket_option) == 0)
 		return;
 
@@ -584,11 +573,8 @@ function display_event_ticket_option($before = '', $after = '', $echo = true, $p
 	}
 
 	$event_ticket_option = $before . $event_ticket_option . $after;
-
 	if ($echo)
-
 		echo esc_attr($event_ticket_option);
-
 	else
 		return $event_ticket_option;
 }

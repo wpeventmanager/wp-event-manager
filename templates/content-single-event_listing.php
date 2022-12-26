@@ -86,22 +86,21 @@ $event = $post;
 
                                     <?php
                                     $view_count = get_post_views_count($post);
-                                    if ($view_count) :
-                                    ?>
+                                    if ($view_count) : ?>
                                         <div class="wpem-viewed-event wpem-tooltip wpem-tooltip-bottom"><i class="wpem-icon-eye"></i><?php printf(__(' %d', 'wp-event-manager'), $view_count); ?>
                                             <span class="wpem-tooltiptext"><?php printf(__('%d people viewed this event.', 'wp-event-manager'), $view_count); ?></span>
                                         </div>
                                     <?php endif; ?>
-
+                                    <?php do_action('single_event_ticket_overview_before'); ?>
                                     <?php if(isset($check_ticket_visibility) && !empty($check_ticket_visibility)) : ?>
-                                        <?php if (get_event_ticket_price()) : ?>
+                                        <?php if (get_event_ticket_price() && get_event_ticket_option()) : ?>
                                             <div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price('', '', true, $post); ?></div>
                                         <?php endif; ?>
-
                                         <?php if (get_event_ticket_option()) : ?>
                                             <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
                                         <?php endif; ?>
-                                    <?php endif; ?>
+                                    <?php endif; ?>                               
+                                    <?php do_action('single_event_ticket_overview_after'); ?>
                                 </div>
                             </div>
 
