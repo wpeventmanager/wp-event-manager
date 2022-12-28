@@ -1277,7 +1277,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 	$output .= "</select>\n";
 
 	if ( $echo ) {
-		printf($output);
+		printf('%s', $output);
 	}
 	return $output;
 }
