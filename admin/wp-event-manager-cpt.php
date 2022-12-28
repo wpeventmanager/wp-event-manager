@@ -312,7 +312,7 @@ class WP_Event_Manager_CPT
 		$output .= $walker->walk($terms, 0, $r);
 		$output .= '</select>';
 
-		printf($output);
+		printf('%s', $output);
 	}
 
 	/**
