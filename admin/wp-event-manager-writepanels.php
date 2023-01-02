@@ -931,6 +931,7 @@ class WP_Event_Manager_Writepanels
 		// These need to exist
 		add_post_meta($post_id, '_cancelled', 0, true);
 		add_post_meta($post_id, '_featured', 0, true);
+		add_post_meta($post_id, '_event_title', get_the_title($post_id));
 		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
@@ -1056,7 +1057,7 @@ class WP_Event_Manager_Writepanels
 			}
 			// Everything else
 			else {
-				
+				error_log("key : ".$key);
 				$type = !empty($field['type']) ? $field['type'] : '';
 				switch ($type) {
 					case 'textarea':
@@ -1136,8 +1137,8 @@ class WP_Event_Manager_Writepanels
 
 		//delete location meta if event is online
 		if( isset($event_online) && $event_online == 'yes') {
-			delete_post_meta($post_id, '_event_location');
-			delete_post_meta($post_id, '_event_pincode');
+			set_post_meta($post_id, '_event_location', '');
+			set_post_meta($post_id, '_event_pincode', '');
 		}
 		// reset meta value if ticket type is free
 		if(isset($ticket_type) && $ticket_type=='free'){
