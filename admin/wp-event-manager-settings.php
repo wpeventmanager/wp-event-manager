@@ -94,6 +94,31 @@ class WP_Event_Manager_Settings
 						),
 					),
 				),
+				'single event'     => array(
+	
+					__('Single Event', 'wp-event-manager'),
+
+					array(
+	
+						array(
+
+							'name'       => 'event_manager_event_friend_share',
+
+							'std'        => '1',
+
+							'label'      => __('Social media', 'wp-event-manager'),
+
+							'cb_label'   => __('Enable friend share', 'wp-event-manager'),
+
+							'desc'       => __('If enabled the friend share buttons will be shown', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
+						),
+						
+					),
+				),
 				'event_listings'       => array(
 
 					__('Event Listings', 'wp-event-manager'),
@@ -133,6 +158,7 @@ class WP_Event_Manager_Settings
 
 							'attributes' => array(),
 						),
+						
 						array(
 							'name'       => 'event_manager_hide_expired',
 

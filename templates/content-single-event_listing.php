@@ -569,7 +569,7 @@ $event = $post;
 
                                 <?php
                                 /* social share section */
-                                $is_friend_share = apply_filters('event_manager_event_friend_share', true);
+                                $is_friend_share = get_option('event_manager_event_friend_share', true);
 
                                 if ($is_friend_share) :
                                 ?>
