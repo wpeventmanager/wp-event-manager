@@ -584,6 +584,22 @@ msgstr "Beliebiges Datum"
 msgid "Keywords"
 msgstr "Schlüsselwörter"
 
+#: templates/event-filters.php:127 templates/filters/event-filters-2.php:105
+msgid "Choose an Event Type"
+msgstr "Veranstaltungsart"
+
+msgid "Select Date Range"
+msgstr "Zeitfenster"
+
+msgid "Choose a Category"
+msgstr "Kategorie"
+
+msgid "Events Box View"
+msgstr "Kachelansicht"
+
+msgid "Events List View"
+msgstr "Listenansicht"
+
 #: templates/event-dashboard.php:43
 msgid "Relist"
 msgstr "Neu eintragen"
@@ -615,6 +631,23 @@ msgstr "Soziale Netzwerke des Veranstalter"
 #: templates/content-single-event_listing-organizer.php:109
 msgid "Registration End Date"
 msgstr "Anmeldeschluss"
+
+#: templates/content-single-event_listing.php:523
+msgid "Share With Friends"
+msgstr "Teilen auf"
+
+#: templates/content-single-event_listing.php:436
+#: templates/event-dashboard.php:312
+msgid "Date And Time"
+msgstr "Datum und Uhrzeit"
+
+msgid "Event registration closed."
+msgstr "Registrierung geschlossen"
+
+#: templates/content-single-event_listing.php:436
+#: templates/event-dashboard.php:312
+msgid " to"
+msgstr "bis"
 
 #: templates/content-single-event_listing-meta.php:46
 msgid "Registrations have closed"
@@ -1688,6 +1721,12 @@ msgstr "Löschen"
 #: templates/event-dashboard.php:33 templates/event-dashboard.php:49
 msgid "Edit"
 msgstr "Bearbeiten"
+
+msgid "Organizers"
+msgstr "Veranstalter"
+
+msgid "Venues"
+msgstr "Veranstaltungsorte"
 
 #: admin/wp-event-manager-cpt.php:574
 msgid "View"
