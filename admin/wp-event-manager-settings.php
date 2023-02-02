@@ -196,6 +196,22 @@ class WP_Event_Manager_Settings
 
 							'attributes' => array(),
 						),
+						array(
+
+							'name'       => 'event_manager_event_visits',
+
+							'std'        => '1',
+
+							'label'      => __('Show visits', 'wp-event-manager'),
+
+							'cb_label'   => __('Show the count of visits of the event.', 'wp-event-manager'),
+
+							'desc'       => __('If enabled the visits will be shown.', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
+						),
 						
 					),
 				),

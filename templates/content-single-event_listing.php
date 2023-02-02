@@ -85,7 +85,7 @@ $event = $post;
 
                                     <?php
                                     $view_count = get_post_views_count($post);
-                                    if ($view_count) :
+                                    if ($view_count && get_option('event_manager_event_visits', true)) :
                                     ?>
                                         <div class="wpem-viewed-event wpem-tooltip wpem-tooltip-bottom"><i class="wpem-icon-eye"></i><?php printf(__(' %d', 'wp-event-manager'), $view_count); ?>
                                             <span class="wpem-tooltiptext"><?php printf(__('%d people viewed this event.', 'wp-event-manager'), $view_count); ?></span>
