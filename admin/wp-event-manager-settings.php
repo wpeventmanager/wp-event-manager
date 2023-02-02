@@ -116,6 +116,86 @@ class WP_Event_Manager_Settings
 
 							'attributes' => array(),
 						),
+						array(
+
+							'name'       => 'event_manager_event_friend_share_facebook',
+
+							'std'        => '1',
+
+							'label'      => __('Facebook', 'wp-event-manager'),
+
+							'cb_label'   => __('Enable sharing with facebook', 'wp-event-manager'),
+
+							'desc'       => __('If enabled the facebook share button will be shown', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
+						),
+						array(
+
+							'name'       => 'event_manager_event_friend_share_twitter',
+
+							'std'        => '1',
+
+							'label'      => __('Twitter', 'wp-event-manager'),
+
+							'cb_label'   => __('Enable sharing with twitter', 'wp-event-manager'),
+
+							'desc'       => __('If enabled the twitter share button will be shown', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
+						),
+						array(
+
+							'name'       => 'event_manager_event_friend_share_linkedin',
+
+							'std'        => '1',
+
+							'label'      => __('Linkedin', 'wp-event-manager'),
+
+							'cb_label'   => __('Enable sharing with linkedin', 'wp-event-manager'),
+
+							'desc'       => __('If enabled the linkedin share button will be shown', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
+						),
+						array(
+
+							'name'       => 'event_manager_event_friend_share_xing',
+
+							'std'        => '1',
+
+							'label'      => __('Xing', 'wp-event-manager'),
+
+							'cb_label'   => __('Enable sharing with xing', 'wp-event-manager'),
+
+							'desc'       => __('If enabled the xing share button will be shown', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
+						),
+						array(
+
+							'name'       => 'event_manager_event_friend_share_pinterest',
+
+							'std'        => '1',
+
+							'label'      => __('Pinterest', 'wp-event-manager'),
+
+							'cb_label'   => __('Enable sharing with pinterest', 'wp-event-manager'),
+
+							'desc'       => __('If enabled the xing pinterest button will be shown', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
+						),
 						
 					),
 				),

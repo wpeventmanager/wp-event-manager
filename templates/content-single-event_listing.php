@@ -577,21 +577,31 @@ $event = $post;
                                     <div class="wpem-share-this-event">
                                         <div class="wpem-event-share-lists">
                                             <?php do_action('single_event_listing_social_share_start'); ?>
+                                            <?php if (get_option('event_manager_event_friend_share_facebook', true)) : ?>
                                             <div class="wpem-social-icon wpem-facebook">
                                                 <a href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink(); ?>" title="Share this page on Facebook"><?php _e('Facebook', 'wp-event-manager'); ?></a>
                                             </div>
+                                            <?php endif; ?>
+                                            <?php if (get_option('event_manager_event_friend_share_twitter', true)) : ?>
                                             <div class="wpem-social-icon wpem-twitter">
                                                 <a href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink(); ?>" title="Share this page on Twitter"><?php _e('Twitter', 'wp-event-manager'); ?></a>
                                             </div>
+                                            <?php endif; ?>
+                                            <?php if (get_option('event_manager_event_friend_share_linkedin', true)) : ?>
                                             <div class="wpem-social-icon wpem-linkedin">
                                                 <a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php display_event_permalink(); ?>" title="Share this page on Linkedin"><?php _e('Linkedin', 'wp-event-manager'); ?></a>
                                             </div>
+                                            <?php endif; ?>
+                                            <?php if (get_option('event_manager_event_friend_share_xing', true)) : ?>
                                             <div class="wpem-social-icon wpem-xing">
                                                 <a href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink(); ?>" title="Share this page on Xing"><?php _e('Xing', 'wp-event-manager'); ?></a>
                                             </div>
+                                            <?php endif; ?>
+                                            <?php if (get_option('event_manager_event_friend_share_pinterest', true)) : ?>
                                             <div class="wpem-social-icon wpem-pinterest">
                                                 <a href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink(); ?>" title="Share this page on Pinterest"><?php _e('Pinterest', 'wp-event-manager'); ?></a>
                                             </div>
+                                            <?php endif; ?>
                                             <?php do_action('single_event_listing_social_share_end'); ?>
                                         </div>
                                     </div>
