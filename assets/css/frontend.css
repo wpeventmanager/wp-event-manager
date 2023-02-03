@@ -904,7 +904,7 @@ input.wpem-theme-button:hover span {
   font-size: 14px;
   border-radius: 4px;
 }
-.wpem-event-ticket-type {
+.wpem-event-ticket-type, .wpem-event-ticket-price {
   display: inline-block;
 }
 .wpem-event-ticket-type .wpem-event-ticket-type-text {
