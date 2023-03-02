@@ -406,6 +406,10 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 		if ( function_exists( 'pll_current_language' ) ) {
 			$query_args['lang'] = pll_current_language();
 		}
+		// POST LANG arg
+		if (!empty($_POST['lang']) && strlen($_POST['lang']) == 2) {
+			$query_args['lang'] = $_POST['lang'];
+		}
 		/** This filter is documented in wp-event-manager.php */
 		$query_args['lang'] = apply_filters( 'wpem_lang', null );
 		
