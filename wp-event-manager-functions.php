@@ -114,123 +114,123 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 			
 		if ( ! empty( $args['search_datetimes'][0] ) ) {		
 			$date_search=array();
-				if($args['search_datetimes'][0]==='datetime_today'){	
-					$datetime=date('Y-m-d');
-					
-					$date_search[] = array(
-							'key'     => '_event_start_date',
-							'value'   => $datetime,
-							'compare' => 'LIKE',
-						);
-				} elseif($args['search_datetimes'][0]==='datetime_tomorrow') { 
-					$datetime=date('Y-m-d',strtotime("+1 day")); 
-					
-					$date_search[] = array(
-							'key'     => '_event_start_date',
-							'value'   => $datetime,
-							'compare' => 'LIKE',
-						);
-				} elseif($args['search_datetimes'][0]==='datetime_thisweek') {					
-					$year=date('Y');
-					$weekNumber=date('W');                 
-					$dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
-					$dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));				
+			if($args['search_datetimes'][0]==='datetime_today'){	
+				$datetime=date('Y-m-d');
+				
+				$date_search[] = array(
+						'key'     => '_event_start_date',
+						'value'   => $datetime,
+						'compare' => 'LIKE',
+					);
+			} elseif($args['search_datetimes'][0]==='datetime_tomorrow') { 
+				$datetime=date('Y-m-d',strtotime("+1 day")); 
+				
+				$date_search[] = array(
+						'key'     => '_event_start_date',
+						'value'   => $datetime,
+						'compare' => 'LIKE',
+					);
+			} elseif($args['search_datetimes'][0]==='datetime_thisweek') {					
+				$year=date('Y');
+				$weekNumber=date('W');                 
+				$dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
+				$dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));				
 
-					$date_search[] = array(
+				$date_search[] = array(
+					'key'     => '_event_start_date',
+					'value'   => $dates,
+					'compare' => 'BETWEEN',
+					'type'    => 'date'
+				);
+			} elseif($args['search_datetimes'][0]==='datetime_thisweekend') {
+				$saturday_date=date('Y-m-d', strtotime('this Saturday', time()));
+				$sunday_date=date('Y-m-d', strtotime('this Saturday +1 day', time()));
+				$dates[0]= $saturday_date;
+				$dates[1]= $sunday_date;
+				
+				$date_search[] = array(
 						'key'     => '_event_start_date',
 						'value'   => $dates,
 						'compare' => 'BETWEEN',
 						'type'    => 'date'
 					);
-				} elseif($args['search_datetimes'][0]==='datetime_thisweekend') {
-					$saturday_date=date('Y-m-d', strtotime('this Saturday', time()));
-					$sunday_date=date('Y-m-d', strtotime('this Saturday +1 day', time()));
-					$dates[0]= $saturday_date;
-					$dates[1]= $sunday_date;
-					
-					$date_search[] = array(
-							'key'     => '_event_start_date',
-							'value'   => $dates,
-							'compare' => 'BETWEEN',
-							'type'    => 'date'
-						);
-				} elseif($args['search_datetimes'][0]==='datetime_thismonth') {	
-					$dates[0]= date('Y-m-d', strtotime('first day of this month', time()));
-					$dates[1] = date('Y-m-d', strtotime('last day of this month', time()));				
+			} elseif($args['search_datetimes'][0]==='datetime_thismonth') {	
+				$dates[0]= date('Y-m-d', strtotime('first day of this month', time()));
+				$dates[1] = date('Y-m-d', strtotime('last day of this month', time()));				
 
-					$date_search[] = array(
-							'key'     => '_event_start_date',
-							'value'   => $dates,
-							'compare' => 'BETWEEN',
-							'type'    => 'date'
-						);
-				} elseif($args['search_datetimes'][0]==='datetime_thisyear') {
-					$dates[0]= date('Y-m-d', strtotime('first day of january', time()));
-					$dates[1] = date('Y-m-d', strtotime('last day of december', time()));	
-
-					$date_search[] = array(
-							'key'     => '_event_start_date',
-							'value'   => $dates,
-							'compare' => 'BETWEEN',
-							'type'    => 'date'
-						);
-				} elseif($args['search_datetimes'][0]==='datetime_nextweek') {
-					$year=date('Y');
-					$weekNumber=date('W')+1;                 
-					$dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
-					$dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));	
-				
-					$date_search[] = array(
+				$date_search[] = array(
 						'key'     => '_event_start_date',
 						'value'   => $dates,
 						'compare' => 'BETWEEN',
 						'type'    => 'date'
-					);		    
+					);
+			} elseif($args['search_datetimes'][0]==='datetime_thisyear') {
+				$dates[0]= date('Y-m-d', strtotime('first day of january', time()));
+				$dates[1] = date('Y-m-d', strtotime('last day of december', time()));	
+
+				$date_search[] = array(
+						'key'     => '_event_start_date',
+						'value'   => $dates,
+						'compare' => 'BETWEEN',
+						'type'    => 'date'
+					);
+			} elseif($args['search_datetimes'][0]==='datetime_nextweek') {
+				$year=date('Y');
+				$weekNumber=date('W')+1;                 
+				$dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
+				$dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));	
+			
+				$date_search[] = array(
+					'key'     => '_event_start_date',
+					'value'   => $dates,
+					'compare' => 'BETWEEN',
+					'type'    => 'date'
+				);		    
+			
+			} elseif($args['search_datetimes'][0]==='datetime_nextweekend') {
+				$next_saturday_date=date('Y-m-d', strtotime('next week Saturday', time()));
+				$next_sunday_date=date('Y-m-d', strtotime('next week Sunday', time()));
+				$dates[0]= $next_saturday_date;
+				$dates[1]= $next_sunday_date;               
 				
-				} elseif($args['search_datetimes'][0]==='datetime_nextweekend') {
-					$next_saturday_date=date('Y-m-d', strtotime('next week Saturday', time()));
-					$next_sunday_date=date('Y-m-d', strtotime('next week Sunday', time()));
-					$dates[0]= $next_saturday_date;
-					$dates[1]= $next_sunday_date;               
-					
-					$date_search[] = array(
-							'key'     => '_event_start_date',
-							'value'   => $dates,
-							'compare' => 'BETWEEN',
-							'type'    => 'date'
-						);
-				} elseif($args['search_datetimes'][0]==='datetime_nextmonth') {
-					$dates[0]= date('Y-m-d', strtotime('first day of next month', time()));
-					$dates[1] = date('Y-m-d', strtotime('last day of next month', time()));	
-					
-					$date_search[] = array(
-							'key'     => '_event_start_date',
-							'value'   => $dates,
-							'compare' => 'BETWEEN',
-							'type'    => 'date'
-						);
-				} elseif($args['search_datetimes'][0]==='datetime_nextyear') {
-					$year=date('Y')+1;
-					$dates[0]= date('Y-m-d', strtotime('first day of January ' . $year, time()));
-					$dates[1] = date('Y-m-d', strtotime('last day of december '. $year, time()));              
+				$date_search[] = array(
+						'key'     => '_event_start_date',
+						'value'   => $dates,
+						'compare' => 'BETWEEN',
+						'type'    => 'date'
+					);
+			} elseif($args['search_datetimes'][0]==='datetime_nextmonth') {
+				$dates[0]= date('Y-m-d', strtotime('first day of next month', time()));
+				$dates[1] = date('Y-m-d', strtotime('last day of next month', time()));	
+				
+				$date_search[] = array(
+						'key'     => '_event_start_date',
+						'value'   => $dates,
+						'compare' => 'BETWEEN',
+						'type'    => 'date'
+					);
+			} elseif($args['search_datetimes'][0]==='datetime_nextyear') {
+				$year=date('Y')+1;
+				$dates[0]= date('Y-m-d', strtotime('first day of January ' . $year, time()));
+				$dates[1] = date('Y-m-d', strtotime('last day of december '. $year, time()));              
 
-					$date_search[] = array(
-							'key'     => '_event_start_date',
-							'value'   => $dates,
-							'compare' => 'BETWEEN',
-							'type'    => 'date'
-						);
-				} else {
+				$date_search[] = array(
+						'key'     => '_event_start_date',
+						'value'   => $dates,
+						'compare' => 'BETWEEN',
+						'type'    => 'date'
+					);
+			} else {
 
-					$dates = json_decode($args['search_datetimes'][0], true);
-					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+				$dates = json_decode($args['search_datetimes'][0], true);
+				//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+				$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 
-					//covert datepicker format  into php date() function date format
-					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-					if (
-						!empty($dates)
-					) {
+				//covert datepicker format  into php date() function date format
+				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+				if (
+					!empty($dates)
+				) {
 					$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
 					$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
 					$date_search['relation'] = 'OR';
@@ -263,8 +263,9 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 					$search_end_date['relation'] = 'AND';
 					$date_search[] = $search_end_date;
 				}
-				$query_args['meta_query'][] = $date_search;
 			}
+
+			$query_args['meta_query'][] = $date_search;
 		}
 
 		if ( ! empty( $args['search_categories'][0] ) ) {
@@ -407,8 +408,8 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 		}
 		/** This filter is documented in wp-event-manager.php */
 		$query_args['lang'] = apply_filters( 'wpem_lang', null );
+		
 		// Filter args
-
 		$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );
 		do_action( 'before_get_event_listings', $query_args, $args );
 
