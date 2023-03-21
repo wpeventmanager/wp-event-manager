@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: WP Event Manager\n"
 "POT-Creation-Date: 2023-03-21 11:27+0530\n"
-"PO-Revision-Date: 2023-03-21 11:31+0530\n"
+"PO-Revision-Date: 2023-03-21 11:30+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,19 +17,22 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "Last-Translator: \n"
-"Language: de_DE\n"
+"Language: de\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
 #: admin/wp-event-manager-addons.php:22 admin/wp-event-manager-admin.php:167
+
 msgid "WP Event Manager Add-ons"
 msgstr "WP Event Manager Add-ons"
 
 #: admin/wp-event-manager-admin.php:122
+
 msgid "Your database upgrading now"
 msgstr "Ihre Datenbank jetzt aktualisieren"
 
 #: admin/wp-event-manager-admin.php:123
+
 msgid ""
 "Your database has been upgraded successfully! In order to take advantage, "
 "save the permalink and proceed."
@@ -325,6 +328,7 @@ msgstr "Nummer"
 #: admin/wp-event-manager-form-field-editor-field.php:124
 #: wp-event-manager-template.php:434 wp-event-manager-template.php:435
 #: wp-event-manager-template.php:2454
+
 msgid "Password"
 msgstr "Passwort"
 
@@ -567,6 +571,7 @@ msgid "Enable venue"
 msgstr "Enable venue"
 
 #: admin/wp-event-manager-settings.php:73
+
 msgid ""
 "Disable this to remove the functionality of Venue on your Event Website."
 msgstr ""
@@ -578,6 +583,7 @@ msgid "Delete Data On Uninstall"
 msgstr "Löschen Sie die Daten bei der Deinstallation"
 
 #: admin/wp-event-manager-settings.php:83
+
 msgid ""
 "Delete WP Event Manager data when the plugin is deleted. Once removed, this "
 "data cannot be restored."
@@ -590,6 +596,7 @@ msgid "Google API Key"
 msgstr "Google API-Key"
 
 #: admin/wp-event-manager-settings.php:92
+
 msgid ""
 "If you are going to deal with google map or location then you need Google "
 "API key to retrieve location information for event listings. Also this "
@@ -628,6 +635,7 @@ msgid "Hide cancelled events."
 msgstr "Abgesagte Veranstaltungen ausblenden."
 
 #: admin/wp-event-manager-settings.php:130
+
 msgid "If enabled, cancelled events will be hidden from archives."
 msgstr ""
 "Wenn diese Option aktiviert ist, werden abgebrochene Ereignisse in den "
@@ -638,11 +646,13 @@ msgid "Hide Expired Listings"
 msgstr "Abgelaufene Stellenanzeigen ausblenden"
 
 #: admin/wp-event-manager-settings.php:142
+
 msgid "Hide expired listings in event archive/search."
 msgstr ""
 "Ausgeblendete Einträge im Ereignisarchiv/in der Ereignissuche ausblenden."
 
 #: admin/wp-event-manager-settings.php:144
+
 msgid "If enabled, expired event listing is not searchable."
 msgstr ""
 "Wenn diese Option aktiviert ist, kann die Liste abgelaufener Ereignisse "
@@ -653,12 +663,14 @@ msgid "Hide Expired Listings Content"
 msgstr "Verberge abgelaufene Angebote"
 
 #: admin/wp-event-manager-settings.php:159
+
 msgid "Hide expired listing content in single event listing (singular)."
 msgstr ""
 "Ausblenden von abgelaufenen Eintragsinhalten in Einzelereignislisten "
 "(Singular)."
 
 #: admin/wp-event-manager-settings.php:161
+
 msgid ""
 "If enabled, the content within expired listings will be hidden. Otherwise, "
 "expired listings will be displayed as normal (without the event registration "
@@ -673,11 +685,13 @@ msgid "Multi-select Categories"
 msgstr "Mehrfachauswahl-Kategorien"
 
 #: admin/wp-event-manager-settings.php:176
+
 msgid "Enable category multiselect by default."
 msgstr "Aktivieren Sie standardmäßig die Kategorie-Mehrfachauswahl."
 
 #: admin/wp-event-manager-settings.php:178
 #: admin/wp-event-manager-settings.php:210
+
 msgid ""
 "If enabled, the category select box will default to a multi select on the "
 "[events] shortcode."
@@ -686,15 +700,18 @@ msgstr ""
 "auf eine Mehrfachauswahl für den [events]-Shortcode gesetzt."
 
 #: admin/wp-event-manager-settings.php:191
+
 msgid "Multi-select Event Types"
 msgstr "Ereignistypen mit Mehrfachauswahl"
 
 #: admin/wp-event-manager-settings.php:193
+
 msgid "Enable event type multiselect by default."
 msgstr "Aktivieren Sie standardmäßig die Mehrfachauswahl des Ereignistyps."
 
 #: admin/wp-event-manager-settings.php:195
 #: admin/wp-event-manager-settings.php:230
+
 msgid ""
 "If enabled, the event type select box will default to a multi select on the "
 "[events] shortcode."
@@ -709,28 +726,33 @@ msgid "Category Filter"
 msgstr "Kategorie-Filter"
 
 #: admin/wp-event-manager-settings.php:216
+
 msgid "Events will be shown if within ANY selected category."
 msgstr ""
 "Ereignisse werden angezeigt, wenn sie sich innerhalb einer ausgewählten "
 "Kategorie befinden."
 
 #: admin/wp-event-manager-settings.php:218
+
 msgid "Events will be shown if within ALL selected categories."
 msgstr ""
 "Ereignisse werden angezeigt, wenn sie sich in ALLEN ausgewählten Kategorien "
 "befinden."
 
 #: admin/wp-event-manager-settings.php:228
+
 msgid "Event Type Filter"
 msgstr "Ereignistypfilter"
 
 #: admin/wp-event-manager-settings.php:236
+
 msgid "Events will be shown if within ANY selected event type."
 msgstr ""
 "Ereignisse werden angezeigt, wenn sie sich innerhalb EINES ausgewählten "
 "Ereignistyps befinden."
 
 #: admin/wp-event-manager-settings.php:238
+
 msgid "Events will be shown if within ALL selected event types."
 msgstr ""
 "Ereignisse werden innerhalb ALLER ausgewählten Ereignistypen angezeigt."
@@ -744,6 +766,7 @@ msgid "Account Required"
 msgstr "Konto erforderlich"
 
 #: admin/wp-event-manager-settings.php:258
+
 msgid "Submitting listings requires an account."
 msgstr "Für das Einreichen von Angeboten ist ein Konto erforderlich."
 
@@ -759,6 +782,7 @@ msgid "Account Creation"
 msgstr "Kontoerstellung"
 
 #: admin/wp-event-manager-settings.php:275
+
 msgid "Allow account creation."
 msgstr "Kontoerstellung zulassen."
 
@@ -775,6 +799,7 @@ msgid "Account Username"
 msgstr "Benutzername des Kontos"
 
 #: admin/wp-event-manager-settings.php:292
+
 msgid "Automatically Generate Username from Email Address."
 msgstr "Benutzername automatisch aus E-Mail-Adresse generieren."
 
@@ -791,6 +816,7 @@ msgid "Account Password"
 msgstr "Account-Passwort"
 
 #: admin/wp-event-manager-settings.php:304
+
 msgid ""
 "Use WordPress' default behavior and email new users link to set a password."
 msgstr ""
@@ -812,6 +838,7 @@ msgid "Account Role"
 msgstr "Rolle des Kontoinhabers"
 
 #: admin/wp-event-manager-settings.php:318
+
 msgid ""
 "If you enable user registration on your submission form, choose a role for "
 "the new user."
@@ -824,6 +851,7 @@ msgid "Moderate New Listings"
 msgstr "Neue Beiträge moderieren"
 
 #: admin/wp-event-manager-settings.php:333
+
 msgid "New listing submissions require admin approval."
 msgstr ""
 "Neue Einreichungen von Einträgen müssen vom Administrator genehmigt werden."
@@ -839,10 +867,10 @@ msgid "Allow Pending Edits"
 msgstr "Erlaube das Bearbeiten von nicht aktivierten Einträgen"
 
 #: admin/wp-event-manager-settings.php:350
+
 msgid "Submissions awaiting approval can be edited."
 msgstr ""
-"Sofern aktiviert können Einträge, während sie noch auf Genehmigung durch den "
-"Admin warten, vom User bearbeitet werden."
+"Einreichungen, die noch genehmigt werden müssen, können bearbeitet werden."
 
 #: admin/wp-event-manager-settings.php:352
 msgid ""
@@ -852,14 +880,17 @@ msgstr ""
 "Admin warten, vom User bearbeitet werden."
 
 #: admin/wp-event-manager-settings.php:363
+
 msgid "Allow Multiple Banners"
 msgstr "Mehrere Banner zulassen"
 
 #: admin/wp-event-manager-settings.php:365
+
 msgid "User can submit multiple banner."
 msgstr "Der Benutzer kann mehrere Banner einreichen."
 
 #: admin/wp-event-manager-settings.php:367
+
 msgid ""
 "If enabled, Multiple banner can add at frontend by user and backend side by "
 "admin."
@@ -868,28 +899,34 @@ msgstr ""
 "Benutzer und im Backend vom Administrator hinzugefügt werden."
 
 #: admin/wp-event-manager-settings.php:379
+
 msgid "Delete listings after finished"
 msgstr "Einträge löschen, nachdem sie fertig sind"
 
 #: admin/wp-event-manager-settings.php:381
+
 msgid "Delete listings after finished."
 msgstr "Löschen Sie Angebote, nachdem Sie fertig sind."
 
 #: admin/wp-event-manager-settings.php:383
+
 msgid "If enabled, expired listings will automatically deleted after finished."
 msgstr ""
 "Wenn diese Option aktiviert ist, werden abgelaufene Angebote nach Abschluss "
 "automatisch gelöscht."
 
 #: admin/wp-event-manager-settings.php:395
+
 msgid "Delete Expired listings"
 msgstr "Abgelaufene Angebote löschen"
 
 #: admin/wp-event-manager-settings.php:397
+
 msgid "Expired listings are deleted after 30 days."
 msgstr "Abgelaufene Angebote werden nach 30 Tagen gelöscht."
 
 #: admin/wp-event-manager-settings.php:399
+
 msgid "If enabled, expired listings will automatically deleted after 30 days."
 msgstr ""
 "Wenn diese Option aktiviert ist, werden abgelaufene Angebote nach 30 Tagen "
@@ -900,6 +937,7 @@ msgid "Listing Expire"
 msgstr "Eintrag läuft ab"
 
 #: admin/wp-event-manager-settings.php:414
+
 msgid ""
 "You can set event submission expiry time either event end date or specific "
 "days."
@@ -908,10 +946,12 @@ msgstr ""
 "Ereignisses oder bestimmte Tage festlegen."
 
 #: admin/wp-event-manager-settings.php:420
+
 msgid "Listing expire on Event End Date"
 msgstr "Das Angebot läuft am Enddatum der Veranstaltung ab"
 
 #: admin/wp-event-manager-settings.php:422
+
 msgid "Listing expire on Specified Below Days"
 msgstr "Das Angebot läuft an den unten angegebenen Tagen ab"
 
@@ -932,10 +972,12 @@ msgid "Categories"
 msgstr "Kategorien"
 
 #: admin/wp-event-manager-settings.php:447
+
 msgid "Enable Categories for listing and submission form."
 msgstr "Aktivieren Sie Kategorien für das Eintrags- und Einreichungsformular."
 
 #: admin/wp-event-manager-settings.php:449
+
 msgid ""
 "Choose whether to enable categories on the event listing and submission "
 "page. If enabled, it needs to be prior created at the backend."
@@ -950,11 +992,13 @@ msgid "Event Types"
 msgstr "Veranstaltungsarten"
 
 #: admin/wp-event-manager-settings.php:464
+
 msgid "Enable Event types for listing and submission form."
 msgstr ""
 "Aktivieren Sie Ereignistypen für das Eintrags- und Übermittlungsformular."
 
 #: admin/wp-event-manager-settings.php:466
+
 msgid ""
 "Choose whether to enable event types on the event listing and submission "
 "page. If enabled, it needs to be prior created at the backend."
@@ -964,14 +1008,17 @@ msgstr ""
 "sie zuvor im Backend erstellt werden."
 
 #: admin/wp-event-manager-settings.php:479
+
 msgid "Ticket prices"
 msgstr "Ticketpreise"
 
 #: admin/wp-event-manager-settings.php:481
+
 msgid "Enable Ticket prices for listing and submission form."
 msgstr "Aktivieren Sie Ticketpreise für Auflistung und Einreichungsformular."
 
 #: admin/wp-event-manager-settings.php:483
+
 msgid ""
 "Choose whether to enable ticket prices on the event listing and submission "
 "page."
@@ -984,10 +1031,12 @@ msgid "Pages"
 msgstr "Seiten"
 
 #: admin/wp-event-manager-settings.php:504
+
 msgid "Submit Event Form Page"
 msgstr "Seite \"Veranstaltungsformular senden\""
 
 #: admin/wp-event-manager-settings.php:506
+
 msgid ""
 "Select the page where you have placed the [submit_event_form] shortcode. "
 "This lets the plugin know where the form is located."
@@ -996,10 +1045,12 @@ msgstr ""
 "platziert haben. Dadurch weiß das Plugin, wo sich das Formular befindet."
 
 #: admin/wp-event-manager-settings.php:517
+
 msgid "Event Dashboard Page"
 msgstr "Seite \"Ereignis-Dashboard\""
 
 #: admin/wp-event-manager-settings.php:519
+
 msgid ""
 "Select the page where you have placed the [event_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
@@ -1008,10 +1059,12 @@ msgstr ""
 "platziert haben. Dadurch weiß das Plugin, wo sich das Dashboard befindet."
 
 #: admin/wp-event-manager-settings.php:530
+
 msgid "Event Listings Page"
 msgstr "Seite \"Veranstaltungslisten\""
 
 #: admin/wp-event-manager-settings.php:532
+
 msgid ""
 "Select the page where you have placed the [events] shortcode. This lets the "
 "plugin know where the event listings page is located."
@@ -1025,6 +1078,7 @@ msgid "Login Page URL"
 msgstr "URL der Login-Seite"
 
 #: admin/wp-event-manager-settings.php:544
+
 msgid "Enter the Login page URL."
 msgstr "Geben Sie die URL der Anmeldeseite ein."
 
