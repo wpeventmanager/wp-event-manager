@@ -21,7 +21,7 @@ if (is_user_logged_in()) : ?>
 			<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) : 	esc_url(home_url() . '/wp-login.php'); ?>"><?php _e('Sign in', 'wp-event-manager'); ?></a>
 			<?php if ($registration_enabled) : ?>
 				<?php printf( __('If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email.', 'wp-event-manager'));
-				$account_required ? '' : printf(__('(optional)', 'wp-event-manager')); ?>
+				 $account_required ? '' : __('(optional)', 'wp-event-manager'); ?>
 			<?php elseif ($account_required) : ?>
 				<?php echo  wp_kses_post(apply_filters('submit_event_form_login_required_message',  __(' You must sign in to create a new listing.', 'wp-event-manager'))); ?>
 			<?php endif; ?>
