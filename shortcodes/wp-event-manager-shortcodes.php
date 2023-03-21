@@ -1085,9 +1085,9 @@ class WP_Event_Manager_Shortcodes
 
 		$events = new WP_Query($args);
 
-		if ($events->have_posts()) : ?>
+		if ($events->have_posts()) { 
 
-			<?php while ($events->have_posts()) : $events->the_post();
+			while ($events->have_posts()) : $events->the_post();
 
 				echo wp_kses_post('<div class="event_summary_shortcode align' . esc_attr($align) . '" style="width: ' . esc_attr($width) . '">');
 
@@ -1095,9 +1095,12 @@ class WP_Event_Manager_Shortcodes
 
 				echo wp_kses_post('</div>');
 
-			endwhile; ?>
-
-		<?php endif;
+			endwhile;
+		}else{
+			echo '<div class="entry-content"><div class="wpem-venue-connter"><div class="wpem-alert wpem-alert-info">';
+            printf( __('There are no events.','wp-event-manager'));    
+			echo '</div></div></div>';
+		}
 
 		wp_reset_postdata();
 
