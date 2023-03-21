@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-03-21 11:27+0530\n"
-"PO-Revision-Date: 2023-03-21 11:31+0530\n"
+"POT-Creation-Date: 2023-03-21 13:09+0530\n"
+"PO-Revision-Date: 2023-03-21 13:16+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,7 +326,7 @@ msgstr "Nummer"
 #: wp-event-manager-template.php:434 wp-event-manager-template.php:435
 #: wp-event-manager-template.php:2454
 msgid "Password"
-msgstr "Passwort"
+msgstr "Account-Passwort"
 
 #: admin/wp-event-manager-field-editor.php:44
 #: admin/wp-event-manager-field-editor.php:148
@@ -1041,12 +1041,10 @@ msgstr ""
 "platziert haben. Dadurch weiß das Plugin, wo sich das Formular befindet."
 
 #: admin/wp-event-manager-settings.php:567
-
 msgid "Organizer Dashboard Page"
 msgstr "Seite \"Organizer-Dashboard\""
 
 #: admin/wp-event-manager-settings.php:569
-
 msgid ""
 "Select the page where you have placed the [organizer_dashboard] shortcode. "
 "This lets the plugin know where the dashboard is located."
@@ -1055,12 +1053,10 @@ msgstr ""
 "platziert haben. Dadurch weiß das Plugin, wo sich das Dashboard befindet."
 
 #: admin/wp-event-manager-settings.php:580
-
 msgid "Submit Venue Form Page"
 msgstr "Formularseite \"Veranstaltungsort senden\""
 
 #: admin/wp-event-manager-settings.php:582
-
 msgid ""
 "Select the page where you have placed the [submit_venue_form] shortcode. "
 "This lets the plugin know where the form is located."
@@ -1069,12 +1065,10 @@ msgstr ""
 "platziert haben. Dadurch weiß das Plugin, wo sich das Formular befindet."
 
 #: admin/wp-event-manager-settings.php:592
-
 msgid "Venue Dashboard Page"
 msgstr "Seite \"Veranstaltungsort-Dashboard\""
 
 #: admin/wp-event-manager-settings.php:594
-
 msgid ""
 "Select the page where you have placed the [venue_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
@@ -1091,7 +1085,6 @@ msgid "Datepicker Date Format"
 msgstr "Datumswahl  (\\“Datepicker\\“)"
 
 #: admin/wp-event-manager-settings.php:613
-
 msgid "Select the date format to use in datepickers."
 msgstr ""
 "Wählen Sie das Datumsformat aus, das in der Datumsauswahl verwendet werden "
@@ -1102,7 +1095,6 @@ msgid "Timepicker Format"
 msgstr "Timepicker-Format"
 
 #: admin/wp-event-manager-settings.php:625
-
 msgid "Select the time format to use in timepickers."
 msgstr ""
 "Wählen Sie das Zeitformat aus, das in der Zeitauswahl verwendet werden soll."
@@ -1116,12 +1108,10 @@ msgid "24 Hours"
 msgstr "24 Stunden"
 
 #: admin/wp-event-manager-settings.php:639
-
 msgid "Timepicker Step"
 msgstr "Timepicker-Schritt"
 
 #: admin/wp-event-manager-settings.php:641
-
 msgid ""
 "Select the time step to use in timepickers. Time step must have to be in "
 "between 1 to 60."
@@ -1134,7 +1124,6 @@ msgid "Date Format"
 msgstr "Datumsformat"
 
 #: admin/wp-event-manager-settings.php:652
-
 msgid ""
 "This date format will be used at the frontend date display. <a href="
 "\"https://wordpress.org/support/article/formatting-date-and-time/\" target="
@@ -1145,12 +1134,10 @@ msgstr ""
 "\"__blank\">Weitere Informationen finden Sie hier</a>."
 
 #: admin/wp-event-manager-settings.php:661
-
 msgid "Date And Time Separator"
 msgstr "Datums- und Uhrzeittrennzeichen"
 
 #: admin/wp-event-manager-settings.php:663
-
 msgid "Add date and time separator."
 msgstr "Fügen Sie ein Datums- und Uhrzeittrennzeichen hinzu."
 
@@ -1159,7 +1146,6 @@ msgid "Event Timezone"
 msgstr "Zeitzone"
 
 #: admin/wp-event-manager-settings.php:674
-
 msgid ""
 "In case while submitting an event, if the timezone for each event is not "
 "selected, the WP Event Manager will take the default WordPress (website) "
@@ -1174,7 +1160,6 @@ msgid "Use website timezone."
 msgstr "Verwenden Sie die Zeitzone der Website."
 
 #: admin/wp-event-manager-settings.php:679
-
 msgid "Select a timezone on each event."
 msgstr "Wählen Sie für jedes Ereignis eine Zeitzone aus."
 
@@ -1199,7 +1184,6 @@ msgid "Knowledge Base"
 msgstr "Wissensdatenbank"
 
 #: admin/wp-event-manager-settings.php:947 admin/wp-event-manager-setup.php:379
-
 msgid "Solve your queries by browsing our documentation."
 msgstr "Lösen Sie Ihre Fragen, indem Sie unsere Dokumentation durchsuchen."
 
@@ -1212,12 +1196,10 @@ msgid "FAQs"
 msgstr "FAQs"
 
 #: admin/wp-event-manager-settings.php:957 admin/wp-event-manager-setup.php:389
-
 msgid "Explore through the frequently asked questions."
 msgstr "Erkunden Sie die häufig gestellten Fragen."
 
 #: admin/wp-event-manager-settings.php:958 admin/wp-event-manager-setup.php:390
-
 msgid "Get Answers"
 msgstr "Antworten erhalten"
 
@@ -1226,14 +1208,12 @@ msgid "Video Tutorials"
 msgstr "Videoanleitungen"
 
 #: admin/wp-event-manager-settings.php:967 admin/wp-event-manager-setup.php:399
-
 msgid "Learn different skills by examining attractive video tutorials."
 msgstr ""
 "Erlernen Sie verschiedene Fähigkeiten, indem Sie attraktive Video-Tutorials "
 "untersuchen."
 
 #: admin/wp-event-manager-settings.php:968 admin/wp-event-manager-setup.php:400
-
 msgid "Watch all"
 msgstr "Alle ansehen"
 
@@ -1250,7 +1230,6 @@ msgid "Error in nonce. Try again."
 msgstr "Fehler in nonce. Wiederholen."
 
 #: admin/wp-event-manager-setup.php:201
-
 msgid "WP Event Manager Setup"
 msgstr "WP Event Manager einrichten"
 
@@ -1274,12 +1253,10 @@ msgid "Setup Wizard Introduction"
 msgstr "Einführung in den Einrichtungsassistenten"
 
 #: admin/wp-event-manager-setup.php:226
-
 msgid "Thanks for installing WP Event Manager!"
 msgstr "Vielen Dank für die Installation von WP Event Manager!"
 
 #: admin/wp-event-manager-setup.php:228
-
 msgid ""
 "This setup wizard will help you get started by creating various pages for "
 "event submission, event management, and listing your events, along with "
@@ -1344,7 +1321,6 @@ msgid "Post an Event"
 msgstr "Event posten"
 
 #: admin/wp-event-manager-setup.php:265
-
 msgid ""
 "This page allows peoples to post events to your website from the front-end."
 msgstr ""
@@ -1352,7 +1328,6 @@ msgstr ""
 "Website zu veröffentlichen."
 
 #: admin/wp-event-manager-setup.php:266
-
 msgid ""
 "If you do not wish to accept submissions from users in this way (for example "
 "you just want to post events from the admin dashboard) you can skip creating "
@@ -1368,7 +1343,6 @@ msgid "Event Dashboard"
 msgstr "Varanstaltungs-Dashboard"
 
 #: admin/wp-event-manager-setup.php:274
-
 msgid ""
 "This page allows peoples to manage and edit their own events from the front-"
 "end."
@@ -1390,7 +1364,6 @@ msgid "Events"
 msgstr "Veranstaltungen"
 
 #: admin/wp-event-manager-setup.php:282
-
 msgid ""
 "This page allows users to browse, search, and filter event listings on the "
 "front-end of your site."
@@ -1404,14 +1377,12 @@ msgid "Submit Organizer Form"
 msgstr "Organizer-Formular absenden"
 
 #: admin/wp-event-manager-setup.php:289
-
 msgid "This page allows users to Submit the organizers form the frontend."
 msgstr ""
 "Diese Seite ermöglicht es Benutzern, die Organisatoren aus dem Frontend "
 "einzureichen."
 
 #: admin/wp-event-manager-setup.php:290
-
 msgid ""
 "In case if you do not want to allow your users to submit organizers from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1426,7 +1397,6 @@ msgid "Organizer Dashboard"
 msgstr "Veranstalter Dashboard"
 
 #: admin/wp-event-manager-setup.php:298
-
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the "
 "organizers form the frontend."
@@ -1435,7 +1405,6 @@ msgstr ""
 "verwalten (zu bearbeiten, zu löschen und zu duplizieren)."
 
 #: admin/wp-event-manager-setup.php:299
-
 msgid ""
 "In case if you do not want to allow your users to manage organizers from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1450,14 +1419,12 @@ msgid "Event Organizers"
 msgstr "Event Organizers"
 
 #: admin/wp-event-manager-setup.php:307
-
 msgid "This page allows peoples to show organizers from the front-end."
 msgstr ""
 "Diese Seite ermöglicht es Personen, Organisatoren vom Frontend aus "
 "anzuzeigen."
 
 #: admin/wp-event-manager-setup.php:308
-
 msgid ""
 "In case if you do not want to allow your users to show organizers from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1472,14 +1439,12 @@ msgid "Submit Venue Form"
 msgstr "Formular für den Veranstaltungsort einreichen"
 
 #: admin/wp-event-manager-setup.php:316
-
 msgid "This page allows people to Submit the venues from the frontend."
 msgstr ""
 "Auf dieser Seite können Benutzer die Veranstaltungsorte vom Frontend aus "
 "einreichen."
 
 #: admin/wp-event-manager-setup.php:317
-
 msgid ""
 "In case if you do not want to allow your users to submit venues from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1494,7 +1459,6 @@ msgid "Venue Dashboard"
 msgstr "Veranstaltungsort-Dashboard"
 
 #: admin/wp-event-manager-setup.php:325
-
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the venues "
 "form the frontend."
@@ -1503,7 +1467,6 @@ msgstr ""
 "zu verwalten (zu bearbeiten, zu löschen und zu duplizieren)."
 
 #: admin/wp-event-manager-setup.php:326
-
 msgid ""
 "In case if you do not want to allow your users to manage venues from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1518,14 +1481,12 @@ msgid "Event Venues"
 msgstr "Veranstaltungsorte"
 
 #: admin/wp-event-manager-setup.php:334
-
 msgid "This page allows peoples to show venues from the front-end."
 msgstr ""
 "Diese Seite ermöglicht es Personen, Veranstaltungsorte vom Frontend aus "
 "anzuzeigen."
 
 #: admin/wp-event-manager-setup.php:335
-
 msgid ""
 "In case if you do not want to allow your users to show venues from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1543,7 +1504,6 @@ msgid "All Done!"
 msgstr "Alles erledigt!"
 
 #: admin/wp-event-manager-setup.php:361
-
 msgid ""
 "Thanks for installing WP Event Manager! Here are some valuable resources "
 "that will assist you in getting started with our plugins."
@@ -1553,17 +1513,14 @@ msgstr ""
 "helfen werden."
 
 #: admin/wp-event-manager-setup.php:366
-
 msgid "Create Your First Event"
 msgstr "Erstellen Sie Ihre erste Veranstaltung"
 
 #: admin/wp-event-manager-setup.php:410
-
 msgid "Add ons Support"
 msgstr "Add-ons-Unterstützung"
 
 #: admin/wp-event-manager-setup.php:411
-
 msgid ""
 "Get support for all the Add ons related queries with our experienced/ "
 "talented support team."
@@ -1572,7 +1529,6 @@ msgstr ""
 "erfahrenen / talentierten Support-Team."
 
 #: admin/wp-event-manager-setup.php:412
-
 msgid "Get Add ons Support"
 msgstr "Add-Ons-Unterstützung erhalten"
 
@@ -1605,7 +1561,6 @@ msgid "Listing Expiry Date"
 msgstr "Eintrag Ablaufdatum"
 
 #: admin/wp-event-manager-writepanels.php:131
-
 msgid "Please enter event expiry date"
 msgstr "Bitte geben Sie das Ablaufdatum des Ereignisses ein."
 
@@ -1716,7 +1671,6 @@ msgstr "Nächste Woche"
 
 #: core/wp-event-manager-filters.php:37
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:277
-
 msgid "Next Weekend"
 msgstr "Nächstes Wochenende"
 
@@ -1735,7 +1689,6 @@ msgstr "Nächstes Jahr"
 
 #: core/wp-event-manager-filters.php:73
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:300
-
 msgid "Any Ticket Price"
 msgstr "Beliebiger Ticketpreis"
 
@@ -1762,7 +1715,6 @@ msgid "Query limit reached"
 msgstr "Abfragegrenze erreicht"
 
 #: core/wp-event-manager-geocode.php:275
-
 msgid ""
 "Request denied from google map api key please enable geolocation and "
 "gecoding api"
@@ -1821,12 +1773,10 @@ msgid "Event Thumbnail"
 msgstr "Ereignis-Miniaturansicht"
 
 #: core/wp-event-manager-post-types.php:353
-
 msgid "Set event thumbnail"
 msgstr "Ereignisminiaturansicht festlegen"
 
 #: core/wp-event-manager-post-types.php:355
-
 msgid "Remove event thumbnail"
 msgstr "Ereignisminiaturansicht entfernen"
 
@@ -1859,22 +1809,18 @@ msgid "Organizers"
 msgstr "Veranstalter"
 
 #: core/wp-event-manager-post-types.php:444
-
 msgid "Organizer Logo"
 msgstr "Logo des Veranstalters"
 
 #: core/wp-event-manager-post-types.php:446
-
 msgid "Set organizer logo"
 msgstr "Organizer-Logo festlegen"
 
 #: core/wp-event-manager-post-types.php:448
-
 msgid "Remove organizer logo"
 msgstr "Organizer-Logo entfernen"
 
 #: core/wp-event-manager-post-types.php:450
-
 msgid "Use as organizer logo"
 msgstr "Verwendung als Organizer-Logo"
 
@@ -1897,17 +1843,14 @@ msgid "Venue Logo"
 msgstr "Venue Logo"
 
 #: core/wp-event-manager-post-types.php:487
-
 msgid "Set venue logo"
 msgstr "Logo des Veranstaltungsortes festlegen"
 
 #: core/wp-event-manager-post-types.php:489
-
 msgid "Remove venue logo"
 msgstr "Logo des Veranstaltungsortes entfernen"
 
 #: core/wp-event-manager-post-types.php:491
-
 msgid "Use as venue logo"
 msgstr "Verwendung als Veranstaltungslogo"
 
@@ -2373,7 +2316,6 @@ msgid "Download"
 msgstr "Download"
 
 #: external/elementor-widgets/elementor-single-event-field.php:383
-
 msgid "Dont't repeat"
 msgstr "Nicht wiederholen"
 
@@ -2577,7 +2519,6 @@ msgstr "Zurücksetzen"
 
 #: external/elementor.php:129 wp-event-manager.php:340 wp-event-manager.php:366
 #: wp-event-manager.php:378 wp-event-manager.php:390
-
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -3092,6 +3033,10 @@ msgstr "Weitere Stellenangebote laden"
 msgid "More info"
 msgstr "Mehr Info"
 
+#: shortcodes/wp-event-manager-shortcodes.php:1101
+msgid "There are no events."
+msgstr "Es befinden sich keine Veranstaltungen in der Datenbank."
+
 #: templates/account-signin.php:5
 msgid "Your account"
 msgstr "Ihr Konto"
@@ -3122,18 +3067,10 @@ msgstr ""
 "Adresse ein und erstellen Sie ein neues.  Sie erhalten Ihr Passwort in Kürze "
 "in Ihrer E-Mail."
 
-#: templates/account-signin.php:24
-msgid "optionally"
-msgstr "optional"
-
-#: templates/account-signin.php:26
-msgid " You must sign in to create a new listing."
-msgstr " Du musst dich anmelden, um einen neuen Eintrag erstellen zu können."
-
-#: templates/account-signin.php:34 templates/event-submit.php:26
-#: templates/event-submit.php:41 templates/event-submit.php:58
-#: templates/event-submit.php:110 templates/event-submit.php:157
-#: templates/form-fields/group-field.php:37
+#: templates/account-signin.php:24 templates/account-signin.php:34
+#: templates/event-submit.php:26 templates/event-submit.php:41
+#: templates/event-submit.php:58 templates/event-submit.php:110
+#: templates/event-submit.php:157 templates/form-fields/group-field.php:37
 #: templates/form-fields/group-field.php:90
 #: templates/form-fields/repeated-field.php:41
 #: templates/form-fields/repeated-field.php:100
@@ -3141,6 +3078,10 @@ msgstr " Du musst dich anmelden, um einen neuen Eintrag erstellen zu können."
 #: templates/venue/venue-submit.php:22
 msgid "(optional)"
 msgstr "(optional)"
+
+#: templates/account-signin.php:26
+msgid " You must sign in to create a new listing."
+msgstr " Du musst dich anmelden, um einen neuen Eintrag erstellen zu können."
 
 #: templates/content-no-events-found.php:1
 msgid "There are no events matching your search."
@@ -3194,6 +3135,10 @@ msgstr " bis"
 #: templates/content-single-event_listing.php:507
 msgid "Registration End Date"
 msgstr "Enddatum der Anmeldung"
+
+#: templates/content-single-event_listing.php:528
+msgid "Online event"
+msgstr "Online-Veranstaltung"
 
 #: templates/content-single-event_listing.php:578
 msgid "Share With Friends"
@@ -3790,6 +3735,5 @@ msgstr ""
 "Backend."
 
 #. Author URI of the plugin/theme
-
 msgid "https://www.wp-eventmanager.com"
 msgstr "https://www.wp-eventmanager.com/"

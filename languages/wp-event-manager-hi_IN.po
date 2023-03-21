@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-03-21 11:27+0530\n"
-"PO-Revision-Date: 2023-03-21 11:27+0530\n"
+"POT-Creation-Date: 2023-03-21 13:09+0530\n"
+"PO-Revision-Date: 2023-03-21 13:17+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2962,6 +2962,11 @@ msgstr "अधिक प्रविष्टियाँ लोड करें
 msgid "More info"
 msgstr "अधिक जानकारी"
 
+#: shortcodes/wp-event-manager-shortcodes.php:1101
+#, fuzzy
+msgid "There are no events."
+msgstr "कोई घटना नहीं है।"
+
 #: templates/account-signin.php:5
 msgid "Your account"
 msgstr "आपका खाता"
@@ -2984,6 +2989,7 @@ msgid "Sign in"
 msgstr "साइन इन करें"
 
 #: templates/account-signin.php:23
+#, fuzzy
 msgid ""
 "If you don&rsquo;t have an account with us, just enter your email address "
 "and create a new one.  You will receive your password shortly in your email."
@@ -2991,18 +2997,10 @@ msgstr ""
 "यदि आपके पास हमारे साथ कोई खाता नहीं है, तो बस अपना ईमेल पता दर्ज करें और एक नया "
 "बनाएं।  आपको अपने ईमेल में जल्द ही अपना पासवर्ड प्राप्त होगा।"
 
-#: templates/account-signin.php:24
-msgid "optionally"
-msgstr "वैकल्पिक"
-
-#: templates/account-signin.php:26
-msgid " You must sign in to create a new listing."
-msgstr " नई प्रविष्टि बनाने के लिए आपको साइन इन करना होगा."
-
-#: templates/account-signin.php:34 templates/event-submit.php:26
-#: templates/event-submit.php:41 templates/event-submit.php:58
-#: templates/event-submit.php:110 templates/event-submit.php:157
-#: templates/form-fields/group-field.php:37
+#: templates/account-signin.php:24 templates/account-signin.php:34
+#: templates/event-submit.php:26 templates/event-submit.php:41
+#: templates/event-submit.php:58 templates/event-submit.php:110
+#: templates/event-submit.php:157 templates/form-fields/group-field.php:37
 #: templates/form-fields/group-field.php:90
 #: templates/form-fields/repeated-field.php:41
 #: templates/form-fields/repeated-field.php:100
@@ -3010,6 +3008,10 @@ msgstr " नई प्रविष्टि बनाने के लिए आ
 #: templates/venue/venue-submit.php:22
 msgid "(optional)"
 msgstr "(वैकल्पिक)"
+
+#: templates/account-signin.php:26
+msgid " You must sign in to create a new listing."
+msgstr " नई प्रविष्टि बनाने के लिए आपको साइन इन करना होगा."
 
 #: templates/content-no-events-found.php:1
 msgid "There are no events matching your search."
@@ -3035,7 +3037,7 @@ msgstr "रजिस्ट्रेशन बंद हो चुके है�
 #: templates/content-single-event_listing.php:81
 #, php-format
 msgid "by %s"
-msgstr "%s तक"
+msgstr "%s द्वारा"
 
 #: templates/content-single-event_listing.php:90
 #, php-format
@@ -3063,6 +3065,10 @@ msgstr " तक"
 #: templates/content-single-event_listing.php:507
 msgid "Registration End Date"
 msgstr "रजिस्ट्रेशन की अंतिम तिथि"
+
+#: templates/content-single-event_listing.php:528
+msgid "Online event"
+msgstr "ऑनलाइन इवेंट"
 
 #: templates/content-single-event_listing.php:578
 msgid "Share With Friends"

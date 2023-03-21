@@ -524,9 +524,10 @@ $event = $post;
                                                 <a href="http://maps.google.com/maps?q=<?php display_event_location();?>" target="_blank">  
                                                     <?php display_event_location();?>
                                                 </a>
-                                            <?php } else {
-                                                echo esc_attr('Online event');
-                                            } ?>
+                                            <?php } else {?>
+                                                <?php _e('Online event', 'wp-event-manager'); ?>
+                                               <!-- printf( __('Online event', 'wp-event-manager')); -->
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <!-- Event location section end-->
