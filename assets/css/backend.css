@@ -1389,3 +1389,13 @@ ul.wpem-product-action-list li {
         flex: 0 0 calc(100% - 20px);
     }
 }
+@media screen and (min-width: 783px){
+    .post-type-event_organizer .widefat .column-_is_salesforce_crm_sync,
+    .post-type-event_organizer .widefat .column-_is_hubspot_crm_syncm,
+    .post-type-event_organizer .widefat .column-_is_constant_contact_sync,
+    .post-type-event_organizer .widefat .column-_is_activecampaign_sync,
+    .post-type-event_organizer .widefat .column-_is_sendinblue_sync,
+    .post-type-event_organizer .widefat .column-is_mailchimp_sync{
+        width: inherit;
+    }
+}
