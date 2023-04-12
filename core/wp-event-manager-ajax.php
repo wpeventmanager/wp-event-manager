@@ -220,7 +220,7 @@ class WP_Event_Manager_Ajax {
 
 		if ( isset( $_REQUEST['event_online'] ) && ( $_REQUEST['event_online'] === 'true' || $_REQUEST['event_online'] === 'false' ) ) {
 
-			$args['event_online'] = $_REQUEST['event_online'] === 'true' ? true : false;
+			$args['event_online'] = $_REQUEST['event_online'] === 'false' ? $_REQUEST['event_online'] : true;
 		}
 
 		ob_start();
