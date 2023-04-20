@@ -35,20 +35,24 @@
 				<?php
 				$arr_selected_datetime = [];
 				if (!empty($selected_datetime)) {
+					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+					
+					//covert datepicker format  into php date() function date format
+					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+
 					$selected_datetime = explode(',', $selected_datetime);
 
 					$start_date = esc_attr(strip_tags($selected_datetime[0]));
 					if (isset($selected_datetime[1]) == false) {
 						$end_date = esc_attr(strip_tags($selected_datetime[0]));
 					} else {
-						$end_date = esc_attr(strip_tags($selected_datetime[1]));
+						if(strtotime($selected_datetime[1]) !== false && $selected_datetime[1] == 'tomorrow'){
+							$end_date =  date($php_date_format, strtotime('+1 day'));
+						}else{
+							$end_date = esc_attr(strip_tags($selected_datetime[1]));
+						}
 					}
-
-					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
-
-					//covert datepicker format  into php date() function date format
-					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 					if ($start_date == 'today') {
 						$start_date = date($php_date_format);
@@ -63,8 +67,7 @@
 					$arr_selected_datetime['end'] 	= date_i18n($php_date_format, strtotime($arr_selected_datetime['end']));
 
 					$selected_datetime = json_encode($arr_selected_datetime);
-				}
-				?>
+				} ?>
 
 				<div class="wpem-col">
 					<div class="wpem-form-group">

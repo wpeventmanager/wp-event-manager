@@ -719,6 +719,11 @@ class WP_Event_Manager_Shortcodes
 			$cancelled = (is_bool($cancelled) && $cancelled) || in_array($cancelled, array('1', 'true', 'yes')) ? true : false;
 		}
 
+		if(!empty($selected_datetime)){
+			if(is_array($selected_datetime)){
+
+			}
+		}
 		//set value for the event datetimes
 		$datetimes = WP_Event_Manager_Filters::get_datetimes_filter();
 
