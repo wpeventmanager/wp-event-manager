@@ -1175,7 +1175,7 @@ class WP_Event_Manager_Shortcodes
 
 			'order'                     =>  isset($atts['order']) ? $atts['order'] :  'DESC',
 
-			'orderby'                   => isset($atts['meta_key']) ? $atts['meta_key'] : 'event_start_date', // meta_value
+			'orderby'                   => isset($atts['orderby']) ? $atts['orderby'] : 'event_start_date', // meta_value
 
 			'location'                  => '',
 
