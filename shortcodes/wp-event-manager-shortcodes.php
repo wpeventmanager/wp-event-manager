@@ -1171,7 +1171,7 @@ class WP_Event_Manager_Shortcodes
 
 			'show_pagination'           => true,
 
-			'per_page'                  => get_option('event_manager_per_page'),
+			'per_page'                  => isset($atts['per_page']) ? $atts['per_page'] : get_option('event_manager_per_page'),
 
 			'order'                     =>  isset($atts['order']) ? $atts['order'] :  'DESC',
 
