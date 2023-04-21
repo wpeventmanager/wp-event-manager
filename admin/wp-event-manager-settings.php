@@ -59,7 +59,7 @@ class WP_Event_Manager_Settings
 						array(
 							'name'       => 'enable_event_organizer',
 							'std'        => '1',
-							'label'      => __('Enable organizer', 'wp-event-manager'),
+							'label'      => __('Enable Organizer', 'wp-event-manager'),
 							'cb_label'   => __('Disable this to remove the functionality of Organizers on Your Event Website.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
@@ -69,7 +69,7 @@ class WP_Event_Manager_Settings
 						array(
 							'name'       => 'enable_event_venue',
 							'std'        => '1',
-							'label'      => __('Enable venue', 'wp-event-manager'),
+							'label'      => __('Enable Venue', 'wp-event-manager'),
 							'cb_label'   => __('Disable this to remove the functionality of Venue on your Event Website.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
