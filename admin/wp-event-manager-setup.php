@@ -271,7 +271,7 @@ class WP_Event_Manager_Setup
 									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_dashboard]" /></td>
 									<td><input type="text" value="<?php echo esc_attr(_x('Event Dashboard', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[event_dashboard]" /></td>
 									<td>
-										<p><?php esc_attr_e('This page allows peoples to manage and edit their own events from the front-end.', 'wp-event-manager'); ?></p>
+										<p><?php esc_attr_e('This page allows peoples to manage (edit, delete and duplicate) their own events from the front-end.', 'wp-event-manager'); ?></p>
 										<p><?php esc_attr_e('If you plan on managing all listings from the admin dashboard you can skip creating this page.', 'wp-event-manager'); ?></p>
 									</td>
 									<td><code>[event_dashboard]</code></td>
