@@ -823,7 +823,7 @@ class WP_Event_Manager_Shortcodes
 
 				$selected_datetime = json_encode($arr_selected_datetime);
 			}
-
+			
 			$events = get_event_listings(apply_filters('event_manager_output_events_args', array(
 
 				'search_location'   => $location,
@@ -851,7 +851,6 @@ class WP_Event_Manager_Shortcodes
 				'event_online'    	=> $event_online,
 
 			)));
-
 			if ($events->have_posts()) : ?>
 
 				<?php wp_enqueue_script('wp-event-manager-ajax-filters'); ?>
@@ -881,9 +880,16 @@ class WP_Event_Manager_Shortcodes
 				<?php endif; ?>
 
 			<?php else :
-
-				do_action('event_manager_output_events_no_results');
-
+				$default_events = get_posts(array(
+					'numberposts' => -1,
+					'post_type'   => 'event_listing',
+					'post_status'   => 'publish'
+				));
+				if (count($default_events) == 0): ?>
+					<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php _e('There are currently no events.', 'wp-event-manager'); ?></div>
+				<?php else:
+					 do_action('event_manager_output_events_no_results');
+				endif;
 			endif;
 
 			wp_reset_postdata();
@@ -934,7 +940,7 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		$event_listings_output = apply_filters('event_manager_event_listings_output', ob_get_clean());
-
+echo 'hi';
 		return '<div class="event_listings" ' . $data_attributes_string . '>' . $event_listings_output . '</div>';
 	}
 
@@ -943,7 +949,6 @@ class WP_Event_Manager_Shortcodes
 	 */
 	public function output_no_results()
 	{
-
 		get_event_manager_template('content-no-events-found.php');
 	}
 
