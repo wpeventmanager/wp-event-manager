@@ -74,14 +74,20 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 			foreach ( $location_meta_keys as $meta_key ) {
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => 	trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ','),
+					'value'   => 	$args['search_location'], 
+					'compare' => 'like',
+					'type'    => 'char',
+				);
+				$location_search[] = array(
+					'key'     => $meta_key,
+					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ','),
 					'compare' => 'like',
 					'type'    => 'char',
 				);
 			}
+			
 			$query_args['meta_query'][] = $location_search;
 		}
-
 		if ( ! is_null( $args['featured'] ) ) {
 			$query_args['meta_query'][] = array(
 				'key'     => '_featured',
