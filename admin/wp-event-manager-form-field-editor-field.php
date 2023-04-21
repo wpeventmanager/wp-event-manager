@@ -29,7 +29,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 	</td>
 	<td class="field-options">
 		<?php
-		if (isset($field['options'])) {
+		if (isset($field['options']) && !empty($field['options'])) {
 			$options = implode(
 				'|',
 				array_map(
