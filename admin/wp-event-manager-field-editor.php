@@ -115,7 +115,8 @@ class WP_Event_Manager_Field_Editor
 
 		if (!empty($_GET['event-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
 			delete_option('event_manager_submit_event_form_fields');
-			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
+			echo 'delete fields';
+			// echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
 		if (!empty($_GET['organizer-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
@@ -157,9 +158,13 @@ class WP_Event_Manager_Field_Editor
 			)
 		);
 
-		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
-		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-		$event_fields               = $form_submit_event_instance->merge_with_custom_fields('backend');
+		if (get_option('enable_event_organizer')) {
+			$GLOBALS['event_manager']->forms->get_form('submit-event', array());
+			$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
+			$event_fields               = $form_submit_event_instance->merge_with_custom_fields('backend');
+		} else {
+			$event_fields = array();
+		}
 
 		if (get_option('enable_event_organizer')) {
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
@@ -253,9 +258,7 @@ class WP_Event_Manager_Field_Editor
 		$child_fields = array();
 
 		foreach ($field['fields'] as $field_key => $field_value) {
-			echo $field_key;
 			$index++;
-			echo $index;
 			$field['fields'][$field_key]['priority'] = $index;
 
 			$field['fields'][$field_key]['label'] = trim($field_value['label']);
@@ -313,7 +316,7 @@ class WP_Event_Manager_Field_Editor
 			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array($_POST['organizer']) : array();
 			$event_venue     = !empty($_POST['venue']) ? $this->sanitize_array($_POST['venue']) : array();
 			$index           = 0;
-
+			$hasSave = 1;
 			if (!empty($event_field)) {
 				$new_fields = array(
 					'event'     => $event_field,
@@ -326,7 +329,7 @@ class WP_Event_Manager_Field_Editor
 					foreach ($group_fields as $field_key => $field_value) {
 						if(!empty($field_value['label'])) {
 							$index++;
-
+							
 							if (isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {
 								if (isset($field_value['fields']) && !empty($field_value['fields'])) {
 									$child_fields                                     = $this->child_form_editor_save($field_value);
@@ -374,18 +377,18 @@ class WP_Event_Manager_Field_Editor
 							}
 
 							unset($new_fields[$group_key][$field_key]);
-							$hasSave = true;
+							$hasSave = 1;
 						}else{
-							$hasSave = false;
+							$hasSave = 0;
 						}
 					}
 				}
-				if(isset($hasSave) && $hasSave === true){
+				if(isset($hasSave) && $hasSave == 1){
 					// merge field with default fields
 					$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 					$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-					// $event_fields =   $form_submit_event_instance->get_default_fields('backend');
-					$event_fields = $form_submit_event_instance->get_default_event_fields();
+					$event_fields =   $form_submit_event_instance->get_default_fields('backend');
+					// $event_fields = $form_submit_event_instance->get_default_event_fields();
 
 					if (get_option('enable_event_organizer')) {
 						$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
@@ -416,7 +419,6 @@ class WP_Event_Manager_Field_Editor
 							}
 						}
 					}
-
 					if (isset($new_fields['event'])) {
 						update_option('event_manager_submit_event_form_fields', array('event' => $new_fields['event']));
 					}
@@ -435,7 +437,7 @@ class WP_Event_Manager_Field_Editor
 			}
 		}
 
-		if(isset($hasSave) && $hasSave === true){
+		if(isset($hasSave) && $hasSave === 1){
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully saved.', 'wp-event-manager') . '</p></div>');
 		}else{
 			echo wp_kses_post('<div class="notice notice-error is-dismissible"><p>' . esc_attr__('Please try again to save fields.', 'wp-event-manager') . '</p></div>');
