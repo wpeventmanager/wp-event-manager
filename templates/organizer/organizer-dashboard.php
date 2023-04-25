@@ -18,7 +18,7 @@
 </div>
 <!-- organizer dashboard title section start-->
 
-<!-- organizer list section end-->
+<!-- organizer list section start-->
 <div id="event-manager-event-dashboard">
 	<div class="wpem-responsive-table-block">
 		<table class="wpem-main wpem-responsive-table-wrapper">
@@ -32,7 +32,7 @@
 			<tbody>
 				<?php if (!$organizers) : ?>
 					<tr>
-						<td colspan="<?php echo esc_attr(count($organizer_dashboard_columns)); ?>"><?php _e('There are no organizers.', 'wp-event-manager'); ?></td>
+						<td class="wpem_data_td_empty" colspan="<?php echo esc_attr(count($organizer_dashboard_columns)); ?>"><?php _e('There are no organizers.', 'wp-event-manager'); ?></td>
 					</tr>
 				<?php else : ?>
 					<?php foreach ($organizers as $organizer) : ?>
