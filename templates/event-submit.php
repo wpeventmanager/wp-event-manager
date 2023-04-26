@@ -119,6 +119,7 @@ global $event_manager;
 						<input type="hidden" name="organizer_id" value="0">
 						<input type="hidden" name="step" value="0">
 						<input type="button" name="submit_organizer" class="wpem-theme-button wpem_add_organizer" value="<?php _e('Add Organizer', 'wp-event-manager'); ?>" />
+						<div id="oragnizer_message"></div>
 					</div>
 				</form>
 			</div>
@@ -166,6 +167,7 @@ global $event_manager;
 						<input type="hidden" name="venue_id" value="0">
 						<input type="hidden" name="step" value="0">
 						<input type="button" name="submit_venue" class="wpem-theme-button wpem_add_venue" value="<?php _e('Add Venue', 'wp-event-manager'); ?>" />
+						<div id="venue_message"></div>
 					</div>
 				</form>
 			</div>

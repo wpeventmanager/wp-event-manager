@@ -392,7 +392,6 @@ EventSubmission = function () {
             /// <returns type="initialization ticket price settings" />
             /// <since>3.1.16</since>
             addOrganizer: function (event) {
-               
                 var formData = jQuery('body #submit-organizer-form').serialize();
                 var organizer_description = tinyMCE.get('organizer_description').getContent();
 
@@ -424,7 +423,7 @@ EventSubmission = function () {
                             jQuery('body #submit-organizer-form .wpem-form-footer .wpem-alert-danger').remove();
                         } else {
                             jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
-                            jQuery('body #submit-organizer-form .wpem-form-footer .wpem_add_organizer').after(responce.message);
+                            jQuery('#oragnizer_message').html(responce.message);
                         }
                     }
                 });
