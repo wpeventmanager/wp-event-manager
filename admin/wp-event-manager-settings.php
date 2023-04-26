@@ -239,6 +239,22 @@ class WP_Event_Manager_Settings
 								'all' => __('Events will be shown if within ALL selected event types.', 'wp-event-manager'),
 							),
 						),
+						array(
+
+							'name'       => 'event_manager_enable_event_ticket_prices_filter',
+
+							'std'        => '0',
+
+							'label'      => __('Ticket Prices Selection', 'wp-event-manager'),
+
+							'cb_label'   => __('Enable Ticket prices selection for listing page.', 'wp-event-manager'),
+
+							'desc'       => __('Choose whether to enable ticket prices selection on the event listing page.', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
+						),
 					),
 				),
 
@@ -479,9 +495,9 @@ class WP_Event_Manager_Settings
 
 							'label'      => __('Ticket prices', 'wp-event-manager'),
 
-							'cb_label'   => __('Enable Ticket prices for listing and submission form.', 'wp-event-manager'),
+							'cb_label'   => __('Enable Ticket prices for submission form.', 'wp-event-manager'),
 
-							'desc'       => __('Choose whether to enable ticket prices on the event listing and submission page.', 'wp-event-manager'),
+							'desc'       => __('Choose whether to enable ticket prices on the event submission page.', 'wp-event-manager'),
 
 							'type'       => 'checkbox',
 

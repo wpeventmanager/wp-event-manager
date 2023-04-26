@@ -316,10 +316,10 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 		//must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 		if ( ! empty( $args['search_ticket_prices'][0] ) )  {	
 			$ticket_price_value='';
-			if($args['search_ticket_prices'][0]==='paid') {  
-			$ticket_price_value='paid';     
-			} elseif ($args['search_ticket_prices'][0]==='free') {
-			$ticket_price_value='free';
+			if($args['search_ticket_prices'][0]==='paid' || $args['search_ticket_prices'][0]==='ticket_price_paid') {  
+				$ticket_price_value='paid';     
+			} elseif ($args['search_ticket_prices'][0]==='free' || $args['search_ticket_prices'][0]==='ticket_price_free') {
+				$ticket_price_value='free';
 			}
 			
 			$ticket_search[] = array(

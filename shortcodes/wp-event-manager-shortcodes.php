@@ -693,7 +693,7 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		//Event ticket prices		
-		if (!get_option('event_manager_enable_event_ticket_prices')) {
+		if (!get_option('event_manager_enable_event_ticket_prices_filter')) {
 			$show_ticket_prices = false;
 		}
 
