@@ -940,7 +940,6 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		$event_listings_output = apply_filters('event_manager_event_listings_output', ob_get_clean());
-echo 'hi';
 		return '<div class="event_listings" ' . $data_attributes_string . '>' . $event_listings_output . '</div>';
 	}
 
