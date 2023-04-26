@@ -16,7 +16,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
 
                 <div class="wpem-tabs-action-buttons">
                     <div class="wpem-ticket-counter-wrapper">
-                        <div class="wpem-ticket-counter"><?php echo esc_attr(absint($index)); ?></div>
+                        <div class="wpem-ticket-counter"><?php echo esc_attr(absint($index)+1); ?></div>
                     </div>
                     <div class="wpem-ticket-notice-info"><a class="ticket-notice-info" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?php _e('You can\'t delete ticket once it is added.You can make it private from settings tab.', 'wp-event-manager'); ?>"><i class="wpem-icon-blocked"></i></a></div>
                 </div>
