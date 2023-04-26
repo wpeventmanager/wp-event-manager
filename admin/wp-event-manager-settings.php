@@ -172,9 +172,9 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Multi-select Categories', 'wp-event-manager'),
+							'label'      => __('Multi-select Event Categories', 'wp-event-manager'),
 
-							'cb_label'   => __('Enable category multiselect by default.', 'wp-event-manager'),
+							'cb_label'   => __('Enable event category multiselect by default.', 'wp-event-manager'),
 
 							'desc'       => __('If enabled, the category select box will default to a multi select on the [events] shortcode.', 'wp-event-manager'),
 
@@ -393,7 +393,7 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Delete listings after finished', 'wp-event-manager'),
+							'label'      => __('Delete Listings After Finished', 'wp-event-manager'),
 
 							'cb_label'   => __('Delete listings after finished.', 'wp-event-manager'),
 
@@ -409,7 +409,7 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Delete Expired listings', 'wp-event-manager'),
+							'label'      => __('Delete Expired Listings', 'wp-event-manager'),
 
 							'cb_label'   => __('Expired listings are deleted after 30 days.', 'wp-event-manager'),
 
@@ -493,7 +493,7 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Ticket prices', 'wp-event-manager'),
+							'label'      => __('Ticket Prices', 'wp-event-manager'),
 
 							'cb_label'   => __('Enable Ticket prices for submission form.', 'wp-event-manager'),
 
