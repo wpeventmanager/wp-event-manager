@@ -3741,6 +3741,9 @@ p.post-submitted-success-green-message a {
   table.wpem-responsive-table-wrapper .wpem-tbody-th-label {
     display: none;
   }
+  table.wpem-responsive-table-wrapper td.wpem_data_td_empty {
+    padding: 10px !important;
+  }
 }
 @media screen and (max-width: 768px) and (max-width: 937px) {
   .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon,
