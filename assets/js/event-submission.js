@@ -14,7 +14,12 @@ EventSubmission = function () {
                 jQuery(this).closest('.event-manager-uploaded-file').remove();
                 return false;
             });
-
+            jQuery(".wpem_add_organizer_popup").on('click', function(){
+                jQuery("#oragnizer_message").html('');
+            });
+            jQuery(".wpem_add_venue_popup").on('click', function(){
+                jQuery("#venue_message").html('');
+            });
             if (jQuery('#event_start_time').length > 0) {
                 jQuery('#event_start_time').timepicker({
                     'timeFormat': wp_event_manager_event_submission.i18n_timepicker_format,
@@ -467,8 +472,8 @@ EventSubmission = function () {
                             jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
                             jQuery('body #submit-venue-form .wpem-form-footer .wpem-alert-danger').remove();
                         } else {
+                            jQuery('#venue_message').html(responce.message);
                             jQuery('.wpem_add_venue').css('pointer-events', 'auto');
-                            jQuery('body #submit-venue-form .wpem-form-footer .wpem_add_venue').after(responce.message);
                         }
                     }
                 });
