@@ -225,7 +225,9 @@ class WP_Event_Manager_Setup
 
 						<p><?php sprintf( __('Thanks for installing WP Event Manager!', 'wp-event-manager')); ?></p>
 
-						<p><?php esc_attr_e('This setup wizard will help you get started by creating various pages for event submission, event management, and listing your events, along with setting up organizers and venues pages.'); ?></p>
+						<p><?php sprintf( __('The Setup wizard helps you create various pages for event submission, event listings, handing events along with organizers and venue pages.', 'wp-event-manager')); ?></p>
+
+						<p><?php sprintf( __('If you want to avoid the Setup wizard and want to creates pages manually, you can refer to the documentation for support.', 'wp-event-manager')); ?></p>
 
 						<p><?php printf(esc_attr__('The process is still relatively simple if you want to skip the wizard and manually set up the pages and shortcodes yourself. Please refer to the %1$sdocumentation%2$s for support.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/help-center/">', '</a>'); ?></p>
 					</div>
