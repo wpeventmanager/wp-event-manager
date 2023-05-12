@@ -763,6 +763,7 @@ class WP_Event_Manager_Shortcodes
 			$selected_ticket_price = sanitize_text_field($_GET['search_ticket_price']);
 		}
 		if ($show_filters) {
+			error_log("if");
 			get_event_manager_template('event-filters.php', array(
 				'per_page' => $per_page,
 				'orderby' => $orderby,
@@ -796,6 +797,7 @@ class WP_Event_Manager_Shortcodes
 				echo '</div>';
 			}
 		} else {
+			error_log("else");
 			$arr_selected_datetime = [];
 			if (!empty($selected_datetime)) {
 				$selected_datetime = explode(',', $selected_datetime);
