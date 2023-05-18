@@ -289,14 +289,14 @@ class Elementor_Event_Listing extends Widget_Base {
             $keywords = 'keywords="'.esc_attr($settings['keywords']).'"';
         else
             $keywords = '';
-            
-        if(strlen($settings['categories'])>0)
-            $categories = 'selected_category="'.esc_attr($settings['categories']).'"';
+
+		if(strlen($settings['categories'])>0)
+            $categories = 'categories="'.esc_attr($settings['categories']).'"';
         else
             $categories = '';
             
         if(strlen($settings['event_types'])>0)
-            $event_types = 'selected_event_type="'.esc_attr($settings['event_types']).'"';
+            $event_types = 'event_types="'.esc_attr($settings['event_types']).'"';
         else
             $event_types = '';
 
@@ -305,11 +305,10 @@ class Elementor_Event_Listing extends Widget_Base {
         else
             $selected_datetime = '';
           
-        $featured = !empty($settings['featured']) ? ' featured="'.esc_attr($settings['featured']).'"' : '';
-        $cancelled = !empty($settings['cancelled']) ? ' cancelled="'.esc_attr($settings['cancelled']).'"' : '';
+        $featured = !empty($settings['featured']) ? 'featured="'.esc_attr($settings['featured']).'"' : '';
+        $cancelled = !empty($settings['cancelled']) ? 'cancelled="'.esc_attr($settings['cancelled']).'"' : '';
             
         $shortcode = '[events show_pagination="'.esc_attr($settings['show_pagination']).'" per_page="'.esc_attr($settings['per_page']).'" order="'.esc_attr($settings['order']).'" orderby="'.esc_attr($settings['orderby']).'" '.$featured.' '.$cancelled.' show_filters="'.esc_attr($settings['show_filters']).'" show_categories="'.esc_attr($settings['show_categories']).'" show_event_types="'.esc_attr($settings['show_event_types']).'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' ]';
-
         echo do_shortcode($shortcode);
 	}
 

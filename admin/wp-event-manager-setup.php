@@ -223,11 +223,12 @@ class WP_Event_Manager_Setup
 					<div class="wpem-step-window">
 						<h3><?php esc_attr_e('Setup Wizard Introduction', 'wp-event-manager'); ?></h3>
 
-						<p><?php printf(esc_attr_e('Thanks for installing WP Event Manager!', 'wp-event-manager')); ?></p>
+						<p><?php _e('Thanks for installing WP Event Manager!', 'wp-event-manager'); ?></p>
 
-						<p><?php esc_attr_e('This setup wizard will help you get started by creating various pages for event submission, event management, and listing your events, along with setting up organizers and venues pages.'); ?></p>
+						<p><?php _e('The Setup wizard helps you create various pages for event submission, event listings, handing events along with organizers and venue pages.', 'wp-event-manager'); ?></p>
 
-						<p><?php printf(esc_attr__('The process is still relatively simple if you want to skip the wizard and manually set up the pages and shortcodes yourself. Please refer to the %1$sdocumentation%2$s for support.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/help-center/">', '</a>'); ?></p>
+						<p><?php printf(esc_attr__('If you want to avoid the Setup wizard and want to creates pages manually, you can refer to the %1$sdocumentation%2$s for support.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/help-center/">', '</a>'); ?></p>
+
 					</div>
 					<p class="submit">
 
@@ -262,7 +263,7 @@ class WP_Event_Manager_Setup
 									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_event_form]" /></td>
 									<td><input type="text" value="<?php echo esc_attr(_x('Post an Event', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[submit_event_form]" /></td>
 									<td>
-										<p><?php esc_attr_e('This page allows peoples to post events to your website from the front-end.', 'wp-event-manager'); ?></p>
+										<p><?php esc_attr_e('This page allows peoples to add events to your website from the front-end.', 'wp-event-manager'); ?></p>
 										<p><?php esc_attr_e('If you do not wish to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager'); ?></p>
 									</td>
 									<td><code>[submit_event_form]</code></td>
@@ -271,7 +272,7 @@ class WP_Event_Manager_Setup
 									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_dashboard]" /></td>
 									<td><input type="text" value="<?php echo esc_attr(_x('Event Dashboard', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[event_dashboard]" /></td>
 									<td>
-										<p><?php esc_attr_e('This page allows peoples to manage and edit their own events from the front-end.', 'wp-event-manager'); ?></p>
+										<p><?php esc_attr_e('This page allows peoples to manage (edit, delete and duplicate) their own events from the front-end.', 'wp-event-manager'); ?></p>
 										<p><?php esc_attr_e('If you plan on managing all listings from the admin dashboard you can skip creating this page.', 'wp-event-manager'); ?></p>
 									</td>
 									<td><code>[event_dashboard]</code></td>

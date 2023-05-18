@@ -1,8 +1,5 @@
 <?php $organizer = get_post($organizer_id);
 
-if (get_option('event_manager_form_fields')) {
-    $organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
-}
 $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
 
 <div class="wpem-single-organizer-profile-wrapper" id="wpem_organizer_profile">

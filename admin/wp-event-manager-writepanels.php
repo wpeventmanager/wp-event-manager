@@ -885,8 +885,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function save_post($post_id, $post)
-	{
+	public function save_post($post_id, $post){
 		if (empty($post_id) || empty($post) || empty($_POST)) {
 			return;
 		}
@@ -927,12 +926,12 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function save_event_listing_data($post_id, $post)
-	{
+	public function save_event_listing_data($post_id, $post){
 		global $wpdb;
 		// These need to exist
 		add_post_meta($post_id, '_cancelled', 0, true);
 		add_post_meta($post_id, '_featured', 0, true);
+		add_post_meta($post_id, '_event_title', get_the_title($post_id));
 		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
@@ -1058,7 +1057,6 @@ class WP_Event_Manager_Writepanels
 			}
 			// Everything else
 			else {
-				
 				$type = !empty($field['type']) ? $field['type'] : '';
 				switch ($type) {
 					case 'textarea':
@@ -1125,6 +1123,9 @@ class WP_Event_Manager_Writepanels
 						} else {
 							update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
 						}
+						if($key=='_event_ticket_options' && $_POST[$key]=='free'){
+							$ticket_type=$_POST[$key];
+						}
 						//set event online or not
 						if( $key == '_event_online') 
 							$event_online = $_POST[$key];
@@ -1134,11 +1135,14 @@ class WP_Event_Manager_Writepanels
 		}
 
 		//delete location meta if event is online
-		if( $event_online == 'yes') {
-			delete_post_meta($post_id, '_event_location');
-			delete_post_meta($post_id, '_event_pincode');
+		if( isset($event_online) && $event_online == 'yes') {
+			update_post_meta($post_id, '_event_location', '');
+			update_post_meta($post_id, '_event_pincode', '');
 		}
-
+		// reset meta value if ticket type is free
+		if(isset($ticket_type) && $ticket_type=='free'){
+			update_post_meta( $post_id, '_event_ticket_price', '');
+		}
 		/* Set Post Status To Expired If Already Expired */
 		$event_timezone = get_post_meta($post_id, '_event_timezone', true);
 		// check if timezone settings is enabled as each event then set current time stamp according to the timezone
@@ -1149,10 +1153,10 @@ class WP_Event_Manager_Writepanels
 			$current_timestamp = current_time('timestamp'); // If site wise timezone selected
 		}
 
-		//set expire date at 12:00 PM of the selected day
-		$expiry_date = date('Y-m-d H:i:s', strtotime(get_post_meta($post_id, '_event_expiry_date', true). ' 23:59:30'));
-		$today_date  = date('Y-m-d H:i:s', $current_timestamp);
-		//check for event expire
+		//set expire date at 12:00 PM of the selected day     
+		$expiry_date = date('Y-m-d H:i:s', strtotime(get_post_meta($post_id, '_event_expiry_date', true). ' 23:59:30'));     
+		$today_date = date('Y-m-d H:i:s', $current_timestamp);     
+		//check for event expire    
 		$post_status = $expiry_date && strtotime($today_date) > strtotime($expiry_date) ? 'expired' : false;
 		if ($post_status) {
 			remove_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);

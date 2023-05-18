@@ -14,7 +14,12 @@ EventSubmission = function () {
                 jQuery(this).closest('.event-manager-uploaded-file').remove();
                 return false;
             });
-
+            jQuery(".wpem_add_organizer_popup").on('click', function(){
+                jQuery("#oragnizer_message").html('');
+            });
+            jQuery(".wpem_add_venue_popup").on('click', function(){
+                jQuery("#venue_message").html('');
+            });
             if (jQuery('#event_start_time').length > 0) {
                 jQuery('#event_start_time').timepicker({
                     'timeFormat': wp_event_manager_event_submission.i18n_timepicker_format,
@@ -392,10 +397,6 @@ EventSubmission = function () {
             /// <returns type="initialization ticket price settings" />
             /// <since>3.1.16</since>
             addOrganizer: function (event) {
-                jQuery('.wpem_add_organizer').css('pointer-events', 'none');
-                jQuery('#wpem_add_organizer_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
-                jQuery('body #submit-organizer-form .wpem-form-footer .wpem-alert-danger').remove();
-
                 var formData = jQuery('body #submit-organizer-form').serialize();
                 var organizer_description = tinyMCE.get('organizer_description').getContent();
 
@@ -416,19 +417,18 @@ EventSubmission = function () {
                     data: fd,
                     success: function (responce) {
                         if (responce.code == 200) {
-
-
                             jQuery('select#event_organizer_ids').prepend('<option selected="selected" value="' + responce.organizer.organizer_id + '">' + responce.organizer.organizer_name + '</option>');
-
                             jQuery('#event_organizer_ids').trigger("chosen:updated");
 
                             jQuery('body #submit-organizer-form .event-manager-uploaded-files').remove();
                             jQuery('body #submit-organizer-form')[0].reset();
                             jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
-                        }
-                        else {
+                            jQuery('.wpem_add_organizer').css('pointer-events', 'none');
+                            jQuery('#wpem_add_organizer_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
+                            jQuery('body #submit-organizer-form .wpem-form-footer .wpem-alert-danger').remove();
+                        } else {
                             jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
-                            jQuery('body #submit-organizer-form .wpem-form-footer .wpem_add_organizer').after(responce.message);
+                            jQuery('#oragnizer_message').html(responce.message);
                         }
                     }
                 });
@@ -440,10 +440,7 @@ EventSubmission = function () {
             /// <returns type="initialization ticket price settings" />
             /// <since>3.1.16</since>
             addVenue: function (event) {
-                jQuery('.wpem_add_venue').css('pointer-events', 'none');
-                jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
-                jQuery('body #submit-venue-form .wpem-form-footer .wpem-alert-danger').remove();
-
+               
                 var formData = jQuery('body #submit-venue-form').serialize();
                 var venue_description = tinyMCE.get('venue_description').getContent();
 
@@ -466,19 +463,17 @@ EventSubmission = function () {
                     data: fd,
                     success: function (responce) {
                         if (responce.code == 200) {
-
-
                             jQuery('select#event_venue_ids').append('<option selected="selected" value="' + responce.venue.venue_id + '">' + responce.venue.venue_name + '</option>');
-
                             jQuery('#event_venue_ids').trigger("chosen:updated");
-
                             jQuery('body #submit-venue-form .event-manager-uploaded-files').remove();
                             jQuery('body #submit-venue-form')[0].reset();
                             jQuery('.wpem_add_venue').css('pointer-events', 'auto');
-                        }
-                        else {
+                            jQuery('.wpem_add_venue').css('pointer-events', 'none');
+                            jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
+                            jQuery('body #submit-venue-form .wpem-form-footer .wpem-alert-danger').remove();
+                        } else {
+                            jQuery('#venue_message').html(responce.message);
                             jQuery('.wpem_add_venue').css('pointer-events', 'auto');
-                            jQuery('body #submit-venue-form .wpem-form-footer .wpem_add_venue').after(responce.message);
                         }
                     }
                 });

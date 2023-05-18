@@ -401,10 +401,11 @@ class WP_Event_Manager_Shortcodes
 
 		if (!is_user_logged_in()) {
 
-			ob_start();
-
-			get_event_manager_template('event-dashboard-login.php');
-
+			ob_start(); ?>
+			<div id="event-manager-event-dashboard">
+				<p class="account-sign-in wpem-alert wpem-alert-info"><?php _e( 'You need to be signed in to manage your organizer listings.', 'wp-event-manager' ); ?> <a href="<?php echo apply_filters( 'event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url())) ); ?>"><?php _e( 'Sign in', 'wp-event-manager' ); ?></a></p>
+			</div>
+			<?php 
 			return ob_get_clean();
 		}
 
@@ -557,10 +558,11 @@ class WP_Event_Manager_Shortcodes
 
 		if (!is_user_logged_in()) {
 
-			ob_start();
-
-			get_event_manager_template('event-dashboard-login.php');
-
+			ob_start();	?>
+			<div id="event-manager-event-dashboard">
+				<p class="account-sign-in wpem-alert wpem-alert-info"><?php _e( 'You need to be signed in to manage your venue listings.', 'wp-event-manager' ); ?> <a href="<?php echo apply_filters( 'event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url())) ); ?>"><?php _e( 'Sign in', 'wp-event-manager' ); ?></a></p>
+			</div>
+			<?php 
 			return ob_get_clean();
 		}
 
@@ -691,7 +693,7 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		//Event ticket prices		
-		if (!get_option('event_manager_enable_event_ticket_prices')) {
+		if (!get_option('event_manager_enable_event_ticket_prices_filter')) {
 			$show_ticket_prices = false;
 		}
 
@@ -719,6 +721,11 @@ class WP_Event_Manager_Shortcodes
 			$cancelled = (is_bool($cancelled) && $cancelled) || in_array($cancelled, array('1', 'true', 'yes')) ? true : false;
 		}
 
+		if(!empty($selected_datetime)){
+			if(is_array($selected_datetime)){
+
+			}
+		}
 		//set value for the event datetimes
 		$datetimes = WP_Event_Manager_Filters::get_datetimes_filter();
 
@@ -756,6 +763,7 @@ class WP_Event_Manager_Shortcodes
 			$selected_ticket_price = sanitize_text_field($_GET['search_ticket_price']);
 		}
 		if ($show_filters) {
+			error_log("if");
 			get_event_manager_template('event-filters.php', array(
 				'per_page' => $per_page,
 				'orderby' => $orderby,
@@ -789,6 +797,7 @@ class WP_Event_Manager_Shortcodes
 				echo '</div>';
 			}
 		} else {
+			error_log("else");
 			$arr_selected_datetime = [];
 			if (!empty($selected_datetime)) {
 				$selected_datetime = explode(',', $selected_datetime);
@@ -816,7 +825,7 @@ class WP_Event_Manager_Shortcodes
 
 				$selected_datetime = json_encode($arr_selected_datetime);
 			}
-
+			
 			$events = get_event_listings(apply_filters('event_manager_output_events_args', array(
 
 				'search_location'   => $location,
@@ -844,7 +853,6 @@ class WP_Event_Manager_Shortcodes
 				'event_online'    	=> $event_online,
 
 			)));
-
 			if ($events->have_posts()) : ?>
 
 				<?php wp_enqueue_script('wp-event-manager-ajax-filters'); ?>
@@ -874,9 +882,16 @@ class WP_Event_Manager_Shortcodes
 				<?php endif; ?>
 
 			<?php else :
-
-				do_action('event_manager_output_events_no_results');
-
+				$default_events = get_posts(array(
+					'numberposts' => -1,
+					'post_type'   => 'event_listing',
+					'post_status'   => 'publish'
+				));
+				if (count($default_events) == 0): ?>
+					<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php _e('There are currently no events.', 'wp-event-manager'); ?></div>
+				<?php else:
+					 do_action('event_manager_output_events_no_results');
+				endif;
 			endif;
 
 			wp_reset_postdata();
@@ -927,7 +942,6 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		$event_listings_output = apply_filters('event_manager_event_listings_output', ob_get_clean());
-
 		return '<div class="event_listings" ' . $data_attributes_string . '>' . $event_listings_output . '</div>';
 	}
 
@@ -936,7 +950,6 @@ class WP_Event_Manager_Shortcodes
 	 */
 	public function output_no_results()
 	{
-
 		get_event_manager_template('content-no-events-found.php');
 	}
 
@@ -1085,9 +1098,9 @@ class WP_Event_Manager_Shortcodes
 
 		$events = new WP_Query($args);
 
-		if ($events->have_posts()) : ?>
+		if ($events->have_posts()) { 
 
-			<?php while ($events->have_posts()) : $events->the_post();
+			while ($events->have_posts()) : $events->the_post();
 
 				echo wp_kses_post('<div class="event_summary_shortcode align' . esc_attr($align) . '" style="width: ' . esc_attr($width) . '">');
 
@@ -1095,9 +1108,12 @@ class WP_Event_Manager_Shortcodes
 
 				echo wp_kses_post('</div>');
 
-			endwhile; ?>
-
-		<?php endif;
+			endwhile;
+		}else{
+			echo '<div class="entry-content"><div class="wpem-venue-connter"><div class="wpem-alert wpem-alert-info">';
+            printf( __('There are no events.','wp-event-manager'));    
+			echo '</div></div></div>';
+		}
 
 		wp_reset_postdata();
 
@@ -1163,11 +1179,11 @@ class WP_Event_Manager_Shortcodes
 
 			'show_pagination'           => true,
 
-			'per_page'                  => get_option('event_manager_per_page'),
+			'per_page'                  => isset($atts['per_page']) ? $atts['per_page'] : get_option('event_manager_per_page'),
 
 			'order'                     =>  isset($atts['order']) ? $atts['order'] :  'DESC',
 
-			'orderby'                   => isset($atts['meta_key']) ? $atts['meta_key'] : 'event_start_date', // meta_value
+			'orderby'                   => isset($atts['orderby']) ? $atts['orderby'] : 'event_start_date', // meta_value
 
 			'location'                  => '',
 

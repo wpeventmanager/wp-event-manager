@@ -35,20 +35,24 @@
 				<?php
 				$arr_selected_datetime = [];
 				if (!empty($selected_datetime)) {
+					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+					
+					//covert datepicker format  into php date() function date format
+					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+
 					$selected_datetime = explode(',', $selected_datetime);
 
 					$start_date = esc_attr(strip_tags($selected_datetime[0]));
 					if (isset($selected_datetime[1]) == false) {
 						$end_date = esc_attr(strip_tags($selected_datetime[0]));
 					} else {
-						$end_date = esc_attr(strip_tags($selected_datetime[1]));
+						if(strtotime($selected_datetime[1]) !== false && $selected_datetime[1] == 'tomorrow'){
+							$end_date =  date($php_date_format, strtotime('+1 day'));
+						}else{
+							$end_date = esc_attr(strip_tags($selected_datetime[1]));
+						}
 					}
-
-					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-					$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
-
-					//covert datepicker format  into php date() function date format
-					$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 					if ($start_date == 'today') {
 						$start_date = date($php_date_format);
@@ -63,8 +67,7 @@
 					$arr_selected_datetime['end'] 	= date_i18n($php_date_format, strtotime($arr_selected_datetime['end']));
 
 					$selected_datetime = json_encode($arr_selected_datetime);
-				}
-				?>
+				} ?>
 
 				<div class="wpem-col">
 					<div class="wpem-form-group">
@@ -125,11 +128,32 @@
 					</div>
 				</div>
 			<?php endif; ?>
-			<?php if ($ticket_prices) : ?>
+			<?php if ($show_ticket_prices) : ?>
+
+				<?php if ($ticket_prices) : ?>
 					<?php foreach ($ticket_prices as $ticket_price) : ?>
 						<input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
 					<?php endforeach; ?>
-			<?php endif; ?>	
+
+				<?php else : ?>
+					<div class="wpem-col">
+						<div class="wpem-form-group">
+							<label for="search_ticket_prices" class="wpem-form-label"><?php _e('Ticket Prices', 'wp-event-manager'); ?></label>
+							<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php _e('No results match', 'wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options', 'wp-event-manager'); ?>">
+								<?php
+								$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
+								foreach ($ticket_prices as $key => $value) :
+									if (!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price == $key) : ?>
+										<option selected=selected value="<?php echo esc_attr($key) != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
+									<?php else : ?>
+										<option value="<?php echo esc_attr($key) != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
+								<?php endif;
+								endforeach; ?>
+							</select>
+						</div>
+					</div>
+				<?php endif; ?>
+			<?php endif; ?>
 			<!-- Search by event type section end -->
 
 		</div> <!-- /row -->

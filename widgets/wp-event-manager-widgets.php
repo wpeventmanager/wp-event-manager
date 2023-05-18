@@ -290,10 +290,10 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 	public function widget($args, $instance)
 	{
 
-		if ($this->get_cached_widget($args)) {
+		// if ($this->get_cached_widget($args)) {
 
-			return;
-		}
+		// 	return;
+		// }
 
 		ob_start();
 
@@ -352,7 +352,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget
 
 		echo wp_kses_post($content);
 
-		$this->cache_widget($args, $content);
+		// $this->cache_widget($args, $content);
 	}
 }
 
@@ -436,9 +436,9 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 	public function widget($args, $instance)
 	{
 
-		if ($this->get_cached_widget($args)) {
-			return;
-		}
+		// if ($this->get_cached_widget($args)) {
+		// 	return;
+		// }
 
 		ob_start();
 
@@ -497,7 +497,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget
 
 		echo wp_kses_post($content);
 
-		$this->cache_widget($args, $content);
+		// $this->cache_widget($args, $content);
 	}
 }
 

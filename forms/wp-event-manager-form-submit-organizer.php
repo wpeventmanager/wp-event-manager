@@ -99,7 +99,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 								'label'       => __( 'Organizer name', 'wp-event-manager' ),
 								'type'        => 'text',
 								'required'    => true,
-								'placeholder' => __( 'Enter the name of the organization', 'wp-event-manager' ),
+								'placeholder' => __( 'Enter the name of the organizer', 'wp-event-manager' ),
 								'priority'    => 1,
 				),
 

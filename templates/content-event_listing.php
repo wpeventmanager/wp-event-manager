@@ -116,7 +116,7 @@ $thumbnail  = get_event_thumbnail($post, 'full');
                         <?php
                         if (get_event_ticket_option()) {
                         ?>
-                            <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text">
+                            <div class="wpem-event-ticket-type <?php echo display_event_ticket_option(); ?>" class="wpem-event-ticket-type-text">
                                 <span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span>
                             </div>
                         <?php } ?>

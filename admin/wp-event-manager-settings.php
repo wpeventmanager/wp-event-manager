@@ -59,7 +59,7 @@ class WP_Event_Manager_Settings
 						array(
 							'name'       => 'enable_event_organizer',
 							'std'        => '1',
-							'label'      => __('Enable organizer', 'wp-event-manager'),
+							'label'      => __('Enable Organizer', 'wp-event-manager'),
 							'cb_label'   => __('Disable this to remove the functionality of Organizers on Your Event Website.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
@@ -69,7 +69,7 @@ class WP_Event_Manager_Settings
 						array(
 							'name'       => 'enable_event_venue',
 							'std'        => '1',
-							'label'      => __('Enable venue', 'wp-event-manager'),
+							'label'      => __('Enable Venue', 'wp-event-manager'),
 							'cb_label'   => __('Disable this to remove the functionality of Venue on your Event Website.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
@@ -88,6 +88,7 @@ class WP_Event_Manager_Settings
 						array(
 							'name'       => 'event_manager_google_maps_api_key',
 							'std'        => '',
+							'placeholder' => 'Google API Key',
 							'label'      => __('Google API Key', 'wp-event-manager'),
 							'desc'       => __('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'),
 							'attributes' => array(),
@@ -171,9 +172,9 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Multi-select Categories', 'wp-event-manager'),
+							'label'      => __('Multi-select Event Categories', 'wp-event-manager'),
 
-							'cb_label'   => __('Enable category multiselect by default.', 'wp-event-manager'),
+							'cb_label'   => __('Enable event category multiselect by default.', 'wp-event-manager'),
 
 							'desc'       => __('If enabled, the category select box will default to a multi select on the [events] shortcode.', 'wp-event-manager'),
 
@@ -237,6 +238,22 @@ class WP_Event_Manager_Settings
 
 								'all' => __('Events will be shown if within ALL selected event types.', 'wp-event-manager'),
 							),
+						),
+						array(
+
+							'name'       => 'event_manager_enable_event_ticket_prices_filter',
+
+							'std'        => '0',
+
+							'label'      => __('Ticket Prices Selection', 'wp-event-manager'),
+
+							'cb_label'   => __('Enable Ticket prices selection for listing page.', 'wp-event-manager'),
+
+							'desc'       => __('Choose whether to enable ticket prices selection on the event listing page.', 'wp-event-manager'),
+
+							'type'       => 'checkbox',
+
+							'attributes' => array(),
 						),
 					),
 				),
@@ -376,7 +393,7 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Delete listings after finished', 'wp-event-manager'),
+							'label'      => __('Delete Listings After Finished', 'wp-event-manager'),
 
 							'cb_label'   => __('Delete listings after finished.', 'wp-event-manager'),
 
@@ -392,7 +409,7 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Delete Expired listings', 'wp-event-manager'),
+							'label'      => __('Delete Expired Listings', 'wp-event-manager'),
 
 							'cb_label'   => __('Expired listings are deleted after 30 days.', 'wp-event-manager'),
 
@@ -476,11 +493,11 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Ticket prices', 'wp-event-manager'),
+							'label'      => __('Ticket Prices', 'wp-event-manager'),
 
-							'cb_label'   => __('Enable Ticket prices for listing and submission form.', 'wp-event-manager'),
+							'cb_label'   => __('Enable Ticket prices for submission form.', 'wp-event-manager'),
 
-							'desc'       => __('Choose whether to enable ticket prices on the event listing and submission page.', 'wp-event-manager'),
+							'desc'       => __('Choose whether to enable ticket prices on the event submission page.', 'wp-event-manager'),
 
 							'type'       => 'checkbox',
 
@@ -886,7 +903,7 @@ class WP_Event_Manager_Settings
 										case '':
 										case 'input':
 										case 'text': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
 											<?php
 
 											if ($option['desc']) { ?>

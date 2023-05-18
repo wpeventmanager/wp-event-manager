@@ -904,7 +904,7 @@ input.wpem-theme-button:hover span {
   font-size: 14px;
   border-radius: 4px;
 }
-.wpem-event-ticket-type {
+.wpem-event-ticket-type, .wpem-event-ticket-price {
   display: inline-block;
 }
 .wpem-event-ticket-type .wpem-event-ticket-type-text {
@@ -3740,6 +3740,9 @@ p.post-submitted-success-green-message a {
   }
   table.wpem-responsive-table-wrapper .wpem-tbody-th-label {
     display: none;
+  }
+  table.wpem-responsive-table-wrapper td.wpem_data_td_empty {
+    padding: 10px !important;
   }
 }
 @media screen and (max-width: 768px) and (max-width: 937px) {

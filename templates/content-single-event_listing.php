@@ -7,11 +7,12 @@ $end_time   = get_event_end_time();
 $address = get_event_address();
 $location =  get_event_location();
 $separator = get_wpem_date_time_separator();
+$check_ticket_visibility = get_option('event_manager_enable_event_ticket_prices_filter', true);
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style('wp-event-manager-slick-style');
 do_action('set_single_listing_view_count');
-$event = $post;
-?>
+$event = $post; ?>
+
 <div class="single_event_listing">
 
     <div class="wpem-main wpem-single-event-page">
@@ -85,20 +86,21 @@ $event = $post;
 
                                     <?php
                                     $view_count = get_post_views_count($post);
-                                    if ($view_count) :
-                                    ?>
+                                    if ($view_count) : ?>
                                         <div class="wpem-viewed-event wpem-tooltip wpem-tooltip-bottom"><i class="wpem-icon-eye"></i><?php printf(__(' %d', 'wp-event-manager'), $view_count); ?>
                                             <span class="wpem-tooltiptext"><?php printf(__('%d people viewed this event.', 'wp-event-manager'), $view_count); ?></span>
                                         </div>
                                     <?php endif; ?>
-
-                                    <?php if (get_event_ticket_price()) : ?>
-                                        <div><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price('', '', true, $post); ?></div>
-                                    <?php endif; ?>
-
-                                    <?php if (get_event_ticket_option()) : ?>
-                                        <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
-                                    <?php endif; ?>
+                                    <?php do_action('single_event_ticket_overview_before'); ?>
+                                    <?php if(isset($check_ticket_visibility) && !empty($check_ticket_visibility)) : ?>
+                                        <?php if (get_event_ticket_price() && get_event_ticket_option()) : ?>
+                                            <div class="wpem-event-ticket-price"><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price('', '', true, $post); ?></div>
+                                        <?php endif; ?>
+                                        <?php if (get_event_ticket_option()) : ?>
+                                            <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>                               
+                                    <?php do_action('single_event_ticket_overview_after'); ?>
                                 </div>
                             </div>
 
@@ -522,9 +524,10 @@ $event = $post;
                                                 <a href="http://maps.google.com/maps?q=<?php display_event_location();?>" target="_blank">  
                                                     <?php display_event_location();?>
                                                 </a>
-                                            <?php } else {
-                                                echo esc_attr('Online event');
-                                            } ?>
+                                            <?php } else {?>
+                                                <?php _e('Online event', 'wp-event-manager'); ?>
+                                               <!-- printf( __('Online event', 'wp-event-manager')); -->
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <!-- Event location section end-->

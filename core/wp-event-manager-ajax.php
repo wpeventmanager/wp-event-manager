@@ -220,7 +220,7 @@ class WP_Event_Manager_Ajax {
 
 		if ( isset( $_REQUEST['event_online'] ) && ( $_REQUEST['event_online'] === 'true' || $_REQUEST['event_online'] === 'false' ) ) {
 
-			$args['event_online'] = $_REQUEST['event_online'] === 'true' ? true : false;
+			$args['event_online'] = $_REQUEST['event_online'] === 'false' ? $_REQUEST['event_online'] : true;
 		}
 
 		ob_start();
@@ -237,11 +237,18 @@ class WP_Event_Manager_Ajax {
 
 			<?php endwhile; ?>
 
-		<?php else : ?>
+		<?php else : 
+			$default_events = get_posts(array(
+					'numberposts' => -1,
+					'post_type'   => 'event_listing',
+					'post_status'   => 'publish'
+				));
+				if (count($default_events) == 0): ?>
+					<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php _e('There are currently no events.', 'wp-event-manager'); ?></div>
+				<?php else: get_event_manager_template_part( 'content', 'no-events-found' );
+				endif;
 
-			<?php get_event_manager_template_part( 'content', 'no-events-found' ); ?>
-
-		<?php endif;
+		endif;
 
 		$result['html']    = ob_get_clean();
 

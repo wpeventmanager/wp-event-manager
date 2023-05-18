@@ -74,14 +74,20 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 			foreach ( $location_meta_keys as $meta_key ) {
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => 	trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ','),
+					'value'   => 	$args['search_location'], 
+					'compare' => 'like',
+					'type'    => 'char',
+				);
+				$location_search[] = array(
+					'key'     => $meta_key,
+					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ','),
 					'compare' => 'like',
 					'type'    => 'char',
 				);
 			}
+			
 			$query_args['meta_query'][] = $location_search;
 		}
-
 		if ( ! is_null( $args['featured'] ) ) {
 			$query_args['meta_query'][] = array(
 				'key'     => '_featured',
@@ -248,7 +254,7 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 					);
 					$search_start_date['relation'] = 'AND';
 					$date_search[] = $search_start_date;
-					$search_end_date[] = array(
+					/*$search_end_date[] = array(
 						'key'     => '_event_end_date',
 						'value'   => $dates['start'],
 						'compare' => '>=',
@@ -259,7 +265,7 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 						'value'   => $dates['end'],
 						'compare' => '<=',
 						'type'    => 'date'
-					);
+					);*/
 					$search_end_date['relation'] = 'AND';
 					$date_search[] = $search_end_date;
 				}
@@ -310,10 +316,10 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 		//must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 		if ( ! empty( $args['search_ticket_prices'][0] ) )  {	
 			$ticket_price_value='';
-			if($args['search_ticket_prices'][0]==='paid') {  
-			$ticket_price_value='paid';     
-			} elseif ($args['search_ticket_prices'][0]==='free') {
-			$ticket_price_value='free';
+			if($args['search_ticket_prices'][0]==='paid' || $args['search_ticket_prices'][0]==='ticket_price_paid') {  
+				$ticket_price_value='paid';     
+			} elseif ($args['search_ticket_prices'][0]==='free' || $args['search_ticket_prices'][0]==='ticket_price_free') {
+				$ticket_price_value='free';
 			}
 			
 			$ticket_search[] = array(
@@ -1277,7 +1283,7 @@ function event_manager_dropdown_selection( $args = '' ) {
 	$output .= "</select>\n";
 
 	if ( $echo ) {
-		printf($output);
+		printf('%s', $output);
 	}
 	return $output;
 }
