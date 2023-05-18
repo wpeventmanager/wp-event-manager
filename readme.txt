@@ -306,7 +306,7 @@ Fixed : PHP Fatal error message issue is fixed.
 Fixed : Event thumbnail is missing on the event listing page.
 Fixed : When profile language is different from site language then a 404 error is available.
 Fixed : Ticket type change from paid to free then price is displayed on the event details page.
-Fixed: Price and ticket icon should be displayed in a horizontal line.
+Fixed : Price and ticket icon should be displayed in a horizontal line.
 Fixed : Event title is missing in post meta.
 Fixed : Display error message on the organizer page.
 Fixed : Event details page field not receiving translated text.
@@ -316,7 +316,7 @@ Fixed : Translation issue with German character.
 Fixed : Setup page improved the text description.
 Fixed : Event listing page wrong message is displayed is displayed.
 Fixed : Mobile view message is not displayed for an organizer.
-Fixed :Organizer and venue dashboard page text message is changed.
+Fixed : Organizer and venue dashboard page text message is changed.
 Fixed : Mobile view message is not displayed for a venue.
 Fixed : Past shortcode per page attribute is not working.
 Fixed : Organization add form page name field placeholder text should be proper.
@@ -338,7 +338,7 @@ Fixed : Create one event then edit time event numbering is not proper in the tic
 Fixed : Message is added multiple times on the organizer and venue post an event page.
 Fixed : Added a tooltip for user notifications in the ticket section.
 Fixed : Event Widget display the warning error message.
-Added: There is no featured event then a proper message should display on the page.
+Added : There is no featured event then a proper message should display on the page.
 
 
 = [3.1.33] 7-11-2022 =
