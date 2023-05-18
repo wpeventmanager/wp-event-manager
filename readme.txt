@@ -302,43 +302,43 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 = [3.1.34] 18-05-2023 =
 
-Fixed : PHP Fatal error message issue is fixed.
-Fixed : Event thumbnail is missing on the event listing page.
-Fixed : When profile language is different from site language then a 404 error is available.
-Fixed : Ticket type change from paid to free then price is displayed on the event details page.
-Fixed : Price and ticket icon should be displayed in a horizontal line.
-Fixed : Event title is missing in post meta.
-Fixed : Display error message on the organizer page.
-Fixed : Event details page field not receiving translated text.
-Fixed : A warning message is a display on the edit event page.
-Fixed : shortcode issue with select_datatime.
-Fixed : Translation issue with German character.
-Fixed : Setup page improved the text description.
-Fixed : Event listing page wrong message is displayed is displayed.
-Fixed : Mobile view message is not displayed for an organizer.
-Fixed : Organizer and venue dashboard page text message is changed.
-Fixed : Mobile view message is not displayed for a venue.
-Fixed : Past shortcode per page attribute is not working.
-Fixed : Organization add form page name field placeholder text should be proper.
-Fixed : Organizer and venue page validation message issue is fixed.
-Fixed : Field editor is displaying extra fields once we add them.
-Fixed : Setting option title name first letter should capital.
+Fixed : PHP Fatal error message issue of the event manager plugin is fixed.
+Fixed : Event thumbnail is missing on the event listing page of the event manager plugin.
+Fixed : 404 error is displayed when the event profile language is different from the event site language.
+Fixed : Event Ticket price is displayed on the event details page even after changing the event ticket type from paid to free.
+Fixed : Price and ticket icons should be displayed in a horizontal line.
+Fixed : Event title is missing in the post meta.
+Fixed : An error message is displayed on the event organizer page.
+Fixed : The Event details page file is not receiving the translated text.
+Fixed : A warning message is displayed on the edit event page of the event manager plugin.
+Fixed : Event Date and time shortcode related issue.
+Fixed : Translation issue with German characters in the event manager plugin.
+Fixed : The text description is improved on the event Setup page.
+Fixed : A wrong message is displayed on the event listing page.
+Fixed : The Mobile view message is not displayed for an event organizer.
+Fixed : The event Organizer and venue dashboard page text messages are changed.
+Fixed : The Mobile view message is not displayed for an event venue.
+Fixed : The past shortcode per page attribute is not working.
+Fixed : The event Organizer add form page name field placeholder text should be improved.
+Fixed : Event Organizer and venue page validation message issue is fixed.
+Fixed : The event Field editor is displaying extra fields once we add them.
+Fixed : The first letter of the Setting option title should be capitalized in the event manager plugin.
 Fixed : Past shortcode issue with different attributes.
-Fixed : Fatal error is display on the organizer page.
-Fixed : Single Organizer’s Details shortcode not working.
-Fixed : Recent events widget added location then also online event is a display.
-Fixed : Event_online="false" shortcode not working.
-Fixed : Some parts are not translated into German on the event listing page.
-Fixed : Input text box placeholder not showing properly.
-Fixed : Location text is display on the event detail page.
-Fixed : Backend organizer section display the error message.
-Fixed : Addons menu in WP Event Manager plugin image is not displayed properly.
-Fixed : Event listing page "hi" text is displayed.
-Fixed : Create one event then edit time event numbering is not proper in the ticket section.
-Fixed : Message is added multiple times on the organizer and venue post an event page.
+Fixed : Fatal error is displayed on the event organizer page.
+Fixed : Single Organizer’s Details shortcode is not working.
+Fixed : Events are displayed as online events even after adding location to the Recent events widget..
+Fixed : The shortcode for online events is not working.
+Fixed : Some parts are not translated into the German language on the event listing page.
+Fixed : Input text box placeholder is not showing properly.
+Fixed : Location text is displayed on the event detail page.
+Fixed : The Backend organizer section displays an error message.
+Fixed : Addons menu in the WP Event Manager plugin image is not displayed properly.
+Fixed : A "hi" text is displayed on the Event listing page.
+Fixed : Event ticket numbering issue while creating new tickets for an event.
+Fixed : A Message is added multiple times on the organizer and venue post on the event page.
 Fixed : Added a tooltip for user notifications in the ticket section.
-Fixed : Event Widget display the warning error message.
-Added : There is no featured event then a proper message should display on the page.
+Fixed : Event Widget displays a warning error message.
+Added : When there is no featured event proper message should be displayed on the page.
 
 
 = [3.1.33] 7-11-2022 =
