@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2022-12-20 14:30+0530\n"
-"PO-Revision-Date: 2022-12-20 16:07+0530\n"
+"POT-Creation-Date: 2023-05-15 11:22+0530\n"
+"PO-Revision-Date: 2023-05-15 11:30+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,12 +24,12 @@ msgstr ""
 #: admin/wp-event-manager-addons.php:22 admin/wp-event-manager-admin.php:167
 
 msgid "WP Event Manager Add-ons"
-msgstr "Добавки за WP диспечер на събития"
+msgstr "Добавки за диспечер на събития на WP"
 
 #: admin/wp-event-manager-admin.php:122
 
 msgid "Your database upgrading now"
-msgstr "Надстройването на вашата база данни сега"
+msgstr "Вашата база данни се надстройва сега"
 
 #: admin/wp-event-manager-admin.php:123
 
@@ -38,10 +38,10 @@ msgid ""
 "save the permalink and proceed."
 msgstr ""
 "Вашата база данни е надстроена успешно! За да се възползвате, запазете "
-"пермалинка и продължете."
+"постоянната връзка и продължете."
 
-#: admin/wp-event-manager-admin.php:160 admin/wp-event-manager-settings.php:720
-#: admin/wp-event-manager-setup.php:367
+#: admin/wp-event-manager-admin.php:160 admin/wp-event-manager-settings.php:737
+#: admin/wp-event-manager-setup.php:368
 #: templates/form-fields/repeated-field.php:26
 #: templates/form-fields/repeated-field.php:85 wp-event-manager.php:474
 msgid "Settings"
@@ -75,14 +75,14 @@ msgid ""
 "A prior Backup does no harm before updating the plugin!"
 msgstr ""
 "3.1.15 е освободен!\n"
-"Ние непрекъснато работим, за да подобрим вашия опит в управлението на "
-"събития, имаме нова версия, фокусирана върху дръжка от поправки и "
-"актуализации & тук е обобщение на това, което е подобрено...\n"
+"Ние непрекъснато работим, за да подобрим опита ви за управление на събития, "
+"Имаме нова версия, фокусирана върху дръжката на поправки и актуализации & "
+"тук е обобщение на това, което е подобрено...\n"
 "\n"
 "Управлявайте организаторите си директно в интерфейса и бекенда.\n"
-"Миграцията на данните на стария организатор ще бъде прехвърлена автоматично "
+"Мигрирането на данните на стария организатор ще бъде прехвърлено автоматично "
 "в списъка.\n"
-"Предишно архивиране не вреди, преди да актуализирате приставката!"
+"Предишният Backup не вреди преди актуализирането на приставката!"
 
 #: admin/wp-event-manager-admin.php:207
 msgid "Upgrade"
@@ -105,9 +105,9 @@ msgid ""
 "traffic from our site."
 msgstr ""
 "Забелязахме, че използвате <strong>WP Event Manager</strong> от известно "
-"време. Надяваме се, че ви харесва! Ще се радваме, ако <strong><a href="
-"\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target="
-"\"_blank\">ни дадете хубава оценка на WordPress.org!</a></strong> Не "
+"време. Надяваме се да ви хареса! Ще се радваме, ако можете да <strong><a "
+"href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" "
+"target=\"_blank\">ни дадете хубава оценка за WordPress.org!</a></strong> Не "
 "забравяйте да изпратите сайта си на <strong><a href=\"https://wp-"
 "eventmanager.com/showcase/\" target=\"_blank\">нашата витрина</a></strong> и "
 "да генерирате повече трафик от нашия сайт."
@@ -134,7 +134,7 @@ msgstr "Избор на тип събитие"
 
 #: admin/wp-event-manager-cpt.php:328
 #: forms/wp-event-manager-form-submit-event.php:152
-#: wp-event-manager-functions.php:1992
+#: wp-event-manager-functions.php:1998
 msgid "Event Title"
 msgstr "Заглавие на събитие"
 
@@ -171,7 +171,7 @@ msgid "Banner"
 msgstr "Банер"
 
 #: admin/wp-event-manager-cpt.php:401
-#: admin/wp-event-manager-field-editor.php:194
+#: admin/wp-event-manager-field-editor.php:199
 #: admin/wp-event-manager-form-field-editor-field.php:140
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:8
 msgid "Type"
@@ -182,7 +182,7 @@ msgstr "Тип"
 #: external/elementor-widgets/elementor-past-event-listing.php:150
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:150
 #: shortcodes/wp-event-manager-shortcodes.php:294
-#: templates/content-single-event_listing.php:515
+#: templates/content-single-event_listing.php:514
 #: templates/event-dashboard.php:317 templates/event-filters.php:26
 #: templates/event-filters.php:27 widgets/wp-event-manager-widgets.php:246
 msgid "Location"
@@ -221,7 +221,7 @@ msgstr "Статус"
 #: admin/wp-event-manager-cpt.php:415
 
 msgid "Cancelled?"
-msgstr "Отменени?"
+msgstr "Отменен"
 
 #: admin/wp-event-manager-cpt.php:417
 msgid "Featured?"
@@ -276,55 +276,55 @@ msgid "Email"
 msgstr "Имейл"
 
 #: admin/wp-event-manager-field-editor.php:34
-#: admin/wp-event-manager-field-editor.php:139
+#: admin/wp-event-manager-field-editor.php:140
 #: admin/wp-event-manager-form-field-editor-field.php:115
 msgid "Text"
 msgstr "Текст"
 
 #: admin/wp-event-manager-field-editor.php:35
-#: admin/wp-event-manager-field-editor.php:140
+#: admin/wp-event-manager-field-editor.php:141
 #: admin/wp-event-manager-form-field-editor-field.php:116
 msgid "Time"
 msgstr "Време"
 
 #: admin/wp-event-manager-field-editor.php:36
-#: admin/wp-event-manager-field-editor.php:141
+#: admin/wp-event-manager-field-editor.php:142
 #: admin/wp-event-manager-form-field-editor-field.php:117
 msgid "Checkbox"
 msgstr "Отметка"
 
 #: admin/wp-event-manager-field-editor.php:37
-#: admin/wp-event-manager-field-editor.php:142
+#: admin/wp-event-manager-field-editor.php:143
 #: admin/wp-event-manager-form-field-editor-field.php:118
 msgid "Date"
 msgstr "Дата"
 
 #: admin/wp-event-manager-field-editor.php:38
-#: admin/wp-event-manager-field-editor.php:143
+#: admin/wp-event-manager-field-editor.php:144
 #: admin/wp-event-manager-form-field-editor-field.php:119
 msgid "Timezone"
 msgstr "Часова зона по подразбиране на сървъра"
 
 #: admin/wp-event-manager-field-editor.php:39
-#: admin/wp-event-manager-field-editor.php:144
+#: admin/wp-event-manager-field-editor.php:145
 #: admin/wp-event-manager-form-field-editor-field.php:120
 msgid "File"
 msgstr "Файл"
 
 #: admin/wp-event-manager-field-editor.php:40
-#: admin/wp-event-manager-field-editor.php:145
+#: admin/wp-event-manager-field-editor.php:146
 #: admin/wp-event-manager-form-field-editor-field.php:121
 msgid "Hidden"
 msgstr "Скрит"
 
 #: admin/wp-event-manager-field-editor.php:41
-#: admin/wp-event-manager-field-editor.php:146
+#: admin/wp-event-manager-field-editor.php:147
 #: admin/wp-event-manager-form-field-editor-field.php:122
 msgid "Multiselect"
 msgstr "Множествен избор"
 
 #: admin/wp-event-manager-field-editor.php:42
-#: admin/wp-event-manager-field-editor.php:147
+#: admin/wp-event-manager-field-editor.php:148
 #: admin/wp-event-manager-form-field-editor-field.php:123
 msgid "Number"
 msgstr "Номер"
@@ -332,24 +332,24 @@ msgstr "Номер"
 #: admin/wp-event-manager-field-editor.php:43
 #: admin/wp-event-manager-form-field-editor-field.php:124
 #: wp-event-manager-template.php:434 wp-event-manager-template.php:435
-#: wp-event-manager-template.php:2468
+#: wp-event-manager-template.php:2454
 msgid "Password"
 msgstr "Парола"
 
 #: admin/wp-event-manager-field-editor.php:44
-#: admin/wp-event-manager-field-editor.php:148
+#: admin/wp-event-manager-field-editor.php:149
 #: admin/wp-event-manager-form-field-editor-field.php:125
 msgid "Radio"
 msgstr "Радио"
 
 #: admin/wp-event-manager-field-editor.php:45
-#: admin/wp-event-manager-field-editor.php:150
+#: admin/wp-event-manager-field-editor.php:151
 #: admin/wp-event-manager-form-field-editor-field.php:126
 msgid "Select"
 msgstr "Избери"
 
 #: admin/wp-event-manager-field-editor.php:46
-#: admin/wp-event-manager-field-editor.php:154
+#: admin/wp-event-manager-field-editor.php:155
 #: admin/wp-event-manager-form-field-editor-field.php:127
 msgid "Textarea"
 msgstr "Текстово поле"
@@ -373,100 +373,105 @@ msgstr ""
 msgid "Form fields"
 msgstr "Формулярни полета"
 
-#: admin/wp-event-manager-field-editor.php:149
+#: admin/wp-event-manager-field-editor.php:150
 
 msgid "Repeated"
 msgstr "Повтаря"
 
-#: admin/wp-event-manager-field-editor.php:151
-
-msgid "Term Checklist"
-msgstr "Контролен списък за срок"
-
 #: admin/wp-event-manager-field-editor.php:152
 
-msgid "Term Multiselect"
-msgstr "Термин Мултиселект"
+msgid "Term Checklist"
+msgstr "Контролен списък за изрази"
 
 #: admin/wp-event-manager-field-editor.php:153
+
+msgid "Term Multiselect"
+msgstr "Множествен избор на израз"
+
+#: admin/wp-event-manager-field-editor.php:154
 
 msgid "Term Select"
 msgstr "Избор на израз"
 
-#: admin/wp-event-manager-field-editor.php:155
+#: admin/wp-event-manager-field-editor.php:156
 msgid "WP Editor"
 msgstr "WP редактор"
 
-#: admin/wp-event-manager-field-editor.php:156
+#: admin/wp-event-manager-field-editor.php:157
 msgid "URL"
 msgstr "URL"
 
-#: admin/wp-event-manager-field-editor.php:188
+#: admin/wp-event-manager-field-editor.php:193
 #, php-format
 msgid "%s form fields"
 msgstr "%s формулярни полета"
 
-#: admin/wp-event-manager-field-editor.php:193
+#: admin/wp-event-manager-field-editor.php:198
 #: admin/wp-event-manager-form-field-editor-field.php:139
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:7
 msgid "Field Label"
 msgstr "Етикет на полето"
 
-#: admin/wp-event-manager-field-editor.php:195
+#: admin/wp-event-manager-field-editor.php:200
 #: admin/wp-event-manager-form-field-editor-field.php:141
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:9
 #: forms/wp-event-manager-form-submit-event.php:224
 msgid "Description"
 msgstr "Описание"
 
-#: admin/wp-event-manager-field-editor.php:196
+#: admin/wp-event-manager-field-editor.php:201
 #: admin/wp-event-manager-form-field-editor-field.php:142
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:10
 
 msgid "Placeholder / Options"
 msgstr "Контейнер / Опции"
 
-#: admin/wp-event-manager-field-editor.php:197
+#: admin/wp-event-manager-field-editor.php:202
 #: admin/wp-event-manager-form-field-editor-field.php:143
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:11
 msgid "Meta Key"
 msgstr "Мета-ключ"
 
-#: admin/wp-event-manager-field-editor.php:198
+#: admin/wp-event-manager-field-editor.php:203
 #: admin/wp-event-manager-form-field-editor-field.php:144
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:12
 
 msgid "Only For Admin"
 msgstr "Само за администратор"
 
-#: admin/wp-event-manager-field-editor.php:199
+#: admin/wp-event-manager-field-editor.php:204
 #: admin/wp-event-manager-form-field-editor-field.php:145
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:13
 msgid "Priority"
 msgstr "Приоритет"
 
-#: admin/wp-event-manager-field-editor.php:200
+#: admin/wp-event-manager-field-editor.php:205
 #: admin/wp-event-manager-form-field-editor-field.php:146
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:14
 msgid "Validation"
 msgstr "Валидиране"
 
-#: admin/wp-event-manager-field-editor.php:207
+#: admin/wp-event-manager-field-editor.php:212
 msgid "Add field"
 msgstr "Добави поле"
 
-#: admin/wp-event-manager-field-editor.php:211
+#: admin/wp-event-manager-field-editor.php:216
 msgid "Reset to default"
 msgstr "По подразбиране"
 
-#: admin/wp-event-manager-field-editor.php:212
-#: admin/wp-event-manager-settings.php:929
+#: admin/wp-event-manager-field-editor.php:217
+#: admin/wp-event-manager-settings.php:946
 msgid "Save Changes"
 msgstr "Запази промените"
 
-#: admin/wp-event-manager-field-editor.php:432
+#: admin/wp-event-manager-field-editor.php:441
 msgid "The fields were successfully saved."
 msgstr "Полетата са успешно запазени."
+
+#: admin/wp-event-manager-field-editor.php:443
+
+msgid "Please try again to save fields."
+msgstr "Опитайте отново, за да запишете полетата."
 
 #: admin/wp-event-manager-form-field-editor-field.php:28
 #: admin/wp-event-manager-form-field-editor-field.php:47
@@ -492,7 +497,7 @@ msgstr "Множество файлове?"
 #: admin/wp-event-manager-form-field-editor-group-field.php:100
 
 msgid "Not Required"
-msgstr "Не се изисква"
+msgstr "Задължително"
 
 #: admin/wp-event-manager-form-field-editor-field.php:97
 #: admin/wp-event-manager-form-field-editor-group-field.php:107
@@ -507,30 +512,30 @@ msgstr "Добавяне на дъщерно поле"
 
 #: admin/wp-event-manager-form-field-editor-group-field.php:49
 #: admin/wp-event-manager-form-field-editor-group-field.php:85
-#: templates/content-single-event_listing.php:197
-#: templates/content-single-event_listing.php:203
+#: templates/content-single-event_listing.php:196
+#: templates/content-single-event_listing.php:202
+#: templates/content-single-event_listing.php:210
 #: templates/content-single-event_listing.php:211
-#: templates/content-single-event_listing.php:212
-#: templates/content-single-event_listing.php:220
-#: templates/content-single-event_listing.php:226
-#: templates/content-single-event_listing.php:233
-#: templates/content-single-event_listing.php:239
-#: templates/content-single-event_listing.php:245
-#: templates/content-single-event_listing.php:267
+#: templates/content-single-event_listing.php:219
+#: templates/content-single-event_listing.php:225
+#: templates/content-single-event_listing.php:232
+#: templates/content-single-event_listing.php:238
+#: templates/content-single-event_listing.php:244
+#: templates/content-single-event_listing.php:266
+#: templates/content-single-event_listing.php:293
 #: templates/content-single-event_listing.php:294
-#: templates/content-single-event_listing.php:295
-#: templates/content-single-event_listing.php:307
-#: templates/content-single-event_listing.php:314
-#: templates/content-single-event_listing.php:316
-#: templates/content-single-event_listing.php:318
-#: templates/content-single-event_listing.php:326
-#: templates/content-single-event_listing.php:333
-#: templates/content-single-event_listing.php:339
-#: templates/content-single-event_listing.php:366
-#: templates/content-single-event_listing.php:378
+#: templates/content-single-event_listing.php:306
+#: templates/content-single-event_listing.php:313
+#: templates/content-single-event_listing.php:315
+#: templates/content-single-event_listing.php:317
+#: templates/content-single-event_listing.php:325
+#: templates/content-single-event_listing.php:332
+#: templates/content-single-event_listing.php:338
+#: templates/content-single-event_listing.php:365
+#: templates/content-single-event_listing.php:377
 #: templates/organizer/content-single-event-organizers.php:173
 #: templates/organizer/content-single-event_listing-organizer.php:148
-#: wp-event-manager-template.php:2800
+#: wp-event-manager-template.php:2786
 #, php-format
 msgid "%s"
 msgstr "%s"
@@ -538,7 +543,7 @@ msgstr "%s"
 #: admin/wp-event-manager-permalink-settings.php:58
 
 msgid "Event base"
-msgstr "База събития"
+msgstr "База за събития"
 
 #: admin/wp-event-manager-permalink-settings.php:65
 
@@ -561,7 +566,7 @@ msgstr "събитие"
 
 msgctxt "Event category slug - resave permalinks after changing this"
 msgid "event-category"
-msgstr "събитие-категория"
+msgstr "Категория на събитито"
 
 #: admin/wp-event-manager-permalink-settings.php:102
 #: core/wp-event-manager-post-types.php:1422
@@ -575,7 +580,7 @@ msgstr "Основни"
 
 #: admin/wp-event-manager-settings.php:62
 
-msgid "Enable organizer"
+msgid "Enable Organizer"
 msgstr "Разреши организатора"
 
 #: admin/wp-event-manager-settings.php:63
@@ -583,12 +588,12 @@ msgstr "Разреши организатора"
 msgid ""
 "Disable this to remove the functionality of Organizers on Your Event Website."
 msgstr ""
-"Деактивирайте това, за да премахнете функционалността на Организаторите на "
-"уебсайта на Вашето събитие."
+"Деактивирайте това, за да премахнете функционалността на организаторите на "
+"уебсайта на вашето събитие."
 
 #: admin/wp-event-manager-settings.php:72
 
-msgid "Enable venue"
+msgid "Enable Venue"
 msgstr "Разрешаване на място"
 
 #: admin/wp-event-manager-settings.php:73
@@ -597,7 +602,7 @@ msgid ""
 "Disable this to remove the functionality of Venue on your Event Website."
 msgstr ""
 "Деактивирайте това, за да премахнете функционалността на мястото на "
-"провеждане на уебсайта на вашето събитие."
+"провеждане на вашето събитие."
 
 #: admin/wp-event-manager-settings.php:82
 
@@ -610,14 +615,14 @@ msgid ""
 "Delete WP Event Manager data when the plugin is deleted. Once removed, this "
 "data cannot be restored."
 msgstr ""
-"Изтрийте данните на WP Event Manager, когато плъгинът бъде изтрит. Веднъж "
-"премахнати, тези данни не могат да бъдат възстановени."
+"Изтрийте данните на WP Event Manager, когато приставката бъде изтрита. "
+"Веднъж премахнати, тези данни не могат да бъдат възстановени."
 
-#: admin/wp-event-manager-settings.php:91
+#: admin/wp-event-manager-settings.php:92
 msgid "Google API Key"
 msgstr "Google API Key"
 
-#: admin/wp-event-manager-settings.php:92
+#: admin/wp-event-manager-settings.php:93
 
 msgid ""
 "If you are going to deal with google map or location then you need Google "
@@ -628,281 +633,300 @@ msgid ""
 "developers.google.com/maps/documentation/geocoding/get-api-key\" target="
 "\"__blank\">Google Maps API developer site</a>. "
 msgstr ""
-"Ако ще се занимавате с Google Map или местоположение, тогава имате нужда от "
-"ключ за Google API, за да извлечете информация за местоположението за обяви "
-"за събития. Също така този ключ за API на Google изисква кога ще използвате "
-"<a href=\"https://www.wp-eventmanager.com/product/wp-event-manager-google-"
-"maps/\" target=\"__blank\">Google Map Addon</a>.  Придобийте API ключ от "
-"сайта за <a href=\"https://developers.google.com/maps/documentation/"
-"geocoding/get-api-key\" target=\"__blank\">разработчици на Google Maps API</"
-"a>. "
+"Ако ще се занимавате с Google карта или местоположение, тогава имате нужда "
+"от Google API ключ, за да извлечете информация за местоположението за обяви "
+"за събития. Също така този ключ на Google API изисква кога ще използвате <a "
+"href=\"https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/"
+"\" target=\"__blank\">Google Map Addon</a>.  Придобийте API ключ от <a href="
+"\"https://developers.google.com/maps/documentation/geocoding/get-api-key\" "
+"target=\"__blank\">сайта за разработчици на Google Maps API</a>. "
 
-#: admin/wp-event-manager-settings.php:99
+#: admin/wp-event-manager-settings.php:100
 
 msgid "Event Listings"
-msgstr "Обяви за събития"
+msgstr "Списъци със събития"
 
-#: admin/wp-event-manager-settings.php:111
+#: admin/wp-event-manager-settings.php:112
 msgid "Listings Per Page"
 msgstr "Визитки на страница"
 
-#: admin/wp-event-manager-settings.php:113
+#: admin/wp-event-manager-settings.php:114
 
 msgid "How many listings should be shown per page by default?"
 msgstr "Колко обяви трябва да се показват на страница по подразбиране?"
 
-#: admin/wp-event-manager-settings.php:126
+#: admin/wp-event-manager-settings.php:127
 
 msgid "Cancelled Events"
 msgstr "Отменени събития"
 
-#: admin/wp-event-manager-settings.php:128
+#: admin/wp-event-manager-settings.php:129
 
 msgid "Hide cancelled events."
-msgstr "Скриване на отменени събития."
+msgstr "Скриване на отменените събития."
 
-#: admin/wp-event-manager-settings.php:130
+#: admin/wp-event-manager-settings.php:131
 
 msgid "If enabled, cancelled events will be hidden from archives."
 msgstr "Ако е разрешено, отменените събития ще бъдат скрити от архивите."
 
-#: admin/wp-event-manager-settings.php:140
+#: admin/wp-event-manager-settings.php:141
 
 msgid "Hide Expired Listings"
-msgstr "Скриване на списъци с изтекъл срок на валидност"
+msgstr "Скрий изтеклите обяви"
 
-#: admin/wp-event-manager-settings.php:142
+#: admin/wp-event-manager-settings.php:143
 
 msgid "Hide expired listings in event archive/search."
-msgstr "Скриване на изтекли обяви в архив/търсене на събития."
+msgstr "Скриване на изтекли обяви в архива/търсенето на събития."
 
-#: admin/wp-event-manager-settings.php:144
+#: admin/wp-event-manager-settings.php:145
 
 msgid "If enabled, expired event listing is not searchable."
-msgstr "Ако е разрешено, списъкът с изтекли събития не може да се търси."
+msgstr ""
+"Ако е разрешено, списъкът със събития с изтекъл срок не може да се търси."
 
-#: admin/wp-event-manager-settings.php:157
+#: admin/wp-event-manager-settings.php:158
 
 msgid "Hide Expired Listings Content"
-msgstr "Скриване на съдържание с изтекъл срок на валидност"
+msgstr "Скриване на съдържанието на изтекли списъци"
 
-#: admin/wp-event-manager-settings.php:159
+#: admin/wp-event-manager-settings.php:160
 
 msgid "Hide expired listing content in single event listing (singular)."
 msgstr ""
-"Скриване на съдържанието на списъка с изтекъл срок в списък с единични "
+"Скриване на съдържанието на списъка с изтекъл срок в списъка с единични "
 "събития (единствено число)."
 
-#: admin/wp-event-manager-settings.php:161
+#: admin/wp-event-manager-settings.php:162
 
 msgid ""
 "If enabled, the content within expired listings will be hidden. Otherwise, "
 "expired listings will be displayed as normal (without the event registration "
 "area)."
 msgstr ""
-"Ако е разрешено, съдържанието в списъците с изтекъл срок на годност ще бъде "
-"скрито. В противен случай изтеклите обяви ще се показват както обикновено "
-"(без областта за регистрация на събитието)."
+"Ако е разрешено, съдържанието в списъците с изтекъл срок ще бъде скрито. В "
+"противен случай списъците с изтекъл срок ще се показват като нормални (без "
+"областта за регистрация на събития)."
 
-#: admin/wp-event-manager-settings.php:174
-msgid "Multi-select Categories"
-msgstr "Множествен избор на категории"
+#: admin/wp-event-manager-settings.php:175
 
-#: admin/wp-event-manager-settings.php:176
+msgid "Multi-select Event Categories"
+msgstr "Множествен избор на категории събития"
 
-msgid "Enable category multiselect by default."
-msgstr "Разрешаване на категория multiselect по подразбиране."
+#: admin/wp-event-manager-settings.php:177
 
-#: admin/wp-event-manager-settings.php:178
-#: admin/wp-event-manager-settings.php:210
+msgid "Enable event category multiselect by default."
+msgstr "Разрешаване на множествен избор на категория събития по подразбиране."
+
+#: admin/wp-event-manager-settings.php:179
+#: admin/wp-event-manager-settings.php:211
 
 msgid ""
 "If enabled, the category select box will default to a multi select on the "
 "[events] shortcode."
 msgstr ""
-"Ако е разрешено, полето за избор на категория ще бъде по подразбиране за "
-"мулти избор в краткия код [events]."
+"Ако е активирано, полето за избор на категория ще бъде по подразбиране за "
+"множествен избор в краткия код [събития]."
 
-#: admin/wp-event-manager-settings.php:191
+#: admin/wp-event-manager-settings.php:192
 
 msgid "Multi-select Event Types"
 msgstr "Типове събития с множествен избор"
 
-#: admin/wp-event-manager-settings.php:193
+#: admin/wp-event-manager-settings.php:194
 
 msgid "Enable event type multiselect by default."
-msgstr "Разрешаване на многократен избор на тип събитие по подразбиране."
+msgstr "Разреши групов избор на тип събитие по подразбиране."
 
-#: admin/wp-event-manager-settings.php:195
-#: admin/wp-event-manager-settings.php:230
+#: admin/wp-event-manager-settings.php:196
+#: admin/wp-event-manager-settings.php:231
 
 msgid ""
 "If enabled, the event type select box will default to a multi select on the "
 "[events] shortcode."
 msgstr ""
 "Ако е разрешено, полето за избор на тип събитие ще бъде по подразбиране за "
-"мулти избор в краткия код [events]."
+"множествен избор в краткия код [събития]."
 
-#: admin/wp-event-manager-settings.php:208
+#: admin/wp-event-manager-settings.php:209
 #: external/elementor-widgets/elementor-event-listing.php:194
 
 msgid "Category Filter"
-msgstr "Категория Филтър"
+msgstr "Филтър по категория"
 
-#: admin/wp-event-manager-settings.php:216
+#: admin/wp-event-manager-settings.php:217
 
 msgid "Events will be shown if within ANY selected category."
 msgstr ""
 "Събитията ще бъдат показани, ако са в рамките на ВСЯКА избрана категория."
 
-#: admin/wp-event-manager-settings.php:218
+#: admin/wp-event-manager-settings.php:219
 
 msgid "Events will be shown if within ALL selected categories."
 msgstr ""
-"Събитията ще бъдат показани, ако са в рамките на ВСИЧКИ избрани категории."
+"Събитията ще бъдат показвани, ако са в рамките на ВСИЧКИ избрани категории."
 
-#: admin/wp-event-manager-settings.php:228
+#: admin/wp-event-manager-settings.php:229
 
 msgid "Event Type Filter"
 msgstr "Филтър за тип събитие"
 
-#: admin/wp-event-manager-settings.php:236
+#: admin/wp-event-manager-settings.php:237
 
 msgid "Events will be shown if within ANY selected event type."
 msgstr ""
 "Събитията ще бъдат показани, ако са в рамките на ВСЕКИ избран тип събитие."
 
-#: admin/wp-event-manager-settings.php:238
+#: admin/wp-event-manager-settings.php:239
 
 msgid "Events will be shown if within ALL selected event types."
 msgstr ""
 "Събитията ще бъдат показани, ако са в рамките на ВСИЧКИ избрани типове "
 "събития."
 
-#: admin/wp-event-manager-settings.php:246
+#: admin/wp-event-manager-settings.php:248
+
+msgid "Ticket Prices Selection"
+msgstr "Избор на цени на билети"
+
+#: admin/wp-event-manager-settings.php:250
+
+msgid "Enable Ticket prices selection for listing page."
+msgstr "Активиране на избора на цени на билети за страницата с обяви."
+
+#: admin/wp-event-manager-settings.php:252
+
+msgid ""
+"Choose whether to enable ticket prices selection on the event listing page."
+msgstr ""
+"Изберете дали да разрешите избора на цени на билети на страницата със "
+"списъка на събитията."
+
+#: admin/wp-event-manager-settings.php:263
 
 msgid "Event Submission"
 msgstr "Подаване на събитие"
 
-#: admin/wp-event-manager-settings.php:256
+#: admin/wp-event-manager-settings.php:273
 msgid "Account Required"
 msgstr "Изисква се акаунт"
 
-#: admin/wp-event-manager-settings.php:258
+#: admin/wp-event-manager-settings.php:275
 
 msgid "Submitting listings requires an account."
-msgstr "Подаването на обяви изисква акаунт."
+msgstr "Изпращането на обяви изисква акаунт."
 
-#: admin/wp-event-manager-settings.php:260
+#: admin/wp-event-manager-settings.php:277
 
 msgid ""
 "If disabled, non-logged in users will be able to submit listings without "
 "creating an account."
 msgstr ""
 "Ако са деактивирани, потребителите, които не са влезли в системата, ще могат "
-"да подават обяви, без да създават акаунт."
+"да изпращат списъци, без да създават акаунт."
 
-#: admin/wp-event-manager-settings.php:273
+#: admin/wp-event-manager-settings.php:290
 msgid "Account Creation"
 msgstr "Създаване на Профил"
 
-#: admin/wp-event-manager-settings.php:275
+#: admin/wp-event-manager-settings.php:292
 
 msgid "Allow account creation."
-msgstr "Разрешаване на създаването на акаунт."
+msgstr "Разрешаване на създаване на акаунт."
 
-#: admin/wp-event-manager-settings.php:277
+#: admin/wp-event-manager-settings.php:294
 
 msgid ""
 "If enabled, non-logged in users will be able to create an account by "
 "entering their email address on the submission form."
 msgstr ""
-"Ако е активирано, потребителите, които не са влезли в системата, ще могат да "
-"създадат акаунт, като въведат своя имейл адрес във формуляра за подаване."
+"Ако е активирано, невлезлите потребители ще могат да създадат акаунт, като "
+"въведат своя имейл адрес във формуляра за подаване."
 
-#: admin/wp-event-manager-settings.php:290
+#: admin/wp-event-manager-settings.php:307
 
 msgid "Account Username"
 msgstr "Потребителско име на акаунт"
 
-#: admin/wp-event-manager-settings.php:292
+#: admin/wp-event-manager-settings.php:309
 
 msgid "Automatically Generate Username from Email Address."
 msgstr "Автоматично генериране на потребителско име от имейл адрес."
 
-#: admin/wp-event-manager-settings.php:294
+#: admin/wp-event-manager-settings.php:311
 
 msgid ""
 "If enabled, a username will be generated from the first part of the user "
 "email address. Otherwise, a username field will be shown."
 msgstr ""
-"Ако е разрешено, потребителско име ще бъде генерирано от първата част на "
-"потребителския имейл адрес. В противен случай ще бъде показано поле за "
-"потребителско име."
+"Ако е активирано, ще се генерира потребителско име от първата част на имейл "
+"адреса на потребителя. В противен случай ще се покаже поле за потребителско "
+"име."
 
-#: admin/wp-event-manager-settings.php:303
+#: admin/wp-event-manager-settings.php:320
 
 msgid "Account Password"
 msgstr "Парола за акаунт"
 
-#: admin/wp-event-manager-settings.php:304
+#: admin/wp-event-manager-settings.php:321
 
 msgid ""
 "Use WordPress' default behavior and email new users link to set a password."
 msgstr ""
 "Използвайте поведението по подразбиране на WordPress и изпратете имейл на "
-"връзката на новите потребители, за да зададете парола."
+"нови потребители, за да зададете парола."
 
-#: admin/wp-event-manager-settings.php:305
+#: admin/wp-event-manager-settings.php:322
 
 msgid ""
 "If enabled, an email will be sent to the user with their username and a link "
 "to set their password. Otherwise, a password field will be shown and their "
 "email address won't be verified."
 msgstr ""
-"Ако е разрешено, на потребителя ще бъде изпратен имейл с потребителското му "
-"име и връзка, за да зададете паролата му. В противен случай ще бъде показано "
-"поле с парола и техният имейл адрес няма да бъде проверен."
+"Ако е активирано, на потребителя ще бъде изпратен имейл с неговото "
+"потребителско име и линк за задаване на паролата му. В противен случай ще се "
+"покаже поле за парола и техният имейл адрес няма да бъде потвърден."
 
-#: admin/wp-event-manager-settings.php:316
+#: admin/wp-event-manager-settings.php:333
 msgid "Account Role"
 msgstr "Роля на акаунта"
 
-#: admin/wp-event-manager-settings.php:318
+#: admin/wp-event-manager-settings.php:335
 
 msgid ""
 "If you enable user registration on your submission form, choose a role for "
 "the new user."
 msgstr ""
-"Ако разрешите регистрацията на потребител във формуляра за подаване, "
+"Ако разрешите потребителска регистрация във вашия формуляр за подаване, "
 "изберете роля за новия потребител."
 
-#: admin/wp-event-manager-settings.php:331
+#: admin/wp-event-manager-settings.php:348
 msgid "Moderate New Listings"
 msgstr "Модериране на нови обяви"
 
-#: admin/wp-event-manager-settings.php:333
+#: admin/wp-event-manager-settings.php:350
 
 msgid "New listing submissions require admin approval."
-msgstr "Подаването на нови обяви изисква одобрение от администратор."
+msgstr "Новите подавания на списъци изискват одобрение от администратор."
 
-#: admin/wp-event-manager-settings.php:335
+#: admin/wp-event-manager-settings.php:352
 
 msgid "If enabled, new submissions will be inactive, pending admin approval."
 msgstr ""
-"Ако е разрешено, новите заявления ще бъдат неактивни, в очакване на "
-"одобрение от администратора."
+"Ако е разрешено, новите подавания ще бъдат неактивни, чакащи одобрение от "
+"администратор."
 
-#: admin/wp-event-manager-settings.php:348
+#: admin/wp-event-manager-settings.php:365
 msgid "Allow Pending Edits"
 msgstr "Разрешаване на чакащи редакции"
 
-#: admin/wp-event-manager-settings.php:350
+#: admin/wp-event-manager-settings.php:367
 
 msgid "Submissions awaiting approval can be edited."
-msgstr "Подаванията, които очакват одобрение, могат да бъдат редактирани."
+msgstr "Предложенията, които чакат одобрение, могат да бъдат редактирани."
 
-#: admin/wp-event-manager-settings.php:352
+#: admin/wp-event-manager-settings.php:369
 
 msgid ""
 "If enabled, submissions awaiting admin approval can be edited by the user."
@@ -910,163 +934,162 @@ msgstr ""
 "Ако е разрешено, подаванията, чакащи одобрение от администратор, могат да "
 "бъдат редактирани от потребителя."
 
-#: admin/wp-event-manager-settings.php:363
+#: admin/wp-event-manager-settings.php:380
 
 msgid "Allow Multiple Banners"
-msgstr "Разрешаване на няколко банера"
+msgstr "Разреши няколко банера"
 
-#: admin/wp-event-manager-settings.php:365
+#: admin/wp-event-manager-settings.php:382
 
 msgid "User can submit multiple banner."
 msgstr "Потребителят може да изпрати няколко банера."
 
-#: admin/wp-event-manager-settings.php:367
+#: admin/wp-event-manager-settings.php:384
 
 msgid ""
 "If enabled, Multiple banner can add at frontend by user and backend side by "
 "admin."
 msgstr ""
-"Ако е активиран, множество банери могат да добавят в интерфейса от "
-"потребителя и бекенд страна от администратор."
+"Ако е активиран, Multiple банер може да добавите в интерфейса от потребител "
+"и бекенд страна от администратор."
 
-#: admin/wp-event-manager-settings.php:379
+#: admin/wp-event-manager-settings.php:396
 
-msgid "Delete listings after finished"
+msgid "Delete Listings After Finished"
 msgstr "Изтриване на списъци след завършване"
 
-#: admin/wp-event-manager-settings.php:381
+#: admin/wp-event-manager-settings.php:398
 
 msgid "Delete listings after finished."
 msgstr "Изтриване на списъци след приключване."
 
-#: admin/wp-event-manager-settings.php:383
+#: admin/wp-event-manager-settings.php:400
 
 msgid "If enabled, expired listings will automatically deleted after finished."
 msgstr ""
-"Ако са разрешени, списъците с изтекъл срок на валидност ще бъдат автоматично "
-"изтрити след приключване."
+"Ако е разрешено, списъците с изтекъл срок автоматично ще бъдат изтрити след "
+"приключване."
 
-#: admin/wp-event-manager-settings.php:395
+#: admin/wp-event-manager-settings.php:412
 
-msgid "Delete Expired listings"
-msgstr "Изтриване на списъци с изтекъл срок"
+msgid "Delete Expired Listings"
+msgstr "Изтриване на изтекли списъци"
 
-#: admin/wp-event-manager-settings.php:397
+#: admin/wp-event-manager-settings.php:414
 
 msgid "Expired listings are deleted after 30 days."
 msgstr "Изтеклите обяви се изтриват след 30 дни."
 
-#: admin/wp-event-manager-settings.php:399
+#: admin/wp-event-manager-settings.php:416
 
 msgid "If enabled, expired listings will automatically deleted after 30 days."
 msgstr ""
-"Ако са активирани, изтеклите обяви автоматично ще бъдат изтрити след 30 дни."
+"Ако е разрешено, списъците с изтекъл срок автоматично ще бъдат изтрити след "
+"30 дни."
 
-#: admin/wp-event-manager-settings.php:412
+#: admin/wp-event-manager-settings.php:429
 
 msgid "Listing Expire"
-msgstr "Изтичане на срока на обявата"
+msgstr "Срокът на валидност на обявата е"
 
-#: admin/wp-event-manager-settings.php:414
+#: admin/wp-event-manager-settings.php:431
 
 msgid ""
 "You can set event submission expiry time either event end date or specific "
 "days."
 msgstr ""
-"Можете да зададете време на изтичане на срока на подаване на събитието или "
-"крайна дата на събитието, или конкретни дни."
+"Можете да зададете време на изтичане на срока на събитието или крайна дата "
+"на събитието, или конкретни дни."
 
-#: admin/wp-event-manager-settings.php:420
+#: admin/wp-event-manager-settings.php:437
 
 msgid "Listing expire on Event End Date"
 msgstr "Списъкът изтича на крайната дата на събитието"
 
-#: admin/wp-event-manager-settings.php:422
+#: admin/wp-event-manager-settings.php:439
 
 msgid "Listing expire on Specified Below Days"
-msgstr "Обявата изтича в посочените по-долу дни"
+msgstr "Списъкът изтича в посочените по-долу дни"
 
-#: admin/wp-event-manager-settings.php:432
+#: admin/wp-event-manager-settings.php:449
 msgid "Listing Duration"
 msgstr "Времетраене на Визитката"
 
-#: admin/wp-event-manager-settings.php:434
+#: admin/wp-event-manager-settings.php:451
 
 msgid ""
 "How many <strong>days</strong> listings are live before expiring. Can be "
 "left blank to never expire."
 msgstr ""
 "Колко <strong>дни</strong> обяви са на живо, преди да изтече. Може да се "
-"остави празно, за да не изтече."
+"остави празно, за да не изтече никога."
 
-#: admin/wp-event-manager-settings.php:445
+#: admin/wp-event-manager-settings.php:462
 msgid "Categories"
 msgstr "Категории"
 
-#: admin/wp-event-manager-settings.php:447
+#: admin/wp-event-manager-settings.php:464
 
 msgid "Enable Categories for listing and submission form."
 msgstr "Разрешаване на категории за формуляр за списък и подаване."
 
-#: admin/wp-event-manager-settings.php:449
+#: admin/wp-event-manager-settings.php:466
 
 msgid ""
 "Choose whether to enable categories on the event listing and submission "
 "page. If enabled, it needs to be prior created at the backend."
 msgstr ""
-"Изберете дали да разрешите категориите в списъка със събития и страницата за "
-"подаване. Ако е активиран, той трябва да бъде предварително създаден в "
-"бекенда."
+"Изберете дали да разрешите категориите на страницата за списък със събития и "
+"подаване. Ако е разрешено, то трябва да бъде предварително създадено в "
+"сървъра."
 
-#: admin/wp-event-manager-settings.php:462
+#: admin/wp-event-manager-settings.php:479
 #: templates/content-single-event_listing.php:537
 msgid "Event Types"
 msgstr "Видове събития"
 
-#: admin/wp-event-manager-settings.php:464
+#: admin/wp-event-manager-settings.php:481
 
 msgid "Enable Event types for listing and submission form."
 msgstr "Разрешаване на типове събития за формуляр за списък и подаване."
 
-#: admin/wp-event-manager-settings.php:466
+#: admin/wp-event-manager-settings.php:483
 
 msgid ""
 "Choose whether to enable event types on the event listing and submission "
 "page. If enabled, it needs to be prior created at the backend."
 msgstr ""
 "Изберете дали да разрешите типовете събития на страницата за списък със "
-"събития и подаване. Ако е активиран, той трябва да бъде предварително "
-"създаден в бекенда."
+"събития и подаване. Ако е разрешено, то трябва да бъде предварително "
+"създадено в сървъра."
 
-#: admin/wp-event-manager-settings.php:479
+#: admin/wp-event-manager-settings.php:496 templates/event-filters.php:141
 
-msgid "Ticket prices"
+msgid "Ticket Prices"
 msgstr "Цени на билети"
 
-#: admin/wp-event-manager-settings.php:481
+#: admin/wp-event-manager-settings.php:498
 
-msgid "Enable Ticket prices for listing and submission form."
-msgstr "Активирайте цените на билетите за формуляра за обява и подаване."
+msgid "Enable Ticket prices for submission form."
+msgstr "Активиране на цените на билетите за формуляра за подаване."
 
-#: admin/wp-event-manager-settings.php:483
+#: admin/wp-event-manager-settings.php:500
 
-msgid ""
-"Choose whether to enable ticket prices on the event listing and submission "
-"page."
+msgid "Choose whether to enable ticket prices on the event submission page."
 msgstr ""
-"Изберете дали да разрешите цените на билетите на страницата за обяви и "
-"подаване на събития."
+"Изберете дали да разрешите цените на билетите на страницата за подаване на "
+"събитието."
 
-#: admin/wp-event-manager-settings.php:494
+#: admin/wp-event-manager-settings.php:511
 msgid "Pages"
 msgstr "Страници"
 
-#: admin/wp-event-manager-settings.php:504
+#: admin/wp-event-manager-settings.php:521
 
 msgid "Submit Event Form Page"
-msgstr "Подаване на страница на формуляр за събитие"
+msgstr "Изпращане на страница с формуляр за събитие"
 
-#: admin/wp-event-manager-settings.php:506
+#: admin/wp-event-manager-settings.php:523
 
 msgid ""
 "Select the page where you have placed the [submit_event_form] shortcode. "
@@ -1075,51 +1098,51 @@ msgstr ""
 "Изберете страницата, където сте поставили краткия код [submit_event_form]. "
 "Това позволява на приставката да знае къде се намира формулярът."
 
-#: admin/wp-event-manager-settings.php:517
+#: admin/wp-event-manager-settings.php:534
 
 msgid "Event Dashboard Page"
-msgstr "Страница на таблото за събития"
+msgstr "Страница на табло за събития"
 
-#: admin/wp-event-manager-settings.php:519
+#: admin/wp-event-manager-settings.php:536
 
 msgid ""
 "Select the page where you have placed the [event_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
 msgstr ""
 "Изберете страницата, където сте поставили краткия код [event_dashboard]. "
-"Това позволява на приставката да знае къде се намира таблото за управление."
+"Това позволява на приставката да знае къде се намира таблото."
 
-#: admin/wp-event-manager-settings.php:530
+#: admin/wp-event-manager-settings.php:547
 
 msgid "Event Listings Page"
 msgstr "Страница със списъци със събития"
 
-#: admin/wp-event-manager-settings.php:532
+#: admin/wp-event-manager-settings.php:549
 
 msgid ""
 "Select the page where you have placed the [events] shortcode. This lets the "
 "plugin know where the event listings page is located."
 msgstr ""
-"Изберете страницата, където сте поставили краткия код [events]. Това "
+"Изберете страницата, където сте поставили краткия код [събития]. Това "
 "позволява на приставката да знае къде се намира страницата със списъци със "
 "събития."
 
-#: admin/wp-event-manager-settings.php:542
+#: admin/wp-event-manager-settings.php:559
 
 msgid "Login Page URL"
-msgstr "URL адрес на страницата за влизане"
+msgstr "URL адрес на страница за вход"
 
-#: admin/wp-event-manager-settings.php:544
+#: admin/wp-event-manager-settings.php:561
 
 msgid "Enter the Login page URL."
 msgstr "Въведете URL адреса на страницата за влизане."
 
-#: admin/wp-event-manager-settings.php:555
+#: admin/wp-event-manager-settings.php:572
 
 msgid "Submit Organizer Form Page"
-msgstr "Подаване на страница на формуляр на организатор"
+msgstr "Подаване на страница с формуляр на организатор"
 
-#: admin/wp-event-manager-settings.php:557
+#: admin/wp-event-manager-settings.php:574
 
 msgid ""
 "Select the page where you have placed the [submit_organizer_form] shortcode. "
@@ -1129,26 +1152,26 @@ msgstr ""
 "[submit_organizer_form]. Това позволява на приставката да знае къде се "
 "намира формулярът."
 
-#: admin/wp-event-manager-settings.php:567
+#: admin/wp-event-manager-settings.php:584
 
 msgid "Organizer Dashboard Page"
 msgstr "Страница на таблото на организатора"
 
-#: admin/wp-event-manager-settings.php:569
+#: admin/wp-event-manager-settings.php:586
 
 msgid ""
 "Select the page where you have placed the [organizer_dashboard] shortcode. "
 "This lets the plugin know where the dashboard is located."
 msgstr ""
 "Изберете страницата, където сте поставили краткия код [organizer_dashboard]. "
-"Това позволява на приставката да знае къде се намира таблото за управление."
+"Това позволява на приставката да знае къде се намира таблото."
 
-#: admin/wp-event-manager-settings.php:580
+#: admin/wp-event-manager-settings.php:597
 
 msgid "Submit Venue Form Page"
-msgstr "Подаване на страница на формуляр за място"
+msgstr "Изпращане на страница с формуляр за място"
 
-#: admin/wp-event-manager-settings.php:582
+#: admin/wp-event-manager-settings.php:599
 
 msgid ""
 "Select the page where you have placed the [submit_venue_form] shortcode. "
@@ -1157,59 +1180,61 @@ msgstr ""
 "Изберете страницата, където сте поставили краткия код [submit_venue_form]. "
 "Това позволява на приставката да знае къде се намира формулярът."
 
-#: admin/wp-event-manager-settings.php:592
+#: admin/wp-event-manager-settings.php:609
 
 msgid "Venue Dashboard Page"
-msgstr "Страница на таблото за управление на място"
+msgstr "Страница на таблото за място на провеждане"
 
-#: admin/wp-event-manager-settings.php:594
+#: admin/wp-event-manager-settings.php:611
 
 msgid ""
 "Select the page where you have placed the [venue_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
 msgstr ""
 "Изберете страницата, където сте поставили краткия код [venue_dashboard]. "
-"Това позволява на приставката да знае къде се намира таблото за управление."
+"Това позволява на приставката да знае къде се намира таблото."
 
-#: admin/wp-event-manager-settings.php:602
+#: admin/wp-event-manager-settings.php:619
 
 msgid "Date & Time Format"
 msgstr "Формат за дата и час"
 
-#: admin/wp-event-manager-settings.php:611
+#: admin/wp-event-manager-settings.php:628
 
 msgid "Datepicker Date Format"
-msgstr "Формат на датата за избор на дата"
+msgstr "Формат на датата на избор на дата"
 
-#: admin/wp-event-manager-settings.php:613
+#: admin/wp-event-manager-settings.php:630
 
 msgid "Select the date format to use in datepickers."
-msgstr "Изберете формата на датата, който да използвате в събирачите на дата."
+msgstr ""
+"Изберете формата на датата, който да се използва в контролите за избор на "
+"дата."
 
-#: admin/wp-event-manager-settings.php:623
+#: admin/wp-event-manager-settings.php:640
 
 msgid "Timepicker Format"
 msgstr "Формат за избор на време"
 
-#: admin/wp-event-manager-settings.php:625
+#: admin/wp-event-manager-settings.php:642
 
 msgid "Select the time format to use in timepickers."
-msgstr "Изберете времевия формат, който да използвате в timepickers."
+msgstr "Изберете формата за време, който да се използва в избора на време."
 
-#: admin/wp-event-manager-settings.php:630
+#: admin/wp-event-manager-settings.php:647
 msgid "12 Hours"
 msgstr "12 часа"
 
-#: admin/wp-event-manager-settings.php:631
+#: admin/wp-event-manager-settings.php:648
 msgid "24 Hours"
 msgstr "24 часа"
 
-#: admin/wp-event-manager-settings.php:639
+#: admin/wp-event-manager-settings.php:656
 
 msgid "Timepicker Step"
 msgstr "Стъпка за избор на време"
 
-#: admin/wp-event-manager-settings.php:641
+#: admin/wp-event-manager-settings.php:658
 
 msgid ""
 "Select the time step to use in timepickers. Time step must have to be in "
@@ -1218,126 +1243,126 @@ msgstr ""
 "Изберете стъпката за време, която да използвате в timepickers. Времевата "
 "стъпка трябва да бъде между 1 и 60."
 
-#: admin/wp-event-manager-settings.php:650
+#: admin/wp-event-manager-settings.php:667
 msgid "Date Format"
 msgstr "Формата на датата"
 
-#: admin/wp-event-manager-settings.php:652
+#: admin/wp-event-manager-settings.php:669
 
 msgid ""
 "This date format will be used at the frontend date display. <a href="
 "\"https://wordpress.org/support/article/formatting-date-and-time/\" target="
 "\"__blank\">For more information click here</a>."
 msgstr ""
-"Този формат за дата ще се използва на дисплея за дата на интерфейса. <a href="
+"Този формат на датата ще се използва на дисплея за дата на клиента. <a href="
 "\"https://wordpress.org/support/article/formatting-date-and-time/\" target="
 "\"__blank\">За повече информация натиснете тук</a>."
 
-#: admin/wp-event-manager-settings.php:661
+#: admin/wp-event-manager-settings.php:678
 
 msgid "Date And Time Separator"
 msgstr "Разделител за дата и час"
 
-#: admin/wp-event-manager-settings.php:663
+#: admin/wp-event-manager-settings.php:680
 
 msgid "Add date and time separator."
 msgstr "Добавете разделител за дата и час."
 
-#: admin/wp-event-manager-settings.php:672
+#: admin/wp-event-manager-settings.php:689
 
 msgid "Event Timezone"
-msgstr "Часова зона на събитието"
+msgstr "Часова зона на събитие"
 
-#: admin/wp-event-manager-settings.php:674
+#: admin/wp-event-manager-settings.php:691
 
 msgid ""
 "In case while submitting an event, if the timezone for each event is not "
 "selected, the WP Event Manager will take the default WordPress (website) "
 "timezone."
 msgstr ""
-"В случай, че при изпращане на събитие, ако часовата зона за всяко събитие не "
+"В случай, че при подаване на събитие, ако часовата зона за всяко събитие не "
 "е избрана, WP Event Manager ще вземе часовата зона по подразбиране WordPress "
-"(website)."
+"(уебсайт)."
 
-#: admin/wp-event-manager-settings.php:678
+#: admin/wp-event-manager-settings.php:695
 
 msgid "Use website timezone."
-msgstr "Използвайте часовата зона на сайта."
+msgstr "Използвайте часовата зона на уеб сайта."
 
-#: admin/wp-event-manager-settings.php:679
+#: admin/wp-event-manager-settings.php:696
 
 msgid "Select a timezone on each event."
 msgstr "Изберете часова зона за всяко събитие."
 
-#: admin/wp-event-manager-settings.php:746
+#: admin/wp-event-manager-settings.php:763
 
 msgid "Settings successfully saved"
-msgstr "Успешно запазени настройки"
+msgstr "Настройките са записани успешно"
 
-#: admin/wp-event-manager-settings.php:862
+#: admin/wp-event-manager-settings.php:879
 
 msgid "--no page--"
-msgstr "--Няма страница--"
+msgstr "Настройка на страницата"
 
-#: admin/wp-event-manager-settings.php:870
+#: admin/wp-event-manager-settings.php:887
 msgid "Select a page&hellip;"
 msgstr "Изберете страница&hellip;"
 
-#: admin/wp-event-manager-settings.php:937 admin/wp-event-manager-setup.php:371
+#: admin/wp-event-manager-settings.php:954 admin/wp-event-manager-setup.php:372
 
 msgid "Helpful Resources"
 msgstr "Полезни ресурси"
 
-#: admin/wp-event-manager-settings.php:946 admin/wp-event-manager-setup.php:378
+#: admin/wp-event-manager-settings.php:963 admin/wp-event-manager-setup.php:379
 msgid "Knowledge Base"
 msgstr "База знания"
 
-#: admin/wp-event-manager-settings.php:947 admin/wp-event-manager-setup.php:379
+#: admin/wp-event-manager-settings.php:964 admin/wp-event-manager-setup.php:380
 
 msgid "Solve your queries by browsing our documentation."
-msgstr "Решете вашите запитвания, като прегледате нашата документация."
+msgstr "Решете запитванията си, като прегледате нашата документация."
 
-#: admin/wp-event-manager-settings.php:948 admin/wp-event-manager-setup.php:380
+#: admin/wp-event-manager-settings.php:965 admin/wp-event-manager-setup.php:381
 
 msgid "Browse More"
-msgstr "Преглед на още"
+msgstr "Преглед на повече"
 
-#: admin/wp-event-manager-settings.php:956 admin/wp-event-manager-setup.php:388
+#: admin/wp-event-manager-settings.php:973 admin/wp-event-manager-setup.php:389
 msgid "FAQs"
 msgstr "ЧЗВ"
 
-#: admin/wp-event-manager-settings.php:957 admin/wp-event-manager-setup.php:389
+#: admin/wp-event-manager-settings.php:974 admin/wp-event-manager-setup.php:390
 
 msgid "Explore through the frequently asked questions."
-msgstr "Разгледайте често задаваните въпроси."
+msgstr "Разгледайте чрез често задаваните въпроси."
 
-#: admin/wp-event-manager-settings.php:958 admin/wp-event-manager-setup.php:390
+#: admin/wp-event-manager-settings.php:975 admin/wp-event-manager-setup.php:391
 
 msgid "Get Answers"
-msgstr "Получаване на отговори"
+msgstr "Получете отговори"
 
-#: admin/wp-event-manager-settings.php:966 admin/wp-event-manager-setup.php:398
+#: admin/wp-event-manager-settings.php:983 admin/wp-event-manager-setup.php:399
 msgid "Video Tutorials"
 msgstr "Видео уроци"
 
-#: admin/wp-event-manager-settings.php:967 admin/wp-event-manager-setup.php:399
+#: admin/wp-event-manager-settings.php:984 admin/wp-event-manager-setup.php:400
 
 msgid "Learn different skills by examining attractive video tutorials."
 msgstr "Научете различни умения, като разгледате атрактивни видео уроци."
 
-#: admin/wp-event-manager-settings.php:968 admin/wp-event-manager-setup.php:400
+#: admin/wp-event-manager-settings.php:985 admin/wp-event-manager-setup.php:401
 
 msgid "Watch all"
-msgstr "Гледай всички"
+msgstr "Гледайте всички"
 
-#: admin/wp-event-manager-settings.php:972
+#: admin/wp-event-manager-settings.php:989
 msgid "Powered By"
 msgstr "От"
 
 #: admin/wp-event-manager-setup.php:44
 
 msgid "Setup"
-msgstr "Настройка"
+msgstr "Въведение в съветника за настройка"
 
 #: admin/wp-event-manager-setup.php:157
 msgid "Error in nonce. Try again."
@@ -1346,7 +1371,7 @@ msgstr "Грешка! Опитайте отново."
 #: admin/wp-event-manager-setup.php:201
 
 msgid "WP Event Manager Setup"
-msgstr "Настройка на WP диспечера на събития"
+msgstr "Настройка на WP Event Manager"
 
 #: admin/wp-event-manager-setup.php:205 admin/wp-event-manager-setup.php:210
 #: admin/wp-event-manager-setup.php:215
@@ -1377,40 +1402,37 @@ msgstr "Благодарим Ви, че инсталирахте WP Event Manage
 #: admin/wp-event-manager-setup.php:228
 
 msgid ""
-"This setup wizard will help you get started by creating various pages for "
-"event submission, event management, and listing your events, along with "
-"setting up organizers and venues pages."
+"The Setup wizard helps you create various pages for event submission, event "
+"listings, handing events along with organizers and venue pages."
 msgstr ""
-"Този съветник за настройка ще ви помогне да започнете, като създадете "
-"различни страници за подаване на събития, управление на събития и изброяване "
-"на вашите събития, заедно с настройване на страници за организатори и места."
+"Съветникът за настройка ви помага да създавате различни страници за подаване "
+"на събития, списъци със събития, предаване на събития заедно с организатори "
+"и страници за място."
 
 #: admin/wp-event-manager-setup.php:230
 #, php-format
 msgid ""
-"The process is still relatively simple if you want to skip the wizard and "
-"manually set up the pages and shortcodes yourself. Please refer to the "
-"%1$sdocumentation%2$s for support."
+"If you want to avoid the Setup wizard and want to creates pages manually, "
+"you can refer to the %1$sdocumentation%2$s for support."
 msgstr ""
-"Процесът все още е сравнително прост, ако искате да пропуснете съветника и "
-"ръчно да настроите страниците и кратките кодове сами. Моля, обърнете се към "
-"%1$sдокументацията%2$s за поддръжка."
+"Ако искате да избегнете съветника за настройка и искате да създадете "
+"страници ръчно, можете да се обърнете към %1$sдокументация%2$s за поддръжка."
 
-#: admin/wp-event-manager-setup.php:234
+#: admin/wp-event-manager-setup.php:235
 
 msgid "Continue to page setup"
-msgstr "Продължете да настройвате страницата"
+msgstr "Продължете към настройката на страниците"
 
-#: admin/wp-event-manager-setup.php:236
+#: admin/wp-event-manager-setup.php:237
 
 msgid "Skip for now"
 msgstr "Пропусни за сега"
 
-#: admin/wp-event-manager-setup.php:244
+#: admin/wp-event-manager-setup.php:245
 msgid "Page Setup"
 msgstr "Настройка на страницата"
 
-#: admin/wp-event-manager-setup.php:246
+#: admin/wp-event-manager-setup.php:247
 #, php-format
 msgid ""
 "The <em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used "
@@ -1419,39 +1441,39 @@ msgid ""
 "on event %4$sshortcodes%2$s."
 msgstr ""
 "<em>WP Event Manager</em> включва %1$sкратки кодове%2$s, които могат да се "
-"използват за извеждане на съдържание в страниците%2$s ви%3$s. Те могат да "
-"бъдат генерирани директно, както е посочено по-долу. Проверете "
-"документацията за кратък код за повече информация относно кратките%2$s "
+"използват за извеждане на съдържание в рамките на вашите %3$sстраници%2$s. "
+"Те могат да бъдат генерирани директно, както е посочено по-долу. Проверете "
+"документацията на краткия код за повече информация относно кратките%2$s "
 "кодове на събитията%4$s."
 
-#: admin/wp-event-manager-setup.php:254
+#: admin/wp-event-manager-setup.php:255
 msgid "Page Title"
 msgstr "Заглавие на страницата"
 
-#: admin/wp-event-manager-setup.php:255
+#: admin/wp-event-manager-setup.php:256
 msgid "Page Description"
 msgstr "Описание на страницата"
 
-#: admin/wp-event-manager-setup.php:256
+#: admin/wp-event-manager-setup.php:257
 
 msgid "Content Shortcode"
 msgstr "Кратък код на съдържанието"
 
-#: admin/wp-event-manager-setup.php:263
+#: admin/wp-event-manager-setup.php:264
 
 msgctxt "Default page title (wizard)"
 msgid "Post an Event"
 msgstr "Публикуване на събитие"
 
-#: admin/wp-event-manager-setup.php:265
+#: admin/wp-event-manager-setup.php:266
 
 msgid ""
-"This page allows peoples to post events to your website from the front-end."
+"This page allows peoples to add events to your website from the front-end."
 msgstr ""
-"Тази страница позволява на хората да публикуват събития на уебсайта Ви от "
+"Тази страница позволява на хората да добавят събития към уебсайта Ви от "
 "предния край."
 
-#: admin/wp-event-manager-setup.php:266
+#: admin/wp-event-manager-setup.php:267
 
 msgid ""
 "If you do not wish to accept submissions from users in this way (for example "
@@ -1462,74 +1484,74 @@ msgstr ""
 "просто искате да публикувате събития от таблото за управление на "
 "администратора), можете да пропуснете създаването на тази страница."
 
-#: admin/wp-event-manager-setup.php:272
+#: admin/wp-event-manager-setup.php:273
 
 msgctxt "Default page title (wizard)"
 msgid "Event Dashboard"
 msgstr "Табло за събития"
 
-#: admin/wp-event-manager-setup.php:274
+#: admin/wp-event-manager-setup.php:275
 
 msgid ""
-"This page allows peoples to manage and edit their own events from the front-"
-"end."
+"This page allows peoples to manage (edit, delete and duplicate) their own "
+"events from the front-end."
 msgstr ""
-"Тази страница позволява на хората да управляват и редактират собствените си "
-"събития от предния край."
+"Тази страница позволява на хората да управляват (редактират, изтриват и "
+"дублират) собствените си събития от предния край."
 
-#: admin/wp-event-manager-setup.php:275
+#: admin/wp-event-manager-setup.php:276
 
 msgid ""
 "If you plan on managing all listings from the admin dashboard you can skip "
 "creating this page."
 msgstr ""
-"Ако планирате да управлявате всички обяви от администраторското табло, "
+"Ако планирате да управлявате всички списъци от администраторското табло, "
 "можете да пропуснете създаването на тази страница."
 
-#: admin/wp-event-manager-setup.php:281
+#: admin/wp-event-manager-setup.php:282
 msgctxt "Default page title (wizard)"
 msgid "Events"
 msgstr "Събития"
 
-#: admin/wp-event-manager-setup.php:282
+#: admin/wp-event-manager-setup.php:283
 
 msgid ""
 "This page allows users to browse, search, and filter event listings on the "
 "front-end of your site."
 msgstr ""
-"Тази страница позволява на потребителите да разглеждат, търсят и филтрират "
-"списъци със събития в предния край на вашия сайт."
+"Тази страница позволява на потребителите да преглеждат, търсят и филтрират "
+"списъци със събития в предния край на сайта Ви."
 
-#: admin/wp-event-manager-setup.php:287
+#: admin/wp-event-manager-setup.php:288
 
 msgctxt "Default page title (wizard)"
 msgid "Submit Organizer Form"
 msgstr "Подаване на формуляр за организатор"
 
-#: admin/wp-event-manager-setup.php:289
+#: admin/wp-event-manager-setup.php:290
 
 msgid "This page allows users to Submit the organizers form the frontend."
 msgstr ""
-"Тази страница позволява на потребителите да изпратят организаторите от "
+"Тази страница позволява на потребителите да представят организаторите от "
 "интерфейса."
 
-#: admin/wp-event-manager-setup.php:290
+#: admin/wp-event-manager-setup.php:291
 
 msgid ""
 "In case if you do not want to allow your users to submit organizers from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
-"В случай, че не искате да позволите на потребителите си да изпращат "
+"В случай, че не искате да позволите на вашите потребители да изпращат "
 "организатори от интерфейса, можете да премахнете отметката от това и да "
 "пропуснете създаването на тази страница."
 
-#: admin/wp-event-manager-setup.php:296
+#: admin/wp-event-manager-setup.php:297
 
 msgctxt "Default page title (wizard)"
 msgid "Organizer Dashboard"
-msgstr "Табло за управление на организатора"
+msgstr "Табло на организатора"
 
-#: admin/wp-event-manager-setup.php:298
+#: admin/wp-event-manager-setup.php:299
 
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the "
@@ -1538,7 +1560,7 @@ msgstr ""
 "Тази страница позволява на хората да управляват (редактират, изтриват и "
 "дублират) организаторите от интерфейса."
 
-#: admin/wp-event-manager-setup.php:299
+#: admin/wp-event-manager-setup.php:300
 
 msgid ""
 "In case if you do not want to allow your users to manage organizers from the "
@@ -1548,40 +1570,40 @@ msgstr ""
 "организаторите от интерфейса, можете да премахнете отметката от това и да "
 "пропуснете създаването на тази страница."
 
-#: admin/wp-event-manager-setup.php:305
+#: admin/wp-event-manager-setup.php:306
 
 msgctxt "Default page title (wizard)"
 msgid "Event Organizers"
 msgstr "Организатори на събития"
 
-#: admin/wp-event-manager-setup.php:307
+#: admin/wp-event-manager-setup.php:308
 
 msgid "This page allows peoples to show organizers from the front-end."
 msgstr ""
-"Тази страница позволява на хората да показват организаторите от предния край."
+"Тази страница позволява на хората да показват организатори от предния край."
 
-#: admin/wp-event-manager-setup.php:308
+#: admin/wp-event-manager-setup.php:309
 
 msgid ""
 "In case if you do not want to allow your users to show organizers from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
-"В случай, че не искате да позволите на потребителите си да показват "
-"организаторите от интерфейса, можете да премахнете отметката от това и да "
+"В случай, че не искате да позволите на вашите потребители да показват "
+"организатори от интерфейса, можете да премахнете отметката от това и да "
 "пропуснете създаването на тази страница."
 
-#: admin/wp-event-manager-setup.php:314
+#: admin/wp-event-manager-setup.php:315
 
 msgctxt "Default page title (wizard)"
 msgid "Submit Venue Form"
-msgstr "Подаване на формуляр за място на провеждане"
-
-#: admin/wp-event-manager-setup.php:316
-
-msgid "This page allows people to Submit the venues from the frontend."
-msgstr "Тази страница позволява на хората да изпращат местата от интерфейса."
+msgstr "Подаване на формуляр за място"
 
 #: admin/wp-event-manager-setup.php:317
+
+msgid "This page allows people to Submit the venues from the frontend."
+msgstr "Тази страница позволява на хората да подават местата от интерфейса."
+
+#: admin/wp-event-manager-setup.php:318
 
 msgid ""
 "In case if you do not want to allow your users to submit venues from the "
@@ -1591,13 +1613,13 @@ msgstr ""
 "интерфейса, можете да премахнете отметката от това и да пропуснете "
 "създаването на тази страница."
 
-#: admin/wp-event-manager-setup.php:323
+#: admin/wp-event-manager-setup.php:324
 
 msgctxt "Default page title (wizard)"
 msgid "Venue Dashboard"
-msgstr "Табло за управление на място"
+msgstr "Табло за място на провеждане"
 
-#: admin/wp-event-manager-setup.php:325
+#: admin/wp-event-manager-setup.php:326
 
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the venues "
@@ -1606,7 +1628,7 @@ msgstr ""
 "Тази страница позволява на хората да управляват (редактират, изтриват и "
 "дублират) местата от интерфейса."
 
-#: admin/wp-event-manager-setup.php:326
+#: admin/wp-event-manager-setup.php:327
 
 msgid ""
 "In case if you do not want to allow your users to manage venues from the "
@@ -1616,18 +1638,18 @@ msgstr ""
 "от интерфейса, можете да премахнете отметката от това и да пропуснете "
 "създаването на тази страница."
 
-#: admin/wp-event-manager-setup.php:332
+#: admin/wp-event-manager-setup.php:333
 
 msgctxt "Default page title (wizard)"
 msgid "Event Venues"
 msgstr "Места за провеждане на събития"
 
-#: admin/wp-event-manager-setup.php:334
+#: admin/wp-event-manager-setup.php:335
 
 msgid "This page allows peoples to show venues from the front-end."
 msgstr "Тази страница позволява на хората да показват места от предния край."
 
-#: admin/wp-event-manager-setup.php:335
+#: admin/wp-event-manager-setup.php:336
 
 msgid ""
 "In case if you do not want to allow your users to show venues from the "
@@ -1637,16 +1659,16 @@ msgstr ""
 "интерфейса, можете да премахнете отметката от това и да пропуснете "
 "създаването на тази страница."
 
-#: admin/wp-event-manager-setup.php:345
+#: admin/wp-event-manager-setup.php:346
 msgid "Skip this step"
 msgstr "Пропусни тази стъпка"
 
-#: admin/wp-event-manager-setup.php:357
+#: admin/wp-event-manager-setup.php:358
 
 msgid "All Done!"
-msgstr "Всичко е направено!"
+msgstr "Всичко е готово!"
 
-#: admin/wp-event-manager-setup.php:361
+#: admin/wp-event-manager-setup.php:362
 
 msgid ""
 "Thanks for installing WP Event Manager! Here are some valuable resources "
@@ -1655,34 +1677,34 @@ msgstr ""
 "Благодарим Ви, че инсталирахте WP Event Manager! Ето някои ценни ресурси, "
 "които ще ви помогнат да започнете с нашите плъгини."
 
-#: admin/wp-event-manager-setup.php:366
+#: admin/wp-event-manager-setup.php:367
 
 msgid "Create Your First Event"
 msgstr "Създайте първото си събитие"
 
-#: admin/wp-event-manager-setup.php:410
+#: admin/wp-event-manager-setup.php:411
 
 msgid "Add ons Support"
-msgstr "Добавяне на поддръжка"
+msgstr "Добави Поддръжка"
 
-#: admin/wp-event-manager-setup.php:411
+#: admin/wp-event-manager-setup.php:412
 
 msgid ""
 "Get support for all the Add ons related queries with our experienced/ "
 "talented support team."
 msgstr ""
-"Получете поддръжка за всички заявки, свързани с Add ons, с нашия опитен / "
+"Получете поддръжка за всички въпроси, свързани с добавките, с нашия опитен / "
 "талантлив екип за поддръжка."
 
-#: admin/wp-event-manager-setup.php:412
+#: admin/wp-event-manager-setup.php:413
 
 msgid "Get Add ons Support"
-msgstr "Получаване на поддръжка за добавяне на"
+msgstr "Получаване на добавки Поддръжка"
 
 #: admin/wp-event-manager-writepanels.php:115
 
 msgid "Featured Listing"
-msgstr "Препоръчана обява"
+msgstr "Препоръчани списъци"
 
 #: admin/wp-event-manager-writepanels.php:117
 
@@ -1690,7 +1712,7 @@ msgid ""
 "Featured listings will be sticky during searches, and can be styled "
 "differently."
 msgstr ""
-"Препоръчаните обяви ще бъдат лепкави по време на търсения и могат да бъдат "
+"Представените обяви ще бъдат лепкави по време на търсенията и могат да бъдат "
 "оформени по различен начин."
 
 #: admin/wp-event-manager-writepanels.php:122
@@ -1710,16 +1732,16 @@ msgstr ""
 #: admin/wp-event-manager-writepanels.php:129
 
 msgid "Listing Expiry Date"
-msgstr "Дата на изтичане на срока на валидност"
+msgstr "Дата на изтичане на обявата"
 
 #: admin/wp-event-manager-writepanels.php:131
 
 msgid "Please enter event expiry date"
-msgstr "Моля, въведете дата на изтичане на срока на събитието"
+msgstr "Моля, въведете дата на изтичане на събитието"
 
 #: admin/wp-event-manager-writepanels.php:139
-#: admin/wp-event-manager-writepanels.php:1213
-#: admin/wp-event-manager-writepanels.php:1371
+#: admin/wp-event-manager-writepanels.php:1217
+#: admin/wp-event-manager-writepanels.php:1375
 msgid "Posted by"
 msgstr "Публикувано от"
 
@@ -1760,33 +1782,42 @@ msgstr ""
 "Въведете идентификационния номер на потребителя или оставете празно, ако е "
 "изпратено от гост."
 
-#: core/wp-event-manager-ajax.php:339
+#: core/wp-event-manager-ajax.php:247
+#: shortcodes/wp-event-manager-shortcodes.php:891
+#: templates/content-no-events-found.php:1
+#: templates/content-widget-no-events-found.php:3
+
+msgid "There are currently no events."
+msgstr "В момента няма събития."
+
+#: core/wp-event-manager-ajax.php:346
 #, php-format
 msgid "Search completed. Found %d matching record."
 msgid_plural "Search completed. Found %d matching records."
 msgstr[0] "Търсенето е приключено. Открито е %d съвпадение от специалист."
 msgstr[1] "Търсенето е приключено. Открити са %d съвпадения от специалисти."
 
-#: core/wp-event-manager-ajax.php:401
+#: core/wp-event-manager-ajax.php:408
 
 msgid "You must be logged in to upload files using this method."
 msgstr ""
-"Трябва да сте влезли в профила си, за да качвате файлове по този метод."
+"Трябва да сте влезли в профила си, за да качвате файлове с помощта на този "
+"метод."
 
-#: core/wp-event-manager-ajax.php:477 core/wp-event-manager-ajax.php:546
+#: core/wp-event-manager-ajax.php:484 core/wp-event-manager-ajax.php:553
 
 msgid "Successfully created"
 msgstr "Успешно създаден"
 
-#: core/wp-event-manager-ajax.php:492
+#: core/wp-event-manager-ajax.php:499
 
 msgid "Organizer Name is a required field."
-msgstr "Името на организатора е задължително поле."
+msgstr "Име на организатора е задължително поле."
 
-#: core/wp-event-manager-ajax.php:561
+#: core/wp-event-manager-ajax.php:568
 
 msgid "Venue Name is a required field."
-msgstr "Името на мястото е задължително поле."
+msgstr "Име на място е задължително поле."
 
 #: core/wp-event-manager-filters.php:23 external/elementor.php:131
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:270
@@ -1859,14 +1890,14 @@ msgstr "Всяка цена на билета"
 #: core/wp-event-manager-filters.php:75
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:284
-#: wp-event-manager-template.php:539
+#: wp-event-manager-template.php:540
 msgid "Paid"
 msgstr "Платено"
 
 #: core/wp-event-manager-filters.php:77
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:285
-#: wp-event-manager-template.php:541
+#: wp-event-manager-template.php:542
 msgid "Free"
 msgstr "Безплатно"
 
@@ -1877,7 +1908,7 @@ msgstr "Не са открити резултати"
 #: core/wp-event-manager-geocode.php:271
 
 msgid "Query limit reached"
-msgstr "Достигнат лимит на заявката"
+msgstr "Достигнат е лимитът на заявката"
 
 #: core/wp-event-manager-geocode.php:275
 
@@ -1885,8 +1916,8 @@ msgid ""
 "Request denied from google map api key please enable geolocation and "
 "gecoding api"
 msgstr ""
-"Заявката е отказана от Google Map API ключ, моля, активирайте api за "
-"геолокация и gecoding"
+"Искането е отказано от Google Map API ключ, моля, активирайте геолокация и "
+"gecoding API"
 
 #: core/wp-event-manager-geocode.php:286 core/wp-event-manager-geocode.php:293
 #: core/wp-event-manager-geocode.php:300
@@ -1897,10 +1928,9 @@ msgstr "Грешка при геокодиране"
 #: core/wp-event-manager-post-types.php:110
 
 msgid "Event category"
-msgstr "Категория на събитието"
+msgstr "Категория на събитито"
 
 #: core/wp-event-manager-post-types.php:112
-
 msgid "Event categories"
 msgstr "Категории събития"
 
@@ -1911,15 +1941,15 @@ msgstr "Вид на събитието"
 #: core/wp-event-manager-post-types.php:201
 
 msgid "Event types"
-msgstr "Типове събития"
+msgstr "Видове събития"
 
 #: core/wp-event-manager-post-types.php:286
 msgid "Event"
 msgstr "Събитие"
 
 #: core/wp-event-manager-post-types.php:288
-#: shortcodes/wp-event-manager-shortcodes.php:456
-#: shortcodes/wp-event-manager-shortcodes.php:608
+#: shortcodes/wp-event-manager-shortcodes.php:457
+#: shortcodes/wp-event-manager-shortcodes.php:610
 #: templates/event-dashboard.php:14 templates/event-listings-start.php:7
 msgid "Events"
 msgstr "Събития"
@@ -1933,7 +1963,7 @@ msgstr "sbitiya"
 #: core/wp-event-manager-post-types.php:520
 
 msgid "Event Manager"
-msgstr "Мениджър събития"
+msgstr "Мениджър на събития"
 
 #: core/wp-event-manager-post-types.php:329
 msgid "Add New"
@@ -1957,9 +1987,9 @@ msgstr "Премахване на миниатюра на събитие"
 #: core/wp-event-manager-post-types.php:357
 
 msgid "Use as event thumbnail"
-msgstr "Използвай като миниатюра на събитие"
+msgstr "Използване като миниатюра на събитие"
 
-#: core/wp-event-manager-post-types.php:404 wp-event-manager-functions.php:595
+#: core/wp-event-manager-post-types.php:404 wp-event-manager-functions.php:601
 msgctxt "post status"
 msgid "Expired"
 msgstr "Изтекла"
@@ -1975,8 +2005,8 @@ msgstr[1] "Изтекла <span class=\"count\">(%s)</span>"
 #, php-format
 msgid "Preview <span class=\"count\">(%s)</span>"
 msgid_plural "Preview <span class=\"count\">(%s)</span>"
-msgstr[0] "Преглед <span class=\"count\">(%s)</span>"
-msgstr[1] "Преглед <span class=\"count\">(%s)</span>"
+msgstr[0] "Визуализация <span class=\"count\">(%s)</span>"
+msgstr[1] "Визуализация <span class=\"count\">(%s)</span>"
 
 #: core/wp-event-manager-post-types.php:432 templates/event-dashboard.php:22
 #: templates/organizer/event-organizers.php:13
@@ -1991,7 +2021,7 @@ msgstr "Лого на организатора"
 #: core/wp-event-manager-post-types.php:446
 
 msgid "Set organizer logo"
-msgstr "Задаване на емблема на организатора"
+msgstr "Задаване на лого на организатор"
 
 #: core/wp-event-manager-post-types.php:448
 
@@ -2020,7 +2050,7 @@ msgstr "Места на провеждане"
 #: core/wp-event-manager-post-types.php:485
 
 msgid "Venue Logo"
-msgstr "Лого на мястото на провеждане"
+msgstr "Лого на мястото"
 
 #: core/wp-event-manager-post-types.php:487
 
@@ -2043,22 +2073,22 @@ msgstr "Използване като лого на място"
 msgid "%s event updated."
 msgid_plural "%s events updated."
 msgstr[0] "%s събитието е актуализирано."
-msgstr[1] "%s събития са актуализирани."
+msgstr[1] "%s събития актуализирани."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1445
 #, php-format
 msgid "%s event not updated, somebody is editing it."
 msgid_plural "%s events not updated, somebody is editing them."
-msgstr[0] "%s събитие не е актуализирано, някой го редактира."
-msgstr[1] "%s събития не са актуализирани, някой ги редактира."
+msgstr[0] "%s събитието не е актуализирано, някой го редактира."
+msgstr[1] "%s събитията не са актуализирани, някой ги редактира."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1447
 #, php-format
 msgid "%s event permanently deleted."
 msgid_plural "%s events permanently deleted."
-msgstr[0] "%s събитие е изтрито окончателно."
+msgstr[0] "%s събитие изтрито окончателно."
 msgstr[1] "%s събития са изтрити окончателно."
 
 #. translators: %s: product count
@@ -2074,8 +2104,8 @@ msgstr[1] "%s събития се преместиха в кошчето."
 #, php-format
 msgid "%s event restored from the Trash."
 msgid_plural "%s events restored from the Trash."
-msgstr[0] "%s събитие е възстановено от боклука."
-msgstr[1] "%s събития, възстановени от боклука."
+msgstr[0] "%s събитие възстановено от кошчето."
+msgstr[1] "%s събития, възстановени от кошчето."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1458
@@ -2083,7 +2113,7 @@ msgstr[1] "%s събития, възстановени от боклука."
 msgid "%s organizer updated."
 msgid_plural "%s organizers updated."
 msgstr[0] "%s организаторът е актуализиран."
-msgstr[1] "%s организаторите са актуализирани."
+msgstr[1] "%s организаторите актуализирани."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1460
@@ -2099,7 +2129,7 @@ msgstr[1] "%s организаторите не са актуализирани,
 msgid "%s organizer permanently deleted."
 msgid_plural "%s organizers permanently deleted."
 msgstr[0] "%s организаторът е изтрит окончателно."
-msgstr[1] "%s организаторите са окончателно изтрити."
+msgstr[1] "%s организаторите са изтрити окончателно."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1464
@@ -2107,14 +2137,14 @@ msgstr[1] "%s организаторите са окончателно изтр�
 msgid "%s organizer moved to the Trash."
 msgid_plural "%s organizers moved to the Trash."
 msgstr[0] "%s организатор се премести в кошчето."
-msgstr[1] "%s организаторите се преместиха на боклука."
+msgstr[1] "%s организаторите се преместиха в кошчето."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1466
 #, php-format
 msgid "%s organizer restored from the Trash."
 msgid_plural "%s organizers restored from the Trash."
-msgstr[0] "%s организатор възстановен от боклука."
+msgstr[0] "%s организатор възстановен от кошчето."
 msgstr[1] "%s организаторите са възстановени от боклука."
 
 #. translators: %s: product count
@@ -2123,7 +2153,7 @@ msgstr[1] "%s организаторите са възстановени от б
 msgid "%s venue updated."
 msgid_plural "%s venues updated."
 msgstr[0] "%s мястото е актуализирано."
-msgstr[1] "%s места са актуализирани."
+msgstr[1] "%s места актуализирани."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1476
@@ -2131,15 +2161,15 @@ msgstr[1] "%s места са актуализирани."
 msgid "%s venue not updated, somebody is editing it."
 msgid_plural "%s venues not updated, somebody is editing them."
 msgstr[0] "%s място не е актуализирано, някой го редактира."
-msgstr[1] "%s местата не са актуализирани, някой ги редактира."
+msgstr[1] "%s местата, които не са актуализирани, някой ги редактира."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1478
 #, php-format
 msgid "%s venue permanently deleted."
 msgid_plural "%s venues permanently deleted."
-msgstr[0] "%s място е окончателно изтрито."
-msgstr[1] "%s места са окончателно изтрити."
+msgstr[0] "%s място изтрито окончателно."
+msgstr[1] "%s места за окончателно изтриване."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1480
@@ -2147,14 +2177,14 @@ msgstr[1] "%s места са окончателно изтрити."
 msgid "%s venue moved to the Trash."
 msgid_plural "%s venues moved to the Trash."
 msgstr[0] "%s място се премести в кошчето."
-msgstr[1] "%s места се преместиха в кошчето."
+msgstr[1] "%s места се преместиха в Кошчето."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1482
 #, php-format
 msgid "%s venue restored from the Trash."
 msgid_plural "%s venues restored from the Trash."
-msgstr[0] "%s място е възстановено от боклука."
+msgstr[0] "%s място възстановено от боклука."
 msgstr[1] "%s места, възстановени от боклука."
 
 #: external/elementor-tags/elementor-single-event-gallery-tag.php:45
@@ -2221,7 +2251,7 @@ msgstr "Табло за събития"
 #: external/elementor-widgets/elementor-venue-dashboard.php:97
 
 msgid "Post Per Page"
-msgstr "Пост на страница"
+msgstr "Осчетоводяване на страница"
 
 #: external/elementor-widgets/elementor-event-listing.php:36
 #: external/elementor-widgets/elementor-event-listing.php:90
@@ -2284,9 +2314,9 @@ msgstr "Поръчка"
 #: widgets/wp-event-manager-widgets.php:271
 #: widgets/wp-event-manager-widgets.php:416
 #: widgets/wp-event-manager-widgets.php:565
-#: widgets/wp-event-manager-widgets.php:752 wp-event-manager-functions.php:1994
-#: wp-event-manager-functions.php:2001 wp-event-manager-functions.php:2008
-#: wp-event-manager-functions.php:2015
+#: widgets/wp-event-manager-widgets.php:752 wp-event-manager-functions.php:2000
+#: wp-event-manager-functions.php:2007 wp-event-manager-functions.php:2014
+#: wp-event-manager-functions.php:2021
 
 msgid "Ascending (ASC)"
 msgstr "Възходящо (ASC)"
@@ -2302,7 +2332,7 @@ msgstr "Възходящо (ASC)"
 #: widgets/wp-event-manager-widgets.php:753
 
 msgid "Descending  (DESC)"
-msgstr "Низходящо (DESC)"
+msgstr "Низходящ (DESC)"
 
 #: external/elementor-widgets/elementor-event-listing.php:135
 #: external/elementor-widgets/elementor-event-organizers.php:110
@@ -2355,7 +2385,7 @@ msgstr "Главен"
 #: external/elementor-widgets/elementor-past-event-listing.php:141
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:141
 #: widgets/wp-event-manager-widgets.php:582
-#: widgets/wp-event-manager-widgets.php:769 wp-event-manager-functions.php:1999
+#: widgets/wp-event-manager-widgets.php:769 wp-event-manager-functions.php:2005
 
 msgid "Event Start Date"
 msgstr "Начална дата на събитието"
@@ -2371,7 +2401,7 @@ msgstr "Добив"
 #: external/elementor-widgets/elementor-event-listing.php:153
 
 msgid "Show Featured"
-msgstr "Покажи актуалните"
+msgstr "Покажи представените"
 
 #: external/elementor-widgets/elementor-event-listing.php:157
 #: external/elementor-widgets/elementor-event-listing.php:171
@@ -2404,14 +2434,14 @@ msgstr "Въведете местоположение"
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:160
 
 msgid "Keywords "
-msgstr "Ключови думи "
+msgstr "Ключови думи"
 
 #: external/elementor-widgets/elementor-event-listing.php:232
 #: external/elementor-widgets/elementor-past-event-listing.php:162
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:162
 
 msgid "Enter Keywords "
-msgstr "Въведете ключови думи "
+msgstr "Въвеждане на ключови думи "
 
 #: external/elementor-widgets/elementor-event-listing.php:240
 
@@ -2426,7 +2456,6 @@ msgstr "Въведете дата"
 #: external/elementor-widgets/elementor-event-listing.php:251
 #: external/elementor-widgets/elementor-past-event-listing.php:170
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:170
-
 msgid "Categories "
 msgstr "Категории "
 
@@ -2435,14 +2464,14 @@ msgstr "Категории "
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:172
 
 msgid "Enter Categories by comma separate"
-msgstr "Въведете категориите чрез отделна запетая"
+msgstr "Въведете Категории по отделна запетая"
 
 #: external/elementor-widgets/elementor-event-listing.php:261
 #: external/elementor-widgets/elementor-past-event-listing.php:180
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:180
 
 msgid "Event Types "
-msgstr "Типове събития "
+msgstr "Видове събития"
 
 #: external/elementor-widgets/elementor-event-listing.php:263
 #: external/elementor-widgets/elementor-past-event-listing.php:182
@@ -2461,7 +2490,7 @@ msgstr "Организатори на събития"
 #: external/elementor-widgets/elementor-event-venues.php:126
 
 msgid "Show Thumb"
-msgstr "Показване на палеца"
+msgstr "Покажи палеца"
 
 #: external/elementor-widgets/elementor-event-organizers.php:139
 #: external/elementor-widgets/elementor-event-venues.php:139
@@ -2479,7 +2508,7 @@ msgstr "Места за провеждане на събития"
 #: templates/organizer/organizer-dashboard.php:4
 
 msgid "Organizer Dashboard"
-msgstr "Табло за управление на организатора"
+msgstr "Табло на организатора"
 
 #: external/elementor-widgets/elementor-past-event-listing.php:36
 #: external/elementor-widgets/elementor-past-event-listing.php:90
@@ -2509,7 +2538,7 @@ msgid "Event Field After HTML"
 msgstr "Поле за събитие след HTML"
 
 #: external/elementor-widgets/elementor-single-event-field.php:212
-#: templates/content-single-event_listing.php:468
+#: templates/content-single-event_listing.php:467
 
 msgid "Event registration closed."
 msgstr "Регистрацията за събитието е затворена."
@@ -2524,10 +2553,10 @@ msgid "Watch video"
 msgstr "Виж Видео"
 
 #: external/elementor-widgets/elementor-single-event-field.php:366
-#: templates/content-single-event_listing.php:252
-#: templates/content-single-event_listing.php:259
-#: templates/content-single-event_listing.php:348
-#: templates/content-single-event_listing.php:357
+#: templates/content-single-event_listing.php:251
+#: templates/content-single-event_listing.php:258
+#: templates/content-single-event_listing.php:347
+#: templates/content-single-event_listing.php:356
 msgid "Download"
 msgstr "Изтегляне"
 
@@ -2589,7 +2618,7 @@ msgstr "Сряда"
 #: external/elementor-widgets/elementor-single-event-field.php:409
 
 msgid "Thrusday"
-msgstr "Траусдей"
+msgstr "Тръсдей"
 
 #: external/elementor-widgets/elementor-single-event-field.php:411
 msgid "Friday"
@@ -2611,13 +2640,13 @@ msgstr "същия ден"
 #: external/elementor-widgets/elementor-single-event-field.php:419
 
 msgid "specific day"
-msgstr "Конкретен ден"
+msgstr "конкретен ден"
 
 #: external/elementor-widgets/elementor-single-event-organizer.php:36
 #: external/elementor-widgets/elementor-single-event-organizer.php:90
 
 msgid "Single Event Organizer"
-msgstr "Организатор на единично събитие"
+msgstr "Единичен организатор на събития"
 
 #: external/elementor-widgets/elementor-single-event-organizer.php:103
 #: external/elementor-widgets/elementor-single-event-organizer.php:114
@@ -2647,7 +2676,7 @@ msgstr "Събитието не е намерено"
 #: external/elementor-widgets/elementor-single-event.php:118
 
 msgid "Select Event"
-msgstr "Изберете събитие"
+msgstr "Избор на събитие"
 
 #: external/elementor-widgets/elementor-single-event-summary.php:129
 msgid "Width"
@@ -2673,7 +2702,7 @@ msgstr "Дясно"
 #: external/elementor-widgets/elementor-single-event-venue.php:90
 
 msgid "Single Event Venue"
-msgstr "Единично място на събитието"
+msgstr "Единично място за провеждане на събития"
 
 #: external/elementor-widgets/elementor-single-event.php:36
 #: external/elementor-widgets/elementor-single-event.php:90
@@ -2710,7 +2739,7 @@ msgstr "Мястото не е намерено"
 
 #: external/elementor-widgets/elementor-single-venue.php:118
 #: forms/wp-event-manager-form-submit-event.php:335
-#: wp-event-manager-functions.php:1825
+#: wp-event-manager-functions.php:1831
 
 msgid "Select Venue"
 msgstr "Изберете място"
@@ -2719,7 +2748,7 @@ msgstr "Изберете място"
 #: external/elementor-widgets/elementor-submit-event-form.php:90
 
 msgid "Submit Event Form"
-msgstr "Подаване на формуляр за събитие"
+msgstr "Изпращане на формуляр за събитие"
 
 #: external/elementor-widgets/elementor-submit-organizer-form.php:36
 #: external/elementor-widgets/elementor-submit-organizer-form.php:90
@@ -2731,7 +2760,7 @@ msgstr "Подаване на формуляр за организатор"
 #: external/elementor-widgets/elementor-submit-venue-form.php:90
 
 msgid "Submit Venue Form"
-msgstr "Подаване на формуляр за място на провеждане"
+msgstr "Подаване на формуляр за място"
 
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:36
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:90
@@ -2744,7 +2773,7 @@ msgstr "Списък с предстоящи събития"
 #: templates/venue/venue-dashboard.php:4
 
 msgid "Venue Dashboard"
-msgstr "Табло за управление на място"
+msgstr "Табло за място на провеждане"
 
 #: external/elementor.php:126
 
@@ -2792,7 +2821,7 @@ msgstr "Типът събитие е забранен"
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 
 msgid "Event-Type is not available"
-msgstr "Event-Type не е наличен"
+msgstr "Типът събитие не е наличен"
 
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:267
 msgid "Select Date"
@@ -2860,14 +2889,14 @@ msgid "Registration email"
 msgstr "Имейл за регистрация"
 
 #: forms/wp-event-manager-form-submit-event.php:137
-#: wp-event-manager-template.php:418 wp-event-manager-template.php:2486
+#: wp-event-manager-template.php:418 wp-event-manager-template.php:2472
 msgid "you@yourdomain.com"
 msgstr "you@yourdomain.com"
 
 #: forms/wp-event-manager-form-submit-event.php:140
 
 msgid "Registration URL"
-msgstr "URL адрес на регистрация"
+msgstr "Регистрационен URL адрес"
 
 #: forms/wp-event-manager-form-submit-event.php:141
 msgid "http://"
@@ -2876,7 +2905,7 @@ msgstr "http://"
 #: forms/wp-event-manager-form-submit-event.php:144
 
 msgid "Registration email/URL"
-msgstr "Имейл за регистрация/URL адрес"
+msgstr "Регистрация имейл/URL"
 
 #: forms/wp-event-manager-form-submit-event.php:145
 msgid "Enter an email address or website URL"
@@ -2885,10 +2914,10 @@ msgstr "Въведете емейл адрес"
 #: forms/wp-event-manager-form-submit-event.php:155
 
 msgid "Event title"
-msgstr "Заглавие на събитието"
+msgstr "Заглавие на събитие"
 
 #: forms/wp-event-manager-form-submit-event.php:160
-#: templates/event-filters.php:119
+#: templates/event-filters.php:122
 msgid "Event Type"
 msgstr "Тип на събитието"
 
@@ -2912,17 +2941,16 @@ msgid "No"
 msgstr "Не"
 
 #: forms/wp-event-manager-form-submit-event.php:192
-
 msgid "Zip Code"
 msgstr "Пощенски код"
 
 #: forms/wp-event-manager-form-submit-event.php:195
 
 msgid "Please enter zip code (Area code)"
-msgstr "Моля, въведете пощенски код (код на областта)"
+msgstr "Моля, въведете пощенски код (Код на населеното място)"
 
 #: forms/wp-event-manager-form-submit-event.php:200
-#: wp-event-manager-functions.php:2013
+#: wp-event-manager-functions.php:2019
 msgid "Event Location"
 msgstr "Местоположение на събитието"
 
@@ -2934,7 +2962,7 @@ msgstr "Местоположение за Google Map"
 #: forms/wp-event-manager-form-submit-event.php:208
 
 msgid "Event Banner"
-msgstr "Банер на събитието"
+msgstr "Банер на събитие"
 
 #: forms/wp-event-manager-form-submit-event.php:240
 msgid "Video URL"
@@ -2943,12 +2971,12 @@ msgstr "Video URL"
 #: forms/wp-event-manager-form-submit-event.php:243
 
 msgid "Please enter event video url"
-msgstr "Моля, въведете URL адреса на видеото на събитието"
+msgstr "Моля, въведете URL адрес на видео събитие"
 
 #: forms/wp-event-manager-form-submit-event.php:249
 
 msgid "Please enter event start date"
-msgstr "Моля, въведете началната дата на събитието"
+msgstr "Моля, въведете начална дата на събитието"
 
 #: forms/wp-event-manager-form-submit-event.php:256
 msgid "Start Time"
@@ -2957,12 +2985,12 @@ msgstr "Начален час"
 #: forms/wp-event-manager-form-submit-event.php:257
 
 msgid "Please enter event start time"
-msgstr "Моля, въведете началния час на събитието"
+msgstr "Моля, въведете начален час на събитието"
 
 #: forms/wp-event-manager-form-submit-event.php:265
 
 msgid "Please enter event end date"
-msgstr "Моля, въведете крайната дата на събитието"
+msgstr "Моля, въведете крайна дата на събитието"
 
 #: forms/wp-event-manager-form-submit-event.php:272
 msgid "End Time"
@@ -2971,7 +2999,7 @@ msgstr "Краен час"
 #: forms/wp-event-manager-form-submit-event.php:273
 
 msgid "Please enter event end time"
-msgstr "Моля, въведете крайния час на събитието"
+msgstr "Моля, въведете краен час на събитието"
 
 #: forms/wp-event-manager-form-submit-event.php:280
 
@@ -2995,7 +3023,7 @@ msgstr "Краен срок за регистрация"
 #: forms/wp-event-manager-form-submit-event.php:303
 
 msgid "Please enter registration deadline"
-msgstr "Моля, въведете крайния срок за регистрация"
+msgstr "Моля, въведете краен срок за регистрация"
 
 #: forms/wp-event-manager-form-submit-event.php:308
 
@@ -3015,7 +3043,7 @@ msgid ""
 "class=\"wpem_add_organizer_popup wpem-modal-button\" data-modal-id="
 "\"wpem_add_organizer_popup\">here</a></div>"
 msgstr ""
-"<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">Ако не се показва "
+"<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">Ако не показва "
 "организатор(и). Управлявайте организатора(ите) си от <a href=\"javascript:"
 "void(0)\" class=\"wpem_add_organizer_popup wpem-modal-button\" data-modal-id="
 "\"wpem_add_organizer_popup\">тук</a></div>"
@@ -3029,7 +3057,7 @@ msgid ""
 "\"wpem_add_venue_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">Ако не показва място "
-"(места). Управлявайте вашето място (места) от <a href=\"javascript:void(0)\" "
+"(места). Управлявайте мястото (местата) си от <a href=\"javascript:void(0)\" "
 "class=\"wpem_add_venue_popup wpem-modal-button\" data-modal-id="
 "\"wpem_add_venue_popup\">тук</a></div>"
 
@@ -3079,15 +3107,15 @@ msgid "You must be signed in to post a new listing."
 msgstr "Трябва да сте влезли в акаунта си, за да публикувате нова обява."
 
 #: forms/wp-event-manager-form-submit-organizer.php:99
-#: shortcodes/wp-event-manager-shortcodes.php:452
+#: shortcodes/wp-event-manager-shortcodes.php:453
 
 msgid "Organizer name"
 msgstr "Име на организатора"
 
 #: forms/wp-event-manager-form-submit-organizer.php:102
 
-msgid "Enter the name of the organization"
-msgstr "Въведете името на организацията"
+msgid "Enter the name of the organizer"
+msgstr "Въведете името на организатора"
 
 #: forms/wp-event-manager-form-submit-organizer.php:107
 #: forms/wp-event-manager-form-submit-venue.php:114
@@ -3114,7 +3142,7 @@ msgstr "Въведете вашият e-mail адрес"
 #: templates/organizer/content-single-event-organizers.php:188
 #: templates/organizer/content-single-event_listing-organizer.php:75
 #: templates/organizer/content-single-event_listing-organizer.php:163
-#: templates/organizer/content-single-event_organizer.php:48
+#: templates/organizer/content-single-event_organizer.php:45
 #: templates/organizer/organizer-dashboard.php:67
 #: templates/venue/content-single-event-venues.php:62
 #: templates/venue/content-single-event_listing-venue.php:78
@@ -3132,7 +3160,7 @@ msgstr "URL адрес на уеб сайт, напр. http://www.yourorganizati
 #: forms/wp-event-manager-form-submit-venue.php:138
 #: templates/content-single-event_listing.php:584
 #: templates/organizer/content-single-event-organizers.php:81
-#: templates/organizer/content-single-event_organizer.php:55
+#: templates/organizer/content-single-event_organizer.php:52
 #: templates/organizer/organizer-dashboard.php:73
 #: templates/venue/content-single-event-venues.php:68
 #: templates/venue/content-single-event_listing-venue.php:84
@@ -3144,7 +3172,7 @@ msgstr "Facebook"
 #: forms/wp-event-manager-form-submit-organizer.php:150
 
 msgid "Facebook URL e.g http://www.facebook.com/yourorganizer"
-msgstr "URL адрес на Facebook, напр. http://www.facebook.com/yourorganizer"
+msgstr "Facebook URL напр. http://www.facebook.com/yourorganizer"
 
 #: forms/wp-event-manager-form-submit-organizer.php:155
 #: forms/wp-event-manager-form-submit-venue.php:146
@@ -3152,7 +3180,7 @@ msgstr "URL адрес на Facebook, напр. http://www.facebook.com/yourorga
 #: templates/organizer/content-single-event-organizers.php:194
 #: templates/organizer/content-single-event_listing-organizer.php:81
 #: templates/organizer/content-single-event_listing-organizer.php:169
-#: templates/organizer/content-single-event_organizer.php:61
+#: templates/organizer/content-single-event_organizer.php:58
 #: templates/organizer/organizer-dashboard.php:79
 #: templates/venue/content-single-event-venues.php:74
 #: templates/venue/content-single-event_listing-venue.php:90
@@ -3165,7 +3193,7 @@ msgstr "Instagram"
 #: forms/wp-event-manager-form-submit-organizer.php:158
 
 msgid "Instagram URL e.g http://www.instagram.com/yourorganizer"
-msgstr "URL адрес на Instagram, напр. http://www.instagram.com/yourorganizer"
+msgstr "Instagram URL напр. http://www.instagram.com/yourorganizer"
 
 #: forms/wp-event-manager-form-submit-organizer.php:163
 #: forms/wp-event-manager-form-submit-venue.php:154
@@ -3173,7 +3201,7 @@ msgstr "URL адрес на Instagram, напр. http://www.instagram.com/youror
 #: templates/organizer/content-single-event-organizers.php:200
 #: templates/organizer/content-single-event_listing-organizer.php:87
 #: templates/organizer/content-single-event_listing-organizer.php:175
-#: templates/organizer/content-single-event_organizer.php:73
+#: templates/organizer/content-single-event_organizer.php:70
 #: templates/organizer/organizer-dashboard.php:91
 #: templates/venue/content-single-event-venues.php:85
 #: templates/venue/content-single-event_listing-venue.php:102
@@ -3196,7 +3224,7 @@ msgstr ""
 #: templates/organizer/content-single-event-organizers.php:197
 #: templates/organizer/content-single-event_listing-organizer.php:84
 #: templates/organizer/content-single-event_listing-organizer.php:172
-#: templates/organizer/content-single-event_organizer.php:68
+#: templates/organizer/content-single-event_organizer.php:65
 #: templates/organizer/organizer-dashboard.php:85
 #: templates/venue/content-single-event-venues.php:80
 #: templates/venue/content-single-event_listing-venue.php:96
@@ -3208,7 +3236,7 @@ msgstr "Twitter"
 #: forms/wp-event-manager-form-submit-organizer.php:174
 
 msgid "Twitter URL e.g http://twitter.com/yourorganizer"
-msgstr "URL адрес на Twitter, напр. http://twitter.com/yourorganizer"
+msgstr "Twitter URL напр. http://twitter.com/yourorganizer"
 
 #: forms/wp-event-manager-form-submit-organizer.php:263
 #: forms/wp-event-manager-form-submit-venue.php:256
@@ -3228,7 +3256,7 @@ msgstr "Име на мястото на провеждане"
 #: forms/wp-event-manager-form-submit-venue.php:101
 
 msgid "Please enter the venue name"
-msgstr "Моля, въведете името на мястото"
+msgstr "Моля, въведете името на мястото на провеждане"
 
 #: forms/wp-event-manager-form-submit-venue.php:106
 
@@ -3243,12 +3271,12 @@ msgstr "URL адрес на уеб сайт, напр. http://www.yourvenue.com"
 #: forms/wp-event-manager-form-submit-venue.php:141
 
 msgid "Facebook URL e.g http://www.facebook.com/yourvenue"
-msgstr "URL адрес на Facebook, напр. http://www.facebook.com/yourvenue"
+msgstr "Facebook URL напр. http://www.facebook.com/yourvenue"
 
 #: forms/wp-event-manager-form-submit-venue.php:149
 
 msgid "Instagram URL e.g http://www.instagram.com/yourvenue"
-msgstr "URL адрес на Instagram, напр. http://www.instagram.com/yourvenue"
+msgstr "Instagram URL напр. http://www.instagram.com/yourvenue"
 
 #: forms/wp-event-manager-form-submit-venue.php:157
 
@@ -3259,16 +3287,16 @@ msgstr ""
 #: forms/wp-event-manager-form-submit-venue.php:165
 
 msgid "Twitter URL e.g http://twitter.com/yourvenue"
-msgstr "URL адрес на Twitter, напр. http://twitter.com/yourvenue"
+msgstr "Twitter URL напр. http://twitter.com/yourvenue"
 
 #: forms/wp-event-manager-form-submit-venue.php:312
 
 msgid "Please enter a valid venue email address"
-msgstr "Моля, въведете валиден имейл адрес на мястото"
+msgstr "Моля, въведете валиден имейл адрес на мястото на провеждане"
 
 #: shortcodes/wp-event-manager-shortcodes.php:125
 #: shortcodes/wp-event-manager-shortcodes.php:348
-#: shortcodes/wp-event-manager-shortcodes.php:505
+#: shortcodes/wp-event-manager-shortcodes.php:506
 msgid "Invalid ID"
 msgstr "Невалиден ID"
 
@@ -3280,12 +3308,12 @@ msgstr "Това събитие вече е отменено."
 #: shortcodes/wp-event-manager-shortcodes.php:139
 #, php-format
 msgid "%s has been cancelled."
-msgstr "%s е отменено."
+msgstr "%s е отменена."
 
 #: shortcodes/wp-event-manager-shortcodes.php:145
 
 msgid "This event is not cancelled."
-msgstr "Това събитие не се отменя."
+msgstr "Това събитие не е отменено."
 
 #: shortcodes/wp-event-manager-shortcodes.php:152
 #, php-format
@@ -3299,7 +3327,7 @@ msgstr "%s е изтрита."
 
 #: shortcodes/wp-event-manager-shortcodes.php:169
 #: shortcodes/wp-event-manager-shortcodes.php:364
-#: shortcodes/wp-event-manager-shortcodes.php:520
+#: shortcodes/wp-event-manager-shortcodes.php:521
 
 msgid "Missing submission page."
 msgstr "Липсваща страница за подаване."
@@ -3310,34 +3338,56 @@ msgid "Viewed"
 msgstr "Прегледали"
 
 #: shortcodes/wp-event-manager-shortcodes.php:298
-#: shortcodes/wp-event-manager-shortcodes.php:458
-#: shortcodes/wp-event-manager-shortcodes.php:609
+#: shortcodes/wp-event-manager-shortcodes.php:459
+#: shortcodes/wp-event-manager-shortcodes.php:611
 msgid "Action"
 msgstr "Действие"
 
-#: shortcodes/wp-event-manager-shortcodes.php:454
-#: shortcodes/wp-event-manager-shortcodes.php:607
+#: shortcodes/wp-event-manager-shortcodes.php:406
+
+msgid "You need to be signed in to manage your organizer listings."
+msgstr "Трябва да сте влезли, за да управлявате списъците си с организатори."
+
+#: shortcodes/wp-event-manager-shortcodes.php:406
+#: shortcodes/wp-event-manager-shortcodes.php:563
+#: templates/account-signin.php:21 templates/event-dashboard-login.php:2
+msgid "Sign in"
+msgstr "Вход"
+
+#: shortcodes/wp-event-manager-shortcodes.php:455
+#: shortcodes/wp-event-manager-shortcodes.php:609
 #: templates/event-dashboard.php:227
 msgid "Details"
 msgstr "Детайли"
 
-#: shortcodes/wp-event-manager-shortcodes.php:606
+#: shortcodes/wp-event-manager-shortcodes.php:563
+
+msgid "You need to be signed in to manage your venue listings."
+msgstr ""
+"Трябва да сте влезли в профила си, за да управлявате списъците си с места."
+
+#: shortcodes/wp-event-manager-shortcodes.php:608
 
 msgid "Venue name"
 msgstr "Име на мястото на провеждане"
 
-#: shortcodes/wp-event-manager-shortcodes.php:788
+#: shortcodes/wp-event-manager-shortcodes.php:796
 
 msgid "Load more events"
-msgstr "Зареждане на още събития"
+msgstr "Зареди още събития"
 
-#: shortcodes/wp-event-manager-shortcodes.php:870
+#: shortcodes/wp-event-manager-shortcodes.php:878
 msgid "Load more listings"
 msgstr "Зареди още обяви"
 
-#: shortcodes/wp-event-manager-shortcodes.php:959
+#: shortcodes/wp-event-manager-shortcodes.php:972
 msgid "More info"
 msgstr "Повече информация"
+
+#: shortcodes/wp-event-manager-shortcodes.php:1114
+
+msgid "There are no events."
+msgstr "Събития"
 
 #: templates/account-signin.php:5
 msgid "Your account"
@@ -3356,23 +3406,19 @@ msgstr "Изход"
 msgid "Have an account?"
 msgstr "Имате акаунт?"
 
-#: templates/account-signin.php:21 templates/event-dashboard-login.php:2
-msgid "Sign in"
-msgstr "Вход"
-
 #: templates/account-signin.php:23
-msgid "optionally"
-msgstr "не задължително"
 
-#: templates/account-signin.php:25
+msgid ""
+"If you don&rsquo;t have an account with us, just enter your email address "
+"and create a new one.  You will receive your password shortly in your email."
+msgstr ""
+"Ако нямате профил при нас, просто въведете имейл адреса си и създайте нов.  "
+"Скоро ще получите паролата си в имейла си."
 
-msgid " You must sign in to create a new listing."
-msgstr " Трябва да влезете, за да създадете нов списък."
-
-#: templates/account-signin.php:33 templates/event-submit.php:26
-#: templates/event-submit.php:41 templates/event-submit.php:58
-#: templates/event-submit.php:110 templates/event-submit.php:157
-#: templates/form-fields/group-field.php:37
+#: templates/account-signin.php:24 templates/account-signin.php:34
+#: templates/event-submit.php:26 templates/event-submit.php:41
+#: templates/event-submit.php:58 templates/event-submit.php:110
+#: templates/event-submit.php:158 templates/form-fields/group-field.php:37
 #: templates/form-fields/group-field.php:90
 #: templates/form-fields/repeated-field.php:41
 #: templates/form-fields/repeated-field.php:100
@@ -3381,21 +3427,20 @@ msgstr " Трябва да влезете, за да създадете нов �
 msgid "(optional)"
 msgstr "(не задължително)"
 
+#: templates/account-signin.php:26
+
+msgid " You must sign in to create a new listing."
+msgstr " Трябва да влезете, за да създадете нов списък."
+
 #: templates/content-no-events-found.php:1
 
 msgid "There are no events matching your search."
-msgstr "Няма събития, които да отговарят на вашето търсене."
-
-#: templates/content-no-events-found.php:1
-#: templates/content-widget-no-events-found.php:3
-
-msgid "There are currently no events."
-msgstr "В момента няма събития."
+msgstr "Няма събития, отговарящи на вашето търсене."
 
 #: templates/content-single-event_listing.php:22
 
 msgid "This listing has been expired."
-msgstr "Този списък е изтекъл."
+msgstr "Този списък е с изтекъл срок."
 
 #: templates/content-single-event_listing.php:27
 
@@ -3412,35 +3457,40 @@ msgstr "Регистрациите са затворени."
 msgid "by %s"
 msgstr "от %s"
 
-#: templates/content-single-event_listing.php:91
+#: templates/content-single-event_listing.php:90
 #, php-format
 msgid " %d"
 msgstr " %d"
 
-#: templates/content-single-event_listing.php:92
+#: templates/content-single-event_listing.php:91
 #, php-format
 msgid "%d people viewed this event."
-msgstr "%d хора са гледали това събитие."
+msgstr "%d души са гледали това събитие."
 
-#: templates/content-single-event_listing.php:158
+#: templates/content-single-event_listing.php:157
 msgid "Additional Details"
 msgstr "Допълнителни детайли"
 
-#: templates/content-single-event_listing.php:479
+#: templates/content-single-event_listing.php:478
 #: templates/event-dashboard.php:299
 
 msgid "Date And Time"
 msgstr "Дата и час"
 
-#: templates/content-single-event_listing.php:491
+#: templates/content-single-event_listing.php:490
 
 msgid " to"
 msgstr " да"
 
-#: templates/content-single-event_listing.php:508
+#: templates/content-single-event_listing.php:507
 
 msgid "Registration End Date"
 msgstr "Крайна дата на регистрация"
+
+#: templates/content-single-event_listing.php:528
+
+msgid "Online event"
+msgstr "Онлайн събитие"
 
 #: templates/content-single-event_listing.php:579
 
@@ -3492,12 +3542,12 @@ msgstr "Нямате активни събития."
 #: templates/event-dashboard.php:236
 
 msgid "Mark not cancelled"
-msgstr "Маркирай не е отменено"
+msgstr "Маркирането като отменено"
 
 #: templates/event-dashboard.php:241
 
 msgid "Mark cancelled"
-msgstr "Марката е отменена"
+msgstr "Маркирането като отменено"
 
 #: templates/event-dashboard.php:246
 #: templates/organizer/organizer-dashboard.php:126
@@ -3517,25 +3567,36 @@ msgstr "Скрий"
 msgid "Event Details"
 msgstr "Детайли на събитието"
 
-#: templates/event-filters.php:71
+#: templates/event-filters.php:74
 
 msgid "Any dates"
 msgstr "Всички дати"
 
-#: templates/event-filters.php:88
+#: templates/event-filters.php:91
 msgid "Category"
 msgstr "Категория"
 
-#: templates/event-filters.php:97 wp-event-manager-functions.php:1220
+#: templates/event-filters.php:100 wp-event-manager-functions.php:1226
 msgid "Choose a Category"
 msgstr "Pilih Kategori"
 
-#: templates/event-filters.php:123
+#: templates/event-filters.php:126
 
 msgid "Choose an Event Type"
 msgstr "Изберете тип събитие"
 
-#: templates/event-filters.php:143
+#: templates/event-filters.php:142
+#: templates/form-fields/multiselect-field.php:8
+#: wp-event-manager-functions.php:1227
+msgid "No results match"
+msgstr "Няма резултати"
+
+#: templates/event-filters.php:142
+#: templates/form-fields/multiselect-field.php:8
+msgid "Select Some Options"
+msgstr "Изберете Някои варианти"
+
+#: templates/event-filters.php:167
 msgid ""
 "Your browser does not support JavaScript, or it is disabled. JavaScript must "
 "be enabled in order to view listings."
@@ -3546,7 +3607,7 @@ msgstr ""
 #: templates/event-listings-start.php:14
 
 msgid "Events Box View"
-msgstr "Изглед на кутия за събития"
+msgstr "Изглед на поле за събития"
 
 #: templates/event-listings-start.php:15
 
@@ -3569,7 +3630,7 @@ msgid ""
 "To register for this event <strong>email your details to</strong> <a class="
 "\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
 msgstr ""
-"За да се регистрирате за това събитие <strong>, изпратете вашите данни на</"
+"За да се регистрирате за това събитие <strong>, изпратете данните си на</"
 "strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</"
 "a>"
 
@@ -3600,7 +3661,7 @@ msgstr "Outlook"
 
 msgid "To register for this event please visit the following URL:"
 msgstr ""
-"За да се регистрирате за това събитие, моля, посетете следния URL адрес:"
+"За да се регистрирате за това събитие, моля посетете следния URL адрес:"
 
 #: templates/event-registration.php:9
 
@@ -3623,7 +3684,7 @@ msgstr "Създаване на ново събитие"
 msgid "Organizer Details"
 msgstr "Подробни данни за организатора"
 
-#: templates/event-submit.php:57 templates/event-submit.php:151
+#: templates/event-submit.php:57 templates/event-submit.php:152
 #: templates/venue/venue-submit.php:12
 
 msgid "Venue Details"
@@ -3635,8 +3696,8 @@ msgstr "Подробности за мястото на провеждане"
 msgid "Add Organizer"
 msgstr "Добавяне на организатор"
 
-#: templates/event-submit.php:141 templates/event-submit.php:145
-#: templates/event-submit.php:168
+#: templates/event-submit.php:142 templates/event-submit.php:146
+#: templates/event-submit.php:169
 
 msgid "Add Venue"
 msgstr "Добавяне на място"
@@ -3665,15 +3726,6 @@ msgstr "Максимален размер на файла: %s."
 msgid "Remove"
 msgstr "Премахни"
 
-#: templates/form-fields/multiselect-field.php:8
-#: wp-event-manager-functions.php:1221
-msgid "No results match"
-msgstr "Няма резултати"
-
-#: templates/form-fields/multiselect-field.php:8
-msgid "Select Some Options"
-msgstr "Изберете Някои варианти"
-
 #: templates/form-fields/repeated-field.php:21
 
 msgid ""
@@ -3687,7 +3739,7 @@ msgstr ""
 #: templates/form-fields/repeated-field.php:84
 
 msgid "Ticket details"
-msgstr "Подробности за билета"
+msgstr "Данни за билета"
 
 #: templates/form-fields/uploaded-file-html.php:12
 #: templates/form-fields/uploaded-file-html.php:14
@@ -3698,7 +3750,7 @@ msgstr "премахване"
 #: templates/organizer/content-single-event-organizers.php:188
 #: templates/organizer/content-single-event_listing-organizer.php:75
 #: templates/organizer/content-single-event_listing-organizer.php:163
-#: templates/organizer/content-single-event_organizer.php:48
+#: templates/organizer/content-single-event_organizer.php:45
 #: templates/organizer/organizer-dashboard.php:67
 #: templates/venue/content-single-event-venues.php:62
 #: templates/venue/content-single-event_listing-venue.php:78
@@ -3706,13 +3758,13 @@ msgstr "премахване"
 #: templates/venue/venue-dashboard.php:66
 
 msgid "Get Connect on Website"
-msgstr "Свържете се на уеб сайт"
+msgstr "Свържете се на уебсайта"
 
 #: templates/organizer/content-single-event-organizers.php:81
 #: templates/organizer/content-single-event-organizers.php:191
 #: templates/organizer/content-single-event_listing-organizer.php:78
 #: templates/organizer/content-single-event_listing-organizer.php:166
-#: templates/organizer/content-single-event_organizer.php:55
+#: templates/organizer/content-single-event_organizer.php:52
 #: templates/organizer/organizer-dashboard.php:73
 #: templates/venue/content-single-event-venues.php:68
 #: templates/venue/content-single-event_listing-venue.php:84
@@ -3726,7 +3778,7 @@ msgstr "Свържете се във Facebook"
 #: templates/organizer/content-single-event-organizers.php:194
 #: templates/organizer/content-single-event_listing-organizer.php:81
 #: templates/organizer/content-single-event_listing-organizer.php:169
-#: templates/organizer/content-single-event_organizer.php:61
+#: templates/organizer/content-single-event_organizer.php:58
 #: templates/organizer/organizer-dashboard.php:79
 #: templates/venue/content-single-event-venues.php:74
 #: templates/venue/content-single-event_listing-venue.php:90
@@ -3740,7 +3792,7 @@ msgstr "Свържете се в Instagram"
 #: templates/organizer/content-single-event-organizers.php:197
 #: templates/organizer/content-single-event_listing-organizer.php:84
 #: templates/organizer/content-single-event_listing-organizer.php:172
-#: templates/organizer/content-single-event_organizer.php:68
+#: templates/organizer/content-single-event_organizer.php:65
 #: templates/organizer/organizer-dashboard.php:85
 #: templates/venue/content-single-event-venues.php:80
 #: templates/venue/content-single-event_listing-venue.php:96
@@ -3754,7 +3806,7 @@ msgstr "Свържете се в Twitter"
 #: templates/organizer/content-single-event-organizers.php:200
 #: templates/organizer/content-single-event_listing-organizer.php:87
 #: templates/organizer/content-single-event_listing-organizer.php:175
-#: templates/organizer/content-single-event_organizer.php:73
+#: templates/organizer/content-single-event_organizer.php:70
 #: templates/organizer/organizer-dashboard.php:91
 #: templates/venue/content-single-event-venues.php:85
 #: templates/venue/content-single-event_listing-venue.php:102
@@ -3769,7 +3821,7 @@ msgstr "Свържете се в YouTube"
 #: templates/organizer/content-single-event_listing-organizer.php:166
 
 msgid "Faceboo"
-msgstr "Фейсбу"
+msgstr "Faceboo"
 
 #: templates/organizer/event-organizers.php:17
 #: templates/venue/event-venues.php:17
@@ -3848,15 +3900,15 @@ msgid ""
 "%s listed successfully. To view your organizer list <a href=\"%s\">click "
 "here</a>."
 msgstr ""
-"%s изброени успешно. За да видите списъка си с организатори, <a href=\"%s"
-"\">кликнете тук</a>."
+"%s изброени успешно. За да видите списъка си с организатори <a href=\"%s\">, "
+"кликнете тук</a>."
 
 #: templates/organizer/organizer-submitted.php:13
 #, php-format
 msgid ""
 "%s submitted successfully. Your organizer will be visible once approved."
 msgstr ""
-"%s подадена успешно. Вашият организатор ще бъде видим, след като бъде "
+"%s подадени успешно. Вашият организатор ще бъде видим, след като бъде "
 "одобрен."
 
 #: templates/sign-in-link.php:2
@@ -3898,7 +3950,7 @@ msgstr ""
 #, php-format
 msgid "%s submitted successfully. Your venue will be visible once approved."
 msgstr ""
-"%s подадена успешно. Вашето място ще бъде видимо, след като бъде одобрено."
+"%s подадени успешно. Мястото ви ще бъде видимо, след като бъде одобрено."
 
 #: widgets/wp-event-manager-widgets.php:214
 
@@ -3906,7 +3958,7 @@ msgid ""
 "Display a list of recent listings on your site, optionally matching a "
 "keyword and location."
 msgstr ""
-"Показване на списък с последните обяви на вашия сайт, като по желание "
+"Показване на списък с последните обяви на сайта Ви, като по желание "
 "съвпадате с ключова дума и местоположение."
 
 #: widgets/wp-event-manager-widgets.php:237
@@ -3924,7 +3976,7 @@ msgstr "Брой обяви за показване"
 #: widgets/wp-event-manager-widgets.php:377
 
 msgid "Display a list of featured listings on your site."
-msgstr "Показване на списък с препоръчани обяви на вашия сайт."
+msgstr "Показване на списък с актуални обяви на вашия сайт."
 
 #: widgets/wp-event-manager-widgets.php:526
 
@@ -3941,80 +3993,80 @@ msgstr "Произволно"
 msgid "Display a list of Past listings on your site."
 msgstr "Показване на списък с минали обяви на вашия сайт."
 
-#: wp-event-manager-functions.php:593
+#: wp-event-manager-functions.php:599
 msgctxt "post status"
 msgid "Draft"
 msgstr "Чернова"
 
-#: wp-event-manager-functions.php:597
+#: wp-event-manager-functions.php:603
 msgctxt "post status"
 msgid "Preview"
 msgstr "Преглед"
 
-#: wp-event-manager-functions.php:599
+#: wp-event-manager-functions.php:605
 msgctxt "post status"
 msgid "Pending approval"
 msgstr "Чака одобрение"
 
-#: wp-event-manager-functions.php:601
+#: wp-event-manager-functions.php:607
 msgctxt "post status"
 msgid "Pending payment"
 msgstr "В изчакване на плащане"
 
-#: wp-event-manager-functions.php:603
+#: wp-event-manager-functions.php:609
 
 msgctxt "post status"
 msgid "Active"
 msgstr "Активен"
 
-#: wp-event-manager-functions.php:761
+#: wp-event-manager-functions.php:767
 msgid "Reset"
 msgstr "Нулиране"
 
-#: wp-event-manager-functions.php:765
+#: wp-event-manager-functions.php:771
 msgid "RSS"
 msgstr "RSS"
 
-#: wp-event-manager-functions.php:868
+#: wp-event-manager-functions.php:874
 msgid "Invalid email address."
 msgstr "Невалиден електронен адрес."
 
-#: wp-event-manager-functions.php:876
+#: wp-event-manager-functions.php:882
 
 msgid "Your email address isn&#8217;t correct."
 msgstr "Вашият имейл адрес не е правилен."
 
-#: wp-event-manager-functions.php:880
+#: wp-event-manager-functions.php:886
 msgid "This email is already registered, please choose another one."
 msgstr "Този имейл вече е регистриран, моля изберете друг."
 
-#: wp-event-manager-functions.php:1222
+#: wp-event-manager-functions.php:1228
 
 msgid "Choose Categories"
 msgstr "Изберете категории"
 
-#: wp-event-manager-functions.php:1256
+#: wp-event-manager-functions.php:1262
 
 msgid "Choose an event type"
 msgstr "Изберете тип събитие"
 
-#: wp-event-manager-functions.php:1257
+#: wp-event-manager-functions.php:1263
 
 msgid "Choose event types"
-msgstr "Изберете типове събития"
+msgstr "Избор на типове събития"
 
-#: wp-event-manager-functions.php:1679
+#: wp-event-manager-functions.php:1685
 
 msgid "Passwords must be at least 8 characters long."
-msgstr "Паролите трябва да са дълги най-малко 8 знака."
+msgstr "Паролите трябва да са с дължина поне 8 знака."
 
-#: wp-event-manager-functions.php:1995 wp-event-manager-functions.php:2002
-#: wp-event-manager-functions.php:2009 wp-event-manager-functions.php:2016
+#: wp-event-manager-functions.php:2001 wp-event-manager-functions.php:2008
+#: wp-event-manager-functions.php:2015 wp-event-manager-functions.php:2022
 
 msgid "Descending (DESC)"
-msgstr "Низходящо (DESC)"
+msgstr "Низходящ (DESC)"
 
-#: wp-event-manager-functions.php:2006
+#: wp-event-manager-functions.php:2012
 msgid "Event End Date"
 msgstr "Крайна дата на събитието"
 
@@ -4022,18 +4074,18 @@ msgstr "Крайна дата на събитието"
 msgid "Inactive"
 msgstr "Неактивни"
 
-#: wp-event-manager-template.php:417 wp-event-manager-template.php:2485
+#: wp-event-manager-template.php:417 wp-event-manager-template.php:2471
 msgid "Your email"
 msgstr "Вашият имейл"
 
-#: wp-event-manager-template.php:426 wp-event-manager-template.php:2460
+#: wp-event-manager-template.php:426 wp-event-manager-template.php:2446
 msgid "Username"
 msgstr "Потребителско име"
 
-#: wp-event-manager-template.php:445 wp-event-manager-template.php:2478
+#: wp-event-manager-template.php:445 wp-event-manager-template.php:2464
 
 msgid "Verify Password"
-msgstr "Проверка на паролата"
+msgstr "Потвърждаване на паролата"
 
 #: wp-event-manager-template.php:446
 msgid "Confirm Password"
@@ -4042,30 +4094,6 @@ msgstr "Потвърди паролата"
 #: wp-event-manager-template.php:463
 msgid "Posted on "
 msgstr "Публикувана на "
-
-#: wp-event-manager-template.php:543
-msgid "Donation"
-msgstr "успешно е подновила дарението си. Ето подробностите за дарението:"
-
-#: wp-event-manager-template.php:545
-
-msgid "Paid/Free"
-msgstr "Платено/Безплатно"
-
-#: wp-event-manager-template.php:547
-
-msgid "Paid/Donation"
-msgstr "Платено/Дарение"
-
-#: wp-event-manager-template.php:549
-
-msgid "Free/Donation"
-msgstr "Безплатно/Дарение"
-
-#: wp-event-manager-template.php:551
-
-msgid "Paid/Free/Donation"
-msgstr "Платено/Безплатно/Дарение"
 
 #: wp-event-manager.php:285
 
@@ -4096,7 +4124,7 @@ msgstr "Наистина ли искате да изтриете това мяс
 #. Author of the plugin/theme
 
 msgid "WP Event Manager"
-msgstr "WP Мениджър събития"
+msgstr "Мениджър на събития на WP"
 
 #. Plugin URI of the plugin/theme
 
@@ -4109,8 +4137,8 @@ msgid ""
 "Lightweight, scalable and full-featured event listings & management plugin "
 "for managing event listings from the Frontend and Backend."
 msgstr ""
-"Леки, мащабируеми и пълнофункционални обяви за събития и плъгин за "
-"управление за управление на списъци със събития от Frontend и Backend."
+"Лек, мащабируем и пълнофункционален приставка за управление на събития за "
+"управление на списъци със събития от интерфейса и бекенда."
 
 #. Author URI of the plugin/theme
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-03-21 13:09+0530\n"
-"PO-Revision-Date: 2023-03-21 13:17+0530\n"
+"POT-Creation-Date: 2023-05-15 11:22+0530\n"
+"PO-Revision-Date: 2023-05-15 11:22+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,8 +37,8 @@ msgstr ""
 "आपका डेटाबेस सफलतापूर्वक नवीनीकृत किया गया है! लाभ उठाने के लिए, पर्मालिंक को सहेजें और "
 "आगे बढ़ें।"
 
-#: admin/wp-event-manager-admin.php:160 admin/wp-event-manager-settings.php:720
-#: admin/wp-event-manager-setup.php:367
+#: admin/wp-event-manager-admin.php:160 admin/wp-event-manager-settings.php:737
+#: admin/wp-event-manager-setup.php:368
 #: templates/form-fields/repeated-field.php:26
 #: templates/form-fields/repeated-field.php:85 wp-event-manager.php:474
 msgid "Settings"
@@ -123,7 +123,7 @@ msgstr "इवेंट प्रकार का चयन करें"
 
 #: admin/wp-event-manager-cpt.php:328
 #: forms/wp-event-manager-form-submit-event.php:152
-#: wp-event-manager-functions.php:1992
+#: wp-event-manager-functions.php:1998
 msgid "Event Title"
 msgstr "इवेंट का शीर्षक"
 
@@ -160,7 +160,7 @@ msgid "Banner"
 msgstr "पताका"
 
 #: admin/wp-event-manager-cpt.php:401
-#: admin/wp-event-manager-field-editor.php:194
+#: admin/wp-event-manager-field-editor.php:199
 #: admin/wp-event-manager-form-field-editor-field.php:140
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:8
 msgid "Type"
@@ -264,55 +264,55 @@ msgid "Email"
 msgstr "ईमेल"
 
 #: admin/wp-event-manager-field-editor.php:34
-#: admin/wp-event-manager-field-editor.php:139
+#: admin/wp-event-manager-field-editor.php:140
 #: admin/wp-event-manager-form-field-editor-field.php:115
 msgid "Text"
 msgstr "टेक्स्ट"
 
 #: admin/wp-event-manager-field-editor.php:35
-#: admin/wp-event-manager-field-editor.php:140
+#: admin/wp-event-manager-field-editor.php:141
 #: admin/wp-event-manager-form-field-editor-field.php:116
 msgid "Time"
 msgstr "समय"
 
 #: admin/wp-event-manager-field-editor.php:36
-#: admin/wp-event-manager-field-editor.php:141
+#: admin/wp-event-manager-field-editor.php:142
 #: admin/wp-event-manager-form-field-editor-field.php:117
 msgid "Checkbox"
 msgstr "चेकबॉक्स"
 
 #: admin/wp-event-manager-field-editor.php:37
-#: admin/wp-event-manager-field-editor.php:142
+#: admin/wp-event-manager-field-editor.php:143
 #: admin/wp-event-manager-form-field-editor-field.php:118
 msgid "Date"
 msgstr "दिनांक"
 
 #: admin/wp-event-manager-field-editor.php:38
-#: admin/wp-event-manager-field-editor.php:143
+#: admin/wp-event-manager-field-editor.php:144
 #: admin/wp-event-manager-form-field-editor-field.php:119
 msgid "Timezone"
 msgstr "समय क्षेत्र"
 
 #: admin/wp-event-manager-field-editor.php:39
-#: admin/wp-event-manager-field-editor.php:144
+#: admin/wp-event-manager-field-editor.php:145
 #: admin/wp-event-manager-form-field-editor-field.php:120
 msgid "File"
 msgstr "फ़ाइल"
 
 #: admin/wp-event-manager-field-editor.php:40
-#: admin/wp-event-manager-field-editor.php:145
+#: admin/wp-event-manager-field-editor.php:146
 #: admin/wp-event-manager-form-field-editor-field.php:121
 msgid "Hidden"
 msgstr "छिपा हुआ"
 
 #: admin/wp-event-manager-field-editor.php:41
-#: admin/wp-event-manager-field-editor.php:146
+#: admin/wp-event-manager-field-editor.php:147
 #: admin/wp-event-manager-form-field-editor-field.php:122
 msgid "Multiselect"
 msgstr "बहुचयन"
 
 #: admin/wp-event-manager-field-editor.php:42
-#: admin/wp-event-manager-field-editor.php:147
+#: admin/wp-event-manager-field-editor.php:148
 #: admin/wp-event-manager-form-field-editor-field.php:123
 msgid "Number"
 msgstr "संख्या"
@@ -325,19 +325,19 @@ msgid "Password"
 msgstr "पासवर्ड"
 
 #: admin/wp-event-manager-field-editor.php:44
-#: admin/wp-event-manager-field-editor.php:148
+#: admin/wp-event-manager-field-editor.php:149
 #: admin/wp-event-manager-form-field-editor-field.php:125
 msgid "Radio"
 msgstr "रेडियो"
 
 #: admin/wp-event-manager-field-editor.php:45
-#: admin/wp-event-manager-field-editor.php:150
+#: admin/wp-event-manager-field-editor.php:151
 #: admin/wp-event-manager-form-field-editor-field.php:126
 msgid "Select"
 msgstr "चुनें"
 
 #: admin/wp-event-manager-field-editor.php:46
-#: admin/wp-event-manager-field-editor.php:154
+#: admin/wp-event-manager-field-editor.php:155
 #: admin/wp-event-manager-form-field-editor-field.php:127
 msgid "Textarea"
 msgstr "पाठ क्षेत्र"
@@ -358,94 +358,99 @@ msgstr "क्या आप वाकई अपने परिवर्तन �
 msgid "Form fields"
 msgstr "फ़ील्ड्स बनाएँ"
 
-#: admin/wp-event-manager-field-editor.php:149
+#: admin/wp-event-manager-field-editor.php:150
 msgid "Repeated"
 msgstr "बार-बार"
 
-#: admin/wp-event-manager-field-editor.php:151
+#: admin/wp-event-manager-field-editor.php:152
 msgid "Term Checklist"
 msgstr "शब्द चेकलिस्ट"
 
-#: admin/wp-event-manager-field-editor.php:152
+#: admin/wp-event-manager-field-editor.php:153
 msgid "Term Multiselect"
 msgstr "बहुचयन शब्द"
 
-#: admin/wp-event-manager-field-editor.php:153
+#: admin/wp-event-manager-field-editor.php:154
 msgid "Term Select"
 msgstr "शब्द का चयन करें"
 
-#: admin/wp-event-manager-field-editor.php:155
+#: admin/wp-event-manager-field-editor.php:156
 msgid "WP Editor"
 msgstr "डब्ल्यूपी संपादक"
 
-#: admin/wp-event-manager-field-editor.php:156
+#: admin/wp-event-manager-field-editor.php:157
 msgid "URL"
 msgstr "URL"
 
-#: admin/wp-event-manager-field-editor.php:188
+#: admin/wp-event-manager-field-editor.php:193
 #, php-format
 msgid "%s form fields"
 msgstr "फ़ील्ड %s करें"
 
-#: admin/wp-event-manager-field-editor.php:193
+#: admin/wp-event-manager-field-editor.php:198
 #: admin/wp-event-manager-form-field-editor-field.php:139
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:7
 msgid "Field Label"
 msgstr "फ़ील्ड लेबल"
 
-#: admin/wp-event-manager-field-editor.php:195
+#: admin/wp-event-manager-field-editor.php:200
 #: admin/wp-event-manager-form-field-editor-field.php:141
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:9
 #: forms/wp-event-manager-form-submit-event.php:224
 msgid "Description"
 msgstr "विवरण"
 
-#: admin/wp-event-manager-field-editor.php:196
+#: admin/wp-event-manager-field-editor.php:201
 #: admin/wp-event-manager-form-field-editor-field.php:142
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:10
 msgid "Placeholder / Options"
 msgstr "प्लेसहोल्डर /"
 
-#: admin/wp-event-manager-field-editor.php:197
+#: admin/wp-event-manager-field-editor.php:202
 #: admin/wp-event-manager-form-field-editor-field.php:143
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:11
 msgid "Meta Key"
 msgstr "मेटा कुंजी"
 
-#: admin/wp-event-manager-field-editor.php:198
+#: admin/wp-event-manager-field-editor.php:203
 #: admin/wp-event-manager-form-field-editor-field.php:144
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:12
 msgid "Only For Admin"
 msgstr "केवल व्यवस्थापक के लिए"
 
-#: admin/wp-event-manager-field-editor.php:199
+#: admin/wp-event-manager-field-editor.php:204
 #: admin/wp-event-manager-form-field-editor-field.php:145
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:13
 msgid "Priority"
 msgstr "प्राथमिकता"
 
-#: admin/wp-event-manager-field-editor.php:200
+#: admin/wp-event-manager-field-editor.php:205
 #: admin/wp-event-manager-form-field-editor-field.php:146
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:14
 msgid "Validation"
 msgstr "मान्यता"
 
-#: admin/wp-event-manager-field-editor.php:207
+#: admin/wp-event-manager-field-editor.php:212
 msgid "Add field"
 msgstr "फ़ील्ड जोड़ें"
 
-#: admin/wp-event-manager-field-editor.php:211
+#: admin/wp-event-manager-field-editor.php:216
 msgid "Reset to default"
 msgstr "डिफ़ॉल्ट पर रीसेट करें"
 
-#: admin/wp-event-manager-field-editor.php:212
-#: admin/wp-event-manager-settings.php:929
+#: admin/wp-event-manager-field-editor.php:217
+#: admin/wp-event-manager-settings.php:946
 msgid "Save Changes"
 msgstr "बदलाव सहेजें"
 
-#: admin/wp-event-manager-field-editor.php:432
+#: admin/wp-event-manager-field-editor.php:441
 msgid "The fields were successfully saved."
 msgstr "फ़ील्ड सफलतापूर्वक सहेजे गए."
+
+#: admin/wp-event-manager-field-editor.php:443
+
+msgid "Please try again to save fields."
+msgstr "कृपया फ़ील्ड सहेजने के लिए पुन: प्रयास करें."
 
 #: admin/wp-event-manager-form-field-editor-field.php:28
 #: admin/wp-event-manager-form-field-editor-field.php:47
@@ -525,6 +530,7 @@ msgstr "इवेंट प्रकार आधार"
 
 #: admin/wp-event-manager-permalink-settings.php:84
 #: core/wp-event-manager-post-types.php:1420
+
 msgctxt "Event permalink - resave permalinks after changing this"
 msgid "event"
 msgstr "घटना"
@@ -546,7 +552,8 @@ msgid "General"
 msgstr "सामान्य"
 
 #: admin/wp-event-manager-settings.php:62
-msgid "Enable organizer"
+
+msgid "Enable Organizer"
 msgstr "आयोजक सक्षम करें"
 
 #: admin/wp-event-manager-settings.php:63
@@ -555,7 +562,8 @@ msgid ""
 msgstr "अपनी इवेंट वेबसाइट पर आयोजकों की कार्यक्षमता को निकालने के लिए इसे अक्षम करें।"
 
 #: admin/wp-event-manager-settings.php:72
-msgid "Enable venue"
+
+msgid "Enable Venue"
 msgstr "स्थान सक्षम करें"
 
 #: admin/wp-event-manager-settings.php:73
@@ -575,11 +583,11 @@ msgstr ""
 "प्लगइन हटा दिया जाता है, जब WP इवेंट प्रबंधक डेटा हटाएँ। एक बार निकाले जाने के बाद, इस "
 "डेटा को पुनर्स्थापित नहीं किया जा सकता है।"
 
-#: admin/wp-event-manager-settings.php:91
+#: admin/wp-event-manager-settings.php:92
 msgid "Google API Key"
 msgstr "गूगल एपीआई कुंजी"
 
-#: admin/wp-event-manager-settings.php:92
+#: admin/wp-event-manager-settings.php:93
 msgid ""
 "If you are going to deal with google map or location then you need Google "
 "API key to retrieve location information for event listings. Also this "
@@ -597,51 +605,51 @@ msgstr ""
 "documentation/geocoding/get-api-key\" target=\"__blank\">Google मानचित्र API "
 "डेवलपर साइट से एक API</a> कुंजी प्राप्त करें। "
 
-#: admin/wp-event-manager-settings.php:99
+#: admin/wp-event-manager-settings.php:100
 msgid "Event Listings"
 msgstr "इवेंट लिस्टिंग"
 
-#: admin/wp-event-manager-settings.php:111
+#: admin/wp-event-manager-settings.php:112
 msgid "Listings Per Page"
 msgstr "प्रति पृष्ठ प्रविष्टियाँ"
 
-#: admin/wp-event-manager-settings.php:113
+#: admin/wp-event-manager-settings.php:114
 msgid "How many listings should be shown per page by default?"
 msgstr "डिफ़ॉल्ट रूप से प्रति पृष्ठ कितनी लिस्टिंग दिखाई जानी चाहिए?"
 
-#: admin/wp-event-manager-settings.php:126
+#: admin/wp-event-manager-settings.php:127
 msgid "Cancelled Events"
 msgstr "रद्द किए गए ईवेंट"
 
-#: admin/wp-event-manager-settings.php:128
+#: admin/wp-event-manager-settings.php:129
 msgid "Hide cancelled events."
 msgstr "रद्द किए गए ईवेंट छुपाएँ."
 
-#: admin/wp-event-manager-settings.php:130
+#: admin/wp-event-manager-settings.php:131
 msgid "If enabled, cancelled events will be hidden from archives."
 msgstr "यदि सक्षम किया गया है, तो रद्द किए गए ईवेंट अभिलेखागार से छुपे होंगे।"
 
-#: admin/wp-event-manager-settings.php:140
+#: admin/wp-event-manager-settings.php:141
 msgid "Hide Expired Listings"
 msgstr "समय सीमा समाप्त प्रविष्टियाँ छुपाएँ"
 
-#: admin/wp-event-manager-settings.php:142
+#: admin/wp-event-manager-settings.php:143
 msgid "Hide expired listings in event archive/search."
 msgstr "ईवेंट संग्रह/खोज में समय सीमा समाप्त प्रविष्टियाँ छुपाएँ."
 
-#: admin/wp-event-manager-settings.php:144
+#: admin/wp-event-manager-settings.php:145
 msgid "If enabled, expired event listing is not searchable."
 msgstr "यदि सक्षम किया गया है, तो समय सीमा समाप्त ईवेंट प्रविष्टि खोज योग्य नहीं है."
 
-#: admin/wp-event-manager-settings.php:157
+#: admin/wp-event-manager-settings.php:158
 msgid "Hide Expired Listings Content"
 msgstr "समय सीमा समाप्त प्रविष्टियाँ सामग्री छुपाएँ"
 
-#: admin/wp-event-manager-settings.php:159
+#: admin/wp-event-manager-settings.php:160
 msgid "Hide expired listing content in single event listing (singular)."
 msgstr "एकल ईवेंट प्रविष्टि (एकवचन) में समय सीमा समाप्त प्रविष्टि सामग्री छुपाएँ."
 
-#: admin/wp-event-manager-settings.php:161
+#: admin/wp-event-manager-settings.php:162
 msgid ""
 "If enabled, the content within expired listings will be hidden. Otherwise, "
 "expired listings will be displayed as normal (without the event registration "
@@ -651,16 +659,18 @@ msgstr ""
 "अन्यथा, समय सीमा समाप्त लिस्टिंग सामान्य के रूप में प्रदर्शित की जाएगी (ईवेंट पंजीकरण क्षेत्र "
 "के बिना)।"
 
-#: admin/wp-event-manager-settings.php:174
-msgid "Multi-select Categories"
-msgstr "बहु-चयन श्रेणियाँ"
+#: admin/wp-event-manager-settings.php:175
 
-#: admin/wp-event-manager-settings.php:176
-msgid "Enable category multiselect by default."
-msgstr "श्रेणी मल्टीसेलेक्ट डिफ़ॉल्ट रूप से सक्षम करें."
+msgid "Multi-select Event Categories"
+msgstr "बहु-चयनित इवेंट श्रेणियाँ"
 
-#: admin/wp-event-manager-settings.php:178
-#: admin/wp-event-manager-settings.php:210
+#: admin/wp-event-manager-settings.php:177
+
+msgid "Enable event category multiselect by default."
+msgstr "डिफ़ॉल्ट रूप से इवेंट श्रेणी बहुचयन सक्षम करें."
+
+#: admin/wp-event-manager-settings.php:179
+#: admin/wp-event-manager-settings.php:211
 msgid ""
 "If enabled, the category select box will default to a multi select on the "
 "[events] shortcode."
@@ -668,16 +678,16 @@ msgstr ""
 "यदि सक्षम किया गया है, तो श्रेणी चयन बॉक्स [ईवेंट] शोर्ट पर एक बहु चयन के लिए डिफ़ॉल्ट "
 "होगा।"
 
-#: admin/wp-event-manager-settings.php:191
+#: admin/wp-event-manager-settings.php:192
 msgid "Multi-select Event Types"
 msgstr "बहु-चयन ईवेंट प्रकार"
 
-#: admin/wp-event-manager-settings.php:193
+#: admin/wp-event-manager-settings.php:194
 msgid "Enable event type multiselect by default."
 msgstr "डिफ़ॉल्ट रूप से ईवेंट प्रकार मल्टीसेलेक्ट सक्षम करें."
 
-#: admin/wp-event-manager-settings.php:195
-#: admin/wp-event-manager-settings.php:230
+#: admin/wp-event-manager-settings.php:196
+#: admin/wp-event-manager-settings.php:231
 msgid ""
 "If enabled, the event type select box will default to a multi select on the "
 "[events] shortcode."
@@ -685,58 +695,74 @@ msgstr ""
 "यदि सक्षम किया गया है, तो ईवेंट प्रकार का चयन बॉक्स [ईवेंट] शोर्ट पर एक बहु चयन के लिए "
 "डिफ़ॉल्ट होगा।"
 
-#: admin/wp-event-manager-settings.php:208
+#: admin/wp-event-manager-settings.php:209
 #: external/elementor-widgets/elementor-event-listing.php:194
 msgid "Category Filter"
 msgstr "श्रेणी फ़िल्टर"
 
-#: admin/wp-event-manager-settings.php:216
+#: admin/wp-event-manager-settings.php:217
 msgid "Events will be shown if within ANY selected category."
 msgstr "ईवेंट किसी भी चयनित श्रेणी के भीतर दिखाए जाएंगे।"
 
-#: admin/wp-event-manager-settings.php:218
+#: admin/wp-event-manager-settings.php:219
 msgid "Events will be shown if within ALL selected categories."
 msgstr "सभी चयनित श्रेणियों के भीतर होने पर ईवेंट दिखाए जाएंगे।"
 
-#: admin/wp-event-manager-settings.php:228
+#: admin/wp-event-manager-settings.php:229
 msgid "Event Type Filter"
 msgstr "इवेंट प्रकार फ़िल्टर"
 
-#: admin/wp-event-manager-settings.php:236
+#: admin/wp-event-manager-settings.php:237
 msgid "Events will be shown if within ANY selected event type."
 msgstr "ईवेंट दिखाए जाएंगे यदि किसी भी चयनित ईवेंट प्रकार के भीतर।"
 
-#: admin/wp-event-manager-settings.php:238
+#: admin/wp-event-manager-settings.php:239
 msgid "Events will be shown if within ALL selected event types."
 msgstr "ईवेंट दिखाए जाएंगे यदि सभी चयनित ईवेंट प्रकारों के भीतर।"
 
-#: admin/wp-event-manager-settings.php:246
+#: admin/wp-event-manager-settings.php:248
+
+msgid "Ticket Prices Selection"
+msgstr "टिकट की कीमतों का चयन"
+
+#: admin/wp-event-manager-settings.php:250
+
+msgid "Enable Ticket prices selection for listing page."
+msgstr "लिस्टिंग पृष्ठ के लिए टिकट मूल्य चयन सक्षम करें."
+
+#: admin/wp-event-manager-settings.php:252
+
+msgid ""
+"Choose whether to enable ticket prices selection on the event listing page."
+msgstr "चुनें कि इवेंट लिस्टिंग पृष्ठ पर टिकट मूल्य चयन सक्षम करना है या नहीं."
+
+#: admin/wp-event-manager-settings.php:263
 msgid "Event Submission"
 msgstr "इवेंट सबमिशन"
 
-#: admin/wp-event-manager-settings.php:256
+#: admin/wp-event-manager-settings.php:273
 msgid "Account Required"
 msgstr "आवश्यक खाता"
 
-#: admin/wp-event-manager-settings.php:258
+#: admin/wp-event-manager-settings.php:275
 msgid "Submitting listings requires an account."
 msgstr "लिस्टिंग सबमिट करने के लिए एक खाते की आवश्यकता होती है।"
 
-#: admin/wp-event-manager-settings.php:260
+#: admin/wp-event-manager-settings.php:277
 msgid ""
 "If disabled, non-logged in users will be able to submit listings without "
 "creating an account."
 msgstr "अक्षम होने पर, गैर-लॉग इन उपयोगकर्ता खाता बनाए बिना लिस्टिंग सबमिट कर पाएंगे।"
 
-#: admin/wp-event-manager-settings.php:273
+#: admin/wp-event-manager-settings.php:290
 msgid "Account Creation"
 msgstr "खाता निर्माण"
 
-#: admin/wp-event-manager-settings.php:275
+#: admin/wp-event-manager-settings.php:292
 msgid "Allow account creation."
 msgstr "खाता निर्माण की अनुमति दें।"
 
-#: admin/wp-event-manager-settings.php:277
+#: admin/wp-event-manager-settings.php:294
 msgid ""
 "If enabled, non-logged in users will be able to create an account by "
 "entering their email address on the submission form."
@@ -744,15 +770,15 @@ msgstr ""
 "सक्षम होने पर, गैर-लॉग इन उपयोगकर्ता सबमिशन फॉर्म पर अपना ईमेल पता दर्ज करके एक खाता "
 "बनाने में सक्षम होंगे।"
 
-#: admin/wp-event-manager-settings.php:290
+#: admin/wp-event-manager-settings.php:307
 msgid "Account Username"
 msgstr "खाता उपयोगकर्ता नाम"
 
-#: admin/wp-event-manager-settings.php:292
+#: admin/wp-event-manager-settings.php:309
 msgid "Automatically Generate Username from Email Address."
 msgstr "ईमेल पते से स्वचालित रूप से उपयोगकर्ता नाम उत्पन्न करें।"
 
-#: admin/wp-event-manager-settings.php:294
+#: admin/wp-event-manager-settings.php:311
 msgid ""
 "If enabled, a username will be generated from the first part of the user "
 "email address. Otherwise, a username field will be shown."
@@ -760,18 +786,18 @@ msgstr ""
 "यदि सक्षम किया गया है, तो उपयोगकर्ता ईमेल पते के पहले भाग से एक उपयोगकर्ता नाम उत्पन्न "
 "किया जाएगा। अन्यथा, एक उपयोगकर्ता नाम फ़ील्ड दिखाया जाएगा।"
 
-#: admin/wp-event-manager-settings.php:303
+#: admin/wp-event-manager-settings.php:320
 msgid "Account Password"
 msgstr "खाता पासवर्ड"
 
-#: admin/wp-event-manager-settings.php:304
+#: admin/wp-event-manager-settings.php:321
 msgid ""
 "Use WordPress' default behavior and email new users link to set a password."
 msgstr ""
 "पासवर्ड सेट करने के लिए वर्डप्रेस के डिफ़ॉल्ट व्यवहार और ईमेल नए उपयोगकर्ताओं के लिंक का "
 "उपयोग करें।"
 
-#: admin/wp-event-manager-settings.php:305
+#: admin/wp-event-manager-settings.php:322
 msgid ""
 "If enabled, an email will be sent to the user with their username and a link "
 "to set their password. Otherwise, a password field will be shown and their "
@@ -781,11 +807,11 @@ msgstr ""
 "लिंक के साथ एक ईमेल भेजा जाएगा। अन्यथा, एक पासवर्ड फ़ील्ड दिखाई देगी और उनका ईमेल पता "
 "सत्यापित नहीं किया जाएगा।"
 
-#: admin/wp-event-manager-settings.php:316
+#: admin/wp-event-manager-settings.php:333
 msgid "Account Role"
 msgstr "खाता भूमिका"
 
-#: admin/wp-event-manager-settings.php:318
+#: admin/wp-event-manager-settings.php:335
 msgid ""
 "If you enable user registration on your submission form, choose a role for "
 "the new user."
@@ -793,43 +819,43 @@ msgstr ""
 "यदि आप अपने सबमिशन प्रपत्र पर उपयोगकर्ता पंजीकरण सक्षम करते हैं, तो नए उपयोगकर्ता के "
 "लिए कोई भूमिका चुनें."
 
-#: admin/wp-event-manager-settings.php:331
+#: admin/wp-event-manager-settings.php:348
 msgid "Moderate New Listings"
 msgstr "मॉडरेट नई लिस्टिंग"
 
-#: admin/wp-event-manager-settings.php:333
+#: admin/wp-event-manager-settings.php:350
 msgid "New listing submissions require admin approval."
 msgstr "नई लिस्टिंग सबमिशन के लिए व्यवस्थापक अनुमोदन की आवश्यकता होती है."
 
-#: admin/wp-event-manager-settings.php:335
+#: admin/wp-event-manager-settings.php:352
 msgid "If enabled, new submissions will be inactive, pending admin approval."
 msgstr ""
 "यदि सक्षम किया गया है, तो नए सबमिशन निष्क्रिय होंगे, व्यवस्थापक अनुमोदन लंबित होंगे।"
 
-#: admin/wp-event-manager-settings.php:348
+#: admin/wp-event-manager-settings.php:365
 msgid "Allow Pending Edits"
 msgstr "लंबित संपादनों की अनुमति दें"
 
-#: admin/wp-event-manager-settings.php:350
+#: admin/wp-event-manager-settings.php:367
 msgid "Submissions awaiting approval can be edited."
 msgstr "अनुमोदन की प्रतीक्षा कर रहे सबमिशन संपादित किए जा सकते हैं."
 
-#: admin/wp-event-manager-settings.php:352
+#: admin/wp-event-manager-settings.php:369
 msgid ""
 "If enabled, submissions awaiting admin approval can be edited by the user."
 msgstr ""
 "यदि सक्षम किया गया है, तो व्यवस्थापक अनुमोदन की प्रतीक्षा कर रहे सबमिशन को उपयोगकर्ता "
 "द्वारा संपादित किया जा सकता है।"
 
-#: admin/wp-event-manager-settings.php:363
+#: admin/wp-event-manager-settings.php:380
 msgid "Allow Multiple Banners"
 msgstr "एकाधिक बैनर की अनुमति दें"
 
-#: admin/wp-event-manager-settings.php:365
+#: admin/wp-event-manager-settings.php:382
 msgid "User can submit multiple banner."
 msgstr "उपयोगकर्ता एकाधिक बैनर सबमिट कर सकते हैं।"
 
-#: admin/wp-event-manager-settings.php:367
+#: admin/wp-event-manager-settings.php:384
 msgid ""
 "If enabled, Multiple banner can add at frontend by user and backend side by "
 "admin."
@@ -837,58 +863,60 @@ msgstr ""
 "यदि सक्षम किया गया है, तो एकाधिक बैनर उपयोगकर्ता द्वारा दृश्यपटल पर और व्यवस्थापक "
 "द्वारा बैकएंड साइड में जोड़ सकते हैं।"
 
-#: admin/wp-event-manager-settings.php:379
-msgid "Delete listings after finished"
+#: admin/wp-event-manager-settings.php:396
+
+msgid "Delete Listings After Finished"
 msgstr "समाप्त होने के बाद प्रविष्टियाँ हटाएँ"
 
-#: admin/wp-event-manager-settings.php:381
+#: admin/wp-event-manager-settings.php:398
 msgid "Delete listings after finished."
 msgstr "समाप्त होने के बाद प्रविष्टियाँ हटाएँ."
 
-#: admin/wp-event-manager-settings.php:383
+#: admin/wp-event-manager-settings.php:400
 msgid "If enabled, expired listings will automatically deleted after finished."
 msgstr ""
 "यदि सक्षम किया गया है, तो समाप्त होने के बाद समय सीमा समाप्त हो गई प्रविष्टियाँ "
 "स्वचालित रूप से हटा दी जाएंगी।"
 
-#: admin/wp-event-manager-settings.php:395
-msgid "Delete Expired listings"
+#: admin/wp-event-manager-settings.php:412
+
+msgid "Delete Expired Listings"
 msgstr "समय सीमा समाप्त प्रविष्टियाँ हटाएँ"
 
-#: admin/wp-event-manager-settings.php:397
+#: admin/wp-event-manager-settings.php:414
 msgid "Expired listings are deleted after 30 days."
 msgstr "समय सीमा समाप्त लिस्टिंग 30 दिनों के बाद हटा दी जाती हैं।"
 
-#: admin/wp-event-manager-settings.php:399
+#: admin/wp-event-manager-settings.php:416
 msgid "If enabled, expired listings will automatically deleted after 30 days."
 msgstr ""
 "यदि सक्षम किया गया है, तो समय सीमा समाप्त लिस्टिंग स्वचालित रूप से 30 दिनों के बाद हटा "
 "दी जाएगी।"
 
-#: admin/wp-event-manager-settings.php:412
+#: admin/wp-event-manager-settings.php:429
 msgid "Listing Expire"
 msgstr "लिस्टिंग की समय सीमा समाप्त"
 
-#: admin/wp-event-manager-settings.php:414
+#: admin/wp-event-manager-settings.php:431
 msgid ""
 "You can set event submission expiry time either event end date or specific "
 "days."
 msgstr ""
 "आप ईवेंट सबमिशन समाप्ति समय या तो ईवेंट समाप्ति दिनांक या विशिष्ट दिन सेट कर सकते हैं."
 
-#: admin/wp-event-manager-settings.php:420
+#: admin/wp-event-manager-settings.php:437
 msgid "Listing expire on Event End Date"
 msgstr "ईवेंट समाप्ति दिनांक पर लिस्टिंग की समय सीमा समाप्त हो जाती है"
 
-#: admin/wp-event-manager-settings.php:422
+#: admin/wp-event-manager-settings.php:439
 msgid "Listing expire on Specified Below Days"
 msgstr "लिस्टिंग नीचे निर्दिष्ट दिनों पर समाप्त हो रही है"
 
-#: admin/wp-event-manager-settings.php:432
+#: admin/wp-event-manager-settings.php:449
 msgid "Listing Duration"
 msgstr "लिस्टिंग अवधि"
 
-#: admin/wp-event-manager-settings.php:434
+#: admin/wp-event-manager-settings.php:451
 msgid ""
 "How many <strong>days</strong> listings are live before expiring. Can be "
 "left blank to never expire."
@@ -896,15 +924,15 @@ msgstr ""
 "समाप्त होने से पहले कितने <strong>दिन</strong> लिस्टिंग लाइव हैं। कभी समाप्त नहीं होने के "
 "लिए खाली छोड़ा जा सकता है।"
 
-#: admin/wp-event-manager-settings.php:445
+#: admin/wp-event-manager-settings.php:462
 msgid "Categories"
 msgstr "श्रेणियाँ"
 
-#: admin/wp-event-manager-settings.php:447
+#: admin/wp-event-manager-settings.php:464
 msgid "Enable Categories for listing and submission form."
 msgstr "लिस्टिंग और सबमिशन फॉर्म के लिए श्रेणियाँ सक्षम करें."
 
-#: admin/wp-event-manager-settings.php:449
+#: admin/wp-event-manager-settings.php:466
 msgid ""
 "Choose whether to enable categories on the event listing and submission "
 "page. If enabled, it needs to be prior created at the backend."
@@ -912,16 +940,16 @@ msgstr ""
 "चुनें कि ईवेंट प्रविष्टि और सबमिशन पृष्ठ पर श्रेणियाँ सक्षम करनी हैं या नहीं. यदि सक्षम किया "
 "गया है, तो इसे बैकएंड पर पहले से बनाया जाना चाहिए।"
 
-#: admin/wp-event-manager-settings.php:462
-#: templates/content-single-event_listing.php:536
+#: admin/wp-event-manager-settings.php:479
+#: templates/content-single-event_listing.php:537
 msgid "Event Types"
 msgstr "इवेंट प्रकार"
 
-#: admin/wp-event-manager-settings.php:464
+#: admin/wp-event-manager-settings.php:481
 msgid "Enable Event types for listing and submission form."
 msgstr "प्रविष्टि और सबमिशन प्रपत्र के लिए ईवेंट प्रकार सक्षम करें."
 
-#: admin/wp-event-manager-settings.php:466
+#: admin/wp-event-manager-settings.php:483
 msgid ""
 "Choose whether to enable event types on the event listing and submission "
 "page. If enabled, it needs to be prior created at the backend."
@@ -929,29 +957,30 @@ msgstr ""
 "चुनें कि ईवेंट प्रविष्टि और सबमिशन पृष्ठ पर ईवेंट प्रकार सक्षम करें या नहीं. यदि सक्षम किया "
 "गया है, तो इसे बैकएंड पर पहले से बनाया जाना चाहिए।"
 
-#: admin/wp-event-manager-settings.php:479
-msgid "Ticket prices"
+#: admin/wp-event-manager-settings.php:496 templates/event-filters.php:141
+
+msgid "Ticket Prices"
 msgstr "टिकट की कीमतें"
 
-#: admin/wp-event-manager-settings.php:481
-msgid "Enable Ticket prices for listing and submission form."
-msgstr "लिस्टिंग और सबमिशन फॉर्म के लिए टिकट की कीमतें सक्षम करें।"
+#: admin/wp-event-manager-settings.php:498
 
-#: admin/wp-event-manager-settings.php:483
-msgid ""
-"Choose whether to enable ticket prices on the event listing and submission "
-"page."
-msgstr "चुनें कि ईवेंट लिस्टिंग और सबमिशन पृष्ठ पर टिकट की कीमतें सक्षम करें या नहीं."
+msgid "Enable Ticket prices for submission form."
+msgstr "फॉर्म जमा करने के लिए टिकट की कीमतें सक्षम करें।"
 
-#: admin/wp-event-manager-settings.php:494
+#: admin/wp-event-manager-settings.php:500
+
+msgid "Choose whether to enable ticket prices on the event submission page."
+msgstr "चुनें कि इवेंट सबमिशन पृष्ठ पर टिकट की कीमतें सक्षम करनी हैं या नहीं."
+
+#: admin/wp-event-manager-settings.php:511
 msgid "Pages"
 msgstr "पेज"
 
-#: admin/wp-event-manager-settings.php:504
+#: admin/wp-event-manager-settings.php:521
 msgid "Submit Event Form Page"
 msgstr "इवेंट प्रपत्र पृष्ठ सबमिट करें"
 
-#: admin/wp-event-manager-settings.php:506
+#: admin/wp-event-manager-settings.php:523
 msgid ""
 "Select the page where you have placed the [submit_event_form] shortcode. "
 "This lets the plugin know where the form is located."
@@ -959,11 +988,11 @@ msgstr ""
 "उस पृष्ठ का चयन करें जहाँ आपने [submit_event_form] शोर्ट रखा है। यह प्लगइन को यह जानने "
 "देता है कि फॉर्म कहां स्थित है।"
 
-#: admin/wp-event-manager-settings.php:517
+#: admin/wp-event-manager-settings.php:534
 msgid "Event Dashboard Page"
 msgstr "इवेंट डैशबोर्ड पृष्ठ"
 
-#: admin/wp-event-manager-settings.php:519
+#: admin/wp-event-manager-settings.php:536
 msgid ""
 "Select the page where you have placed the [event_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
@@ -971,11 +1000,11 @@ msgstr ""
 "उस पृष्ठ का चयन करें जहाँ आपने [event_dashboard] शोर्ट रखा है। यह प्लगइन को यह बताने "
 "देता है कि डैशबोर्ड कहां स्थित है।"
 
-#: admin/wp-event-manager-settings.php:530
+#: admin/wp-event-manager-settings.php:547
 msgid "Event Listings Page"
 msgstr "इवेंट लिस्टिंग पृष्ठ"
 
-#: admin/wp-event-manager-settings.php:532
+#: admin/wp-event-manager-settings.php:549
 msgid ""
 "Select the page where you have placed the [events] shortcode. This lets the "
 "plugin know where the event listings page is located."
@@ -983,19 +1012,19 @@ msgstr ""
 "उस पृष्ठ का चयन करें जहाँ आपने [ईवेंट] शोर्ट रखा है। यह प्लगइन को यह बताने देता है कि ईवेंट "
 "लिस्टिंग पृष्ठ कहां स्थित है।"
 
-#: admin/wp-event-manager-settings.php:542
+#: admin/wp-event-manager-settings.php:559
 msgid "Login Page URL"
 msgstr "लॉगिन पृष्ठ यूआरएल"
 
-#: admin/wp-event-manager-settings.php:544
+#: admin/wp-event-manager-settings.php:561
 msgid "Enter the Login page URL."
 msgstr "लॉगिन पृष्ठ यूआरएल दर्ज करें।"
 
-#: admin/wp-event-manager-settings.php:555
+#: admin/wp-event-manager-settings.php:572
 msgid "Submit Organizer Form Page"
 msgstr "आयोजक प्रपत्र पृष्ठ सबमिट करें"
 
-#: admin/wp-event-manager-settings.php:557
+#: admin/wp-event-manager-settings.php:574
 msgid ""
 "Select the page where you have placed the [submit_organizer_form] shortcode. "
 "This lets the plugin know where the form is located."
@@ -1003,11 +1032,11 @@ msgstr ""
 "उस पृष्ठ का चयन करें जहाँ आपने [submit_organizer_form] शोर्ट रखा है। यह प्लगइन को यह "
 "जानने देता है कि फॉर्म कहां स्थित है।"
 
-#: admin/wp-event-manager-settings.php:567
+#: admin/wp-event-manager-settings.php:584
 msgid "Organizer Dashboard Page"
 msgstr "आयोजक डैशबोर्ड पृष्ठ"
 
-#: admin/wp-event-manager-settings.php:569
+#: admin/wp-event-manager-settings.php:586
 msgid ""
 "Select the page where you have placed the [organizer_dashboard] shortcode. "
 "This lets the plugin know where the dashboard is located."
@@ -1015,11 +1044,11 @@ msgstr ""
 "उस पृष्ठ का चयन करें जहाँ आपने [organizer_dashboard] शोर्ट रखा है। यह प्लगइन को यह "
 "बताने देता है कि डैशबोर्ड कहां स्थित है।"
 
-#: admin/wp-event-manager-settings.php:580
+#: admin/wp-event-manager-settings.php:597
 msgid "Submit Venue Form Page"
 msgstr "स्थान प्रपत्र पृष्ठ सबमिट करें"
 
-#: admin/wp-event-manager-settings.php:582
+#: admin/wp-event-manager-settings.php:599
 msgid ""
 "Select the page where you have placed the [submit_venue_form] shortcode. "
 "This lets the plugin know where the form is located."
@@ -1027,11 +1056,11 @@ msgstr ""
 "उस पृष्ठ का चयन करें जहाँ आपने [submit_venue_form] शोर्ट रखा है। यह प्लगइन को यह जानने "
 "देता है कि फॉर्म कहां स्थित है।"
 
-#: admin/wp-event-manager-settings.php:592
+#: admin/wp-event-manager-settings.php:609
 msgid "Venue Dashboard Page"
 msgstr "स्थान डैशबोर्ड पृष्ठ"
 
-#: admin/wp-event-manager-settings.php:594
+#: admin/wp-event-manager-settings.php:611
 msgid ""
 "Select the page where you have placed the [venue_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
@@ -1039,39 +1068,39 @@ msgstr ""
 "उस पृष्ठ का चयन करें जहाँ आपने [venue_dashboard] शोर्ट रखा है। यह प्लगइन को यह बताने "
 "देता है कि डैशबोर्ड कहां स्थित है।"
 
-#: admin/wp-event-manager-settings.php:602
+#: admin/wp-event-manager-settings.php:619
 msgid "Date & Time Format"
 msgstr "दिनांक और समय प्रारूप"
 
-#: admin/wp-event-manager-settings.php:611
+#: admin/wp-event-manager-settings.php:628
 msgid "Datepicker Date Format"
 msgstr "दिनांक पिकर दिनांक स्वरूप"
 
-#: admin/wp-event-manager-settings.php:613
+#: admin/wp-event-manager-settings.php:630
 msgid "Select the date format to use in datepickers."
 msgstr "दिनांक पिकर में उपयोग करने के लिए दिनांक स्वरूप का चयन करें."
 
-#: admin/wp-event-manager-settings.php:623
+#: admin/wp-event-manager-settings.php:640
 msgid "Timepicker Format"
 msgstr "टाइमपिकर स्वरूप"
 
-#: admin/wp-event-manager-settings.php:625
+#: admin/wp-event-manager-settings.php:642
 msgid "Select the time format to use in timepickers."
 msgstr "टाइमपिकर में उपयोग करने के लिए समय स्वरूप का चयन करें।"
 
-#: admin/wp-event-manager-settings.php:630
+#: admin/wp-event-manager-settings.php:647
 msgid "12 Hours"
 msgstr "12 घंटे"
 
-#: admin/wp-event-manager-settings.php:631
+#: admin/wp-event-manager-settings.php:648
 msgid "24 Hours"
 msgstr "24 घंटे"
 
-#: admin/wp-event-manager-settings.php:639
+#: admin/wp-event-manager-settings.php:656
 msgid "Timepicker Step"
 msgstr "टाइमपिकर चरण"
 
-#: admin/wp-event-manager-settings.php:641
+#: admin/wp-event-manager-settings.php:658
 msgid ""
 "Select the time step to use in timepickers. Time step must have to be in "
 "between 1 to 60."
@@ -1079,11 +1108,11 @@ msgstr ""
 "टाइमपिकर में उपयोग करने के लिए समय चरण का चयन करें। समय चरण 1 से 60 के बीच होना "
 "चाहिए।"
 
-#: admin/wp-event-manager-settings.php:650
+#: admin/wp-event-manager-settings.php:667
 msgid "Date Format"
 msgstr "दिनांक स्वरूप"
 
-#: admin/wp-event-manager-settings.php:652
+#: admin/wp-event-manager-settings.php:669
 msgid ""
 "This date format will be used at the frontend date display. <a href="
 "\"https://wordpress.org/support/article/formatting-date-and-time/\" target="
@@ -1093,19 +1122,19 @@ msgstr ""
 "wordpress.org/support/article/formatting-date-and-time/\" target=\"__blank"
 "\">अधिक जानकारी के लिए यहां क्लिक करें</a>।"
 
-#: admin/wp-event-manager-settings.php:661
+#: admin/wp-event-manager-settings.php:678
 msgid "Date And Time Separator"
 msgstr "दिनांक और समय विभाजक"
 
-#: admin/wp-event-manager-settings.php:663
+#: admin/wp-event-manager-settings.php:680
 msgid "Add date and time separator."
 msgstr "दिनांक और समय विभाजक जोड़ें."
 
-#: admin/wp-event-manager-settings.php:672
+#: admin/wp-event-manager-settings.php:689
 msgid "Event Timezone"
 msgstr "इवेंट टाइमज़ोन"
 
-#: admin/wp-event-manager-settings.php:674
+#: admin/wp-event-manager-settings.php:691
 msgid ""
 "In case while submitting an event, if the timezone for each event is not "
 "selected, the WP Event Manager will take the default WordPress (website) "
@@ -1114,67 +1143,67 @@ msgstr ""
 "यदि किसी ईवेंट को सबमिट करते समय, यदि प्रत्येक ईवेंट के लिए टाइमज़ोन का चयन नहीं किया "
 "जाता है, तो डब्ल्यूपी इवेंट मैनेजर डिफ़ॉल्ट वर्डप्रेस (वेबसाइट) टाइमज़ोन लेगा।"
 
-#: admin/wp-event-manager-settings.php:678
+#: admin/wp-event-manager-settings.php:695
 msgid "Use website timezone."
 msgstr "वेबसाइट टाइमज़ोन का उपयोग करें।"
 
-#: admin/wp-event-manager-settings.php:679
+#: admin/wp-event-manager-settings.php:696
 msgid "Select a timezone on each event."
 msgstr "प्रत्येक ईवेंट पर टाइमज़ोन का चयन करें."
 
-#: admin/wp-event-manager-settings.php:746
+#: admin/wp-event-manager-settings.php:763
 msgid "Settings successfully saved"
 msgstr "सेटिंग्स सफलतापूर्वक सहेजी गईं"
 
-#: admin/wp-event-manager-settings.php:862
+#: admin/wp-event-manager-settings.php:879
 msgid "--no page--"
 msgstr "--कोई पृष्ठ नहीं--"
 
-#: admin/wp-event-manager-settings.php:870
+#: admin/wp-event-manager-settings.php:887
 msgid "Select a page&hellip;"
 msgstr "किसी पृष्ठ का चयन करें..."
 
-#: admin/wp-event-manager-settings.php:937 admin/wp-event-manager-setup.php:371
+#: admin/wp-event-manager-settings.php:954 admin/wp-event-manager-setup.php:372
 msgid "Helpful Resources"
 msgstr "उपयोगी संसाधन"
 
-#: admin/wp-event-manager-settings.php:946 admin/wp-event-manager-setup.php:378
+#: admin/wp-event-manager-settings.php:963 admin/wp-event-manager-setup.php:379
 msgid "Knowledge Base"
 msgstr "ज्ञानकोष"
 
-#: admin/wp-event-manager-settings.php:947 admin/wp-event-manager-setup.php:379
+#: admin/wp-event-manager-settings.php:964 admin/wp-event-manager-setup.php:380
 msgid "Solve your queries by browsing our documentation."
 msgstr "हमारे प्रलेखन ब्राउज़ करके अपने प्रश्नों को हल करें।"
 
-#: admin/wp-event-manager-settings.php:948 admin/wp-event-manager-setup.php:380
+#: admin/wp-event-manager-settings.php:965 admin/wp-event-manager-setup.php:381
 msgid "Browse More"
 msgstr "और अधिक ब्राउज़ करें"
 
-#: admin/wp-event-manager-settings.php:956 admin/wp-event-manager-setup.php:388
+#: admin/wp-event-manager-settings.php:973 admin/wp-event-manager-setup.php:389
 msgid "FAQs"
 msgstr "अक्सर पूछे जाने वाले प्रश्न"
 
-#: admin/wp-event-manager-settings.php:957 admin/wp-event-manager-setup.php:389
+#: admin/wp-event-manager-settings.php:974 admin/wp-event-manager-setup.php:390
 msgid "Explore through the frequently asked questions."
 msgstr "अक्सर पूछे जाने वाले प्रश्नों के माध्यम से अन्वेषण करें।"
 
-#: admin/wp-event-manager-settings.php:958 admin/wp-event-manager-setup.php:390
+#: admin/wp-event-manager-settings.php:975 admin/wp-event-manager-setup.php:391
 msgid "Get Answers"
 msgstr "जानिए जवाब"
 
-#: admin/wp-event-manager-settings.php:966 admin/wp-event-manager-setup.php:398
+#: admin/wp-event-manager-settings.php:983 admin/wp-event-manager-setup.php:399
 msgid "Video Tutorials"
 msgstr "वीडियो ट्यूटोरियल"
 
-#: admin/wp-event-manager-settings.php:967 admin/wp-event-manager-setup.php:399
+#: admin/wp-event-manager-settings.php:984 admin/wp-event-manager-setup.php:400
 msgid "Learn different skills by examining attractive video tutorials."
 msgstr "आकर्षक वीडियो ट्यूटोरियल की जांच करके विभिन्न कौशल जानें।"
 
-#: admin/wp-event-manager-settings.php:968 admin/wp-event-manager-setup.php:400
+#: admin/wp-event-manager-settings.php:985 admin/wp-event-manager-setup.php:401
 msgid "Watch all"
 msgstr "देखिए सब कुछ"
 
-#: admin/wp-event-manager-settings.php:972
+#: admin/wp-event-manager-settings.php:989
 msgid "Powered By"
 msgstr "इसके द्वारा संचालित"
 
@@ -1214,38 +1243,36 @@ msgid "Thanks for installing WP Event Manager!"
 msgstr "WP इवेंट मैनेजर स्थापित करने के लिए धन्यवाद!"
 
 #: admin/wp-event-manager-setup.php:228
+
 msgid ""
-"This setup wizard will help you get started by creating various pages for "
-"event submission, event management, and listing your events, along with "
-"setting up organizers and venues pages."
+"The Setup wizard helps you create various pages for event submission, event "
+"listings, handing events along with organizers and venue pages."
 msgstr ""
-"यह सेटअप विज़ार्ड आयोजकों और स्थान पृष्ठों को सेट करने के साथ-साथ ईवेंट सबमिशन, इवेंट प्रबंधन "
-"और आपके ईवेंट को सूचीबद्ध करने के लिए विभिन्न पृष्ठ बनाकर आरंभ करने में आपकी सहायता करेगा।"
+"सेटअप विज़ार्ड आपको इवेंट सबमिशन, ईवेंट लिस्टिंग, आयोजकों और स्थान पृष्ठों के साथ ईवेंट सौंपने "
+"के लिए विभिन्न पृष्ठ बनाने में मदद करता है."
 
 #: admin/wp-event-manager-setup.php:230
 #, php-format
 msgid ""
-"The process is still relatively simple if you want to skip the wizard and "
-"manually set up the pages and shortcodes yourself. Please refer to the "
-"%1$sdocumentation%2$s for support."
+"If you want to avoid the Setup wizard and want to creates pages manually, "
+"you can refer to the %1$sdocumentation%2$s for support."
 msgstr ""
-"प्रक्रिया अभी भी अपेक्षाकृत सरल है यदि आप विज़ार्ड को छोड़ना चाहते हैं और मैन्युअल रूप से "
-"पृष्ठों को सेट करना चाहते हैं और स्वयं शॉर्टकोड करते हैं। कृपया समर्थन के लिए %1$sडॉक्यूमेंटेशन"
-"%2$s देखें।"
+"यदि आप सेटअप विज़ार्ड से बचना चाहते हैं और मैन्युअल रूप से पृष्ठ बनाना चाहते हैं, तो आप समर्थन "
+"के लिए %1$sडॉक्यूमेंटेशन%2$s का संदर्भ ले सकते हैं."
 
-#: admin/wp-event-manager-setup.php:234
+#: admin/wp-event-manager-setup.php:235
 msgid "Continue to page setup"
 msgstr "पृष्ठ सेटअप जारी रखें"
 
-#: admin/wp-event-manager-setup.php:236
+#: admin/wp-event-manager-setup.php:237
 msgid "Skip for now"
 msgstr "अभी के लिए छोड़ें"
 
-#: admin/wp-event-manager-setup.php:244
+#: admin/wp-event-manager-setup.php:245
 msgid "Page Setup"
 msgstr "पृष्ठ सेटअप"
 
-#: admin/wp-event-manager-setup.php:246
+#: admin/wp-event-manager-setup.php:247
 #, php-format
 msgid ""
 "The <em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used "
@@ -1258,29 +1285,30 @@ msgstr ""
 "उत्पन्न किया जा सकता है। ईवेंट %4$sशॉर्टकोड के बारे में अधिक जानकारी के लिए शोर्ट "
 "दस्तावेज़ीकरण की%2$s जाँच करें।"
 
-#: admin/wp-event-manager-setup.php:254
+#: admin/wp-event-manager-setup.php:255
 msgid "Page Title"
 msgstr "पृष्ठ शीर्षक"
 
-#: admin/wp-event-manager-setup.php:255
+#: admin/wp-event-manager-setup.php:256
 msgid "Page Description"
 msgstr "पृष्ठ विवरण"
 
-#: admin/wp-event-manager-setup.php:256
+#: admin/wp-event-manager-setup.php:257
 msgid "Content Shortcode"
 msgstr "सामग्री शोर्ट"
 
-#: admin/wp-event-manager-setup.php:263
+#: admin/wp-event-manager-setup.php:264
 msgctxt "Default page title (wizard)"
 msgid "Post an Event"
 msgstr "कोई ईवेंट पोस्ट करें"
 
-#: admin/wp-event-manager-setup.php:265
-msgid ""
-"This page allows peoples to post events to your website from the front-end."
-msgstr "यह पृष्ठ लोगों को फ्रंट-एंड से आपकी वेबसाइट पर ईवेंट पोस्ट करने की अनुमति देता है।"
-
 #: admin/wp-event-manager-setup.php:266
+
+msgid ""
+"This page allows peoples to add events to your website from the front-end."
+msgstr "यह पृष्ठ लोगों को फ्रंट-एंड से आपकी वेबसाइट पर ईवेंट जोड़ने की अनुमति देता है।"
+
+#: admin/wp-event-manager-setup.php:267
 msgid ""
 "If you do not wish to accept submissions from users in this way (for example "
 "you just want to post events from the admin dashboard) you can skip creating "
@@ -1289,19 +1317,21 @@ msgstr ""
 "यदि आप इस तरह से उपयोगकर्ताओं से सबमिशन स्वीकार नहीं करना चाहते हैं (उदाहरण के लिए आप "
 "केवल व्यवस्थापक डैशबोर्ड से ईवेंट पोस्ट करना चाहते हैं) तो आप इस पृष्ठ को बनाना छोड़ सकते हैं।"
 
-#: admin/wp-event-manager-setup.php:272
+#: admin/wp-event-manager-setup.php:273
 msgctxt "Default page title (wizard)"
 msgid "Event Dashboard"
 msgstr "इवेंट डैशबोर्ड"
 
-#: admin/wp-event-manager-setup.php:274
-msgid ""
-"This page allows peoples to manage and edit their own events from the front-"
-"end."
-msgstr ""
-"यह पृष्ठ लोगों को फ्रंट-एंड से अपने स्वयं के ईवेंट प्रबंधित और संपादित करने की अनुमति देता है।"
-
 #: admin/wp-event-manager-setup.php:275
+
+msgid ""
+"This page allows peoples to manage (edit, delete and duplicate) their own "
+"events from the front-end."
+msgstr ""
+"यह पृष्ठ लोगों को फ्रंट-एंड से अपने स्वयं के ईवेंट प्रबंधित करने (संपादित करने, हटाने और डुप्लिकेट "
+"करने) की अनुमति देता है।"
+
+#: admin/wp-event-manager-setup.php:276
 msgid ""
 "If you plan on managing all listings from the admin dashboard you can skip "
 "creating this page."
@@ -1309,12 +1339,12 @@ msgstr ""
 "यदि आप व्यवस्थापक डैशबोर्ड से सभी प्रविष्टियों को प्रबंधित करने की योजना बनाते हैं तो आप "
 "इस पृष्ठ को बनाना छोड़ सकते हैं।"
 
-#: admin/wp-event-manager-setup.php:281
+#: admin/wp-event-manager-setup.php:282
 msgctxt "Default page title (wizard)"
 msgid "Events"
 msgstr "घटनाओं"
 
-#: admin/wp-event-manager-setup.php:282
+#: admin/wp-event-manager-setup.php:283
 msgid ""
 "This page allows users to browse, search, and filter event listings on the "
 "front-end of your site."
@@ -1322,16 +1352,16 @@ msgstr ""
 "यह पृष्ठ उपयोगकर्ताओं को आपकी साइट के फ्रंट-एंड पर ईवेंट लिस्टिंग ब्राउज़ करने, खोजने और "
 "फ़िल्टर करने की अनुमति देता है।"
 
-#: admin/wp-event-manager-setup.php:287
+#: admin/wp-event-manager-setup.php:288
 msgctxt "Default page title (wizard)"
 msgid "Submit Organizer Form"
 msgstr "आयोजक प्रपत्र सबमिट करें"
 
-#: admin/wp-event-manager-setup.php:289
+#: admin/wp-event-manager-setup.php:290
 msgid "This page allows users to Submit the organizers form the frontend."
 msgstr "यह पृष्ठ उपयोगकर्ताओं को दृश्यपटल के रूप में आयोजकों को सबमिट करने की अनुमति देता है।"
 
-#: admin/wp-event-manager-setup.php:290
+#: admin/wp-event-manager-setup.php:291
 msgid ""
 "In case if you do not want to allow your users to submit organizers from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1339,12 +1369,12 @@ msgstr ""
 "यदि आप अपने उपयोगकर्ताओं को दृश्यपटल से आयोजकों को सबमिट करने की अनुमति नहीं देना चाहते "
 "हैं, तो आप इसे अनचेक कर सकते हैं और इस पृष्ठ को बनाना छोड़ सकते हैं।"
 
-#: admin/wp-event-manager-setup.php:296
+#: admin/wp-event-manager-setup.php:297
 msgctxt "Default page title (wizard)"
 msgid "Organizer Dashboard"
 msgstr "आयोजक डैशबोर्ड"
 
-#: admin/wp-event-manager-setup.php:298
+#: admin/wp-event-manager-setup.php:299
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the "
 "organizers form the frontend."
@@ -1352,7 +1382,7 @@ msgstr ""
 "यह पृष्ठ लोगों को दृश्यपटल बनाने वाले आयोजकों को प्रबंधित करने (संपादित करने, हटाने और "
 "डुप्लिकेट करने) की अनुमति देता है।"
 
-#: admin/wp-event-manager-setup.php:299
+#: admin/wp-event-manager-setup.php:300
 msgid ""
 "In case if you do not want to allow your users to manage organizers from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1360,16 +1390,16 @@ msgstr ""
 "यदि आप अपने उपयोगकर्ताओं को दृश्यपटल से आयोजकों को प्रबंधित करने की अनुमति नहीं देना चाहते "
 "हैं, तो आप इसे अनचेक कर सकते हैं और इस पृष्ठ को बनाना छोड़ सकते हैं।"
 
-#: admin/wp-event-manager-setup.php:305
+#: admin/wp-event-manager-setup.php:306
 msgctxt "Default page title (wizard)"
 msgid "Event Organizers"
 msgstr "इवेंट के आयोजक"
 
-#: admin/wp-event-manager-setup.php:307
+#: admin/wp-event-manager-setup.php:308
 msgid "This page allows peoples to show organizers from the front-end."
 msgstr "यह पृष्ठ लोगों को फ्रंट-एंड से आयोजकों को दिखाने की अनुमति देता है।"
 
-#: admin/wp-event-manager-setup.php:308
+#: admin/wp-event-manager-setup.php:309
 msgid ""
 "In case if you do not want to allow your users to show organizers from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1377,16 +1407,16 @@ msgstr ""
 "यदि आप अपने उपयोगकर्ताओं को दृश्यपटल से आयोजकों को दिखाने की अनुमति नहीं देना चाहते हैं, "
 "तो आप इसे अनचेक कर सकते हैं और इस पृष्ठ को बनाना छोड़ सकते हैं।"
 
-#: admin/wp-event-manager-setup.php:314
+#: admin/wp-event-manager-setup.php:315
 msgctxt "Default page title (wizard)"
 msgid "Submit Venue Form"
 msgstr "स्थान फॉर्म सबमिट करें"
 
-#: admin/wp-event-manager-setup.php:316
+#: admin/wp-event-manager-setup.php:317
 msgid "This page allows people to Submit the venues from the frontend."
 msgstr "यह पृष्ठ लोगों को दृश्यपटल से स्थानों को सबमिट करने की अनुमति देता है।"
 
-#: admin/wp-event-manager-setup.php:317
+#: admin/wp-event-manager-setup.php:318
 msgid ""
 "In case if you do not want to allow your users to submit venues from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1394,12 +1424,12 @@ msgstr ""
 "यदि आप अपने उपयोगकर्ताओं को दृश्यपटल से स्थान सबमिट करने की अनुमति नहीं देना चाहते हैं, तो "
 "आप इसे अनचेक कर सकते हैं और इस पृष्ठ को बनाना छोड़ सकते हैं।"
 
-#: admin/wp-event-manager-setup.php:323
+#: admin/wp-event-manager-setup.php:324
 msgctxt "Default page title (wizard)"
 msgid "Venue Dashboard"
 msgstr "स्थान डैशबोर्ड"
 
-#: admin/wp-event-manager-setup.php:325
+#: admin/wp-event-manager-setup.php:326
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the venues "
 "form the frontend."
@@ -1407,7 +1437,7 @@ msgstr ""
 "यह पृष्ठ लोगों को दृश्यपटल बनाने वाले स्थानों को प्रबंधित करने (संपादित करने, हटाने और "
 "डुप्लिकेट करने) की अनुमति देता है।"
 
-#: admin/wp-event-manager-setup.php:326
+#: admin/wp-event-manager-setup.php:327
 msgid ""
 "In case if you do not want to allow your users to manage venues from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1415,16 +1445,16 @@ msgstr ""
 "यदि आप अपने उपयोगकर्ताओं को दृश्यपटल से स्थानों का प्रबंधन करने की अनुमति नहीं देना चाहते "
 "हैं, तो आप इसे अनचेक कर सकते हैं और इस पृष्ठ को बनाना छोड़ सकते हैं।"
 
-#: admin/wp-event-manager-setup.php:332
+#: admin/wp-event-manager-setup.php:333
 msgctxt "Default page title (wizard)"
 msgid "Event Venues"
 msgstr "इवेंट वेन्यू"
 
-#: admin/wp-event-manager-setup.php:334
+#: admin/wp-event-manager-setup.php:335
 msgid "This page allows peoples to show venues from the front-end."
 msgstr "यह पृष्ठ लोगों को फ्रंट-एंड से स्थानों को दिखाने की अनुमति देता है।"
 
-#: admin/wp-event-manager-setup.php:335
+#: admin/wp-event-manager-setup.php:336
 msgid ""
 "In case if you do not want to allow your users to show venues from the "
 "frontend, you can uncheck this and skip creating this page."
@@ -1432,15 +1462,15 @@ msgstr ""
 "यदि आप अपने उपयोगकर्ताओं को दृश्यपटल से स्थान दिखाने की अनुमति नहीं देना चाहते हैं, तो आप "
 "इसे अनचेक कर सकते हैं और इस पृष्ठ को बनाना छोड़ सकते हैं।"
 
-#: admin/wp-event-manager-setup.php:345
+#: admin/wp-event-manager-setup.php:346
 msgid "Skip this step"
 msgstr "इस चरण को छोड़ें"
 
-#: admin/wp-event-manager-setup.php:357
+#: admin/wp-event-manager-setup.php:358
 msgid "All Done!"
 msgstr "सब कर दिया!"
 
-#: admin/wp-event-manager-setup.php:361
+#: admin/wp-event-manager-setup.php:362
 msgid ""
 "Thanks for installing WP Event Manager! Here are some valuable resources "
 "that will assist you in getting started with our plugins."
@@ -1448,22 +1478,22 @@ msgstr ""
 "WP इवेंट मैनेजर स्थापित करने के लिए धन्यवाद! यहां कुछ मूल्यवान संसाधन दिए गए हैं जो हमारे "
 "प्लगइन्स के साथ आरंभ करने में आपकी सहायता करेंगे।"
 
-#: admin/wp-event-manager-setup.php:366
+#: admin/wp-event-manager-setup.php:367
 msgid "Create Your First Event"
 msgstr "अपना पहला ईवेंट बनाएँ"
 
-#: admin/wp-event-manager-setup.php:410
+#: admin/wp-event-manager-setup.php:411
 msgid "Add ons Support"
 msgstr "समर्थन जोड़ें"
 
-#: admin/wp-event-manager-setup.php:411
+#: admin/wp-event-manager-setup.php:412
 msgid ""
 "Get support for all the Add ons related queries with our experienced/ "
 "talented support team."
 msgstr ""
 "प्रतिभाशाली सहायता टीम के साथ सभी ऐड ऑन संबंधित प्रश्नों के लिए समर्थन प्राप्त करें।"
 
-#: admin/wp-event-manager-setup.php:412
+#: admin/wp-event-manager-setup.php:413
 msgid "Get Add ons Support"
 msgstr "ऐड ऑन समर्थन प्राप्त करें"
 
@@ -1538,26 +1568,33 @@ msgstr "परिवर्तन"
 msgid "Enter the ID of the user, or leave blank if submitted by a guest."
 msgstr "उपयोगकर्ता की आईडी दर्ज करें, या अतिथि द्वारा सबमिट किए जाने पर खाली छोड़ दें।"
 
-#: core/wp-event-manager-ajax.php:339
+#: core/wp-event-manager-ajax.php:247
+#: shortcodes/wp-event-manager-shortcodes.php:891
+#: templates/content-no-events-found.php:1
+#: templates/content-widget-no-events-found.php:3
+msgid "There are currently no events."
+msgstr "वर्तमान में कोई इवेंट नहीं है।"
+
+#: core/wp-event-manager-ajax.php:346
 #, php-format
 msgid "Search completed. Found %d matching record."
 msgid_plural "Search completed. Found %d matching records."
 msgstr[0] "खोज पूरी हो गई है। मिलान रिकॉर्ड %d मिला."
 msgstr[1] "खोज पूरी हो गई है। मिलान करने वाले रिकॉर्ड %d मिला."
 
-#: core/wp-event-manager-ajax.php:401
+#: core/wp-event-manager-ajax.php:408
 msgid "You must be logged in to upload files using this method."
 msgstr "इस पद्धति का उपयोग करके फ़ाइलें अपलोड करने के लिए आपको लॉग इन होना आवश्यक है."
 
-#: core/wp-event-manager-ajax.php:477 core/wp-event-manager-ajax.php:546
+#: core/wp-event-manager-ajax.php:484 core/wp-event-manager-ajax.php:553
 msgid "Successfully created"
 msgstr "सफलतापूर्वक बनाया गया"
 
-#: core/wp-event-manager-ajax.php:492
+#: core/wp-event-manager-ajax.php:499
 msgid "Organizer Name is a required field."
 msgstr "आयोजक का नाम एक आवश्यक फ़ील्ड है."
 
-#: core/wp-event-manager-ajax.php:561
+#: core/wp-event-manager-ajax.php:568
 msgid "Venue Name is a required field."
 msgstr "स्थान का नाम एक आवश्यक फ़ील्ड है।"
 
@@ -1679,8 +1716,8 @@ msgid "Event"
 msgstr "आयोजन"
 
 #: core/wp-event-manager-post-types.php:288
-#: shortcodes/wp-event-manager-shortcodes.php:456
-#: shortcodes/wp-event-manager-shortcodes.php:608
+#: shortcodes/wp-event-manager-shortcodes.php:457
+#: shortcodes/wp-event-manager-shortcodes.php:610
 #: templates/event-dashboard.php:14 templates/event-listings-start.php:7
 msgid "Events"
 msgstr "घटनाओं"
@@ -1715,7 +1752,7 @@ msgstr "ईवेंट थंबनेल निकालें"
 msgid "Use as event thumbnail"
 msgstr "इवेंट थंबनेल के रूप में उपयोग करें"
 
-#: core/wp-event-manager-post-types.php:404 wp-event-manager-functions.php:595
+#: core/wp-event-manager-post-types.php:404 wp-event-manager-functions.php:601
 msgctxt "post status"
 msgid "Expired"
 msgstr "गतावधिक"
@@ -2026,9 +2063,9 @@ msgstr "आदेश"
 #: widgets/wp-event-manager-widgets.php:271
 #: widgets/wp-event-manager-widgets.php:416
 #: widgets/wp-event-manager-widgets.php:565
-#: widgets/wp-event-manager-widgets.php:752 wp-event-manager-functions.php:1994
-#: wp-event-manager-functions.php:2001 wp-event-manager-functions.php:2008
-#: wp-event-manager-functions.php:2015
+#: widgets/wp-event-manager-widgets.php:752 wp-event-manager-functions.php:2000
+#: wp-event-manager-functions.php:2007 wp-event-manager-functions.php:2014
+#: wp-event-manager-functions.php:2021
 msgid "Ascending (ASC)"
 msgstr "आरोही (एएससी)"
 
@@ -2094,7 +2131,7 @@ msgstr "जनक"
 #: external/elementor-widgets/elementor-past-event-listing.php:141
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:141
 #: widgets/wp-event-manager-widgets.php:582
-#: widgets/wp-event-manager-widgets.php:769 wp-event-manager-functions.php:1999
+#: widgets/wp-event-manager-widgets.php:769 wp-event-manager-functions.php:2005
 msgid "Event Start Date"
 msgstr "इवेंट प्रारंभ दिनांक"
 
@@ -2233,9 +2270,9 @@ msgstr "इवेंट पंजीकरण बंद कर दिया ग�
 #: external/elementor-widgets/elementor-single-event-field.php:247
 #: external/elementor-widgets/elementor-single-event-field.php:248
 #: external/elementor-widgets/elementor-single-event-field.php:251
-#: templates/content-single-event_listing.php:548
 #: templates/content-single-event_listing.php:549
-#: templates/content-single-event_listing.php:553
+#: templates/content-single-event_listing.php:550
+#: templates/content-single-event_listing.php:554
 msgid "Watch video"
 msgstr "देखिए वीडियो."
 
@@ -2407,7 +2444,7 @@ msgstr "स्थान नहीं मिला"
 
 #: external/elementor-widgets/elementor-single-venue.php:118
 #: forms/wp-event-manager-form-submit-event.php:335
-#: wp-event-manager-functions.php:1825
+#: wp-event-manager-functions.php:1831
 msgid "Select Venue"
 msgstr "स्थान का चयन करें"
 
@@ -2565,12 +2602,12 @@ msgid "Event title"
 msgstr "इवेंट का शीर्षक"
 
 #: forms/wp-event-manager-form-submit-event.php:160
-#: templates/event-filters.php:119
+#: templates/event-filters.php:122
 msgid "Event Type"
 msgstr "इवेंट प्रकार"
 
 #: forms/wp-event-manager-form-submit-event.php:170
-#: templates/content-single-event_listing.php:542
+#: templates/content-single-event_listing.php:543
 msgid "Event Category"
 msgstr "इवेंट श्रेणी"
 
@@ -2596,7 +2633,7 @@ msgid "Please enter zip code (Area code)"
 msgstr "कृपया ज़िप कोड (क्षेत्र कोड) दर्ज करें"
 
 #: forms/wp-event-manager-form-submit-event.php:200
-#: wp-event-manager-functions.php:2013
+#: wp-event-manager-functions.php:2019
 msgid "Event Location"
 msgstr "इवेंट स्थान"
 
@@ -2730,13 +2767,14 @@ msgid "You must be signed in to post a new listing."
 msgstr "नई प्रविष्टि पोस्ट करने के लिए आपको साइन इन होना आवश्यक है."
 
 #: forms/wp-event-manager-form-submit-organizer.php:99
-#: shortcodes/wp-event-manager-shortcodes.php:452
+#: shortcodes/wp-event-manager-shortcodes.php:453
 msgid "Organizer name"
 msgstr "आयोजक का नाम"
 
 #: forms/wp-event-manager-form-submit-organizer.php:102
-msgid "Enter the name of the organization"
-msgstr "संगठन का नाम दर्ज करें"
+
+msgid "Enter the name of the organizer"
+msgstr "आयोजक का नाम दर्ज करें"
 
 #: forms/wp-event-manager-form-submit-organizer.php:107
 #: forms/wp-event-manager-form-submit-venue.php:114
@@ -2761,7 +2799,7 @@ msgstr "अपना ईमेल पता दर्ज करें"
 #: templates/organizer/content-single-event-organizers.php:188
 #: templates/organizer/content-single-event_listing-organizer.php:75
 #: templates/organizer/content-single-event_listing-organizer.php:163
-#: templates/organizer/content-single-event_organizer.php:48
+#: templates/organizer/content-single-event_organizer.php:45
 #: templates/organizer/organizer-dashboard.php:67
 #: templates/venue/content-single-event-venues.php:62
 #: templates/venue/content-single-event_listing-venue.php:78
@@ -2776,9 +2814,9 @@ msgstr "वेबसाइट का यूआरएल जैसे http://www.
 
 #: forms/wp-event-manager-form-submit-organizer.php:147
 #: forms/wp-event-manager-form-submit-venue.php:138
-#: templates/content-single-event_listing.php:583
+#: templates/content-single-event_listing.php:584
 #: templates/organizer/content-single-event-organizers.php:81
-#: templates/organizer/content-single-event_organizer.php:55
+#: templates/organizer/content-single-event_organizer.php:52
 #: templates/organizer/organizer-dashboard.php:73
 #: templates/venue/content-single-event-venues.php:68
 #: templates/venue/content-single-event_listing-venue.php:84
@@ -2797,7 +2835,7 @@ msgstr "फेसबुक यूआरएल जैसे http://www.facebook.c
 #: templates/organizer/content-single-event-organizers.php:194
 #: templates/organizer/content-single-event_listing-organizer.php:81
 #: templates/organizer/content-single-event_listing-organizer.php:169
-#: templates/organizer/content-single-event_organizer.php:61
+#: templates/organizer/content-single-event_organizer.php:58
 #: templates/organizer/organizer-dashboard.php:79
 #: templates/venue/content-single-event-venues.php:74
 #: templates/venue/content-single-event_listing-venue.php:90
@@ -2816,7 +2854,7 @@ msgstr "इंस्टाग्राम यूआरएल जैसे http:/
 #: templates/organizer/content-single-event-organizers.php:200
 #: templates/organizer/content-single-event_listing-organizer.php:87
 #: templates/organizer/content-single-event_listing-organizer.php:175
-#: templates/organizer/content-single-event_organizer.php:73
+#: templates/organizer/content-single-event_organizer.php:70
 #: templates/organizer/organizer-dashboard.php:91
 #: templates/venue/content-single-event-venues.php:85
 #: templates/venue/content-single-event_listing-venue.php:102
@@ -2831,12 +2869,12 @@ msgstr "यूट्यूब चैनल यूआरएल जैसे http:
 
 #: forms/wp-event-manager-form-submit-organizer.php:171
 #: forms/wp-event-manager-form-submit-venue.php:162
-#: templates/content-single-event_listing.php:586
+#: templates/content-single-event_listing.php:587
 #: templates/organizer/content-single-event-organizers.php:93
 #: templates/organizer/content-single-event-organizers.php:197
 #: templates/organizer/content-single-event_listing-organizer.php:84
 #: templates/organizer/content-single-event_listing-organizer.php:172
-#: templates/organizer/content-single-event_organizer.php:68
+#: templates/organizer/content-single-event_organizer.php:65
 #: templates/organizer/organizer-dashboard.php:85
 #: templates/venue/content-single-event-venues.php:80
 #: templates/venue/content-single-event_listing-venue.php:96
@@ -2896,7 +2934,7 @@ msgstr "कृपया कोई मान्य स्थान ईमेल �
 
 #: shortcodes/wp-event-manager-shortcodes.php:125
 #: shortcodes/wp-event-manager-shortcodes.php:348
-#: shortcodes/wp-event-manager-shortcodes.php:505
+#: shortcodes/wp-event-manager-shortcodes.php:506
 msgid "Invalid ID"
 msgstr "अमान्य ID"
 
@@ -2925,7 +2963,7 @@ msgstr "%s हटा दिया गया है."
 
 #: shortcodes/wp-event-manager-shortcodes.php:169
 #: shortcodes/wp-event-manager-shortcodes.php:364
-#: shortcodes/wp-event-manager-shortcodes.php:520
+#: shortcodes/wp-event-manager-shortcodes.php:521
 msgid "Missing submission page."
 msgstr "सबमिशन पृष्ठ अनुपलब्ध है."
 
@@ -2935,35 +2973,51 @@ msgid "Viewed"
 msgstr "देखा गया"
 
 #: shortcodes/wp-event-manager-shortcodes.php:298
-#: shortcodes/wp-event-manager-shortcodes.php:458
-#: shortcodes/wp-event-manager-shortcodes.php:609
+#: shortcodes/wp-event-manager-shortcodes.php:459
+#: shortcodes/wp-event-manager-shortcodes.php:611
 msgid "Action"
 msgstr "कार्य"
 
-#: shortcodes/wp-event-manager-shortcodes.php:454
-#: shortcodes/wp-event-manager-shortcodes.php:607
+#: shortcodes/wp-event-manager-shortcodes.php:406
+
+msgid "You need to be signed in to manage your organizer listings."
+msgstr "आपको अपनी आयोजक प्रविष्टियों को प्रबंधित करने के लिए साइन इन होना आवश्यक है."
+
+#: shortcodes/wp-event-manager-shortcodes.php:406
+#: shortcodes/wp-event-manager-shortcodes.php:563
+#: templates/account-signin.php:21 templates/event-dashboard-login.php:2
+msgid "Sign in"
+msgstr "साइन इन करें"
+
+#: shortcodes/wp-event-manager-shortcodes.php:455
+#: shortcodes/wp-event-manager-shortcodes.php:609
 #: templates/event-dashboard.php:227
 msgid "Details"
 msgstr "ब्यौरा"
 
-#: shortcodes/wp-event-manager-shortcodes.php:606
+#: shortcodes/wp-event-manager-shortcodes.php:563
+
+msgid "You need to be signed in to manage your venue listings."
+msgstr "आपको अपनी स्थल लिस्टिंग प्रबंधित करने के लिए साइन इन होना आवश्यक है."
+
+#: shortcodes/wp-event-manager-shortcodes.php:608
 msgid "Venue name"
 msgstr "स्थान का नाम"
 
-#: shortcodes/wp-event-manager-shortcodes.php:788
+#: shortcodes/wp-event-manager-shortcodes.php:796
 msgid "Load more events"
 msgstr "अधिक ईवेंट लोड करें"
 
-#: shortcodes/wp-event-manager-shortcodes.php:870
+#: shortcodes/wp-event-manager-shortcodes.php:878
 msgid "Load more listings"
 msgstr "अधिक प्रविष्टियाँ लोड करें"
 
-#: shortcodes/wp-event-manager-shortcodes.php:959
+#: shortcodes/wp-event-manager-shortcodes.php:972
 msgid "More info"
 msgstr "अधिक जानकारी"
 
-#: shortcodes/wp-event-manager-shortcodes.php:1101
-#, fuzzy
+#: shortcodes/wp-event-manager-shortcodes.php:1114
+
 msgid "There are no events."
 msgstr "कोई घटना नहीं है।"
 
@@ -2984,12 +3038,8 @@ msgstr "साइन आउट करें"
 msgid "Have an account?"
 msgstr "एक खाता है?"
 
-#: templates/account-signin.php:21 templates/event-dashboard-login.php:2
-msgid "Sign in"
-msgstr "साइन इन करें"
-
 #: templates/account-signin.php:23
-#, fuzzy
+
 msgid ""
 "If you don&rsquo;t have an account with us, just enter your email address "
 "and create a new one.  You will receive your password shortly in your email."
@@ -3000,7 +3050,7 @@ msgstr ""
 #: templates/account-signin.php:24 templates/account-signin.php:34
 #: templates/event-submit.php:26 templates/event-submit.php:41
 #: templates/event-submit.php:58 templates/event-submit.php:110
-#: templates/event-submit.php:157 templates/form-fields/group-field.php:37
+#: templates/event-submit.php:158 templates/form-fields/group-field.php:37
 #: templates/form-fields/group-field.php:90
 #: templates/form-fields/repeated-field.php:41
 #: templates/form-fields/repeated-field.php:100
@@ -3017,11 +3067,6 @@ msgstr " नई प्रविष्टि बनाने के लिए आ
 msgid "There are no events matching your search."
 msgstr "आपकी खोज से मेल खाने वाले कोई ईवेंट नहीं हैं."
 
-#: templates/content-no-events-found.php:1
-#: templates/content-widget-no-events-found.php:3
-msgid "There are currently no events."
-msgstr "वर्तमान में कोई इवेंट नहीं है।"
-
 #: templates/content-single-event_listing.php:22
 msgid "This listing has been expired."
 msgstr "यह प्रविष्टि समाप्त हो गई है."
@@ -3037,7 +3082,7 @@ msgstr "रजिस्ट्रेशन बंद हो चुके है�
 #: templates/content-single-event_listing.php:81
 #, php-format
 msgid "by %s"
-msgstr "%s द्वारा"
+msgstr "%s तक"
 
 #: templates/content-single-event_listing.php:90
 #, php-format
@@ -3059,6 +3104,7 @@ msgid "Date And Time"
 msgstr "दिनांक और समय"
 
 #: templates/content-single-event_listing.php:490
+
 msgid " to"
 msgstr " तक"
 
@@ -3070,19 +3116,19 @@ msgstr "रजिस्ट्रेशन की अंतिम तिथि"
 msgid "Online event"
 msgstr "ऑनलाइन इवेंट"
 
-#: templates/content-single-event_listing.php:578
+#: templates/content-single-event_listing.php:579
 msgid "Share With Friends"
 msgstr "दोस्तों के साथ साझा करें"
 
-#: templates/content-single-event_listing.php:589
+#: templates/content-single-event_listing.php:590
 msgid "Linkedin"
 msgstr "लिंक्डइन"
 
-#: templates/content-single-event_listing.php:592
+#: templates/content-single-event_listing.php:593
 msgid "Xing"
 msgstr "जिंग"
 
-#: templates/content-single-event_listing.php:595
+#: templates/content-single-event_listing.php:596
 msgid "Pinterest"
 msgstr "पिनट्रेस्ट"
 
@@ -3140,23 +3186,34 @@ msgstr "छिपाना"
 msgid "Event Details"
 msgstr "इवेंट विवरण"
 
-#: templates/event-filters.php:71
+#: templates/event-filters.php:74
 msgid "Any dates"
 msgstr "कोई भी तारीख"
 
-#: templates/event-filters.php:88
+#: templates/event-filters.php:91
 msgid "Category"
 msgstr "वर्ग"
 
-#: templates/event-filters.php:97 wp-event-manager-functions.php:1220
+#: templates/event-filters.php:100 wp-event-manager-functions.php:1226
 msgid "Choose a Category"
 msgstr "कोई श्रेणी चुनें"
 
-#: templates/event-filters.php:123
+#: templates/event-filters.php:126
 msgid "Choose an Event Type"
 msgstr "कोई ईवेंट प्रकार चुनें"
 
-#: templates/event-filters.php:143
+#: templates/event-filters.php:142
+#: templates/form-fields/multiselect-field.php:8
+#: wp-event-manager-functions.php:1227
+msgid "No results match"
+msgstr "कोई परिणाम मेल नहीं खाता"
+
+#: templates/event-filters.php:142
+#: templates/form-fields/multiselect-field.php:8
+msgid "Select Some Options"
+msgstr "कुछ विकल्पों का चयन करें"
+
+#: templates/event-filters.php:167
 msgid ""
 "Your browser does not support JavaScript, or it is disabled. JavaScript must "
 "be enabled in order to view listings."
@@ -3231,7 +3288,7 @@ msgstr "कोई नया ईवेंट बनाएँ"
 msgid "Organizer Details"
 msgstr "आयोजक विवरण"
 
-#: templates/event-submit.php:57 templates/event-submit.php:151
+#: templates/event-submit.php:57 templates/event-submit.php:152
 #: templates/venue/venue-submit.php:12
 msgid "Venue Details"
 msgstr "स्थान का विवरण"
@@ -3241,8 +3298,8 @@ msgstr "स्थान का विवरण"
 msgid "Add Organizer"
 msgstr "आयोजक जोड़ें"
 
-#: templates/event-submit.php:141 templates/event-submit.php:145
-#: templates/event-submit.php:168
+#: templates/event-submit.php:142 templates/event-submit.php:146
+#: templates/event-submit.php:169
 msgid "Add Venue"
 msgstr "स्थान जोड़ें"
 
@@ -3270,15 +3327,6 @@ msgstr "अधिकतम फ़ाइल आकार: %s."
 msgid "Remove"
 msgstr "हटाना"
 
-#: templates/form-fields/multiselect-field.php:8
-#: wp-event-manager-functions.php:1221
-msgid "No results match"
-msgstr "कोई परिणाम मेल नहीं खाता"
-
-#: templates/form-fields/multiselect-field.php:8
-msgid "Select Some Options"
-msgstr "कुछ विकल्पों का चयन करें"
-
 #: templates/form-fields/repeated-field.php:21
 msgid ""
 "You can't delete ticket once it is added.You can make it private from "
@@ -3301,7 +3349,7 @@ msgstr "हटाना"
 #: templates/organizer/content-single-event-organizers.php:188
 #: templates/organizer/content-single-event_listing-organizer.php:75
 #: templates/organizer/content-single-event_listing-organizer.php:163
-#: templates/organizer/content-single-event_organizer.php:48
+#: templates/organizer/content-single-event_organizer.php:45
 #: templates/organizer/organizer-dashboard.php:67
 #: templates/venue/content-single-event-venues.php:62
 #: templates/venue/content-single-event_listing-venue.php:78
@@ -3314,7 +3362,7 @@ msgstr "वेबसाइट पर कनेक्ट करें"
 #: templates/organizer/content-single-event-organizers.php:191
 #: templates/organizer/content-single-event_listing-organizer.php:78
 #: templates/organizer/content-single-event_listing-organizer.php:166
-#: templates/organizer/content-single-event_organizer.php:55
+#: templates/organizer/content-single-event_organizer.php:52
 #: templates/organizer/organizer-dashboard.php:73
 #: templates/venue/content-single-event-venues.php:68
 #: templates/venue/content-single-event_listing-venue.php:84
@@ -3327,7 +3375,7 @@ msgstr "फेसबुक पर कनेक्ट करें"
 #: templates/organizer/content-single-event-organizers.php:194
 #: templates/organizer/content-single-event_listing-organizer.php:81
 #: templates/organizer/content-single-event_listing-organizer.php:169
-#: templates/organizer/content-single-event_organizer.php:61
+#: templates/organizer/content-single-event_organizer.php:58
 #: templates/organizer/organizer-dashboard.php:79
 #: templates/venue/content-single-event-venues.php:74
 #: templates/venue/content-single-event_listing-venue.php:90
@@ -3340,7 +3388,7 @@ msgstr "इंस्टाग्राम पर कनेक्ट करें
 #: templates/organizer/content-single-event-organizers.php:197
 #: templates/organizer/content-single-event_listing-organizer.php:84
 #: templates/organizer/content-single-event_listing-organizer.php:172
-#: templates/organizer/content-single-event_organizer.php:68
+#: templates/organizer/content-single-event_organizer.php:65
 #: templates/organizer/organizer-dashboard.php:85
 #: templates/venue/content-single-event-venues.php:80
 #: templates/venue/content-single-event_listing-venue.php:96
@@ -3353,7 +3401,7 @@ msgstr "ट्विटर पर कनेक्ट करें"
 #: templates/organizer/content-single-event-organizers.php:200
 #: templates/organizer/content-single-event_listing-organizer.php:87
 #: templates/organizer/content-single-event_listing-organizer.php:175
-#: templates/organizer/content-single-event_organizer.php:73
+#: templates/organizer/content-single-event_organizer.php:70
 #: templates/organizer/organizer-dashboard.php:91
 #: templates/venue/content-single-event-venues.php:85
 #: templates/venue/content-single-event_listing-venue.php:102
@@ -3400,6 +3448,7 @@ msgstr "आयोजक जोड़ें"
 
 #: templates/organizer/organizer-dashboard.php:111
 #: templates/venue/venue-dashboard.php:110
+
 msgid "There is no event."
 msgstr "WP इवेंट प्रबंधक ऐड-ऑन"
 
@@ -3520,73 +3569,73 @@ msgstr "बेतरतीब"
 msgid "Display a list of Past listings on your site."
 msgstr "अपनी साइट पर पिछली प्रविष्टियों की सूची प्रदर्शित करें."
 
-#: wp-event-manager-functions.php:593
+#: wp-event-manager-functions.php:599
 msgctxt "post status"
 msgid "Draft"
 msgstr "मसौदा"
 
-#: wp-event-manager-functions.php:597
+#: wp-event-manager-functions.php:603
 msgctxt "post status"
 msgid "Preview"
 msgstr "पूर्वावलोकन"
 
-#: wp-event-manager-functions.php:599
+#: wp-event-manager-functions.php:605
 msgctxt "post status"
 msgid "Pending approval"
 msgstr "अनुमोदन लंबित है"
 
-#: wp-event-manager-functions.php:601
+#: wp-event-manager-functions.php:607
 msgctxt "post status"
 msgid "Pending payment"
 msgstr "लंबित भुगतान"
 
-#: wp-event-manager-functions.php:603
+#: wp-event-manager-functions.php:609
 msgctxt "post status"
 msgid "Active"
 msgstr "सक्रिय"
 
-#: wp-event-manager-functions.php:761
+#: wp-event-manager-functions.php:767
 msgid "Reset"
 msgstr "रिसेट"
 
-#: wp-event-manager-functions.php:765
+#: wp-event-manager-functions.php:771
 msgid "RSS"
 msgstr "आरएसएस"
 
-#: wp-event-manager-functions.php:868
+#: wp-event-manager-functions.php:874
 msgid "Invalid email address."
 msgstr "अमान्य ईमेल पता."
 
-#: wp-event-manager-functions.php:876
+#: wp-event-manager-functions.php:882
 msgid "Your email address isn&#8217;t correct."
 msgstr "आपका ईमेल पता सही नहीं है।"
 
-#: wp-event-manager-functions.php:880
+#: wp-event-manager-functions.php:886
 msgid "This email is already registered, please choose another one."
 msgstr "यह ईमेल पहले से ही पंजीकृत है, कृपया एक और चुनें।"
 
-#: wp-event-manager-functions.php:1222
+#: wp-event-manager-functions.php:1228
 msgid "Choose Categories"
 msgstr "श्रेणियाँ चुनें"
 
-#: wp-event-manager-functions.php:1256
+#: wp-event-manager-functions.php:1262
 msgid "Choose an event type"
 msgstr "कोई ईवेंट प्रकार चुनें"
 
-#: wp-event-manager-functions.php:1257
+#: wp-event-manager-functions.php:1263
 msgid "Choose event types"
 msgstr "ईवेंट प्रकार चुनें"
 
-#: wp-event-manager-functions.php:1679
+#: wp-event-manager-functions.php:1685
 msgid "Passwords must be at least 8 characters long."
 msgstr "पासवर्ड कम से कम 8 वर्ण लंबा होना चाहिए."
 
-#: wp-event-manager-functions.php:1995 wp-event-manager-functions.php:2002
-#: wp-event-manager-functions.php:2009 wp-event-manager-functions.php:2016
+#: wp-event-manager-functions.php:2001 wp-event-manager-functions.php:2008
+#: wp-event-manager-functions.php:2015 wp-event-manager-functions.php:2022
 msgid "Descending (DESC)"
 msgstr "अवरोही (डीईएससी)"
 
-#: wp-event-manager-functions.php:2006
+#: wp-event-manager-functions.php:2012
 msgid "Event End Date"
 msgstr "इवेंट समाप्ति दिनांक"
 
