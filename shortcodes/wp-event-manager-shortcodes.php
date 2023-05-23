@@ -643,8 +643,7 @@ class WP_Event_Manager_Shortcodes
 	 * @param mixed $args
 	 * @return void
 	 */
-	public function output_events($atts)
-	{
+	public function output_events($atts){
 
 		ob_start();
 
@@ -763,7 +762,6 @@ class WP_Event_Manager_Shortcodes
 			$selected_ticket_price = sanitize_text_field($_GET['search_ticket_price']);
 		}
 		if ($show_filters) {
-			error_log("if");
 			get_event_manager_template('event-filters.php', array(
 				'per_page' => $per_page,
 				'orderby' => $orderby,
@@ -789,15 +787,9 @@ class WP_Event_Manager_Shortcodes
 
 			get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
 
-			get_event_manager_template('event-listings-end.php');
+			get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
 
-			if (!$show_pagination && $show_more) {
-				echo '<div id="load_more_events_loader">';
-					echo wp_kses_post('<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong>' . __('Load more events', 'wp-event-manager') . '</strong></a>');
-				echo '</div>';
-			}
 		} else {
-			error_log("else");
 			$arr_selected_datetime = [];
 			if (!empty($selected_datetime)) {
 				$selected_datetime = explode(',', $selected_datetime);
@@ -853,33 +845,19 @@ class WP_Event_Manager_Shortcodes
 				'event_online'    	=> $event_online,
 
 			)));
-			if ($events->have_posts()) : ?>
+			if ($events->have_posts()) :
 
-				<?php wp_enqueue_script('wp-event-manager-ajax-filters'); ?>
+				wp_enqueue_script('wp-event-manager-ajax-filters');
 
-				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type)); ?>
+				get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
 
-				<?php while ($events->have_posts()) : $events->the_post(); ?>
+				while ($events->have_posts()) : $events->the_post();
 
-					<?php get_event_manager_template_part('content', 'event_listing'); ?>
+					get_event_manager_template_part('content', 'event_listing');
 
-				<?php endwhile; ?>
+				endwhile; 
 
-				<?php get_event_manager_template('event-listings-end.php'); ?>
-
-				<?php if ($events->found_posts > $per_page && $show_more) : ?>
-
-					<?php if ($show_pagination) : ?>
-
-						<?php echo  wp_kses_post(get_event_listing_pagination($events->max_num_pages)); ?>
-
-					<?php else : ?>
-						<div id="load_more_events_loader">
-							<a class="load_more_events" id="load_more_events" href="#" ><strong><?php _e('Load more listings', 'wp-event-manager'); ?></strong></a>
-						</div>
-					<?php endif; ?>
-
-				<?php endif; ?>
+				get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));?>
 
 			<?php else :
 				$default_events = get_posts(array(
@@ -979,16 +957,14 @@ class WP_Event_Manager_Shortcodes
 	 * @param  string $value
 	 * @return bool
 	 */
-	public function string_to_bool($value)
-	{
+	public function string_to_bool($value)	{
 		return (is_bool($value) && $value) || in_array($value, array('1', 'true', 'yes')) ? true : false;
 	}
 
 	/**
 	 * Show results div
 	 */
-	public function event_filter_results()
-	{
+	public function event_filter_results()	{
 		echo wp_kses_post('<div class="showing_applied_filters"></div>');
 	}
 
@@ -999,8 +975,7 @@ class WP_Event_Manager_Shortcodes
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event($atts)
-	{
+	public function output_event($atts)	{
 
 		extract(shortcode_atts(array(
 			'id' => '',
@@ -1009,9 +984,7 @@ class WP_Event_Manager_Shortcodes
 		if (!$id)
 			return;
 
-		if (
-			'' === get_option('event_manager_hide_expired_content', 1)
-		) {
+		if ('' === get_option('event_manager_hide_expired_content', 1)) {
 			$post_status = array('publish', 'expired');
 		} else {
 			$post_status = 'publish';
@@ -1027,16 +1000,16 @@ class WP_Event_Manager_Shortcodes
 
 		$events = new WP_Query($args);
 
-		if ($events->have_posts()) : ?>
+		if ($events->have_posts()) :
 
-			<?php while ($events->have_posts()) : $events->the_post(); ?>
+			while ($events->have_posts()) : $events->the_post(); ?>
 
 				<div class="clearfix" />
-				<?php get_event_manager_template_part('content-single', 'event_listing'); ?>
+				<?php get_event_manager_template_part('content-single', 'event_listing'); 
 
-			<?php endwhile; ?>
+			endwhile;
 
-		<?php endif;
+		endif;
 
 		wp_reset_postdata();
 
@@ -1050,8 +1023,7 @@ class WP_Event_Manager_Shortcodes
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event_summary($atts)
-	{
+	public function output_event_summary($atts)	{
 
 		extract(shortcode_atts(array(
 
@@ -1067,41 +1039,29 @@ class WP_Event_Manager_Shortcodes
 		ob_start();
 
 		$args = array(
-
 			'post_type'   => 'event_listing',
-
 			'post_status' => 'publish'
 		);
 
 		if (!$id) {
-
 			$args['posts_per_page'] = $limit;
-
 			$args['orderby']        = 'rand';
-
 			if (!is_null($featured)) {
-				
 				$args['meta_query'] = array(array(
-
 					'key'     => '_featured',
-
 					'value'   => '1',
-
 					'compare' => ($featured == "true") ? '=' : '!='
 
 				));
 			}
 		} else {
-
 			$args['p'] = absint($id);
 		}
 
 		$events = new WP_Query($args);
 
 		if ($events->have_posts()) { 
-
 			while ($events->have_posts()) : $events->the_post();
-
 				echo wp_kses_post('<div class="event_summary_shortcode align' . esc_attr($align) . '" style="width: ' . esc_attr($width) . '">');
 
 				get_event_manager_template_part('content-summary', 'event_listing');
@@ -1116,15 +1076,13 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		wp_reset_postdata();
-
 		return ob_get_clean();
 	}
 
 	/**
 	 * Show the registration area
 	 */
-	public function output_event_register($atts)
-	{
+	public function output_event_register($atts){
 		extract(shortcode_atts(array(
 			'id'       => ''
 		), $atts));
@@ -1144,9 +1102,9 @@ class WP_Event_Manager_Shortcodes
 
 		$events = new WP_Query($args);
 
-		if ($events->have_posts()) : ?>
+		if ($events->have_posts()) :
 
-			<?php while ($events->have_posts()) : $events->the_post(); ?>
+			while ($events->have_posts()) : $events->the_post(); ?>
 
 				<div class="event-manager-registration-wrapper">
 					<?php
@@ -1155,9 +1113,9 @@ class WP_Event_Manager_Shortcodes
 					?>
 				</div>
 
-			<?php endwhile; ?>
+			<?php endwhile;
 
-		<?php endif;
+		endif;
 
 		wp_reset_postdata();
 
@@ -1171,28 +1129,19 @@ class WP_Event_Manager_Shortcodes
 	 * @param mixed $args
 	 * @return void
 	 */
-	public function output_past_events($atts)
-	{
+	public function output_past_events($atts){
 		ob_start();
 
 		extract(shortcode_atts(array(
 
 			'show_pagination'           => true,
-
 			'per_page'                  => isset($atts['per_page']) ? $atts['per_page'] : get_option('event_manager_per_page'),
-
 			'order'                     =>  isset($atts['order']) ? $atts['order'] :  'DESC',
-
 			'orderby'                   => isset($atts['orderby']) ? $atts['orderby'] : 'event_start_date', // meta_value
-
 			'location'                  => '',
-
 			'keywords'                  => '',
-
 			'selected_datetime'         => '',
-
 			'selected_categories'       =>  isset($atts['selected_categories']) ? $atts['selected_categories'] :  '',
-
 			'selected_event_types'     => isset($atts['selected_event_types']) ? $atts['selected_event_types'] :  '',
 		), $atts));
 
@@ -1267,23 +1216,23 @@ class WP_Event_Manager_Shortcodes
 		if ($past_events->have_posts()) : ?>
 			<div class="past_event_listings">
 
-				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => 'all')); ?>
+				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => 'all'));
 
-				<?php while ($past_events->have_posts()) : $past_events->the_post(); ?>
+				while ($past_events->have_posts()) : $past_events->the_post();
 
-					<?php get_event_manager_template_part('content', 'past_event_listing'); ?>
+					get_event_manager_template_part('content', 'past_event_listing');
 
-				<?php endwhile; ?>
+				endwhile;
 
-				<?php get_event_manager_template('event-listings-end.php'); ?>
+				get_event_manager_template('event-listings-end.php');
 
-				<?php if ($past_events->found_posts > $per_page) : ?>
-					<?php if ($show_pagination == "true") : ?>
+				if ($past_events->found_posts > $per_page) :
+					if ($show_pagination == "true") : ?>
 						<div class="event-organizer-pagination wpem-col-12">
 							<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
 						</div>
-					<?php endif; ?>
-				<?php endif; ?>
+					<?php endif;
+				endif; ?>
 
 			</div>
 		<?php else :
@@ -1309,8 +1258,7 @@ class WP_Event_Manager_Shortcodes
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event_organizers($atts)
-	{
+	public function output_event_organizers($atts)	{
 		extract($atts = shortcode_atts(apply_filters('event_manager_output_event_organizers_defaults', array(
 
 			'orderby'	=> 'title', // title
@@ -1366,8 +1314,7 @@ class WP_Event_Manager_Shortcodes
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event_organizer($atts)
-	{
+	public function output_event_organizer($atts)	{
 		extract(shortcode_atts(array(
 			'id' => '',
 		), $atts));
@@ -1510,8 +1457,7 @@ class WP_Event_Manager_Shortcodes
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event_venues($atts)
-	{
+	public function output_event_venues($atts)	{
 		extract($atts = shortcode_atts(apply_filters('event_manager_output_event_venues_defaults', array(
 
 			'orderby'	=> 'title', // title
@@ -1572,8 +1518,7 @@ class WP_Event_Manager_Shortcodes
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event_venue($atts)
-	{
+	public function output_event_venue($atts)	{
 		extract(shortcode_atts(array(
 			'id' => '',
 		), $atts));
@@ -1709,8 +1654,7 @@ class WP_Event_Manager_Shortcodes
 	 * @param mixed $args
 	 * @return void
 	 */
-	public function output_upcoming_events($atts)
-	{
+	public function output_upcoming_events($atts)	{
 
 		ob_start();
 		extract(shortcode_atts(array(
@@ -1834,25 +1778,25 @@ class WP_Event_Manager_Shortcodes
 		if ($upcoming_events->have_posts()) : ?>
 			<div class="event_listings">
 
-				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => 'all')); ?>
+				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => 'all'));
 
-				<?php while ($upcoming_events->have_posts()) : $upcoming_events->the_post(); ?>
+				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 
-					<?php get_event_manager_template_part('content', 'past_event_listing'); ?>
+					get_event_manager_template_part('content', 'past_event_listing');
 
-				<?php endwhile; ?>
+				endwhile;
 
-				<?php get_event_manager_template('event-listings-end.php'); ?>
-				<?php if ($upcoming_events->found_posts > $per_page) : ?>
-					<?php if ($show_pagination == "true" || $show_pagination == "on") : ?>
+				get_event_manager_template('event-listings-end.php');
+				if ($upcoming_events->found_posts > $per_page) :
+					if ($show_pagination == "true" || $show_pagination == "on") : ?>
 						<div class="event-organizer-pagination">
 							<?php get_event_manager_template('pagination.php', array('max_num_pages' => $upcoming_events->max_num_pages)); ?>
 						</div>
-					<?php endif; ?>
-				<?php endif; ?>
+					<?php endif;
+				 endif; ?>
 
 			</div>
-<?php else :
+		<?php else :
 
 			do_action('event_manager_output_events_no_results');
 
@@ -1875,8 +1819,7 @@ class WP_Event_Manager_Shortcodes
 	 * @return string
 	 * @since 3.1.32
 	 */
-	public function output_single_event_organizer($atts)
-	{
+	public function output_single_event_organizer($atts)	{
 		extract(shortcode_atts(array(
 			'id' => '',
 		), $atts));
@@ -1928,8 +1871,7 @@ class WP_Event_Manager_Shortcodes
 	 * @return string
 	 * @since 3.1.32
 	 */
-	public function output_single_event_venue($atts)
-	{
+	public function output_single_event_venue($atts)	{
 		extract(shortcode_atts(array(
 			'id' => '',
 		), $atts));

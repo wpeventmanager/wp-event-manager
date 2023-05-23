@@ -417,7 +417,6 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 
 		$query_args = apply_filters( 'get_event_listings_query_args', $query_args, $args );
 		do_action( 'before_get_event_listings', $query_args, $args );
-
 		// Cache results.
 		if ( apply_filters( 'get_event_listings_cache_results', true ) ) {
 			$to_hash         = wp_json_encode( $query_args ) . apply_filters( 'wpml_current_language', '' );

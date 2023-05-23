@@ -28,4 +28,5 @@ else
     $list_type_class = 'wpem-event-listing-list-view';
 
 $list_type_class = apply_filters('wpem_default_listing_layout_class', $list_type_class, $layout_type); ?>
-<div id="event-listing-view" class="wpem-main wpem-event-listings event_listings <?php echo esc_attr($list_type_class); ?>">
+<div class="event_listings_main">
+    <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings <?php echo esc_attr($list_type_class); ?>">
