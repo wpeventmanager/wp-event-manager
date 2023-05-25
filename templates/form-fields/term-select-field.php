@@ -11,23 +11,29 @@ if (isset($field['value'])) {
 } else {
 	$selected = '';
 }
-
-// Select only supports 1 value
-if (is_array($selected)) {
-	$selected = current($selected);
+if($key == 'event_category'){
+	$placeholder=__( 'Select a Category', 'wp-event-manager' );
+}else if($key == 'event_type'){
+	$placeholder=__( 'Choose an Event Type', 'wp-event-manager' );
 }
 
+// Select only supports 1 value
+if (is_array($selected) && isset($field['value'])) {
+	$selected = current($selected);
+}else{
+	$selected = '';
+}
 wp_dropdown_categories(apply_filters('event_manager_term_select_field_wp_dropdown_categories_args', array(
 
 	'taxonomy'         => $field['taxonomy'],
 	'hierarchical'     => 1,
-	'show_option_all'  => false,
+	'show_option_all'  => $placeholder,
 	'show_option_none' => $field['required'] ? '' : '-',
 	'name'             => isset($field['name']) ? $field['name'] : $key,
 	'orderby'          => 'name',
 	'selected'         => $selected,
 	'hide_empty'       => false
-
+ 
 ), $key, $field));
 
 
