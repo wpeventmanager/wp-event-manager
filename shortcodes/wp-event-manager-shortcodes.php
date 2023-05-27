@@ -1185,13 +1185,13 @@ class WP_Event_Manager_Shortcodes
 			$today_date = array_search('today', $datetimes);
 			$yesterday_date = array_search('yesterday', $datetimes);
 			$tomorrow_date = array_search('tomorrow', $datetimes);
-			if ($today_date !== false) {
+			if ($today_date != false) {
 				$datetimes[$today_date] = date('Y-m-d');
 			}
-			if ($yesterday_date !== false) {
+			if ($yesterday_date != false) {
 				$datetimes[$yesterday_date] = date('Y-m-d', strtotime('-1 day'));
 			}
-			if ($tomorrow_date !== false) {
+			if ($tomorrow_date != false) {
 				$datetimes[$tomorrow_date] = date('Y-m-d', strtotime('+1 day'));
 			}
 			$args_past['meta_query'][] = [
