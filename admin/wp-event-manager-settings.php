@@ -245,11 +245,11 @@ class WP_Event_Manager_Settings
 
 							'std'        => '0',
 
-							'label'      => __('Ticket Prices Selection', 'wp-event-manager'),
+							'label'      => __('Ticket Prices Filter', 'wp-event-manager'),
 
-							'cb_label'   => __('Enable Ticket prices selection for listing page.', 'wp-event-manager'),
+							'cb_label'   => __('Enable Ticket prices filter for listing page.', 'wp-event-manager'),
 
-							'desc'       => __('Choose whether to enable ticket prices selection on the event listing page.', 'wp-event-manager'),
+							'desc'       => __('Choose whether to enable ticket prices filter on the event listing page.', 'wp-event-manager'),
 
 							'type'       => 'checkbox',
 
