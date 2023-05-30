@@ -3006,7 +3006,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events
 }
 .wpem-event-listing-type-page .wpem-event-listing-type-page-wrapper .wpem-event-listing-type-page-title .wpem-heading-text {
   font-size: 32px;
-  line-height: 60px;
+  line-height: normal;
   font-weight: 700;
   text-align: center;
   margin: 0;
