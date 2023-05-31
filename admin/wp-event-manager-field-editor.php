@@ -158,14 +158,10 @@ class WP_Event_Manager_Field_Editor
 			)
 		);
 
-		if (get_option('enable_event_organizer')) {
-			$GLOBALS['event_manager']->forms->get_form('submit-event', array());
-			$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-			$event_fields               = $form_submit_event_instance->merge_with_custom_fields('backend');
-		} else {
-			$event_fields = array();
-		}
-
+		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
+		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
+		$event_fields               = $form_submit_event_instance->merge_with_custom_fields('backend');
+		
 		if (get_option('enable_event_organizer')) {
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
