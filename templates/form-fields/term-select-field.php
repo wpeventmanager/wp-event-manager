@@ -12,7 +12,7 @@ if (isset($field['value'])) {
 	$selected = '';
 }
 if($key == 'event_category'){
-	$placeholder=__( 'Select a Category', 'wp-event-manager' );
+	$placeholder=__( 'Choose a Category', 'wp-event-manager' );
 }else if($key == 'event_type'){
 	$placeholder=__( 'Choose an Event Type', 'wp-event-manager' );
 }

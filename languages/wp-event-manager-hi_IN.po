@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-05-30 15:59+0530\n"
-"PO-Revision-Date: 2023-05-30 16:01+0530\n"
+"POT-Creation-Date: 2023-06-01 17:54+0530\n"
+"PO-Revision-Date: 2023-06-01 17:57+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -160,7 +160,7 @@ msgid "Banner"
 msgstr "पताका"
 
 #: admin/wp-event-manager-cpt.php:401
-#: admin/wp-event-manager-field-editor.php:199
+#: admin/wp-event-manager-field-editor.php:195
 #: admin/wp-event-manager-form-field-editor-field.php:140
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:8
 msgid "Type"
@@ -382,72 +382,72 @@ msgstr "डब्ल्यूपी संपादक"
 msgid "URL"
 msgstr "URL"
 
-#: admin/wp-event-manager-field-editor.php:193
+#: admin/wp-event-manager-field-editor.php:189
 #, php-format
 msgid "%s form fields"
 msgstr "फ़ील्ड %s करें"
 
-#: admin/wp-event-manager-field-editor.php:198
+#: admin/wp-event-manager-field-editor.php:194
 #: admin/wp-event-manager-form-field-editor-field.php:139
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:7
 msgid "Field Label"
 msgstr "फ़ील्ड लेबल"
 
-#: admin/wp-event-manager-field-editor.php:200
+#: admin/wp-event-manager-field-editor.php:196
 #: admin/wp-event-manager-form-field-editor-field.php:141
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:9
 #: forms/wp-event-manager-form-submit-event.php:224
 msgid "Description"
 msgstr "विवरण"
 
-#: admin/wp-event-manager-field-editor.php:201
+#: admin/wp-event-manager-field-editor.php:197
 #: admin/wp-event-manager-form-field-editor-field.php:142
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:10
 msgid "Placeholder / Options"
 msgstr "प्लेसहोल्डर /"
 
-#: admin/wp-event-manager-field-editor.php:202
+#: admin/wp-event-manager-field-editor.php:198
 #: admin/wp-event-manager-form-field-editor-field.php:143
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:11
 msgid "Meta Key"
 msgstr "मेटा कुंजी"
 
-#: admin/wp-event-manager-field-editor.php:203
+#: admin/wp-event-manager-field-editor.php:199
 #: admin/wp-event-manager-form-field-editor-field.php:144
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:12
 msgid "Only For Admin"
 msgstr "केवल व्यवस्थापक के लिए"
 
-#: admin/wp-event-manager-field-editor.php:204
+#: admin/wp-event-manager-field-editor.php:200
 #: admin/wp-event-manager-form-field-editor-field.php:145
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:13
 msgid "Priority"
 msgstr "प्राथमिकता"
 
-#: admin/wp-event-manager-field-editor.php:205
+#: admin/wp-event-manager-field-editor.php:201
 #: admin/wp-event-manager-form-field-editor-field.php:146
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:14
 msgid "Validation"
 msgstr "मान्यता"
 
-#: admin/wp-event-manager-field-editor.php:212
+#: admin/wp-event-manager-field-editor.php:208
 msgid "Add field"
 msgstr "फ़ील्ड जोड़ें"
 
-#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:212
 msgid "Reset to default"
 msgstr "डिफ़ॉल्ट पर रीसेट करें"
 
-#: admin/wp-event-manager-field-editor.php:217
+#: admin/wp-event-manager-field-editor.php:213
 #: admin/wp-event-manager-settings.php:946
 msgid "Save Changes"
 msgstr "बदलाव सहेजें"
 
-#: admin/wp-event-manager-field-editor.php:441
+#: admin/wp-event-manager-field-editor.php:437
 msgid "The fields were successfully saved."
 msgstr "फ़ील्ड सफलतापूर्वक सहेजे गए."
 
-#: admin/wp-event-manager-field-editor.php:443
+#: admin/wp-event-manager-field-editor.php:439
 
 msgid "Please try again to save fields."
 msgstr "कृपया फ़ील्ड सहेजने के लिए पुन: प्रयास करें."
@@ -3186,7 +3186,9 @@ msgstr "कोई भी तारीख"
 msgid "Category"
 msgstr "वर्ग"
 
-#: templates/event-filters.php:100 wp-event-manager-functions.php:1225
+#: templates/event-filters.php:100
+#: templates/form-fields/term-select-field.php:15
+#: wp-event-manager-functions.php:1225
 msgid "Choose a Category"
 msgstr "कोई श्रेणी चुनें"
 
@@ -3340,11 +3342,6 @@ msgstr ""
 #: templates/form-fields/repeated-field.php:84
 msgid "Ticket details"
 msgstr "टिकट का ब्यौरा"
-
-#: templates/form-fields/term-select-field.php:15
-
-msgid "Select a Category"
-msgstr "श्रेणी का चयन करें"
 
 #: templates/form-fields/uploaded-file-html.php:12
 #: templates/form-fields/uploaded-file-html.php:14
@@ -3666,8 +3663,9 @@ msgid "Confirm Password"
 msgstr "पासवर्ड पुनः दर्ज करें"
 
 #: wp-event-manager-template.php:463
+
 msgid "Posted on "
-msgstr "पर पोस्ट किया गया "
+msgstr "द्वारा पोस्ट किया गया"
 
 #: wp-event-manager.php:285
 msgid "Invalid file type. Accepted types:"

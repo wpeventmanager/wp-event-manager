@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-05-30 15:59+0530\n"
-"PO-Revision-Date: 2023-05-30 16:05+0530\n"
+"POT-Creation-Date: 2023-06-01 17:54+0530\n"
+"PO-Revision-Date: 2023-06-01 17:56+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,7 +164,7 @@ msgid "Banner"
 msgstr "Banner"
 
 #: admin/wp-event-manager-cpt.php:401
-#: admin/wp-event-manager-field-editor.php:199
+#: admin/wp-event-manager-field-editor.php:195
 #: admin/wp-event-manager-form-field-editor-field.php:140
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:8
 msgid "Type"
@@ -388,73 +388,72 @@ msgstr "WP-Redakteur"
 msgid "URL"
 msgstr "URL"
 
-#: admin/wp-event-manager-field-editor.php:193
+#: admin/wp-event-manager-field-editor.php:189
 #, php-format
 msgid "%s form fields"
 msgstr "%s Formularfelder"
 
-#: admin/wp-event-manager-field-editor.php:198
+#: admin/wp-event-manager-field-editor.php:194
 #: admin/wp-event-manager-form-field-editor-field.php:139
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:7
 msgid "Field Label"
 msgstr "Feld Beschriftung"
 
-#: admin/wp-event-manager-field-editor.php:200
+#: admin/wp-event-manager-field-editor.php:196
 #: admin/wp-event-manager-form-field-editor-field.php:141
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:9
 #: forms/wp-event-manager-form-submit-event.php:224
 msgid "Description"
 msgstr "Beschreibung"
 
-#: admin/wp-event-manager-field-editor.php:201
+#: admin/wp-event-manager-field-editor.php:197
 #: admin/wp-event-manager-form-field-editor-field.php:142
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:10
 msgid "Placeholder / Options"
 msgstr "Platzhalter / Optionen"
 
-#: admin/wp-event-manager-field-editor.php:202
+#: admin/wp-event-manager-field-editor.php:198
 #: admin/wp-event-manager-form-field-editor-field.php:143
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:11
 msgid "Meta Key"
 msgstr "Meta Key"
 
-#: admin/wp-event-manager-field-editor.php:203
+#: admin/wp-event-manager-field-editor.php:199
 #: admin/wp-event-manager-form-field-editor-field.php:144
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:12
 msgid "Only For Admin"
 msgstr "Nur für Administratoren"
 
-#: admin/wp-event-manager-field-editor.php:204
+#: admin/wp-event-manager-field-editor.php:200
 #: admin/wp-event-manager-form-field-editor-field.php:145
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:13
 msgid "Priority"
 msgstr "Priorität"
 
-#: admin/wp-event-manager-field-editor.php:205
+#: admin/wp-event-manager-field-editor.php:201
 #: admin/wp-event-manager-form-field-editor-field.php:146
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:14
 msgid "Validation"
 msgstr "Validierung"
 
-#: admin/wp-event-manager-field-editor.php:212
+#: admin/wp-event-manager-field-editor.php:208
 msgid "Add field"
 msgstr "Feld hinzufügen"
 
-#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:212
 msgid "Reset to default"
 msgstr "Auf Standardeinstellungen zurücksetzen"
 
-#: admin/wp-event-manager-field-editor.php:217
+#: admin/wp-event-manager-field-editor.php:213
 #: admin/wp-event-manager-settings.php:946
 msgid "Save Changes"
 msgstr "Änderungen speichern"
 
-#: admin/wp-event-manager-field-editor.php:441
+#: admin/wp-event-manager-field-editor.php:437
 msgid "The fields were successfully saved."
 msgstr "Die Felder wurden erfolgreich gespeichert."
 
-#: admin/wp-event-manager-field-editor.php:443
-
+#: admin/wp-event-manager-field-editor.php:439
 msgid "Please try again to save fields."
 msgstr "Bitte versuchen Sie erneut, Felder zu speichern."
 
@@ -557,7 +556,6 @@ msgid "General"
 msgstr "Allgemein"
 
 #: admin/wp-event-manager-settings.php:62
-
 msgid "Enable Organizer"
 msgstr "Organisator aktivieren"
 
@@ -675,12 +673,10 @@ msgstr ""
 "(ohne den Veranstaltungsregistrierungsbereich)."
 
 #: admin/wp-event-manager-settings.php:175
-
 msgid "Multi-select Event Categories"
 msgstr "Mehrfachauswahl von Ereigniskategorien"
 
 #: admin/wp-event-manager-settings.php:177
-
 msgid "Enable event category multiselect by default."
 msgstr ""
 "Aktivieren Sie standardmäßig die Mehrfachauswahl für Ereigniskategorien."
@@ -745,17 +741,14 @@ msgstr ""
 "Ereignisse werden innerhalb ALLER ausgewählten Ereignistypen angezeigt."
 
 #: admin/wp-event-manager-settings.php:248
-
 msgid "Ticket Prices Filter"
 msgstr "Ticketpreise Filter"
 
 #: admin/wp-event-manager-settings.php:250
-
 msgid "Enable Ticket prices filter for listing page."
 msgstr "Aktivieren Sie den Ticketpreisfilter für die Listenseite."
 
 #: admin/wp-event-manager-settings.php:252
-
 msgid ""
 "Choose whether to enable ticket prices filter on the event listing page."
 msgstr ""
@@ -895,7 +888,6 @@ msgstr ""
 "Benutzer und im Backend vom Administrator hinzugefügt werden."
 
 #: admin/wp-event-manager-settings.php:396
-
 msgid "Delete Listings After Finished"
 msgstr "Löschen Sie Angebote, nachdem Sie fertig sind."
 
@@ -910,9 +902,8 @@ msgstr ""
 "automatisch gelöscht."
 
 #: admin/wp-event-manager-settings.php:412
-
 msgid "Delete Expired Listings"
-msgstr "Abgelaufene Angebote löschen"
+msgstr "Abgelaufene Einträge löschen"
 
 #: admin/wp-event-manager-settings.php:414
 msgid "Expired listings are deleted after 30 days."
@@ -997,12 +988,10 @@ msgid "Ticket Prices"
 msgstr "Ticketpreise"
 
 #: admin/wp-event-manager-settings.php:498
-
 msgid "Enable Ticket prices for submission form."
 msgstr "Aktivieren Sie Ticketpreise für das Einreichungsformular."
 
 #: admin/wp-event-manager-settings.php:500
-
 msgid "Choose whether to enable ticket prices on the event submission page."
 msgstr ""
 "Wählen Sie aus, ob die Ticketpreise auf der Event-Einreichungsseite "
@@ -1286,7 +1275,6 @@ msgid "Thanks for installing WP Event Manager!"
 msgstr "Vielen Dank für die Installation von WP Event Manager!"
 
 #: admin/wp-event-manager-setup.php:228
-
 msgid ""
 "The Setup wizard helps you create various pages for event submission, event "
 "listings, handing events along with organizers and venue pages."
@@ -1347,7 +1335,6 @@ msgid "Post an Event"
 msgstr "Event posten"
 
 #: admin/wp-event-manager-setup.php:266
-
 msgid ""
 "This page allows peoples to add events to your website from the front-end."
 msgstr ""
@@ -1370,7 +1357,6 @@ msgid "Event Dashboard"
 msgstr "Varanstaltungs-Dashboard"
 
 #: admin/wp-event-manager-setup.php:275
-
 msgid ""
 "This page allows peoples to manage (edit, delete and duplicate) their own "
 "events from the front-end."
@@ -2841,7 +2827,6 @@ msgid "Organizer name"
 msgstr "Name Organisator"
 
 #: forms/wp-event-manager-form-submit-organizer.php:102
-
 msgid "Enter the name of the organizer"
 msgstr "Geben Sie den Namen des Organisators ein"
 
@@ -3048,7 +3033,6 @@ msgid "Action"
 msgstr "Aktion"
 
 #: shortcodes/wp-event-manager-shortcodes.php:406
-
 msgid "You need to be signed in to manage your organizer listings."
 msgstr ""
 "Sie müssen angemeldet sein, um Ihre Veranstaltereinträge verwalten zu können."
@@ -3066,7 +3050,6 @@ msgid "Details"
 msgstr "Details"
 
 #: shortcodes/wp-event-manager-shortcodes.php:563
-
 msgid "You need to be signed in to manage your venue listings."
 msgstr ""
 "Sie müssen angemeldet sein, um Ihre Veranstaltungseinträge verwalten zu "
@@ -3256,7 +3239,9 @@ msgstr "Beliebige Termine"
 msgid "Category"
 msgstr "Kategorie"
 
-#: templates/event-filters.php:100 wp-event-manager-functions.php:1225
+#: templates/event-filters.php:100
+#: templates/form-fields/term-select-field.php:15
+#: wp-event-manager-functions.php:1225
 msgid "Choose a Category"
 msgstr "Kategorie auswählen"
 
@@ -3414,10 +3399,6 @@ msgstr ""
 #: templates/form-fields/repeated-field.php:84
 msgid "Ticket details"
 msgstr "Ticket Details"
-
-#: templates/form-fields/term-select-field.php:15
-msgid "Select a Category"
-msgstr "Kategorie auswählen"
 
 #: templates/form-fields/uploaded-file-html.php:12
 #: templates/form-fields/uploaded-file-html.php:14

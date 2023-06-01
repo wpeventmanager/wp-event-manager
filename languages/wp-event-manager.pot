@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-05-30 15:59+0530\n"
-"PO-Revision-Date: 2023-05-30 15:59+0530\n"
+"POT-Creation-Date: 2023-06-01 17:54+0530\n"
+"PO-Revision-Date: 2023-06-01 17:53+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgid "Banner"
 msgstr ""
 
 #: admin/wp-event-manager-cpt.php:401
-#: admin/wp-event-manager-field-editor.php:199
+#: admin/wp-event-manager-field-editor.php:195
 #: admin/wp-event-manager-form-field-editor-field.php:140
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:8
 msgid "Type"
@@ -365,72 +365,72 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:193
+#: admin/wp-event-manager-field-editor.php:189
 #, php-format
 msgid "%s form fields"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:198
+#: admin/wp-event-manager-field-editor.php:194
 #: admin/wp-event-manager-form-field-editor-field.php:139
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:7
 msgid "Field Label"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:200
+#: admin/wp-event-manager-field-editor.php:196
 #: admin/wp-event-manager-form-field-editor-field.php:141
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:9
 #: forms/wp-event-manager-form-submit-event.php:224
 msgid "Description"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:201
+#: admin/wp-event-manager-field-editor.php:197
 #: admin/wp-event-manager-form-field-editor-field.php:142
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:10
 msgid "Placeholder / Options"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:202
+#: admin/wp-event-manager-field-editor.php:198
 #: admin/wp-event-manager-form-field-editor-field.php:143
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:11
 msgid "Meta Key"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:203
+#: admin/wp-event-manager-field-editor.php:199
 #: admin/wp-event-manager-form-field-editor-field.php:144
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:12
 msgid "Only For Admin"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:204
+#: admin/wp-event-manager-field-editor.php:200
 #: admin/wp-event-manager-form-field-editor-field.php:145
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:13
 msgid "Priority"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:205
+#: admin/wp-event-manager-field-editor.php:201
 #: admin/wp-event-manager-form-field-editor-field.php:146
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:14
 msgid "Validation"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:212
+#: admin/wp-event-manager-field-editor.php:208
 msgid "Add field"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:212
 msgid "Reset to default"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:217
+#: admin/wp-event-manager-field-editor.php:213
 #: admin/wp-event-manager-settings.php:946
 msgid "Save Changes"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:441
+#: admin/wp-event-manager-field-editor.php:437
 msgid "The fields were successfully saved."
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:443
+#: admin/wp-event-manager-field-editor.php:439
 msgid "Please try again to save fields."
 msgstr ""
 
@@ -3031,7 +3031,9 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-#: templates/event-filters.php:100 wp-event-manager-functions.php:1225
+#: templates/event-filters.php:100
+#: templates/form-fields/term-select-field.php:15
+#: wp-event-manager-functions.php:1225
 msgid "Choose a Category"
 msgstr ""
 
@@ -3176,10 +3178,6 @@ msgstr ""
 #: templates/form-fields/repeated-field.php:25
 #: templates/form-fields/repeated-field.php:84
 msgid "Ticket details"
-msgstr ""
-
-#: templates/form-fields/term-select-field.php:15
-msgid "Select a Category"
 msgstr ""
 
 #: templates/form-fields/uploaded-file-html.php:12
