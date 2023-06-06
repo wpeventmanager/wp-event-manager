@@ -3390,6 +3390,7 @@ p.post-submitted-success-green-message a {
   font-size: 18px;
   line-height: 1.42;
   font-weight: 600;
+  word-break: break-all;
 }
 .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap .wpem-dashboard-event-name small {
   font-weight: 400;
