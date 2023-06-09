@@ -149,6 +149,7 @@ class WP_Event_Manager_Data_Cleaner {
 	 * @access private
 	 */
 	private static function cleanup_custom_post_types() {
+		error_log("Delete post");
 		foreach ( self::$custom_post_types as $post_type ) {
 			$items = get_posts(
 				array(
@@ -160,6 +161,8 @@ class WP_Event_Manager_Data_Cleaner {
 			);
 
 			foreach ( $items as $item ) {
+				error_log(print_r( $item, true));
+				error_log( $item);
 				self::delete_event_with_attachment($item);
 				wp_delete_post( $item );
 			}
@@ -173,13 +176,15 @@ class WP_Event_Manager_Data_Cleaner {
 	 * @return void
 	 */
 	private static function delete_event_with_attachment($post_id) {
+		error_log("delete_event_with_attachment : ".$post_id);
 		if( !in_array(get_post_type($post_id), ['event_listing', 'event_organizer']) )
 			return;
-
+error_log("true");
 		$event_banner = get_post_meta($post_id, '_event_banner', true);
 
 		if(!empty($event_banner))
 		{
+			error_log("true");
 			$wp_upload_dir = wp_get_upload_dir();
 
 			$baseurl = $wp_upload_dir['baseurl'] . '/';
@@ -232,6 +237,7 @@ class WP_Event_Manager_Data_Cleaner {
 		}
 
 		$thumbnail_id = get_post_thumbnail_id($post_id);
+		error_log($thumbnail_id);
 		if(!empty($thumbnail_id))
 		{
 			wp_delete_attachment($thumbnail_id, true);
