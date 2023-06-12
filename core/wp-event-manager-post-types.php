@@ -1249,7 +1249,7 @@ class WP_Event_Manager_Post_Types {
 				case '_event_location':
 					$this->maybe_update_geolocation_data( $meta_id, $object_id, $meta_key, $meta_value );
 					break;
-				case '_featured':
+				case '_event_featured':
 					$this->maybe_update_menu_order( $meta_id, $object_id, $meta_key, $meta_value );
 					break;
 			}
@@ -1277,7 +1277,7 @@ class WP_Event_Manager_Post_Types {
 
 	public function maybe_update_menu_order( $meta_id, $object_id, $meta_key, $_meta_value ) {
 
-		if ( '_featured' !== $meta_key || 'event_listing' !== get_post_type( $object_id ) ) {
+		if ( '_event_featured' !== $meta_key || 'event_listing' !== get_post_type( $object_id ) ) {
 
 			return;
 		}
@@ -1315,9 +1315,9 @@ class WP_Event_Manager_Post_Types {
 
 		if ( empty( $post ) || 'event_listing' === $post->post_type ) {
 
-			add_post_meta( $post_id, '_cancelled', 0, true );
+			add_post_meta( $post_id, '_event_cancelled', 0, true );
 
-			add_post_meta( $post_id, '_featured', 0, true );
+			add_post_meta( $post_id, '_event_featured', 0, true );
 		}
 	}
 

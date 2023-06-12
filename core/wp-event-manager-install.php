@@ -30,7 +30,7 @@ class WP_Event_Manager_Install {
 		// Update featured posts ordering.
 		if ( version_compare( get_option( 'wp_event_manager_version', EVENT_MANAGER_VERSION ), '2.5', '<' ) ) {
 			$wpdb->query( "UPDATE {$wpdb->posts} p SET p.menu_order = 0 WHERE p.post_type='event_listing';" );
-			$wpdb->query( "UPDATE {$wpdb->posts} p LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id SET p.menu_order = -1 WHERE pm.meta_key = '_featured' AND pm.meta_value='1' AND p.post_type='event_listing';" );
+			$wpdb->query( "UPDATE {$wpdb->posts} p LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id SET p.menu_order = -1 WHERE pm.meta_key = '_event_featured' AND pm.meta_value='1' AND p.post_type='event_listing';" );
 		}
 
 		// Update legacy options

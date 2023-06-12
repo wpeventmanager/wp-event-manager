@@ -91,6 +91,7 @@ $options = array(
 		'event_manager_view_date_format',
 		'wp_event_manager_version',
 		'wpem_permalinks',
+		'wp_event_manager_update_db',
 		'event_manager_upgrade_database',
 		'wp_event_manager_db_version',
 		'wpem_installation',

@@ -65,7 +65,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if ( ! isset( $_GET[ 'new' ] ) && ( 'before' === get_option( 'event_manager_paid_listings_flow' ) || !$this->event_id  ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ){
 			$event_id     = absint( $_COOKIE['wp-event-manager-submitting-event-id'] );
 			$event_status = get_post_status( $event_id );
-			if ( 'preview' === $event_status && get_post_meta( $event_id, '_submitting_key', true ) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
+			if ( 'preview' === $event_status && get_post_meta( $event_id, '_wpem_unique_key', true ) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
 				$this->event_id = $event_id;
 			}
 		}
@@ -228,7 +228,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    => 8
 				),
 					
-				'registration' => array(
+				'event_registration_email' => array(
 					'label'       => $registration_method_label,
 					'type'        => 'text',
 					'required'    => true,
@@ -430,32 +430,32 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 		
 		// Registration method
-		if ( isset( $values['event']['registration'] ) && ! empty( $values['event']['registration'] ) ) {
+		if ( isset( $values['event']['event_registration_email'] ) && ! empty( $values['event']['event_registration_email'] ) ) {
 			$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
-			$values['event']['registration'] = str_replace( ' ', '+', $values['event']['registration'] );
+			$values['event']['event_registration_email'] = str_replace( ' ', '+', $values['event']['event_registration_email'] );
 
 			switch ( $allowed_registration_method ) {
 				case 'email' :
-					if ( ! is_email( $values['event']['registration'] ) ) {
+					if ( ! is_email( $values['event']['event_registration_email'] ) ) {
 						throw new Exception( __( 'Please enter a valid registration email address.', 'wp-event-manager' ) );
 					}
 				break;
 				case 'url' :
 					// Prefix http if needed
-					if ( ! strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
-						$values['event']['registration'] = 'http://' . $values['event']['registration'];
+					if ( ! strstr( $values['event']['event_registration_email'], 'http:' ) && ! strstr( $values['event']['event_registration_email'], 'https:' ) ) {
+						$values['event']['event_registration_email'] = 'http://' . $values['event']['event_registration_email'];
 					}
-					if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
+					if ( ! filter_var( $values['event']['event_registration_email'], FILTER_VALIDATE_URL ) ) {
 						throw new Exception( __( 'Please enter a valid registration URL.', 'wp-event-manager' ) );
 					}
 				break;
 				default :
-					if ( ! is_email( $values['event']['registration'] ) ) {
+					if ( ! is_email( $values['event']['event_registration_email'] ) ) {
 						// Prefix http if needed
-						if ( ! strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
-							$values['event']['registration'] = 'http://' . $values['event']['registration'];
+						if ( ! strstr( $values['event']['event_registration_email'], 'http:' ) && ! strstr( $values['event']['event_registration_email'], 'https:' ) ) {
+							$values['event']['event_registration_email'] = 'http://' . $values['event']['event_registration_email'];
 						}
-						if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
+						if ( ! filter_var( $values['event']['event_registration_email'], FILTER_VALIDATE_URL ) ) {
 							throw new Exception( __( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
 						}
 					}
@@ -561,11 +561,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		// Get user meta
 		} elseif ( is_user_logged_in() && empty( $_POST['submit_event'] ) ) {
 			
-			if ( ! empty( $this->fields['event']['registration'] ) ) {
+			if ( ! empty( $this->fields['event']['event_registration_email'] ) ) {
 				$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
 				if ( $allowed_registration_method !== 'url' ) {
 					$current_user = wp_get_current_user();
-					$this->fields['event']['registration']['value'] = $current_user->user_email;
+					$this->fields['event']['event_registration_email']['value'] = $current_user->user_email;
 				}
 			}
 			$this->fields = apply_filters( 'submit_event_form_fields_get_user_data', $this->fields, get_current_user_id() );
@@ -717,10 +717,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		} else {
 			$this->event_id = wp_insert_post( $event_data );
 			if ( ! headers_sent() ) {
-				$submitting_key = uniqid();
+				$wpem_unique_key = uniqid();
 				setcookie( 'wp-event-manager-submitting-event-id', $this->event_id, 0, COOKIEPATH, COOKIE_DOMAIN, false );
-				setcookie( 'wp-event-manager-submitting-event-key', $submitting_key, 0, COOKIEPATH, COOKIE_DOMAIN, false );
-				update_post_meta( $this->event_id, '_submitting_key', $submitting_key );
+				setcookie( 'wp-event-manager-submitting-event-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false );
+				update_post_meta( $this->event_id, '_wpem_unique_key', $wpem_unique_key );
 			}
 		}
 	}
@@ -779,8 +779,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		$current_user_id = get_current_user_id();
 
 		// Set defaults
-		add_post_meta( $this->event_id, '_cancelled', 0, true );
-		add_post_meta( $this->event_id, '_featured', 0, true );
+		add_post_meta( $this->event_id, '_event_cancelled', 0, true );
+		add_post_meta( $this->event_id, '_event_featured', 0, true );
 		$maybe_attach = array();
 		
 		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting

@@ -63,7 +63,7 @@ class WP_Event_Manager_Writepanels
 		
 		$current_user = wp_get_current_user();
 		if (isset($post->ID)) {
-			$registration = metadata_exists('post', $post->ID, '_registration') ? get_post_meta($post->ID, '_registration', true) : $current_user->user_email;
+			$registration = metadata_exists('post', $post->ID, '_event_registration_email') ? get_post_meta($post->ID, '_event_registration_email', true) : $current_user->user_email;
 			$expiry_date  = get_post_meta($post->ID, '_event_expiry_date', true);
 			if ($expiry_date) {
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
@@ -85,7 +85,7 @@ class WP_Event_Manager_Writepanels
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
 
-				if ($field_key === 'registration') {
+				if ($field_key === 'event_registration_email') {
 					$field_value['value'] = $registration;
 				}
 
@@ -111,14 +111,14 @@ class WP_Event_Manager_Writepanels
 		}
 
 		if ($current_user->has_cap('manage_event_listings')) {
-			$fields['_featured'] = array(
+			$fields['_event_featured'] = array(
 				'label'       => __('Featured Listing', 'wp-event-manager'),
 				'type'        => 'checkbox',
 				'description' => __('Featured listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
 				'priority'    => 39,
 			);
 
-			$fields['_cancelled'] = array(
+			$fields['_event_cancelled'] = array(
 				'label'       => __('Cancelled Listing', 'wp-event-manager'),
 				'type'        => 'checkbox',
 				'description' => __('Cancelled listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
@@ -930,8 +930,8 @@ class WP_Event_Manager_Writepanels
 		error_log("save_event_listing_data");
 		global $wpdb;
 		// These need to exist
-		add_post_meta($post_id, '_cancelled', 0, true);
-		add_post_meta($post_id, '_featured', 0, true);
+		add_post_meta($post_id, '_event_cancelled', 0, true);
+		add_post_meta($post_id, '_event_featured', 0, true);
 		add_post_meta($post_id, '_event_title', get_the_title($post_id));
 		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();

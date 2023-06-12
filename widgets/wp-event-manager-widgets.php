@@ -640,7 +640,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget
 				'compare' => '>'
 			),
 			array(
-				'key'     => '_cancelled',
+				'key'     => '_event_cancelled',
 				'value'   => '1',
 				'compare' => '!='
 			),
@@ -827,7 +827,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget
 				'compare' => '<'
 			),
 			array(
-				'key'     => '_cancelled',
+				'key'     => '_event_cancelled',
 				'value'   => '1',
 				'compare' => '!='
 			),

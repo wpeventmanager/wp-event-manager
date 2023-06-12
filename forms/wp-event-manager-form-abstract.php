@@ -39,9 +39,9 @@ abstract class WP_Event_Manager_Form {
     			isset( $_GET[ 'new' ] ) &&
     			isset( $_COOKIE[ 'wp-event-manager-submitting-event-id' ] ) &&
     			isset( $_COOKIE[ 'wp-event-manager-submitting-event-key' ] ) &&
-    			get_post_meta(absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_submitting_key', true ) == $_COOKIE['wp-event-manager-submitting-event-key']
+    			get_post_meta(absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_wpem_unique_key', true ) == $_COOKIE['wp-event-manager-submitting-event-key']
     			) {
-    				delete_post_meta( absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_submitting_key' );
+    				delete_post_meta( absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_wpem_unique_key' );
     				setcookie( 'wp-event-manager-submitting-event-id', '', 0, COOKIEPATH, COOKIE_DOMAIN, false );
     				setcookie( 'wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false );
     				wp_redirect( esc_url(remove_query_arg( array( 'new', 'key' ), $_SERVER[ 'REQUEST_URI' ] ) ));

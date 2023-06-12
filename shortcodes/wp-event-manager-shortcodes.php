@@ -133,7 +133,7 @@ class WP_Event_Manager_Shortcodes
 							throw new Exception(__('This event has already been cancelled.', 'wp-event-manager'));
 
 						// Update
-						update_post_meta($event_id, '_cancelled', 1);
+						update_post_meta($event_id, '_event_cancelled', 1);
 
 						// Message
 						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(__('%s has been cancelled.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
@@ -146,7 +146,7 @@ class WP_Event_Manager_Shortcodes
 						}
 
 						// Update
-						update_post_meta($event_id, '_cancelled', 0);
+						update_post_meta($event_id, '_event_cancelled', 0);
 
 						// Message
 						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(__('%s has been marked as not cancelled.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
@@ -1048,7 +1048,7 @@ class WP_Event_Manager_Shortcodes
 			$args['orderby']        = 'rand';
 			if (!is_null($featured)) {
 				$args['meta_query'] = array(array(
-					'key'     => '_featured',
+					'key'     => '_event_featured',
 					'value'   => '1',
 					'compare' => ($featured == "true") ? '=' : '!='
 
@@ -1720,7 +1720,7 @@ class WP_Event_Manager_Shortcodes
 			),
 
 			array(
-				'key'     => '_cancelled',
+				'key'     => '_event_cancelled',
 				'value'   => '1',
 				'compare' => '!='
 			),

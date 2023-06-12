@@ -61,7 +61,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		if ( ! isset( $_GET[ 'new' ] ) && ( !$this->organizer_id  ) && ! empty( $_COOKIE['wp-event-manager-submitting-organizer-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-organizer-key'] ) ){
 			$organizer_id     = absint( $_COOKIE['wp-event-manager-submitting-organizer-id'] );
 			$organizer_status = get_post_status( $organizer_id );
-			if ( 'preview' === $organizer_status && get_post_meta( $organizer_id, '_submitting_key', true ) === $_COOKIE['wp-event-manager-submitting-organizer-key'] ) {
+			if ( 'preview' === $organizer_status && get_post_meta( $organizer_id, '_wpem_unique_key', true ) === $_COOKIE['wp-event-manager-submitting-organizer-key'] ) {
 				$this->organizer_id = $organizer_id;
 			}
 		}
@@ -385,10 +385,10 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		} else {
 			$this->organizer_id = wp_insert_post( $organizer_data );
 			if ( ! headers_sent() ) {
-				$submitting_key = uniqid();
+				$wpem_unique_key = uniqid();
 				setcookie( 'wp-event-manager-submitting-organizer-id', $this->organizer_id, 0, COOKIEPATH, COOKIE_DOMAIN, false );
-				setcookie( 'wp-event-manager-submitting-organizer-key', $submitting_key, 0, COOKIEPATH, COOKIE_DOMAIN, false );
-				update_post_meta( $this->organizer_id, '_submitting_key', $submitting_key );
+				setcookie( 'wp-event-manager-submitting-organizer-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false );
+				update_post_meta( $this->organizer_id, '_wpem_unique_key', $wpem_unique_key );
 			}
 		}
 	}

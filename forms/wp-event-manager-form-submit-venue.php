@@ -60,7 +60,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		if ( ! isset( $_GET[ 'new' ] ) && ( !$this->venue_id  ) && ! empty( $_COOKIE['wp-event-manager-submitting-venue-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-venue-key'] ) ){
 			$venue_id     = absint( $_COOKIE['wp-event-manager-submitting-venue-id'] );
 			$venue_status = get_post_status( $venue_id );
-			if ( 'preview' === $venue_status && get_post_meta( $venue_id, '_submitting_key', true ) === $_COOKIE['wp-event-manager-submitting-venue-key'] ) {
+			if ( 'preview' === $venue_status && get_post_meta( $venue_id, '_wpem_unique_key', true ) === $_COOKIE['wp-event-manager-submitting-venue-key'] ) {
 				$this->venue_id = $venue_id;
 			}
 		}
@@ -378,10 +378,10 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		} else {
 			$this->venue_id = wp_insert_post( $venue_data );
 			if ( ! headers_sent() ) {
-				$submitting_key = uniqid();
+				$wpem_unique_key = uniqid();
 				setcookie( 'wp-event-manager-submitting-venue-id', $this->venue_id, 0, COOKIEPATH, COOKIE_DOMAIN, false );
-				setcookie( 'wp-event-manager-submitting-venue-key', $submitting_key, 0, COOKIEPATH, COOKIE_DOMAIN, false );
-				update_post_meta( $this->venue_id, '_submitting_key', $submitting_key );
+				setcookie( 'wp-event-manager-submitting-venue-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false );
+				update_post_meta( $this->venue_id, '_wpem_unique_key', $wpem_unique_key );
 			}
 		}
 	}

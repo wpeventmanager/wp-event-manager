@@ -90,7 +90,7 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 		}
 		if ( ! is_null( $args['featured'] ) ) {
 			$query_args['meta_query'][] = array(
-				'key'     => '_featured',
+				'key'     => '_event_featured',
 				'value'   => '1',
 				'compare' => $args['featured'] ? '=' : '!='
 			);
@@ -99,7 +99,7 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 
 		if ( ! is_null( $args['cancelled'] ) || 1 === absint( get_option( 'event_manager_hide_cancelled_events' ) ) ) {
 			$query_args['meta_query'][] = array(
-				'key'     => '_cancelled',
+				'key'     => '_event_cancelled',
 				'value'   => '1',
 				'compare' => $args['cancelled'] ? '=' : '!='
 			);
@@ -335,7 +335,7 @@ if ( ! function_exists( 'get_event_listings' ) ) :
 			$query_args['meta_query'] = array(
 				'relation' => 'AND',
 				'featured_clause' => array(
-					'key'     => '_featured',
+					'key'     => '_event_featured',
 					'compare' => 'EXISTS',
 				),
 				'event_start_date_clause' => array(
@@ -539,7 +539,8 @@ if ( ! function_exists( 'get_event_listings_keyword_search' ) ) :
 				'_organizer_twitter',
 				'_organizer_xing',
 				'_organizer_pinterest',
-				'_organizer_instagram'
+				'_organizer_instagram',
+				'_event_registration_email'
 		);
 		$searchable_meta_keys = apply_filters( 'event_listing_searchable_meta_keys', $searchable_meta_keys );
 		
@@ -630,7 +631,7 @@ if ( ! function_exists( 'get_featured_event_ids' ) ) :
 
 			'post_status'    => 'publish',
 
-			'meta_key'       => '_featured',
+			'meta_key'       => '_event_featured',
 
 			'meta_value'     => '1',
 
@@ -1574,7 +1575,7 @@ function event_manager_duplicate_listing( $post_id ) {
 	if ( ! empty( $post_meta ) ) {
 		$post_meta = wp_list_pluck( $post_meta, 'meta_value', 'meta_key' );
 		foreach ( $post_meta as $meta_key => $meta_value ) {
-			if ( in_array( $meta_key, apply_filters( 'event_manager_duplicate_listing_ignore_keys', array( '_cancelled', '_featured', '_event_expires', '_event_duration' ) ) ) ) {
+			if ( in_array( $meta_key, apply_filters( 'event_manager_duplicate_listing_ignore_keys', array( '_event_cancelled', '_event_featured', '_event_expires', '_event_duration' ) ) ) ) {
 				continue;
 			}
 			if($meta_key === '_view_count'){
@@ -1584,8 +1585,8 @@ function event_manager_duplicate_listing( $post_id ) {
 		}
 	}
 
-	update_post_meta( $new_post_id, '_cancelled', 0 );
-	update_post_meta( $new_post_id, '_featured', 0 );
+	update_post_meta( $new_post_id, '_event_cancelled', 0 );
+	update_post_meta( $new_post_id, '_event_featured', 0 );
 
 	do_action('event_manager_duplicate_listing_meta_end',$post_meta,$post,$new_post_id);
 
