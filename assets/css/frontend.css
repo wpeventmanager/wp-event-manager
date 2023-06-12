@@ -4014,3 +4014,6 @@ div.wpem-empty-date{
   text-align: center;
   width: 40%;
 }
+.wpem_loader{
+  pointer-events: none; user-select: none;
+}
