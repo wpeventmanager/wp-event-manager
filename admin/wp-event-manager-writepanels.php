@@ -927,6 +927,7 @@ class WP_Event_Manager_Writepanels
 	 * @return void
 	 */
 	public function save_event_listing_data($post_id, $post){
+		error_log("save_event_listing_data");
 		global $wpdb;
 		// These need to exist
 		add_post_meta($post_id, '_cancelled', 0, true);
@@ -1138,7 +1139,7 @@ class WP_Event_Manager_Writepanels
 		if( isset($event_online) && $event_online == 'yes') {
 			update_post_meta($post_id, '_event_location', '');
 			update_post_meta($post_id, '_event_pincode', '');
-		}
+		} 
 		// reset meta value if ticket type is free
 		if(isset($ticket_type) && $ticket_type=='free'){
 			update_post_meta( $post_id, '_event_ticket_price', '');
@@ -1154,8 +1155,10 @@ class WP_Event_Manager_Writepanels
 		}
 
 		//set expire date at 12:00 PM of the selected day     
-		$expiry_date = date('Y-m-d H:i:s', strtotime(get_post_meta($post_id, '_event_expiry_date', true). ' 23:59:30'));     
+		$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(get_post_meta($post_id, '_event_expiry_date', true). ' 23:59:30')), $post);     
+		error_log("Expire date :".$expiry_date);
 		$today_date = date('Y-m-d H:i:s', $current_timestamp);     
+		error_log("today date :".$today_date);
 		//check for event expire    
 		$post_status = $expiry_date && strtotime($today_date) > strtotime($expiry_date) ? 'expired' : false;
 		if ($post_status) {
