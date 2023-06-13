@@ -4,7 +4,7 @@ namespace WPEventManager\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
  * Elementor Event Listing
@@ -33,7 +33,7 @@ class Elementor_Event_Listing extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Event Listing', 'wp-event-manager' );
+		return __('Event Listing', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -87,19 +87,19 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->start_controls_section(
 			'section_shortcode',
 			[
-				'label' => __( 'Event Listing', 'wp-event-manager' ),
+				'label' => __('Event Listing', 'wp-event-manager'),
 			]
 		);
 	
 		$this->add_control(
 			'show_pagination',
 			[
-				'label' => __( 'Show Pagination', 'wp-event-manager' ),
+				'label' => __('Show Pagination', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'false',
 				'options' => [
-					'false' => __( 'False', 'wp-event-manager' ),
-					'true' => __( 'True', 'wp-event-manager' ),
+					'false' => __('False', 'wp-event-manager'),
+					'true' => __('True', 'wp-event-manager'),
 				],
 			]
 		);
@@ -107,7 +107,7 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'per_page',
 			[
-				'label'       => __( 'Post Per Page', 'wp-event-manager' ),
+				'label'       => __('Post Per Page', 'wp-event-manager'),
 				'type'        => Controls_Manager::NUMBER,
 				'dynamic'     => [
 								'active' => true,
@@ -119,12 +119,12 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'order',
 			[
-				'label' => __( 'Order', 'wp-event-manager' ),
+				'label' => __('Order', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'DESC',
 				'options' => [
-					'ASC' => __( 'Ascending (ASC)', 'wp-event-manager' ),
-					'DESC' => __( 'Descending  (DESC)', 'wp-event-manager' ),
+					'ASC' => __('Ascending (ASC)', 'wp-event-manager'),
+					'DESC' => __('Descending  (DESC)', 'wp-event-manager'),
 				],
 			]
 		);
@@ -132,17 +132,17 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'orderby',
 			[
-				'label' => __( 'Order By', 'wp-event-manager' ),
+				'label' => __('Order By', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'event_start_date',
 				'options' => [
-					'title' => __( 'Title', 'wp-event-manager' ),
-					'ID' => __( 'ID', 'wp-event-manager' ),
-					'name' => __( 'Name', 'wp-event-manager' ),
-					'modified' => __( 'Modified', 'wp-event-manager' ),
-					'parent' => __( 'Parent', 'wp-event-manager' ),
-					'event_start_date' => __( 'Event Start Date', 'wp-event-manager' ),
-					'rand' => __( 'Rand', 'wp-event-manager' ),
+					'title' => __('Title', 'wp-event-manager'),
+					'ID' => __('ID', 'wp-event-manager'),
+					'name' => __('Name', 'wp-event-manager'),
+					'modified' => __('Modified', 'wp-event-manager'),
+					'parent' => __('Parent', 'wp-event-manager'),
+					'event_start_date' => __('Event Start Date', 'wp-event-manager'),
+					'rand' => __('Rand', 'wp-event-manager'),
 				],
 			]
 		);
@@ -150,13 +150,13 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'featured',
 			[
-				'label' => __( 'Show Featured', 'wp-event-manager' ),
+				'label' => __('Show Featured', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [
-					'' => __( 'All Events', 'wp-event-manager' ),
-					'false' => __( 'False', 'wp-event-manager' ),
-					'true' => __( 'True', 'wp-event-manager' ),
+					'' => __('All Events', 'wp-event-manager'),
+					'false' => __('False', 'wp-event-manager'),
+					'true' => __('True', 'wp-event-manager'),
 				],
 			]
 		);
@@ -164,13 +164,13 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'cancelled',
 			[
-				'label' => __( 'Show Cancelled', 'wp-event-manager' ),
+				'label' => __('Show Cancelled', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [
-					'' => __( 'All Events', 'wp-event-manager' ),
-					'false' => __( 'False', 'wp-event-manager' ),
-					'true' => __( 'True', 'wp-event-manager' ),
+					'' => __('All Events', 'wp-event-manager'),
+					'false' => __('False', 'wp-event-manager'),
+					'true' => __('True', 'wp-event-manager'),
 				],
 			]
 		);
@@ -178,12 +178,12 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'show_filters',
 			[
-				'label' => __( 'Show Filter', 'wp-event-manager' ),
+				'label' => __('Show Filter', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'true',
 				'options' => [
-					'false' => __( 'False', 'wp-event-manager' ),
-					'true' => __( 'True', 'wp-event-manager' ),
+					'false' => __('False', 'wp-event-manager'),
+					'true' => __('True', 'wp-event-manager'),
 				],
 			]
 		);
@@ -191,12 +191,12 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'show_categories',
 			[
-				'label' => __( 'Category Filter', 'wp-event-manager' ),
+				'label' => __('Category Filter', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'true',
 				'options' => [
-					'false' => __( 'False', 'wp-event-manager' ),
-					'true' => __( 'True', 'wp-event-manager' ),
+					'false' => __('False', 'wp-event-manager'),
+					'true' => __('True', 'wp-event-manager'),
 				],
 			]
 		);
@@ -204,12 +204,12 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'show_event_types',
 			[
-				'label' => __( 'Event Types Filter', 'wp-event-manager' ),
+				'label' => __('Event Types Filter', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'true',
 				'options' => [
-					'false' => __( 'False', 'wp-event-manager' ),
-					'true' => __( 'True', 'wp-event-manager' ),
+					'false' => __('False', 'wp-event-manager'),
+					'true' => __('True', 'wp-event-manager'),
 				],
 			]
 		);
@@ -217,9 +217,9 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'location',
 			[
-				'label'       => __( 'Location', 'wp-event-manager' ),
+				'label'       => __('Location', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter Location', 'wp-event-manager' ),
+				'placeholder' => __('Enter Location', 'wp-event-manager'),
 				'default'     => '',
 			]
 		);
@@ -227,9 +227,9 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'keywords',
 			[
-				'label'       => __( 'Keywords ', 'wp-event-manager' ),
+				'label'       => __('Keywords ', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter Keywords ', 'wp-event-manager' ),
+				'placeholder' => __('Enter Keywords ', 'wp-event-manager'),
 				'default'     => '',
 			]
 		);
@@ -237,9 +237,9 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'selected_datetime',
 			[
-				'label'       => __( 'Selected Date', 'wp-event-manager' ),
+				'label'       => __('Selected Date', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter Date', 'wp-event-manager' ),
+				'placeholder' => __('Enter Date', 'wp-event-manager'),
 				'default'     => '',
 				'description' => '"2021-12-15,2021-12-20" OR "today,2021-12-20" OR "tomorrow,2021-12-20"'
 			]
@@ -248,9 +248,9 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'categories',
 			[
-				'label'       => __( 'Categories ', 'wp-event-manager' ),
+				'label'       => __('Categories ', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Enter Categories by comma separate', 'wp-event-manager' ),
+				'placeholder' => __('Enter Categories by comma separate', 'wp-event-manager'),
 				'default'     => '',
 			]
 		);
@@ -258,9 +258,9 @@ class Elementor_Event_Listing extends Widget_Base {
 		$this->add_control(
 			'event_types',
 			[
-				'label'       => __( 'Event Types ', 'wp-event-manager' ),
+				'label'       => __('Event Types ', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Enter Event Types by comma separate', 'wp-event-manager' ),
+				'placeholder' => __('Enter Event Types by comma separate', 'wp-event-manager'),
 				'default'     => '',
 			]
 		);

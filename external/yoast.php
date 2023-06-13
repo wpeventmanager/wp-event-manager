@@ -10,13 +10,13 @@
  * @param object $user Data object for the URL.
  * @return string|bool False if we're skipping
  */
-function event_manager_yoast_skip_cancelled_event_listings( $url, $type, $post ) {
-	if ( 'event_listing' !== $post->post_type ) {
+function event_manager_yoast_skip_cancelled_event_listings($url, $type, $post) {
+	if ('event_listing' !== $post->post_type) {
 		return $url;
 	}
-	if ( is_event_cancelled( $post ) ) {
+	if (is_event_cancelled($post)) {
 		return false;
 	}
 	return $url;
 }
-add_action( 'wpseo_sitemap_entry', 'event_manager_yoast_skip_cancelled_event_listings', 10, 3 );
+add_action('wpseo_sitemap_entry', 'event_manager_yoast_skip_cancelled_event_listings', 10, 3);

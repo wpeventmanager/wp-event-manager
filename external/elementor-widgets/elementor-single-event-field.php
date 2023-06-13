@@ -90,16 +90,14 @@ class Elementor_Event_Field extends Widget_Base {
     protected function register_controls() {
         $this->start_controls_section(
                 'section_shortcode',
-                [
-                    'label' => __('Event Field', 'wp-event-manager'),
-                ]
-        );
+                ['label' => __('Event Field', 'wp-event-manager'),]
+       );
 
         $arrOption = [];
 
         if (!class_exists('WP_Event_Manager_Form_Submit_Event')) {
-            include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
-            include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
+            include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php');
+            include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php');
         }
         $form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
         $fields = $form_submit_event_instance->merge_with_custom_fields('backend');
@@ -131,8 +129,7 @@ class Elementor_Event_Field extends Widget_Base {
                     'placeholder' => __('Event Field Before HTML', 'elementor'),
                     'show_label' => false,
                 ]
-        );
-
+       );
         $this->add_control(
                 'event_field',
                 [
@@ -140,8 +137,7 @@ class Elementor_Event_Field extends Widget_Base {
                     'type' => Controls_Manager::SELECT,
                     'options' => $arrOption,
                 ]
-        );
-
+       );
         $this->add_control(
                 'event_field_after_html',
                 [
@@ -150,8 +146,7 @@ class Elementor_Event_Field extends Widget_Base {
                     'placeholder' => __('Event Field After HTML', 'elementor'),
                     'show_label' => false,
                 ]
-        );
-
+       );
         $this->end_controls_section();
     }
 
@@ -197,15 +192,13 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'event_banner') {
                 display_event_banner('full', '', $event);
             } else if ($settings['event_field'] == 'event_description') {
-                echo  wp_kses_post( get_event_description($event));
+                echo  wp_kses_post(get_event_description($event));
             } else if ($settings['event_field'] == 'event_registration_email') {
-
                 $registration_end_date = get_event_registration_end_date($event);
-                                $registration_end_date = !empty($registration_end_date) ? $registration_end_date.' 23:59:59' : '';
+                $registration_end_date = !empty($registration_end_date) ? $registration_end_date.' 23:59:59' : '';
              // check if timezone settings is enabled as each event then set current time stamp according to the timezone
             // for eg. if each event selected then Berlin timezone will be different then current site timezone.
             $current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
-
 
             if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp)
             {
@@ -230,7 +223,7 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'organizer_logo') {
                 display_organizer_logo('full', '', $event);
             } else if ($settings['event_field'] == 'organizer_description') {
-                echo  wp_kses_post( get_organizer_description($event));
+                echo  wp_kses_post(get_organizer_description($event));
             } else if ($settings['event_field'] == 'organizer_email') {
                 display_organizer_email('', '', true, $event);
             } else if ($settings['event_field'] == 'event_organizer_ids') {
@@ -339,9 +332,7 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'event_venue_ids') {
                 echo  wp_kses_post(get_event_venue_name($event, true));
             } else {
-
                 $event_field = get_post_meta($post_id, '_' . $settings['event_field'], true);
-
                 if (!empty($event_field)) {
                     if (is_array($event_field)) {
                         foreach ($event_field as $key => $value) {
@@ -372,51 +363,50 @@ class Elementor_Event_Field extends Widget_Base {
                                     }
                                 } else {
                                     echo wp_kses_post($event_field[$key]);
-                                }
-                                ?>
+                                } ?>
                             </div>
                             <?php
                         }
                     } else {
                         //for recurring event translation
                         if($event_field == 'no'){
-                            _e( 'Dont\'t repeat','wp-event-manager') ;
+                            _e('Dont\'t repeat','wp-event-manager') ;
                         }elseif($event_field == 'daily'){
-                            _e( 'Daily','wp-event-manager') ;    
+                            _e('Daily','wp-event-manager') ;    
                         }elseif($event_field == 'weekly'){
-                            _e( 'Weekly','wp-event-manager') ;
+                            _e('Weekly','wp-event-manager') ;
                         }elseif($event_field == 'monthly'){
-                            _e( 'Monthly','wp-event-manager') ;    
+                            _e('Monthly','wp-event-manager') ;    
                         }elseif($event_field == 'yearly'){
-                            _e( 'Yearly','wp-event-manager') ;    
+                            _e('Yearly','wp-event-manager') ;    
                         }elseif($event_field == 'first'){
-                            _e( 'First','wp-event-manager') ;    
+                            _e('First','wp-event-manager') ;    
                         }elseif($event_field == 'second'){
-                            _e( 'Second','wp-event-manager') ;    
+                            _e('Second','wp-event-manager') ;    
                         }elseif($event_field == 'third'){
-                            _e( 'Third','wp-event-manager') ;    
+                            _e('Third','wp-event-manager') ;    
                         }elseif($event_field == 'fourth'){
-                            _e( 'Fourth','wp-event-manager') ;    
+                            _e('Fourth','wp-event-manager') ;    
                         }elseif($event_field == 'last'){
-                            _e( 'Last','wp-event-manager') ;    
+                            _e('Last','wp-event-manager') ;    
                         }elseif($event_field == 'mon'){
-                            _e( 'Monday','wp-event-manager') ;    
+                            _e('Monday','wp-event-manager') ;    
                         }elseif($event_field == 'tue'){
-                            _e( 'Tuesday','wp-event-manager') ;    
+                            _e('Tuesday','wp-event-manager') ;    
                         }elseif($event_field == 'wed'){
-                            _e( 'Wednesday','wp-event-manager') ;    
+                            _e('Wednesday','wp-event-manager') ;    
                         }elseif($event_field == 'thu'){
-                            _e( 'Thrusday','wp-event-manager') ;    
+                            _e('Thrusday','wp-event-manager') ;    
                         }elseif($event_field == 'fri'){
-                            _e( 'Friday','wp-event-manager') ;    
+                            _e('Friday','wp-event-manager') ;    
                         }elseif($event_field == 'sat'){
-                            _e( 'Saturday','wp-event-manager') ;    
+                            _e('Saturday','wp-event-manager') ;    
                         }elseif($event_field == 'sun'){
-                            _e( 'Sunday','wp-event-manager') ;    
+                            _e('Sunday','wp-event-manager') ;    
                         }elseif($event_field == 'same_time'){
-                            _e( 'same day','wp-event-manager') ;    
+                            _e('same day','wp-event-manager') ;    
                         }elseif($event_field == 'specific_time'){
-                            _e( 'specific day','wp-event-manager') ;    
+                            _e('specific day','wp-event-manager') ;    
                         }else{
                             echo wp_kses_post($event_field);
                         }
@@ -425,10 +415,7 @@ class Elementor_Event_Field extends Widget_Base {
             }
         } else {
             display_event_title($event);
-
-             
         }
-
        echo $settings['event_field_after_html'];
     }
     /**

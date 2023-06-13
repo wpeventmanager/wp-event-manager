@@ -4,7 +4,7 @@ namespace WPEventManager\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
  * Elementor Single Event
@@ -18,7 +18,6 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	 * Retrieve the widget name.
 	 *
 	 * @access public
-	 *
 	 * @return string Widget name.
 	 */
 	public function get_name() {
@@ -29,19 +28,16 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	 * Retrieve the widget title.
 	 *
 	 * @access public
-	 *
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Single Event Venue', 'wp-event-manager' );
+		return __('Single Event Venue', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
-	 *
 	 * Retrieve shortcode widget icon.
 	 *
 	 * @access public
-	 *
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
@@ -49,15 +45,13 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	}
 	/**
 	 * Get widget keywords.
-	 *
 	 * Retrieve the list of keywords the widget belongs to.
 	 *
 	 * @access public
-	 *
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'single-event-venue', 'code' ];
+		return ['single-event-venue', 'code'];
 	}
 
 	/**
@@ -73,7 +67,7 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'wp-event-manager-categories' ];
+		return ['wp-event-manager-categories'];
 	}
 
 	/**
@@ -86,45 +80,35 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			[
-				'label' => __( 'Single Event Venue', 'wp-event-manager' ),
-			]
+			['label' => __('Single Event Venue', 'wp-event-manager'),]
 		);
-
 		$args = [
             'post_type'   => 'event_listing',
 			'post_status' => 'publish',
 			'posts_per_page'	=> -1
         ];
-
         $events = get_posts($args);
-
         $options = [];
-        $options[''] =  __( 'Select event', 'wp-event-manager' );
-        if(!empty( $events))
-        {
+        $options[''] =  __('Select event', 'wp-event-manager');
+        if(!empty($events)) {
             foreach ($events as $event) {
                 $options[$event->ID] = $event->post_title;
             }
         }
-
         $this->add_control(
 			'event_id',
 			[
-				'label'     => __( 'Select event', 'wp-event-manager' ),
+				'label'     => __('Select event', 'wp-event-manager'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'	=> $options
 			]
 		);
-		
 		$this->end_controls_section();
-
 	}
 
 	/**
 	 * Render the widget output on the frontend.
-	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
 	 * @access protected
