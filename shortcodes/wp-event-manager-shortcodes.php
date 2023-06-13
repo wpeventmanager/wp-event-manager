@@ -8,8 +8,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 /**
  * WP_Event_Manager_Shortcodes class.
  */
-class WP_Event_Manager_Shortcodes
-{
+class WP_Event_Manager_Shortcodes{
 	private $event_dashboard_message = '';
 	private $organizer_dashboard_message = '';
 	private $venue_dashboard_message = '';
@@ -17,17 +16,14 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Constructor
 	 */
-	public function __construct()
-	{
+	public function __construct(){
 		add_action('wp', array($this, 'shortcode_action_handler'));
 
 		add_action('event_manager_event_dashboard_content_edit', array($this, 'edit_event'));
 		add_action('event_manager_organizer_dashboard_content_edit', array($this, 'edit_organizer'));
 		add_action('event_manager_venue_dashboard_content_edit', array($this, 'edit_venue'));
-
 		add_action('event_manager_event_filters_end', array($this, 'event_filter_results'), 30);
 		add_action('event_manager_output_events_no_results', array($this, 'output_no_results'));
-
 		add_action('single_event_listing_organizer_action_start', array($this, 'organizer_more_info_link'));
 
 		//shortcodes of events
@@ -63,11 +59,8 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Handle actions which need to be run before the shortcode e.g. post actions
 	 */
-	public function shortcode_action_handler()
-	{
-
+	public function shortcode_action_handler(){
 		global $post;
-
 		if (is_page() && strstr($post->post_content, '[event_dashboard')) {
 			$this->event_dashboard_handler();
 			$this->organizer_dashboard_handler();
@@ -82,51 +75,42 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Show the event submission form
 	 */
-	public function submit_event_form($atts = array())
-	{
+	public function submit_event_form($atts = array()){
 		return $GLOBALS['event_manager']->forms->get_form('submit-event', $atts);
 	}
 
 	/**
 	 * Show the organizer submission form
 	 */
-	public function submit_organizer_form($atts = array())
-	{
+	public function submit_organizer_form($atts = array()){
 		return $GLOBALS['event_manager']->forms->get_form('submit-organizer', $atts);
 	}
 
 	/**
 	 * Show the organizer submission form
 	 */
-	public function submit_venue_form($atts = array())
-	{
+	public function submit_venue_form($atts = array()){
 		return $GLOBALS['event_manager']->forms->get_form('submit-venue', $atts);
 	}
 
 	/**
 	 * Handles actions on event dashboard
 	 */
-	public function event_dashboard_handler()
-	{
+	public function event_dashboard_handler(){
 
 		if (!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'event_manager_my_event_actions')) {
-
 			$action = sanitize_title($_REQUEST['action']);
-
 			$event_id = absint($_REQUEST['event_id']);
 
 			try {
-
 				// Get Event
 				$event    = get_post($event_id);
-
 				// Check ownership
 				if (!event_manager_user_can_edit_event($event_id)) {
 					throw new Exception(__('Invalid ID', 'wp-event-manager'));
 				}
 
 				switch ($action) {
-
 					case 'mark_cancelled':
 						// Check status
 						if ($event->_cancelled == 1)
@@ -138,23 +122,18 @@ class WP_Event_Manager_Shortcodes
 						// Message
 						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(__('%s has been cancelled.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						break;
-
 					case 'mark_not_cancelled':
 						// Check status
 						if ($event->_cancelled != 1) {
 							throw new Exception(__('This event is not cancelled.', 'wp-event-manager'));
 						}
-
 						// Update
 						update_post_meta($event_id, '_event_cancelled', 0);
-
 						// Message
 						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(__('%s has been marked as not cancelled.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						break;
-
 					case 'delete':
 						$events_status = get_post_status($event_id);
-
 						// Trash it
 						wp_trash_post($event_id);
 
@@ -163,31 +142,24 @@ class WP_Event_Manager_Shortcodes
 							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(__('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						}
 						break;
-
 					case 'duplicate':
 						if (!event_manager_get_permalink('submit_event_form')) {
 							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
 						}
-
 						$new_event_id = event_manager_duplicate_listing($event_id);
-
 						if ($new_event_id) {
 							wp_redirect(add_query_arg(array('event_id' => absint($new_event_id)), event_manager_get_permalink('submit_event_form')));
 							exit;
 						}
 						break;
-
 					case 'relist':
-
 						// redirect to post page
 						wp_redirect(add_query_arg(array('event_id' => absint($event_id)), event_manager_get_permalink('submit_event_form')));
 						break;
-
 					default:
 						do_action('event_manager_event_dashboard_do_action_' . $action);
 						break;
 				}
-
 				do_action('event_manager_my_event_do_action', $action, $event_id);
 			} catch (Exception $e) {
 				$this->event_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $e->getMessage() . '</div>';
@@ -198,17 +170,13 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Shortcode which lists the logged in user's events
 	 */
-	public function event_dashboard($atts)
-	{
+	public function event_dashboard($atts){
 
 		global $wpdb, $event_manager_keyword;
 
 		if (!is_user_logged_in()) {
-
 			ob_start();
-
 			get_event_manager_template('event-dashboard-login.php');
-
 			return ob_get_clean();
 		}
 
@@ -246,13 +214,11 @@ class WP_Event_Manager_Shortcodes
 		$event_manager_keyword = isset($_GET['search_keywords']) ? sanitize_text_field($_GET['search_keywords']) : '';
 		if (!empty($event_manager_keyword) && strlen($event_manager_keyword) >= apply_filters('event_manager_get_listings_keyword_length_threshold', 2)) {
 			$args['s'] = $event_manager_keyword;
-
 			add_filter('posts_search', 'get_event_listings_keyword_search');
 		}
 
 		if (isset($args['orderby']) && !empty($args['orderby'])) {
 			if ($args['orderby'] == 'event_location') {
-				
 				$args['meta_query'] = array(
 					'relation' => 'AND',
 					'event_location_type_clause' => array(
@@ -312,9 +278,7 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Edit event form
 	 */
-	public function edit_event()
-	{
-
+	public function edit_event(){
 		global $event_manager;
 
 		if (isset($_REQUEST['organizer_id']) && !empty($_REQUEST['organizer_id'])) {
@@ -329,27 +293,21 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Handles actions on organizer dashboard
 	 */
-	public function organizer_dashboard_handler()
-	{
+	public function organizer_dashboard_handler(){
 
 		if (!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'event_manager_my_organizer_actions')) {
-
 			$action = sanitize_title($_REQUEST['action']);
-
 			$organizer_id = absint($_REQUEST['organizer_id']);
 
 			try {
-
 				// Get Event
 				$event    = get_post($organizer_id);
-
 				// Check ownership
 				if (!event_manager_user_can_edit_event($organizer_id)) {
 					throw new Exception(__('Invalid ID', 'wp-event-manager'));
 				}
 
 				switch ($action) {
-
 					case 'delete':
 						// Trash it
 						wp_trash_post($organizer_id);
@@ -358,34 +316,27 @@ class WP_Event_Manager_Shortcodes
 						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						wp_redirect(add_query_arg(array('venue_id' => absint($$organizer_id), 'action' => 'organizer_dashboard'), event_manager_get_permalink('event_dashboard')));
 						break;
-
 					case 'duplicate':
 						if (!event_manager_get_permalink('submit_organizer_form')) {
 							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
 						}
-
 						$new_organizer_id = event_manager_duplicate_listing($organizer_id);
-
 						if ($new_organizer_id) {
 							// Puslish organizer
 							$my_post = array(
 								'ID'           => $new_organizer_id,
 								'post_status'   => 'publish',
 							);
-
 							// Update the post into the database
 							wp_update_post($my_post);
-
 							wp_redirect(add_query_arg(array('organizer_id' => absint($new_organizer_id)), event_manager_get_permalink('submit_organizer_form')));
 							exit;
 						}
 						break;
-
 					default:
 						do_action('event_manager_organizer_dashboard_do_action_' . $action);
 						break;
 				}
-
 				do_action('event_manager_my_organizer_do_action', $action, $organizer_id);
 			} catch (Exception $e) {
 				$this->organizer_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $e->getMessage() . '</div>';
@@ -396,23 +347,19 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Shortcode which lists the logged in user's organizers
 	 */
-	public function organizer_dashboard($atts)
-	{
+	public function organizer_dashboard($atts){
 
 		if (!is_user_logged_in()) {
-
 			ob_start(); ?>
 			<div id="event-manager-event-dashboard">
-				<p class="account-sign-in wpem-alert wpem-alert-info"><?php _e( 'You need to be signed in to manage your organizer listings.', 'wp-event-manager' ); ?> <a href="<?php echo apply_filters( 'event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url())) ); ?>"><?php _e( 'Sign in', 'wp-event-manager' ); ?></a></p>
+				<p class="account-sign-in wpem-alert wpem-alert-info"><?php _e('You need to be signed in to manage your organizer listings.', 'wp-event-manager'); ?> <a href="<?php echo apply_filters('event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url()))); ?>"><?php _e('Sign in', 'wp-event-manager'); ?></a></p>
 			</div>
 			<?php 
 			return ob_get_clean();
 		}
 
 		extract(shortcode_atts(array(
-
 			'posts_per_page' => '10',
-
 		), $atts));
 
 		wp_enqueue_script('wp-event-manager-organizer-dashboard');
@@ -421,20 +368,17 @@ class WP_Event_Manager_Shortcodes
 
 		// If doing an action, show conditional content if needed....
 		if (!empty($_REQUEST['action'])) {
-
 			$action = sanitize_title($_REQUEST['action']);
 
 			// Show alternative content if a plugin wants to
 			if (has_action('event_manager_organizer_dashboard_content_' . $action)) {
-
 				do_action('event_manager_organizer_dashboard_content_' . $action, $atts);
-
 				return ob_get_clean();
 			}
 		}
 
 		// ....If not show the event dashboard
-		$args     = apply_filters('event_manager_get_dashboard_organizers_args', array(
+		$args = apply_filters('event_manager_get_dashboard_organizers_args', array(
 			'post_type'           => 'event_organizer',
 			'post_status'         => array('publish'),
 			'ignore_sticky_posts' => 1,
@@ -449,13 +393,9 @@ class WP_Event_Manager_Shortcodes
 		echo esc_html($this->organizer_dashboard_message);
 
 		$organizer_dashboard_columns = apply_filters('event_manager_organizer_dashboard_columns', array(
-
 			'organizer_name' => __('Organizer name', 'wp-event-manager'),
-
 			'organizer_details' => __('Details', 'wp-event-manager'),
-
 			'organizer_events' => __('Events', 'wp-event-manager'),
-
 			'organizer_action' => __('Action', 'wp-event-manager'),
 		));
 
@@ -476,9 +416,7 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Edit event form
 	 */
-	public function edit_organizer()
-	{
-
+	public function edit_organizer(){
 		global $event_manager;
 
 		printf($event_manager->forms->get_form('edit-organizer'));
@@ -487,17 +425,13 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Handles actions on venue dashboard
 	 */
-	public function venue_dashboard_handler()
-	{
+	public function venue_dashboard_handler()	{
 
 		if (!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'event_manager_my_venue_actions')) {
-
 			$action = sanitize_title($_REQUEST['action']);
-
 			$venue_id = absint($_REQUEST['venue_id']);
 
 			try {
-
 				// Get Event
 				$venue    = get_post($venue_id);
 
@@ -507,7 +441,6 @@ class WP_Event_Manager_Shortcodes
 				}
 
 				switch ($action) {
-
 					case 'delete':
 						// Trash it
 						wp_trash_post($venue_id);
@@ -515,21 +448,17 @@ class WP_Event_Manager_Shortcodes
 						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager'), esc_html($venue->post_title)) . '</div>';
 						wp_redirect(add_query_arg(array('venue_id' => absint($new_venue_id), 'action' => 'venue_dashboard'), event_manager_get_permalink('event_dashboard')));
 						break;
-
 					case 'duplicate':
 						if (!event_manager_get_permalink('submit_venue_form')) {
 							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
 						}
-
 						$new_venue_id = event_manager_duplicate_listing($venue_id);
-
 						if ($new_venue_id) {
 							// Puslish organizer
 							$my_post = array(
 								'ID'           => $new_venue_id,
 								'post_status'   => 'publish',
 							);
-
 							// Update the post into the database
 							wp_update_post($my_post);
 
@@ -542,7 +471,6 @@ class WP_Event_Manager_Shortcodes
 						do_action('event_manager_venue_dashboard_do_action_' . $action);
 						break;
 				}
-
 				do_action('event_manager_my_venue_do_action', $action, $venue_id);
 			} catch (Exception $e) {
 				$this->venue_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $e->getMessage() . '</div>';
@@ -553,14 +481,11 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Shortcode which lists the logged in user's venues
 	 */
-	public function venue_dashboard($atts)
-	{
-
+	public function venue_dashboard($atts)	{
 		if (!is_user_logged_in()) {
-
 			ob_start();	?>
 			<div id="event-manager-event-dashboard">
-				<p class="account-sign-in wpem-alert wpem-alert-info"><?php _e( 'You need to be signed in to manage your venue listings.', 'wp-event-manager' ); ?> <a href="<?php echo apply_filters( 'event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url())) ); ?>"><?php _e( 'Sign in', 'wp-event-manager' ); ?></a></p>
+				<p class="account-sign-in wpem-alert wpem-alert-info"><?php _e('You need to be signed in to manage your venue listings.', 'wp-event-manager'); ?> <a href="<?php echo apply_filters('event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url()))); ?>"><?php _e('Sign in', 'wp-event-manager'); ?></a></p>
 			</div>
 			<?php 
 			return ob_get_clean();
@@ -576,9 +501,7 @@ class WP_Event_Manager_Shortcodes
 
 		// If doing an action, show conditional content if needed....
 		if (!empty($_REQUEST['action'])) {
-
 			$action = sanitize_title($_REQUEST['action']);
-
 			// Show alternative content if a plugin wants to
 			if (has_action('event_manager_venue_dashboard_content_' . $action)) {
 
@@ -628,9 +551,7 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Edit venue form
 	 */
-	public function edit_venue()
-	{
-
+	public function edit_venue(){
 		global $event_manager;
 
 		printf($event_manager->forms->get_form('edit-venue'));
@@ -644,7 +565,6 @@ class WP_Event_Manager_Shortcodes
 	 * @return void
 	 */
 	public function output_events($atts){
-
 		ob_start();
 
 		extract($atts = shortcode_atts(apply_filters('event_manager_output_events_defaults', array(
@@ -697,7 +617,6 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		// String and bool handling
-
 		$show_filters              = $this->string_to_bool($show_filters);
 		$show_categories           = $this->string_to_bool($show_categories);
 		$show_event_types          = $this->string_to_bool($show_event_types);
@@ -722,7 +641,6 @@ class WP_Event_Manager_Shortcodes
 
 		if(!empty($selected_datetime)){
 			if(is_array($selected_datetime)){
-
 			}
 		}
 		//set value for the event datetimes
@@ -786,7 +704,6 @@ class WP_Event_Manager_Shortcodes
 			));
 
 			get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
-
 			get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
 
 		} else {
@@ -819,46 +736,27 @@ class WP_Event_Manager_Shortcodes
 			}
 			
 			$events = get_event_listings(apply_filters('event_manager_output_events_args', array(
-
 				'search_location'   => $location,
-
 				'search_keywords'   => $keywords,
-
 				'search_datetimes'  => array($selected_datetime),
-
 				'search_categories' => !empty($categories) ? $categories : '',
-
 				'search_event_types'	=> !empty($event_types) ? $event_types : '',
-
 				'search_ticket_prices'  => !empty($ticket_prices) ? $ticket_prices : '',
-
 				'orderby'           => $orderby,
-
 				'order'             => $order,
-
 				'posts_per_page'    => $per_page,
-
 				'featured'          => $featured,
-
 				'cancelled'         => $cancelled,
-
 				'event_online'    	=> $event_online,
-
 			)));
 			if ($events->have_posts()) :
 
 				wp_enqueue_script('wp-event-manager-ajax-filters');
-
 				get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
-
 				while ($events->have_posts()) : $events->the_post();
-
 					get_event_manager_template_part('content', 'event_listing');
-
 				endwhile; 
-
 				get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));?>
-
 			<?php else :
 				$default_events = get_posts(array(
 					'numberposts' => -1,
@@ -871,51 +769,35 @@ class WP_Event_Manager_Shortcodes
 					 do_action('event_manager_output_events_no_results');
 				endif;
 			endif;
-
 			wp_reset_postdata();
 		}
 
 		$data_attributes_string = '';
 
 		$data_attributes        = array(
-
 			'location'        => $location,
-
 			'keywords'        => $keywords,
-
 			'show_filters'    => $show_filters ? 'true' : 'false',
-
 			'show_pagination' => $show_pagination ? 'true' : 'false',
-
 			'per_page'        => $per_page,
-
 			'orderby'         => $orderby,
-
 			'order'           => $order,
-
 			'datetimes'       => $selected_datetime,
-
 			'categories'      => !empty($categories) ? implode(',', $categories) : '',
-
 			'event_types'     => !empty($event_types) ? implode(',', $event_types) : '',
-
 			'ticket_prices'   => !empty($ticket_prices) ? implode(',', $ticket_prices) : '',
-
 			'event_online'    => $event_online,
 		);
 
 		if (!is_null($featured)) {
-
 			$data_attributes['featured'] = $featured ? 'true' : 'false';
 		}
 
 		if (!is_null($cancelled)) {
-
 			$data_attributes['cancelled']   = $cancelled ? 'true' : 'false';
 		}
 
 		foreach ($data_attributes as $key => $value) {
-
 			$data_attributes_string .= 'data-' . esc_attr($key) . '="' . esc_attr($value) . '" ';
 		}
 
@@ -926,17 +808,14 @@ class WP_Event_Manager_Shortcodes
 	/**
 	 * Output some content when no results were found
 	 */
-	public function output_no_results()
-	{
+	public function output_no_results()	{
 		get_event_manager_template('content-no-events-found.php');
 	}
 
 	/**
 	 * Output anchor tag close: single organizer details url
 	 */
-	public function organizer_more_info_link($organizer_id)
-	{
-
+	public function organizer_more_info_link($organizer_id)	{
 		global $post;
 
 		if (!$post || 'event_listing' !== $post->post_type) {
@@ -945,7 +824,6 @@ class WP_Event_Manager_Shortcodes
 
 		if (isset($organizer_id) && !empty($organizer_id)) {
 			$organizer_url = get_permalink($organizer_id);
-
 			if (isset($organizer_url) && !empty($organizer_url)) {
 				printf('<div class="wpem-organizer-page-url-button"><a href="%s" class="wpem-theme-button"><span>%s</span></a></div>',  get_permalink($organizer_id), __('More info', 'wp-event-manager'));
 			}
@@ -976,7 +854,6 @@ class WP_Event_Manager_Shortcodes
 	 * @return string
 	 */
 	public function output_event($atts)	{
-
 		extract(shortcode_atts(array(
 			'id' => '',
 		), $atts));
@@ -999,20 +876,13 @@ class WP_Event_Manager_Shortcodes
 		);
 
 		$events = new WP_Query($args);
-
 		if ($events->have_posts()) :
-
 			while ($events->have_posts()) : $events->the_post(); ?>
-
 				<div class="clearfix" />
 				<?php get_event_manager_template_part('content-single', 'event_listing'); 
-
 			endwhile;
-
 		endif;
-
 		wp_reset_postdata();
-
 		return '<div class="event_shortcode single_event_listing">' . ob_get_clean() . '</div>';
 	}
 
@@ -1024,14 +894,11 @@ class WP_Event_Manager_Shortcodes
 	 * @return string
 	 */
 	public function output_event_summary($atts)	{
-
 		extract(shortcode_atts(array(
-
 			'id'       => '',
 			'width'    => '250px',
 			'align'    => 'left',
 			'featured' => null, // True to show only featured, false to hide featured, leave null to show both (when leaving out id)
-
 			'limit'    => 1
 
 		), $atts));
@@ -1059,22 +926,17 @@ class WP_Event_Manager_Shortcodes
 		}
 
 		$events = new WP_Query($args);
-
 		if ($events->have_posts()) { 
 			while ($events->have_posts()) : $events->the_post();
 				echo wp_kses_post('<div class="event_summary_shortcode align' . esc_attr($align) . '" style="width: ' . esc_attr($width) . '">');
-
 				get_event_manager_template_part('content-summary', 'event_listing');
-
 				echo wp_kses_post('</div>');
-
 			endwhile;
 		}else{
 			echo '<div class="entry-content"><div class="wpem-venue-connter"><div class="wpem-alert wpem-alert-info">';
-            printf( __('There are no events.','wp-event-manager'));    
+            printf(__('There are no events.','wp-event-manager'));    
 			echo '</div></div></div>';
 		}
-
 		wp_reset_postdata();
 		return ob_get_clean();
 	}
@@ -1099,26 +961,17 @@ class WP_Event_Manager_Shortcodes
 		} else {
 			$args['p'] = absint($id);
 		}
-
 		$events = new WP_Query($args);
-
 		if ($events->have_posts()) :
-
 			while ($events->have_posts()) : $events->the_post(); ?>
-
 				<div class="event-manager-registration-wrapper">
 					<?php
 					$register = get_event_registration_method();
-					do_action('event_manager_registration_details_' . $register->type, $register);
-					?>
+					do_action('event_manager_registration_details_' . $register->type, $register); ?>
 				</div>
-
 			<?php endwhile;
-
 		endif;
-
 		wp_reset_postdata();
-
 		return ob_get_clean();
 	}
 
@@ -1133,7 +986,6 @@ class WP_Event_Manager_Shortcodes
 		ob_start();
 
 		extract(shortcode_atts(array(
-
 			'show_pagination'           => true,
 			'per_page'                  => isset($atts['per_page']) ? $atts['per_page'] : get_option('event_manager_per_page'),
 			'order'                     =>  isset($atts['order']) ? $atts['order'] :  'DESC',
@@ -1162,7 +1014,6 @@ class WP_Event_Manager_Shortcodes
 
 		if (!empty($selected_categories)) {
 			$categories = explode(',', sanitize_text_field($selected_categories));
-
 			$args_past['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
 				'field'   	=> 'slug',
@@ -1172,7 +1023,6 @@ class WP_Event_Manager_Shortcodes
 		
 		if (!empty($selected_event_types)) {
 			$event_types = explode(',', sanitize_text_field($selected_event_types));
-
 			$args_past['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_type',
 				'field'   	=> 'slug',
@@ -1226,17 +1076,11 @@ class WP_Event_Manager_Shortcodes
 
 		if ($past_events->have_posts()) : ?>
 			<div class="past_event_listings">
-
 				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => 'all'));
-
 				while ($past_events->have_posts()) : $past_events->the_post();
-
 					get_event_manager_template_part('content', 'past_event_listing');
-
 				endwhile;
-
 				get_event_manager_template('event-listings-end.php');
-
 				if ($past_events->found_posts > $per_page) :
 					if ($show_pagination == "true") : ?>
 						<div class="event-organizer-pagination wpem-col-12">
@@ -1244,18 +1088,12 @@ class WP_Event_Manager_Shortcodes
 						</div>
 					<?php endif;
 				endif; ?>
-
 			</div>
 		<?php else :
-
 			do_action('event_manager_output_events_no_results');
-
 		endif;
-
 		wp_reset_postdata();
-
 		$event_listings_output = apply_filters('event_manager_past_event_listings_output', ob_get_clean());
-
 		return  $event_listings_output;
 	}
 
@@ -1271,12 +1109,10 @@ class WP_Event_Manager_Shortcodes
 	 */
 	public function output_event_organizers($atts)	{
 		extract($atts = shortcode_atts(apply_filters('event_manager_output_event_organizers_defaults', array(
-
 			'orderby'	=> 'title', // title
 			'order'     => 'ASC',
 			'show_thumb'	=> true,
 			'show_count'	=> true,
-
 		)), $atts));
 		ob_start();
 
@@ -1349,7 +1185,6 @@ class WP_Event_Manager_Shortcodes
 		ob_start();
 
 		$organizer    = $organizers->posts[0];
-
 		$paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		$current_page    = isset($_REQUEST['pagination']) ? sanitize_text_field($_REQUEST['pagination']) : sanitize_text_field($paged);
 		$per_page        = 10;
@@ -1470,12 +1305,10 @@ class WP_Event_Manager_Shortcodes
 	 */
 	public function output_event_venues($atts)	{
 		extract($atts = shortcode_atts(apply_filters('event_manager_output_event_venues_defaults', array(
-
 			'orderby'	=> 'title', // title
 			'order'     => 'ASC',
 			'show_thumb'	=> true,
 			'show_count'	=> true,
-
 		)), $atts));
 
 		ob_start();
@@ -1551,7 +1384,6 @@ class WP_Event_Manager_Shortcodes
 		ob_start();
 
 		$venue    = $venues->posts[0];
-
 		$paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		$per_page        = 10;
 		$today_date      = date("Y-m-d");
@@ -1669,25 +1501,15 @@ class WP_Event_Manager_Shortcodes
 
 		ob_start();
 		extract(shortcode_atts(array(
-
 			'show_pagination'           => true,
-
 			'per_page'                  => get_option('event_manager_per_page'),
-
 			'order'                     => 'DESC',
-
 			'orderby'                   => isset($atts['meta_key']) ? sanitize_text_field($atts['meta_key']) : 'event_start_date', // meta_value
-
 			'location'                  => '',
-
 			'keywords'                  => '',
-
 			'selected_datetime'         => '',
-
 			'selected_categories'       => isset($atts['selected_categories']) ? $atts['selected_categories'] :  '',
-			
 			'selected_event_types'     => isset($atts['selected_types']) ? $atts['selected_types'] :  '',
-
 		), $atts));
 
 		$paged = is_front_page() ? max(1, get_query_var('page')) : max(1, get_query_var('paged'));
@@ -1716,9 +1538,7 @@ class WP_Event_Manager_Shortcodes
 					'type'    => 'DATETIME',
 					'compare' => '>='
 				)
-
 			),
-
 			array(
 				'key'     => '_event_cancelled',
 				'value'   => '1',
@@ -1732,7 +1552,6 @@ class WP_Event_Manager_Shortcodes
 
 		if (!empty($selected_categories)) {
 			$categories = explode(',', sanitize_text_field($selected_categories));
-
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
 				'field'   	=> 'name',
@@ -1743,7 +1562,6 @@ class WP_Event_Manager_Shortcodes
 
 		if (!empty($selected_event_types)) {
 			$event_types = explode(',', sanitize_text_field($selected_event_types));
-
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_type',
 				'field'   	=> 'name',
@@ -1754,7 +1572,6 @@ class WP_Event_Manager_Shortcodes
 
 		if (!empty($selected_datetime)) {
 			$datetimes = explode(',', $selected_datetime);
-
 			$args['meta_query'][] = [
 				'key' => '_event_start_date',
 				'value'   => $datetimes,
@@ -1783,20 +1600,14 @@ class WP_Event_Manager_Shortcodes
 		wp_reset_query();
 
 		// remove calender view
-		//remove_filter('wpem_default_listing_layout_class', 'add_calendar_class_default_listing_layout', 25);
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
 
 		if ($upcoming_events->have_posts()) : ?>
 			<div class="event_listings">
-
 				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => 'all'));
-
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
-
 					get_event_manager_template_part('content', 'past_event_listing');
-
 				endwhile;
-
 				get_event_manager_template('event-listings-end.php');
 				if ($upcoming_events->found_posts > $per_page) :
 					if ($show_pagination == "true" || $show_pagination == "on") : ?>
@@ -1808,15 +1619,11 @@ class WP_Event_Manager_Shortcodes
 
 			</div>
 		<?php else :
-
 			do_action('event_manager_output_events_no_results');
-
 		endif;
 
 		wp_reset_postdata();
-
 		$event_listings_output = apply_filters('event_manager_upcoming_event_listings_output', ob_get_clean());
-
 		return  $event_listings_output;
 	}
 
