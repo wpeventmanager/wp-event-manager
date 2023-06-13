@@ -5,8 +5,7 @@ $event_type = get_event_type();
 if (is_array($event_type) && isset($event_type[0]))
     $event_type = $event_type[0]->slug;
 
-$thumbnail     = get_event_thumbnail();
-?>
+$thumbnail     = get_event_thumbnail(); ?>
 
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-4 ">
     <!----- wpem-col-lg-4 value can be change by admin settings ------->
@@ -32,7 +31,6 @@ $thumbnail     = get_event_thumbnail();
                 <div class="wpem-event-infomation">
                     <div class="wpem-event-date">
                         <div class="wpem-event-date-type">
-
                             <div class="wpem-from-date">
                                 <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($start_date))); ?></div>
                                 <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($start_date))); ?></div>
@@ -42,7 +40,6 @@ $thumbnail     = get_event_thumbnail();
                                 <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($end_date))); ?></div>
                                 <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($end_date))); ?></div>
                             </div>
-
                         </div>
                     </div>
 
@@ -50,7 +47,6 @@ $thumbnail     = get_event_thumbnail();
                         <div class="wpem-event-title">
                             <h3 class="wpem-heading-text"><?php echo esc_html(get_the_title()); ?></h3>
                         </div>
-
                         <div class="wpem-event-date-time">
                             <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?> <?php display_event_start_time(); ?> - <?php display_event_end_date(); ?> <?php display_event_end_time(); ?></span>
                         </div>
@@ -61,28 +57,23 @@ $thumbnail     = get_event_thumbnail();
                                     echo esc_attr('Online Event', 'wp-event-manager');
                                 else :
                                     display_event_location(false);
-                                endif;
-                                ?>
+                                endif;  ?>
                             </span>
                         </div>
 
                         <?php
-                        if (get_option('event_manager_enable_event_types') && get_event_type()) {
-                        ?>
+                        if (get_option('event_manager_enable_event_types') && get_event_type()) {  ?>
                             <div class="wpem-event-type"><?php display_event_type(); ?></div>
-                        <?php } ?>
-
-                        <?php do_action('event_already_registered_title'); ?>
+                        <?php } 
+                        do_action('event_already_registered_title'); ?>
 
                         <!-- Show in list View // Hide in Box View -->
                         <?php
-                        if (get_event_ticket_option()) {
-                        ?>
+                        if (get_event_ticket_option()) {  ?>
                             <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text">
                                 <span class="wpem-event-ticket-type-text"><?php echo  wp_kses_post('#' . esc_html(get_event_ticket_option())); ?></span>
                             </div>
-                        <?php }
-                        ?>
+                        <?php } ?>
                         <!-- Show in list View // Hide in Box View -->
                     </div>
                 </div>

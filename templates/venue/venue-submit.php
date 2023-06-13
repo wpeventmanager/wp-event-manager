@@ -1,10 +1,8 @@
 <?php
-
 /**
  * Event Submission Form
  */
 if (!defined('ABSPATH')) exit;
-
 global $event_manager; ?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-venue-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
