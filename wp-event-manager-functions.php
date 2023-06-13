@@ -909,7 +909,7 @@ function event_manager_user_can_post_event() {
 function event_manager_user_can_edit_event($event_id) {
 
 	$can_edit = true;
-	if (!is_user_logged_in() || !$event_id  {
+	if (!is_user_logged_in() || !$event_id)  {
 		$can_edit = false;
 	} else {
 		$event  = get_post( $event_id );
@@ -1148,7 +1148,7 @@ function event_manager_dropdown_selection($args = '') {
 	);
 	$r = wp_parse_args( $args, $defaults );
 
-	if (!isset($r['pad_counts' ) && $r['show_count'] && $r['hierarchical']) {
+	if (!isset($r['pad_counts']) && $r['show_count'] && $r['hierarchical']) {
 		$r['pad_counts'] = true;
 	}
 	extract($r);

@@ -1,4 +1,3 @@
-
 </div>
 <?php if(isset($show_filters)) {
 	if($show_filters){

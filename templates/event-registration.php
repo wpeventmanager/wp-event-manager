@@ -1,8 +1,7 @@
-<?php if ($register = get_event_registration_method()) :
+<?php if($register = get_event_registration_method()) :
 	wp_enqueue_script('wp-event-manager-event-registration');
 
-	if ($register->type) :
-?>
+	if($register->type) : ?>
 		<div class="event_registration registration">
 			<?php do_action('event_registration_start', $register); ?>
 			<div class="wpem-event-sidebar-button wpem-registration-event-button">
@@ -18,5 +17,5 @@
 			</div>
 			<?php do_action('event_registration_end', $register); ?>
 		</div>
-	<?php endif; ?>
-<?php endif; ?>
+	<?php endif;
+endif; ?>
