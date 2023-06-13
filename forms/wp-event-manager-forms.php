@@ -2,7 +2,6 @@
 /**
  * WP_Event_Manager_Forms class.
  */
-
 class WP_Event_Manager_Forms {
 
 	/**
@@ -38,7 +37,6 @@ class WP_Event_Manager_Forms {
 	 * If a form was posted, load its class so that it can be processed before display.
 	 */
 	public function load_posted_form() {
-
 		if ( ! empty( $_POST['event_manager_form'] ) ) {
 			$this->load_form_class( sanitize_title( $_POST['event_manager_form'] ) );
 		}
@@ -51,7 +49,6 @@ class WP_Event_Manager_Forms {
 	 * @return string class name on success, false on failure
 	 */
 	private function load_form_class( $form_name ) {
-
 		if ( ! class_exists( 'WP_Event_Manager_Form' ) ) {
 			include 'wp-event-manager-form-abstract.php';
 		}
@@ -63,15 +60,12 @@ class WP_Event_Manager_Forms {
 		if ( class_exists( $form_class ) ) {
 			return call_user_func( array( $form_class, 'instance' ) );
 		}
-
 		if ( ! file_exists( $form_file ) ) {
 			return false;
 		}
-
 		if ( ! class_exists( $form_class ) ) {
 			include $form_file;
 		}
-
 		// Init the form
 		return call_user_func( array( $form_class, 'instance' ) );
 	}
@@ -84,7 +78,6 @@ class WP_Event_Manager_Forms {
 	 * @return string
 	 */
 	public function get_form( $form_name, $atts = array() ) {
-
 		if ( $form = $this->load_form_class( $form_name ) ) {
 			ob_start();
 			$form->output( $atts );
@@ -92,18 +85,16 @@ class WP_Event_Manager_Forms {
 		}
 	}
 
-		/**
+	/**
 	 * get_fields function.
 	 *
 	 * @param string $key
 	 * @return array
 	 */
 	public function get_fields( $form_name ) {
-
 		if ( $form = $this->load_form_class( $form_name ) ) {
 			 $fields = $form->merge_with_custom_fields( 'frontend' );
 		}
-		
 		return $fields;
 	}
 }
