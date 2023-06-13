@@ -4,8 +4,7 @@
  *
  * @since  3.1.32
  */
-?>
-<?php if (has_event_organizer_ids($event_id)) : ?>
+if (has_event_organizer_ids($event_id)) : ?>
 
 <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
     <div class="wpem-row">
@@ -13,28 +12,26 @@
             <div class="wpem-organizer-profile-wrapper" id="wpem_organizer_profile">
 
                 <?php $event_content_toggle = apply_filters('event_manager_event_content_toggle', true);
-                $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-organizer-info-title';
-                ?>
+                $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-organizer-info-title'; ?>
                 <div class="<?php echo esc_attr($event_content_toggle_class); ?> active">
                     <h3 class="wpem-heading-text"><?php _e('Organizer', 'wp-event-manager'); ?></h3>
                 </div>
                 <div class="wpem-organizer-wrapper wpem-listing-accordion-panel active" style="display: block;">
                     <div class="wpem-organizer-profile">
 
-                        <?php do_action('single_event_listing_organizer_start'); ?>
-
-                        <?php $organizer_ids = get_event_organizer_ids($event_id); ?>
-
-                        <?php if (!empty($organizer_ids)) : ?>                            
-                                
-                            <?php foreach ($organizer_ids as $key => $organizer_id) : ?>
-                                <?php $organizer = get_post($organizer_id);
+                        <?php do_action('single_event_listing_organizer_start'); 
+                        $organizer_ids = get_event_organizer_ids($event_id);
+                        if (!empty($organizer_ids)) :
+                            foreach ($organizer_ids as $key => $organizer_id) : 
+                                $organizer = get_post($organizer_id);
 
                                 if (get_option('event_manager_form_fields')) {
                                     $organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
                                 }
                                 $organizer_email = get_post_meta($organizer_id, '_organizer_email', true);
-                                     do_action('single_event_listing_organizer_start'); ?>
+                                
+                                do_action('single_event_listing_organizer_start'); ?>
+                                
                                 <div class="wpem-single-organizer-profile-wrapper" id="wpem_organizer_profile">
                                      <div class="wpem-organizer-profile">
                                         <div class="wpem-row">
@@ -130,19 +127,18 @@
                                         </div>
                                     </div>
                                     </div>
-                                    <?php do_action('single_event_listing_organizer_end'); ?>
-                             <?php endforeach; ?>          
-                               
-                        <?php endif; ?>
-                        <?php do_action('single_event_listing_organizer_end'); ?>
+                                    <?php do_action('single_event_listing_organizer_end');
+                                endforeach;
+                            endif;
+                        do_action('single_event_listing_organizer_end'); ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php else : ?>
-    <?php if (get_organizer_name($event_id)) : ?>
+<?php else : 
+    if (get_organizer_name($event_id)) : ?>
 
         <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
             <div class="wpem-row">
@@ -209,18 +205,13 @@
                                             <?php do_action('single_event_listing_organizer_action_end'); ?>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                             <?php do_action('single_event_listing_organizer_end'); ?>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    <?php endif; ?>
-
-<?php endif; ?>
+    <?php endif;
+endif; ?>

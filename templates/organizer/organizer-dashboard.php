@@ -5,14 +5,14 @@
 
 	<div class="wpem-d-inline-block wpem-dashboard-i-block-btn">
 
-		<?php do_action('event_manager_organizer_dashboard_button_action_start'); ?>
-
-		<?php $submit_organizer = get_option('event_manager_submit_organizer_form_page_id');
+		<?php do_action('event_manager_organizer_dashboard_button_action_start'); 
+		
+		$submit_organizer = get_option('event_manager_submit_organizer_form_page_id');
 		if (!empty($submit_organizer)) : ?>
 			<a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php _e('Add organizer', 'wp-event-manager'); ?>" href="<?php echo esc_url(get_permalink($submit_organizer)); ?>"><i class="wpem-icon-plus"></i></a>
-		<?php endif; ?>
-
-		<?php do_action('event_manager_organizer_dashboard_button_action_end'); ?>
+		<?php endif;
+		
+		do_action('event_manager_organizer_dashboard_button_action_end'); ?>
 
 	</div>
 </div>
@@ -34,8 +34,8 @@
 					<tr>
 						<td class="wpem_data_td_empty" colspan="<?php echo esc_attr(count($organizer_dashboard_columns)); ?>"><?php _e('There are no organizers.', 'wp-event-manager'); ?></td>
 					</tr>
-				<?php else : ?>
-					<?php foreach ($organizers as $organizer) : ?>
+				<?php else :
+					foreach ($organizers as $organizer) : ?>
 						<tr>
 							<?php foreach ($organizer_dashboard_columns as $key => $column) : ?>
 								<td data-title="<?php echo esc_html($column); ?>" class="<?php echo esc_attr($key); ?>">
@@ -49,7 +49,6 @@
 
 										//get disable organizer fields
 										$organizer_fields = get_hidden_form_fields( 'event_manager_submit_organizer_form_fields', 'organizer');
-
 										$organizer_website  = !in_array('organizer_website', $organizer_fields)?get_organizer_website($organizer):'';
 										$organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?get_organizer_facebook($organizer):'';
 										$organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?get_organizer_instagram($organizer):'';
@@ -95,9 +94,8 @@
 													<?php do_action('single_event_listing_organizer_single_social_end', $organizer->ID); ?>
 												</div>
 											</div>
-										<?php } ?>
-
-									<?php elseif ('organizer_events' === $key) : 
+										<?php } 
+									elseif ('organizer_events' === $key) : 
 										$events = get_event_by_organizer_id($organizer->ID); ?>
 
 										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_attr(sizeof($events)); ?></a>
@@ -142,18 +140,17 @@
 													$action_url = wp_nonce_url($action_url, 'event_manager_my_organizer_actions');
 												}
 												echo wp_kses_post('<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>');
-											}
-											?>
+											} ?>
 										</div>
 
-									<?php else : ?>
-										<?php do_action('event_manager_organizer_dashboard_column_' . $key, $organizer); ?>
+									<?php else : 
+										do_action('event_manager_organizer_dashboard_column_' . $key, $organizer); ?>
 									<?php endif; ?>
 								</td>
 							<?php endforeach; ?>
 						</tr>
-					<?php endforeach; ?>
-				<?php endif; ?>
+					<?php endforeach;
+				endif; ?>
 			</tbody>
 		</table>
 	</div>

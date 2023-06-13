@@ -4,7 +4,6 @@
     <?php if (count($organizers) > 0) : ?>
 
         <div class="organizer-related-data-counter">
-
             <div class="organizer-counter-number-icon">
                 <div class="organizer-counter-upper-wrap">
                     <div class="organizer-counter-icon-wrap"><i class="wpem-icon-users"></i></div>
@@ -12,7 +11,6 @@
                 </div>
                 <div class="organizer-counter-bottom-wrap"><?php _e('Organizers', 'wp-event-manager'); ?></div>
             </div>
-
             <div class="wpem-available-events-number-icon">
                 <a href="<?php echo esc_url(get_the_permalink(get_option('event_manager_events_page_id'))); ?>" class="wpem-list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
                     <div class="organizer-counter-upper-wrap">
@@ -22,7 +20,6 @@
                     <div class="organizer-counter-bottom-wrap"><?php _e('Available events', 'wp-event-manager'); ?></div>
                 </a>
             </div>
-            
         </div>
         <!-- end Organizer Counter -->
 
@@ -54,12 +51,9 @@
                                 <div class="organizer-group-header wpem-list-group-item wpem-list-group-item-success">
                                     <div><?php echo esc_attr($letter); ?></div>
                                 </div>
-
                                 <div class="organizer-name-list">
                                     <?php foreach ($organizers as $organizer_id => $organizer_name) :
-
                                         $count = get_event_organizer_count($organizer_id); ?>
-
                                         <div class="organizer-list-items">
                                             <a href="<?php echo esc_url(get_the_permalink($organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php _e('Click here, for more info.', 'wp-event-manager'); ?>">
                                                 <?php $organizer = get_post($organizer_id); ?>
@@ -95,6 +89,5 @@
             <?php _e('There are no organizers.', 'wp-event-manager'); ?>
         </div>
     <?php endif; ?>
-
 </div>
 <!-- end Organizer Counter -->
