@@ -1,5 +1,4 @@
 <?php
-
 /**
  * group fields is generated from this page .
  * group fields for the paid and free group.
@@ -13,9 +12,7 @@ $datepicker_date_format     = WP_Event_Manager_Date_Time::get_datepicker_format(
 $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 if (!empty($field['value']) && is_array($field['value'])) : 
-
     foreach ($field['value'] as $index => $value) : ?>
-
         <div class="group-row-<?php echo esc_attr($index); ?>">
             <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo esc_attr(absint($index)); ?>" />
 
@@ -54,14 +51,10 @@ if (!empty($field['value']) && is_array($field['value'])) :
                         <?php endforeach; ?>
                     </div>
                 </div><!-- / wpemtab wraper  -->
-
             </div>
-
         </div>
-
-    <?php endforeach; ?>
-
-<?php endif; ?>
+    <?php endforeach;
+endif; ?>
 
 <a href="javascript:void(0)" class="wpem-theme-text-button add-group-row add-group-<?php echo esc_attr($key); ?>" data-row="<?php
                                                                                                                             ob_start();

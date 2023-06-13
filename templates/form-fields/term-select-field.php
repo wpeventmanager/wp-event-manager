@@ -1,6 +1,5 @@
 <?php
 $field['default'] = isset($field['default']) ? $field['default'] : '';
-
 // Get selected value
 if (isset($field['value'])) {
 	$selected = $field['value'];
@@ -24,7 +23,6 @@ if (is_array($selected) && isset($field['value'])) {
 	$selected = '';
 }
 wp_dropdown_categories(apply_filters('event_manager_term_select_field_wp_dropdown_categories_args', array(
-
 	'taxonomy'         => $field['taxonomy'],
 	'hierarchical'     => 1,
 	'show_option_all'  => $placeholder,
@@ -33,9 +31,7 @@ wp_dropdown_categories(apply_filters('event_manager_term_select_field_wp_dropdow
 	'orderby'          => 'name',
 	'selected'         => $selected,
 	'hide_empty'       => false
- 
 ), $key, $field));
-
 
 if (!empty($field['description'])) : ?>
 	<small class="description">

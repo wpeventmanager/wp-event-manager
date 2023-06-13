@@ -12,9 +12,6 @@
 		'taxonomy'              => $field['taxonomy'],
 		'checked_ontop'         => false
 	);
-
-	// $field['post_id'] needs to be passed via the args so we can get the existing terms
-
 	ob_start();
 
 	wp_terms_checklist(0, $args);

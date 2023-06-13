@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Shows the text field on event listing forms.
  *

@@ -16,9 +16,9 @@
 
 foreach ( $field['options'] as $option_key => $value ) : ?>
     <input type="button" name="<?php echo esc_attr( isset( $field['name'] ) ? $field['name'] : $key ); ?>" id="<?php echo esc_attr( $key ); ?>" attribute="<?php echo esc_attr( isset( $field['attribute'] ) ? $field['attribute'] : '' ); ?>" value="<?php echo esc_attr( $option_key ); ?>" /> <?php echo esc_html( $value ); ?>
-<?php endforeach; ?>
+<?php endforeach; 
 
-<?php if ( ! empty( $field['description'] ) ) : ?>
+if ( ! empty( $field['description'] ) ) : ?>
     <small class="description">
         <?php echo esc_attr($field['description']); ?>
     </small>

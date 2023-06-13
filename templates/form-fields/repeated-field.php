@@ -4,11 +4,8 @@
  * Repeated fields for the paid and free tickets.
  * This field is used in submit event form.
  * */
-
 if (!empty($field['value']) && is_array($field['value'])) : 
-
     foreach ($field['value'] as $index => $value) : ?>
-
         <div class="repeated-row-<?php echo esc_attr($key); ?>">
             <input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo absint($index); ?>" />
 
@@ -52,7 +49,6 @@ if (!empty($field['value']) && is_array($field['value'])) :
                                         $subfield['value'] = $stock;
                                     }
                                 }
-
                                 get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
                             ?>
                         </div>
