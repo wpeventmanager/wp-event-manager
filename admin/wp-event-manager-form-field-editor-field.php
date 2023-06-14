@@ -2,8 +2,7 @@
 if (empty($field_key)) {
 	$field_key = $index;
 }
-$taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing'));
-?>
+$taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing')); ?>
 <tr data-field-type="<?php echo esc_attr($field['type']); ?>">
 	<td class="sort-column">&nbsp;</td>
 	<td>
@@ -127,9 +126,8 @@ if (isset($field['type']) && $field['type'] == 'group') {
 			'textarea'    => __('Textarea', 'wp-event-manager'),
 		)
 	);
+	$child_index = -1; ?>
 
-	$child_index = -1;
-?>
 	<tr class="group">
 		<td colspan="10">
 			<table class="widefat child_table" id="<?php echo esc_attr($field_key); ?>">
@@ -171,7 +169,6 @@ if (isset($field['type']) && $field['type'] == 'group') {
 					if (isset($field['fields']) && !empty($field['fields'])) {
 						foreach ($field['fields'] as $child_field_key => $child_field) {
 							$child_index++;
-
 							include 'wp-event-manager-form-field-editor-group-field.php';
 						}
 					}

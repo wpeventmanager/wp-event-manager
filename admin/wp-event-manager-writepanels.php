@@ -5,8 +5,11 @@
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
-class WP_Event_Manager_Writepanels
-{
+
+/**
+ * WP_Event_Manager_Writepanels class.
+ */
+class WP_Event_Manager_Writepanels {
 
 	/**
 	 * The single instance of the class.
@@ -23,8 +26,7 @@ class WP_Event_Manager_Writepanels
 	 * @static
 	 * @return self Main instance.
 	 */
-	public static function instance()
-	{
+	public static function instance(){
 		if (is_null(self::$_instance)) {
 			self::$_instance = new self();
 		}
@@ -37,8 +39,7 @@ class WP_Event_Manager_Writepanels
 	 * @access public
 	 * @return void
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
 		add_action('save_post', array($this, 'save_post'), 1, 2);
 		add_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);
@@ -47,7 +48,6 @@ class WP_Event_Manager_Writepanels
 		add_action('event_manager_save_venue_listing', array($this, 'save_venue_listing_data'), 20, 2);
 
 		add_action('before_delete_post', array($this, 'delete_event_with_attachment'), 10);
-
 		add_filter('rest_prepare_taxonomy', array($this, 'wpem_hide_taxonomy_metabox'), 10, 2);
 	}
 
@@ -57,8 +57,7 @@ class WP_Event_Manager_Writepanels
 	 * @access public
 	 * @return void
 	 */
-	public function event_listing_fields()
-	{
+	public function event_listing_fields(){
 		global $post;
 		
 		$current_user = wp_get_current_user();
@@ -84,11 +83,9 @@ class WP_Event_Manager_Writepanels
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
-
 				if ($field_key === 'event_registration_email') {
 					$field_value['value'] = $registration;
 				}
-
 				if (strpos($field_key, '_') !== 0) {
 					$fields['_' . $field_key] = $field_value;
 				} else {
@@ -117,14 +114,12 @@ class WP_Event_Manager_Writepanels
 				'description' => __('Featured listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
 				'priority'    => 39,
 			);
-
 			$fields['_event_cancelled'] = array(
 				'label'       => __('Cancelled Listing', 'wp-event-manager'),
 				'type'        => 'checkbox',
 				'description' => __('Cancelled listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
 				'priority'    => 39,
 			);
-
 			$fields['_event_expiry_date'] = array(
 				'label'       => __('Listing Expiry Date', 'wp-event-manager'),
 				'type'        => 'date',
@@ -133,7 +128,6 @@ class WP_Event_Manager_Writepanels
 				'value'       => $expiry_date,
 			);
 		}
-
 		if ($current_user->has_cap('edit_others_event_listings')) {
 			$fields['_event_author'] = array(
 				'label'    => __('Posted by', 'wp-event-manager'),
@@ -141,7 +135,6 @@ class WP_Event_Manager_Writepanels
 				'priority' => 41,
 			);
 		}
-
 		uasort($fields, array($this, 'sort_by_priority'));
 		return $fields;
 	}
@@ -149,8 +142,7 @@ class WP_Event_Manager_Writepanels
 	/**
 	 * Sort array by priority value
 	 */
-	protected function sort_by_priority($a, $b)
-	{
+	protected function sort_by_priority($a, $b)	{
 		if (!isset($a['priority']) || !isset($b['priority']) || $a['priority'] === $b['priority']) {
 			return 0;
 		}
@@ -163,8 +155,7 @@ class WP_Event_Manager_Writepanels
 	 * @access public
 	 * @return void
 	 */
-	public function add_meta_boxes()
-	{
+	public function add_meta_boxes(){
 		global $wp_post_types;
 
 		add_meta_box('event_listing_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name), array($this, 'event_listing_data'), 'event_listing', 'normal', 'high');
@@ -194,20 +185,17 @@ class WP_Event_Manager_Writepanels
 		}
 	}
 
-	public function wpem_hide_taxonomy_metabox($response, $taxonomy)
-	{
+	public function wpem_hide_taxonomy_metabox($response, $taxonomy){
 		if (false == event_manager_multiselect_event_type()) {
 			if ('event_listing_type' === $taxonomy->name) {
 				$response->data['visibility']['show_ui'] = false;
 			}
 		}
-
 		if (false == event_manager_multiselect_event_category()) {
 			if ('event_listing_category' === $taxonomy->name) {
 				$response->data['visibility']['show_ui'] = false;
 			}
 		}
-
 		return $response;
 	}
 
@@ -217,8 +205,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @param
 	 */
-	function event_listing_type_metabox($post)
-	{
+	function event_listing_type_metabox($post) {
 		// Set up the taxonomy object and get terms
 		$taxonomy = 'event_listing_type';
 		$tax      = get_taxonomy($taxonomy); // This is the taxonomy object event
@@ -246,13 +233,11 @@ class WP_Event_Manager_Writepanels
 		$current   = ($current ? $current->term_id : 0); ?>
 
 		<div id="taxonomy-<?php echo esc_attr($taxonomy); ?>" class="categorydiv">
-
 			<!-- Display tabs-->
 			<ul id="<?php echo esc_attr($taxonomy); ?>-tabs" class="category-tabs">
 				<li class="tabs"><a href="#<?php echo esc_attr($taxonomy); ?>-all" tabindex="3"><?php echo esc_attr($tax->labels->all_items); ?></a></li>
 				<li class="hide-if-no-js"><a href="#<?php echo esc_attr($taxonomy); ?>-pop" tabindex="3"><?php esc_attr_e('Most Used', 'wp-event-manager'); ?></a></li>
 			</ul>
-
 			<!-- Display taxonomy terms -->
 			<div id="<?php echo esc_attr($taxonomy); ?>-all" class="tabs-panel">
 				<ul id="<?php echo esc_attr($taxonomy); ?>checklist" class="list:<?php echo esc_attr($taxonomy); ?> categorychecklist form-no-clear">
@@ -266,7 +251,6 @@ class WP_Event_Manager_Writepanels
 					?>
 				</ul>
 			</div>
-
 			<!-- Display popular taxonomy terms -->
 			<div id="<?php echo esc_attr($taxonomy); ?>-pop" class="tabs-panel" style="display: none;">
 				<ul id="<?php echo esc_attr($taxonomy); ?>checklist-pop" class="categorychecklist form-no-clear">
@@ -276,11 +260,9 @@ class WP_Event_Manager_Writepanels
 						echo "<li id='" . esc_attr($id) . "'><label class='selectit'>";
 						echo "<input type='radio' name='" . esc_attr($name) . "' id='in-" . esc_attr($id) . "' value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . '<br />';
 						echo wp_kses_post('</label></li>');
-					}
-					?>
+					} ?>
 				</ul>
 			</div>
-
 		</div>
 	<?php
 	}
@@ -291,8 +273,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @param
 	 */
-	function event_listing_category_metabox($post)
-	{
+	function event_listing_category_metabox($post)	{
 		// Set up the taxonomy object and get terms
 		$taxonomy = 'event_listing_category';
 		$tax      = get_taxonomy($taxonomy); // This is the taxonomy object event
@@ -320,13 +301,11 @@ class WP_Event_Manager_Writepanels
 		$current   = ($current ? $current->term_id : 0);?>
 
 		<div id="taxonomy-<?php echo esc_attr($taxonomy); ?>" class="categorydiv">
-
 			<!-- Display tabs-->
 			<ul id="<?php echo esc_attr($taxonomy); ?>-tabs" class="category-tabs">
 				<li class="tabs"><a href="#<?php echo esc_attr($taxonomy); ?>-all" tabindex="3"><?php echo esc_attr($tax->labels->all_items); ?></a></li>
 				<li class="hide-if-no-js"><a href="#<?php echo esc_attr($taxonomy); ?>-pop" tabindex="3"><?php esc_attr_e('Most Used', 'wp-event-manager'); ?></a></li>
 			</ul>
-
 			<!-- Display taxonomy terms -->
 			<div id="<?php echo esc_attr($taxonomy); ?>-all" class="tabs-panel">
 				<ul id="<?php echo esc_attr($taxonomy); ?>checklist" class="list:<?php echo esc_attr($taxonomy); ?> categorychecklist form-no-clear">
@@ -340,7 +319,6 @@ class WP_Event_Manager_Writepanels
 					?>
 				</ul>
 			</div>
-
 			<!-- Display popular taxonomy terms -->
 			<div id="<?php echo esc_attr($taxonomy); ?>-pop" class="tabs-panel" style="display: none;">
 				<ul id="<?php echo esc_attr($taxonomy); ?>checklist-pop" class="categorychecklist form-no-clear">
@@ -354,7 +332,6 @@ class WP_Event_Manager_Writepanels
 					?>
 				</ul>
 			</div>
-
 		</div>
 	<?php
 	}
@@ -365,8 +342,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_file($key, $field)
-	{
+	public static function input_file($key, $field)	{
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -378,7 +354,7 @@ class WP_Event_Manager_Writepanels
 			$name = $field['name'];
 		} else {
 			$name = $key;
-		}?>
+		} ?>
 
 		<p class="form-field">
 			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
@@ -411,8 +387,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_text($key, $field)
-	{
+	public static function input_text($key, $field)	{
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -441,8 +416,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $field
 	 * @since 2.8
 	 */
-	public static function input_wp_editor($key, $field)
-	{
+	public static function input_wp_editor($key, $field) {
 		global $thepostid;
 		if (!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -455,15 +429,10 @@ class WP_Event_Manager_Writepanels
 		<div class="wpem_editor">
 			<p class="form-field">
 				<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
-					<?php
-					if (!empty($field['description'])) :
-					?>
+					<?php if (!empty($field['description'])) : ?>
 						<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
 			</p>
-
-			<?php
-			wp_editor($field['value'], $name, array('media_buttons' => false));
-			?>
+			<?php wp_editor($field['value'], $name, array('media_buttons' => false)); ?>
 		</div>
 	<?php
 	}
@@ -474,8 +443,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_date($key, $field)
-	{
+	public static function input_date($key, $field)	{
 		global $thepostid;
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 		$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
@@ -509,8 +477,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_textarea($key, $field)
-	{
+	public static function input_textarea($key, $field) {
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -537,8 +504,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_select($key, $field)
-	{
+	public static function input_select($key, $field) {
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -575,8 +541,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_multiselect($key, $field)
-	{
+	public static function input_multiselect($key, $field)	{
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -589,9 +554,9 @@ class WP_Event_Manager_Writepanels
 		<p class="form-field">
 			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
 				<?php
-				if (!empty($field['description'])) :
-				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+				if (!empty($field['description'])) :?>
+					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?>
+			</label>
 			<select multiple="multiple" name="<?php echo esc_attr($name); ?>[]" id="<?php echo esc_attr($key); ?>" class="input-select event-manager-select-chosen <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php foreach ($field['options'] as $key => $value) : ?>
 					<option value="<?php echo esc_attr($key); ?>" <?php
@@ -611,8 +576,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_checkbox($key, $field)
-	{
+	public static function input_checkbox($key, $field)	{
 		global $thepostid;
 		if (empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -639,8 +603,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_time($key, $field)
-	{
+	public static function input_time($key, $field)	{
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -667,8 +630,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_timezone($key, $field)
-	{
+	public static function input_timezone($key, $field)	{
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -700,8 +662,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_number($key, $field)
-	{
+	public static function input_number($key, $field) {
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -728,8 +689,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_url($key, $field)
-	{
+	public static function input_url($key, $field) {
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -756,8 +716,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_button($key, $field)
-	{
+	public static function input_button($key, $field) {
 		global $thepostid;
 		if (!isset($field['value'])) {
 			$field['value'] = $field['placeholder'];
@@ -785,8 +744,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_author($key, $field)
-	{
+	public static function input_author($key, $field) {
 		global $thepostid, $post;
 		if (!$post || $thepostid !== $post->ID) {
 			$the_post  = get_post($thepostid);
@@ -823,8 +781,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_radio($key, $field)
-	{
+	public static function input_radio($key, $field) {
 		global $thepostid;
 		if (empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
@@ -854,8 +811,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function event_listing_data($post)
-	{
+	public function event_listing_data($post) {
 		global $post, $thepostid;
 		$thepostid = $post->ID;
 		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
@@ -904,15 +860,12 @@ class WP_Event_Manager_Writepanels
 		if (!current_user_can('edit_post', $post_id)) {
 			return;
 		}
-
 		if ($post->post_type == 'event_listing') {
 			do_action('event_manager_save_event_listing', $post_id, $post);
 		}
-
 		if ($post->post_type == 'event_organizer') {
 			do_action('event_manager_save_organizer_listing', $post_id, $post);
 		}
-
 		if ($post->post_type == 'event_venue') {
 			do_action('event_manager_save_venue_listing', $post_id, $post);
 		}
@@ -927,7 +880,6 @@ class WP_Event_Manager_Writepanels
 	 * @return void
 	 */
 	public function save_event_listing_data($post_id, $post){
-		error_log("save_event_listing_data");
 		global $wpdb;
 		// These need to exist
 		add_post_meta($post_id, '_event_cancelled', 0, true);
@@ -976,20 +928,15 @@ class WP_Event_Manager_Writepanels
 				if (empty($image)) {
 					if (isset($thumbnail_image) && !empty($thumbnail_image)) {
 						$wp_upload_dir = wp_get_upload_dir();
-
 						$baseurl = $wp_upload_dir['baseurl'] . '/';
-
 						$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
-
 						$args = array(
 							'meta_key'       => '_wp_attached_file',
 							'meta_value'     => $wp_attached_file,
 							'post_type'      => 'attachment',
 							'posts_per_page' => 1,
 						);
-
 						$attachments = get_posts($args);
-
 						if (!empty($attachments)) {
 							foreach ($attachments as $attachment) {
 								set_post_thumbnail($post_id, $attachment->ID);
@@ -1077,7 +1024,6 @@ class WP_Event_Manager_Writepanels
 							update_post_meta($post_id, $key, 0);
 						}
 						break;
-
 					case 'date':
 						if (isset($_POST[$key])) {
 							$date = sanitize_text_field($_POST[$key]);
@@ -1094,7 +1040,6 @@ class WP_Event_Manager_Writepanels
 							$date_dbformatted = date($php_date_format, strtotime($date_dbformatted));
 						}
 						break;
-
 					case 'time':
 						if (isset($_POST[$key])) {
 
@@ -1108,16 +1053,14 @@ class WP_Event_Manager_Writepanels
 							update_post_meta($post_id, $key, $time_dbformatted);
 						}
 						break;
-
 					case 'wp-editor':
 						if (!empty($_POST[$key])) {
 							$v_text = wp_kses_post(stripslashes($_POST[$key]));
 							update_post_meta($post_id, $key, $v_text);
 						}
 						break;
-
 					default:
-						if (!isset($_POST[$key]) ) {
+						if (!isset($_POST[$key])) {
 							continue 2;
 						} elseif (is_array($_POST[$key])) {
 							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
@@ -1128,7 +1071,7 @@ class WP_Event_Manager_Writepanels
 							$ticket_type=$_POST[$key];
 						}
 						//set event online or not
-						if( $key == '_event_online') 
+						if($key == '_event_online') 
 							$event_online = $_POST[$key];
 						break;
 				}
@@ -1136,13 +1079,13 @@ class WP_Event_Manager_Writepanels
 		}
 
 		//delete location meta if event is online
-		if( isset($event_online) && $event_online == 'yes') {
+		if(isset($event_online) && $event_online == 'yes') {
 			update_post_meta($post_id, '_event_location', '');
 			update_post_meta($post_id, '_event_pincode', '');
 		} 
 		// reset meta value if ticket type is free
 		if(isset($ticket_type) && $ticket_type=='free'){
-			update_post_meta( $post_id, '_event_ticket_price', '');
+			update_post_meta($post_id, '_event_ticket_price', '');
 		}
 		/* Set Post Status To Expired If Already Expired */
 		$event_timezone = get_post_meta($post_id, '_event_timezone', true);
@@ -1178,8 +1121,7 @@ class WP_Event_Manager_Writepanels
 	 * @access public
 	 * @return void
 	 */
-	public function organizer_listing_fields()
-	{
+	public function organizer_listing_fields() {
 		global $post;
 		$current_user = wp_get_current_user();
 
@@ -1192,7 +1134,6 @@ class WP_Event_Manager_Writepanels
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
-
 				if (strpos($field_key, '_') !== 0) {
 					$fields['_' . $field_key] = $field_value;
 				} else {
@@ -1202,19 +1143,15 @@ class WP_Event_Manager_Writepanels
 			unset($fields[$group_key]);
 		}
 		$fields = apply_filters('event_manager_organizer_listing_data_fields', $fields);
-
 		if (isset($fields['_organizer_name'])) {
 			unset($fields['_organizer_name']);
 		}
-
 		if (isset($fields['_organizer_description'])) {
 			unset($fields['_organizer_description']);
 		}
-
 		if (isset($fields['_organizer_logo'])) {
 			unset($fields['_organizer_logo']);
 		}
-
 		if ($current_user->has_cap('edit_others_event_listings')) {
 			$fields['_organizer_author'] = array(
 				'label'    => __('Posted by', 'wp-event-manager'),
@@ -1222,7 +1159,6 @@ class WP_Event_Manager_Writepanels
 				'priority' => 41,
 			);
 		}
-
 		uasort($fields, array($this, 'sort_by_priority'));
 		return $fields;
 	}
@@ -1235,8 +1171,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function event_organizer_data($post)
-	{
+	public function event_organizer_data($post)	{
 		global $post, $thepostid;
 		$thepostid = $post->ID;
 		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
@@ -1247,7 +1182,6 @@ class WP_Event_Manager_Writepanels
 			if ($type == 'wp-editor') {
 				$type = 'textarea';
 			}
-
 			if (has_action('event_manager_input_' . $type)) {
 				do_action('event_manager_input_' . $type, $key, $field);
 			} elseif (method_exists($this, 'input_' . $type)) {
@@ -1266,8 +1200,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function save_organizer_listing_data($post_id, $post)
-	{
+	public function save_organizer_listing_data($post_id, $post) {
 		global $wpdb;
 
 		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
@@ -1281,7 +1214,6 @@ class WP_Event_Manager_Writepanels
 
 		// Save fields
 		foreach ($this->organizer_listing_fields() as $key => $field) {
-
 			if ('_organizer_author' === $key) {
 				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint($_POST[$key]) : 0), array('ID' => $post_id));
 			}
@@ -1329,15 +1261,13 @@ class WP_Event_Manager_Writepanels
 		}
 	}
 
-
 	/**
 	 * venue_listing_fields function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-	public function venue_listing_fields()
-	{
+	public function venue_listing_fields() {
 		global $post;
 		$current_user = wp_get_current_user();
 
@@ -1350,7 +1280,6 @@ class WP_Event_Manager_Writepanels
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
-
 				if (strpos($field_key, '_') !== 0) {
 					$fields['_' . $field_key] = $field_value;
 				} else {
@@ -1360,19 +1289,15 @@ class WP_Event_Manager_Writepanels
 			unset($fields[$group_key]);
 		}
 		$fields = apply_filters('event_manager_venue_listing_data_fields', $fields);
-
 		if (isset($fields['_venue_name'])) {
 			unset($fields['_venue_name']);
 		}
-
 		if (isset($fields['_venue_description'])) {
 			unset($fields['_venue_description']);
 		}
-
 		if (isset($fields['_venue_logo'])) {
 			unset($fields['_venue_logo']);
 		}
-
 		if ($current_user->has_cap('edit_others_event_listings')) {
 			$fields['_venue_author'] = array(
 				'label'    => __('Posted by', 'wp-event-manager'),
@@ -1380,7 +1305,6 @@ class WP_Event_Manager_Writepanels
 				'priority' => 41,
 			);
 		}
-
 		uasort($fields, array($this, 'sort_by_priority'));
 		return $fields;
 	}
@@ -1392,8 +1316,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function event_venue_data($post)
-	{
+	public function event_venue_data($post)	{
 		global $post, $thepostid;
 		$thepostid = $post->ID;
 		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
@@ -1404,7 +1327,6 @@ class WP_Event_Manager_Writepanels
 			if ($type == 'wp-editor') {
 				$type = 'textarea';
 			}
-
 			if (has_action('event_manager_input_' . $type)) {
 				do_action('event_manager_input_' . $type, $key, $field);
 			} elseif (method_exists($this, 'input_' . $type)) {
@@ -1423,8 +1345,7 @@ class WP_Event_Manager_Writepanels
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function save_venue_listing_data($post_id, $post)
-	{
+	public function save_venue_listing_data($post_id, $post){
 		global $wpdb;
 
 		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
@@ -1440,9 +1361,7 @@ class WP_Event_Manager_Writepanels
 		foreach ($this->venue_listing_fields() as $key => $field) {
 			if ('_venue_author' === $key) {
 				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint($_POST[$key]) : 0), array('ID' => $post_id));
-			}
-			// Everything else
-			else {
+			} else {
 				$type = !empty($field['type']) ? $field['type'] : '';
 				switch ($type) {
 					case 'textarea':
@@ -1485,7 +1404,6 @@ class WP_Event_Manager_Writepanels
 		}
 	}
 
-
 	/**
 	 * wpem_delete_event_with_attachment function.
 	 *
@@ -1493,8 +1411,7 @@ class WP_Event_Manager_Writepanels
 	 * @access public
 	 * @return void
 	 */
-	public function delete_event_with_attachment($post_id)
-	{
+	public function delete_event_with_attachment($post_id) {
 		if (!in_array(get_post_type($post_id), array('event_listing', 'event_organizer'))) {
 			return;
 		}
@@ -1507,44 +1424,34 @@ class WP_Event_Manager_Writepanels
 		$children = get_children($args, ARRAY_A);
 		if (sizeof($children) == 0) {
 			$event_banner = get_event_banner($post_id);
-
 			if (!empty($event_banner)) {
 				$wp_upload_dir = wp_get_upload_dir();
-
 				$baseurl = $wp_upload_dir['baseurl'] . '/';
-
 				if (is_array($event_banner)) {
 					foreach ($event_banner as $banner) {
 						$wp_attached_file = str_replace($baseurl, '', $banner);
-
 						$args = array(
 							'meta_key'       => '_wp_attached_file',
 							'meta_value'     => $wp_attached_file,
 							'post_type'      => 'attachment',
 							'posts_per_page' => 1,
 						);
-
 						$attachments = get_posts($args);
-
 						if (!empty($attachments)) {
 							foreach ($attachments as $attachment) {
-
 								wp_delete_attachment($attachment->ID, true);
 							}
 						}
 					}
 				} else {
 					$wp_attached_file = str_replace($baseurl, '', $event_banner);
-
 					$args = array(
 						'meta_key'       => '_wp_attached_file',
 						'meta_value'     => $wp_attached_file,
 						'post_type'      => 'attachment',
 						'posts_per_page' => 1,
 					);
-
 					$attachments = get_posts($args);
-
 					if (!empty($attachments)) {
 						foreach ($attachments as $attachment) {
 							wp_delete_attachment($attachment->ID, true);
@@ -1552,7 +1459,6 @@ class WP_Event_Manager_Writepanels
 					}
 				}
 			}
-
 			$thumbnail_id = get_post_thumbnail_id($post_id);
 			if (!empty($thumbnail_id)) {
 				wp_delete_attachment($thumbnail_id, true);

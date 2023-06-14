@@ -12,8 +12,7 @@ if (!class_exists('WP_Event_Manager_Addons')) :
 	/**
 	 * WP_Event_Manager_Addons Class
 	*/
-	class WP_Event_Manager_Addons
-	{
+	class WP_Event_Manager_Addons {
 		/**
 		 * Handles output of the reports page in admin.
 		 */
@@ -63,6 +62,5 @@ if (!class_exists('WP_Event_Manager_Addons')) :
 		<?php
 		} 
 	}
-
 endif;
 return new WP_Event_Manager_Addons();
