@@ -16,7 +16,6 @@ var MultiSelect= function () {
 }; //end of class
 
 MultiSelect= MultiSelect();
-jQuery(document).ready(function($) 
-{
+jQuery(document).ready(function($) {
    MultiSelect.init();
 });

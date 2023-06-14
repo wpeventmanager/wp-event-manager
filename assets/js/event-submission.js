@@ -50,8 +50,6 @@ EventSubmission = function () {
                         firstDay: wp_event_manager_event_submission.start_of_week,
                         monthNames: wp_event_manager_event_submission.monthNames,
                     }).on('change', function () {
-                        // set the "event_start_date" end to not be later than "event_end_date" starts:
-                        //jQuery('#event_start_date').datepicker('minDate', new Date(jQuery(this).val()));
 
                         jQuery("#event_end_date").datepicker("destroy");
 
@@ -63,8 +61,7 @@ EventSubmission = function () {
                         });
 
                     });
-                }
-                else {
+                } else {
                     jQuery('input[data-picker="datepicker"]#event_start_date').datepicker({
                         minDate: 0,
                         dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
@@ -97,8 +94,6 @@ EventSubmission = function () {
                         jQuery(this).datepicker('option', 'minDate', mindate);
                     }
                 }).on('change', function () {
-                    // set the "event_start_date" end to not be later than "event_end_date" starts:
-                    //jQuery('#event_start_date').datepicker('minDate', new Date(jQuery(this).val()));
 
                     jQuery("#event_registration_deadline").datepicker("destroy");
 
@@ -160,7 +155,6 @@ EventSubmission = function () {
                 }
             }
 
-
             //initially hide address, pincode, location textbox.
             if (jQuery('#event_online').length > 0) {
                 //hide event venue name, address, location and pincode fields at the edit event when select online event
@@ -210,9 +204,7 @@ EventSubmission = function () {
             jQuery('input[name=event_online]').on('change', EventSubmission.actions.onlineEvent);
             jQuery('input[name=event_ticket_options]').on('change', EventSubmission.actions.eventTicketOptions);
 
-
             jQuery('body').on('click', '.wpem_add_organizer', EventSubmission.actions.addOrganizer);
-
             jQuery('body').on('click', '.wpem_add_venue', EventSubmission.actions.addVenue);
 
             //add links for paid and free tickets   
@@ -222,8 +214,7 @@ EventSubmission = function () {
             jQuery(document).delegate('.remove-group-row', 'click', EventSubmission.actions.removeGroupField);
         },
 
-        actions:
-        {
+        actions: {
             /// <summary>
             /// On click add ticket link fields paid and free
             //It will generate dynamic name and id for ticket fields.
@@ -242,7 +233,6 @@ EventSubmission = function () {
                 });
 
                 var html = jQuery(this).data('row').replace(/%%group-row-index%%/g, max_index + 1);
-
                 html = html.replace(/%group-row-index%/g, max_index + 1);
 
                 jQuery(this).before(html);
@@ -253,18 +243,15 @@ EventSubmission = function () {
                         firstDay: wp_event_manager_event_submission.start_of_week
                     });
                 }
-
                 if ($wrap.find('input[data-picker="timepicker"]').length > 0) {
                     $wrap.find('input[data-picker="timepicker"]').timepicker({
                         'timeFormat': wp_event_manager_event_submission.i18n_timepicker_format,
                         'step': wp_event_manager_event_submission.i18n_timepicker_step,
                     });
                 }
-
                 if ($wrap.find('select[multiple="multiple"]').length > 0) {
                     $wrap.find('select[multiple="multiple"]').chosen();
                 }
-
                 event.preventDefault();
             },
 
@@ -275,9 +262,7 @@ EventSubmission = function () {
             /// <since>1.0.0</since>
             removeGroupField: function (event) {
                 jQuery("." + this.id).remove();
-
                 event.preventDefault();
-
             },
 
             /// <summary>
@@ -291,31 +276,24 @@ EventSubmission = function () {
                 if (jQuery('#event_online').length > 0) {
                     if (jQuery(this).val() == "yes") {
                         if (jQuery('.fieldset-event_venue_name').length > 0 && jQuery('input[name=event_venue_name]').length > 0) {
-
                             if (jQuery('input[name=event_venue_name]').attr('required'))
                                 jQuery('input[name=event_venue_name]').attr('required', false);
 
                             jQuery('.fieldset-event_venue_name').hide();
                         }
-
                         if (jQuery('.fieldset-event_address').length > 0 && jQuery('input[name=event_address]').length > 0) {
-
                             if (jQuery('input[name=event_address]').attr('required'))
                                 jQuery('input[name=event_address]').attr('required', false);
 
                             jQuery('.fieldset-event_address').hide();
                         }
-
                         if (jQuery('.fieldset-event_pincode').length > 0 && jQuery('input[name=event_pincode]').length > 0) {
-
                             if (jQuery('input[name=event_pincode]').attr('required'))
                                 jQuery('input[name=event_pincode]').attr('required', false);
 
                             jQuery('.fieldset-event_pincode').hide();
                         }
-
                         if (jQuery('.fieldset-event_location').length > 0 && jQuery('input[name=event_location]').length > 0) {
-
                             if (jQuery('input[name=event_location]').attr('required'))
                                 jQuery('input[name=event_location]').attr('required', false);
 
@@ -326,31 +304,24 @@ EventSubmission = function () {
                         }
                     } else {
                         if (jQuery('.fieldset-event_venue_name').length > 0 && jQuery('input[name=event_venue_name]').length > 0) {
-
                             if (jQuery('input[name=event_venue_name]').attr('required'))
                                 jQuery('input[name=event_venue_name]').attr('required', true);
 
                             jQuery('.fieldset-event_venue_name').show();
                         }
-
                         if (jQuery('.fieldset-event_address').length > 0 && jQuery('input[name=event_address]').length > 0) {
-
                             if (jQuery('input[name=event_address]').attr('required'))
                                 jQuery('input[name=event_address]').attr('required', true);
 
                             jQuery('.fieldset-event_address').show();
                         }
-
                         if (jQuery('.fieldset-event_pincode').length > 0 && jQuery('input[name=event_pincode]').length > 0) {
-
                             if (jQuery('input[name=event_pincode]').attr('required'))
                                 jQuery('input[name=event_pincode]').attr('required', true);
 
                             jQuery('.fieldset-event_pincode').show();
                         }
-
                         if (jQuery('.fieldset-event_location').length > 0 && jQuery('input[name=event_location]').length > 0) {
-
                             if (jQuery('input[name=event_location]').attr('required'))
                                 jQuery('input[name=event_location]').attr('required', true);
 
@@ -379,9 +350,7 @@ EventSubmission = function () {
 
                             jQuery('.fieldset-event_ticket_price').hide();
                         }
-
                     } else {
-
                         if (jQuery('.fieldset-event_ticket_price').length > 0 && jQuery('input[name=event_ticket_price]').length > 0)
                             if (jQuery('input[name=event_ticket_price]').attr('required'))
                                 jQuery('input[name=event_ticket_price]').attr('required', true);
@@ -443,12 +412,11 @@ EventSubmission = function () {
                
                 var formData = jQuery('body #submit-venue-form').serialize();
                 var venue_description = tinyMCE.get('venue_description').getContent();
-
                 var fd = new FormData();
                 console.log(jQuery('#venue_logo')[0]);
                 if(jQuery('#venue_logo')[0] !== undefined){
                     fd.append("venue_logo", jQuery('#venue_logo')[0].files[0]);
-                    }
+                }
                
                 fd.append("action", 'add_venue');
                 fd.append("form_data", formData);
@@ -478,9 +446,7 @@ EventSubmission = function () {
                     }
                 });
             },
-
         } //end of action
-
     } //enf of return
 }; //end of class
 EventSubmission = EventSubmission();

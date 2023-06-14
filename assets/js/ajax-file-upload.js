@@ -8,9 +8,8 @@ var AjaxFileUpload= function () {
         ///<returns type="initialization settings" />   
        /// <since>1.0.0</since>
         
-        init: function() 
-        {
-	        Common.logInfo("AjaxFileUpload.init...");  
+        init: function() {
+
 			jQuery('.wp-event-manager-file-upload').each(function(){
 			jQuery(this).fileupload({
 				dataType: 'json',
@@ -92,7 +91,6 @@ var AjaxFileUpload= function () {
 }; //end of class
 
 AjaxFileUpload= AjaxFileUpload();
-jQuery(document).ready(function($) 
-{
+jQuery(document).ready(function($) {
    AjaxFileUpload.init();
 });

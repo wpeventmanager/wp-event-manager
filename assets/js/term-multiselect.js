@@ -7,8 +7,7 @@ var TermMultiselect= function () {
         ///</summary>     
         ///<returns type="initialization settings" />   
         /// <since>1.0.0</since> 
-        init: function() 
-        {   
+        init: function() {   
 	        Common.logInfo("TermMultiselect.init...");  
 	        jQuery(".event-manager-category-dropdown").chosen({ search_contains: !0 });
 	   }   
@@ -16,7 +15,6 @@ var TermMultiselect= function () {
 }; //end of class
 
 TermMultiselect= TermMultiselect();
-jQuery(document).ready(function($) 
-{
+jQuery(document).ready(function($) {
    TermMultiselect.init();
 });
