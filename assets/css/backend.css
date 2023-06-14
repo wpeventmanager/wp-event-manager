@@ -1399,3 +1399,32 @@ ul.wpem-product-action-list li {
         width: inherit;
     }
 }
+
+
+
+.wpem-shortcode-page {
+    margin-top: 10px;
+}
+.wpem-shortcode-table {
+    margin-top: 15px;
+    overflow: auto;
+}
+.wpem-shortcode-table table {
+    border: 1px solid #c3c4c7;
+    background-color: #ffffff;
+    border-spacing: 0;
+    width: 100%;
+}
+.wpem-shortcode-table td {
+    border-top: 1px solid #c3c4c7;
+}
+.wpem-shortcode-table td, .wpem-shortcode-table th {
+    padding: 10px 20px;
+    text-align: left;
+}
+.wpem-shortcode-td {
+    font-size: 16px;
+}
+.wpem-shortcode-table tbody {
+    background-color: #f6f7f7;
+}
