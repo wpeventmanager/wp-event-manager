@@ -14,7 +14,7 @@ require_once('yoast.php');
 require_once('visual-composer/index.php');
 
 //check Elementor Plugin istallation
-if (! function_exists('_is_elementor_installed')) {
+if(!function_exists('_is_elementor_installed')) {
 	function _is_elementor_installed() {
 		$file_path = 'elementor/elementor.php';
 		$installed_plugins = get_plugins();

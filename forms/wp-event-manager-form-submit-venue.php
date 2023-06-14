@@ -44,16 +44,16 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		// Get step/event
 		if(isset($_POST['step'])) {
 			$this->step = is_numeric($_POST['step']) ? max(absint($_POST['step']), 0) : array_search($_POST['step'], array_keys($this->steps));
-		} elseif(! empty($_GET['step'])) {
+		} elseif(!empty($_GET['step'])) {
 			$this->step = is_numeric($_GET['step']) ? max(absint($_GET['step']), 0) : array_search($_GET['step'], array_keys($this->steps));
 		}
-		$this->venue_id = ! empty($_REQUEST['venue_id']) ? absint($_REQUEST[ 'venue_id' ]) : 0;
-		if(! event_manager_user_can_edit_event($this->venue_id)) {
+		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint($_REQUEST[ 'venue_id' ]) : 0;
+		if(!event_manager_user_can_edit_event($this->venue_id)) {
 			$this->venue_id = 0;
 		}
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
-		if(! isset($_GET[ 'new' ]) &&(!$this->venue_id) && ! empty($_COOKIE['wp-event-manager-submitting-venue-id']) && ! empty($_COOKIE['wp-event-manager-submitting-venue-key'])){
+		if(!isset($_GET[ 'new' ]) &&(!$this->venue_id) && !empty($_COOKIE['wp-event-manager-submitting-venue-id']) && !empty($_COOKIE['wp-event-manager-submitting-venue-key'])){
 			$venue_id     = absint($_COOKIE['wp-event-manager-submitting-venue-id']);
 			$venue_status = get_post_status($venue_id);
 			if('preview' === $venue_status && get_post_meta($venue_id, '_wpem_unique_key', true) === $_COOKIE['wp-event-manager-submitting-venue-key']) {
@@ -64,11 +64,11 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		if($this->venue_id) {
 			$venue_status = get_post_status($this->venue_id);
 			if('expired' === $venue_status) {
-				if(! event_manager_user_can_edit_event($this->venue_id)) {
+				if(!event_manager_user_can_edit_event($this->venue_id)) {
 					$this->venue_id = 0;
 					$this->step   = 0;
 				}
-			} elseif(! in_array($venue_status, apply_filters('event_manager_valid_submit_venue_statuses', array('publish')))) {
+			} elseif(!in_array($venue_status, apply_filters('event_manager_valid_submit_venue_statuses', array('publish')))) {
 				$this->venue_id = 0;
 				$this->step   = 0;
 			}
@@ -215,11 +215,11 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($venue->ID, '_' . $key, true);
 						break;
 					}
-					if(! empty($field['taxonomy'])) {
+					if(!empty($field['taxonomy'])) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($venue->ID, $field['taxonomy'], array('fields' => 'ids'));
 					}
 					
-					if(! empty($field['type']) &&  $field['type'] == 'date'){
+					if(!empty($field['type']) &&  $field['type'] == 'date'){
 						$event_date = get_post_meta($venue->ID, '_' . $key, true);
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date));
 					}
@@ -258,30 +258,30 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					return new WP_Error('validation-error', sprintf(wp_kses('%s is a required field.', 'wp-event-manager'), $field['label']));
 				}
 
-				if(! empty($field['taxonomy']) && in_array($field['type'], array('term-checklist', 'term-select', 'term-multiselect'))) {
+				if(!empty($field['taxonomy']) && in_array($field['type'], array('term-checklist', 'term-select', 'term-multiselect'))) {
 					if(is_array($values[ $group_key ][ $key ])) {
 						$check_value = $values[ $group_key ][ $key ];
 					} else {
 						$check_value = empty($values[ $group_key ][ $key ]) ? array() : array($values[ $group_key ][ $key ]);
 					}
 					foreach($check_value as $term) {    
-						if(! term_exists($term, $field['taxonomy'])) {
+						if(!term_exists($term, $field['taxonomy'])) {
 							return new WP_Error('validation-error', sprintf(wp_kses('%s is invalid', 'wp-event-manager'), $field['label']));    
 						}
 					}
 				}
 
-				if('file' === $field['type'] && ! empty($field['allowed_mime_types'])) {
+				if('file' === $field['type'] && !empty($field['allowed_mime_types'])) {
 					if(is_array($values[ $group_key ][ $key ])) {
 						$check_value = array_filter($values[ $group_key ][ $key ]);
 					} else {
 						$check_value = array_filter(array($values[ $group_key ][ $key ]));
 					}
-					if(! empty($check_value)) {
+					if(!empty($check_value)) {
 						foreach($check_value as $file_url) {
 							$file_url = current(explode('?', $file_url));
 							$file_info = wp_check_filetype($file_url);
-							if(! is_numeric($file_url) && $file_info && ! in_array($file_info['type'], $field['allowed_mime_types'])) {
+							if(!is_numeric($file_url) && $file_info && !in_array($file_info['type'], $field['allowed_mime_types'])) {
 								throw new Exception(sprintf(wp_kses('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), $field['label'], $info['ext'], implode(', ', array_keys($field['allowed_mime_types']))));
 							}
 						}
@@ -291,7 +291,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		}
 		//venue email validation
 		if(isset($values['venue']['venue_email']) && !empty($values['venue']['venue_email'])) {
-			if(! is_email($values['venue']['venue_email'])) {
+			if(!is_email($values['venue']['venue_email'])) {
 				throw new Exception(__('Please enter a valid venue email address', 'wp-event-manager'));
 			}
 		}
@@ -359,7 +359,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			wp_update_post($venue_data);
 		} else {
 			$this->venue_id = wp_insert_post($venue_data);
-			if(! headers_sent()) {
+			if(!headers_sent()) {
 				$wpem_unique_key = uniqid();
 				setcookie('wp-event-manager-submitting-venue-id', $this->venue_id, 0, COOKIEPATH, COOKIE_DOMAIN, false);
 				setcookie('wp-event-manager-submitting-venue-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false);
@@ -386,7 +386,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		foreach($this->fields as $group_key => $group_fields) {
 			foreach($group_fields as $key => $field) {
 				// Save taxonomies
-				if(! empty($field['taxonomy'])) {
+				if(!empty($field['taxonomy'])) {
 					if(is_array($values[ $group_key ][ $key ])) {
 						wp_set_object_terms($this->venue_id, $values[ $group_key ][ $key ], $field['taxonomy'], false);
 					} else {
@@ -430,7 +430,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				$attachment_urls[] = wp_get_attachment_url($attachment);
 			}
 			foreach($maybe_attach as $attachment_url) {
-				if(! in_array($attachment_url, $attachment_urls) && !is_numeric($attachment_url)) {
+				if(!in_array($attachment_url, $attachment_urls) && !is_numeric($attachment_url)) {
 					$this->create_attachment($attachment_url);
 				}
 			}
@@ -459,7 +459,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		}
 		$attachment_url = sprintf('%s://%s%s', $attachment_url_parts['scheme'], $attachment_url_parts['host'], $attachment_url_parts['path']);
 		$attachment_url = str_replace(array($upload_dir['baseurl'], WP_CONTENT_URL, site_url('/')), array($upload_dir['basedir'], WP_CONTENT_DIR, ABSPATH), $attachment_url);
-		if(empty($attachment_url) || ! is_string($attachment_url)) {
+		if(empty($attachment_url) || !is_string($attachment_url)) {
 			return 0;
 		}
 		$attachment = array(
@@ -473,7 +473,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			$attachment['post_mime_type'] = $info['type'];
 		}
 		$attachment_id = wp_insert_attachment($attachment, $attachment_url, $this->venue_id);
-		if(! is_wp_error($attachment_id)) {
+		if(!is_wp_error($attachment_id)) {
 			wp_update_attachment_metadata($attachment_id, wp_generate_attachment_metadata($attachment_id, $attachment_url));
 			return $attachment_id;
 		}

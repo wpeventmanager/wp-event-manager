@@ -6,7 +6,7 @@ use Elementor\Core\DynamicTags\Data_Tag;
 use Elementor\Modules\DynamicTags\Module;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
  * Elementor Single Event Summary

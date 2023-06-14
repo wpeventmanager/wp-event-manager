@@ -2,8 +2,8 @@
 /**
  * Pagination - Show numbered pagination for the [events] shortcode
  */
-if (! defined('ABSPATH')) exit; // Exit if accessed directly
-if ($max_num_pages <= 1) {
+if(!defined('ABSPATH')) exit; // Exit if accessed directly
+if($max_num_pages <= 1) {
 	return;
 }
 
@@ -18,17 +18,17 @@ $prev_page   = 0; ?>
 
 <nav class="event-manager-pagination">
 	<ul class="page-numbers">
-		<?php if ($current_page && $current_page > 1) : ?>
+		<?php if($current_page && $current_page > 1) : ?>
 			<li><a href="#" data-page="<?php echo esc_attr($current_page - 1); ?>" class="page-numbers">&larr;</a></li>
 		<?php endif; 
 		
 			foreach ($pages as $page) {
 
-				if ($prev_page != $page - 1) { ?>
+				if($prev_page != $page - 1) { ?>
 					<li><span class="gap">...</span></li>
 				<?php }
 
-				if ($current_page == $page) { ?>
+				if($current_page == $page) { ?>
 					<li><span  data-page="<?php echo esc_attr($page);?>" class="page-numbers current"><?php echo esc_attr($page);?></span></li>
 				<?php } else { ?>
 					<li><a href="#" data-page="<?php echo esc_attr($page);?>" class="page-numbers"><?php echo esc_attr($page);?></a></li>
@@ -36,7 +36,7 @@ $prev_page   = 0; ?>
 
 				$prev_page = $page;
 			}
-		if ($current_page && $current_page < $max_num_pages) : ?>
+		if($current_page && $current_page < $max_num_pages) : ?>
 			<li><a href="#" data-page="<?php echo esc_attr($current_page + 1); ?>" class="page-numbers">&rarr;</a></li>
 		<?php endif; ?>
 	</ul>

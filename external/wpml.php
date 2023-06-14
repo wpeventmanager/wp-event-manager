@@ -23,7 +23,7 @@ function wpml_event_manager_set_language() {
 
 	$input_lang = isset($_POST['lang']) ? sanitize_text_field(wp_unslash($_POST['lang'])) : false;
 
-	if (isset($_SERVER['REQUEST_URI']) && (strstr($_SERVER['REQUEST_URI'], '/em-ajax/') || ! empty($_GET['em-ajax'])) && $input_lang)  {
+	if (isset($_SERVER['REQUEST_URI']) && (strstr($_SERVER['REQUEST_URI'], '/em-ajax/') || !empty($_GET['em-ajax'])) && $input_lang)  {
 		do_action('wpml_switch_language', sanitize_text_field($_POST['lang']));
 	}
 }

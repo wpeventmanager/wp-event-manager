@@ -1,5 +1,5 @@
 <?php
-if (! defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
@@ -103,7 +103,7 @@ class WP_Event_Manager_Permalink_Settings {
 	 * Save the settings.
 	 */
 	public function settings_save() {
-		if (! is_admin()) {
+		if (!is_admin()) {
 			return;
 		}
 		if (isset($_POST['permalink_structure'])) {
