@@ -78,13 +78,13 @@ class WP_Event_Manager {
 		define( 'EVENT_MANAGER_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
 		//Core		
-		include( 'core/wp-event-manager-install.php' );
-		include( 'core/wp-event-manager-post-types.php' );
-		include( 'core/wp-event-manager-ajax.php' );
-		include( 'core/wp-event-manager-geocode.php' );
-		include( 'core/wp-event-manager-filters.php' );
-		include( 'core/wp-event-manager-cache-helper.php' );
-		include( 'core/wp-event-manager-date-time.php' );
+		include( 'includes/wp-event-manager-install.php' );
+		include( 'includes/wp-event-manager-post-types.php' );
+		include( 'includes/wp-event-manager-ajax.php' );
+		include( 'includes/wp-event-manager-geocode.php' );
+		include( 'includes/wp-event-manager-filters.php' );
+		include( 'includes/wp-event-manager-cache-helper.php' );
+		include( 'includes/wp-event-manager-date-time.php' );
 
 		//shortcodes
 		include( 'shortcodes/wp-event-manager-shortcodes.php' );

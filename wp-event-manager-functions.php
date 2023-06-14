@@ -1187,7 +1187,7 @@ function event_manager_dropdown_selection($args = '') {
 	}
 
 	if (!empty($categories)) {
-		include_once( EVENT_MANAGER_PLUGIN_DIR . '/core/wp-event-manager-category-walker.php' );
+		include_once( EVENT_MANAGER_PLUGIN_DIR . '/includes/wp-event-manager-category-walker.php' );
 		$walker = new WP_Event_Manager_Category_Walker;
 		if($hierarchical) {
 			$depth = $r['depth'];  // Walk the full depth.

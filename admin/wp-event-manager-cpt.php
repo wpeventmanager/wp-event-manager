@@ -197,7 +197,7 @@ class WP_Event_Manager_CPT {
 		if ($typenow != 'event_listing' || !taxonomy_exists('event_listing_category')) {
 			return;
 		}
-		include_once EVENT_MANAGER_PLUGIN_DIR . '/core/wp-event-manager-category-walker.php';
+		include_once EVENT_MANAGER_PLUGIN_DIR . '/includes/wp-event-manager-category-walker.php';
 		$r = array();
 		$r['pad_counts'] = 1;
 		$r['hierarchical'] = 1;

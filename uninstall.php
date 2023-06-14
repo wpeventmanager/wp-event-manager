@@ -4,7 +4,7 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // Cleanup all data.
-require 'core/wp-event-manager-data-cleaner.php';
+require 'includes/wp-event-manager-data-cleaner.php';
 
 if (!is_multisite()) {
 
