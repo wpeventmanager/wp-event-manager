@@ -133,6 +133,7 @@ class WP_Event_Manager_Admin {
 		global $wpdb;
 
 		add_submenu_page('edit.php?post_type=event_listing', __('Settings', 'wp-event-manager'), __('Settings', 'wp-event-manager'), 'manage_options', 'event-manager-settings', array($this->settings_page, 'output'));
+		add_submenu_page('edit.php?post_type=event_listing', __('WP Event Manager Shortcodes', 'wp-event-manager'), __('Shortcodes', 'wp-event-manager'), 'manage_options', 'event-manager-shortcodes', array($this, 'shortcodes_page'));
 		if (version_compare(get_option('wp_event_manager_db_version', 0), '3.1.13', '<')) {
 			add_submenu_page('edit.php?post_type=event_listing', __('Upgrade Database', 'wp-event-manager'), __('Upgrade Database', 'wp-event-manager'), 'manage_options', 'event-manager-upgrade-database', array($this, 'upgrade_database'));
 		}
@@ -296,6 +297,14 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
+	 * Output shortcode page
+	 */
+	public function shortcodes_page() {
+		$shortcodes = include 'wp-event-manager-shortcode-list.php';
+		$shortcodes->shortcode_list();
+	}
+
+	/**
 	 * Show Installtion setup wizard admin notice
 	 */
 	public function run_setup_wizard_admin_notice()	{
@@ -311,7 +320,7 @@ A prior Backup does no harm before updating the plugin!',
 					<button class="wp-event-manager-notice-dismiss wp-event-manager-dismiss-welcome"><a href="<?php echo esc_url(add_query_arg('event-manager-main-admin-dismiss', '1')); ?>"><?php esc_attr_e('Dismiss', 'wp-event-manager'); ?></a></span></button>
 				</div>
 			</div>
-<?php
+		<?php
 		}
 	}
 
