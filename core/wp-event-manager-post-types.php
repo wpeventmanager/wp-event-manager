@@ -52,14 +52,14 @@ class WP_Event_Manager_Post_Types {
 		
 		add_action('wp_head', array($this, 'noindex_expired_cancelled_event_listings'));
 
-		add_filter('display_event_description', 'wptexturize'       );
-		add_filter('display_event_description', 'convert_smilies'   );
-		add_filter('display_event_description', 'convert_chars'     );
-		add_filter('display_event_description', 'wpautop'           );
-		add_filter('display_event_description', 'shortcode_unautop' );
+		add_filter('display_event_description', 'wptexturize'      );
+		add_filter('display_event_description', 'convert_smilies'  );
+		add_filter('display_event_description', 'convert_chars'    );
+		add_filter('display_event_description', 'wpautop'          );
+		add_filter('display_event_description', 'shortcode_unautop');
 		add_filter('display_event_description', 'prepend_attachment');
 
-		if (! empty($GLOBALS['wp_embed'])) {
+		if (!empty($GLOBALS['wp_embed'])) {
    			add_filter('display_event_description', array($GLOBALS['wp_embed'], 'run_shortcode'), 8);
      		add_filter('display_event_description', array($GLOBALS['wp_embed'], 'autoembed'), 8);
    		}
@@ -101,194 +101,107 @@ class WP_Event_Manager_Post_Types {
 		 * Taxonomies
 		 */
 		if (get_option('event_manager_enable_categories')) {
-
 			$singular  = __('Event category', 'wp-event-manager');
-
 			$plural    = __('Event categories', 'wp-event-manager');
-
 			if (current_theme_supports('event-manager-templates')) {
-
 				$rewrite   = array(
-
 					'slug'         => $permalink_structure['category_rewrite_slug'],
-
 					'with_front'   => false,
-
 					'hierarchical' => false
 				);
-
 				$public    = true;
-
 			} else {
-
 				$rewrite   = true;
-
 				$public    = true;
 			}
-
 			register_taxonomy("event_listing_category",
-
 			apply_filters('register_taxonomy_event_listing_category_object_type', array('event_listing')),
-
 	       	 	apply_filters('register_taxonomy_event_listing_category_args', array(
-
 		            'hierarchical' 			=> true,
-
 		            'update_count_callback' => '_update_post_term_count',
-
 		            'label' 				=> $plural,
-
 		            'labels' => array(
-
 						'name'              => $plural,
-
 						'singular_name'     => $singular,
-
 						'menu_name'         => ucwords($plural),
-
 						'search_items'      => sprintf(wp_kses('Search %s', 'wp-event-manager'), $plural),
-
 						'all_items'         => sprintf(wp_kses('All %s', 'wp-event-manager'), $plural),
-
 						'parent_item'       => sprintf(wp_kses('Parent %s', 'wp-event-manager'), $singular),
-
 						'parent_item_colon' => sprintf(wp_kses('Parent %s:', 'wp-event-manager'), $singular),
-
 						'edit_item'         => sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
-
 						'update_item'       => sprintf(wp_kses('Update %s', 'wp-event-manager'), $singular),
-
 						'add_new_item'      => sprintf(wp_kses('Add New %s', 'wp-event-manager'), $singular),
-
 						'new_item_name'     => sprintf(wp_kses('New %s Name', 'wp-event-manager'),  $singular)
-
 	            	),
-
 		            'show_ui' 				=> true,
 					'show_in_rest'          => true,
-
 		            'public' 	     		=> $public,
-
 		            'capabilities'			=> array(
-
 		            	'manage_terms' 		=> $admin_capability,
-
 		            	'edit_terms' 		=> $admin_capability,
-
 		            	'delete_terms' 		=> $admin_capability,
-
 		            	'assign_terms' 		=> $admin_capability,
-
-		           ),
-
+		          ),
 		            'rewrite' 				=> $rewrite,
-
-		       ))
-
-		   );
-
+		      ))
+		  );
 		}
-
 		if (get_option('event_manager_enable_event_types')) {
-
 		        $singular  = __('Event type', 'wp-event-manager');
-
 				$plural    = __('Event types', 'wp-event-manager');
-
 			if (current_theme_supports('event-manager-templates')) {
-
 				$rewrite   = array(
-
 					'slug'         => $permalink_structure['type_rewrite_slug'],
-
 					'with_front'   => false,
-
 					'hierarchical' => false
-
 				);
-
 				$public    = true;
-
 			} else {
-
 				$rewrite   = true;
-
 				$public    = true;
-
 			}
-
 			register_taxonomy("event_listing_type",
-
 			apply_filters('register_taxonomy_event_listing_type_object_type', array('event_listing')),
-
 		        apply_filters('register_taxonomy_event_listing_type_args', array(
-
 		            'hierarchical' 			=> true,
-
 		            'label' 				=> $plural,
-
 		            'labels' => array(
-
 	                    'name' 				=> $plural,
-
 	                    'singular_name' 	=> $singular,
-
 	                    'menu_name'         => ucwords($plural),
-
 	                    'search_items' 		=> sprintf(wp_kses('Search %s', 'wp-event-manager'), $plural),
-
 	                    'all_items' 		=> sprintf(wp_kses('All %s', 'wp-event-manager'), $plural),
-
 	                    'parent_item' 		=> sprintf(wp_kses('Parent %s', 'wp-event-manager'), $singular),
-
 	                    'parent_item_colon' => sprintf(wp_kses('Parent %s:', 'wp-event-manager'), $singular),
-
 	                    'edit_item' 		=> sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
-
 	                    'update_item' 		=> sprintf(wp_kses('Update %s', 'wp-event-manager'), $singular),
-
 	                    'add_new_item' 		=> sprintf(wp_kses('Add New %s', 'wp-event-manager'), $singular),
-
 	                    'new_item_name' 	=> sprintf(wp_kses('New %s Name', 'wp-event-manager'),  $singular)
 	            	),
-
 		            'show_ui' 				=> true,
-
 					'show_in_rest'          => true,
-
 		            'public' 			    => $public,
-
 		            'capabilities'			=> array(
-
 		            	'manage_terms' 		=> $admin_capability,
-
 		            	'edit_terms' 		=> $admin_capability,
-
 		            	'delete_terms' 		=> $admin_capability,
-
 		            	'assign_terms' 		=> $admin_capability,
-		           ),
-
+		          ),
 		           'rewrite' 				=> $rewrite,
-		       ))
-		   );
+		      ))
+		  );
 	    }
 
 	    /**
 		 * Post types
 		 */
-
 		$singular  = __('Event', 'wp-event-manager');
-
 		$plural    = __('Events', 'wp-event-manager');
-
 		
 		/**
 		 * Set whether to add archive page support when registering the event listing post type.
-		 *
-		 * @since 2.5
-		 *
 		 * @param bool $enable_event_archive_page
+		 * @since 2.5
 		 */
 		if (apply_filters('event_manager_enable_event_archive_page', current_theme_supports('event-manager-templates'))) {
 			$has_archive = _x('events', 'Post type archive slug - resave permalinks after changing this', 'wp-event-manager');
@@ -297,89 +210,50 @@ class WP_Event_Manager_Post_Types {
 		}
 
 		$rewrite     = array(
-		    
 			'slug'       => $permalink_structure['event_rewrite_slug'],
-
 			'with_front' => false,
-
 			'feeds'      => true,
-
 			'pages'      => false
 		);
 
 		register_post_type("event_listing",
-
 			apply_filters("register_post_type_event_listing", array(
-
 				'labels' => array(
-
 					'name' 					=> $plural,
-
 					'singular_name' 		=> $singular,
-
 					'menu_name'             => __('Event Manager', 'wp-event-manager'),
-
 					'all_items'             => sprintf(wp_kses('All %s', 'wp-event-manager'), $plural),
-
 					'add_new' 				=> __('Add New', 'wp-event-manager'),
-
 					'add_new_item' 			=> sprintf(wp_kses('Add %s', 'wp-event-manager'), $singular),
-
 					'edit' 					=> __('Edit', 'wp-event-manager'),
-
 					'edit_item' 			=> sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
-
 					'new_item' 				=> sprintf(wp_kses('New %s', 'wp-event-manager'), $singular),
-
 					'view' 					=> sprintf(wp_kses('View %s', 'wp-event-manager'), $singular),
-
 					'view_item' 			=> sprintf(wp_kses('View %s', 'wp-event-manager'), $singular),
-
 					'search_items' 			=> sprintf(wp_kses('Search %s', 'wp-event-manager'), $plural),
-
 					'not_found' 			=> sprintf(wp_kses('No %s found', 'wp-event-manager'), $plural),
-
 					'not_found_in_trash' 	=> sprintf(wp_kses('No %s found in trash', 'wp-event-manager'), $plural),
-
 					'parent' 				=> sprintf(wp_kses('Parent %s', 'wp-event-manager'), $singular),
-					
 					'featured_image'        => __('Event Thumbnail', 'wp-event-manager'),
-					
 					'set_featured_image'    => __('Set event thumbnail', 'wp-event-manager'),
-					
 					'remove_featured_image' => __('Remove event thumbnail', 'wp-event-manager'),
-					
 					'use_featured_image'    => __('Use as event thumbnail', 'wp-event-manager'),
 				),
 
 				'description' => sprintf(wp_kses('This is where you can create and manage %s.', 'wp-event-manager'), $plural),
-
 				'public' 				=> true,
-
 				'show_ui' 				=> true,
-
 				'capability_type' 		=> 'event_listing',
-
 				'map_meta_cap'          => true,
-
 				'publicly_queryable' 	=> true,
-
 				'exclude_from_search' 	=> false,
-
 				'hierarchical' 			=> false,
-
 				'rewrite' 				=> $rewrite,
-
 				'query_var' 			=> true,
-					
 				'show_in_rest' 			=> true,
-
 				'supports' 				=> array('title', 'editor', 'custom-fields', 'publicize' , 'thumbnail'),
-
 				'has_archive' 			=> $has_archive,
-
 				'show_in_nav_menus' 	=> true,
-
 				'menu_icon' => 'dashicons-calendar' // It's use to display event listing icon at admin site. 
 			))
 		);
@@ -387,118 +261,84 @@ class WP_Event_Manager_Post_Types {
 		/**
 		 * Feeds
 		 */
-
 		add_feed('event_feed', array($this, 'event_feed'));
 
 		/**
 		 * Post status
 		 */
-
 		register_post_status('expired', array(
-
 			'label'                     => _x('Expired', 'post status', 'wp-event-manager'),
-
 			'public'                    => true,
-
 			'exclude_from_search'       => true,
-
 			'show_in_admin_all_list'    => true,
-
 			'show_in_admin_status_list' => true,
-
 			'label_count'               => _n_noop('Expired <span class="count">(%s)</span>', 'Expired <span class="count">(%s)</span>', 'wp-event-manager')
 		));
 
 		register_post_status('preview', array(
-
 			'public'                    => true,
-
 			'exclude_from_search'       => true,
-
 			'show_in_admin_all_list'    => true,
-
 			'show_in_admin_status_list' => true,
-	
 			'label_count'               => _n_noop('Preview <span class="count">(%s)</span>', 'Preview <span class="count">(%s)</span>', 'wp-event-manager')
 		));
 
-			if(get_option('enable_event_organizer')){	
-	 	$singular  = __('Organizer', 'wp-event-manager');
-		$plural    = __('Organizers', 'wp-event-manager');
-	    register_post_type('event_organizer', apply_filters('register_event_organizer_post_type',array(
+		if(get_option('enable_event_organizer')){	
+			$singular  = __('Organizer', 'wp-event-manager');
+			$plural    = __('Organizers', 'wp-event-manager');
+			register_post_type('event_organizer', apply_filters('register_event_organizer_post_type',array(
 				        'labels' => array(
-
 						'name' 					=> $plural,
-
 						'singular_name' 		=> $singular,
-
 						'add_new_item' 			=> sprintf(wp_kses('Add %s', 'wp-event-manager'), $singular),
-
 						'edit_item' 			=> sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
-						
 						'featured_image'        => __('Organizer Logo', 'wp-event-manager'),
-						
 						'set_featured_image'    => __('Set organizer logo', 'wp-event-manager'),
-						
 						'remove_featured_image' => __('Remove organizer logo', 'wp-event-manager'),
-						
 						'use_featured_image'    => __('Use as organizer logo', 'wp-event-manager'),
 					),
-
-				        'public'             => true,
-				        'publicly_queryable' => true,
-				        'show_ui'            => true,
-				        'show_in_menu'       => false,
-				        'query_var'          => true,
-				        'rewrite'            => array('slug' => 'event-organizer'),
-				        'capability_type'    => 'post',
-				        'has_archive'        => true,
-				        'hierarchical'       => false,
-				        'menu_position'      => null,
-				        'show_in_menu' => 'edit.php?post_type=event_listing',
-				        'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
-				         
-	    		))
-	   );
+					'public'             => true,
+					'publicly_queryable' => true,
+					'show_ui'            => true,
+					'show_in_menu'       => false,
+					'query_var'          => true,
+					'rewrite'            => array('slug' => 'event-organizer'),
+					'capability_type'    => 'post',
+					'has_archive'        => true,
+					'hierarchical'       => false,
+					'menu_position'      => null,
+					'show_in_menu' => 'edit.php?post_type=event_listing',
+					'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
+	    	))
+	  );
 	}
 
-	
 	if(get_option('enable_event_venue')){
 	    $singular  = __('Venue', 'wp-event-manager');
 		$plural    = __('Venues', 'wp-event-manager');
 	    register_post_type('event_venue', apply_filters('register_event_venue_post_type',array(
 				        'labels' => array(
-
 						'name' 					=> $plural,
-
 						'singular_name' 		=> $singular,
-
 						'add_new_item' 			=> sprintf(wp_kses('Add %s', 'wp-event-manager'), $singular),
-
 						'edit_item' 			=> sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
-						
 						'featured_image'        => __('Venue Logo', 'wp-event-manager'),
-						
 						'set_featured_image'    => __('Set venue logo', 'wp-event-manager'),
-						
 						'remove_featured_image' => __('Remove venue logo', 'wp-event-manager'),
-						
 						'use_featured_image'    => __('Use as venue logo', 'wp-event-manager'),
 					),
-
-				        'public'             => true,
-				        'publicly_queryable' => true,
-				        'show_ui'            => true,
-				        'show_in_menu'       => false,
-				        'query_var'          => true,
-				        'rewrite'            => array('slug' => 'event-venue'),
-				        'capability_type'    => 'post',
-				        'has_archive'        => true,
-				        'hierarchical'       => false,
-				        'menu_position'      => null,
-				        'show_in_menu' => 'edit.php?post_type=event_listing',
-				        'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
-				         
+					'public'             => true,
+					'publicly_queryable' => true,
+					'show_ui'            => true,
+					'show_in_menu'       => false,
+					'query_var'          => true,
+					'rewrite'            => array('slug' => 'event-venue'),
+					'capability_type'    => 'post',
+					'has_archive'        => true,
+					'hierarchical'       => false,
+					'menu_position'      => null,
+					'show_in_menu' => 'edit.php?post_type=event_listing',
+					'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
 	    		))
 	    	);
 		}
@@ -507,26 +347,17 @@ class WP_Event_Manager_Post_Types {
 	/**
 	 * Change label
 	 */
-
 	public function admin_head() {
-
 		global $menu;
 
 		$plural     = __('Event Manager', 'wp-event-manager');
-
 		$count_events = wp_count_posts('event_listing', 'readable');
-
-		if (! empty($menu) && is_array($menu)) {
-
+		if (!empty($menu) && is_array($menu)) {
 			foreach ($menu as $key => $menu_item) {
-
 				if (strpos($menu_item[0], $plural) === 0) {
-
 					if ($order_count = $count_events->pending) {
-
 						$menu[ $key ][0] .= " <span class='awaiting-mod update-plugins count-$order_count'><span class='pending-count'>" . number_format_i18n($count_events->pending) . "</span></span>" ;
 					}
-
 					break;
 				}
 			}
@@ -537,31 +368,20 @@ class WP_Event_Manager_Post_Types {
 	 * Add extra content when showing event content
 	 */
 	public function event_content($content) {
-
 		global $post;
 
-		if (! is_singular('event_listing') || ! in_the_loop()) {
-
+		if (!is_singular('event_listing') || !in_the_loop()) {
 			return $content;
 		}
-
 		remove_filter('the_content', array($this, 'event_content'));
-
 		if ('event_listing' === $post->post_type) {
-
 			ob_start();
-
 			do_action('event_content_start');
-
 			get_event_manager_template_part('content-single', 'event_listing');
-
 			do_action('event_content_end');
-
 			$content = ob_get_clean();
 		}
-
 		add_filter('the_content', array($this, 'event_content'));
-
 		return apply_filters('event_manager_single_event_content', $content, $post);
 	}
 
@@ -569,29 +389,21 @@ class WP_Event_Manager_Post_Types {
 	 * Add extra content when showing organizer content
 	 */
 	public function organizer_content($content) {
-
 		global $post;
 
-		if (! is_singular('event_organizer') || ! in_the_loop()) 
-		{
+		if (!is_singular('event_organizer') || !in_the_loop()) {
 			return $content;
 		}
 
 		remove_filter('the_content', array($this, 'organizer_content'));
-
 		if ('event_organizer' === $post->post_type) {
-
 			ob_start();
-
 			$organizer_id = get_the_ID();
-            
             echo do_shortcode('[event_organizer id="'.esc_attr($organizer_id).'"]');
-
 			$content = ob_get_clean();
 		}
 
 		add_filter('the_content', array($this, 'organizer_content'));
-
 		return apply_filters('event_manager_single_organizer_content', $content, $post);
 	}
 
@@ -599,29 +411,22 @@ class WP_Event_Manager_Post_Types {
 	 * Add extra content when showing venue content
 	 */
 	public function venue_content($content) {
-
 		global $post;
 
-		if (! is_singular('event_venue') || ! in_the_loop()) 
-		{
+		if (!is_singular('event_venue') || !in_the_loop()) {
 			return $content;
 		}
 
 		remove_filter('the_content', array($this, 'venue_content'));
 
 		if ('event_venue' === $post->post_type) {
-
 			ob_start();
-
 			$venue_id = get_the_ID();
-
 			echo do_shortcode('[event_venue id="'.esc_attr($venue_id).'"]');
-
 			$content = ob_get_clean();
 		}
 
 		add_filter('the_content', array($this, 'venue_content'));
-
 		return apply_filters('event_manager_single_venue_content', $content, $post);
 	}
 
@@ -631,66 +436,42 @@ class WP_Event_Manager_Post_Types {
 	 * @access public
 	 * @return void
 	 */
-	public function event_archive($template) 
-	{
+	public function event_archive($template) {
 		if (is_tax('event_listing_category')) {
-
 			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_category.php';
-	    }
-	    elseif (is_tax('event_listing_type')) {
-
+	    } elseif (is_tax('event_listing_type')) {
 			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_type.php';
 	    }
-
 	    return $template;
 	}
 
 	/**
 	 * Event listing feeds
 	 */
-
 	public function event_feed() {
-
 		$query_args = array(
-
 			'post_type'           => 'event_listing',
-
 			'post_status'         => 'publish',
-
 			'ignore_sticky_posts' => 1,
-
 			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : 10,
-
 			'tax_query'           => array(),
-
 			'meta_query'          => array()
 		);		
-
-		if (! empty($_GET['search_location'])) {
-
+		if (!empty($_GET['search_location'])) {
 			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
-
 			$location_search    = array('relation' => 'OR');
-
 			foreach ($location_meta_keys as $meta_key) {
-
 				$location_search[] = array(
-
 					'key'     => $meta_key,
-
 					'value'   => sanitize_text_field($_GET['search_location']),
-
 					'compare' => 'like'
 				);
 			}
-			
 			$query_args['meta_query'][] = $location_search;
 		}
 		
-		if (! empty($_GET['search_datetimes'])) 
-		{
-			if($_GET['search_datetimes'] == 'datetime_today')
-			{	
+		if (!empty($_GET['search_datetimes'])) {
+			if($_GET['search_datetimes'] == 'datetime_today'){	
 				$datetime=date('Y-m-d');
 				
 				$date_search[] = array(
@@ -698,9 +479,7 @@ class WP_Event_Manager_Post_Types {
 						'value'   => $datetime,
 						'compare' => 'LIKE',
 					);
-			}
-			elseif($_GET['search_datetimes'] == 'datetime_tomorrow')
-			{ 
+			} elseif($_GET['search_datetimes'] == 'datetime_tomorrow') { 
 				$datetime=date('Y-m-d',strtotime("+1 day")); 
 				
 				$date_search[] = array(
@@ -708,9 +487,7 @@ class WP_Event_Manager_Post_Types {
 						'value'   => $datetime,
 						'compare' => 'LIKE',
 					);
-			}
-			elseif($_GET['search_datetimes'] == 'datetime_thisweek')
-			{					
+			} elseif($_GET['search_datetimes'] == 'datetime_thisweek') {					
 				$year=date('Y');
 				$weekNumber=date('W');                 
                 $dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
@@ -722,9 +499,7 @@ class WP_Event_Manager_Post_Types {
 					'compare' => 'BETWEEN',
 					'type'    => 'date'
 				);
-			} 
-			elseif($_GET['search_datetimes'] =='datetime_thisweekend')
-			{
+			} elseif($_GET['search_datetimes'] =='datetime_thisweekend') {
 				$saturday_date=date('Y-m-d', strtotime('this Saturday', time()));
 				$sunday_date=date('Y-m-d', strtotime('this Saturday +1 day', time()));
                 $dates[0]= $saturday_date;
@@ -736,9 +511,7 @@ class WP_Event_Manager_Post_Types {
 					    'compare' => 'BETWEEN',
 					    'type'    => 'date'
 					);
-			} 
-			elseif($_GET['search_datetimes'] =='datetime_thismonth')
-			{	
+			} elseif($_GET['search_datetimes'] =='datetime_thismonth') {	
                 $dates[0]= date('Y-m-d', strtotime('first day of this month', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of this month', time()));				
 
@@ -748,9 +521,7 @@ class WP_Event_Manager_Post_Types {
 					    'compare' => 'BETWEEN',
 					    'type'    => 'date'
 					);
-			}
-			elseif($_GET['search_datetimes'] =='datetime_thisyear')
-			{
+			} elseif($_GET['search_datetimes'] =='datetime_thisyear') {
 				$dates[0]= date('Y-m-d', strtotime('first day of january', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of december', time()));	
 
@@ -760,9 +531,7 @@ class WP_Event_Manager_Post_Types {
 					    'compare' => 'BETWEEN',
 					    'type'    => 'date'
 					);
-			}
-			elseif($_GET['search_datetimes'] =='datetime_nextweek')
-			{
+			} elseif($_GET['search_datetimes'] =='datetime_nextweek') {
 			    $year=date('Y');
 				$weekNumber=date('W')+1;                 
                 $dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
@@ -775,9 +544,7 @@ class WP_Event_Manager_Post_Types {
 					'type'    => 'date'
 				);		    
 			
-			}
-			elseif($_GET['search_datetimes'] =='datetime_nextweekend')
-			{
+			} elseif($_GET['search_datetimes'] =='datetime_nextweekend') {
 				$next_saturday_date=date('Y-m-d', strtotime('next Saturday', time()));
 				$next_sunday_date=date('Y-m-d', strtotime('next Saturday +1 day', time()));
                 $dates[0]= $next_saturday_date;
@@ -789,9 +556,7 @@ class WP_Event_Manager_Post_Types {
 					    'compare' => 'BETWEEN',
 					    'type'    => 'date'
 					);
-			} 
-			elseif($_GET['search_datetimes'] =='datetime_nextmonth')
-			{
+			} elseif($_GET['search_datetimes'] =='datetime_nextmonth') {
 				$dates[0]= date('Y-m-d', strtotime('first day of next month', time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of next month', time()));	
                 
@@ -801,9 +566,7 @@ class WP_Event_Manager_Post_Types {
 					    'compare' => 'BETWEEN',
 					    'type'    => 'date'
 					);
-			}
-			elseif($_GET['search_datetimes'] =='datetime_nextyear')
-			{
+			} elseif($_GET['search_datetimes'] =='datetime_nextyear') {
 			    $year=date('Y')+1;
 			    $dates[0]= date('Y-m-d', strtotime('first day of January ' . $year, time()));
                 $dates[1] = date('Y-m-d', strtotime('last day of december '. $year, time()));              
@@ -814,9 +577,7 @@ class WP_Event_Manager_Post_Types {
 					    'compare' => 'BETWEEN',
 					    'type'    => 'date'
 					);
-			}
-			else
-			{
+			} else {
 				$dates = json_decode($args['search_datetimes'][0], true);
 
 				$date_search[] = array(
@@ -826,18 +587,14 @@ class WP_Event_Manager_Post_Types {
 				    'type'    => 'date'
 				);
 			}
-
 			$query_args['meta_query'][] = $date_search;
 		}
 		
-		if (! empty($_GET['search_ticket_prices'])) {
+		if (!empty($_GET['search_ticket_prices'])) {
 		    
-			if($_GET['search_ticket_prices'] =='ticket_price_paid')
-			{  
+			if($_GET['search_ticket_prices'] =='ticket_price_paid') {  
 			  $ticket_price_value='paid';     
-			}
-			else if ($_GET['search_ticket_prices'] =='ticket_price_free')
-			{
+			} else if ($_GET['search_ticket_prices'] =='ticket_price_free')	{
 			  $ticket_price_value='free';
 			}
 			$ticket_search[] = array(
@@ -848,70 +605,47 @@ class WP_Event_Manager_Post_Types {
 			$query_args['meta_query'][] = $ticket_search;			
 		}
 		
-		if (! empty($_GET['search_event_types'])) {
-		    
+		if (!empty($_GET['search_event_types'])) {
 			$cats     = explode(',', sanitize_text_field($_GET['search_event_types'])) + array(0);
-
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-
 			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && sizeof($args['search_event_types']) > 1 ? 'AND' : 'IN';
-
 			$query_args['tax_query'][] = array(
-
 				'taxonomy'         => 'event_listing_type',
-
 				'field'            => $field,
-
 				'terms'            => $cats,
-
 				'include_children' => $operator !== 'AND' ,
-
 				'operator'         => $operator
 			);
 		}
 		
-		if (! empty($_GET['search_categories'])) {
-
+		if (!empty($_GET['search_categories'])) {
 			$cats     = explode(',', sanitize_text_field($_GET['search_categories'])) + array(0);
-
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-
 			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($args['search_categories']) > 1 ? 'AND' : 'IN';
-
 			$query_args['tax_query'][] = array(
-
 				'taxonomy'         => 'event_listing_category',
-
 				'field'            => $field,
-
 				'terms'            => $cats,
-
 				'include_children' => $operator !== 'AND' ,
-
 				'operator'         => $operator
 			);
 		}
 		if ($event_manager_keyword = sanitize_text_field($_GET['search_keywords'])) {
-
 			$query_args['s'] = $event_manager_keyword;
-			
 			add_filter('posts_search', 'get_event_listings_keyword_search');
 		}
 		
 		if (empty($query_args['meta_query'])) {
-
 			unset($query_args['meta_query']);
 		}
 
 		if (empty($query_args['tax_query'])) {
-
 			unset($query_args['tax_query']);
 		}
 
 		query_posts(apply_filters('event_feed_args', $query_args));
 
 		add_action('rss2_ns', array($this, 'event_feed_namespace'));
-
 		add_action('rss2_item', array($this, 'event_feed_item'));
 
 		do_feed_rss2(false);
@@ -926,7 +660,7 @@ class WP_Event_Manager_Post_Types {
 	public function add_feed_query_args($wp) {
 		
 		// Let's leave if not the event feed
-		if (! isset($wp->query_vars['feed']) || 'event_feed' !== $wp->query_vars['feed']) {
+		if (!isset($wp->query_vars['feed']) || 'event_feed' !== $wp->query_vars['feed']) {
 			return;
 		}
 		
@@ -936,29 +670,23 @@ class WP_Event_Manager_Post_Types {
 		}
 		
 		// If the post_type was already set, let's get out of here.
-		if (isset($wp->query_vars['post_type']) && ! empty($wp->query_vars['post_type'])) {
+		if (isset($wp->query_vars['post_type']) && !empty($wp->query_vars['post_type'])) {
 			return;
 		}
-		
 		$wp->query_vars['post_type'] = 'event_listing';
 	}
 	
-
 	/**
 	 * Add a custom namespace to the event feed
 	 */
-
 	public function event_feed_namespace() {
-
 		echo 'xmlns:event_listing="' .  site_url() . '"' . "\n";
 	}
 
 	/**
 	 * Add custom data to the event feed
 	 */
-
 	public function event_feed_item() {
-
 		$post_id  = get_the_ID();
 		get_event_manager_template('rss-event-feed.php', array('post_id' => $post_id));
 	}
@@ -966,41 +694,26 @@ class WP_Event_Manager_Post_Types {
 	/**
 	 * Expire events
 	 */
-
 	public function check_for_expired_events() {
 
 		global $wpdb;
 		
 		// Change status to expired
-
 		$event_ids = $wpdb->get_col($wpdb->prepare("
-
 			SELECT postmeta.post_id FROM {$wpdb->postmeta} as postmeta
-
 			LEFT JOIN {$wpdb->posts} as posts ON postmeta.post_id = posts.ID
-
 			WHERE postmeta.meta_key = '_event_expiry_date'
-
 			AND postmeta.meta_value > 0
-
 			AND postmeta.meta_value < %s
-
 			AND posts.post_status = 'publish'
-
 			AND posts.post_type = 'event_listing'
-
 		", date('Y-m-d H:i:s', current_time('timestamp'))));
 
 		if ($event_ids) {
-
 			foreach ($event_ids as $event_id) {
-
 				$event_data       = array();
-
 				$event_data['ID'] = $event_id;
-
 				$event_data['post_status'] = 'expired';
-
 				wp_update_post($event_data);
 			}
 		}
@@ -1008,23 +721,14 @@ class WP_Event_Manager_Post_Types {
 		// Delete old expired events	
 		$return_flag=absint(get_option('event_manager_delete_expired_events')) == 1 ? true : false;
 		if (apply_filters('event_manager_delete_expired_events', $return_flag)) {
-
 			$event_ids = $wpdb->get_col($wpdb->prepare("
-
 				SELECT posts.ID FROM {$wpdb->posts} as posts
-
 				WHERE posts.post_type = 'event_listing'
-
 				AND posts.post_modified < %s
-
 				AND posts.post_status = 'expired'
-
 			", date('Y-m-d H:i:s', strtotime('-' . apply_filters('event_manager_delete_expired_events_days', 30) . ' days', current_time('timestamp')))));
-			
 			if ($event_ids) {
-
 				foreach ($event_ids as $event_id) {
-
 					wp_trash_post($event_id);
 				}
 			}
@@ -1032,8 +736,7 @@ class WP_Event_Manager_Post_Types {
 
 		//Delete event after finished
 		$delete_events_after_finished = absint(get_option('event_manager_delete_events_after_finished')) == 1 ? true : false;
-		if($delete_events_after_finished)
-		{
+		if($delete_events_after_finished) {
 			$args = [
 				'post_type'      => 'event_listing',
 				'post_status'    => array('publish', 'expired'),
@@ -1045,57 +748,40 @@ class WP_Event_Manager_Post_Types {
 			            'value'   => current_time('Y-m-d H:i:s'),
 				        'type'    => 'DATETIME',
 				        'compare' => '<'
-			       ),
-			   ),
+			      ),
+			  ),
 			];
 
 			$event_ids = get_posts($args);
 
-			if ($event_ids) 
-			{
-				foreach ($event_ids as $event_id) 
-				{
+			if ($event_ids) {
+				foreach ($event_ids as $event_id) {
 					$event_data       = array();
-
 					$event_data['ID'] = $event_id->ID;
-
 					$event_data['post_status'] = 'expired';
-
 					wp_update_post($event_data);
-
 					wp_trash_post($event_id->ID);
 				}
 			}
 		}
-
 	}
 	
 	/**
 	 * Delete old previewed events after 30 days to keep the DB clean
 	 */
-
 	public function delete_old_previews() {
-
 		global $wpdb;
 
 		// Delete old expired events
-
 		$event_ids = $wpdb->get_col($wpdb->prepare("
-
 			SELECT posts.ID FROM {$wpdb->posts} as posts
-
 			WHERE posts.post_type = 'event_listing'
-
 			AND posts.post_modified < %s
-
 			AND posts.post_status = 'preview'
-
 		", date('Y-m-d', strtotime('-30 days', current_time('timestamp')))));
 
 		if ($event_ids) {
-
 			foreach ($event_ids as $event_id) {
-
 				wp_delete_post($event_id, true);
 			}
 		}
@@ -1104,25 +790,21 @@ class WP_Event_Manager_Post_Types {
 	/**
 	 * Set expirey date when event status changes
 	 */
-
 	public function set_event_expiry_date($post) {
 		if ($post->post_type !== 'event_listing') {
 			return;
 		}
 		// See if it is already set
 		if (metadata_exists('post', $post->ID, '_event_expiry_date')) {
-			
 			$expires = get_post_meta($post->ID, '_event_expiry_date', true);
-			
 			if ($expires && strtotime($expires) < current_time('timestamp')) {
-				
 				update_post_meta($post->ID, '_event_expiry_date', '');
 			}
 		}
 		
 		// No metadata set so we can generate an expiry date
 		// See if the user has set the expiry manually:
-		if (! empty($_POST[ '_event_expiry_date' ])) {
+		if (!empty($_POST[ '_event_expiry_date' ])) {
 			update_post_meta($post->ID, '_event_expiry_date', date('Y-m-d', strtotime(sanitize_text_field($_POST[ '_event_expiry_date' ]))));
 			// No manual setting? Lets generate a date
 		} elseif (false == isset($expires)){
@@ -1130,60 +812,46 @@ class WP_Event_Manager_Post_Types {
 			update_post_meta($post->ID, '_event_expiry_date', sanitize_text_field($expires));
 			// In case we are saving a post, ensure post data is updated so the field is not overridden
 			if (isset($_POST[ '_event_expiry_date' ])) {
-				
 				$_POST[ '_event_expiry_date' ] = $expires;
 			}
 		}
 	}
 
-	    /**
-	    * Set post view on the single listing page
-	    * @param  array $post	 
-	    */
-
-	    function set_single_listing_view_count($post) 
-	    {     
-	    	global $post; 
-	       //get the user role. 
-		    if (is_user_logged_in()) 
-		     {
-			     $role=get_event_manager_current_user_role();  
-
-		         $current_user = wp_get_current_user();
-
-			  if ($role !='Administrator' && ($post->post_author!=$current_user->ID))
-	                  { 
-	                   	$this->set_post_views($post->ID);
-	                  }   		 
-		      }
-		      else
-		      {			  
-			  $this->set_post_views($post->ID);
-		      }        
-	    }
+	/**
+	* Set post view on the single listing page
+	* @param  array $post	 
+	*/
+	function set_single_listing_view_count($post) {     
+		global $post; 
+		//get the user role. 
+		if (is_user_logged_in()) {
+			$role=get_event_manager_current_user_role();  
+			$current_user = wp_get_current_user();
+			if ($role !='Administrator' && ($post->post_author!=$current_user->ID)) { 
+				$this->set_post_views($post->ID);
+			}   		 
+		} else {			  
+			$this->set_post_views($post->ID);
+		}        
+	}
 
     /**
 	 * This function is use to set the counts the event views and attendees views.
      * This function also used at attendees dashboard file.
 	 * @param  int $post_id	 
 	*/
+	public function set_post_views($post_id) {
+		$count_key = '_view_count';
+		$count = get_post_meta($post_id, $count_key, true);
 
-	public function set_post_views($post_id) 
-    {
-		    $count_key = '_view_count';
-            $count = get_post_meta($post_id, $count_key, true);
-
-            if($count=='' || $count==null)
-            {
-                $count = 0;
-                delete_post_meta($post_id, $count_key);
-                add_post_meta($post_id, $count_key, '0');
-            }
-            else
-            {
-                $count++;
-                update_post_meta($post_id, $count_key, $count);
-            }
+		if($count=='' || $count==null) {
+			$count = 0;
+			delete_post_meta($post_id, $count_key);
+			add_post_meta($post_id, $count_key, '0');
+		}  else {
+			$count++;
+			update_post_meta($post_id, $count_key, $count);
+		}
 	}
 	
 	/**
@@ -1205,11 +873,8 @@ class WP_Event_Manager_Post_Types {
 	 * @param  array $data
 	 * @return array
 	 */
-
 	public function fix_post_name($data, $postarr) {
-
-		 if ('event_listing' === $data['post_type'] && 'pending' === $data['post_status'] && ! current_user_can('publish_posts')) {
-
+		 if ('event_listing' === $data['post_type'] && 'pending' === $data['post_status'] && !current_user_can('publish_posts')) {
 				$data['post_name'] = $postarr['post_name'];
 		 }
 		 return $data;
@@ -1220,11 +885,8 @@ class WP_Event_Manager_Post_Types {
 	 * @param  int $post_id
 	 * @param  array $post
 	 */
-
 	public function maybe_add_geolocation_data($object_id, $meta_key, $_meta_value) {
-
 		if ('_event_location' !== $meta_key || 'event_listing' !== get_post_type($object_id)) {
-
 			return;
 		}
 		do_action('event_manager_event_location_edited', $object_id, $_meta_value);
@@ -1250,17 +912,12 @@ class WP_Event_Manager_Post_Types {
 			}
 		}
 	}
-
-
 	
 	/**
 	 * Generate location data if a post is updated
 	 */
-
 	public function maybe_update_geolocation_data($meta_id, $object_id, $meta_key, $_meta_value) {
-
 		if ('_event_location' !== $meta_key || 'event_listing' !== get_post_type($object_id)) {
-		    
 			return;
 		}
 		do_action('event_manager_event_location_edited', $object_id, $_meta_value);
@@ -1269,34 +926,24 @@ class WP_Event_Manager_Post_Types {
 	/**
 	 * Maybe set menu_order if the featured status of a event is changed
 	 */
-
 	public function maybe_update_menu_order($meta_id, $object_id, $meta_key, $_meta_value) {
-
 		if ('_event_featured' !== $meta_key || 'event_listing' !== get_post_type($object_id)) {
-
 			return;
 		}
 
 		global $wpdb;
-
 		if ('1' == $_meta_value) {
-
 			$wpdb->update($wpdb->posts, array('menu_order' => -1), array('ID' => $object_id));
-
 		} else {
-
 			$wpdb->update($wpdb->posts, array('menu_order' => 0), array('ID' => $object_id, 'menu_order' => -1));
 		}
-		
 		clean_post_cache($object_id);
 	}
 
 	/**
-	 * 
+	 * this function will generate geolocation data
 	 */
-
 	public function maybe_generate_geolocation_data($meta_id, $object_id, $meta_key, $_meta_value) {
-
 		$this->maybe_update_geolocation_data($meta_id, $object_id, $meta_key, $_meta_value);
 	}
 
@@ -1305,13 +952,9 @@ class WP_Event_Manager_Post_Types {
 	 * @param  int $post_id
 	 * @param  WP_Post $post
 	*/
-
 	public function maybe_add_default_meta_data($post_id, $post = '') {
-
 		if (empty($post) || 'event_listing' === $post->post_type) {
-
 			add_post_meta($post_id, '_event_cancelled', 0, true);
-
 			add_post_meta($post_id, '_event_featured', 0, true);
 		}
 	}
@@ -1320,21 +963,15 @@ class WP_Event_Manager_Post_Types {
 	 * After importing via WP ALL Import, add default meta data
 	 * @param  int $post_id
 	 */
-
 	public function pmxi_saved_post($post_id) {
-
 		if ('event_listing' === get_post_type($post_id)) {
-
 			$this->maybe_add_default_meta_data($post_id);
-
-			if (! WP_Event_Manager_Geocode::has_location_data($post_id) && ($location = get_post_meta($post_id, '_event_location', true))) {
-
+			if (!WP_Event_Manager_Geocode::has_location_data($post_id) && ($location = get_post_meta($post_id, '_event_location', true))) {
 				WP_Event_Manager_Geocode::generate_location_data($post_id, $location);
 			}
 		}
 	}
 
-	
 	/**
 	 * When deleting a event, delete its attachments
 	 * @param  int $post_id
@@ -1344,7 +981,7 @@ class WP_Event_Manager_Post_Types {
 			$attachments = get_children(array(
 		        'post_parent' => $post_id,
 		        'post_type'   => 'attachment'
-		   ));
+		  ));
 
 			if ($attachments) {
 				foreach ($attachments as $attachment) {
@@ -1359,11 +996,11 @@ class WP_Event_Manager_Post_Types {
 	 * Add noindex for expired and filled event listings.
 	 */
 	public function noindex_expired_cancelled_event_listings() {
-		if (! is_single()) {
+		if (!is_single()) {
 			return;
 		}
 		$post = get_post();
-		if (! $post || 'event_listing' !== $post->post_type) {
+		if (!$post || 'event_listing' !== $post->post_type) {
 			return;
 		}
 		if (event_manager_allow_indexing_event_listing()) {
@@ -1377,14 +1014,14 @@ class WP_Event_Manager_Post_Types {
 	 * @since 1.8
 	 */
 	public function output_structured_data() {
-		if (! is_single()) {
+		if (!is_single()) {
 			return;
 		}
-		if (! event_manager_output_event_listing_structured_data()) {
+		if (!event_manager_output_event_listing_structured_data()) {
 			return;
 		}
 		$structured_data = event_manager_get_event_listing_structured_data();
-		if (! empty($structured_data)) {
+		if (!empty($structured_data)) {
 			printf('<script type="application/ld+json">%s</script>',wp_json_encode($structured_data));
 		}
 	}
@@ -1445,9 +1082,7 @@ class WP_Event_Manager_Post_Types {
 			/* translators: %s: product count */
 			'untrashed' => _n('%s event restored from the Trash.', '%s events restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager'),
 		);
-
-		if(get_option('enable_event_organizer'))
-		{
+		if(get_option('enable_event_organizer')) {
 			$bulk_messages['event_organizer'] = array(
 				/* translators: %s: product count */
 				'updated'   => _n('%s organizer updated.', '%s organizers updated.', $bulk_counts['updated'], 'wp-event-manager'),
@@ -1462,8 +1097,7 @@ class WP_Event_Manager_Post_Types {
 			);
 		}
 
-		if(get_option('enable_event_venue'))
-		{
+		if(get_option('enable_event_venue')){
 			$bulk_messages['event_venue'] = array(
 				/* translators: %s: product count */
 				'updated'   => _n('%s venue updated.', '%s venues updated.', $bulk_counts['updated'], 'wp-event-manager'),
@@ -1477,8 +1111,6 @@ class WP_Event_Manager_Post_Types {
 				'untrashed' => _n('%s venue restored from the Trash.', '%s venues restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager'),
 			);
 		}
-
 		return $bulk_messages;
 	}
-
 }

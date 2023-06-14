@@ -6,7 +6,7 @@
  * @package Core
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	// Exit if accessed directly.
 	exit;
 }
@@ -56,7 +56,7 @@ class WP_Event_Manager_Data_Cleaner {
 	 *
 	 * @var $options
 	 */
-	private static $options = array(  );
+	private static $options = array();
 
 	/**
 	 * Site options to be deleted.
@@ -149,8 +149,7 @@ class WP_Event_Manager_Data_Cleaner {
 	 * @access private
 	 */
 	private static function cleanup_custom_post_types() {
-		error_log("Delete post");
-		foreach ( self::$custom_post_types as $post_type ) {
+		foreach (self::$custom_post_types as $post_type) {
 			$items = get_posts(
 				array(
 					'post_type'   => $post_type,
@@ -160,11 +159,11 @@ class WP_Event_Manager_Data_Cleaner {
 				)
 			);
 
-			foreach ( $items as $item ) {
-				error_log(print_r( $item, true));
-				error_log( $item);
+			foreach ($items as $item) {
+				error_log(print_r($item, true));
+				error_log($item);
 				self::delete_event_with_attachment($item);
-				wp_delete_post( $item );
+				wp_delete_post($item);
 			}
 		}
 	}
@@ -176,23 +175,16 @@ class WP_Event_Manager_Data_Cleaner {
 	 * @return void
 	 */
 	private static function delete_event_with_attachment($post_id) {
-		error_log("delete_event_with_attachment : ".$post_id);
-		if( !in_array(get_post_type($post_id), ['event_listing', 'event_organizer']) )
+		if(!in_array(get_post_type($post_id), ['event_listing', 'event_organizer']))
 			return;
-error_log("true");
-		$event_banner = get_post_meta($post_id, '_event_banner', true);
-
-		if(!empty($event_banner))
-		{
-			error_log("true");
+		
+ 		$event_banner = get_post_meta($post_id, '_event_banner', true);
+		if(!empty($event_banner)){
 			$wp_upload_dir = wp_get_upload_dir();
-
 			$baseurl = $wp_upload_dir['baseurl'] . '/';
 
-			if(is_array($event_banner))
-			{
-				foreach ($event_banner as $banner) 
-				{
+			if(is_array($event_banner)){
+				foreach ($event_banner as $banner) {
 					$wp_attached_file = str_replace($baseurl, '', $banner);
 
 					$args = array(
@@ -200,49 +192,34 @@ error_log("true");
 				        'meta_value'       	=> $wp_attached_file,
 				        'post_type'        	=> 'attachment',
 				        'posts_per_page'	=> 1,
-				    );
-
+				   );
 					$attachments = get_posts($args);
-
-					if(!empty($attachments))
-					{
-						foreach ($attachments as $attachment) 
-						{
+					if(!empty($attachments)){
+						foreach ($attachments as $attachment) {
 							wp_delete_attachment($attachment->ID, true);
 						}
 					}
 				}
-			}
-			else
-			{
+			} else {
 				$wp_attached_file = str_replace($baseurl, '', $event_banner);
-
 				$args = array(
 			        'meta_key'         	=> '_wp_attached_file',
 			        'meta_value'       	=> $wp_attached_file,
 			        'post_type'        	=> 'attachment',
 			        'posts_per_page'	=> 1,
-			    );
-
+			   );
 				$attachments = get_posts($args);
-
-				if(!empty($attachments))
-				{
-					foreach ($attachments as $attachment) 
-					{
+				if(!empty($attachments)){
+					foreach ($attachments as $attachment) {
 						wp_delete_attachment($attachment->ID, true);
 					}
 				}
 			}
 		}
-
 		$thumbnail_id = get_post_thumbnail_id($post_id);
-		error_log($thumbnail_id);
-		if(!empty($thumbnail_id))
-		{
+		if(!empty($thumbnail_id)) {
 			wp_delete_attachment($thumbnail_id, true);
 		}
-
 	}
 
 	/**
@@ -252,25 +229,22 @@ error_log("true");
 	 */
 	private static function cleanup_taxonomies() {
 		global $wpdb;
-
-		foreach ( self::$taxonomies as $taxonomy ) {
+		foreach (self::$taxonomies as $taxonomy) {
 			$terms = $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT term_id, term_taxonomy_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s",
 					$taxonomy
 				)
 			);
-
 			// Delete all data for each term.
-			foreach ( $terms as $term ) {
-				$wpdb->delete( $wpdb->term_relationships, array( 'term_taxonomy_id' => $term->term_taxonomy_id ) );
-				$wpdb->delete( $wpdb->term_taxonomy, array( 'term_taxonomy_id' => $term->term_taxonomy_id ) );
-				$wpdb->delete( $wpdb->terms, array( 'term_id' => $term->term_id ) );
-				$wpdb->delete( $wpdb->termmeta, array( 'term_id' => $term->term_id ) );
+			foreach ($terms as $term) {
+				$wpdb->delete($wpdb->term_relationships, array('term_taxonomy_id' => $term->term_taxonomy_id));
+				$wpdb->delete($wpdb->term_taxonomy, array('term_taxonomy_id' => $term->term_taxonomy_id));
+				$wpdb->delete($wpdb->terms, array('term_id' => $term->term_id));
+				$wpdb->delete($wpdb->termmeta, array('term_id' => $term->term_id));
 			}
-
-			if ( function_exists( 'clean_taxonomy_cache' ) ) {
-				clean_taxonomy_cache( $taxonomy );
+			if (function_exists('clean_taxonomy_cache')) {
+				clean_taxonomy_cache($taxonomy);
 			}
 		}
 	}
@@ -282,59 +256,58 @@ error_log("true");
 	 */
 	private static function cleanup_pages() {
 		// Trash the Submit Event page.
-		$submit_event_form_page_id = get_option( 'event_manager_submit_event_form_page_id' );
-		if ( $submit_event_form_page_id ) {
-			wp_delete_post( $submit_event_form_page_id, true );
+		$submit_event_form_page_id = get_option('event_manager_submit_event_form_page_id');
+		if ($submit_event_form_page_id) {
+			wp_delete_post($submit_event_form_page_id, true);
 		}
 
 		// Trash the Event Dashboard page.
-		$event_dashboard_page_id = get_option( 'event_manager_event_dashboard_page_id' );
-		if ( $event_dashboard_page_id ) {
-			wp_delete_post( $event_dashboard_page_id, true );
+		$event_dashboard_page_id = get_option('event_manager_event_dashboard_page_id');
+		if ($event_dashboard_page_id) {
+			wp_delete_post($event_dashboard_page_id, true);
 		}
 
 		// Trash the Events page.
-		$events_page_id = get_option( 'event_manager_events_page_id' );
-		if ( $events_page_id ) {
-			wp_delete_post( $events_page_id, true );
+		$events_page_id = get_option('event_manager_events_page_id');
+		if ($events_page_id) {
+			wp_delete_post($events_page_id, true);
 		}
 
 		// Trash the submit organizer page.
-		$submit_organizer_form_page_id = get_option( 'event_manager_submit_organizer_form_page_id' );
-		if ( $submit_organizer_form_page_id ) {
-			wp_delete_post( $submit_organizer_form_page_id, true );
+		$submit_organizer_form_page_id = get_option('event_manager_submit_organizer_form_page_id');
+		if ($submit_organizer_form_page_id) {
+			wp_delete_post($submit_organizer_form_page_id, true);
 		}
 
 		// Trash the organizer dashboard page.
-		$organizer_dashboard_page_id = get_option( 'event_manager_organizer_dashboard_page_id' );
-		if ( $organizer_dashboard_page_id ) {
-			wp_delete_post( $organizer_dashboard_page_id, true );
+		$organizer_dashboard_page_id = get_option('event_manager_organizer_dashboard_page_id');
+		if ($organizer_dashboard_page_id) {
+			wp_delete_post($organizer_dashboard_page_id, true);
 		}
 
 		// Trash the event organizer page.
-		$event_organizers_page_id = get_option( 'event_manager_event_organizers_page_id' );
-		if ( $event_organizers_page_id ) {
-			wp_delete_post( $event_organizers_page_id, true );
+		$event_organizers_page_id = get_option('event_manager_event_organizers_page_id');
+		if ($event_organizers_page_id) {
+			wp_delete_post($event_organizers_page_id, true);
 		}
 
 		// Trash the submit venue page.
-		$submit_venue_form_page_id = get_option( 'event_manager_submit_venue_form_page_id' );
-		if ( $submit_venue_form_page_id ) {
-			wp_delete_post( $submit_venue_form_page_id, true );
+		$submit_venue_form_page_id = get_option('event_manager_submit_venue_form_page_id');
+		if ($submit_venue_form_page_id) {
+			wp_delete_post($submit_venue_form_page_id, true);
 		}
 
 		// Trash the venue dashboard page.
-		$venue_dashboard_page_id = get_option( 'event_manager_venue_dashboard_page_id' );
-		if ( $venue_dashboard_page_id ) {
-			wp_delete_post( $venue_dashboard_page_id, true );
+		$venue_dashboard_page_id = get_option('event_manager_venue_dashboard_page_id');
+		if ($venue_dashboard_page_id) {
+			wp_delete_post($venue_dashboard_page_id, true);
 		}
 
 		// Trash the event venue page.
-		$event_venues_page_id = get_option( 'event_manager_event_venues_page_id' );
-		if ( $event_venues_page_id ) {
-			wp_delete_post( $event_venues_page_id, true );
+		$event_venues_page_id = get_option('event_manager_event_venues_page_id');
+		if ($event_venues_page_id) {
+			wp_delete_post($event_venues_page_id, true);
 		}
-		
 	}
 
 	/**
@@ -343,8 +316,8 @@ error_log("true");
 	 * @access private
 	 */
 	private static function cleanup_options() {
-		foreach ( self::$options as $option ) {
-			delete_option( $option );
+		foreach (self::$options as $option) {
+			delete_option($option);
 		}
 	}
 
@@ -354,8 +327,8 @@ error_log("true");
 	 * @access private
 	 */
 	private static function cleanup_site_options() {
-		foreach ( self::$site_options as $option ) {
-			delete_site_option( $option );
+		foreach (self::$site_options as $option) {
+			delete_site_option($option);
 		}
 	}
 
@@ -367,8 +340,8 @@ error_log("true");
 	private static function cleanup_transients() {
 		global $wpdb;
 
-		foreach ( array( '_transient_', '_transient_timeout_' ) as $prefix ) {
-			foreach ( self::$transients as $transient ) {
+		foreach (array('_transient_', '_transient_timeout_') as $prefix) {
+			foreach (self::$transients as $transient) {
 				$wpdb->query(
 					$wpdb->prepare(
 						"DELETE FROM $wpdb->options WHERE option_name RLIKE %s",
@@ -388,21 +361,21 @@ error_log("true");
 		global $wp_roles;
 
 		// Remove caps from roles.
-		$role_names = array_keys( $wp_roles->roles );
-		foreach ( $role_names as $role_name ) {
-			$role = get_role( $role_name );
-			self::remove_all_event_manager_caps( $role );
+		$role_names = array_keys($wp_roles->roles);
+		foreach ($role_names as $role_name) {
+			$role = get_role($role_name);
+			self::remove_all_event_manager_caps($role);
 		}
 
 		// Remove caps and role from users.
-		$users = get_users( array() );
-		foreach ( $users as $user ) {
-			self::remove_all_event_manager_caps( $user );
-			$user->remove_role( self::$role );
+		$users = get_users(array());
+		foreach ($users as $user) {
+			self::remove_all_event_manager_caps($user);
+			$user->remove_role(self::$role);
 		}
 
 		// Remove role.
-		remove_role( self::$role );
+		remove_role(self::$role);
 	}
 
 	/**
@@ -410,9 +383,9 @@ error_log("true");
 	 *
 	 * @param (WP_User|WP_Role) $object the user or role object.
 	 */
-	private static function remove_all_event_manager_caps( $object ) {
-		foreach ( self::$caps as $cap ) {
-			$object->remove_cap( $cap );
+	private static function remove_all_event_manager_caps($object) {
+		foreach (self::$caps as $cap) {
+			$object->remove_cap($cap);
 		}
 	}
 
@@ -424,8 +397,8 @@ error_log("true");
 	private static function cleanup_user_meta() {
 		global $wpdb;
 
-		foreach ( self::$user_meta_keys as $meta_key ) {
-			$wpdb->delete( $wpdb->usermeta, array( 'meta_key' => $meta_key ) );
+		foreach (self::$user_meta_keys as $meta_key) {
+			$wpdb->delete($wpdb->usermeta, array('meta_key' => $meta_key));
 		}
 	}
 
@@ -436,8 +409,8 @@ error_log("true");
 	 * @access private
 	 */
 	private static function cleanup_cron_jobs() {
-		foreach ( self::$cron_jobs as $job ) {
-			wp_clear_scheduled_hook( $job );
+		foreach (self::$cron_jobs as $job) {
+			wp_clear_scheduled_hook($job);
 		}
 	}
 }
