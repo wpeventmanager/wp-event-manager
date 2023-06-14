@@ -193,6 +193,15 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 					'ASC' => __('Ascending (ASC)', 'wp-event-manager'),
 					'DESC' => __('Descending  (DESC)', 'wp-event-manager')
 				)
+			),
+			'widget_style' => array(
+				'type'  => 'select',
+				'std'   => 10,
+				'label' => __('Widget Style', 'wp-event-manager'),
+				'options' => array(
+					'box_widget' => __('Box View', 'wp-event-manager'),
+					'list_widget' => __('List View', 'wp-event-manager')
+				)
 			)
 		);
 		$this->register();
@@ -229,6 +238,11 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 			'order'             => isset($instance['order']) ? $instance['order'] : 'ASC',
 		));
 
+		if (isset($instance['widget_style']) && $instance['widget_style'] == 'list_widget')
+			$widget_style = 'wpem-single-event-widget-list-view';
+		else
+			$widget_style = '';
+
 		if ($events->have_posts()) : 
 			echo wp_kses_post($before_widget);
 			
@@ -237,7 +251,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 
 			<ul class="event_listings">
 				<?php while ($events->have_posts()) : $events->the_post();
-					get_event_manager_template_part('content-widget', 'event_listing');
+					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
 				 endwhile; ?>
 			</ul>
 			<?php echo wp_kses_post($after_widget); ?>
@@ -290,6 +304,15 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget{
 					'ASC' => __('Ascending (ASC)', 'wp-event-manager'),
 					'DESC' => __('Descending  (DESC)', 'wp-event-manager')
 				)
+			),
+			'widget_style' => array(
+				'type'  => 'select',
+				'std'   => 10,
+				'label' => __('Widget Style', 'wp-event-manager'),
+				'options' => array(
+					'box_widget' => __('Box View', 'wp-event-manager'),
+					'list_widget' => __('List View', 'wp-event-manager')
+				)
 			)
 		);
 		$this->register();
@@ -328,14 +351,19 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget{
 			)
 		);
 
+		if (isset($instance['widget_style']) && $instance['widget_style'] == 'list_widget')
+			$widget_style = 'wpem-single-event-widget-list-view';
+		else
+			$widget_style = '';  
+
 		if ($featured_events->have_posts()) :
 			echo wp_kses_post($before_widget);
 			if ($title) 
-				echo wp_kses_post($before_title . $title . $after_title);   ?>
+				echo wp_kses_post($before_title . $title . $after_title); ?>
 
 			<ul class="event_listings">
 				<?php while ($featured_events->have_posts()) : $featured_events->the_post();
-					get_event_manager_template_part('content-widget', 'event_listing');
+					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
 				endwhile; ?>
 			</ul>
 
@@ -407,6 +435,15 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 					'event_start_date' => __('Event Start Date', 'wp-event-manager'),
 					'rand' => __('Random', 'wp-event-manager')
 				)
+			),
+			'widget_style' => array(
+				'type'  => 'select',
+				'std'   => 10,
+				'label' => __('Widget Style', 'wp-event-manager'),
+				'options' => array(
+					'box_widget' => __('Box View', 'wp-event-manager'),
+					'list_widget' => __('List View', 'wp-event-manager')
+				)
 			)
 		);
 		$this->register();
@@ -437,7 +474,6 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 			$number = 4;
 
 		$today_date = current_time('Y-m-d H:i:s');
-
 		$args = array(
 			'post_type'   => 'event_listing',
 			'post_status' => 'publish',
@@ -445,7 +481,6 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 			'orderby'           => isset($instance['orderby']) ? $instance['orderby'] : 'event_start_date',
 			'order'             => isset($instance['order']) ? $instance['order'] : 'ASC',
 		);
-
 		$args['meta_query'] = array(
 			array(
 				'key'     => '_event_start_date',
@@ -459,15 +494,18 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 				'compare' => '!='
 			),
 		);
-
 		if ('event_start_date' === $args['orderby']) {
 			$args['orderby'] = 'meta_value';
 			$args['meta_key'] = '_event_start_date';
 			$args['meta_type'] = 'DATETIME';
 		}
-
 		$events = new WP_Query($args);
 		echo wp_kses_post($before_widget);
+
+		if (isset($instance['widget_style']) && $instance['widget_style'] == 'list_widget')
+			$widget_style = 'wpem-single-event-widget-list-view';
+		else
+			$widget_style = '';
 
 		if ($title) 
 			echo wp_kses_post($before_title . $title . $after_title); 			
@@ -475,7 +513,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 		if ($events->have_posts()) : ?>
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 				<?php while ($events->have_posts()) : $events->the_post();
-					get_event_manager_template_part('content-widget', 'event_listing');
+					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
 				endwhile; ?>
 			</div>
 		<?php else :
@@ -545,6 +583,15 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 					'event_start_date' => __('Event Start Date', 'wp-event-manager'),
 					'rand' => __('Random', 'wp-event-manager')
 				)
+			),
+			'widget_style' => array(
+				'type'  => 'select',
+				'std'   => 10,
+				'label' => __('Widget Style', 'wp-event-manager'),
+				'options' => array(
+					'box_widget' => __('Box View', 'wp-event-manager'),
+					'list_widget' => __('List View', 'wp-event-manager')
+				)
 			)
 		);
 		$this->register();
@@ -575,7 +622,6 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 			$number = 4;
 
 		$today_date = current_time('Y-m-d H:i:s');
-
 		$args = array(
 			'post_type'   => 'event_listing',
 			'post_status' => 'publish',
@@ -584,7 +630,6 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 			'order'             => isset($instance['order']) ? $instance['order'] : 'ASC',
 
 		);
-
 		$args['meta_query'] = array(
 			array(
 				'key'     => '_event_start_date',
@@ -598,13 +643,11 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 				'compare' => '!='
 			),
 		);
-
 		if ('event_start_date' === $args['orderby']) {
 			$args['orderby'] = 'meta_value';
 			$args['meta_key'] = '_event_start_date';
 			$args['meta_type'] = 'DATETIME';
 		}
-
 		$events = new WP_Query($args);
 		
 		echo wp_kses_post($before_widget);
@@ -612,10 +655,15 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 		if ($title) 
 			echo wp_kses_post($before_title . $title . $after_title);
 
+		if (isset($instance['widget_style']) && $instance['widget_style'] == 'list_widget')
+			$widget_style = 'wpem-single-event-widget-list-view';
+		else
+			$widget_style = '';
+
 		if ($events->have_posts()) : ?>
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 				<?php while ($events->have_posts()) : $events->the_post();
-					get_event_manager_template_part('content-widget', 'event_listing');
+					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
 				endwhile; ?>
 			</div>
 		<?php else :
