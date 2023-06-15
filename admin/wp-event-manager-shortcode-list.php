@@ -120,7 +120,7 @@ if (!class_exists('WP_Event_Manager_Shortcode_List')) :
 									<td><?php _e('The event Organizer page displays event organizers list in alphabetical order with an alphabetic filter option. To set up the Event Organizer page, paste the shortcode [event_organizers] in the content area of the Event Organizer page.', 'wp-event-manager');?></td>
 									<td><a class="button add-field" href="<?php echo $detail_link.'organizer-shortcode/#articleTOC_2';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
 								</tr>
-								<?php do_action('wp_event_manager_shortcode_list'); ?>
+								<?php do_action('wp_event_manager_shortcode_list', $detail_link); ?>
 							</tbody>
 						</table>
 					</div>
