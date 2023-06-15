@@ -190,9 +190,26 @@ var Admin = function () {
             if (jQuery('input[name=_event_ticket_options]:checked').length > 0) {
                 jQuery('input[name=_event_ticket_options]:checked').trigger('change');
             }
+
+             //upgrade database
+             jQuery("#shortcode_list_filter_action").on('click', Admin.actions.getShortcodeList);
         },
         actions:
                 {
+                    /// <summary>
+                    /// used to redirect page on selected plugin shortcode list.
+                    /// </summary>
+                    /// <returns type="initialization settings" />
+                    /// <since>3.1.35</since>
+                    getShortcodeList: function (event) {
+                        event.preventDefault();
+
+                        var plugin_slug = jQuery('#wpem_shortcode_filter').val();
+                        var old_url = window.location.href;
+                        window.location = old_url + "&plugin=" + plugin_slug;
+                        
+                    },
+
                     /// <summary>
                     /// Show selected time format : 12 hour format or 24 hour format.
                     /// </summary>

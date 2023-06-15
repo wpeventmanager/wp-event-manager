@@ -24,6 +24,7 @@ class WP_Event_Manager_Admin {
 		include_once 'wp-event-manager-writepanels.php';
 		include_once 'wp-event-manager-setup.php';
 		include_once 'wp-event-manager-field-editor.php';
+		include_once 'wp-event-manager-shortcode-list.php';
 
 		$this->settings_page = new WP_Event_Manager_Settings();
 
@@ -300,7 +301,7 @@ A prior Backup does no harm before updating the plugin!',
 	 * Output shortcode page
 	 */
 	public function shortcodes_page() {
-		$shortcodes = include 'wp-event-manager-shortcode-list.php';
+		$shortcodes = new WP_Event_Manager_Shortcode_List();
 		$shortcodes->shortcode_list();
 	}
 
