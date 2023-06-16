@@ -1,5 +1,5 @@
 <?php
-if (!defined('ABSPATH')) {
+if(!defined('ABSPATH')) {
 	exit;
 }
 
@@ -124,9 +124,9 @@ class WP_Event_Manager_Date_Time {
         foreach ($chars AS $n => $char) {
             $lastChar = isset($chars[$n-1]) ? $chars[$n-1] : '';
             $skipCurrent = '\\' == $lastChar;
-            if (!$skipCurrent && isset($keys[$char])) {
+            if(!$skipCurrent && isset($keys[$char])) {
                 $regex .= '(?P<'.$keys[$char][0].'>'.$keys[$char][1].')';
-            } else if ('\\' == $char) {
+            } else if('\\' == $char) {
                 $regex .= $char;
             }  else {
                 $regex .= preg_quote($char);
@@ -136,7 +136,7 @@ class WP_Event_Manager_Date_Time {
         // now try to match it
         if(preg_match('#^'.$regex.'$#', $date, $dt)){
             foreach ($dt AS $k => $v){
-                if (is_int($k)){
+                if(is_int($k)){
                     unset($dt[$k]);
                 }
             }
@@ -282,14 +282,14 @@ class WP_Event_Manager_Date_Time {
 		$check_zone_info = true;
 
 		// Remove old Etc mappings. Fallback to gmt_offset.
-		if (false !== strpos($tzstring,'Etc/GMT'))
+		if(false !== strpos($tzstring,'Etc/GMT'))
 			$tzstring = '';
 
-		if (empty($tzstring)) { // Create a UTC+- zone if no timezone string exists
+		if(empty($tzstring)) { // Create a UTC+- zone if no timezone string exists
 			$check_zone_info = false;
-			if (0 == $current_offset)
+			if(0 == $current_offset)
 				$tzstring = 'UTC+0';
-			elseif ($current_offset < 0)
+			elseif($current_offset < 0)
 				$tzstring = 'UTC' . $current_offset;
 			else
 				$tzstring = 'UTC+' . $current_offset;
@@ -357,12 +357,12 @@ class WP_Event_Manager_Date_Time {
 	 */
 	public static function generate_timezone_string_from_utc_offset($offset) {
 
-		if (!self::is_utc_offset($offset)) {
+		if(!self::is_utc_offset($offset)) {
 			return $offset;
 		}
 
 		// ensure we have the minutes on the offset
-		if (!strpos($offset, ':')) {
+		if(!strpos($offset, ':')) {
 			$offset .= ':00';
 		}
 
@@ -373,12 +373,12 @@ class WP_Event_Manager_Date_Time {
 		// attempt to guess the timezone string from the UTC offset
 		$timezone = timezone_name_from_abbr('', $seconds, 0);
 
-		if (false === $timezone) {
+		if(false === $timezone) {
 			$is_dst = date('I');
 
 			foreach (timezone_abbreviations_list() as $abbr) {
 				foreach ($abbr as $city) {
-					if ($city['dst'] == $is_dst && $city['offset'] == $seconds && !empty($city['timezone_id'])) {
+					if($city['dst'] == $is_dst && $city['offset'] == $seconds && !empty($city['timezone_id'])) {
 						return $city['timezone_id'];
 					}
 				}

@@ -6,7 +6,7 @@
  * @package Core
  */
 
-if (!defined('ABSPATH')) {
+if(!defined('ABSPATH')) {
 	// Exit if accessed directly.
 	exit;
 }
@@ -243,7 +243,7 @@ class WP_Event_Manager_Data_Cleaner {
 				$wpdb->delete($wpdb->terms, array('term_id' => $term->term_id));
 				$wpdb->delete($wpdb->termmeta, array('term_id' => $term->term_id));
 			}
-			if (function_exists('clean_taxonomy_cache')) {
+			if(function_exists('clean_taxonomy_cache')) {
 				clean_taxonomy_cache($taxonomy);
 			}
 		}
@@ -257,55 +257,55 @@ class WP_Event_Manager_Data_Cleaner {
 	private static function cleanup_pages() {
 		// Trash the Submit Event page.
 		$submit_event_form_page_id = get_option('event_manager_submit_event_form_page_id');
-		if ($submit_event_form_page_id) {
+		if($submit_event_form_page_id) {
 			wp_delete_post($submit_event_form_page_id, true);
 		}
 
 		// Trash the Event Dashboard page.
 		$event_dashboard_page_id = get_option('event_manager_event_dashboard_page_id');
-		if ($event_dashboard_page_id) {
+		if($event_dashboard_page_id) {
 			wp_delete_post($event_dashboard_page_id, true);
 		}
 
 		// Trash the Events page.
 		$events_page_id = get_option('event_manager_events_page_id');
-		if ($events_page_id) {
+		if($events_page_id) {
 			wp_delete_post($events_page_id, true);
 		}
 
 		// Trash the submit organizer page.
 		$submit_organizer_form_page_id = get_option('event_manager_submit_organizer_form_page_id');
-		if ($submit_organizer_form_page_id) {
+		if($submit_organizer_form_page_id) {
 			wp_delete_post($submit_organizer_form_page_id, true);
 		}
 
 		// Trash the organizer dashboard page.
 		$organizer_dashboard_page_id = get_option('event_manager_organizer_dashboard_page_id');
-		if ($organizer_dashboard_page_id) {
+		if($organizer_dashboard_page_id) {
 			wp_delete_post($organizer_dashboard_page_id, true);
 		}
 
 		// Trash the event organizer page.
 		$event_organizers_page_id = get_option('event_manager_event_organizers_page_id');
-		if ($event_organizers_page_id) {
+		if($event_organizers_page_id) {
 			wp_delete_post($event_organizers_page_id, true);
 		}
 
 		// Trash the submit venue page.
 		$submit_venue_form_page_id = get_option('event_manager_submit_venue_form_page_id');
-		if ($submit_venue_form_page_id) {
+		if($submit_venue_form_page_id) {
 			wp_delete_post($submit_venue_form_page_id, true);
 		}
 
 		// Trash the venue dashboard page.
 		$venue_dashboard_page_id = get_option('event_manager_venue_dashboard_page_id');
-		if ($venue_dashboard_page_id) {
+		if($venue_dashboard_page_id) {
 			wp_delete_post($venue_dashboard_page_id, true);
 		}
 
 		// Trash the event venue page.
 		$event_venues_page_id = get_option('event_manager_event_venues_page_id');
-		if ($event_venues_page_id) {
+		if($event_venues_page_id) {
 			wp_delete_post($event_venues_page_id, true);
 		}
 	}

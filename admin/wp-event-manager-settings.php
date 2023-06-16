@@ -2,7 +2,7 @@
 /*
 * This file use for settings at admin site for wp event manager plugin.
 */
-if (!defined('ABSPATH')) {
+if(!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
@@ -33,7 +33,7 @@ class WP_Event_Manager_Settings{
 		$roles = get_editable_roles();
 		$account_roles = array();
 		foreach ($roles as $key => $role) {
-			if ($key == 'administrator') {
+			if($key == 'administrator') {
 				continue;
 			}
 			$account_roles[$key] = $role['name'];
@@ -442,7 +442,7 @@ class WP_Event_Manager_Settings{
 		$this->init_settings();
 		foreach ($this->settings as $section) {
 			foreach ($section[1] as $option) {
-				if (isset($option['std'])) {
+				if(isset($option['std'])) {
 					add_option($option['name'], $option['std']);
 				}
 				register_setting($this->settings_group, $option['name']);
@@ -474,7 +474,7 @@ class WP_Event_Manager_Settings{
 					</h2>
 					<div class="admin-setting-left">
 						<div class="white-background">
-							<?php if (!empty($_GET['settings-updated'])) {
+							<?php if(!empty($_GET['settings-updated'])) {
 								flush_rewrite_rules();
 								echo wp_kses_post('<div class="updated fade event-manager-updated"><p>' . esc_attr__('Settings successfully saved', 'wp-event-manager') . '</p></div>');
 							}
@@ -487,7 +487,7 @@ class WP_Event_Manager_Settings{
 									$value = get_option($option['name']);
 									$option['type'] = !empty($option['type']) ? $option['type'] : '';
 									$attributes = array();
-									if (!empty($option['attributes']) && is_array($option['attributes'])) {
+									if(!empty($option['attributes']) && is_array($option['attributes'])) {
 										foreach ($option['attributes'] as $attribute_name => $attribute_value) {
 											$attributes[] = esc_attr($attribute_name) . '="' . esc_attr($attribute_value) . '"';
 										}
@@ -497,14 +497,14 @@ class WP_Event_Manager_Settings{
 										case 'checkbox':?>
 											<label><input id="setting-<?php echo esc_attr($option['name']); ?>" name="<?php echo esc_attr($option['name']); ?>" type="checkbox" value="1" <?php echo implode(' ', $attributes); ?> <?php checked('1', $value); ?> /> <?php echo esc_attr($option['cb_label']); ?></label>
 											<?php
-											if ($option['desc']) {
+											if($option['desc']) {
 												echo wp_kses_post(' <p class="description">' . $option['desc'] . '</p>');
 											}
 											break;
 										case 'textarea': ?>
 											<textarea id="setting-<?php echo esc_attr($option['name']); ?>" class="large-text" cols="50" rows="<?php echo isset($option['row']) ? esc_attr($option['row']) : 3; ?>" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_textarea($value); ?></textarea>
 											<?php
-											if ($option['desc']) {?>
+											if($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
@@ -516,7 +516,7 @@ class WP_Event_Manager_Settings{
 												} ?>
 											</select>
 											<?php
-											if ($option['desc']) {?>
+											if($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 										<?php	}
 											break;
@@ -525,8 +525,8 @@ class WP_Event_Manager_Settings{
 												<?php
 												foreach ($option['options'] as $key => $name) {
 													$selected = '';
-													if (!empty($value)) {
-														if (in_array($key, $value)) {
+													if(!empty($value)) {
+														if(in_array($key, $value)) {
 															$selected = ' selected ';
 														}
 													}
@@ -534,7 +534,7 @@ class WP_Event_Manager_Settings{
 												} ?>
 											</select>
 											<?php
-											if ($option['desc']) {?>
+											if($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
@@ -548,7 +548,7 @@ class WP_Event_Manager_Settings{
 													echo '<label><input name="' . esc_attr($option['name']) . '" type="radio" value="' . esc_attr($key) . '" ' . checked($value, $key, false) . ' />' . esc_html($name) . '</label><br>';
 												}
 
-												if ($option['desc']) {?>
+												if($option['desc']) {?>
 													<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 												<?php } ?>
 											</fieldset>
@@ -565,14 +565,14 @@ class WP_Event_Manager_Settings{
 												'selected'    => absint($value),
 											);
 											echo str_replace(' id=', " data-placeholder='" . __('Select a page&hellip;', 'wp-event-manager') . "' id=", wp_dropdown_pages($args));
-											if ($option['desc']) {?>
+											if($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'password': ?>
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
-											if ($option['desc']) { ?>
+											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
@@ -581,21 +581,21 @@ class WP_Event_Manager_Settings{
 										case 'text': ?>
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
 											<?php
-											if ($option['desc']) { ?>
+											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'number': ?>
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
-											if ($option['desc']) { ?>
+											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'button': ?>
 											<button class="button" id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="button" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_attr($option['cb_label']); ?></button>
 											<?php
-											if ($option['desc']) { ?>
+											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
@@ -675,12 +675,12 @@ class WP_Event_Manager_Settings{
 		<ul class="mnt-checklist" id="<?php echo esc_attr($value['name']);?>" >
 		<?php foreach ($value['options'] as $option_value => $option_list) {
 				$checked = ' ';
-				if (get_option($value['name'])) {
+				if(get_option($value['name'])) {
 					$all_country  = get_option($value['name']);
 					$start_string = strpos($option_list['name'], '[');
 					$country_code = substr($option_list['name'], $start_string + 1, 2);
 					$coutry_exist = array_key_exists($country_code, $all_country);
-					if ($coutry_exist) {
+					if($coutry_exist) {
 						$checked = " checked='checked' ";
 					}
 				}?>

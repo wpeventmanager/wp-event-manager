@@ -1,5 +1,5 @@
 <?php
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+if(!defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
  * WP_Event_Manager_Geocode
@@ -24,7 +24,7 @@ class WP_Event_Manager_Geocode {
 	 * @return self Main instance.
 	 */
 	public static function instance() {
-		if (is_null(self::$_instance)) {
+		if(is_null(self::$_instance)) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
@@ -44,7 +44,7 @@ class WP_Event_Manager_Geocode {
 	 * Update location data - when submitting a event
 	 */
 	public function update_location_data($event_id, $values) {
-		if (apply_filters('event_manager_geolocation_enabled', true) && isset($values['event']['event_location'])) {
+		if(apply_filters('event_manager_geolocation_enabled', true) && isset($values['event']['event_location'])) {
 			$address_data = self::get_location_data($values['event']['event_location']);
 			self::save_location_data($event_id, $address_data);
 		}
@@ -56,7 +56,7 @@ class WP_Event_Manager_Geocode {
 	 * @param  string $new_location
 	 */
 	public function change_location_data($event_id, $new_location) {
-		if (apply_filters('event_manager_geolocation_enabled', true)) {
+		if(apply_filters('event_manager_geolocation_enabled', true)) {
 			$address_data = self::get_location_data($new_location);
 			self::clear_location_data($event_id);
 			self::save_location_data($event_id, $address_data);
@@ -108,9 +108,9 @@ class WP_Event_Manager_Geocode {
 	 * @param  array $address_data
 	 */
 	public static function save_location_data($event_id, $address_data) {
-		if (!is_wp_error($address_data) && $address_data) {
+		if(!is_wp_error($address_data) && $address_data) {
 			foreach ($address_data as $key => $value) {
-				if ($value) {
+				if($value) {
 					update_post_meta($event_id, 'geolocation_' . $key, $value);
 				}
 			}
@@ -139,19 +139,19 @@ class WP_Event_Manager_Geocode {
 		// Add an API key if available.
 		$api_key = apply_filters('event_manager_geolocation_api_key', '', $raw_address);
 
-		if ('' !== $api_key) {
+		if('' !== $api_key) {
 			$geocode_endpoint_url = add_query_arg('key', rawurlencode($api_key), $geocode_endpoint_url);
 		}
 
 		$geocode_endpoint_url = add_query_arg('address', rawurlencode($raw_address), $geocode_endpoint_url);
 
 		$locale = get_locale();
-		if ($locale) {
+		if($locale) {
 			$geocode_endpoint_url = add_query_arg('language', substr($locale, 0, 2), $geocode_endpoint_url);
 		}
 
 		$region = apply_filters('event_manager_geolocation_region_cctld', '', $raw_address);
-		if ('' !== $region) {
+		if('' !== $region) {
 			$geocode_endpoint_url = add_query_arg('region', rawurlencode($region), $geocode_endpoint_url);
 		}
 
@@ -167,7 +167,7 @@ class WP_Event_Manager_Geocode {
 	public static function get_location_data($raw_address) {
 		$invalid_chars = array(" " => "+", "," => "", "?" => "", "&" => "", "=" => "" , "#" => "");
 		$raw_address   = trim(strtolower(str_replace(array_keys($invalid_chars), array_values($invalid_chars), $raw_address)));
-		if (empty($raw_address)) {
+		if(empty($raw_address)) {
 			return false;
 		}
 		$transient_name              = 'em_geocode_' . md5($raw_address);
@@ -175,11 +175,11 @@ class WP_Event_Manager_Geocode {
 		$em_geocode_over_query_limit = get_transient('em_geocode_over_query_limit');
 		
 		// Query limit reached - don't geocode for a while
-		if ($em_geocode_over_query_limit && false === $geocoded_address) {
+		if($em_geocode_over_query_limit && false === $geocoded_address) {
 			return false;
 		}
 		try {
-			if (false === $geocoded_address || empty($geocoded_address->results[0])) {
+			if(false === $geocoded_address || empty($geocoded_address->results[0])) {
 				$result = wp_remote_get(
 						apply_filters('event_manager_geolocation_endpoint',  self::GOOGLE_MAPS_GEOCODE_API_URL."?address=" . $raw_address . "&sensor=false&region=" . apply_filters('event_manager_geolocation_region_cctld', '', $raw_address), $raw_address),
 						array(
@@ -192,7 +192,7 @@ class WP_Event_Manager_Geocode {
 						);
 				$result           = wp_remote_retrieve_body($result);
 				$geocoded_address = json_decode($result);
-				if ($geocoded_address->status) {
+				if($geocoded_address->status) {
 					switch ($geocoded_address->status) {
 						case 'ZERO_RESULTS' :
 							throw new Exception(__("No results found", 'wp-event-manager'));
@@ -205,7 +205,7 @@ class WP_Event_Manager_Geocode {
 							throw new Exception(__("Request denied from google map api key please enable geolocation and gecoding api", 'wp-event-manager'));
 							break;
 						case 'OK' :
-							if (!empty($geocoded_address->results[0])) {
+							if(!empty($geocoded_address->results[0])) {
 								set_transient($transient_name, $geocoded_address, 24 * HOUR_IN_SECONDS * 365);
 							} else {
 								throw new Exception(__("Geocoding error", 'wp-event-manager'));
@@ -226,7 +226,7 @@ class WP_Event_Manager_Geocode {
 		$address['lat']               = sanitize_text_field($geocoded_address->results[0]->geometry->location->lat);
 		$address['long']              = sanitize_text_field($geocoded_address->results[0]->geometry->location->lng);
 		$address['formatted_address'] = sanitize_text_field($geocoded_address->results[0]->formatted_address);
-		if (!empty($geocoded_address->results[0]->address_components)) {
+		if(!empty($geocoded_address->results[0]->address_components)) {
 			$address_data             = $geocoded_address->results[0]->address_components;
 			$address['street_number'] = false;
 			$address['street']        = false;

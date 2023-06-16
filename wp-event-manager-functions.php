@@ -998,7 +998,6 @@ function has_wpem_shortcode($content = null, $tag = null) {
 			}
 			$wpem_shortcodes = array_intersect($wpem_shortcodes, $tag);
 		}
-
 		foreach($wpem_shortcodes as $shortcode) {
 			if(has_shortcode($content, $shortcode)) {
 				$has_wpem_shortcode = true;
@@ -1146,25 +1145,25 @@ function event_manager_dropdown_selection($args = '') {
 		'no_results_text' => __('No results match', 'wp-event-manager'),
 		'multiple_text'   => __('Choose Categories', 'wp-event-manager'),
 	);
-	$r = wp_parse_args($args, $defaults);
+	$query = wp_parse_args($args, $defaults);
 
-	if(!isset($r['pad_counts']) && $r['show_count'] && $r['hierarchical']) {
-		$r['pad_counts'] = true;
+	if(!isset($query['pad_counts']) && $query['show_count'] && $query['hierarchical']) {
+		$query['pad_counts'] = true;
 	}
-	extract($r);
+	extract($query);
 
 	// Store in a transient to help sites with many cats
-	$categories_hash = 'em_cats_' . md5(json_encode($r) . WP_Event_Manager_Cache_Helper::get_transient_version('em_get_' . $r['taxonomy']));
+	$categories_hash = 'em_cats_' . md5(json_encode($query) . WP_Event_Manager_Cache_Helper::get_transient_version('em_get_' . $query['taxonomy']));
 	$categories      = get_transient($categories_hash);
 
 	if(empty($categories)) {
 		$categories = get_terms($taxonomy, array(
-			'orderby'         => $r['orderby'],
-			'order'           => $r['order'],
-			'hide_empty'      => $r['hide_empty'],
-			'child_of'        => $r['child_of'],
-			'exclude'         => $r['exclude'],
-			'hierarchical'    => $r['hierarchical']
+			'orderby'         => $query['orderby'],
+			'order'           => $query['order'],
+			'hide_empty'      => $query['hide_empty'],
+			'child_of'        => $query['child_of'],
+			'exclude'         => $query['exclude'],
+			'hierarchical'    => $query['hierarchical']
 		));
 
 		set_transient($categories_hash, $categories, DAY_IN_SECONDS * 30);
@@ -1173,7 +1172,7 @@ function event_manager_dropdown_selection($args = '') {
 	$categories = apply_filters('event_manager_dropdown_selection_' . $taxonomy, $categories);
 	$name       = esc_attr($name);
 	$class      = esc_attr($class);
-	$id = $r['id'] ? $r['id'] : $r['name'];
+	$id = $query['id'] ? $query['id'] : $query['name'];
 
 	if($taxonomy==='event_listing_type'):
 		$placeholder=__('Choose an event type', 'wp-event-manager');
@@ -1190,7 +1189,7 @@ function event_manager_dropdown_selection($args = '') {
 		include_once(EVENT_MANAGER_PLUGIN_DIR . '/includes/wp-event-manager-category-walker.php');
 		$walker = new WP_Event_Manager_Category_Walker;
 		if($hierarchical) {
-			$depth = $r['depth'];  // Walk the full depth.
+			$depth = $query['depth'];  // Walk the full depth.
 		} else {
 			$depth = -1; // Flat.
 		}
@@ -1730,7 +1729,6 @@ function get_all_venue_array($user_id = '', $args = [], $blank_option = false) {
 		if($blank_option) {
 			$venue_array[''] = __('Select Venue', 'wp-event-manager');
 		}
-
 		foreach($all_venue as $venue) {
 			$venue_array[$venue->ID] = $venue->post_title;
 		}	
@@ -1767,7 +1765,6 @@ function get_event_by_venue_id($venue_id = '') {
 		'posts_per_page' => -1,
 		'suppress_filters' => 0,
 	];
-
 	if(!empty($venue_id)) {
 		$args['meta_query'][] = [
 			'key' => '_event_venue_ids',

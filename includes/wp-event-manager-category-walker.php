@@ -1,5 +1,5 @@
 <?php
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+if(!defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
  * WP_Event_Manager_Category_Walker class.
@@ -22,7 +22,7 @@ class WP_Event_Manager_Category_Walker extends Walker {
 	 */
 	function start_el(&$output, $object, $depth = 0, $args = array(), $current_object_id = 0) {
 
-		if (!empty($args['hierarchical']))
+		if(!empty($args['hierarchical']))
 			$pad = str_repeat('&nbsp;', $depth * 3);
 		else
 			$pad = '';
@@ -30,13 +30,13 @@ class WP_Event_Manager_Category_Walker extends Walker {
 		$cat_name = apply_filters('list_event_cats', $object->name, $object);
 		$value = isset($args['value']) && $args['value'] == 'id' ? $object->term_id : $object->slug;
 		$output .= "\t<option class=\"level-" . intval($depth) . '" value="' . esc_attr($value) . '"';
-		if ($value == $args['selected'] || (is_array($args['selected']) && in_array($value, $args['selected'])))
+		if($value == $args['selected'] || (is_array($args['selected']) && in_array($value, $args['selected'])))
 			$output .= ' selected="selected"';
 
 		$output .= '>';
 		$output .= $pad . esc_html($cat_name);
 
-		if (!empty($args['show_count'])) {
+		if(!empty($args['show_count'])) {
 			$output .= '&nbsp;(' . $object->count . ')';
 		}
 		$output .= "</option>\n";

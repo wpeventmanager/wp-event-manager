@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('ABSPATH') ) {
+if(!defined('ABSPATH') ) {
 	exit;
 }
 
@@ -33,7 +33,7 @@ class WP_Event_Manager_Filters {
 	 */
 	public static function get_datetime_value($key) {
 		$datetimes=self::get_datetimes_filter();
-		if (array_key_exists($key,$datetimes)){
+		if(array_key_exists($key,$datetimes)){
 		  return $datetimes[$key];
 		} else	{
 		  return  $datetimes["datetime_thismonth"];
@@ -57,7 +57,7 @@ class WP_Event_Manager_Filters {
 	public static function get_ticket_price_value($key) {
 		$ticket_prices=self::get_ticket_prices_filter();
 
-		if (array_key_exists($key,$ticket_prices)){
+		if(array_key_exists($key,$ticket_prices)){
 		  return $ticket_prices[$key];
 		}else{
 		  return  $ticket_prices["ticket_price_any"];

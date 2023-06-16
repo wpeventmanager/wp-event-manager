@@ -245,7 +245,6 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 
 		if ($events->have_posts()) : 
 			echo wp_kses_post($before_widget);
-			
 			if ($title) 
 				echo wp_kses_post($before_title . $title . $after_title); ?>
 
@@ -255,7 +254,6 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 				 endwhile; ?>
 			</ul>
 			<?php echo wp_kses_post($after_widget); ?>
-
 		<?php else : 
 			get_event_manager_template_part('content-widget', 'no-events-found');
 		endif;

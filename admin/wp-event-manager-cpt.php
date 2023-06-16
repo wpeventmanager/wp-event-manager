@@ -2,7 +2,7 @@
 /*
 * Admin UI for creating custom post types(CPT) and custom taxonomies in WordPress.
 */
-if (!defined('ABSPATH')) {
+if(!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
@@ -45,11 +45,11 @@ class WP_Event_Manager_CPT {
 		add_action('admin_notices', array($this, 'approved_notice'));
 		add_action('admin_notices', array($this, 'expired_notice'));
 
-		if (get_option('event_manager_enable_categories')) {
+		if(get_option('event_manager_enable_categories')) {
 			add_action('restrict_manage_posts', array($this, 'events_by_category'));
 		}
 
-		if (get_option('event_manager_enable_event_types') && get_option('event_manager_enable_categories')) {
+		if(get_option('event_manager_enable_event_types') && get_option('event_manager_enable_categories')) {
 			add_action('restrict_manage_posts', array($this, 'events_by_event_type'));
 		}
 
@@ -64,7 +64,7 @@ class WP_Event_Manager_CPT {
 	public function add_bulk_actions() {
 		global $post_type, $wp_post_types;
 
-		if ($post_type == 'event_listing') { ?>
+		if($post_type == 'event_listing') { ?>
 			<script type="text/javascript">
 				jQuery(document).ready(function() {
 					jQuery('<option>').val('approve_events').text('<?php printf(wp_kses('Approve %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action']");
@@ -87,13 +87,13 @@ class WP_Event_Manager_CPT {
 			case 'approve_events':
 				check_admin_referer('bulk-posts');
 				$approved_events = array();
-				if (!empty($post_ids)) {
+				if(!empty($post_ids)) {
 					foreach ($post_ids as $post_id) {
 						$event_data = array(
 							'ID'          => $post_id,
 							'post_status' => 'publish',
 						);
-						if (in_array(get_post_status($post_id), array('pending', 'pending_payment')) && current_user_can('publish_post', $post_id) && wp_update_post($event_data)) {
+						if(in_array(get_post_status($post_id), array('pending', 'pending_payment')) && current_user_can('publish_post', $post_id) && wp_update_post($event_data)) {
 							$approved_events[] = $post_id;
 						}
 					}
@@ -104,13 +104,13 @@ class WP_Event_Manager_CPT {
 			case 'expire_events':
 				check_admin_referer('bulk-posts');
 				$expired_events = array();
-				if (!empty($post_ids)) {
+				if(!empty($post_ids)) {
 					foreach ($post_ids as $post_id) {
 						$event_data = array(
 							'ID'          => $post_id,
 							'post_status' => 'expired',
 						);
-						if (current_user_can('manage_event_listings') && wp_update_post($event_data)) {
+						if(current_user_can('manage_event_listings') && wp_update_post($event_data)) {
 							$expired_events[] = $post_id;
 						}
 					}
@@ -126,11 +126,11 @@ class WP_Event_Manager_CPT {
 	 * Approve a single event
 	 */
 	public function approve_event()	{
-		if (!empty($_GET['approve_event']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'approve_event') && current_user_can('publish_post',sanitize_text_field($_GET['approve_event']))) {
+		if(!empty($_GET['approve_event']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'approve_event') && current_user_can('publish_post',sanitize_text_field($_GET['approve_event']))) {
 			$post_id = absint($_GET['approve_event']);
 			$event_end_date    = get_post_meta($post_id, '_event_end_date', true);
 			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
-			if (strtotime($event_end_date) > $current_timestamp) {
+			if(strtotime($event_end_date) > $current_timestamp) {
 				$event_data = array(
 					'ID'          => $post_id,
 					'post_status' => 'publish',
@@ -152,9 +152,9 @@ class WP_Event_Manager_CPT {
 	 */
 	public function approved_notice() {
 		global $post_type, $pagenow;
-		if ($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['approved_events'])) {
+		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['approved_events'])) {
 			$approved_events = sanitize_text_field($_REQUEST['approved_events']);
-			if (is_array($approved_events)) {
+			if(is_array($approved_events)) {
 				$approved_events = array_map('absint', $approved_events);
 				$titles = array();
 				foreach ($approved_events as $event_id) {
@@ -173,9 +173,9 @@ class WP_Event_Manager_CPT {
 	public function expired_notice() {
 		global $post_type, $pagenow;
 
-		if ($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events'])) {
+		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events'])) {
 			$expired_events = sanitize_text_field($_REQUEST['expired_events']);
-			if (is_array($expired_events)) {
+			if(is_array($expired_events)) {
 				$expired_events = array_map('absint', $expired_events);
 				$titles = array();
 				foreach ($expired_events as $event_id) {
@@ -194,7 +194,7 @@ class WP_Event_Manager_CPT {
 	public function events_by_category() {
 		global $typenow, $wp_query;
 
-		if ($typenow != 'event_listing' || !taxonomy_exists('event_listing_category')) {
+		if($typenow != 'event_listing' || !taxonomy_exists('event_listing_category')) {
 			return;
 		}
 		include_once EVENT_MANAGER_PLUGIN_DIR . '/includes/wp-event-manager-category-walker.php';
@@ -208,7 +208,7 @@ class WP_Event_Manager_CPT {
 		$terms = get_terms('event_listing_category', $r);
 		$walker = new WP_Event_Manager_Category_Walker();
 
-		if (!$terms) {
+		if(!$terms) {
 			return;
 		}
 		$output = "<select name='event_listing_category' id='dropdown_event_listing_category'>";
@@ -224,7 +224,7 @@ class WP_Event_Manager_CPT {
 	public function events_by_event_type() {
 		global $typenow, $wp_query;
 
-		if ($typenow != 'event_listing' || !taxonomy_exists('event_listing_type')) {
+		if($typenow != 'event_listing' || !taxonomy_exists('event_listing_type')) {
 			return;
 		}
 
@@ -238,7 +238,7 @@ class WP_Event_Manager_CPT {
 		$terms             = get_terms('event_listing_type', $r);
 		$walker            = new WP_Event_Manager_Category_Walker();
 
-		if (!$terms) {
+		if(!$terms) {
 			return;
 		}
 
@@ -257,7 +257,7 @@ class WP_Event_Manager_CPT {
 	 * @return void
 	 */
 	public function enter_title_here($text, $post){
-		if ($post->post_type == 'event_listing') {
+		if($post->post_type == 'event_listing') {
 			return __('Event Title', 'wp-event-manager');
 		}
 		return $text;
@@ -299,7 +299,7 @@ class WP_Event_Manager_CPT {
 	 * @return array
 	 */
 	public function columns($columns){
-		if (!is_array($columns)) {
+		if(!is_array($columns)) {
 			$columns = array();
 		}
 		unset($columns['title'], $columns['date'], $columns['author']);
@@ -315,10 +315,10 @@ class WP_Event_Manager_CPT {
 		$columns['cancelled'] = '<span class="tips" data-tip="' . __('Cancelled?', 'wp-event-manager') . '">' . __('Cancelled?', 'wp-event-manager') . '</span>';
 		$columns['featured_event'] = '<span class="tips" data-tip="' . __('Featured?', 'wp-event-manager') . '">' . __('Featured?', 'wp-event-manager') . '</span>';
 		$columns['event_actions'] = __('Actions', 'wp-event-manager');
-		if (!get_option('event_manager_enable_event_types')) {
+		if(!get_option('event_manager_enable_event_types')) {
 			unset($columns['event_listing_type']);
 		}
-		if (!get_option('enable_event_organizer')) {
+		if(!get_option('enable_event_organizer')) {
 			unset($columns['event_organizer']);
 		}
 		return $columns;
@@ -334,7 +334,7 @@ class WP_Event_Manager_CPT {
 	 */
 	public function primary_column($column, $screen) {
 		// if we want to set the primary column for CPT
-		if ('edit-event_listing' === $screen) {
+		if('edit-event_listing' === $screen) {
 			$column = 'event_title';
 		}
 		return $column;
@@ -350,7 +350,7 @@ class WP_Event_Manager_CPT {
 	 * @return array
 	 */
 	public function row_actions($actions) {
-		if ('event_listing' == get_post_type()) {
+		if('event_listing' == get_post_type()) {
 			return array();
 		}
 		return $actions;
@@ -370,7 +370,7 @@ class WP_Event_Manager_CPT {
 				echo wp_kses_post('<span data-tip="' . esc_attr(get_event_status($post)) . '" class="tips status-' . esc_attr($post->post_status) . '">' . esc_attr(get_event_status($post)) . '</span>');
 				break;
 			case 'cancelled':
-				if (is_event_cancelled($post)) {
+				if(is_event_cancelled($post)) {
 					echo wp_kses_post('<span class="tips dashicons dashicons-no" data-tip="' . __('Cancelled', 'wp-event-manager') . '">' . __('Cancelled', 'wp-event-manager') . '</span>');
 				} else {
 					echo wp_kses_post('&ndash;');
@@ -378,7 +378,7 @@ class WP_Event_Manager_CPT {
 				break;
 				'<span class="tips dashicons dashicons-format-image" data-tip="' . __('Banner', 'wp-event-manager') . '">' . __('Banner', 'wp-event-manager') . '</span>';
 			case 'featured_event':
-				if (is_event_featured($post)) {
+				if(is_event_featured($post)) {
 					echo wp_kses_post('<span class="tips dashicons dashicons-star-filled" data-tip="' . __('Featured', 'wp-event-manager') . '">' . __('Featured', 'wp-event-manager') . '</span>');
 				} else {
 					echo wp_kses_post('<span class="tips dashicons dashicons-star-empty" data-tip="' . __('Not Featured', 'wp-event-manager') . '">' . __('Not Featured', 'wp-event-manager') . '</span>');
@@ -397,7 +397,7 @@ class WP_Event_Manager_CPT {
 				break;
 			case 'event_listing_type':
 				$types = get_event_type($post);
-				if ($types && !empty($types)) {
+				if($types && !empty($types)) {
 					foreach ($types as $type) {
 						echo wp_kses_post('<span class="event-type ' . $type->slug . '">' . $type->name . '</span>');
 					}
@@ -412,10 +412,10 @@ class WP_Event_Manager_CPT {
 				echo wp_kses_post('</div>');
 				break;
 			case 'event_start_date':
-				if ($post->_event_start_date) {
+				if($post->_event_start_date) {
 					$format = get_option('date_format');
 					$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
-					if ($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_start_date.'")) {
+					if($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_start_date.'")) {
 						$date = 	$datetime->format($format);
 					} else {
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_start_date));
@@ -426,10 +426,10 @@ class WP_Event_Manager_CPT {
 				}
 				break;
 			case 'event_end_date':
-				if ($post->_event_end_date) {
+				if($post->_event_end_date) {
 					$format = get_option('date_format');
 					$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
-					if ($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_end_date.'")) {
+					if($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_end_date.'")) {
 						$date = 	$datetime->format($format);
 					} else {
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_end_date));
@@ -441,10 +441,10 @@ class WP_Event_Manager_CPT {
 				}
 				break;
 			case 'event_expires':
-				if ($post->_event_expiry_date) {
+				if($post->_event_expiry_date) {
 					$format = get_option('date_format');
 					$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
-					if ($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_expiry_date.'")) {
+					if($datetime = DateTime::createFromFormat("'.$datepicker_date_format.'", "'.$post->_event_expiry_date.'")) {
 						$date = 	$datetime->format($format);
 					} else {
 						$date = date_i18n(get_option('date_format'), strtotime($post->_event_expiry_date));
@@ -457,29 +457,29 @@ class WP_Event_Manager_CPT {
 			case 'event_actions':
 				echo wp_kses_post('<div class="actions">');
 				$admin_actions = apply_filters('post_row_actions', array(), $post);
-				if (in_array($post->post_status, array('pending', 'pending_payment')) && current_user_can('publish_post', $post->ID)) {
+				if(in_array($post->post_status, array('pending', 'pending_payment')) && current_user_can('publish_post', $post->ID)) {
 					$admin_actions['approve'] = array(
 						'action' => 'approve',
 						'name'   => __('Approve', 'wp-event-manager'),
 						'url'    => wp_nonce_url(add_query_arg('approve_event', $post->ID), 'approve_event'),
 					);
 				}
-				if ($post->post_status !== 'trash') {
-					if (current_user_can('read_post', $post->ID)) {
+				if($post->post_status !== 'trash') {
+					if(current_user_can('read_post', $post->ID)) {
 						$admin_actions['view'] = array(
 							'action' => 'view',
 							'name'   => __('View', 'wp-event-manager'),
 							'url'    => get_permalink($post->ID),
 						);
 					}
-					if (current_user_can('edit_post', $post->ID)) {
+					if(current_user_can('edit_post', $post->ID)) {
 						$admin_actions['edit'] = array(
 							'action' => 'edit',
 							'name'   => __('Edit', 'wp-event-manager'),
 							'url'    => get_edit_post_link($post->ID),
 						);
 					}
-					if (current_user_can('delete_post', $post->ID)) {
+					if(current_user_can('delete_post', $post->ID)) {
 						$admin_actions['delete'] = array(
 							'action' => 'delete',
 							'name'   => __('Delete', 'wp-event-manager'),
@@ -489,7 +489,7 @@ class WP_Event_Manager_CPT {
 				}
 				$admin_actions = apply_filters('event_manager_admin_actions', $admin_actions, $post);
 				foreach ($admin_actions as $action) {
-					if (is_array($action)) {
+					if(is_array($action)) {
 						printf('<a class="button button-icon tips icon-%1$s" href="%2$s" data-tip="%3$s">%4$s</a>', $action['action'], esc_url($action['url']), esc_attr($action['name']), esc_html($action['name']));
 					} else {
 						echo str_replace('class="', 'class="button ', $action);
@@ -527,8 +527,8 @@ class WP_Event_Manager_CPT {
 	 * @return void
 	 */
 	public function sort_columns($vars) {
-		if (isset($vars['orderby'])) {
-			if ('event_expires' === $vars['orderby']) {
+		if(isset($vars['orderby'])) {
+			if('event_expires' === $vars['orderby']) {
 				$vars = array_merge(
 					$vars,
 					array(
@@ -537,7 +537,7 @@ class WP_Event_Manager_CPT {
 						'meta_type' => 'DATE',
 					)
 				);
-			} elseif ('event_start_date' === $vars['orderby']) {
+			} elseif('event_start_date' === $vars['orderby']) {
 				$vars = array_merge(
 					$vars,
 					array(
@@ -546,7 +546,7 @@ class WP_Event_Manager_CPT {
 						'meta_type' => 'DATETIME',
 					)
 				);
-			} elseif ('event_end_date' === $vars['orderby']) {
+			} elseif('event_end_date' === $vars['orderby']) {
 				$vars = array_merge(
 					$vars,
 					array(
@@ -555,7 +555,7 @@ class WP_Event_Manager_CPT {
 						'meta_type' => 'DATETIME',
 					)
 				);
-			} elseif ('event_location' === $vars['orderby']) {
+			} elseif('event_location' === $vars['orderby']) {
 				$vars = array_merge(
 					$vars,
 					array(
@@ -563,7 +563,7 @@ class WP_Event_Manager_CPT {
 						'orderby'  => 'meta_value',
 					)
 				);
-			} elseif ('event_organizer' === $vars['orderby']) {
+			} elseif('event_organizer' === $vars['orderby']) {
 				$vars = array_merge(
 					$vars,
 					array(
@@ -614,7 +614,7 @@ class WP_Event_Manager_CPT {
 		global $post, $post_type;
 
 		// Abort if we're on the wrong post type, but only if we got a restriction
-		if ('event_listing' !== $post_type) {
+		if('event_listing' !== $post_type) {
 			return;
 		}
 
@@ -629,7 +629,7 @@ class WP_Event_Manager_CPT {
 		} ?>
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
-				<?php if (!empty($display)) : ?>
+				<?php if(!empty($display)) : ?>
 					jQuery('#post-status-display').html('<?php echo wp_kses_post($display); ?>');
 				<?php endif; ?>
 				var select = jQuery('#post-status-select').find('select');

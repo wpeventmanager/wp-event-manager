@@ -1,5 +1,5 @@
 <?php
-if (!defined('ABSPATH')) {
+if(!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
@@ -33,7 +33,7 @@ class WP_Event_Manager_Permalink_Settings {
 	 * @return self Main instance.
 	 */
 	public static function instance() {
-		if (is_null(self::$_instance)) {
+		if(is_null(self::$_instance)) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
@@ -103,11 +103,11 @@ class WP_Event_Manager_Permalink_Settings {
 	 * Save the settings.
 	 */
 	public function settings_save() {
-		if (!is_admin()) {
+		if(!is_admin()) {
 			return;
 		}
-		if (isset($_POST['permalink_structure'])) {
-			if (function_exists('switch_to_locale')) {
+		if(isset($_POST['permalink_structure'])) {
+			if(function_exists('switch_to_locale')) {
 				switch_to_locale(get_locale());
 			}
 			$permalinks                  = (array) get_option('wpem_permalinks', array());
@@ -115,7 +115,7 @@ class WP_Event_Manager_Permalink_Settings {
 			$permalinks['category_base'] = sanitize_title_with_dashes($_POST['wpem_event_category_slug']);
 			$permalinks['type_base']     = sanitize_title_with_dashes($_POST['wpem_event_type_slug']);
 			update_option('wpem_permalinks', $permalinks);
-			if (function_exists('restore_current_locale')) {
+			if(function_exists('restore_current_locale')) {
 				restore_current_locale();
 			}
 		}

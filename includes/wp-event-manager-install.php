@@ -1,5 +1,5 @@
 <?php
-if (!defined('ABSPATH')) {
+if(!defined('ABSPATH')) {
 	exit;
 }
 
@@ -17,28 +17,28 @@ class WP_Event_Manager_Install {
 		self::default_terms();
 
 		// Redirect to setup screen for new installs
-		if (!get_option('wp_event_manager_version')) {
+		if(!get_option('wp_event_manager_version')) {
 			set_transient('_event_manager_activation_redirect', 1, HOUR_IN_SECONDS);
 		}
 		
 		// Update featured posts ordering.
-		if (version_compare(get_option('wp_event_manager_version', EVENT_MANAGER_VERSION), '2.5', '<')) {
+		if(version_compare(get_option('wp_event_manager_version', EVENT_MANAGER_VERSION), '2.5', '<')) {
 			$wpdb->query("UPDATE {$wpdb->posts} p SET p.menu_order = 0 WHERE p.post_type='event_listing';");
 			$wpdb->query("UPDATE {$wpdb->posts} p LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id SET p.menu_order = -1 WHERE pm.meta_key = '_event_featured' AND pm.meta_value='1' AND p.post_type='event_listing';");
 		}
 
 		// Update legacy options
-		if (false === get_option('event_manager_submit_event_form_page_id', false) && get_option('event_manager_submit_page_slug')) {
+		if(false === get_option('event_manager_submit_event_form_page_id', false) && get_option('event_manager_submit_page_slug')) {
 			$page_id = get_page_by_path(get_option('event_manager_submit_page_slug'))->ID;
 			update_option('event_manager_submit_event_form_page_id', $page_id);
 		}
 
-		if (false === get_option('event_manager_event_dashboard_page_id', false) && get_option('event_manager_event_dashboard_page_slug')) {
+		if(false === get_option('event_manager_event_dashboard_page_id', false) && get_option('event_manager_event_dashboard_page_slug')) {
 			$page_id = get_page_by_path(get_option('event_manager_event_dashboard_page_slug'))->ID;
 			update_option('event_manager_event_dashboard_page_id', $page_id);
 		}
 
-		if (false === get_option('wp_event_manager_db_version', false)) {
+		if(false === get_option('wp_event_manager_db_version', false)) {
 			update_option('wp_event_manager_db_version', '3.1.13');
 		}
 
@@ -54,7 +54,7 @@ class WP_Event_Manager_Install {
 		global $wpdb;
 
 		// 3.1.14 change field option name
-		if (!empty(get_option('event_manager_form_fields', true))) {
+		if(!empty(get_option('event_manager_form_fields', true))) {
 			$all_fields = get_option('event_manager_form_fields', true);
 
 			if(isset($all_fields) && !empty($all_fields) && is_array($all_fields)) {
@@ -111,11 +111,11 @@ class WP_Event_Manager_Install {
 	private static function init_user_roles() {
 		global $wp_roles;
 
-		if (class_exists('WP_Roles') && !isset($wp_roles)) {
+		if(class_exists('WP_Roles') && !isset($wp_roles)) {
 			$wp_roles = new WP_Roles();			
 		}
 
-		if (is_object($wp_roles)) {
+		if(is_object($wp_roles)) {
 			add_role('organizer', __('Organizer', 'wp-event-manager'), array(
 				'read'         => true,
 				'edit_posts'   => false,
@@ -212,14 +212,14 @@ class WP_Event_Manager_Install {
 	 * default_terms function.
 	 */
 	private static function default_terms() {
-		if (get_option('event_manager_installed_terms') == 1) {
+		if(get_option('event_manager_installed_terms') == 1) {
 			return;
 		}
 		
 		$taxonomies = self::get_default_taxonomy_terms();
 		foreach ($taxonomies as $taxonomy => $terms) {
 			foreach ($terms as $term) {
-				if (!get_term_by('slug', sanitize_title($term), $taxonomy)) {
+				if(!get_term_by('slug', sanitize_title($term), $taxonomy)) {
 					wp_insert_term($term, $taxonomy);
 				}
 			}
@@ -236,9 +236,9 @@ class WP_Event_Manager_Install {
 
 		foreach ($terms as $term => $meta) {
 			$term = get_term_by('slug', sanitize_title($term), 'event_listing_type');
-			if ($term) {
+			if($term) {
 				foreach ($meta as $meta_key => $meta_value) {
-					if (!get_term_meta((int) $term->term_id, $meta_key, true)) {
+					if(!get_term_meta((int) $term->term_id, $meta_key, true)) {
 						add_term_meta((int) $term->term_id, $meta_key, $meta_value);
 					}
 				}
@@ -263,7 +263,7 @@ class WP_Event_Manager_Install {
 			);
 
 			$page_id = wp_insert_post($page_data);
-			if ($option) {
+			if($option) {
 				update_option($option, $page_id);
 			}
 		}		

@@ -1,5 +1,5 @@
 <?php
-if (!defined('ABSPATH')) {
+if(!defined('ABSPATH')) {
 	exit;
 }
 
@@ -31,7 +31,7 @@ class WP_Event_Manager_Cache_Helper {
 	 * Flush the cache
 	 */
 	public static function flush_get_event_listings_cache($post_id) {
-		if ('event_listing' === get_post_type($post_id)) {
+		if('event_listing' === get_post_type($post_id)) {
 			self::get_transient_version('get_event_listings', true);
 		}
 	}
@@ -40,7 +40,7 @@ class WP_Event_Manager_Cache_Helper {
 	 * Flush the cache
 	 */
 	public static function event_manager_my_event_do_action($action) {
-		if ('mark_cancelled' === $action || 'mark_not_cancelled' === $action) {
+		if('mark_cancelled' === $action || 'mark_not_cancelled' === $action) {
 			self::get_transient_version('get_event_listings', true);
 		}
 	}
@@ -80,7 +80,7 @@ class WP_Event_Manager_Cache_Helper {
 		$transient_name  = $group . '-transient-version';
 		$transient_value = get_transient($transient_name);
 
-		if (false === $transient_value || true === $refresh) {
+		if(false === $transient_value || true === $refresh) {
 			self::delete_version_transients($transient_value);
 			set_transient($transient_name, $transient_value = time());
 		}
@@ -93,7 +93,7 @@ class WP_Event_Manager_Cache_Helper {
 	 * Note; this only works on transients appended with the transient version, and when object caching is not being used.
 	 */
 	private static function delete_version_transients($version) {
-		if (!wp_using_ext_object_cache() && !empty($version)) {
+		if(!wp_using_ext_object_cache() && !empty($version)) {
 			global $wpdb;
 			$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->options} WHERE option_name LIKE %s;", "\_transient\_%" . $version));
 		}
@@ -104,7 +104,7 @@ class WP_Event_Manager_Cache_Helper {
 	 */
 	public static function clear_expired_transients() {
 		global $wpdb;
-		if (!wp_using_ext_object_cache() && !defined('WP_SETUP_CONFIG') && !defined('WP_INSTALLING')) {
+		if(!wp_using_ext_object_cache() && !defined('WP_SETUP_CONFIG') && !defined('WP_INSTALLING')) {
 			$sql= "
 			    DELETE a, b FROM $wpdb->options a, $wpdb->options b	
  				WHERE a.option_name LIKE %s	
@@ -138,7 +138,7 @@ class WP_Event_Manager_Cache_Helper {
 		$post_types = apply_filters('wp_eventmanager_count_cache_supported_post_types', array('event_listing'), $new_status, $old_status, $post);
 		
 		// Only proceed when statuses do not match, and post type is supported post type
-		if ($new_status === $old_status || !in_array($post->post_type, $post_types)) {
+		if($new_status === $old_status || !in_array($post->post_type, $post_types)) {
 			return;
 		}
 		
@@ -161,7 +161,7 @@ class WP_Event_Manager_Cache_Helper {
 			$rlike[] = "^_transient_em_{$old_status}_{$post->post_type}_count_user_";
 		}
 		
-		if (empty($rlike)) {
+		if(empty($rlike)) {
 			return;
 		}
 		
@@ -199,7 +199,7 @@ class WP_Event_Manager_Cache_Helper {
 		$status_count = ($cached_count = get_transient($transient)) ? $cached_count : 0;
 		
 		// $cached_count will be false if transient does not exist
-		if ($cached_count === false || $force) {
+		if($cached_count === false || $force) {
 			$count_posts = wp_count_posts($post_type, 'readable');
 			// Default to 0 $status if object does not have a value
 			$status_count = isset($count_posts->$status) ? $count_posts->$status : 0;
