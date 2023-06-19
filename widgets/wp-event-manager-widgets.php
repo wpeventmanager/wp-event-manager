@@ -622,7 +622,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 		$today_date = current_time('Y-m-d H:i:s');
 		$args = array(
 			'post_type'   => 'event_listing',
-			'post_status' => 'publish',
+			'post_status' => 'expired',
 			'posts_per_page'    => $number,
 			'orderby'           => isset($instance['orderby']) ? $instance['orderby'] : 'event_start_date',
 			'order'             => isset($instance['order']) ? $instance['order'] : 'ASC',
