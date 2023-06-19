@@ -884,7 +884,7 @@ class WP_Event_Manager_Writepanels {
 		// These need to exist
 		add_post_meta($post_id, '_event_cancelled', 0, true);
 		add_post_meta($post_id, '_event_featured', 0, true);
-		add_post_meta($post_id, '_event_title', get_the_title($post_id));
+		update_post_meta($post_id, '_event_title', get_the_title($post_id));
 		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 

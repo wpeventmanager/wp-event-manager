@@ -160,8 +160,6 @@ class WP_Event_Manager_Data_Cleaner {
 			);
 
 			foreach ($items as $item) {
-				error_log(print_r($item, true));
-				error_log($item);
 				self::delete_event_with_attachment($item);
 				wp_delete_post($item);
 			}
