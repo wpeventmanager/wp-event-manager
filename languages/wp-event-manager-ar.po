@@ -3,8 +3,8 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-06-19 13:00+0530\n"
-"PO-Revision-Date: 2023-06-19 13:04+0530\n"
+"POT-Creation-Date: 2023-06-19 16:11+0530\n"
+"PO-Revision-Date: 2023-06-19 16:21+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -572,14 +572,14 @@ msgstr "فعالية"
 
 msgctxt "Event category slug - resave permalinks after changing this"
 msgid "event-category"
-msgstr "تصنيف الحدث"
+msgstr "فئة الحدث"
 
 #: admin/wp-event-manager-permalink-settings.php:98
 #: includes/wp-event-manager-post-types.php:1054
 
 msgctxt "Event type slug - resave permalinks after changing this"
 msgid "event-type"
-msgstr "نوع الفاعلية"
+msgstr "نوع الحدث"
 
 #: admin/wp-event-manager-settings.php:46
 msgid "General"
@@ -1890,8 +1890,8 @@ msgid "Please enter event expiry date"
 msgstr "يرجى إدخال تاريخ انتهاء صلاحية الحدث"
 
 #: admin/wp-event-manager-writepanels.php:133
-#: admin/wp-event-manager-writepanels.php:1156
-#: admin/wp-event-manager-writepanels.php:1302
+#: admin/wp-event-manager-writepanels.php:1157
+#: admin/wp-event-manager-writepanels.php:1303
 msgid "Posted by"
 msgstr "نشر بواسطة"
 

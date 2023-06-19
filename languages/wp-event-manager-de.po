@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-06-19 13:00+0530\n"
-"PO-Revision-Date: 2023-06-19 13:02+0530\n"
+"POT-Creation-Date: 2023-06-19 16:11+0530\n"
+"PO-Revision-Date: 2023-06-19 16:15+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1797,8 +1797,8 @@ msgid "Please enter event expiry date"
 msgstr "Bitte geben Sie das Ablaufdatum des Ereignisses ein."
 
 #: admin/wp-event-manager-writepanels.php:133
-#: admin/wp-event-manager-writepanels.php:1156
-#: admin/wp-event-manager-writepanels.php:1302
+#: admin/wp-event-manager-writepanels.php:1157
+#: admin/wp-event-manager-writepanels.php:1303
 msgid "Posted by"
 msgstr "Veröffentlicht von"
 

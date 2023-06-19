@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-06-19 13:00+0530\n"
-"PO-Revision-Date: 2023-06-19 13:10+0530\n"
+"POT-Creation-Date: 2023-06-19 16:11+0530\n"
+"PO-Revision-Date: 2023-06-19 16:23+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1974,8 +1974,8 @@ msgid "Please enter event expiry date"
 msgstr "অনুগ্রহ করে ইভেন্টের মেয়াদ শেষ হওয়ার তারিখ লিখুন"
 
 #: admin/wp-event-manager-writepanels.php:133
-#: admin/wp-event-manager-writepanels.php:1156
-#: admin/wp-event-manager-writepanels.php:1302
+#: admin/wp-event-manager-writepanels.php:1157
+#: admin/wp-event-manager-writepanels.php:1303
 msgid "Posted by"
 msgstr "প্রতিবেদক"
 
@@ -3642,7 +3642,7 @@ msgstr "আরও তথ্য"
 #: shortcodes/wp-event-manager-shortcodes.php:937
 
 msgid "There are no events."
-msgstr "সকল ইভেন্ট"
+msgstr "আগের"
 
 #: templates/account-signin.php:5
 

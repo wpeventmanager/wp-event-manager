@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-06-19 13:00+0530\n"
-"PO-Revision-Date: 2023-06-19 13:03+0530\n"
+"POT-Creation-Date: 2023-06-19 16:11+0530\n"
+"PO-Revision-Date: 2023-06-19 16:12+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -569,6 +569,7 @@ msgid "General"
 msgstr "सामान्य"
 
 #: admin/wp-event-manager-settings.php:51
+
 msgid "Enable Organizer"
 msgstr "आयोजक सक्षम करें"
 
@@ -578,6 +579,7 @@ msgid ""
 msgstr "अपनी इवेंट वेबसाइट पर आयोजकों की कार्यक्षमता को निकालने के लिए इसे अक्षम करें।"
 
 #: admin/wp-event-manager-settings.php:60
+
 msgid "Enable Venue"
 msgstr "स्थान सक्षम करें"
 
@@ -1739,8 +1741,8 @@ msgid "Please enter event expiry date"
 msgstr "कृपया ईवेंट समय सीमा समाप्ति दिनांक दर्ज करें"
 
 #: admin/wp-event-manager-writepanels.php:133
-#: admin/wp-event-manager-writepanels.php:1156
-#: admin/wp-event-manager-writepanels.php:1302
+#: admin/wp-event-manager-writepanels.php:1157
+#: admin/wp-event-manager-writepanels.php:1303
 msgid "Posted by"
 msgstr "द्वारा पोस्ट किया गया"
 
