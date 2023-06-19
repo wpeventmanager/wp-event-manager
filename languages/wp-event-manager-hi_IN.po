@@ -52,10 +52,7 @@ msgstr "WP इवेंट मैनेजर शॉर्टकोड"
 #: admin/wp-event-manager-admin.php:137
 
 msgid "Shortcodes"
-msgstr ""
-"प्रक्रिया अभी भी अपेक्षाकृत सरल है यदि आप विज़ार्ड को छोड़ना चाहते हैं और मैन्युअल रूप से "
-"पृष्ठों को सेट करना चाहते हैं और स्वयं शॉर्टकोड करते हैं। कृपया समर्थन के लिए %1$sडॉक्यूमेंटेशन"
-"%2$s देखें।"
+msgstr "शॉर्टकोड"
 
 #: admin/wp-event-manager-admin.php:139
 msgid "Upgrade Database"
