@@ -1087,11 +1087,12 @@ class WP_Event_Manager_Writepanels {
 		if(isset($ticket_type) && $ticket_type=='free'){
 			update_post_meta($post_id, '_event_ticket_price', '');
 		}
-		/* Set Post Status To Expired If Already Expired */
-		$event_timezone = get_post_meta($post_id, '_event_timezone', true);
+		
 		// check if timezone settings is enabled as each event then set current time stamp according to the timezone
 		// for eg. if each event selected then Berlin timezone will be different then current site timezone.
 		if(WP_Event_Manager_Date_Time::get_event_manager_timezone_setting() == 'each_event') {
+			/* Set Post Status To Expired If Already Expired */
+			$event_timezone = get_post_meta($post_id, '_event_timezone', true);
 			$current_timestamp = WP_Event_Manager_Date_Time::current_timestamp_from_event_timezone($event_timezone);
 		} else {
 			$current_timestamp = current_time('timestamp'); // If site wise timezone selected
@@ -1099,7 +1100,7 @@ class WP_Event_Manager_Writepanels {
 
 		//set expire date at 12:00 PM of the selected day     
 		$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(get_post_meta($post_id, '_event_expiry_date', true). ' 23:59:30')), $post);     
-		$today_date = date('Y-m-d H:i:s', $current_timestamp);     
+		$today_date = apply_filters('wpem_set_current_expire_time', date('Y-m-d H:i:s', $current_timestamp));     
 
 		//check for event expire    
 		$post_status = $expiry_date && strtotime($today_date) > strtotime($expiry_date) ? 'expired' : false;
