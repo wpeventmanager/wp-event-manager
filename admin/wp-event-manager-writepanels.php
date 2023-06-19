@@ -1100,7 +1100,7 @@ class WP_Event_Manager_Writepanels {
 
 		//set expire date at 12:00 PM of the selected day     
 		$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(get_post_meta($post_id, '_event_expiry_date', true). ' 23:59:30')), $post);     
-		$today_date = apply_filters('wpem_set_current_expire_time', date('Y-m-d H:i:s', $current_timestamp));     
+		$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', $current_timestamp));     
 
 		//check for event expire    
 		$post_status = $expiry_date && strtotime($today_date) > strtotime($expiry_date) ? 'expired' : false;
