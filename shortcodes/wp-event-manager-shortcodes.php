@@ -615,7 +615,6 @@ class WP_Event_Manager_Shortcodes{
 		if(!get_option('event_manager_enable_event_ticket_prices_filter')) {
 			$show_ticket_prices = false;
 		}
-
 		// String and bool handling
 		$show_filters              = $this->string_to_bool($show_filters);
 		$show_categories           = $this->string_to_bool($show_categories);
@@ -648,13 +647,14 @@ class WP_Event_Manager_Shortcodes{
 
 		//Set value for the ticket prices		
 		// $ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
-
+		
 		// Array handling
 		$datetimes            = is_array($datetimes) ? $datetimes : array_filter(array_map('trim', explode(',', $datetimes)));
 		$categories           = is_array($categories) ? $categories : array_filter(array_map('trim', explode(',', $categories)));
 		$event_types          = is_array($event_types) ? $event_types : array_filter(array_map('trim', explode(',', $event_types)));
-		$ticket_prices        = is_array($ticket_prices) ? $ticket_prices : array_filter(array_map('trim', explode(',', $ticket_prices)));
-
+		if(!empty($ticket_prices)){
+			$ticket_prices        = is_array($ticket_prices) ? $ticket_prices : array_filter(array_map('trim', explode(',', $ticket_prices)));
+		}
 		// Get keywords, location, datetime, category, event type and ticket price from query string if set
 		if(!empty($_GET['search_keywords'])) {
 			$keywords = sanitize_text_field($_GET['search_keywords']);

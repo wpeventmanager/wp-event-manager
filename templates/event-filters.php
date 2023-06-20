@@ -131,7 +131,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<?php endif;
 
 			if(isset($show_ticket_prices)) :
-				if(isset($ticket_prices)) :
+				if(isset($ticket_prices) && !empty($ticket_prices)) :
 					foreach ($ticket_prices as $ticket_price) : ?>
 						<input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
 					<?php endforeach; ?>
