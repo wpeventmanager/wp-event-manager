@@ -82,7 +82,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 		</div> <!-- /row -->
 		<div class="wpem-row">
 			<!-- Search by event categories section start -->
-			<?php if(isset($categories)) :
+			<?php if(isset($categories) && !empty($categories)) :
 				foreach ($categories as $category) : ?>
 					<input type="hidden" name="search_categories[]" value="<?php echo sanitize_title($category); ?>" />
 				<?php endforeach;
@@ -113,7 +113,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<!-- Search by event categories section end -->
 
 			<!-- Search by event type section start -->
-			<?php if(isset($event_types)) :
+			<?php if(isset($event_types) && !empty($event_types)) :
 				foreach ($event_types as $event_type) : ?>
 					<input type="hidden" name="search_event_types[]" value="<?php echo sanitize_title($event_type); ?>" />
 				<?php endforeach;

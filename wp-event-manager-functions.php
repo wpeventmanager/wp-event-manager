@@ -1193,7 +1193,7 @@ function event_manager_dropdown_selection($args = '') {
 		} else {
 			$depth = -1; // Flat.
 		}
-		$output .= $walker->walk($categories, $depth, $r);
+		$output .= $walker->walk($categories, $depth, $query);
 	}
 
 	$output .= "</select>\n";
