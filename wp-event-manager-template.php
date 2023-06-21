@@ -155,7 +155,7 @@ function get_event_status($post = null){
  */
 function is_event_cancelled($post = null){
 	$post = get_post($post);
-	return $post->_cancelled ? true : false;
+	return $post->_event_cancelled ? true : false;
 }
 
 /**

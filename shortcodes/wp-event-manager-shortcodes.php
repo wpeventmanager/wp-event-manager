@@ -113,7 +113,7 @@ class WP_Event_Manager_Shortcodes{
 				switch ($action) {
 					case 'mark_cancelled':
 						// Check status
-						if($event->_cancelled == 1)
+						if($event->_event_cancelled == 1)
 							throw new Exception(__('This event has already been cancelled.', 'wp-event-manager'));
 
 						// Update
@@ -124,7 +124,7 @@ class WP_Event_Manager_Shortcodes{
 						break;
 					case 'mark_not_cancelled':
 						// Check status
-						if($event->_cancelled != 1) {
+						if($event->_event_cancelled != 1) {
 							throw new Exception(__('This event is not cancelled.', 'wp-event-manager'));
 						}
 						// Update
