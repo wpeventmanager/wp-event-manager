@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-06-19 16:11+0530\n"
-"PO-Revision-Date: 2023-06-19 16:17+0530\n"
+"POT-Creation-Date: 2023-06-22 16:22+0530\n"
+"PO-Revision-Date: 2023-06-22 17:32+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,7 +175,7 @@ msgstr "Banner"
 
 #: admin/wp-event-manager-cpt.php:308
 #: admin/wp-event-manager-field-editor.php:186
-#: admin/wp-event-manager-form-field-editor-field.php:138
+#: admin/wp-event-manager-form-field-editor-field.php:154
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:8
 msgid "Type"
 msgstr "Typ"
@@ -281,60 +281,60 @@ msgstr "E-Mail"
 
 #: admin/wp-event-manager-field-editor.php:30
 #: admin/wp-event-manager-field-editor.php:131
-#: admin/wp-event-manager-form-field-editor-field.php:114
+#: admin/wp-event-manager-form-field-editor-field.php:129
 msgid "Text"
 msgstr "Text"
 
 #: admin/wp-event-manager-field-editor.php:31
 #: admin/wp-event-manager-field-editor.php:132
-#: admin/wp-event-manager-form-field-editor-field.php:115
+#: admin/wp-event-manager-form-field-editor-field.php:130
 msgid "Time"
 msgstr "Zeit"
 
 #: admin/wp-event-manager-field-editor.php:32
 #: admin/wp-event-manager-field-editor.php:133
-#: admin/wp-event-manager-form-field-editor-field.php:116
+#: admin/wp-event-manager-form-field-editor-field.php:131
 msgid "Checkbox"
 msgstr "Checkbox"
 
 #: admin/wp-event-manager-field-editor.php:33
 #: admin/wp-event-manager-field-editor.php:134
-#: admin/wp-event-manager-form-field-editor-field.php:117
+#: admin/wp-event-manager-form-field-editor-field.php:132
 msgid "Date"
 msgstr "Datum"
 
 #: admin/wp-event-manager-field-editor.php:34
 #: admin/wp-event-manager-field-editor.php:135
-#: admin/wp-event-manager-form-field-editor-field.php:118
+#: admin/wp-event-manager-form-field-editor-field.php:133
 msgid "Timezone"
 msgstr "Zeitzone"
 
 #: admin/wp-event-manager-field-editor.php:35
 #: admin/wp-event-manager-field-editor.php:136
-#: admin/wp-event-manager-form-field-editor-field.php:119
+#: admin/wp-event-manager-form-field-editor-field.php:134
 msgid "File"
 msgstr "Datei"
 
 #: admin/wp-event-manager-field-editor.php:36
 #: admin/wp-event-manager-field-editor.php:137
-#: admin/wp-event-manager-form-field-editor-field.php:120
+#: admin/wp-event-manager-form-field-editor-field.php:135
 msgid "Hidden"
 msgstr "Verborgen"
 
 #: admin/wp-event-manager-field-editor.php:37
 #: admin/wp-event-manager-field-editor.php:138
-#: admin/wp-event-manager-form-field-editor-field.php:121
+#: admin/wp-event-manager-form-field-editor-field.php:136
 msgid "Multiselect"
 msgstr "Mehrfachauswahl"
 
 #: admin/wp-event-manager-field-editor.php:38
 #: admin/wp-event-manager-field-editor.php:139
-#: admin/wp-event-manager-form-field-editor-field.php:122
+#: admin/wp-event-manager-form-field-editor-field.php:137
 msgid "Number"
 msgstr "Nummer"
 
 #: admin/wp-event-manager-field-editor.php:39
-#: admin/wp-event-manager-form-field-editor-field.php:123
+#: admin/wp-event-manager-form-field-editor-field.php:138
 #: wp-event-manager-template.php:376 wp-event-manager-template.php:377
 #: wp-event-manager-template.php:2172
 msgid "Password"
@@ -342,19 +342,19 @@ msgstr "Account-Passwort"
 
 #: admin/wp-event-manager-field-editor.php:40
 #: admin/wp-event-manager-field-editor.php:140
-#: admin/wp-event-manager-form-field-editor-field.php:124
+#: admin/wp-event-manager-form-field-editor-field.php:139
 msgid "Radio"
 msgstr "Radio"
 
 #: admin/wp-event-manager-field-editor.php:41
 #: admin/wp-event-manager-field-editor.php:142
-#: admin/wp-event-manager-form-field-editor-field.php:125
+#: admin/wp-event-manager-form-field-editor-field.php:140
 msgid "Select"
 msgstr "Auswählen"
 
 #: admin/wp-event-manager-field-editor.php:42
 #: admin/wp-event-manager-field-editor.php:146
-#: admin/wp-event-manager-form-field-editor-field.php:126
+#: admin/wp-event-manager-form-field-editor-field.php:141
 msgid "Textarea"
 msgstr "Textbereich"
 
@@ -406,13 +406,13 @@ msgid "%s form fields"
 msgstr "%s Formularfelder"
 
 #: admin/wp-event-manager-field-editor.php:185
-#: admin/wp-event-manager-form-field-editor-field.php:137
+#: admin/wp-event-manager-form-field-editor-field.php:153
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:7
 msgid "Field Label"
 msgstr "Feld Beschriftung"
 
 #: admin/wp-event-manager-field-editor.php:187
-#: admin/wp-event-manager-form-field-editor-field.php:139
+#: admin/wp-event-manager-form-field-editor-field.php:155
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:9
 #: admin/wp-event-manager-shortcode-list.php:64
 #: forms/wp-event-manager-form-submit-event.php:216
@@ -420,31 +420,31 @@ msgid "Description"
 msgstr "Beschreibung"
 
 #: admin/wp-event-manager-field-editor.php:188
-#: admin/wp-event-manager-form-field-editor-field.php:140
+#: admin/wp-event-manager-form-field-editor-field.php:156
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:10
 msgid "Placeholder / Options"
 msgstr "Platzhalter / Optionen"
 
 #: admin/wp-event-manager-field-editor.php:189
-#: admin/wp-event-manager-form-field-editor-field.php:141
+#: admin/wp-event-manager-form-field-editor-field.php:157
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:11
 msgid "Meta Key"
 msgstr "Meta Key"
 
 #: admin/wp-event-manager-field-editor.php:190
-#: admin/wp-event-manager-form-field-editor-field.php:142
+#: admin/wp-event-manager-form-field-editor-field.php:158
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:12
 msgid "Only For Admin"
 msgstr "Nur für Administratoren"
 
 #: admin/wp-event-manager-field-editor.php:191
-#: admin/wp-event-manager-form-field-editor-field.php:143
+#: admin/wp-event-manager-form-field-editor-field.php:159
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:13
 msgid "Priority"
 msgstr "Priorität"
 
 #: admin/wp-event-manager-field-editor.php:192
-#: admin/wp-event-manager-form-field-editor-field.php:144
+#: admin/wp-event-manager-form-field-editor-field.php:160
 #: admin/wp-event-manager-form-field-editor-group-field-row.php:14
 msgid "Validation"
 msgstr "Validierung"
@@ -470,40 +470,16 @@ msgstr "Die Felder wurden erfolgreich gespeichert."
 msgid "Please try again to save fields."
 msgstr "Bitte versuchen Sie erneut, Felder zu speichern."
 
-#: admin/wp-event-manager-form-field-editor-field.php:27
-#: admin/wp-event-manager-form-field-editor-field.php:46
-#: admin/wp-event-manager-form-field-editor-field.php:80
+#: admin/wp-event-manager-form-field-editor-field.php:31
+#: admin/wp-event-manager-form-field-editor-field.php:54
+#: admin/wp-event-manager-form-field-editor-field.php:92
 #: admin/wp-event-manager-form-field-editor-group-field.php:28
 #: admin/wp-event-manager-form-field-editor-group-field.php:50
 #: admin/wp-event-manager-form-field-editor-group-field.php:86
 msgid "N/A"
 msgstr "N/A"
 
-#: admin/wp-event-manager-form-field-editor-field.php:47
-#: admin/wp-event-manager-form-field-editor-group-field.php:51
-msgid "Pipe (|) separate options."
-msgstr "Optionen durch Pipe (|) trennen."
-
-#: admin/wp-event-manager-form-field-editor-field.php:50
-#: admin/wp-event-manager-form-field-editor-group-field.php:54
-msgid "Multiple Files?"
-msgstr "Mehrere Dateien?"
-
-#: admin/wp-event-manager-form-field-editor-field.php:91
-#: admin/wp-event-manager-form-field-editor-group-field.php:99
-msgid "Not Required"
-msgstr "Nicht erforderlich"
-
-#: admin/wp-event-manager-form-field-editor-field.php:96
-#: admin/wp-event-manager-form-field-editor-group-field.php:106
-msgid "Required"
-msgstr "Erforderlich"
-
-#: admin/wp-event-manager-form-field-editor-field.php:151
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:21
-msgid "Add Child field"
-msgstr "Untergeordnetes Feld hinzufügen"
-
+#: admin/wp-event-manager-form-field-editor-field.php:53
 #: admin/wp-event-manager-form-field-editor-group-field.php:48
 #: admin/wp-event-manager-form-field-editor-group-field.php:84
 #: templates/content-single-event_listing.php:175
@@ -533,6 +509,31 @@ msgstr "Untergeordnetes Feld hinzufügen"
 #, php-format
 msgid "%s"
 msgstr "%s"
+
+#: admin/wp-event-manager-form-field-editor-field.php:55
+#: admin/wp-event-manager-form-field-editor-group-field.php:51
+msgid "Pipe (|) separate options."
+msgstr "Optionen durch Pipe (|) trennen."
+
+#: admin/wp-event-manager-form-field-editor-field.php:58
+#: admin/wp-event-manager-form-field-editor-group-field.php:54
+msgid "Multiple Files?"
+msgstr "Mehrere Dateien?"
+
+#: admin/wp-event-manager-form-field-editor-field.php:104
+#: admin/wp-event-manager-form-field-editor-group-field.php:99
+msgid "Not Required"
+msgstr "Nicht erforderlich"
+
+#: admin/wp-event-manager-form-field-editor-field.php:109
+#: admin/wp-event-manager-form-field-editor-group-field.php:106
+msgid "Required"
+msgstr "Erforderlich"
+
+#: admin/wp-event-manager-form-field-editor-field.php:167
+#: admin/wp-event-manager-form-field-editor-group-field-row.php:21
+msgid "Add Child field"
+msgstr "Untergeordnetes Feld hinzufügen"
 
 #: admin/wp-event-manager-permalink-settings.php:57
 msgid "Event base"
