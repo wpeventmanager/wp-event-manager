@@ -166,7 +166,7 @@ function is_event_cancelled($post = null){
  */
 function is_event_featured($post = null){
 	$post = get_post($post);
-	return $post->_featured ? true : false;
+	return $post->_event_featured ? true : false;
 }
 
 /**
