@@ -1936,17 +1936,40 @@ if(!function_exists('get_wpem_email_from_name')) {
 }
 
 if(!function_exists('get_wpem_email_from_address')){
-   /**
-	* Get the from address for outgoing emails.
-	*
-	* @param string $from_email Default wp_mail() email address to send from.
-	* @return string
-	* @since 3.1.35
-	*/
-   function get_wpem_email_from_address( $from_email = '' ) {
-	   $from_email = apply_filters( 'wpem_email_from_address', get_option( 'wpem_email_from_address' ), $this, $from_email );
-	   return sanitize_email( $from_email );
-   }
+	/**
+	 * Get the from address for outgoing emails.
+	 *
+	 * @param string $from_email Default wp_mail() email address to send from.
+	 * @return string
+	 * @since 3.1.35
+	 */
+	function get_wpem_email_from_address( $from_email = '' ) {
+		$from_email = apply_filters( 'wpem_email_from_address', get_option( 'wpem_email_from_address' ), $this, $from_email );
+		return sanitize_email( $from_email );
+	}
+ }
+
+if(!function_exists('get_wpem_email_headers')) {
+	/**
+	 * Get email headers.
+	 *
+	 * @param string, string, string
+	 * @return string
+	 * @since 3.1.35
+	 */
+	function get_wpem_email_headers($sender_name = '', $sender_address = '', $content_type = 'text/html; charset=UTF-8') {
+		$header = 'Content-Type: ' . $content_type . "\r\n";
+
+		if (empty($sender_name)) 
+			$sender_name = get_wpem_email_from_name();
+		if(empty($sender_address))
+			$sender_address = get_wpem_email_from_address();
+		
+		$header .= 'From: ' . $sender_name . ' <' . $sender_address . ">\r\n";
+		$header .= 'Reply-to: ' . $sender_name . ' <' . $sender_address . ">\r\n";
+
+		return apply_filters( 'wpem_default_email_headers', $header, $content_type, $sender_name, $sender_address );
+	}
 }
 
 /**
