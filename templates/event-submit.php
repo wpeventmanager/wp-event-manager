@@ -112,7 +112,10 @@ global $event_manager; ?>
 
 					<?php foreach($organizer_fields['organizer'] as $key => $field) : ?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-							<label for="<?php esc_attr_e($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager') . apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
+							<label for="<?php esc_attr_e($key); ?>">
+								<?php _e(esc_attr($field['label']), 'wp-event-manager');
+							 	echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
+							</label>
 							<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 								<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
 							</div>
@@ -157,7 +160,10 @@ if(get_option('enable_event_venue')) :
 
 					<?php foreach($venue_fields['venue'] as $key => $field) : ?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-							<label for="<?php esc_attr_e($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager') . apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
+							<label for="<?php esc_attr_e($key); ?>">
+								<?php _e(esc_attr($field['label']), 'wp-event-manager');
+								echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
+							</label>
 							<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 								<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
 							</div>
