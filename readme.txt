@@ -300,6 +300,27 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
+= [3.1.35] 23-06-2023 =
+
+Fixed : Repetition of event titles in the post_meta table is now resolved.
+Fixed: The undefined error messages are successfully removed.
+Fixed : The problem with the Past event display in the widget is fixed.
+Fixed : Event expiry date related issue is fixed.
+Fixed : The issue of improper email in the registration database is resolved.
+Fixed : The field editor page on the admin side remains blank when the organizer option is disabled in the general setting.
+Fixed : The content of Ticket selection filter settings is updated.
+Fixed : The language translation issue in the core plugin is resolved.
+Fixed : The mobile view of the event category and event type is improved
+Fixed : The design for long event titles in the event dashboard is improved.
+Fixed : Issue related to the loading time of the event overview site is resolved.
+Fixed : Choose an event and Choose a category options are added to the dropdown menu of event types and event categories.
+Fixed : Issue related to the processing time is shortened when using selected datetime filter option.
+Fixed : Problem with the event display of past event shortcodes is resolved.
+Fixed : Added shortcode to display the list of expired events.
+Added : Widgets are now available in the list format.
+Added : Shortcodes of each addon can now be displayed in a list form.
+
+
 = [3.1.34] 18-05-2023 =
 
 Fixed - PHP Fatal error message issue of the event manager plugin is fixed.
