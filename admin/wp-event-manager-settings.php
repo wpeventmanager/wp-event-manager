@@ -80,6 +80,22 @@ class WP_Event_Manager_Settings{
 							'desc'       => __('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'),
 							'attributes' => array(),
 						),
+						array(
+							'name' 		=> 'wpem_email_from_name', 
+							'std' 		=> '', 
+							'placeholder'=> __('Wordpress', 'wp-event-manager'), 
+							'label' 	=> __('"From" name', 'wp-event-manager'), 
+							'desc'       => __('If you are going to deal with Registrations or Emails then you need the sender name appears in outgoing WP Event Manager emails.', 'wp-event-manager'),
+							'type'      => 'text'
+						), 
+						array(
+							'name'        => 'wpem_email_from_address', 
+							'std'         => '', 
+							'placeholder' => __('wordpress@wordpress.com', 'wp-event-manager'), 
+							'label'       => __('"From" address', 'wp-event-manager'), 
+							'desc'        => __('If you are going to deal with Registrations or Emails then you need email appears in outgoing WP Event Manager emails.', 'wp-event-manager'), 
+							'type'        => 'email'
+						)
 					),
 				),
 				'event_listings'       => array(

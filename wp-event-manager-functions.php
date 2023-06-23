@@ -1921,6 +1921,34 @@ function get_event_order_by() {
 	return apply_filters('get_event_order_by_args', $args);
 }
 
+if(!function_exists('get_wpem_email_from_name')) {
+	/**
+	* Get the from name for outgoing emails.
+	*
+	* @param string $from_name Default wp_mail() name associated with the "from" email address.
+	* @return string
+	* @since 3.1.35 
+	*/
+   function get_wpem_email_from_name( $from_name = '' ) {
+	   $from_name = apply_filters( 'wpem_email_from_name', get_option( 'wpem_email_from_name' ), $this, $from_name );
+	   return wp_specialchars_decode( esc_html( $from_name ), ENT_QUOTES );
+   }
+}
+
+if(!function_exists('get_wpem_email_from_address')){
+   /**
+	* Get the from address for outgoing emails.
+	*
+	* @param string $from_email Default wp_mail() email address to send from.
+	* @return string
+	* @since 3.1.35
+	*/
+   function get_wpem_email_from_address( $from_email = '' ) {
+	   $from_email = apply_filters( 'wpem_email_from_address', get_option( 'wpem_email_from_address' ), $this, $from_email );
+	   return sanitize_email( $from_email );
+   }
+}
+
 /**
  * wpem_convert_php_to_moment_format function
  * 
