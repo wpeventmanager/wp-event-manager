@@ -585,6 +585,13 @@ class WP_Event_Manager_Settings{
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
+										case 'email': ?>
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
+											<?php
+											if($option['desc']) { ?>
+												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
+											<?php }
+											break;
 										case 'number': ?>
 											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr_e($value); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
