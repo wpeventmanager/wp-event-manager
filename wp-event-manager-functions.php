@@ -1957,7 +1957,7 @@ if(!function_exists('get_wpem_email_headers')) {
 	 * @return string
 	 * @since 3.1.35
 	 */
-	function get_wpem_email_headers($sender_name = '', $sender_address = '', $content_type = 'text/html; charset=UTF-8') {
+	function get_wpem_email_headers($post_id, $sender_name = '', $sender_address = '', $content_type = 'text/html; charset=UTF-8') {
 		$header = 'Content-Type: ' . $content_type . "\r\n";
 
 		if (empty($sender_name)) 
@@ -1968,7 +1968,7 @@ if(!function_exists('get_wpem_email_headers')) {
 		$header .= 'From: ' . $sender_name . ' <' . $sender_address . ">\r\n";
 		$header .= 'Reply-to: ' . $sender_name . ' <' . $sender_address . ">\r\n";
 
-		return apply_filters( 'wpem_default_email_headers', $header, $content_type, $sender_name, $sender_address );
+		return apply_filters( 'wpem_default_email_headers', $header, $content_type, $sender_name, $sender_address, $post_id);
 	}
 }
 
