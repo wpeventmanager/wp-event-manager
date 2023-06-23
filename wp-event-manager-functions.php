@@ -1930,7 +1930,7 @@ if(!function_exists('get_wpem_email_from_name')) {
 	* @since 3.1.35 
 	*/
    function get_wpem_email_from_name( $from_name = '' ) {
-	   $from_name = apply_filters( 'wpem_email_from_name', get_option( 'wpem_email_from_name' ), $this, $from_name );
+	   $from_name = apply_filters( 'wpem_email_from_name', get_option( 'wpem_email_from_name' ), $from_name );
 	   return wp_specialchars_decode( esc_html( $from_name ), ENT_QUOTES );
    }
 }
@@ -1944,7 +1944,7 @@ if(!function_exists('get_wpem_email_from_address')){
 	 * @since 3.1.35
 	 */
 	function get_wpem_email_from_address( $from_email = '' ) {
-		$from_email = apply_filters( 'wpem_email_from_address', get_option( 'wpem_email_from_address' ), $this, $from_email );
+		$from_email = apply_filters( 'wpem_email_from_address', get_option( 'wpem_email_from_address' ), $from_email );
 		return sanitize_email( $from_email );
 	}
  }
