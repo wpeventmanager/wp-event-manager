@@ -228,14 +228,14 @@ class WP_Event_Manager_CPT {
 			return;
 		}
 
-		$r                 = array();
-		$r['pad_counts']   = 1;
-		$r['hierarchical'] = 1;
-		$r['hide_empty']   = 0;
-		$r['show_count']   = 1;
-		$r['selected']     = (isset($wp_query->query['event_listing_type'])) ? $wp_query->query['event_listing_type'] : '';
-		$r['menu_order']   = false;
-		$terms             = get_terms('event_listing_type', $r);
+		$args = array();
+		$args['pad_counts']   = 1;
+		$args['hierarchical'] = 1;
+		$args['hide_empty']   = 0;
+		$args['show_count']   = 1;
+		$args['selected']     = (isset($wp_query->query['event_listing_type'])) ? $wp_query->query['event_listing_type'] : '';
+		$args['menu_order']   = false;
+		$terms             = get_terms('event_listing_type', $args);
 		$walker            = new WP_Event_Manager_Category_Walker();
 
 		if(!$terms) {
@@ -244,7 +244,7 @@ class WP_Event_Manager_CPT {
 
 		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
 		$output .= '<option value="" ' . selected(isset($_GET['event_listing_type']) ? $_GET['event_listing_type'] : '', '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
-		$output .= $walker->walk($terms, 0, $r);
+		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
 
 		printf('%s', $output);
@@ -321,7 +321,7 @@ class WP_Event_Manager_CPT {
 		if(!get_option('enable_event_organizer')) {
 			unset($columns['event_organizer']);
 		}
-		return $columns;
+		return apply_filters('wp_event_manager_cpt_event_column', $columns);
 	}
 
 	/**
@@ -496,6 +496,10 @@ class WP_Event_Manager_CPT {
 					}
 				}
 				echo wp_kses_post('</div>');
+				break;
+			default :
+				$value = get_post_meta($post->ID, $column, true);
+				echo apply_filters('wpem_cpt_event_custom_column', $value, $column, $post);
 				break;
 		}
 	}
