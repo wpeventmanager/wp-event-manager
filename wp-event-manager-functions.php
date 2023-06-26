@@ -1957,18 +1957,22 @@ if(!function_exists('get_wpem_email_headers')) {
 	 * @return string
 	 * @since 3.1.35
 	 */
-	function get_wpem_email_headers($post_id, $sender_name = '', $sender_address = '', $content_type = 'text/html; charset=UTF-8') {
-		$header = 'Content-Type: ' . $content_type . "\r\n";
+	function get_wpem_email_headers($post_id, $sender_name = '', $sender_address = '', $reply_name = '', $replay_address = '', $content_type = 'text/html; charset=UTF-8') {
+		$header[] = 'Content-Type: text/html; charset=UTF-8';
 
 		if (empty($sender_name)) 
 			$sender_name = get_wpem_email_from_name();
 		if(empty($sender_address))
 			$sender_address = get_wpem_email_from_address();
-		
-		$header .= 'From: ' . $sender_name . ' <' . $sender_address . ">\r\n";
-		$header .= 'Reply-to: ' . $sender_name . ' <' . $sender_address . ">\r\n";
 
-		return apply_filters( 'wpem_default_email_headers', $header, $content_type, $sender_name, $sender_address, $post_id);
+		if (empty($reply_name)) 
+			$reply_name = get_wpem_email_from_name();
+		if(empty($replay_address))
+			$replay_address = get_wpem_email_from_address();
+		
+		$header[] = 'From: '.$sender_name.'<'.$sender_address.'>';
+		$header[] = 'Reply-to: ' . $reply_name . '<' . $replay_address . '>';
+		return apply_filters( 'change_wpem_default_email_headers', $header, $content_type, $sender_name, $sender_address, $post_id);
 	}
 }
 
