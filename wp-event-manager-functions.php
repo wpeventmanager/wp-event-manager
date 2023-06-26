@@ -1966,9 +1966,9 @@ if(!function_exists('get_wpem_email_headers')) {
 			$sender_address = get_wpem_email_from_address();
 
 		if (empty($reply_name)) 
-			$reply_name = get_wpem_email_from_name();
+			$reply_name = $sender_name;
 		if(empty($replay_address))
-			$replay_address = get_wpem_email_from_address();
+			$replay_address = $sender_address;
 		
 		$header[] = 'From: '.$sender_name.'<'.$sender_address.'>';
 		$header[] = 'Reply-to: ' . $reply_name . '<' . $replay_address . '>';
