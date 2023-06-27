@@ -251,7 +251,8 @@ if(!function_exists('get_event_listings')) :
 					$search_end_date['relation'] = 'AND';
 					$date_search[] = $search_end_date;
 				}
-				$query_args['meta_query'][] = $date_search;
+				if(!empty($date_search))
+					$query_args['meta_query'][] = $date_search;
 			}
 		}
 
