@@ -1175,8 +1175,8 @@ function event_manager_dropdown_selection($args = '') {
 	$class      = esc_attr($class);
 	$id = $query['id'] ? $query['id'] : $query['name'];
 
-	if($taxonomy==='event_listing_type'):
-		$placeholder=__('Choose an event type', 'wp-event-manager');
+	if($taxonomy === 'event_listing_type'):
+		$placeholder = __('Choose an event type', 'wp-event-manager');
 		$multiple_text = __('Choose event types', 'wp-event-manager');
 	endif;
 
