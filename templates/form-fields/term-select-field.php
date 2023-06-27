@@ -19,7 +19,7 @@ if($key == 'event_category'){
 // Select only supports 1 value
 if (is_array($selected)) {
 	$selected = current($selected);
-}if(isset($field['value'])){
+}elseif(isset($field['value'])){
 	$selected = $field['value'];
 }else{
 	$selected = '';
