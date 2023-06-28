@@ -4,7 +4,7 @@ namespace WPEventManager\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
  * Elementor Upcoming Event Listing
@@ -18,7 +18,6 @@ class Elementor_Upcoming_Event_Listing extends Widget_Base {
 	 * Retrieve the widget name.
 	 *
 	 * @access public
-	 *
 	 * @return string Widget name.
 	 */
 	public function get_name() {
@@ -29,19 +28,16 @@ class Elementor_Upcoming_Event_Listing extends Widget_Base {
 	 * Retrieve the widget title.
 	 *
 	 * @access public
-	 *
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Upcoming Event Listing', 'wp-event-manager' );
+		return __('Upcoming Event Listing', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
-	 *
 	 * Retrieve shortcode widget icon.
 	 *
 	 * @access public
-	 *
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
@@ -49,36 +45,31 @@ class Elementor_Upcoming_Event_Listing extends Widget_Base {
 	}
 	/**
 	 * Get widget keywords.
-	 *
 	 * Retrieve the list of keywords the widget belongs to.
 	 *
 	 * @access public
-	 *
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'upcoming-event-listing', 'code' ];
+		return ['upcoming-event-listing', 'code'];
 	}
 
 	/**
 	 * Retrieve the list of categories the widget belongs to.
-	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
 	 * Note that currently Elementor supports only one category.
 	 * When multiple categories passed, Elementor uses the first one.
 	 *
 	 * @access public
-	 *
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'wp-event-manager-categories' ];
+		return ['wp-event-manager-categories'];
 	}
 
 	/**
 	 * Register the widget controls.
-	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
 	 * @access protected
@@ -86,106 +77,94 @@ class Elementor_Upcoming_Event_Listing extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			[
-				'label' => __( 'Upcoming Event Listing', 'wp-event-manager' ),
-			]
+			['label' => __('Upcoming Event Listing', 'wp-event-manager'),]
 		);
-
 		$this->add_control(
 			'show_pagination',
 			[
-				'label' => __( 'Show Pagination', 'wp-event-manager' ),
+				'label' => __('Show Pagination', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'false',
 				'options' => [
-					'false' => __( 'False', 'wp-event-manager' ),
-					'true' => __( 'True', 'wp-event-manager' ),
+					'false' => __('False', 'wp-event-manager'),
+					'true' => __('True', 'wp-event-manager'),
 				],
 			]
 		);
-
 		$this->add_control(
 			'per_page',
 			[
-				'label'       => __( 'Post Per Page', 'wp-event-manager' ),
+				'label'       => __('Post Per Page', 'wp-event-manager'),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => '10',
 			]
 		);
-
 		$this->add_control(
 			'order',
 			[
-				'label' => __( 'Order', 'wp-event-manager' ),
+				'label' => __('Order', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'DESC',
 				'options' => [
-					'ASC' => __( 'Ascending (ASC)', 'wp-event-manager' ),
-					'DESC' => __( 'Descending  (DESC)', 'wp-event-manager' ),
+					'ASC' => __('Ascending (ASC)', 'wp-event-manager'),
+					'DESC' => __('Descending  (DESC)', 'wp-event-manager'),
 				],
 			]
 		);
-
 		$this->add_control(
 			'meta_key',
 			[
-				'label' => __( 'Order By', 'wp-event-manager' ),
+				'label' => __('Order By', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'event_start_date',
 				'options' => [
 					'title' => __('Title', 'wp-event-manager'),
-					'ID' => __( 'ID', 'wp-event-manager' ),
-					'name' => __( 'Name', 'wp-event-manager' ),
+					'ID' => __('ID', 'wp-event-manager'),
+					'name' => __('Name', 'wp-event-manager'),
 					'modified' => __('Modified', 'wp-event-manager'),
-					'parent' => __( 'Parent', 'wp-event-manager' ),
-					'event_start_date' => __( 'Event Start Date', 'wp-event-manager' ),
-					'rand' => __( 'Rand', 'wp-event-manager' ),
+					'parent' => __('Parent', 'wp-event-manager'),
+					'event_start_date' => __('Event Start Date', 'wp-event-manager'),
+					'rand' => __('Rand', 'wp-event-manager'),
 				],
 			]
 		);
-
 		$this->add_control(
 			'location',
 			[
-				'label'       => __( 'Location', 'wp-event-manager' ),
+				'label'       => __('Location', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter Location', 'wp-event-manager' ),
+				'placeholder' => __('Enter Location', 'wp-event-manager'),
 				'default'     => '',
 			]
 		);
-
 		$this->add_control(
 			'keywords',
 			[
-				'label'       => __( 'Keywords ', 'wp-event-manager' ),
+				'label'       => __('Keywords ', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter Keywords ', 'wp-event-manager' ),
+				'placeholder' => __('Enter Keywords ', 'wp-event-manager'),
 				'default'     => '',
 			]
 		);
-
 		$this->add_control(
 			'selected_categories',
 			[
-				'label'       => __( 'Categories ', 'wp-event-manager' ),
+				'label'       => __('Categories ', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Enter Categories by comma separate', 'wp-event-manager' ),
+				'placeholder' => __('Enter Categories by comma separate', 'wp-event-manager'),
 				'default'     => '',
 			]
 		);
-
 		$this->add_control(
 			'selected_event_types',
 			[
-				'label'       => __( 'Event Types ', 'wp-event-manager' ),
+				'label'       => __('Event Types ', 'wp-event-manager'),
 				'type'        => Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Enter Event Types by comma separate', 'wp-event-manager' ),
+				'placeholder' => __('Enter Event Types by comma separate', 'wp-event-manager'),
 				'default'     => '',
 			]
 		);
-
 		$this->end_controls_section();
-
 	}
 
 	/**
@@ -217,8 +196,6 @@ class Elementor_Upcoming_Event_Listing extends Widget_Base {
             $event_types = 'selected_event_types="'.esc_attr($settings['selected_event_types']).'"';
         else
             $event_types = '';
-
-
 
 		$shortcode = '[upcoming_events show_pagination="' . esc_attr($settings['show_pagination']) . '" per_page="' . esc_attr($settings['per_page']) . '" order="' . esc_attr($settings['order']) . '" meta_key="' . esc_attr($settings['meta_key']) . '" ' . $location . ' ' . $keywords . ' ' . $categories . ' ' . $event_types . ']';
 		echo do_shortcode($shortcode);

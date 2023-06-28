@@ -42,27 +42,21 @@ var Common = function () {
         	  jQuery('.wpem-modal').removeClass("wpem-modal-open");
         	});
 
-            if (jQuery(".wpem-listing-accordion").length > 0)
-            {
+            if (jQuery(".wpem-listing-accordion").length > 0) {
                 jQuery(".wpem-listing-accordion").click(function(){
                     this.classList.toggle("active");
                     var panel = this.nextElementSibling;
-                    if (panel.style.display === "block")
-                    {
+                    if (panel.style.display === "block") {
                         panel.style.display = "none";
-                    } else
-                    {
+                    } else {
                         panel.style.display = "block";
                     }
                 });
             }
-
         },   
         tabChanged:function(event){
         	jQuery(this).addClass('active').parents('ul.wpem-tabs-wrap').find('li').not(jQuery(this)).removeClass('active');
-			
 			var tabId = jQuery(this).data('tab');
-			 
 			jQuery(this).closest('.wpem-tabs-wrapper').find('.wpem-tab-content .wpem-tab-pane').not('#'+tabId).removeClass('active');
 			jQuery(this).closest('.wpem-tabs-wrapper').find('.wpem-tab-content .wpem-tab-pane#'+tabId).addClass('active');
 		},
@@ -87,7 +81,6 @@ var Common = function () {
             if (jsonString === undefined || jsonString.length === 0) {
                 return undefined;
             }
-            // return JSON.parse(jsonString);
             return eval('(' + jsonString + ')');
         },
 
@@ -105,7 +98,7 @@ var Common = function () {
             /// <summary>set data value.</summary>
             /// <since>1.0.0</since>
             /// <param name="data" />  	      
-	       if (value === undefined || value.length === 0) {
+	        if (value === undefined || value.length === 0) {
                 return;
             }
             javaScriptInfoLoggingEnabled=value;
@@ -115,7 +108,7 @@ var Common = function () {
             /// <summary>set data value.</summary>
             /// <since>1.0.0</since>
             /// <param name="data" />  	      
-	       if (value === undefined || value.length === 0) {
+	        if (value === undefined || value.length === 0) {
                 return;
             }
             javaScriptTraceLoggingEnabled=value;
@@ -125,7 +118,7 @@ var Common = function () {
             /// <summary>Logs some info data if JavaScript info logging is enabled.</summary>
             /// <since>1.0.0</since>
             /// <param name="data" />  	      
-	       if (javaScriptInfoLoggingEnabled ) {
+	        if (javaScriptInfoLoggingEnabled ) {
                 if (window.console) {
                     console.log(data);
                 }
@@ -136,7 +129,7 @@ var Common = function () {
             /// <summary>Logs some trace data if JavaScript trace logging is enabled.</summary>
             /// <since>1.0.0</since>
             /// <param name="data" />	       
-	       if ( javaScriptTraceLoggingEnabled ) {
+	        if ( javaScriptTraceLoggingEnabled ) {
                 if (window.console) {
                     console.log(data);
                 }
@@ -188,8 +181,7 @@ var Common = function () {
         /// <param name="parent" type="string"></param>           
         /// <returns type="bool" />     
         /// <since>1.0.0</since>       
-        validateEmail: function (email) 
-        {
+        validateEmail: function (email) {
               Common.logInfo("Common.validateEmail...");                            
               var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
               return expr.test(email);	
@@ -202,8 +194,7 @@ var Common = function () {
         /// <param name="parent" type="string"></param>           
         /// <returns type="bool" />     
         /// <since>1.0.0</since>       
-        validatePincode: function (email) 
-        {
+        validatePincode: function (email) {
               Common.logInfo("Common.validatePincode...");                            
               var expr = /^[0-9]+$/;
               return expr.test(email);	   
@@ -216,8 +207,7 @@ var Common = function () {
         /// <param name="parent" type="string"></param>           
         /// <returns type="bool" />     
         /// <since>1.0.0</since>       
-        validateName: function (name) 
-        {
+        validateName: function (name) {
               Common.logInfo("Common.validateName...");   
               var expr = /[A-Za-z \-_.\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF]/;                         
               return expr.test(name);	   
@@ -230,8 +220,7 @@ var Common = function () {
         /// <param name="parent" type="string"></param>           
         /// <returns type="bool" />     
         /// <since>1.0.0</since>       
-        isURL: function (str) 
-        {
+        isURL: function (str) {
               Common.logInfo("Common.isURL...");      
               var urlRegex = '^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$';
      	      var url = new RegExp(urlRegex, 'i');
@@ -244,8 +233,7 @@ var Common = function () {
         /// <param name="parent" type="Event"></param>   
         /// <returns type="actions" />    
         /// <since>3.1.5</since>       
-      	showToggleContent: function(event) 
-        {
+      	showToggleContent: function(event) {
              	Common.logInfo("Common.actions.showToggleContent...");  
                    jQuery(this).toggleClass("wpem-active-button");
 
@@ -258,18 +246,14 @@ var Common = function () {
        /// <param name="parent" type="Event"></param>           
        /// <returns type="actions" />     
        /// <since>3.1.6</since>       
-  	   hideToggleContent: function(event) 
-       {
+  	   hideToggleContent: function(event) {
           Common.logInfo("Common.actions.hideToggleContent...");  
    			event.preventDefault();    
 	   },	
-	         
-	         
     }
 };
 
 Common = Common();
-jQuery(document).ready(function($) 
-{
+jQuery(document).ready(function($) {
     Common.init();
 });

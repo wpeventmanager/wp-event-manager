@@ -4,7 +4,7 @@ namespace WPEventManager\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
  * Elementor Event Organizer Dashboard
@@ -33,7 +33,7 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Organizer Dashboard', 'wp-event-manager' );
+		return __('Organizer Dashboard', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -57,7 +57,7 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'organizer-dashboard', 'code' ];
+		return ['organizer-dashboard', 'code'];
 	}
 
 	/**
@@ -73,7 +73,7 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'wp-event-manager-categories' ];
+		return ['wp-event-manager-categories'];
 	}
 
 	/**
@@ -86,22 +86,17 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			[
-				'label' => __( 'Organizer Dashboard', 'wp-event-manager' ),
-			]
+			['label' => __('Organizer Dashboard', 'wp-event-manager'),]
 		);
-	
 		$this->add_control(
 			'posts_per_page',
 			[
-				'label'       => __( 'Post Per Page', 'wp-event-manager' ),
+				'label'       => __('Post Per Page', 'wp-event-manager'),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => '10',
 			]
 		);
-
 		$this->end_controls_section();
-
 	}
 
 	/**
@@ -118,7 +113,6 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 			$posts_per_page = 'posts_per_page='.(int)$settings['posts_per_page'];
 		else
 		    $posts_per_page = 'posts_per_page=10';
-		
 		echo do_shortcode('[organizer_dashboard '.$posts_per_page.' ]');
 	}
 

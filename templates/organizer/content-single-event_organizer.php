@@ -1,10 +1,8 @@
 <?php $organizer = get_post($organizer_id);
-
 $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
 
 <div class="wpem-single-organizer-profile-wrapper" id="wpem_organizer_profile">
     <div class="wpem-organizer-profile">
-
         <?php do_action('single_event_listing_organizer_start'); ?>
         <div class="wpem-row">
 
@@ -18,11 +16,9 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
 
             <div class="wpem-col-md-9 wpem-col-sm-12">
                 <div class="wpem-organizer-infomation-wrapper">
-
                     <div class="wpem-organizer-name wpem-heading-text">
                         <span><?php echo esc_attr($organizer->post_title); ?></span>
                     </div>
-
                     <div class="wpem-organizer-description">
                         <?php $content = apply_filters('wpem_the_content',$organizer->post_content);
                         echo wp_kses_post($content);?>
@@ -46,8 +42,7 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
                                 </div>
                             <?php }
 
-                            if (!empty($organizer_facebook)) {
-                            ?>
+                            if (!empty($organizer_facebook)) { ?>
                                 <div class="wpem-social-icon wpem-facebook">
                                     <a href="<?php echo esc_url($organizer_facebook); ?>" target="_blank" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php _e('Facebook', 'wp-event-manager'); ?></a>
                                 </div>
@@ -59,8 +54,7 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
                                 </div>
                             <?php }
 
-                            if (!empty($organizer_twitter)) {
-                            ?>
+                            if (!empty($organizer_twitter)) { ?>
                                 <div class="wpem-social-icon wpem-twitter">
                                     <a href="<?php echo esc_url($organizer_twitter); ?>" target="_blank" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php _e('Twitter', 'wp-event-manager'); ?></a>
                                 </div>
@@ -69,9 +63,9 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
                                 <div class="wpem-social-icon wpem-youtube">
                                     <a href="<?php echo esc_url($organizer_youtube); ?>" target="_blank" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php _e('Youtube', 'wp-event-manager'); ?></a>
                                 </div>
-                            <?php } ?>
-
-                            <?php do_action('single_event_listing_organizer_single_social_end', $organizer_id); ?>
+                            <?php } 
+                            
+                            do_action('single_event_listing_organizer_single_social_end', $organizer_id); ?>
 
                         </div>
                     </div>
@@ -84,21 +78,19 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
                                     <strong><?= $field['label'] ?>:</strong>
                                     <span><?= get_post_meta($organizer_id, '_' . $key, true) ? get_post_meta($organizer_id, '_' . $key, true) : '-'  ?></span></span>
                                 </div>
-                            <?php endif; ?>
-                    <?php endforeach;
-                    } ?>
-                    <?php do_action('submit_organizer_form_organizer_fields_end'); ?>
+                            <?php endif;
+                        endforeach;
+                    } 
+                    
+                    do_action('submit_organizer_form_organizer_fields_end'); ?>
                     <div class="wpem-organizer-contact-actions">
                         <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>
 
                         <?php do_action('single_event_listing_organizer_action_end', $organizer_id); ?>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
         <?php do_action('single_event_listing_organizer_end'); ?>
     </div>
 </div>

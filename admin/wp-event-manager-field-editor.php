@@ -1,16 +1,13 @@
 <?php
-
 /**
  * WP_Event_Manager_Registrations_Form_Editor class.
  */
-class WP_Event_Manager_Field_Editor
-{
+class WP_Event_Manager_Field_Editor {
 
 	/**
 	 * Constructor
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		add_action('admin_menu', array($this, 'admin_menu'));
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
 		add_action('wp_ajax_get_group_field_html', array($this, 'get_group_field_html'));
@@ -24,8 +21,7 @@ class WP_Event_Manager_Field_Editor
 	 * @return
 	 * @since 1.0.0
 	 */
-	public function get_group_field_html()
-	{
+	public function get_group_field_html() {
 		check_ajax_referer('_nonce_wp_event_manager_form_editor_security', 'security');
 
 		$field_types = apply_filters(
@@ -57,23 +53,20 @@ class WP_Event_Manager_Field_Editor
 		);
 		include 'wp-event-manager-form-field-editor-group-field-row.php';
 		echo esc_attr(ob_get_clean());
-
 		wp_die();
 	}
 
 	/**
 	 * Add form editor menu item
 	 */
-	public function admin_menu()
-	{
+	public function admin_menu() {
 		add_submenu_page('edit.php?post_type=event_listing', __('Field Editor', 'wp-event-manager'), __('Field Editor', 'wp-event-manager'), 'manage_options', 'event-manager-form-editor', array($this, 'output'));
 	}
 
 	/**
 	 * Register scripts
 	 */
-	public function admin_enqueue_scripts()
-	{
+	public function admin_enqueue_scripts()	{
 		wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
 		wp_register_script('wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL . '/assets/js/field-editor.min.js', array('jquery', 'jquery-ui-sortable', 'chosen'), EVENT_MANAGER_VERSION, true);
 		wp_localize_script(
@@ -91,8 +84,7 @@ class WP_Event_Manager_Field_Editor
 	/**
 	 * Output the screen
 	 */
-	public function output()
-	{
+	public function output() {
 		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.min.css');
 		wp_enqueue_script('wp-event-manager-form-field-editor'); ?>
 		<div class="wrap wp-event-manager-registrations-form-editor">
@@ -110,26 +102,25 @@ class WP_Event_Manager_Field_Editor
 	/**
 	 * Output the fronted form editor
 	 */
-	private function form_editor()
-	{
+	private function form_editor() {
 
-		if (!empty($_GET['event-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
+		if(!empty($_GET['event-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
 			delete_option('event_manager_submit_event_form_fields');
 			echo 'delete fields';
 			// echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
-		if (!empty($_GET['organizer-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
+		if(!empty($_GET['organizer-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
 			delete_option('event_manager_submit_organizer_form_fields');
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
-		if (!empty($_GET['venue-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
+		if(!empty($_GET['venue-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
 			delete_option('event_manager_submit_venue_form_fields');
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
-		if (!empty($_POST) && !empty($_POST['_wpnonce'])) {
+		if(!empty($_POST) && !empty($_POST['_wpnonce'])) {
 			echo wp_kses_post($this->form_editor_save());
 		}
 
@@ -145,7 +136,7 @@ class WP_Event_Manager_Field_Editor
 				'file'             => __('File', 'wp-event-manager'),
 				'hidden'           => __('Hidden', 'wp-event-manager'),
 				'multiselect'      => __('Multiselect', 'wp-event-manager'),
-				'number'           => __('Number', 'wp-event-manager'),               /*'password'       		=> __( 'Password', 'wp-event-manager' ),*/
+				'number'           => __('Number', 'wp-event-manager'),               /*'password'       		=> __('Password', 'wp-event-manager'),*/
 				'radio'            => __('Radio', 'wp-event-manager'),
 				'repeated'         => __('Repeated', 'wp-event-manager'),
 				'select'           => __('Select', 'wp-event-manager'),
@@ -154,19 +145,16 @@ class WP_Event_Manager_Field_Editor
 				'term-select'      => __('Term Select', 'wp-event-manager'),
 				'textarea'         => __('Textarea', 'wp-event-manager'),
 				'wp-editor'        => __('WP Editor', 'wp-event-manager'),
-				'url'              => __('URL', 'wp-event-manager'),          /*'group'       			=> __( 'Group', 'wp-event-manager' ),	*/
+				'url'              => __('URL', 'wp-event-manager'),          /*'group'       			=> __('Group', 'wp-event-manager'),	*/
+				'email'            => __('Email', 'wp-event-manager'),
 			)
 		);
 
-		if (get_option('enable_event_organizer')) {
-			$GLOBALS['event_manager']->forms->get_form('submit-event', array());
-			$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-			$event_fields               = $form_submit_event_instance->merge_with_custom_fields('backend');
-		} else {
-			$event_fields = array();
-		}
-
-		if (get_option('enable_event_organizer')) {
+		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
+		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
+		$event_fields               = $form_submit_event_instance->merge_with_custom_fields('backend');
+		
+		if(get_option('enable_event_organizer')) {
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
 			$organizer_fields               = $form_submit_organizer_instance->merge_with_custom_fields('backend');
@@ -174,7 +162,7 @@ class WP_Event_Manager_Field_Editor
 			$organizer_fields = array();
 		}
 
-		if (get_option('enable_event_venue')) {
+		if(get_option('enable_event_venue')) {
 			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 			$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
 			$venue_fields               = $form_submit_venue_instance->merge_with_custom_fields('backend');
@@ -185,7 +173,7 @@ class WP_Event_Manager_Field_Editor
 		$fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 
 		foreach ($fields  as $group_key => $group_fields) {
-			if (empty($group_fields)) {
+			if(empty($group_fields)) {
 				continue;
 			} ?>
 
@@ -232,14 +220,13 @@ class WP_Event_Manager_Field_Editor
 						include 'wp-event-manager-form-field-editor-field.php';
 						echo esc_attr(ob_get_clean());
 						
-						if (isset($group_fields) && !empty($group_fields)) {
+						if(isset($group_fields) && !empty($group_fields)) {
 							foreach ($group_fields as $field_key => $field) {
 								$index++;
 
 								include 'wp-event-manager-form-field-editor-field.php';
 							}
-						}
-						?>												
+						} ?>												
 					</tbody>
 				</table>
 			</div>
@@ -250,74 +237,58 @@ class WP_Event_Manager_Field_Editor
 	/**
 	 * Save the form fields
 	 */
-	private function child_form_editor_save($field)
-	{
+	private function child_form_editor_save($field)	{
 
 		$index = 0;
-
 		$child_fields = array();
-
 		foreach ($field['fields'] as $field_key => $field_value) {
 			$index++;
 			$field['fields'][$field_key]['priority'] = $index;
-
 			$field['fields'][$field_key]['label'] = trim($field_value['label']);
-
-			if (isset($field_value['type']) && !in_array($field_value['type'], array('term-select', 'term-multiselect', 'term-checklist'))) {
+			if(isset($field_value['type']) && !in_array($field_value['type'], array('term-select', 'term-multiselect', 'term-checklist'))) {
 				unset($field['fields'][$field_key]['taxonomy']);
 			}
-
-			if (isset($field_value['type']) && $field_value['type'] == 'select' || $field_value['type'] == 'radio' || $field_value['type'] == 'multiselect' || $field_value['type'] == 'button-options') {
-				if (isset($field_value['options']) && !empty($field_value['options'])) {
+			if(isset($field_value['type']) && $field_value['type'] == 'select' || $field_value['type'] == 'radio' || $field_value['type'] == 'multiselect' || $field_value['type'] == 'button-options') {
+				if(isset($field_value['options']) && !empty($field_value['options'])) {
 					$field_value['options'] = explode('|', $field_value['options']);
-
 					$temp_options = array();
-
 					foreach ($field_value['options'] as $val) {
 						$option_key = explode(':', $val);
-
-						if (isset($option_key[1])) {
+						if(isset($option_key[1])) {
 							$temp_options[strtolower(str_replace(' ', '_', trim($option_key[0])))] = trim($option_key[1]);
 						} else {
 							$temp_options[strtolower(str_replace(' ', '_', trim($option_key[0])))] = trim($option_key[0]);
 						}
 					}
-
 					$field['fields'][$field_key]['options'] = $temp_options;
 				}
 			} else {
 				unset($field['fields'][$field_key]['options']);
 			}
-
-			if (!is_int($field_key)) {
+			if(!is_int($field_key)) {
 				continue;
 			}
-
-			if (isset($field_value['label'])) {
+			if(isset($field_value['label'])) {
 				$label_key = str_replace(' ', '_', $field_value['label']);
-
 				$field['fields'][strtolower($label_key)] = $field['fields'][$field_key];
 			}
-
 			unset($field['fields'][$field_key]);
 		}
-
 		return $field['fields'];
 	}
 
 	/**
 	 * Save the form fields
 	 */
-	private function form_editor_save()
-	{
-		if (wp_verify_nonce($_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor')) {
+	private function form_editor_save()	{
+		if(wp_verify_nonce($_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor')) {
 
 			$event_field     = !empty($_POST['event']) ? $this->sanitize_array($_POST['event']) : array();
 			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array($_POST['organizer']) : array();
 			$event_venue     = !empty($_POST['venue']) ? $this->sanitize_array($_POST['venue']) : array();
 			$index           = 0;
 			$hasSave = 1;
-			if (!empty($event_field)) {
+			if(!empty($event_field)) {
 				$new_fields = array(
 					'event'     => $event_field,
 					'organizer' => $event_organizer,
@@ -329,53 +300,41 @@ class WP_Event_Manager_Field_Editor
 					foreach ($group_fields as $field_key => $field_value) {
 						if(!empty($field_value['label'])) {
 							$index++;
-							
-							if (isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {
-								if (isset($field_value['fields']) && !empty($field_value['fields'])) {
+							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {
+								if(isset($field_value['fields']) && !empty($field_value['fields'])) {
 									$child_fields                                     = $this->child_form_editor_save($field_value);
 									$new_fields[$group_key][$field_key]['fields'] = $child_fields;
 								}
 							}
-
 							$new_fields[$group_key][$field_key]['priority'] = $index;
-
 							$new_fields[$group_key][$field_key]['label'] = trim($new_fields[$group_key][$field_key]['label']);
-
-							if (isset($new_fields[$group_key][$field_key]['type']) && !in_array($new_fields[$group_key][$field_key]['type'], array('term-select', 'term-multiselect', 'term-checklist'))) {
+							if(isset($new_fields[$group_key][$field_key]['type']) && !in_array($new_fields[$group_key][$field_key]['type'], array('term-select', 'term-multiselect', 'term-checklist'))) {
 								unset($new_fields[$group_key][$field_key]['taxonomy']);
 							}
-
-							if (isset($new_fields[$group_key][$field_key]['type']) && ($new_fields[$group_key][$field_key]['type'] == 'select' || $new_fields[$group_key][$field_key]['type'] == 'radio' || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options')) {
-								if (isset($new_fields[$group_key][$field_key]['options'])) {
+							if(isset($new_fields[$group_key][$field_key]['type']) && ($new_fields[$group_key][$field_key]['type'] == 'select' || $new_fields[$group_key][$field_key]['type'] == 'radio' || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options')) {
+								if(isset($new_fields[$group_key][$field_key]['options'])) {
 									$new_fields[$group_key][$field_key]['options'] = explode('|', $new_fields[$group_key][$field_key]['options']);
-
 									$temp_options = array();
-
 									foreach ($new_fields[$group_key][$field_key]['options'] as $val) {
 										$option_key = explode(':', $val);
-
-										if (isset($option_key[1])) {
+										if(isset($option_key[1])) {
 											$temp_options[strtolower(str_replace(' ', '_', trim($option_key[0])))] = trim($option_key[1]);
 										} else {
 											$temp_options[strtolower(str_replace(' ', '_', trim($option_key[0])))] = trim($option_key[0]);
 										}
 									}
-
 									$new_fields[$group_key][$field_key]['options'] = $temp_options;
 								}
 							} else {
 								unset($new_fields[$group_key][$field_key]['options']);
 							}
-
-							if (!is_int($field_key)) {
+							if(!is_int($field_key)) {
 								continue;
 							}
-
-							if (isset($new_fields[$group_key][$field_key]['label'])) {
+							if(isset($new_fields[$group_key][$field_key]['label'])) {
 								$label_key = str_replace(' ', '_', $new_fields[$group_key][$field_key]['label']);
 								$new_fields[$group_key][strtolower($label_key)] = $new_fields[$group_key][$field_key];
 							}
-
 							unset($new_fields[$group_key][$field_key]);
 							$hasSave = 1;
 						}else{
@@ -388,9 +347,8 @@ class WP_Event_Manager_Field_Editor
 					$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 					$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 					$event_fields =   $form_submit_event_instance->get_default_fields('backend');
-					// $event_fields = $form_submit_event_instance->get_default_event_fields();
 
-					if (get_option('enable_event_organizer')) {
+					if(get_option('enable_event_organizer')) {
 						$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 						$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
 						$organizer_fields               = $form_submit_organizer_instance->init_fields();
@@ -398,7 +356,7 @@ class WP_Event_Manager_Field_Editor
 						$organizer_fields = array();
 					}
 
-					if (get_option('enable_event_venue')) {
+					if(get_option('enable_event_venue')) {
 						$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 						$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
 						$venue_fields               = $form_submit_venue_instance->init_fields();
@@ -409,34 +367,30 @@ class WP_Event_Manager_Field_Editor
 					$default_fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 
 					// if field in not exist in new fields array then make visiblity false
-					if (!empty($default_fields)) {
+					if(!empty($default_fields)) {
 						foreach ($default_fields as $group_key => $group_fields) {
 							foreach ($group_fields as $key => $field) {
-								if (!isset($new_fields[$group_key][$key])) {
+								if(!isset($new_fields[$group_key][$key])) {
 									$new_fields[$group_key][$key]               = $field;
 									$new_fields[$group_key][$key]['visibility'] = 0; // it will make visiblity false means removed from the field editor.
 								}
 							}
 						}
 					}
-					if (isset($new_fields['event'])) {
+					if(isset($new_fields['event'])) {
 						update_option('event_manager_submit_event_form_fields', array('event' => $new_fields['event']));
 					}
-
-					if (isset($new_fields['organizer'])) {
+					if(isset($new_fields['organizer'])) {
 						update_option('event_manager_submit_organizer_form_fields', array('organizer' => $new_fields['organizer']));
 					}
-
-					if (isset($new_fields['venue'])) {
+					if(isset($new_fields['venue'])) {
 						update_option('event_manager_submit_venue_form_fields', array('venue' => $new_fields['venue']));
 					}
-
 					// this will be removed in future
 					$result = update_option('event_manager_form_fields', $new_fields);
 				}
 			}
 		}
-
 		if(isset($hasSave) && $hasSave === 1){
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr__('The fields were successfully saved.', 'wp-event-manager') . '</p></div>');
 		}else{
@@ -450,9 +404,8 @@ class WP_Event_Manager_Field_Editor
 	 * @param  array $array
 	 * @return array
 	 */
-	private function sanitize_array($input)
-	{
-		if (is_array($input)) {
+	private function sanitize_array($input)	{
+		if(is_array($input)) {
 			foreach ($input as $k => $v) {
 				$input[$k] = $this->sanitize_array($v);
 			}

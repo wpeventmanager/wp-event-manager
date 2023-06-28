@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Single view organizer information box
  *
@@ -9,15 +8,13 @@
  */
 
 if (has_event_organizer_ids()) : ?>
-
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
             <div class="wpem-col-md-12">
                 <div class="wpem-organizer-profile-wrapper" id="wpem_organizer_profile">
 
                     <?php $event_content_toggle = apply_filters('event_manager_event_content_toggle', true);
-                    $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-organizer-info-title';
-                    ?>
+                    $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-organizer-info-title'; ?>
 
                     <div class="<?php echo esc_attr($event_content_toggle_class); ?> active">
                         <h3 class="wpem-heading-text"><?php _e('Organizer', 'wp-event-manager'); ?></h3>
@@ -104,10 +101,9 @@ if (has_event_organizer_ids()) : ?>
                                         </div>
                                     </div>
 
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-
-                            <?php do_action('single_event_listing_organizer_end'); ?>
+                                <?php endforeach;
+                            endif;
+                            do_action('single_event_listing_organizer_end'); ?>
 
                         </div>
                     </div>
@@ -115,9 +111,8 @@ if (has_event_organizer_ids()) : ?>
             </div>
         </div>
     </div>
-<?php else : ?>
-
-    <?php if (get_organizer_name()) : ?>
+<?php else : 
+    if (get_organizer_name()) : ?>
 
         <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
             <div class="wpem-row">
@@ -184,17 +179,13 @@ if (has_event_organizer_ids()) : ?>
                                             <?php do_action('single_event_listing_organizer_action_end'); ?>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                             <?php do_action('single_event_listing_organizer_end'); ?>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     <?php endif; 
-
 endif; ?>

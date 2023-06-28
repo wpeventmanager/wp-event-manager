@@ -1,5 +1,4 @@
 <?php
-
 // Get selected value
 if (isset($field['value'])) {
 	$selected = $field['value'];
@@ -12,7 +11,6 @@ if (isset($field['value'])) {
 }
 
 wp_enqueue_script('wp-event-manager-term-multiselect');
-
 $args = array(
 	'taxonomy'     => $field['taxonomy'],
 	'hierarchical' => 1,
@@ -21,7 +19,6 @@ $args = array(
 	'selected'     => $selected,
 	'hide_empty'   => false
 );
-
 
 if (isset($field['placeholder']) && !empty($field['placeholder'])) 
 	$args['placeholder'] = $field['placeholder'];

@@ -172,9 +172,8 @@ var EventAjaxFilters = function() {
                         return jQuery(this).val()
                     }).get();
 
-                    if(jQuery( 'input.date_range_picker' ).length > 0)
-                    {
-                        jQuery( 'input.date_range_picker' ).daterangepicker();
+                    if(jQuery( 'input.date_range_picker').length > 0) {
+                        jQuery( 'input.date_range_picker').daterangepicker();
                     }
                     var categories = form.find(':input[name^="search_categories"]').map(function() {
                         return jQuery(this).val()
@@ -196,8 +195,7 @@ var EventAjaxFilters = function() {
                         location = $location.val()
                     }
 
-                    if(jQuery( ':input[name="event_online"]' ).length > 0)
-                    {
+                    if(jQuery( ':input[name="event_online"]').length > 0){
                         if(jQuery(':input[name="event_online"]').prop("checked") == true) {
                             var event_online = 'true';
                         }else{
@@ -254,7 +252,6 @@ var EventAjaxFilters = function() {
                         event_online: event_online,
                         show_pagination: target.data('show_pagination')
                     }
-                    
                 }
                 xmlHttpRequest[index] = jQuery.ajax({
                     type: 'POST',
@@ -274,24 +271,17 @@ var EventAjaxFilters = function() {
                                     jQuery(filters_bar).removeClass('showing-applied-filters');
                                 }
                                 if (result.html) {
-                                    if (append && loading_previous) 
-									{
+                                    if (append && loading_previous) {
                                         jQuery(results).prepend(result.html);
-										if(jQuery('div.google-map-loadmore').length > 0 )
-										{
+										if(jQuery('div.google-map-loadmore').length > 0) {
 											jQuery('div .google-map-loadmore').not('div.google-map-loadmore:first').remove();
 										}
-                                    } 
-									else if (append) 
-									{ 
+                                    } else if (append) { 
 									   jQuery(results).append(result.html);
-									    if(jQuery('div.google-map-loadmore').length > 0 )
-										{
+									    if(jQuery('div.google-map-loadmore').length > 0){
 											jQuery('div .google-map-loadmore').not('div.google-map-loadmore:first').remove();
 										}
-                                    } 
-									else 
-									{
+                                    } else {
                                         jQuery(results).html(result.html);
                                     }
                                 }
@@ -301,8 +291,8 @@ var EventAjaxFilters = function() {
                                         target.append(result.pagination)
                                     }
                                 } else {
-                                    localStorage.setItem( 'total_event_page', result.max_num_pages );
-                                    localStorage.setItem( 'current_event_page', page );
+                                    localStorage.setItem( 'total_event_page', result.max_num_pages);
+                                    localStorage.setItem( 'current_event_page', page);
                                     if (!result.found_events || result.max_num_pages <= page) {
                                         jQuery('.load_more_events:not(.load_previous)', target).hide()
                                     } else if (!loading_previous) {

@@ -7,7 +7,10 @@
 			else
 				$selected = $field['value'];
 		}else{
-			$selected = $field['default'];
+			if(isset($field['default']))
+				$selected = $field['default'];
+			else
+				$selected = '';
 		} ?>
 		<option value="<?php echo esc_attr($key); ?>" <?php selected($selected, $key); ?>><?php echo esc_attr($value); ?></option>
 	<?php endforeach; ?>

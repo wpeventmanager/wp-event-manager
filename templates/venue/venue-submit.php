@@ -1,10 +1,8 @@
 <?php
-
 /**
  * Event Submission Form
  */
 if (!defined('ABSPATH')) exit;
-
 global $event_manager; ?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-venue-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
@@ -19,7 +17,7 @@ global $event_manager; ?>
 		
 		foreach ($venue_fields as $key => $field) : ?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-				<label for="<?php esc_attr_e($key); ?>"><?php echo esc_attr($field['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
+				<label for="<?php esc_attr_e($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager'); echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
 				<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 					<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
 				</div>

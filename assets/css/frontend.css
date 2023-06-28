@@ -3006,7 +3006,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block span.venue-events
 }
 .wpem-event-listing-type-page .wpem-event-listing-type-page-wrapper .wpem-event-listing-type-page-title .wpem-heading-text {
   font-size: 32px;
-  line-height: 60px;
+  line-height: normal;
   font-weight: 700;
   text-align: center;
   margin: 0;
@@ -3390,6 +3390,7 @@ p.post-submitted-success-green-message a {
   font-size: 18px;
   line-height: 1.42;
   font-weight: 600;
+  word-break: break-all;
 }
 .wpem-main-vmenu-dashboard-wrapper .wpem-main-vmenu-dashboard-content-wrap .wpem-dashboard-events-block-wrap .wpem-dashboard-event-list-wrapper .wpem-dashboard-event-list .wpem-dashboard-event-inner-list-wrap .wpem-dashboard-event-name small {
   font-weight: 400;
@@ -3625,6 +3626,28 @@ p.post-submitted-success-green-message a {
 }
 /* event filter 2 end*/
 
+
+
+/*Single event widget event list view start*/
+.wpem-main.wpem-single-event-widget-list-view{
+    display: flex;
+    padding: 10px;
+}
+.wpem-main.wpem-single-event-widget-list-view > .event-widget {
+    width: 80px;
+    flex: 0 0 80px;
+}
+.wpem-main.wpem-single-event-widget-list-view .event-widget .wpem-event-banner img {
+    width: 80px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.wpem-main.wpem-single-event-widget-list-view .wpem-event-infomation {
+    padding-top: 0;
+}
+/*Single event widget event list view end*/
 
 
 
@@ -4012,4 +4035,7 @@ table.wp-list-table th#aioseo-details {
 div.wpem-empty-date{
   text-align: center;
   width: 40%;
+}
+.wpem_loader{
+  pointer-events: none; user-select: none;
 }

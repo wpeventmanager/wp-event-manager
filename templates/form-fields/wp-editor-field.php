@@ -1,5 +1,4 @@
 <?php
-
 $editor = apply_filters('submit_event_form_wp_editor_args', array(
 	'textarea_name' => isset($field['name']) ? $field['name'] : $key,
 	'media_buttons' => false,
@@ -23,4 +22,8 @@ $editor = apply_filters('submit_event_form_wp_editor_args', array(
 
 wp_editor(isset($field['value']) ?  $field['value']  : '', $key, $editor);
 
-if (!empty($field['description'])) : ?><small class="description"><?php printf($field['description']); ?></small><?php endif; ?>
+if (!empty($field['description'])) : ?>
+	<small class="description">
+		<?php printf($field['description']); ?>
+	</small>
+<?php endif; ?>

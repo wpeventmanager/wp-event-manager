@@ -1,5 +1,5 @@
-<?php wp_enqueue_script('wp-event-manager-content-event-listing'); ?>
-<?php if ($layout_type == 'all') : ?>
+<?php wp_enqueue_script('wp-event-manager-content-event-listing'); 
+if ($layout_type == 'all') : ?>
     <div class="wpem-main wpem-event-listings-header">
         <div class="wpem-row">
             <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-8">
@@ -28,4 +28,5 @@ else
     $list_type_class = 'wpem-event-listing-list-view';
 
 $list_type_class = apply_filters('wpem_default_listing_layout_class', $list_type_class, $layout_type); ?>
-<div id="event-listing-view" class="wpem-main wpem-event-listings event_listings <?php echo esc_attr($list_type_class); ?>">
+<div class="event_listings_main">
+    <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings <?php echo esc_attr($list_type_class); ?>">

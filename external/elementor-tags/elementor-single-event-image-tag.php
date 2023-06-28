@@ -6,7 +6,7 @@ use Elementor\Core\DynamicTags\Data_Tag;
 use Elementor\Modules\DynamicTags\Module;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if(!defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
  * Elementor Single Event Summary
@@ -42,7 +42,7 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 	* @return string
 	*/
 	public function get_title() {
-		return __( 'Single Event Image Tag', 'wp-event-manager' );
+		return __('Single Event Image Tag', 'wp-event-manager');
 	}
    
 	/**
@@ -97,8 +97,8 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 	*
 	* @return void
 	*/
-	public function get_value( array $options = [] ) {
-		$event_image_tag = $this->get_settings( 'event_image_tag' );
+	public function get_value(array $options = []) {
+		$event_image_tag = $this->get_settings('event_image_tag');
 
         $post_id = get_the_ID();
 
@@ -116,15 +116,15 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 				$value['url'] 	= get_event_banner($event);
 			} else if($event_image_tag == 'organizer_logo')	{
 				$value['id'] 	= 0;
-				$value['url'] 	= get_organizer_logo( $event, 'full' );
+				$value['url'] 	= get_organizer_logo($event, 'full');
 			}
 		}
 
-		if ( empty( $value ) && $this->get_settings( 'fallback_image' ) ) {
-			$value = $this->get_settings( 'fallback_image' );
+		if(empty($value) && $this->get_settings('fallback_image')) {
+			$value = $this->get_settings('fallback_image');
 		}
 
-		if ( ! empty( $value ) ) {
+		if(!empty($value)) {
 			$image_data['id'] = $value['id'];
 			$image_data['url'] = $value['url'];
 		}
@@ -146,15 +146,15 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 
 		$arrOption = [];
 
-		if(!class_exists('WP_Event_Manager_Form_Submit_Event') ) {
-			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php' );
-			include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );	
+		if(!class_exists('WP_Event_Manager_Form_Submit_Event')) {
+			include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php');
+			include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php');	
 		}
-		$form_submit_event_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Event', 'instance' ) );
+		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 		$fields = $form_submit_event_instance->merge_with_custom_fields('backend');
 
 		foreach($fields  as $group_key => $group_fields){
-			foreach ( $group_fields as $field_key => $field ){
+			foreach ($group_fields as $field_key => $field){
 				if(in_array($field['type'], ['file'])){
 					$arrOption[$field_key] = $field['label'];	
 				}
@@ -164,7 +164,7 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 		$this->add_control(
 			'event_image_tag',
 			[
-				'label' => __( 'Event Image Tag', 'wp-event-manager' ),
+				'label' => __('Event Image Tag', 'wp-event-manager'),
 				'type' => Controls_Manager::SELECT,
 				'options' => $arrOption,
 			]
@@ -173,7 +173,7 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 		$this->add_control(
 			'fallback_image',
 			[
-				'label' => __( 'Fallback', 'wp-event-manager' ),
+				'label' => __('Fallback', 'wp-event-manager'),
 				'type' => Controls_Manager::MEDIA,
 			]
 		);

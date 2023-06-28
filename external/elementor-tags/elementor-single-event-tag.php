@@ -156,7 +156,7 @@ class Elementor_Event_Tag extends Tag {
                 display_event_location(true, $event);
             } else if ($event_tag == 'event_description') {
                 echo wp_kses_post(get_event_description($event));
-            } else if ($event_tag == 'registration') {
+            } else if ($event_tag == 'event_registration_email') {
                 get_event_manager_template('event-registration.php');
             } else if ($event_tag == 'event_start_date') {
                 display_event_start_date('', '', true, $event);

@@ -4,10 +4,9 @@
  *
  * @since  3.1.32
  */
-?>
-<?php if (has_event_venue_ids($event_id) && !is_event_online($event_id)) : ?>
-  
-    <?php $event_content_toggle = apply_filters('event_manager_event_content_toggle', true);
+
+if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
+    $event_content_toggle = apply_filters('event_manager_event_content_toggle', true);
     $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-venue-info-title';?>
 
     <div class="<?php echo esc_attr($event_content_toggle_class); ?> active">
@@ -121,9 +120,7 @@
 
                     <div class="wpem-venue-wrapper wpem-listing-accordion-panel active" style="display: block;">
                         <div class="wpem-venue-profile">
-
                             <?php do_action('single_event_listing_venue_start'); ?>
-
                             <div class="wpem-venue-inner-wrapper">
                                 <div class="wpem-row">
                                     <div class="wpem-col-md-12 wpem-col-sm-12">

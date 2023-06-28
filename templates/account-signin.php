@@ -20,7 +20,7 @@ if (is_user_logged_in()) : ?>
 		<div class="field account-sign-in wpem-alert wpem-alert-info">
 			<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) : 	esc_url(home_url() . '/wp-login.php'); ?>"><?php _e('Sign in', 'wp-event-manager'); ?></a>
 			<?php if ($registration_enabled) : ?>
-				<?php printf( __('If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email.', 'wp-event-manager'));
+				<?php sprintf( _e('If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email.', 'wp-event-manager'));
 				 $account_required ? '' : __('(optional)', 'wp-event-manager'); ?>
 			<?php elseif ($account_required) : ?>
 				<?php echo  wp_kses_post(apply_filters('submit_event_form_login_required_message',  __(' You must sign in to create a new listing.', 'wp-event-manager'))); ?>
@@ -29,7 +29,7 @@ if (is_user_logged_in()) : ?>
 	</div>
 	<?php if ($registration_enabled) :
 		if (!empty($registration_fields)) {
-			foreach ($registration_fields as $key => $field) {			?>
+			foreach ($registration_fields as $key => $field) { ?>
 				<div class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 					<label class="wpem-form-label-text" for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']) . apply_filters('submit_event_form_required_label', $field['required'] ?   '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
 					<div class="field <?php echo esc_attr($field['required']) ? 'required-field' : ''; ?>">
@@ -40,5 +40,4 @@ if (is_user_logged_in()) : ?>
 			do_action('event_manager_register_form');
 		}
 	endif;
-endif;
-?>
+endif; ?>

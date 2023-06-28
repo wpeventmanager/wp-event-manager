@@ -3,17 +3,16 @@
  * Addons Page
 */
 
-if (!defined('ABSPATH')){
+if(!defined('ABSPATH')){
 	 exit;// Exit if accessed directly
 } 
 
-if (!class_exists('WP_Event_Manager_Addons')) :
+if(!class_exists('WP_Event_Manager_Addons')) :
 
 	/**
 	 * WP_Event_Manager_Addons Class
 	*/
-	class WP_Event_Manager_Addons
-	{
+	class WP_Event_Manager_Addons {
 		/**
 		 * Handles output of the reports page in admin.
 		 */
@@ -22,7 +21,7 @@ if (!class_exists('WP_Event_Manager_Addons')) :
 			<h2><?php _e('WP Event Manager Add-ons', 'wp-event-manager'); ?></h2>
 			<?php 
 			
-			if (false === ($addons = get_transient('wp_event_manager_addons_html'))) {
+			if(false === ($addons = get_transient('wp_event_manager_addons_html'))) {
 					$raw_addons = wp_remote_get(
 						'http://www.wp-eventmanager.com/plugins',
 							array(
@@ -32,7 +31,7 @@ if (!class_exists('WP_Event_Manager_Addons')) :
 							)
 						);
 						
-					if (!is_wp_error($raw_addons)) {
+					if(!is_wp_error($raw_addons)) {
 						$raw_addons = wp_remote_retrieve_body($raw_addons);
 		
 						// Get Products
@@ -51,7 +50,7 @@ if (!class_exists('WP_Event_Manager_Addons')) :
 						}
 					
 						$addons = wp_kses_post($addons);
-						if ($addons) {
+						if($addons) {
 							set_transient('wp_event_manager_addons_html1', $addons, 60 * 60 * 24 * 7); // Cached for a week
 						}
 					}
@@ -63,6 +62,5 @@ if (!class_exists('WP_Event_Manager_Addons')) :
 		<?php
 		} 
 	}
-
 endif;
 return new WP_Event_Manager_Addons();

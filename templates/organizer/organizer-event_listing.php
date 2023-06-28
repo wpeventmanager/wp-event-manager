@@ -1,10 +1,7 @@
-<?php
-$active_tab = sanitize_text_field(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'upcoming');
-?>
+<?php $active_tab = sanitize_text_field(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'upcoming'); ?>
 
 <div class="wpem-event-organizer-tabs">
     <div class="wpem-tabs-wrapper">
-
         <ul class="wpem-tabs-wrap">
             <li class="wpem-tab-link <?php echo esc_attr($active_tab) == 'current' ? 'active' : '' ?>" data-tab="current">
                 <?php _e('Current Events', 'wp-event-manager'); ?>
@@ -18,7 +15,6 @@ $active_tab = sanitize_text_field(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : '
         </ul>
 
         <div class="event-organizer-tab-contents wpem-tab-content current">
-
             <!-- upcoming events list start-->
             <div id="upcoming" class="wpem-tab-pane <?php echo esc_attr($active_tab) == 'upcoming' ? 'active' : '' ?>">
                 <?php if ($upcomingEvents->have_posts()) : ?>
@@ -35,8 +31,7 @@ $active_tab = sanitize_text_field(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : '
                 <?php
                 else :
                     get_event_manager_template_part('content', 'no-events-found');
-                endif;
-                ?>
+                endif; ?>
             </div>
             <!-- upcoming events list end-->
 
@@ -57,8 +52,7 @@ $active_tab = sanitize_text_field(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : '
                 <?php
                 else :
                     get_event_manager_template_part('content', 'no-events-found');
-                endif;
-                ?>
+                endif;  ?>
             </div>
             <!-- current events list end-->
 
@@ -78,15 +72,11 @@ $active_tab = sanitize_text_field(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : '
                 <?php
                 else :
                     get_event_manager_template_part('content', 'no-events-found');
-                endif;
-                ?>
+                endif; ?>
             </div>
             <!-- past events list end-->
-
         </div>
         <!-- tab-content end tab-->
-
     </div>
-
 </div>
 <!-- end of wpem-tabs-wrapper -->
