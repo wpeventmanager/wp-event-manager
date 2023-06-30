@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 4.1
 Tested up to: 6.0
-Stable tag: 3.1.35
+Stable tag: 3.1.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -299,6 +299,14 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= [3.1.36] 30-06-2023 =
+
+Fixed : Revert back when filtering using search_datetimes.
+Fixed : Recenet events widget section - Past events removed from it
+Added : Email field type added in the field editor.
+Added : Added setting for email header in the general tab.
+
 
 = [3.1.35] 23-06-2023 =
 

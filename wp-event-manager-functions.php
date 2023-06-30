@@ -236,24 +236,12 @@ if(!function_exists('get_event_listings')) :
 					);
 					$search_start_date['relation'] = 'AND';
 					$date_search[] = $search_start_date;
-					/*$search_end_date[] = array(
-						'key'     => '_event_end_date',
-						'value'   => $dates['start'],
-						'compare' => '>=',
-						'type'    => 'date'
-					);
-					$search_end_date[] = array(
-						'key'     => '_event_end_date',
-						'value'   => $dates['end'],
-						'compare' => '<=',
-						'type'    => 'date'
-					);*/
+					
 					$search_end_date['relation'] = 'AND';
 					$date_search[] = $search_end_date;
 				}
-			}
-			if(!empty($date_search))
 				$query_args['meta_query'][] = $date_search;
+			}
 		}
 
 		if(!empty($args['search_categories'][0])) {
