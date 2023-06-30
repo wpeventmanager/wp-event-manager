@@ -612,20 +612,20 @@ function get_event_thumbnail($post = null, $size = 'full'){
 function display_event_banner($size = 'full', $default = null, $post = null){
 
 	$banner = get_event_banner($post);
+	$alt_text = !empty(esc_attr(get_organizer_name($post))) ? esc_attr(get_organizer_name($post)) : get_the_title();
 	if(!empty($banner) && !is_array($banner)  && (strstr($banner, 'http') || file_exists($banner))) {
 		if($size !== 'full') {
-
 			$banner = event_manager_get_resized_image($banner, $size);
 		}
 		printf('<link rel="image_src" href="' . esc_attr($banner) . '"/>');
-		printf('<img itemprop="image" content="' . esc_attr($banner) . '" src="' . esc_attr($banner) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		printf('<img itemprop="image" content="' . esc_attr($banner) . '" src="' . esc_attr($banner) . '" alt="' . $alt_text . '" />');
 	} else if($default) {
 
-		printf('<img itemprop="image" content="' . esc_attr($default) . '" src="' . esc_attr($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		printf('<img itemprop="image" content="' . esc_attr($default) . '" src="' . esc_attr($default) . '" alt="' . $alt_text . '" />');
 	} else if(is_array($banner) && isset($banner[0])) {
-		printf('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		printf('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . $alt_text . '" />');
 	} else {
-		printf('<img itemprop="image" content="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" src="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_the_title()) . '" />');
+		printf('<img itemprop="image" content="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" src="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . $alt_text . '" />');
 	}
 }
 
