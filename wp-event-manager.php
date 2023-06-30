@@ -157,6 +157,8 @@ class WP_Event_Manager {
 		update_option('event_manager_rating_showcase_admin_notices_dismiss','0');
 
 		// check for old meta keys
+		// this is for temporary use only to update meta key
+		// we will remove after some release
 		if(!get_option('wp_event_manager_update_db')){
 			$args = array(
 				'post_type'      => 'event_listing',
