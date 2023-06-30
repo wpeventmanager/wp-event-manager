@@ -108,13 +108,13 @@ class WP_Event_Manager_Writepanels {
 		}
 
 		if($current_user->has_cap('manage_event_listings')) {
-			$fields['_event_featured'] = array(
+			$fields['_featured'] = array(
 				'label'       => __('Featured Listing', 'wp-event-manager'),
 				'type'        => 'checkbox',
 				'description' => __('Featured listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
 				'priority'    => 39,
 			);
-			$fields['_event_cancelled'] = array(
+			$fields['_cancelled'] = array(
 				'label'       => __('Cancelled Listing', 'wp-event-manager'),
 				'type'        => 'checkbox',
 				'description' => __('Cancelled listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
@@ -882,8 +882,8 @@ class WP_Event_Manager_Writepanels {
 	public function save_event_listing_data($post_id, $post){
 		global $wpdb;
 		// These need to exist
-		add_post_meta($post_id, '_event_cancelled', 0, true);
-		add_post_meta($post_id, '_event_featured', 0, true);
+		add_post_meta($post_id, '_cancelled', 0, true);
+		add_post_meta($post_id, '_featured', 0, true);
 		update_post_meta($post_id, '_event_title', get_the_title($post_id));
 		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();

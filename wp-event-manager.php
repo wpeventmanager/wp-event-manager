@@ -205,7 +205,7 @@ class WP_Event_Manager {
 					$event_id = get_the_ID();
 					$cancelled_event = get_post_meta($event_id, '_cancelled', true);
 					update_post_meta($event_id, '_event_cancelled', $cancelled_event);
-					$featured_event = get_post_meta($event_id, '_event_featured', true);
+					$featured_event = get_post_meta($event_id, '_featured', true);
 					update_post_meta($event_id, '_event_featured', $featured_event);
 				}
 			

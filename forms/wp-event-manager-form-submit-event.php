@@ -742,8 +742,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		$current_user_id = get_current_user_id();
 
 		// Set defaults
-		add_post_meta( $this->event_id, '_event_cancelled', 0, true);
-		add_post_meta( $this->event_id, '_event_featured', 0, true);
+		add_post_meta( $this->event_id, '_cancelled', 0, true);
+		add_post_meta( $this->event_id, '_featured', 0, true);
 		$maybe_attach = array();
 		
 		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
