@@ -77,18 +77,34 @@ if(!function_exists('get_event_listings')) :
 		}
 		if(!is_null($args['featured'])) {
 			$query_args['meta_query'][] = array(
-				'key'     => '_featured',
-				'value'   => '1',
-				'compare' => $args['featured'] ? '=' : '!='
+				'relation' => 'OR',
+				array(
+					'key'     => '_event_featured',
+					'value'   => '1',
+					'compare' => $args['featured'] ? '=' : '!='
+				),
+				array(
+					'key'     => '_featured',
+					'value'   => '1',
+					'compare' => $args['featured'] ? '=' : '!='
+				)
 			);
 			$query_args['meta_query']['relation'] = 'AND';
 		}
 
 		if(!is_null($args['cancelled']) || 1 === absint(get_option('event_manager_hide_cancelled_events'))) {
 			$query_args['meta_query'][] = array(
-				'key'     => '_cancelled',
-				'value'   => '1',
-				'compare' => $args['cancelled'] ? '=' : '!='
+				'relation' => 'OR',
+				array(
+					'key' => '_event_cancelled',
+					'value'   => '1',
+					'compare' => $args['cancelled'] ? '=' : '!='
+				),
+				array(
+					'key' => '_cancelled',
+					'value'   => '1',
+					'compare' => $args['cancelled'] ? '=' : '!='
+				)
 			);
 		}
 
