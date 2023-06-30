@@ -304,6 +304,11 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 Fixed : Revert back when filtering using search_datetimes.
 Fixed : Recenet events widget section - Past events removed from it
+Fixed : At backend setting - If ticket type deactivate then visible on event details page.
+Fixed : Event status is display active after manually set event exipred date.
+Fixed : Validate number field for decimal value.
+Fixed : Paragraph formating not working on single event detail page for venue/organizer.
+Fixed : Calendar design issue with core plugin.
 Added : Email field type added in the field editor.
 Added : Added setting for email header in the general tab.
 
