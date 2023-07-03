@@ -260,7 +260,7 @@
 													<?php display_event_end_date('', '', true, $event); ?> <?php
 													if (get_event_start_time($event)) {
 														display_date_time_separator();
-															display_event_end_time('', '', true, $event);
+														display_event_end_time('', '', true, $event);
 													} ?>
 											</div>
 											<div class="wpem-dashboard-event-location">
