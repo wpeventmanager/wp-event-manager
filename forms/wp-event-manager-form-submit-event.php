@@ -967,7 +967,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$event = get_post( $this->event_id);
 			if( in_array( $event->post_status, array( 'preview', 'expired'))) {
 				// Reset expiry
-				delete_post_meta( $event->ID, '_event_expiry_date');
+				// delete_post_meta( $event->ID, '_event_expiry_date');
 				// Update event listing
 				$update_event                  = array();
 				$update_event['ID']            = $event->ID;
