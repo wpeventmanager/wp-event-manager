@@ -86,7 +86,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 				foreach ($categories as $category) : ?>
 					<input type="hidden" name="search_categories[]" value="<?php echo sanitize_title($category); ?>" />
 				<?php endforeach;
-			elseif(isset($show_categories) && !is_tax('event_listing_category') && get_terms('event_listing_category', ['hide_empty' => false])) : ?>
+			elseif(isset($show_categories) && !empty($show_categories) && !is_tax('event_listing_category') && get_terms('event_listing_category', ['hide_empty' => false])) : ?>
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_categories" class="wpem-form-label"><?php esc_attr_e('Category', 'wp-event-manager'); ?></label>
@@ -117,7 +117,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 				foreach ($event_types as $event_type) : ?>
 					<input type="hidden" name="search_event_types[]" value="<?php echo sanitize_title($event_type); ?>" />
 				<?php endforeach;
-			elseif($show_event_types && !is_tax('event_listing_type') && get_terms('event_listing_type', ['hide_empty' => false])) : ?>
+			elseif(isset($show_event_types) && !empty($show_event_types) && !is_tax('event_listing_type') && get_terms('event_listing_type', ['hide_empty' => false])) : ?>
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_event_types" class="wpem-form-label"><?php _e('Event Type', 'wp-event-manager'); ?></label>

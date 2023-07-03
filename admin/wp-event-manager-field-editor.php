@@ -302,7 +302,7 @@ class WP_Event_Manager_Field_Editor {
 							$index++;
 							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {
 								if(isset($field_value['fields']) && !empty($field_value['fields'])) {
-									$child_fields                                     = $this->child_form_editor_save($field_value);
+									$child_fields = $this->child_form_editor_save($field_value);
 									$new_fields[$group_key][$field_key]['fields'] = $child_fields;
 								}
 							}
@@ -346,7 +346,7 @@ class WP_Event_Manager_Field_Editor {
 					// merge field with default fields
 					$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 					$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-					$event_fields =   $form_submit_event_instance->get_default_fields('backend');
+					$event_fields =   $form_submit_event_instance->get_default_fields();
 
 					if(get_option('enable_event_organizer')) {
 						$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());

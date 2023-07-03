@@ -9,7 +9,6 @@ var MultiSelect= function () {
         /// <since>1.0.0</since>         
         init: function() 
         {
-			Common.logInfo("MultiSelect.init...");  
 			jQuery(".event-manager-multiselect").chosen({search_contains:!0});
 		}   
     } //enf of returnmultiselect
