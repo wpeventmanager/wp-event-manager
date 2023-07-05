@@ -119,6 +119,7 @@ class WP_Event_Manager_Shortcodes{
 						// Update
 						update_post_meta($event_id, '_cancelled', 1);
 
+						do_action('after_event_cancelled', $event_id, $event, $event->_cancelled);
 						// Message
 						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(__('%s has been cancelled.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						break;
