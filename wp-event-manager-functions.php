@@ -1242,7 +1242,14 @@ function event_manager_get_page_id($page){
 function event_manager_get_permalink($page) {
 
 	if($page_id = event_manager_get_page_id($page)) {
-		return get_permalink($page_id);
+        /**
+         * Filters the permalink of a page if set in the options
+         *
+         * @param string $permalink the permalink of the page
+         * @param int $page_id the page id like it's stored in the options
+         * @param string $page the pages internal name e.g. event_dashboard, submit_event_form, events
+         */
+        return apply_filters('event_manager_get_permalink', get_permalink( $page_id ), $page_id, $page );
 	} else {
 		return false;
 	}
