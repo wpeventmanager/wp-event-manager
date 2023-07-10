@@ -40,7 +40,9 @@ var EventDashboard= function () {
 					return false;
 				});
 			}
-
+            jQuery("#reset_dashboard").on('click', function(){
+                window.location.href = window.location.href.split('?')[0];
+            });
 			// For Event Filter Toggle
 			if(jQuery('.wpem-dashboard-main-header .wpem-event-dashboard-filter-toggle').length >0){
 				jQuery('.wpem-dashboard-main-header .wpem-event-dashboard-filter-toggle').hide();
