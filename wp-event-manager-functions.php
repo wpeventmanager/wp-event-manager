@@ -1934,8 +1934,11 @@ if(!function_exists('get_wpem_email_from_name')) {
 	* @return string
 	* @since 3.1.35 
 	*/
-   function get_wpem_email_from_name( $from_name = '' ) {
-	   $from_name = apply_filters( 'wpem_email_from_name', get_option( 'wpem_email_from_name' ), $from_name );
+   function get_wpem_email_from_name($from_name = '') {
+		$from_name = get_option('wpem_email_from_name');
+		if(empty($from_name))
+			$from_name = get_bloginfo('name');
+	   $from_name = apply_filters( 'wpem_email_from_name', $from_name );
 	   return wp_specialchars_decode( esc_html( $from_name ), ENT_QUOTES );
    }
 }
@@ -1949,10 +1952,13 @@ if(!function_exists('get_wpem_email_from_address')){
 	 * @since 3.1.35
 	 */
 	function get_wpem_email_from_address( $from_email = '' ) {
-		$from_email = apply_filters( 'wpem_email_from_address', get_option( 'wpem_email_from_address' ), $from_email );
+		$from_email = get_option('wpem_email_from_address');
+		if(empty($from_email))
+			$from_email = "wordpress@".trim( str_replace( array( 'http://', 'https://' ), '', get_bloginfo('url')));
+		$from_email = apply_filters( 'wpem_email_from_address', $from_email );
 		return sanitize_email( $from_email );
 	}
- }
+}
 
 if(!function_exists('get_wpem_email_headers')) {
 	/**
