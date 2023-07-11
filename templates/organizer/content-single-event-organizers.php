@@ -4,7 +4,11 @@
  *
  * @since  3.1.32
  */
-if (has_event_organizer_ids($event_id)) : ?>
+if (has_event_organizer_ids($event_id)) :
+if (get_option('event_manager_form_fields')) {
+    $organizer_custom_fields = get_option('event_manager_form_fields', true)['organizer'];
+}
+?>
 
 <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
     <div class="wpem-row">
@@ -104,12 +108,18 @@ if (has_event_organizer_ids($event_id)) : ?>
                                                     <?php do_action('submit_organizer_form_organizer_fields_start'); ?>
                                                     <!-- Organizer additional meta section start-->
                                                     <?php
-                                                    if (isset($organizer_fields)) {
-                                                        foreach ($organizer_fields as $key => $field) : ?>
+                                                    if (isset($organizer_custom_fields)) {
+                                                        foreach ($organizer_custom_fields as $key => $field) : ?>
                                                             <?php if (!strstr($key, 'organizer') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($organizer_id, '_' . $key))) : ?>
                                                                 <div class="wpem-organizer-additional-information">
-                                                                    <strong><?= $field['label'] ?>:</strong>
-                                                                    <span><?= get_post_meta($organizer_id, '_' . $key, true) ? get_post_meta($organizer_id, '_' . $key, true) : '-'  ?></span></span>
+                                                                    <strong><?php echo esc_attr($field['label']); ?>:</strong>
+                                                                    <span><?php 
+                                                                        $value = get_post_meta($organizer_id, '_' . $key, true);
+                                                                        if($field['type'] == 'url' && !empty($value))
+                                                                            echo '<a href="'.esc_url($value).'" target="_blank">'.esc_url($value).'</a>';
+                                                                        else
+                                                                            echo esc_attr($value); ?>
+                                                                    </span>
                                                                 </div>
                                                             <?php endif; ?>
                                                     <?php endforeach;
