@@ -250,6 +250,7 @@ class WP_Event_Manager_Field_Editor {
 			}
 			if(isset($field_value['type']) && $field_value['type'] == 'select' || $field_value['type'] == 'radio' || $field_value['type'] == 'multiselect' || $field_value['type'] == 'button-options') {
 				if(isset($field_value['options']) && !empty($field_value['options'])) {
+					$field_value['options'] = trim($field_value['options'], '|');
 					$field_value['options'] = explode('|', $field_value['options']);
 					$temp_options = array();
 					foreach ($field_value['options'] as $val) {
@@ -313,6 +314,7 @@ class WP_Event_Manager_Field_Editor {
 							}
 							if(isset($new_fields[$group_key][$field_key]['type']) && ($new_fields[$group_key][$field_key]['type'] == 'select' || $new_fields[$group_key][$field_key]['type'] == 'radio' || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options')) {
 								if(isset($new_fields[$group_key][$field_key]['options'])) {
+									$new_fields[$group_key][$field_key]['options'] = trim($new_fields[$group_key][$field_key]['options'], '|');
 									$new_fields[$group_key][$field_key]['options'] = explode('|', $new_fields[$group_key][$field_key]['options']);
 									$temp_options = array();
 									foreach ($new_fields[$group_key][$field_key]['options'] as $val) {
