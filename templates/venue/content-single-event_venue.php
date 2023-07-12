@@ -1,4 +1,7 @@
-<?php $venue = get_post($venue_id); ?>
+<?php $venue = get_post($venue_id); 
+if (get_option('event_manager_form_fields')) {
+    $venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
+}?>
 <div class="wpem-single-venue-profile-wrapper" id="wpem_venue_profile">
     <div class="wpem-venue-profile">
         <?php do_action('single_event_listing_venue_start'); ?>
@@ -60,6 +63,24 @@
                             <?php do_action('single_event_listing_venue_single_social_end', $venue_id); ?>
                         </div>
                     </div>
+                    <?php do_action('custom_venue_fields_start'); 
+                    if (isset($venue_custom_fields)) {
+                        foreach ($venue_custom_fields as $key => $field) :?>
+                            <?php if (!strstr($key, 'venue') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($venue_id, '_' . $key))) : ?>
+                                <div class="wpem-organizer-additional-information">
+                                    <strong><?php echo esc_attr($field['label']); ?>:</strong>
+                                    <span><?php 
+                                        $value = get_post_meta($venue_id, '_' . $key, true);
+                                        if($field['type'] == 'url' && !empty($value))
+                                            echo '<a href="'.esc_url($value).'" target="_blank">'.esc_url($value).'</a>';
+                                        else
+                                            echo esc_attr($value); ?>
+                                    </span>
+                                </div>
+                            <?php endif;
+                        endforeach;
+                    } 
+                    do_action('custom_venue_fields_end'); ?>
                 </div>
             </div>
         </div>

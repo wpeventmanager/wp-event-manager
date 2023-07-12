@@ -72,8 +72,7 @@ if (get_option('event_manager_form_fields')) {
 
                         </div>
                     </div>
-                    <?php do_action('submit_organizer_form_organizer_fields_start'); ?>
-                    <?php
+                    <?php do_action('submit_organizer_form_organizer_fields_start'); 
                     if (isset($organizer_custom_fields)) {
                         foreach ($organizer_custom_fields as $key => $field) :?>
                             <?php if (!strstr($key, 'organizer') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($organizer_id, '_' . $key))) : ?>
@@ -90,7 +89,6 @@ if (get_option('event_manager_form_fields')) {
                             <?php endif;
                         endforeach;
                     } 
-                    
                     do_action('submit_organizer_form_organizer_fields_end'); ?>
                     <div class="wpem-organizer-contact-actions">
                         <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>
