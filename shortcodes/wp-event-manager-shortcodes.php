@@ -600,6 +600,7 @@ class WP_Event_Manager_Shortcodes{
 			'selected_ticket_price'     => '',
 			'layout_type'      			=> 'all',
 			'event_online'      		=> '',
+			'title'                     => __('Events', 'wp-event-manager'),
 		)), $atts));
 
 		//Categories
@@ -704,7 +705,7 @@ class WP_Event_Manager_Shortcodes{
 				'event_online' => $event_online,
 			));
 
-			get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
+			get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
 			get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
 
 		} else {
@@ -753,7 +754,7 @@ class WP_Event_Manager_Shortcodes{
 			if($events->have_posts()) :
 
 				wp_enqueue_script('wp-event-manager-ajax-filters');
-				get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
+				get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
 				while ($events->have_posts()) : $events->the_post();
 					get_event_manager_template_part('content', 'event_listing');
 				endwhile; 
@@ -995,8 +996,9 @@ class WP_Event_Manager_Shortcodes{
 			'keywords'                  => '',
 			'selected_datetime'         => '',
 			'selected_categories'       =>  isset($atts['selected_categories']) ? $atts['selected_categories'] :  '',
-			'selected_event_types'     => isset($atts['selected_event_types']) ? $atts['selected_event_types'] :  '',
+			'selected_event_types'      => isset($atts['selected_event_types']) ? $atts['selected_event_types'] :  '',
 			'layout_type'      			=> 'all',
+			'title'                     => __('Past Events', 'wp-event-manager'),
 		), $atts));
 
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -1078,7 +1080,7 @@ class WP_Event_Manager_Shortcodes{
 
 		if($past_events->have_posts()) : ?>
 			<div class="past_event_listings">
-				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
+				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
 				while ($past_events->have_posts()) : $past_events->the_post();
 					get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
@@ -1511,8 +1513,9 @@ class WP_Event_Manager_Shortcodes{
 			'keywords'                  => '',
 			'selected_datetime'         => '',
 			'selected_categories'       => isset($atts['selected_categories']) ? $atts['selected_categories'] :  '',
-			'selected_event_types'     => isset($atts['selected_types']) ? $atts['selected_types'] :  '',
+			'selected_event_types'      => isset($atts['selected_types']) ? $atts['selected_types'] :  '',
 			'layout_type'      			=> 'all',
+			'title'                     => __('Upcoming Events', 'wp-event-manager'),
 		), $atts));
 
 		$paged = is_front_page() ? max(1, get_query_var('page')) : max(1, get_query_var('paged'));
@@ -1607,7 +1610,7 @@ class WP_Event_Manager_Shortcodes{
 
 		if($upcoming_events->have_posts()) : ?>
 			<div class="event_listings">
-				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type));
+				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 					get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
