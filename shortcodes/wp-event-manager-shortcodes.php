@@ -988,17 +988,17 @@ class WP_Event_Manager_Shortcodes{
 		ob_start();
 
 		extract(shortcode_atts(array(
-			'show_pagination'           => true,
-			'per_page'                  => isset($atts['per_page']) ? $atts['per_page'] : get_option('event_manager_per_page'),
-			'order'                     =>  isset($atts['order']) ? $atts['order'] :  'DESC',
-			'orderby'                   => isset($atts['orderby']) ? $atts['orderby'] : 'event_start_date', // meta_value
-			'location'                  => '',
-			'keywords'                  => '',
-			'selected_datetime'         => '',
-			'selected_categories'       =>  isset($atts['selected_categories']) ? $atts['selected_categories'] :  '',
-			'selected_event_types'      => isset($atts['selected_event_types']) ? $atts['selected_event_types'] :  '',
-			'layout_type'      			=> 'all',
-			'title'                     => __('Past Events', 'wp-event-manager'),
+			'show_pagination'      => true,
+			'per_page'             => isset($atts['per_page']) ? $atts['per_page'] : get_option('event_manager_per_page'),
+			'order'                => isset($atts['order']) ? $atts['order'] :  'DESC',
+			'orderby'              => isset($atts['orderby']) ? $atts['orderby'] : 'event_start_date', // meta_value
+			'location'             => '',
+			'keywords'             => '',
+			'selected_datetime'    => '',
+			'selected_categories'  =>  isset($atts['selected_categories']) ? $atts['selected_categories'] :  '',
+			'selected_event_types' => isset($atts['selected_event_types']) ? $atts['selected_event_types'] :  '',
+			'layout_type'      	   => 'all',
+			'title'                => __('Past Events', 'wp-event-manager'),
 		), $atts));
 
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
