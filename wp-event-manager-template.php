@@ -613,6 +613,7 @@ function display_event_banner($size = 'full', $default = null, $post = null){
 
 	$banner = get_event_banner($post);
 	$alt_text = !empty(esc_attr(get_organizer_name($post))) ? esc_attr(get_organizer_name($post)) : get_the_title();
+	$alt_text = apply_filters('display_event_alt_text', $alt_text, $post);
 	if(!empty($banner) && !is_array($banner)  && (strstr($banner, 'http') || file_exists($banner))) {
 		if($size !== 'full') {
 			$banner = event_manager_get_resized_image($banner, $size);
