@@ -125,7 +125,7 @@ if (get_option('event_manager_form_fields')) {
                                                     <?php endforeach;
                                                     } ?>
                                                      <!-- Organizer additional meta section end-->
-                                                    <?php do_action('submit_organizer_form_organizer_fields_end'); ?>
+                                                    <?php do_action('organizer_form_organizer_fields_end'); ?>
                                                     <div class="wpem-organizer-contact-actions">
                                                         <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>
 
