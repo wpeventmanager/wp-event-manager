@@ -682,7 +682,7 @@ class WP_Event_Manager_Shortcodes{
 			$selected_ticket_price = sanitize_text_field($_GET['search_ticket_price']);
 		}
 		if($show_filters) {
-			get_event_manager_template('event-filters.php', array(
+			get_event_manager_template('event-filters.php', apply_filters('event_manager_output_events_filters', array(
 				'per_page' => $per_page,
 				'orderby' => $orderby,
 				'order' => $order,
@@ -703,7 +703,7 @@ class WP_Event_Manager_Shortcodes{
 				'location' => $location,
 				'keywords' => $keywords,
 				'event_online' => $event_online,
-			));
+			), $atts));
 
 			get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
 			get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
