@@ -77,7 +77,7 @@ class WP_Event_Manager_Settings{
 							'std'        => '',
 							'placeholder' => 'Google API Key',
 							'label'      => __('Google API Key', 'wp-event-manager'),
-							'desc'       => __('If you are going to deal with google map or location then you need Google API key to retrieve location information for event listings. Also this Google API key require when you will use <a href="https://www.wp-eventmanager.com/product/wp-event-manager-google-maps/" target="__blank">Google Map Addon</a>.  Acquire an API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'),
+							'desc'       => __('If you are using Google Maps for your events then you will need the API key to retrieve the location details for your event listings. You can obtain the Google API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key" target="__blank">Google Maps API developer site</a>. ', 'wp-event-manager'),
 							'attributes' => array(),
 						),
 						array(
@@ -85,7 +85,7 @@ class WP_Event_Manager_Settings{
 							'std' 		=> '', 
 							'placeholder'=> __('Wordpress', 'wp-event-manager'), 
 							'label' 	=> __('"From" name', 'wp-event-manager'), 
-							'desc'       => __('If you are going to deal with Registrations or Emails then you need the sender name appears in outgoing WP Event Manager emails.', 'wp-event-manager'),
+							'desc'       => __('If you are handling registrations and emails then the sender name will appear in the outgoing WP Event Manager emails.', 'wp-event-manager'),
 							'type'      => 'text'
 						), 
 						array(
@@ -93,7 +93,7 @@ class WP_Event_Manager_Settings{
 							'std'         => '', 
 							'placeholder' => __('wordpress@wordpress.com', 'wp-event-manager'), 
 							'label'       => __('"From" address', 'wp-event-manager'), 
-							'desc'        => __('If you are going to deal with Registrations or Emails then you need email appears in outgoing WP Event Manager emails.', 'wp-event-manager'), 
+							'desc'        => __('If you are handling registrations and emails then the sender email address will appear in the outgoing WP Event Manager emails.', 'wp-event-manager'), 
 							'type'        => 'email'
 						)
 					),
