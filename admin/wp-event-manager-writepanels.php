@@ -915,14 +915,15 @@ class WP_Event_Manager_Writepanels {
 			} elseif('_event_author' === $key) {
 				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint($_POST[$key]) : 0), array('ID' => $post_id));
 			} elseif('_event_banner' === $key) {
-				if(is_array($_POST[$key])) {
-					$thumbnail_image = $_POST[$key][0];
-					update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
-				} else {
-				$thumbnail_image = $_POST[$key];
-					update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
+				if(isset($_POST[$key])){
+					if(is_array($_POST[$key])) {
+						$thumbnail_image = $_POST[$key][0];
+						update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
+					} else {
+						$thumbnail_image = $_POST[$key];
+						update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
+					}
 				}
-
 				$image = get_the_post_thumbnail_url($post_id);
 
 				if(empty($image)) {
