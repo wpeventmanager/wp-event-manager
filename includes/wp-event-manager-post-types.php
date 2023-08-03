@@ -1038,7 +1038,7 @@ class WP_Event_Manager_Post_Types {
 		if(function_exists('switch_to_locale') && did_action('admin_init')) {
 			switch_to_locale(get_locale());
 		}
-
+		$wpem_permalinks = get_option('wpem_permalinks', array());
 		$permalinks = wp_parse_args(
 			(array) get_option('wpem_permalinks', array()),
 			array(
@@ -1049,10 +1049,10 @@ class WP_Event_Manager_Post_Types {
 		);
 
 		// Ensure rewrite slugs are set.
-		$permalinks['event_rewrite_slug']      = untrailingslashit(empty($permalinks['event_base']) ? _x('event', 'Event permalink - resave permalinks after changing this', 'wp-event-manager') : $permalinks['event_base']);
+		$permalinks['event_rewrite_slug']    = untrailingslashit(empty($permalinks['event_base']) ? _x('event', 'Event permalink - resave permalinks after changing this', 'wp-event-manager') : $permalinks['event_base']);
 		$permalinks['category_rewrite_slug'] = untrailingslashit(empty($permalinks['category_base']) ? _x('event-category', 'Event category slug - resave permalinks after changing this', 'wp-event-manager') : $permalinks['category_base']);
 		$permalinks['type_rewrite_slug']     = untrailingslashit(empty($permalinks['type_base']) ? _x('event-type', 'Event type slug - resave permalinks after changing this', 'wp-event-manager') : $permalinks['type_base']);
-
+		$permalinks = apply_filters('wpem_set_event_permalinks', $permalinks);
 		// Restore the original locale.
 		if(function_exists('restore_current_locale') && did_action('admin_init')) {
 			restore_current_locale();
