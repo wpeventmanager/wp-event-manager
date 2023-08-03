@@ -24,9 +24,9 @@ if(!function_exists('get_event_listings')) :
 			'cancelled'         => null,
 			'event_online'      => null,
 			'fields'            => 'all',
+			'lang'              => '',
 			'post_status'       => array(),
 		));
-			
 		/**
 		 * Perform actions that need to be done prior to the start of the event listings query.
 		 * @param array $args Arguments used to retrieve event listings.
@@ -382,14 +382,11 @@ if(!function_exists('get_event_listings')) :
 			$query_args['meta_query']['tax_query'] = array($query_args['tax_query']);
 			$query_args['meta_query']['relation'] = 'AND';
 		}
-	
-		// Polylang LANG arg
-		if(function_exists('pll_current_language')) {
-			$query_args['lang'] = pll_current_language();
-		}
 		
-		/** This filter is documented in wp-event-manager.php */
-		$query_args['lang'] = apply_filters('wpem_lang', null);
+		// Polylang LANG arg
+		if(function_exists('pll_current_language') && !empty($args['lang'])) {
+			$query_args['lang'] = $args['lang'];
+		}
 		
 		// Filter args
 		$query_args = apply_filters('get_event_listings_query_args', $query_args, $args);
