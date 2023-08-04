@@ -4,7 +4,9 @@ if ($layout_type == 'all') : ?>
         <div class="wpem-row">
             <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-8">
                 <div class="wpem-event-listing-header-title">
-                    <h2 class="wpem-heading-text"><?php printf(__('%s', 'wp-event-manager'), $title); ?></h2>
+                    <?php if(isset($title)) : ?>
+                        <h2 class="wpem-heading-text"><?php printf(__('%s', 'wp-event-manager'), $title);?></h2>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-4">
