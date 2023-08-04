@@ -2490,7 +2490,8 @@ function get_wpem_date_time_separator(){
  * @return
  **/
 function display_date_time_separator(){
-	printf(__(' %s ', 'wp-event-manager'), get_wpem_date_time_separator());
+	$separator = get_wpem_date_time_separator();
+	printf(' '.__('%s ', 'wp-event-manager').' ', $separator);
 }
 
 /**
