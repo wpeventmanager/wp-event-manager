@@ -31,9 +31,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<!-- Search by location section end -->
 
 			<!-- Search by date section start -->
-			<?php if(isset($datetimes)) : ?>
-
-				<?php
+			<?php if(isset($datetimes)) : 
 				$arr_selected_datetime = [];
 				if(!empty($selected_datetime)) {
 					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
@@ -155,7 +153,6 @@ do_action('event_manager_event_filters_before', $atts); ?>
 				<?php endif;
 			endif; ?>
 			<!-- Search by event type section end -->
-
 		</div> <!-- /row -->
 
 		<?php do_action('event_manager_event_filters_search_events_end', $atts); ?>
