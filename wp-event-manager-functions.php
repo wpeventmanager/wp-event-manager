@@ -250,6 +250,20 @@ if(!function_exists('get_event_listings')) :
 						'compare' => '>=',
 						'type'    => 'date'
 					);
+
+					$search_end_date[] = array(
+						'key'     => '_event_end_date',
+						'value'   =>  $dates['end'],
+						'compare' => '<=',
+						'type'    => 'date'
+					);
+					$search_end_date[] = array(
+						'key'     => '_event_end_date',
+						'value'   => $dates['start'],
+						'compare' => '>=',
+						'type'    => 'date'
+					);
+
 					$search_start_date['relation'] = 'AND';
 					$date_search[] = $search_start_date;
 					
@@ -387,7 +401,8 @@ if(!function_exists('get_event_listings')) :
 		if(function_exists('pll_current_language') && !empty($args['lang'])) {
 			$query_args['lang'] = $args['lang'];
 		}
-		
+		error_log("args");
+		error_log(print_r($query_args, true));
 		// Filter args
 		$query_args = apply_filters('get_event_listings_query_args', $query_args, $args);
 		do_action('before_get_event_listings', $query_args, $args);
