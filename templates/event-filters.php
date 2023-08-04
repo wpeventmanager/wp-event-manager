@@ -98,7 +98,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 									'value' => 'slug',
 									'taxonomy' => 'event_listing_category',
 									'hierarchical' => 1,
-									'show_option_all' => __('Choose a Category', 'wp-event-manager'),
+									'show_option_all' => __('Choose an Event Category', 'wp-event-manager'),
 									'name' => 'search_categories',
 									'orderby' => 'name',
 									'selected' => $selected_category,

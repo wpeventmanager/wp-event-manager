@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2023-08-04 15:11+0530\n"
-"PO-Revision-Date: 2023-08-04 15:12+0530\n"
+"POT-Creation-Date: 2023-08-04 15:28+0530\n"
+"PO-Revision-Date: 2023-08-04 15:29+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1311,7 +1311,7 @@ msgstr ""
 "के लिए विभिन्न पृष्ठ बनाने में मदद करता है."
 
 #: admin/wp-event-manager-setup.php:175
-, php-format
+#, php-format
 msgid ""
 "If you want to avoid the Setup wizard and want to creates pages manually, "
 "you can refer to the %1$sdocumentation%2$s for support."
@@ -3458,10 +3458,8 @@ msgid "Category"
 msgstr "वर्ग"
 
 #: templates/event-filters.php:101
-#: templates/form-fields/term-select-field.php:14
-#: wp-event-manager-functions.php:1161
-msgid "Choose a Category"
-msgstr "कोई श्रेणी चुनें"
+msgid "Choose an Event Category"
+msgstr "ईवेंट श्रेणी चुनें"
 
 #: templates/event-filters.php:127
 #: templates/form-fields/term-select-field.php:16
@@ -3613,6 +3611,11 @@ msgstr ""
 #: templates/form-fields/repeated-field.php:80
 msgid "Ticket details"
 msgstr "टिकट का ब्यौरा"
+
+#: templates/form-fields/term-select-field.php:14
+#: wp-event-manager-functions.php:1161
+msgid "Choose a Category"
+msgstr "कोई श्रेणी चुनें"
 
 #: templates/form-fields/uploaded-file-html.php:14
 #: templates/form-fields/uploaded-file-html.php:19
@@ -3944,13 +3947,12 @@ msgid "Confirm Password"
 msgstr "पासवर्ड पुनः दर्ज करें"
 
 #: wp-event-manager-template.php:405
-
 msgid "Posted on "
-msgstr "द्वारा पोस्ट किया गया"
+msgstr "पर पोस्ट किया गया "
 
 #: wp-event-manager-template.php:2494
-, php-format
-msgid " %s"
+#, php-format
+msgid "%s "
 msgstr ""
 "कृपया \"%2$s\" के लिए अपडेट प्राप्त करने के लिए नीचे दी गई प्लगइन सूची में <a href=\"%1$s"
 "\">अपनी लाइसेंस कुंजी दर्ज करें</a>।"
