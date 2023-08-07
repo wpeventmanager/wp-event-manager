@@ -1,5 +1,9 @@
 <?php $organizer = get_post($organizer_id);
-$organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
+$organizer_email = get_post_meta($organizer_id, '_organizer_email', true); 
+if (get_option('event_manager_form_fields')) {
+    $organizer_custom_fields = get_option('event_manager_form_fields', true)['organizer'];
+}
+?>
 
 <div class="wpem-single-organizer-profile-wrapper" id="wpem_organizer_profile">
     <div class="wpem-organizer-profile">
@@ -29,7 +33,6 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
                             <?php
                             //get disable organizer fields
                             $organizer_fields = get_hidden_form_fields( 'event_manager_submit_organizer_form_fields', 'organizer');
-
                             $organizer_website  = !in_array('organizer_website', $organizer_fields)?get_organizer_website($organizer):'';
                             $organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?get_organizer_facebook($organizer):'';
                             $organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?get_organizer_instagram($organizer):'';
@@ -69,20 +72,24 @@ $organizer_email = get_post_meta($organizer_id, '_organizer_email', true); ?>
 
                         </div>
                     </div>
-                    <?php do_action('submit_organizer_form_organizer_fields_start'); ?>
-                    <?php
-                    if (isset($organizer_fields)) {
-                        foreach ($organizer_fields as $key => $field) : ?>
+                    <?php do_action('submit_organizer_form_organizer_fields_start'); 
+                    if (isset($organizer_custom_fields)) {
+                        foreach ($organizer_custom_fields as $key => $field) :?>
                             <?php if (!strstr($key, 'organizer') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($organizer_id, '_' . $key))) : ?>
                                 <div class="wpem-organizer-additional-information">
-                                    <strong><?= $field['label'] ?>:</strong>
-                                    <span><?= get_post_meta($organizer_id, '_' . $key, true) ? get_post_meta($organizer_id, '_' . $key, true) : '-'  ?></span></span>
+                                    <strong><?php echo esc_attr($field['label']); ?>:</strong>
+                                    <span><?php 
+                                        $value = get_post_meta($organizer_id, '_' . $key, true);
+                                        if($field['type'] == 'url' && !empty($value))
+                                            echo '<a href="'.esc_url($value).'" target="_blank">'.esc_url($value).'</a>';
+                                        else
+                                            echo esc_attr($value); ?>
+                                    </span>
                                 </div>
                             <?php endif;
                         endforeach;
                     } 
-                    
-                    do_action('submit_organizer_form_organizer_fields_end'); ?>
+                    do_action('organizer_form_organizer_fields_end'); ?>
                     <div class="wpem-organizer-contact-actions">
                         <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>
 

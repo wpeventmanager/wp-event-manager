@@ -150,6 +150,11 @@
 									<button type="submit" class="wpem-theme-button"><?php _e('Filter', 'wp-event-manager'); ?></button>
 								</div>
 							</div>
+							<div class="wpem-events-filter-block wpem-events-filter-submit">
+								<div class="wpem-form-group">
+									<button type="reset" class="wpem-theme-button" id="reset_dashboard"><?php _e('Reset', 'wp-event-manager-registrations'); ?></button>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -260,7 +265,7 @@
 													<?php display_event_end_date('', '', true, $event); ?> <?php
 													if (get_event_start_time($event)) {
 														display_date_time_separator();
-															display_event_end_time('', '', true, $event);
+														display_event_end_time('', '', true, $event);
 													} ?>
 											</div>
 											<div class="wpem-dashboard-event-location">

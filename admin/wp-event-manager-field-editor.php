@@ -106,8 +106,7 @@ class WP_Event_Manager_Field_Editor {
 
 		if(!empty($_GET['event-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
 			delete_option('event_manager_submit_event_form_fields');
-			echo 'delete fields';
-			// echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
+			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
 		if(!empty($_GET['organizer-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
@@ -250,6 +249,7 @@ class WP_Event_Manager_Field_Editor {
 			}
 			if(isset($field_value['type']) && $field_value['type'] == 'select' || $field_value['type'] == 'radio' || $field_value['type'] == 'multiselect' || $field_value['type'] == 'button-options') {
 				if(isset($field_value['options']) && !empty($field_value['options'])) {
+					$field_value['options'] = trim($field_value['options'], '|');
 					$field_value['options'] = explode('|', $field_value['options']);
 					$temp_options = array();
 					foreach ($field_value['options'] as $val) {
@@ -302,7 +302,7 @@ class WP_Event_Manager_Field_Editor {
 							$index++;
 							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {
 								if(isset($field_value['fields']) && !empty($field_value['fields'])) {
-									$child_fields                                     = $this->child_form_editor_save($field_value);
+									$child_fields = $this->child_form_editor_save($field_value);
 									$new_fields[$group_key][$field_key]['fields'] = $child_fields;
 								}
 							}
@@ -313,6 +313,7 @@ class WP_Event_Manager_Field_Editor {
 							}
 							if(isset($new_fields[$group_key][$field_key]['type']) && ($new_fields[$group_key][$field_key]['type'] == 'select' || $new_fields[$group_key][$field_key]['type'] == 'radio' || $new_fields[$group_key][$field_key]['type'] == 'multiselect' || $new_fields[$group_key][$field_key]['type'] == 'button-options')) {
 								if(isset($new_fields[$group_key][$field_key]['options'])) {
+									$new_fields[$group_key][$field_key]['options'] = trim($new_fields[$group_key][$field_key]['options'], '|');
 									$new_fields[$group_key][$field_key]['options'] = explode('|', $new_fields[$group_key][$field_key]['options']);
 									$temp_options = array();
 									foreach ($new_fields[$group_key][$field_key]['options'] as $val) {
@@ -346,7 +347,7 @@ class WP_Event_Manager_Field_Editor {
 					// merge field with default fields
 					$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 					$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-					$event_fields =   $form_submit_event_instance->get_default_fields('backend');
+					$event_fields =   $form_submit_event_instance->get_default_fields();
 
 					if(get_option('enable_event_organizer')) {
 						$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());

@@ -19,7 +19,8 @@ var Admin = function () {
                 'attribute': 'data-tip',
                 'fadeIn': 50,
                 'fadeOut': 50,
-                'delay': 200
+                'delay': 200,
+                keepAlive: true
             });
 
             //load chosen

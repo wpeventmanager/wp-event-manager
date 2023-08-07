@@ -24,9 +24,9 @@ if(!function_exists('get_event_listings')) :
 			'cancelled'         => null,
 			'event_online'      => null,
 			'fields'            => 'all',
+			'lang'              => '',
 			'post_status'       => array(),
 		));
-			
 		/**
 		 * Perform actions that need to be done prior to the start of the event listings query.
 		 * @param array $args Arguments used to retrieve event listings.
@@ -250,6 +250,20 @@ if(!function_exists('get_event_listings')) :
 						'compare' => '>=',
 						'type'    => 'date'
 					);
+
+					$search_end_date[] = array(
+						'key'     => '_event_end_date',
+						'value'   =>  $dates['end'],
+						'compare' => '<=',
+						'type'    => 'date'
+					);
+					$search_end_date[] = array(
+						'key'     => '_event_end_date',
+						'value'   => $dates['start'],
+						'compare' => '>=',
+						'type'    => 'date'
+					);
+
 					$search_start_date['relation'] = 'AND';
 					$date_search[] = $search_start_date;
 					
@@ -382,15 +396,13 @@ if(!function_exists('get_event_listings')) :
 			$query_args['meta_query']['tax_query'] = array($query_args['tax_query']);
 			$query_args['meta_query']['relation'] = 'AND';
 		}
-	
+		
 		// Polylang LANG arg
-		if(function_exists('pll_current_language')) {
-			$query_args['lang'] = pll_current_language();
+		if(function_exists('pll_current_language') && !empty($args['lang'])) {
+			$query_args['lang'] = $args['lang'];
 		}
-		
-		/** This filter is documented in wp-event-manager.php */
-		$query_args['lang'] = apply_filters('wpem_lang', null);
-		
+		error_log("args");
+		error_log(print_r($query_args, true));
 		// Filter args
 		$query_args = apply_filters('get_event_listings_query_args', $query_args, $args);
 		do_action('before_get_event_listings', $query_args, $args);
@@ -1934,8 +1946,11 @@ if(!function_exists('get_wpem_email_from_name')) {
 	* @return string
 	* @since 3.1.35 
 	*/
-   function get_wpem_email_from_name( $from_name = '' ) {
-	   $from_name = apply_filters( 'wpem_email_from_name', get_option( 'wpem_email_from_name' ), $from_name );
+   function get_wpem_email_from_name($from_name = '') {
+		$from_name = get_option('wpem_email_from_name');
+		if(empty($from_name))
+			$from_name = get_bloginfo('name');
+	   $from_name = apply_filters( 'wpem_email_from_name', $from_name );
 	   return wp_specialchars_decode( esc_html( $from_name ), ENT_QUOTES );
    }
 }
@@ -1949,10 +1964,14 @@ if(!function_exists('get_wpem_email_from_address')){
 	 * @since 3.1.35
 	 */
 	function get_wpem_email_from_address( $from_email = '' ) {
-		$from_email = apply_filters( 'wpem_email_from_address', get_option( 'wpem_email_from_address' ), $from_email );
+		$from_email = get_option('wpem_email_from_address');
+		if(empty($from_email))
+			$from_email = 'noreply@' . (isset($_SERVER['HTTP_HOST']) ? str_replace('www.', '', $_SERVER['HTTP_HOST']) : 'noreply.com');
+			// $from_email = "wordpress@".trim( str_replace( array( 'http://', 'https://' ), '', get_bloginfo('url')));
+		$from_email = apply_filters( 'wpem_email_from_address', $from_email );
 		return sanitize_email( $from_email );
 	}
- }
+}
 
 if(!function_exists('get_wpem_email_headers')) {
 	/**

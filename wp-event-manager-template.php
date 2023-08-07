@@ -205,7 +205,7 @@ function get_event_registration_method($post = null){
 	}
 
 	$method = new stdClass();
-	$register  = $post->_registration;
+	$register  = $post->_event_registration_email;
 
 	if(empty($register)) {
 		$method->type = 'url';
@@ -613,6 +613,7 @@ function display_event_banner($size = 'full', $default = null, $post = null){
 
 	$banner = get_event_banner($post);
 	$alt_text = !empty(esc_attr(get_organizer_name($post))) ? esc_attr(get_organizer_name($post)) : get_the_title();
+	$alt_text = apply_filters('display_event_alt_text', $alt_text, $post);
 	if(!empty($banner) && !is_array($banner)  && (strstr($banner, 'http') || file_exists($banner))) {
 		if($size !== 'full') {
 			$banner = event_manager_get_resized_image($banner, $size);
@@ -2489,7 +2490,8 @@ function get_wpem_date_time_separator(){
  * @return
  **/
 function display_date_time_separator(){
-	printf(__('%s', 'wp-event-manager'), get_wpem_date_time_separator());
+	$separator = get_wpem_date_time_separator();
+	printf(' '.__('%s', 'wp-event-manager').' ', $separator);
 }
 
 /**
