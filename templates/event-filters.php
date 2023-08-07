@@ -31,9 +31,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<!-- Search by location section end -->
 
 			<!-- Search by date section start -->
-			<?php if(isset($datetimes)) : ?>
-
-				<?php
+			<?php if(isset($datetimes)) : 
 				$arr_selected_datetime = [];
 				if(!empty($selected_datetime)) {
 					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
@@ -98,7 +96,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 									'value' => 'slug',
 									'taxonomy' => 'event_listing_category',
 									'hierarchical' => 1,
-									'show_option_all' => __('Choose a Category', 'wp-event-manager'),
+									'show_option_all' => __('Choose an Event Category', 'wp-event-manager'),
 									'name' => 'search_categories',
 									'orderby' => 'name',
 									'selected' => $selected_category,
@@ -155,7 +153,6 @@ do_action('event_manager_event_filters_before', $atts); ?>
 				<?php endif;
 			endif; ?>
 			<!-- Search by event type section end -->
-
 		</div> <!-- /row -->
 
 		<?php do_action('event_manager_event_filters_search_events_end', $atts); ?>

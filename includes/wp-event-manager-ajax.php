@@ -146,6 +146,7 @@ class WP_Event_Manager_Ajax {
 			'order'              	=> sanitize_text_field($_REQUEST['order']),
 			'offset'             	=> (absint($_REQUEST['page']) - 1) * absint($_REQUEST['per_page']),
 			'posts_per_page'     	=> absint($_REQUEST['per_page']),
+			'lang'    	            => apply_filters('wpem_set_default_page_language', $_REQUEST['lang']),
 		);
 
 		if(isset($_REQUEST['cancelled']) && ($_REQUEST['cancelled'] === 'true' || $_REQUEST['cancelled'] === 'false')) {
