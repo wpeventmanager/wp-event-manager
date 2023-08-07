@@ -300,6 +300,40 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
+= [3.1.37] 07-08-2023 =
+
+Fixed: Events of other languages can now be shown using the Polylang plugin
+Fixed: On the event details page, clicking on the event type and event category was showing an error message which is now resolved.
+Fixed: The problem related to customizing the permalink is resolved.
+Fixed: The issue related to the display of an event multi-day start day is solved
+Fixed: ReCAPTCHA can now be removed from the Event Organizer page as per requirement.
+Fixed: The undefined URL error on the registration button on the event detail page is fixed.
+Fixed: Filters can now be added to change the image alt-text for the event banner.
+Fixed: Event shortcode display issue is resolved.
+Fixed: The Filter and Reset button in the Guest group dashboard can now be seen in the horizontal line.
+Fixed: Event Category shortcode attributes are now working properly.
+Fixed: Creating a new event from the front, the event expiry date can be added.
+Fixed: The appearance of the deleted event field in the field editor is fixed.
+Fixed: Space issue between the date and time separator is resolved.
+Fixed: Users are now able to select values from dropdown.
+Fixed: Shortcode upcoming events and past events, layout attribute is not working.
+Fixed: Display issue of added fields in the venue details page is resolved.
+Fixed: Provided options for a full day event to avoid the repetition of the start date and end date.
+Fixed: The newly added event fields in the event form can be deleted as per requirements.
+Fixed: Organizers can make their events private or public using the Field editor.
+Fixed: Shortcode related issue on the view page.
+Fixed: Pagination is now working properly with the past event listing module.
+Fixed: Issue related to adding organizers and venues at the backend is resolved.
+Fixed: Problem related to the Dates displayed in the list view is resolved.
+Fixed: Backend venue and organizer related issue is resolved.
+Fixed: String Translation issue is fixed.
+Added: Added shortcode for upcoming events.
+Added: A new feature added in the event layout type shortcode.
+Added: A new shortcode attribute is added to change the title of event listing.
+Added: Advanced search filters are added to the event listing page.
+Added: A new feature was added in the event layout type shortcode.
+Added: Reset button is added to the event dashboard.
+
 = [3.1.36] 30-06-2023 =
 
 Fixed : Revert back when filtering using search_datetimes.
