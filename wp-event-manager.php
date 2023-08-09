@@ -9,7 +9,7 @@
 * Domain Path: /languages
 * Version: 3.1.37
 * Since: 1.0.0
-* Requires WordPress Version at least: 4.1
+* Requires WordPress Version at least: 5.4.1
 * Copyright: 2019 WP Event Manager
 * License: GNU General Public License v3.0
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
