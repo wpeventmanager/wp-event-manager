@@ -62,7 +62,7 @@ class WP_Event_Manager_Writepanels {
 		
 		$current_user = wp_get_current_user();
 		if(isset($post->ID)) {
-			$registration = metadata_exists('post', $post->ID, '_event_registration_email') ? get_post_meta($post->ID, '_event_registration_email', true) : $current_user->user_email;
+			$registration = metadata_exists('post', $post->ID, '_registration') ? get_post_meta($post->ID, '_registration', true) : $current_user->user_email;
 			$expiry_date  = get_post_meta($post->ID, '_event_expiry_date', true);
 			if($expiry_date) {
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();

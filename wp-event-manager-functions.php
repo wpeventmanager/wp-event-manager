@@ -522,7 +522,6 @@ if(!function_exists('get_event_listings_keyword_search')) :
 			'_organizer_xing',
 			'_organizer_pinterest',
 			'_organizer_instagram',
-			'_event_registration_email'
 		);
 		$searchable_meta_keys = apply_filters('event_listing_searchable_meta_keys', $searchable_meta_keys);
 		$conditions   = array();

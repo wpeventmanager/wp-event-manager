@@ -156,65 +156,6 @@ class WP_Event_Manager {
 		//show notice after activating plugin
 		update_option('event_manager_rating_showcase_admin_notices_dismiss','0');
 
-		// check for old meta keys
-		// this is for temporary use only to update meta key
-		// we will remove after some release
-		if(!get_option('wp_event_manager_update_db')){
-			$args = array(
-				'post_type'      => 'event_listing',
-				'meta_key'       => '_registration',
-				'posts_per_page' => -1,
-			);
-			$query = new WP_Query($args);
-
-			if($query->have_posts()) {
-				while ($query->have_posts()) {
-					$query->the_post();
-					$event_id = get_the_ID();
-					$regisration_value = get_post_meta($event_id, '_registration', true);
-					update_post_meta($event_id, '_event_registration_email', $regisration_value);
-				}
-			
-				wp_reset_postdata();
-			} 
-			$args = array(
-				'post_type'      => 'event_listing',
-				'meta_key'       => '_submitting_key',
-				'posts_per_page' => -1,
-			);
-			$query = new WP_Query($args);
-
-			if($query->have_posts()) {
-				while ($query->have_posts()) {
-					$query->the_post();
-					$event_id = get_the_ID();
-					$wpem_unique_key = get_post_meta($event_id, '_submitting_key', true);
-					update_post_meta($event_id, '_wpem_unique_key', $wpem_unique_key);
-				}
-			
-				wp_reset_postdata();
-			} 
-			$args = array(
-				'post_type'      => 'event_listing',
-				'meta_key'       => '_cancelled',
-				'posts_per_page' => -1,
-			);
-			$query = new WP_Query($args);
-
-			if($query->have_posts()) {
-				while ($query->have_posts()) {
-					$query->the_post();
-					$event_id = get_the_ID();
-					$cancelled_event = get_post_meta($event_id, '_cancelled', true);
-					update_post_meta($event_id, '_event_cancelled', $cancelled_event);
-					$featured_event = get_post_meta($event_id, '_featured', true);
-					update_post_meta($event_id, '_event_featured', $featured_event);
-				}
-			
-				wp_reset_postdata();
-			} 
-			update_option('wp_event_manager_update_db', true);
-		}
 		flush_rewrite_rules();
 	}
 
