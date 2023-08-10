@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 4.1
 Tested up to: 6.2.2
-Stable tag: 3.1.37
+Stable tag: 3.1.37.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -299,6 +299,11 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= [3.1.37.1] 09-08-2023 =
+
+Fixed: Change Registration email/URL.
+Fixed: Update Wordpress version in readme file.
 
 = [3.1.37] 07-08-2023 =
 
