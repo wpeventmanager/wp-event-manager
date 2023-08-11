@@ -155,7 +155,19 @@ class WP_Event_Manager {
 		WP_Event_Manager_Install::install();
 		//show notice after activating plugin
 		update_option('event_manager_rating_showcase_admin_notices_dismiss','0');
+		// 3.1.37.1 change field option name
+		if(!empty(get_option('event_manager_form_fields', true))) {
+			$all_fields = get_option('event_manager_form_fields', true);
 
+			if(isset($all_fields) && !empty($all_fields) && is_array($all_fields)) {
+				
+				// 3.1.37.1 change field option name
+				if(isset($all_fields['event']['event_registration_email']))
+					unset($all_fields['event']['event_registration_email']);
+				
+				update_option('event_manager_submit_event_form_fields', array('event' =>$all_fields['event']));
+			}			
+		}
 		flush_rewrite_rules();
 	}
 

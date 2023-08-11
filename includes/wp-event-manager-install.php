@@ -64,10 +64,6 @@ class WP_Event_Manager_Install {
 				if(isset($all_fields['event']['event_venue_name']))
 					unset($all_fields['event']['event_venue_name']);
 
-				// 3.1.37.1 change field option name
-				if(isset($all_fields['event']['event_registration_email']))
-					unset($all_fields['event']['event_registration_email']);
-				
 				update_option('event_manager_submit_event_form_fields', array('event' =>$all_fields['event']));
 				update_option('event_manager_submit_organizer_form_fields', array('organizer' =>$all_fields['organizer']));	
 			}			
