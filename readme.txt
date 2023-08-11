@@ -302,8 +302,8 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 = [3.1.37.1] 09-08-2023 =
 
-Fixed: Change Registration email/URL.
-Fixed: Update Wordpress version in readme file.
+Fixed : Plugin is tested with the latest WordPress version and removed compatibility issue with it.
+Fixed : Issue related to the my registration email/url field is fixed.
 
 = [3.1.37] 07-08-2023 =
 
