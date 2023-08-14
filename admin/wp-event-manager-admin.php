@@ -213,7 +213,7 @@ A prior Backup does no harm before updating the plugin!',
 							}
 						}
 						$this->migrate_organizer_from_event_meta($event, $organizer_data);
-						$this->banner_image_set_thumnail($event);
+						$this->banner_image_set_thumbnail($event);
 					}
 				}
 			}
@@ -256,9 +256,9 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * banner_image_set_thumnail
+	 * banner_image_set_thumbnail
 	 */
-	public function banner_image_set_thumnail($event) {
+	public function banner_image_set_thumbnail($event) {
 		$banner = get_event_banner($event);
 
 		if(is_array($banner)) {
