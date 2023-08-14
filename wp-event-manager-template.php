@@ -205,7 +205,7 @@ function get_event_registration_method($post = null){
 	}
 
 	$method = new stdClass();
-	$register  = $post->_event_registration_email;
+	$register  = $post->_registration;
 
 	if(empty($register)) {
 		$method->type = 'url';

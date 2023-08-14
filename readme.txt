@@ -4,8 +4,8 @@ Contributors: wpeventmanager,ashokdudhat,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 4.1
-Tested up to: 6.0
-Stable tag: 3.1.37
+Tested up to: 6.2.2
+Stable tag: 3.1.37.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -299,6 +299,11 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= [3.1.37.1] 14-08-2023 =
+
+Fixed: Plugin is tested with the latest WordPress version and removed compatibility issues with it.
+Fixed: The issue related to my registration email/URL is fixed in WP Event Manager.
 
 = [3.1.37] 07-08-2023 =
 

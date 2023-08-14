@@ -7,9 +7,9 @@
 * Author URI: https://www.wp-eventmanager.com
 * Text Domain: wp-event-manager
 * Domain Path: /languages
-* Version: 3.1.37
+* Version: 3.1.37.1
 * Since: 1.0.0
-* Requires WordPress Version at least: 4.1
+* Requires WordPress Version at least: 5.4.1
 * Copyright: 2019 WP Event Manager
 * License: GNU General Public License v3.0
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -40,7 +40,7 @@ class WP_Event_Manager {
 	 * @var plugin version
 	 * @since  3.1.33
 	 */
-	private static $wpem_verion = '3.1.37';
+	private static $wpem_verion = '3.1.37.1';
 
 	/**
 	 * REST API instance.
@@ -155,65 +155,18 @@ class WP_Event_Manager {
 		WP_Event_Manager_Install::install();
 		//show notice after activating plugin
 		update_option('event_manager_rating_showcase_admin_notices_dismiss','0');
+		// 3.1.37.1 change field option name
+		if(!empty(get_option('event_manager_form_fields', true))) {
+			$all_fields = get_option('event_manager_form_fields', true);
 
-		// check for old meta keys
-		// this is for temporary use only to update meta key
-		// we will remove after some release
-		if(!get_option('wp_event_manager_update_db')){
-			$args = array(
-				'post_type'      => 'event_listing',
-				'meta_key'       => '_registration',
-				'posts_per_page' => -1,
-			);
-			$query = new WP_Query($args);
-
-			if($query->have_posts()) {
-				while ($query->have_posts()) {
-					$query->the_post();
-					$event_id = get_the_ID();
-					$regisration_value = get_post_meta($event_id, '_registration', true);
-					update_post_meta($event_id, '_event_registration_email', $regisration_value);
-				}
-			
-				wp_reset_postdata();
-			} 
-			$args = array(
-				'post_type'      => 'event_listing',
-				'meta_key'       => '_submitting_key',
-				'posts_per_page' => -1,
-			);
-			$query = new WP_Query($args);
-
-			if($query->have_posts()) {
-				while ($query->have_posts()) {
-					$query->the_post();
-					$event_id = get_the_ID();
-					$wpem_unique_key = get_post_meta($event_id, '_submitting_key', true);
-					update_post_meta($event_id, '_wpem_unique_key', $wpem_unique_key);
-				}
-			
-				wp_reset_postdata();
-			} 
-			$args = array(
-				'post_type'      => 'event_listing',
-				'meta_key'       => '_cancelled',
-				'posts_per_page' => -1,
-			);
-			$query = new WP_Query($args);
-
-			if($query->have_posts()) {
-				while ($query->have_posts()) {
-					$query->the_post();
-					$event_id = get_the_ID();
-					$cancelled_event = get_post_meta($event_id, '_cancelled', true);
-					update_post_meta($event_id, '_event_cancelled', $cancelled_event);
-					$featured_event = get_post_meta($event_id, '_featured', true);
-					update_post_meta($event_id, '_event_featured', $featured_event);
-				}
-			
-				wp_reset_postdata();
-			} 
-			update_option('wp_event_manager_update_db', true);
+			if(isset($all_fields) && !empty($all_fields) && is_array($all_fields)) {
+				
+				// 3.1.37.1 change field option name
+				if(isset($all_fields['event']['event_registration_email']))
+					unset($all_fields['event']['event_registration_email']);
+				
+				update_option('event_manager_submit_event_form_fields', array('event' =>$all_fields['event']));
+			}			
 		}
 		flush_rewrite_rules();
 	}
