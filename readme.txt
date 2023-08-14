@@ -300,10 +300,10 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
-= [3.1.37.1] 09-08-2023 =
+= [3.1.37.1] 14-08-2023 =
 
-Fixed : Plugin is tested with the latest WordPress version and removed compatibility issue with it.
-Fixed : Issue related to the my registration email/url field is fixed.
+Fixed: Plugin is tested with the latest WordPress version and removed compatibility issues with it.
+Fixed: The issue related to my registration email/URL is fixed in WP Event Manager.
 
 = [3.1.37] 07-08-2023 =
 
