@@ -62,7 +62,8 @@ class WP_Event_Manager_Writepanels {
 		
 		$current_user = wp_get_current_user();
 		if(isset($post->ID)) {
-			$registration = metadata_exists('post', $post->ID, '_registration') ? get_post_meta($post->ID, '_registration', true) : $current_user->user_email;
+			$registration = metadata_exists('post', $post->ID, '_event_registration_email') ? get_post_meta($post->ID, '_event_registration_email', true) : $current_user->user_email;
+			$registration = metadata_exists('post', $post->ID, '_registration') ? get_post_meta($post->ID, '_registration', true) : $registration;
 			$expiry_date  = get_post_meta($post->ID, '_event_expiry_date', true);
 			if($expiry_date) {
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
@@ -73,7 +74,6 @@ class WP_Event_Manager_Writepanels {
 			$registration = $current_user->user_email;
 			$expiry_date  = '';
 		}
-
 		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 		$fields                     = $form_submit_event_instance->merge_with_custom_fields('backend');
@@ -83,7 +83,7 @@ class WP_Event_Manager_Writepanels {
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
-				if($field_key === 'event_registration_email') {
+				if($field_key === 'registration') {
 					$field_value['value'] = $registration;
 				}
 				if(strpos($field_key, '_') !== 0) {
@@ -94,7 +94,6 @@ class WP_Event_Manager_Writepanels {
 			}
 			unset($fields[$group_key]);
 		}
-
 		$fields = apply_filters('event_manager_event_listing_data_fields', $fields);
 		if(isset($fields['_event_title'])) {
 			unset($fields['_event_title']);
