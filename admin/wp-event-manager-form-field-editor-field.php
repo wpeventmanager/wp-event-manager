@@ -69,7 +69,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 		</div>
 		<span class="na">&ndash;</span>
 	</td>
-	<td> <input type="text" value="_<?php echo esc_attr($field_key); ?>" readonly></td>
+	<td> <input type="text" value="_<?php echo esc_attr(stripslashes($field_key)); ?>" readonly></td>
 	<td>
 		<?php if (!in_array($field_key, $disbled_fields)) : ?>
 			<input type="checkbox" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][admin_only]" value="1" <?php checked(!empty($field['admin_only']), true); ?> />
