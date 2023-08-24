@@ -203,16 +203,16 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				foreach($group_fields as $key => $field) {
 					switch($key) {
 						case 'venue_name' :
-							$this->fields[ $group_key ][ $key ]['value'] = $venue->post_title;
+							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($venue->post_title);
 						break;
 						case 'venue_description' :
-							$this->fields[ $group_key ][ $key ]['value'] = $venue->post_content;
+							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($venue->post_content);
 						break;
 						case  'venue_logo':
 							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($venue->ID) ? get_post_thumbnail_id($venue->ID) : get_post_meta($venue->ID, '_' . $key, true);
 						break;
 						default:
-							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($venue->ID, '_' . $key, true);
+							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($venue->ID, '_' . $key, true));
 						break;
 					}
 					if(!empty($field['taxonomy'])) {
@@ -220,7 +220,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					}
 					
 					if(!empty($field['type']) &&  $field['type'] == 'date'){
-						$event_date = get_post_meta($venue->ID, '_' . $key, true);
+						$event_date = sanitize_text_field(get_post_meta($venue->ID, '_' . $key, true));
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date));
 					}
 				}
@@ -231,12 +231,12 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		wp_enqueue_script('wp-event-manager-event-submission');
 		get_event_manager_template('venue-submit.php', 
 			array(
-				'form'               => $this->form_name,
-				'venue_id'       	=> $this->get_venue_id(),
+				'form'               => esc_attr($this->form_name),
+				'venue_id'       	 =>esc_attr($this->get_venue_id()),
 				'resume_edit'        => $this->resume_edit,
-				'action'             => $this->get_action(),
-				'venue_fields'     	=> $this->get_fields('venue'),
-				'step'               => $this->get_step(),
+				'action'             => esc_url($this->get_action()),
+				'venue_fields'     	 => $this->get_fields('venue'),
+				'step'               => esc_attr($this->get_step()),
 				'submit_button_text' => apply_filters('submit_venue_form_submit_button_text',  __('Submit', 'wp-event-manager'))
 			),
 			'wp-event-manager/venue', 
@@ -344,8 +344,8 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 */
 	protected function save_venue($post_title, $post_content, $status = 'publish', $values = array(), $update_slug = true) {
 		$venue_data = array(
-			'post_title'     => $post_title,
-			'post_content'   => $post_content,
+			'post_title'     => sanitize_text_field($post_title),
+			'post_content'   => wp_kses_post($post_content),
 			'post_type'      => 'event_venue',
 			'comment_status' => 'closed'
 		);
@@ -388,9 +388,9 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				// Save taxonomies
 				if(!empty($field['taxonomy'])) {
 					if(is_array($values[ $group_key ][ $key ])) {
-						wp_set_object_terms($this->venue_id, $values[ $group_key ][ $key ], $field['taxonomy'], false);
+						wp_set_object_terms($this->venue_id, sanitize_text_field($values[ $group_key ][ $key ]), sanitize_text_field($field['taxonomy']), false);
 					} else {
-						wp_set_object_terms($this->venue_id, array($values[ $group_key ][ $key ]), $field['taxonomy'], false);
+						wp_set_object_terms($this->venue_id, array(sanitize_text_field($values[ $group_key ][ $key ])), sanitize_text_field($field['taxonomy']), false);
 					}				
 				// oragnizer logo is a featured image
 				} elseif($field['type'] == 'date') {
@@ -404,18 +404,24 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					else
 						update_post_meta($this->venue_id, '_' . $key, '');
 					
-				} else { 
+				} elseif('file' === $field['type']) { 
 					update_post_meta($this->venue_id, '_' . $key, $values[ $group_key ][ $key ]);
 					// Handle attachments.
-					if('file' === $field['type']) {
-						if(is_array($values[ $group_key ][ $key ])) {
-							foreach($values[ $group_key ][ $key ] as $file_url) {
-								$maybe_attach[] = $file_url;
-							}
-						} else {
-							$maybe_attach[] = $values[ $group_key ][ $key ];
+					if(is_array($values[ $group_key ][ $key ])) {
+						foreach($values[ $group_key ][ $key ] as $file_url) {
+							$maybe_attach[] = $file_url;
 						}
+					} else {
+						$maybe_attach[] = $values[ $group_key ][ $key ];
 					}
+				} elseif('file' === $field['url']) { 
+					update_post_meta($this->venue_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
+
+				} elseif('file' === $field['email']) { 
+					update_post_meta($this->venue_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
+					
+				} else{
+					update_post_meta($this->venue_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ]));
 				}
 			}
 		}
@@ -463,7 +469,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			return 0;
 		}
 		$attachment = array(
-						'post_title'   => get_the_title($this->venue_id),
+						'post_title'   => sanitize_text_field(get_the_title($this->venue_id)),
 						'post_content' => '',
 						'post_status'  => 'inherit',
 						'post_parent'  => $this->venue_id,

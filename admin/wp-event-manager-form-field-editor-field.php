@@ -2,9 +2,9 @@
 if (empty($field_key)) {
 	$field_key = $index;
 }
-$taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing'));
-?>
-<tr data-field-type="<?php echo esc_attr($field['type']); ?>">
+$taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing')); ?>
+
+<tr data-field-type="text-field">
 	<td class="sort-column">&nbsp;</td>
 	<td>
 		<input type="text" class="input-text" name="<?php echo wp_kses_post($group_key); ?>[<?php echo esc_attr($field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($field['label'])); ?>" />

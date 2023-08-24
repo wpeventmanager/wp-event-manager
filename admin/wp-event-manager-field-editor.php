@@ -27,19 +27,19 @@ class WP_Event_Manager_Field_Editor {
 		$field_types = apply_filters(
 			'event_manager_form_group_field_types',
 			array(
-				'text'        => __('Text', 'wp-event-manager'),
-				'time'        => __('Time', 'wp-event-manager'),
-				'checkbox'    => __('Checkbox', 'wp-event-manager'),
-				'date'        => __('Date', 'wp-event-manager'),
-				'timezone'    => __('Timezone', 'wp-event-manager'),
-				'file'        => __('File', 'wp-event-manager'),
-				'hidden'      => __('Hidden', 'wp-event-manager'),
-				'multiselect' => __('Multiselect', 'wp-event-manager'),
-				'number'      => __('Number', 'wp-event-manager'),
-				'password'    => __('Password', 'wp-event-manager'),
-				'radio'       => __('Radio', 'wp-event-manager'),
-				'select'      => __('Select', 'wp-event-manager'),
-				'textarea'    => __('Textarea', 'wp-event-manager'),
+				'text'        => esc_html__('Text', 'wp-event-manager'),
+				'time'        => esc_html__('Time', 'wp-event-manager'),
+				'checkbox'    => esc_html__('Checkbox', 'wp-event-manager'),
+				'date'        => esc_html__('Date', 'wp-event-manager'),
+				'timezone'    => esc_html__('Timezone', 'wp-event-manager'),
+				'file'        => esc_html__('File', 'wp-event-manager'),
+				'hidden'      => esc_html__('Hidden', 'wp-event-manager'),
+				'multiselect' => esc_html__('Multiselect', 'wp-event-manager'),
+				'number'      => esc_html__('Number', 'wp-event-manager'),
+				'password'    => esc_html__('Password', 'wp-event-manager'),
+				'radio'       => esc_html__('Radio', 'wp-event-manager'),
+				'select'      => esc_html__('Select', 'wp-event-manager'),
+				'textarea'    => esc_html__('Textarea', 'wp-event-manager'),
 			)
 		);
 
@@ -90,7 +90,7 @@ class WP_Event_Manager_Field_Editor {
 		<div class="wrap wp-event-manager-registrations-form-editor">
 			<h1 class="wp-heading-inline"><?php esc_attr_e('Form fields'); ?></h1>
 			<div class="wpem-wrap wp-event-manager-form-field-editor">
-				<form method="post" id="mainform" action="edit.php?post_type=event_listing&amp;page=event-manager-form-editor">
+				<form method="post" id="mainform" action="<?php echo esc_url("edit.php?post_type=event_listing&amp;page=event-manager-form-editor");?>">
 					<?php $this->form_editor(); ?>
 					<?php wp_nonce_field('save-wp-event-manager-form-field-editor'); ?>
 				</form>
@@ -127,25 +127,25 @@ class WP_Event_Manager_Field_Editor {
 		$field_types    = apply_filters(
 			'event_manager_form_field_types',
 			array(
-				'text'             => __('Text', 'wp-event-manager'),
-				'time'             => __('Time', 'wp-event-manager'),
-				'checkbox'         => __('Checkbox', 'wp-event-manager'),
-				'date'             => __('Date', 'wp-event-manager'),
-				'timezone'         => __('Timezone', 'wp-event-manager'),
-				'file'             => __('File', 'wp-event-manager'),
-				'hidden'           => __('Hidden', 'wp-event-manager'),
-				'multiselect'      => __('Multiselect', 'wp-event-manager'),
-				'number'           => __('Number', 'wp-event-manager'),               /*'password'       		=> __('Password', 'wp-event-manager'),*/
-				'radio'            => __('Radio', 'wp-event-manager'),
-				'repeated'         => __('Repeated', 'wp-event-manager'),
-				'select'           => __('Select', 'wp-event-manager'),
-				'term-checklist'   => __('Term Checklist', 'wp-event-manager'),
-				'term-multiselect' => __('Term Multiselect', 'wp-event-manager'),
-				'term-select'      => __('Term Select', 'wp-event-manager'),
-				'textarea'         => __('Textarea', 'wp-event-manager'),
-				'wp-editor'        => __('WP Editor', 'wp-event-manager'),
-				'url'              => __('URL', 'wp-event-manager'),          /*'group'       			=> __('Group', 'wp-event-manager'),	*/
-				'email'            => __('Email', 'wp-event-manager'),
+				'text'             => esc_html__('Text', 'wp-event-manager'),
+				'time'             => esc_html__('Time', 'wp-event-manager'),
+				'checkbox'         => esc_html__('Checkbox', 'wp-event-manager'),
+				'date'             => esc_html__('Date', 'wp-event-manager'),
+				'timezone'         => esc_html__('Timezone', 'wp-event-manager'),
+				'file'             => esc_html__('File', 'wp-event-manager'),
+				'hidden'           => esc_html__('Hidden', 'wp-event-manager'),
+				'multiselect'      => esc_html__('Multiselect', 'wp-event-manager'),
+				'number'           => esc_html__('Number', 'wp-event-manager'),               /*'password'       		=> __('Password', 'wp-event-manager'),*/
+				'radio'            => esc_html__('Radio', 'wp-event-manager'),
+				'repeated'         => esc_html__('Repeated', 'wp-event-manager'),
+				'select'           => esc_html__('Select', 'wp-event-manager'),
+				'term-checklist'   => esc_html__('Term Checklist', 'wp-event-manager'),
+				'term-multiselect' => esc_html__('Term Multiselect', 'wp-event-manager'),
+				'term-select'      => esc_html__('Term Select', 'wp-event-manager'),
+				'textarea'         => esc_html__('Textarea', 'wp-event-manager'),
+				'wp-editor'        => esc_html__('WP Editor', 'wp-event-manager'),
+				'url'              => esc_html__('URL', 'wp-event-manager'),          /*'group'       			=> __('Group', 'wp-event-manager'),	*/
+				'email'            => esc_html__('Email', 'wp-event-manager'),
 			)
 		);
 
@@ -177,7 +177,7 @@ class WP_Event_Manager_Field_Editor {
 			} ?>
 
 			<div class="wp-event-manager-event-form-field-editor">
-				<h3><?php printf(esc_attr__('%s form fields', 'wp-event-manager'), ucfirst($group_key)); ?></h3>
+				<h3><?php printf(esc_attr__('%s form fields', 'wp-event-manager'), ucfirst(esc_attr($group_key))); ?></h3>
 				<table class="widefat">
 					<thead>
 						<tr>
@@ -292,7 +292,7 @@ class WP_Event_Manager_Field_Editor {
 				$new_fields = array(
 					'event'     => $event_field,
 					'organizer' => $event_organizer,
-					'venue'     => $event_venue,
+					'venue'     => $event_venue, 
 				);
 				// find the numers keys from the fields array and replace with lable if label not exist remove that field
 				foreach ($new_fields as $group_key => $group_fields) {
@@ -341,6 +341,7 @@ class WP_Event_Manager_Field_Editor {
 						}else{
 							$hasSave = 0;
 						}
+						$new_fields[$group_key][$field_key]['type'] = sanitize_text_field($new_fields[$group_key][$field_key]['type']);
 					}
 				}
 				if(isset($hasSave) && $hasSave == 1){

@@ -212,16 +212,16 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 				foreach($group_fields as $key => $field) {
 					switch($key) {
 						case 'organizer_name' :
-							$this->fields[ $group_key ][ $key ]['value'] = $organizer->post_title;
+							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($organizer->post_title);
 						break;
 						case 'organizer_description' :
-							$this->fields[ $group_key ][ $key ]['value'] = $organizer->post_content;
+							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($organizer->post_content);
 						break;
 						case  'organizer_logo':
 							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($organizer->ID) ? get_post_thumbnail_id($organizer->ID) : get_post_meta($organizer->ID, '_' . $key, true);
 						break;
 						default:
-							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($organizer->ID, '_' . $key, true);
+							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($organizer->ID, '_' . $key, true));
 						break;
 					}
 					if(!empty($field['taxonomy'])) {
@@ -240,12 +240,12 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		wp_enqueue_script('wp-event-manager-event-submission');
 		get_event_manager_template('organizer-submit.php', 
 			array(
-				'form'               => $this->form_name,
-				'organizer_id'       => $this->get_organizer_id(),
+				'form'               => esc_attr($this->form_name),
+				'organizer_id'       => esc_attr($this->get_organizer_id()),
 				'resume_edit'        => $this->resume_edit,
-				'action'             => $this->get_action(),
-				'organizer_fields'     => $this->get_fields('organizer'),
-				'step'               => $this->get_step(),
+				'action'             => esc_url($this->get_action()),
+				'organizer_fields'   => $this->get_fields('organizer'),
+				'step'               => esc_attr($this->get_step()),
 				'submit_button_text' => apply_filters('submit_organizer_form_submit_button_text',  __('Submit', 'wp-event-manager'))
 			),
 			'wp-event-manager/organizer', 
@@ -354,8 +354,8 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 */
 	protected function save_organizer($post_title, $post_content, $status = 'publish', $values = array(), $update_slug = true) {
 		$organizer_data = array(
-			'post_title'     => $post_title,
-			'post_content'   => $post_content,
+			'post_title'     => sanitize_text_field($post_title),
+			'post_content'   => wp_kses_post($post_content),
 			'post_type'      => 'event_organizer',
 			'comment_status' => 'closed'
 		);
@@ -398,9 +398,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 				// Save taxonomies
 				if(!empty($field['taxonomy'])) {
 					if(is_array($values[ $group_key ][ $key ])) {
-						wp_set_object_terms($this->organizer_id, $values[ $group_key ][ $key ], $field['taxonomy'], false);
+						wp_set_object_terms($this->organizer_id, sanitize_text_field($values[ $group_key ][ $key ]), sanitize_text_field($field['taxonomy']), false);
 					} else {
-						wp_set_object_terms($this->organizer_id, array($values[ $group_key ][ $key ]), $field['taxonomy'], false);
+						wp_set_object_terms($this->organizer_id, array(sanitize_text_field($values[ $group_key ][ $key ])), sanitize_text_field($field['taxonomy']), false);
 					}				
 				}
 				elseif($field['type'] == 'date') {
@@ -414,18 +414,24 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					else
 						update_post_meta($this->organizer_id, '_' . $key, '');
 					
-				} else { 
+				} elseif('file' === $field['type']) { 
 					update_post_meta($this->organizer_id, '_' . $key, $values[ $group_key ][ $key ]);
 					// Handle attachments.
-					if('file' === $field['type']) {
-						if(is_array($values[ $group_key ][ $key ])) {
-							foreach($values[ $group_key ][ $key ] as $file_url) {
-								$maybe_attach[] = $file_url;
-							}
-						} else {
-							$maybe_attach[] = $values[ $group_key ][ $key ];
+					if(is_array($values[ $group_key ][ $key ])) {
+						foreach($values[ $group_key ][ $key ] as $file_url) {
+							$maybe_attach[] = $file_url;
 						}
+					} else {
+						$maybe_attach[] = $values[ $group_key ][ $key ];
 					}
+				}elseif('file' === $field['url']) { 
+					update_post_meta($this->organizer_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
+
+				} elseif('file' === $field['email']) { 
+					update_post_meta($this->organizer_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
+					
+				} else{
+					update_post_meta($this->organizer_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ]));
 				}
 			}
 		}
@@ -475,12 +481,12 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		}
 		
 		$attachment = array(
-						'post_title'   => get_the_title($this->organizer_id),
-						'post_content' => '',
-						'post_status'  => 'inherit',
-						'post_parent'  => $this->organizer_id,
-						'guid'         => $attachment_url
-					);
+			'post_title'   => sanitize_text_field(get_the_title($this->organizer_id)),
+			'post_content' => '',
+			'post_status'  => 'inherit',
+			'post_parent'  => $this->organizer_id,
+			'guid'         => $attachment_url
+		);
 	
 		if($info = wp_check_filetype($attachment_url)) {
 			$attachment['post_mime_type'] = $info['type'];

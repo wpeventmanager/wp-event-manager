@@ -38,6 +38,7 @@ function get_event_manager_template($template_name, $args = array(), $template_p
 	if($args && is_array($args)) {
 		extract($args);
 	}
+echo $template_name;
 	include(locate_event_manager_template($template_name, $template_path, $default_path));
 }
 
@@ -69,6 +70,8 @@ function locate_event_manager_template($template_name, $template_path = 'wp-even
 		$default_path = $default_path ? $default_path : EVENT_MANAGER_PLUGIN_DIR . '/templates/';
 		if(file_exists(trailingslashit($default_path) . $template_name)) {
 			$template = trailingslashit($default_path) . $template_name;
+		}else {
+			$template = trailingslashit($default_path) . "text-field.php";
 		}
 	}
 
