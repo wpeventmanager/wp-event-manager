@@ -342,7 +342,6 @@ class WP_Event_Manager_Field_Editor {
 						}else{
 							$hasSave = 0;
 						}
-						$new_fields[$group_key][$field_key]['type'] = sanitize_text_field($new_fields[$group_key][$field_key]['type']);
 					}
 				}
 				if(isset($hasSave) && $hasSave == 1){

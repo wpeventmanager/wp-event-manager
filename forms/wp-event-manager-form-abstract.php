@@ -183,10 +183,10 @@ abstract class WP_Event_Manager_Form {
 	 * @return int
 	 */
 	protected function sort_by_priority($a, $b) {
-	    if($a['priority'] == $b['priority']) {
+	    if(isset($a['priority']) && isset($b['priority']) && ($a['priority'] == $b['priority'])) {
 	        return 0;
 	    }
-	    return ($a['priority'] < $b['priority']) ? -1 : 1;
+	    return (isset($a['priority']) && isset($b['priority']) && ($a['priority'] < $b['priority'])) ? -1 : 1;
 	}
 	
 	/**
