@@ -414,10 +414,10 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					} else {
 						$maybe_attach[] = $values[ $group_key ][ $key ];
 					}
-				} elseif('file' === $field['url']) { 
+				} elseif('url' === $field['type']) { 
 					update_post_meta($this->venue_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
 
-				} elseif('file' === $field['email']) { 
+				} elseif('email' === $field['type']) { 
 					update_post_meta($this->venue_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
 					
 				} else{
