@@ -798,9 +798,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				// Save taxonomies
 				if ( ! empty( $field['taxonomy'] ) ) {
 					if ( is_array( $values[ $group_key ][ $key ] ) ) {
-						wp_set_object_terms( $this->event_id, sanitize_text_field($values[ $group_key ][ $key ]), sanitize_text_field($field['taxonomy']), false );
+						wp_set_object_terms( $this->event_id, $values[ $group_key ][ $key ], $field['taxonomy'], false );
 					} else {
-						wp_set_object_terms( $this->event_id, array( sanitize_text_field($values[ $group_key ][ $key ]) ), sanitize_text_field($field['taxonomy']), false );
+						wp_set_object_terms( $this->event_id, array( $values[ $group_key ][ $key ] ), $field['taxonomy'], false );
 					}				
 				// oragnizer logo is a featured image
 				}
