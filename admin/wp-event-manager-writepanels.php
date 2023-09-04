@@ -343,7 +343,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_file($key, $field)	{
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
 		}
 		if(empty($field['placeholder'])) {
@@ -387,9 +387,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_text($key, $field)	{
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -399,10 +399,11 @@ class WP_Event_Manager_Writepanels {
 
 		<p class="form-field">
 			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
-				<?php
-				if(!empty($field['description'])) :
-				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+				<?php 
+				if(!empty($field['description'])) : ?>
+					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span>
+				<?php endif; ?>
+			</label>
 			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($field['value']); ?>" />
 		</p>
 	<?php
@@ -418,7 +419,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_wp_editor($key, $field) {
 		global $thepostid;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+			$field['value'] = stripslashes(get_post_meta($thepostid, $key, true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -446,7 +447,7 @@ class WP_Event_Manager_Writepanels {
 		global $thepostid;
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 		$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$date = get_post_meta($thepostid, $key, true);
 			if(!empty($date)) {
 				$date = date($php_date_format, strtotime($date));
@@ -478,7 +479,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_textarea($key, $field) {
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
 		}
 		if(!empty($field['name'])) {
@@ -505,7 +506,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_select($key, $field) {
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
 		}
 		if(!empty($field['name'])) {
@@ -542,7 +543,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_multiselect($key, $field)	{
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
 		}
 		if(!empty($field['name'])) {
@@ -604,7 +605,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_time($key, $field)	{
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
 		}
 		if(!empty($field['name'])) {
@@ -631,7 +632,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_timezone($key, $field)	{
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
 		}
 		if(!empty($field['name'])) {
@@ -663,7 +664,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_number($key, $field) {
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
 		}
 		if(!empty($field['name'])) {
@@ -690,7 +691,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_url($key, $field) {
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($thepostid, $key, true);
 		}
 		if(!empty($field['name'])) {
@@ -717,7 +718,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_button($key, $field) {
 		global $thepostid;
-		if(!isset($field['value'])) {
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = $field['placeholder'];
 		}
 
