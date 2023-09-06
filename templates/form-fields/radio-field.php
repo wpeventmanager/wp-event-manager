@@ -18,7 +18,7 @@ $field['default'] = empty($field['default']) ? current(array_keys($field['option
 $default          = !empty($field['value']) ? $field['value'] : $field['default'];
 
 foreach ($field['options'] as $option_key => $value) : ?>
-	<label><input type="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo esc_attr($key); ?>" attribute="<?php echo esc_attr(isset($field['attribute']) ? $field['attribute'] : ''); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($default, $option_key); ?> /> <?php echo esc_html($value); ?></label>
+	<label><input type="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo esc_attr($key); ?>" attribute="<?php echo esc_attr(isset($field['attribute']) ? $field['attribute'] : ''); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($default, $option_key); ?> /> <?php _e(esc_html($value)); ?></label>
 <?php endforeach; 
 
 if (!empty($field['description'])) : ?>

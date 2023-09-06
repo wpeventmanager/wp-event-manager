@@ -195,7 +195,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       => __( 'Zip Code', 'wp-event-manager' ),
 					'type'        => 'text',
 					'required'    => true,
-					'placeholder' => __( 'Please enter zip code (Area code)', 'wp-event-manager' ),
+					'placeholder' => __( 'Please enter zip code(Area code)', 'wp-event-manager' ),
 					'priority'    => 5
 				),
 					
