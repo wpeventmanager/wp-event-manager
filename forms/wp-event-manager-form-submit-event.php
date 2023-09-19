@@ -317,13 +317,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'default'	=> '+5:00'
 				),
 			),			
-
-			'organizer' => array(
+'organizer' => array(
 				'event_organizer_ids' => array(
 					'label'       	=> __( 'Organizer', 'wp-event-manager' ),		      
 			        'type'  		=> 'multiselect',
 				    'default'  		=> '',
-				    'options'  		=>($current_user_id) ? get_all_organizer_array($current_user_id) : [],
+				    'options'  		=>apply_filters('wpem_set_organizer_ids', ($current_user_id) ? get_all_organizer_array($current_user_id) : []),
 				    'description'	=> $organizer_description,
 				    'priority'   	=> 19,
 			        'required'		=>false
@@ -335,13 +334,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
 			        'type'  		=> 'select',
 				    'default'  		=> '',
-				    'options'  		=>($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')],
+				    'options'  		=> apply_filters('wpem_set_venue_ids', ($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')]),
 				    'description'	=> $venue_description,
 				    'priority'    	=> 21,
 			        'required'		=>false
 				),
-			)			
-			
+			)	
 		) );
 	}
 
