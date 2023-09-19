@@ -4,13 +4,13 @@ Contributors: wpeventmanager,ashokdudhat,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 4.1
-Tested up to: 6.2.2
+Tested up to: 6.3.1
 Stable tag: 3.1.38
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the Frontend and Backend.
+Lightweight, scalable and full-featured event listings & management plugin for managing events & tickets from the Frontend and Backend.
 
 == Description ==
 
