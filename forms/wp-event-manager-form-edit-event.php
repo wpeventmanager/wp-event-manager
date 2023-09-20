@@ -66,7 +66,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 			foreach ($group_fields as $key => $field) {
 				if(!isset($this->fields[ $group_key ][ $key ]['value'])) {
 					if('event_title' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = $event->post_title;
+						$this->fields[ $group_key ][ $key ]['value'] = esc_attr($event->post_title);
 					} elseif('event_description' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = $event->post_content;
 					} elseif('organizer_logo' === $key) {
@@ -82,30 +82,31 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 					} elseif(!empty($field['taxonomy'])) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($event->ID, $field['taxonomy'], array('fields' => 'ids'));
 					} else {
-						$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($event->ID, '_' . $key, true);
+						$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($event->ID, '_' . stripslashes($key), true);
 					}
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
-					$event_date = get_post_meta($event->ID, '_' . $key, true);
+					$event_date = get_post_meta($event->ID, '_' . stripslashes($key), true);
 					$this->fields[ $group_key ][ $key ]['value'] = !empty($event_date) ? date($php_date_format ,strtotime($event_date)) :'';
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'button'){
 					if(isset($this->fields[ $group_key ][ $key ]['value']) && empty($this->fields[ $group_key ][ $key ]['value'])) {
-						$this->fields[ $group_key ][ $key ]['value'] = $field['placeholder'];
+						$this->fields[ $group_key ][ $key ]['value'] = esc_attr($field['placeholder']);
 					}
 				}
 			}
 		}
+		error_log(print_r($this->fields, true));
 		$this->fields = apply_filters('submit_event_form_fields_get_event_data', $this->fields, $event);
 		wp_enqueue_script('wp-event-manager-event-submission');
 		get_event_manager_template('event-submit.php', array(
-			'form'               => $this->form_name,
-			'event_id'             => $this->get_event_id(),
-			'action'             => $this->get_action(),
-			'event_fields'         => $this->get_fields('event'),
-			'organizer_fields'     => $this->get_fields('organizer'),
-			'venue_fields'     => $this->get_fields('venue'),
-			'step'               => $this->get_step(),
+			'form'               => esc_attr($this->form_name),
+			'event_id'           => esc_attr($this->get_event_id()),
+			'action'             => esc_url($this->get_action()),
+			'event_fields'       => $this->get_fields('event'),
+			'organizer_fields'   => $this->get_fields('organizer'),
+			'venue_fields'       => $this->get_fields('venue'),
+			'step'               => esc_attr($this->get_step()),
 			'submit_button_text' => __('Save changes', 'wp-event-manager')
 		));
 	}

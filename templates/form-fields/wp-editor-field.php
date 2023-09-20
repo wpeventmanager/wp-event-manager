@@ -20,7 +20,8 @@ $editor = apply_filters('submit_event_form_wp_editor_args', array(
 	),
 ));
 
-wp_editor(isset($field['value']) ?  $field['value']  : '', $key, $editor);
+$placeholder_text = isset($field['placeholder']) ? $field['placeholder'] : '';
+wp_editor(isset($field['value']) ? $field['value'] : $placeholder_text, $key, $editor);
 
 if (!empty($field['description'])) : ?>
 	<small class="description">

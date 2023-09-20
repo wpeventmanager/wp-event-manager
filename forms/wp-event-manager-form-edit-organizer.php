@@ -66,15 +66,15 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 			foreach ($group_fields as $key => $field) {
 				if(!isset($this->fields[ $group_key ][ $key ]['value'])) {
 					if('organizer_name' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = $organizer->post_title;
+						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($organizer->post_title);
 					} elseif('event_description' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = $organizer->post_content;
+						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($organizer->post_content);
 					} elseif('organizer_logo' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($organizer->ID) ? get_post_thumbnail_id($organizer->ID) : get_post_meta($organizer->ID, '_' . $key, true);
 					} elseif(!empty($field['taxonomy'])) {
-						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($organizer->ID, $field['taxonomy'], array('fields' => 'ids'));
+						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($organizer->ID, esc_attr($field['taxonomy']), array('fields' => 'ids'));
 					} else {
-						$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($organizer->ID, '_' . $key, true);
+						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($organizer->ID, '_' . esc_attr($key), true));
 					}
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
@@ -87,11 +87,11 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 		wp_enqueue_script('wp-event-manager-event-submission');
 		get_event_manager_template('organizer-submit.php', 
 			array(
-				'form'               	=> $this->form_name,
-				'organizer_id'          => $this->get_organizer_id(),
-				'action'             	=> $this->get_action(),
+				'form'               	=> esc_attr($this->form_name),
+				'organizer_id'          => esc_attr($this->get_organizer_id()),
+				'action'             	=> esc_url($this->get_action()),
 				'organizer_fields'     	=> $this->get_fields('organizer'),
-				'step'               	=> $this->get_step(),
+				'step'               	=> esc_attr($this->get_step()),
 				'submit_button_text' 	=> __('Save changes', 'wp-event-manager')
 			),
 			'wp-event-manager/organizer', 

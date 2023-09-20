@@ -69,6 +69,8 @@ function locate_event_manager_template($template_name, $template_path = 'wp-even
 		$default_path = $default_path ? $default_path : EVENT_MANAGER_PLUGIN_DIR . '/templates/';
 		if(file_exists(trailingslashit($default_path) . $template_name)) {
 			$template = trailingslashit($default_path) . $template_name;
+		}else {
+			$template = trailingslashit($default_path) . "text-field.php";
 		}
 	}
 

@@ -4,13 +4,13 @@ Contributors: wpeventmanager,ashokdudhat,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 4.1
-Tested up to: 6.2.2
-Stable tag: 3.1.37.1
+Tested up to: 6.3.1
+Stable tag: 3.1.38
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the Frontend and Backend.
+Lightweight, scalable and full-featured event listings & management plugin for managing events & tickets from the Frontend and Backend.
 
 == Description ==
 
@@ -299,6 +299,18 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= [3.1.38] 20-08-2023 =
+
+Fixed : Apostrophes issue with custom field names is fixed.
+Fixed : Wpeditor field is now showing default placeholder.
+Fixed : Registration email , URL field with updated value can now be displayed on the backend side.
+Fixed : Warning message related issue is fixed.
+Fixed : The warning message that was displayed in the Add, Edit and update options of the organizer and venue is now removed.
+Fixed : While creating a new event from the frontend, event type and category are displayed as numbers.
+Fixed : Translation issue is fixed.
+Fixed : Fatal error message issue is fixed.
+Fixed : Security issue is fixed.
 
 = [3.1.37.1] 14-08-2023 =
 

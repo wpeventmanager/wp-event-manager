@@ -20,8 +20,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 						echo wp_kses_post('<option value="' . esc_attr($key) . '" ' . selected($child_field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 					}
 				}
-			}
-			?>
+			} ?>
 		</select>
 	</td>
 	<td>
@@ -43,10 +42,10 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 				$child_options = '';
 		} ?>
 		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][fields][<?php echo esc_attr($child_field_key); ?>][placeholder]" value="
-																		<?php
-																			if(isset($child_field['placeholder'])) {
-																				printf(esc_html__('%s', 'wp-event-manager'), esc_attr(stripslashes($child_field['placeholder'])));}
-																			?>
+			<?php
+				if(isset($child_field['placeholder'])) {
+					printf(esc_html__('%s', 'wp-event-manager'), esc_attr(stripslashes($child_field['placeholder'])));}
+				?>
 		" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" />
 		<input type="text" class="input-text options" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][fields][<?php echo esc_attr($child_field_key); ?>][options]" placeholder="<?php esc_attr_e('Pipe (|) separate options.', 'wp-event-manager'); ?>" value="<?php echo esc_attr($child_options); ?>" />
 
@@ -79,10 +78,10 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 	</td>
 	<td>
 		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][fields][<?php echo esc_attr($child_field_key); ?>][priority]" value="
-							<?php
-							if(isset($child_field['priority'])) {
-								printf(esc_html__('%s', 'wp-event-manager'), esc_attr(stripslashes($child_field['priority'])));}
-							?>
+			<?php
+			if(isset($child_field['priority'])) {
+				printf(esc_html__('%s', 'wp-event-manager'), esc_attr(stripslashes($child_field['priority'])));}
+			?>
 		" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>"  disabled />
 	</td>
 	<td class="field-rules">

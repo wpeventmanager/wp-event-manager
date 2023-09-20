@@ -32,7 +32,7 @@
 						'label'       => '',
 						'placeholder' => '',
 					);
-					require 'wp-event-manager-form-field-editor-group-field.php';
+					require esc_html('wp-event-manager-form-field-editor-group-field.php');
 					echo wp_kses_post(ob_get_clean());
 					?>	">
 			</tbody>

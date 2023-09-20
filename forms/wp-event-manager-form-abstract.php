@@ -41,7 +41,7 @@ abstract class WP_Event_Manager_Form {
 				delete_post_meta(absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_wpem_unique_key');
 				setcookie('wp-event-manager-submitting-event-id', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
 				setcookie('wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				wp_redirect(esc_url(remove_query_arg(array('new', 'key'), $_SERVER[ 'REQUEST_URI' ])));
+				wp_redirect(esc_url(remove_query_arg(array('new', 'key'), esc_url($_SERVER[ 'REQUEST_URI' ]))));
 			}
     			
     	$step_key = $this->get_step_key($this->step);
@@ -81,7 +81,7 @@ abstract class WP_Event_Manager_Form {
 	 * @param string $error
 	 */
 	public function add_error($error) {
-		$this->errors[] = $error;
+		$this->errors[] = sanitize_text_field($error);
 	}
 
 	/**
@@ -183,10 +183,10 @@ abstract class WP_Event_Manager_Form {
 	 * @return int
 	 */
 	protected function sort_by_priority($a, $b) {
-	    if($a['priority'] == $b['priority']) {
+	    if(isset($a['priority']) && isset($b['priority']) && ($a['priority'] == $b['priority'])) {
 	        return 0;
 	    }
-	    return ($a['priority'] < $b['priority']) ? -1 : 1;
+	    return (isset($a['priority']) && isset($b['priority']) && ($a['priority'] < $b['priority'])) ? -1 : 1;
 	}
 	
 	/**
@@ -227,13 +227,22 @@ abstract class WP_Event_Manager_Form {
 				
 				if($handler = apply_filters("event_manager_get_posted_{$field_type}_field", false)) {
 					$values[ $group_key ][ $key ] = call_user_func($handler, $key, $field);
+					if (is_string( $values[ $group_key ][ $key ] ) ) {
+						$values[ $group_key ][ $key ] = wp_unslash( $values[ $group_key ][ $key ] );
+					}
 				} elseif(method_exists($this, "get_posted_{$field_type}_field")) {
 					$values[ $group_key ][ $key ] = call_user_func(array($this, "get_posted_{$field_type}_field"), $key, $field);
+					if (is_string( $values[ $group_key ][ $key ] ) ) {
+						$values[ $group_key ][ $key ] = wp_unslash( $values[ $group_key ][ $key ] );
+					}
 				} else {
 					$values[ $group_key ][ $key ] = $this->get_posted_field($key, $field);
+					if ( is_string( $values[ $group_key ][ $key ])) {
+						$values[ $group_key ][ $key ] = wp_unslash( $values[ $group_key ][ $key ]);
+					}
 				}
 				// Set fields value
-				$this->fields[ $group_key ][ $key ]['value'] = $values[ $group_key ][ $key ];
+				$this->fields[ $group_key ][ $key ]['value'] = wp_unslash( $values[ $group_key ][ $key ]);
 			}
 		}
 		return $values;

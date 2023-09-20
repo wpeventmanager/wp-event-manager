@@ -163,7 +163,7 @@ class WP_Event_Manager_Ajax {
 		}
 
 		ob_start();
-		$events = get_event_listings(apply_filters('event_manager_get_listings_args', $args));
+		$events = get_event_listings(apply_filters('event_manager_get_listings_args', $args, $_REQUEST));
 		$result['found_events'] = false;
 		if($events->have_posts()) : $result['found_events'] = true;
 			while ($events->have_posts()) : $events->the_post(); 

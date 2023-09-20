@@ -66,15 +66,15 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 			foreach ($group_fields as $key => $field) {
 				if(!isset($this->fields[ $group_key ][ $key ]['value'])) {
 					if('venue_name' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = $venue->post_title;
+						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($venue->post_title);
 					} elseif('venue_description' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = $venue->post_content;
+						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($venue->post_content);
 					} elseif('venue_logo' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($venue->ID) ? get_post_thumbnail_id($venue->ID) : get_post_meta($venue->ID, '_' . $key, true);
 					} elseif(!empty($field['taxonomy'])) {
-						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($venue->ID, $field['taxonomy'], array('fields' => 'ids'));
+						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($venue->ID, esc_attr($field['taxonomy']), array('fields' => 'ids'));
 					} else {
-						$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($venue->ID, '_' . $key, true);
+						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($venue->ID, '_' . esc_attr($key), true));
 					}
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
@@ -88,12 +88,12 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 		get_event_manager_template('venue-submit.php', 
 			array(
-				'form'               	=> $this->form_name,
-				'venue_id'          => $this->get_venue_id(),
-				'action'             	=> $this->get_action(),
+				'form'              => esc_attr($this->form_name),
+				'venue_id'          => esc_attr($this->get_venue_id()),
+				'action'            => esc_url($this->get_action()),
 				'venue_fields'     	=> $this->get_fields('venue'),
-				'step'               	=> $this->get_step(),
-				'submit_button_text' 	=> __('Save changes', 'wp-event-manager')
+				'step'              => esc_attr($this->get_step()),
+				'submit_button_text'=> __('Save changes', 'wp-event-manager')
 			),
 			'wp-event-manager/venue', 
             EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'

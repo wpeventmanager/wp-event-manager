@@ -62,7 +62,8 @@ class WP_Event_Manager_Writepanels {
 		
 		$current_user = wp_get_current_user();
 		if(isset($post->ID)) {
-			$registration = metadata_exists('post', $post->ID, '_registration') ? get_post_meta($post->ID, '_registration', true) : $current_user->user_email;
+			$registration = metadata_exists('post', $post->ID, '_event_registration_email') ? get_post_meta($post->ID, '_event_registration_email', true) : $current_user->user_email;
+			$registration = metadata_exists('post', $post->ID, '_registration') ? get_post_meta($post->ID, '_registration', true) : $registration;
 			$expiry_date  = get_post_meta($post->ID, '_event_expiry_date', true);
 			if($expiry_date) {
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
@@ -73,7 +74,6 @@ class WP_Event_Manager_Writepanels {
 			$registration = $current_user->user_email;
 			$expiry_date  = '';
 		}
-
 		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 		$fields                     = $form_submit_event_instance->merge_with_custom_fields('backend');
@@ -83,7 +83,7 @@ class WP_Event_Manager_Writepanels {
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
-				if($field_key === 'event_registration_email') {
+				if($field_key === 'registration') {
 					$field_value['value'] = $registration;
 				}
 				if(strpos($field_key, '_') !== 0) {
@@ -94,7 +94,6 @@ class WP_Event_Manager_Writepanels {
 			}
 			unset($fields[$group_key]);
 		}
-
 		$fields = apply_filters('event_manager_event_listing_data_fields', $fields);
 		if(isset($fields['_event_title'])) {
 			unset($fields['_event_title']);
@@ -343,9 +342,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_file($key, $field)	{
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(empty($field['placeholder'])) {
 			$field['placeholder'] = 'http://';
@@ -357,24 +356,24 @@ class WP_Event_Manager_Writepanels {
 		} ?>
 
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) : ?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
 			<?php
 			if(!empty($field['multiple'])) {
 				foreach ((array) $field['value'] as $value) {?>
-					<span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($value); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span>
+					<span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo esc_attr($value); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span>
 				<?php
 				}
 			} else {
 				if(isset($field['value']) && is_array($field['value'])) {
 					$field['value'] = array_shift($field['value']);
 				} ?>
-				<span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($field['value']); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span>
+				<span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span>
 			<?php }
 			if(!empty($field['multiple'])) { ?>
-				<button class="button button-small wp_event_manager_add_another_file_button" data-field_name="<?php echo esc_attr($key); ?>" data-field_placeholder="<?php echo esc_attr($field['placeholder']); ?>" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>" data-uploader_button="<?php esc_attr_e('Upload', 'wp-event-manager'); ?>"><?php esc_attr_e('Add file', 'wp-event-manager'); ?></button>
+				<button class="button button-small wp_event_manager_add_another_file_button" data-field_name="<?php echo esc_attr($key); ?>" data-field_placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>" data-uploader_button="<?php esc_attr_e('Upload', 'wp-event-manager'); ?>"><?php esc_attr_e('Add file', 'wp-event-manager'); ?></button>
 			<?php
 			} ?>
 		</p>
@@ -388,9 +387,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_text($key, $field)	{
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -399,12 +398,13 @@ class WP_Event_Manager_Writepanels {
 		} ?>
 
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
-				<?php
-				if(!empty($field['description'])) :
-				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
-			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
+				<?php 
+				if(!empty($field['description'])) : ?>
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span>
+				<?php endif; ?>
+			</label>
+			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
 		</p>
 	<?php
 	}
@@ -417,9 +417,9 @@ class WP_Event_Manager_Writepanels {
 	 * @since 2.8
 	 */
 	public static function input_wp_editor($key, $field) {
-		global $thepostid;
+		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -428,9 +428,9 @@ class WP_Event_Manager_Writepanels {
 		} ?>
 		<div class="wpem_editor">
 			<p class="form-field">
-				<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+				<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 					<?php if(!empty($field['description'])) : ?>
-						<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+						<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
 			</p>
 			<?php wp_editor($field['value'], $name, array('media_buttons' => false)); ?>
 		</div>
@@ -444,11 +444,11 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_date($key, $field)	{
-		global $thepostid;
+		global $post_id;
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 		$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-		if(!isset($field['value'])) {
-			$date = get_post_meta($thepostid, $key, true);
+		if(!isset($field['value']) || empty($field['value'])) {
+			$date = get_post_meta($post_id, stripslashes($key), true);
 			if(!empty($date)) {
 				$date = date($php_date_format, strtotime($date));
 				$field['value']         = $date;
@@ -460,13 +460,13 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
 			<input type="hidden" name="date_format" id="date_format" value="<?php echo esc_attr($php_date_format)   ?>" />
-			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
+			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
 		</p>
 	<?php
 	}
@@ -478,9 +478,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_textarea($key, $field) {
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -488,12 +488,14 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
-			<textarea name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>"><?php echo esc_html($field['value']); ?></textarea>
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span>
+				<?php endif; ?>
+			</label>
+			<textarea name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>"><?php echo esc_html($field['value']); ?></textarea>
 		</p>
 	<?php
 	}
@@ -505,9 +507,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_select($key, $field) {
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -516,11 +518,11 @@ class WP_Event_Manager_Writepanels {
 		} ?>
 
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
 			<input name="<?php echo esc_attr($name); ?>_hidden" type="hidden" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" />
 			<select name=" <?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php foreach ($field['options'] as $key => $value) : ?>
@@ -542,9 +544,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_multiselect($key, $field)	{
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -552,10 +554,10 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?>
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?>
 			</label>
 			<select multiple="multiple" name="<?php echo esc_attr($name); ?>[]" id="<?php echo esc_attr($key); ?>" class="input-select event-manager-select-chosen <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php foreach ($field['options'] as $key => $value) : ?>
@@ -577,9 +579,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_checkbox($key, $field)	{
-		global $thepostid;
+		global $post_id;
 		if(empty($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -587,7 +589,7 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		} ?>
 		<p class="form-field form-field-checkbox">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?></label>
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?></label>
 			<input type="checkbox" class="checkbox" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" value="1" <?php checked($field['value'], 1); ?> />
 			<?php
 			if(!empty($field['description'])) :
@@ -604,9 +606,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_time($key, $field)	{
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -614,12 +616,12 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
-			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($field['value']); ?>" data-picker="timepicker" />
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
+			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" data-picker="timepicker" />
 		</p>
 	<?php
 	}
@@ -631,9 +633,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_timezone($key, $field)	{
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -641,11 +643,11 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
 			<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php
 				$value = isset($field['value']) ? $field['value'] : $field['default'];
@@ -663,9 +665,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_number($key, $field) {
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -673,12 +675,12 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		}?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
-			<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($field['value']); ?>" min="<?php echo isset($field['min']) ? esc_attr($field['min']) : esc_attr('0'); ?>" max="<?php echo isset($field['max']) ? esc_attr($field['max']) : ''; ?>" />
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
+			<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" min="<?php echo isset($field['min']) ? esc_attr($field['min']) : esc_attr('0'); ?>" max="<?php echo isset($field['max']) ? esc_attr($field['max']) : ''; ?>" />
 		</p>
 	<?php
 	}
@@ -690,9 +692,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_url($key, $field) {
-		global $thepostid;
-		if(!isset($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -700,12 +702,12 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		}?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
-			<input type="url" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
+			<input type="url" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
 		</p>
 	<?php
 	}
@@ -717,8 +719,8 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_button($key, $field) {
-		global $thepostid;
-		if(!isset($field['value'])) {
+		global $post_id;
+		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = $field['placeholder'];
 		}
 
@@ -728,12 +730,12 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		}?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
-					<span class="tips" data-tip="<?php echo esc_attr($field['description']); ?>">[?]</span><?php endif; ?></label>
-			<input type="button" class="button button-small" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span><?php endif; ?></label>
+			<input type="button" class="button button-small" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
 		</p>
 	<?php
 	}
@@ -745,18 +747,18 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_author($key, $field) {
-		global $thepostid, $post;
-		if(!$post || $thepostid !== $post->ID) {
-			$the_post  = get_post($thepostid);
+		global $post_id, $post;
+		if(!$post || $post_id !== $post->ID) {
+			$the_post  = get_post($post_id);
 			$author_id = $the_post->post_author;
 		} else {
 			$author_id = $post->post_author;
 		}
 		$posted_by      = get_user_by('id', $author_id);
-		$field['value'] = !isset($field['value']) ? get_post_meta($thepostid, $key, true) : $field['value'];
+		$field['value'] = !isset($field['value']) ? get_post_meta($post_id, stripslashes($key), true) : $field['value'];
 		$name           = !empty($field['name']) ? $field['name'] : $key; ?>
 		<p class="form-field form-field-author">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?>:</label>
+			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:</label>
 			<span class="current-author">
 				<?php
 				if($posted_by) {
@@ -782,9 +784,9 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $field
 	 */
 	public static function input_radio($key, $field) {
-		global $thepostid;
+		global $post_id;
 		if(empty($field['value'])) {
-			$field['value'] = get_post_meta($thepostid, $key, true);
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -792,14 +794,17 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		}?>
 		<p class="form-field form-field-checkbox">
-			<label><?php echo esc_html($field['label']); ?></label>
+			<label><?php _e(esc_attr($field['label']), 'wp-event-manager');?></label>
 			<?php foreach ($field['options'] as $option_key => $value) : ?>
-				<label><input type="radio" class="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($field['value'], $option_key); ?> /> <?php echo esc_html($value); ?></label>
+				<label>
+					<input type="radio" class="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($field['value'], $option_key); ?> /> 
+					<?php _e(esc_attr($value), 'wp-event-manager');?>
+				</label>
 			<?php endforeach; ?>
 			<?php
 			if(!empty($field['description'])) :
 			?>
-				<span class="description"><?php echo esc_html($field['description']); ?></span><?php endif; ?>
+				<span class="description"><?php _e(esc_attr($field['description']), 'wp-event-manager');?></span><?php endif; ?>
 		</p>
 	<?php
 	}
@@ -812,11 +817,11 @@ class WP_Event_Manager_Writepanels {
 	 * @return void
 	 */
 	public function event_listing_data($post) {
-		global $post, $thepostid;
-		$thepostid = $post->ID;
+		global $post, $post_id;
+		$post_id = $post->ID;
 		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
-		do_action('event_manager_event_listing_data_start', $thepostid);
+		do_action('event_manager_event_listing_data_start', $post_id);
 		foreach ($this->event_listing_fields() as $key => $field) {
 			$type = !empty($field['type']) ? $field['type'] : 'text';
 			if($type == 'wp-editor') {
@@ -829,7 +834,7 @@ class WP_Event_Manager_Writepanels {
 				call_user_func(array($this, 'input_' . $type), $key, $field);
 			}
 		}
-		do_action('event_manager_event_listing_data_end', $thepostid);
+		do_action('event_manager_event_listing_data_end', $post_id);
 		echo wp_kses_post('</div>');
 	}
 
@@ -1173,11 +1178,11 @@ class WP_Event_Manager_Writepanels {
 	 * @return void
 	 */
 	public function event_organizer_data($post)	{
-		global $post, $thepostid;
-		$thepostid = $post->ID;
+		global $post, $post_id;
+		$post_id = $post->ID;
 		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
-		do_action('event_manager_event_organizer_data_start', $thepostid);
+		do_action('event_manager_event_organizer_data_start', $post_id);
 		foreach ($this->organizer_listing_fields() as $key => $field) {
 			$type = !empty($field['type']) ? $field['type'] : 'text';
 			if($type == 'wp-editor') {
@@ -1189,7 +1194,7 @@ class WP_Event_Manager_Writepanels {
 				call_user_func(array($this, 'input_' . $type), $key, $field);
 			}
 		}
-		do_action('event_manager_event_organizer_data_end', $thepostid);
+		do_action('event_manager_event_organizer_data_end', $post_id);
 		echo wp_kses_post('</div>');
 	}
 
@@ -1318,11 +1323,11 @@ class WP_Event_Manager_Writepanels {
 	 * @return void
 	 */
 	public function event_venue_data($post)	{
-		global $post, $thepostid;
-		$thepostid = $post->ID;
+		global $post, $post_id;
+		$post_id = $post->ID;
 		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
-		do_action('event_manager_event_venue_data_start', $thepostid);
+		do_action('event_manager_event_venue_data_start', $post_id);
 		foreach ($this->venue_listing_fields() as $key => $field) {
 			$type = !empty($field['type']) ? $field['type'] : 'text';
 			if($type == 'wp-editor') {
@@ -1334,7 +1339,7 @@ class WP_Event_Manager_Writepanels {
 				call_user_func(array($this, 'input_' . $type), $key, $field);
 			}
 		}
-		do_action('event_manager_event_venue_data_end', $thepostid);
+		do_action('event_manager_event_venue_data_end', $post_id);
 		echo wp_kses_post('</div>');
 	}
 
