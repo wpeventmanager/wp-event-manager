@@ -300,7 +300,7 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
-= [3.1.38] 18-08-2023 =
+= [3.1.38] 20-08-2023 =
 
 Fixed : Apostrophes issue with custom field names is fixed.
 Fixed : Wpeditor field is now showing default placeholder.
