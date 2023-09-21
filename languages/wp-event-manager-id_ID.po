@@ -1,0 +1,2197 @@
+# Translation of Plugins - WP Event Manager - Development (trunk) in Indonesian
+# This file is distributed under the same license as the Plugins - WP Event Manager - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-07-06 09:23:14+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: id\n"
+"Project-Id-Version: Plugins - WP Event Manager - Development (trunk)\n"
+
+#: admin/wp-event-manager-form-field-editor-field.php:27
+msgid "Multiple Files?"
+msgstr "Beberapa Berkas"
+
+#: admin/wp-event-manager-form-field-editor-field.php:24
+msgid "Pipe (|) separate options."
+msgstr "Pipa (|) pilihan terpisah"
+
+#: admin/wp-event-manager-settings.php:262
+msgid "Category Filter"
+msgstr "Saring Kategori"
+
+#: admin/wp-event-manager-form-field-editor-field.php:52
+msgid "Required"
+msgstr "Diperlukan"
+
+#: admin/wp-event-manager-form-field-editor-field.php:51
+msgid "Not Required"
+msgstr "Tidak Diperlukan"
+
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
+msgid "%s"
+msgstr "%s"
+
+#: admin/wp-event-manager-form-field-editor-field.php:20
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
+msgid "N/A"
+msgstr "Tiada"
+
+#: admin/wp-event-manager-field-editor.php:373
+msgid "The fields were successfully saved."
+msgstr "Ruas berhasil disimpan"
+
+#: admin/wp-event-manager-field-editor.php:228
+msgid "Author"
+msgstr "Penulis"
+
+#: admin/wp-event-manager-field-editor.php:153
+#: admin/wp-event-manager-field-editor.php:255
+msgid "Reset to default"
+msgstr "Setel Ulang ke Awal"
+
+#: admin/wp-event-manager-field-editor.php:149
+#: admin/wp-event-manager-field-editor.php:251
+msgid "Add field"
+msgstr "Tambahkan ruas"
+
+#: admin/wp-event-manager-field-editor.php:142
+#: admin/wp-event-manager-field-editor.php:244
+msgid "Validation"
+msgstr "Validasi"
+
+#: admin/wp-event-manager-field-editor.php:141
+#: admin/wp-event-manager-field-editor.php:243
+msgid "Priority"
+msgstr "Prioritas"
+
+#: admin/wp-event-manager-field-editor.php:140
+#: admin/wp-event-manager-field-editor.php:242
+msgid "Placeholder / Options"
+msgstr "Penampung / Pilihan"
+
+#: admin/wp-event-manager-field-editor.php:137
+#: admin/wp-event-manager-field-editor.php:239
+msgid "Field Label"
+msgstr "Label Ruas"
+
+#: admin/wp-event-manager-field-editor.php:129
+msgid "Organizer fields"
+msgstr "Ruas penyelenggara"
+
+#: admin/wp-event-manager-field-editor.php:125
+#: admin/wp-event-manager-field-editor.php:234
+msgid "Event fields"
+msgstr "Ruas acara"
+
+#: admin/wp-event-manager-field-editor.php:115
+#: admin/wp-event-manager-field-editor.php:227
+msgid "WP Editor"
+msgstr "Penyunting WP"
+
+#: admin/wp-event-manager-field-editor.php:114
+#: admin/wp-event-manager-field-editor.php:226
+msgid "Textarea"
+msgstr "Textarea"
+
+#: admin/wp-event-manager-field-editor.php:113
+#: admin/wp-event-manager-field-editor.php:225
+msgid "Term Select"
+msgstr "Pilih Istilah"
+
+#: admin/wp-event-manager-field-editor.php:112
+#: admin/wp-event-manager-field-editor.php:224
+msgid "Term Multiselect"
+msgstr "Multi-pilih Istilah"
+
+#: admin/wp-event-manager-field-editor.php:111
+#: admin/wp-event-manager-field-editor.php:223
+msgid "Term Checklist"
+msgstr "Daftar Cek Istilah"
+
+#: admin/wp-event-manager-field-editor.php:110
+#: admin/wp-event-manager-field-editor.php:221
+msgid "Select"
+msgstr "Pilih"
+
+#: admin/wp-event-manager-field-editor.php:109
+#: admin/wp-event-manager-field-editor.php:220
+msgid "Repeated"
+msgstr "Berulang"
+
+#: admin/wp-event-manager-field-editor.php:108
+#: admin/wp-event-manager-field-editor.php:219
+msgid "Radio"
+msgstr "Radio"
+
+#: admin/wp-event-manager-field-editor.php:138
+#: admin/wp-event-manager-field-editor.php:240
+msgid "Type"
+msgstr "Tipe"
+
+#: admin/wp-event-manager-field-editor.php:106
+#: admin/wp-event-manager-field-editor.php:217
+msgid "Number"
+msgstr "Nomor"
+
+#: admin/wp-event-manager-field-editor.php:105
+#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:222
+msgid "Multiselect"
+msgstr "Multi pilih"
+
+#: admin/wp-event-manager-field-editor.php:104
+#: admin/wp-event-manager-field-editor.php:215
+msgid "Hidden"
+msgstr "Tersembunyi"
+
+#: admin/wp-event-manager-field-editor.php:103
+#: admin/wp-event-manager-field-editor.php:214
+msgid "File"
+msgstr "Berkas"
+
+#: admin/wp-event-manager-field-editor.php:102
+#: admin/wp-event-manager-field-editor.php:213
+msgid "Date"
+msgstr "Tanggal"
+
+#: admin/wp-event-manager-field-editor.php:101
+#: admin/wp-event-manager-field-editor.php:212
+msgid "Checkbox"
+msgstr "Kotak Centang"
+
+#: admin/wp-event-manager-field-editor.php:100
+#: admin/wp-event-manager-field-editor.php:211
+msgid "Button Options"
+msgstr "Tombol Pilihan"
+
+#: admin/wp-event-manager-field-editor.php:99
+#: admin/wp-event-manager-field-editor.php:210
+msgid "Button"
+msgstr "Tombol"
+
+#: admin/wp-event-manager-field-editor.php:98
+#: admin/wp-event-manager-field-editor.php:209
+msgid "Text"
+msgstr "Teks"
+
+#: admin/wp-event-manager-field-editor.php:81
+#: admin/wp-event-manager-field-editor.php:194
+msgid "The fields were successfully reset."
+msgstr "Ruas yang berhasil disetel ulang."
+
+#: admin/wp-event-manager-field-editor.php:43
+msgid "Back End Form Fields"
+msgstr "Ruas formulir back-end"
+
+#: admin/wp-event-manager-field-editor.php:42
+msgid "Front End Form Fields"
+msgstr "Ruas formulir front-end"
+
+#: admin/wp-event-manager-field-editor.php:31
+msgid "Are you sure you want to reset your changes? This cannot be undone."
+msgstr "Anda yakin ingin mengatur ulang perubahan Anda? Ini tidak dapat dibatalkan."
+
+#: admin/wp-event-manager-field-editor.php:30
+msgid "Are you sure you want to delete this row?"
+msgstr "Anda yakin ingin menghapus baris ini?"
+
+#: admin/wp-event-manager-field-editor.php:20
+msgid "Field Editor"
+msgstr "Penyunting Ruas"
+
+#: wp-event-manager-template.php:417 wp-event-manager-template.php:2076
+msgid "Verify Password"
+msgstr "Verifikasi Kata Sandi"
+
+#: admin/wp-event-manager-field-editor.php:107
+#: admin/wp-event-manager-field-editor.php:218
+#: wp-event-manager-template.php:406 wp-event-manager-template.php:407
+#: wp-event-manager-template.php:2066
+msgid "Password"
+msgstr "Kata Sandi"
+
+#: wp-event-manager-functions.php:1606
+msgid "Passwords must be at least 8 characters long."
+msgstr "Kata sandi harus setidaknya 8 karakter."
+
+#: forms/wp-event-manager-form-submit-event.php:680
+msgid "Password is not valid."
+msgstr "Kata sandi tidak sah."
+
+#: forms/wp-event-manager-form-submit-event.php:678
+msgid "Invalid Password: %s"
+msgstr "Kata Sandi Tidak Sah: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:673
+msgid "Passwords must match."
+msgstr "Kata sandi harus sama."
+
+#: core/wp-event-manager-post-types.php:391
+msgid "Preview <span class=\"count\">(%s)</span>"
+msgid_plural "Preview <span class=\"count\">(%s)</span>"
+msgstr[0] "Pratinjau <span class=\"count\">(%s)</span>"
+msgstr[1] "Pratinjau <span class=\"count\">(%s)</span>"
+
+#: core/wp-event-manager-ajax.php:381
+msgid "You must be logged in to upload files using this method."
+msgstr "Anda harus masuk untuk mengunggah berkas menggunakan metode ini."
+
+#: admin/wp-event-manager-settings.php:87
+msgid "If enabled, bootstrap framework's style will apply for the backend side."
+msgstr "Jika diaktifkan, gaya kerangka bootstrap akan berlaku untuk sisi back-end."
+
+#: admin/wp-event-manager-settings.php:71
+msgid "If enabled, bootstrap framework's style will apply for the frontend side."
+msgstr "Jika diaktifkan, gaya kerangka bootstrap akan berlaku untuk sisi front-end"
+
+#: admin/wp-event-manager-settings.php:370
+msgid "If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won't be verified."
+msgstr "Jika diaktifkan, email akan dikirim ke pengguna dengan nama pengguna dan tautan untuk menyetel kata sandinya. Jika tidak, bidang kata sandi akan ditampilkan dan alamat emailnya tidak akan diverifikasi."
+
+#: admin/wp-event-manager-settings.php:369
+msgid "Use WordPress' default behavior and email new users link to set a password"
+msgstr "Gunakan perilaku bawaan WordPress dan kirimi tautan pengguna baru untuk menetapkan kata sandi"
+
+#: admin/wp-event-manager-settings.php:368
+msgid "Account Password"
+msgstr "Kata Sandi Akun"
+
+#: templates/event-submit.php:20
+msgid "Create A New Event"
+msgstr "Buat Acara Baru"
+
+#: templates/event-submit.php:20
+msgid "You are editing an existing event. %s"
+msgstr "Anda menyunting acara yang ada. %s"
+
+#: core/wp-event-manager-post-types.php:323
+msgid "Use as organizer logo"
+msgstr "Gunakan sebagai logo penyelenggara"
+
+#: core/wp-event-manager-post-types.php:321
+msgid "Remove organizer logo"
+msgstr "Hapus logo penyelenggara"
+
+#: core/wp-event-manager-post-types.php:319
+msgid "Set organizer logo"
+msgstr "Atur logo penyelenggara"
+
+#: core/wp-event-manager-post-types.php:317
+msgid "Organizer Logo"
+msgstr "Logo Penyelenggara"
+
+#: admin/wp-event-manager-settings.php:97
+msgid "Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
+msgstr "Google membutuhkan kunci API untuk mengambil informasi lokasi untuk daftar acara. Dapatkan kunci API dari <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
+
+#: admin/wp-event-manager-settings.php:96
+msgid "Google Maps API Key"
+msgstr "Google Maps API Key"
+
+#: admin/wp-event-manager-settings.php:162
+msgid "Hide expired listing content in single event listing (singular)"
+msgstr "Sembunyikan daftar konten kadaluarsa dalam sebuah daftar peristiwa (tunggal)"
+
+#: admin/wp-event-manager-settings.php:160
+msgid "Hide Expired Listings Content"
+msgstr "Sembunyikan Konten Daftar Kadaluarsa"
+
+#: admin/wp-event-manager-settings.php:147
+msgid "If enabled, expired event listing is not searchable."
+msgstr "Jika diaktifkan, daftar acara kadaluarsa tidak dapat ditelusuri."
+
+#: admin/wp-event-manager-settings.php:145
+msgid "Hide expired listings in event archive/search"
+msgstr "Sembunyikan daftar kadaluarsa di arsip / penelusuran acara"
+
+#: admin/wp-event-manager-settings.php:143
+msgid "Hide Expired Listings"
+msgstr "Sembunyikan Daftar Kadaluarsa"
+
+#: admin/wp-event-manager-settings.php:83
+#: admin/wp-event-manager-settings.php:85
+msgid "Enable boostrap for the backend"
+msgstr "Aktifkan bootstrap untuk back-end"
+
+#: admin/wp-event-manager-settings.php:67
+#: admin/wp-event-manager-settings.php:69
+msgid "Enable boostrap for the frontend"
+msgstr "Aktifkan bootstrap untuk frontend"
+
+#: admin/wp-event-manager-settings.php:57
+msgid "General"
+msgstr "Umum"
+
+#: widgets/wp-event-manager-widgets.php:261
+#: widgets/wp-event-manager-widgets.php:397
+#: widgets/wp-event-manager-widgets.php:538
+msgid "Descending  (DESC)"
+msgstr "Turun (DESC)"
+
+#: widgets/wp-event-manager-widgets.php:260
+#: widgets/wp-event-manager-widgets.php:396
+#: widgets/wp-event-manager-widgets.php:537
+msgid "Ascending (ASC)"
+msgstr "Naik (ASC)"
+
+#: widgets/wp-event-manager-widgets.php:258
+#: widgets/wp-event-manager-widgets.php:394
+#: widgets/wp-event-manager-widgets.php:535
+msgid "Order by"
+msgstr "Urut berdasarkan"
+
+#: core/wp-event-manager-ajax.php:319
+msgid "Search completed. Found %d matching record."
+msgid_plural "Search completed. Found %d matching records."
+msgstr[0] "Pencarian berakhir. Menemukan %d catatan yang sesuai."
+msgstr[1] "Pencarian berakhir. Menemukan %d catatan yang sesuai."
+
+#: wp-event-manager-template.php:443 wp-event-manager-template.php:457
+msgid "Posted %s ago"
+msgstr "Diterbitkan %s lalu"
+
+#: wp-event-manager-template.php:441
+msgid "Posted on "
+msgstr "Diterbitkan pada"
+
+#: admin/wp-event-manager-writepanels.php:484
+msgid "Most Used"
+msgstr "Paling banyak digunakan"
+
+#: admin/wp-event-manager-settings.php:303
+msgid "Default date format as defined in Setttings"
+msgstr "Format tanggal bawaan sebagaimana didefinisikan dalam Pengaturan"
+
+#: admin/wp-event-manager-settings.php:302
+msgid "Relative to the current date (e.g., 1 day, 1 week, 1 month ago)"
+msgstr "Relatif dengan tanggal saat ini (contoh: 1 hari, 1 minggu, 1 bulan yang lalu)"
+
+#: admin/wp-event-manager-settings.php:299
+msgid "Choose how you want the published date for events to be displayed on the front-end."
+msgstr "Pilih bagaimana Anda ingin tanggal yang dipublikasikan untuk acara yang akan ditampilkan di front-end."
+
+#: admin/wp-event-manager-settings.php:298
+msgid "Date Format"
+msgstr "Format Tanggal"
+
+#: admin/wp-event-manager-settings.php:525
+msgid "If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this."
+msgstr "Jika diaktifkan setiap acara dapat memiliki lebih dari satu kategori. Metabox pada penyunting pos dan kotak pilih untuk kategori peristiwa pada formulir pengajuan frontend acara diubah oleh ini."
+
+#: admin/wp-event-manager-settings.php:523
+msgid "Enable multi select event category for event listing submission"
+msgstr "Aktifkan kategori multi-pilih acara untuk pengiriman daftar acara"
+
+#: admin/wp-event-manager-settings.php:521
+msgid "Multi-select Event Category For Submission"
+msgstr "Multi-pilih Kategori Acara Untuk Pengajuan"
+
+#: admin/wp-event-manager-settings.php:509
+msgid "If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this."
+msgstr "Jika diaktifkan setiap acara dapat memiliki lebih dari satu jenis. Metabox pada penyunting pos dan kotak pilih untuk jenis acara pada formulir pengajuan event frontend diubah oleh ini."
+
+#: admin/wp-event-manager-settings.php:507
+msgid "Enable multi select event type for event listing submission"
+msgstr "Aktifkan jenis acara multi-pilih untuk pengajuan cantuman acara"
+
+#: admin/wp-event-manager-settings.php:505
+msgid "Multi-select Event Types For Submission"
+msgstr "Multi-pilih Jenis Acara Untuk Pengajuan"
+
+#: admin/wp-event-manager-admin.php:152
+msgid "Dismiss"
+msgstr "Diberhentikan"
+
+#: admin/wp-event-manager-admin.php:151
+msgid "Try Great Add-Ons"
+msgstr "Coba Add-ons yang Luar Biasa"
+
+#: admin/wp-event-manager-admin.php:149
+msgid "We've noticed you've been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We'd be thrilled if you could <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">give us a 5 stars rating on WordPress.org!</a></strong> Don't forget to submit your site to <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">our showcase</a></strong> and generate more traffic from our site."
+msgstr "Kami perhatikan Anda telah menggunakan <strong>WP Event Manager</strong> untuk beberapa waktu. Kami harap Anda menyukainya! Kami akan senang jika Anda dapat <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\"> memberi kami peringkat 5 bintang di WordPress.org!</a></strong> Jangan lupa untuk mengirimkan situs Anda ke <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">pameran kami</a></strong> dan menghasilkan lebih banyak lalu lintas dari situs kami."
+
+#: shortcodes/wp-event-manager-shortcodes.php:144
+msgid "Missing submission page."
+msgstr "Halaman pengajuan tidak ada."
+
+#: shortcodes/wp-event-manager-shortcodes.php:541
+msgid "Load more listings"
+msgstr "Muat lebih banyak daftar"
+
+#: core/wp-event-manager-post-types.php:378
+msgid "Expired <span class=\"count\">(%s)</span>"
+msgid_plural "Expired <span class=\"count\">(%s)</span>"
+msgstr[0] "Kadaluarsa <span class=\"count\">(%s)</span>"
+msgstr[1] "Kadaluarsa <span class=\"count\">(%s)</span>"
+
+#: admin/wp-event-manager-setup.php:341
+msgid "And don't forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!"
+msgstr "Dan jangan lupa, kalau Anda perlu bantuan ketika menggunakan <em>WP Event Manager</em>, Anda dapat konsultasikan dengan %1$sdokumentasi%2$s atau %3$sforum%2$s!"
+
+#: admin/wp-event-manager-setup.php:219
+msgid "<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s."
+msgstr "<em>WP Event Manager</em> menyertakan %1$skodesignkat%2$s yang dapat digunakan dalam %3$shalaman%2$s untuk menghasilkan konten dinamis. Ini akan diciptakan untukmu di bawah ini. Untuk kodesingkat Acara silahkan lihat%4$sdokumentasi kodesingkat%2$s."
+
+#: wp-event-manager-template.php:186
+msgid "Inactive"
+msgstr "Tidak aktif"
+
+#. Author URI of the plugin/theme
+msgid "https://www.wp-eventmanager.com"
+msgstr "https://www.wp-eventmanager.com"
+
+#. Description of the plugin/theme
+msgid "Manage event listings from the WordPress admin panel, and allow users to post events directly to your site."
+msgstr "Kelola daftar acara dari panel admin WordPress, dan izinkan pengguna untuk menerbitkan acara-acara langsung ke situs Anda."
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.wp-eventmanager.com/"
+msgstr "https://www.wp-eventmanager.com/"
+
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
+#. Author of the plugin/theme
+#: admin/wp-event-manager-settings.php:827
+msgid "WP Event Manager"
+msgstr "WP Event Manager"
+
+#: wp-event-manager.php:299
+msgid "Are you sure you want to delete this event?"
+msgstr "Anda yakin ingin menghapus acara ini?"
+
+#: wp-event-manager.php:297
+msgid "Cancel"
+msgstr "Batal"
+
+#: wp-event-manager.php:286
+msgid "Load previous listings"
+msgstr "Muat daftar sebelumnya"
+
+#: wp-event-manager.php:229
+msgid "Invalid file type. Accepted types:"
+msgstr "Jenis berkas tidak sah. Jenis yang diterima:"
+
+#: wp-event-manager-template.php:425 wp-event-manager-template.php:2083
+msgid "Your email"
+msgstr "Email Anda"
+
+#: wp-event-manager-template.php:507
+msgid "Anywhere"
+msgstr "Dimanapun"
+
+#: wp-event-manager-template.php:267
+msgid "Registration via \"%s\" listing on %s"
+msgstr "Registrasi via \"%s\" daftar pada %s"
+
+#: wp-event-manager-functions.php:1138
+msgid "Choose an event type&hellip;"
+msgstr "Pilih jenis acara&hellip;"
+
+#: wp-event-manager-functions.php:1088
+msgid "Choose a category&hellip;"
+msgstr "Pilih kategori&hellip;"
+
+#: wp-event-manager-functions.php:858
+msgid "This email is already registered, please choose another one."
+msgstr "Email ini sudah terdaftar, silakan pilih yang lain."
+
+#: wp-event-manager-functions.php:853
+msgid "Your email address isn&#8217;t correct."
+msgstr "Alamat email Anda tidak benar."
+
+#: wp-event-manager-functions.php:843
+msgid "Invalid email address."
+msgstr "Alamat email salah."
+
+#: wp-event-manager-functions.php:716
+msgid "RSS"
+msgstr "RSS"
+
+#: wp-event-manager-functions.php:709
+msgid "Reset"
+msgstr "Atur ulang"
+
+#: wp-event-manager-functions.php:524
+msgctxt "post status"
+msgid "Active"
+msgstr "Aktif"
+
+#: wp-event-manager-functions.php:522
+msgctxt "post status"
+msgid "Pending payment"
+msgstr "Pembayaran tertunda"
+
+#: wp-event-manager-functions.php:520
+msgctxt "post status"
+msgid "Pending approval"
+msgstr "Menunggu persetujuan"
+
+#: wp-event-manager-functions.php:1340
+msgid "Uploaded files need to be one of the following file types: %s"
+msgstr "Berkas yang diunggah harus sesuai dari salah satu dari jenis berkas berikut: %s"
+
+#: wp-event-manager-functions.php:518
+msgctxt "post status"
+msgid "Preview"
+msgstr "Pratinjau"
+
+#: wp-event-manager-functions.php:514
+msgctxt "post status"
+msgid "Draft"
+msgstr "Draf"
+
+#: widgets/wp-event-manager-widgets.php:502
+#: widgets/wp-event-manager-widgets.php:510
+msgid "Upcoming %s"
+msgstr "Mendatang %s"
+
+#: widgets/wp-event-manager-widgets.php:498
+msgid "Display a list of upcoming listings on your site."
+msgstr "Tampilkan daftar yang akan datang di situs Anda."
+
+#: widgets/wp-event-manager-widgets.php:361
+#: widgets/wp-event-manager-widgets.php:369
+msgid "Featured %s"
+msgstr "Unggulan %s"
+
+#: widgets/wp-event-manager-widgets.php:357
+msgid "Display a list of featured listings on your site."
+msgstr "Tampilkan daftar cantuman unggulan di situs Anda."
+
+#: widgets/wp-event-manager-widgets.php:250
+#: widgets/wp-event-manager-widgets.php:386
+#: widgets/wp-event-manager-widgets.php:527
+msgid "Number of listings to show"
+msgstr "Jumlah cantuman untuk ditampilkan"
+
+#: widgets/wp-event-manager-widgets.php:226
+msgid "Keyword"
+msgstr "Kata kunci"
+
+#: widgets/wp-event-manager-widgets.php:207
+#: widgets/wp-event-manager-widgets.php:215
+msgid "Recent %s"
+msgstr "Terbaru %s"
+
+#: widgets/wp-event-manager-widgets.php:203
+msgid "Display a list of recent listings on your site, optionally matching a keyword and location."
+msgstr "Tampilkan daftar cantuman terbaru di situs Anda, secara opsional cocok dengan kata kunci dan lokasi."
+
+#: templates/form-fields/uploaded-file-html.php:11
+#: templates/form-fields/uploaded-file-html.php:13
+msgid "remove"
+msgstr "hapus"
+
+#: templates/form-fields/repeated-field.php:59
+msgid "Remove"
+msgstr "Hapus"
+
+#: templates/form-fields/repeated-field.php:19
+msgid "You can't delete ticket once it is added.You can make it private from settings tab."
+msgstr "Anda tidak dapat menghapus tiket setelah ditambahkan. Anda dapat menjadikannya privat dari tab pengaturan."
+
+#: templates/event-filters.php:29 templates/event-filters.php:80
+#: templates/form-fields/multiselect-field.php:7
+#: wp-event-manager-functions.php:1092
+msgid "Select Some Options"
+msgstr "Pilih beberapa opsi"
+
+#: templates/event-filters.php:80 templates/form-fields/multiselect-field.php:7
+#: wp-event-manager-functions.php:1090
+msgid "No results match"
+msgstr "Tidak ada hasil yang cocok"
+
+#: templates/form-fields/file-field.php:85
+msgid "Maximum file size: %s."
+msgstr "Ukuran berkas maksimum: %s."
+
+#: templates/event-submitted.php:11
+msgid "%s submitted successfully. Your listing will be visible once approved."
+msgstr "%s berhasil dikirim. Cantuman Anda akan terlihat setelah disetujui."
+
+#: templates/event-submitted.php:7
+msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a>."
+msgstr "%s berhasil terdaftar. Untuk melihat daftar Anda, <a href=\"%s\"> klik di sini </a>."
+
+#: templates/form-fields/repeated-field.php:17
+#: templates/form-fields/repeated-field.php:60
+msgid "Ticket Details"
+msgstr "Detil Tiket"
+
+#: templates/event-submit.php:37
+msgid "Organizer Details"
+msgstr "Detil Penyelenggara"
+
+#: templates/event-submit.php:17
+msgid "Event Details"
+msgstr "Detil Acara"
+
+#: templates/event-registration.php:8
+msgid "Register for event"
+msgstr "Daftar untuk acara"
+
+#: templates/event-registration-url.php:1
+msgid "To register for this event please visit the following URL:"
+msgstr "Untuk mendaftar untuk acara ini, silakan kunjungi URL berikut:"
+
+#: templates/event-registration-email.php:4
+msgid "Register using webmail: "
+msgstr "Daftar menggunakan webmail:"
+
+#: templates/event-listings-start.php:4
+msgid "Recent Events"
+msgstr "Acara Terkini"
+
+#: templates/event-registration-email.php:1
+msgid "To register for this event <strong>email your details to</strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
+msgstr "Untuk mendaftar untuk acara ini <strong> kirim email ke detail Anda </strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
+
+#: templates/event-filters.php:96
+msgid "Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled in order to view listings."
+msgstr "Peramban Anda tidak mendukung JavaScript, atau dinonaktifkan. JavaScript harus diaktifkan untuk melihat daftar."
+
+#: templates/event-filters.php:79
+msgid "Ticket Prices"
+msgstr "Harga Tiket"
+
+#: templates/event-filters.php:67
+msgid "Any Event Type"
+msgstr "Jenis Acara Apapun"
+
+#: templates/event-filters.php:50
+msgid "Any Category"
+msgstr "Kategori Apapun"
+
+#: templates/event-filters.php:46
+msgid "Category"
+msgstr "Kategori"
+
+#: templates/event-filters.php:28
+msgid "Any dates"
+msgstr "Tanggal kapanpun"
+
+#: templates/event-filters.php:11 templates/event-filters.php:12
+msgid "Keywords"
+msgstr "Kata kunci"
+
+#: templates/event-dashboard.php:43
+msgid "Relist"
+msgstr "Daftarkan ulang"
+
+#: templates/event-dashboard.php:39
+msgid "Duplicate"
+msgstr "Duplikat"
+
+#: templates/event-dashboard.php:37
+msgid "Mark cancelled"
+msgstr "Tandai dibatalkan"
+
+#: templates/event-dashboard.php:35
+msgid "Mark not cancelled"
+msgstr "Tandai tidak dibatalkan"
+
+#: templates/event-dashboard.php:14
+msgid "You do not have any active listings."
+msgstr "Anda tidak memiliki daftar aktif."
+
+#: templates/content-no-events-found.php:2
+msgid "There are no events matching your search."
+msgstr "Tidak ada acara yang cocok dengan pencarian Anda."
+
+#: templates/account-signin.php:49 templates/event-submit.php:27
+#: templates/event-submit.php:41 templates/form-fields/repeated-field.php:32
+#: templates/form-fields/repeated-field.php:74
+msgid "(optional)"
+msgstr "(opsional)"
+
+#: wp-event-manager-template.php:398 wp-event-manager-template.php:2058
+msgid "Username"
+msgstr "Nama Pengguna"
+
+#: templates/account-signin.php:31
+msgid "optionally"
+msgstr "secara opsional"
+
+#: templates/account-signin.php:31
+msgid "If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email."
+msgstr "Jika Anda tidak memiliki akun di sistem kami, cukup masukkan alamat email Anda dan buat yang baru. Anda akan menerima kata sandinya segera di email Anda."
+
+#: templates/account-signin.php:27 templates/event-dashboard-login.php:2
+msgid "Sign in"
+msgstr "Masuk"
+
+#: templates/account-signin.php:23
+msgid "Have an account?"
+msgstr "Punya akun?"
+
+#: templates/account-signin.php:9
+msgid "Sign out"
+msgstr "Keluar"
+
+#: templates/account-signin.php:7
+msgid "You are currently signed in as <strong>%s</strong>."
+msgstr "Anda saat ini masuk sebagai <strong>%s</strong>."
+
+#: templates/account-signin.php:3
+msgid "Your account"
+msgstr "Akun Anda"
+
+#: shortcodes/wp-event-manager-shortcodes.php:488
+msgid "Load more events"
+msgstr "Muat lebih banyak acara"
+
+#: shortcodes/wp-event-manager-shortcodes.php:246
+msgid "Action"
+msgstr "Tindakan"
+
+#: shortcodes/wp-event-manager-shortcodes.php:245
+msgid "Viewed"
+msgstr "Dilihat"
+
+#: shortcodes/wp-event-manager-shortcodes.php:241
+#: widgets/wp-event-manager-widgets.php:217
+#: widgets/wp-event-manager-widgets.php:371
+#: widgets/wp-event-manager-widgets.php:512
+msgid "Title"
+msgstr "Judul"
+
+#: shortcodes/wp-event-manager-shortcodes.php:139
+msgid "%s has been deleted"
+msgstr "%s telah dihapus "
+
+#: shortcodes/wp-event-manager-shortcodes.php:129
+msgid "%s has been marked as not cancelled"
+msgstr "%s telah ditandai sebagai tidak dibatalkan"
+
+#: shortcodes/wp-event-manager-shortcodes.php:121
+msgid "This event is not cancelled"
+msgstr "Acara ini tidak dibatalkan"
+
+#: shortcodes/wp-event-manager-shortcodes.php:112
+msgid "%s has been cancelled"
+msgstr "%s telah dibatalkan"
+
+#: shortcodes/wp-event-manager-shortcodes.php:104
+msgid "This event has already been cancelled"
+msgstr "Acara ini telah dibatalkan"
+
+#: templates/event-dashboard-login.php:2
+msgid "You need to be signed in to manage your listings."
+msgstr "Anda harus masuk untuk mengelola cantuman Anda."
+
+#: templates/content-single-event_listing.php:27
+msgid "Event Overview"
+msgstr "Ringkasan Acara"
+
+#: templates/content-single-event_listing.php:7
+msgid "This listing has expired."
+msgstr "Daftar ini telah kadaluarsa."
+
+#: templates/content-single-event_listing-organizer.php:204
+msgid "Share This Event"
+msgstr "Bagikan Acara Ini"
+
+#: templates/content-single-event_listing-organizer.php:143
+msgid "Organizer Social"
+msgstr "Agenda Sosial"
+
+#: templates/content-single-event_listing-organizer.php:111
+msgid "Registration End Date"
+msgstr "Tanggal Akhir Pendaftaran"
+
+#: templates/content-single-event_listing-organizer.php:88
+msgid "When & Where"
+msgstr "Kapan & Di mana"
+
+#: templates/content-single-event_listing-organizer.php:80
+msgid "Ticket Information"
+msgstr "Informasi Tiket "
+
+#: templates/content-single-event_listing-organizer.php:59
+#: templates/content-single-event_listing-organizer.php:66
+msgid "Watch Video"
+msgstr "Tonton Video"
+
+#: templates/content-single-event_listing-organizer.php:52
+msgid "View More Details"
+msgstr "Lihat Lebih Detil"
+
+#: templates/content-single-event_listing-organizer.php:36
+msgid "About"
+msgstr "Tentang"
+
+#: templates/content-single-event_listing-meta.php:46
+msgid "Registrations have closed"
+msgstr "Pendaftaran telah ditutup"
+
+#: templates/content-single-event_listing-meta.php:43
+msgid "This event has been cancelled"
+msgstr "Acara ini telah dibatalkan"
+
+#: templates/content-no-events-found.php:4
+msgid "There are currently no events."
+msgstr "Untuk saat ini tidak ada acara."
+
+#: forms/wp-event-manager-form-submit-event.php:399
+msgid "Twitter URL e.g http://twitter.com/yourorganizer"
+msgstr "URL Twitter, contoh: http://twitter.com/yourorganizer"
+
+#: forms/wp-event-manager-form-submit-event.php:396
+#: templates/content-single-event_listing-organizer.php:158
+msgid "Twitter"
+msgstr "Twitter"
+
+#: forms/wp-event-manager-form-submit-event.php:286
+msgid "e.g http://www.example.com"
+msgstr "contoh: http://www.example.com"
+
+#: forms/wp-event-manager-form-submit-event.php:275
+msgid "Ticket Price"
+msgstr "Harga Tiket"
+
+#: forms/wp-event-manager-form-submit-event.php:187
+msgid "e.g. \"Berlin\",\"London\""
+msgstr "contoh: \"Jakarta\",\"Singapura\""
+
+#: forms/wp-event-manager-form-submit-event.php:113
+msgid "Enter an email address or website URL"
+msgstr "Masukkan alamat email atau URL situs web"
+
+#: forms/wp-event-manager-form-submit-event.php:112
+msgid "Registration email/URL"
+msgstr "Email/URL Registrasi"
+
+#: forms/wp-event-manager-form-submit-event.php:109
+msgid "http://"
+msgstr "http://"
+
+#: forms/wp-event-manager-form-submit-event.php:108
+msgid "Registration URL"
+msgstr "URL Registrasi"
+
+#: forms/wp-event-manager-form-submit-event.php:105
+#: wp-event-manager-template.php:426 wp-event-manager-template.php:2084
+msgid "you@yourdomain.com"
+msgstr "kamu@domainmu.com"
+
+#: forms/wp-event-manager-form-submit-event.php:104
+msgid "Registration email"
+msgstr "Email registrasi "
+
+#: forms/wp-event-manager-form-submit-event.php:43
+msgid "Done"
+msgstr "Selesai"
+
+#: forms/wp-event-manager-form-submit-event.php:36
+#: forms/wp-event-manager-form-submit-event.php:636
+#: forms/wp-event-manager-form-submit-event.php:924
+msgid "Preview"
+msgstr "Pratinjau"
+
+#: forms/wp-event-manager-form-submit-event.php:29
+msgid "Submit Details"
+msgstr "Kirim Detil"
+
+#: forms/wp-event-manager-form-edit-event.php:161
+msgid "View &rarr;"
+msgstr "Lihat &rarr;"
+
+#: shortcodes/wp-event-manager-shortcodes.php:93
+msgid "Invalid ID"
+msgstr "ID tidak sah"
+
+#: forms/wp-event-manager-form-submit-event.php:919
+msgid "← Edit listing"
+msgstr "← Sunting daftar"
+
+#: forms/wp-event-manager-form-submit-event.php:918
+msgid "Submit Listing →"
+msgstr "Kirim Daftar \t"
+
+#: forms/wp-event-manager-form-submit-event.php:699
+msgid "You must be signed in to post a new listing."
+msgstr "Anda harus masuk untuk mengirim daftar baru."
+
+#: forms/wp-event-manager-form-submit-event.php:665
+#: forms/wp-event-manager-form-submit-event.php:668
+msgid "Please enter your email address."
+msgstr "Silakan masukkan alamat email Anda"
+
+#: forms/wp-event-manager-form-submit-event.php:662
+msgid "Please enter a username."
+msgstr "Silakan masukkan nama pengguna."
+
+#: forms/wp-event-manager-form-submit-event.php:547
+msgid "Please enter a valid registration email address or URL"
+msgstr "Harap masukkan alamat email atau URL pendaftaran yang sah"
+
+#: forms/wp-event-manager-form-submit-event.php:537
+msgid "Please enter a valid registration URL"
+msgstr "Harap masukkan URL pendaftaran yang sah"
+
+#: forms/wp-event-manager-form-submit-event.php:528
+msgid "Please enter a valid registration email address"
+msgstr "Harap masukkan alamat email pendaftaran yang sah"
+
+#: forms/wp-event-manager-form-submit-event.php:513
+#: wp-event-manager-functions.php:1336
+msgid "\"%s\" (filetype %s) needs to be one of the following file types: %s"
+msgstr "\"%s\" (jenisberkas %s) harus menjadi salah satu dari jenis berkas berikut: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:497
+msgid "%s is invalid"
+msgstr "%s tidak sah"
+
+#: forms/wp-event-manager-form-submit-event.php:486
+msgid "%s is a required field"
+msgstr "%s adalah ruas yang wajib diisi"
+
+#: core/wp-event-manager-post-types.php:303
+msgid "New %s"
+msgstr "Baru %s"
+
+#: core/wp-event-manager-post-types.php:297
+msgid "Add %s"
+msgstr "Tambah %s"
+
+#: core/wp-event-manager-post-types.php:295
+msgid "Add New"
+msgstr "Tambahkan Baru"
+
+#: core/wp-event-manager-post-types.php:272
+msgctxt "Event permalink - resave permalinks after changing this"
+msgid "event"
+msgstr "acara"
+
+#: core/wp-event-manager-post-types.php:262
+msgctxt "Post type archive slug - resave permalinks after changing this"
+msgid "events"
+msgstr "acara-acara"
+
+#: core/wp-event-manager-post-types.php:258
+msgid "Events"
+msgstr "Acara-acara"
+
+#: core/wp-event-manager-post-types.php:256
+msgid "Event"
+msgstr "Acara"
+
+#: core/wp-event-manager-post-types.php:179
+msgctxt "Event type slug - resave permalinks after changing this"
+msgid "event-type"
+msgstr "tipe-acara"
+
+#: core/wp-event-manager-post-types.php:173
+msgid "Event types"
+msgstr "Tipe-tipe acara"
+
+#: core/wp-event-manager-post-types.php:171
+msgid "Event type"
+msgstr "Tipe acara"
+
+#: core/wp-event-manager-post-types.php:141
+#: core/wp-event-manager-post-types.php:229
+msgid "New %s Name"
+msgstr "%s Nama Baru"
+
+#: core/wp-event-manager-post-types.php:139
+#: core/wp-event-manager-post-types.php:227
+msgid "Add New %s"
+msgstr "Tambahkan Baru %s"
+
+#: core/wp-event-manager-post-types.php:137
+#: core/wp-event-manager-post-types.php:225
+msgid "Update %s"
+msgstr "Perbarui %s"
+
+#: core/wp-event-manager-post-types.php:135
+#: core/wp-event-manager-post-types.php:223
+#: core/wp-event-manager-post-types.php:301
+msgid "Edit %s"
+msgstr "Sunting %s"
+
+#: forms/wp-event-manager-form-edit-event.php:161
+#: forms/wp-event-manager-form-edit-event.php:167
+msgid "Your changes have been saved."
+msgstr "Perubahan yang Anda buat sudah disimpan."
+
+#: forms/wp-event-manager-form-edit-event.php:120
+msgid "Save changes"
+msgstr "Simpan Perubahan"
+
+#: forms/wp-event-manager-form-edit-event.php:66
+msgid "Invalid listing"
+msgstr "Cantuman tidak sah"
+
+#: core/wp-event-manager-post-types.php:326
+msgid "This is where you can create and manage %s."
+msgstr "Di sinilah Anda dapat membuat dan mengelola %s."
+
+#: core/wp-event-manager-post-types.php:313
+msgid "No %s found in trash"
+msgstr "Tidak ada %s di tempat sampah"
+
+#: core/wp-event-manager-post-types.php:133
+#: core/wp-event-manager-post-types.php:221
+msgid "Parent %s:"
+msgstr "Induk %s"
+
+#: core/wp-event-manager-post-types.php:131
+#: core/wp-event-manager-post-types.php:219
+#: core/wp-event-manager-post-types.php:315
+msgid "Parent %s"
+msgstr "Induk %s"
+
+#: core/wp-event-manager-post-types.php:129
+#: core/wp-event-manager-post-types.php:217
+#: core/wp-event-manager-post-types.php:293
+msgid "All %s"
+msgstr "Semua %s"
+
+#: core/wp-event-manager-post-types.php:127
+#: core/wp-event-manager-post-types.php:215
+#: core/wp-event-manager-post-types.php:309
+msgid "Search %s"
+msgstr "Cari %s"
+
+#: core/wp-event-manager-post-types.php:91
+msgctxt "Event category slug - resave permalinks after changing this"
+msgid "event-category"
+msgstr "kategori-acara"
+
+#: core/wp-event-manager-post-types.php:85
+msgid "Event categories"
+msgstr "Kategori-kategori Acara"
+
+#: core/wp-event-manager-post-types.php:83
+msgid "Event category"
+msgstr "Kategori acara"
+
+#: core/wp-event-manager-install.php:69
+msgid "Organizer"
+msgstr "Penyelenggara"
+
+#: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
+#: core/wp-event-manager-geocode.php:236
+msgid "Geocoding error"
+msgstr "Kesalahan geocoding"
+
+#: core/wp-event-manager-geocode.php:210
+msgid "Query limit reached"
+msgstr "Batas kueri tercapai"
+
+#: core/wp-event-manager-geocode.php:202
+msgid "No results found"
+msgstr "Tidak menemukan apa-apa"
+
+#: admin/wp-event-manager-writepanels.php:738
+msgid "Enter the ID of the user, or leave blank if submitted by a guest."
+msgstr "Masukkan ID pengguna, atau biarkan kosong jika dikirim oleh tamu."
+
+#: core/wp-event-manager-post-types.php:368 wp-event-manager-functions.php:516
+msgctxt "post status"
+msgid "Expired"
+msgstr "Kadaluarsa"
+
+#: core/wp-event-manager-post-types.php:311
+msgid "No %s found"
+msgstr "Tidak ada %s ditemukan"
+
+#: core/wp-event-manager-post-types.php:305
+#: core/wp-event-manager-post-types.php:307
+msgid "View %s"
+msgstr "Lihat %s"
+
+#: core/wp-event-manager-ajax.php:314
+msgid "located in &ldquo;%s&rdquo;"
+msgstr "berlokasi di &ldquo;%s&rdquo;"
+
+#: core/wp-event-manager-filters.php:73
+msgid "Any Ticket Price"
+msgstr "Harga Tiket Berapapun"
+
+#: core/wp-event-manager-filters.php:41
+msgid "Next Year"
+msgstr "Tahun Depan"
+
+#: core/wp-event-manager-filters.php:39
+msgid "Next Month"
+msgstr "Bulan Depan"
+
+#: core/wp-event-manager-filters.php:37
+msgid "Next Weekend"
+msgstr "Akhir Pekan Depan"
+
+#: core/wp-event-manager-filters.php:35
+msgid "Next Week"
+msgstr "Minggu Depan"
+
+#: core/wp-event-manager-filters.php:33
+msgid "This Year"
+msgstr "Tahun Ini"
+
+#: core/wp-event-manager-filters.php:31
+msgid "This Month"
+msgstr "Bulan Ini"
+
+#: core/wp-event-manager-filters.php:29
+msgid "This Weekend"
+msgstr "Akhir Pekan Ini"
+
+#: core/wp-event-manager-filters.php:27
+msgid "This Week"
+msgstr "Minggu Ini"
+
+#: core/wp-event-manager-filters.php:25
+msgid "Tomorrow"
+msgstr "Besok"
+
+#: core/wp-event-manager-filters.php:23
+msgid "Today"
+msgstr "Hari Ini"
+
+#: core/wp-event-manager-filters.php:21
+msgid "Any Date"
+msgstr "Tanggal Kapanpun"
+
+#: admin/wp-event-manager-writepanels.php:734
+msgid "Change"
+msgstr "Ubah"
+
+#: admin/wp-event-manager-writepanels.php:732
+msgid "Guest User"
+msgstr "Pengunjung"
+
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Add file"
+msgstr "Tambahkan berkas"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Upload"
+msgstr "Unggah"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Use file"
+msgstr "Gunakan berkas"
+
+#: admin/wp-event-manager-writepanels.php:434
+msgid "%s Data"
+msgstr "%s Data"
+
+#: admin/wp-event-manager-writepanels.php:387
+msgid "Posted by"
+msgstr "Diterbitkan oleh"
+
+#: admin/wp-event-manager-writepanels.php:379
+msgid "yyyy-mm-dd"
+msgstr "yyyy-mm-dd"
+
+#: admin/wp-event-manager-writepanels.php:378
+msgid "Listing Expiry Date"
+msgstr "Mendata Tanggal Kadaluarsa"
+
+#: admin/wp-event-manager-writepanels.php:373
+msgid "Featured listings will be sticky during searches, and can be styled differently."
+msgstr "Cantuman unggulan akan merekat selama pencarian, dan dapat ditata secara berbeda."
+
+#: admin/wp-event-manager-writepanels.php:371
+msgid "Featured Listing"
+msgstr "Daftar Unggulan"
+
+#: admin/wp-event-manager-writepanels.php:365
+msgid "Cancelled listings will no longer accept registration."
+msgstr "Daftar yang dibatalkan tidak dapat lagi menerima pendaftaran."
+
+#: admin/wp-event-manager-writepanels.php:362
+msgid "Event Cancelled"
+msgstr "Acara Dibatalkan"
+
+#: admin/wp-event-manager-writepanels.php:298
+#: forms/wp-event-manager-form-submit-event.php:364
+#: templates/content-single-event_listing-organizer.php:188
+msgid "Youtube"
+msgstr "Youtube"
+
+#: admin/wp-event-manager-writepanels.php:293
+#: forms/wp-event-manager-form-submit-event.php:359
+msgid "A link to a video about your organization"
+msgstr "Tautan ke video tentang organisasi Anda"
+
+#: admin/wp-event-manager-writepanels.php:290
+#: forms/wp-event-manager-form-submit-event.php:356
+msgid "Video"
+msgstr "Video"
+
+#: admin/wp-event-manager-writepanels.php:155
+#: forms/wp-event-manager-form-submit-event.php:226
+msgid "12 hour format"
+msgstr "Format 12 jam"
+
+#: admin/wp-event-manager-writepanels.php:151
+#: forms/wp-event-manager-form-submit-event.php:222
+msgid "Time Format"
+msgstr "Format Waktu"
+
+#: admin/wp-event-manager-field-editor.php:139
+#: admin/wp-event-manager-field-editor.php:241
+#: admin/wp-event-manager-writepanels.php:144
+#: forms/wp-event-manager-form-submit-event.php:208
+msgid "Description"
+msgstr "Deskripsi"
+
+#: admin/wp-event-manager-writepanels.php:128
+#: forms/wp-event-manager-form-submit-event.php:192
+msgid "Event Banner"
+msgstr "Banner Acara"
+
+#: admin/wp-event-manager-writepanels.php:123
+msgid "e.g. \"Berlin\",\"Munich\""
+msgstr "contoh: \"Jakarta\",\"Singapura\""
+
+#: admin/wp-event-manager-writepanels.php:284
+msgid "Your organization tagline"
+msgstr "Slogan organisasi Anda"
+
+#: admin/wp-event-manager-writepanels.php:281
+msgid "Tagline"
+msgstr "Slogan"
+
+#: admin/wp-event-manager-writepanels.php:276
+#: forms/wp-event-manager-form-submit-event.php:351
+msgid "Website URL e.g http://www.yourorganization.com"
+msgstr "URL Situs Web contoh: http://www.organisasimu.com"
+
+#: admin/wp-event-manager-writepanels.php:273
+#: forms/wp-event-manager-form-submit-event.php:348
+#: templates/content-single-event_listing-organizer.php:147
+msgid "Website"
+msgstr "Situs Web"
+
+#: admin/wp-event-manager-writepanels.php:268
+#: forms/wp-event-manager-form-submit-event.php:343
+msgid "Enter your email address"
+msgstr "Masukkan alamat email Anda"
+
+#: admin/wp-event-manager-writepanels.php:265
+#: forms/wp-event-manager-form-submit-event.php:340
+msgid "Organization Email"
+msgstr "Email Organisasi"
+
+#: admin/wp-event-manager-writepanels.php:260
+#: forms/wp-event-manager-form-submit-event.php:335
+msgid "Enter contact person name in your organization"
+msgstr "Masukkan nama orang yang dapat dihubungi di organisasi Anda"
+
+#: admin/wp-event-manager-writepanels.php:257
+#: forms/wp-event-manager-form-submit-event.php:332
+msgid "Contact Person Name"
+msgstr "Nama Kontak"
+
+#: admin/wp-event-manager-writepanels.php:249
+#: forms/wp-event-manager-form-submit-event.php:324
+msgid "Organizer Description"
+msgstr "Deskripsi Penyelenggara"
+
+#: admin/wp-event-manager-writepanels.php:240
+#: forms/wp-event-manager-form-submit-event.php:308
+msgid "Logo"
+msgstr "Logo"
+
+#: admin/wp-event-manager-writepanels.php:235
+#: forms/wp-event-manager-form-submit-event.php:304
+msgid "Enter the name of the organization"
+msgstr "Masukkan nama organisasi"
+
+#: admin/wp-event-manager-writepanels.php:232
+#: forms/wp-event-manager-form-submit-event.php:301
+msgid "Organization name"
+msgstr "Nama Organisasi"
+
+#: admin/wp-event-manager-writepanels.php:163
+#: forms/wp-event-manager-form-submit-event.php:234
+msgid "Please enter event start date"
+msgstr "Harap masukkan tanggal mulai acara"
+
+#: admin/wp-event-manager-writepanels.php:162
+#: forms/wp-event-manager-form-submit-event.php:233
+#: shortcodes/wp-event-manager-shortcodes.php:243
+msgid "Start Date"
+msgstr "Mulai Acara"
+
+#: admin/wp-event-manager-writepanels.php:156
+#: forms/wp-event-manager-form-submit-event.php:227
+msgid "24 hour format"
+msgstr "Format 24 jam"
+
+#: admin/wp-event-manager-writepanels.php:120
+msgid "Leave this blank if the location is not important"
+msgstr "Biarkan ini kosong jika lokasinya tidak penting"
+
+#: admin/wp-event-manager-writepanels.php:119
+#: forms/wp-event-manager-form-submit-event.php:184
+#: shortcodes/wp-event-manager-shortcodes.php:242
+#: templates/event-filters.php:19 templates/event-filters.php:20
+#: widgets/wp-event-manager-widgets.php:235
+msgid "Location"
+msgstr "Lokasi"
+
+#: admin/wp-event-manager-writepanels.php:114
+#: forms/wp-event-manager-form-submit-event.php:179
+msgid "Please enter pincode (Area code)"
+msgstr "Silakan masukkan kode PIN (Kode area)"
+
+#: admin/wp-event-manager-writepanels.php:111
+#: forms/wp-event-manager-form-submit-event.php:176
+msgid "Pincode"
+msgstr "Kode PIN"
+
+#: admin/wp-event-manager-writepanels.php:106
+#: forms/wp-event-manager-form-submit-event.php:171
+msgid "Please enter street name and number"
+msgstr "Harap masukkan nama jalan dan nomor"
+
+#: admin/wp-event-manager-writepanels.php:103
+#: forms/wp-event-manager-form-submit-event.php:168
+msgid "Address"
+msgstr "Alamat"
+
+#: admin/wp-event-manager-writepanels.php:98
+#: forms/wp-event-manager-form-submit-event.php:163
+msgid "Please enter the venue name"
+msgstr "Silakan masukkan nama tempat"
+
+#: admin/wp-event-manager-setup.php:335
+msgid "Find out more about the front-end event dashboard"
+msgstr "Cari tahu lebih banyak tentang front-end dasbor acara"
+
+#: admin/wp-event-manager-setup.php:331
+msgid "View the event dashboard"
+msgstr "Lihat dasbor acara"
+
+#: admin/wp-event-manager-setup.php:325
+msgid "Add the [events] shortcode to a page to list events"
+msgstr "Tambahkan kodesingkat [event] ke halaman untuk membuat daftar acara"
+
+#: admin/wp-event-manager-setup.php:321
+msgid "View submitted event listings"
+msgstr "Lihat daftar acara yang dikirim"
+
+#: admin/wp-event-manager-setup.php:315
+msgid "Find out more about the front-end event submission form"
+msgstr "Cari tahu lebih lanjut tentang front-end formulir pengajuan acara"
+
+#: admin/wp-event-manager-setup.php:311
+msgid "Add an event via the front-end"
+msgstr "Tambahkan acara melalui front-end"
+
+#: admin/wp-event-manager-setup.php:307
+msgid "Add an event via the back-end"
+msgstr "Tambahkan acara melalui back-end"
+
+#: admin/wp-event-manager-setup.php:305
+msgid "Tweak the plugin settings"
+msgstr "Gubah pengaturan plugin"
+
+#: admin/wp-event-manager-settings.php:650
+msgid "Settings successfully saved"
+msgstr "Pengaturan berhasil disimpan"
+
+#: admin/wp-event-manager-setup.php:301
+msgid "Looks like you're all set to start using the plugin. In case you're wondering where to go next:"
+msgstr "Sepertinya Anda siap untuk mulai menggunakan plugin. Jika Anda memiliki pertanyaan ke mana harus pergi berikutnya:"
+
+#: admin/wp-event-manager-setup.php:299
+msgid "All Done!"
+msgstr "Sudah selesai!"
+
+#: admin/wp-event-manager-setup.php:288
+msgid "Skip this step"
+msgstr "Lewati langkah ini"
+
+#: admin/wp-event-manager-setup.php:275
+msgid "This page allows users to browse, search, and filter event listings on the front-end of your site."
+msgstr "Halaman ini memungkinkan pengguna untuk menelusuri, mencari, dan menyaring daftar acara di bagian depan situs Anda."
+
+#: admin/wp-event-manager-setup.php:273
+msgctxt "Default page title (wizard)"
+msgid "Events"
+msgstr "Acara-acara"
+
+#: admin/wp-event-manager-setup.php:264
+msgid "If you plan on managing all listings from the admin dashboard you can skip creating this page."
+msgstr "Jika Anda berencana mengelola semua daftar dari dasbor admin, Anda dapat melewati pembuatan halaman ini."
+
+#: admin/wp-event-manager-setup.php:262
+msgid "This page allows peoples to manage and edit their own events from the front-end."
+msgstr "Halaman ini memungkinkan orang untuk mengelola dan menyunting acara mereka sendiri dari front-end"
+
+#: admin/wp-event-manager-setup.php:191
+msgid "3. Done"
+msgstr "3. Selesai"
+
+#: admin/wp-event-manager-setup.php:189
+msgid "2. Page Setup"
+msgstr "2. Pengaturan Halaman"
+
+#: admin/wp-event-manager-setup.php:187
+msgid "1. Introduction"
+msgstr "1. Pengantar"
+
+#: admin/wp-event-manager-setup.php:183
+msgid "WP Event Manager Setup"
+msgstr "Pengaturan WP Event Manager"
+
+#: admin/wp-event-manager-setup.php:45
+msgid "Setup"
+msgstr "Pengaturan"
+
+#: admin/wp-event-manager-field-editor.php:154
+#: admin/wp-event-manager-field-editor.php:256
+#: admin/wp-event-manager-settings.php:808
+msgid "Save Changes"
+msgstr "Simpan Perubahan"
+
+#: admin/wp-event-manager-settings.php:755
+msgid "Select a page&hellip;"
+msgstr "Pilih halaman &hellip;"
+
+#: admin/wp-event-manager-settings.php:747
+msgid "--no page--"
+msgstr "--tidak ada halaman--"
+
+#: admin/wp-event-manager-settings.php:574
+msgid "Select the page where you have placed the [events] shortcode. This lets the plugin know where the event listings page is located."
+msgstr "Pilih halaman di mana Anda telah menempatkan kodesingkat [acara]. Ini memungkinkan plugin tahu di mana halaman daftar acara berada."
+
+#: admin/wp-event-manager-settings.php:572
+msgid "Event Listings Page"
+msgstr "Halaman Daftar Acara"
+
+#: admin/wp-event-manager-settings.php:561
+msgid "Select the page where you have placed the [event_dashboard] shortcode. This lets the plugin know where the dashboard is located."
+msgstr "Pilih halaman tempat Anda meletakkan kodesingkat [event_dashboard]. Ini memungkinkan plugin mengetahui letak dasbor."
+
+#: admin/wp-event-manager-settings.php:559
+msgid "Event Dashboard Page"
+msgstr "Halaman Dasbor Acara"
+
+#: admin/wp-event-manager-settings.php:548
+msgid "Select the page where you have placed the [submit_event_form] shortcode. This lets the plugin know where the form is located."
+msgstr "Pilih halaman tempat Anda meletakkan kodesingkat [submit_event_form]. Ini memungkinkan plugin tahu di mana form itu berada."
+
+#: admin/wp-event-manager-settings.php:546
+msgid "Submit Event Form Page"
+msgstr "Kirim Formulir Acara Halaman"
+
+#: admin/wp-event-manager-settings.php:469
+msgid "Listing expire on Event End Date"
+msgstr "Daftar kadaluarsa pada Tanggal Akhir Acara"
+
+#: admin/wp-event-manager-settings.php:463
+msgid "You can set event submission expiry time either event end date or specific days."
+msgstr "Anda dapat mengatur waktu kadaluarsa penyerahan acara baik tanggal akhir acara atau hari-hari tertentu."
+
+#: admin/wp-event-manager-settings.php:461
+msgid "Listing Expire"
+msgstr "Daftar Kadaluarsa"
+
+#: admin/wp-event-manager-settings.php:448
+msgid "If enabled, expired listings will automatically deleted after 30 days."
+msgstr "Jika diaktifkan, daftar kadaluarsa akan otomatis dihapus setelah 30 hari."
+
+#: admin/wp-event-manager-settings.php:446
+msgid "Expired listings are deleted after 30 days"
+msgstr "Daftar kadaluarsa dihapus setelah 30 hari"
+
+#: admin/wp-event-manager-settings.php:444
+msgid "Delete Expired listings"
+msgstr "Hapus Daftar yang telah Kadaluarsa"
+
+#: admin/wp-event-manager-settings.php:432
+msgid "If enabled, Multiple banner can add at frontend by user and backend side by admin."
+msgstr "Jika diaktifkan, Beberapa spanduk dapat ditambahkan di front-end oleh pengguna dan sisi back-end oleh admin."
+
+#: admin/wp-event-manager-settings.php:430
+msgid "User can submit multiple banner"
+msgstr "Pengguna dapat mengirimkan beberapa banner"
+
+#: admin/wp-event-manager-settings.php:428
+msgid "Allow Multiple Banners"
+msgstr "Izinkan Beberapa Banner"
+
+#: admin/wp-event-manager-settings.php:249
+#: admin/wp-event-manager-settings.php:284
+msgid "If enabled, the event type select box will default to a multi select on the [events] shortcode."
+msgstr "Jika diaktifkan, kotak pilih jenis acara akan menjadi bawaannya ke multi-pilih pada kodesingkat [events]."
+
+#: admin/wp-event-manager-settings.php:247
+msgid "Enable event type multiselect by default"
+msgstr "Aktifkan jenis acara multi-pilih secara bawaan"
+
+#: admin/wp-event-manager-settings.php:245
+msgid "Multi-select Event Types"
+msgstr "Multi-pilih Jenis Acara"
+
+#: admin/wp-event-manager-settings.php:232
+#: admin/wp-event-manager-settings.php:264
+msgid "If enabled, the category select box will default to a multi select on the [events] shortcode."
+msgstr "Jika diaktifkan, kotak pilih kategori acara akan menjadi bawaannya ke multi-pilih pada kodesingkat [events]."
+
+#: admin/wp-event-manager-settings.php:230
+msgid "Enable category multiselect by default"
+msgstr "Aktifkan multi-pilih kategori secara bawaan"
+
+#: admin/wp-event-manager-settings.php:413
+msgid "Allow Pending Edits"
+msgstr "Izinkan Suntingan Tertunda"
+
+#: admin/wp-event-manager-settings.php:417
+msgid "If enabled, submissions awaiting admin approval can be edited by the user."
+msgstr "Jika diaktifkan, pengiriman yang menunggu persetujuan admin masih dapat disunting oleh pengguna."
+
+#: admin/wp-event-manager-settings.php:415
+msgid "Submissions awaiting approval can be edited"
+msgstr "Pengiriman menunggu persetujuan dapat disunting"
+
+#: admin/wp-event-manager-settings.php:400
+msgid "If enabled, new submissions will be inactive, pending admin approval."
+msgstr "Jika diaktifkan, pengiriman baru akan menjadi tidak aktif, menunggu persetujuan admin."
+
+#: admin/wp-event-manager-settings.php:398
+msgid "New listing submissions require admin approval"
+msgstr "Pengiriman daftar baru membutuhkan persetujuan admin"
+
+#: admin/wp-event-manager-settings.php:396
+msgid "Moderate New Listings"
+msgstr "Moderasi Daftar Baru"
+
+#: admin/wp-event-manager-settings.php:292
+msgid "Events will be shown if within ALL selected event types"
+msgstr "Acara akan ditampilkan jika dalam SEMUA jenis acara dipilih"
+
+#: admin/wp-event-manager-settings.php:290
+msgid "Events will be shown if within ANY selected event type"
+msgstr "Acara akan ditampilkan jika dalam APAPUN jenis acara yang dipilih"
+
+#: admin/wp-event-manager-settings.php:282
+msgid "Event Type Filter"
+msgstr "Saring Jenis Acara"
+
+#: admin/wp-event-manager-settings.php:272
+msgid "Events will be shown if within ALL selected categories"
+msgstr "Acara akan ditampilkan dalam SEMUA kategori yang dipilih"
+
+#: admin/wp-event-manager-settings.php:270
+msgid "Events will be shown if within ANY selected category"
+msgstr "Acara akan ditampilkan dalam SEMUA kategori yang dipilih"
+
+#: admin/wp-event-manager-cpt.php:586 core/wp-event-manager-post-types.php:299
+#: templates/event-dashboard.php:33 templates/event-dashboard.php:49
+msgid "Edit"
+msgstr "Sunting"
+
+#: admin/wp-event-manager-cpt.php:380
+msgid "Cancelled?"
+msgstr "Dibatalkan?"
+
+#: admin/wp-event-manager-cpt.php:378
+msgid "Status"
+msgstr "Status"
+
+#: admin/wp-event-manager-cpt.php:355
+msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview</a>"
+msgstr "%s naskah telah diperbaharui. <a target=\"_blank\" href=\"%s\">Pratinjau</a>"
+
+#: admin/wp-event-manager-cpt.php:353
+msgid "M j, Y @ G:i"
+msgstr "j M Y @ G:i"
+
+#: admin/wp-event-manager-cpt.php:351
+msgid "%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview</a>"
+msgstr "%s dijadwal untuk: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Pratinjau</a>"
+
+#: admin/wp-event-manager-cpt.php:349
+msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview</a>"
+msgstr "%s terkirim. <a target=\"_blank\" href=\"%s\">Pratinjau</a>"
+
+#: admin/wp-event-manager-settings.php:228
+msgid "Multi-select Categories"
+msgstr "Kategori Multi-pilih"
+
+#: admin/wp-event-manager-settings.php:133
+msgid "If enabled, cancelled events will be hidden from archives."
+msgstr "Jika diaktifkan, acara yang dibatalkan akan disembunyikan dari arsip."
+
+#: admin/wp-event-manager-settings.php:131
+msgid "Hide cancelled events"
+msgstr "Sembunyikan acara yang dibatalkan"
+
+#: admin/wp-event-manager-settings.php:129
+msgid "Cancelled Events"
+msgstr "Acara dibatalkan"
+
+#: admin/wp-event-manager-settings.php:118
+msgid "How many listings should be shown per page by default?"
+msgstr "Berapa banyak cantuman yang harus ditampilkan per halaman secara bawaan?"
+
+#: admin/wp-event-manager-settings.php:116
+msgid "Listings Per Page"
+msgstr "Daftar Per Halaman"
+
+#: admin/wp-event-manager-settings.php:104
+#: admin/wp-event-manager-writepanels.php:440
+#: core/wp-event-manager-post-types.php:291
+#: core/wp-event-manager-post-types.php:403
+msgid "Event Listings"
+msgstr "Daftar Acara"
+
+#: admin/wp-event-manager-cpt.php:598 templates/event-dashboard.php:53
+#: wp-event-manager.php:295
+msgid "Delete"
+msgstr "Hapus"
+
+#: admin/wp-event-manager-cpt.php:347
+msgid "%s saved."
+msgstr "%s tersimpan."
+
+#: admin/wp-event-manager-cpt.php:345
+msgid "%s published. <a href=\"%s\">View</a>"
+msgstr "%s diterbitkan. <a href=\"%s\">Lihat</a>"
+
+#: admin/wp-event-manager-cpt.php:343
+msgid "%s restored to revision from %s"
+msgstr "%s dikembalikan untuk revisi dari %s"
+
+#: admin/wp-event-manager-cpt.php:341
+msgid "%s updated."
+msgstr "%s diperbarui"
+
+#: admin/wp-event-manager-cpt.php:339
+msgid "Custom field deleted."
+msgstr "Ruas khusus dihapus."
+
+#: admin/wp-event-manager-cpt.php:337
+msgid "Custom field updated."
+msgstr "Ruas khusus diperbarui."
+
+#: admin/wp-event-manager-cpt.php:335
+msgid "%s updated. <a href=\"%s\">View</a>"
+msgstr "%s diperbarui. <a href=\"%s\">Lihat</a>"
+
+#: admin/wp-event-manager-cpt.php:314 admin/wp-event-manager-cpt.php:384
+#: admin/wp-event-manager-writepanels.php:54
+#: forms/wp-event-manager-form-submit-event.php:120
+msgid "Event Title"
+msgstr "Judul Acara"
+
+#: admin/wp-event-manager-cpt.php:294
+msgid "Select category"
+msgstr "Pilih Kategori"
+
+#: admin/wp-event-manager-writepanels.php:354
+#: forms/wp-event-manager-form-submit-event.php:420
+#: templates/content-single-event_listing-organizer.php:182
+msgid "Instagram"
+msgstr "Instagram"
+
+#: admin/wp-event-manager-writepanels.php:357
+#: forms/wp-event-manager-form-submit-event.php:423
+msgid "Instagram URL e.g http://www.instagram.com/yourcompany"
+msgstr "URL Instagram, contoh: http://www.instagram.com/perusahaanmu"
+
+#: admin/wp-event-manager-writepanels.php:349
+#: forms/wp-event-manager-form-submit-event.php:415
+msgid "Pinterest URL e.g http://www.pinterest.com/yourcompany"
+msgstr "URL Pinterest, contoh: http://www.pinterest.com/perusahaanmu"
+
+#: admin/wp-event-manager-writepanels.php:346
+#: forms/wp-event-manager-form-submit-event.php:412
+#: templates/content-single-event_listing-organizer.php:176
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: admin/wp-event-manager-writepanels.php:341
+#: forms/wp-event-manager-form-submit-event.php:407
+msgid "Xing URL e.g http://www.xing.com/companies/yourcompany"
+msgstr "URL Xing, contoh: http://www.xing.com/companies/perusahaanmu"
+
+#: admin/wp-event-manager-writepanels.php:338
+#: forms/wp-event-manager-form-submit-event.php:404
+#: templates/content-single-event_listing-organizer.php:170
+msgid "Xing"
+msgstr "Xing"
+
+#: admin/wp-event-manager-writepanels.php:46
+msgid "Registration Email or URL"
+msgstr "Email atau URL Pendaftaran"
+
+#: admin/wp-event-manager-writepanels.php:333
+msgid "@yourorganizer"
+msgstr "@penyelenggaramu"
+
+#: admin/wp-event-manager-writepanels.php:330
+msgid "Twitter username"
+msgstr "Nama pengguna twitter"
+
+#: admin/wp-event-manager-writepanels.php:325
+#: forms/wp-event-manager-form-submit-event.php:391
+msgid "Linkedin URL e.g http://www.linkedin.com/company/yourcompany"
+msgstr "URL Linkedin, contoh: http://www.linkedin.com/company/perusahaanmu"
+
+#: admin/wp-event-manager-writepanels.php:322
+#: forms/wp-event-manager-form-submit-event.php:388
+#: templates/content-single-event_listing-organizer.php:164
+msgid "Linkedin"
+msgstr "Linkedin"
+
+#: admin/wp-event-manager-writepanels.php:317
+#: forms/wp-event-manager-form-submit-event.php:383
+msgid "Facebook URL e.g http://www.facebook.com/yourcompany"
+msgstr "URL Facebook, contoh: http://www.facebook.com/perusahaanmu"
+
+#: admin/wp-event-manager-writepanels.php:314
+#: forms/wp-event-manager-form-submit-event.php:380
+#: templates/content-single-event_listing-organizer.php:152
+msgid "Facebook"
+msgstr "Facebook"
+
+#: admin/wp-event-manager-writepanels.php:309
+#: forms/wp-event-manager-form-submit-event.php:375
+msgid "Google+ URL e.g http://plus.google.com/yourcompany"
+msgstr "URL Google+, contoh: http://plus.google.com/perusahaanmu"
+
+#: admin/wp-event-manager-writepanels.php:306
+#: forms/wp-event-manager-form-submit-event.php:372
+#: templates/content-single-event_listing-organizer.php:194
+msgid "Google+"
+msgstr "Google+"
+
+#: admin/wp-event-manager-writepanels.php:170
+#: forms/wp-event-manager-form-submit-event.php:240
+msgid "Start Time"
+msgstr "Waktu Mulai"
+
+#: admin/wp-event-manager-writepanels.php:95
+#: forms/wp-event-manager-form-submit-event.php:160
+msgid "Venue Name"
+msgstr "Nama Tempat"
+
+#: admin/wp-event-manager-writepanels.php:88
+#: forms/wp-event-manager-form-submit-event.php:153
+msgid "No"
+msgstr "Tidak"
+
+#: admin/wp-event-manager-writepanels.php:87
+#: forms/wp-event-manager-form-submit-event.php:152
+msgid "Yes"
+msgstr "Ya"
+
+#: admin/wp-event-manager-writepanels.php:82
+#: forms/wp-event-manager-form-submit-event.php:148
+#: templates/content-event_listing.php:30
+#: templates/content-event_listing.php:56
+#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-summary-event_listing.php:10
+#: templates/content-widget-event_listing.php:10
+#: templates/event-dashboard.php:78
+msgid "Online Event"
+msgstr "Acara Online"
+
+#: admin/wp-event-manager-writepanels.php:48
+msgid "This field is required for the \"registration\" area to appear beneath the listing."
+msgstr "Ruas ini diperlukan untuk area \"pendaftaran\" agar muncul di bawah daftar."
+
+#: admin/wp-event-manager-writepanels.php:47
+msgid "URL or email which attendees use to register"
+msgstr "URL atau email yang digunakan peserta untuk mendaftar"
+
+#: admin/wp-event-manager-writepanels.php:38
+msgid "Total View Count"
+msgstr "Hitungan Tampilan Total"
+
+#: admin/wp-event-manager-setup.php:357
+msgid "Help other users on the forums"
+msgstr "Bantu pengguna lain di forum"
+
+#: admin/wp-event-manager-setup.php:355
+msgid "Contribute code or report a bug"
+msgstr "Berkontribusi kode atau melaporkan bug"
+
+#: admin/wp-event-manager-setup.php:353
+msgid "Contribute a localization"
+msgstr "Sumbangkan pelokalan"
+
+#: admin/wp-event-manager-setup.php:351
+msgid "Leave a positive review"
+msgstr "Tinggalkan ulasan positif"
+
+#: admin/wp-event-manager-setup.php:347
+msgid "There are many ways to support open-source projects such as WP Event Manager, for example code contribution, translation, or even telling your friends how awesome the plugin (hopefully) is. Thanks in advance for your support - it is much appreciated!"
+msgstr "Ada banyak cara untuk mendukung proyek open-source seperti WP Event Manager, misalnya kontribusi kode, terjemahan, atau bahkan memberi tahu teman Anda betapa hebatnya plugin (semoga). Terima kasih sebelumnya atas dukungan Anda - itu sangat dihargai!"
+
+#: admin/wp-event-manager-setup.php:345
+msgid "Support the Ongoing Development of this Plugin"
+msgstr "Mendukung Pengembangan Berkelanjutan dari Plugin ini"
+
+#: admin/wp-event-manager-setup.php:197
+msgid "Setup Wizard Introduction"
+msgstr "Atur Pengantar Wizard "
+
+#: admin/wp-event-manager-settings.php:536
+msgid "Pages"
+msgstr "Halaman"
+
+#: admin/wp-event-manager-settings.php:177
+msgid "Categories"
+msgstr "Kategori-kategori"
+
+#: admin/wp-event-manager-settings.php:496
+msgid "Website URLs only"
+msgstr "Hanya URL Website"
+
+#: admin/wp-event-manager-settings.php:495
+msgid "Email addresses only"
+msgstr "Hanya alamat email"
+
+#: admin/wp-event-manager-settings.php:494
+msgid "Email address or website URL"
+msgstr "Alamat email atau URL website"
+
+#: admin/wp-event-manager-settings.php:491
+msgid "Choose the registratoin method for listings."
+msgstr "Pilih metode pendaftaran untuk daftar."
+
+#: admin/wp-event-manager-settings.php:490
+msgid "Registration Method"
+msgstr "Metode Pendaftaran"
+
+#: admin/wp-event-manager-settings.php:483
+msgid "How many <strong>days</strong> listings are live before expiring. Can be left blank to never expire."
+msgstr "Berapa banyak <strong>hari</strong> cantuman akan tayang sebelum kadaluarsa. Dapat dibiarkan kosong untuk tidak akan pernah kadaluarsa."
+
+#: admin/wp-event-manager-settings.php:481
+msgid "Listing Duration"
+msgstr "Durasi Pendaftaran"
+
+#: admin/wp-event-manager-settings.php:311
+msgid "Event Submission"
+msgstr "Pengajuan Acara"
+
+#: admin/wp-event-manager-settings.php:215
+msgid "Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission."
+msgstr "Pilih apakah akan mengaktifkan harga tiket. Harga tiket harus disiapkan oleh admin untuk memungkinkan pengguna memilihnya selama pengiriman."
+
+#: admin/wp-event-manager-settings.php:213
+msgid "Enable ticket prices for listings"
+msgstr "Aktifkan harga tiket untuk daftar"
+
+#: admin/wp-event-manager-settings.php:211
+msgid "Ticket prices"
+msgstr "Harga tiket"
+
+#: admin/wp-event-manager-settings.php:198
+msgid "Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission."
+msgstr "Pilih apakah akan mengaktifkan jenis acara. jenis acara harus disetel oleh admin agar pengguna dapat memilihnya selama pengiriman."
+
+#: admin/wp-event-manager-settings.php:196
+msgid "Enable event types for listings"
+msgstr "Aktifkan jenis acara untuk daftar"
+
+#: admin/wp-event-manager-settings.php:194
+msgid "Event Types"
+msgstr "Tipe-tipe Acara"
+
+#: admin/wp-event-manager-settings.php:181
+msgid "Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission."
+msgstr "Pilih apakah akan mengaktifkan kategori. Kategori harus disiapkan oleh admin untuk memungkinkan pengguna memilihnya selama pengiriman."
+
+#: admin/wp-event-manager-settings.php:179
+msgid "Enable categories for listings"
+msgstr "Aktifkan kategori untuk cantuman"
+
+#: admin/wp-event-manager-settings.php:164
+msgid "If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area)."
+msgstr "Jika diaktifkan, konten dalam daftar kadaluarsa akan disembunyikan. Jika tidak, daftar kadaluarsa akan ditampilkan sebagai normal (tanpa area pendaftaran acara)."
+
+#: admin/wp-event-manager-cpt.php:382
+msgid "Featured?"
+msgstr "Unggulan?"
+
+#: admin/wp-event-manager-cpt.php:245 admin/wp-event-manager-cpt.php:249
+msgid "%s expired"
+msgstr "%s kadaluarsa"
+
+#: admin/wp-event-manager-cpt.php:214 admin/wp-event-manager-cpt.php:218
+msgid "%s approved"
+msgstr "%s disetujui"
+
+#: admin/wp-event-manager-cpt.php:79 admin/wp-event-manager-cpt.php:81
+msgid "Expire %s"
+msgstr "Kadaluarsa %s"
+
+#: admin/wp-event-manager-cpt.php:75 admin/wp-event-manager-cpt.php:77
+msgid "Approve %s"
+msgstr "Setujui %s"
+
+#: admin/wp-event-manager-admin.php:123
+msgid "Add-ons"
+msgstr "Add-on"
+
+#: admin/wp-event-manager-admin.php:119
+#: templates/form-fields/repeated-field.php:18
+#: templates/form-fields/repeated-field.php:61
+msgid "Settings"
+msgstr "Pengaturan"
+
+#: admin/wp-event-manager-addons.php:59 admin/wp-event-manager-admin.php:123
+msgid "WP Event Manager Add-ons"
+msgstr "WP Event Manager Add-on"
+
+#: admin/wp-event-manager-writepanels.php:187
+#: forms/wp-event-manager-form-submit-event.php:257
+msgid "Please enter event end time"
+msgstr "Harap masukkan waktu selesai acara"
+
+#: admin/wp-event-manager-writepanels.php:186
+#: forms/wp-event-manager-form-submit-event.php:256
+msgid "End Time"
+msgstr "Waktu Selesai"
+
+#: admin/wp-event-manager-writepanels.php:179
+#: forms/wp-event-manager-form-submit-event.php:249
+msgid "Please enter event end date"
+msgstr "Harap masukkan tanggal selesai acara"
+
+#: admin/wp-event-manager-writepanels.php:178
+#: forms/wp-event-manager-form-submit-event.php:248
+#: shortcodes/wp-event-manager-shortcodes.php:244
+msgid "End Date"
+msgstr "Tanggal Selesai"
+
+#: admin/wp-event-manager-writepanels.php:171
+#: forms/wp-event-manager-form-submit-event.php:241
+msgid "Please enter event start time"
+msgstr "Harap masukkan waktu mulai acara"
+
+#: admin/wp-event-manager-setup.php:258
+msgctxt "Default page title (wizard)"
+msgid "Event Dashboard"
+msgstr "Dasbor Acara"
+
+#: admin/wp-event-manager-setup.php:250
+msgid "If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page."
+msgstr "Jika Anda tidak ingin menerima kiriman dari pengguna dengan cara ini (misalnya Anda hanya ingin memposting acara dari dasbor admin), Anda dapat melewati pembuatan halaman ini."
+
+#: admin/wp-event-manager-setup.php:248
+msgid "This page allows peoples to post events to your website from the front-end."
+msgstr "Halaman ini memungkinkan orang untuk mempos acara ke situs web Anda dari front-end."
+
+#: admin/wp-event-manager-setup.php:245
+msgctxt "Default page title (wizard)"
+msgid "Post an Event"
+msgstr "Poskan Acara"
+
+#: admin/wp-event-manager-setup.php:234
+msgid "Content Shortcode"
+msgstr "Kodesingkat Konten"
+
+#: admin/wp-event-manager-setup.php:232
+msgid "Page Description"
+msgstr "Deskripsi Halaman"
+
+#: admin/wp-event-manager-setup.php:230
+msgid "Page Title"
+msgstr "Judul Halaman"
+
+#: admin/wp-event-manager-settings.php:357
+msgid "Automatically Generate Username from Email Address"
+msgstr "Secara Otomatis Menghasilkan Nama Pengguna dari Alamat Email"
+
+#: admin/wp-event-manager-settings.php:355
+msgid "Account Username"
+msgstr "Nama pengguna Akun"
+
+#: admin/wp-event-manager-settings.php:342
+msgid "If enabled, non-logged in users will be able to create an account by entering their email address on the submission form."
+msgstr "Jika diaktifkan, pengguna yang belum log masuk akan dapat membuat akun dengan memasukkan alamat email mereka di formulir pengiriman."
+
+#: admin/wp-event-manager-settings.php:340
+msgid "Allow account creation"
+msgstr "Izinkan pembuatan akun"
+
+#: admin/wp-event-manager-settings.php:338
+msgid "Account Creation"
+msgstr "Pembuatan Akun"
+
+#: admin/wp-event-manager-writepanels.php:198
+#: core/wp-event-manager-filters.php:75
+#: forms/wp-event-manager-form-submit-event.php:268
+msgid "Paid"
+msgstr "Berbayar"
+
+#: admin/wp-event-manager-writepanels.php:194
+#: forms/wp-event-manager-form-submit-event.php:264
+msgid "Ticket Options"
+msgstr "Pilihan Tiket"
+
+#: admin/wp-event-manager-setup.php:217
+msgid "Page Setup"
+msgstr "Atur Halaman"
+
+#: admin/wp-event-manager-setup.php:209
+msgid "Skip setup. I will setup the plugin manually"
+msgstr "Lewati penyiapan. Saya akan mengatur plugin secara manual"
+
+#: admin/wp-event-manager-settings.php:325
+msgid "If disabled, non-logged in users will be able to submit listings without creating an account."
+msgstr "Jika dinonaktifkan, pengguna yang tidak masuk akan dapat mengirimkan cantuman tanpa membuat akun."
+
+#: admin/wp-event-manager-settings.php:323
+msgid "Submitting listings requires an account"
+msgstr "Cantuman pengiriman membutuhkan akun"
+
+#: admin/wp-event-manager-settings.php:321
+msgid "Account Required"
+msgstr "Diperlukan Akun"
+
+#: admin/wp-event-manager-cpt.php:574
+msgid "View"
+msgstr "Lihat"
+
+#: admin/wp-event-manager-cpt.php:560
+msgid "Approve"
+msgstr "Setuju"
+
+#: admin/wp-event-manager-cpt.php:524
+msgid "by %s"
+msgstr "oleh %s"
+
+#: admin/wp-event-manager-cpt.php:524
+msgid "by a guest"
+msgstr "oleh seorang pengunjung "
+
+#: admin/wp-event-manager-cpt.php:522 admin/wp-event-manager-cpt.php:532
+#: admin/wp-event-manager-cpt.php:543
+msgid "M j, Y"
+msgstr "j M Y"
+
+#: admin/wp-event-manager-cpt.php:479
+msgid "ID: %d"
+msgstr "ID: %d"
+
+#: admin/wp-event-manager-writepanels.php:206
+msgid "Price"
+msgstr "Harga"
+
+#: admin/wp-event-manager-writepanels.php:199
+#: core/wp-event-manager-filters.php:77
+#: forms/wp-event-manager-form-submit-event.php:269
+msgid "Free"
+msgstr "Gratis"
+
+#: admin/wp-event-manager-cpt.php:390
+msgid "Event Location"
+msgstr "Lokasi Acara"
+
+#: admin/wp-event-manager-setup.php:207
+msgid "Continue to page setup"
+msgstr "Lanjutkan ke pengaturan halaman"
+
+#: admin/wp-event-manager-setup.php:203
+msgid "If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help."
+msgstr "Jika Anda ingin melewati wizard dan mengatur halaman dan kodesingkat sendiri secara manual, prosesnya masih relatif sederhana. Rujuk ke %sdokumentasi%s untuk bantuan."
+
+#: admin/wp-event-manager-setup.php:201
+msgid "This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events."
+msgstr "Wizard pengaturan ini akan membantu Anda memulai dengan membuat halaman untuk pengiriman acara, manajemen acara, dan daftar acara Anda."
+
+#: admin/wp-event-manager-setup.php:199
+msgid "Thanks for installing <em>WP Event Manager</em>!"
+msgstr "Terima kasih telah memasang <em>WP Event Manager</em>!"
+
+#: admin/wp-event-manager-settings.php:471
+msgid "Listing expire on Specified Below Days"
+msgstr "Pendaftaran kadaluarsa Ditentukan di Bawah Hari"
+
+#: admin/wp-event-manager-settings.php:383
+msgid "If you enable registration on your submission form, choose a role for the new user."
+msgstr "Jika Anda mengaktifkan pendaftaran pada formulir pengiriman Anda, pilih peran untuk pengguna baru"
+
+#: admin/wp-event-manager-settings.php:381
+msgid "Account Role"
+msgstr "Peran Akun"
+
+#: admin/wp-event-manager-writepanels.php:301
+#: forms/wp-event-manager-form-submit-event.php:367
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany"
+msgstr "URL Saluran Youtube, contoh: http://www.youtube.com/channel/perusahaanmu"
+
+#: admin/wp-event-manager-writepanels.php:227
+#: forms/wp-event-manager-form-submit-event.php:294
+msgid "Please enter registration deadline"
+msgstr "Harap masukkan batas waktu pendaftaran"
+
+#: admin/wp-event-manager-writepanels.php:224
+#: forms/wp-event-manager-form-submit-event.php:291
+msgid "Registration Deadline"
+msgstr "Batas Waktu Pendaftaran"
+
+#: admin/wp-event-manager-writepanels.php:219
+msgid "e.g http://ww.example.com"
+msgstr "contoh: http://www.contoh.com"
+
+#: admin/wp-event-manager-writepanels.php:216
+#: forms/wp-event-manager-form-submit-event.php:283
+msgid "Link To Event Page"
+msgstr "Tautan Ke Halaman Acara"
+
+#: admin/wp-event-manager-writepanels.php:207
+#: forms/wp-event-manager-form-submit-event.php:276
+msgid "Please enter ticket price"
+msgstr "Silakan masukkan harga tiket"
+
+#: admin/wp-event-manager-cpt.php:394
+msgid "Posted Date"
+msgstr "Tanggal Pos"
+
+#: admin/wp-event-manager-cpt.php:392
+msgid "Event Organizer"
+msgstr "Penyelenggara Acara"
+
+#: admin/wp-event-manager-cpt.php:388 admin/wp-event-manager-writepanels.php:72
+#: forms/wp-event-manager-form-submit-event.php:138
+msgid "Event Category"
+msgstr "Kategori Acara"
+
+#: admin/wp-event-manager-cpt.php:386 admin/wp-event-manager-writepanels.php:62
+#: forms/wp-event-manager-form-submit-event.php:128
+#: templates/event-filters.php:63
+msgid "Event Type"
+msgstr "Jenis Acara"
+
+#: admin/wp-event-manager-settings.php:359
+msgid "If enabled, a username will be generated from the first part of the user email address. Otherwise, a username field will be shown."
+msgstr "Jika diaktifkan, nama pengguna akan dihasilkan dari bagian pertama alamat email pengguna. Jika tidak, bidang nama pengguna akan ditampilkan."
+
+#: admin/wp-event-manager-cpt.php:400
+msgid "Actions"
+msgstr "Tindakan"
+
+#: admin/wp-event-manager-cpt.php:398
+msgid "Event Expiry Date"
+msgstr "Tanggal Berakhirnya Acara"
+
+#: admin/wp-event-manager-cpt.php:396
+msgid "Event End Date"
+msgstr "Tanggal Akhir Acara"

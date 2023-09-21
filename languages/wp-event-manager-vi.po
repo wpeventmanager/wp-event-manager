@@ -1,0 +1,2194 @@
+# Translation of Plugins - WP Event Manager - Development (trunk) in Vietnamese
+# This file is distributed under the same license as the Plugins - WP Event Manager - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-06-25 16:23:53+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: vi_VN\n"
+"Project-Id-Version: Plugins - WP Event Manager - Development (trunk)\n"
+
+#: admin/wp-event-manager-form-field-editor-field.php:27
+msgid "Multiple Files?"
+msgstr "Nhiều tập tin?"
+
+#: admin/wp-event-manager-form-field-editor-field.php:24
+msgid "Pipe (|) separate options."
+msgstr "Dùng (|) để phân tách các tùy chọn."
+
+#: admin/wp-event-manager-settings.php:262
+msgid "Category Filter"
+msgstr "Bộ lọc danh mục"
+
+#: admin/wp-event-manager-form-field-editor-field.php:52
+msgid "Required"
+msgstr "Bắt buộc"
+
+#: admin/wp-event-manager-form-field-editor-field.php:51
+msgid "Not Required"
+msgstr "Không bắt buộc"
+
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
+msgid "%s"
+msgstr "%s"
+
+#: admin/wp-event-manager-form-field-editor-field.php:20
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
+msgid "N/A"
+msgstr "Không có"
+
+#: admin/wp-event-manager-field-editor.php:373
+msgid "The fields were successfully saved."
+msgstr "Các trường thông tin đã được lưu thành công."
+
+#: admin/wp-event-manager-field-editor.php:228
+msgid "Author"
+msgstr "Tác giả"
+
+#: admin/wp-event-manager-field-editor.php:149
+#: admin/wp-event-manager-field-editor.php:251
+msgid "Add field"
+msgstr "Thêm trường"
+
+#: admin/wp-event-manager-field-editor.php:142
+#: admin/wp-event-manager-field-editor.php:244
+msgid "Validation"
+msgstr "Phê duyệt"
+
+#: admin/wp-event-manager-field-editor.php:141
+#: admin/wp-event-manager-field-editor.php:243
+msgid "Priority"
+msgstr "Ưu tiên"
+
+#: admin/wp-event-manager-field-editor.php:140
+#: admin/wp-event-manager-field-editor.php:242
+msgid "Placeholder / Options"
+msgstr "Vị trí / Tùy chọn"
+
+#: admin/wp-event-manager-field-editor.php:138
+#: admin/wp-event-manager-field-editor.php:240
+msgid "Type"
+msgstr "Loại"
+
+#: admin/wp-event-manager-field-editor.php:137
+#: admin/wp-event-manager-field-editor.php:239
+msgid "Field Label"
+msgstr "Nhãn trường"
+
+#: admin/wp-event-manager-field-editor.php:129
+msgid "Organizer fields"
+msgstr "Các trường nhà tổ chức"
+
+#: admin/wp-event-manager-field-editor.php:125
+#: admin/wp-event-manager-field-editor.php:234
+msgid "Event fields"
+msgstr "Các trường sự kiện"
+
+#: admin/wp-event-manager-field-editor.php:115
+#: admin/wp-event-manager-field-editor.php:227
+msgid "WP Editor"
+msgstr "Trình chỉnh sửa WP"
+
+#: admin/wp-event-manager-field-editor.php:114
+#: admin/wp-event-manager-field-editor.php:226
+msgid "Textarea"
+msgstr "Vùng văn bản"
+
+#: admin/wp-event-manager-field-editor.php:113
+#: admin/wp-event-manager-field-editor.php:225
+msgid "Term Select"
+msgstr "Chọn thời hạn"
+
+#: admin/wp-event-manager-field-editor.php:112
+#: admin/wp-event-manager-field-editor.php:224
+msgid "Term Multiselect"
+msgstr "Chọn nhiều thời hạn"
+
+#: admin/wp-event-manager-field-editor.php:111
+#: admin/wp-event-manager-field-editor.php:223
+msgid "Term Checklist"
+msgstr "Danh mục thời gian"
+
+#: admin/wp-event-manager-field-editor.php:110
+#: admin/wp-event-manager-field-editor.php:221
+msgid "Select"
+msgstr "Chọn"
+
+#: admin/wp-event-manager-field-editor.php:109
+#: admin/wp-event-manager-field-editor.php:220
+msgid "Repeated"
+msgstr "Lặp lại"
+
+#: admin/wp-event-manager-field-editor.php:108
+#: admin/wp-event-manager-field-editor.php:219
+msgid "Radio"
+msgstr "Radio"
+
+#: admin/wp-event-manager-field-editor.php:106
+#: admin/wp-event-manager-field-editor.php:217
+msgid "Number"
+msgstr "Số"
+
+#: admin/wp-event-manager-field-editor.php:105
+#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:222
+msgid "Multiselect"
+msgstr "Chọn nhiều"
+
+#: admin/wp-event-manager-field-editor.php:104
+#: admin/wp-event-manager-field-editor.php:215
+msgid "Hidden"
+msgstr "Ẩn"
+
+#: admin/wp-event-manager-field-editor.php:99
+#: admin/wp-event-manager-field-editor.php:210
+msgid "Button"
+msgstr "Nút bấm"
+
+#: admin/wp-event-manager-field-editor.php:100
+#: admin/wp-event-manager-field-editor.php:211
+msgid "Button Options"
+msgstr "Tùy chọn nút bấm"
+
+#: admin/wp-event-manager-field-editor.php:153
+#: admin/wp-event-manager-field-editor.php:255
+msgid "Reset to default"
+msgstr "Đặt lại mặc định"
+
+#: admin/wp-event-manager-field-editor.php:103
+#: admin/wp-event-manager-field-editor.php:214
+msgid "File"
+msgstr "Tập tin"
+
+#: admin/wp-event-manager-field-editor.php:102
+#: admin/wp-event-manager-field-editor.php:213
+msgid "Date"
+msgstr "Ngày"
+
+#: admin/wp-event-manager-field-editor.php:101
+#: admin/wp-event-manager-field-editor.php:212
+msgid "Checkbox"
+msgstr "Checkbox"
+
+#: admin/wp-event-manager-field-editor.php:98
+#: admin/wp-event-manager-field-editor.php:209
+msgid "Text"
+msgstr "Văn bản"
+
+#: admin/wp-event-manager-field-editor.php:81
+#: admin/wp-event-manager-field-editor.php:194
+msgid "The fields were successfully reset."
+msgstr "Các trường đã được đặt lại thành công."
+
+#: admin/wp-event-manager-field-editor.php:43
+msgid "Back End Form Fields"
+msgstr "Các trường biểu mẫu back end"
+
+#: admin/wp-event-manager-field-editor.php:42
+msgid "Front End Form Fields"
+msgstr "Các trường biểu mẫu front end"
+
+#: admin/wp-event-manager-field-editor.php:31
+msgid "Are you sure you want to reset your changes? This cannot be undone."
+msgstr "Bạn có chắc bạn muốn đặt lại các thay đổi không? Thao tác này không thể hoàn tác."
+
+#: admin/wp-event-manager-field-editor.php:30
+msgid "Are you sure you want to delete this row?"
+msgstr "Bạn có chắc bạn muốn xóa dòng này không?"
+
+#: admin/wp-event-manager-field-editor.php:20
+msgid "Field Editor"
+msgstr "Trình chỉnh sửa trường"
+
+#: wp-event-manager-template.php:417 wp-event-manager-template.php:2076
+msgid "Verify Password"
+msgstr "Xác nhận mật khẩu"
+
+#: admin/wp-event-manager-field-editor.php:107
+#: admin/wp-event-manager-field-editor.php:218
+#: wp-event-manager-template.php:406 wp-event-manager-template.php:407
+#: wp-event-manager-template.php:2066
+msgid "Password"
+msgstr "Mật khẩu"
+
+#: wp-event-manager-functions.php:1606
+msgid "Passwords must be at least 8 characters long."
+msgstr "Mật khẩu phải có ít nhất 8 ký tự."
+
+#: forms/wp-event-manager-form-submit-event.php:678
+msgid "Invalid Password: %s"
+msgstr "Sai mật khẩu: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:673
+msgid "Passwords must match."
+msgstr "Các mật khẩu phải giống nhau."
+
+#: forms/wp-event-manager-form-submit-event.php:680
+msgid "Password is not valid."
+msgstr "Mật khẩu không chính xác."
+
+#: core/wp-event-manager-post-types.php:391
+msgid "Preview <span class=\"count\">(%s)</span>"
+msgid_plural "Preview <span class=\"count\">(%s)</span>"
+msgstr[0] "Xem trước <span class=\"count\">(%s)</span>"
+
+#: core/wp-event-manager-ajax.php:381
+msgid "You must be logged in to upload files using this method."
+msgstr "Bạn cần phải đăng nhập để tải tập tin lên bằng cách này."
+
+#: admin/wp-event-manager-settings.php:370
+msgid "If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won't be verified."
+msgstr "Nếu bật, email sẽ được gửi đến người dùng với tên đăng nhập và đường dẫn để đặt mật khẩu. Nếu không, trường mật khẩu sẽ được hiển thị và địa chỉ email của họ sẽ không được xác thực."
+
+#: admin/wp-event-manager-settings.php:369
+msgid "Use WordPress' default behavior and email new users link to set a password"
+msgstr "Sử dụng mặc định của WordPress và email đường dẫn đặt mật khẩu cho người dùng mới"
+
+#: admin/wp-event-manager-settings.php:368
+msgid "Account Password"
+msgstr "Mật khẩu tài khoản"
+
+#: admin/wp-event-manager-settings.php:87
+msgid "If enabled, bootstrap framework's style will apply for the backend side."
+msgstr "Nếu bật, thiết kế framework bootstrap sẽ được áp dụng cho trang backend."
+
+#: admin/wp-event-manager-settings.php:71
+msgid "If enabled, bootstrap framework's style will apply for the frontend side."
+msgstr "Nếu bật, thiết kế framework bootstrap sẽ được áp dụng cho trang frontend"
+
+#: templates/event-submit.php:20
+msgid "Create A New Event"
+msgstr "Tạo sự kiện mới"
+
+#: templates/event-submit.php:20
+msgid "You are editing an existing event. %s"
+msgstr "Bạn đang chỉnh sửa một sự kiện đã có. %s"
+
+#: core/wp-event-manager-post-types.php:323
+msgid "Use as organizer logo"
+msgstr "Sử dụng làm logo nhà tổ chức"
+
+#: core/wp-event-manager-post-types.php:321
+msgid "Remove organizer logo"
+msgstr "Xóa logo nhà tổ chức"
+
+#: core/wp-event-manager-post-types.php:319
+msgid "Set organizer logo"
+msgstr "Đặt logo nhà tổ chức"
+
+#: core/wp-event-manager-post-types.php:317
+msgid "Organizer Logo"
+msgstr "Logo nhà tổ chức"
+
+#: admin/wp-event-manager-settings.php:97
+msgid "Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
+msgstr "Google yêu cầu API để lấy thông tin địa điểm từ các bài đăng sự kiện. Lấy API từ <a href=\"%s\" target=\"__blank\">Trang Google Maps API cho các nhà phát triển</a>."
+
+#: admin/wp-event-manager-settings.php:96
+msgid "Google Maps API Key"
+msgstr "Google Maps API"
+
+#: admin/wp-event-manager-settings.php:162
+msgid "Hide expired listing content in single event listing (singular)"
+msgstr "Ẩn nội dung các sự kiện hết hạn ở trong trang bài đăng sự kiện đơn lẻ"
+
+#: admin/wp-event-manager-settings.php:160
+msgid "Hide Expired Listings Content"
+msgstr "Ẩn nội dung các bài đăng hết hạn"
+
+#: admin/wp-event-manager-settings.php:147
+msgid "If enabled, expired event listing is not searchable."
+msgstr "Nếu bật, bài đăng sự kiện hết hạn sẽ không thể tìm kiếm được."
+
+#: admin/wp-event-manager-settings.php:145
+msgid "Hide expired listings in event archive/search"
+msgstr "Ẩn các bài đăng hết hạn trong lưu trữ/tìm kiếm sự kiện"
+
+#: admin/wp-event-manager-settings.php:143
+msgid "Hide Expired Listings"
+msgstr "Ẩn các bài đăng đã hết hạn"
+
+#: admin/wp-event-manager-settings.php:83
+#: admin/wp-event-manager-settings.php:85
+msgid "Enable boostrap for the backend"
+msgstr "Bật bootstrap cho backend"
+
+#: admin/wp-event-manager-settings.php:67
+#: admin/wp-event-manager-settings.php:69
+msgid "Enable boostrap for the frontend"
+msgstr "Bật bootstrap cho frontend"
+
+#: admin/wp-event-manager-settings.php:57
+msgid "General"
+msgstr "Chung"
+
+#: widgets/wp-event-manager-widgets.php:261
+#: widgets/wp-event-manager-widgets.php:397
+#: widgets/wp-event-manager-widgets.php:538
+msgid "Descending  (DESC)"
+msgstr "Giảm dần (DESC)"
+
+#: widgets/wp-event-manager-widgets.php:260
+#: widgets/wp-event-manager-widgets.php:396
+#: widgets/wp-event-manager-widgets.php:537
+msgid "Ascending (ASC)"
+msgstr "Tăng dần (ASC)"
+
+#: widgets/wp-event-manager-widgets.php:258
+#: widgets/wp-event-manager-widgets.php:394
+#: widgets/wp-event-manager-widgets.php:535
+msgid "Order by"
+msgstr "Sắp xếp theo"
+
+#: wp-event-manager-template.php:443 wp-event-manager-template.php:457
+msgid "Posted %s ago"
+msgstr "Đăng %s trước"
+
+#: wp-event-manager-template.php:441
+msgid "Posted on "
+msgstr "Đăng vào"
+
+#: core/wp-event-manager-ajax.php:319
+msgid "Search completed. Found %d matching record."
+msgid_plural "Search completed. Found %d matching records."
+msgstr[0] "Tìm kiếm hoàn thành. Tìm thấy %d kết quả phù hợp."
+
+#: admin/wp-event-manager-writepanels.php:484
+msgid "Most Used"
+msgstr "Sử dụng nhiều nhất"
+
+#: admin/wp-event-manager-settings.php:523
+msgid "Enable multi select event category for event listing submission"
+msgstr "Bật lựa chọn nhiều danh mục sự kiện khi gửi bài đăng sự kiện"
+
+#: admin/wp-event-manager-settings.php:521
+msgid "Multi-select Event Category For Submission"
+msgstr "Lựa chọn nhiều Danh mục sự kiện khi gửi bài đăng"
+
+#: admin/wp-event-manager-settings.php:509
+msgid "If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this."
+msgstr "Nếu bật, mỗi sự kiện có thể có nhiều hơn 1 loại. Metabox ở phần chỉnh sửa bài đăng và box lựa chọn ở loại sự kiện trên trang gửi sự kiện ở front end sẽ thay đổi."
+
+#: admin/wp-event-manager-settings.php:507
+msgid "Enable multi select event type for event listing submission"
+msgstr "Bật lựa chọn nhiều loại sự kiện khi gửi bài đăng sự kiện"
+
+#: admin/wp-event-manager-settings.php:505
+msgid "Multi-select Event Types For Submission"
+msgstr "Lựa chọn nhiều loại sự kiện khi gửi bài đăng"
+
+#: admin/wp-event-manager-settings.php:525
+msgid "If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this."
+msgstr "Nếu bật, mỗi sự kiện có thể có nhiều hơn 1 danh mục. Metabox trên trang chỉnh sửa bài đăng và box lựa chọn danh mục sự kiện trên trang gửi sự kiện ở front end sẽ thay đổi."
+
+#: admin/wp-event-manager-settings.php:298
+msgid "Date Format"
+msgstr "Định dạng ngày"
+
+#: admin/wp-event-manager-settings.php:303
+msgid "Default date format as defined in Setttings"
+msgstr "Định dạng ngày mặc định như trong Cài đặt"
+
+#: admin/wp-event-manager-settings.php:302
+msgid "Relative to the current date (e.g., 1 day, 1 week, 1 month ago)"
+msgstr "Liên quan đến ngày hiện tại (ví dụ, 1 ngày, 1 tuần, 1 tháng trước)"
+
+#: admin/wp-event-manager-settings.php:299
+msgid "Choose how you want the published date for events to be displayed on the front-end."
+msgstr "Chọn cách bạn muốn ngày sự kiện được hiển thị trên front-end"
+
+#: admin/wp-event-manager-admin.php:152
+msgid "Dismiss"
+msgstr "Hủy bỏ"
+
+#: admin/wp-event-manager-admin.php:151
+msgid "Try Great Add-Ons"
+msgstr "Thử các add-ons tuyệt vời"
+
+#: admin/wp-event-manager-admin.php:149
+msgid "We've noticed you've been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We'd be thrilled if you could <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">give us a 5 stars rating on WordPress.org!</a></strong> Don't forget to submit your site to <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">our showcase</a></strong> and generate more traffic from our site."
+msgstr "Chúng tôi thấy rằng bạn đã sử dụng <strong>Quản lý Sự kiện WP</strong> được một thời gian. Chúng tôi mong rằng bạn thích nó! Chúng tôi sẽ rất vui nếu bạn có thể <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">đánh giá 5 sao cho chúng tôi trên WordPress.org!</a></strong> Đừng quên gửi trang web của bạn lên <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">trang showcase của chúng tôi</a></strong> và có thêm nhiều lượt truy cập từ trang của chúng tôi."
+
+#. Author URI of the plugin/theme
+msgid "https://www.wp-eventmanager.com"
+msgstr "https://www.wp-eventmanager.com"
+
+#. Description of the plugin/theme
+msgid "Manage event listings from the WordPress admin panel, and allow users to post events directly to your site."
+msgstr "Quản lý danh sách sự kiện từ Trang quản trị WordPress, và cho phép người dùng đăng sự kiện trực tiếp lên trang của bạn"
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.wp-eventmanager.com/"
+msgstr "https://www.wp-eventmanager.com/"
+
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
+#. Author of the plugin/theme
+#: admin/wp-event-manager-settings.php:827
+msgid "WP Event Manager"
+msgstr "Quản lý Sự kiện WP"
+
+#: wp-event-manager.php:299
+msgid "Are you sure you want to delete this event?"
+msgstr "Bạn có chắc bạn muốn xóa sự kiện này?"
+
+#: wp-event-manager.php:297
+msgid "Cancel"
+msgstr "Hủy"
+
+#: wp-event-manager.php:286
+msgid "Load previous listings"
+msgstr "Tải các bài đăng trước đó"
+
+#: wp-event-manager.php:229
+msgid "Invalid file type. Accepted types:"
+msgstr "Sai loại tập tin. Các loại được chấp nhận:"
+
+#: wp-event-manager-template.php:425 wp-event-manager-template.php:2083
+msgid "Your email"
+msgstr "Email của bạn"
+
+#: wp-event-manager-template.php:507
+msgid "Anywhere"
+msgstr "Bất cứ đâu"
+
+#: wp-event-manager-template.php:267
+msgid "Registration via \"%s\" listing on %s"
+msgstr "Đăng ký qua bài đăng \"%s\" trên %s"
+
+#: wp-event-manager-template.php:186
+msgid "Inactive"
+msgstr "Không hoạt động"
+
+#: wp-event-manager-functions.php:1340
+msgid "Uploaded files need to be one of the following file types: %s"
+msgstr "Tập tin tải lên cần phải thuộc một trong những định dạng sau: %s"
+
+#: wp-event-manager-functions.php:1138
+msgid "Choose an event type&hellip;"
+msgstr "Chọn một loại sự kiện&hellip;"
+
+#: wp-event-manager-functions.php:1088
+msgid "Choose a category&hellip;"
+msgstr "Chọn một danh mục&hellip;"
+
+#: wp-event-manager-functions.php:858
+msgid "This email is already registered, please choose another one."
+msgstr "Địa chỉ email này đã được đăng ký, vui lòng chọn một email khác."
+
+#: wp-event-manager-functions.php:853
+msgid "Your email address isn&#8217;t correct."
+msgstr "Địa chỉ email của bạn không chính xác."
+
+#: wp-event-manager-functions.php:843
+msgid "Invalid email address."
+msgstr "Địa chỉ email không đúng."
+
+#: wp-event-manager-functions.php:716
+msgid "RSS"
+msgstr "RSS"
+
+#: wp-event-manager-functions.php:709
+msgid "Reset"
+msgstr "Cài đặt lại"
+
+#: wp-event-manager-functions.php:524
+msgctxt "post status"
+msgid "Active"
+msgstr "Hoạt động"
+
+#: wp-event-manager-functions.php:522
+msgctxt "post status"
+msgid "Pending payment"
+msgstr "Đang chờ thanh toán"
+
+#: wp-event-manager-functions.php:520
+msgctxt "post status"
+msgid "Pending approval"
+msgstr "Chờ chấp thuận"
+
+#: wp-event-manager-functions.php:518
+msgctxt "post status"
+msgid "Preview"
+msgstr "Xem trước"
+
+#: wp-event-manager-functions.php:514
+msgctxt "post status"
+msgid "Draft"
+msgstr "Nháp"
+
+#: widgets/wp-event-manager-widgets.php:502
+#: widgets/wp-event-manager-widgets.php:510
+msgid "Upcoming %s"
+msgstr "%s sắp tới"
+
+#: widgets/wp-event-manager-widgets.php:498
+msgid "Display a list of upcoming listings on your site."
+msgstr "Hiển thị danh sách những bài đăng sắp tới trên trang của bạn."
+
+#: widgets/wp-event-manager-widgets.php:361
+#: widgets/wp-event-manager-widgets.php:369
+msgid "Featured %s"
+msgstr "%s nổi bật"
+
+#: widgets/wp-event-manager-widgets.php:357
+msgid "Display a list of featured listings on your site."
+msgstr "Hiển thị danh sách những bài đăng nổi bật trên trang của bạn."
+
+#: widgets/wp-event-manager-widgets.php:250
+#: widgets/wp-event-manager-widgets.php:386
+#: widgets/wp-event-manager-widgets.php:527
+msgid "Number of listings to show"
+msgstr "Số bài đăng hiển thị"
+
+#: widgets/wp-event-manager-widgets.php:226
+msgid "Keyword"
+msgstr "Từ khóa"
+
+#: widgets/wp-event-manager-widgets.php:207
+#: widgets/wp-event-manager-widgets.php:215
+msgid "Recent %s"
+msgstr "%s gần đây"
+
+#: widgets/wp-event-manager-widgets.php:203
+msgid "Display a list of recent listings on your site, optionally matching a keyword and location."
+msgstr "Hiển thị danh sách những bài đăng gần đây trên trang của bạn, tùy chọn theo từ khóa và địa điểm"
+
+#: templates/form-fields/uploaded-file-html.php:11
+#: templates/form-fields/uploaded-file-html.php:13
+msgid "remove"
+msgstr "xóa bỏ"
+
+#: templates/form-fields/repeated-field.php:59
+msgid "Remove"
+msgstr "Xóa bỏ"
+
+#: templates/form-fields/repeated-field.php:19
+msgid "You can't delete ticket once it is added.You can make it private from settings tab."
+msgstr "Bạn không thể xóa vé một khi nó đã được thêm vào. Bạn có thể chuyển nó sang riêng tư trong phần cài đặt."
+
+#: templates/form-fields/repeated-field.php:17
+#: templates/form-fields/repeated-field.php:60
+msgid "Ticket Details"
+msgstr "Chi tiết vé"
+
+#: templates/event-filters.php:29 templates/event-filters.php:80
+#: templates/form-fields/multiselect-field.php:7
+#: wp-event-manager-functions.php:1092
+msgid "Select Some Options"
+msgstr "Chọn một vài tùy chọn"
+
+#: templates/event-filters.php:80 templates/form-fields/multiselect-field.php:7
+#: wp-event-manager-functions.php:1090
+msgid "No results match"
+msgstr "Không có kết quả phù hợp"
+
+#: templates/form-fields/file-field.php:85
+msgid "Maximum file size: %s."
+msgstr "Cỡ tập tin tối đa: %s."
+
+#: templates/event-submitted.php:11
+msgid "%s submitted successfully. Your listing will be visible once approved."
+msgstr "%s đã gửi thành công. Bài đăng của bạn sẽ hiển thị sau khi được chấp thuận."
+
+#: templates/event-submitted.php:7
+msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a>."
+msgstr "%s đã đăng thành công. Để xem bài đăng của bạn <a href=\"%s\">nhấn vào đây</a>"
+
+#: templates/event-submit.php:37
+msgid "Organizer Details"
+msgstr "Chi tiết nhà tổ chức"
+
+#: templates/event-submit.php:17
+msgid "Event Details"
+msgstr "Chi tiết sự kiện"
+
+#: templates/event-registration.php:8
+msgid "Register for event"
+msgstr "Đăng ký cho sự kiện"
+
+#: templates/event-registration-url.php:1
+msgid "To register for this event please visit the following URL:"
+msgstr "Để đăng ký cho sự kiện này, hãy truy cập đường dẫn sau:"
+
+#: templates/event-registration-email.php:4
+msgid "Register using webmail: "
+msgstr "Đăng ký bằng webmail:"
+
+#: templates/event-registration-email.php:1
+msgid "To register for this event <strong>email your details to</strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
+msgstr "Để đăng ký cho sự kiện này <strong>email thông tin của bạn tới</strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
+
+#: templates/event-listings-start.php:4
+msgid "Recent Events"
+msgstr "Các sự kiện gần đây"
+
+#: templates/event-filters.php:96
+msgid "Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled in order to view listings."
+msgstr "Trình duyệt của bạn không hỗ trợ JavaScript, hoặc nó đã bị tắt. JavaScript cần phải được bật để xem các danh sách sự kiện."
+
+#: templates/event-filters.php:79
+msgid "Ticket Prices"
+msgstr "Giá vé"
+
+#: templates/event-filters.php:67
+msgid "Any Event Type"
+msgstr "Bất cứ loại sự kiện nào"
+
+#: templates/event-filters.php:50
+msgid "Any Category"
+msgstr "Bất cứ danh mục nào"
+
+#: templates/event-filters.php:46
+msgid "Category"
+msgstr "Danh mục"
+
+#: templates/event-filters.php:28
+msgid "Any dates"
+msgstr "Bất cứ ngày nào"
+
+#: templates/event-filters.php:11 templates/event-filters.php:12
+msgid "Keywords"
+msgstr "Các từ khóa"
+
+#: templates/event-dashboard.php:43
+msgid "Relist"
+msgstr "Đăng lại"
+
+#: templates/event-dashboard.php:39
+msgid "Duplicate"
+msgstr "Bản sao"
+
+#: templates/event-dashboard.php:37
+msgid "Mark cancelled"
+msgstr "Đã hủy đánh dấu"
+
+#: templates/event-dashboard.php:35
+msgid "Mark not cancelled"
+msgstr "Đánh dấu chưa được hủy"
+
+#: templates/event-dashboard.php:14
+msgid "You do not have any active listings."
+msgstr "Bạn không có bài đăng nào đang hoạt động."
+
+#: templates/event-dashboard-login.php:2
+msgid "You need to be signed in to manage your listings."
+msgstr "Bạn cần đăng nhập để quản lý các bài đăng."
+
+#: templates/content-single-event_listing.php:27
+msgid "Event Overview"
+msgstr "Tổng quan sự kiện"
+
+#: templates/content-single-event_listing.php:7
+msgid "This listing has expired."
+msgstr "Bài đăng này đã hết hạn."
+
+#: templates/content-single-event_listing-organizer.php:204
+msgid "Share This Event"
+msgstr "Chia sẻ sự kiện này"
+
+#: templates/content-single-event_listing-organizer.php:111
+msgid "Registration End Date"
+msgstr "Ngày kết thúc đăng ký"
+
+#: templates/content-single-event_listing-organizer.php:88
+msgid "When & Where"
+msgstr "Khi nào & Ở đâu"
+
+#: templates/content-single-event_listing-organizer.php:80
+msgid "Ticket Information"
+msgstr "Thông tin vé"
+
+#: templates/content-single-event_listing-organizer.php:59
+#: templates/content-single-event_listing-organizer.php:66
+msgid "Watch Video"
+msgstr "Xem video"
+
+#: templates/content-single-event_listing-organizer.php:52
+msgid "View More Details"
+msgstr "Xem thêm thông tin"
+
+#: templates/content-single-event_listing-organizer.php:36
+msgid "About"
+msgstr "Giới thiệu"
+
+#: templates/content-single-event_listing-meta.php:46
+msgid "Registrations have closed"
+msgstr "Đăng ký đã kết thúc"
+
+#: templates/content-single-event_listing-meta.php:43
+msgid "This event has been cancelled"
+msgstr "Sự kiện này đã bị hủy bỏ"
+
+#: templates/content-no-events-found.php:4
+msgid "There are currently no events."
+msgstr "Hiện tại không có sự kiện nào."
+
+#: templates/content-no-events-found.php:2
+msgid "There are no events matching your search."
+msgstr "Không có sự kiện nào phù hợp với tìm kiếm của bạn."
+
+#: templates/account-signin.php:49 templates/event-submit.php:27
+#: templates/event-submit.php:41 templates/form-fields/repeated-field.php:32
+#: templates/form-fields/repeated-field.php:74
+msgid "(optional)"
+msgstr "(tùy chọn)"
+
+#: wp-event-manager-template.php:398 wp-event-manager-template.php:2058
+msgid "Username"
+msgstr "Tên đăng nhập"
+
+#: templates/account-signin.php:31
+msgid "optionally"
+msgstr "tùy chọn"
+
+#: templates/account-signin.php:31
+msgid "If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email."
+msgstr "Nếu bạn chưa có tài khoản, chỉ cần nhập địa chỉ email và tạo tài khoản mới. Bạn sẽ nhận được mật khẩu qua email."
+
+#: templates/account-signin.php:27 templates/event-dashboard-login.php:2
+msgid "Sign in"
+msgstr "Đăng nhập"
+
+#: templates/account-signin.php:23
+msgid "Have an account?"
+msgstr "Đã có tài khoản?"
+
+#: templates/account-signin.php:9
+msgid "Sign out"
+msgstr "Đăng xuất"
+
+#: templates/account-signin.php:7
+msgid "You are currently signed in as <strong>%s</strong>."
+msgstr "Bạn đang đăng nhập là <strong>%s</strong>."
+
+#: templates/account-signin.php:3
+msgid "Your account"
+msgstr "Tài khoản của bạn"
+
+#: shortcodes/wp-event-manager-shortcodes.php:541
+msgid "Load more listings"
+msgstr "Tải thêm các bài đăng"
+
+#: shortcodes/wp-event-manager-shortcodes.php:488
+msgid "Load more events"
+msgstr "Tải thêm các sự kiện"
+
+#: shortcodes/wp-event-manager-shortcodes.php:246
+msgid "Action"
+msgstr "Hành động"
+
+#: shortcodes/wp-event-manager-shortcodes.php:245
+msgid "Viewed"
+msgstr "Đã xem"
+
+#: shortcodes/wp-event-manager-shortcodes.php:241
+#: widgets/wp-event-manager-widgets.php:217
+#: widgets/wp-event-manager-widgets.php:371
+#: widgets/wp-event-manager-widgets.php:512
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: shortcodes/wp-event-manager-shortcodes.php:144
+msgid "Missing submission page."
+msgstr "Thiếu trang gửi thông tin."
+
+#: shortcodes/wp-event-manager-shortcodes.php:139
+msgid "%s has been deleted"
+msgstr "%s đã được xóa"
+
+#: shortcodes/wp-event-manager-shortcodes.php:129
+msgid "%s has been marked as not cancelled"
+msgstr "%s đã được đánh dấu là không hủy"
+
+#: shortcodes/wp-event-manager-shortcodes.php:121
+msgid "This event is not cancelled"
+msgstr "Sự kiện này không bị hủy"
+
+#: forms/wp-event-manager-form-submit-event.php:665
+#: forms/wp-event-manager-form-submit-event.php:668
+msgid "Please enter your email address."
+msgstr "Xin hãy nhập địa chỉ emai của bạn."
+
+#: forms/wp-event-manager-form-submit-event.php:662
+msgid "Please enter a username."
+msgstr "Xin hãy nhập tên đăng nhập."
+
+#: forms/wp-event-manager-form-submit-event.php:547
+msgid "Please enter a valid registration email address or URL"
+msgstr "Xin hãy nhập một địa chỉ email đăng ký hoặc đường dẫn chính xác"
+
+#: forms/wp-event-manager-form-submit-event.php:537
+msgid "Please enter a valid registration URL"
+msgstr "Xin hãu nhập một đường dẫn đăng ký chính xác"
+
+#: forms/wp-event-manager-form-submit-event.php:528
+msgid "Please enter a valid registration email address"
+msgstr "Xin hãy nhập một địa chỉ email đăng ký chính xác"
+
+#: shortcodes/wp-event-manager-shortcodes.php:112
+msgid "%s has been cancelled"
+msgstr "%s đã được xóa"
+
+#: shortcodes/wp-event-manager-shortcodes.php:104
+msgid "This event has already been cancelled"
+msgstr "Sự kiện này đã được xóa"
+
+#: shortcodes/wp-event-manager-shortcodes.php:93
+msgid "Invalid ID"
+msgstr "ID không chính xác"
+
+#: forms/wp-event-manager-form-submit-event.php:919
+msgid "← Edit listing"
+msgstr "← Sửa bài đăng"
+
+#: forms/wp-event-manager-form-submit-event.php:918
+msgid "Submit Listing →"
+msgstr "Gửi bài đăng \t"
+
+#: forms/wp-event-manager-form-submit-event.php:699
+msgid "You must be signed in to post a new listing."
+msgstr "Bạn cần đăng nhập để gửi bài đăng mới."
+
+#: forms/wp-event-manager-form-submit-event.php:497
+msgid "%s is invalid"
+msgstr "%s không chính xác"
+
+#: forms/wp-event-manager-form-submit-event.php:486
+msgid "%s is a required field"
+msgstr "%s là trường bắt buộc"
+
+#: forms/wp-event-manager-form-submit-event.php:399
+msgid "Twitter URL e.g http://twitter.com/yourorganizer"
+msgstr "Đường dẫn Twitter, ví dụ http://twitter.com/yourorganizer"
+
+#: forms/wp-event-manager-form-submit-event.php:396
+#: templates/content-single-event_listing-organizer.php:158
+msgid "Twitter"
+msgstr "Twitter"
+
+#: forms/wp-event-manager-form-submit-event.php:286
+msgid "e.g http://www.example.com"
+msgstr "ví dụ http://www.example.com"
+
+#: forms/wp-event-manager-form-submit-event.php:275
+msgid "Ticket Price"
+msgstr "Giá vé"
+
+#: forms/wp-event-manager-form-submit-event.php:187
+msgid "e.g. \"Berlin\",\"London\""
+msgstr "ví dụ \"Berlin\", \"London\""
+
+#: forms/wp-event-manager-form-submit-event.php:113
+msgid "Enter an email address or website URL"
+msgstr "Nhập địa chỉ email hoặc địa chỉ trang web"
+
+#: forms/wp-event-manager-form-submit-event.php:112
+msgid "Registration email/URL"
+msgstr "Email đăng ký / Đường dẫn"
+
+#: forms/wp-event-manager-form-submit-event.php:109
+msgid "http://"
+msgstr "http://"
+
+#: forms/wp-event-manager-form-submit-event.php:108
+msgid "Registration URL"
+msgstr "Đường dẫn đăng ký"
+
+#: forms/wp-event-manager-form-submit-event.php:105
+#: wp-event-manager-template.php:426 wp-event-manager-template.php:2084
+msgid "you@yourdomain.com"
+msgstr "you@yourdomain.com"
+
+#: forms/wp-event-manager-form-submit-event.php:104
+msgid "Registration email"
+msgstr "Email đăng ký"
+
+#: forms/wp-event-manager-form-submit-event.php:513
+#: wp-event-manager-functions.php:1336
+msgid "\"%s\" (filetype %s) needs to be one of the following file types: %s"
+msgstr "\"%s\" (filetype %s) cần thuộc một trong số các loại tập tin sau: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:43
+msgid "Done"
+msgstr "Đã xong"
+
+#: forms/wp-event-manager-form-submit-event.php:36
+#: forms/wp-event-manager-form-submit-event.php:636
+#: forms/wp-event-manager-form-submit-event.php:924
+msgid "Preview"
+msgstr "Xem trước"
+
+#: forms/wp-event-manager-form-submit-event.php:29
+msgid "Submit Details"
+msgstr "Gửi chi tiết"
+
+#: forms/wp-event-manager-form-edit-event.php:161
+msgid "View &rarr;"
+msgstr "Xem"
+
+#: forms/wp-event-manager-form-edit-event.php:161
+#: forms/wp-event-manager-form-edit-event.php:167
+msgid "Your changes have been saved."
+msgstr "Thay đổi của bạn đã được lưu."
+
+#: forms/wp-event-manager-form-edit-event.php:120
+msgid "Save changes"
+msgstr "Lưu thay đổi"
+
+#: forms/wp-event-manager-form-edit-event.php:66
+msgid "Invalid listing"
+msgstr "Bài đăng không chính xác"
+
+#: core/wp-event-manager-post-types.php:378
+msgid "Expired <span class=\"count\">(%s)</span>"
+msgid_plural "Expired <span class=\"count\">(%s)</span>"
+msgstr[0] "Đã hết hạn <span class=\"count\">(%s)</span>"
+
+#: core/wp-event-manager-post-types.php:368 wp-event-manager-functions.php:516
+msgctxt "post status"
+msgid "Expired"
+msgstr "Đã hết hạn"
+
+#: core/wp-event-manager-post-types.php:326
+msgid "This is where you can create and manage %s."
+msgstr "Đây là nơi bạn có thể tạo và quản lý %s."
+
+#: core/wp-event-manager-post-types.php:311
+msgid "No %s found"
+msgstr "Không %s được tìm thấy"
+
+#: core/wp-event-manager-post-types.php:313
+msgid "No %s found in trash"
+msgstr "Không %s tìm thấy trong thùng rác"
+
+#: core/wp-event-manager-post-types.php:305
+#: core/wp-event-manager-post-types.php:307
+msgid "View %s"
+msgstr "Xem %s"
+
+#: core/wp-event-manager-post-types.php:303
+msgid "New %s"
+msgstr "%s mới"
+
+#: core/wp-event-manager-post-types.php:297
+msgid "Add %s"
+msgstr "Thêm %s"
+
+#: core/wp-event-manager-post-types.php:295
+msgid "Add New"
+msgstr "Thêm mới"
+
+#: core/wp-event-manager-post-types.php:258
+msgid "Events"
+msgstr "Các sự kiện"
+
+#: core/wp-event-manager-post-types.php:256
+msgid "Event"
+msgstr "Sự kiện"
+
+#: templates/content-single-event_listing-organizer.php:143
+msgid "Organizer Social"
+msgstr "Mạng xã hội nhà tổ chức"
+
+#: core/wp-event-manager-post-types.php:262
+msgctxt "Post type archive slug - resave permalinks after changing this"
+msgid "events"
+msgstr "sukien"
+
+#: core/wp-event-manager-post-types.php:179
+msgctxt "Event type slug - resave permalinks after changing this"
+msgid "event-type"
+msgstr "loai-su-kien"
+
+#: core/wp-event-manager-post-types.php:173
+msgid "Event types"
+msgstr "Các loại sự kiện"
+
+#: core/wp-event-manager-post-types.php:171
+msgid "Event type"
+msgstr "Loại sự kiện"
+
+#: core/wp-event-manager-post-types.php:141
+#: core/wp-event-manager-post-types.php:229
+msgid "New %s Name"
+msgstr "Tên %s mới"
+
+#: core/wp-event-manager-post-types.php:139
+#: core/wp-event-manager-post-types.php:227
+msgid "Add New %s"
+msgstr "Thêm mới %s"
+
+#: core/wp-event-manager-post-types.php:137
+#: core/wp-event-manager-post-types.php:225
+msgid "Update %s"
+msgstr "Cập nhật %s"
+
+#: core/wp-event-manager-post-types.php:135
+#: core/wp-event-manager-post-types.php:223
+#: core/wp-event-manager-post-types.php:301
+msgid "Edit %s"
+msgstr "Sửa %s"
+
+#: core/wp-event-manager-post-types.php:272
+msgctxt "Event permalink - resave permalinks after changing this"
+msgid "event"
+msgstr "sukien"
+
+#: core/wp-event-manager-post-types.php:133
+#: core/wp-event-manager-post-types.php:221
+msgid "Parent %s:"
+msgstr "Danh mục cha %s:"
+
+#: core/wp-event-manager-post-types.php:131
+#: core/wp-event-manager-post-types.php:219
+#: core/wp-event-manager-post-types.php:315
+msgid "Parent %s"
+msgstr "Danh mục cha %s"
+
+#: core/wp-event-manager-post-types.php:129
+#: core/wp-event-manager-post-types.php:217
+#: core/wp-event-manager-post-types.php:293
+msgid "All %s"
+msgstr "Tất cả %s"
+
+#: core/wp-event-manager-post-types.php:127
+#: core/wp-event-manager-post-types.php:215
+#: core/wp-event-manager-post-types.php:309
+msgid "Search %s"
+msgstr "Tìm kiếm %s"
+
+#: core/wp-event-manager-post-types.php:91
+msgctxt "Event category slug - resave permalinks after changing this"
+msgid "event-category"
+msgstr "danhmuc-sukien"
+
+#: core/wp-event-manager-post-types.php:85
+msgid "Event categories"
+msgstr "Các danh mục sự kiện"
+
+#: core/wp-event-manager-post-types.php:83
+msgid "Event category"
+msgstr "Danh mục sự kiện"
+
+#: core/wp-event-manager-install.php:69
+msgid "Organizer"
+msgstr "Nhà tổ chức"
+
+#: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
+#: core/wp-event-manager-geocode.php:236
+msgid "Geocoding error"
+msgstr "Lỗi mã hóa địa lý"
+
+#: core/wp-event-manager-geocode.php:210
+msgid "Query limit reached"
+msgstr "Đã đạt đến giới hạn truy vấn"
+
+#: core/wp-event-manager-geocode.php:202
+msgid "No results found"
+msgstr "Không tìm thấy kết quả"
+
+#: core/wp-event-manager-filters.php:73
+msgid "Any Ticket Price"
+msgstr "Bất cứ giá vé nào"
+
+#: core/wp-event-manager-filters.php:41
+msgid "Next Year"
+msgstr "Năm sau"
+
+#: core/wp-event-manager-filters.php:39
+msgid "Next Month"
+msgstr "Tháng sau"
+
+#: admin/wp-event-manager-writepanels.php:738
+msgid "Enter the ID of the user, or leave blank if submitted by a guest."
+msgstr "Nhập ID của người dùng, hoặc để trống nếu được gửi bởi khách."
+
+#: core/wp-event-manager-filters.php:37
+msgid "Next Weekend"
+msgstr "Cuối tuần sau"
+
+#: core/wp-event-manager-filters.php:35
+msgid "Next Week"
+msgstr "Tuần sau"
+
+#: core/wp-event-manager-filters.php:33
+msgid "This Year"
+msgstr "Năm nay"
+
+#: core/wp-event-manager-filters.php:31
+msgid "This Month"
+msgstr "Tháng này"
+
+#: core/wp-event-manager-filters.php:29
+msgid "This Weekend"
+msgstr "Cuối tuần này"
+
+#: core/wp-event-manager-filters.php:27
+msgid "This Week"
+msgstr "Tuần này"
+
+#: core/wp-event-manager-filters.php:25
+msgid "Tomorrow"
+msgstr "Ngày mai"
+
+#: core/wp-event-manager-filters.php:23
+msgid "Today"
+msgstr "Hôm nay"
+
+#: core/wp-event-manager-filters.php:21
+msgid "Any Date"
+msgstr "Bất cứ ngày nào"
+
+#: core/wp-event-manager-ajax.php:314
+msgid "located in &ldquo;%s&rdquo;"
+msgstr "ở tại &ldquo;%s&rdquo;"
+
+#: admin/wp-event-manager-writepanels.php:734
+msgid "Change"
+msgstr "Thay đổi"
+
+#: admin/wp-event-manager-writepanels.php:732
+msgid "Guest User"
+msgstr "Người dùng khách"
+
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Add file"
+msgstr "Thêm tập tin"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Upload"
+msgstr "Tải lên"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Use file"
+msgstr "Sử dụng tập tin"
+
+#: admin/wp-event-manager-writepanels.php:434
+msgid "%s Data"
+msgstr "%s dữ liệu"
+
+#: admin/wp-event-manager-writepanels.php:387
+msgid "Posted by"
+msgstr "Đăng bởi"
+
+#: admin/wp-event-manager-writepanels.php:379
+msgid "yyyy-mm-dd"
+msgstr "năm-tháng-ngày"
+
+#: admin/wp-event-manager-writepanels.php:378
+msgid "Listing Expiry Date"
+msgstr "Ngày hết hạn bài đăng"
+
+#: admin/wp-event-manager-writepanels.php:373
+msgid "Featured listings will be sticky during searches, and can be styled differently."
+msgstr "Những bài đăng nổi bật sẽ được gắn nổi bật trong tìm kiếm, và có thể được hiển thị với thiết kế khác."
+
+#: admin/wp-event-manager-writepanels.php:371
+msgid "Featured Listing"
+msgstr "Bài đăng nổi bật"
+
+#: admin/wp-event-manager-writepanels.php:365
+msgid "Cancelled listings will no longer accept registration."
+msgstr "Các bài đăng đã hủy sẽ không chấp nhận đăng ký nữa."
+
+#: admin/wp-event-manager-writepanels.php:362
+msgid "Event Cancelled"
+msgstr "Sự kiện đã hủy"
+
+#: admin/wp-event-manager-writepanels.php:357
+#: forms/wp-event-manager-form-submit-event.php:423
+msgid "Instagram URL e.g http://www.instagram.com/yourcompany"
+msgstr "Đường dẫn Instagram, ví dụ http://www.instagram.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:354
+#: forms/wp-event-manager-form-submit-event.php:420
+#: templates/content-single-event_listing-organizer.php:182
+msgid "Instagram"
+msgstr "Instagram"
+
+#: admin/wp-event-manager-writepanels.php:349
+#: forms/wp-event-manager-form-submit-event.php:415
+msgid "Pinterest URL e.g http://www.pinterest.com/yourcompany"
+msgstr "Đường dẫn Pinterest, ví dụ http://www.pinterest.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:346
+#: forms/wp-event-manager-form-submit-event.php:412
+#: templates/content-single-event_listing-organizer.php:176
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: admin/wp-event-manager-writepanels.php:341
+#: forms/wp-event-manager-form-submit-event.php:407
+msgid "Xing URL e.g http://www.xing.com/companies/yourcompany"
+msgstr "Đường dẫn Xing, ví dụ http://www.xing.com/companies/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:338
+#: forms/wp-event-manager-form-submit-event.php:404
+#: templates/content-single-event_listing-organizer.php:170
+msgid "Xing"
+msgstr "Xing"
+
+#: admin/wp-event-manager-writepanels.php:333
+msgid "@yourorganizer"
+msgstr "@nhatochucsukien"
+
+#: admin/wp-event-manager-writepanels.php:330
+msgid "Twitter username"
+msgstr "Tên đăng nhập Twitter"
+
+#: admin/wp-event-manager-writepanels.php:325
+#: forms/wp-event-manager-form-submit-event.php:391
+msgid "Linkedin URL e.g http://www.linkedin.com/company/yourcompany"
+msgstr "Đường dẫn Linkedin, ví dụ http://www.linkedin.com/company/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:322
+#: forms/wp-event-manager-form-submit-event.php:388
+#: templates/content-single-event_listing-organizer.php:164
+msgid "Linkedin"
+msgstr "Linkedin"
+
+#: admin/wp-event-manager-writepanels.php:317
+#: forms/wp-event-manager-form-submit-event.php:383
+msgid "Facebook URL e.g http://www.facebook.com/yourcompany"
+msgstr "Đường dẫn Facebook, ví dụ http://www.facebook.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:314
+#: forms/wp-event-manager-form-submit-event.php:380
+#: templates/content-single-event_listing-organizer.php:152
+msgid "Facebook"
+msgstr "Facebook"
+
+#: admin/wp-event-manager-writepanels.php:309
+#: forms/wp-event-manager-form-submit-event.php:375
+msgid "Google+ URL e.g http://plus.google.com/yourcompany"
+msgstr "Đường dẫn Google+, ví dụ http://plus.google.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:306
+#: forms/wp-event-manager-form-submit-event.php:372
+#: templates/content-single-event_listing-organizer.php:194
+msgid "Google+"
+msgstr "Google+"
+
+#: admin/wp-event-manager-writepanels.php:301
+#: forms/wp-event-manager-form-submit-event.php:367
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany"
+msgstr "Đường dẫn kênh YouTube, ví dụ http://www.youtube.com/channel/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:298
+#: forms/wp-event-manager-form-submit-event.php:364
+#: templates/content-single-event_listing-organizer.php:188
+msgid "Youtube"
+msgstr "YouTube"
+
+#: admin/wp-event-manager-writepanels.php:293
+#: forms/wp-event-manager-form-submit-event.php:359
+msgid "A link to a video about your organization"
+msgstr "Đường dẫn tới một video về tổ chức của bạn"
+
+#: admin/wp-event-manager-writepanels.php:290
+#: forms/wp-event-manager-form-submit-event.php:356
+msgid "Video"
+msgstr "Video"
+
+#: admin/wp-event-manager-writepanels.php:216
+#: forms/wp-event-manager-form-submit-event.php:283
+msgid "Link To Event Page"
+msgstr "Đường dẫn tới trang sự kiện"
+
+#: admin/wp-event-manager-writepanels.php:207
+#: forms/wp-event-manager-form-submit-event.php:276
+msgid "Please enter ticket price"
+msgstr "Xin hãy nhập giá vé"
+
+#: admin/wp-event-manager-writepanels.php:206
+msgid "Price"
+msgstr "Giá"
+
+#: admin/wp-event-manager-writepanels.php:199
+#: core/wp-event-manager-filters.php:77
+#: forms/wp-event-manager-form-submit-event.php:269
+msgid "Free"
+msgstr "Miễn phí"
+
+#: admin/wp-event-manager-writepanels.php:198
+#: core/wp-event-manager-filters.php:75
+#: forms/wp-event-manager-form-submit-event.php:268
+msgid "Paid"
+msgstr "Đã thanh toán"
+
+#: admin/wp-event-manager-writepanels.php:194
+#: forms/wp-event-manager-form-submit-event.php:264
+msgid "Ticket Options"
+msgstr "Tùy chọn vé"
+
+#: admin/wp-event-manager-writepanels.php:187
+#: forms/wp-event-manager-form-submit-event.php:257
+msgid "Please enter event end time"
+msgstr "Xin hãy nhập thời gian kết thúc sự kiện"
+
+#: admin/wp-event-manager-writepanels.php:186
+#: forms/wp-event-manager-form-submit-event.php:256
+msgid "End Time"
+msgstr "Thời gian kết thúc"
+
+#: admin/wp-event-manager-writepanels.php:179
+#: forms/wp-event-manager-form-submit-event.php:249
+msgid "Please enter event end date"
+msgstr "Xin hãy nhập ngày kết thúc sự kiện"
+
+#: admin/wp-event-manager-writepanels.php:178
+#: forms/wp-event-manager-form-submit-event.php:248
+#: shortcodes/wp-event-manager-shortcodes.php:244
+msgid "End Date"
+msgstr "Ngày kết thúc"
+
+#: admin/wp-event-manager-writepanels.php:171
+#: forms/wp-event-manager-form-submit-event.php:241
+msgid "Please enter event start time"
+msgstr "Xin hãy nhập thời gian bắt đầu sự kiện"
+
+#: admin/wp-event-manager-writepanels.php:170
+#: forms/wp-event-manager-form-submit-event.php:240
+msgid "Start Time"
+msgstr "Thời gian bắt đầu"
+
+#: admin/wp-event-manager-writepanels.php:163
+#: forms/wp-event-manager-form-submit-event.php:234
+msgid "Please enter event start date"
+msgstr "Xin hãy nhập ngày bắt đầu sự kiện"
+
+#: admin/wp-event-manager-writepanels.php:162
+#: forms/wp-event-manager-form-submit-event.php:233
+#: shortcodes/wp-event-manager-shortcodes.php:243
+msgid "Start Date"
+msgstr "Ngày bắt đầu"
+
+#: admin/wp-event-manager-writepanels.php:156
+#: forms/wp-event-manager-form-submit-event.php:227
+msgid "24 hour format"
+msgstr "Định dạng 24 giờ"
+
+#: admin/wp-event-manager-writepanels.php:284
+msgid "Your organization tagline"
+msgstr "Dòng giới thiệu về tổ chức của bạn"
+
+#: admin/wp-event-manager-writepanels.php:281
+msgid "Tagline"
+msgstr "Dòng giới thiệu"
+
+#: admin/wp-event-manager-writepanels.php:276
+#: forms/wp-event-manager-form-submit-event.php:351
+msgid "Website URL e.g http://www.yourorganization.com"
+msgstr "Đường dẫn trang web, ví dụ http://www.yourorganization.com"
+
+#: admin/wp-event-manager-writepanels.php:273
+#: forms/wp-event-manager-form-submit-event.php:348
+#: templates/content-single-event_listing-organizer.php:147
+msgid "Website"
+msgstr "Trang web"
+
+#: admin/wp-event-manager-writepanels.php:268
+#: forms/wp-event-manager-form-submit-event.php:343
+msgid "Enter your email address"
+msgstr "Nhập địa chỉ email của bạn"
+
+#: admin/wp-event-manager-writepanels.php:265
+#: forms/wp-event-manager-form-submit-event.php:340
+msgid "Organization Email"
+msgstr "Email của tổ chức"
+
+#: admin/wp-event-manager-writepanels.php:260
+#: forms/wp-event-manager-form-submit-event.php:335
+msgid "Enter contact person name in your organization"
+msgstr "Nhập tên người liên hệ trong tổ chức của bạn"
+
+#: admin/wp-event-manager-writepanels.php:257
+#: forms/wp-event-manager-form-submit-event.php:332
+msgid "Contact Person Name"
+msgstr "Tên người liên hệ"
+
+#: admin/wp-event-manager-writepanels.php:249
+#: forms/wp-event-manager-form-submit-event.php:324
+msgid "Organizer Description"
+msgstr "Mô tả về nhà tổ chức"
+
+#: admin/wp-event-manager-writepanels.php:240
+#: forms/wp-event-manager-form-submit-event.php:308
+msgid "Logo"
+msgstr "Logo"
+
+#: admin/wp-event-manager-writepanels.php:235
+#: forms/wp-event-manager-form-submit-event.php:304
+msgid "Enter the name of the organization"
+msgstr "Nhập tên nhà tổ chức"
+
+#: admin/wp-event-manager-writepanels.php:232
+#: forms/wp-event-manager-form-submit-event.php:301
+msgid "Organization name"
+msgstr "Tên nhà tổ chức"
+
+#: admin/wp-event-manager-writepanels.php:227
+#: forms/wp-event-manager-form-submit-event.php:294
+msgid "Please enter registration deadline"
+msgstr "Xin hãy nhập hạn đăng ký"
+
+#: admin/wp-event-manager-writepanels.php:224
+#: forms/wp-event-manager-form-submit-event.php:291
+msgid "Registration Deadline"
+msgstr "Hạn đăng ký"
+
+#: admin/wp-event-manager-writepanels.php:219
+msgid "e.g http://ww.example.com"
+msgstr "ví dụ http://ww.example.com"
+
+#: admin/wp-event-manager-writepanels.php:82
+#: forms/wp-event-manager-form-submit-event.php:148
+#: templates/content-event_listing.php:30
+#: templates/content-event_listing.php:56
+#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-summary-event_listing.php:10
+#: templates/content-widget-event_listing.php:10
+#: templates/event-dashboard.php:78
+msgid "Online Event"
+msgstr "Sự kiện trực tuyến"
+
+#: admin/wp-event-manager-writepanels.php:48
+msgid "This field is required for the \"registration\" area to appear beneath the listing."
+msgstr "Trường này là bắt buộc để phần \"đăng ký\" xuất hiện dưới bài đăng."
+
+#: admin/wp-event-manager-writepanels.php:47
+msgid "URL or email which attendees use to register"
+msgstr "Đường dẫn hoặc email để người tham gia đăng ký"
+
+#: admin/wp-event-manager-writepanels.php:46
+msgid "Registration Email or URL"
+msgstr "Email hoặc đường dẫn đăng ký"
+
+#: admin/wp-event-manager-writepanels.php:38
+msgid "Total View Count"
+msgstr "Tổng lượt xem"
+
+#: admin/wp-event-manager-setup.php:357
+msgid "Help other users on the forums"
+msgstr "Giúp những người dùng khác trên diễn đàn"
+
+#: admin/wp-event-manager-setup.php:355
+msgid "Contribute code or report a bug"
+msgstr "Đóng góp đoạn mã hoặc báo lỗi"
+
+#: admin/wp-event-manager-setup.php:353
+msgid "Contribute a localization"
+msgstr "Đóng góp phiên bản địa phương"
+
+#: admin/wp-event-manager-setup.php:351
+msgid "Leave a positive review"
+msgstr "Để lại đánh giá tích cực"
+
+#: admin/wp-event-manager-setup.php:347
+msgid "There are many ways to support open-source projects such as WP Event Manager, for example code contribution, translation, or even telling your friends how awesome the plugin (hopefully) is. Thanks in advance for your support - it is much appreciated!"
+msgstr "Có nhiều cách để ủng hộ những dự án mã nguồn mở như Quản lý Sự kiện WP, ví dụ như đóng góp đoạn mã, dịch, hoặc thậm chí là giới thiệu cho bạn bè về plugin tuyệt vời này. Cám ơn vì sự ủng hộ của bạn - chúng tôi rất trân trọng sự ủng hộ của bạn!"
+
+#: admin/wp-event-manager-setup.php:345
+msgid "Support the Ongoing Development of this Plugin"
+msgstr "Hỗ trợ sự phát triển của plugin này"
+
+#: admin/wp-event-manager-setup.php:341
+msgid "And don't forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!"
+msgstr "Và đừng quên, nếu bạn cần bất cứ trợ giúp nào khi sử dụng <em>Quản lý Sự kiện WP</em>, bạn có thể tham khảo %1$shướng dẫn%2$s hoặc %3$sbài đăng trên diễn đàn%2$s!"
+
+#: admin/wp-event-manager-setup.php:335
+msgid "Find out more about the front-end event dashboard"
+msgstr "Tìm hiểu thêm về trang điều khiển sự kiện frontend"
+
+#: admin/wp-event-manager-setup.php:331
+msgid "View the event dashboard"
+msgstr "Xem trang điều khiển sự kiện"
+
+#: admin/wp-event-manager-writepanels.php:155
+#: forms/wp-event-manager-form-submit-event.php:226
+msgid "12 hour format"
+msgstr "Định dạng 12 giờ"
+
+#: admin/wp-event-manager-writepanels.php:151
+#: forms/wp-event-manager-form-submit-event.php:222
+msgid "Time Format"
+msgstr "Định dạng thời gian"
+
+#: admin/wp-event-manager-field-editor.php:139
+#: admin/wp-event-manager-field-editor.php:241
+#: admin/wp-event-manager-writepanels.php:144
+#: forms/wp-event-manager-form-submit-event.php:208
+msgid "Description"
+msgstr "Mô tả"
+
+#: admin/wp-event-manager-writepanels.php:128
+#: forms/wp-event-manager-form-submit-event.php:192
+msgid "Event Banner"
+msgstr "Banner sự kiện"
+
+#: admin/wp-event-manager-writepanels.php:123
+msgid "e.g. \"Berlin\",\"Munich\""
+msgstr "ví dụ \"Berlin\", \"Munich\""
+
+#: admin/wp-event-manager-writepanels.php:120
+msgid "Leave this blank if the location is not important"
+msgstr "Để trống nếu địa điểm không quan trọng"
+
+#: admin/wp-event-manager-writepanels.php:119
+#: forms/wp-event-manager-form-submit-event.php:184
+#: shortcodes/wp-event-manager-shortcodes.php:242
+#: templates/event-filters.php:19 templates/event-filters.php:20
+#: widgets/wp-event-manager-widgets.php:235
+msgid "Location"
+msgstr "Địa điểm"
+
+#: admin/wp-event-manager-writepanels.php:114
+#: forms/wp-event-manager-form-submit-event.php:179
+msgid "Please enter pincode (Area code)"
+msgstr "Xin hãy nhập mã pin (Mã khu vực)"
+
+#: admin/wp-event-manager-writepanels.php:111
+#: forms/wp-event-manager-form-submit-event.php:176
+msgid "Pincode"
+msgstr "Mã pin"
+
+#: admin/wp-event-manager-writepanels.php:106
+#: forms/wp-event-manager-form-submit-event.php:171
+msgid "Please enter street name and number"
+msgstr "Xin hãy chọn tên và số đường"
+
+#: admin/wp-event-manager-writepanels.php:103
+#: forms/wp-event-manager-form-submit-event.php:168
+msgid "Address"
+msgstr "Địa chỉ"
+
+#: admin/wp-event-manager-writepanels.php:98
+#: forms/wp-event-manager-form-submit-event.php:163
+msgid "Please enter the venue name"
+msgstr "Xin hãy nhập tên địa điểm"
+
+#: admin/wp-event-manager-writepanels.php:95
+#: forms/wp-event-manager-form-submit-event.php:160
+msgid "Venue Name"
+msgstr "Tên địa điểm"
+
+#: admin/wp-event-manager-writepanels.php:88
+#: forms/wp-event-manager-form-submit-event.php:153
+msgid "No"
+msgstr "Không"
+
+#: admin/wp-event-manager-writepanels.php:87
+#: forms/wp-event-manager-form-submit-event.php:152
+msgid "Yes"
+msgstr "Có"
+
+#: admin/wp-event-manager-setup.php:248
+msgid "This page allows peoples to post events to your website from the front-end."
+msgstr "Trang này cho phép mọi người đăng sự kiện lên trang web của bạn từ front-end."
+
+#: admin/wp-event-manager-setup.php:245
+msgctxt "Default page title (wizard)"
+msgid "Post an Event"
+msgstr "Đăng sự kiện"
+
+#: admin/wp-event-manager-setup.php:234
+msgid "Content Shortcode"
+msgstr "Mã ngắn nội dung"
+
+#: admin/wp-event-manager-setup.php:232
+msgid "Page Description"
+msgstr "Mô tả trang"
+
+#: admin/wp-event-manager-setup.php:230
+msgid "Page Title"
+msgstr "Tiêu đề trang"
+
+#: admin/wp-event-manager-setup.php:219
+msgid "<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s."
+msgstr "<em>Quản lý Sự kiện WP</em> bao gồm %1$scác mã ngắn%2$s có thể được sử dụng trong %3$scác trang%2$s của bạn để xuất bản nội dung. Những đoạn mã này có thể được tạo dưới đây. Để xem thêm thông tin về mã ngắn sự kiện, hãy xem %4$shướng dẫn mã ngắn%2$s."
+
+#: admin/wp-event-manager-setup.php:217
+msgid "Page Setup"
+msgstr "Cài đặt trang"
+
+#: admin/wp-event-manager-setup.php:209
+msgid "Skip setup. I will setup the plugin manually"
+msgstr "Bỏ qua cài đặt. Tôi sẽ cài đặt plugin thủ công"
+
+#: admin/wp-event-manager-setup.php:207
+msgid "Continue to page setup"
+msgstr "Tiếp tục tới trang cài đặt"
+
+#: admin/wp-event-manager-setup.php:203
+msgid "If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help."
+msgstr "Nếu bạn muốn bỏ qua phần cài đặt và tự mình cài đặt trang và mã ngắn thủ công, quá trình cũng khá đơn giản. Hãy xem thêm %shướng dẫn%s để được trợ giúp."
+
+#: admin/wp-event-manager-setup.php:201
+msgid "This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events."
+msgstr "Trình cài đặt sẽ giúp bạn bắt đầu bằng cách tạo các trang đăng sự kiện, quản lý sự kiện và các bài đăng sự kiện của bạn."
+
+#: admin/wp-event-manager-setup.php:199
+msgid "Thanks for installing <em>WP Event Manager</em>!"
+msgstr "Cám ơn vì đã cài đặt <em>Quản lý Sự kiện WP</em>!"
+
+#: admin/wp-event-manager-setup.php:197
+msgid "Setup Wizard Introduction"
+msgstr "Giới thiệu trình cài đặt"
+
+#: admin/wp-event-manager-setup.php:191
+msgid "3. Done"
+msgstr "3. Hoàn thành"
+
+#: admin/wp-event-manager-setup.php:189
+msgid "2. Page Setup"
+msgstr "2. Cài đặt trang"
+
+#: admin/wp-event-manager-setup.php:325
+msgid "Add the [events] shortcode to a page to list events"
+msgstr "Thêm mã ngắn [events] vào trang sự kiện"
+
+#: admin/wp-event-manager-setup.php:321
+msgid "View submitted event listings"
+msgstr "Xem các bài đăng sự kiện đã gửi"
+
+#: admin/wp-event-manager-setup.php:315
+msgid "Find out more about the front-end event submission form"
+msgstr "Xem thêm về biểu mẫu gửi sự kiện trên front-end"
+
+#: admin/wp-event-manager-setup.php:311
+msgid "Add an event via the front-end"
+msgstr "Thêm sự kiện qua front-end"
+
+#: admin/wp-event-manager-setup.php:307
+msgid "Add an event via the back-end"
+msgstr "Thêm sự kiện qua back-end"
+
+#: admin/wp-event-manager-setup.php:305
+msgid "Tweak the plugin settings"
+msgstr "Chỉnh sửa cài đặt plugin"
+
+#: admin/wp-event-manager-setup.php:301
+msgid "Looks like you're all set to start using the plugin. In case you're wondering where to go next:"
+msgstr "Có vẻ như bạn đã sẵn sàng sử dụng plugin. Còn nếu bạn đang băn khoăn tiếp theo nên làm gì:"
+
+#: admin/wp-event-manager-setup.php:299
+msgid "All Done!"
+msgstr "Tất cả đã xong!"
+
+#: admin/wp-event-manager-setup.php:288
+msgid "Skip this step"
+msgstr "Bỏ qua bước này"
+
+#: admin/wp-event-manager-setup.php:275
+msgid "This page allows users to browse, search, and filter event listings on the front-end of your site."
+msgstr "Trang này cho phép người dùng xem, tìm kiếm và lọc các bài đăng sự kiện trên front-end của trang bạn."
+
+#: admin/wp-event-manager-setup.php:273
+msgctxt "Default page title (wizard)"
+msgid "Events"
+msgstr "Các sự kiện"
+
+#: admin/wp-event-manager-setup.php:264
+msgid "If you plan on managing all listings from the admin dashboard you can skip creating this page."
+msgstr "Nếu bạn dự định quản lý tất cả các bài đăng từ trang điều khiển, bạn có thể bỏ qua bước tạo trang này."
+
+#: admin/wp-event-manager-setup.php:262
+msgid "This page allows peoples to manage and edit their own events from the front-end."
+msgstr "Trang này cho phép mọi người quản lý và chỉnh sửa sự kiện của họ từ front-end."
+
+#: admin/wp-event-manager-setup.php:258
+msgctxt "Default page title (wizard)"
+msgid "Event Dashboard"
+msgstr "Trang điều khiển sự kiện"
+
+#: admin/wp-event-manager-setup.php:250
+msgid "If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page."
+msgstr "Nếu bạn không muốn nhận thông tin từ người dùng bằng cách này (ví dụ như bạn chỉ muốn đăng sự kiện từ trang điều khiển), bạn có thể bỏ qua bước tạo trang này."
+
+#: admin/wp-event-manager-settings.php:496
+msgid "Website URLs only"
+msgstr "Chỉ chấp nhận đường dẫn trang web"
+
+#: admin/wp-event-manager-settings.php:495
+msgid "Email addresses only"
+msgstr "Chỉ chấp nhận các địa chỉ email"
+
+#: admin/wp-event-manager-settings.php:494
+msgid "Email address or website URL"
+msgstr "Địa chỉ email hoặc đường dẫn trang web"
+
+#: admin/wp-event-manager-settings.php:491
+msgid "Choose the registratoin method for listings."
+msgstr "Chọn phương thức đăng ký cho các bài đăng."
+
+#: admin/wp-event-manager-settings.php:490
+msgid "Registration Method"
+msgstr "Phương thức đăng ký"
+
+#: admin/wp-event-manager-settings.php:483
+msgid "How many <strong>days</strong> listings are live before expiring. Can be left blank to never expire."
+msgstr "Các bài đăng sẽ hoạt động trong bao nhiêu <strong>ngày</strong> trước khi hết hạn. Có thể để trống nếu không bao giờ hết hạn."
+
+#: admin/wp-event-manager-settings.php:481
+msgid "Listing Duration"
+msgstr "Khoảng thời gian của bài đăng"
+
+#: admin/wp-event-manager-settings.php:471
+msgid "Listing expire on Specified Below Days"
+msgstr "Bài đăng hết hạn trong những ngày cụ thể dưới đây"
+
+#: admin/wp-event-manager-settings.php:469
+msgid "Listing expire on Event End Date"
+msgstr "Bài đăng hết hạn vào ngày kết thúc sự kiện"
+
+#: admin/wp-event-manager-settings.php:463
+msgid "You can set event submission expiry time either event end date or specific days."
+msgstr "Bạn có thể đặt thời gian hết hạn bài đăng sự kiện vào ngày kết thúc, hoặc vào những ngày cụ thể."
+
+#: admin/wp-event-manager-setup.php:187
+msgid "1. Introduction"
+msgstr "1. Giới thiệu"
+
+#: admin/wp-event-manager-setup.php:183
+msgid "WP Event Manager Setup"
+msgstr "Cài đặt Quản lý Sự kiện WP"
+
+#: admin/wp-event-manager-setup.php:45
+msgid "Setup"
+msgstr "Cài đặt"
+
+#: admin/wp-event-manager-field-editor.php:154
+#: admin/wp-event-manager-field-editor.php:256
+#: admin/wp-event-manager-settings.php:808
+msgid "Save Changes"
+msgstr "Lưu các thay đổi"
+
+#: admin/wp-event-manager-settings.php:755
+msgid "Select a page&hellip;"
+msgstr "Chọn một trang&hellip;"
+
+#: admin/wp-event-manager-settings.php:747
+msgid "--no page--"
+msgstr "--không có trang nào--"
+
+#: admin/wp-event-manager-settings.php:650
+msgid "Settings successfully saved"
+msgstr "Cài đặt được lưu thành công"
+
+#: admin/wp-event-manager-settings.php:574
+msgid "Select the page where you have placed the [events] shortcode. This lets the plugin know where the event listings page is located."
+msgstr "Chọn trang bạn đã đặt mã ngắn của [events]. Điều này sẽ giúp plugin biết được nơi đặt trang các bài đăng sự kiện."
+
+#: admin/wp-event-manager-settings.php:572
+msgid "Event Listings Page"
+msgstr "Trang bài đăng sự kiện"
+
+#: admin/wp-event-manager-settings.php:561
+msgid "Select the page where you have placed the [event_dashboard] shortcode. This lets the plugin know where the dashboard is located."
+msgstr "Chọn trang bạn đã đặt mã ngắn của [event_dashboard]. Điều này sẽ giúp plugin biết được nơi đặt trang điều khiển."
+
+#: admin/wp-event-manager-settings.php:559
+msgid "Event Dashboard Page"
+msgstr "Trang điều khiển sự kiện"
+
+#: admin/wp-event-manager-settings.php:548
+msgid "Select the page where you have placed the [submit_event_form] shortcode. This lets the plugin know where the form is located."
+msgstr "Chọn trang bạn đã đặt mã ngắn của [submit_event_form]. Điều này sẽ giúp plugin biết được nơi đặt biểu mẫu."
+
+#: admin/wp-event-manager-settings.php:546
+msgid "Submit Event Form Page"
+msgstr "Trang biểu mẫu gửi sự kiện"
+
+#: admin/wp-event-manager-settings.php:536
+msgid "Pages"
+msgstr "Các trang"
+
+#: admin/wp-event-manager-settings.php:461
+msgid "Listing Expire"
+msgstr "Bài đăng hết hạn"
+
+#: admin/wp-event-manager-settings.php:448
+msgid "If enabled, expired listings will automatically deleted after 30 days."
+msgstr "Nếu bật, các bài đăng hết hạn sẽ tự động xóa sau 30 ngày."
+
+#: admin/wp-event-manager-settings.php:446
+msgid "Expired listings are deleted after 30 days"
+msgstr "Các bài đăng hết hạn được xóa sau 30 ngày"
+
+#: admin/wp-event-manager-settings.php:444
+msgid "Delete Expired listings"
+msgstr "Xóa các bài đăng hết hạn"
+
+#: admin/wp-event-manager-settings.php:432
+msgid "If enabled, Multiple banner can add at frontend by user and backend side by admin."
+msgstr "Nếu bật, lựa chọn nhiều banner có thể được thêm ở front end bởi người dùng và back end bởi admin."
+
+#: admin/wp-event-manager-settings.php:430
+msgid "User can submit multiple banner"
+msgstr "Người dùng có thể gửi nhiều lựa chọn banner"
+
+#: admin/wp-event-manager-settings.php:428
+msgid "Allow Multiple Banners"
+msgstr "Cho phép nhiều lựa chọn banner"
+
+#: admin/wp-event-manager-settings.php:417
+msgid "If enabled, submissions awaiting admin approval can be edited by the user."
+msgstr "Nếu bật, người dùng có thể chỉnh sửa những bài đăng đang chờ admin phê duyệt."
+
+#: admin/wp-event-manager-settings.php:415
+msgid "Submissions awaiting approval can be edited"
+msgstr "Những bài đăng đang chờ phê duyệt có thể chỉnh sửa"
+
+#: admin/wp-event-manager-settings.php:400
+msgid "If enabled, new submissions will be inactive, pending admin approval."
+msgstr "Nếu bật, các bài đăng mới sẽ ở trạng thái không hoạt động, chờ admin phê duyệt."
+
+#: admin/wp-event-manager-settings.php:398
+msgid "New listing submissions require admin approval"
+msgstr "Những bài đăng mới gửi sẽ cần admin phê duyệt"
+
+#: admin/wp-event-manager-settings.php:396
+msgid "Moderate New Listings"
+msgstr "Kiểm duyệt các bài đăng mới"
+
+#: admin/wp-event-manager-settings.php:383
+msgid "If you enable registration on your submission form, choose a role for the new user."
+msgstr "Nếu bạn bật đăng ký trên trang gửi bài đăng, hãy chọn một vai trò cho người dùng mới."
+
+#: admin/wp-event-manager-settings.php:381
+msgid "Account Role"
+msgstr "Vai trò của tài khoản"
+
+#: admin/wp-event-manager-settings.php:290
+msgid "Events will be shown if within ANY selected event type"
+msgstr "Sự kiện sẽ được hiển thị nếu nằm trong BẤT CỨ loại sự kiện nào được chọn"
+
+#: admin/wp-event-manager-settings.php:292
+msgid "Events will be shown if within ALL selected event types"
+msgstr "Sự kiện sẽ được hiển thị nếu nằm trong TẤT CẢ các loại sự kiện được chọn"
+
+#: admin/wp-event-manager-settings.php:282
+msgid "Event Type Filter"
+msgstr "Bộ lọc loại sự kiện"
+
+#: admin/wp-event-manager-settings.php:272
+msgid "Events will be shown if within ALL selected categories"
+msgstr "Sự kiện sẽ được hiển thị nếu nằm trong TẤT CẢ các danh mục được chọn"
+
+#: admin/wp-event-manager-settings.php:270
+msgid "Events will be shown if within ANY selected category"
+msgstr "Sự kiện sẽ được hiển thị nếu nằm trong BẤT CỨ danh mục nào được chọn"
+
+#: admin/wp-event-manager-settings.php:249
+#: admin/wp-event-manager-settings.php:284
+msgid "If enabled, the event type select box will default to a multi select on the [events] shortcode."
+msgstr "Nếu bật, box lựa chọn loại sự kiện sẽ mặc định là chọn nhiều loại trên mã ngắn [events]."
+
+#: admin/wp-event-manager-settings.php:247
+msgid "Enable event type multiselect by default"
+msgstr "Bật mặc định lựa chọn nhiều loại sự kiện"
+
+#: admin/wp-event-manager-settings.php:245
+msgid "Multi-select Event Types"
+msgstr "Lựa chọn nhiều loại sự kiện"
+
+#: admin/wp-event-manager-settings.php:232
+#: admin/wp-event-manager-settings.php:264
+msgid "If enabled, the category select box will default to a multi select on the [events] shortcode."
+msgstr "Nếu bật, box lựa chọn danh mục sẽ mặc định là chọn nhiều loại trên mã ngắn [events]."
+
+#: admin/wp-event-manager-settings.php:230
+msgid "Enable category multiselect by default"
+msgstr "Bật mặc định lựa chọn nhiều loại danh mục"
+
+#: admin/wp-event-manager-settings.php:228
+msgid "Multi-select Categories"
+msgstr "Lựa chọn nhiều danh mục"
+
+#: admin/wp-event-manager-settings.php:215
+msgid "Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission."
+msgstr "Chọn có bật giá vé hay không. Giá vé phải được cài đặt bởi admin để người dùng lựa chọn khi gửi."
+
+#: admin/wp-event-manager-settings.php:213
+msgid "Enable ticket prices for listings"
+msgstr "Bật giá vé cho các bài đăng"
+
+#: admin/wp-event-manager-settings.php:211
+msgid "Ticket prices"
+msgstr "Giá vé"
+
+#: admin/wp-event-manager-settings.php:413
+msgid "Allow Pending Edits"
+msgstr "Cho phép chỉnh sửa các bài đăng đang chờ phê duyệt"
+
+#: admin/wp-event-manager-settings.php:359
+msgid "If enabled, a username will be generated from the first part of the user email address. Otherwise, a username field will be shown."
+msgstr "Nếu bật, tên đăng nhập sẽ được tạo từ phần đầu trong địa chỉ email người dùng. Nếu không, trường tên đăng nhập sẽ được hiển thị."
+
+#: admin/wp-event-manager-settings.php:357
+msgid "Automatically Generate Username from Email Address"
+msgstr "Tự động tạo tên đăng nhập từ địa chỉ email"
+
+#: admin/wp-event-manager-settings.php:355
+msgid "Account Username"
+msgstr "Tên đăng nhập tài khoản"
+
+#: admin/wp-event-manager-settings.php:342
+msgid "If enabled, non-logged in users will be able to create an account by entering their email address on the submission form."
+msgstr "Nếu bật, người dùng chưa đăng nhập sẽ có thể tạo tài khoản bằng cách nhập địa chỉ email của họ trên mẫu gửi bài đăng."
+
+#: admin/wp-event-manager-settings.php:340
+msgid "Allow account creation"
+msgstr "Cho phép tạo tài khoản"
+
+#: admin/wp-event-manager-settings.php:338
+msgid "Account Creation"
+msgstr "Tạo tài khoản"
+
+#: admin/wp-event-manager-settings.php:325
+msgid "If disabled, non-logged in users will be able to submit listings without creating an account."
+msgstr "Nếu tắt, người dùng không đăng nhập sẽ có thể gửi các bài đăng mà không cần tạo tài khoản."
+
+#: admin/wp-event-manager-settings.php:323
+msgid "Submitting listings requires an account"
+msgstr "Cần có tài khoản để gửi bài đăng"
+
+#: admin/wp-event-manager-settings.php:321
+msgid "Account Required"
+msgstr "Yêu cầu tài khoản"
+
+#: admin/wp-event-manager-settings.php:311
+msgid "Event Submission"
+msgstr "Gửi sự kiện"
+
+#: admin/wp-event-manager-settings.php:131
+msgid "Hide cancelled events"
+msgstr "Ẩn các sự kiện đã hủy"
+
+#: admin/wp-event-manager-settings.php:129
+msgid "Cancelled Events"
+msgstr "Các sự kiện đã hủy"
+
+#: admin/wp-event-manager-settings.php:118
+msgid "How many listings should be shown per page by default?"
+msgstr "Mặc định hiển thị bao nhiêu bài đăng mỗi trang?"
+
+#: admin/wp-event-manager-settings.php:116
+msgid "Listings Per Page"
+msgstr "Bài đăng mỗi trang"
+
+#: admin/wp-event-manager-settings.php:104
+#: admin/wp-event-manager-writepanels.php:440
+#: core/wp-event-manager-post-types.php:291
+#: core/wp-event-manager-post-types.php:403
+msgid "Event Listings"
+msgstr "Bài đăng sự kiện"
+
+#: admin/wp-event-manager-cpt.php:598 templates/event-dashboard.php:53
+#: wp-event-manager.php:295
+msgid "Delete"
+msgstr "Xóa"
+
+#: admin/wp-event-manager-cpt.php:586 core/wp-event-manager-post-types.php:299
+#: templates/event-dashboard.php:33 templates/event-dashboard.php:49
+msgid "Edit"
+msgstr "Sửa"
+
+#: admin/wp-event-manager-cpt.php:574
+msgid "View"
+msgstr "Xem"
+
+#: admin/wp-event-manager-settings.php:177
+msgid "Categories"
+msgstr "Các danh mục"
+
+#: admin/wp-event-manager-settings.php:164
+msgid "If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area)."
+msgstr "Nếu bật, nội dung trong các bài đăng hết hạn sẽ bị ẩn. Nếu không, các bài đăng hết hạn sẽ được hiển thị bình thường (không có phần đăng ký tham gia sự kiện)."
+
+#: admin/wp-event-manager-settings.php:133
+msgid "If enabled, cancelled events will be hidden from archives."
+msgstr "Nếu bật, các sự kiện đã hủy sẽ bị ẩn trong lưu trữ"
+
+#: admin/wp-event-manager-settings.php:198
+msgid "Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission."
+msgstr "Chọn hiển thị loại sự kiện hay không. Loại sự kiện cần phải được cài đặt bởi admin để người dùng lựa chọn khi gửi bài đăng."
+
+#: admin/wp-event-manager-settings.php:196
+msgid "Enable event types for listings"
+msgstr "Bật loại sự kiện cho bài đăng"
+
+#: admin/wp-event-manager-settings.php:194
+msgid "Event Types"
+msgstr "Các loại sự kiện"
+
+#: admin/wp-event-manager-settings.php:181
+msgid "Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission."
+msgstr "Chọn hiển thị danh mục hay không. Danh mục cần phải được cài đặt bởi admin để người dùng lựa chọn khi gửi bài đăng."
+
+#: admin/wp-event-manager-settings.php:179
+msgid "Enable categories for listings"
+msgstr "Bật danh mục cho bài đăng"
+
+#: admin/wp-event-manager-cpt.php:355
+msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview</a>"
+msgstr "Bản nháp %s đã cập nhật. <a target=\"_blank\" href=\"%s\">Xem trước</a>"
+
+#: admin/wp-event-manager-cpt.php:353
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: admin/wp-event-manager-cpt.php:351
+msgid "%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview</a>"
+msgstr "%s đã được hẹn giờ: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Xem trước</a>"
+
+#: admin/wp-event-manager-cpt.php:349
+msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview</a>"
+msgstr "%s đã gửi. <a target=\"_blank\" href=\"%s\">Xem trước</a>"
+
+#: admin/wp-event-manager-cpt.php:347
+msgid "%s saved."
+msgstr "%s đã lưu."
+
+#: admin/wp-event-manager-cpt.php:345
+msgid "%s published. <a href=\"%s\">View</a>"
+msgstr "%s đã xuất bản. <a href=\"%s\">Xem</a>"
+
+#: admin/wp-event-manager-cpt.php:343
+msgid "%s restored to revision from %s"
+msgstr "%s đã được khôi phục về sửa đổi từ %s"
+
+#: admin/wp-event-manager-cpt.php:341
+msgid "%s updated."
+msgstr "%s đã được cập nhật."
+
+#: admin/wp-event-manager-cpt.php:339
+msgid "Custom field deleted."
+msgstr "Trường tùy chỉnh đã xóa."
+
+#: admin/wp-event-manager-cpt.php:337
+msgid "Custom field updated."
+msgstr "Trường tùy chỉnh đã cập nhật."
+
+#: admin/wp-event-manager-cpt.php:335
+msgid "%s updated. <a href=\"%s\">View</a>"
+msgstr "%s đã được cập nhật. <a href=\"%s\">Xem</a>"
+
+#: admin/wp-event-manager-cpt.php:314 admin/wp-event-manager-cpt.php:384
+#: admin/wp-event-manager-writepanels.php:54
+#: forms/wp-event-manager-form-submit-event.php:120
+msgid "Event Title"
+msgstr "Tiêu đề sự kiện"
+
+#: admin/wp-event-manager-cpt.php:294
+msgid "Select category"
+msgstr "Chọn danh mục"
+
+#: admin/wp-event-manager-cpt.php:245 admin/wp-event-manager-cpt.php:249
+msgid "%s expired"
+msgstr "%s đã hết hạn"
+
+#: admin/wp-event-manager-cpt.php:560
+msgid "Approve"
+msgstr "Chấp nhận"
+
+#: admin/wp-event-manager-cpt.php:524
+msgid "by %s"
+msgstr "bởi %s"
+
+#: admin/wp-event-manager-cpt.php:524
+msgid "by a guest"
+msgstr "bởi khách"
+
+#: admin/wp-event-manager-cpt.php:522 admin/wp-event-manager-cpt.php:532
+#: admin/wp-event-manager-cpt.php:543
+msgid "M j, Y"
+msgstr "M j, Y"
+
+#: admin/wp-event-manager-cpt.php:479
+msgid "ID: %d"
+msgstr "ID: %d"
+
+#: admin/wp-event-manager-cpt.php:400
+msgid "Actions"
+msgstr "Hành động"
+
+#: admin/wp-event-manager-cpt.php:398
+msgid "Event Expiry Date"
+msgstr "Ngày hết hạn sự kiện"
+
+#: admin/wp-event-manager-cpt.php:396
+msgid "Event End Date"
+msgstr "Ngày kết thúc sự kiện"
+
+#: admin/wp-event-manager-cpt.php:394
+msgid "Posted Date"
+msgstr "Ngày đăng"
+
+#: admin/wp-event-manager-cpt.php:392
+msgid "Event Organizer"
+msgstr "Nhà tổ chức sự kiện"
+
+#: admin/wp-event-manager-cpt.php:390
+msgid "Event Location"
+msgstr "Địa điểm sự kiện"
+
+#: admin/wp-event-manager-cpt.php:388 admin/wp-event-manager-writepanels.php:72
+#: forms/wp-event-manager-form-submit-event.php:138
+msgid "Event Category"
+msgstr "Danh mục sự kiện"
+
+#: admin/wp-event-manager-cpt.php:386 admin/wp-event-manager-writepanels.php:62
+#: forms/wp-event-manager-form-submit-event.php:128
+#: templates/event-filters.php:63
+msgid "Event Type"
+msgstr "Loại sự kiện"
+
+#: admin/wp-event-manager-cpt.php:382
+msgid "Featured?"
+msgstr "Nổi bật?"
+
+#: admin/wp-event-manager-cpt.php:380
+msgid "Cancelled?"
+msgstr "Hủy bỏ?"
+
+#: admin/wp-event-manager-cpt.php:378
+msgid "Status"
+msgstr "Trạng thái"
+
+#: admin/wp-event-manager-cpt.php:214 admin/wp-event-manager-cpt.php:218
+msgid "%s approved"
+msgstr "%s đã được chấp nhận"
+
+#: admin/wp-event-manager-cpt.php:79 admin/wp-event-manager-cpt.php:81
+msgid "Expire %s"
+msgstr "Hết hạn %s"
+
+#: admin/wp-event-manager-cpt.php:75 admin/wp-event-manager-cpt.php:77
+msgid "Approve %s"
+msgstr "Chấp nhận %s"
+
+#: admin/wp-event-manager-admin.php:123
+msgid "Add-ons"
+msgstr "Các add-on"
+
+#: admin/wp-event-manager-admin.php:119
+#: templates/form-fields/repeated-field.php:18
+#: templates/form-fields/repeated-field.php:61
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: admin/wp-event-manager-addons.php:59 admin/wp-event-manager-admin.php:123
+msgid "WP Event Manager Add-ons"
+msgstr "Add-on Quản lý Sự Kiện WP"

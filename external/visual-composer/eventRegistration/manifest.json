@@ -1,0 +1,19 @@
+{
+  "elements": {
+    "eventRegistration": {
+      "settings": {
+        "name": "Single Event Registration",
+        "metaThumbnailUrl": "[publicPath]/single-event-registration.jpg",
+        "metaPreviewUrl": "[publicPath]/event-registration-preview.png",
+        "metaDescription": "It will allow to register for specific event"
+      }
+    }
+  },
+  "categories": {
+    "Misc": {
+      "elements": [
+        "eventRegistration"
+      ]
+    }
+  }
+}

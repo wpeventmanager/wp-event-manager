@@ -1,0 +1,22 @@
+{
+  "elements": {
+    "eventSummary": {
+      "settings": {
+        "name": "Single Event Summary",
+        "metaThumbnailUrl": "[publicPath]/event-summary.jpg",
+        "metaPreviewUrl": "[publicPath]/event-summary-preview.png",
+        "metaDescription": "It will show the summary of specific event"
+      },
+      "phpFiles": [
+        "AutocompleteController.php"
+      ]
+    }
+  },
+  "categories": {
+    "Misc": {
+      "elements": [
+        "eventSummary"
+      ]
+    }
+  }
+}

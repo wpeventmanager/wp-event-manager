@@ -1,0 +1,2178 @@
+# Translation of Plugins - WP Event Manager - Stable (latest release) in Japanese
+# This file is distributed under the same license as the Plugins - WP Event Manager - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-09-01 15:56:02+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: ja_JP\n"
+"Project-Id-Version: Plugins - WP Event Manager - Stable (latest release)\n"
+
+#: admin/wp-event-manager-settings.php:820
+msgid "<span class=\"help-icon\"></span><b>Need help?</b> <br>Read the <a href=\"https://wp-eventmanager.com/documentation/\" target=\"_blank\" >Documentation.</a><br>Check the <a href=\"https://wp-eventmanager.com/faqs/\" target=\"_blank\">FAQs.</a><br>"
+msgstr "<span class=\"help-icon\"></span><b>ヘルプが必要な場合</b>は、<br><a href=\"https://wp-eventmanager.com/documentation/\" target=\"_blank\" >ドキュメンテーション</a>をご覧ください。<br><a href=\"https://wp-eventmanager.com/faqs/\" target=\"_blank\">FAQ</a>もご確認お願いします。<br>"
+
+#: admin/wp-event-manager-settings.php:823
+msgid "Demo"
+msgstr "デモ"
+
+#: admin/wp-event-manager-settings.php:823
+msgid "Plugin Demo."
+msgstr "プラグインデモ。"
+
+#: admin/wp-event-manager-settings.php:824
+msgid "Premium Add-ons"
+msgstr "プレミアムアドオン"
+
+#: admin/wp-event-manager-setup.php:153
+msgid "Error in nonce. Try again."
+msgstr "Nonce にエラーがあります。もう一度お試しください。"
+
+#: forms/wp-event-manager-form-submit-event.php:123
+msgid "Event title"
+msgstr "イベントタイトル"
+
+#: templates/event-registration-email.php:6
+msgid "Gmail"
+msgstr "Gmail"
+
+#: templates/event-registration-email.php:8
+msgid "AOL"
+msgstr "AOL"
+
+#: templates/event-registration-email.php:12
+msgid "Outlook"
+msgstr "Outlook"
+
+#: templates/event-registration-email.php:10
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#: wp-event-manager-template.php:418
+msgid "Confirm Password"
+msgstr "パスワード確認"
+
+#: admin/wp-event-manager-settings.php:262
+msgid "Category Filter"
+msgstr "カテゴリーフィルター"
+
+#: admin/wp-event-manager-form-field-editor-field.php:52
+msgid "Required"
+msgstr "必須"
+
+#: admin/wp-event-manager-form-field-editor-field.php:51
+msgid "Not Required"
+msgstr "必須でない"
+
+#: admin/wp-event-manager-form-field-editor-field.php:27
+msgid "Multiple Files?"
+msgstr "複数ファイルですか ?"
+
+#: admin/wp-event-manager-form-field-editor-field.php:24
+msgid "Pipe (|) separate options."
+msgstr "パイプ (|) 区切りオプション。"
+
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
+msgid "%s"
+msgstr "%s"
+
+#: admin/wp-event-manager-form-field-editor-field.php:20
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
+msgid "N/A"
+msgstr "該当なし"
+
+#: admin/wp-event-manager-field-editor.php:373
+msgid "The fields were successfully saved."
+msgstr "フィールドを保存しました。"
+
+#: admin/wp-event-manager-field-editor.php:228
+msgid "Author"
+msgstr "投稿者"
+
+#: admin/wp-event-manager-field-editor.php:153
+#: admin/wp-event-manager-field-editor.php:255
+msgid "Reset to default"
+msgstr "初期値にリセット"
+
+#: admin/wp-event-manager-field-editor.php:149
+#: admin/wp-event-manager-field-editor.php:251
+msgid "Add field"
+msgstr "フィールドを追加"
+
+#: admin/wp-event-manager-field-editor.php:142
+#: admin/wp-event-manager-field-editor.php:244
+msgid "Validation"
+msgstr "検証"
+
+#: admin/wp-event-manager-field-editor.php:141
+#: admin/wp-event-manager-field-editor.php:243
+msgid "Priority"
+msgstr "優先度"
+
+#: admin/wp-event-manager-field-editor.php:140
+#: admin/wp-event-manager-field-editor.php:242
+msgid "Placeholder / Options"
+msgstr "プレースホルダー / オプション"
+
+#: admin/wp-event-manager-field-editor.php:138
+#: admin/wp-event-manager-field-editor.php:240
+msgid "Type"
+msgstr "タイプ"
+
+#: admin/wp-event-manager-field-editor.php:137
+#: admin/wp-event-manager-field-editor.php:239
+msgid "Field Label"
+msgstr "フィールドラベル"
+
+#: admin/wp-event-manager-field-editor.php:129
+msgid "Organizer fields"
+msgstr "主催者フィールド"
+
+#: admin/wp-event-manager-field-editor.php:125
+#: admin/wp-event-manager-field-editor.php:234
+msgid "Event fields"
+msgstr "イベントフィールド"
+
+#: admin/wp-event-manager-field-editor.php:115
+#: admin/wp-event-manager-field-editor.php:227
+msgid "WP Editor"
+msgstr "WP エディター"
+
+#: admin/wp-event-manager-field-editor.php:114
+#: admin/wp-event-manager-field-editor.php:226
+msgid "Textarea"
+msgstr "テキストエリア"
+
+#: admin/wp-event-manager-field-editor.php:113
+#: admin/wp-event-manager-field-editor.php:225
+msgid "Term Select"
+msgstr "語句の選択"
+
+#: admin/wp-event-manager-field-editor.php:112
+#: admin/wp-event-manager-field-editor.php:224
+msgid "Term Multiselect"
+msgstr "語句の複数選択"
+
+#: admin/wp-event-manager-field-editor.php:111
+#: admin/wp-event-manager-field-editor.php:223
+msgid "Term Checklist"
+msgstr "語句のチェックリスト"
+
+#: admin/wp-event-manager-field-editor.php:110
+#: admin/wp-event-manager-field-editor.php:221
+msgid "Select"
+msgstr "選択"
+
+#: admin/wp-event-manager-field-editor.php:109
+#: admin/wp-event-manager-field-editor.php:220
+msgid "Repeated"
+msgstr "繰り返し"
+
+#: admin/wp-event-manager-field-editor.php:108
+#: admin/wp-event-manager-field-editor.php:219
+msgid "Radio"
+msgstr "ラジオボタン"
+
+#: admin/wp-event-manager-field-editor.php:106
+#: admin/wp-event-manager-field-editor.php:217
+msgid "Number"
+msgstr "数字"
+
+#: admin/wp-event-manager-field-editor.php:105
+#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:222
+msgid "Multiselect"
+msgstr "複数選択"
+
+#: admin/wp-event-manager-field-editor.php:104
+#: admin/wp-event-manager-field-editor.php:215
+msgid "Hidden"
+msgstr "非表示"
+
+#: admin/wp-event-manager-field-editor.php:103
+#: admin/wp-event-manager-field-editor.php:214
+msgid "File"
+msgstr "ファイル"
+
+#: admin/wp-event-manager-field-editor.php:102
+#: admin/wp-event-manager-field-editor.php:213
+msgid "Date"
+msgstr "日付"
+
+#: admin/wp-event-manager-field-editor.php:101
+#: admin/wp-event-manager-field-editor.php:212
+msgid "Checkbox"
+msgstr "チェックボックス"
+
+#: admin/wp-event-manager-field-editor.php:100
+#: admin/wp-event-manager-field-editor.php:211
+msgid "Button Options"
+msgstr "ボタンオプション"
+
+#: admin/wp-event-manager-field-editor.php:99
+#: admin/wp-event-manager-field-editor.php:210
+msgid "Button"
+msgstr "ボタン"
+
+#: admin/wp-event-manager-field-editor.php:98
+#: admin/wp-event-manager-field-editor.php:209
+msgid "Text"
+msgstr "文字"
+
+#: admin/wp-event-manager-field-editor.php:81
+#: admin/wp-event-manager-field-editor.php:194
+msgid "The fields were successfully reset."
+msgstr "フィールドをリセットしました。"
+
+#: admin/wp-event-manager-field-editor.php:43
+msgid "Back End Form Fields"
+msgstr "バックエンドフォーム用フィールド"
+
+#: admin/wp-event-manager-field-editor.php:42
+msgid "Front End Form Fields"
+msgstr "フロントエンドフォーム用フィールド"
+
+#: admin/wp-event-manager-field-editor.php:31
+msgid "Are you sure you want to reset your changes? This cannot be undone."
+msgstr "本当に変更をリセットしますか ? この操作は取り消せません。"
+
+#: admin/wp-event-manager-field-editor.php:30
+msgid "Are you sure you want to delete this row?"
+msgstr "本当にこの行を削除しますか ?"
+
+#: admin/wp-event-manager-field-editor.php:20
+msgid "Field Editor"
+msgstr "フィールドエディター"
+
+#. Author URI of the plugin/theme
+msgid "https://www.wp-eventmanager.com"
+msgstr "https://www.wp-eventmanager.com"
+
+#. Description of the plugin/theme
+msgid "Manage event listings from the WordPress admin panel, and allow users to post events directly to your site."
+msgstr "WordPress の管理画面からイベント掲載情報を管理し、ユーザーがサイトに直接イベントを投稿できるようにします。"
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.wp-eventmanager.com/"
+msgstr "https://www.wp-eventmanager.com/"
+
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
+#. Author of the plugin/theme
+#: admin/wp-event-manager-settings.php:827
+msgid "WP Event Manager"
+msgstr "WP Event Manager"
+
+#: wp-event-manager.php:299
+msgid "Are you sure you want to delete this event?"
+msgstr "このイベントを本当に削除したいですか ?"
+
+#: wp-event-manager.php:297
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: wp-event-manager.php:286
+msgid "Load previous listings"
+msgstr "前の掲載情報を読み込む"
+
+#: wp-event-manager.php:229
+msgid "Invalid file type. Accepted types:"
+msgstr "不正なファイルタイプ。許可されているタイプ:"
+
+#: wp-event-manager-template.php:425 wp-event-manager-template.php:2083
+msgid "Your email"
+msgstr "あなたのメールアドレス"
+
+#: wp-event-manager-template.php:417 wp-event-manager-template.php:2076
+msgid "Verify Password"
+msgstr "パスワード確認"
+
+#: admin/wp-event-manager-field-editor.php:107
+#: admin/wp-event-manager-field-editor.php:218
+#: wp-event-manager-template.php:406 wp-event-manager-template.php:407
+#: wp-event-manager-template.php:2066
+msgid "Password"
+msgstr "パスワード"
+
+#: wp-event-manager-template.php:507
+msgid "Anywhere"
+msgstr "どこでも"
+
+#: wp-event-manager-template.php:443 wp-event-manager-template.php:457
+msgid "Posted %s ago"
+msgstr "%s前に投稿"
+
+#: wp-event-manager-template.php:441
+msgid "Posted on "
+msgstr "投稿日: "
+
+#: wp-event-manager-template.php:267
+msgid "Registration via \"%s\" listing on %s"
+msgstr "\"%s\" 掲載情報 (%s) 経由で登録"
+
+#: wp-event-manager-template.php:186
+msgid "Inactive"
+msgstr "無効"
+
+#: wp-event-manager-functions.php:1606
+msgid "Passwords must be at least 8 characters long."
+msgstr "パスワードは少なくとも8文字の長さが必要です。"
+
+#: wp-event-manager-functions.php:1340
+msgid "Uploaded files need to be one of the following file types: %s"
+msgstr "アップロードするファイルは、以下のファイルタイプうちのいずれかである必要があります: %s"
+
+#: wp-event-manager-functions.php:1138
+msgid "Choose an event type&hellip;"
+msgstr "イベントタイプを選択&hellip;"
+
+#: wp-event-manager-functions.php:1088
+msgid "Choose a category&hellip;"
+msgstr "イベントカテゴリーを選択&hellip;"
+
+#: wp-event-manager-functions.php:858
+msgid "This email is already registered, please choose another one."
+msgstr "このメールアドレスはすでに登録されています。別のものを選択してください。"
+
+#: wp-event-manager-functions.php:853
+msgid "Your email address isn&#8217;t correct."
+msgstr "あなたのメールアドレスは不正です。"
+
+#: wp-event-manager-functions.php:843
+msgid "Invalid email address."
+msgstr "不正なメールアドレスです。"
+
+#: wp-event-manager-functions.php:716
+msgid "RSS"
+msgstr "RSS"
+
+#: wp-event-manager-functions.php:709
+msgid "Reset"
+msgstr "リセット"
+
+#: wp-event-manager-functions.php:524
+msgctxt "post status"
+msgid "Active"
+msgstr "有効"
+
+#: wp-event-manager-functions.php:522
+msgctxt "post status"
+msgid "Pending payment"
+msgstr "支払い待ち"
+
+#: wp-event-manager-functions.php:520
+msgctxt "post status"
+msgid "Pending approval"
+msgstr "承認待ち"
+
+#: wp-event-manager-functions.php:518
+msgctxt "post status"
+msgid "Preview"
+msgstr "プレビュー"
+
+#: wp-event-manager-functions.php:514
+msgctxt "post status"
+msgid "Draft"
+msgstr "下書き"
+
+#: widgets/wp-event-manager-widgets.php:502
+#: widgets/wp-event-manager-widgets.php:510
+msgid "Upcoming %s"
+msgstr "今後の%s"
+
+#: widgets/wp-event-manager-widgets.php:498
+msgid "Display a list of upcoming listings on your site."
+msgstr "開催予定の掲載情報のうちひとつをサイトに表示します。"
+
+#: widgets/wp-event-manager-widgets.php:361
+#: widgets/wp-event-manager-widgets.php:369
+msgid "Featured %s"
+msgstr "おすすめの%s"
+
+#: widgets/wp-event-manager-widgets.php:357
+msgid "Display a list of featured listings on your site."
+msgstr "おすすめ掲載情報のうちひとつをサイトに表示します。"
+
+#: widgets/wp-event-manager-widgets.php:261
+#: widgets/wp-event-manager-widgets.php:397
+#: widgets/wp-event-manager-widgets.php:538
+msgid "Descending  (DESC)"
+msgstr "降順 (DESC)"
+
+#: widgets/wp-event-manager-widgets.php:260
+#: widgets/wp-event-manager-widgets.php:396
+#: widgets/wp-event-manager-widgets.php:537
+msgid "Ascending (ASC)"
+msgstr "昇順 (ASC)"
+
+#: widgets/wp-event-manager-widgets.php:258
+#: widgets/wp-event-manager-widgets.php:394
+#: widgets/wp-event-manager-widgets.php:535
+msgid "Order by"
+msgstr "並び順"
+
+#: widgets/wp-event-manager-widgets.php:250
+#: widgets/wp-event-manager-widgets.php:386
+#: widgets/wp-event-manager-widgets.php:527
+msgid "Number of listings to show"
+msgstr "表示する掲載情報の数"
+
+#: widgets/wp-event-manager-widgets.php:226
+msgid "Keyword"
+msgstr "キーワード"
+
+#: widgets/wp-event-manager-widgets.php:207
+#: widgets/wp-event-manager-widgets.php:215
+msgid "Recent %s"
+msgstr "最近の%s"
+
+#: widgets/wp-event-manager-widgets.php:203
+msgid "Display a list of recent listings on your site, optionally matching a keyword and location."
+msgstr "最近の掲載情報のうちひとつをサイトに表示します。オプションとしてキーワードと場所に一致するもののみにもできます。"
+
+#: templates/form-fields/uploaded-file-html.php:11
+#: templates/form-fields/uploaded-file-html.php:13
+msgid "remove"
+msgstr "削除"
+
+#: templates/form-fields/repeated-field.php:59
+msgid "Remove"
+msgstr "削除"
+
+#: templates/form-fields/repeated-field.php:19
+msgid "You can't delete ticket once it is added.You can make it private from settings tab."
+msgstr "追加されたチケットは削除できません。設定タブからチケットをプライベート設定にすることはできます。"
+
+#: templates/form-fields/repeated-field.php:17
+#: templates/form-fields/repeated-field.php:60
+msgid "Ticket Details"
+msgstr "チケットの詳細"
+
+#: templates/event-filters.php:29 templates/event-filters.php:80
+#: templates/form-fields/multiselect-field.php:7
+#: wp-event-manager-functions.php:1092
+msgid "Select Some Options"
+msgstr "オプションを選択"
+
+#: templates/event-filters.php:80 templates/form-fields/multiselect-field.php:7
+#: wp-event-manager-functions.php:1090
+msgid "No results match"
+msgstr "一致する結果なし"
+
+#: templates/form-fields/file-field.php:85
+msgid "Maximum file size: %s."
+msgstr "最大ファイルサイズ: %s"
+
+#: templates/event-submitted.php:7
+msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a>."
+msgstr "%sの掲載情報を登録しました。表示するには<a href=\"%s\">ここをクリックして</a>ください。"
+
+#: templates/event-submit.php:37
+msgid "Organizer Details"
+msgstr "主催者の詳細"
+
+#: templates/event-submit.php:20
+msgid "Create A New Event"
+msgstr "新規イベントを作成"
+
+#: templates/event-submit.php:20
+msgid "You are editing an existing event. %s"
+msgstr "既存のイベントを編集中です。%s"
+
+#: templates/event-submit.php:17
+msgid "Event Details"
+msgstr "イベントの詳細"
+
+#: templates/event-registration.php:8
+msgid "Register for event"
+msgstr "イベントに登録"
+
+#: templates/event-registration-url.php:1
+msgid "To register for this event please visit the following URL:"
+msgstr "このイベントに登録するには、以下の URL へ移動してください:"
+
+#: templates/event-registration-email.php:4
+msgid "Register using webmail: "
+msgstr "Web メールを使って登録: "
+
+#: templates/event-listings-start.php:4
+msgid "Recent Events"
+msgstr "最近のイベント"
+
+#: templates/event-filters.php:96
+msgid "Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled in order to view listings."
+msgstr "お使いのブラウザーは JavaScript をサポートしていないか無効化しています。掲載情報を表示するには JavaScript を有効化する必要があります。"
+
+#: templates/event-filters.php:79
+msgid "Ticket Prices"
+msgstr "チケットの価格"
+
+#: templates/event-filters.php:67
+msgid "Any Event Type"
+msgstr "任意のイベントタイプ"
+
+#: templates/event-filters.php:50
+msgid "Any Category"
+msgstr "任意のカテゴリー"
+
+#: templates/event-filters.php:46
+msgid "Category"
+msgstr "カテゴリー"
+
+#: templates/event-filters.php:28
+msgid "Any dates"
+msgstr "任意の日付"
+
+#: templates/event-filters.php:11 templates/event-filters.php:12
+msgid "Keywords"
+msgstr "キーワード"
+
+#: templates/event-dashboard.php:43
+msgid "Relist"
+msgstr "再掲載"
+
+#: templates/event-dashboard.php:39
+msgid "Duplicate"
+msgstr "複製"
+
+#: templates/event-dashboard.php:37
+msgid "Mark cancelled"
+msgstr "キャンセル済みとしてマーク"
+
+#: templates/event-dashboard.php:35
+msgid "Mark not cancelled"
+msgstr "未キャンセル済みとしてマーク"
+
+#: templates/event-dashboard.php:14
+msgid "You do not have any active listings."
+msgstr "有効な掲載情報はありません。"
+
+#: templates/event-dashboard-login.php:2
+msgid "You need to be signed in to manage your listings."
+msgstr "掲載情報を管理するにはログインする必要があります。"
+
+#: templates/content-single-event_listing.php:27
+msgid "Event Overview"
+msgstr "イベントの概要"
+
+#: templates/content-single-event_listing.php:7
+msgid "This listing has expired."
+msgstr "この掲載情報は期限切れです。"
+
+#: templates/content-single-event_listing-organizer.php:204
+msgid "Share This Event"
+msgstr "このイベントを共有"
+
+#: templates/content-single-event_listing-organizer.php:143
+msgid "Organizer Social"
+msgstr "主催者の SNS アカウント"
+
+#: templates/content-single-event_listing-organizer.php:111
+msgid "Registration End Date"
+msgstr "登録終了日"
+
+#: templates/content-single-event_listing-organizer.php:88
+msgid "When & Where"
+msgstr "日次と場所"
+
+#: templates/content-single-event_listing-organizer.php:80
+msgid "Ticket Information"
+msgstr "チケット情報"
+
+#: templates/content-single-event_listing-organizer.php:59
+#: templates/content-single-event_listing-organizer.php:66
+msgid "Watch Video"
+msgstr "動画を再生"
+
+#: templates/content-single-event_listing-organizer.php:52
+msgid "View More Details"
+msgstr "さらに詳細を表示"
+
+#: templates/content-single-event_listing-organizer.php:36
+msgid "About"
+msgstr "説明"
+
+#: templates/content-single-event_listing-meta.php:46
+msgid "Registrations have closed"
+msgstr "登録は締め切られました。"
+
+#: templates/content-single-event_listing-meta.php:43
+msgid "This event has been cancelled"
+msgstr "このイベントはキャンセルされました"
+
+#: templates/content-no-events-found.php:4
+msgid "There are currently no events."
+msgstr "現在イベントはありません。"
+
+#: templates/content-no-events-found.php:2
+msgid "There are no events matching your search."
+msgstr "検索条件に一致するイベントはありません。"
+
+#: templates/account-signin.php:49 templates/event-submit.php:27
+#: templates/event-submit.php:41 templates/form-fields/repeated-field.php:32
+#: templates/form-fields/repeated-field.php:74
+msgid "(optional)"
+msgstr "(オプション)"
+
+#: wp-event-manager-template.php:398 wp-event-manager-template.php:2058
+msgid "Username"
+msgstr "ユーザー名"
+
+#: templates/account-signin.php:35
+msgid " You must sign in to create a new listing."
+msgstr "掲載情報を新規作成するにはログインする必要があります。"
+
+#: templates/account-signin.php:31
+msgid "optionally"
+msgstr "オプション"
+
+#: templates/account-signin.php:31
+msgid "If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email."
+msgstr "サイトでアカウント登録をしていない場合は、メールアドレスを入力して新規作成してください。追ってメールでパスワードをお送りします。"
+
+#: templates/account-signin.php:27 templates/event-dashboard-login.php:2
+msgid "Sign in"
+msgstr "ログイン"
+
+#: templates/account-signin.php:23
+msgid "Have an account?"
+msgstr "アカウントをお持ちですか ?"
+
+#: templates/account-signin.php:9
+msgid "Sign out"
+msgstr "ログアウト"
+
+#: templates/account-signin.php:7
+msgid "You are currently signed in as <strong>%s</strong>."
+msgstr "現在<strong>%s</strong>としてログインしています。"
+
+#: templates/account-signin.php:3
+msgid "Your account"
+msgstr "あなたのアカウント"
+
+#: shortcodes/wp-event-manager-shortcodes.php:541
+msgid "Load more listings"
+msgstr "掲載情報をさらに読込む"
+
+#: shortcodes/wp-event-manager-shortcodes.php:488
+msgid "Load more events"
+msgstr "さらにイベントを読み込む"
+
+#: shortcodes/wp-event-manager-shortcodes.php:246
+msgid "Action"
+msgstr "操作"
+
+#: shortcodes/wp-event-manager-shortcodes.php:245
+msgid "Viewed"
+msgstr "閲覧済"
+
+#: shortcodes/wp-event-manager-shortcodes.php:241
+#: widgets/wp-event-manager-widgets.php:217
+#: widgets/wp-event-manager-widgets.php:371
+#: widgets/wp-event-manager-widgets.php:512
+msgid "Title"
+msgstr "タイトル"
+
+#: shortcodes/wp-event-manager-shortcodes.php:144
+msgid "Missing submission page."
+msgstr "投稿ページが存在しません。"
+
+#: shortcodes/wp-event-manager-shortcodes.php:139
+msgid "%s has been deleted"
+msgstr "%sは削除されました"
+
+#: shortcodes/wp-event-manager-shortcodes.php:129
+msgid "%s has been marked as not cancelled"
+msgstr "%sは未キャンセルとマークされました"
+
+#: shortcodes/wp-event-manager-shortcodes.php:121
+msgid "This event is not cancelled"
+msgstr "このイベントはキャンセルされていません"
+
+#: shortcodes/wp-event-manager-shortcodes.php:112
+msgid "%s has been cancelled"
+msgstr "%sはキャンセルされました"
+
+#: shortcodes/wp-event-manager-shortcodes.php:104
+msgid "This event has already been cancelled"
+msgstr "このイベントはすでにキャンセルされています"
+
+#: shortcodes/wp-event-manager-shortcodes.php:93
+msgid "Invalid ID"
+msgstr "不正な ID"
+
+#: forms/wp-event-manager-form-submit-event.php:919
+msgid "← Edit listing"
+msgstr "← 掲載情報を編集"
+
+#: forms/wp-event-manager-form-submit-event.php:918
+msgid "Submit Listing →"
+msgstr "掲載情報を投稿 \t"
+
+#: forms/wp-event-manager-form-submit-event.php:699
+msgid "You must be signed in to post a new listing."
+msgstr "掲載情報を新規投稿するにはログインする必要があります。"
+
+#: forms/wp-event-manager-form-submit-event.php:680
+msgid "Password is not valid."
+msgstr "パスワードが正しくありません。"
+
+#: forms/wp-event-manager-form-submit-event.php:678
+msgid "Invalid Password: %s"
+msgstr "不正パスワード: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:673
+msgid "Passwords must match."
+msgstr "パスワードは一致する必要があります。"
+
+#: forms/wp-event-manager-form-submit-event.php:665
+#: forms/wp-event-manager-form-submit-event.php:668
+msgid "Please enter your email address."
+msgstr "メールアドレスを入力して下さい。"
+
+#: forms/wp-event-manager-form-submit-event.php:662
+msgid "Please enter a username."
+msgstr "ユーザー名を入力して下さい。"
+
+#: forms/wp-event-manager-form-submit-event.php:547
+msgid "Please enter a valid registration email address or URL"
+msgstr "有効な登録メールアドレスまたは URL を入力してください"
+
+#: forms/wp-event-manager-form-submit-event.php:537
+msgid "Please enter a valid registration URL"
+msgstr "有効な登録 URL を入力してください"
+
+#: forms/wp-event-manager-form-submit-event.php:528
+msgid "Please enter a valid registration email address"
+msgstr "有効な登録メールアドレスを入力してください"
+
+#: forms/wp-event-manager-form-submit-event.php:513
+#: wp-event-manager-functions.php:1336
+msgid "\"%s\" (filetype %s) needs to be one of the following file types: %s"
+msgstr "\"%s\" (ファイルタイプ %s) は以下のファイルタイプのいずれかでなければなりません: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:497
+msgid "%s is invalid"
+msgstr "%sは不正な値です"
+
+#: forms/wp-event-manager-form-submit-event.php:486
+msgid "%s is a required field"
+msgstr "%sは必須フィールドです"
+
+#: forms/wp-event-manager-form-submit-event.php:399
+msgid "Twitter URL e.g http://twitter.com/yourorganizer"
+msgstr "Twitter URL 例) http://twitter.com/yourorganizer"
+
+#: forms/wp-event-manager-form-submit-event.php:396
+#: templates/content-single-event_listing-organizer.php:158
+msgid "Twitter"
+msgstr "Twitter"
+
+#: forms/wp-event-manager-form-submit-event.php:286
+msgid "e.g http://www.example.com"
+msgstr "例) http://www.example.com"
+
+#: forms/wp-event-manager-form-submit-event.php:275
+msgid "Ticket Price"
+msgstr "チケットの価格"
+
+#: forms/wp-event-manager-form-submit-event.php:187
+msgid "e.g. \"Berlin\",\"London\""
+msgstr "例) ”ベルリン\"、\"ロンドン\""
+
+#: forms/wp-event-manager-form-submit-event.php:113
+msgid "Enter an email address or website URL"
+msgstr "メールアドレスまたはサイト URL を入力"
+
+#: forms/wp-event-manager-form-submit-event.php:112
+msgid "Registration email/URL"
+msgstr "登録メールアドレス / URL"
+
+#: forms/wp-event-manager-form-submit-event.php:109
+msgid "http://"
+msgstr "http://"
+
+#: forms/wp-event-manager-form-submit-event.php:108
+msgid "Registration URL"
+msgstr "登録 URL"
+
+#: forms/wp-event-manager-form-submit-event.php:105
+#: wp-event-manager-template.php:426 wp-event-manager-template.php:2084
+msgid "you@yourdomain.com"
+msgstr "you@yourdomain.com"
+
+#: forms/wp-event-manager-form-submit-event.php:104
+msgid "Registration email"
+msgstr "登録メールアドレス"
+
+#: forms/wp-event-manager-form-submit-event.php:43
+msgid "Done"
+msgstr "完了"
+
+#: forms/wp-event-manager-form-submit-event.php:36
+#: forms/wp-event-manager-form-submit-event.php:636
+#: forms/wp-event-manager-form-submit-event.php:924
+msgid "Preview"
+msgstr "プレビュー"
+
+#: forms/wp-event-manager-form-submit-event.php:29
+msgid "Submit Details"
+msgstr "詳細を投稿"
+
+#: forms/wp-event-manager-form-edit-event.php:161
+msgid "View &rarr;"
+msgstr "表示 &rarr;"
+
+#: forms/wp-event-manager-form-edit-event.php:161
+#: forms/wp-event-manager-form-edit-event.php:167
+msgid "Your changes have been saved."
+msgstr "変更を保存しました。"
+
+#: forms/wp-event-manager-form-edit-event.php:120
+msgid "Save changes"
+msgstr "変更を保存"
+
+#: forms/wp-event-manager-form-edit-event.php:66
+msgid "Invalid listing"
+msgstr "不正な掲載情報"
+
+#: core/wp-event-manager-post-types.php:391
+msgid "Preview <span class=\"count\">(%s)</span>"
+msgid_plural "Preview <span class=\"count\">(%s)</span>"
+msgstr[0] "プレビュー <span class=\"count\">(%s)</span>"
+
+#: core/wp-event-manager-post-types.php:378
+msgid "Expired <span class=\"count\">(%s)</span>"
+msgid_plural "Expired <span class=\"count\">(%s)</span>"
+msgstr[0] "期限切れ <span class=\"count\">(%s)</span>"
+
+#: core/wp-event-manager-post-types.php:368 wp-event-manager-functions.php:516
+msgctxt "post status"
+msgid "Expired"
+msgstr "期限切れ"
+
+#: core/wp-event-manager-post-types.php:326
+msgid "This is where you can create and manage %s."
+msgstr "ここで%sを作成して管理できます。"
+
+#: core/wp-event-manager-post-types.php:323
+msgid "Use as organizer logo"
+msgstr "主催者のロゴとして使用"
+
+#: core/wp-event-manager-post-types.php:321
+msgid "Remove organizer logo"
+msgstr "主催者のロゴを削除"
+
+#: core/wp-event-manager-post-types.php:319
+msgid "Set organizer logo"
+msgstr "主催者のロゴを設定"
+
+#: core/wp-event-manager-post-types.php:317
+msgid "Organizer Logo"
+msgstr "主催者のロゴ"
+
+#: core/wp-event-manager-post-types.php:313
+msgid "No %s found in trash"
+msgstr "ゴミ箱に%sは見つかりません"
+
+#: core/wp-event-manager-post-types.php:311
+msgid "No %s found"
+msgstr "%sは見つかりません"
+
+#: core/wp-event-manager-post-types.php:305
+#: core/wp-event-manager-post-types.php:307
+msgid "View %s"
+msgstr "%sを表示"
+
+#: core/wp-event-manager-post-types.php:303
+msgid "New %s"
+msgstr "新規%s"
+
+#: core/wp-event-manager-post-types.php:297
+msgid "Add %s"
+msgstr "%sを追加"
+
+#: core/wp-event-manager-post-types.php:295
+msgid "Add New"
+msgstr "新規追加"
+
+#: core/wp-event-manager-post-types.php:272
+msgctxt "Event permalink - resave permalinks after changing this"
+msgid "event"
+msgstr "event"
+
+#: core/wp-event-manager-post-types.php:262
+msgctxt "Post type archive slug - resave permalinks after changing this"
+msgid "events"
+msgstr "events"
+
+#: core/wp-event-manager-post-types.php:258
+msgid "Events"
+msgstr "イベント"
+
+#: core/wp-event-manager-post-types.php:256
+msgid "Event"
+msgstr "イベント"
+
+#: core/wp-event-manager-post-types.php:179
+msgctxt "Event type slug - resave permalinks after changing this"
+msgid "event-type"
+msgstr "event-type"
+
+#: core/wp-event-manager-post-types.php:173
+msgid "Event types"
+msgstr "イベントタイプ"
+
+#: core/wp-event-manager-post-types.php:171
+msgid "Event type"
+msgstr "イベントタイプ"
+
+#: core/wp-event-manager-post-types.php:141
+#: core/wp-event-manager-post-types.php:229
+msgid "New %s Name"
+msgstr "新規%s名"
+
+#: core/wp-event-manager-post-types.php:139
+#: core/wp-event-manager-post-types.php:227
+msgid "Add New %s"
+msgstr "新規%sを追加"
+
+#: core/wp-event-manager-post-types.php:137
+#: core/wp-event-manager-post-types.php:225
+msgid "Update %s"
+msgstr "%sを更新"
+
+#: core/wp-event-manager-post-types.php:135
+#: core/wp-event-manager-post-types.php:223
+#: core/wp-event-manager-post-types.php:301
+msgid "Edit %s"
+msgstr "%sを編集"
+
+#: core/wp-event-manager-post-types.php:133
+#: core/wp-event-manager-post-types.php:221
+msgid "Parent %s:"
+msgstr "親%s:"
+
+#: core/wp-event-manager-post-types.php:131
+#: core/wp-event-manager-post-types.php:219
+#: core/wp-event-manager-post-types.php:315
+msgid "Parent %s"
+msgstr "親%s"
+
+#: core/wp-event-manager-post-types.php:129
+#: core/wp-event-manager-post-types.php:217
+#: core/wp-event-manager-post-types.php:293
+msgid "All %s"
+msgstr "%s一覧"
+
+#: core/wp-event-manager-post-types.php:127
+#: core/wp-event-manager-post-types.php:215
+#: core/wp-event-manager-post-types.php:309
+msgid "Search %s"
+msgstr "%sを検索"
+
+#: core/wp-event-manager-post-types.php:91
+msgctxt "Event category slug - resave permalinks after changing this"
+msgid "event-category"
+msgstr "event-category"
+
+#: core/wp-event-manager-post-types.php:85
+msgid "Event categories"
+msgstr "イベントカテゴリー"
+
+#: core/wp-event-manager-post-types.php:83
+msgid "Event category"
+msgstr "イベントカテゴリー"
+
+#: core/wp-event-manager-install.php:69
+msgid "Organizer"
+msgstr "主催者"
+
+#: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
+#: core/wp-event-manager-geocode.php:236
+msgid "Geocoding error"
+msgstr "ジオコーディングエラー"
+
+#: core/wp-event-manager-geocode.php:210
+msgid "Query limit reached"
+msgstr "クエリー上限に達しました"
+
+#: core/wp-event-manager-geocode.php:202
+msgid "No results found"
+msgstr "検索結果はありません"
+
+#: core/wp-event-manager-filters.php:73
+msgid "Any Ticket Price"
+msgstr "任意のチケット価格"
+
+#: core/wp-event-manager-filters.php:41
+msgid "Next Year"
+msgstr "来年"
+
+#: core/wp-event-manager-filters.php:39
+msgid "Next Month"
+msgstr "来月"
+
+#: core/wp-event-manager-filters.php:37
+msgid "Next Weekend"
+msgstr "来週末"
+
+#: core/wp-event-manager-filters.php:35
+msgid "Next Week"
+msgstr "来週"
+
+#: core/wp-event-manager-filters.php:33
+msgid "This Year"
+msgstr "今年"
+
+#: core/wp-event-manager-filters.php:31
+msgid "This Month"
+msgstr "今月"
+
+#: core/wp-event-manager-filters.php:29
+msgid "This Weekend"
+msgstr "今週末"
+
+#: core/wp-event-manager-filters.php:27
+msgid "This Week"
+msgstr "今週"
+
+#: core/wp-event-manager-filters.php:25
+msgid "Tomorrow"
+msgstr "明日"
+
+#: core/wp-event-manager-filters.php:23
+msgid "Today"
+msgstr "今日"
+
+#: core/wp-event-manager-filters.php:21
+msgid "Any Date"
+msgstr "任意の日付"
+
+#: core/wp-event-manager-ajax.php:381
+msgid "You must be logged in to upload files using this method."
+msgstr "この方法でファイルをアップロードするにはログインする必要があります。"
+
+#: core/wp-event-manager-ajax.php:319
+msgid "Search completed. Found %d matching record."
+msgid_plural "Search completed. Found %d matching records."
+msgstr[0] "検索が完了しました。一致する項目が%d件見つかりました。"
+
+#: core/wp-event-manager-ajax.php:314
+msgid "located in &ldquo;%s&rdquo;"
+msgstr "&ldquo;%s&rdquo; に配置"
+
+#: admin/wp-event-manager-writepanels.php:738
+msgid "Enter the ID of the user, or leave blank if submitted by a guest."
+msgstr "ユーザーの ID を入力するか、ゲストからの投稿の場合は空欄にしてください。"
+
+#: admin/wp-event-manager-writepanels.php:734
+msgid "Change"
+msgstr "変更"
+
+#: admin/wp-event-manager-writepanels.php:732
+msgid "Guest User"
+msgstr "ゲストユーザー"
+
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Add file"
+msgstr "ファイルを追加"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Upload"
+msgstr "アップロード"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Use file"
+msgstr "ファイルを使用"
+
+#: admin/wp-event-manager-writepanels.php:484
+msgid "Most Used"
+msgstr "使用頻度が高い項目"
+
+#: admin/wp-event-manager-writepanels.php:434
+msgid "%s Data"
+msgstr "%sデータ"
+
+#: admin/wp-event-manager-writepanels.php:387
+msgid "Posted by"
+msgstr "投稿者:"
+
+#: admin/wp-event-manager-writepanels.php:379
+msgid "yyyy-mm-dd"
+msgstr "yyyy-mm-dd"
+
+#: admin/wp-event-manager-writepanels.php:378
+msgid "Listing Expiry Date"
+msgstr "掲載期限"
+
+#: admin/wp-event-manager-writepanels.php:373
+msgid "Featured listings will be sticky during searches, and can be styled differently."
+msgstr "おすすめ掲載情報は検索中に先頭固定表示され、異なるスタイルにすることもできます。"
+
+#: admin/wp-event-manager-writepanels.php:371
+msgid "Featured Listing"
+msgstr "おすすめリスト"
+
+#: admin/wp-event-manager-writepanels.php:365
+msgid "Cancelled listings will no longer accept registration."
+msgstr "キャンセルした掲載情報は登録を受け付けられません。"
+
+#: admin/wp-event-manager-writepanels.php:362
+msgid "Event Cancelled"
+msgstr "イベントがキャンセルされました"
+
+#: admin/wp-event-manager-writepanels.php:357
+#: forms/wp-event-manager-form-submit-event.php:423
+msgid "Instagram URL e.g http://www.instagram.com/yourcompany"
+msgstr "Instagram URL 例) http://www.instagram.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:354
+#: forms/wp-event-manager-form-submit-event.php:420
+#: templates/content-single-event_listing-organizer.php:182
+msgid "Instagram"
+msgstr "Instagram"
+
+#: admin/wp-event-manager-writepanels.php:349
+#: forms/wp-event-manager-form-submit-event.php:415
+msgid "Pinterest URL e.g http://www.pinterest.com/yourcompany"
+msgstr "Pinterest URL 例) http://www.pinterest.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:346
+#: forms/wp-event-manager-form-submit-event.php:412
+#: templates/content-single-event_listing-organizer.php:176
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: admin/wp-event-manager-writepanels.php:341
+#: forms/wp-event-manager-form-submit-event.php:407
+msgid "Xing URL e.g http://www.xing.com/companies/yourcompany"
+msgstr "Xing URL 例) http://www.xing.com/companies/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:338
+#: forms/wp-event-manager-form-submit-event.php:404
+#: templates/content-single-event_listing-organizer.php:170
+msgid "Xing"
+msgstr "Xing"
+
+#: admin/wp-event-manager-writepanels.php:333
+msgid "@yourorganizer"
+msgstr "@yourorganizer"
+
+#: admin/wp-event-manager-writepanels.php:330
+msgid "Twitter username"
+msgstr "Twitter ユーザー名"
+
+#: admin/wp-event-manager-writepanels.php:325
+#: forms/wp-event-manager-form-submit-event.php:391
+msgid "Linkedin URL e.g http://www.linkedin.com/company/yourcompany"
+msgstr "Linkedin URL 例) http://www.linkedin.com/company/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:322
+#: forms/wp-event-manager-form-submit-event.php:388
+#: templates/content-single-event_listing-organizer.php:164
+msgid "Linkedin"
+msgstr "Linkedin"
+
+#: admin/wp-event-manager-writepanels.php:317
+#: forms/wp-event-manager-form-submit-event.php:383
+msgid "Facebook URL e.g http://www.facebook.com/yourcompany"
+msgstr "Facebook URL 例) http://www.facebook.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:314
+#: forms/wp-event-manager-form-submit-event.php:380
+#: templates/content-single-event_listing-organizer.php:152
+msgid "Facebook"
+msgstr "Facebook"
+
+#: admin/wp-event-manager-writepanels.php:309
+#: forms/wp-event-manager-form-submit-event.php:375
+msgid "Google+ URL e.g http://plus.google.com/yourcompany"
+msgstr "Google+ URL 例) http://plus.google.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:306
+#: forms/wp-event-manager-form-submit-event.php:372
+#: templates/content-single-event_listing-organizer.php:194
+msgid "Google+"
+msgstr "Google+"
+
+#: admin/wp-event-manager-writepanels.php:301
+#: forms/wp-event-manager-form-submit-event.php:367
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany"
+msgstr "YouTube チャンネル URL 例) http://www.youtube.com/channel/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:298
+#: forms/wp-event-manager-form-submit-event.php:364
+#: templates/content-single-event_listing-organizer.php:188
+msgid "Youtube"
+msgstr "YouTube"
+
+#: admin/wp-event-manager-writepanels.php:293
+#: forms/wp-event-manager-form-submit-event.php:359
+msgid "A link to a video about your organization"
+msgstr "組織に関する動画へのリンク"
+
+#: admin/wp-event-manager-writepanels.php:290
+#: forms/wp-event-manager-form-submit-event.php:356
+msgid "Video"
+msgstr "動画"
+
+#: admin/wp-event-manager-writepanels.php:284
+msgid "Your organization tagline"
+msgstr "組織のキャッチフレーズ"
+
+#: admin/wp-event-manager-writepanels.php:281
+msgid "Tagline"
+msgstr "キャッチフレーズ"
+
+#: admin/wp-event-manager-writepanels.php:276
+#: forms/wp-event-manager-form-submit-event.php:351
+msgid "Website URL e.g http://www.yourorganization.com"
+msgstr "サイト URL 例) http://www.yourorganization.com"
+
+#: admin/wp-event-manager-writepanels.php:273
+#: forms/wp-event-manager-form-submit-event.php:348
+#: templates/content-single-event_listing-organizer.php:147
+msgid "Website"
+msgstr "サイト"
+
+#: admin/wp-event-manager-writepanels.php:268
+#: forms/wp-event-manager-form-submit-event.php:343
+msgid "Enter your email address"
+msgstr "メールアドレスを入力"
+
+#: admin/wp-event-manager-writepanels.php:265
+#: forms/wp-event-manager-form-submit-event.php:340
+msgid "Organization Email"
+msgstr "組織のメールアドレス"
+
+#: admin/wp-event-manager-writepanels.php:260
+#: forms/wp-event-manager-form-submit-event.php:335
+msgid "Enter contact person name in your organization"
+msgstr "組織内での問合せ担当者名を入力"
+
+#: admin/wp-event-manager-writepanels.php:257
+#: forms/wp-event-manager-form-submit-event.php:332
+msgid "Contact Person Name"
+msgstr "問合せ担当者名"
+
+#: admin/wp-event-manager-writepanels.php:249
+#: forms/wp-event-manager-form-submit-event.php:324
+msgid "Organizer Description"
+msgstr "組織の説明"
+
+#: admin/wp-event-manager-writepanels.php:240
+#: forms/wp-event-manager-form-submit-event.php:308
+msgid "Logo"
+msgstr "ロゴ"
+
+#: admin/wp-event-manager-writepanels.php:235
+#: forms/wp-event-manager-form-submit-event.php:304
+msgid "Enter the name of the organization"
+msgstr "組織名を入力してください"
+
+#: admin/wp-event-manager-writepanels.php:232
+#: forms/wp-event-manager-form-submit-event.php:301
+msgid "Organization name"
+msgstr "組織名"
+
+#: admin/wp-event-manager-writepanels.php:227
+#: forms/wp-event-manager-form-submit-event.php:294
+msgid "Please enter registration deadline"
+msgstr "登録期限日を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:224
+#: forms/wp-event-manager-form-submit-event.php:291
+msgid "Registration Deadline"
+msgstr "登録期限日"
+
+#: admin/wp-event-manager-writepanels.php:219
+msgid "e.g http://ww.example.com"
+msgstr "例) http://ww.example.com"
+
+#: admin/wp-event-manager-writepanels.php:216
+#: forms/wp-event-manager-form-submit-event.php:283
+msgid "Link To Event Page"
+msgstr "イベントページへのリンク"
+
+#: admin/wp-event-manager-writepanels.php:207
+#: forms/wp-event-manager-form-submit-event.php:276
+msgid "Please enter ticket price"
+msgstr "チケットの価格を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:206
+msgid "Price"
+msgstr "価格"
+
+#: admin/wp-event-manager-writepanels.php:199
+#: core/wp-event-manager-filters.php:77
+#: forms/wp-event-manager-form-submit-event.php:269
+msgid "Free"
+msgstr "無料"
+
+#: admin/wp-event-manager-writepanels.php:198
+#: core/wp-event-manager-filters.php:75
+#: forms/wp-event-manager-form-submit-event.php:268
+msgid "Paid"
+msgstr "支払い済み"
+
+#: admin/wp-event-manager-writepanels.php:194
+#: forms/wp-event-manager-form-submit-event.php:264
+msgid "Ticket Options"
+msgstr "チケットのオプション"
+
+#: admin/wp-event-manager-writepanels.php:187
+#: forms/wp-event-manager-form-submit-event.php:257
+msgid "Please enter event end time"
+msgstr "イベントの終了時間を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:186
+#: forms/wp-event-manager-form-submit-event.php:256
+msgid "End Time"
+msgstr "終了時間"
+
+#: admin/wp-event-manager-writepanels.php:179
+#: forms/wp-event-manager-form-submit-event.php:249
+msgid "Please enter event end date"
+msgstr "イベントの終了日を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:178
+#: forms/wp-event-manager-form-submit-event.php:248
+#: shortcodes/wp-event-manager-shortcodes.php:244
+msgid "End Date"
+msgstr "終了日"
+
+#: admin/wp-event-manager-writepanels.php:171
+#: forms/wp-event-manager-form-submit-event.php:241
+msgid "Please enter event start time"
+msgstr "イベントの開始日を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:170
+#: forms/wp-event-manager-form-submit-event.php:240
+msgid "Start Time"
+msgstr "開始時間"
+
+#: admin/wp-event-manager-writepanels.php:163
+#: forms/wp-event-manager-form-submit-event.php:234
+msgid "Please enter event start date"
+msgstr "開始日を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:162
+#: forms/wp-event-manager-form-submit-event.php:233
+#: shortcodes/wp-event-manager-shortcodes.php:243
+msgid "Start Date"
+msgstr "開始日"
+
+#: admin/wp-event-manager-writepanels.php:156
+#: forms/wp-event-manager-form-submit-event.php:227
+msgid "24 hour format"
+msgstr "24時間形式"
+
+#: admin/wp-event-manager-writepanels.php:155
+#: forms/wp-event-manager-form-submit-event.php:226
+msgid "12 hour format"
+msgstr "12時間形式"
+
+#: admin/wp-event-manager-writepanels.php:151
+#: forms/wp-event-manager-form-submit-event.php:222
+msgid "Time Format"
+msgstr "時間形式"
+
+#: admin/wp-event-manager-field-editor.php:139
+#: admin/wp-event-manager-field-editor.php:241
+#: admin/wp-event-manager-writepanels.php:144
+#: forms/wp-event-manager-form-submit-event.php:208
+msgid "Description"
+msgstr "説明"
+
+#: admin/wp-event-manager-writepanels.php:128
+#: forms/wp-event-manager-form-submit-event.php:192
+msgid "Event Banner"
+msgstr "イベントのバナー"
+
+#: admin/wp-event-manager-writepanels.php:123
+msgid "e.g. \"Berlin\",\"Munich\""
+msgstr "例) \"ベルリン\"、\"ミュンヘン\""
+
+#: admin/wp-event-manager-writepanels.php:120
+msgid "Leave this blank if the location is not important"
+msgstr "場所が重要でない場合は、空欄にします"
+
+#: admin/wp-event-manager-writepanels.php:119
+#: forms/wp-event-manager-form-submit-event.php:184
+#: shortcodes/wp-event-manager-shortcodes.php:242
+#: templates/event-filters.php:19 templates/event-filters.php:20
+#: widgets/wp-event-manager-widgets.php:235
+msgid "Location"
+msgstr "場所"
+
+#: admin/wp-event-manager-writepanels.php:114
+#: forms/wp-event-manager-form-submit-event.php:179
+msgid "Please enter pincode (Area code)"
+msgstr "郵便番号 (エリアコード) を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:111
+#: forms/wp-event-manager-form-submit-event.php:176
+msgid "Pincode"
+msgstr "郵便番号"
+
+#: admin/wp-event-manager-writepanels.php:106
+#: forms/wp-event-manager-form-submit-event.php:171
+msgid "Please enter street name and number"
+msgstr "住所の詳細を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:103
+#: forms/wp-event-manager-form-submit-event.php:168
+msgid "Address"
+msgstr "住所"
+
+#: admin/wp-event-manager-writepanels.php:98
+#: forms/wp-event-manager-form-submit-event.php:163
+msgid "Please enter the venue name"
+msgstr "会場名を入力して下さい"
+
+#: admin/wp-event-manager-writepanels.php:95
+#: forms/wp-event-manager-form-submit-event.php:160
+msgid "Venue Name"
+msgstr "会場名"
+
+#: admin/wp-event-manager-writepanels.php:88
+#: forms/wp-event-manager-form-submit-event.php:153
+msgid "No"
+msgstr "いいえ"
+
+#: admin/wp-event-manager-writepanels.php:87
+#: forms/wp-event-manager-form-submit-event.php:152
+msgid "Yes"
+msgstr "はい"
+
+#: admin/wp-event-manager-writepanels.php:82
+#: forms/wp-event-manager-form-submit-event.php:148
+#: templates/content-event_listing.php:30
+#: templates/content-event_listing.php:56
+#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-summary-event_listing.php:10
+#: templates/content-widget-event_listing.php:10
+#: templates/event-dashboard.php:78
+msgid "Online Event"
+msgstr "オンラインイベント"
+
+#: admin/wp-event-manager-writepanels.php:47
+msgid "URL or email which attendees use to register"
+msgstr "参加者が登録に使用する URL またはメールアドレス"
+
+#: admin/wp-event-manager-writepanels.php:46
+msgid "Registration Email or URL"
+msgstr "登録メールアドレスまたは URL"
+
+#: admin/wp-event-manager-writepanels.php:38
+msgid "Total View Count"
+msgstr "閲覧総数"
+
+#: admin/wp-event-manager-setup.php:357
+msgid "Help other users on the forums"
+msgstr "フォーラムで他のユーザーを手助けする"
+
+#: admin/wp-event-manager-setup.php:355
+msgid "Contribute code or report a bug"
+msgstr "コードで貢献またはバグを報告"
+
+#: admin/wp-event-manager-setup.php:353
+msgid "Contribute a localization"
+msgstr "ローカリゼーションに貢献"
+
+#: admin/wp-event-manager-setup.php:351
+msgid "Leave a positive review"
+msgstr "好意的なレビューを投稿する"
+
+#: admin/wp-event-manager-setup.php:345
+msgid "Support the Ongoing Development of this Plugin"
+msgstr "このプラグインの継続的開発を支援"
+
+#: admin/wp-event-manager-setup.php:341
+msgid "And don't forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!"
+msgstr "そして、お忘れなく。<em>WP Event Manager</em> の使い方に関してさらにサポートが必要な場合は、%1$sドキュメンテーション%2$sまたは%3$sフォーラムへの投稿%2$sをご利用ください。"
+
+#: admin/wp-event-manager-setup.php:335
+msgid "Find out more about the front-end event dashboard"
+msgstr "フロントエンドダッシュボードに関しての詳細"
+
+#: admin/wp-event-manager-setup.php:331
+msgid "View the event dashboard"
+msgstr "イベントダッシュボードを表示"
+
+#: admin/wp-event-manager-setup.php:325
+msgid "Add the [events] shortcode to a page to list events"
+msgstr "イベントリストを表示させるにはページに [events] ショートコードを追加"
+
+#: admin/wp-event-manager-setup.php:321
+msgid "View submitted event listings"
+msgstr "投稿されたイベント掲載情報を表示"
+
+#: admin/wp-event-manager-setup.php:315
+msgid "Find out more about the front-end event submission form"
+msgstr "フロントエンドのイベント投稿フォーム詳細"
+
+#: admin/wp-event-manager-setup.php:311
+msgid "Add an event via the front-end"
+msgstr "フロントエンド経由でイベントを追加"
+
+#: admin/wp-event-manager-setup.php:307
+msgid "Add an event via the back-end"
+msgstr "バックエンド経由でイベントを追加"
+
+#: admin/wp-event-manager-setup.php:305
+msgid "Tweak the plugin settings"
+msgstr "プラグイン設定を調整"
+
+#: admin/wp-event-manager-setup.php:301
+msgid "Looks like you're all set to start using the plugin. In case you're wondering where to go next:"
+msgstr "プラグインを使い始める準備が完了しているようです。次にどこへ進めばよいか分からない場合は以下へどうぞ。"
+
+#: admin/wp-event-manager-setup.php:299
+msgid "All Done!"
+msgstr "すべて完了です。"
+
+#: admin/wp-event-manager-setup.php:288
+msgid "Skip this step"
+msgstr "このステップを省略"
+
+#: admin/wp-event-manager-setup.php:273
+msgctxt "Default page title (wizard)"
+msgid "Events"
+msgstr "イベント"
+
+#: admin/wp-event-manager-setup.php:258
+msgctxt "Default page title (wizard)"
+msgid "Event Dashboard"
+msgstr "イベントダッシュボード"
+
+#: admin/wp-event-manager-setup.php:250
+msgid "If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page."
+msgstr "この方法でユーザーに投稿してほしくない場合 (例えば、ダッシュボードからのみイベント投稿を許可する場合) は、このページの作成を省略できます。"
+
+#: admin/wp-event-manager-setup.php:248
+msgid "This page allows peoples to post events to your website from the front-end."
+msgstr "このページで、誰でもフロントエンドからサイトへイベントを投稿できるようにします。"
+
+#: admin/wp-event-manager-setup.php:245
+msgctxt "Default page title (wizard)"
+msgid "Post an Event"
+msgstr "イベントを投稿"
+
+#: admin/wp-event-manager-setup.php:234
+msgid "Content Shortcode"
+msgstr "コンテンツのショートコード"
+
+#: admin/wp-event-manager-setup.php:232
+msgid "Page Description"
+msgstr "ページの説明"
+
+#: admin/wp-event-manager-setup.php:230
+msgid "Page Title"
+msgstr "ページタイトル"
+
+#: admin/wp-event-manager-setup.php:217
+msgid "Page Setup"
+msgstr "ページ設定"
+
+#: admin/wp-event-manager-setup.php:209
+msgid "Skip setup. I will setup the plugin manually"
+msgstr "設定を省略し、プラグインを手動で設定します。"
+
+#: admin/wp-event-manager-setup.php:207
+msgid "Continue to page setup"
+msgstr "ページ設定を継続"
+
+#: admin/wp-event-manager-setup.php:201
+msgid "This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events."
+msgstr "この設定ウィザードは、イベント投稿・管理・掲載用のページを作成し、スタートのお手伝いをします。"
+
+#: admin/wp-event-manager-setup.php:199
+msgid "Thanks for installing <em>WP Event Manager</em>!"
+msgstr " <em>WP Event Manager</em> をインストールしていただき、ありがとうございます。"
+
+#: admin/wp-event-manager-setup.php:197
+msgid "Setup Wizard Introduction"
+msgstr "設定ウィザードのイントロダクション"
+
+#: admin/wp-event-manager-setup.php:191
+msgid "3. Done"
+msgstr "3. 完了"
+
+#: admin/wp-event-manager-setup.php:189
+msgid "2. Page Setup"
+msgstr "2. ページ設定"
+
+#: admin/wp-event-manager-setup.php:187
+msgid "1. Introduction"
+msgstr "1. イントロダクション"
+
+#: admin/wp-event-manager-setup.php:183
+msgid "WP Event Manager Setup"
+msgstr "WP Event Manager 設定"
+
+#: admin/wp-event-manager-setup.php:45
+msgid "Setup"
+msgstr "設定"
+
+#: admin/wp-event-manager-field-editor.php:154
+#: admin/wp-event-manager-field-editor.php:256
+#: admin/wp-event-manager-settings.php:808
+msgid "Save Changes"
+msgstr "変更を保存"
+
+#: admin/wp-event-manager-settings.php:755
+msgid "Select a page&hellip;"
+msgstr "ページを選択&hellip;"
+
+#: admin/wp-event-manager-settings.php:747
+msgid "--no page--"
+msgstr "-- ページなし --"
+
+#: admin/wp-event-manager-settings.php:650
+msgid "Settings successfully saved"
+msgstr "設定を保存しました"
+
+#: admin/wp-event-manager-settings.php:574
+msgid "Select the page where you have placed the [events] shortcode. This lets the plugin know where the event listings page is located."
+msgstr "[events] ショートコードを設置したページを選択してください。そうすることで、プラグインはイベント掲載情報ページがどこにあるか理解できます。"
+
+#: admin/wp-event-manager-settings.php:572
+msgid "Event Listings Page"
+msgstr "イベント掲載情報ページ"
+
+#: admin/wp-event-manager-settings.php:561
+msgid "Select the page where you have placed the [event_dashboard] shortcode. This lets the plugin know where the dashboard is located."
+msgstr "[event_dashboard] ショートコードを設置したページを選択してください。そうすることで、プラグインはダッシュボードがどこにあるか理解できます。"
+
+#: admin/wp-event-manager-settings.php:559
+msgid "Event Dashboard Page"
+msgstr "イベントダッシュボードページ"
+
+#: admin/wp-event-manager-settings.php:548
+msgid "Select the page where you have placed the [submit_event_form] shortcode. This lets the plugin know where the form is located."
+msgstr "[submit_event_form] ショートコードを設置したページを選択してください。そうすることで、プラグインはフォームがどこにあるか理解できます。"
+
+#: admin/wp-event-manager-settings.php:546
+msgid "Submit Event Form Page"
+msgstr "イベントフォーム投稿ページ"
+
+#: admin/wp-event-manager-settings.php:536
+msgid "Pages"
+msgstr "ページ"
+
+#: admin/wp-event-manager-settings.php:525
+msgid "If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this."
+msgstr "有効化すると、各イベントに2つ以上のカテゴリーを割り当てられるようになります。これによって、投稿エディター上のメタボックスおよびフロントエンド用イベント投稿フォーム上のカテゴリーの選択ボックスが変更されます。"
+
+#: admin/wp-event-manager-settings.php:523
+msgid "Enable multi select event category for event listing submission"
+msgstr "イベント掲載情報投稿時にイベントカテゴリーの複数選択を有効化"
+
+#: admin/wp-event-manager-settings.php:521
+msgid "Multi-select Event Category For Submission"
+msgstr "投稿用の複数選択イベントカテゴリー"
+
+#: admin/wp-event-manager-settings.php:509
+msgid "If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this."
+msgstr "有効化すると、各イベントに2つ以上のタイプを割り当てられるようになります。これによって、投稿エディター上のメタボックスおよびフロントエンド用イベント投稿フォーム上のイベントタイプの選択ボックスが変更されます。"
+
+#: admin/wp-event-manager-settings.php:507
+msgid "Enable multi select event type for event listing submission"
+msgstr "イベント掲載情報投稿時にイベントタイプの複数選択を有効化"
+
+#: admin/wp-event-manager-settings.php:505
+msgid "Multi-select Event Types For Submission"
+msgstr "投稿用の複数選択イベントタイプ"
+
+#: admin/wp-event-manager-settings.php:496
+msgid "Website URLs only"
+msgstr "サイト URL のみ"
+
+#: admin/wp-event-manager-settings.php:495
+msgid "Email addresses only"
+msgstr "メールアドレスのみ"
+
+#: admin/wp-event-manager-settings.php:494
+msgid "Email address or website URL"
+msgstr "メールアドレスまたはサイト URL"
+
+#: admin/wp-event-manager-settings.php:491
+msgid "Choose the registratoin method for listings."
+msgstr "掲載情報に対する登録方法を選択してください。"
+
+#: admin/wp-event-manager-settings.php:490
+msgid "Registration Method"
+msgstr "登録方法"
+
+#: admin/wp-event-manager-settings.php:481
+msgid "Listing Duration"
+msgstr "掲載期間"
+
+#: admin/wp-event-manager-settings.php:471
+msgid "Listing expire on Specified Below Days"
+msgstr "以下で指定した日数を掲載期限とする"
+
+#: admin/wp-event-manager-settings.php:469
+msgid "Listing expire on Event End Date"
+msgstr "イベント終了日を掲載期限とする"
+
+#: admin/wp-event-manager-settings.php:461
+msgid "Listing Expire"
+msgstr "掲載期限"
+
+#: admin/wp-event-manager-settings.php:448
+msgid "If enabled, expired listings will automatically deleted after 30 days."
+msgstr "有効化すると、期限切れの掲載情報は30日後に自動で削除されます。"
+
+#: admin/wp-event-manager-settings.php:446
+msgid "Expired listings are deleted after 30 days"
+msgstr "期限切れの掲載情報を30日後に削除"
+
+#: admin/wp-event-manager-settings.php:444
+msgid "Delete Expired listings"
+msgstr "期限切れの掲載情報を削除"
+
+#: admin/wp-event-manager-settings.php:432
+msgid "If enabled, Multiple banner can add at frontend by user and backend side by admin."
+msgstr "有効化すると、ユーザーがフロントエンドから、また、管理者がバックエンドから複数のバナーを追加できるようになります。"
+
+#: admin/wp-event-manager-settings.php:430
+msgid "User can submit multiple banner"
+msgstr "ユーザーが複数のバナーを投稿できます"
+
+#: admin/wp-event-manager-settings.php:428
+msgid "Allow Multiple Banners"
+msgstr "複数のバナーを許可する"
+
+#: admin/wp-event-manager-settings.php:417
+msgid "If enabled, submissions awaiting admin approval can be edited by the user."
+msgstr "有効化すると、管理者からの承認待ち投稿をユーザーが編集できるようになります。"
+
+#: admin/wp-event-manager-settings.php:415
+msgid "Submissions awaiting approval can be edited"
+msgstr "承認待ちの投稿は編集可能です"
+
+#: admin/wp-event-manager-settings.php:413
+msgid "Allow Pending Edits"
+msgstr "承認待ち中の編集を許可"
+
+#: admin/wp-event-manager-settings.php:400
+msgid "If enabled, new submissions will be inactive, pending admin approval."
+msgstr "有効化すると、新規投稿は管理者からの承認待ちとなります。"
+
+#: admin/wp-event-manager-settings.php:396
+msgid "Moderate New Listings"
+msgstr "新規掲載情報の内容を確認"
+
+#: admin/wp-event-manager-settings.php:381
+msgid "Account Role"
+msgstr "アカウントの権限グループ"
+
+#: admin/wp-event-manager-settings.php:370
+msgid "If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won't be verified."
+msgstr "有効化すると、ユーザー名とパスワード設定用のリンクを含んだメールがユーザーに送信されます。そうでない場合はパスワード用フィールドが表示され、メールアドレスは認証されません。"
+
+#: admin/wp-event-manager-settings.php:369
+msgid "Use WordPress' default behavior and email new users link to set a password"
+msgstr "WordPress のデフォルトの動作を用い、新規ユーザーにパスワード設定用リンクをメールで送信する"
+
+#: admin/wp-event-manager-settings.php:368
+msgid "Account Password"
+msgstr "アカウント用パスワード"
+
+#: admin/wp-event-manager-settings.php:359
+msgid "If enabled, a username will be generated from the first part of the user email address. Otherwise, a username field will be shown."
+msgstr "有効化すると、ユーザーのメールアドレスの最初の部分からユーザー名が生成されます。そうでない場合は、ユーザー名のフィールドが表示されます。"
+
+#: admin/wp-event-manager-settings.php:357
+msgid "Automatically Generate Username from Email Address"
+msgstr "メールアドレスから自動でユーザー名を生成する"
+
+#: admin/wp-event-manager-settings.php:355
+msgid "Account Username"
+msgstr "アカウントのユーザー名"
+
+#: admin/wp-event-manager-settings.php:342
+msgid "If enabled, non-logged in users will be able to create an account by entering their email address on the submission form."
+msgstr "有効化すると、ログインしていないユーザーが登録フォームでメールアドレスを入力してアカウントを作成できるようになります。"
+
+#: admin/wp-event-manager-settings.php:340
+msgid "Allow account creation"
+msgstr "アカウントの作成を許可する"
+
+#: admin/wp-event-manager-settings.php:338
+msgid "Account Creation"
+msgstr "アカウントの作成"
+
+#: admin/wp-event-manager-settings.php:323
+msgid "Submitting listings requires an account"
+msgstr "掲載情報の登録にはアカウントが必要です"
+
+#: admin/wp-event-manager-settings.php:321
+msgid "Account Required"
+msgstr "アカウントが必要です"
+
+#: admin/wp-event-manager-settings.php:311
+msgid "Event Submission"
+msgstr "イベントの投稿"
+
+#: admin/wp-event-manager-settings.php:303
+msgid "Default date format as defined in Setttings"
+msgstr "設定で定めた日付フォーマットの初期値"
+
+#: admin/wp-event-manager-settings.php:302
+msgid "Relative to the current date (e.g., 1 day, 1 week, 1 month ago)"
+msgstr "現在の日時に対し相対的 (例: 1日、1週間、1ヶ月前)"
+
+#: admin/wp-event-manager-settings.php:299
+msgid "Choose how you want the published date for events to be displayed on the front-end."
+msgstr "フロントエンドで投稿日をどう表示するか選択してください。"
+
+#: admin/wp-event-manager-settings.php:298
+msgid "Date Format"
+msgstr "日付形式"
+
+#: admin/wp-event-manager-settings.php:292
+msgid "Events will be shown if within ALL selected event types"
+msgstr "選択されたイベントタイプのすべてに含まれる場合にイベントを表示"
+
+#: admin/wp-event-manager-settings.php:290
+msgid "Events will be shown if within ANY selected event type"
+msgstr "選択されたイベントタイプのいずれかに含まれる場合にイベントを表示"
+
+#: admin/wp-event-manager-settings.php:282
+msgid "Event Type Filter"
+msgstr "イベントタイプフィルター"
+
+#: admin/wp-event-manager-settings.php:272
+msgid "Events will be shown if within ALL selected categories"
+msgstr "選択されたカテゴリーのすべてに含まれる場合にイベントを表示"
+
+#: admin/wp-event-manager-settings.php:270
+msgid "Events will be shown if within ANY selected category"
+msgstr "選択されたカテゴリーのいずれかに含まれる場合にイベントを表示"
+
+#: admin/wp-event-manager-settings.php:249
+#: admin/wp-event-manager-settings.php:284
+msgid "If enabled, the event type select box will default to a multi select on the [events] shortcode."
+msgstr "有効化すると、[events] ショートコード上でイベントタイプ選択ボックスの複数選択がデフォルトとなります。"
+
+#: admin/wp-event-manager-settings.php:247
+msgid "Enable event type multiselect by default"
+msgstr "イベントタイプ複数選択をデフォルトで有効化"
+
+#: admin/wp-event-manager-settings.php:245
+msgid "Multi-select Event Types"
+msgstr "複数選択イベントタイプ"
+
+#: admin/wp-event-manager-settings.php:232
+#: admin/wp-event-manager-settings.php:264
+msgid "If enabled, the category select box will default to a multi select on the [events] shortcode."
+msgstr "有効化すると、[events] ショートコード上でカテゴリー選択ボックスの複数選択がデフォルトとなります。"
+
+#: admin/wp-event-manager-settings.php:230
+msgid "Enable category multiselect by default"
+msgstr "カテゴリー複数選択をデフォルトで有効化"
+
+#: admin/wp-event-manager-settings.php:228
+msgid "Multi-select Categories"
+msgstr "複数選択カテゴリー"
+
+#: admin/wp-event-manager-settings.php:215
+msgid "Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission."
+msgstr "チケット価格を有効化するかどうか選択してください。チケット価格は、ユーザーが投稿時に選択できるよう管理者が設定しておく必要があります。"
+
+#: admin/wp-event-manager-settings.php:213
+msgid "Enable ticket prices for listings"
+msgstr "掲載情報用チケット価格を有効化"
+
+#: admin/wp-event-manager-settings.php:211
+msgid "Ticket prices"
+msgstr "チケット価格"
+
+#: admin/wp-event-manager-settings.php:198
+msgid "Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission."
+msgstr "イベントタイプを有効化するかどうか選択してください。イベントタイプは、ユーザーが投稿時に選択できるよう管理者が設定しておく必要があります。"
+
+#: admin/wp-event-manager-settings.php:196
+msgid "Enable event types for listings"
+msgstr "掲載情報用イベントタイプを有効化"
+
+#: admin/wp-event-manager-settings.php:194
+msgid "Event Types"
+msgstr "イベントタイプ"
+
+#: admin/wp-event-manager-settings.php:181
+msgid "Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission."
+msgstr "カテゴリーを有効化するかどうか選択してください。カテゴリーは、ユーザーが投稿時に選択できるよう管理者が設定しておく必要があります。"
+
+#: admin/wp-event-manager-settings.php:179
+msgid "Enable categories for listings"
+msgstr "掲載情報用カテゴリーを有効化"
+
+#: admin/wp-event-manager-settings.php:177
+msgid "Categories"
+msgstr "カテゴリー"
+
+#: admin/wp-event-manager-settings.php:164
+msgid "If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area)."
+msgstr "有効化すると、期限切れの掲載情報に含まれる内容は非表示になります。そうでない場合は、期限切れの掲載情報は通常通り (イベント登録エリアを除いて) 表示されます。"
+
+#: admin/wp-event-manager-settings.php:162
+msgid "Hide expired listing content in single event listing (singular)"
+msgstr "期限切れの掲載情報内容をイベント掲載情報 (個別) で非表示"
+
+#: admin/wp-event-manager-settings.php:160
+msgid "Hide Expired Listings Content"
+msgstr "期限切れ掲載情報のコンテンツを非表示"
+
+#: admin/wp-event-manager-settings.php:147
+msgid "If enabled, expired event listing is not searchable."
+msgstr "有効化すると、期限切れの掲載情報は検索されません。"
+
+#: admin/wp-event-manager-settings.php:145
+msgid "Hide expired listings in event archive/search"
+msgstr "イベントのアーカイブ/検索ページで期限切れの掲載情報を非表示"
+
+#: admin/wp-event-manager-settings.php:143
+msgid "Hide Expired Listings"
+msgstr "期限切れの掲載情報を非表示"
+
+#: admin/wp-event-manager-settings.php:133
+msgid "If enabled, cancelled events will be hidden from archives."
+msgstr "有効化すると、キャンセル済みのイベントはアーカイブで非表示になります。"
+
+#: admin/wp-event-manager-settings.php:131
+msgid "Hide cancelled events"
+msgstr "キャンセルされたイベントを非表示にする"
+
+#: admin/wp-event-manager-settings.php:129
+msgid "Cancelled Events"
+msgstr "キャンセルされたイベント"
+
+#: admin/wp-event-manager-settings.php:116
+msgid "Listings Per Page"
+msgstr "1ページあたりの掲載情報数"
+
+#: admin/wp-event-manager-settings.php:104
+#: admin/wp-event-manager-writepanels.php:440
+#: core/wp-event-manager-post-types.php:291
+#: core/wp-event-manager-post-types.php:403
+msgid "Event Listings"
+msgstr "イベント掲載情報"
+
+#: admin/wp-event-manager-settings.php:97
+msgid "Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
+msgstr "イベント掲載情報の位置情報を取得する際、Google は API キーを要求します。API キーを<a href=\"%s\" target=\"__blank\">Google マップ API デベロッパーサイト</a>から取得してください。"
+
+#: admin/wp-event-manager-settings.php:96
+msgid "Google Maps API Key"
+msgstr "Google マップ API キー"
+
+#: admin/wp-event-manager-settings.php:87
+msgid "If enabled, bootstrap framework's style will apply for the backend side."
+msgstr "有効化すると、bootstrapフレームワークのスタイルがバックエンド側に適用されます。"
+
+#: admin/wp-event-manager-settings.php:83
+#: admin/wp-event-manager-settings.php:85
+msgid "Enable boostrap for the backend"
+msgstr "バックエンド用に bootstrap を有効化"
+
+#: admin/wp-event-manager-settings.php:71
+msgid "If enabled, bootstrap framework's style will apply for the frontend side."
+msgstr "有効化すると、bootstrapフレームワークのスタイルがフロントエンド側に適用されます。"
+
+#: admin/wp-event-manager-settings.php:67
+#: admin/wp-event-manager-settings.php:69
+msgid "Enable boostrap for the frontend"
+msgstr "フロントエンド用に bootstrap を有効化"
+
+#: admin/wp-event-manager-settings.php:57
+msgid "General"
+msgstr "一般"
+
+#: admin/wp-event-manager-cpt.php:598 templates/event-dashboard.php:53
+#: wp-event-manager.php:295
+msgid "Delete"
+msgstr "削除"
+
+#: admin/wp-event-manager-cpt.php:586 core/wp-event-manager-post-types.php:299
+#: templates/event-dashboard.php:33 templates/event-dashboard.php:49
+msgid "Edit"
+msgstr "編集"
+
+#: admin/wp-event-manager-cpt.php:574
+msgid "View"
+msgstr "表示"
+
+#: admin/wp-event-manager-cpt.php:560
+msgid "Approve"
+msgstr "許可"
+
+#: admin/wp-event-manager-cpt.php:524
+msgid "by %s"
+msgstr "%sより"
+
+#: admin/wp-event-manager-cpt.php:524
+msgid "by a guest"
+msgstr "ゲストより"
+
+#: admin/wp-event-manager-cpt.php:522 admin/wp-event-manager-cpt.php:532
+#: admin/wp-event-manager-cpt.php:543
+msgid "M j, Y"
+msgstr "Y年n月j日"
+
+#: admin/wp-event-manager-cpt.php:479
+msgid "ID: %d"
+msgstr "ID: %d"
+
+#: admin/wp-event-manager-cpt.php:400
+msgid "Actions"
+msgstr "操作"
+
+#: admin/wp-event-manager-cpt.php:398
+msgid "Event Expiry Date"
+msgstr "イベントの期限日"
+
+#: admin/wp-event-manager-cpt.php:396
+msgid "Event End Date"
+msgstr "イベント終了日"
+
+#: admin/wp-event-manager-cpt.php:394
+msgid "Posted Date"
+msgstr "投稿日"
+
+#: admin/wp-event-manager-cpt.php:392
+msgid "Event Organizer"
+msgstr "イベントの主催者"
+
+#: admin/wp-event-manager-cpt.php:390
+msgid "Event Location"
+msgstr "イベントの場所"
+
+#: admin/wp-event-manager-cpt.php:388 admin/wp-event-manager-writepanels.php:72
+#: forms/wp-event-manager-form-submit-event.php:138
+msgid "Event Category"
+msgstr "イベントのカテゴリー"
+
+#: admin/wp-event-manager-cpt.php:386 admin/wp-event-manager-writepanels.php:62
+#: forms/wp-event-manager-form-submit-event.php:128
+#: templates/event-filters.php:63
+msgid "Event Type"
+msgstr "イベントタイプ"
+
+#: admin/wp-event-manager-cpt.php:382
+msgid "Featured?"
+msgstr "おすすめにしますか ?"
+
+#: admin/wp-event-manager-cpt.php:380
+msgid "Cancelled?"
+msgstr "キャンセル済みですか ?"
+
+#: admin/wp-event-manager-cpt.php:378
+msgid "Status"
+msgstr "ステータス"
+
+#: admin/wp-event-manager-cpt.php:355
+msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview</a>"
+msgstr "「%s」の下書きを更新しました。<a target=\"_blank\" href=\"%s\">プレビュー</a>"
+
+#: admin/wp-event-manager-cpt.php:353
+msgid "M j, Y @ G:i"
+msgstr "Y年n月j日 @ G:i"
+
+#: admin/wp-event-manager-cpt.php:351
+msgid "%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview</a>"
+msgstr "「%s」を<strong>%1$s</strong>に予約投稿しました。<a target=\"_blank\" href=\"%2$s\">プレビュー</a>"
+
+#: admin/wp-event-manager-cpt.php:349
+msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview</a>"
+msgstr "「%s」を送信しました。<a target=\"_blank\" href=\"%s\">プレビュー</a>"
+
+#: admin/wp-event-manager-cpt.php:347
+msgid "%s saved."
+msgstr "%sを保存しました。"
+
+#: admin/wp-event-manager-cpt.php:345
+msgid "%s published. <a href=\"%s\">View</a>"
+msgstr "「%s」を公開しました。<a href=\"%s\">表示</a>"
+
+#: admin/wp-event-manager-cpt.php:343
+msgid "%s restored to revision from %s"
+msgstr "%sをリビジョン%sより復旧"
+
+#: admin/wp-event-manager-cpt.php:341
+msgid "%s updated."
+msgstr "%sを更新しました。"
+
+#: admin/wp-event-manager-cpt.php:339
+msgid "Custom field deleted."
+msgstr "カスタムフィールドを削除しました。"
+
+#: admin/wp-event-manager-cpt.php:337
+msgid "Custom field updated."
+msgstr "カスタムフィールドを更新しました。"
+
+#: admin/wp-event-manager-cpt.php:335
+msgid "%s updated. <a href=\"%s\">View</a>"
+msgstr "%sを更新しました。<a href=\"%s\">表示</a>"
+
+#: admin/wp-event-manager-cpt.php:314 admin/wp-event-manager-cpt.php:384
+#: admin/wp-event-manager-writepanels.php:54
+#: forms/wp-event-manager-form-submit-event.php:120
+msgid "Event Title"
+msgstr "イベントタイトル"
+
+#: admin/wp-event-manager-cpt.php:294
+msgid "Select category"
+msgstr "カテゴリーを選択"
+
+#: admin/wp-event-manager-cpt.php:245 admin/wp-event-manager-cpt.php:249
+msgid "%s expired"
+msgstr "%sを期限切れにしました"
+
+#: admin/wp-event-manager-cpt.php:214 admin/wp-event-manager-cpt.php:218
+msgid "%s approved"
+msgstr "%sを許可しました"
+
+#: admin/wp-event-manager-cpt.php:79 admin/wp-event-manager-cpt.php:81
+msgid "Expire %s"
+msgstr "%sを期限切れにする"
+
+#: admin/wp-event-manager-cpt.php:75 admin/wp-event-manager-cpt.php:77
+msgid "Approve %s"
+msgstr "%sを許可"
+
+#: admin/wp-event-manager-admin.php:152
+msgid "Dismiss"
+msgstr "取り消し"
+
+#: admin/wp-event-manager-admin.php:151
+msgid "Try Great Add-Ons"
+msgstr "便利なアドオンを試す"
+
+#: admin/wp-event-manager-admin.php:123
+msgid "Add-ons"
+msgstr "アドオン"
+
+#: admin/wp-event-manager-admin.php:119
+#: templates/form-fields/repeated-field.php:18
+#: templates/form-fields/repeated-field.php:61
+msgid "Settings"
+msgstr "設定"
+
+#: admin/wp-event-manager-addons.php:59 admin/wp-event-manager-admin.php:123
+msgid "WP Event Manager Add-ons"
+msgstr "WP Event Manager アドオン"

@@ -1,0 +1,2205 @@
+# Translation of Plugins - WP Event Manager - Stable (latest release) in Icelandic
+# This file is distributed under the same license as the Plugins - WP Event Manager - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-09-03 11:42:23+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n % 100 != 1 && n % 100 != 21 && n % 100 != 31 && n % 100 != 41 && n % 100 != 51 && n % 100 != 61 && n % 100 != 71 && n % 100 != 81 && n % 100 != 91);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: is\n"
+"Project-Id-Version: Plugins - WP Event Manager - Stable (latest release)\n"
+
+#: wp-event-manager-template.php:418
+msgid "Confirm Password"
+msgstr "Staðfesta lykilorð"
+
+#: admin/wp-event-manager-settings.php:262
+msgid "Category Filter"
+msgstr "Flokkasía"
+
+#: admin/wp-event-manager-form-field-editor-field.php:52
+msgid "Required"
+msgstr "Nauðsynlegt"
+
+#: admin/wp-event-manager-form-field-editor-field.php:51
+msgid "Not Required"
+msgstr "Ekki nauðsynlegt"
+
+#: admin/wp-event-manager-form-field-editor-field.php:27
+msgid "Multiple Files?"
+msgstr "Margar skrár?"
+
+#: admin/wp-event-manager-form-field-editor-field.php:24
+msgid "Pipe (|) separate options."
+msgstr "Pípa (|) aðgreindir valkostir."
+
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
+msgid "%s"
+msgstr "%s"
+
+#: admin/wp-event-manager-form-field-editor-field.php:20
+#: admin/wp-event-manager-form-field-editor-field.php:23
+#: admin/wp-event-manager-form-field-editor-field.php:45
+msgid "N/A"
+msgstr "Á ekki við"
+
+#: admin/wp-event-manager-field-editor.php:373
+msgid "The fields were successfully saved."
+msgstr "Það heppnaðist að vista reitina."
+
+#: admin/wp-event-manager-field-editor.php:228
+msgid "Author"
+msgstr "Höfundur"
+
+#: admin/wp-event-manager-field-editor.php:153
+#: admin/wp-event-manager-field-editor.php:255
+msgid "Reset to default"
+msgstr "Endurstilla í sjálfgildi"
+
+#: admin/wp-event-manager-field-editor.php:149
+#: admin/wp-event-manager-field-editor.php:251
+msgid "Add field"
+msgstr "Bæta við reit"
+
+#: admin/wp-event-manager-field-editor.php:142
+#: admin/wp-event-manager-field-editor.php:244
+msgid "Validation"
+msgstr "Staðfesting"
+
+#: admin/wp-event-manager-field-editor.php:141
+#: admin/wp-event-manager-field-editor.php:243
+msgid "Priority"
+msgstr "Forgangur"
+
+#: admin/wp-event-manager-field-editor.php:140
+#: admin/wp-event-manager-field-editor.php:242
+msgid "Placeholder / Options"
+msgstr "Staðarhaldari / Valkostir"
+
+#: admin/wp-event-manager-field-editor.php:138
+#: admin/wp-event-manager-field-editor.php:240
+msgid "Type"
+msgstr "Tegund"
+
+#: admin/wp-event-manager-field-editor.php:137
+#: admin/wp-event-manager-field-editor.php:239
+msgid "Field Label"
+msgstr "Reitamerki"
+
+#: admin/wp-event-manager-field-editor.php:129
+msgid "Organizer fields"
+msgstr "Skipulagsreitir"
+
+#: admin/wp-event-manager-field-editor.php:125
+#: admin/wp-event-manager-field-editor.php:234
+msgid "Event fields"
+msgstr "Atburðareitir"
+
+#: admin/wp-event-manager-field-editor.php:115
+#: admin/wp-event-manager-field-editor.php:227
+msgid "WP Editor"
+msgstr "WP Ritill"
+
+#: admin/wp-event-manager-field-editor.php:114
+#: admin/wp-event-manager-field-editor.php:226
+msgid "Textarea"
+msgstr "Textasvæði"
+
+#: admin/wp-event-manager-field-editor.php:113
+#: admin/wp-event-manager-field-editor.php:225
+msgid "Term Select"
+msgstr "Velja heiti"
+
+#: admin/wp-event-manager-field-editor.php:112
+#: admin/wp-event-manager-field-editor.php:224
+msgid "Term Multiselect"
+msgstr "Hugtak Fjölval"
+
+#: admin/wp-event-manager-field-editor.php:111
+#: admin/wp-event-manager-field-editor.php:223
+msgid "Term Checklist"
+msgstr "Minnislisti Heita"
+
+#: admin/wp-event-manager-field-editor.php:110
+#: admin/wp-event-manager-field-editor.php:221
+msgid "Select"
+msgstr "Velja"
+
+#: admin/wp-event-manager-field-editor.php:109
+#: admin/wp-event-manager-field-editor.php:220
+msgid "Repeated"
+msgstr "Endurtekið"
+
+#: admin/wp-event-manager-field-editor.php:108
+#: admin/wp-event-manager-field-editor.php:219
+msgid "Radio"
+msgstr "Útvarp"
+
+#: admin/wp-event-manager-field-editor.php:106
+#: admin/wp-event-manager-field-editor.php:217
+msgid "Number"
+msgstr "Tala"
+
+#: admin/wp-event-manager-field-editor.php:105
+#: admin/wp-event-manager-field-editor.php:216
+#: admin/wp-event-manager-field-editor.php:222
+msgid "Multiselect"
+msgstr "Fjölval"
+
+#: admin/wp-event-manager-field-editor.php:104
+#: admin/wp-event-manager-field-editor.php:215
+msgid "Hidden"
+msgstr "Falið"
+
+#: admin/wp-event-manager-field-editor.php:103
+#: admin/wp-event-manager-field-editor.php:214
+msgid "File"
+msgstr "Skrá"
+
+#: admin/wp-event-manager-field-editor.php:102
+#: admin/wp-event-manager-field-editor.php:213
+msgid "Date"
+msgstr "Dagsetning"
+
+#: admin/wp-event-manager-field-editor.php:101
+#: admin/wp-event-manager-field-editor.php:212
+msgid "Checkbox"
+msgstr "Gátreitur"
+
+#: admin/wp-event-manager-field-editor.php:100
+#: admin/wp-event-manager-field-editor.php:211
+msgid "Button Options"
+msgstr "Valkostir fyrir hnappa"
+
+#: admin/wp-event-manager-field-editor.php:99
+#: admin/wp-event-manager-field-editor.php:210
+msgid "Button"
+msgstr "Takki"
+
+#: admin/wp-event-manager-field-editor.php:98
+#: admin/wp-event-manager-field-editor.php:209
+msgid "Text"
+msgstr "Texti"
+
+#: admin/wp-event-manager-field-editor.php:81
+#: admin/wp-event-manager-field-editor.php:194
+msgid "The fields were successfully reset."
+msgstr "Það heppnaðist að endurstilla reitina."
+
+#: admin/wp-event-manager-field-editor.php:43
+msgid "Back End Form Fields"
+msgstr "Formreitir að aftan"
+
+#: admin/wp-event-manager-field-editor.php:42
+msgid "Front End Form Fields"
+msgstr "Formreitir að framan"
+
+#: admin/wp-event-manager-field-editor.php:31
+msgid "Are you sure you want to reset your changes? This cannot be undone."
+msgstr "Ertu viss um að þú viljir endurstilla breytingarnar þínar? Þetta er ekki hægt að afturkalla."
+
+#: admin/wp-event-manager-field-editor.php:30
+msgid "Are you sure you want to delete this row?"
+msgstr "Ertu viss um að þú viljir eyða þessari röð?"
+
+#: admin/wp-event-manager-field-editor.php:20
+msgid "Field Editor"
+msgstr "Breyta reitum"
+
+#. Author URI of the plugin/theme
+msgid "https://www.wp-eventmanager.com"
+msgstr "https://www.wp-eventmanager.com"
+
+#. Description of the plugin/theme
+msgid "Manage event listings from the WordPress admin panel, and allow users to post events directly to your site."
+msgstr "Stjórna atburðafærslum frá WordPress kerfisstjóraglugga og leyfa notendum að pósta atburðum beint á síðuna þína."
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.wp-eventmanager.com/"
+msgstr "https://www.wp-eventmanager.com/"
+
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#. #-#-#-#-#  wp-event-manager-code.pot (WP Event Manager 2.4)  #-#-#-#-#
+#. Author of the plugin/theme
+#: admin/wp-event-manager-settings.php:827
+msgid "WP Event Manager"
+msgstr "WP Atburðastjóri"
+
+#: wp-event-manager.php:299
+msgid "Are you sure you want to delete this event?"
+msgstr "Ertu viss um að þú viljir eyða þessum atburði?"
+
+#: wp-event-manager.php:297
+msgid "Cancel"
+msgstr "Hætta við"
+
+#: wp-event-manager.php:286
+msgid "Load previous listings"
+msgstr "Hlaða fyrri færslur"
+
+#: wp-event-manager.php:229
+msgid "Invalid file type. Accepted types:"
+msgstr "Ógild skráartegund. Tegundir sem eru viðteknar:"
+
+#: wp-event-manager-template.php:425 wp-event-manager-template.php:2083
+msgid "Your email"
+msgstr "Netfangið þitt"
+
+#: wp-event-manager-template.php:417 wp-event-manager-template.php:2076
+msgid "Verify Password"
+msgstr "Staðfesta lykilorð"
+
+#: admin/wp-event-manager-field-editor.php:107
+#: admin/wp-event-manager-field-editor.php:218
+#: wp-event-manager-template.php:406 wp-event-manager-template.php:407
+#: wp-event-manager-template.php:2066
+msgid "Password"
+msgstr "Lykilorð"
+
+#: wp-event-manager-template.php:507
+msgid "Anywhere"
+msgstr "Hvar sem er"
+
+#: wp-event-manager-template.php:443 wp-event-manager-template.php:457
+msgid "Posted %s ago"
+msgstr "Póstað fyrir %s síðan"
+
+#: wp-event-manager-template.php:441
+msgid "Posted on "
+msgstr "Póstað á"
+
+#: wp-event-manager-template.php:267
+msgid "Registration via \"%s\" listing on %s"
+msgstr "Skráning í gegnum \"%s\" færslu á %s"
+
+#: wp-event-manager-template.php:186
+msgid "Inactive"
+msgstr "Óvirkt"
+
+#: wp-event-manager-functions.php:1606
+msgid "Passwords must be at least 8 characters long."
+msgstr "Lykilorð verða að vera minnsta kosti 8 stafir."
+
+#: wp-event-manager-functions.php:1340
+msgid "Uploaded files need to be one of the following file types: %s"
+msgstr "Upphlaðnar skrár verða að vera af einni af eftirfarandi tegundum: %s"
+
+#: wp-event-manager-functions.php:1138
+msgid "Choose an event type&hellip;"
+msgstr "Velja atburðategund type&hellip;"
+
+#: wp-event-manager-functions.php:1088
+msgid "Choose a category&hellip;"
+msgstr "Veldu flokk&hellip;"
+
+#: wp-event-manager-functions.php:858
+msgid "This email is already registered, please choose another one."
+msgstr "Þetta netfang er þegar skráð, vinsamlegast veldu annað netfang."
+
+#: wp-event-manager-functions.php:853
+msgid "Your email address isn&#8217;t correct."
+msgstr "Netfangið þitt er ekki rétt."
+
+#: wp-event-manager-functions.php:843
+msgid "Invalid email address."
+msgstr "Ógilt netfang."
+
+#: wp-event-manager-functions.php:716
+msgid "RSS"
+msgstr "RSS"
+
+#: wp-event-manager-functions.php:709
+msgid "Reset"
+msgstr "Endurstilla"
+
+#: wp-event-manager-functions.php:524
+msgctxt "post status"
+msgid "Active"
+msgstr "Virkt"
+
+#: wp-event-manager-functions.php:522
+msgctxt "post status"
+msgid "Pending payment"
+msgstr "Greiðsla í vinnslu"
+
+#: wp-event-manager-functions.php:520
+msgctxt "post status"
+msgid "Pending approval"
+msgstr "Bíður samþykkis"
+
+#: wp-event-manager-functions.php:518
+msgctxt "post status"
+msgid "Preview"
+msgstr "Forskoðun"
+
+#: wp-event-manager-functions.php:514
+msgctxt "post status"
+msgid "Draft"
+msgstr "Uppkast"
+
+#: widgets/wp-event-manager-widgets.php:502
+#: widgets/wp-event-manager-widgets.php:510
+msgid "Upcoming %s"
+msgstr "Væntanlegur %s"
+
+#: widgets/wp-event-manager-widgets.php:498
+msgid "Display a list of upcoming listings on your site."
+msgstr "Sýna lista yfir væntanlegt á síðunni þinni."
+
+#: widgets/wp-event-manager-widgets.php:361
+#: widgets/wp-event-manager-widgets.php:369
+msgid "Featured %s"
+msgstr "Gert að aðalatriði %s"
+
+#: widgets/wp-event-manager-widgets.php:357
+msgid "Display a list of featured listings on your site."
+msgstr "Birta lista af mikilvægum færslum á síðunni þinni."
+
+#: widgets/wp-event-manager-widgets.php:261
+#: widgets/wp-event-manager-widgets.php:397
+#: widgets/wp-event-manager-widgets.php:538
+msgid "Descending  (DESC)"
+msgstr "Lækkandi"
+
+#: widgets/wp-event-manager-widgets.php:260
+#: widgets/wp-event-manager-widgets.php:396
+#: widgets/wp-event-manager-widgets.php:537
+msgid "Ascending (ASC)"
+msgstr "Hækkandi"
+
+#: widgets/wp-event-manager-widgets.php:258
+#: widgets/wp-event-manager-widgets.php:394
+#: widgets/wp-event-manager-widgets.php:535
+msgid "Order by"
+msgstr "Raða eftir"
+
+#: widgets/wp-event-manager-widgets.php:250
+#: widgets/wp-event-manager-widgets.php:386
+#: widgets/wp-event-manager-widgets.php:527
+msgid "Number of listings to show"
+msgstr "Fjöldi færsla sem birtast"
+
+#: widgets/wp-event-manager-widgets.php:226
+msgid "Keyword"
+msgstr "Leitarorð"
+
+#: widgets/wp-event-manager-widgets.php:207
+#: widgets/wp-event-manager-widgets.php:215
+msgid "Recent %s"
+msgstr "Nýlegt %s"
+
+#: widgets/wp-event-manager-widgets.php:203
+msgid "Display a list of recent listings on your site, optionally matching a keyword and location."
+msgstr "Birta lista yfir nýjar færslur á síðunni þinni, og geta parað saman leitarorð og staðsetningu."
+
+#: templates/form-fields/uploaded-file-html.php:11
+#: templates/form-fields/uploaded-file-html.php:13
+msgid "remove"
+msgstr "fjarlægja"
+
+#: templates/form-fields/repeated-field.php:59
+msgid "Remove"
+msgstr "Fjarlægja"
+
+#: templates/form-fields/repeated-field.php:19
+msgid "You can't delete ticket once it is added.You can make it private from settings tab."
+msgstr "Þú getur ekki eytt miða eftir að honum hefur verið bætt við. Þú getur gert hann prívat í stillingaflipa."
+
+#: templates/form-fields/repeated-field.php:17
+#: templates/form-fields/repeated-field.php:60
+msgid "Ticket Details"
+msgstr "Upplýsingar um miða"
+
+#: templates/event-filters.php:29 templates/event-filters.php:80
+#: templates/form-fields/multiselect-field.php:7
+#: wp-event-manager-functions.php:1092
+msgid "Select Some Options"
+msgstr "Velja vissa valkosti"
+
+#: templates/event-filters.php:80 templates/form-fields/multiselect-field.php:7
+#: wp-event-manager-functions.php:1090
+msgid "No results match"
+msgstr "Engar niðurstöður stemma"
+
+#: templates/form-fields/file-field.php:85
+msgid "Maximum file size: %s."
+msgstr "Hámarksstærð skráa: %s."
+
+#: templates/event-submitted.php:11
+msgid "%s submitted successfully. Your listing will be visible once approved."
+msgstr "Það heppnaðist að senda %s inn. Færslan þín verður sýnileg þegur hún hefur verið samþykkt."
+
+#: templates/event-submitted.php:7
+msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a>."
+msgstr "Það heppnaðist að skrá %s. <a href=\"%s\">Ýttu hér</a> til þess að skoða færsluna þína."
+
+#: templates/event-submit.php:37
+msgid "Organizer Details"
+msgstr "Upplýsingar um skipuleggjanda"
+
+#: templates/event-submit.php:20
+msgid "Create A New Event"
+msgstr "Búa til nýjan atburð"
+
+#: templates/event-submit.php:20
+msgid "You are editing an existing event. %s"
+msgstr "Þú ert að breyta atburði sem er þegar til. %s"
+
+#: templates/event-submit.php:17
+msgid "Event Details"
+msgstr "Upplýsingar um atburð"
+
+#: templates/event-registration.php:8
+msgid "Register for event"
+msgstr "Skrá á atburð"
+
+#: templates/event-registration-url.php:1
+msgid "To register for this event please visit the following URL:"
+msgstr "Til þess að skrá þig á þennan atburð vinsamlegast farðu á eftirfarandi slóð:"
+
+#: templates/event-registration-email.php:4
+msgid "Register using webmail: "
+msgstr "Skrá með netfangi:"
+
+#: templates/event-registration-email.php:1
+msgid "To register for this event <strong>email your details to</strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
+msgstr "Til þess að skrá þig á þennan atburð <strong>skaltu senda upplýsingar þínar á</strong> <a class=\"event_registration_email\" href=\"mailto:%1$s%2$s\">%1$s</a>"
+
+#: templates/event-listings-start.php:4
+msgid "Recent Events"
+msgstr "Nýlegir atburðir"
+
+#: templates/event-filters.php:96
+msgid "Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled in order to view listings."
+msgstr "Vafrinn þinn stiður ekki JavaScript eða það er óvirkt. JavaScript verður að vera virkt til þess að skoða atburði."
+
+#: templates/event-filters.php:79
+msgid "Ticket Prices"
+msgstr "Miðaverð"
+
+#: templates/event-filters.php:67
+msgid "Any Event Type"
+msgstr "Allar tegundir atburða"
+
+#: templates/event-filters.php:50
+msgid "Any Category"
+msgstr "Allir flokkar"
+
+#: templates/event-filters.php:46
+msgid "Category"
+msgstr "Flokkur"
+
+#: templates/event-filters.php:28
+msgid "Any dates"
+msgstr "Allar dagsetningar"
+
+#: templates/event-filters.php:11 templates/event-filters.php:12
+msgid "Keywords"
+msgstr "Leitarorð"
+
+#: templates/event-dashboard.php:43
+msgid "Relist"
+msgstr "Endurskrá"
+
+#: templates/event-dashboard.php:39
+msgid "Duplicate"
+msgstr "Afrita"
+
+#: templates/event-dashboard.php:37
+msgid "Mark cancelled"
+msgstr "Merkja sem afboðað"
+
+#: templates/event-dashboard.php:35
+msgid "Mark not cancelled"
+msgstr "Merkja ekki afboðað"
+
+#: templates/event-dashboard.php:14
+msgid "You do not have any active listings."
+msgstr "Þú ert ekki með neinar virkar færslur."
+
+#: templates/event-dashboard-login.php:2
+msgid "You need to be signed in to manage your listings."
+msgstr "Þú verður að skrá þig inn til þess að stjórna færslunum þínum."
+
+#: templates/content-single-event_listing.php:27
+msgid "Event Overview"
+msgstr "Yfirlit yfir atburð"
+
+#: templates/content-single-event_listing.php:7
+msgid "This listing has expired."
+msgstr "Þessi færsla er útrunnin."
+
+#: templates/content-single-event_listing-organizer.php:204
+msgid "Share This Event"
+msgstr "Deila þessum atburði"
+
+#: templates/content-single-event_listing-organizer.php:143
+msgid "Organizer Social"
+msgstr "Skipuleggjandi Samskipti"
+
+#: templates/content-single-event_listing-organizer.php:111
+msgid "Registration End Date"
+msgstr "Síðasti skráningardagur"
+
+#: templates/content-single-event_listing-organizer.php:88
+msgid "When & Where"
+msgstr "Hvenær & hvar"
+
+#: templates/content-single-event_listing-organizer.php:80
+msgid "Ticket Information"
+msgstr "Upplýsingar um miða"
+
+#: templates/content-single-event_listing-organizer.php:59
+#: templates/content-single-event_listing-organizer.php:66
+msgid "Watch Video"
+msgstr "Horfa á myndband"
+
+#: templates/content-single-event_listing-organizer.php:52
+msgid "View More Details"
+msgstr "Skoða Fleiri Upplýsingar"
+
+#: templates/content-single-event_listing-organizer.php:36
+msgid "About"
+msgstr "Um"
+
+#: templates/content-single-event_listing-meta.php:46
+msgid "Registrations have closed"
+msgstr "Skráningu Hefur Verið Lokað"
+
+#: templates/content-single-event_listing-meta.php:43
+msgid "This event has been cancelled"
+msgstr "Hætt Hefur Verið Við Þennan Atburð"
+
+#: templates/content-no-events-found.php:4
+msgid "There are currently no events."
+msgstr "Það eru engir atburðir eins og er."
+
+#: templates/content-no-events-found.php:2
+msgid "There are no events matching your search."
+msgstr "Það eru engir atburðir sem passa við leitarorð þín."
+
+#: templates/account-signin.php:49 templates/event-submit.php:27
+#: templates/event-submit.php:41 templates/form-fields/repeated-field.php:32
+#: templates/form-fields/repeated-field.php:74
+msgid "(optional)"
+msgstr "(valfrjálst)"
+
+#: wp-event-manager-template.php:398 wp-event-manager-template.php:2058
+msgid "Username"
+msgstr "Notandanafn"
+
+#: templates/account-signin.php:35
+msgid " You must sign in to create a new listing."
+msgstr "Þú verður að vera skráð(ur) inn til þess að búa til nýja færslu."
+
+#: templates/account-signin.php:31
+msgid "optionally"
+msgstr "aukalega"
+
+#: templates/account-signin.php:31
+msgid "If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email."
+msgstr "Ef þú ert ekki með reikning hjá okkur, stimplaðu inn netfangið þitt og búðu til nýjan. Þú munt fá lykilorðið sent á netfangið þitt innan skamms."
+
+#: templates/account-signin.php:27 templates/event-dashboard-login.php:2
+msgid "Sign in"
+msgstr "Skrá inn"
+
+#: templates/account-signin.php:23
+msgid "Have an account?"
+msgstr "Ert þú með reikning?"
+
+#: templates/account-signin.php:9
+msgid "Sign out"
+msgstr "Skrá út"
+
+#: templates/account-signin.php:7
+msgid "You are currently signed in as <strong>%s</strong>."
+msgstr "Eins og er ert þú skráð(ur) inn sem <strong>%s</strong>."
+
+#: templates/account-signin.php:3
+msgid "Your account"
+msgstr "Þinn reikningur"
+
+#: shortcodes/wp-event-manager-shortcodes.php:541
+msgid "Load more listings"
+msgstr "Hlaða fleiri færslur"
+
+#: shortcodes/wp-event-manager-shortcodes.php:488
+msgid "Load more events"
+msgstr "Hlaða fleiri atburði"
+
+#: shortcodes/wp-event-manager-shortcodes.php:246
+msgid "Action"
+msgstr "Aðgerð"
+
+#: shortcodes/wp-event-manager-shortcodes.php:245
+msgid "Viewed"
+msgstr "Skoðað"
+
+#: shortcodes/wp-event-manager-shortcodes.php:241
+#: widgets/wp-event-manager-widgets.php:217
+#: widgets/wp-event-manager-widgets.php:371
+#: widgets/wp-event-manager-widgets.php:512
+msgid "Title"
+msgstr "Titill"
+
+#: shortcodes/wp-event-manager-shortcodes.php:144
+msgid "Missing submission page."
+msgstr "Það vantar umsóknarsíðu."
+
+#: shortcodes/wp-event-manager-shortcodes.php:139
+msgid "%s has been deleted"
+msgstr "%s hefur verið eytt"
+
+#: shortcodes/wp-event-manager-shortcodes.php:129
+msgid "%s has been marked as not cancelled"
+msgstr "%s hefur verið merkt sem ekki afboðað"
+
+#: shortcodes/wp-event-manager-shortcodes.php:121
+msgid "This event is not cancelled"
+msgstr "Það hefur ekki verið hætt við þennan atburð"
+
+#: shortcodes/wp-event-manager-shortcodes.php:112
+msgid "%s has been cancelled"
+msgstr "%s hefur verið afboðað"
+
+#: shortcodes/wp-event-manager-shortcodes.php:104
+msgid "This event has already been cancelled"
+msgstr "Það er nú þegar búið að hætta við þennan atburð"
+
+#: shortcodes/wp-event-manager-shortcodes.php:93
+msgid "Invalid ID"
+msgstr "Ógild Skilríki"
+
+#: forms/wp-event-manager-form-submit-event.php:919
+msgid "← Edit listing"
+msgstr "← Breyta færslu"
+
+#: forms/wp-event-manager-form-submit-event.php:918
+msgid "Submit Listing →"
+msgstr "Senda inn Færslu \t"
+
+#: forms/wp-event-manager-form-submit-event.php:699
+msgid "You must be signed in to post a new listing."
+msgstr "Þú verður að vera skráð(ur) inn til þess að pósta nýrri færslu."
+
+#: forms/wp-event-manager-form-submit-event.php:680
+msgid "Password is not valid."
+msgstr "Lykilorð er ekki gilt."
+
+#: forms/wp-event-manager-form-submit-event.php:678
+msgid "Invalid Password: %s"
+msgstr "Ógilt Lykilorð: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:673
+msgid "Passwords must match."
+msgstr "Lykilorð verða að passa."
+
+#: forms/wp-event-manager-form-submit-event.php:665
+#: forms/wp-event-manager-form-submit-event.php:668
+msgid "Please enter your email address."
+msgstr "Vinsamlegast stimplaðu inn netfangið þitt."
+
+#: forms/wp-event-manager-form-submit-event.php:662
+msgid "Please enter a username."
+msgstr "Vinsamlegast stimplaðu inn notandanafn."
+
+#: forms/wp-event-manager-form-submit-event.php:547
+msgid "Please enter a valid registration email address or URL"
+msgstr "Vinsamlegast stimplaðu inn gilt skráningarnetfang eða slóð"
+
+#: forms/wp-event-manager-form-submit-event.php:537
+msgid "Please enter a valid registration URL"
+msgstr "Vinsamlegast stimplaðu inn gilda skráningarslóð"
+
+#: forms/wp-event-manager-form-submit-event.php:528
+msgid "Please enter a valid registration email address"
+msgstr "Vinsamlegast stimplaðu inn gilt skráningarnetfang"
+
+#: forms/wp-event-manager-form-submit-event.php:513
+#: wp-event-manager-functions.php:1336
+msgid "\"%s\" (filetype %s) needs to be one of the following file types: %s"
+msgstr "\"%s\" (skráartegund %s) verður að vera ein af eftirfarandi skráartegundum: %s"
+
+#: forms/wp-event-manager-form-submit-event.php:497
+msgid "%s is invalid"
+msgstr "%s er ógilt"
+
+#: forms/wp-event-manager-form-submit-event.php:486
+msgid "%s is a required field"
+msgstr "%s er nauðsynlegt svæði"
+
+#: forms/wp-event-manager-form-submit-event.php:399
+msgid "Twitter URL e.g http://twitter.com/yourorganizer"
+msgstr "Twitter slóð t.d. http://twitter.com/yourorganizer"
+
+#: forms/wp-event-manager-form-submit-event.php:396
+#: templates/content-single-event_listing-organizer.php:158
+msgid "Twitter"
+msgstr "Twitter"
+
+#: forms/wp-event-manager-form-submit-event.php:286
+msgid "e.g http://www.example.com"
+msgstr "t.d. http://www.example.com"
+
+#: forms/wp-event-manager-form-submit-event.php:275
+msgid "Ticket Price"
+msgstr "Miðaverð"
+
+#: forms/wp-event-manager-form-submit-event.php:187
+msgid "e.g. \"Berlin\",\"London\""
+msgstr "t.d. \"Berlin\", \"London\""
+
+#: forms/wp-event-manager-form-submit-event.php:113
+msgid "Enter an email address or website URL"
+msgstr "Stimplaðu inn netfang eða vefslóð"
+
+#: forms/wp-event-manager-form-submit-event.php:112
+msgid "Registration email/URL"
+msgstr "Skráningarnetfang/slóð"
+
+#: forms/wp-event-manager-form-submit-event.php:109
+msgid "http://"
+msgstr "http://"
+
+#: forms/wp-event-manager-form-submit-event.php:108
+msgid "Registration URL"
+msgstr "Skráningarslóð"
+
+#: forms/wp-event-manager-form-submit-event.php:105
+#: wp-event-manager-template.php:426 wp-event-manager-template.php:2084
+msgid "you@yourdomain.com"
+msgstr "you@yourdomain.com"
+
+#: forms/wp-event-manager-form-submit-event.php:104
+msgid "Registration email"
+msgstr "Skráningarnetfang"
+
+#: forms/wp-event-manager-form-submit-event.php:43
+msgid "Done"
+msgstr "Lokið"
+
+#: forms/wp-event-manager-form-submit-event.php:36
+#: forms/wp-event-manager-form-submit-event.php:636
+#: forms/wp-event-manager-form-submit-event.php:924
+msgid "Preview"
+msgstr "Forskoða"
+
+#: forms/wp-event-manager-form-submit-event.php:29
+msgid "Submit Details"
+msgstr "Senda Inn Upplýsingar"
+
+#: forms/wp-event-manager-form-edit-event.php:161
+msgid "View &rarr;"
+msgstr "Skoða &rarr;"
+
+#: forms/wp-event-manager-form-edit-event.php:161
+#: forms/wp-event-manager-form-edit-event.php:167
+msgid "Your changes have been saved."
+msgstr "Breytingar þínar hafa verið vistaðar."
+
+#: forms/wp-event-manager-form-edit-event.php:120
+msgid "Save changes"
+msgstr "Vista breytingar"
+
+#: forms/wp-event-manager-form-edit-event.php:66
+msgid "Invalid listing"
+msgstr "Ógild færsla"
+
+#: core/wp-event-manager-post-types.php:391
+msgid "Preview <span class=\"count\">(%s)</span>"
+msgid_plural "Preview <span class=\"count\">(%s)</span>"
+msgstr[0] "Forskoðun <span class=\"count\">(%s)</span>"
+msgstr[1] "Forskoðun <span class=\"count\">(%s)</span>"
+
+#: core/wp-event-manager-post-types.php:378
+msgid "Expired <span class=\"count\">(%s)</span>"
+msgid_plural "Expired <span class=\"count\">(%s)</span>"
+msgstr[0] "Útrunnin <span class=\"count\">(%s)</span>"
+msgstr[1] "Útrunnar <span class=\"count\">(%s)</span>"
+
+#: core/wp-event-manager-post-types.php:368 wp-event-manager-functions.php:516
+msgctxt "post status"
+msgid "Expired"
+msgstr "Útrunnið"
+
+#: core/wp-event-manager-post-types.php:326
+msgid "This is where you can create and manage %s."
+msgstr "Hér getur þú búið til og stjórnað %s."
+
+#: core/wp-event-manager-post-types.php:323
+msgid "Use as organizer logo"
+msgstr "Nota sem skipuleggjanda lógó"
+
+#: core/wp-event-manager-post-types.php:321
+msgid "Remove organizer logo"
+msgstr "Fjarlægja skipuleggjanda lógó"
+
+#: core/wp-event-manager-post-types.php:319
+msgid "Set organizer logo"
+msgstr "Setja skipuleggjanda lógó"
+
+#: core/wp-event-manager-post-types.php:317
+msgid "Organizer Logo"
+msgstr "Skipuleggjanda Lógó"
+
+#: core/wp-event-manager-post-types.php:313
+msgid "No %s found in trash"
+msgstr "Ekkert %s fannst í ruslinu"
+
+#: core/wp-event-manager-post-types.php:311
+msgid "No %s found"
+msgstr "Ekkert %s fannst"
+
+#: core/wp-event-manager-post-types.php:305
+#: core/wp-event-manager-post-types.php:307
+msgid "View %s"
+msgstr "Skoða %s"
+
+#: core/wp-event-manager-post-types.php:303
+msgid "New %s"
+msgstr "Nýtt %s"
+
+#: core/wp-event-manager-post-types.php:297
+msgid "Add %s"
+msgstr "Bæta við %s"
+
+#: core/wp-event-manager-post-types.php:295
+msgid "Add New"
+msgstr "Bæta Við Nýju"
+
+#: core/wp-event-manager-post-types.php:272
+msgctxt "Event permalink - resave permalinks after changing this"
+msgid "event"
+msgstr "atburður"
+
+#: core/wp-event-manager-post-types.php:262
+msgctxt "Post type archive slug - resave permalinks after changing this"
+msgid "events"
+msgstr "atburðir"
+
+#: core/wp-event-manager-post-types.php:258
+msgid "Events"
+msgstr "Atburðir"
+
+#: core/wp-event-manager-post-types.php:256
+msgid "Event"
+msgstr "Atburður"
+
+#: core/wp-event-manager-post-types.php:179
+msgctxt "Event type slug - resave permalinks after changing this"
+msgid "event-type"
+msgstr "tegund-atburðar"
+
+#: core/wp-event-manager-post-types.php:173
+msgid "Event types"
+msgstr "Tegundir atburða"
+
+#: core/wp-event-manager-post-types.php:171
+msgid "Event type"
+msgstr "Tegund atburðar"
+
+#: core/wp-event-manager-post-types.php:141
+#: core/wp-event-manager-post-types.php:229
+msgid "New %s Name"
+msgstr "Nýtt %s Nafn"
+
+#: core/wp-event-manager-post-types.php:139
+#: core/wp-event-manager-post-types.php:227
+msgid "Add New %s"
+msgstr "Bæta Við Nýju %s"
+
+#: core/wp-event-manager-post-types.php:137
+#: core/wp-event-manager-post-types.php:225
+msgid "Update %s"
+msgstr "Uppfæra %s"
+
+#: core/wp-event-manager-post-types.php:135
+#: core/wp-event-manager-post-types.php:223
+#: core/wp-event-manager-post-types.php:301
+msgid "Edit %s"
+msgstr "Breyta %s"
+
+#: core/wp-event-manager-post-types.php:133
+#: core/wp-event-manager-post-types.php:221
+msgid "Parent %s:"
+msgstr "Foreldri %s:"
+
+#: core/wp-event-manager-post-types.php:131
+#: core/wp-event-manager-post-types.php:219
+#: core/wp-event-manager-post-types.php:315
+msgid "Parent %s"
+msgstr "Foreldri %s"
+
+#: core/wp-event-manager-post-types.php:129
+#: core/wp-event-manager-post-types.php:217
+#: core/wp-event-manager-post-types.php:293
+msgid "All %s"
+msgstr "Allt %s"
+
+#: core/wp-event-manager-post-types.php:127
+#: core/wp-event-manager-post-types.php:215
+#: core/wp-event-manager-post-types.php:309
+msgid "Search %s"
+msgstr "Leita %s"
+
+#: core/wp-event-manager-post-types.php:91
+msgctxt "Event category slug - resave permalinks after changing this"
+msgid "event-category"
+msgstr "atburður-flokkur"
+
+#: core/wp-event-manager-post-types.php:85
+msgid "Event categories"
+msgstr "Atburðaflokkar"
+
+#: core/wp-event-manager-post-types.php:83
+msgid "Event category"
+msgstr "Atburðaflokkur"
+
+#: core/wp-event-manager-install.php:69
+msgid "Organizer"
+msgstr "Skipuleggjandi"
+
+#: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
+#: core/wp-event-manager-geocode.php:236
+msgid "Geocoding error"
+msgstr "Landkóðavilla"
+
+#: core/wp-event-manager-geocode.php:210
+msgid "Query limit reached"
+msgstr "Kominn Yfir Hámark Fyrirspurna"
+
+#: core/wp-event-manager-geocode.php:202
+msgid "No results found"
+msgstr "Engar niðurstöður fundust"
+
+#: core/wp-event-manager-filters.php:73
+msgid "Any Ticket Price"
+msgstr "Öll Miðaverð"
+
+#: core/wp-event-manager-filters.php:41
+msgid "Next Year"
+msgstr "Á Næsta Ári"
+
+#: core/wp-event-manager-filters.php:39
+msgid "Next Month"
+msgstr "Í Næsta Mánuði"
+
+#: core/wp-event-manager-filters.php:37
+msgid "Next Weekend"
+msgstr "Um Næstu Helgi"
+
+#: core/wp-event-manager-filters.php:35
+msgid "Next Week"
+msgstr "Í Næstu Viku"
+
+#: core/wp-event-manager-filters.php:33
+msgid "This Year"
+msgstr "Á Þessu Ári"
+
+#: core/wp-event-manager-filters.php:31
+msgid "This Month"
+msgstr "Í Þessum Mánuði"
+
+#: core/wp-event-manager-filters.php:29
+msgid "This Weekend"
+msgstr "Um Þessa Helgi"
+
+#: core/wp-event-manager-filters.php:27
+msgid "This Week"
+msgstr "Í Þessari Viku"
+
+#: core/wp-event-manager-filters.php:25
+msgid "Tomorrow"
+msgstr "Á Morgun"
+
+#: core/wp-event-manager-filters.php:23
+msgid "Today"
+msgstr "Í Dag"
+
+#: core/wp-event-manager-filters.php:21
+msgid "Any Date"
+msgstr "Allar Dagsetningar"
+
+#: core/wp-event-manager-ajax.php:381
+msgid "You must be logged in to upload files using this method."
+msgstr "Þú verður að skrá þig inn áður en þú upphleður skrár með þessari aðferð."
+
+#: core/wp-event-manager-ajax.php:319
+msgid "Search completed. Found %d matching record."
+msgid_plural "Search completed. Found %d matching records."
+msgstr[0] "Leit lokið. Fann %d færslu."
+msgstr[1] "Leit lokið. Fann %d færslur."
+
+#: core/wp-event-manager-ajax.php:314
+msgid "located in &ldquo;%s&rdquo;"
+msgstr "fannst í &ldquo;%s&rdquo;"
+
+#: admin/wp-event-manager-writepanels.php:738
+msgid "Enter the ID of the user, or leave blank if submitted by a guest."
+msgstr "Stimplaðu inn skilríki notanda, eða skildu eftir autt ef sent inn af gesti."
+
+#: admin/wp-event-manager-writepanels.php:734
+msgid "Change"
+msgstr "Breyta"
+
+#: admin/wp-event-manager-writepanels.php:732
+msgid "Guest User"
+msgstr "Gestanotandi"
+
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Add file"
+msgstr "Bæta við skrá"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Upload"
+msgstr "Upphlaða"
+
+#: admin/wp-event-manager-writepanels.php:540
+#: admin/wp-event-manager-writepanels.php:543
+#: admin/wp-event-manager-writepanels.php:546
+msgid "Use file"
+msgstr "Nota skrá"
+
+#: admin/wp-event-manager-writepanels.php:484
+msgid "Most Used"
+msgstr "Mest Notað"
+
+#: admin/wp-event-manager-writepanels.php:434
+msgid "%s Data"
+msgstr "%s Gögn"
+
+#: admin/wp-event-manager-writepanels.php:387
+msgid "Posted by"
+msgstr "Póstað af"
+
+#: admin/wp-event-manager-writepanels.php:379
+msgid "yyyy-mm-dd"
+msgstr "áááá-mm-dd"
+
+#: admin/wp-event-manager-writepanels.php:378
+msgid "Listing Expiry Date"
+msgstr "Gildistími Færsla"
+
+#: admin/wp-event-manager-writepanels.php:373
+msgid "Featured listings will be sticky during searches, and can be styled differently."
+msgstr "Færslur sem eru gerðar að aðalatriði munu vera klístraðar í leitum og það er hægt að hanna þær öðruvísi."
+
+#: admin/wp-event-manager-writepanels.php:371
+msgid "Featured Listing"
+msgstr "Mikilvæg Færsla"
+
+#: admin/wp-event-manager-writepanels.php:365
+msgid "Cancelled listings will no longer accept registration."
+msgstr "Það er ekki hægt að skrá sig í færslur sem er búið að hætta við."
+
+#: admin/wp-event-manager-writepanels.php:362
+msgid "Event Cancelled"
+msgstr "Atburður Afboðaður"
+
+#: admin/wp-event-manager-writepanels.php:357
+#: forms/wp-event-manager-form-submit-event.php:423
+msgid "Instagram URL e.g http://www.instagram.com/yourcompany"
+msgstr "Instagram slóð t.d. http://www.instagram.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:354
+#: forms/wp-event-manager-form-submit-event.php:420
+#: templates/content-single-event_listing-organizer.php:182
+msgid "Instagram"
+msgstr "Instagram"
+
+#: admin/wp-event-manager-writepanels.php:349
+#: forms/wp-event-manager-form-submit-event.php:415
+msgid "Pinterest URL e.g http://www.pinterest.com/yourcompany"
+msgstr "Pinterest slóð t.d. http://www.pinterest.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:346
+#: forms/wp-event-manager-form-submit-event.php:412
+#: templates/content-single-event_listing-organizer.php:176
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: admin/wp-event-manager-writepanels.php:341
+#: forms/wp-event-manager-form-submit-event.php:407
+msgid "Xing URL e.g http://www.xing.com/companies/yourcompany"
+msgstr "Xing slóð t.d. http://www.xing.com/companies/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:338
+#: forms/wp-event-manager-form-submit-event.php:404
+#: templates/content-single-event_listing-organizer.php:170
+msgid "Xing"
+msgstr "Xing"
+
+#: admin/wp-event-manager-writepanels.php:333
+msgid "@yourorganizer"
+msgstr "@þinnskipuleggjandi"
+
+#: admin/wp-event-manager-writepanels.php:330
+msgid "Twitter username"
+msgstr "Twitter notandanafn"
+
+#: admin/wp-event-manager-writepanels.php:325
+#: forms/wp-event-manager-form-submit-event.php:391
+msgid "Linkedin URL e.g http://www.linkedin.com/company/yourcompany"
+msgstr "Linkedin slóð t.d. http://www.linkedin.com/company/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:322
+#: forms/wp-event-manager-form-submit-event.php:388
+#: templates/content-single-event_listing-organizer.php:164
+msgid "Linkedin"
+msgstr "Linkedin"
+
+#: admin/wp-event-manager-writepanels.php:317
+#: forms/wp-event-manager-form-submit-event.php:383
+msgid "Facebook URL e.g http://www.facebook.com/yourcompany"
+msgstr "Facebook slóð t.d. http://www.facebook.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:314
+#: forms/wp-event-manager-form-submit-event.php:380
+#: templates/content-single-event_listing-organizer.php:152
+msgid "Facebook"
+msgstr "Facebook"
+
+#: admin/wp-event-manager-writepanels.php:309
+#: forms/wp-event-manager-form-submit-event.php:375
+msgid "Google+ URL e.g http://plus.google.com/yourcompany"
+msgstr "Google+ slóð t.d. http://plus.google.com/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:306
+#: forms/wp-event-manager-form-submit-event.php:372
+#: templates/content-single-event_listing-organizer.php:194
+msgid "Google+"
+msgstr "Google+"
+
+#: admin/wp-event-manager-writepanels.php:301
+#: forms/wp-event-manager-form-submit-event.php:367
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourcompany"
+msgstr "Youtube slóð t.d. http://www.youtube.com/channel/yourcompany"
+
+#: admin/wp-event-manager-writepanels.php:298
+#: forms/wp-event-manager-form-submit-event.php:364
+#: templates/content-single-event_listing-organizer.php:188
+msgid "Youtube"
+msgstr "Youtube"
+
+#: admin/wp-event-manager-writepanels.php:293
+#: forms/wp-event-manager-form-submit-event.php:359
+msgid "A link to a video about your organization"
+msgstr "Linkur á myndband um fyrirtækið þitt"
+
+#: admin/wp-event-manager-writepanels.php:290
+#: forms/wp-event-manager-form-submit-event.php:356
+msgid "Video"
+msgstr "Myndband"
+
+#: admin/wp-event-manager-writepanels.php:284
+msgid "Your organization tagline"
+msgstr "Slagorð fyrirtækis þíns"
+
+#: admin/wp-event-manager-writepanels.php:281
+msgid "Tagline"
+msgstr "Slagorð"
+
+#: admin/wp-event-manager-writepanels.php:276
+#: forms/wp-event-manager-form-submit-event.php:351
+msgid "Website URL e.g http://www.yourorganization.com"
+msgstr "Vefsíðuslóð t.d. http://www.yourorganization.com"
+
+#: admin/wp-event-manager-writepanels.php:273
+#: forms/wp-event-manager-form-submit-event.php:348
+#: templates/content-single-event_listing-organizer.php:147
+msgid "Website"
+msgstr "Vefsíða"
+
+#: admin/wp-event-manager-writepanels.php:268
+#: forms/wp-event-manager-form-submit-event.php:343
+msgid "Enter your email address"
+msgstr "Stimplaðu inn netfangið þitt"
+
+#: admin/wp-event-manager-writepanels.php:265
+#: forms/wp-event-manager-form-submit-event.php:340
+msgid "Organization Email"
+msgstr "Netfang Fyrirtækis Þíns"
+
+#: admin/wp-event-manager-writepanels.php:260
+#: forms/wp-event-manager-form-submit-event.php:335
+msgid "Enter contact person name in your organization"
+msgstr "Stimplaðu inn nafn tengiliðs í fyrirtækinu þínu"
+
+#: admin/wp-event-manager-writepanels.php:257
+#: forms/wp-event-manager-form-submit-event.php:332
+msgid "Contact Person Name"
+msgstr "Nafn Tengiliðs"
+
+#: admin/wp-event-manager-writepanels.php:249
+#: forms/wp-event-manager-form-submit-event.php:324
+msgid "Organizer Description"
+msgstr "Lýsing Skipuleggjanda"
+
+#: admin/wp-event-manager-writepanels.php:240
+#: forms/wp-event-manager-form-submit-event.php:308
+msgid "Logo"
+msgstr "Lógó"
+
+#: admin/wp-event-manager-writepanels.php:235
+#: forms/wp-event-manager-form-submit-event.php:304
+msgid "Enter the name of the organization"
+msgstr "Stimplaðu inn nafn fyrirtækisins"
+
+#: admin/wp-event-manager-writepanels.php:232
+#: forms/wp-event-manager-form-submit-event.php:301
+msgid "Organization name"
+msgstr "Nafn Fyrirtækisins"
+
+#: admin/wp-event-manager-writepanels.php:227
+#: forms/wp-event-manager-form-submit-event.php:294
+msgid "Please enter registration deadline"
+msgstr "Vinsamlegast stimplaðu inn skráningarfrest"
+
+#: admin/wp-event-manager-writepanels.php:224
+#: forms/wp-event-manager-form-submit-event.php:291
+msgid "Registration Deadline"
+msgstr "Skráningarfrestur"
+
+#: admin/wp-event-manager-writepanels.php:219
+msgid "e.g http://ww.example.com"
+msgstr "t.d. http://ww.example.com"
+
+#: admin/wp-event-manager-writepanels.php:216
+#: forms/wp-event-manager-form-submit-event.php:283
+msgid "Link To Event Page"
+msgstr "Linkur Á Atburðasíðu"
+
+#: admin/wp-event-manager-writepanels.php:207
+#: forms/wp-event-manager-form-submit-event.php:276
+msgid "Please enter ticket price"
+msgstr "Vinsamlegast stimplaðu inn miðaverð"
+
+#: admin/wp-event-manager-writepanels.php:206
+msgid "Price"
+msgstr "Verð"
+
+#: admin/wp-event-manager-writepanels.php:199
+#: core/wp-event-manager-filters.php:77
+#: forms/wp-event-manager-form-submit-event.php:269
+msgid "Free"
+msgstr "Frítt"
+
+#: admin/wp-event-manager-writepanels.php:198
+#: core/wp-event-manager-filters.php:75
+#: forms/wp-event-manager-form-submit-event.php:268
+msgid "Paid"
+msgstr "Greitt"
+
+#: admin/wp-event-manager-writepanels.php:194
+#: forms/wp-event-manager-form-submit-event.php:264
+msgid "Ticket Options"
+msgstr "Miðavalkostir"
+
+#: admin/wp-event-manager-writepanels.php:187
+#: forms/wp-event-manager-form-submit-event.php:257
+msgid "Please enter event end time"
+msgstr "Vinsamlegast stimplaðu inn hvenær atburður endar"
+
+#: admin/wp-event-manager-writepanels.php:186
+#: forms/wp-event-manager-form-submit-event.php:256
+msgid "End Time"
+msgstr "Lokatími"
+
+#: admin/wp-event-manager-writepanels.php:179
+#: forms/wp-event-manager-form-submit-event.php:249
+msgid "Please enter event end date"
+msgstr "Vinsamlegast stimplaðu inn hvaða dag atburður endar"
+
+#: admin/wp-event-manager-writepanels.php:178
+#: forms/wp-event-manager-form-submit-event.php:248
+#: shortcodes/wp-event-manager-shortcodes.php:244
+msgid "End Date"
+msgstr "Lokadagsetning"
+
+#: admin/wp-event-manager-writepanels.php:171
+#: forms/wp-event-manager-form-submit-event.php:241
+msgid "Please enter event start time"
+msgstr "Vinsamlegast stimplaðu inn hvenær atburður byrjar"
+
+#: admin/wp-event-manager-writepanels.php:170
+#: forms/wp-event-manager-form-submit-event.php:240
+msgid "Start Time"
+msgstr "Byrjunartími"
+
+#: admin/wp-event-manager-writepanels.php:163
+#: forms/wp-event-manager-form-submit-event.php:234
+msgid "Please enter event start date"
+msgstr "Vinsamlegast stimplaðu inn hvaða dag atburður byrjar"
+
+#: admin/wp-event-manager-writepanels.php:162
+#: forms/wp-event-manager-form-submit-event.php:233
+#: shortcodes/wp-event-manager-shortcodes.php:243
+msgid "Start Date"
+msgstr "Byrjunardagsetning"
+
+#: admin/wp-event-manager-writepanels.php:156
+#: forms/wp-event-manager-form-submit-event.php:227
+msgid "24 hour format"
+msgstr "24 tíma snið"
+
+#: admin/wp-event-manager-writepanels.php:155
+#: forms/wp-event-manager-form-submit-event.php:226
+msgid "12 hour format"
+msgstr "12 tíma snið"
+
+#: admin/wp-event-manager-writepanels.php:151
+#: forms/wp-event-manager-form-submit-event.php:222
+msgid "Time Format"
+msgstr "Tímasnið"
+
+#: admin/wp-event-manager-field-editor.php:139
+#: admin/wp-event-manager-field-editor.php:241
+#: admin/wp-event-manager-writepanels.php:144
+#: forms/wp-event-manager-form-submit-event.php:208
+msgid "Description"
+msgstr "Lýsing"
+
+#: admin/wp-event-manager-writepanels.php:128
+#: forms/wp-event-manager-form-submit-event.php:192
+msgid "Event Banner"
+msgstr "Atburðarborði"
+
+#: admin/wp-event-manager-writepanels.php:123
+msgid "e.g. \"Berlin\",\"Munich\""
+msgstr "t.d. \"Berlin\", \"Munich\""
+
+#: admin/wp-event-manager-writepanels.php:120
+msgid "Leave this blank if the location is not important"
+msgstr "Skildu þetta eftir autt ef staðsetningin er ekki mikilvæg"
+
+#: admin/wp-event-manager-writepanels.php:119
+#: forms/wp-event-manager-form-submit-event.php:184
+#: shortcodes/wp-event-manager-shortcodes.php:242
+#: templates/event-filters.php:19 templates/event-filters.php:20
+#: widgets/wp-event-manager-widgets.php:235
+msgid "Location"
+msgstr "Staðsetning"
+
+#: admin/wp-event-manager-writepanels.php:114
+#: forms/wp-event-manager-form-submit-event.php:179
+msgid "Please enter pincode (Area code)"
+msgstr "Vinsamlegast stimplaðu inn svæðisnúmer"
+
+#: admin/wp-event-manager-writepanels.php:111
+#: forms/wp-event-manager-form-submit-event.php:176
+msgid "Pincode"
+msgstr "Svæðisnúmer"
+
+#: admin/wp-event-manager-writepanels.php:106
+#: forms/wp-event-manager-form-submit-event.php:171
+msgid "Please enter street name and number"
+msgstr "Vinsamlegast stimplaðu inn götuheiti og númer"
+
+#: admin/wp-event-manager-writepanels.php:103
+#: forms/wp-event-manager-form-submit-event.php:168
+msgid "Address"
+msgstr "Heimilisfang"
+
+#: admin/wp-event-manager-writepanels.php:98
+#: forms/wp-event-manager-form-submit-event.php:163
+msgid "Please enter the venue name"
+msgstr "Vinsamlegast stimplaðu inn nafn vettvangs"
+
+#: admin/wp-event-manager-writepanels.php:95
+#: forms/wp-event-manager-form-submit-event.php:160
+msgid "Venue Name"
+msgstr "Nafn Vettvangs"
+
+#: admin/wp-event-manager-writepanels.php:88
+#: forms/wp-event-manager-form-submit-event.php:153
+msgid "No"
+msgstr "Nei"
+
+#: admin/wp-event-manager-writepanels.php:87
+#: forms/wp-event-manager-form-submit-event.php:152
+msgid "Yes"
+msgstr "Já"
+
+#: admin/wp-event-manager-writepanels.php:82
+#: forms/wp-event-manager-form-submit-event.php:148
+#: templates/content-event_listing.php:30
+#: templates/content-event_listing.php:56
+#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-summary-event_listing.php:10
+#: templates/content-widget-event_listing.php:10
+#: templates/event-dashboard.php:78
+msgid "Online Event"
+msgstr "Atburður á Netinu"
+
+#: admin/wp-event-manager-writepanels.php:48
+msgid "This field is required for the \"registration\" area to appear beneath the listing."
+msgstr "Það verður að fylla út þennan reit svo að \"skráningarsvæðið\" byrtist fyrir neðan færsluna."
+
+#: admin/wp-event-manager-writepanels.php:47
+msgid "URL or email which attendees use to register"
+msgstr "Slóð eða netfang sem gestir nota til þess að skrá sig"
+
+#: admin/wp-event-manager-writepanels.php:46
+msgid "Registration Email or URL"
+msgstr "Skráningarnetfang eða slóð"
+
+#: admin/wp-event-manager-writepanels.php:38
+msgid "Total View Count"
+msgstr "Heildaráhorf"
+
+#: admin/wp-event-manager-setup.php:357
+msgid "Help other users on the forums"
+msgstr "Hjálpa öðrum notendum á vettvanginum"
+
+#: admin/wp-event-manager-setup.php:355
+msgid "Contribute code or report a bug"
+msgstr "Gefa kóða eða segja frá villu"
+
+#: admin/wp-event-manager-setup.php:353
+msgid "Contribute a localization"
+msgstr "Hjálpa með staðfæringu"
+
+#: admin/wp-event-manager-setup.php:351
+msgid "Leave a positive review"
+msgstr "Skilja eftir jákvæða gagnrýni"
+
+#: admin/wp-event-manager-setup.php:347
+msgid "There are many ways to support open-source projects such as WP Event Manager, for example code contribution, translation, or even telling your friends how awesome the plugin (hopefully) is. Thanks in advance for your support - it is much appreciated!"
+msgstr "Það eru margar leiðir til að stiðja verkefni eins og WP Atburðastjóra, til dæmis með því að bæta við kóða, þýða, eða með því að segja vinum þínum hversu frábær þessi viðbót er (vonandi). Takk fyrir að stiðja okkur - við kunnum virkilega að meta það!"
+
+#: admin/wp-event-manager-setup.php:345
+msgid "Support the Ongoing Development of this Plugin"
+msgstr "Stiðja Þróun Þessarar Viðbótar"
+
+#: admin/wp-event-manager-setup.php:341
+msgid "And don't forget, if you need any more help using <em>WP Event Manager</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!"
+msgstr "Og ekki gleyma að ef þú þarft meiri hjálp við að nota <em>WP Atburðastjóra</em> getur þú skoðað %1$sskjölin%2$s eða %3$spóstað á vettvanginn%2$s!"
+
+#: admin/wp-event-manager-setup.php:335
+msgid "Find out more about the front-end event dashboard"
+msgstr "Fá fleiri upplýsingar um atburðalesborðið"
+
+#: admin/wp-event-manager-setup.php:331
+msgid "View the event dashboard"
+msgstr "Skoða atburðalesborðið"
+
+#: admin/wp-event-manager-setup.php:325
+msgid "Add the [events] shortcode to a page to list events"
+msgstr "Bæta [atburðasmákóða] við síðuna til þess að birta atburði"
+
+#: admin/wp-event-manager-setup.php:321
+msgid "View submitted event listings"
+msgstr "Skoða innsendar atburðafærslur"
+
+#: admin/wp-event-manager-setup.php:315
+msgid "Find out more about the front-end event submission form"
+msgstr "Fá fleiri upplýsingar um atburðarumsóknarformið að framan"
+
+#: admin/wp-event-manager-setup.php:311
+msgid "Add an event via the front-end"
+msgstr "Bæta við atburði að framan"
+
+#: admin/wp-event-manager-setup.php:307
+msgid "Add an event via the back-end"
+msgstr "Bæta við atburði fyrir aftan"
+
+#: admin/wp-event-manager-setup.php:305
+msgid "Tweak the plugin settings"
+msgstr "Fínstilla viðbótarstillingar"
+
+#: admin/wp-event-manager-setup.php:301
+msgid "Looks like you're all set to start using the plugin. In case you're wondering where to go next:"
+msgstr "Þú virðist vera tilbúin(n) að byrja að nota viðbótina. Ef þú skildir vera að velta fyrir þér hvert þú getur farið næst:"
+
+#: admin/wp-event-manager-setup.php:299
+msgid "All Done!"
+msgstr "Búið!"
+
+#: admin/wp-event-manager-setup.php:288
+msgid "Skip this step"
+msgstr "Sleppa þessu skrefi"
+
+#: admin/wp-event-manager-setup.php:275
+msgid "This page allows users to browse, search, and filter event listings on the front-end of your site."
+msgstr "Þessi síða leyfir notendum að vafra, leita og sía atburðafærslur fremst á síðunni þinni."
+
+#: admin/wp-event-manager-setup.php:273
+msgctxt "Default page title (wizard)"
+msgid "Events"
+msgstr "Atburðir"
+
+#: admin/wp-event-manager-setup.php:264
+msgid "If you plan on managing all listings from the admin dashboard you can skip creating this page."
+msgstr "Ef þú ætlar að stjórna öllum færslum frá kerfisstjóralesborðinu getur þú sleppt því að búa til þessa síðu."
+
+#: admin/wp-event-manager-setup.php:262
+msgid "This page allows peoples to manage and edit their own events from the front-end."
+msgstr "Þessi síða leyfir fólki að stjórna og breyta þeirra eigin atburðum fremst."
+
+#: admin/wp-event-manager-setup.php:258
+msgctxt "Default page title (wizard)"
+msgid "Event Dashboard"
+msgstr "Atburðalesborð"
+
+#: admin/wp-event-manager-setup.php:250
+msgid "If you do not want to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page."
+msgstr "Ef þú vilt ekki þiggja umsóknir frá notendum á þennan hátt (til dæmis ef þú vilt pósta atburðum frá kerfisstjóralesborðinu) getur þú sleppt því að búa til þessa síðu."
+
+#: admin/wp-event-manager-setup.php:248
+msgid "This page allows peoples to post events to your website from the front-end."
+msgstr "Þessi síða leyfir fólki að pósta atburðum á síðuna þína að framan."
+
+#: admin/wp-event-manager-setup.php:245
+msgctxt "Default page title (wizard)"
+msgid "Post an Event"
+msgstr "Pósta Atburði"
+
+#: admin/wp-event-manager-setup.php:234
+msgid "Content Shortcode"
+msgstr "Smákóði fyrir Efni"
+
+#: admin/wp-event-manager-setup.php:232
+msgid "Page Description"
+msgstr "Lýsing á Síðu"
+
+#: admin/wp-event-manager-setup.php:230
+msgid "Page Title"
+msgstr "Síðutitill"
+
+#: admin/wp-event-manager-setup.php:219
+msgid "<em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the event shortcodes view the %4$sshortcode documentation%2$s."
+msgstr "<em>WP Atburðastjóri</em> inniheldur %1$ssmákóða%2$s sem hægt er að nota á %3$ssíðunum þínum%2$s til þess að framleiða efni. Það er hægt að fá þá hér að neðan. Til þess að fá fleiri upplýsingar um atburðasmákóða skaltu skoða %4$ssmákóðaskjöl%2$s."
+
+#: admin/wp-event-manager-setup.php:217
+msgid "Page Setup"
+msgstr "Uppsetning Síðu"
+
+#: admin/wp-event-manager-setup.php:209
+msgid "Skip setup. I will setup the plugin manually"
+msgstr "Sleppa uppsetningu. Ég ætla að setja upp viðbótina sjálf(ur)"
+
+#: admin/wp-event-manager-setup.php:207
+msgid "Continue to page setup"
+msgstr "Halda áfram í uppsetningu síðu"
+
+#: admin/wp-event-manager-setup.php:203
+msgid "If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help."
+msgstr "Ef þú vilt sleppa leiðsagnarforritinu og setja upp síðurnar og smákóðana sjálf(ur) þá er ferlið samt tiltölulega einfalt. Skoðaðu %sskjölin%s til þess að fá hjálp."
+
+#: admin/wp-event-manager-setup.php:201
+msgid "This setup wizard will help you get started by creating the pages for event submission, event management, and listing your events."
+msgstr "Þetta leiðsagnarforrit mun hjálpa þér að byrja með því að búa til síður fyrir atburðaumsóknir, atburðastjórn og til þess að búa til atburðafærslur."
+
+#: admin/wp-event-manager-setup.php:199
+msgid "Thanks for installing <em>WP Event Manager</em>!"
+msgstr "Takk fyrir að setja inn <em>WP Atburðastjóra</em>!"
+
+#: admin/wp-event-manager-setup.php:197
+msgid "Setup Wizard Introduction"
+msgstr "Leiðsagnarforritskynning"
+
+#: admin/wp-event-manager-setup.php:191
+msgid "3. Done"
+msgstr "3. Búið"
+
+#: admin/wp-event-manager-setup.php:189
+msgid "2. Page Setup"
+msgstr "2. Uppsetning Síðu"
+
+#: admin/wp-event-manager-setup.php:187
+msgid "1. Introduction"
+msgstr "1. Kynning"
+
+#: admin/wp-event-manager-setup.php:183
+msgid "WP Event Manager Setup"
+msgstr "Uppsetning WP Atburðastjóra"
+
+#: admin/wp-event-manager-setup.php:45
+msgid "Setup"
+msgstr "Uppsetning"
+
+#: admin/wp-event-manager-field-editor.php:154
+#: admin/wp-event-manager-field-editor.php:256
+#: admin/wp-event-manager-settings.php:808
+msgid "Save Changes"
+msgstr "Vista Breytingar"
+
+#: admin/wp-event-manager-settings.php:755
+msgid "Select a page&hellip;"
+msgstr "Velja síðu&hellip;"
+
+#: admin/wp-event-manager-settings.php:747
+msgid "--no page--"
+msgstr "--engin síða--"
+
+#: admin/wp-event-manager-settings.php:650
+msgid "Settings successfully saved"
+msgstr "Það heppnaðist að vista stillingar"
+
+#: admin/wp-event-manager-settings.php:574
+msgid "Select the page where you have placed the [events] shortcode. This lets the plugin know where the event listings page is located."
+msgstr "Veldu síðuna þar sem þú hefur sett [atburðasmákóðann]. Þetta segir viðbótinni á hvaða síðu atburðafærslurnar eru."
+
+#: admin/wp-event-manager-settings.php:572
+msgid "Event Listings Page"
+msgstr "Atburðafærslusíða"
+
+#: admin/wp-event-manager-settings.php:561
+msgid "Select the page where you have placed the [event_dashboard] shortcode. This lets the plugin know where the dashboard is located."
+msgstr "Veldu síðuna sem þú settir [atburðalesborð] smákóðann á. Þetta segir viðbótinni hvar lesborðið er."
+
+#: admin/wp-event-manager-settings.php:559
+msgid "Event Dashboard Page"
+msgstr "Atburðalesborðssíða"
+
+#: admin/wp-event-manager-settings.php:548
+msgid "Select the page where you have placed the [submit_event_form] shortcode. This lets the plugin know where the form is located."
+msgstr "Veldu síðuna þar sem þú settir [senda_atburðaform] smákóðann. Þetta segir viðbótinni hvar formið er."
+
+#: admin/wp-event-manager-settings.php:546
+msgid "Submit Event Form Page"
+msgstr "Senda Atburðaform Síða"
+
+#: admin/wp-event-manager-settings.php:536
+msgid "Pages"
+msgstr "Síður"
+
+#: admin/wp-event-manager-settings.php:525
+msgid "If enabled each event can have more than one category. The metabox on the post editor and the select box for event category on the frontend event submission form are changed by this."
+msgstr "Ef virkt geta atburðir verið í fleiri en einum flokki. Þetta hefur áhrif á metaboxið í færsluritlinum og valboxið fyrir atburðaflokka fremst á atburðaumsóknarforminu."
+
+#: admin/wp-event-manager-settings.php:523
+msgid "Enable multi select event category for event listing submission"
+msgstr "Gera fjölval virkt fyrir atburðaflokka í atburðafærsluumsóknum."
+
+#: admin/wp-event-manager-settings.php:521
+msgid "Multi-select Event Category For Submission"
+msgstr "Fjölval Atburðaflokka Fyrir Umsóknir"
+
+#: admin/wp-event-manager-settings.php:509
+msgid "If enabled each event can have more than one type. The metabox on the post editor and the select box for event type on the frontend event submission form are changed by this."
+msgstr "Ef virkt geta atburðir verið fleiri en ein tegund. Þetta hefur áhrif á metaboxið í færsluritlinum og valboxið fyrir atburðategundir fremst í atburðaumsóknarforminu."
+
+#: admin/wp-event-manager-settings.php:507
+msgid "Enable multi select event type for event listing submission"
+msgstr "Gera fjölvalsatburði virka fyrir atburðafærsluumsókn"
+
+#: admin/wp-event-manager-settings.php:505
+msgid "Multi-select Event Types For Submission"
+msgstr "Fjölvalsatburðir fyrir umsókn"
+
+#: admin/wp-event-manager-settings.php:496
+msgid "Website URLs only"
+msgstr "Bara vefsíðuslóðir"
+
+#: admin/wp-event-manager-settings.php:495
+msgid "Email addresses only"
+msgstr "Bara netföng"
+
+#: admin/wp-event-manager-settings.php:494
+msgid "Email address or website URL"
+msgstr "Netfang eða vefsíðuslóð"
+
+#: admin/wp-event-manager-settings.php:491
+msgid "Choose the registratoin method for listings."
+msgstr "Velja skráningaraðferð fyrir færslur"
+
+#: admin/wp-event-manager-settings.php:490
+msgid "Registration Method"
+msgstr "Skráningaraðferð"
+
+#: admin/wp-event-manager-settings.php:483
+msgid "How many <strong>days</strong> listings are live before expiring. Can be left blank to never expire."
+msgstr "Hversu marga <strong>daga</strong> færslur eru virkar áður en þær renna út. Það er hægt að skilja eftir autt ef þú vilt að þær renni aldrei út."
+
+#: admin/wp-event-manager-settings.php:481
+msgid "Listing Duration"
+msgstr "Tímalengd Færsla"
+
+#: admin/wp-event-manager-settings.php:471
+msgid "Listing expire on Specified Below Days"
+msgstr "Færslur renna út á Ákveðnum Dögum að Neðan"
+
+#: admin/wp-event-manager-settings.php:469
+msgid "Listing expire on Event End Date"
+msgstr "Færslur renna út á Síðasta Degi Atburðar"
+
+#: admin/wp-event-manager-settings.php:463
+msgid "You can set event submission expiry time either event end date or specific days."
+msgstr "Þú getur stillt umsóknatíma atburða á annað hvort síðasta dag atburðar eða ákveðna daga."
+
+#: admin/wp-event-manager-settings.php:461
+msgid "Listing Expire"
+msgstr "Færsla Rennur Út"
+
+#: admin/wp-event-manager-settings.php:448
+msgid "If enabled, expired listings will automatically deleted after 30 days."
+msgstr "Ef virkt, mun útrunnum færslum vera eytt eftir 30 daga."
+
+#: admin/wp-event-manager-settings.php:446
+msgid "Expired listings are deleted after 30 days"
+msgstr "Útrunnum færslum er eytt eftir 30 daga"
+
+#: admin/wp-event-manager-settings.php:444
+msgid "Delete Expired listings"
+msgstr "Eyða Útrunnum Færslum"
+
+#: admin/wp-event-manager-settings.php:432
+msgid "If enabled, Multiple banner can add at frontend by user and backend side by admin."
+msgstr "Ef virkt er hægt að nota marga borða fremst af notanda og að aftan af kerfisstjóra."
+
+#: admin/wp-event-manager-settings.php:430
+msgid "User can submit multiple banner"
+msgstr "Notandi getur bætt við mörgum borðum"
+
+#: admin/wp-event-manager-settings.php:428
+msgid "Allow Multiple Banners"
+msgstr "Leyfa Marga Borða"
+
+#: admin/wp-event-manager-settings.php:417
+msgid "If enabled, submissions awaiting admin approval can be edited by the user."
+msgstr "Ef virkt, munu notendur geta breytt umsóknum sem bíða eftir samþykki frá kerfisstjóra"
+
+#: admin/wp-event-manager-settings.php:415
+msgid "Submissions awaiting approval can be edited"
+msgstr "Það er hægt að breyta umsóknum sem bíða eftir samþykki"
+
+#: admin/wp-event-manager-settings.php:413
+msgid "Allow Pending Edits"
+msgstr "Leyfa Væntanlegar Breytingar"
+
+#: admin/wp-event-manager-settings.php:400
+msgid "If enabled, new submissions will be inactive, pending admin approval."
+msgstr "Ef virkt, munu nýjar umsóknir vera óvirkar þangað til kerfisstjóri samþykkir þær."
+
+#: admin/wp-event-manager-settings.php:398
+msgid "New listing submissions require admin approval"
+msgstr "Nýjar færsluumsóknir þurfa samþykki kerfisstjóra"
+
+#: admin/wp-event-manager-settings.php:396
+msgid "Moderate New Listings"
+msgstr "Skoða Nýjar Færslur"
+
+#: admin/wp-event-manager-settings.php:383
+msgid "If you enable registration on your submission form, choose a role for the new user."
+msgstr "Ef þú gerir skráningu virka á umsóknarforminu þínu skaltu velja hlutverk fyrir nýja notandan."
+
+#: admin/wp-event-manager-settings.php:381
+msgid "Account Role"
+msgstr "Reikningshlutverk"
+
+#: admin/wp-event-manager-settings.php:370
+msgid "If enabled, an email will be sent to the user with their username and a link to set their password. Otherwise, a password field will be shown and their email address won't be verified."
+msgstr "Ef virkt, mun notandinn fá tölvupóst með notandanafni og linki til að velja lykilorð. Annars mun lykilorðsreitur birtast og netfang þeirra verður þá ekki staðfest."
+
+#: admin/wp-event-manager-settings.php:369
+msgid "Use WordPress' default behavior and email new users link to set a password"
+msgstr "Notaðu WordPress til þess að senda netfang til nýrra notenda til þess að velja lykilorð"
+
+#: admin/wp-event-manager-settings.php:368
+msgid "Account Password"
+msgstr "Lykilorð Reiknings"
+
+#: admin/wp-event-manager-settings.php:359
+msgid "If enabled, a username will be generated from the first part of the user email address. Otherwise, a username field will be shown."
+msgstr "Ef virkt, mun notendanafn vera myndað úr fyrsta hluta netfangs notanda. Annars mun reitur fyrir notandanafn birtast."
+
+#: admin/wp-event-manager-settings.php:357
+msgid "Automatically Generate Username from Email Address"
+msgstr "Mynda notandanafn sjálfkrafa úr netfangi."
+
+#: admin/wp-event-manager-settings.php:355
+msgid "Account Username"
+msgstr "Notandanafn Reiknings"
+
+#: admin/wp-event-manager-settings.php:342
+msgid "If enabled, non-logged in users will be able to create an account by entering their email address on the submission form."
+msgstr "Ef virkt, munu notendur sem ekki eru skráðir inn geta búið til reikning með því að stimpla inn netfangið sitt á umsóknarformið."
+
+#: admin/wp-event-manager-settings.php:340
+msgid "Allow account creation"
+msgstr "Leyfa að búa til reikning"
+
+#: admin/wp-event-manager-settings.php:338
+msgid "Account Creation"
+msgstr "Búa Til Reikning"
+
+#: admin/wp-event-manager-settings.php:325
+msgid "If disabled, non-logged in users will be able to submit listings without creating an account."
+msgstr "Ef óvirkt, munu notendur sem ekki eru skráðir inn geta sent inn færslur án þess að búa til reikning."
+
+#: admin/wp-event-manager-settings.php:323
+msgid "Submitting listings requires an account"
+msgstr "Verður að eiga reikning til þess að senda inn færslur"
+
+#: admin/wp-event-manager-settings.php:321
+msgid "Account Required"
+msgstr "Reikningur Nauðsynlegur"
+
+#: admin/wp-event-manager-settings.php:311
+msgid "Event Submission"
+msgstr "Senda Inn Atburð"
+
+#: admin/wp-event-manager-settings.php:303
+msgid "Default date format as defined in Setttings"
+msgstr "Dagsetningarformat samkvæmt Stillingum"
+
+#: admin/wp-event-manager-settings.php:302
+msgid "Relative to the current date (e.g., 1 day, 1 week, 1 month ago)"
+msgstr "Miðað við núverandi dagsetningu (t.d. 1 dagur, 1 vika, 1 mánuður síðan)"
+
+#: admin/wp-event-manager-settings.php:299
+msgid "Choose how you want the published date for events to be displayed on the front-end."
+msgstr "Veldu hvernig þú vilt að dagsetningin birtist fyrir atburði að framan."
+
+#: admin/wp-event-manager-settings.php:298
+msgid "Date Format"
+msgstr "Dagsetningarformat"
+
+#: admin/wp-event-manager-settings.php:292
+msgid "Events will be shown if within ALL selected event types"
+msgstr "Atburðir munu birtast ef þeir eiga við ALLAR tegundir atburða sem eru valdar"
+
+#: admin/wp-event-manager-settings.php:290
+msgid "Events will be shown if within ANY selected event type"
+msgstr "Aburðir munu birtast ef þeir eiga við EITTHVAÐ af völdum atburðategundum"
+
+#: admin/wp-event-manager-settings.php:282
+msgid "Event Type Filter"
+msgstr "Atburðategundasía"
+
+#: admin/wp-event-manager-settings.php:272
+msgid "Events will be shown if within ALL selected categories"
+msgstr "Atburðir munu birtast ef þeir eiga við ALLA valda flokka"
+
+#: admin/wp-event-manager-settings.php:270
+msgid "Events will be shown if within ANY selected category"
+msgstr "Atburðir munu birtast ef þeir eiga við EITTHVAÐ af völdum flokkum"
+
+#: admin/wp-event-manager-settings.php:249
+#: admin/wp-event-manager-settings.php:284
+msgid "If enabled, the event type select box will default to a multi select on the [events] shortcode."
+msgstr "Ef virkt, mun valbox fyrir atburðategundir sjálfkrafa hafa fjölval á [atburðasmákóðanum]."
+
+#: admin/wp-event-manager-settings.php:247
+msgid "Enable event type multiselect by default"
+msgstr "Gera fjölval atburðategunda sjálfkrafa virkt"
+
+#: admin/wp-event-manager-settings.php:245
+msgid "Multi-select Event Types"
+msgstr "Fjölval Atburðategunda"
+
+#: admin/wp-event-manager-settings.php:232
+#: admin/wp-event-manager-settings.php:264
+msgid "If enabled, the category select box will default to a multi select on the [events] shortcode."
+msgstr "Ef virkt, mun valbox fyrir flokka sjálfkrafa hafa fjölval á [atburðasmákóðanum]."
+
+#: admin/wp-event-manager-settings.php:230
+msgid "Enable category multiselect by default"
+msgstr "Gera fjölval flokka sjálfkrafa virkt"
+
+#: admin/wp-event-manager-settings.php:228
+msgid "Multi-select Categories"
+msgstr "Fjölval Flokka"
+
+#: admin/wp-event-manager-settings.php:215
+msgid "Choose whether to enable ticket prices. Ticket prices must be setup by an admin to allow users to choose them during submission."
+msgstr "Veldu hvort þú viljir gera miðaverð virk. Miðaverð verða að vera sett upp af kerfisstjóra til þess að notendur geti valið þau í umsókninni."
+
+#: admin/wp-event-manager-settings.php:213
+msgid "Enable ticket prices for listings"
+msgstr "Gera miðaverð virk í færslum"
+
+#: admin/wp-event-manager-settings.php:211
+msgid "Ticket prices"
+msgstr "Miðaverð"
+
+#: admin/wp-event-manager-settings.php:198
+msgid "Choose whether to enable event types. event types must be setup by an admin to allow users to choose them during submission."
+msgstr "Veldu hvort þú viljir gera atburðategundir virkar. Atburðategundir verða að vera settar upp af kerfisstjóra til þess að notandi geti valið þær í umsókninni."
+
+#: admin/wp-event-manager-settings.php:196
+msgid "Enable event types for listings"
+msgstr "Gera atburðategundir virkar í færslum"
+
+#: admin/wp-event-manager-settings.php:194
+msgid "Event Types"
+msgstr "Atburðategundir"
+
+#: admin/wp-event-manager-settings.php:181
+msgid "Choose whether to enable categories. Categories must be setup by an admin to allow users to choose them during submission."
+msgstr "Veldu hvort þú viljir gera flokka virka. Flokkar verða að vera settir upp af kerfisstjóra til þess að notandi geti valið þá í umsókninni."
+
+#: admin/wp-event-manager-settings.php:179
+msgid "Enable categories for listings"
+msgstr "Gera flokka virka í færslum"
+
+#: admin/wp-event-manager-settings.php:177
+msgid "Categories"
+msgstr "Flokkar"
+
+#: admin/wp-event-manager-settings.php:164
+msgid "If enabled, the content within expired listings will be hidden. Otherwise, expired listings will be displayed as normal (without the event registration area)."
+msgstr "Ef virkt, mun efni innan útrunninna færsla vera falið. Annars munu útrunnar færslur birtast eins og venjulega (án skráningarsvæðis færslu)."
+
+#: admin/wp-event-manager-settings.php:162
+msgid "Hide expired listing content in single event listing (singular)"
+msgstr "Fela efni útrunninna færsla í einni atburðafærslu (eintala)"
+
+#: admin/wp-event-manager-settings.php:160
+msgid "Hide Expired Listings Content"
+msgstr "Fela efni útrunninna færsla"
+
+#: admin/wp-event-manager-settings.php:147
+msgid "If enabled, expired event listing is not searchable."
+msgstr "Ef virkt, mun ekki vera hægt að leita af útrunnum færslum."
+
+#: admin/wp-event-manager-settings.php:145
+msgid "Hide expired listings in event archive/search"
+msgstr "Fela útrunnar færslur í atburðaskráageymslu/leit"
+
+#: admin/wp-event-manager-settings.php:143
+msgid "Hide Expired Listings"
+msgstr "Fela Útrunnar Færslur"
+
+#: admin/wp-event-manager-settings.php:133
+msgid "If enabled, cancelled events will be hidden from archives."
+msgstr "Ef virkt, munu færslur sem er búið að hætta við vera faldar í skráageymslu."
+
+#: admin/wp-event-manager-settings.php:131
+msgid "Hide cancelled events"
+msgstr "Fela atburði sem er búið að hætta við"
+
+#: admin/wp-event-manager-settings.php:129
+msgid "Cancelled Events"
+msgstr "Afboðaðir Atburðir"
+
+#: admin/wp-event-manager-settings.php:118
+msgid "How many listings should be shown per page by default?"
+msgstr "Hversu margar færslur skulu birtast sjálfkrafa á hverri síðu?"
+
+#: admin/wp-event-manager-settings.php:116
+msgid "Listings Per Page"
+msgstr "Fjöldi Færsla á Síðu"
+
+#: admin/wp-event-manager-settings.php:104
+#: admin/wp-event-manager-writepanels.php:440
+#: core/wp-event-manager-post-types.php:291
+#: core/wp-event-manager-post-types.php:403
+msgid "Event Listings"
+msgstr "Atburðafærslur"
+
+#: admin/wp-event-manager-settings.php:97
+msgid "Google requires an API key to retrieve location information for event listings. Acquire an API key from the <a href=\"%s\" target=\"__blank\">Google Maps API developer site</a>."
+msgstr "Google þarf API lykil til þess að finna staðarupplýsingar fyrir atburðafærslur. Fáðu þér API lykil á <a href=\"%s\" target=\"__blank\">Google Maps API hönnunarsíðunni</a>."
+
+#: admin/wp-event-manager-settings.php:96
+msgid "Google Maps API Key"
+msgstr "Google Maps API Lykill"
+
+#: admin/wp-event-manager-settings.php:87
+msgid "If enabled, bootstrap framework's style will apply for the backend side."
+msgstr "Ef virkt, mun hönnun ræsiforritsgrindar vera notuð að aftan."
+
+#: admin/wp-event-manager-settings.php:83
+#: admin/wp-event-manager-settings.php:85
+msgid "Enable boostrap for the backend"
+msgstr "Gera ræsiforrit virkt að aftan"
+
+#: admin/wp-event-manager-settings.php:71
+msgid "If enabled, bootstrap framework's style will apply for the frontend side."
+msgstr "Ef virkt, mun hönnun ræsiforritsgrindar vera notuð að framan."
+
+#: admin/wp-event-manager-settings.php:67
+#: admin/wp-event-manager-settings.php:69
+msgid "Enable boostrap for the frontend"
+msgstr "Gera ræsiforrit virkt að framan"
+
+#: admin/wp-event-manager-settings.php:57
+msgid "General"
+msgstr "Almennt"
+
+#: admin/wp-event-manager-cpt.php:598 templates/event-dashboard.php:53
+#: wp-event-manager.php:295
+msgid "Delete"
+msgstr "Eyða"
+
+#: admin/wp-event-manager-cpt.php:586 core/wp-event-manager-post-types.php:299
+#: templates/event-dashboard.php:33 templates/event-dashboard.php:49
+msgid "Edit"
+msgstr "Breyta"
+
+#: admin/wp-event-manager-cpt.php:574
+msgid "View"
+msgstr "Skoða"
+
+#: admin/wp-event-manager-cpt.php:560
+msgid "Approve"
+msgstr "Samþykkja"
+
+#: admin/wp-event-manager-cpt.php:524
+msgid "by %s"
+msgstr "af %s"
+
+#: admin/wp-event-manager-cpt.php:524
+msgid "by a guest"
+msgstr "af gesti"
+
+#: admin/wp-event-manager-cpt.php:522 admin/wp-event-manager-cpt.php:532
+#: admin/wp-event-manager-cpt.php:543
+msgid "M j, Y"
+msgstr "M j, Y"
+
+#: admin/wp-event-manager-cpt.php:479
+msgid "ID: %d"
+msgstr "Skilríki: %d"
+
+#: admin/wp-event-manager-cpt.php:400
+msgid "Actions"
+msgstr "Aðgerðir"
+
+#: admin/wp-event-manager-cpt.php:398
+msgid "Event Expiry Date"
+msgstr "Gildistími Atburðar"
+
+#: admin/wp-event-manager-cpt.php:396
+msgid "Event End Date"
+msgstr "Síðasti Dagur Atburðar"
+
+#: admin/wp-event-manager-cpt.php:394
+msgid "Posted Date"
+msgstr "Dagsetning Færslu"
+
+#: admin/wp-event-manager-cpt.php:392
+msgid "Event Organizer"
+msgstr "Atburðaskipuleggjandi"
+
+#: admin/wp-event-manager-cpt.php:390
+msgid "Event Location"
+msgstr "Staðsetning Atburðar"
+
+#: admin/wp-event-manager-cpt.php:388 admin/wp-event-manager-writepanels.php:72
+#: forms/wp-event-manager-form-submit-event.php:138
+msgid "Event Category"
+msgstr "Flokkur Atburðar"
+
+#: admin/wp-event-manager-cpt.php:386 admin/wp-event-manager-writepanels.php:62
+#: forms/wp-event-manager-form-submit-event.php:128
+#: templates/event-filters.php:63
+msgid "Event Type"
+msgstr "Tegund Atburðar"
+
+#: admin/wp-event-manager-cpt.php:382
+msgid "Featured?"
+msgstr "Gera að Aðalatriði?"
+
+#: admin/wp-event-manager-cpt.php:380
+msgid "Cancelled?"
+msgstr "Afboðað?"
+
+#: admin/wp-event-manager-cpt.php:378
+msgid "Status"
+msgstr "Staða"
+
+#: admin/wp-event-manager-cpt.php:355
+msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview</a>"
+msgstr "%s uppkast uppfært. <a target=\"_blank\" href=\"%s\">Forskoða</a>"
+
+#: admin/wp-event-manager-cpt.php:353
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: admin/wp-event-manager-cpt.php:351
+msgid "%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview</a>"
+msgstr "%s áætlað: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Forskoða</a>"
+
+#: admin/wp-event-manager-cpt.php:349
+msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview</a>"
+msgstr "%s innsent. <a target=\"_blank\" href=\"%s\">Forskoða</a>"
+
+#: admin/wp-event-manager-cpt.php:347
+msgid "%s saved."
+msgstr "%s vistað."
+
+#: admin/wp-event-manager-cpt.php:345
+msgid "%s published. <a href=\"%s\">View</a>"
+msgstr "%s útgefið. <a href=\"%s\">Skoða</a>"
+
+#: admin/wp-event-manager-cpt.php:343
+msgid "%s restored to revision from %s"
+msgstr "%s lagfært í breytingu frá %s"
+
+#: admin/wp-event-manager-cpt.php:341
+msgid "%s updated."
+msgstr "%s uppfært."
+
+#: admin/wp-event-manager-cpt.php:339
+msgid "Custom field deleted."
+msgstr "Sérsniðnum Reit Eytt."
+
+#: admin/wp-event-manager-cpt.php:337
+msgid "Custom field updated."
+msgstr "Sérsniðinn Reitur Uppfærður."
+
+#: admin/wp-event-manager-cpt.php:335
+msgid "%s updated. <a href=\"%s\">View</a>"
+msgstr "%s uppfært. <a href=\"%s\">Skoða</a>"
+
+#: admin/wp-event-manager-cpt.php:314 admin/wp-event-manager-cpt.php:384
+#: admin/wp-event-manager-writepanels.php:54
+#: forms/wp-event-manager-form-submit-event.php:120
+msgid "Event Title"
+msgstr "Titill Atburðar"
+
+#: admin/wp-event-manager-cpt.php:294
+msgid "Select category"
+msgstr "Velja flokk"
+
+#: admin/wp-event-manager-cpt.php:245 admin/wp-event-manager-cpt.php:249
+msgid "%s expired"
+msgstr "%s útrunnið"
+
+#: admin/wp-event-manager-cpt.php:214 admin/wp-event-manager-cpt.php:218
+msgid "%s approved"
+msgstr "%s samþykkt"
+
+#: admin/wp-event-manager-cpt.php:79 admin/wp-event-manager-cpt.php:81
+msgid "Expire %s"
+msgstr "Renna út %s"
+
+#: admin/wp-event-manager-cpt.php:75 admin/wp-event-manager-cpt.php:77
+msgid "Approve %s"
+msgstr "Samþykkja %s"
+
+#: admin/wp-event-manager-admin.php:152
+msgid "Dismiss"
+msgstr "Afskrifa"
+
+#: admin/wp-event-manager-admin.php:151
+msgid "Try Great Add-Ons"
+msgstr "Prófa Frábær Viðbótarverkfæri"
+
+#: admin/wp-event-manager-admin.php:149
+msgid "We've noticed you've been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We'd be thrilled if you could <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">give us a 5 stars rating on WordPress.org!</a></strong> Don't forget to submit your site to <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">our showcase</a></strong> and generate more traffic from our site."
+msgstr "Við tókum eftir því að þú hefur notað <strong>WP Atburðastjóra</strong> í einhvern tíma núna. við vonum að þú elskir hann! Við værum svo ánægð ef þú gætir <strong><a href=\"https://wordpress.org/support/plugin/wp-event-manager/reviews/\" target=\"_blank\">gefið okkur 5 stjörnur á WordPress.org!</a></strong> Ekki gleyma að senda síðuna þína í <strong><a href=\"https://wp-eventmanager.com/showcase/\" target=\"_blank\">sýningarkassann okkar</a></strong> og fá meiri traffík frá okkar síðu."
+
+#: admin/wp-event-manager-admin.php:123
+msgid "Add-ons"
+msgstr "Viðbótarverkfæri"
+
+#: admin/wp-event-manager-admin.php:119
+#: templates/form-fields/repeated-field.php:18
+#: templates/form-fields/repeated-field.php:61
+msgid "Settings"
+msgstr "Stillingar"
+
+#: admin/wp-event-manager-addons.php:59 admin/wp-event-manager-admin.php:123
+msgid "WP Event Manager Add-ons"
+msgstr "Viðbótarverkfæri WP Atburðastjóra"

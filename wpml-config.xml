@@ -1,0 +1,110 @@
+<wpml-config>
+  <custom-types>
+    <custom-type translate="1">event_listing</custom-type>
+	<custom-type translate="1">event_organizer</custom-type>
+	<custom-type translate="1">event_venue</custom-type>
+  </custom-types>
+  <shortcodes>
+    <shortcode>
+      <tag>events</tag>
+      <attributes>
+        <attribute>per_page</attribute>
+        <attribute>orderby</attribute>
+        <attribute>order</attribute>
+        <attribute>show_filters</attribute>
+        <attribute>show_categories</attribute>
+        <attribute>show_event_types</attribute>
+        <attribute>show_ticket_prices</attribute>
+        <attribute>show_category_multiselect</attribute>
+        <attribute>show_event_type_multiselect</attribute>
+        <attribute>show_pagination</attribute>
+        <attribute>show_more</attribute>
+        <attribute>categories</attribute>
+        <attribute>event_types</attribute>
+        <attribute>featured</attribute>
+        <attribute>cancelled</attribute>
+        <attribute>location</attribute>
+        <attribute>keywords</attribute>
+        <attribute>selected_datetime</attribute>
+        <attribute>selected_category</attribute>
+        <attribute>selected_event_type</attribute>
+        <attribute>selected_ticket_price</attribute>
+        <attribute>layout_type</attribute>
+      </attributes>
+    </shortcode>
+    <shortcode>
+      <tag>event_dashboard</tag>
+      <attributes>
+        <attribute>posts_per_page</attribute>
+      </attributes>
+    </shortcode>
+    <shortcode>
+      <tag>submit_event_form</tag>
+    </shortcode>
+  </shortcodes>
+
+
+  <admin-texts>
+    <key name="event_manager_delete_data_on_uninstall" />
+    <key name="event_manager_google_maps_api_key" />
+    <key name="event_manager_per_page" />
+    <key name="event_manager_hide_cancelled_events" />
+    <key name="event_manager_hide_expired" />
+    <key name="event_manager_hide_expired_content" />
+    <key name="event_manager_enable_categories" />
+    <key name="event_manager_enable_event_types" />
+    <key name="event_manager_enable_event_ticket_prices" />
+    <key name="event_manager_enable_default_category_multiselect" />
+    <key name="event_manager_enable_default_event_type_multiselect" />
+    <key name="event_manager_category_filter_type" />
+    <key name="event_manager_event_type_filter_type" />
+    <key name="event_manager_user_requires_account" />
+    <key name="event_manager_enable_registration" />
+    <key name="event_manager_generate_username_from_email" />
+    <key name="'event_manager_use_standard_password_setup_email" />
+    <key name="'event_manager_registration_role" />
+    <key name="'event_manager_submission_requires_approval" />
+    <key name="'event_manager_user_can_edit_pending_submissions" />
+    <key name="'event_manager_user_can_add_multiple_banner" />
+    <key name="'event_manager_delete_expired_events" />
+    <key name="'event_manager_submission_expire_options" />
+    <key name="'event_manager_submission_duration" />
+    <key name="'event_manager_allowed_registration_method" />
+    <key name="'event_manager_multiselect_event_type" />
+    <key name="'event_manager_multiselect_event_category" />
+    <key name="'event_manager_time_format" />
+    <key name="'event_manager_submit_event_form_page_id" />
+    <key name="event_manager_event_dashboard_page_id" />
+    <key name="event_manager_events_page_id" />
+
+    <key name="enable_event_organizer" />
+    <key name="enable_event_venue" />
+    <key name="event_manager_date_time_format_separator" />
+    <key name="event_manager_datepicker_format" />
+    <key name="event_manager_delete_events_after_finished" />
+    <key name="event_manager_form_fields" />
+    <key name="event_manager_installed_terms" />
+    <key name="event_manager_login_page_url" />
+    <key name="event_manager_organizer_dashboard_page_id" />
+    <key name="event_manager_paid_listings_flow" />
+    <key name="event_manager_rating_showcase_admin_notices_dismiss" />
+    <key name="event_manager_submit_event_form_fields" />
+    <key name="event_manager_submit_organizer_form_fields" />
+    <key name="event_manager_submit_organizer_form_page_id" />
+    <key name="event_manager_submit_venue_form_fields" />
+    <key name="event_manager_submit_venue_form_page_id" />
+    <key name="event_manager_timepicker_format" />
+    <key name="event_manager_timepicker_step" />
+    <key name="event_manager_timezone_setting" />
+    <key name="event_manager_venue_dashboard_page_id" />
+    <key name="event_manager_view_date_format" />
+    <key name="wp_event_manager_version" />
+    <key name="wpem_permalinks" />
+    <key name="event_manager_upgrade_database" />
+    <key name="wp_event_manager_db_version" />
+
+
+</admin-texts>
+
+
+</wpml-config>
