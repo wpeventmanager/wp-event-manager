@@ -136,7 +136,7 @@ class WP_Event_Manager_Field_Editor {
 				'file'             => esc_html__('File', 'wp-event-manager'),
 				'hidden'           => esc_html__('Hidden', 'wp-event-manager'),
 				'multiselect'      => esc_html__('Multiselect', 'wp-event-manager'),
-				'number'           => esc_html__('Number', 'wp-event-manager'),               /*'password'       		=> __('Password', 'wp-event-manager'),*/
+				'number'           => esc_html__('Number', 'wp-event-manager'),
 				'radio'            => esc_html__('Radio', 'wp-event-manager'),
 				'repeated'         => esc_html__('Repeated', 'wp-event-manager'),
 				'select'           => esc_html__('Select', 'wp-event-manager'),
@@ -169,7 +169,6 @@ class WP_Event_Manager_Field_Editor {
 		} else {
 			$venue_fields = array();
 		}
-
 		$fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 
 		foreach ($fields  as $group_key => $group_fields) {
@@ -358,27 +357,29 @@ class WP_Event_Manager_Field_Editor {
 						$organizer_fields = array();
 					}
 
-					if(get_option('enable_event_venue')) {
+					if( get_option('enable_event_venue') ) {
 						$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 						$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
 						$venue_fields               = $form_submit_venue_instance->init_fields();
 					} else {
 						$venue_fields = array();
 					}
-
 					$default_fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 
 					// if field in not exist in new fields array then make visiblity false
 					if(!empty($default_fields)) {
 						foreach ($default_fields as $group_key => $group_fields) {
 							foreach ($group_fields as $key => $field) {
-								if(!isset($new_fields[$group_key][$key])) {
-									$new_fields[$group_key][$key]               = $field;
-									$new_fields[$group_key][$key]['visibility'] = 0; // it will make visiblity false means removed from the field editor.
+								if( !isset($new_fields[$group_key][$key])) {
+									$new_fields[$group_key][$key] = $field;
+									$new_fields[$group_key][$key]['visibility'] = false; // it will make visiblity false means removed from the field editor.
+								} else {
+									$new_fields[$group_key][$key]['required'] =  isset($field['required']) ? $field['required'] : false;
 								}
 							}
 						}
 					}
+					
 					if(isset($new_fields['event'])) {
 						update_option('event_manager_submit_event_form_fields', array('event' => $new_fields['event']));
 					}

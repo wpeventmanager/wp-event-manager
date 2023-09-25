@@ -539,8 +539,8 @@ abstract class WP_Event_Manager_Form {
 		    return $this->fields;
 		}
 	
-		$updated_fields = !empty($custom_fields) ? array_replace_recursive($default_fields, $custom_fields) : $default_fields;
-		
+		$updated_fields = !empty($custom_fields) ? $custom_fields : $default_fields;
+		// $updated_fields = !empty($custom_fields) ? array_replace_recursive($default_fields, $custom_fields) : $default_fields;
 		/**
 		 * Above array_replace_recursive function will replace the default fields by custom fields.
 		 * If array key is not same then it will merge array. This is only case for the Radio and Select Field(In case of array if key is not same).
