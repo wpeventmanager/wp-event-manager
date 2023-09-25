@@ -222,19 +222,8 @@ class WP_Event_Manager_Field_Editor {
 						
 						if(isset($group_fields) && !empty($group_fields)) {
 							foreach ($group_fields as $field_key => $field) {
-								// $index++;
-								if ($add_event_form_fields) {
-									if (trim($field['label']) != '' && isset($add_event_form_fields['event'][$field_key])) {
-										$index++;
-										include 'wp-event-manager-form-field-editor-field.php';
-									}
-								} else {
-									if (trim($field['label']) != '') {
-										$index++;
-										include 'wp-event-manager-form-field-editor-field.php';
-									}
-								}
-								
+								$index++;
+								include 'wp-event-manager-form-field-editor-field.php';
 							}
 						} ?>												
 					</tbody>
