@@ -170,6 +170,7 @@ class WP_Event_Manager_Field_Editor {
 			$venue_fields = array();
 		}
 		$fields = array_merge($event_fields, $organizer_fields, $venue_fields);
+		$add_event_form_fields = get_option('event_manager_form_fields');
 
 		foreach ($fields  as $group_key => $group_fields) {
 			if(empty($group_fields)) {
@@ -221,9 +222,19 @@ class WP_Event_Manager_Field_Editor {
 						
 						if(isset($group_fields) && !empty($group_fields)) {
 							foreach ($group_fields as $field_key => $field) {
-								$index++;
-
-								include 'wp-event-manager-form-field-editor-field.php';
+								// $index++;
+								if ($add_event_form_fields) {
+									if (trim($field['label']) != '' && isset($add_event_form_fields['event'][$field_key])) {
+										$index++;
+										include 'wp-event-manager-form-field-editor-field.php';
+									}
+								} else {
+									if (trim($field['label']) != '') {
+										$index++;
+										include 'wp-event-manager-form-field-editor-field.php';
+									}
+								}
+								
 							}
 						} ?>												
 					</tbody>
@@ -372,7 +383,7 @@ class WP_Event_Manager_Field_Editor {
 							foreach ($group_fields as $key => $field) {
 								if( !isset($new_fields[$group_key][$key])) {
 									$new_fields[$group_key][$key] = $field;
-									$new_fields[$group_key][$key]['visibility'] = false; // it will make visiblity false means removed from the field editor.
+									$new_fields[$group_key][$key]['visibility'] = 0; // it will make visiblity false means removed from the field editor.
 								} else {
 									$new_fields[$group_key][$key]['required'] =  isset($field['required']) ? $field['required'] : false;
 								}
