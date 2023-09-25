@@ -222,7 +222,7 @@ class WP_Event_Manager_Field_Editor {
 						if(isset($group_fields) && !empty($group_fields)) {
 							foreach ($group_fields as $field_key => $field) {
 								$index++;
-								if(isset($field['visibility']) && $field['visibility'] == 0){
+								if(isset($field['visibility']) && ($field['visibility'] == false || $field['visibility'] == 0 )){
 									continue;
 								}
 								include 'wp-event-manager-form-field-editor-field.php';
@@ -338,6 +338,7 @@ class WP_Event_Manager_Field_Editor {
 								$label_key = str_replace(' ', '_', $new_fields[$group_key][$field_key]['label']);
 								$new_fields[$group_key][strtolower($label_key)] = $new_fields[$group_key][$field_key];
 							}
+							$new_fields[$group_key][$field_key]['visibility'] = 0;
 							unset($new_fields[$group_key][$field_key]);
 							$hasSave = 1;
 						}else{
@@ -350,7 +351,6 @@ class WP_Event_Manager_Field_Editor {
 					$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 					$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 					$event_fields =   $form_submit_event_instance->get_default_fields();
-
 					if(get_option('enable_event_organizer')) {
 						$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 						$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
@@ -382,7 +382,6 @@ class WP_Event_Manager_Field_Editor {
 							}
 						}
 					}
-					
 					if(isset($new_fields['event'])) {
 						update_option('event_manager_submit_event_form_fields', array('event' => $new_fields['event']));
 					}

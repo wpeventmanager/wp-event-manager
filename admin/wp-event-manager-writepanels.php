@@ -52,7 +52,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_fields function.
+	 * event_listing_fields function used to get listing fields.
 	 *
 	 * @access public
 	 * @return void
@@ -91,6 +91,9 @@ class WP_Event_Manager_Writepanels {
 				} else {
 					$fields[$field_key] = $field_value;
 				}
+				if(isset($fields['_' .$field_key]['visibility']) && ($fields['_' .$field_key]['visibility'] == 0 || $fields['_' .$field_key]['visibility'] = false)) :
+					unset($fields['_' .$field_key]);
+				endif; 
 			}
 			unset($fields[$group_key]);
 		}
