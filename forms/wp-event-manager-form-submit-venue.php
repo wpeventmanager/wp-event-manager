@@ -90,68 +90,76 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		$this->fields = apply_filters('submit_venue_form_fields', array(
 			'venue' => array(
 				'venue_name' => array(
-							'label'       => __('Venue Name', 'wp-event-manager'),
-							'type'        => 'text',
-							'required'    => 'true',					
-							'placeholder' => __('Please enter the venue name', 'wp-event-manager'),
-							'priority'    => 1
+					'label'       => __('Venue Name', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => 'true',					
+					'placeholder' => __('Please enter the venue name', 'wp-event-manager'),
+					'priority'    => 1,
+					'visibility'  => 1,
 				),						
 				'venue_description' => array(
-							'label'       => __('Venue Description', 'wp-event-manager'),
-							'type'        => 'wp-editor',
-							'required'    => true,
-							'placeholder' => '',
-							'priority'    => 2
+					'label'       => __('Venue Description', 'wp-event-manager'),
+					'type'        => 'wp-editor',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 2,
+					'visibility'  => 1,
 				),
 				'venue_logo' => array(
-							'label'       => __('Logo', 'wp-event-manager'),
-							'type'        => 'file',
-							'required'    => false,
-							'placeholder' => '',
-							'priority'    => 3,
-							'ajax'        => true,
-							'multiple'    => false,
-							'allowed_mime_types' => array(
-								'jpg'  => 'image/jpeg',
-								'jpeg' => 'image/jpeg',
-								'gif'  => 'image/gif',
-								'png'  => 'image/png'
-							)
+					'label'       => __('Logo', 'wp-event-manager'),
+					'type'        => 'file',
+					'required'    => false,
+					'placeholder' => '',
+					'priority'    => 3,
+					'ajax'        => true,
+					'multiple'    => false,
+					'allowed_mime_types' => array(
+						'jpg'  => 'image/jpeg',
+						'jpeg' => 'image/jpeg',
+						'gif'  => 'image/gif',
+						'png'  => 'image/png'
+					),
+					'visibility'  => 1,
 				),
 				'venue_website' => array(
-							'label'       => __('Website', 'wp-event-manager'),
-							'type'        => 'text',
-							'required'    => false,
-							'placeholder' => __('Website URL e.g http://www.yourvenue.com', 'wp-event-manager'),
-							'priority'    => 4
+					'label'       => __('Website', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Website URL e.g http://www.yourvenue.com', 'wp-event-manager'),
+					'priority'    => 4,
+					'visibility'  => 1,
 				),
 				'venue_facebook' => array(
-								'label'       => __('Facebook', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourvenue', 'wp-event-manager'),
-								'priority'    => 5
+					'label'       => __('Facebook', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourvenue', 'wp-event-manager'),
+					'priority'    => 5,
+					'visibility'  => 1,
 				),
 				'venue_instagram' => array(
-								'label'       => __('Instagram', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourvenue', 'wp-event-manager'),
-								'priority'    => 6
+					'label'       => __('Instagram', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourvenue', 'wp-event-manager'),
+					'priority'    => 6,
+					'visibility'  => 1,
 				),
 				'venue_youtube' => array(
-								'label'       => __('Youtube', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourvenue', 'wp-event-manager'),
-								'priority'    => 7
+					'label'       => __('Youtube', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourvenue', 'wp-event-manager'),
+					'priority'    => 7,
+					'visibility'  => 1,
 				),
 				'venue_twitter' => array(
-								'label'       => __('Twitter', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Twitter URL e.g http://twitter.com/yourvenue', 'wp-event-manager'),
-								'priority'    => 8
+					'label'       => __('Twitter', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Twitter URL e.g http://twitter.com/yourvenue', 'wp-event-manager'),
+					'priority'    => 8,
+					'visibility'  => 1,
 				),				
 			)
 		));

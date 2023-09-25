@@ -538,9 +538,9 @@ abstract class WP_Event_Manager_Form {
 		    $this->fields = apply_filters('merge_with_custom_fields',$default_fields,$default_fields) ;
 		    return $this->fields;
 		}
-	
-		$updated_fields = !empty($custom_fields) ? $custom_fields : $default_fields;
-		// $updated_fields = !empty($custom_fields) ? array_replace_recursive($default_fields, $custom_fields) : $default_fields;
+		
+		// $updated_fields = !empty($custom_fields) ? $custom_fields : $default_fields;
+		$updated_fields = !empty($custom_fields) ? array_replace_recursive($default_fields, $custom_fields) : $default_fields;
 		/**
 		 * Above array_replace_recursive function will replace the default fields by custom fields.
 		 * If array key is not same then it will merge array. This is only case for the Radio and Select Field(In case of array if key is not same).
@@ -551,6 +551,9 @@ abstract class WP_Event_Manager_Form {
 		foreach($default_fields as $default_group_key => $default_group){
 			foreach ($default_group as $field_key => $field_value) {
 				foreach($field_value as $key => $value){
+					if(isset($custom_fields[$default_group_key][$field_key][$key]) && ($key == 'visibility'))
+						$updated_fields[$default_group_key][$field_key][$key] = $value;
+					
 					if(isset($custom_fields[$default_group_key][$field_key][$key]) && ($key == 'options' || is_array($value)))
 						$updated_fields[$default_group_key][$field_key][$key] = $custom_fields[$default_group_key][$field_key][$key];
 				}
@@ -571,8 +574,8 @@ abstract class WP_Event_Manager_Form {
 
 					$updated_fields[$group_key][$key]=array_map('stripslashes_deep',$updated_fields[$group_key][$key]);				
 					//remove if visiblity is false
-					if(isset($field['visibility']) && $field['visibility'] == false)
-						unset($updated_fields[$group_key][$key]);
+					// if(isset($field['visibility']) && ($field['visibility'] == false || $field['visibility'] == 0))
+					// 	unset($updated_fields[$group_key][$key]);
 						
 					//remove admin fields if view type is frontend
 					if(isset($field['admin_only']) &&  $field_view == 'frontend' &&  $field['admin_only'] == true)

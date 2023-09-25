@@ -171,7 +171,6 @@ class WP_Event_Manager_Field_Editor {
 		}
 		$fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 		$add_event_form_fields = get_option('event_manager_form_fields');
-
 		foreach ($fields  as $group_key => $group_fields) {
 			if(empty($group_fields)) {
 				continue;
@@ -223,6 +222,9 @@ class WP_Event_Manager_Field_Editor {
 						if(isset($group_fields) && !empty($group_fields)) {
 							foreach ($group_fields as $field_key => $field) {
 								$index++;
+								if(isset($field['visibility']) && $field['visibility'] == 0){
+									continue;
+								}
 								include 'wp-event-manager-form-field-editor-field.php';
 							}
 						} ?>												
@@ -373,10 +375,9 @@ class WP_Event_Manager_Field_Editor {
 								if( !isset($new_fields[$group_key][$key])) {
 									$new_fields[$group_key][$key] = $field;
 									$new_fields[$group_key][$key]['visibility'] = 0; // it will make visiblity false means removed from the field editor.
-								} else {
-									if(!isset($new_fields[$group_key][$key]['required'])){
-										$new_fields[$group_key][$key]['required'] =  isset($field['required']) ? $field['required'] : false;
-									}
+								}
+								if(!isset($new_fields[$group_key][$key]['required'])){
+									$new_fields[$group_key][$key]['required'] =  isset($field['required']) ? $field['required'] : false;
 								}
 							}
 						}

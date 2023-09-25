@@ -154,7 +154,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => __('Event title','wp-event-manager'),
-					'priority'    => 1
+					'priority'    => 1,
+					'visibility'  => 1,
 				),
 
 				'event_type' => array(
@@ -164,7 +165,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => '',
 					'priority'    => 2,
 					'default'     => 'meeting-or-networking-event',
-					'taxonomy'    => 'event_listing_type'
+					'taxonomy'    => 'event_listing_type',
+					'visibility'  => 1,
 				),
 
 				'event_category' => array(
@@ -174,7 +176,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder' => '',
 					'priority'    => 3,
 					'default'     => '',
-					'taxonomy'    => 'event_listing_category'
+					'taxonomy'    => 'event_listing_category',
+					'visibility'  => 1,
 				),
 
 				'event_online' => array(
@@ -186,7 +189,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							    'no' => __( 'No', 'wp-event-manager' )
 				 		    ),
 				    'priority'    => 4,
-			        'required'=>true
+			        'required'=>true,
+					'visibility'  => 1,
 		 		),
 				
 				'event_pincode' => array(
@@ -194,7 +198,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => __( 'Please enter zip code(Area code)', 'wp-event-manager' ),
-					'priority'    => 5
+					'priority'    => 5,
+					'visibility'  => 1,
 				),
 					
 				'event_location' => array(
@@ -202,7 +207,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => __( 'Location for google map', 'wp-event-manager' ),
-					'priority'    => 6
+					'priority'    => 6,
+					'visibility'  => 1,
 				),
 					
 				'event_banner' => array(
@@ -218,7 +224,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						'jpeg' => 'image/jpeg',
 						'gif'  => 'image/gif',
 						'png'  => 'image/png'
-					)
+					),
+					'visibility'  => 1,
 				),
 
 				'event_description' => array(
@@ -226,7 +233,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'wp-editor',
 					'required'    => true,
 					'placeholder' => '',
-					'priority'    => 8
+					'priority'    => 8,
+					'visibility'  => 1,
 				),
 					
 				'registration' => array(
@@ -234,7 +242,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => $registration_method_placeholder,
-					'priority'    => 9
+					'priority'    => 9,
+					'visibility'  => 1,
 				),
 
 				'event_video_url' => array(
@@ -242,7 +251,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => false,
 					'placeholder'=> __( 'Please enter event video url', 'wp-event-manager' ),
-					'priority'    => 10
+					'priority'    => 10,
+					'visibility'  => 1,
 				),
 					
 				'event_start_date' => array(  
@@ -250,7 +260,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder'  => __( 'Please enter event start date', 'wp-event-manager' ),								
 					'type'  => 'date',
 					'priority'    => 11,
-					'required'=>true	  
+					'required'=>true,
+					'visibility'  => 1,	  
 				),
 
 				'event_start_time' => array(  
@@ -258,7 +269,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder'  => __( 'Please enter event start time', 'wp-event-manager' ),								
 					'type'  => 'time',
 					'priority'    => 12,
-					'required'=>true	  
+					'required'=>true,
+					'visibility'  => 1,  
 				),
 
 				'event_end_date' => array(
@@ -266,7 +278,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			        'placeholder'  => __( 'Please enter event end date', 'wp-event-manager' ),							        
 			        'type'  => 'date',
 				    'priority'    => 13,
-			        'required'=>true
+			        'required'=>true,
+					'visibility'  => 1,
 			  	),
 							  
 				'event_end_time' => array(  
@@ -274,7 +287,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'placeholder'  => __( 'Please enter event end time', 'wp-event-manager' ),								
 					'type'  => 'time',
 					'priority'    => 14,
-					'required'=>true	  
+					'required'=>true,
+					'visibility'  => 1,  
 				),
 
 				'event_ticket_options' => array(
@@ -286,7 +300,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							    'free' => __( 'Free', 'wp-event-manager' )
 				 		    ),
 				    'priority'    => 15,
-			        'required'=>true
+			        'required'=>true,
+					'visibility'  => 1,
 		 		),
 
                 'event_ticket_price' => array(
@@ -294,7 +309,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			        'placeholder'  => __( 'Please enter ticket price', 'wp-event-manager' ),							        
 			        'type'  => 'text',
 					'priority'    => 16,
-			        'required'=>true
+			        'required'=>true,
+					'visibility'  => 1,
 				),
 
 				'event_registration_deadline' => array(
@@ -302,7 +318,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'date',
 					'required'    => false,					
 					'placeholder' => __( 'Please enter registration deadline', 'wp-event-manager' ),
-					'priority'    => 17
+					'priority'    => 17,
+					'visibility'  => 1,
 				),
 
 				'event_timezone' => array(
@@ -312,7 +329,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'priority'    	=> 18,
 					'required'	=> true,
 					'class'		=> 'event-manager-category-dropdown',
-					'default'	=> '+5:00'
+					'default'	=> '+5:00',
+					'visibility'  => 1,
 				),
 			),	
 
@@ -324,7 +342,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'options'  		=>apply_filters('wpem_set_organizer_ids', ($current_user_id) ? get_all_organizer_array($current_user_id) : []),
 				    'description'	=> $organizer_description,
 				    'priority'   	=> 19,
-			        'required'		=>false
+			        'required'		=>false,
+					'visibility'  => 1,
 				),
 			),			
 			
@@ -336,7 +355,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'options'  		=> apply_filters('wpem_set_venue_ids', ($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')]),
 				    'description'	=> $venue_description,
 				    'priority'    	=> 21,
-			        'required'		=>false
+			        'required'		=>false,
+					'visibility'    => 1,
 				),
 			)	
 		) );
