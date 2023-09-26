@@ -448,32 +448,32 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 		
 		// Registration method
-		if ( isset( $values['event']['registration'] ) && ! empty( $values['event']['registration'] ) ) {
+		if( isset( $values['event']['registration'] ) && ! empty( $values['event']['registration'] ) ) {
 			$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
 			$values['event']['registration'] = str_replace( ' ', '+', $values['event']['registration'] );
 
 			switch ( $allowed_registration_method ) {
 				case 'email' :
-					if ( ! is_email( $values['event']['registration'] ) ) {
+					if( !is_email( $values['event']['registration'] ) ) {
 						throw new Exception( __( 'Please enter a valid registration email address.', 'wp-event-manager' ) );
 					}
 				break;
 				case 'url' :
 					// Prefix http if needed
-					if ( ! strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
+					if( !strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
 						$values['event']['registration'] = 'http://' . $values['event']['registration'];
 					}
-					if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
+					if( !filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
 						throw new Exception( __( 'Please enter a valid registration URL.', 'wp-event-manager' ) );
 					}
 				break;
 				default :
-					if ( ! is_email( $values['event']['registration'] ) ) {
+					if( !is_email( $values['event']['registration'] ) ) {
 						// Prefix http if needed
-						if ( ! strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
+						if( !strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
 							$values['event']['registration'] = 'http://' . $values['event']['registration'];
 						}
-						if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
+						if( !filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
 							throw new Exception( __( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
 						}
 					}
