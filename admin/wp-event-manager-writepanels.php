@@ -83,6 +83,8 @@ class WP_Event_Manager_Writepanels {
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
+				
+				
 				if($field_key === 'registration') {
 					$field_value['value'] = $registration;
 				}
@@ -91,17 +93,17 @@ class WP_Event_Manager_Writepanels {
 				} else {
 					$fields[$field_key] = $field_value;
 				}
-				if(isset($fields['_' .$field_key]['visibility']) && ($fields['_' .$field_key]['visibility'] == 0 || $fields['_' .$field_key]['visibility'] = false)) :
+				if(isset($fields['_' .$field_key]['visibility']) && ($fields['_' .$field_key]['visibility'] == 0 || $fields['_' .$field_key]['visibility'] == false)) :
 					unset($fields['_' .$field_key]);
 				endif; 
 			}
 			unset($fields[$group_key]);
 		}
 		$fields = apply_filters('event_manager_event_listing_data_fields', $fields);
+		error_log(print_r($fields , true));
 		if(isset($fields['_event_title'])) {
 			unset($fields['_event_title']);
 		}
-
 		if(isset($fields['_event_description'])) {
 			unset($fields['_event_description']);
 		}
@@ -136,6 +138,9 @@ class WP_Event_Manager_Writepanels {
 				'type'     => 'author',
 				'priority' => 41,
 			);
+		}
+		if( !isset( $fields['_event_end_date'] ) ) {
+			unset( $fields['_event_expiry_date'] );
 		}
 		uasort($fields, array($this, 'sort_by_priority'));
 		return $fields;
@@ -1143,11 +1148,15 @@ class WP_Event_Manager_Writepanels {
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
+				
 				if(strpos($field_key, '_') !== 0) {
 					$fields['_' . $field_key] = $field_value;
 				} else {
 					$fields[$field_key] = $field_value;
 				}
+				if(isset($fields['_' .$field_key]['visibility']) && ($fields['_' .$field_key]['visibility'] == 0 || $fields['_' .$field_key]['visibility'] == false)) :
+					unset($fields['_' .$field_key]);
+				endif; 
 			}
 			unset($fields[$group_key]);
 		}
@@ -1289,11 +1298,15 @@ class WP_Event_Manager_Writepanels {
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
+
 				if(strpos($field_key, '_') !== 0) {
 					$fields['_' . $field_key] = $field_value;
 				} else {
 					$fields[$field_key] = $field_value;
 				}
+				if(isset($fields['_' .$field_key]['visibility']) && ($fields['_' .$field_key]['visibility'] == 0 || $fields['_' .$field_key]['visibility'] == false)) :
+					unset($fields['_' .$field_key]);
+				endif; 
 			}
 			unset($fields[$group_key]);
 		}
