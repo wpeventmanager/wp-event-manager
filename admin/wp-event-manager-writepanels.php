@@ -100,7 +100,6 @@ class WP_Event_Manager_Writepanels {
 			unset($fields[$group_key]);
 		}
 		$fields = apply_filters('event_manager_event_listing_data_fields', $fields);
-		error_log(print_r($fields , true));
 		if(isset($fields['_event_title'])) {
 			unset($fields['_event_title']);
 		}

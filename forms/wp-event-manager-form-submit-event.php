@@ -950,7 +950,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						update_post_meta( $this->event_id, '_' . $key, '' );
 					}
 				} else { 
-					update_post_meta( $this->event_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ] ));
+					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
 					    $ticket_type=$values[ $group_key ][ $key ];
 					}
