@@ -506,7 +506,7 @@ abstract class WP_Event_Manager_Form {
 	 *
 	 * @return array Returns merged and replaced fields
 	 */
-	public function merge_with_custom_fields($field_view = 'frontend') {
+	public function merge_with_custom_fields($field_view = 'frontend') { 
 	
 		$custom_fields  = $this->get_event_manager_fieldeditor_fields();
 		$default_fields = $this->get_default_fields();

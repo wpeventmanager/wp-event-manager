@@ -171,6 +171,10 @@ class WP_Event_Manager_Field_Editor {
 		}
 		$fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 		$add_event_form_fields = get_option('event_manager_form_fields');
+		if(isset($fields['organizer']['event_organizer_ids']));
+			unset($fields['organizer']['event_organizer_ids']);
+		if(isset($fields['organizer']['event_venue_ids']));
+			unset($fields['organizer']['event_venue_ids']);
 		foreach ($fields  as $group_key => $group_fields) {
 			if(empty($group_fields)) {
 				continue;
