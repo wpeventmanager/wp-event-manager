@@ -453,7 +453,7 @@ class WP_Event_Manager_Post_Types {
 			'post_type'           => 'event_listing',
 			'post_status'         => 'publish',
 			'ignore_sticky_posts' => 1,
-			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : 10,
+			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : -1,
 			'tax_query'           => array(),
 			'meta_query'          => array()
 		);		
