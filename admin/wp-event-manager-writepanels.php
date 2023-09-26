@@ -84,7 +84,6 @@ class WP_Event_Manager_Writepanels {
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
 				
-				
 				if($field_key === 'registration') {
 					$field_value['value'] = $registration;
 				}
@@ -138,8 +137,18 @@ class WP_Event_Manager_Writepanels {
 				'priority' => 41,
 			);
 		}
+
 		if( !isset( $fields['_event_end_date'] ) ) {
 			unset( $fields['_event_expiry_date'] );
+		}
+		if( !get_option( 'enable_event_organizer' ) ) {
+			unset( $fields['organizer']);
+			unset( $fields['_event_organizer_ids'] );
+		}
+
+		if( !get_option( 'enable_event_venue' ) ) {
+			unset( $fields['venue'] );
+			unset( $fields['event_venue_ids'] );
 		}
 		uasort($fields, array($this, 'sort_by_priority'));
 		return $fields;
