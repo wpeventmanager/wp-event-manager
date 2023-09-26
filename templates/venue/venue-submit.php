@@ -15,7 +15,10 @@ global $event_manager; ?>
 		
 		do_action('submit_venue_form_venue_fields_start'); 
 		
-		foreach ($venue_fields as $key => $field) : ?>
+		foreach ($venue_fields as $key => $field) : 
+			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+				continue;
+			endif;?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 				<label for="<?php esc_attr_e($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager'); echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
 				<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">

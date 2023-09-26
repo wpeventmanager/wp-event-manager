@@ -54,7 +54,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$this->step = is_numeric( $_GET['step'] ) ? max( absint( $_GET['step'] ), 0 ) : array_search( $_GET['step'], array_keys( $this->steps ) );
 		}
 
-		$this->event_id = ! empty( $_REQUEST['event_id'] ) ? absint( $_REQUEST[ 'event_id' ] ) : 0;
+		$this->event_id = !empty( $_REQUEST['event_id'] ) ? absint( $_REQUEST[ 'event_id' ] ) : 0;
 		if( !event_manager_user_can_edit_event( $this->event_id ) ) {
 			$this->event_id = 0;
 		}
@@ -71,12 +71,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		// Load event details
 		if( $this->event_id ) {
 			$event_status = get_post_status( $this->event_id );
-			if ( 'expired' === $event_status ) {
-				if ( ! event_manager_user_can_edit_event( $this->event_id ) ) {
+			if( 'expired' === $event_status ) {
+				if( !event_manager_user_can_edit_event( $this->event_id ) ) {
 					$this->event_id = 0;
 					$this->step   = 0;
 				}
-			} elseif ( ! in_array( $event_status, apply_filters( 'event_manager_valid_submit_event_statuses', array( 'preview' ) ) ) ) {
+			} elseif( !in_array( $event_status, apply_filters( 'event_manager_valid_submit_event_statuses', array( 'preview' ) ) ) ) {
 				$this->event_id = 0;
 				$this->step   = 0;
 			}
@@ -444,7 +444,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 			if( $event_start_date > $event_end_date )
 				return new WP_Error( 'validation-error', __( 'Event end date must be greater than the event start date.', 'wp-event-manager' ) );
-
 		}
 		
 		// Registration method

@@ -272,6 +272,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	    foreach($this->fields as $group_key => $group_fields){     	      
 				 
 			foreach($group_fields as $key => $field) {
+				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] = false ) )
+					continue;
+				
 				if($field['required'] && empty($values[ $group_key ][ $key ])) {	    
 					return new WP_Error('validation-error', sprintf(wp_kses('%s is a required field.', 'wp-event-manager'), $field['label'])) ;
 				}

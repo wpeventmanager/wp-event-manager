@@ -23,7 +23,10 @@ global $event_manager; ?>
             printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing organizer. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . __('Create A New organizer', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
         }        
         do_action('submit_organizer_form_organizer_fields_start'); 
-        foreach ($organizer_fields as $key => $field) : ?>
+        foreach ($organizer_fields as $key => $field) : 
+            if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+                continue;
+            endif;?>
             <fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
                 <label for="<?php esc_attr_e($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager'); echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
                 <div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
