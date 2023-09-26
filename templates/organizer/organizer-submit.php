@@ -9,14 +9,14 @@ global $event_manager; ?>
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-organizer-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
     <?php  if (is_user_logged_in()) {
         // if field value is not set apply current user details
-        $user = wp_get_current_user();
-        $username = !empty($user->display_name) ? $user->display_name : $user->user_login;
-        if (!isset($organizer_fields['organizer_name']['value']) && empty($organizer_fields['organizer_name']['value']) && (isset($organizer_fields['organizer_name']['visibility']) && $organizer_fields['organizer_name']['visibility'] != 0)) {
-            $organizer_fields['organizer_name']['value'] = $username;
-        }
-        if (!isset($organizer_fields['organizer_email']['value']) && empty($organizer_fields['organizer_email']['value']) && (isset($organizer_fields['organizer_email']['visibility']) && $organizer_fields['organizer_email']['visibility'] != 0)) {
-            $organizer_fields['organizer_email']['value'] = $user->user_email;
-        }  ?>
+        // $user = wp_get_current_user();
+        // $username = !empty($user->display_name) ? $user->display_name : $user->user_login;
+        // if (!isset($organizer_fields['organizer_name']['value']) && empty($organizer_fields['organizer_name']['value']) && (isset($organizer_fields['organizer_name']['visibility']) && $organizer_fields['organizer_name']['visibility'] != 0)) {
+        //     $organizer_fields['organizer_name']['value'] = $username;
+        // }
+        // if (!isset($organizer_fields['organizer_email']['value']) && empty($organizer_fields['organizer_email']['value']) && (isset($organizer_fields['organizer_email']['visibility']) && $organizer_fields['organizer_email']['visibility'] != 0)) {
+        //     $organizer_fields['organizer_email']['value'] = $user->user_email;
+        // }  ?>
 
         <h2 class="wpem-form-title wpem-heading-text"><?php _e('Organizer Details', 'wp-event-manager'); ?></h2>
         <?php if (isset($resume_edit) && $resume_edit) {
