@@ -828,6 +828,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		// Loop fields and save meta and term data
 		foreach ( $this->fields as $group_key => $group_fields ) {
 			foreach ( $group_fields as $key => $field ) {
+				if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
+					continue;
+				endif; 
 				// Save taxonomies
 				if ( ! empty( $field['taxonomy'] ) ) {
 					if ( is_array( $values[ $group_key ][ $key ] ) ) {
@@ -970,7 +973,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 
 		//delete location meta if event is online
-		if( $event_online == 'yes') {
+		if( isset($event_online) && $event_online == 'yes') {
 			delete_post_meta($this->event_id, '_event_location');
 			delete_post_meta($this->event_id, '_event_pincode');
 		}

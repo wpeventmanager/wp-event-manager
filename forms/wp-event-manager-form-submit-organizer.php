@@ -407,6 +407,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		// Loop fields and save meta and term data
 		foreach($this->fields as $group_key => $group_fields) {
 			foreach($group_fields as $key => $field) {
+				if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
+					continue;
+				endif; 
 				// Save taxonomies
 				if(!empty($field['taxonomy'])) {
 					if(is_array($values[ $group_key ][ $key ])) {

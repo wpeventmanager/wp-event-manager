@@ -222,9 +222,7 @@ abstract class WP_Event_Manager_Form {
 
 		foreach ($this->fields as $group_key => $group_fields) {
 			foreach ($group_fields as $key => $field) {
-				if(isset($group_fields[ $key ]['visibility']) && ($group_fields[ $key ]['visibility'] == 0 || $group_fields[ $key ]['visibility'] == false)) :
-					continue;
-				endif; 
+				
 				// Get the value
 				$field_type = str_replace('-', '_', $field['type']);
 				
@@ -246,6 +244,10 @@ abstract class WP_Event_Manager_Form {
 				}
 				// Set fields value
 				$this->fields[ $group_key ][ $key ]['value'] = wp_unslash( $values[ $group_key ][ $key ]);
+				
+				if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
+					unset($values[ $group_key ][ $key ]);
+				endif; 
 			}
 		}
 		return $values;
