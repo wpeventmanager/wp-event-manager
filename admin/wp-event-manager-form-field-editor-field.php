@@ -29,8 +29,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 				} else {
 					printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 				}
-			}
-			?>
+			} ?>
 		</select>
 	</td>
 	<td>

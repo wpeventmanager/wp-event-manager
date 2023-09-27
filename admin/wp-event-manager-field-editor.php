@@ -304,8 +304,7 @@ class WP_Event_Manager_Field_Editor {
 				foreach ($new_fields as $group_key => $group_fields) {
 					$index = 0;
 					foreach ($group_fields as $field_key => $field_value) {
-						
-						$new_fields[$group_key][$field_key]['visibility'] = isset($_POST['_'.$field_key.'_visibility']) ? $_POST['_'.$field_key.'_visibility'] : 1;
+						$new_fields[$group_key][$field_key]['visibility'] = isset($_POST['_'.$field_key.'_visibility']) ? $_POST['_'.$field_key.'_visibility'] : 1; 
 						if(!empty($field_value['label'])) {
 							$index++;
 							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {

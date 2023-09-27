@@ -67,7 +67,6 @@ var FieldEditor = function() {
 					} else {
 						jQuery(this).closest('tr').css('display', 'none');
 					}
-
 				}
 				return false;
 			},
