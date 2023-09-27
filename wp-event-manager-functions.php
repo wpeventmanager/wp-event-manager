@@ -397,7 +397,6 @@ if(!function_exists('get_event_listings')) :
 			$query_args['meta_query']['relation'] = 'AND';
 			// $query_args['tax_query']['relation'] = 'AND';
 		}
-		
 		// Polylang LANG arg
 		if(function_exists('pll_current_language') && !empty($args['lang'])) {
 			$query_args['lang'] = $args['lang'];

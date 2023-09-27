@@ -68,7 +68,7 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	public function admin_enqueue_scripts()	{
 		wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
-		wp_register_script('wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL . '/assets/js/field-editor.min.js', array('jquery', 'jquery-ui-sortable', 'chosen'), EVENT_MANAGER_VERSION, true);
+		wp_register_script('wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL . '/assets/js/field-editor.js', array('jquery', 'jquery-ui-sortable', 'chosen'), EVENT_MANAGER_VERSION, true);
 		wp_localize_script(
 			'wp-event-manager-form-field-editor',
 			'wp_event_manager_form_editor',
@@ -93,6 +93,7 @@ class WP_Event_Manager_Field_Editor {
 				<form method="post" id="mainform" action="<?php echo esc_url("edit.php?post_type=event_listing&amp;page=event-manager-form-editor");?>">
 					<?php $this->form_editor(); ?>
 					<?php wp_nonce_field('save-wp-event-manager-form-field-editor'); ?>
+					<input type="hidden" name="deleted_fields" value="" id="deleted_fields"/>
 				</form>
 			</div>
 		</div>
@@ -288,7 +289,7 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	private function form_editor_save()	{
 		if(wp_verify_nonce($_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor')) {
-
+			
 			$event_field     = !empty($_POST['event']) ? $this->sanitize_array($_POST['event']) : array();
 			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array($_POST['organizer']) : array();
 			$event_venue     = !empty($_POST['venue']) ? $this->sanitize_array($_POST['venue']) : array();
@@ -304,6 +305,8 @@ class WP_Event_Manager_Field_Editor {
 				foreach ($new_fields as $group_key => $group_fields) {
 					$index = 0;
 					foreach ($group_fields as $field_key => $field_value) {
+						
+						$new_fields[$group_key][$field_key]['visibility'] = isset($_POST['_'.$field_key.'_visibility']) ? $_POST['_'.$field_key.'_visibility'] : 1;
 						if(!empty($field_value['label'])) {
 							$index++;
 							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {
@@ -342,12 +345,13 @@ class WP_Event_Manager_Field_Editor {
 								$label_key = str_replace(' ', '_', $new_fields[$group_key][$field_key]['label']);
 								$new_fields[$group_key][strtolower($label_key)] = $new_fields[$group_key][$field_key];
 							}
-							$new_fields[$group_key][$field_key]['visibility'] = 0;
 							unset($new_fields[$group_key][$field_key]);
 							$hasSave = 1;
 						}else{
 							$hasSave = 0;
 						}
+						
+						
 					}
 				}
 				if(isset($hasSave) && $hasSave == 1){
@@ -376,11 +380,11 @@ class WP_Event_Manager_Field_Editor {
 					if(!empty($default_fields)) {
 						foreach ($default_fields as $group_key => $group_fields) {
 							foreach ($group_fields as $key => $field) {
-								if( !isset($new_fields[$group_key][$key])) {
+								if( !isset($new_fields[$group_key][$key] ) ) {
 									$new_fields[$group_key][$key] = $field;
 									$new_fields[$group_key][$key]['visibility'] = 0; // it will make visiblity false means removed from the field editor.
 								}
-								if(!isset($new_fields[$group_key][$key]['required'])){
+								if( !isset($new_fields[$group_key][$key]['required'] ) ){
 									$new_fields[$group_key][$key]['required'] =  isset($field['required']) ? $field['required'] : false;
 								}
 							}
