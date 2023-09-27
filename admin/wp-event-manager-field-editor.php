@@ -93,7 +93,6 @@ class WP_Event_Manager_Field_Editor {
 				<form method="post" id="mainform" action="<?php echo esc_url("edit.php?post_type=event_listing&amp;page=event-manager-form-editor");?>">
 					<?php $this->form_editor(); ?>
 					<?php wp_nonce_field('save-wp-event-manager-form-field-editor'); ?>
-					<input type="hidden" name="deleted_fields" value="" id="deleted_fields"/>
 				</form>
 			</div>
 		</div>
@@ -350,8 +349,6 @@ class WP_Event_Manager_Field_Editor {
 						}else{
 							$hasSave = 0;
 						}
-						
-						
 					}
 				}
 				if(isset($hasSave) && $hasSave == 1){
