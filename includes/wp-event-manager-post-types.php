@@ -71,7 +71,7 @@ class WP_Event_Manager_Post_Types {
 		add_action('update_post_meta', array($this, 'update_post_meta'), 10, 4);
 		add_action('wp_insert_post', array($this, 'maybe_add_default_meta_data'), 10, 2);		
 		
-		add_action('parse_query', array($this, 'add_feed_query_args'));
+		// add_action('parse_query', array($this, 'add_feed_query_args'));
 
 		// WP ALL Import
 		add_action('pmxi_saved_post', array($this, 'pmxi_saved_post'), 10, 1);
@@ -453,18 +453,25 @@ class WP_Event_Manager_Post_Types {
 			'post_type'           => 'event_listing',
 			'post_status'         => 'publish',
 			'ignore_sticky_posts' => 1,
-			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : -1,
+			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : 10,
 			'tax_query'           => array(),
 			'meta_query'          => array()
 		);		
 		if(!empty($_GET['search_location'])) {
 			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
-			foreach ($location_meta_keys as $meta_key) {
+			foreach($location_meta_keys as $meta_key) {
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => sanitize_text_field($_GET['search_location']),
-					'compare' => 'like'
+					'value'   => 	$_GET['search_location'], 
+					'compare' => 'like',
+					'type'    => 'char',
+				);
+				$location_search[] = array(
+					'key'     => $meta_key,
+					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $_GET['search_location']), ','),
+					'compare' => 'like',
+					'type'    => 'char',
 				);
 			}
 			$query_args['meta_query'][] = $location_search;
@@ -642,13 +649,50 @@ class WP_Event_Manager_Post_Types {
 		if(empty($query_args['tax_query'])) {
 			unset($query_args['tax_query']);
 		}
+	
+		$query = new WP_Query($query_args);
+		header('Content-Type: application/rss+xml; charset=' . get_option('blog_charset'), true);
+		echo '<?xml version="1.0" encoding="' . get_option('blog_charset') . '"?' . '>';
 
-		query_posts(apply_filters('event_feed_args', $query_args));
+		// Start RSS feed
+		echo '<rss version="2.0"
+		xmlns:content="http://purl.org/rss/1.0/modules/content/"
+		xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:atom="http://www.w3.org/2005/Atom"
+		xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+		xmlns:slash="http://purl.org/rss/1.0/modules/slash/" >';
+		echo '<channel>'; ?>
+<title><?php bloginfo_rss('name'); ?></title>
+    <atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
+    <link><?php bloginfo_rss('url') ?></link>
+    <description><?php bloginfo_rss('description') ?></description>
+    <lastBuildDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
+    <language><?php echo get_option('rss_language'); ?></language>
+    <sy:updatePeriod><?php echo apply_filters('rss_update_period', 'hourly'); ?></sy:updatePeriod>
+    <sy:updateFrequency><?php echo apply_filters('rss_update_frequency', '1'); ?></sy:updateFrequency>
+    <?php do_action('rss2_head'); ?>
 
-		add_action('rss2_ns', array($this, 'event_feed_namespace'));
-		add_action('rss2_item', array($this, 'event_feed_item'));
+<?php		if ($query->have_posts()) :
+			while ($query->have_posts()) : $query->the_post();
+				// Output feed item here
+				$post_id  = get_the_ID();
+				get_event_manager_template('rss-event-feed.php', array('post_id' => $post_id));
+			endwhile;
+		endif;
+		
+		wp_reset_postdata();
+		
+		// End RSS feed
+		echo '</channel>';
+		echo '</rss>';
 
-		do_feed_rss2(false);
+		// query_posts(apply_filters('event_feed_args', $query_args));
+
+		// add_action('rss2_ns', array($this, 'event_feed_namespace'));
+		// add_action('rss2_item', array($this, 'event_feed_item'));
+
+		// do_feed_rss2(false);
 		remove_filter('posts_search', 'get_event_listings_keyword_search');
 	}
 	
