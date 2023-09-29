@@ -449,9 +449,14 @@ class WP_Event_Manager_Post_Types {
 	 * Event listing feeds
 	 */
 	public function event_feed() {
+		if(get_option('event_manager_hide_expired')) {
+			$post_status = 'publish';
+		} else {
+			$post_status = array('publish', 'expired');
+		}
 		$query_args = array(
 			'post_type'           => 'event_listing',
-			'post_status'         => 'publish',
+			'post_status'         => $post_status,
 			'ignore_sticky_posts' => 1,
 			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : -1,
 			'tax_query'           => array(),
@@ -585,7 +590,7 @@ class WP_Event_Manager_Post_Types {
 					'type'    => 'date'
 				);
 			} else {
-				$dates = json_decode($args['search_datetimes'][0], true);
+				$dates = json_decode($_GET['search_datetimes'][0], true);
 				$date_search[] = array(
 					'key'     => '_event_start_date',
 					'value'   => [$dates['start'], $dates['end']],
