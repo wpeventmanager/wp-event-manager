@@ -676,7 +676,6 @@ class WP_Event_Manager_Post_Types {
 			// End RSS feed
 			echo '</channel>';
 		echo '</rss>';
-
 		remove_filter('posts_search', 'get_event_listings_keyword_search');
 	}
 	

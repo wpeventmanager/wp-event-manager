@@ -30,4 +30,4 @@ do_action('event_fee_item_start'); ?>
 		echo "<event_listing:organizer><![CDATA[" . esc_html($organizer) . "]]></event_listing:organizer>\n";
 	}
 	do_action('event_fee_item_end');  ?>
-</item>
+</item> 
