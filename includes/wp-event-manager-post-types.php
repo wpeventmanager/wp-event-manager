@@ -590,7 +590,7 @@ class WP_Event_Manager_Post_Types {
 					'type'    => 'date'
 				);
 			} else {
-				$dates = json_decode($_GET['search_datetimes'][0], true);
+				$dates = json_decode($_GET['search_datetimes'], true);
 				$date_search[] = array(
 					'key'     => '_event_start_date',
 					'value'   => [$dates['start'], $dates['end']],
