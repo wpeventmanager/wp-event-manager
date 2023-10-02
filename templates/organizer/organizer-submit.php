@@ -34,7 +34,7 @@ global $event_manager; ?>
                 </div>
             </fieldset>
         <?php endforeach;
-        do_action('organizer_form_organizer_fields_end'); ?>
+        do_action('submit_organizer_form_organizer_fields_end'); ?>
 
         <div class="wpem-form-footer">
             <input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
