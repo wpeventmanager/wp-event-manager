@@ -158,11 +158,11 @@ $event = $post; ?>
                                                 $date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
                                                 $time_format = WP_Event_Manager_Date_Time::get_timepicker_format();
                                                 foreach ($additional_fields as $name => $field) : 
-                                                    
                                                     $field_key = '_' . stripslashes($name);
                                                     $field_label =  stripslashes( $field['label'] );
                                                     $field_value = $event->$field_key;
                                                     if (isset($field_value)) :
+                                                        do_action('single_event_additional_details_field_start');
                                                         if ($field['type'] == 'group') :
                                                             if (isset($field['fields']) && !empty($field['fields'])) : ?>
                                                                 <div class="wpem-col-12 wpem-additional-info-block-group">
@@ -390,6 +390,7 @@ $event = $post; ?>
                                                                     </div>
                                                                 </div>
                                                             <?php endif; 
+                                                            do_action('single_event_additional_details_field_end');
                                                         endif; 
                                                     endif;
                                                 endforeach; ?>
