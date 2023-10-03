@@ -566,7 +566,7 @@ function get_event_banner($post = null){
 	if($post->post_type !== 'event_listing')
 		return;
 	if(isset($post->_event_banner) && empty($post->_event_banner))
-		$event_banner = apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder-wide.jpg');
+		$event_banner = get_event_thumbnail($post);
 	else
 		$event_banner = $post->_event_banner;
 	return apply_filters('display_event_banner', $event_banner, $post);
@@ -612,6 +612,7 @@ function get_event_thumbnail($post = null, $size = 'full'){
 function display_event_banner($size = 'full', $default = null, $post = null){
 
 	$banner = get_event_banner($post);
+	echo $$post->ID;
 	$alt_text = !empty(esc_attr(get_organizer_name($post))) ? esc_attr(get_organizer_name($post)) : get_the_title();
 	$alt_text = apply_filters('display_event_alt_text', $alt_text, $post);
 	if(!empty($banner) && !is_array($banner)  && (strstr($banner, 'http') || file_exists($banner))) {
