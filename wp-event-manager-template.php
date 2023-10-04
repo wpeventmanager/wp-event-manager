@@ -612,7 +612,6 @@ function get_event_thumbnail($post = null, $size = 'full'){
 function display_event_banner($size = 'full', $default = null, $post = null){
 
 	$banner = get_event_banner($post);
-	echo $$post->ID;
 	$alt_text = !empty(esc_attr(get_organizer_name($post))) ? esc_attr(get_organizer_name($post)) : get_the_title();
 	$alt_text = apply_filters('display_event_alt_text', $alt_text, $post);
 	if(!empty($banner) && !is_array($banner)  && (strstr($banner, 'http') || file_exists($banner))) {
