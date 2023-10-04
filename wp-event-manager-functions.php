@@ -146,7 +146,7 @@ if(!function_exists('get_event_listings')) :
 					'compare' => '>=',
 					'type'    => 'date'
 				);
-				
+				apply_filter('event_manager_get_listings_date_filter_args', $date_search, $dates);
 				if(!empty( $date_search))
 					$query_args['meta_query'][] = $date_search;
 			}
