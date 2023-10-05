@@ -481,162 +481,39 @@ class WP_Event_Manager_Post_Types {
 			}
 			$query_args['meta_query'][] = $location_search;
 		}
-		$search_datetimes = is_array($_GET['search_datetimes']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_GET['search_datetimes']))) :
-			array_filter(array(sanitize_text_field(stripslashes($_GET['search_datetimes']))));
-		if(!empty($search_datetimes)) {
+		
+		$search_datetimes = is_array($_GET['search_datetimes']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_GET['search_datetimes']))) : array_filter(array(sanitize_text_field(stripslashes($_GET['search_datetimes']))));
+		if(!empty($search_datetimes)) {		
 			$date_search = array();
-			if($search_datetimes == 'datetime_today'){	
-				$datetime=date('Y-m-d');
-				
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $datetime,
-					'compare' => 'LIKE',
-				);
-			} elseif($search_datetimes == 'datetime_tomorrow') { 
-				$datetime=date('Y-m-d',strtotime("+1 day")); 
-				
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $datetime,
-					'compare' => 'LIKE',
-				);
-			} elseif($search_datetimes == 'datetime_thisweek') {					
-				$year=date('Y');
-				$weekNumber=date('W');                 
-				$dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
-				$dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));				
-
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
-					'type'    => 'date'
-				);
-			} elseif($search_datetimes =='datetime_thisweekend') {
-				$saturday_date=date('Y-m-d', strtotime('this Saturday', time()));
-				$sunday_date=date('Y-m-d', strtotime('this Saturday +1 day', time()));
-				$dates[0]= $saturday_date;
-				$dates[1]= $sunday_date;
-				
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
-					'type'    => 'date'
-				);
-			} elseif($search_datetimes =='datetime_thismonth') {	
-				$dates[0]= date('Y-m-d', strtotime('first day of this month', time()));
-				$dates[1] = date('Y-m-d', strtotime('last day of this month', time()));				
-
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
-					'type'    => 'date'
-				);
-			} elseif($search_datetimes =='datetime_thisyear') {
-				$dates[0]= date('Y-m-d', strtotime('first day of january', time()));
-				$dates[1] = date('Y-m-d', strtotime('last day of december', time()));	
-
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
-					'type'    => 'date'
-				);
-			} elseif($search_datetimes =='datetime_nextweek') {
-				$year=date('Y');
-				$weekNumber=date('W')+1;                 
-				$dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
-				$dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));	
 			
+			$dates = json_decode($search_datetimes[0], true);
+			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
+
+			//covert datepicker format  into php date() function date format
+			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+			if (!empty($dates)) {
+				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
+				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
+				$date_search['relation'] = 'AND';
 				$date_search[] = array(
 					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
-					'type'    => 'date'
-				);		    
-			
-			} elseif($search_datetimes =='datetime_nextweekend') {
-				$next_saturday_date=date('Y-m-d', strtotime('next Saturday', time()));
-				$next_sunday_date=date('Y-m-d', strtotime('next Saturday +1 day', time()));
-				$dates[0]= $next_saturday_date;
-				$dates[1]= $next_sunday_date;               
-				
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
+					'value'   =>  $dates['end'],
+					'compare' => '<=',
 					'type'    => 'date'
 				);
-			} elseif($search_datetimes =='datetime_nextmonth') {
-				$dates[0]= date('Y-m-d', strtotime('first day of next month', time()));
-				$dates[1] = date('Y-m-d', strtotime('last day of next month', time()));	
-				
 				$date_search[] = array(
 					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
+					'value'   => $dates['start'],
+					'compare' => '>=',
 					'type'    => 'date'
 				);
-			} elseif($search_datetimes =='datetime_nextyear') {
-				$year=date('Y')+1;
-				$dates[0]= date('Y-m-d', strtotime('first day of January ' . $year, time()));
-				$dates[1] = date('Y-m-d', strtotime('last day of december '. $year, time()));              
-
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
-					'type'    => 'date'
-				);
-			} else {
-				$dates = json_decode($search_datetimes[0], true);
-				//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-				$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
-
-				//covert datepicker format  into php date() function date format
-				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-				if(!empty($dates)) {
-					$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
-					$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
-					$date_search['relation'] = 'OR';
-					$search_start_date[] = array(
-						'key'     => '_event_start_date',
-						'value'   =>  $dates['end'],
-						'compare' => '<=',
-						'type'    => 'date'
-					);
-					$search_start_date[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates['start'],
-						'compare' => '>=',
-						'type'    => 'date'
-					);
-
-					$search_end_date[] = array(
-						'key'     => '_event_end_date',
-						'value'   =>  $dates['end'],
-						'compare' => '<=',
-						'type'    => 'date'
-					);
-					$search_end_date[] = array(
-						'key'     => '_event_end_date',
-						'value'   => $dates['start'],
-						'compare' => '>=',
-						'type'    => 'date'
-					);
-
-					$search_start_date['relation'] = 'AND';
-					$date_search[] = $search_start_date;
-					
-					$search_end_date['relation'] = 'AND';
-					$date_search[] = $search_end_date;
-				}
+				apply_filters('event_manager_get_listings_date_filter_args', $date_search, $dates);
+				if(!empty( $date_search))
+					$query_args['meta_query'][] = $date_search;
 			}
-			$query_args['meta_query'][] = $date_search;
 		}
+
 		if(!empty($_GET['search_ticket_prices'])) {
 			
 			if($_GET['search_ticket_prices'] =='ticket_price_paid') {  
