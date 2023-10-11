@@ -123,12 +123,21 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					'priority'    => 3,
 					'visibility'  => 1,
 				),	
+				'organizer_country' => array(
+					'label'       => __('Organizer Country', 'wp-event-manager'),
+					'type'        => 'select',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 4,
+					'visibility'  => 1,
+					'options'     => wpem_get_all_countries(),
+				),	
 				'organizer_email' => array(
 					'label'       => __('Organizer Email', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => __('Enter your email address', 'wp-event-manager'),
-					'priority'    => 4,
+					'priority'    => 5,
 					'visibility'  => 1,
 				),
 				'organizer_website' => array(
@@ -136,7 +145,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => false,
 					'placeholder' => __('Website URL e.g http://www.yourorganization.com', 'wp-event-manager'),
-					'priority'    => 5,
+					'priority'    => 6,
 					'visibility'  => 1,
 				),
 				'organizer_facebook' => array(
@@ -144,7 +153,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => false,
 					'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourorganizer', 'wp-event-manager'),
-					'priority'    => 6,
+					'priority'    => 7,
 					'visibility'  => 1,
 				),
 				'organizer_instagram' => array(
@@ -152,7 +161,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => false,
 					'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourorganizer', 'wp-event-manager'),
-					'priority'    => 7,
+					'priority'    => 8,
 					'visibility'  => 1,
 				),
 				'organizer_youtube' => array(
@@ -160,7 +169,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => false,
 					'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer', 'wp-event-manager'),
-					'priority'    => 8,
+					'priority'    => 9,
 					'visibility'  => 1,
 				),
 				'organizer_twitter' => array(
@@ -168,7 +177,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => false,
 					'placeholder' => __('Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager'),
-					'priority'    => 9,
+					'priority'    => 10,
 					'visibility'  => 1,
 				),
 			)
