@@ -2075,7 +2075,7 @@ function display_organizer_google_plus($before = '', $after = '', $echo = true, 
  */
 function event_listing_class($class = '', $post_id = null){
 	// Separates classes with a single space, collates classes for post DIV
-	printf('class="' . join(' ', get_event_listing_class($class, $post_id)) . '"');
+	echo 'class="' . join(' ', get_event_listing_class($class, $post_id)) . '"';
 }
 
 /**
