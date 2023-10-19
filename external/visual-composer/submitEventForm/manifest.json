@@ -4,7 +4,7 @@
       "settings": {
         "name": "Submit an Event",
         "metaThumbnailUrl": "[publicPath]/submit-event-form.jpg",
-        "metaPreviewUrl": "[publicPath]/submit-event-preview.jpg",
+        "metaPreviewUrl": "[publicPath]/submit-event-preview.png",
         "metaDescription": "Submit event element."
       }
     }
