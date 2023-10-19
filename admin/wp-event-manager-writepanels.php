@@ -1104,6 +1104,7 @@ class WP_Event_Manager_Writepanels {
 		if(isset($event_online) && $event_online == 'yes') {
 			update_post_meta($post_id, '_event_location', '');
 			update_post_meta($post_id, '_event_pincode', '');
+			update_post_meta($post_id, '_event_country', '');
 		} 
 		// reset meta value if ticket type is free
 		if(isset($ticket_type) && $ticket_type=='free'){
