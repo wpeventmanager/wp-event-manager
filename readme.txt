@@ -312,8 +312,8 @@ Fixed : Warning error message is fixed on the admin side.
 Fixed : Hook would be used to validate additional fields.
 Fixed : Event Banner missing on single event page.
 Fixed : Events won’t load if using Hebrew characters in event type or category.
-Added : Find country code for the event organizer.
-Added : Find country code for the offline event.
+Added : Add country code for the event organizer.
+Added : Add country code for the offline event.
 
 = [3.1.38] 20-08-2023 =
 
