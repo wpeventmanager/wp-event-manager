@@ -188,8 +188,8 @@ EventSubmission = function () {
                     }
 
                     if (jQuery('.fieldset-event_country').length > 0 && jQuery('select[name=event_country]').length > 0) {
-                        if (jQuery('input[name=event_country]').attr('required'))
-                            jQuery('input[name=event_country]').attr('required', false);
+                        if (jQuery('select[name=event_country]').attr('required'))
+                            jQuery('select[name=event_country]').attr('required', false);
 
                         jQuery('.fieldset-event_country').hide();
                     }
@@ -306,8 +306,8 @@ EventSubmission = function () {
                             jQuery('.fieldset-event_location').hide();
                         }
                         if (jQuery('.fieldset-event_country').length > 0 && jQuery('select[name=event_country]').length > 0) {
-                            if (jQuery('input[name=event_country]').attr('required'))
-                                jQuery('input[name=event_country]').attr('required', false);
+                            if (jQuery('select[name=event_country]').attr('required'))
+                                jQuery('select[name=event_country]').attr('required', false);
     
                             jQuery('.fieldset-event_country').hide();
                         }
@@ -340,8 +340,8 @@ EventSubmission = function () {
                             jQuery('.fieldset-event_location').show();
                         }
                         if (jQuery('.fieldset-event_country').length > 0 && jQuery('select[name=event_country]').length > 0) {
-                            if (jQuery('input[name=event_country]').attr('required'))
-                                jQuery('input[name=event_country]').attr('required', true);
+                            if (jQuery('select[name=event_country]').attr('required'))
+                                jQuery('select[name=event_country]').attr('required', true);
 
                             jQuery('.fieldset-event_country').show();
                         }
