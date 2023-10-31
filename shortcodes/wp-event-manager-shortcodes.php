@@ -420,7 +420,7 @@ class WP_Event_Manager_Shortcodes{
 	public function edit_organizer(){
 		global $event_manager;
 
-		printf($event_manager->forms->get_form('edit-organizer'));
+		echo $event_manager->forms->get_form('edit-organizer');
 	}
 
 	/**
@@ -555,7 +555,7 @@ class WP_Event_Manager_Shortcodes{
 	public function edit_venue(){
 		global $event_manager;
 
-		printf($event_manager->forms->get_form('edit-venue'));
+		echo $event_manager->forms->get_form('edit-venue');
 	}
 
 	/**
