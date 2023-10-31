@@ -1506,7 +1506,7 @@ input.wpem-theme-button:hover span {
   top: 0;
 }
 .wpem-single-event-page .wpem-share-this-event .wpem-event-share-lists .wpem-social-icon.wpem-twitter a {
-  background: #4da6d7;
+  background: #000000;
 }
 .wpem-single-event-page .wpem-share-this-event .wpem-event-share-lists .wpem-social-icon.wpem-twitter a::before {
   background-color: var(--wpem-white-color);
@@ -1764,7 +1764,7 @@ input.wpem-theme-button:hover span {
 .wpem-single-event-page .wpem-single-event-footer .wpem-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a,
 .wpem-single-event-page .wpem-single-event-footer .wpem-venue-wrapper .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a,
 .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a {
-  background: #4da6d7;
+  background: #000000;
 }
 .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a::before,
 .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a::before {
@@ -2544,7 +2544,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a,
 .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a,
 div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon.wpem-twitter a {
-  background: #4da6d7;
+  background: #000000;
 }
 .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon.wpem-twitter a::before,
 .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon.wpem-twitter a::before {
