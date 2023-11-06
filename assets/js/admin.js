@@ -265,11 +265,13 @@ var Admin = function () {
                             jQuery('#_event_pincode').closest('.form-field').hide();
                             jQuery('#_event_location').closest('.form-field').hide();
                             jQuery('#_event_venue_ids').closest('.form-field').hide();
+                            jQuery('#_event_country').closest('.form-field').hide();
                         } else {
                             jQuery('#_event_venue_name').closest('.form-field').show();
                             jQuery('#_event_pincode').closest('.form-field').show();
                             jQuery('#_event_location').closest('.form-field').show();
                             jQuery('#_event_venue_ids').closest('.form-field').show();
+                            jQuery('#_event_country').closest('.form-field').show();
                         }
                     },
 

@@ -69,8 +69,6 @@ function locate_event_manager_template($template_name, $template_path = 'wp-even
 		$default_path = $default_path ? $default_path : EVENT_MANAGER_PLUGIN_DIR . '/templates/';
 		if(file_exists(trailingslashit($default_path) . $template_name)) {
 			$template = trailingslashit($default_path) . $template_name;
-		}else {
-			$template = trailingslashit($default_path) . "text-field.php";
 		}
 	}
 
@@ -568,7 +566,7 @@ function get_event_banner($post = null){
 	if($post->post_type !== 'event_listing')
 		return;
 	if(isset($post->_event_banner) && empty($post->_event_banner))
-		$event_banner = apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder-wide.jpg');
+		$event_banner = get_event_thumbnail($post);
 	else
 		$event_banner = $post->_event_banner;
 	return apply_filters('display_event_banner', $event_banner, $post);
@@ -1133,20 +1131,19 @@ function display_organizer_logo($size = 'full', $default = null, $post = null){
 	$logo = get_organizer_logo($post, $size);
 
 	if(has_post_thumbnail($post)) {
-		printf('<img class="organizer_logo" src="' . esc_attr($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		echo '<img class="organizer_logo" src="' . esc_attr($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
 		// Before 1.0., logo URLs were stored in post meta.
 	} elseif(!empty($logo) && !is_array($logo) && (strstr($logo, 'http') || file_exists($logo))) {
-
 		if($size !== 'full') {
 			$logo = event_manager_get_resized_image($logo, $size);
 		}
-		printf('<img src="' . esc_attr($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		echo '<img src="' . esc_attr($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
 	} elseif($default) {
-		printf('<img src="' . esc_attr($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		echo '<img src="' . esc_attr($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
 	} else if(is_array($logo) && isset($logo[0])) {
-		printf('<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		echo '<img itemprop="image" content="' . esc_attr($logo[0]) . '" src="' . esc_attr($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
 	} else {
-		printf('<img src="' . esc_attr(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		echo '<img src="' . esc_attr(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
 	}
 }
 
@@ -2077,7 +2074,7 @@ function display_organizer_google_plus($before = '', $after = '', $echo = true, 
  */
 function event_listing_class($class = '', $post_id = null){
 	// Separates classes with a single space, collates classes for post DIV
-	printf('class="' . join(' ', get_event_listing_class($class, $post_id)) . '"');
+	echo 'class="' . join(' ', get_event_listing_class($class, $post_id)) . '"';
 }
 
 /**

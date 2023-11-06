@@ -192,7 +192,7 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'event_banner') {
                 display_event_banner('full', '', $event);
             } else if ($settings['event_field'] == 'event_description') {
-                echo  wp_kses_post(get_event_description($event));
+                echo wp_kses_post(apply_filters('display_event_description', $event->post_content)); 
             } else if ($settings['event_field'] == 'event_registration_email') {
                 $registration_end_date = get_event_registration_end_date($event);
                 $registration_end_date = !empty($registration_end_date) ? $registration_end_date.' 23:59:59' : '';

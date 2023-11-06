@@ -52,7 +52,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_fields function.
+	 * event_listing_fields function used to get listing fields.
 	 *
 	 * @access public
 	 * @return void
@@ -83,6 +83,7 @@ class WP_Event_Manager_Writepanels {
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
+				
 				if($field_key === 'registration') {
 					$field_value['value'] = $registration;
 				}
@@ -91,6 +92,9 @@ class WP_Event_Manager_Writepanels {
 				} else {
 					$fields[$field_key] = $field_value;
 				}
+				if(isset($fields['_' .$field_key]['visibility']) && ($fields['_' .$field_key]['visibility'] == 0 || $fields['_' .$field_key]['visibility'] == false)) :
+					unset($fields['_' .$field_key]);
+				endif; 
 			}
 			unset($fields[$group_key]);
 		}
@@ -98,7 +102,6 @@ class WP_Event_Manager_Writepanels {
 		if(isset($fields['_event_title'])) {
 			unset($fields['_event_title']);
 		}
-
 		if(isset($fields['_event_description'])) {
 			unset($fields['_event_description']);
 		}
@@ -133,6 +136,19 @@ class WP_Event_Manager_Writepanels {
 				'type'     => 'author',
 				'priority' => 41,
 			);
+		}
+
+		if( !isset( $fields['_event_end_date'] ) ) {
+			unset( $fields['_event_expiry_date'] );
+		}
+		if( !get_option( 'enable_event_organizer' ) ) {
+			unset( $fields['organizer']);
+			unset( $fields['_event_organizer_ids'] );
+		}
+
+		if( !get_option( 'enable_event_venue' ) ) {
+			unset( $fields['venue'] );
+			unset( $fields['event_venue_ids'] );
 		}
 		uasort($fields, array($this, 'sort_by_priority'));
 		return $fields;
@@ -1088,6 +1104,7 @@ class WP_Event_Manager_Writepanels {
 		if(isset($event_online) && $event_online == 'yes') {
 			update_post_meta($post_id, '_event_location', '');
 			update_post_meta($post_id, '_event_pincode', '');
+			update_post_meta($post_id, '_event_country', '');
 		} 
 		// reset meta value if ticket type is free
 		if(isset($ticket_type) && $ticket_type=='free'){
@@ -1140,11 +1157,15 @@ class WP_Event_Manager_Writepanels {
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
+				
 				if(strpos($field_key, '_') !== 0) {
 					$fields['_' . $field_key] = $field_value;
 				} else {
 					$fields[$field_key] = $field_value;
 				}
+				if(isset($fields['_' .$field_key]['visibility']) && ($fields['_' .$field_key]['visibility'] == 0 || $fields['_' .$field_key]['visibility'] == false)) :
+					unset($fields['_' .$field_key]);
+				endif; 
 			}
 			unset($fields[$group_key]);
 		}
@@ -1286,11 +1307,15 @@ class WP_Event_Manager_Writepanels {
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
+
 				if(strpos($field_key, '_') !== 0) {
 					$fields['_' . $field_key] = $field_value;
 				} else {
 					$fields[$field_key] = $field_value;
 				}
+				if(isset($fields['_' .$field_key]['visibility']) && ($fields['_' .$field_key]['visibility'] == 0 || $fields['_' .$field_key]['visibility'] == false)) :
+					unset($fields['_' .$field_key]);
+				endif; 
 			}
 			unset($fields[$group_key]);
 		}

@@ -71,7 +71,7 @@ class WP_Event_Manager_Post_Types {
 		add_action('update_post_meta', array($this, 'update_post_meta'), 10, 4);
 		add_action('wp_insert_post', array($this, 'maybe_add_default_meta_data'), 10, 2);		
 		
-		add_action('parse_query', array($this, 'add_feed_query_args'));
+		// add_action('parse_query', array($this, 'add_feed_query_args'));
 
 		// WP ALL Import
 		add_action('pmxi_saved_post', array($this, 'pmxi_saved_post'), 10, 1);
@@ -449,162 +449,86 @@ class WP_Event_Manager_Post_Types {
 	 * Event listing feeds
 	 */
 	public function event_feed() {
+		if(get_option('event_manager_hide_expired')) {
+			$post_status = 'publish';
+		} else {
+			$post_status = array('publish', 'expired');
+		}
 		$query_args = array(
 			'post_type'           => 'event_listing',
-			'post_status'         => 'publish',
+			'post_status'         => $post_status,
 			'ignore_sticky_posts' => 1,
-			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : 10,
+			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : -1,
 			'tax_query'           => array(),
 			'meta_query'          => array()
 		);		
 		if(!empty($_GET['search_location'])) {
 			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
-			foreach ($location_meta_keys as $meta_key) {
+			foreach($location_meta_keys as $meta_key) {
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => sanitize_text_field($_GET['search_location']),
-					'compare' => 'like'
+					'value'   => 	$_GET['search_location'], 
+					'compare' => 'like',
+					'type'    => 'char',
+				);
+				$location_search[] = array(
+					'key'     => $meta_key,
+					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $_GET['search_location']), ','),
+					'compare' => 'like',
+					'type'    => 'char',
 				);
 			}
 			$query_args['meta_query'][] = $location_search;
 		}
 		
-		if(!empty($_GET['search_datetimes'])) {
-			if($_GET['search_datetimes'] == 'datetime_today'){	
-				$datetime=date('Y-m-d');
-				
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $datetime,
-						'compare' => 'LIKE',
-					);
-			} elseif($_GET['search_datetimes'] == 'datetime_tomorrow') { 
-				$datetime=date('Y-m-d',strtotime("+1 day")); 
-				
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $datetime,
-						'compare' => 'LIKE',
-					);
-			} elseif($_GET['search_datetimes'] == 'datetime_thisweek') {					
-				$year=date('Y');
-				$weekNumber=date('W');                 
-                $dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
-                $dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));				
-
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
-					'type'    => 'date'
-				);
-			} elseif($_GET['search_datetimes'] =='datetime_thisweekend') {
-				$saturday_date=date('Y-m-d', strtotime('this Saturday', time()));
-				$sunday_date=date('Y-m-d', strtotime('this Saturday +1 day', time()));
-                $dates[0]= $saturday_date;
-                $dates[1]= $sunday_date;
-                
-			    $date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-					    'compare' => 'BETWEEN',
-					    'type'    => 'date'
-					);
-			} elseif($_GET['search_datetimes'] =='datetime_thismonth') {	
-                $dates[0]= date('Y-m-d', strtotime('first day of this month', time()));
-                $dates[1] = date('Y-m-d', strtotime('last day of this month', time()));				
-
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-					    'compare' => 'BETWEEN',
-					    'type'    => 'date'
-					);
-			} elseif($_GET['search_datetimes'] =='datetime_thisyear') {
-				$dates[0]= date('Y-m-d', strtotime('first day of january', time()));
-                $dates[1] = date('Y-m-d', strtotime('last day of december', time()));	
-
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-					    'compare' => 'BETWEEN',
-					    'type'    => 'date'
-					);
-			} elseif($_GET['search_datetimes'] =='datetime_nextweek') {
-			    $year=date('Y');
-				$weekNumber=date('W')+1;                 
-                $dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
-                $dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));	
-               
-				$date_search[] = array(
-					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
-					'type'    => 'date'
-				);		    
+		$search_datetimes = is_array($_GET['search_datetimes']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_GET['search_datetimes']))) : array_filter(array(sanitize_text_field(stripslashes($_GET['search_datetimes']))));
+		if(!empty($search_datetimes)) {		
+			$date_search = array();
 			
-			} elseif($_GET['search_datetimes'] =='datetime_nextweekend') {
-				$next_saturday_date=date('Y-m-d', strtotime('next Saturday', time()));
-				$next_sunday_date=date('Y-m-d', strtotime('next Saturday +1 day', time()));
-                $dates[0]= $next_saturday_date;
-                $dates[1]= $next_sunday_date;               
-                
-			    $date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-					    'compare' => 'BETWEEN',
-					    'type'    => 'date'
-					);
-			} elseif($_GET['search_datetimes'] =='datetime_nextmonth') {
-				$dates[0]= date('Y-m-d', strtotime('first day of next month', time()));
-                $dates[1] = date('Y-m-d', strtotime('last day of next month', time()));	
-                
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-					    'compare' => 'BETWEEN',
-					    'type'    => 'date'
-					);
-			} elseif($_GET['search_datetimes'] =='datetime_nextyear') {
-			    $year=date('Y')+1;
-			    $dates[0]= date('Y-m-d', strtotime('first day of January ' . $year, time()));
-                $dates[1] = date('Y-m-d', strtotime('last day of december '. $year, time()));              
+			$dates = json_decode($search_datetimes[0], true);
+			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-					    'compare' => 'BETWEEN',
-					    'type'    => 'date'
-					);
-			} else {
-				$dates = json_decode($args['search_datetimes'][0], true);
-
+			//covert datepicker format  into php date() function date format
+			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+			if (!empty($dates)) {
+				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
+				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
+				$date_search['relation'] = 'AND';
 				$date_search[] = array(
 					'key'     => '_event_start_date',
-					'value'   => [$dates['start'], $dates['end']],
-				    'compare' => 'BETWEEN',
-				    'type'    => 'date'
+					'value'   =>  $dates['end'],
+					'compare' => '<=',
+					'type'    => 'date'
 				);
+				$date_search[] = array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['start'],
+					'compare' => '>=',
+					'type'    => 'date'
+				);
+				apply_filters('event_manager_get_listings_date_filter_args', $date_search, $dates);
+				if(!empty( $date_search))
+					$query_args['meta_query'][] = $date_search;
 			}
-			$query_args['meta_query'][] = $date_search;
 		}
-		
+
 		if(!empty($_GET['search_ticket_prices'])) {
-		    
+			
 			if($_GET['search_ticket_prices'] =='ticket_price_paid') {  
-			  $ticket_price_value='paid';     
+			$ticket_price_value='paid';     
 			} else if($_GET['search_ticket_prices'] =='ticket_price_free')	{
-			  $ticket_price_value='free';
+			$ticket_price_value='free';
 			}
 			$ticket_search[] = array(
-							'key'     => '_event_ticket_options',
-							'value'   => $ticket_price_value,
-							'compare' => '=',
-						);
+				'key'     => '_event_ticket_options',
+				'value'   => $ticket_price_value,
+				'compare' => '=',
+			);
 			$query_args['meta_query'][] = $ticket_search;			
 		}
-		
+	
 		if(!empty($_GET['search_event_types'])) {
 			$cats     = explode(',', sanitize_text_field($_GET['search_event_types'])) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
@@ -617,7 +541,7 @@ class WP_Event_Manager_Post_Types {
 				'operator'         => $operator
 			);
 		}
-		
+	
 		if(!empty($_GET['search_categories'])) {
 			$cats     = explode(',', sanitize_text_field($_GET['search_categories'])) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
@@ -643,12 +567,33 @@ class WP_Event_Manager_Post_Types {
 			unset($query_args['tax_query']);
 		}
 
-		query_posts(apply_filters('event_feed_args', $query_args));
+		$query = new WP_Query($query_args);
+		header('Content-Type: application/rss+xml; charset=' . get_option('blog_charset'), true);
 
-		add_action('rss2_ns', array($this, 'event_feed_namespace'));
-		add_action('rss2_item', array($this, 'event_feed_item'));
-
-		do_feed_rss2(false);
+		// Start RSS feed
+		echo '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+		xmlns:content="http://purl.org/rss/1.0/modules/content/"
+		xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:atom="http://www.w3.org/2005/Atom"
+		xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+		xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+		xmlns:event_listing="http://localhost/crm">';
+		echo '<channel>';
+		
+			if ($query->have_posts()) :
+				while ($query->have_posts()) : $query->the_post();
+					// Output feed item here
+					$post_id  = get_the_ID();
+					get_event_manager_template('rss-event-feed.php', array('post_id' => $post_id));
+				endwhile;
+			endif;
+			
+			wp_reset_postdata();
+		
+		// End RSS feed
+		echo '</channel>';
+		echo '</rss>';
 		remove_filter('posts_search', 'get_event_listings_keyword_search');
 	}
 	

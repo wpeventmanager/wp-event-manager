@@ -1,7 +1,12 @@
 <?php $venue = get_post($venue_id); 
-if (get_option('event_manager_form_fields')) {
+if (get_option('event_manager_form_fields') && is_array(get_option('event_manager_form_fields'))) {
     $venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
-}?>
+} else {
+    $GLOBALS['event_manager']->forms->get_form( 'submit-venue', array() );
+    $form_submit_venue_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Venue', 'instance' ) );
+    $venue_custom_fields = $form_submit_venue_instance->merge_with_custom_fields( 'backend' );
+} ?>
+
 <div class="wpem-single-venue-profile-wrapper" id="wpem_venue_profile">
     <div class="wpem-venue-profile">
         <?php do_action('single_event_listing_venue_start'); ?>
