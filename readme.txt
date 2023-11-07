@@ -3,9 +3,9 @@
 Contributors: wpeventmanager,ashokdudhat,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
-Requires at least: 4.1
+Requires at least: 5.4.1
 Tested up to: 6.3.1
-Stable tag: 3.1.38
+Stable tag: 3.1.39
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -299,6 +299,21 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+
+= [3.1.39] 24-10-2023 =
+
+Fixed : The availability issue of the field editor option is resolved.
+Fixed : Adding a new ticket from the frontend to an event issue has been resolved.
+Fixed : The grammatical error in the text of the general settings tab has been resolved.
+Fixed : Issue related to the availability of events in the RSS feed has been resolved.
+Fixed : Events will take time to load.
+Fixed : Warning error message is fixed on the admin side.
+Fixed : Hook would be used to validate additional fields.
+Fixed : Event Banner missing on single event page.
+Fixed : Events won’t load if using Hebrew characters in event type or category.
+Added : Add country code for the event organizer.
+Added : Add country code for the offline event.
 
 = [3.1.38] 20-08-2023 =
 

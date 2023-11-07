@@ -127,6 +127,9 @@ $event = $post; ?>
                                         if (!array_key_exists($field_name, $default_fields['event'])) {
                                             $meta_key = '_' . $field_name;
                                             $field_value = $event->$meta_key;
+                                            if(isset($field_data['visibility']) && ($field_data['visibility'] == false || $field_data['visibility'] == 0 )){
+                                                continue;
+                                            } 
                                             if (isset($field_value)) {
                                                 $additional_fields[$field_name] = $field_data;
                                             }
@@ -154,12 +157,12 @@ $event = $post; ?>
                                                 <?php
                                                 $date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
                                                 $time_format = WP_Event_Manager_Date_Time::get_timepicker_format();
-                                                foreach ($additional_fields as $name => $field) : ?>
-                                                    <?php
+                                                foreach ($additional_fields as $name => $field) : 
                                                     $field_key = '_' . stripslashes($name);
                                                     $field_label =  stripslashes( $field['label'] );
                                                     $field_value = $event->$field_key;
                                                     if (isset($field_value)) :
+                                                        do_action('single_event_additional_details_field_start');
                                                         if ($field['type'] == 'group') :
                                                             if (isset($field['fields']) && !empty($field['fields'])) : ?>
                                                                 <div class="wpem-col-12 wpem-additional-info-block-group">
@@ -387,6 +390,7 @@ $event = $post; ?>
                                                                     </div>
                                                                 </div>
                                                             <?php endif; 
+                                                            do_action('single_event_additional_details_field_end');
                                                         endif; 
                                                     endif;
                                                 endforeach; ?>

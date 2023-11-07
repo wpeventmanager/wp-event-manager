@@ -96,7 +96,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 				}
 			}
 		}
-		error_log(print_r($this->fields, true));
+		
 		$this->fields = apply_filters('submit_event_form_fields_get_event_data', $this->fields, $event);
 		wp_enqueue_script('wp-event-manager-event-submission');
 		get_event_manager_template('event-submit.php', array(

@@ -92,75 +92,93 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		$this->fields = apply_filters('submit_organizer_form_fields', array(
 			'organizer' => array(
 				'organizer_name' => array(
-								'label'       => __('Organizer name', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => true,
-								'placeholder' => __('Enter the name of the organizer', 'wp-event-manager'),
-								'priority'    => 1,
+					'label'       => __('Organizer name', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => true,
+					'placeholder' => __('Enter the name of the organizer', 'wp-event-manager'),
+					'priority'    => 1,
+					'visibility'  => 1,
 				),
 				'organizer_logo' => array(
-								'label'       => __('Logo', 'wp-event-manager'),
-								'type'        => 'file',
-								'required'    => false,
-								'placeholder' => '',
-								'priority'    => 2,
-								'ajax'        => true,
-								'multiple'    => false,
-								'allowed_mime_types' => array(
-									'jpg'  => 'image/jpeg',
-									'jpeg' => 'image/jpeg',
-									'gif'  => 'image/gif',
-									'png'  => 'image/png'
-								)
+					'label'       => __('Logo', 'wp-event-manager'),
+					'type'        => 'file',
+					'required'    => false,
+					'placeholder' => '',
+					'priority'    => 2,
+					'ajax'        => true,
+					'multiple'    => false,
+					'allowed_mime_types' => array(
+						'jpg'  => 'image/jpeg',
+						'jpeg' => 'image/jpeg',
+						'gif'  => 'image/gif',
+						'png'  => 'image/png'
+					),
+					'visibility'  => 1,
 				),
 				'organizer_description' => array(
-								'label'       => __('Organizer Description', 'wp-event-manager'),
-								'type'        => 'wp-editor',
-								'required'    => true,
-								'placeholder' => '',
-								'priority'    => 3
+					'label'       => __('Organizer Description', 'wp-event-manager'),
+					'type'        => 'wp-editor',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 3,
+					'visibility'  => 1,
+				),	
+				'organizer_country' => array(
+					'label'       => __('Organizer Country', 'wp-event-manager'),
+					'type'        => 'select',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 4,
+					'visibility'  => 1,
+					'options'     => wpem_get_all_countries(),
 				),	
 				'organizer_email' => array(
-								'label'       => __('Organizer Email', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => true,
-								'placeholder' => __('Enter your email address', 'wp-event-manager'),
-								'priority'    => 4,
+					'label'       => __('Organizer Email', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => true,
+					'placeholder' => __('Enter your email address', 'wp-event-manager'),
+					'priority'    => 5,
+					'visibility'  => 1,
 				),
 				'organizer_website' => array(
-								'label'       => __('Website', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Website URL e.g http://www.yourorganization.com', 'wp-event-manager'),
-								'priority'    => 5
+					'label'       => __('Website', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Website URL e.g http://www.yourorganization.com', 'wp-event-manager'),
+					'priority'    => 6,
+					'visibility'  => 1,
 				),
 				'organizer_facebook' => array(
-								'label'       => __('Facebook', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourorganizer', 'wp-event-manager'),
-								'priority'    => 6
+					'label'       => __('Facebook', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourorganizer', 'wp-event-manager'),
+					'priority'    => 7,
+					'visibility'  => 1,
 				),
 				'organizer_instagram' => array(
-								'label'       => __('Instagram', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourorganizer', 'wp-event-manager'),
-								'priority'    => 7
+					'label'       => __('Instagram', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourorganizer', 'wp-event-manager'),
+					'priority'    => 8,
+					'visibility'  => 1,
 				),
 				'organizer_youtube' => array(
-								'label'       => __('Youtube', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer', 'wp-event-manager'),
-								'priority'    => 8
+					'label'       => __('Youtube', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer', 'wp-event-manager'),
+					'priority'    => 9,
+					'visibility'  => 1,
 				),
 				'organizer_twitter' => array(
-								'label'       => __('Twitter', 'wp-event-manager'),
-								'type'        => 'text',
-								'required'    => false,
-								'placeholder' => __('Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager'),
-								'priority'    => 9
+					'label'       => __('Twitter', 'wp-event-manager'),
+					'type'        => 'text',
+					'required'    => false,
+					'placeholder' => __('Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager'),
+					'priority'    => 10,
+					'visibility'  => 1,
 				),
 			)
 		));
@@ -263,6 +281,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	    foreach($this->fields as $group_key => $group_fields){     	      
 				 
 			foreach($group_fields as $key => $field) {
+				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] = false ) )
+					continue;
+				
 				if($field['required'] && empty($values[ $group_key ][ $key ])) {	    
 					return new WP_Error('validation-error', sprintf(wp_kses('%s is a required field.', 'wp-event-manager'), $field['label'])) ;
 				}
@@ -395,6 +416,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		// Loop fields and save meta and term data
 		foreach($this->fields as $group_key => $group_fields) {
 			foreach($group_fields as $key => $field) {
+				if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
+					continue;
+				endif; 
 				// Save taxonomies
 				if(!empty($field['taxonomy'])) {
 					if(is_array($values[ $group_key ][ $key ])) {

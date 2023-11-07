@@ -68,7 +68,7 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	public function admin_enqueue_scripts()	{
 		wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
-		wp_register_script('wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL . '/assets/js/field-editor.min.js', array('jquery', 'jquery-ui-sortable', 'chosen'), EVENT_MANAGER_VERSION, true);
+		wp_register_script('wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL . '/assets/js/field-editor.js', array('jquery', 'jquery-ui-sortable', 'chosen'), EVENT_MANAGER_VERSION, true);
 		wp_localize_script(
 			'wp-event-manager-form-field-editor',
 			'wp_event_manager_form_editor',
@@ -123,7 +123,7 @@ class WP_Event_Manager_Field_Editor {
 			echo wp_kses_post($this->form_editor_save());
 		}
 
-		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description'));
+		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country'));
 		$taxonomy_fields = apply_filters('wpem_admin_field_editor_taxonomy_fields', array('event_type', 'event_category'));
 		$field_types    = apply_filters(
 			'event_manager_form_field_types',
@@ -136,7 +136,7 @@ class WP_Event_Manager_Field_Editor {
 				'file'             => esc_html__('File', 'wp-event-manager'),
 				'hidden'           => esc_html__('Hidden', 'wp-event-manager'),
 				'multiselect'      => esc_html__('Multiselect', 'wp-event-manager'),
-				'number'           => esc_html__('Number', 'wp-event-manager'),               /*'password'       		=> __('Password', 'wp-event-manager'),*/
+				'number'           => esc_html__('Number', 'wp-event-manager'),
 				'radio'            => esc_html__('Radio', 'wp-event-manager'),
 				'repeated'         => esc_html__('Repeated', 'wp-event-manager'),
 				'select'           => esc_html__('Select', 'wp-event-manager'),
@@ -169,9 +169,12 @@ class WP_Event_Manager_Field_Editor {
 		} else {
 			$venue_fields = array();
 		}
-
 		$fields = array_merge($event_fields, $organizer_fields, $venue_fields);
-
+		$add_event_form_fields = get_option('event_manager_form_fields');
+		if(isset($fields['organizer']['event_organizer_ids']))
+			unset($fields['organizer']['event_organizer_ids']);
+		if(isset($fields['venue']['event_venue_ids']))
+			unset($fields['venue']['event_venue_ids']);
 		foreach ($fields  as $group_key => $group_fields) {
 			if(empty($group_fields)) {
 				continue;
@@ -223,7 +226,9 @@ class WP_Event_Manager_Field_Editor {
 						if(isset($group_fields) && !empty($group_fields)) {
 							foreach ($group_fields as $field_key => $field) {
 								$index++;
-
+								if(isset($field['visibility']) && ($field['visibility'] == false || $field['visibility'] == 0 )){
+									continue;
+								}
 								include 'wp-event-manager-form-field-editor-field.php';
 							}
 						} ?>												
@@ -283,7 +288,7 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	private function form_editor_save()	{
 		if(wp_verify_nonce($_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor')) {
-
+			
 			$event_field     = !empty($_POST['event']) ? $this->sanitize_array($_POST['event']) : array();
 			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array($_POST['organizer']) : array();
 			$event_venue     = !empty($_POST['venue']) ? $this->sanitize_array($_POST['venue']) : array();
@@ -299,6 +304,7 @@ class WP_Event_Manager_Field_Editor {
 				foreach ($new_fields as $group_key => $group_fields) {
 					$index = 0;
 					foreach ($group_fields as $field_key => $field_value) {
+						$new_fields[$group_key][$field_key]['visibility'] = isset($_POST['_'.$field_key.'_visibility']) ? $_POST['_'.$field_key.'_visibility'] : 1; 
 						if(!empty($field_value['label'])) {
 							$index++;
 							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {
@@ -349,7 +355,6 @@ class WP_Event_Manager_Field_Editor {
 					$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 					$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 					$event_fields =   $form_submit_event_instance->get_default_fields();
-
 					if(get_option('enable_event_organizer')) {
 						$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 						$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
@@ -358,23 +363,25 @@ class WP_Event_Manager_Field_Editor {
 						$organizer_fields = array();
 					}
 
-					if(get_option('enable_event_venue')) {
+					if( get_option('enable_event_venue') ) {
 						$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 						$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
 						$venue_fields               = $form_submit_venue_instance->init_fields();
 					} else {
 						$venue_fields = array();
 					}
-
 					$default_fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 
 					// if field in not exist in new fields array then make visiblity false
 					if(!empty($default_fields)) {
 						foreach ($default_fields as $group_key => $group_fields) {
 							foreach ($group_fields as $key => $field) {
-								if(!isset($new_fields[$group_key][$key])) {
-									$new_fields[$group_key][$key]               = $field;
+								if( !isset($new_fields[$group_key][$key] ) ) {
+									$new_fields[$group_key][$key] = $field;
 									$new_fields[$group_key][$key]['visibility'] = 0; // it will make visiblity false means removed from the field editor.
+								}
+								if( !isset($new_fields[$group_key][$key]['required'] ) ){
+									$new_fields[$group_key][$key]['required'] =  isset($field['required']) ? $field['required'] : false;
 								}
 							}
 						}

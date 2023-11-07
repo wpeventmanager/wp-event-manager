@@ -58,13 +58,14 @@ var FieldEditor = function() {
 			/// <since>1.0</since> 
 			deleteField :function() {
 				if (window.confirm(wp_event_manager_form_editor.cofirm_delete_i18n)) {
-					var field_type    = jQuery(this).closest('tr').data('field-type');
-
+					var field_type = jQuery(this).closest('tr').data('field-type');
+					var field_meta = jQuery(this).closest('tr').data('field-meta');
+					jQuery("#"+field_meta+"_visibility").val("0");
 					if(field_type === 'group'){
 						jQuery(this).closest('tr').next('tr.group').remove();
 						jQuery(this).closest('tr').remove();
 					} else {
-						jQuery(this).closest('tr').remove();
+						jQuery(this).closest('tr').css('display', 'none');
 					}
 				}
 				return false;

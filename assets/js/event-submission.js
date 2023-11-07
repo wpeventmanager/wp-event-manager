@@ -187,6 +187,13 @@ EventSubmission = function () {
                         jQuery('.fieldset-event_location').hide();
                     }
 
+                    if (jQuery('.fieldset-event_country').length > 0 && jQuery('select[name=event_country]').length > 0) {
+                        if (jQuery('select[name=event_country]').attr('required'))
+                            jQuery('select[name=event_country]').attr('required', false);
+
+                        jQuery('.fieldset-event_country').hide();
+                    }
+
                     if (jQuery('.fieldset-event_venue_ids').length > 0) {
                         jQuery('.fieldset-event_venue_ids').hide();
                     }
@@ -272,7 +279,6 @@ EventSubmission = function () {
             /// <since>1.0.0</since>
             onlineEvent: function (event) {
                 event.preventDefault();
-                Common.logInfo("EventDashboard.actions.onlineEvent...");
                 if (jQuery('#event_online').length > 0) {
                     if (jQuery(this).val() == "yes") {
                         if (jQuery('.fieldset-event_venue_name').length > 0 && jQuery('input[name=event_venue_name]').length > 0) {
@@ -298,6 +304,12 @@ EventSubmission = function () {
                                 jQuery('input[name=event_location]').attr('required', false);
 
                             jQuery('.fieldset-event_location').hide();
+                        }
+                        if (jQuery('.fieldset-event_country').length > 0 && jQuery('select[name=event_country]').length > 0) {
+                            if (jQuery('select[name=event_country]').attr('required'))
+                                jQuery('select[name=event_country]').attr('required', false);
+    
+                            jQuery('.fieldset-event_country').hide();
                         }
                         if (jQuery('.fieldset-event_venue_ids').length > 0) {
                             jQuery('.fieldset-event_venue_ids').hide();
@@ -326,6 +338,12 @@ EventSubmission = function () {
                                 jQuery('input[name=event_location]').attr('required', true);
 
                             jQuery('.fieldset-event_location').show();
+                        }
+                        if (jQuery('.fieldset-event_country').length > 0 && jQuery('select[name=event_country]').length > 0) {
+                            if (jQuery('select[name=event_country]').attr('required'))
+                                jQuery('select[name=event_country]').attr('required', true);
+
+                            jQuery('.fieldset-event_country').show();
                         }
                         if (jQuery('.fieldset-event_venue_ids').length > 0) {
                             jQuery('.fieldset-event_venue_ids').show();

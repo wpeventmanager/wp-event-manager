@@ -122,155 +122,33 @@ if(!function_exists('get_event_listings')) :
 		}
 			
 		if(!empty($args['search_datetimes'][0])) {		
-			$date_search=array();
-			if($args['search_datetimes'][0]==='datetime_today'){	
-				$datetime=date('Y-m-d');
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $datetime,
-						'compare' => 'LIKE',
-					);
-			} elseif($args['search_datetimes'][0]==='datetime_tomorrow') { 
-				$datetime=date('Y-m-d',strtotime("+1 day")); 
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $datetime,
-						'compare' => 'LIKE',
-					);
-			} elseif($args['search_datetimes'][0]==='datetime_thisweek') {					
-				$year=date('Y');
-				$weekNumber=date('W');                 
-				$dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
-				$dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));				
+			$date_search = array();
+			
+			$dates = json_decode($args['search_datetimes'][0], true);
+			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 
+			//covert datepicker format  into php date() function date format
+			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+			if (!empty($dates)) {
+				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
+				$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
+				$date_search['relation'] = 'AND';
 				$date_search[] = array(
 					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
+					'value'   =>  $dates['end'],
+					'compare' => '<=',
 					'type'    => 'date'
 				);
-			} elseif($args['search_datetimes'][0]==='datetime_thisweekend') {
-				$saturday_date=date('Y-m-d', strtotime('this Saturday', time()));
-				$sunday_date=date('Y-m-d', strtotime('this Saturday +1 day', time()));
-				$dates[0]= $saturday_date;
-				$dates[1]= $sunday_date;
-				
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-						'compare' => 'BETWEEN',
-						'type'    => 'date'
-					);
-			} elseif($args['search_datetimes'][0]==='datetime_thismonth') {	
-				$dates[0]= date('Y-m-d', strtotime('first day of this month', time()));
-				$dates[1] = date('Y-m-d', strtotime('last day of this month', time()));				
-
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-						'compare' => 'BETWEEN',
-						'type'    => 'date'
-					);
-			} elseif($args['search_datetimes'][0]==='datetime_thisyear') {
-				$dates[0]= date('Y-m-d', strtotime('first day of january', time()));
-				$dates[1] = date('Y-m-d', strtotime('last day of december', time()));	
-
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-						'compare' => 'BETWEEN',
-						'type'    => 'date'
-					);
-			} elseif($args['search_datetimes'][0]==='datetime_nextweek') {
-				$year=date('Y');
-				$weekNumber=date('W')+1;                 
-				$dates[0]= date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT)));
-				$dates[1] = date('Y-m-d', strtotime($year.'W'.str_pad($weekNumber, 2, 0, STR_PAD_LEFT).' +6 days'));	
-			
 				$date_search[] = array(
 					'key'     => '_event_start_date',
-					'value'   => $dates,
-					'compare' => 'BETWEEN',
+					'value'   => $dates['start'],
+					'compare' => '>=',
 					'type'    => 'date'
-				);		    
-			
-			} elseif($args['search_datetimes'][0]==='datetime_nextweekend') {
-				$next_saturday_date=date('Y-m-d', strtotime('next week Saturday', time()));
-				$next_sunday_date=date('Y-m-d', strtotime('next week Sunday', time()));
-				$dates[0]= $next_saturday_date;
-				$dates[1]= $next_sunday_date;               
-				
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-						'compare' => 'BETWEEN',
-						'type'    => 'date'
-					);
-			} elseif($args['search_datetimes'][0]==='datetime_nextmonth') {
-				$dates[0]= date('Y-m-d', strtotime('first day of next month', time()));
-				$dates[1] = date('Y-m-d', strtotime('last day of next month', time()));	
-				
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-						'compare' => 'BETWEEN',
-						'type'    => 'date'
-					);
-			} elseif($args['search_datetimes'][0]==='datetime_nextyear') {
-				$year=date('Y')+1;
-				$dates[0]= date('Y-m-d', strtotime('first day of January ' . $year, time()));
-				$dates[1] = date('Y-m-d', strtotime('last day of december '. $year, time()));              
-
-				$date_search[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates,
-						'compare' => 'BETWEEN',
-						'type'    => 'date'
-					);
-			} else {
-				$dates = json_decode($args['search_datetimes'][0], true);
-				//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-				$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
-
-				//covert datepicker format  into php date() function date format
-				$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-				if(!empty($dates)) {
-					$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
-					$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['end']);
-					$date_search['relation'] = 'OR';
-					$search_start_date[] = array(
-						'key'     => '_event_start_date',
-						'value'   =>  $dates['end'],
-						'compare' => '<=',
-						'type'    => 'date'
-					);
-					$search_start_date[] = array(
-						'key'     => '_event_start_date',
-						'value'   => $dates['start'],
-						'compare' => '>=',
-						'type'    => 'date'
-					);
-
-					$search_end_date[] = array(
-						'key'     => '_event_end_date',
-						'value'   =>  $dates['end'],
-						'compare' => '<=',
-						'type'    => 'date'
-					);
-					$search_end_date[] = array(
-						'key'     => '_event_end_date',
-						'value'   => $dates['start'],
-						'compare' => '>=',
-						'type'    => 'date'
-					);
-
-					$search_start_date['relation'] = 'AND';
-					$date_search[] = $search_start_date;
-					
-					$search_end_date['relation'] = 'AND';
-					$date_search[] = $search_end_date;
-				}
-				$query_args['meta_query'][] = $date_search;
+				);
+				apply_filters('event_manager_get_listings_date_filter_args', $date_search, $dates);
+				if(!empty( $date_search))
+					$query_args['meta_query'][] = $date_search;
 			}
 		}
 
@@ -397,7 +275,6 @@ if(!function_exists('get_event_listings')) :
 			$query_args['meta_query']['relation'] = 'AND';
 			// $query_args['tax_query']['relation'] = 'AND';
 		}
-		
 		// Polylang LANG arg
 		if(function_exists('pll_current_language') && !empty($args['lang'])) {
 			$query_args['lang'] = $args['lang'];
@@ -2054,4 +1931,263 @@ function wpem_convert_php_to_moment_format($format) {
     ];
     $momentFormat = strtr($format, $replacements);
     return $momentFormat;
+}
+
+
+/**
+ * Get all countries with country code
+ * 
+ * We have used this method for organizer country selection.
+ * @since 3.1.39
+ * @return countries information
+ */
+function wpem_get_all_countries() {
+	return apply_filters('wpem_all_countries', array (
+		'' => 'Select Country',
+		'AF' => 'Afghanistan',
+		'AX' => 'Aland Islands',
+		'AL' => 'Albania',
+		'DZ' => 'Algeria',
+		'AS' => 'American Samoa',
+		'AD' => 'Andorra',
+		'AO' => 'Angola',
+		'AI' => 'Anguilla',
+		'AQ' => 'Antarctica',
+		'AG' => 'Antigua And Barbuda',
+		'AR' => 'Argentina',
+		'AM' => 'Armenia',
+		'AW' => 'Aruba',
+		'AU' => 'Australia',
+		'AT' => 'Austria',
+		'AZ' => 'Azerbaijan',
+		'BS' => 'Bahamas',
+		'BH' => 'Bahrain',
+		'BD' => 'Bangladesh',
+		'BB' => 'Barbados',
+		'BY' => 'Belarus',
+		'BE' => 'Belgium',
+		'BZ' => 'Belize',
+		'BJ' => 'Benin',
+		'BM' => 'Bermuda',
+		'BT' => 'Bhutan',
+		'BO' => 'Bolivia',
+		'BA' => 'Bosnia And Herzegovina',
+		'BW' => 'Botswana',
+		'BV' => 'Bouvet Island',
+		'BR' => 'Brazil',
+		'IO' => 'British Indian Ocean Territory',
+		'BN' => 'Brunei Darussalam',
+		'BG' => 'Bulgaria',
+		'BF' => 'Burkina Faso',
+		'BI' => 'Burundi',
+		'KH' => 'Cambodia',
+		'CM' => 'Cameroon',
+		'CA' => 'Canada',
+		'CV' => 'Cape Verde',
+		'KY' => 'Cayman Islands',
+		'CF' => 'Central African Republic',
+		'TD' => 'Chad',
+		'CL' => 'Chile',
+		'CN' => 'China',
+		'CX' => 'Christmas Island',
+		'CC' => 'Cocos (Keeling) Islands',
+		'CO' => 'Colombia',
+		'KM' => 'Comoros',
+		'CG' => 'Congo',
+		'CD' => 'Congo, Democratic Republic',
+		'CK' => 'Cook Islands',
+		'CR' => 'Costa Rica',
+		'CI' => 'Cote D\'Ivoire',
+		'HR' => 'Croatia',
+		'CU' => 'Cuba',
+		'CY' => 'Cyprus',
+		'CZ' => 'Czech Republic',
+		'DK' => 'Denmark',
+		'DJ' => 'Djibouti',
+		'DM' => 'Dominica',
+		'DO' => 'Dominican Republic',
+		'EC' => 'Ecuador',
+		'EG' => 'Egypt',
+		'SV' => 'El Salvador',
+		'GQ' => 'Equatorial Guinea',
+		'ER' => 'Eritrea',
+		'EE' => 'Estonia',
+		'ET' => 'Ethiopia',
+		'FK' => 'Falkland Islands (Malvinas)',
+		'FO' => 'Faroe Islands',
+		'FJ' => 'Fiji',
+		'FI' => 'Finland',
+		'FR' => 'France',
+		'GF' => 'French Guiana',
+		'PF' => 'French Polynesia',
+		'TF' => 'French Southern Territories',
+		'GA' => 'Gabon',
+		'GM' => 'Gambia',
+		'GE' => 'Georgia',
+		'DE' => 'Germany',
+		'GH' => 'Ghana',
+		'GI' => 'Gibraltar',
+		'GR' => 'Greece',
+		'GL' => 'Greenland',
+		'GD' => 'Grenada',
+		'GP' => 'Guadeloupe',
+		'GU' => 'Guam',
+		'GT' => 'Guatemala',
+		'GG' => 'Guernsey',
+		'GN' => 'Guinea',
+		'GW' => 'Guinea-Bissau',
+		'GY' => 'Guyana',
+		'HT' => 'Haiti',
+		'HM' => 'Heard Island & Mcdonald Islands',
+		'VA' => 'Holy See (Vatican City State)',
+		'HN' => 'Honduras',
+		'HK' => 'Hong Kong',
+		'HU' => 'Hungary',
+		'IS' => 'Iceland',
+		'IN' => 'India',
+		'ID' => 'Indonesia',
+		'IR' => 'Iran, Islamic Republic Of',
+		'IQ' => 'Iraq',
+		'IE' => 'Ireland',
+		'IM' => 'Isle Of Man',
+		'IL' => 'Israel',
+		'IT' => 'Italy',
+		'JM' => 'Jamaica',
+		'JP' => 'Japan',
+		'JE' => 'Jersey',
+		'JO' => 'Jordan',
+		'KZ' => 'Kazakhstan',
+		'KE' => 'Kenya',
+		'KI' => 'Kiribati',
+		'KR' => 'Korea',
+		'KW' => 'Kuwait',
+		'KG' => 'Kyrgyzstan',
+		'LA' => 'Lao People\'s Democratic Republic',
+		'LV' => 'Latvia',
+		'LB' => 'Lebanon',
+		'LS' => 'Lesotho',
+		'LR' => 'Liberia',
+		'LY' => 'Libyan Arab Jamahiriya',
+		'LI' => 'Liechtenstein',
+		'LT' => 'Lithuania',
+		'LU' => 'Luxembourg',
+		'MO' => 'Macao',
+		'MK' => 'Macedonia',
+		'MG' => 'Madagascar',
+		'MW' => 'Malawi',
+		'MY' => 'Malaysia',
+		'MV' => 'Maldives',
+		'ML' => 'Mali',
+		'MT' => 'Malta',
+		'MH' => 'Marshall Islands',
+		'MQ' => 'Martinique',
+		'MR' => 'Mauritania',
+		'MU' => 'Mauritius',
+		'YT' => 'Mayotte',
+		'MX' => 'Mexico',
+		'FM' => 'Micronesia, Federated States Of',
+		'MD' => 'Moldova',
+		'MC' => 'Monaco',
+		'MN' => 'Mongolia',
+		'ME' => 'Montenegro',
+		'MS' => 'Montserrat',
+		'MA' => 'Morocco',
+		'MZ' => 'Mozambique',
+		'MM' => 'Myanmar',
+		'NA' => 'Namibia',
+		'NR' => 'Nauru',
+		'NP' => 'Nepal',
+		'NL' => 'Netherlands',
+		'AN' => 'Netherlands Antilles',
+		'NC' => 'New Caledonia',
+		'NZ' => 'New Zealand',
+		'NI' => 'Nicaragua',
+		'NE' => 'Niger',
+		'NG' => 'Nigeria',
+		'NU' => 'Niue',
+		'NF' => 'Norfolk Island',
+		'MP' => 'Northern Mariana Islands',
+		'NO' => 'Norway',
+		'OM' => 'Oman',
+		'PK' => 'Pakistan',
+		'PW' => 'Palau',
+		'PS' => 'Palestinian Territory, Occupied',
+		'PA' => 'Panama',
+		'PG' => 'Papua New Guinea',
+		'PY' => 'Paraguay',
+		'PE' => 'Peru',
+		'PH' => 'Philippines',
+		'PN' => 'Pitcairn',
+		'PL' => 'Poland',
+		'PT' => 'Portugal',
+		'PR' => 'Puerto Rico',
+		'QA' => 'Qatar',
+		'RE' => 'Reunion',
+		'RO' => 'Romania',
+		'RU' => 'Russian Federation',
+		'RW' => 'Rwanda',
+		'BL' => 'Saint Barthelemy',
+		'SH' => 'Saint Helena',
+		'KN' => 'Saint Kitts And Nevis',
+		'LC' => 'Saint Lucia',
+		'MF' => 'Saint Martin',
+		'PM' => 'Saint Pierre And Miquelon',
+		'VC' => 'Saint Vincent And Grenadines',
+		'WS' => 'Samoa',
+		'SM' => 'San Marino',
+		'ST' => 'Sao Tome And Principe',
+		'SA' => 'Saudi Arabia',
+		'SN' => 'Senegal',
+		'RS' => 'Serbia',
+		'SC' => 'Seychelles',
+		'SL' => 'Sierra Leone',
+		'SG' => 'Singapore',
+		'SK' => 'Slovakia',
+		'SI' => 'Slovenia',
+		'SB' => 'Solomon Islands',
+		'SO' => 'Somalia',
+		'ZA' => 'South Africa',
+		'GS' => 'South Georgia And Sandwich Isl.',
+		'ES' => 'Spain',
+		'LK' => 'Sri Lanka',
+		'SD' => 'Sudan',
+		'SR' => 'Suriname',
+		'SJ' => 'Svalbard And Jan Mayen',
+		'SZ' => 'Swaziland',
+		'SE' => 'Sweden',
+		'CH' => 'Switzerland',
+		'SY' => 'Syrian Arab Republic',
+		'TW' => 'Taiwan',
+		'TJ' => 'Tajikistan',
+		'TZ' => 'Tanzania',
+		'TH' => 'Thailand',
+		'TL' => 'Timor-Leste',
+		'TG' => 'Togo',
+		'TK' => 'Tokelau',
+		'TO' => 'Tonga',
+		'TT' => 'Trinidad And Tobago',
+		'TN' => 'Tunisia',
+		'TR' => 'Turkey',
+		'TM' => 'Turkmenistan',
+		'TC' => 'Turks And Caicos Islands',
+		'TV' => 'Tuvalu',
+		'UG' => 'Uganda',
+		'UA' => 'Ukraine',
+		'AE' => 'United Arab Emirates',
+		'GB' => 'United Kingdom',
+		'US' => 'United States',
+		'UM' => 'United States Outlying Islands',
+		'UY' => 'Uruguay',
+		'UZ' => 'Uzbekistan',
+		'VU' => 'Vanuatu',
+		'VE' => 'Venezuela',
+		'VN' => 'Viet Nam',
+		'VG' => 'Virgin Islands, British',
+		'VI' => 'Virgin Islands, U.S.',
+		'WF' => 'Wallis And Futuna',
+		'EH' => 'Western Sahara',
+		'YE' => 'Yemen',
+		'ZM' => 'Zambia',
+		'ZW' => 'Zimbabwe',
+	) );
 }

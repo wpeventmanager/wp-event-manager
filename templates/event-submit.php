@@ -20,7 +20,10 @@ global $event_manager; ?>
 		}
 
 		do_action('submit_event_form_event_fields_start'); 
-		foreach($event_fields as $key => $field) : ?>
+		foreach($event_fields as $key => $field) : 
+			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+				continue;
+			endif; ?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 				<label for="<?php esc_attr_e($key); ?>">
 					<?php _e(esc_attr($field['label']), 'wp-event-manager');
@@ -37,7 +40,10 @@ global $event_manager; ?>
 		<?php if(get_option('enable_event_organizer')) :
 			if($organizer_fields) :
 				do_action('submit_event_form_organizer_fields_start');
-				foreach($organizer_fields as $key => $field) : ?>
+				foreach($organizer_fields as $key => $field) : 
+					if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+						continue;
+					endif;?>
 					<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 						<h2 class="wpem-form-title wpem-heading-text"><?php _e('Organizer Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php esc_attr_e($key); ?>">
@@ -57,7 +63,10 @@ global $event_manager; ?>
 		<?php if(get_option('enable_event_venue')) :
 			if($venue_fields) :
 				 do_action('submit_event_form_venue_fields_start'); 
-				foreach($venue_fields as $key => $field) : ?>
+				foreach($venue_fields as $key => $field) : 
+					if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+						continue;
+					endif;?>
 					<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 						<h2 class="wpem-form-title wpem-heading-text"><?php _e('Venue Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php esc_attr_e($key); ?>">
@@ -110,7 +119,10 @@ global $event_manager; ?>
 
 					<?php do_action('submit_organizer_form_organizer_fields_start'); ?>
 
-					<?php foreach($organizer_fields['organizer'] as $key => $field) : ?>
+					<?php foreach($organizer_fields['organizer'] as $key => $field) : 
+						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+							continue;
+						endif;?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 							<label for="<?php esc_attr_e($key); ?>">
 							<?php _e(esc_attr($field['label']), 'wp-event-manager');
@@ -158,7 +170,10 @@ if(get_option('enable_event_venue')) :
 
 					<?php do_action('submit_venue_form_venue_fields_start'); ?>
 
-					<?php foreach($venue_fields['venue'] as $key => $field) : ?>
+					<?php foreach($venue_fields['venue'] as $key => $field) : 
+						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+							continue;
+						endif; ?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 							<label for="<?php esc_attr_e($key); ?>">
 								<?php _e(esc_attr($field['label']), 'wp-event-manager');
