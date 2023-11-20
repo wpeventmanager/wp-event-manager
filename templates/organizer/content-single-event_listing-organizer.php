@@ -3,7 +3,6 @@
  * Single view organizer information box
  *
  * Hooked into single_event_listing_start priority 30
- *
  * @since  3.1.6
  */
 
