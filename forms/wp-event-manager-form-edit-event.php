@@ -68,7 +68,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 					if('event_title' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = esc_attr($event->post_title);
 					} elseif('event_description' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = $event->post_content;
+						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($event->post_content);
 					} elseif('organizer_logo' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($event->ID) ? get_post_thumbnail_id($event->ID) : get_post_meta($event->ID, '_' . $key, true);
 					} elseif('event_start_date' === $key) {
