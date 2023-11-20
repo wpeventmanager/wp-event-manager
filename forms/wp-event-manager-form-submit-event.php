@@ -403,7 +403,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					continue;
 
 				if( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {	    
-					return new WP_Error( 'validation-error', sprintf(wp_kses( '%s is a required field.', 'wp-event-manager' ), $field['label'] ) );
+					return new WP_Error( 'validation-error', sprintf(wp_kses( '%s is a required field.', 'wp-event-manager' ), esc_attr( $field['label'] ) ) );
 				}
 
 			    if( !empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) {
@@ -415,7 +415,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 					foreach( $check_value as $term ) {
 						if( !term_exists( $term, $field['taxonomy'] ) ) {
-							return new WP_Error( 'validation-error', sprintf(wp_kses( '%s is invalid.', 'wp-event-manager' ), $field['label'] ) );    
+							return new WP_Error( 'validation-error', sprintf(wp_kses( '%s is invalid.', 'wp-event-manager' ), esc_attr( $field['label'] ) ) );    
 						}
 					}
 				}
@@ -432,7 +432,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$file_url = current( explode( '?', $file_url ) );
 							$file_info = wp_check_filetype( $file_url );
 							if( !is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'] ) ) {
-								throw new Exception( sprintf(wp_kses( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), $field['label'], $info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
+								throw new Exception( sprintf(wp_kses( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), esc_attr( $field['label'] ), esc_attr( $info['ext'] ), implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
 							}
 						}
 					}
@@ -543,13 +543,13 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $event->ID ) ? get_post_thumbnail_id( $event->ID ) : get_post_meta( $event->ID, '_' . $key, true );
 							break;
 						
-						case ($key ==  'event_start_date' ||  $key == 'event_end_date' ) :
+						case ( $key ==  'event_start_date' ||  $key == 'event_end_date' ) :
 							$event_date = get_post_meta( $event->ID, '_' . $key, true );
 							$default_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 							$default_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $default_date_format );
 							if(isset($event_date) && $event_date!=""){
 								$this->fields[ $group_key ][ $key ]['value'] = date($default_date_format ,strtotime($event_date) );
-							}else{
+							} else {
 								$this->fields[ $group_key ][ $key ]['value'] = '';
 							}
 							break;
@@ -673,7 +673,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						if( !event_manager_validate_new_password( $_POST['create_account_password'] ) ) {
 							$password_hint = sanitize_text_field(event_manager_get_password_rules_hint());
 							if( $password_hint ) {
-								throw new Exception( sprintf(wp_kses( 'Invalid Password: %s', 'wp-event-manager' ), $password_hint ));
+								throw new Exception( sprintf(wp_kses( 'Invalid Password: %s', 'wp-event-manager' ), esc_attr( $password_hint ) ) );
 							} else {
 								throw new Exception( __( 'Password is not valid.', 'wp-event-manager' ) );
 							}
@@ -748,7 +748,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					$event_slug[] = $event_type;
 				}
 			}
-			$event_slug[]            	= sanitize_text_field($post_title);
+			$event_slug[]            	= sanitize_title($post_title);
 			$event_slugs				= implode( '-', $event_slug ) ;
 			$event_data['post_name'] 	= apply_filters('submit_event_form_save_slug_data', $event_slugs);
 		}
@@ -960,6 +960,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					} else {
 						update_post_meta( $this->event_id, '_' . $key, '' );
 					}
+				} elseif('url' === $field['type']) { 
+					update_post_meta($this->event_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
+
+				} elseif('email' === $field['type']) { 
+					update_post_meta($this->event_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
+					
 				} else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
