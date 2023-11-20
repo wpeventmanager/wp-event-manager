@@ -2,6 +2,6 @@
 
 <?php if (!empty($field['description'])) : ?>
     <small class="description">
-        <?php echo esc_textarea($field['description']); ?>
+        <?php echo wp_kses_post($field['description']); ?>
     </small>
 <?php endif; ?> 

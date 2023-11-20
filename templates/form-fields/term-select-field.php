@@ -37,6 +37,6 @@ wp_dropdown_categories(apply_filters('event_manager_term_select_field_wp_dropdow
 
 if (!empty($field['description'])) : ?>
 	<small class="description">
-		<?php echo esc_textarea($field['description']); ?>
+		<?php echo wp_kses_post($field['description']); ?>
 	</small>
 <?php endif; ?>

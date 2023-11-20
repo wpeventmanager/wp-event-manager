@@ -27,6 +27,6 @@ event_manager_dropdown_selection(apply_filters('event_manager_term_multiselect_f
 
 if (!empty($field['description'])) : ?>
 	<small class="description">
-		<?php echo esc_textarea($field['description']); ?>
+		<?php echo wp_kses_post($field['description']); ?>
 	</small>
 <?php endif; ?>

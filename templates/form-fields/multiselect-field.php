@@ -12,6 +12,6 @@ wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' 
 
 <?php if (!empty($field['description'])) : ?>
 	<small class="description">
-		<?php printf ($field['description']); ?>
+		<?php echo wp_kses_post($field['description']); ?>
 	</small>
 <?php endif; ?>
