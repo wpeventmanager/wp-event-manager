@@ -1924,6 +1924,26 @@ function wpem_convert_php_to_moment_format($format) {
     return $momentFormat;
 }
 
+if ( !function_exists( 'get_event_by_user_id' ) ) {
+    /**
+     * This function is used to get event by user id
+     *
+     * @access public
+     * @param
+     * @return array
+     * @since 1.0.0
+     */
+    function get_event_by_user_id( $user_id = '' ) {
+        return get_posts( apply_filters('wpem_events_by_user_id_args', array( 
+            'posts_per_page' => - 1,
+            'post_type' => 'event_listing',
+            'post_status' => 'publish',
+            'suppress_filters' => 'false',
+            'author' => $user_id,
+            'fields' => 'ids',
+        ) ) );
+    }
+}
 
 /**
  * Get all countries with country code
