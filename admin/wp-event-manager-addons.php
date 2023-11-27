@@ -1,6 +1,6 @@
 <?php
 /**
- * Addons Page
+ * Addons page of WP Event Manager. 
 */
 
 if(!defined('ABSPATH')){
@@ -10,7 +10,7 @@ if(!defined('ABSPATH')){
 if(!class_exists('WP_Event_Manager_Addons')) :
 
 	/**
-	 * WP_Event_Manager_Addons Class
+	 * WP_Event_Manager_Addons Class.
 	*/
 	class WP_Event_Manager_Addons {
 		/**

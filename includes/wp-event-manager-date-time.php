@@ -11,7 +11,7 @@ class WP_Event_Manager_Date_Time {
 	const DATABASE_DATE_TIME_FORMAT      = 'Y-m-d H:i:s';
 	const DBTIMEFORMAT          = 'H:i:s';
 	/**
-	* Get datepicker format function will return all the date formats for datepicker
+	* Get datepicker format function will return all the date formats for datepicker.
 	*
 	* @param null
 	* @return format of datepicker
@@ -28,7 +28,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	* function get_default_date_formats will return all the date formats
+	* function get_default_date_formats will return all the date formats.
 	* This function has both type of format jquery-ui-datepicker as well as for php date format
 	*
 	* @return array
@@ -75,7 +75,7 @@ class WP_Event_Manager_Date_Time {
 
 
 	/**
-	 * This function will parse the date to dbformatted date
+	 * This function will parse the date to dbformatted date.
 	 * Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 	 * php date format parsing has error so we need to parse via our custom parsing method
 	 * Ref. https://stackoverflow.com/questions/6668223/php-date-parse-from-format-alternative-in-php-5-2
@@ -157,7 +157,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	* This function will return php formatted date format from datepicker formatted date
+	* This function will return php formatted date format from datepicker formatted date.
 	* For eg. in date picker date format is yy-mm-dd where this format in php will be Y-m-d
 	* So, We need one central function will allow to convert datepicker format in to php formatted format.
 	*
@@ -170,7 +170,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	* Get timepicker format function will return all the date formats for timepicker
+	* Get timepicker format function will return all the date formats for timepicker.
 	*
 	* @since 3.0
 	* @param null
@@ -221,7 +221,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	* Get timepicker format function will return all the date formats for timepicker
+	* Get timepicker format function will return all the date formats for timepicker.
 	*
 	* @since 3.0
 	**/
@@ -231,7 +231,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	 * Get wp event manager view date format
+	 * Get wp event manager view date format.
 	 * This format is set by user from event listing -> settings -> date and time
 	 *
 	 * @return string
@@ -242,7 +242,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	 * Get Wp event manager date admin setting where you can get array of dummy date
+	 * Get Wp event manager date admin setting where you can get array of dummy date.
 	 * The key of each value will be a php date format which is generated from the get_default_date_formats()
 	 * It will just make array for dropdown for showing dummy date and key as php formatted so we can save it
 	 * Currentrly it is used at event listing -> settings -> date and time - datepicker format
@@ -262,7 +262,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	 * Get event manager timezone setting defined in event listing -> settings
+	 * Get event manager timezone setting defined in event listing -> settings.
 	 *
 	 * @since 3.0
 	 * @return string $selected_timezone

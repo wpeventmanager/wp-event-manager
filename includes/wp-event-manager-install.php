@@ -9,7 +9,7 @@ if(!defined('ABSPATH')) {
 class WP_Event_Manager_Install {
 
 	/**
-	 * Install WP Event Manager
+	 * Install WP Event Manager.
 	 */
 	public static function install() {
 		global $wpdb;
@@ -47,7 +47,7 @@ class WP_Event_Manager_Install {
 	}
 
 	/**
-	 * Install WP Event Manager
+	 * Update of WP Event Manager.
 	 */
 	public static function update() {
 
@@ -106,7 +106,7 @@ class WP_Event_Manager_Install {
 	}
 	
 	/**
-	 * Init user roles
+	 * Init user roles.
 	 */
 	private static function init_user_roles() {
 		global $wp_roles;
@@ -132,7 +132,7 @@ class WP_Event_Manager_Install {
 	}
 
 	/**
-	 * Get capabilities
+	 * Get capabilities.
 	 * @return array
 	 */	 
 	private static function get_core_capabilities() {
@@ -247,7 +247,7 @@ class WP_Event_Manager_Install {
 	}
 
 	/**
-	 * create_page function.
+	 * Create page.
 	 */
 	private static function create_page($title, $content, $option) {
 		if(get_option($option) == ''){

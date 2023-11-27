@@ -10,7 +10,7 @@ if(!defined('ABSPATH') ) {
 class WP_Event_Manager_Filters {
     
 	/**
-	 * Get datetime filter as array
+	 * Get datetime filter as array.
 	 */
 	public static function get_datetimes_filter() {	
 		$datetimes=array();		
@@ -29,7 +29,7 @@ class WP_Event_Manager_Filters {
 	}
 
 	/**
-	 * Get date time filter value for the key 
+	 * Get date time filter value for the key.
 	 */
 	public static function get_datetime_value($key) {
 		$datetimes=self::get_datetimes_filter();
@@ -41,7 +41,7 @@ class WP_Event_Manager_Filters {
 	}
 
 	/**
-	 * Get ticket price filter as array
+	 * Get ticket price filter as array.
 	 */
 	public static function get_ticket_prices_filter() {
 		$ticket_prices=array();
@@ -52,7 +52,7 @@ class WP_Event_Manager_Filters {
 	}
 
 	/**
-	 * Get ticket price filter value for the key 
+	 * Get ticket price filter value for the key. 
 	 */
 	public static function get_ticket_price_value($key) {
 		$ticket_prices=self::get_ticket_prices_filter();

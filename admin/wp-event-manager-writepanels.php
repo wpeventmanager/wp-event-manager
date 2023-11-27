@@ -52,7 +52,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_fields function used to get listing fields.
+	 * It used to get event listing fields.
 	 *
 	 * @access public
 	 * @return void
@@ -155,7 +155,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * Sort array by priority value
+	 * Sort array by priority value.
 	 */
 	protected function sort_by_priority($a, $b)	{
 		if(!isset($a['priority']) || !isset($b['priority']) || $a['priority'] === $b['priority']) {
@@ -165,7 +165,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * add_meta_boxes function.
+	 * Add metabox of event.
 	 *
 	 * @access public
 	 * @return void
@@ -215,7 +215,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_type_metabox function.
+	 * Use of event listing type metabox.
 	 *
 	 * @param mixed $post
 	 * @param
@@ -283,7 +283,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_category_metabox function.
+	 * Use of event listing category metabox.
 	 *
 	 * @param mixed $post
 	 * @param
@@ -757,7 +757,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * Box to choose who posted the event
+	 * Box to choose who posted the event.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -855,7 +855,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * save_post function.
+	 * Save post.
 	 *
 	 * @access public
 	 * @param mixed $post_id
@@ -893,7 +893,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * save_event_listing_data function.
+	 * Save event listing data.
 	 *
 	 * @access public
 	 * @param mixed $post_id
@@ -1100,7 +1100,7 @@ class WP_Event_Manager_Writepanels {
 			}
 		}
 
-		//delete location meta if event is online
+		// delete location meta if event is online
 		if(isset($event_online) && $event_online == 'yes') {
 			update_post_meta($post_id, '_event_location', '');
 			update_post_meta($post_id, '_event_pincode', '');
@@ -1139,7 +1139,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_fields function.
+	 * Organizer listing fields.
 	 *
 	 * @access public
 	 * @return void
@@ -1192,7 +1192,7 @@ class WP_Event_Manager_Writepanels {
 
 
 	/**
-	 * event_organizer_data function.
+	 * Event organizer data.
 	 *
 	 * @access public
 	 * @param mixed $post
@@ -1220,7 +1220,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * save_organizer_listing_data function.
+	 * Save organizer listing data.
 	 *
 	 * @access public
 	 * @param mixed $post_id
@@ -1289,7 +1289,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * venue_listing_fields function.
+	 * Venue listing fields.
 	 *
 	 * @access public
 	 * @return void
@@ -1341,7 +1341,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_venue_data function.
+	 * Event venue data.
 	 *
 	 * @access public
 	 * @param mixed $post
@@ -1369,7 +1369,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * save_venue_listing_data function.
+	 * Save venue listing data.
 	 *
 	 * @access public
 	 * @param mixed $post_id

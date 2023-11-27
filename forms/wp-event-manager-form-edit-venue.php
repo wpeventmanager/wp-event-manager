@@ -13,7 +13,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 	protected static $_instance = null;
 
 	/**
-	 * Main Instance
+	 * Main Instance.
 	 */
 	public static function instance() {
 		if(is_null(self::$_instance)) {
@@ -23,7 +23,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	*/
 	public function __construct() {
 		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint($_REQUEST[ 'venue_id' ]) : 0;
@@ -41,7 +41,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 	}
 
 	/**
-	 * Submit Step
+	 * Submit Step.
 	 */
 	public function submit() {
 		$venue = get_post($this->venue_id);
@@ -101,7 +101,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 	}
 
 	/**
-	 * Submit Step is posted
+	 * Submit Step is posted.
 	 */
 	public function submit_handler() {
 

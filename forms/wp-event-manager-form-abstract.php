@@ -57,7 +57,7 @@ abstract class WP_Event_Manager_Form {
  
     }
 	/**
-	 * Get formn name.
+	 * Get form name.
 	 * @since 1.24.0
 	 * @return string
 	 */
@@ -66,7 +66,7 @@ abstract class WP_Event_Manager_Form {
 	}
 		
 	/**
-	 * output function. Call the view handler.
+	 * Output function. Call the view handler.
 	 */
 	public function output($atts = array()) {
 		$step_key = $this->get_step_key($this->step);
@@ -77,7 +77,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Add an error
+	 * Add an error.
 	 * @param string $error
 	 */
 	public function add_error($error) {
@@ -85,7 +85,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Show errors
+	 * Show errors.
 	 */
 	public function show_errors() {
 		foreach ($this->errors as $error) {
@@ -94,7 +94,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get errors
+	 * Get errors.
 	 */
 	public function get_errors() {
 		foreach ($this->errors as $error) {
@@ -113,21 +113,21 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get step from outside of the class
+	 * Get step from outside of the class.
 	 */
 
 	public function get_step() {
 		return $this->step;
 	}
 	/**
-	 * Get steps from outside of the class
+	 * Get steps from outside of the class.
 	 * @since 1.24.0
 	 */
 	public function get_steps() {
 		return $this->steps;
 	}
 	/**
-	 * Get step key from outside of the class
+	 * Get step key from outside of the class.
 	 * @since 1.0.17
 	 */
 	public function get_step_key($step = '') {
@@ -139,14 +139,14 @@ abstract class WP_Event_Manager_Form {
 	}
 	
 	/**
-	 * Get step from outside of the class
+	 * Get step from outside of the class.
 	 * @since 1.24.0
 	 */
 	public function set_step($step) {
 		$this->step = absint($step);
 	}
 	/**
-	 * Increase step from outside of the class
+	 * Increase step from outside of the class.
 	 */
 
 	public function next_step() {
@@ -154,7 +154,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Decrease step from outside of the class
+	 * Decrease step from outside of the class.
 	 */
 
 	public function previous_step() {
@@ -177,7 +177,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Sort array by priority value
+	 * Sort array by priority value.
 	 * @param array $a
 	 * @param array $b
 	 * @return int
@@ -190,7 +190,7 @@ abstract class WP_Event_Manager_Form {
 	}
 	
 	/**
-	 * Init form fields
+	 * Init form fields.
 	 */
 	protected function init_fields() {
 		$this->fields = array();
@@ -206,7 +206,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get post data for fields
+	 * Get post data for fields.
 	 *
 	 * @return array of data
 	 */
@@ -253,7 +253,7 @@ abstract class WP_Event_Manager_Form {
 		return $values;
 	}
 	
-	/* Get the value of a repeated fields (e.g. repeated)
+	/* Get the value of a repeated fields (e.g. repeated).
 	 * @param  array $fields
 	 * @return array
 	 */
@@ -342,7 +342,7 @@ abstract class WP_Event_Manager_Form {
 	}
 	
 	/**
-	 * Get the value of a posted repeated field
+	 * Get the value of a posted repeated field.
 	 * @since  1.22.4
 	 * @param  string $key
 	 * @param  array $field
@@ -354,7 +354,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get the value of a posted group field
+	 * Get the value of a posted group field.
 	 * @since  3.1.19
 	 * @param  string $key
 	 * @param  array $field
@@ -381,7 +381,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get the value of a posted field
+	 * Get the value of a posted field.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return string|array
@@ -391,7 +391,7 @@ abstract class WP_Event_Manager_Form {
 	}
 	
 	/**
-	 * Get the value of a posted multiselect field
+	 * Get the value of a posted multiselect field.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return array
@@ -401,7 +401,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get the value of a posted file field
+	 * Get the value of a posted file field.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return string|array
@@ -420,7 +420,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get the value of a posted textarea field
+	 * Get the value of a posted textarea field.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return string
@@ -430,7 +430,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get the value of a posted textarea field
+	 * Get the value of a posted textarea field.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return string
@@ -440,7 +440,7 @@ abstract class WP_Event_Manager_Form {
 	}
 	
 	/**
-	 * Get posted terms for the taxonomy
+	 * Get posted terms for the taxonomy.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return array
@@ -454,7 +454,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get posted terms for the taxonomy
+	 * Get posted terms for the taxonomy.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return int
@@ -464,7 +464,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get posted terms for the taxonomy
+	 * Get posted terms for the taxonomy.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return int
@@ -474,7 +474,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Upload a file
+	 * Upload a file.
 	 * @return  string or array
 	 */
 	protected function upload_file($field_key, $field) {
@@ -504,7 +504,7 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Merge and replace $default_fields with custom fields
+	 * Merge and replace $default_fields with custom fields.
 	 *
 	 * @return array Returns merged and replaced fields
 	 */

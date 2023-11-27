@@ -449,7 +449,7 @@ class WP_Event_Manager_Settings{
 	}
 
 	/**
-	 * register_settings function.
+	 * Register settings.
 	 *
 	 * @access public
 	 * @return void
@@ -467,7 +467,7 @@ class WP_Event_Manager_Settings{
 	}
 
 	/**
-	 * output function.
+	 * Output of settings page.
 	 *
 	 * @access public
 	 * @return void

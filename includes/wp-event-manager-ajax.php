@@ -32,7 +32,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	*/
 	public function __construct() {
 		add_action('init', array(__CLASS__, 'add_endpoint'));
@@ -55,7 +55,7 @@ class WP_Event_Manager_Ajax {
 	}
 	
 	/**
-	 * Add our endpoint for frontend ajax requests
+	 * Add our endpoint for frontend ajax requests.
 	*/
 	public static function add_endpoint() {
 
@@ -65,7 +65,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Get Event Manager Ajax Endpoint
+	 * Get Event Manager Ajax Endpoint.
 	 * @param  string $request Optional
 	 * @param  string $ssl     Optional
 	 * @return string
@@ -83,7 +83,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Check for WC Ajax request and fire action
+	 * Check for WC Ajax request and fire action.
 	 */
 	public static function do_em_ajax() {
 		global $wp_query;
@@ -103,7 +103,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Get listings via ajax
+	 * Get listings via ajax.
 	 */
 	public function get_listings() {
 		global $wp_post_types;
@@ -278,7 +278,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Upload file via ajax
+	 * Upload file via ajax.
 	 *
 	 * No nonce field since the form may be statically cached.
 	 */
@@ -306,7 +306,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * add_organizer function.
+	 * Add organizer.
 	 * add organizer with popup action
 	 * @access public
 	 * @param 
@@ -367,7 +367,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * add_venue function.
+	 * Add venue.
 	 * add venue with popup action
 	 * @access public
 	 * @param 
