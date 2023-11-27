@@ -901,7 +901,7 @@ class WP_Event_Manager_Shortcodes{
 			'width'    => '250px',
 			'align'    => 'left',
 			'featured' => null, // True to show only featured, false to hide featured, leave null to show both (when leaving out id)
-			'limit'    => 1
+			'limit'    => -1
 
 		), $atts));
 
@@ -925,6 +925,14 @@ class WP_Event_Manager_Shortcodes{
 			}
 		} else {
 			$args['p'] = absint($id);
+			if(!is_null($featured)) {
+				$args['meta_query'] = array(array(
+					'key'     => '_featured',
+					'value'   => '1',
+					'compare' => ($featured == "true") ? '=' : '!='
+
+				));
+			}
 		}
 
 		$events = new WP_Query($args);
