@@ -396,7 +396,7 @@ class WP_Event_Manager_Field_Editor {
 						update_option('event_manager_submit_venue_form_fields', array('venue' => $new_fields['venue']));
 					}
 					// this will be removed in future
-					$result = update_option('event_manager_form_fields', $new_fields);
+					$result = update_option('event_manager_form_fields', $this->sanitize_array($new_fields));
 				}
 			}
 		}

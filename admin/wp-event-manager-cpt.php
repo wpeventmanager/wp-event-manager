@@ -499,7 +499,7 @@ class WP_Event_Manager_CPT {
 				break;
 			default :
 				$value = get_post_meta($post->ID, $column, true);
-				echo apply_filters('wpem_cpt_event_custom_column', $value, $column, $post);
+				echo apply_filters('wpem_cpt_event_custom_column', wp_kses_post($value), $column, $post);
 				break;
 		}
 	}

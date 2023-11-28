@@ -38,7 +38,9 @@ function get_event_manager_template($template_name, $args = array(), $template_p
 	if($args && is_array($args)) {
 		extract($args);
 	}
-	include(locate_event_manager_template($template_name, $template_path, $default_path));
+	if( file_exists( locate_event_manager_template( $template_name, $template_path, $default_path ) ) ){
+		include( locate_event_manager_template( $template_name, $template_path, $default_path ) );
+	}
 }
 
 /**
