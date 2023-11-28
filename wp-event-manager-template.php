@@ -58,7 +58,7 @@ function get_event_manager_template($template_name, $args = array(), $template_p
  * @return string
  */
 function locate_event_manager_template($template_name, $template_path = 'wp-event-manager', $default_path = ''){
-	// Look within passed path within the theme - this is priority
+	// Look within passed path within the theme - this is priority.
 	$template = locate_template(
 		array(
 			trailingslashit($template_path) . $template_name,
@@ -66,7 +66,7 @@ function locate_event_manager_template($template_name, $template_path = 'wp-even
 		)
 	);
 
-	// Get default template
+	// Get default template.
 	if(!$template && $default_path !== false) {
 		$default_path = $default_path ? $default_path : EVENT_MANAGER_PLUGIN_DIR . '/templates/';
 		if(file_exists(trailingslashit($default_path) . $template_name)) {
@@ -74,7 +74,7 @@ function locate_event_manager_template($template_name, $template_path = 'wp-even
 		}
 	}
 
-	// Return what we found
+	// Return what we found.
 	return apply_filters('event_manager_locate_template', $template, $template_name, $template_path);
 }
 
@@ -101,7 +101,7 @@ function get_event_manager_template_part($slug, $name = '', $template_path = 'wp
 }
 
 /**
- * Add custom body classes
+ * Add custom body classes.
  * @param  array $classes
  * @return array
  */
@@ -123,7 +123,7 @@ function get_event_listing_pagination($max_num_pages, $current_page = 1){
 }
 
 /**
- * Outputs the events status
+ * Outputs the events status.
  *
  * @return void
  */
@@ -132,7 +132,7 @@ function display_event_status($post = null){
 }
 
 /**
- * Gets the events status
+ * Gets the events status.
  *
  * @return string
  */
@@ -150,7 +150,7 @@ function get_event_status($post = null){
 }
 
 /**
- * Return whether or not the position has been marked as cancelled
+ * Return whether or not the position has been marked as cancelled.
  *
  * @param  object $post
  * @return boolean
@@ -161,7 +161,7 @@ function is_event_cancelled($post = null){
 }
 
 /**
- * Return whether or not the position has been featured
+ * Return whether or not the position has been featured.
  *
  * @param  object $post
  * @return boolean
@@ -172,7 +172,7 @@ function is_event_featured($post = null){
 }
 
 /**
- * Return whether or not registrations are allowed
+ * Return whether or not registrations are allowed.
  *
  * @param  object $post
  * @return boolean
@@ -183,7 +183,7 @@ function attendees_can_apply($post = null){
 }
 
 /**
- * display_event_permalink function.
+ * Displays the permalink for an event.
  *
  * @access public
  * @return void
@@ -193,7 +193,7 @@ function display_event_permalink($post = null){
 }
 
 /**
- * get_event_registration_method function.
+ * This method retrieves the registration information for the event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -230,7 +230,7 @@ function get_event_registration_method($post = null){
 }
 
 /**
- * get_event_permalink function
+ * Gets the permalink for the event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -243,7 +243,7 @@ function get_event_permalink($post = null){
 }
 
 /**
- * display_event_type function.
+ * It displays the event type.
  *
  * @access public
  * @return void
@@ -273,7 +273,7 @@ function display_event_type($post = null, $after = ''){
 }
 
 /**
- * get_event_type function.
+ * The event type is retrieved here.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -292,7 +292,7 @@ function get_event_type($post = null){
 	return apply_filters('display_event_type', $types, $post);
 }
 /**
- * display_event_category function.
+ * It displays the event category.
  *
  * @access public
  * @return void
@@ -322,7 +322,7 @@ function display_event_category($post = null, $after = ''){
 }
 
 /**
- * get_event_category function.
+ * The event category is retrieved here.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -397,7 +397,7 @@ function wp_event_manager_get_registration_fields(){
 }
 
 /**
- * display_event_publish_date function.
+ * Displays the publish date for event.
  * @param mixed $post (default: null)
  * @return [type]
  */
@@ -412,7 +412,7 @@ function display_event_publish_date($post = null){
 }
 
 /**
- * get_event_publish_date function.
+ * The event publish date is retrieved here.
  * @param mixed $post (default: null)
  * @return [type]
  */
@@ -426,7 +426,7 @@ function get_event_publish_date($post = null){
 }
 
 /**
- * get_event_location function.
+ * Gets event location.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -444,7 +444,7 @@ function get_event_location($post = null){
 }
 
 /**
- * display_event_location function.
+ * Displays event location.
  * @param  boolean $map_link whether or not to link to the map on google maps
  * @return [type]
  */
@@ -462,7 +462,7 @@ function display_event_location($map_link = true, $post = null){
 }
 
 /**
- * get_the_event_ticket function.
+ * Here you can get the event ticket option.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -518,7 +518,7 @@ function display_event_ticket_option($before = '', $after = '', $echo = true, $p
 }
 
 /**
- * get_event_registration_end_date function.
+ * Gets the registration end date of event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -556,7 +556,7 @@ function display_event_registration_end_date($before = '', $after = '', $echo = 
 }
 
 /**
- * get_the_event_logo function.
+ * Gets the banner of event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -575,7 +575,7 @@ function get_event_banner($post = null){
 }
 
 /**
- * get_event_thumbnail function.
+ * Gets the thumbnail of event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -604,7 +604,7 @@ function get_event_thumbnail($post = null, $size = 'full'){
 }
 
 /**
- * display_event_banner function.
+ * Displays the banner of event.
  *
  * @access public
  * @param string $size (default: 'full')
@@ -633,7 +633,7 @@ function display_event_banner($size = 'full', $default = null, $post = null){
 }
 
 /**
- * get_event_start_date function.
+ * Retrieves the start date of event.
  *
  * @access public
  * @param int $post (default: null)
@@ -649,7 +649,7 @@ function get_event_start_date($post = null){
 }
 
 /**
- * Display or retrieve the current event  start date.
+ * Display or retrieve the current event start date.
  *
  * @access public
  * @param mixed $id (default: null)
@@ -670,7 +670,7 @@ function display_event_start_date($before = '', $after = '', $echo = true, $post
 }
 
 /**
- * get_event_start_time function.
+ * Retrieves the start time of event.
  *
  * @access public
  * @param int $post (default: null)
@@ -716,7 +716,7 @@ function display_event_start_time($before = '', $after = '', $echo = true, $post
 }
 
 /**
- * get_event_end_date function.
+ * Retrieves the end date of event.
  *
  * @access public
  * @param int $post (default: null)
@@ -757,7 +757,7 @@ function display_event_end_date($before = '', $after = '', $echo = true, $post =
 }
 
 /**
- * get_event_end_time function.
+ * Retrieves the end time of event.
  *
  * @access public
  * @param int $post (default: null)
@@ -805,7 +805,7 @@ function display_event_end_time($before = '', $after = '', $echo = true, $post =
 }
 
 /**
- * get_event_timezone function.
+ * Retrieves the user selected timezone of event.
  *
  * @access public
  * @since 3.0
@@ -853,7 +853,7 @@ function display_event_timezone($before = '', $after = '', $echo = true, $post =
 }
 
 /**
- * get_event_timezone function.
+ * Retrieves the user selected timezone in abbriviation of event.
  *
  * @since 3.0
  * @access public
@@ -891,7 +891,7 @@ function display_event_timezone_abbr($before = '', $after = '', $echo = true, $p
 }
 
 /**
- * get_event_venue_name function.
+ * Retrieves the event venue name.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -948,7 +948,7 @@ function display_event_venue_name($before = '', $after = '', $echo = true, $post
 }
 
 /**
- * is_event_online function.
+ * Online status of event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -967,7 +967,7 @@ function is_event_online($post = null){
 }
 
 /**
- * get_event_address function.
+ * Gets the address of event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -1006,7 +1006,7 @@ function display_event_address($before = '', $after = '', $echo = true, $post = 
 }
 
 /**
- * get_event_pincode function.
+ * Gets the pincode of event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -1044,7 +1044,7 @@ function display_event_pincode($before = '', $after = '', $echo = true, $post = 
 }
 
 /**
- * get_organizer_name function.
+ * Gets the organizer name.
  *
  * @access public
  * @param int $post (default: null)
@@ -1104,7 +1104,7 @@ function display_organizer_name($before = '', $after = '', $echo = true, $post =
 }
 
 /**
- * get_organizer_description_data function.
+ * Gets the organizer description.
  *
  * @access public
  * @param int $post (default: null)
@@ -1121,7 +1121,7 @@ function get_organizer_description($post = null){
 }
 
 /**
- * display_organizer_logo function.
+ * It displays the organizer logo.
  *
  * @access public
  * @param string $size (default: 'full')
@@ -1150,7 +1150,7 @@ function display_organizer_logo($size = 'full', $default = null, $post = null){
 }
 
 /**
- * get_organizer_logo function.
+ * Gets the organizer logo.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -1179,7 +1179,7 @@ function get_organizer_logo($post = null, $size = 'full'){
 }
 
 /**
- * get_venue_description_data function.
+ * Retrieves the venue description.
  *
  * @access public
  * @param int $post (default: null)
@@ -1196,7 +1196,7 @@ function get_venue_description($post = null){
 }
 
 /**
- * display_venue_logo function.
+ * It displays venue logo.
  *
  * @access public
  * @param string $size (default: 'full')
@@ -1225,7 +1225,7 @@ function display_venue_logo($size = 'full', $default = null, $post = null){
 }
 
 /**
- * get_venue_logo function.
+ * Gets venue logo.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -1249,7 +1249,7 @@ function get_venue_logo($post = null, $size = 'full'){
 }
 
 /**
- * Resize and get url of the image
+ * Resize and get url of the image.
  *
  * @param  string $logo
  * @param  string $size
@@ -1301,7 +1301,7 @@ function event_manager_get_resized_image($logo, $size){
 }
 
 /**
- * get_event_organizer_contact_person_name function.
+ * Retrieves the current organization's contact person name with optional content.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -1338,7 +1338,7 @@ function display_organizer_contact_person_name($before = '', $after = '', $echo 
 }
 
 /**
- * get_event_organizer_email function.
+ * Retrieves the current organizer email with optional content of event.
  *
  * @access public
  * @param mixed $post (default: null)
@@ -1386,7 +1386,7 @@ function display_organizer_email($before = '', $after = '', $echo = true, $post 
 }
 
 /**
- * Get the organizer video URL
+ * Get the organizer video URL.
  *
  * @param mixed $post (default: null)
  * @return string
@@ -1400,7 +1400,7 @@ function get_organizer_video($post = null){
 }
 
 /**
- * Output the organizer video
+ * Output the organizer video.
  */
 function display_organizer_video($before = '', $after = '', $echo = true, $post = null){
 
@@ -1424,7 +1424,7 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
 }
 
 /**
- * get_organizer_website function.
+ * Retrieves the current organizer website.
  *
  * @access public
  * @param int $post (default: null)
@@ -1476,7 +1476,7 @@ function display_organizer_website($before = '', $after = '', $echo = true, $pos
 }
 
 /**
- * get_venue_website function.
+ * Retrieves the current venue website.
  *
  * @access public
  * @param int $post (default: null)
@@ -1549,7 +1549,7 @@ function display_organizer_tagline($before = '', $after = '', $echo = true, $pos
 }
 
 /**
- * get_organizer_tagline function.
+ * Gets organizer tagline.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1563,7 +1563,7 @@ function get_organizer_tagline($post = null){
 }
 
 /**
- * get_organizer_twitter function.
+ * Retrieves the current organizer twitter link.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1607,7 +1607,7 @@ function get_organizer_twitter($post = null){
 }
 
 /**
- * get_venue_twitter function.
+ * Retrieves the current venue twitter link.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1653,7 +1653,7 @@ function display_venue_twitter($before = '', $after = '', $echo = true, $post = 
 }
 
 /**
- * get_organizer_facebook function.
+ * retrieve the current organizer page on facebook.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1694,7 +1694,7 @@ function display_organizer_facebook($before = '', $after = '', $echo = true, $po
 }
 
 /**
- * get_venue_facebook function.
+ * Retrieves the current venue page on facebook.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1735,7 +1735,7 @@ function display_venue_facebook($before = '', $after = '', $echo = true, $post =
 }
 
 /**
- * get_organizer_linkedin function.
+ * Retrieves the current organizer page on Linkedin.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1776,7 +1776,7 @@ function display_organizer_linkedin($before = '', $after = '', $echo = true, $po
 }
 
 /**
- * get_organizer_xing function.
+ * Retrieves the current organizer link on xing.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1817,7 +1817,7 @@ function display_organizer_xing($before = '', $after = '', $echo = true, $post =
 }
 
 /**
- * get_organizer_instagram function.
+ * Retrieves the current organizer link on instagram.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1858,7 +1858,7 @@ function display_organizer_instagram($before = '', $after = '', $echo = true, $p
 }
 
 /**
- * get_venue_instagram function.
+ * Retrieves the current venue link on instagram.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1899,7 +1899,7 @@ function display_venue_instagram($before = '', $after = '', $echo = true, $post 
 }
 
 /**
- * get_organizer_pinterest function.
+ * Retrieves the current organizer link on pinterest.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1940,7 +1940,7 @@ function display_organizer_pinterest($before = '', $after = '', $echo = true, $p
 }
 
 /**
- * get_organizer_youtube function.
+ * Retrieves the current organizer link on youtube.
  *
  * @access public
  * @param int $post (default: 0)
@@ -1985,7 +1985,7 @@ function display_organizer_youtube($before = '', $after = '', $echo = true, $pos
 }
 
 /**
- * get_venue_youtube function.
+ * Retrieves the current venue link on youtube.
  *
  * @access public
  * @param int $post (default: 0)
@@ -2026,7 +2026,7 @@ function display_venue_youtube($before = '', $after = '', $echo = true, $post = 
 }
 
 /**
- * get_organizer_google_plus function.
+ * Retrieves the current organizer link on google plus.
  *
  * @access public
  * @param int $post (default: 0)
@@ -2067,7 +2067,7 @@ function display_organizer_google_plus($before = '', $after = '', $echo = true, 
 }
 
 /**
- * event_listing_class function.
+ * Here class of event listing.
  *
  * @access public
  * @param string $class (default: '')
@@ -2080,7 +2080,7 @@ function event_listing_class($class = '', $post_id = null){
 }
 
 /**
- * get_event_listing_class function.
+ * Gets the class of event listing.
  *
  * @access public
  * @return array
@@ -2444,7 +2444,7 @@ function get_event_description($post = null){
 }
 
 /**
- * Get event ticket price
+ * Get event ticket price.
  * @return event ticket price
  **/
 function get_event_ticket_price($post = null){
@@ -2457,7 +2457,7 @@ function get_event_ticket_price($post = null){
 }
 
 /**
- * Display event ticket price
+ * Display event ticket price.
  * @return
  **/
 function display_event_ticket_price($before = '', $after = '', $echo = true, $post = null){
@@ -2475,7 +2475,7 @@ function display_event_ticket_price($before = '', $after = '', $echo = true, $po
 }
 
 /**
- * get date and time separator
+ * get date and time separator.
  * @since 3.1.8
  * @param null
  * @return string 
@@ -2485,7 +2485,7 @@ function get_wpem_date_time_separator(){
 }
 
 /**
- * Display date and time separator
+ * Display date and time separator.
  * @since 3.1.8
  * @param
  * @return
@@ -2496,7 +2496,7 @@ function display_date_time_separator(){
 }
 
 /**
- * Hide feature image in single page
+ * Hide feature image in single page.
  * @since 3.1.8
  * @param
  * @return
@@ -2514,7 +2514,7 @@ function hide_feature_image_single_page($html, $post_id, $post_image_id){
 }
 
 /**
- * Display query pagination
+ * Display query pagination.
  * @since 3.1.18
  * @param
  * @return
@@ -2580,7 +2580,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 }
 
 /**
- * Get All Fields of Event Organizer Form
+ * Get All Fields of Event Organizer Form.
  * @since 3.1.31
  * @param string
  * @return array

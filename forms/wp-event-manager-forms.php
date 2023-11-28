@@ -27,7 +27,7 @@ class WP_Event_Manager_Forms {
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct() {
 		add_action('init', array($this, 'load_posted_form'));
@@ -43,7 +43,7 @@ class WP_Event_Manager_Forms {
 	}
 
 	/**
-	 * Load a form's class
+	 * Load a form's class.
 	 *
 	 * @param  string $form_name
 	 * @return string class name on success, false on failure
@@ -71,7 +71,7 @@ class WP_Event_Manager_Forms {
 	}
 
 	/**
-	 * get_form function.
+	 * Gets form.
 	 *
 	 * @param string $form_name
 	 * @param  array $atts Optional passed attributes
@@ -86,7 +86,7 @@ class WP_Event_Manager_Forms {
 	}
 
 	/**
-	 * get_fields function.
+	 * Gets the fields event.
 	 *
 	 * @param string $key
 	 * @return array

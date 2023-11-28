@@ -11,7 +11,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	*/
 	protected static $_instance = null;
 	/**
-	 * Main Instance
+	 * Main Instance.
 	 */
 	public static function instance() {
 		if(is_null(self::$_instance)) {
@@ -76,7 +76,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get the submitted event ID
+	 * Get the submitted event ID.
 	 * @return int
 	*/
 	public function get_venue_id() {
@@ -84,7 +84,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * init_fields function.
+	 * Venue fields.
 	 */
 	public function init_fields() {
 		$this->fields = apply_filters('submit_venue_form_fields', array(
@@ -167,7 +167,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * get user selected fields from the field editor
+	 * get user selected fields from the field editor.
 	 *
 	 * @return fields Array
 	 */
@@ -176,7 +176,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * This function will initilize default fields and return as array
+	 * This function will initilize default fields and return as array.
 	 * @return fields Array
 	 **/
 	public  function get_default_fields() {
@@ -188,7 +188,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 	
 	/**
-	 * Submit Step
+	 * Submit Step.
 	 */
 	public function submit() {
 
@@ -253,7 +253,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Validate the posted fields
+	 * Validate the posted fields.
 	 *
 	 * @return bool on success, WP_ERROR on failure
 	 */
@@ -310,7 +310,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Submit Step is posted
+	 * Submit Step is posted.
 	 */
 	public function submit_handler() {
 		try {
@@ -380,7 +380,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Set event meta + terms based on posted values
+	 * Set event meta + terms based on posted values.
 	 *
 	 * @param  array $values
 	 */
@@ -459,7 +459,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Create an attachment
+	 * Create an attachment.
 	 * @param  string $attachment_url
 	 * @return int attachment id
 	 */
@@ -501,7 +501,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Done Step
+	 * Done Step.
 	 */
 	public function done() {
 		do_action('event_manager_venue_submitted', $this->venue_id);

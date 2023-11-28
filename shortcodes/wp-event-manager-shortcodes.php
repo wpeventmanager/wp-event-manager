@@ -14,7 +14,7 @@ class WP_Event_Manager_Shortcodes{
 	private $venue_dashboard_message = '';
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct(){
 		add_action('wp', array($this, 'shortcode_action_handler'));
@@ -57,7 +57,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Handle actions which need to be run before the shortcode e.g. post actions
+	 * Handle actions which need to be run before the shortcode e.g. post actions.
 	 */
 	public function shortcode_action_handler(){
 		global $post;
@@ -73,28 +73,28 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Show the event submission form
+	 * Show the event submission form.
 	 */
 	public function submit_event_form($atts = array()){
 		return $GLOBALS['event_manager']->forms->get_form('submit-event', $atts);
 	}
 
 	/**
-	 * Show the organizer submission form
+	 * Show the organizer submission form.
 	 */
 	public function submit_organizer_form($atts = array()){
 		return $GLOBALS['event_manager']->forms->get_form('submit-organizer', $atts);
 	}
 
 	/**
-	 * Show the organizer submission form
+	 * Show the organizer submission form.
 	 */
 	public function submit_venue_form($atts = array()){
 		return $GLOBALS['event_manager']->forms->get_form('submit-venue', $atts);
 	}
 
 	/**
-	 * Handles actions on event dashboard
+	 * Handles actions on event dashboard.
 	 */
 	public function event_dashboard_handler(){
 
@@ -169,7 +169,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Shortcode which lists the logged in user's events
+	 * Shortcode which lists the logged in user's events.
 	 */
 	public function event_dashboard($atts){
 
@@ -277,7 +277,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Edit event form
+	 * Edit event form.
 	 */
 	public function edit_event(){
 		global $event_manager;
@@ -292,7 +292,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Handles actions on organizer dashboard
+	 * Handles actions on organizer dashboard.
 	 */
 	public function organizer_dashboard_handler(){
 
@@ -346,7 +346,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Shortcode which lists the logged in user's organizers
+	 * Shortcode which lists the logged in user's organizers.
 	 */
 	public function organizer_dashboard($atts){
 
@@ -415,7 +415,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Edit event form
+	 * Edit event form.
 	 */
 	public function edit_organizer(){
 		global $event_manager;
@@ -480,7 +480,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Shortcode which lists the logged in user's venues
+	 * Shortcode which lists the logged in user's venues.
 	 */
 	public function venue_dashboard($atts)	{
 		if(!is_user_logged_in()) {
@@ -550,7 +550,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Edit venue form
+	 * Edit venue form.
 	 */
 	public function edit_venue(){
 		global $event_manager;
@@ -808,7 +808,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Output some content when no results were found
+	 * Output some content when no results were found.
 	 */
 	public function output_no_results()	{
 		get_event_manager_template('content-no-events-found.php');
@@ -833,7 +833,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Get string as a bool
+	 * Get string as a bool.
 	 * @param  string $value
 	 * @return bool
 	 */
@@ -842,14 +842,14 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Show results div
+	 * Show results div.
 	 */
 	public function event_filter_results()	{
 		echo wp_kses_post('<div class="showing_applied_filters"></div>');
 	}
 
 	/**
-	 * output_event function.
+	 * Output data of event.
 	 *
 	 * @access public
 	 * @param array $args
@@ -889,7 +889,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Event Summary shortcode
+	 * Event Summary shortcode.
 	 *
 	 * @access public
 	 * @param array $args
@@ -901,7 +901,7 @@ class WP_Event_Manager_Shortcodes{
 			'width'    => '250px',
 			'align'    => 'left',
 			'featured' => null, // True to show only featured, false to hide featured, leave null to show both (when leaving out id)
-			'limit'    => 1
+			'limit'    => -1
 
 		), $atts));
 
@@ -925,6 +925,14 @@ class WP_Event_Manager_Shortcodes{
 			}
 		} else {
 			$args['p'] = absint($id);
+			if(!is_null($featured)) {
+				$args['meta_query'] = array(array(
+					'key'     => '_featured',
+					'value'   => '1',
+					'compare' => ($featured == "true") ? '=' : '!='
+
+				));
+			}
 		}
 
 		$events = new WP_Query($args);
@@ -944,7 +952,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * Show the registration area
+	 * Show the registration area.
 	 */
 	public function output_event_register($atts){
 		extract(shortcode_atts(array(
@@ -978,7 +986,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * output_events function.
+	 * Output of past event.
 	 *
 	 * @access public
 	 * @param mixed $args
@@ -1495,7 +1503,7 @@ class WP_Event_Manager_Shortcodes{
 	}
 
 	/**
-	 * output_events function.
+	 * Output of upcoming events.
 	 *
 	 * @access public
 	 * @param mixed $args

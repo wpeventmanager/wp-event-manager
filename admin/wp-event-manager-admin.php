@@ -46,7 +46,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * upgrade_database_notice function.
+	 * Upgrade database notice.
 	 *
 	 * @access public
 	 * @return void
@@ -61,7 +61,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * wpem_installation_notices function.
+	 * Installation notices of WP Event Manager.
 	 *
 	 * @access public
 	 * @return void
@@ -77,7 +77,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * admin_enqueue_scripts function.
+	 * Here, all scripts are used for the WP Event Manager admin.
 	 *
 	 * @access public
 	 * @return void
@@ -125,7 +125,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * admin_menu function.
+	 * Admin menu.
 	 *
 	 * @access public
 	 * @return void
@@ -224,7 +224,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * migrate_organizer_from_event_meta
+	 * Migrate organizer from event meta.
 	 */
 	public function migrate_organizer_from_event_meta($event, $organizer_data)	{
 		$organizer_id = check_organizer_exist($organizer_data['organizer_email']);
@@ -256,7 +256,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * banner_image_set_thumnail
+	 * Set banner image.
 	 */
 	public function banner_image_set_thumnail($event) {
 		$banner = get_event_banner($event);
@@ -290,7 +290,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Output addons page
+	 * Output addons page.
 	 */
 	public function addons_page() {
 		$addons = include 'wp-event-manager-addons.php';
@@ -298,7 +298,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Output shortcode page
+	 * Output shortcode page.
 	 */
 	public function shortcodes_page() {
 		$shortcodes = new WP_Event_Manager_Shortcode_List();
@@ -306,7 +306,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Show Installtion setup wizard admin notice
+	 * Show Installtion setup wizard admin notice.
 	 */
 	public function run_setup_wizard_admin_notice()	{
 		$installation     = get_option('wpem_installation', 0);

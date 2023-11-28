@@ -5,7 +5,7 @@
 class WP_Event_Manager_Field_Editor {
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct() {
 		add_action('admin_menu', array($this, 'admin_menu'));
@@ -57,14 +57,14 @@ class WP_Event_Manager_Field_Editor {
 	}
 
 	/**
-	 * Add form editor menu item
+	 * Add form editor menu item.
 	 */
 	public function admin_menu() {
 		add_submenu_page('edit.php?post_type=event_listing', __('Field Editor', 'wp-event-manager'), __('Field Editor', 'wp-event-manager'), 'manage_options', 'event-manager-form-editor', array($this, 'output'));
 	}
 
 	/**
-	 * Register scripts
+	 * Register scripts for admin.
 	 */
 	public function admin_enqueue_scripts()	{
 		wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
@@ -82,7 +82,7 @@ class WP_Event_Manager_Field_Editor {
 	}
 
 	/**
-	 * Output the screen
+	 * Output the screen.
 	 */
 	public function output() {
 		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.min.css');
@@ -100,7 +100,7 @@ class WP_Event_Manager_Field_Editor {
 	}
 
 	/**
-	 * Output the fronted form editor
+	 * Output the fronted form editor.
 	 */
 	private function form_editor() {
 
@@ -240,7 +240,7 @@ class WP_Event_Manager_Field_Editor {
 	}
 
 	/**
-	 * Save the form fields
+	 * Save the form fields.
 	 */
 	private function child_form_editor_save($field)	{
 
@@ -284,7 +284,7 @@ class WP_Event_Manager_Field_Editor {
 	}
 
 	/**
-	 * Save the form fields
+	 * Save the form fields.
 	 */
 	private function form_editor_save()	{
 		if(wp_verify_nonce($_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor')) {
@@ -408,7 +408,7 @@ class WP_Event_Manager_Field_Editor {
 	}
 
 	/**
-	 * Sanitize a 2d array
+	 * Sanitize a 2d array.
 	 *
 	 * @param  array $array
 	 * @return array

@@ -28,7 +28,7 @@ class WP_Event_Manager_Cache_Helper {
 	}
 
 	/**
-	 * Flush the cache
+	 * Flush the cache.
 	 */
 	public static function flush_get_event_listings_cache($post_id) {
 		if('event_listing' === get_post_type($post_id)) {
@@ -37,7 +37,7 @@ class WP_Event_Manager_Cache_Helper {
 	}
 
 	/**
-	 * Flush the cache
+	 * Flush the cache.
 	 */
 	public static function event_manager_my_event_do_action($action) {
 		if('mark_cancelled' === $action || 'mark_not_cancelled' === $action) {
@@ -46,14 +46,14 @@ class WP_Event_Manager_Cache_Helper {
 	}
 
 	/**
-	 * When any post has a term set
+	 * When any post has a term set.
 	 */
 	public static function set_term($object_id = '', $terms = '', $tt_ids = '', $taxonomy = '') {
 		self::get_transient_version('em_get_' . sanitize_text_field($taxonomy), true);
 	}
 
 	/**
-	 * When any term is edited
+	 * When any term is edited.
 	 */
 	public static function edited_term($term_id = '', $tt_id = '', $taxonomy = '') {
 		self::get_transient_version('em_get_' . sanitize_text_field($taxonomy), true);
@@ -100,7 +100,7 @@ class WP_Event_Manager_Cache_Helper {
 	}
 
     /**
-	 * Clear expired transients
+	 * Clear expired transients.
 	 */
 	public static function clear_expired_transients() {
 		global $wpdb;
@@ -116,7 +116,7 @@ class WP_Event_Manager_Cache_Helper {
 	}
 	
 	/**
-	 * Maybe remove pending count transients
+	 * Maybe remove pending count transients.
 	 *
 	 * When a supported post type status is updated, check if any cached count transients
 	 * need to be removed, and remove the
@@ -129,7 +129,7 @@ class WP_Event_Manager_Cache_Helper {
 		global $wpdb;
 		
 		/**
-		 * Get supported post types for count caching
+		 * Get supported post types for count caching.
 		 * @param array   $post_types Post types that should be cached.
 		 * @param string  $new_status New post status.
 		 * @param string  $old_status Old post status.
@@ -143,7 +143,7 @@ class WP_Event_Manager_Cache_Helper {
 		}
 		
 		/**
-		 * Get supported post statuses for count caching
+		 * Get supported post statuses for count caching.
 		 * @param array   $post_statuses Post statuses that should be cached.
 		 * @param string  $new_status    New post status.
 		 * @param string  $old_status    Old post status.
@@ -181,7 +181,7 @@ class WP_Event_Manager_Cache_Helper {
 	}
 	
 	/**
-	 * Get Listings Count from Cache
+	 * Get Listings Count from Cache.
 	 *
 	 * @param string $post_type
 	 * @param string $status

@@ -41,7 +41,7 @@ class WP_Event_Manager_Geocode {
 	}
 	
 	/**
-	 * Update location data - when submitting a event
+	 * Update location data - when submitting a event.
 	 */
 	public function update_location_data($event_id, $values) {
 		if(apply_filters('event_manager_geolocation_enabled', true) && isset($values['event']['event_location'])) {
@@ -51,7 +51,7 @@ class WP_Event_Manager_Geocode {
 	}
 	
 	/**
-	 * Change a events location data upon editing
+	 * Change a events location data upon editing.
 	 * @param  int $event_id
 	 * @param  string $new_location
 	 */
@@ -64,7 +64,7 @@ class WP_Event_Manager_Geocode {
 	}
 	
 	/**
-	 * Checks if a event has location data or not
+	 * Checks if a event has location data or not.
 	 * @param  int  $event_id
 	 * @return boolean
 	 */
@@ -73,7 +73,7 @@ class WP_Event_Manager_Geocode {
 	}
 	
 	/**
-	 * Called manually to generate location data and save to a post
+	 * Called manually to generate location data and save to a post.
 	 * @param  int $event_id
 	 * @param  string $location
 	 */
@@ -83,7 +83,7 @@ class WP_Event_Manager_Geocode {
 	}
 	
 	/**
-	 * Delete a event's location data
+	 * Delete a event's location data.
 	 * @param  int $event_id
 	 */
 	public static function clear_location_data($event_id) {
@@ -103,7 +103,7 @@ class WP_Event_Manager_Geocode {
 	}
 	
 	/**
-	 * Save any returned data to post meta
+	 * Save any returned data to post meta.
 	 * @param  int $event_id
 	 * @param  array $address_data
 	 */
@@ -159,7 +159,7 @@ class WP_Event_Manager_Geocode {
 	}
 
 	/**
-	 * Get Location Data from Google
+	 * Get Location Data from Google.
 	 *
 	 * @param string $raw_address
 	 * @return array location data

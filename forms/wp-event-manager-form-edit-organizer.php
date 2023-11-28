@@ -13,7 +13,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	protected static $_instance = null;
 
 	/**
-	 * Main Instance
+	 * Main Instance.
 	 */
 	public static function instance() {
 		if(is_null(self::$_instance)) {
@@ -23,7 +23,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	*/
 	public function __construct() {
 		$this->organizer_id = !empty($_REQUEST['organizer_id']) ? absint($_REQUEST[ 'organizer_id' ]) : 0;
@@ -41,7 +41,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	}
 
 	/**
-	 * Submit Step
+	 * Submit Step.
 	 */
 	public function submit() {
 		$organizer = get_post($this->organizer_id);
@@ -100,7 +100,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	}
 
 	/**
-	 * Submit Step is posted
+	 * Submit Step is posted.
 	 */
 	public function submit_handler() {
 		if(empty($_POST['submit_organizer'])) {
