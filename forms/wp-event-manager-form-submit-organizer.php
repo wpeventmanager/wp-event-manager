@@ -86,7 +86,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * init_fields function.
+	 * Manage of organizer fields.
 	 */
 	public function init_fields() {
 		$this->fields = apply_filters('submit_organizer_form_fields', array(
@@ -185,8 +185,8 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		return $this->fields;
 	}
 
-		/**
-	 * get user selected fields from the field editor.
+	 /**
+	 * Get user selected fields from the field editor.
 	 *
 	 * @return fields Array
 	 */
@@ -212,15 +212,15 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	public function submit() {
 
 		// Init fields
-		//$this->init_fields(); We dont need to initialize with this function because of field edior
+		// $this->init_fields(); We dont need to initialize with this function because of field edior
 		// Now field editor function will return all the fields 
-		//Get merged fields from db and default fields.
+		// Get merged fields from db and default fields.
 		$this->merge_with_custom_fields('frontend');
 
-		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 						
-		//covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 			
 		// Load data if neccessary
@@ -320,7 +320,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			}
 		}
 		
-		//organizer email validation
+		// Organizer email validation
 		if(isset($values['organizer']['organizer_email']) && !empty($values['organizer']['organizer_email'])) {
 			if(!is_email($values['organizer']['organizer_email'])) {
 				throw new Exception(__('Please enter a valid organizer email address', 'wp-event-manager'));
@@ -335,9 +335,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	public function submit_handler() {
 		try {
 			// Init fields
-			//$this->init_fields(); We dont need to initialize with this function because of field edior
+			// $this->init_fields(); We dont need to initialize with this function because of field edior
 			// Now field editor function will return all the fields 
-			//Get merged fields from db and default fields.
+			// Get merged fields from db and default fields.
 			$this->merge_with_custom_fields('frontend');
 			
 			// Get posted values
@@ -407,10 +407,10 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	protected function update_organizer_data($values) {
 		$maybe_attach = array();
 		
-		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 		
-		//covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		// Loop fields and save meta and term data

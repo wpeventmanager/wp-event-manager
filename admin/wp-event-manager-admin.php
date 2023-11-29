@@ -12,7 +12,7 @@ if(!defined('ABSPATH')) {
  */
 class WP_Event_Manager_Admin {
 	/**
-	 * __construct function.
+	 * Constructor.
 	 *
 	 * @access public
 	 * @return void
@@ -87,7 +87,7 @@ class WP_Event_Manager_Admin {
 		global $wp_scripts;
 		$screen = get_current_screen();
 
-		// main frontend style
+		// Main frontend style
 		wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css');
 
 		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue')))) {
@@ -144,7 +144,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * Upgrade database page
+	 * Upgrade database page.
 	 */
 	public function upgrade_database() { ?>
 		<div class="wrap wp_event_manager wp_event_manager_upgrade_database">
@@ -185,7 +185,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Upgrade database
+	 * Upgrade database.
 	 */
 	public function wpem_upgrade_database()	{
 
@@ -341,7 +341,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Ran on WP admin_init hook
+	 * Ran on WP admin_init hook.
 	 */
 	public function admin_init() {
 		if(!empty($_GET['event-manager-main-admin-dismiss'])) {

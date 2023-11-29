@@ -113,7 +113,7 @@ function event_manager_body_class($classes){
 add_filter('body_class', 'event_manager_body_class');
 
 /**
- * Get events pagination for [events] shortcode
+ * Get events pagination for [events] shortcode.
  * @return [type] [description]
  */
 function get_event_listing_pagination($max_num_pages, $current_page = 1){
@@ -588,7 +588,7 @@ function get_event_thumbnail($post = null, $size = 'full'){
 		return;
 
 	$event_thumbnail = get_the_post_thumbnail_url($post, $size);
-	//if thumbnail is not set then check for banner
+	// If thumbnail is not set then check for banner
 	if(isset($event_thumbnail) && empty($event_thumbnail)){
 		if(isset($post->_event_banner) && empty($post->_event_banner)){
 			$event_thumbnail = apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder-wide.jpg');
@@ -1591,7 +1591,8 @@ function get_organizer_twitter($post = null){
  * @access public
  * @param mixed $id (default: null)
  * @return void
- */function display_organizer_twitter($before = '', $after = '', $echo = true, $post = null) {
+ */
+function display_organizer_twitter($before = '', $after = '', $echo = true, $post = null) {
 
 	$organizer_twitter = get_organizer_twitter($post);
 
@@ -2123,10 +2124,11 @@ function get_event_listing_class($class = '', $post_id = null){
 	return get_post_class($classes, $post->ID);
 }
 
-/** This function is use to get the counts the event views and attendee views.
- *   This function also used at event, attendee dashboard file.
- *   @return number counted view.
- *   @param $post
+/** 
+ * This function is use to get the counts the event views and attendee views.
+ * This function also used at event, attendee dashboard file.
+ * @return number counted view.
+ * @param $post
  **/
 function get_post_views_count($post){
 	$count_key = '_view_count';
@@ -2141,7 +2143,7 @@ function get_post_views_count($post){
 }
 
 /**
- * Count event view on the single event page
+ * Count event view on the single event page.
  */
 function get_single_listing_view_count($post){
 	get_post_views_count($post);
@@ -2475,7 +2477,7 @@ function display_event_ticket_price($before = '', $after = '', $echo = true, $po
 }
 
 /**
- * get date and time separator.
+ * Get date and time separator.
  * @since 3.1.8
  * @param null
  * @return string 

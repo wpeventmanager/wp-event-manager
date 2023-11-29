@@ -300,7 +300,7 @@ class WP_Event_Manager_Field_Editor {
 					'organizer' => $event_organizer,
 					'venue'     => $event_venue, 
 				);
-				// find the numers keys from the fields array and replace with lable if label not exist remove that field
+				// Find the numers keys from the fields array and replace with lable if label not exist remove that field
 				foreach ($new_fields as $group_key => $group_fields) {
 					$index = 0;
 					foreach ($group_fields as $field_key => $field_value) {
@@ -351,7 +351,7 @@ class WP_Event_Manager_Field_Editor {
 					}
 				}
 				if(isset($hasSave) && $hasSave == 1){
-					// merge field with default fields
+					// Merge field with default fields
 					$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 					$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 					$event_fields =   $form_submit_event_instance->get_default_fields();
@@ -372,13 +372,13 @@ class WP_Event_Manager_Field_Editor {
 					}
 					$default_fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 
-					// if field in not exist in new fields array then make visiblity false
+					// If field in not exist in new fields array then make visiblity false
 					if(!empty($default_fields)) {
 						foreach ($default_fields as $group_key => $group_fields) {
 							foreach ($group_fields as $key => $field) {
 								if( !isset($new_fields[$group_key][$key] ) ) {
 									$new_fields[$group_key][$key] = $field;
-									$new_fields[$group_key][$key]['visibility'] = 0; // it will make visiblity false means removed from the field editor.
+									$new_fields[$group_key][$key]['visibility'] = 0; // It will make visiblity false means removed from the field editor.
 								}
 								if( !isset($new_fields[$group_key][$key]['required'] ) ){
 									$new_fields[$group_key][$key]['required'] =  isset($field['required']) ? $field['required'] : false;
@@ -395,7 +395,7 @@ class WP_Event_Manager_Field_Editor {
 					if(isset($new_fields['venue'])) {
 						update_option('event_manager_submit_venue_form_fields', array('venue' => $new_fields['venue']));
 					}
-					// this will be removed in future
+					// This will be removed in future
 					$result = update_option('event_manager_form_fields', $this->sanitize_array($new_fields));
 				}
 			}

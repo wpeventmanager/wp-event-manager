@@ -101,7 +101,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		
 		$this->fields = $this->get_default_event_fields();
 
-		//unset organizer or venue if disabled
+		// Unset organizer or venue if disabled
 		$organizer_enabled = get_option( 'enable_event_organizer' );
 		$organizer_submit_page = get_option( 'event_manager_submit_organizer_form_page_id',false );
 		if( !$organizer_enabled || !$organizer_submit_page )
@@ -112,7 +112,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if( !$venue_enabled || !$venue_submit_page )
 			unset( $this->fields['venue']['event_venue_ids'] );
 
-		//unset timezone field if setting is site wise timezone
+		// Unset timezone field if setting is site wise timezone
 		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
 		if( $timezone_setting != 'each_event' ) {
 			unset( $this->fields['event']['event_timezone'] );
@@ -381,7 +381,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		$this->fields =  apply_filters( 'before_submit_event_form_validate_fields', $this->fields , $values );
 	    
 	    foreach ( $this->fields as $group_key => $group_fields ) {     	      
-    	    //this filter need to apply for remove required attributes when option online event selected and ticket price.
+    	    // This filter need to apply for remove required attributes when option online event selected and ticket price.
     	    if(isset($group_fields['event_online'] ) ) {
     			if($group_fields['event_online']['value']=='yes') {	  
 				    $group_fields['event_venue_name']['required']=false;
@@ -441,10 +441,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 
 		if( isset($values['event']['event_start_date']) && !empty($values['event']['event_start_date']) && isset($values['event']['event_end_date']) && !empty($values['event']['event_end_date']) ){
-			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 			
-			//covert datepicker format  into php date() function date format
+			// Covert datepicker format  into php date() function date format
 			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 
 			$event_start_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event']['event_start_date']);
@@ -512,17 +512,17 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 */
 	public function submit() {
 		// Init fields
-		//$this->init_fields(); We dont need to initialize with this function because of field edior
+		// $this->init_fields(); We dont need to initialize with this function because of field edior
 		// Now field editor function will return all the fields 
-		//Get merged fields from db and default fields.
+		// Get merged fields from db and default fields.
 		$this->merge_with_custom_fields('frontend' );
 		
 		$default_fields = $this->get_default_event_fields();
 
-		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 					
-		//covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 			
 		// Load data if neccessary
@@ -599,7 +599,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$this->fields = apply_filters( 'submit_event_form_fields_get_user_data', $this->fields, get_current_user_id() );
 		}
 		
-		// set organizer and venue field
+		// Set organizer and venue field
 		$organizer_enabled = get_option( 'enable_event_organizer');
 		$organizer_submit_page = get_option( 'event_manager_submit_organizer_form_page_id',false );
 		if( $organizer_enabled || $organizer_submit_page )
@@ -610,7 +610,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if( $venue_enabled || $venue_submit_page )
 			$this->fields['venue']['event_venue_ids'] = $default_fields['venue']['event_venue_ids'];
 
-		//unset timezone field if setting is site wise timezone
+		// Unset timezone field if setting is site wise timezone
 		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
 		if ( $timezone_setting == 'each_event' ) {
 			$this->fields['event']['event_timezone'] = $default_fields['event']['event_timezone'];
@@ -636,9 +636,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	public function submit_handler() {
 		try {
 			// Init fields
-			//$this->init_fields(); We dont need to initialize with this function because of field edior
+			// $this->init_fields(); We dont need to initialize with this function because of field edior
 			// Now field editor function will return all the fields 
-			//Get merged fields from db and default fields.
+			// Get merged fields from db and default fields.
 			$this->merge_with_custom_fields('frontend' );
 			
 			// Get posted values
@@ -828,10 +828,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		add_post_meta( $this->event_id, '_featured', 0, true );
 		$maybe_attach = array();
 		
-		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 		
-		//covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 
 		$ticket_type='';
@@ -849,7 +849,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					} else {
 						wp_set_object_terms( $this->event_id, array( $values[ $group_key ][ $key ] ), $field['taxonomy'], false );
 					}				
-				// oragnizer logo is a featured image
+				// Oragnizer logo is a featured image
 				}
 				elseif ( 'organizer_logo' === $key ) {
 					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
@@ -863,7 +863,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					// Save meta data
 				}
 				
-				//save event start date according to mysql date format with event start time
+				// Save event start date according to mysql date format with event start time
 				elseif( $key === 'event_start_date'  ){
 
 					if(isset( $values[ $group_key ][ $key ] ) && !empty($values[ $group_key ][ $key ]) && !empty($values[ $group_key ][ $key ])){
@@ -872,10 +872,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $values[ $group_key ][ 'event_start_time' ] );
 						else
 							$start_time = '';
-						//combine event start date value with event start time 
+						// Combine event start date value with event start time 
 						$date =  $values[ $group_key ][ $key ].' '.$start_time ;
 						
-        				 //Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+        				 // Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
 						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
@@ -886,7 +886,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 				}
 				elseif( $key ==='event_end_date' ){
-					//save event end date according to mysql date format with event end time
+					// Save event end date according to mysql date format with event end time
 					if( isset( $values[ $group_key ][ $key ] ) && !empty($values[ $group_key ][ $key ]) && isset( $values[ $group_key ][ 'event_end_time' ] )){
 						
 						if(isset( $values[ $group_key ][ 'event_end_time' ] ) && !empty($values[ $group_key ][ 'event_end_time' ] ))
@@ -894,10 +894,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						else
 							$end_time =  '';
 						
-						//combine event start date value with event start time 
+						// Combine event start date value with event start time 
 						$date =  $values[ $group_key ][ $key ].' '.$end_time ;
 
-        				 //Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+        				 // Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s'  , $date);
 						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
@@ -907,7 +907,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 
 					/*
-					* when user change event data from front side than we update expiry date as per event end date
+					* When user change event data from front side than we update expiry date as per event end date
 					*/
 					$event_expiry_date = get_event_expiry_date($this->event_id);
 					update_post_meta( $this->event_id, '_event_expiry_date', $event_expiry_date );
@@ -953,7 +953,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				} elseif ( $field['type'] == 'time' ) {
 					$time = $values[ $group_key ][ $key ];	
 					if(!empty($time)) {
-						//Convert date and time value into DB formatted format and save eg. 1970-01-01
+						// Convert date and time value into DB formatted format and save eg. 1970-01-01
 						$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time( $time );
 						$time_dbformatted = !empty($time_dbformatted) ? $time_dbformatted : $time;
 						update_post_meta( $this->event_id, '_' . $key, $time_dbformatted );
@@ -971,7 +971,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
 					    $ticket_type=$values[ $group_key ][ $key ];
 					}
-					//set event online or not
+					// Set event online or not
 					if( $key == 'event_online') {
 						$event_online = $values[ $group_key ][ $key ];
 					}
@@ -989,7 +989,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			}
 		}
 
-		//delete location meta if event is online
+		// Delete location meta if event is online
 		if( isset($event_online) && $event_online == 'yes') {
 			delete_post_meta($this->event_id, '_event_location');
 			delete_post_meta($this->event_id, '_event_pincode');
@@ -1020,7 +1020,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 			}
 		}
-		// reset meta value if ticket type is free
+		// Reset meta value if ticket type is free
 		if($ticket_type=='free'){
 		    update_post_meta( $this->event_id, '_event_ticket_price', '');
 		}
@@ -1091,7 +1091,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	}
 	
 	/**
-	 * get user selected fields from the field editor.
+	 * Get user selected fields from the field editor.
 	 *
 	 * @return fields Array
 	 */

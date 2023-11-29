@@ -125,10 +125,10 @@ if(!function_exists('get_event_listings')) :
 			$date_search = array();
 			
 			$dates = json_decode($args['search_datetimes'][0], true);
-			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 
-			//covert datepicker format  into php date() function date format
+			// Covert datepicker format  into php date() function date format
 			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 			if (!empty($dates)) {
 				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
@@ -186,7 +186,7 @@ if(!function_exists('get_event_listings')) :
 				'operator'         => $operator
 			);
 		}
-		//must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
+		// Must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 		if(!empty($args['search_ticket_prices'][0]))  {	
 			$ticket_price_value='';
 			if($args['search_ticket_prices'][0]==='paid' || $args['search_ticket_prices'][0]==='ticket_price_paid') {  
@@ -231,13 +231,13 @@ if(!function_exists('get_event_listings')) :
 				'rand'       => 'ASC',
 			);
 		}
-		//if orderby meta key _event_start_date 
+		// If orderby meta key _event_start_date 
 		if('event_start_date' === $args['orderby']) {
 			$query_args['orderby'] ='meta_value';
 			$query_args['meta_key'] ='_event_start_date';
 			$query_args['meta_type'] ='DATETIME';
 		}
-		//if orderby event_start_date and time  both
+		// If orderby event_start_date and time  both
 		if('event_start_date_time' === $args['orderby']) {
 			$query_args['meta_query'] = array(
 				'relation' => 'AND',
@@ -323,7 +323,7 @@ if(!function_exists('get_event_listings')) :
 			}
 
 			if($cached_query_results) {
-				// random order is cached so shuffle them.
+				// Random order is cached so shuffle them.
 				if('rand_featured' === $args['orderby']) {
 					usort($result->posts, '_wpem_shuffle_featured_post_results_helper');
 				} elseif('rand' === $args['orderby']) {
@@ -576,16 +576,16 @@ if(!function_exists('event_manager_get_filtered_links')) :
 			}
 		}
 		
-		// datetimes
-		// add just key like datetime_any, datetime_today..
+		// Datetimes
+		// Add just key like datetime_any, datetime_today..
 		if($args['search_datetimes']) {	
 			foreach($args['search_datetimes'] as $datetime) { 	
 				$search_datetimes[]=$datetime;
 			}
 		}
 
-		// ticket price
-		// add just key like ticket_price_any, ticket_price_paid..	
+		// Ticket price
+		// Add just key like ticket_price_any, ticket_price_paid..	
 		if($args['search_ticket_prices']) {	
 			foreach($args['search_ticket_prices'] as $ticket_price) { 	
 				$search_ticket_prices[]=$ticket_price;
@@ -860,7 +860,7 @@ function is_wpem_page() {
 /**
  * Checks if the provided content or the current single page or post has a WPEM shortcode.
  *
- * @param string|null       $content   Content to check. If not provided, it uses the current post content.
+ * @param string|null $content Content to check. If not provided, it uses the current post content.
  * @param string|array|null $tag Check specifically for one or more shortcodes. If not provided, checks for any WPJM shortcode.
  *
  * @return bool
@@ -1641,7 +1641,6 @@ function get_event_venue_count($venue_id = '') {
 }
 
 /**
- * 
  * Returns venue id of event.
  * 
  * @param null
@@ -1774,7 +1773,7 @@ function get_event_venue_ids($post = null) {
 }
 
 /**
- * 
+ * Manage order of event.
  * @since 3.1.18
  * @param null
  * @return array
@@ -1926,7 +1925,7 @@ function wpem_convert_php_to_moment_format($format) {
 
 if ( !function_exists( 'get_event_by_user_id' ) ) {
     /**
-     * This function is used to get event by user id
+     * This function is used to get event by user id.
      *
      * @access public
      * @param
@@ -1946,7 +1945,7 @@ if ( !function_exists( 'get_event_by_user_id' ) ) {
 }
 
 /**
- * Get all countries with country code
+ * Get all countries with country code.
  * 
  * We have used this method for organizer country selection.
  * @since 3.1.39

@@ -13,7 +13,7 @@ if(!defined('ABSPATH')) {
 class WP_Event_Manager_Setup {
 
 	/**
-	 * __construct function.
+	 * Constructor.
 	 *
 	 * @access public
 	 * @return void

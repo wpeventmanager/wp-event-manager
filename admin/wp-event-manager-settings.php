@@ -12,7 +12,7 @@ if(!defined('ABSPATH')) {
 class WP_Event_Manager_Settings{
 
 	/**
-	 * __construct function.
+	 * Constructor.
 	 *
 	 * @access public
 	 * @return void
@@ -23,7 +23,7 @@ class WP_Event_Manager_Settings{
 	}
 
 	/**
-	 * init_settings function.
+	 * The manage settings page.
 	 *
 	 * @access protected
 	 * @return void

@@ -209,7 +209,7 @@ class WP_Event_Manager_Install {
 	}
 
 	/**
-	 * default_terms function.
+	 * Manage default term.
 	 */
 	private static function default_terms() {
 		if(get_option('event_manager_installed_terms') == 1) {

@@ -76,7 +76,7 @@ class WP_Event_Manager_Post_Types {
 		// WP ALL Import
 		add_action('pmxi_saved_post', array($this, 'pmxi_saved_post'), 10, 1);
  
-        //view count action
+        // View count action
         add_action('set_single_listing_view_count', array($this, 'set_single_listing_view_count'));
 
         // Admin notices.
@@ -98,7 +98,7 @@ class WP_Event_Manager_Post_Types {
 		$permalink_structure = WP_Event_Manager_Post_Types::get_permalink_structure();
 
 		/**
-		 * Taxonomies
+		 * Taxonomies.
 		 */
 		if(get_option('event_manager_enable_categories')) {
 			$singular  = __('Event category', 'wp-event-manager');
@@ -487,10 +487,10 @@ class WP_Event_Manager_Post_Types {
 			$date_search = array();
 			
 			$dates = json_decode($search_datetimes[0], true);
-			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 
-			//covert datepicker format  into php date() function date format
+			// Covert datepicker format  into php date() function date format
 			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 			if (!empty($dates)) {
 				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
@@ -679,7 +679,7 @@ class WP_Event_Manager_Post_Types {
 			}
 		}
 
-		//Delete event after finished
+		// Delete event after finished
 		$delete_events_after_finished = absint(get_option('event_manager_delete_events_after_finished')) == 1 ? true : false;
 		if($delete_events_after_finished) {
 			$args = [
@@ -768,7 +768,7 @@ class WP_Event_Manager_Post_Types {
 	*/
 	function set_single_listing_view_count($post) {     
 		global $post; 
-		//get the user role. 
+		// Get the user role. 
 		if(is_user_logged_in()) {
 			$role=get_event_manager_current_user_role();  
 			$current_user = wp_get_current_user();
@@ -886,7 +886,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * this function will generate geolocation data.
+	 * This function will generate geolocation data.
 	 */
 	public function maybe_generate_geolocation_data($meta_id, $object_id, $meta_key, $_meta_value) {
 		$this->maybe_update_geolocation_data($meta_id, $object_id, $meta_key, $_meta_value);

@@ -31,7 +31,7 @@ abstract class WP_Event_Manager_Form {
      * Process function. all processing code if needed - can also change view if step is complete
      */
     public function process() {
-		// reset cookie
+		// Reset cookie
 		if(
 			isset($_GET[ 'new' ]) &&
 			isset($_COOKIE[ 'wp-event-manager-submitting-event-id' ]) &&
@@ -50,7 +50,7 @@ abstract class WP_Event_Manager_Form {
         }
         $next_step_key = $this->get_step_key($this->step);
  
-        // if the step changed, but the next step has no 'view', call the next handler in sequence.
+        // If the step changed, but the next step has no 'view', call the next handler in sequence.
         if($next_step_key && $step_key !== $next_step_key && !is_callable($this->steps[ $next_step_key ]['view'])) {
             $this->process();
         }
@@ -213,9 +213,9 @@ abstract class WP_Event_Manager_Form {
 	public function get_posted_fields() {
 	    
 		// Init fields
-		//$this->init_fields(); We dont need to initialize with this function because of field edior
+		// $this->init_fields(); We dont need to initialize with this function because of field edior
 		// Now field editor function will return all the fields 
-		//Get merged fields from db and default fields.
+		// Get merged fields from db and default fields.
 		$this->merge_with_custom_fields('frontend');
 
 		$values = array();
@@ -260,10 +260,10 @@ abstract class WP_Event_Manager_Form {
 	protected function get_repeated_field($field_prefix, $fields) {	
 		if(empty($fields))
 			return;
-		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 		
-		//covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		$items       = array();

@@ -12,7 +12,7 @@ if(!defined('ABSPATH')) {
 class WP_Event_Manager_CPT {
 
 	/**
-	 * __construct function.
+	 * Constructor.
 	 *
 	 * @access public
 	 * @return void
@@ -333,7 +333,7 @@ class WP_Event_Manager_CPT {
 	 * @return string
 	 */
 	public function primary_column($column, $screen) {
-		// if we want to set the primary column for CPT
+		// If we want to set the primary column for CPT
 		if('edit-event_listing' === $screen) {
 			$column = 'event_title';
 		}
