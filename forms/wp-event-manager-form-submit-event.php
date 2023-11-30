@@ -563,7 +563,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							break;
 
 						default:
-							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta( $event->ID, '_' . $key, true ));
+							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta( $event->ID, '_' . $key, true );
 							break;
 					}
 					if( !empty( $field['taxonomy'] ) ) {
