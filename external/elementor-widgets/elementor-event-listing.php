@@ -265,6 +265,20 @@ class Elementor_Event_Listing extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'layout_type',
+			[
+				'label' => __('Layout Type', 'wp-event-manager'),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'all',
+				'options' => [
+					'all' => __('All', 'wp-event-manager'),
+					'box' => __('Box View', 'wp-event-manager'),
+					'list' => __('List View', 'wp-event-manager'),
+				],
+			]
+		);
+
 		$this->end_controls_section();
 
 	}
@@ -307,8 +321,9 @@ class Elementor_Event_Listing extends Widget_Base {
           
         $featured = !empty($settings['featured']) ? 'featured="'.esc_attr($settings['featured']).'"' : '';
         $cancelled = !empty($settings['cancelled']) ? 'cancelled="'.esc_attr($settings['cancelled']).'"' : '';
-            
-        $shortcode = '[events show_pagination="'.esc_attr($settings['show_pagination']).'" per_page="'.esc_attr($settings['per_page']).'" order="'.esc_attr($settings['order']).'" orderby="'.esc_attr($settings['orderby']).'" '.$featured.' '.$cancelled.' show_filters="'.esc_attr($settings['show_filters']).'" show_categories="'.esc_attr($settings['show_categories']).'" show_event_types="'.esc_attr($settings['show_event_types']).'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' ]';
+		$layout_type = !empty($settings['layout_type']) ? 'layout_type="'.esc_attr($settings['layout_type']).'"' : 'all';
+
+        $shortcode = '[events show_pagination="'.esc_attr($settings['show_pagination']).'" per_page="'.esc_attr($settings['per_page']).'" order="'.esc_attr($settings['order']).'" orderby="'.esc_attr($settings['orderby']).'" '.$featured.' '.$cancelled.' show_filters="'.esc_attr($settings['show_filters']).'" show_categories="'.esc_attr($settings['show_categories']).'" show_event_types="'.esc_attr($settings['show_event_types']).'" '.$location.' '.$keywords.' '.$categories.' '.$event_types.' '.$selected_datetime.' '.$layout_type.']';
         echo do_shortcode($shortcode);
 	}
 
