@@ -13,7 +13,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	protected static $_instance = null;
 
 	/**
-	 * Main Instance
+	 * Main Instance.
 	 */
 	public static function instance() {
 		if(is_null(self::$_instance)) {
@@ -23,7 +23,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	*/
 	public function __construct() {
 		$this->organizer_id = !empty($_REQUEST['organizer_id']) ? absint($_REQUEST[ 'organizer_id' ]) : 0;
@@ -41,7 +41,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	}
 
 	/**
-	 * Submit Step
+	 * Submit Step.
 	 */
 	public function submit() {
 		$organizer = get_post($this->organizer_id);
@@ -51,15 +51,15 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 		}
 
 		// Init fields
-		//$this->init_fields(); We dont need to initialize with this function because of field edior
+		// $this->init_fields(); We dont need to initialize with this function because of field edior
 		// Now field editor function will return all the fields 
-		//Get merged fields from db and default fields.
+		// Get merged fields from db and default fields.
 		$this->merge_with_custom_fields('frontend');
 		
-		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 		
-		//covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 		
 		foreach ($this->fields as $group_key => $group_fields) {
@@ -100,7 +100,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	}
 
 	/**
-	 * Submit Step is posted
+	 * Submit Step is posted.
 	 */
 	public function submit_handler() {
 		if(empty($_POST['submit_organizer'])) {

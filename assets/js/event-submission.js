@@ -402,6 +402,9 @@ EventSubmission = function () {
                     processData: false,
                     contentType: false,
                     data: fd,
+                    beforeSend: function(){
+                        jQuery('.wpem_add_organizer').css('pointer-events', 'none');
+                    },
                     success: function (responce) {
                         if (responce.code == 200) {
                             jQuery('select#event_organizer_ids').prepend('<option selected="selected" value="' + responce.organizer.organizer_id + '">' + responce.organizer.organizer_name + '</option>');
@@ -410,7 +413,7 @@ EventSubmission = function () {
                             jQuery('body #submit-organizer-form .event-manager-uploaded-files').remove();
                             jQuery('body #submit-organizer-form')[0].reset();
                             jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
-                            jQuery('.wpem_add_organizer').css('pointer-events', 'none');
+                            //jQuery('.wpem_add_organizer').css('pointer-events', 'none');
                             jQuery('#wpem_add_organizer_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
                             jQuery('body #submit-organizer-form .wpem-form-footer .wpem-alert-danger').remove();
                         } else {

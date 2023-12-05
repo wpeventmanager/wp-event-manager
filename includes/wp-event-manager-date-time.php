@@ -11,7 +11,7 @@ class WP_Event_Manager_Date_Time {
 	const DATABASE_DATE_TIME_FORMAT      = 'Y-m-d H:i:s';
 	const DBTIMEFORMAT          = 'H:i:s';
 	/**
-	* Get datepicker format function will return all the date formats for datepicker
+	* Get datepicker format function will return all the date formats for datepicker.
 	*
 	* @param null
 	* @return format of datepicker
@@ -28,7 +28,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	* function get_default_date_formats will return all the date formats
+	* Function get_default_date_formats will return all the date formats.
 	* This function has both type of format jquery-ui-datepicker as well as for php date format
 	*
 	* @return array
@@ -75,7 +75,7 @@ class WP_Event_Manager_Date_Time {
 
 
 	/**
-	 * This function will parse the date to dbformatted date
+	 * This function will parse the date to dbformatted date.
 	 * Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 	 * php date format parsing has error so we need to parse via our custom parsing method
 	 * Ref. https://stackoverflow.com/questions/6668223/php-date-parse-from-format-alternative-in-php-5-2
@@ -118,7 +118,7 @@ class WP_Event_Manager_Date_Time {
 				// Seconds with leading 0
 				's' => array('second', '\d{2}'),
        );
-        // convert format string to regex
+        // Convert format string to regex
         $regex = '';
         $chars = str_split($format);
         foreach ($chars AS $n => $char) {
@@ -133,7 +133,7 @@ class WP_Event_Manager_Date_Time {
             }
         }
         $dt = array();
-        // now try to match it
+        // Now try to match it
         if(preg_match('#^'.$regex.'$#', $date, $dt)){
             foreach ($dt AS $k => $v){
                 if(is_int($k)){
@@ -157,7 +157,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	* This function will return php formatted date format from datepicker formatted date
+	* This function will return php formatted date format from datepicker formatted date.
 	* For eg. in date picker date format is yy-mm-dd where this format in php will be Y-m-d
 	* So, We need one central function will allow to convert datepicker format in to php formatted format.
 	*
@@ -170,7 +170,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	* Get timepicker format function will return all the date formats for timepicker
+	* Get timepicker format function will return all the date formats for timepicker.
 	*
 	* @since 3.0
 	* @param null
@@ -208,20 +208,20 @@ class WP_Event_Manager_Date_Time {
 	public static function get_db_formatted_date_time($date = '', $time = '00:00:00') {
 		if(empty($date))
 			return;
-		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= self::get_datepicker_format();
 
-		//covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format 		= self::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 		$time = self::get_db_formatted_time($time);
-		//Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
+		// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 		$db_date_time = self::date_parse_from_format($php_date_format . ' H:i:s'  , $date .' '.$time);
 
 		return $db_date_time;
 	}
 
 	/**
-	* Get timepicker format function will return all the date formats for timepicker
+	* Get timepicker format function will return all the date formats for timepicker.
 	*
 	* @since 3.0
 	**/
@@ -231,7 +231,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	 * Get wp event manager view date format
+	 * Get wp event manager view date format.
 	 * This format is set by user from event listing -> settings -> date and time
 	 *
 	 * @return string
@@ -242,7 +242,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	 * Get Wp event manager date admin setting where you can get array of dummy date
+	 * Get Wp event manager date admin setting where you can get array of dummy date.
 	 * The key of each value will be a php date format which is generated from the get_default_date_formats()
 	 * It will just make array for dropdown for showing dummy date and key as php formatted so we can save it
 	 * Currentrly it is used at event listing -> settings -> date and time - datepicker format
@@ -262,7 +262,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	 * Get event manager timezone setting defined in event listing -> settings
+	 * Get event manager timezone setting defined in event listing -> settings.
 	 *
 	 * @since 3.0
 	 * @return string $selected_timezone
@@ -273,7 +273,7 @@ class WP_Event_Manager_Date_Time {
 	}
 
 	/**
-	 *
+	 * Manage current site timezon.
 	 * @return string
 	 */
 	public static function get_current_site_timezone(){
@@ -312,7 +312,7 @@ class WP_Event_Manager_Date_Time {
 	 * @param string $event_timezone
 	 */
 	public static function convert_event_timezone_into_abbr($event_timezone){
-		//get string of event timezone if it is UTC offset
+		// Get string of event timezone if it is UTC offset
 		$tzstring 	= self::generate_timezone_string_from_utc_offset($event_timezone);
 
 		$date_time 	= new DateTime('NOW');
@@ -330,7 +330,7 @@ class WP_Event_Manager_Date_Time {
 	public static function current_timestamp_from_event_timezone($event_timezone){
 		if(empty($event_timezone))
 			return;
-		//get string of event timezone if it is UTC offset
+		// Get string of event timezone if it is UTC offset
 		$tzstring 	= self::generate_timezone_string_from_utc_offset($event_timezone);
 		$date_time = new DateTime("now");
 		$date_time->setTimezone(new DateTimeZone($tzstring));
@@ -361,7 +361,7 @@ class WP_Event_Manager_Date_Time {
 			return $offset;
 		}
 
-		// ensure we have the minutes on the offset
+		// Ensure we have the minutes on the offset
 		if(!strpos($offset, ':')) {
 			$offset .= ':00';
 		}
@@ -370,7 +370,7 @@ class WP_Event_Manager_Date_Time {
 		list($hours, $minutes) = explode(':', $offset);
 		$seconds = $hours * 60 * 60 + $minutes * 60;
 
-		// attempt to guess the timezone string from the UTC offset
+		// Attempt to guess the timezone string from the UTC offset
 		$timezone = timezone_name_from_abbr('', $seconds, 0);
 
 		if(false === $timezone) {
@@ -383,7 +383,7 @@ class WP_Event_Manager_Date_Time {
 					}
 				}
 			}
-			// fallback to UTC
+			// Fallback to UTC
 			return 'UTC';
 		}
 		return $timezone;

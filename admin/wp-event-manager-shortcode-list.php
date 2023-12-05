@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcodes Page
+ * Shortcodes Page.
 */
 
 if(!defined('ABSPATH')){

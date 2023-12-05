@@ -21,13 +21,13 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 				}elseif(in_array($field_key, $taxonomy_fields)){
 					if(strpos($key, 'term') === 0){
 						if($key == $field['type']) {
-							printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
+							printf('<option value="' . esc_attr(stripslashes($key)) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 						}else{
-							printf('<option value="' . esc_attr($key) . '" >' . esc_html($type) . '</option>');
+							printf('<option value="' . esc_attr(stripslashes($key)) . '" >' . esc_html($type) . '</option>');
 						}
 					}
 				} else {
-					printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
+					printf('<option value="' . esc_attr(stripslashes($key)) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
 				}
 			} ?>
 		</select>

@@ -13,7 +13,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 	protected static $_instance = null;
 
 	/**
-	 * Main Instance
+	 * Main Instance.
 	 */
 	public static function instance() {
 		if(is_null(self::$_instance)) {
@@ -23,7 +23,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	*/
 	public function __construct() {
 		$this->event_id = !empty($_REQUEST['event_id']) ? absint($_REQUEST[ 'event_id' ]) : 0;
@@ -41,7 +41,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 	}
 
 	/**
-	 * Submit Step
+	 * Submit Step.
 	 */
 	public function submit() {
 		$event = get_post($this->event_id);
@@ -51,15 +51,15 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 		}
 
 		// Init fields
-		//$this->init_fields(); We dont need to initialize with this function because of field edior
+		// $this->init_fields(); We dont need to initialize with this function because of field edior
 		// Now field editor function will return all the fields 
-		//Get merged fields from db and default fields.
+		// Get merged fields from db and default fields.
 		$this->merge_with_custom_fields('frontend');
 		
-		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 		
-		//covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 		
 		foreach ($this->fields as $group_key => $group_fields) {
@@ -68,16 +68,16 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 					if('event_title' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = esc_attr($event->post_title);
 					} elseif('event_description' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = $event->post_content;
+						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($event->post_content);
 					} elseif('organizer_logo' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($event->ID) ? get_post_thumbnail_id($event->ID) : get_post_meta($event->ID, '_' . $key, true);
 					} elseif('event_start_date' === $key) {
 						$event_start_date = get_post_meta($event->ID, '_' . $key, true);
-        				//Convert date and time value into selected datepicker value
+        				// Convert date and time value into selected datepicker value
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_start_date));
 					} elseif('event_end_date' === $key) {
 						$event_end_date = get_post_meta($event->ID, '_' . $key, true);
-        				//Convert date and time value into selected datepicker value
+        				// Convert date and time value into selected datepicker value
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_end_date));
 					} elseif(!empty($field['taxonomy'])) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($event->ID, $field['taxonomy'], array('fields' => 'ids'));
@@ -112,7 +112,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 	}
 
 	/**
-	 * Submit Step is posted
+	 * Submit Step is posted.
 	 */
 	public function submit_handler() {
 		if(empty($_POST['submit_event'])) {

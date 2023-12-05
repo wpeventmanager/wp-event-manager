@@ -32,7 +32,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	*/
 	public function __construct() {
 		add_action('init', array(__CLASS__, 'add_endpoint'));
@@ -55,7 +55,7 @@ class WP_Event_Manager_Ajax {
 	}
 	
 	/**
-	 * Add our endpoint for frontend ajax requests
+	 * Add our endpoint for frontend ajax requests.
 	*/
 	public static function add_endpoint() {
 
@@ -65,7 +65,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Get Event Manager Ajax Endpoint
+	 * Get Event Manager Ajax Endpoint.
 	 * @param  string $request Optional
 	 * @param  string $ssl     Optional
 	 * @return string
@@ -83,7 +83,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Check for WC Ajax request and fire action
+	 * Check for WC Ajax request and fire action.
 	 */
 	public static function do_em_ajax() {
 		global $wp_query;
@@ -103,7 +103,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Get listings via ajax
+	 * Get listings via ajax.
 	 */
 	public function get_listings() {
 		global $wp_post_types;
@@ -180,7 +180,7 @@ class WP_Event_Manager_Ajax {
 
 		$result['html']    = ob_get_clean();
 		$result['filter_value'] = array();	
-		//categories
+		// Categories
 		if($search_categories) {
 			$showing_categories = array();
 			foreach ($search_categories as $category) {
@@ -192,7 +192,7 @@ class WP_Event_Manager_Ajax {
 			$result['filter_value'][] = implode(', ', $showing_categories);
 		}
 
-		//event types
+		// Event types
 		if($search_event_types) {
 			$showing_event_types = array();
 			foreach ($search_event_types as $event_type) {
@@ -204,7 +204,7 @@ class WP_Event_Manager_Ajax {
 			$result['filter_value'][] = implode(', ', $showing_event_types);
 		}
 		
-		//datetimes
+		// Datetimes
 		if($search_datetimes) {	
 			$showing_datetimes= array();			
 			foreach ($search_datetimes as $datetime) { 	
@@ -213,7 +213,7 @@ class WP_Event_Manager_Ajax {
 			$result['filter_value'][] = implode(', ', $showing_datetimes);		
 		}
 		
-		//ticket prices	
+		// Ticket prices	
 		if($search_ticket_prices) {		
 		    $showing_ticket_prices = array();	
 			foreach ($search_ticket_prices as $ticket_price) { 	
@@ -278,7 +278,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Upload file via ajax
+	 * Upload file via ajax.
 	 *
 	 * No nonce field since the form may be statically cached.
 	 */
@@ -306,7 +306,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * add_organizer function.
+	 * Add organizer.
 	 * add organizer with popup action
 	 * @access public
 	 * @param 
@@ -334,7 +334,7 @@ class WP_Event_Manager_Ajax {
 			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
 			$event_fields =	$form_submit_organizer_instance->merge_with_custom_fields('frontend');
 
-			//submit current event with $_POST values
+			// Submit current event with $_POST values
 			$form_submit_organizer_instance->submit_handler();
 
 			$organizer_id = $form_submit_organizer_instance->get_organizer_id();
@@ -367,7 +367,7 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * add_venue function.
+	 * Add venue.
 	 * add venue with popup action
 	 * @access public
 	 * @param 
@@ -395,7 +395,7 @@ class WP_Event_Manager_Ajax {
 			$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
 			$event_fields =	$form_submit_venue_instance->merge_with_custom_fields('frontend');
 
-			//submit current event with $_POST values
+			// Submit current event with $_POST values
 			$form_submit_venue_instance->submit_handler();
 			$venue_id = $form_submit_venue_instance->get_venue_id();
 

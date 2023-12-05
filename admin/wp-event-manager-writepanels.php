@@ -34,7 +34,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * __construct function.
+	 * Constructor.
 	 *
 	 * @access public
 	 * @return void
@@ -52,7 +52,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_fields function used to get listing fields.
+	 * It used to get event listing fields.
 	 *
 	 * @access public
 	 * @return void
@@ -79,7 +79,7 @@ class WP_Event_Manager_Writepanels {
 		$fields                     = $form_submit_event_instance->merge_with_custom_fields('backend');
 
 		/** add _ (prefix) for all backend fields.
-		 *   Field editor will only return fields without _(prefix).
+		 *  Field editor will only return fields without _(prefix).
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
@@ -155,7 +155,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * Sort array by priority value
+	 * Sort array by priority value.
 	 */
 	protected function sort_by_priority($a, $b)	{
 		if(!isset($a['priority']) || !isset($b['priority']) || $a['priority'] === $b['priority']) {
@@ -165,7 +165,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * add_meta_boxes function.
+	 * Add metabox of event.
 	 *
 	 * @access public
 	 * @return void
@@ -215,7 +215,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_type_metabox function.
+	 * Use of event listing type metabox.
 	 *
 	 * @param mixed $post
 	 * @param
@@ -283,7 +283,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_category_metabox function.
+	 * Use of event listing category metabox.
 	 *
 	 * @param mixed $post
 	 * @param
@@ -352,7 +352,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_file function.
+	 * Manage of upload image.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -397,7 +397,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_text function.
+	 * Manage of text input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -426,7 +426,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_wp_editor function.
+	 * Manage of wp_editor.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -488,7 +488,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_text function.
+	 * Manage of textarea input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -517,7 +517,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_select function.
+	 * Manage of select input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -543,10 +543,11 @@ class WP_Event_Manager_Writepanels {
 			<select name=" <?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php foreach ($field['options'] as $key => $value) : ?>
 					<option value="<?php echo esc_attr($key); ?>" <?php
-																												if(isset($field['value'])) {
-																													selected($field['value'], $key);
-																												}
-																												?>><?php echo esc_html($value); ?></option>
+						if(isset($field['value'])) {
+							selected($field['value'], $key);
+						}?>>
+					<?php echo esc_html($value); ?>
+					</option>
 				<?php endforeach; ?>
 			</select>
 		</p>
@@ -554,7 +555,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_select function.
+	 * Manage of select input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -589,7 +590,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_checkbox function.
+	 * Manage of checkbox input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -616,7 +617,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_time function.
+	 * Manage time of event.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -643,7 +644,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_timezone function.
+	 * Manage timezone of event.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -675,7 +676,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_number function.
+	 * Manage of number input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -702,7 +703,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_number function.
+	 * Manage of number input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -729,7 +730,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_button function.
+	 * Manage of button input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -757,7 +758,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * Box to choose who posted the event
+	 * Box to choose who posted the event.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -794,7 +795,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * input_radio function.
+	 * Manage of radio input.
 	 *
 	 * @param mixed $key
 	 * @param mixed $field
@@ -855,7 +856,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * save_post function.
+	 * Save post.
 	 *
 	 * @access public
 	 * @param mixed $post_id
@@ -893,7 +894,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * save_event_listing_data function.
+	 * Save event listing data.
 	 *
 	 * @access public
 	 * @param mixed $post_id
@@ -906,10 +907,10 @@ class WP_Event_Manager_Writepanels {
 		add_post_meta($post_id, '_cancelled', 0, true);
 		add_post_meta($post_id, '_featured', 0, true);
 		update_post_meta($post_id, '_event_title', get_the_title($post_id));
-		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
-		// covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		// Save fields
@@ -973,7 +974,7 @@ class WP_Event_Manager_Writepanels {
 					} else {
 						$start_time = date('H:i:s');
 					}
-					// combine event start date value with event start time
+					// Combine event start date value with event start time
 					$date = sanitize_text_field(explode(' ', $_POST[$key])[0] . ' ' . $start_time);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'] . ' H:i:s', $date);
@@ -989,7 +990,7 @@ class WP_Event_Manager_Writepanels {
 					} else {
 						$start_time = date('H:i:s');
 					}
-					// combine event start date value with event start time
+					// Combine event start date value with event start time
 					$date = sanitize_text_field(explode(' ', $_POST[$key])[0] . ' ' . $start_time);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'] . ' H:i:s', $date);
@@ -1002,7 +1003,7 @@ class WP_Event_Manager_Writepanels {
 			} elseif('_event_registration_deadline' === $key) {
 				if(isset($_POST[$key]) && !empty($_POST[$key])) {
 
-					// combine event start date value with event start time
+					// Combine event start date value with event start time
 					$date = sanitize_text_field(explode(' ', $_POST[$key])[0]);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($_POST['date_format'], $date);
@@ -1092,7 +1093,7 @@ class WP_Event_Manager_Writepanels {
 						if($key=='_event_ticket_options' && $_POST[$key]=='free'){
 							$ticket_type=$_POST[$key];
 						}
-						//set event online or not
+						// Set event online or not
 						if($key == '_event_online') 
 							$event_online = $_POST[$key];
 						break;
@@ -1100,19 +1101,19 @@ class WP_Event_Manager_Writepanels {
 			}
 		}
 
-		//delete location meta if event is online
+		// Delete location meta if event is online
 		if(isset($event_online) && $event_online == 'yes') {
 			update_post_meta($post_id, '_event_location', '');
 			update_post_meta($post_id, '_event_pincode', '');
 			update_post_meta($post_id, '_event_country', '');
 		} 
-		// reset meta value if ticket type is free
+		// Reset meta value if ticket type is free
 		if(isset($ticket_type) && $ticket_type=='free'){
 			update_post_meta($post_id, '_event_ticket_price', '');
 		}
 		
-		// check if timezone settings is enabled as each event then set current time stamp according to the timezone
-		// for eg. if each event selected then Berlin timezone will be different then current site timezone.
+		// Check if timezone settings is enabled as each event then set current time stamp.according to the timezone
+		// For eg. if each event selected then Berlin timezone will be different then current site timezone.
 		if(WP_Event_Manager_Date_Time::get_event_manager_timezone_setting() == 'each_event') {
 			/* Set Post Status To Expired If Already Expired */
 			$event_timezone = get_post_meta($post_id, '_event_timezone', true);
@@ -1121,11 +1122,11 @@ class WP_Event_Manager_Writepanels {
 			$current_timestamp = current_time('timestamp'); // If site wise timezone selected
 		}
 
-		//set expire date at 12:00 PM of the selected day     
+		// Set expire date at 12:00 PM of the selected day     
 		$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(get_post_meta($post_id, '_event_expiry_date', true). ' 23:59:30')), $post);     
 		$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', $current_timestamp));     
 
-		//check for event expire    
+		// Check for event expire    
 		$post_status = $expiry_date && strtotime($today_date) > strtotime($expiry_date) ? 'expired' : false;
 		if($post_status) {
 			remove_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);
@@ -1139,7 +1140,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_fields function.
+	 * Organizer listing fields.
 	 *
 	 * @access public
 	 * @return void
@@ -1153,7 +1154,7 @@ class WP_Event_Manager_Writepanels {
 		$fields                         = $form_submit_organizer_instance->merge_with_custom_fields('backend');
 
 		/** add _ (prefix) for all backend fields.
-		 *   Field editor will only return fields without _(prefix).
+		 *  Field editor will only return fields without _(prefix).
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
@@ -1192,7 +1193,7 @@ class WP_Event_Manager_Writepanels {
 
 
 	/**
-	 * event_organizer_data function.
+	 * Event organizer data.
 	 *
 	 * @access public
 	 * @param mixed $post
@@ -1220,7 +1221,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * save_organizer_listing_data function.
+	 * Save organizer listing data.
 	 *
 	 * @access public
 	 * @param mixed $post_id
@@ -1230,10 +1231,10 @@ class WP_Event_Manager_Writepanels {
 	public function save_organizer_listing_data($post_id, $post) {
 		global $wpdb;
 
-		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
-		// covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		update_post_meta($post_id, '_organizer_name', sanitize_text_field($_POST['post_title']));
@@ -1289,7 +1290,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * venue_listing_fields function.
+	 * Venue listing fields.
 	 *
 	 * @access public
 	 * @return void
@@ -1303,7 +1304,7 @@ class WP_Event_Manager_Writepanels {
 		$fields                     = $form_submit_venue_instance->merge_with_custom_fields('backend');
 
 		/** add _ (prefix) for all backend fields.
-		 *   Field editor will only return fields without _(prefix).
+		 *  Field editor will only return fields without _(prefix).
 		 */
 		foreach ($fields as $group_key => $group_fields) {
 			foreach ($group_fields as $field_key => $field_value) {
@@ -1341,7 +1342,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_venue_data function.
+	 * Event venue data.
 	 *
 	 * @access public
 	 * @param mixed $post
@@ -1369,7 +1370,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * save_venue_listing_data function.
+	 * Save venue listing data.
 	 *
 	 * @access public
 	 * @param mixed $post_id
@@ -1379,10 +1380,10 @@ class WP_Event_Manager_Writepanels {
 	public function save_venue_listing_data($post_id, $post){
 		global $wpdb;
 
-		// get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
-		// covert datepicker format  into php date() function date format
+		// Covert datepicker format  into php date() function date format
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		update_post_meta($post_id, '_venue_name', sanitize_text_field($_POST['post_title']));

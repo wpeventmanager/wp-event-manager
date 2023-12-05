@@ -116,6 +116,6 @@ if (!empty($field['value']) && is_array($field['value'])) :
     </a>
 <?php if (!empty($field['description'])) : ?>
     <small class="description">
-        <?php echo esc_attr($field['description']); ?>
+        <?php echo wp_kses_post($field['description']); ?>
     </small>
 <?php endif; ?>

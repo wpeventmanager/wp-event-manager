@@ -1,7 +1,7 @@
 <?php
 if(!function_exists('get_event_listings')) :
 	/**
-	 * Queries event listings with certain criteria and returns them
+	 * Queries event listings with certain criteria and returns them.
 	 *
 	 * @access public
 	 * @return WP_Query
@@ -125,10 +125,10 @@ if(!function_exists('get_event_listings')) :
 			$date_search = array();
 			
 			$dates = json_decode($args['search_datetimes'][0], true);
-			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 
-			//covert datepicker format  into php date() function date format
+			// Covert datepicker format  into php date() function date format
 			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 			if (!empty($dates)) {
 				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
@@ -186,7 +186,7 @@ if(!function_exists('get_event_listings')) :
 				'operator'         => $operator
 			);
 		}
-		//must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
+		// Must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 		if(!empty($args['search_ticket_prices'][0]))  {	
 			$ticket_price_value='';
 			if($args['search_ticket_prices'][0]==='paid' || $args['search_ticket_prices'][0]==='ticket_price_paid') {  
@@ -231,13 +231,13 @@ if(!function_exists('get_event_listings')) :
 				'rand'       => 'ASC',
 			);
 		}
-		//if orderby meta key _event_start_date 
+		// If orderby meta key _event_start_date 
 		if('event_start_date' === $args['orderby']) {
 			$query_args['orderby'] ='meta_value';
 			$query_args['meta_key'] ='_event_start_date';
 			$query_args['meta_type'] ='DATETIME';
 		}
-		//if orderby event_start_date and time  both
+		// If orderby event_start_date and time  both
 		if('event_start_date_time' === $args['orderby']) {
 			$query_args['meta_query'] = array(
 				'relation' => 'AND',
@@ -323,7 +323,7 @@ if(!function_exists('get_event_listings')) :
 			}
 
 			if($cached_query_results) {
-				// random order is cached so shuffle them.
+				// Random order is cached so shuffle them.
 				if('rand_featured' === $args['orderby']) {
 					usort($result->posts, '_wpem_shuffle_featured_post_results_helper');
 				} elseif('rand' === $args['orderby']) {
@@ -422,7 +422,7 @@ if(!function_exists('get_event_listings_keyword_search')) :
  		 *
  		 * @since 1.5
  		 *
- 		 * @param array  $conditions          Conditions to join by OR when querying event listings.
+ 		 * @param array  $conditions Conditions to join by OR when querying event listings.
  		 * @param string $event_manager_keyword Search query.
  		 */
 		$conditions = apply_filters('event_listing_search_conditions', $conditions, $event_manager_keyword);
@@ -443,7 +443,7 @@ endif;
 
 if(!function_exists('get_event_listing_post_statuses')) :
 	/**
-	 * Get post statuses used for events
+	 * Get post statuses used for events.
 	 *
 	 * @access public
 	 * @return array
@@ -482,7 +482,7 @@ endif;
 
 if(!function_exists('get_event_listing_types')) :
 	/**
-	 * Get event listing types
+	 * Get event listing types.
 	 *
 	 * @access public
 	 * @return array
@@ -508,7 +508,7 @@ endif;
 
 if(!function_exists('get_event_listing_categories')) :
 	/**
-	 * Get event categories
+	 * Get event categories.
 	 *
 	 * @access public
 	 * @return array
@@ -540,7 +540,7 @@ endif;
 
 if(!function_exists('event_manager_get_filtered_links')) :
 	/**
-	 * Shows links after filtering events
+	 * Shows links after filtering events.
 	 */
 	function event_manager_get_filtered_links($args = array()) {
 		$search_datetimes= array();
@@ -576,16 +576,16 @@ if(!function_exists('event_manager_get_filtered_links')) :
 			}
 		}
 		
-		//datetimes
-		//add just key like datetime_any, datetime_today..
+		// Datetimes
+		// Add just key like datetime_any, datetime_today..
 		if($args['search_datetimes']) {	
 			foreach($args['search_datetimes'] as $datetime) { 	
 				$search_datetimes[]=$datetime;
 			}
 		}
 
-		//ticket price
-		//add just key like ticket_price_any, ticket_price_paid..	
+		// Ticket price
+		// Add just key like ticket_price_any, ticket_price_paid..	
 		if($args['search_ticket_prices']) {	
 			foreach($args['search_ticket_prices'] as $ticket_price) { 	
 				$search_ticket_prices[]=$ticket_price;
@@ -630,7 +630,7 @@ endif;
 if(!function_exists('get_event_listing_rss_link')) :
 
 	/**
-	 * Get the Event Listing RSS link
+	 * Get the Event Listing RSS link.
 	 *
 	 * @return string
 	 */
@@ -821,7 +821,7 @@ function event_manager_user_can_edit_event($event_id) {
  */
 function is_wpem() {
 	/**
-	 * Filter the result of is_wpem()
+	 * Filter the result of is_wpem().
 	 */
 	return apply_filters('is_wpem', (is_wpem_page() || has_wpem_shortcode() || is_wpem_event_listing() || is_wpem_taxonomy()));
 }
@@ -845,14 +845,14 @@ function is_wpem_page() {
 		);
 
 		/**
-		 * Filters a list of all page IDs related to WPEM
+		 * Filters a list of all page IDs related to WPEM.
 		 */
 		$wpem_page_ids = array_unique(apply_filters('event_manager_page_ids', $wpem_page_ids));
 		$is_wpem_page = is_page($wpem_page_ids);
 	}
 
 	/**
-	 * Filter the result of is_wpem_page()
+	 * Filter the result of is_wpem_page().
 	 */
 	return apply_filters('is_wpem_page', $is_wpem_page);
 }
@@ -860,7 +860,7 @@ function is_wpem_page() {
 /**
  * Checks if the provided content or the current single page or post has a WPEM shortcode.
  *
- * @param string|null       $content   Content to check. If not provided, it uses the current post content.
+ * @param string|null $content Content to check. If not provided, it uses the current post content.
  * @param string|array|null $tag Check specifically for one or more shortcodes. If not provided, checks for any WPJM shortcode.
  *
  * @return bool
@@ -900,7 +900,7 @@ function has_wpem_shortcode($content = null, $tag = null) {
 	}
 
 	/**
-	 * Filter the result of has_wpem_shortcode()
+	 * Filter the result of has_wpem_shortcode().
 	 *
 	 * @since 2.5
 	 *
@@ -932,7 +932,7 @@ function is_wpem_taxonomy() {
 }
 
 /**
- * True if only one type allowed per event
+ * True if only one type allowed per event.
  *
  * @return bool
  */
@@ -954,7 +954,7 @@ function event_manager_multiselect_event_type() {
 }
 
 /**
- * True if only one category allowed per event
+ * True if only one category allowed per event.
  *
  * @return bool
  */
@@ -1112,7 +1112,7 @@ function event_manager_get_page_id($page){
 }
 
 /**
- * Get the permalink of a page if set
+ * Get the permalink of a page if set.
  * @param  string $page e.g. event_dashboard, submit_event_form, events
  * @return string|bool
  */
@@ -1126,7 +1126,7 @@ function event_manager_get_permalink($page) {
 }
 
 /**
- * Filters the upload dir when $event_manager_upload is true
+ * Filters the upload dir when $event_manager_upload is true.
  * @param  array $pathdata
  * @return array
  */
@@ -1213,7 +1213,7 @@ function event_manager_upload_file($file, $args = array()) {
     }
  
     /**
-     * Filter file configuration before upload
+     * Filter file configuration before upload.
      *
      * This filter can be used to modify the file arguments before being uploaded, or return a WP_Error
      * object to prevent the file from being uploaded, and return the error.
@@ -1287,7 +1287,7 @@ function event_manager_get_allowed_mime_types($field = ''){
 }
 
 /**
- * Calculate and return the event expiry date
+ * Calculate and return the event expiry date.
  * @param  int $event_id
  * @return string
  */
@@ -1401,7 +1401,7 @@ function event_manager_user_can_upload_file_via_ajax() {
 }
 
 /**
- * event_manager_add_post_types function
+ * Here add post types of event.
  * 
  * @param $types
  * @return $types
@@ -1472,7 +1472,7 @@ function event_manager_get_password_rules_hint() {
 }
 
 /**
- * Returns all organizers
+ * Returns all organizers.
  * 
  * @since 3.1.14
  * @param null
@@ -1510,7 +1510,7 @@ function get_all_event_organizer($user_id = '', $args = []) {
 }
 
 /**
- * Returns array of all organizers
+ * Returns array of all organizers.
  * 
  * @since 3.1.14
  * @param null
@@ -1530,7 +1530,7 @@ function get_all_organizer_array($user_id = '', $args = []) {
 }
 
 /**
- * Returns total organizer 
+ * Returns total organizer.
  * 
  * @param null
  * @return string
@@ -1541,7 +1541,7 @@ function get_event_organizer_count($organizer_id = '') {
 }
 
 /**
- * Returns organizer ids
+ * Returns organizer ids.
  * 
  * @param null
  * @return string
@@ -1570,7 +1570,7 @@ function get_event_by_organizer_id($organizer_id = '') {
 }
 
 /**
- * Returns all venue of event
+ * Returns all venue of event.
  * 
  * @param null
  * @return string
@@ -1607,7 +1607,7 @@ function get_all_event_venue($user_id = '', $args = []) {
 }
 
 /**
- * Returns array of venues
+ * Returns array of venues.
  * 
  * @param null
  * @return string
@@ -1630,7 +1630,7 @@ function get_all_venue_array($user_id = '', $args = [], $blank_option = false) {
 }
 
 /**
- * Returns total venues 
+ * Returns total venues.
  * 
  * @param null
  * @return string
@@ -1641,8 +1641,7 @@ function get_event_venue_count($venue_id = '') {
 }
 
 /**
- * 
- * Returns venue id of event
+ * Returns venue id of event.
  * 
  * @param null
  * @return string
@@ -1670,7 +1669,7 @@ function get_event_by_venue_id($venue_id = '') {
 }
 
 /**
- * check organizer ids
+ * Check organizer ids.
  * @since 3.1.13
  * @param
  * @return
@@ -1694,7 +1693,7 @@ function has_event_organizer_ids($post = null) {
 }
 
 /**
- * get organizer ids
+ * Get organizer ids.
  * 
  * @since 3.1.13
  **/
@@ -1708,7 +1707,7 @@ function get_event_organizer_ids($post = null) {
 }
 
 /**
- * check_organizer_exist
+ * Check organizer exist in event organizer.
  * 
  * @since 3.1.15
  **/
@@ -1737,7 +1736,7 @@ function check_organizer_exist($organizer_email) {
 }
 
 /**
- * check venue ids
+ * Check venue ids.
  * 
  * @since 3.1.16
  **/
@@ -1760,7 +1759,7 @@ function has_event_venue_ids($post = null) {
 }
 
 /**
- * get venue ids
+ * Get venue ids.
  * 
  * @since 3.1.16
  **/
@@ -1774,7 +1773,7 @@ function get_event_venue_ids($post = null) {
 }
 
 /**
- * 
+ * Manage order of event.
  * @since 3.1.18
  * @param null
  * @return array
@@ -1924,9 +1923,29 @@ function wpem_convert_php_to_moment_format($format) {
     return $momentFormat;
 }
 
+if ( !function_exists( 'get_event_by_user_id' ) ) {
+    /**
+     * This function is used to get event by user id.
+     *
+     * @access public
+     * @param
+     * @return array
+     * @since 1.0.0
+     */
+    function get_event_by_user_id( $user_id = '' ) {
+        return get_posts( apply_filters('wpem_events_by_user_id_args', array( 
+            'posts_per_page' => - 1,
+            'post_type' => 'event_listing',
+            'post_status' => 'publish',
+            'suppress_filters' => 'false',
+            'author' => $user_id,
+            'fields' => 'ids',
+        ) ) );
+    }
+}
 
 /**
- * Get all countries with country code
+ * Get all countries with country code.
  * 
  * We have used this method for organizer country selection.
  * @since 3.1.39

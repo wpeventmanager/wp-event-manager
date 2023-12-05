@@ -25,7 +25,7 @@ class WP_Event_Manager_Post_Types {
 		return self::$_instance;
 	}
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct() {
 
@@ -76,7 +76,7 @@ class WP_Event_Manager_Post_Types {
 		// WP ALL Import
 		add_action('pmxi_saved_post', array($this, 'pmxi_saved_post'), 10, 1);
  
-        //view count action
+        // View count action
         add_action('set_single_listing_view_count', array($this, 'set_single_listing_view_count'));
 
         // Admin notices.
@@ -84,7 +84,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * register_post_types function.
+	 * Register of event listing post types.
 	 *
 	 * @access public
 	 * @return void
@@ -98,7 +98,7 @@ class WP_Event_Manager_Post_Types {
 		$permalink_structure = WP_Event_Manager_Post_Types::get_permalink_structure();
 
 		/**
-		 * Taxonomies
+		 * Taxonomies.
 		 */
 		if(get_option('event_manager_enable_categories')) {
 			$singular  = __('Event category', 'wp-event-manager');
@@ -193,7 +193,7 @@ class WP_Event_Manager_Post_Types {
 	    }
 
 	    /**
-		 * Post types
+		 * Post types.
 		 */
 		$singular  = __('Event', 'wp-event-manager');
 		$plural    = __('Events', 'wp-event-manager');
@@ -259,12 +259,12 @@ class WP_Event_Manager_Post_Types {
 		);
 
 		/**
-		 * Feeds
+		 * Event feeds.
 		 */
 		add_feed('event_feed', array($this, 'event_feed'));
 
 		/**
-		 * Post status
+		 * Post status.
 		 */
 		register_post_status('expired', array(
 			'label'                     => _x('Expired', 'post status', 'wp-event-manager'),
@@ -345,7 +345,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Change label
+	 * Change label.
 	 */
 	public function admin_head() {
 		global $menu;
@@ -365,7 +365,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Add extra content when showing event content
+	 * Add extra content when showing event content.
 	 */
 	public function event_content($content) {
 		global $post;
@@ -386,7 +386,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Add extra content when showing organizer content
+	 * Add extra content when showing organizer content.
 	 */
 	public function organizer_content($content) {
 		global $post;
@@ -408,7 +408,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Add extra content when showing venue content
+	 * Add extra content when showing venue content.
 	 */
 	public function venue_content($content) {
 		global $post;
@@ -431,7 +431,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * event_archive function.
+	 * Event archive.
 	 *
 	 * @access public
 	 * @return void
@@ -446,7 +446,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Event listing feeds
+	 * Event listing feeds.
 	 */
 	public function event_feed() {
 		if(get_option('event_manager_hide_expired')) {
@@ -487,10 +487,10 @@ class WP_Event_Manager_Post_Types {
 			$date_search = array();
 			
 			$dates = json_decode($search_datetimes[0], true);
-			//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
+			// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 
-			//covert datepicker format  into php date() function date format
+			// Covert datepicker format  into php date() function date format
 			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 			if (!empty($dates)) {
 				$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $dates['start']);
@@ -598,7 +598,7 @@ class WP_Event_Manager_Post_Types {
 	}
 	
 	/**
-	 * In order to make sure that the feed properly queries the 'event_listing' type
+	 * In order to make sure that the feed properly queries the 'event_listing' type.
 	 *
 	 * @param WP_Query $wp
 	 */
@@ -622,14 +622,14 @@ class WP_Event_Manager_Post_Types {
 	}
 	
 	/**
-	 * Add a custom namespace to the event feed
+	 * Add a custom namespace to the event feed.
 	 */
 	public function event_feed_namespace() {
 		echo 'xmlns:event_listing="' .  site_url() . '"' . "\n";
 	}
 
 	/**
-	 * Add custom data to the event feed
+	 * Add custom data to the event feed.
 	 */
 	public function event_feed_item() {
 		$post_id  = get_the_ID();
@@ -637,7 +637,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Expire events
+	 * Expire events.
 	 */
 	public function check_for_expired_events() {
 
@@ -679,7 +679,7 @@ class WP_Event_Manager_Post_Types {
 			}
 		}
 
-		//Delete event after finished
+		// Delete event after finished
 		$delete_events_after_finished = absint(get_option('event_manager_delete_events_after_finished')) == 1 ? true : false;
 		if($delete_events_after_finished) {
 			$args = [
@@ -712,7 +712,7 @@ class WP_Event_Manager_Post_Types {
 	}
 	
 	/**
-	 * Delete old previewed events after 30 days to keep the DB clean
+	 * Delete old previewed events after 30 days to keep the DB clean.
 	 */
 	public function delete_old_previews() {
 		global $wpdb;
@@ -733,7 +733,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Set expirey date when event status changes
+	 * Set expirey date when event status changes.
 	 */
 	public function set_event_expiry_date($post) {
 		if($post->post_type !== 'event_listing') {
@@ -763,12 +763,12 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	* Set post view on the single listing page
+	* Set post view on the single listing page.
 	* @param  array $post	 
 	*/
 	function set_single_listing_view_count($post) {     
 		global $post; 
-		//get the user role. 
+		// Get the user role. 
 		if(is_user_logged_in()) {
 			$role=get_event_manager_current_user_role();  
 			$current_user = wp_get_current_user();
@@ -800,21 +800,21 @@ class WP_Event_Manager_Post_Types {
 	}
 	
 	/**
-	 * The registration content when the registration method is an email
+	 * The registration content when the registration method is an email.
 	 */
 	public function registration_details_email($register) {
 		get_event_manager_template('event-registration-email.php', array('register' => $register));
 	}
 
 	/**
-	 * The registration content when the registration method is a url
+	 * The registration content when the registration method is a url.
 	 */
 	public function registration_details_url($register) {
 		get_event_manager_template('event-registration-url.php', array('register' => $register));
 	}
 
 	/**
-	 * Fix post name when wp_update_post changes it
+	 * Fix post name when wp_update_post changes it.
 	 * @param  array $data
 	 * @return array
 	 */
@@ -826,7 +826,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Generate location data if a post is added
+	 * Generate location data if a post is added.
 	 * @param  int $post_id
 	 * @param  array $post
 	 */
@@ -859,7 +859,7 @@ class WP_Event_Manager_Post_Types {
 	}
 	
 	/**
-	 * Generate location data if a post is updated
+	 * Generate location data if a post is updated.
 	 */
 	public function maybe_update_geolocation_data($meta_id, $object_id, $meta_key, $_meta_value) {
 		if('_event_location' !== $meta_key || 'event_listing' !== get_post_type($object_id)) {
@@ -869,7 +869,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Maybe set menu_order if the featured status of a event is changed
+	 * Maybe set menu_order if the featured status of a event is changed.
 	 */
 	public function maybe_update_menu_order($meta_id, $object_id, $meta_key, $_meta_value) {
 		if('_featured' !== $meta_key || 'event_listing' !== get_post_type($object_id)) {
@@ -886,14 +886,14 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * this function will generate geolocation data
+	 * This function will generate geolocation data.
 	 */
 	public function maybe_generate_geolocation_data($meta_id, $object_id, $meta_key, $_meta_value) {
 		$this->maybe_update_geolocation_data($meta_id, $object_id, $meta_key, $_meta_value);
 	}
 
 	/**
-	 * Maybe set default meta data for event listings
+	 * Maybe set default meta data for event listings.
 	 * @param  int $post_id
 	 * @param  WP_Post $post
 	*/
@@ -905,7 +905,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * After importing via WP ALL Import, add default meta data
+	 * After importing via WP ALL Import, add default meta data.
 	 * @param  int $post_id
 	 */
 	public function pmxi_saved_post($post_id) {
@@ -918,7 +918,7 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * When deleting a event, delete its attachments
+	 * When deleting a event, delete its attachments.
 	 * @param  int $post_id
 	 */
 	public function before_delete_event($post_id) {

@@ -7,12 +7,12 @@ if(!defined('ABSPATH')) {
 }
 
 /**
- * WP_Event_Manager_CPT class.
+ * Class of WP Event Manager custom post types.
  */
 class WP_Event_Manager_CPT {
 
 	/**
-	 * __construct function.
+	 * Constructor.
 	 *
 	 * @access public
 	 * @return void
@@ -59,7 +59,7 @@ class WP_Event_Manager_CPT {
 	}
 	
 	/**
-	 * Edit bulk actions
+	 * Edit bulk actions.
 	 */
 	public function add_bulk_actions() {
 		global $post_type, $wp_post_types;
@@ -78,7 +78,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * Do custom bulk actions
+	 * Do custom bulk actions.
 	 */
 	public function do_bulk_actions($redirect_url, $action, $post_ids) {
 		$wp_list_table = _get_list_table('WP_Posts_List_Table');
@@ -123,7 +123,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * Approve a single event
+	 * Approve a single event.
 	 */
 	public function approve_event()	{
 		if(!empty($_GET['approve_event']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'approve_event') && current_user_can('publish_post',sanitize_text_field($_GET['approve_event']))) {
@@ -148,7 +148,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * Show a notice if we did a bulk action or approval
+	 * Show a notice if we did a bulk action or approval.
 	 */
 	public function approved_notice() {
 		global $post_type, $pagenow;
@@ -168,7 +168,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * Show a notice if we did a bulk action or approval
+	 * Show a notice if we did a bulk action or approval.
 	 */
 	public function expired_notice() {
 		global $post_type, $pagenow;
@@ -189,7 +189,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * Show category dropdown
+	 * Show category dropdown.
 	 */
 	public function events_by_category() {
 		global $typenow, $wp_query;
@@ -219,7 +219,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * Show Event type dropdown
+	 * Show Event type dropdown.
 	 */
 	public function events_by_event_type() {
 		global $typenow, $wp_query;
@@ -264,7 +264,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * post_updated_messages function.
+	 * Updated messages of event post.
 	 *
 	 * @access public
 	 * @param mixed $messages
@@ -293,7 +293,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * columns function.
+	 * Add columns.
 	 *
 	 * @param array $columns
 	 * @return array
@@ -325,7 +325,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * This is required to make column responsive since WP 4.3
+	 * This is required to make column responsive since WP 4.3.
 	 *
 	 * @access public
 	 * @param string $column
@@ -333,7 +333,7 @@ class WP_Event_Manager_CPT {
 	 * @return string
 	 */
 	public function primary_column($column, $screen) {
-		// if we want to set the primary column for CPT
+		// If we want to set the primary column for CPT
 		if('edit-event_listing' === $screen) {
 			$column = 'event_title';
 		}
@@ -357,7 +357,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * custom_columns function.
+	 * Add custom columns.
 	 *
 	 * @access public
 	 * @param mixed $column
@@ -499,13 +499,13 @@ class WP_Event_Manager_CPT {
 				break;
 			default :
 				$value = get_post_meta($post->ID, $column, true);
-				echo apply_filters('wpem_cpt_event_custom_column', $value, $column, $post);
+				echo apply_filters('wpem_cpt_event_custom_column', wp_kses_post($value), $column, $post);
 				break;
 		}
 	}
 
 	/**
-	 * sortable_columns function.
+	 * The table sortable columns.
 	 *
 	 * @access public
 	 * @param mixed $columns
@@ -524,7 +524,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * sort_columns function.
+	 * Sort columns.
 	 *
 	 * @access public
 	 * @param mixed $vars
@@ -581,7 +581,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * organizer_columns function.
+	 * Columns of organizer.
 	 *
 	 * @access public
 	 * @param $columns
@@ -594,7 +594,7 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * organizer_columns_data function.
+	 * Columns data of organizer.
 	 *
 	 * @access public
 	 * @param $column, $post_id

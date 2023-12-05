@@ -25,6 +25,6 @@ wp_editor(isset($field['value']) ? $field['value'] : $placeholder_text, $key, $e
 
 if (!empty($field['description'])) : ?>
 	<small class="description">
-		<?php printf($field['description']); ?>
+		<?php echo wp_kses_post($field['description']); ?>
 	</small>
 <?php endif; ?>

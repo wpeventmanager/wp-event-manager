@@ -12,7 +12,7 @@ if(!defined('ABSPATH')) {
  */
 class WP_Event_Manager_Admin {
 	/**
-	 * __construct function.
+	 * Constructor.
 	 *
 	 * @access public
 	 * @return void
@@ -46,7 +46,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * upgrade_database_notice function.
+	 * Upgrade database notice.
 	 *
 	 * @access public
 	 * @return void
@@ -61,7 +61,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * wpem_installation_notices function.
+	 * Installation notices of WP Event Manager.
 	 *
 	 * @access public
 	 * @return void
@@ -77,7 +77,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * admin_enqueue_scripts function.
+	 * Here, all scripts are used for the WP Event Manager admin.
 	 *
 	 * @access public
 	 * @return void
@@ -87,7 +87,7 @@ class WP_Event_Manager_Admin {
 		global $wp_scripts;
 		$screen = get_current_screen();
 
-		// main frontend style
+		// Main frontend style
 		wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css');
 
 		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue')))) {
@@ -125,7 +125,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * admin_menu function.
+	 * Admin menu.
 	 *
 	 * @access public
 	 * @return void
@@ -144,7 +144,7 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
-	 * Upgrade database page
+	 * Upgrade database page.
 	 */
 	public function upgrade_database() { ?>
 		<div class="wrap wp_event_manager wp_event_manager_upgrade_database">
@@ -185,7 +185,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Upgrade database
+	 * Upgrade database.
 	 */
 	public function wpem_upgrade_database()	{
 
@@ -224,7 +224,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * migrate_organizer_from_event_meta
+	 * Migrate organizer from event meta.
 	 */
 	public function migrate_organizer_from_event_meta($event, $organizer_data)	{
 		$organizer_id = check_organizer_exist($organizer_data['organizer_email']);
@@ -256,7 +256,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * banner_image_set_thumnail
+	 * Set banner image.
 	 */
 	public function banner_image_set_thumnail($event) {
 		$banner = get_event_banner($event);
@@ -290,7 +290,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Output addons page
+	 * Output addons page.
 	 */
 	public function addons_page() {
 		$addons = include 'wp-event-manager-addons.php';
@@ -298,7 +298,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Output shortcode page
+	 * Output shortcode page.
 	 */
 	public function shortcodes_page() {
 		$shortcodes = new WP_Event_Manager_Shortcode_List();
@@ -306,7 +306,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Show Installtion setup wizard admin notice
+	 * Show Installtion setup wizard admin notice.
 	 */
 	public function run_setup_wizard_admin_notice()	{
 		$installation     = get_option('wpem_installation', 0);
@@ -341,7 +341,7 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Ran on WP admin_init hook
+	 * Ran on WP admin_init hook.
 	 */
 	public function admin_init() {
 		if(!empty($_GET['event-manager-main-admin-dismiss'])) {

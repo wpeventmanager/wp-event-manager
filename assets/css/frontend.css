@@ -1039,6 +1039,11 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings .wpem-event-layout-wrapper .event_featured:hover {
   background: #ffffe4;
 }
+
+.event_summary_shortcode .wpem-single-event-widget .event_featured{
+  background: #ffffe4;
+}
+
 .wpem-event-listings .wpem-event-layout-wrapper .event_cancelled,
 .wpem-event-listings .wpem-event-layout-wrapper .event_cancelled:hover {
   background: #ffe5e5;

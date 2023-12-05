@@ -13,7 +13,7 @@ if(!defined('ABSPATH')) {
 class WP_Event_Manager_Setup {
 
 	/**
-	 * __construct function.
+	 * Constructor.
 	 *
 	 * @access public
 	 * @return void
@@ -28,7 +28,7 @@ class WP_Event_Manager_Setup {
 	}
 
 	/**
-	 * admin_menu function.
+	 * Admin menu.
 	 *
 	 * @access public
 	 * @return void
@@ -48,7 +48,7 @@ class WP_Event_Manager_Setup {
 	}
 
 	/**
-	 * Sends user to the setup page on first activation
+	 * Sends user to the setup page on first activation.
 	 */
 	public function redirect() {
 		global $pagenow;
@@ -80,7 +80,7 @@ class WP_Event_Manager_Setup {
 	}
 
 	/**
-	 * Enqueue scripts for setup page
+	 * Enqueue scripts for setup page.
 	 */
 	public function admin_enqueue_scripts()	{
 		wp_enqueue_style('event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array('dashicons'));
@@ -111,7 +111,7 @@ class WP_Event_Manager_Setup {
 	}
 
 	/**
-	 * Output addons page
+	 * Output addons page.
 	 */
 	public function output() {
 		$step = !empty($_GET['step']) ? absint($_GET['step']) : 1;
@@ -357,7 +357,7 @@ class WP_Event_Manager_Setup {
 	}
 
 	/**
-	 * Sanitize a 2d array
+	 * Sanitize a 2d array.
 	 *
 	 * @param  array $array
 	 * @return array
