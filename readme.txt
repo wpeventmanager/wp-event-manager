@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.3.1
-Stable tag: 3.1.39
+Stable tag: 3.1.40
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -300,6 +300,31 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 == Changelog ==
 
+= [3.1.40] 05-12-2023 =
+
+Fixed: A Layout option is added to the Elementor "Event Listing" widget.
+Fixed: The 404 error message that is displayed in the organizer and venue form is removed.
+Fixed: Security issue with version 3.1.39 is resolved now.
+Fixed: The event_summary shortcode is now working properly.
+Fixed: The order by name attribute is now working properly.
+Fixed: The issue related to the registration button on the single event field is now resolved.
+Fixed: Issue related to the event type display on the post-an-event page is resolved.
+Fixed: The problem of duplicate event appearance in attendee information is now resolved.
+Fixed: The problem of adding an organizer is now resolved.
+Fixed: The organizer and venue ID is now displayed properly.
+Fixed: New Shortcode attribute is added.
+Fixed: New Shortcode attribute is added for event listing.
+Fixed: Code snippet to set custom expire event date time
+Fixed: Media library section images will no longer be available after deleting the data.
+Fixed: No data is available in the media library as well in the database after deleting the plugin.
+Fixed: Venue and organizer data are no longer available after deleting the plugin.
+Fixed: New screenshots and content are added to the event submission settings section.
+Fixed: Documentation is added for translating your site language without Loco Translate.
+Fixed: The issue related to the appearance of the venue in the front end is now fixed.
+Fixed: The problem of the old comments in the single event listing is now resolved.
+Fixed: code is added for sorting events on the organizer detail page.
+Fixed: RSS feed functionality document is added to the event listing section.
+Fixed: Event Listing shortcode attributes are added to the documentation.
 
 = [3.1.39] 24-10-2023 =
 
