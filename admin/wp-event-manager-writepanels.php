@@ -1470,8 +1470,10 @@ class WP_Event_Manager_Writepanels {
 						);
 						$attachments = get_posts($args);
 						if(!empty($attachments)) {
-							foreach ($attachments as $attachment) {
-								wp_delete_attachment($attachment->ID, true);
+							if(!(get_option( 'wpem_retain_attachment' ))){
+								foreach ($attachments as $attachment) {
+									wp_delete_attachment($attachment->ID, true);
+								}
 							}
 						}
 					}
@@ -1485,15 +1487,19 @@ class WP_Event_Manager_Writepanels {
 					);
 					$attachments = get_posts($args);
 					if(!empty($attachments)) {
-						foreach ($attachments as $attachment) {
-							wp_delete_attachment($attachment->ID, true);
+						if(!(get_option( 'wpem_retain_attachment' ))){
+							foreach ($attachments as $attachment) {
+								wp_delete_attachment($attachment->ID, true);
+							}
 						}
 					}
 				}
 			}
 			$thumbnail_id = get_post_thumbnail_id($post_id);
 			if(!empty($thumbnail_id)) {
-				wp_delete_attachment($thumbnail_id, true);
+				if(!(get_option( 'wpem_retain_attachment' ))){
+					wp_delete_attachment($thumbnail_id, true);
+				}
 			}
 		}
 	}
