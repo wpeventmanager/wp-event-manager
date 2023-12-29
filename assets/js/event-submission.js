@@ -409,8 +409,7 @@ EventSubmission = function () {
                         if (responce.code == 200) {
                             jQuery('select#event_organizer_ids').prepend('<option selected="selected" value="' + responce.organizer.organizer_id + '">' + responce.organizer.organizer_name + '</option>');
                             jQuery('#event_organizer_ids').trigger("chosen:updated");
-
-                            jQuery('body #submit-organizer-form .event-manager-uploaded-files').remove();
+                            jQuery('body #submit-organizer-form .event-manager-uploaded-files').html("");
                             jQuery('body #submit-organizer-form')[0].reset();
                             jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
                             //jQuery('.wpem_add_organizer').css('pointer-events', 'none');
@@ -454,7 +453,7 @@ EventSubmission = function () {
                         if (responce.code == 200) {
                             jQuery('select#event_venue_ids').append('<option selected="selected" value="' + responce.venue.venue_id + '">' + responce.venue.venue_name + '</option>');
                             jQuery('#event_venue_ids').trigger("chosen:updated");
-                            jQuery('body #submit-venue-form .event-manager-uploaded-files').remove();
+                            jQuery('body #submit-venue-form .event-manager-uploaded-files').html("");
                             jQuery('body #submit-venue-form')[0].reset();
                             jQuery('.wpem_add_venue').css('pointer-events', 'auto');
                             jQuery('.wpem_add_venue').css('pointer-events', 'none');

@@ -103,7 +103,8 @@ class Elementor_Event_Field extends Widget_Base {
         $fields = $form_submit_event_instance->merge_with_custom_fields('backend');
         foreach ($fields as $group_key => $group_fields) {
             foreach ($group_fields as $field_key => $field) {
-                $arrOption[$field_key] = $field['label'];
+                if($field['visibility'] == 1 || $field['visibility'] == true)
+                    $arrOption[$field_key] = $field['label'];
             }
         }
 

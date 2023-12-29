@@ -1259,7 +1259,7 @@ class WP_Event_Manager_Shortcodes{
 			'post_type'      => 'event_listing',
 			'post_status'    => array('expired', 'publish'),
 			'posts_per_page' => $per_page,
-			'paged'          => $paged
+			'paged'          => $current_page
 		);
 
 		$args_past['meta_query'] = array(

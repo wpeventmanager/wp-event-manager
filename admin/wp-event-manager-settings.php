@@ -95,7 +95,17 @@ class WP_Event_Manager_Settings{
 							'label'       => __('"From" address', 'wp-event-manager'), 
 							'desc'        => __("If you are going to deal with Registration emails or Event emails then you need the sender's email appears in outgoing WP Event Manager emails.", 'wp-event-manager'), 
 							'type'        => 'email'
-						)
+						),
+						array(
+							'name'       => 'wpem_retain_attachment',
+							'std'        => '0',
+							'label'      => __('Enable To Retain Attachment', 'wp-event-manager'),
+							'cb_label'   => __('Retain Banner Image After Emptying Event From
+								The Trash.', 'wp-event-manager'),
+							'desc'       => '',
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
 					),
 				),
 				'event_listings'       => array(
