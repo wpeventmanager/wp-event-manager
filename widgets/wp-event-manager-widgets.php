@@ -675,6 +675,118 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 	}
 } //end of widget class
 
+/**
+ * Event Listing Widget
+ */
+class WP_Event_Manager_Widget_Event_Listing extends WP_Event_Manager_Widget{
+
+	/**
+	 * Constructor
+	 */
+	public function __construct(){
+
+		global $wp_post_types;
+		$this->widget_cssclass    = 'event_manager widget_listing_events';
+		$this->widget_description = __('Display a list of listing listings on your site.', 'wp-event-manager');
+		$this->widget_id          = 'widget_listing_events';
+		$this->widget_name        = sprintf(wp_kses('Listing %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		
+		$this->settings           = array(
+			'title' => array(
+				'type'  => 'text',
+				'std'   => sprintf(wp_kses('Listing %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'label' => __('Title', 'wp-event-manager')
+			),
+			'number' => array(
+				'type'  => 'number',
+				'step'  => 1,
+				'min'   => 1,
+				'max'   => '',
+				'std'   => 10,
+				'label' => __('Number of listings to show', 'wp-event-manager')
+			),
+			'order' => array(
+				'type'  => 'select',
+				'std'   => 10,
+				'label' => __('Order by', 'wp-event-manager'),
+				'options' => array(
+					'ASC' => __('Ascending (ASC)', 'wp-event-manager'),
+					'DESC' => __('Descending  (DESC)', 'wp-event-manager')
+				)
+			),
+			'widget_style' => array(
+				'type'  => 'select',
+				'std'   => 10,
+				'label' => __('Widget Style', 'wp-event-manager'),
+				'options' => array(
+					'box_widget' => __('Box View', 'wp-event-manager'),
+					'list_widget' => __('List View', 'wp-event-manager')
+				)
+			)
+		);
+		$this->register();
+	}
+
+	/**
+	 * widget function.
+	 *
+	 * @see WP_Widget
+	 * @access public
+	 * @param array $args
+	 * @param array $instance
+	 * @return void
+	 */
+	public function widget($args, $instance){
+
+		ob_start();
+		extract($args);
+
+		if (!empty($instance['title']))
+			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
+		else
+			$title = sprintf(wp_kses('Event Listing', 'wp-event-manager'));
+
+		if (!empty($instance['number']))
+			$number = absint($instance['number']);
+		else
+			$number = 4;
+
+		$listing_events   = get_event_listings(
+			array(
+				'posts_per_page'    => $number,
+				'orderby'           => 'event_start_date',
+				'order'             => isset($instance['order']) ? $instance['order'] : 'ASC',
+			)
+		);
+
+		if (isset($instance['widget_style']) && $instance['widget_style'] == 'list_widget')
+			$widget_style = 'wpem-single-event-widget-list-view';
+		else
+			$widget_style = '';  
+
+		if ($listing_events->have_posts()) :
+			echo wp_kses_post($before_widget);
+			if ($title) 
+				echo wp_kses_post($before_title . $title . $after_title); ?>
+
+			<ul class="event_listings">
+				<?php while ($listing_events->have_posts()) : $listing_events->the_post();
+					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
+				endwhile; ?>
+			</ul>
+
+			<?php echo wp_kses_post($after_widget); ?>
+
+		<?php else : 
+			get_event_manager_template_part('content-widget', 'no-events-found');
+		endif;
+
+		wp_reset_postdata();
+		$content = ob_get_clean();
+		echo wp_kses_post($content);
+	}
+} //end of widget class
+
 register_widget('WP_Event_Manager_Widget_Recent_Events');
 
 register_widget('WP_Event_Manager_Widget_Featured_Events');
@@ -682,3 +794,5 @@ register_widget('WP_Event_Manager_Widget_Featured_Events');
 register_widget('WP_Event_Manager_Widget_Upcoming_Events');
 
 register_widget('WP_Event_Manager_Widget_Past_Events');
+
+register_widget('WP_Event_Manager_Widget_Event_Listing');
