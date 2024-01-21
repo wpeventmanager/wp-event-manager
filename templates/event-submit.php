@@ -13,7 +13,7 @@ global $event_manager; ?>
 	 endif; 
 	if(event_manager_user_can_post_event() || event_manager_user_can_edit_event($event_id)) : ?>
 		<!-- Event Information Fields -->
-		<h2 class="wpem-form-title wpem-heading-text"><?php _e('Event Details', 'wp-event-manager'); ?></h2>
+		<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Event Details', 'wp-event-manager'); ?></h2>
 		<?php
 		if(isset($resume_edit) && $resume_edit) {
 			printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing event. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key= %s ">' . __('Create A New Event', 'wp-event-manager') . '</a>', esc_attr($resume_edit));
@@ -45,7 +45,7 @@ global $event_manager; ?>
 						continue;
 					endif;?>
 					<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-						<h2 class="wpem-form-title wpem-heading-text"><?php _e('Organizer Details', 'wp-event-manager'); ?></h2>
+						<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Organizer Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php esc_attr_e($key); ?>">
 							<?php _e(esc_attr($field['label']), 'wp-event-manager');
 							echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
@@ -68,7 +68,7 @@ global $event_manager; ?>
 						continue;
 					endif;?>
 					<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-						<h2 class="wpem-form-title wpem-heading-text"><?php _e('Venue Details', 'wp-event-manager'); ?></h2>
+						<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Venue Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php esc_attr_e($key); ?>">
 							<?php _e(esc_attr($field['label']), 'wp-event-manager');
 							echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
@@ -105,17 +105,17 @@ global $event_manager; ?>
 	}
 	?>
 
-	<div id="wpem_add_organizer_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Add Organizer', 'wp-event-manager'); ?>">
+	<div id="wpem_add_organizer_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php esc_attr_e('Add Organizer', 'wp-event-manager'); ?>">
 		<div class="wpem-modal-content-wrapper">
 			<div class="wpem-modal-header">
 				<div class="wpem-modal-header-title">
-					<h3 class="wpem-modal-header-title-text"><?php _e('Add Organizer', 'wp-event-manager'); ?></h3>
+					<h3 class="wpem-modal-header-title-text"><?php esc_html_e('Add Organizer', 'wp-event-manager'); ?></h3>
 				</div>
 				<div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
 			</div>
 			<div class="wpem-modal-content">
 				<form method="post" id="submit-organizer-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
-					<h2 class="wpem-form-title wpem-heading-text"><?php _e('Organizer Details', 'wp-event-manager'); ?></h2>
+					<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Organizer Details', 'wp-event-manager'); ?></h2>
 
 					<?php do_action('submit_organizer_form_organizer_fields_start'); ?>
 
@@ -156,17 +156,17 @@ if(get_option('enable_event_venue')) :
 	$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
 	$venue_fields =	$form_submit_venue_instance->merge_with_custom_fields('backend'); ?>
 
-	<div id="wpem_add_venue_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Add Venue', 'wp-event-manager'); ?>">
+	<div id="wpem_add_venue_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php esc_attr_e('Add Venue', 'wp-event-manager'); ?>">
 		<div class="wpem-modal-content-wrapper">
 			<div class="wpem-modal-header">
 				<div class="wpem-modal-header-title">
-					<h3 class="wpem-modal-header-title-text"><?php _e('Add Venue', 'wp-event-manager'); ?></h3>
+					<h3 class="wpem-modal-header-title-text"><?php esc_html_e('Add Venue', 'wp-event-manager'); ?></h3>
 				</div>
 				<div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
 			</div>
 			<div class="wpem-modal-content">
 				<form method="post" id="submit-venue-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
-					<h2 class="wpem-form-title wpem-heading-text"><?php _e('Venue Details', 'wp-event-manager'); ?></h2>
+					<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Venue Details', 'wp-event-manager'); ?></h2>
 
 					<?php do_action('submit_venue_form_venue_fields_start'); ?>
 
@@ -189,7 +189,7 @@ if(get_option('enable_event_venue')) :
 					<div class="wpem-form-footer">
 						<input type="hidden" name="venue_id" value="0">
 						<input type="hidden" name="step" value="0">
-						<input type="button" name="submit_venue" class="wpem-theme-button wpem_add_venue" value="<?php _e('Add Venue', 'wp-event-manager'); ?>" />
+						<input type="button" name="submit_venue" class="wpem-theme-button wpem_add_venue" value="<?php esc_attr_e('Add Venue', 'wp-event-manager'); ?>" />
 						<div id="venue_message"></div>
 					</div>
 				</form>

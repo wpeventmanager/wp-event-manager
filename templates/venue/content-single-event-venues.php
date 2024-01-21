@@ -10,7 +10,7 @@ if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
     $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-venue-info-title';?>
 
     <div class="<?php echo esc_attr($event_content_toggle_class); ?> active">
-        <h3 class="wpem-heading-text"><?php _e('Venue', 'wp-event-manager'); ?></h3>
+        <h3 class="wpem-heading-text"><?php esc_html_e('Venue', 'wp-event-manager'); ?></h3>
     </div>
 
     <div class="wpem-venue-wrapper wpem-listing-accordion-panel active" style="display: block;">
@@ -61,30 +61,30 @@ if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
                                    
                                     if (!empty($venue_website)) { ?>
                                         <div class="wpem-social-icon wpem-weblink">
-                                            <a href="<?php echo esc_url($venue_website); ?>" target="_blank" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>"><?php _e('Website', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($venue_website); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>"><?php esc_html_e('Website', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php }
 
                                     if (!empty($venue_facebook)) { ?>
                                         <div class="wpem-social-icon wpem-facebook">
-                                            <a href="<?php echo esc_url($venue_facebook); ?>" target="_blank" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($venue_facebook); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php }
 
                                     if (!empty($venue_instagram)) { ?>
                                         <div class="wpem-social-icon wpem-instagram">
-                                            <a href="<?php echo esc_url($venue_instagram); ?>" target="_blank" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php _e('Instagram', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($venue_instagram); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php esc_html_e('Instagram', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php }
 
                                     if (!empty($venue_twitter)) { ?>
                                         <div class="wpem-social-icon wpem-twitter">
-                                            <a href="<?php echo esc_url($venue_twitter); ?>" target="_blank" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php _e('Twitter', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($venue_twitter); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php }
                                     if (!empty($venue_youtube)) { ?>
                                         <div class="wpem-social-icon wpem-youtube">
-                                            <a href="<?php echo esc_url($venue_youtube); ?>" target="_blank" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php _e('Youtube', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($venue_youtube); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php esc_html_e('Youtube', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php } ?>
 
@@ -133,7 +133,7 @@ if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
                     $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-venue-info-title'; ?>
 
                     <div class="<?php echo esc_attr($event_content_toggle_class); ?> active">
-                        <h3 class="wpem-heading-text"><?php _e('Venue', 'wp-event-manager'); ?></h3>
+                        <h3 class="wpem-heading-text"><?php esc_html_e('Venue', 'wp-event-manager'); ?></h3>
                         <?php if ($event_content_toggle) : ?>
                             <i class="wpem-icon-minus"></i><i class="wpem-icon-plus"></i>
                         <?php endif; ?>

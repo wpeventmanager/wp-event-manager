@@ -9,15 +9,15 @@
                     <div class="organizer-counter-icon-wrap"><i class="wpem-icon-users"></i></div>
                     <div class="organizer-counter-number-wrap"><?php echo esc_attr(count($organizers)); ?></div>
                 </div>
-                <div class="organizer-counter-bottom-wrap"><?php _e('Organizers', 'wp-event-manager'); ?></div>
+                <div class="organizer-counter-bottom-wrap"><?php esc_html_e('Organizers', 'wp-event-manager'); ?></div>
             </div>
             <div class="wpem-available-events-number-icon">
-                <a href="<?php echo esc_url(get_the_permalink(get_option('event_manager_events_page_id'))); ?>" class="wpem-list-group-item" title="<?php _e('Browse events', 'wp-event-manager'); ?>">
+                <a href="<?php echo esc_url(get_the_permalink(get_option('event_manager_events_page_id'))); ?>" class="wpem-list-group-item" title="<?php esc_attr_e('Browse events', 'wp-event-manager'); ?>">
                     <div class="organizer-counter-upper-wrap">
                         <div class="organizer-counter-icon-wrap"><i class="wpem-icon-calendar"></i></div>
                         <div class="organizer-counter-number-wrap"><?php echo esc_attr($countAllEvents); ?></div>
                     </div>
-                    <div class="organizer-counter-bottom-wrap"><?php _e('Available events', 'wp-event-manager'); ?></div>
+                    <div class="organizer-counter-bottom-wrap"><?php esc_html_e('Available events', 'wp-event-manager'); ?></div>
                 </a>
             </div>
         </div>
@@ -26,7 +26,7 @@
         <!-- shows numbers and alphabet -->
         <div class="wpem-main organizer-letters">
             <div class="organizer-letters-list">
-                <a id="ALL" href="#All"><?php _e('All', 'wp-event-manager'); ?></a>
+                <a id="ALL" href="#All"><?php esc_html_e('All', 'wp-event-manager'); ?></a>
             </div>
 
             <?php
@@ -55,7 +55,7 @@
                                     <?php foreach ($organizers as $organizer_id => $organizer_name) :
                                         $count = get_event_organizer_count($organizer_id); ?>
                                         <div class="organizer-list-items">
-                                            <a href="<?php echo esc_url(get_the_permalink($organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php _e('Click here, for more info.', 'wp-event-manager'); ?>">
+                                            <a href="<?php echo esc_url(get_the_permalink($organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
                                                 <?php $organizer = get_post($organizer_id); ?>
                                                 <?php if ($show_thumb && $show_thumb == 'true') : ?>
                                                     <div class="wpem-organizer-logo"><?php display_organizer_logo('', '', $organizer); ?></div>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="no-organizer wpem-d-none">
                     <div class="wpem-alert wpem-alert-info">
-                        <?php _e('There are no organizers.', 'wp-event-manager'); ?>
+                        <?php esc_html_e('There are no organizers.', 'wp-event-manager'); ?>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
 
     <?php else : ?>
         <div class="wpem-alert wpem-alert-info">
-            <?php _e('There are no organizers.', 'wp-event-manager'); ?>
+            <?php esc_html_e('There are no organizers.', 'wp-event-manager'); ?>
         </div>
     <?php endif; ?>
 </div>

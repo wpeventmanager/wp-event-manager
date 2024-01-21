@@ -344,7 +344,7 @@ A prior Backup does no harm before updating the plugin!',
 	 * Ran on WP admin_init hook.
 	 */
 	public function admin_init() {
-		if(!empty($_GET['event-manager-main-admin-dismiss'])) {
+		if(!empty( sanitize_text_field( $_GET['event-manager-main-admin-dismiss']) )) {
 			update_option('event_manager_rating_showcase_admin_notices_dismiss', 1);
 		}
 	}

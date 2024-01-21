@@ -12,7 +12,7 @@
 				echo wp_kses_post(get_event_listing_pagination($events->max_num_pages));?>
 			<?php else :?>
 				<div id="load_more_events_loader">
-					<a class="load_more_events" id="load_more_events" href="#" ><strong><?php _e('Load more listings', 'wp-event-manager'); ?></strong></a>
+					<a class="load_more_events" id="load_more_events" href="#" ><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
 				</div>
 			<?php endif;
 		endif;

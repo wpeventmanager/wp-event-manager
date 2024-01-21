@@ -189,7 +189,7 @@ class WP_Event_Manager_Shortcodes{
 
 		ob_start();
 
-		$search_order_by = 	isset($_GET['search_order_by']) ? sanitize_text_field($_GET['search_order_by']) : '';
+		$search_order_by = 	isset($_GET['search_order_by']) ? sanitize_text_field( wp_unslash( $_GET['search_order_by']) ) : '';
 
 		if(isset($search_order_by) && !empty($search_order_by)) {
 			$search_order_by = explode('|', $search_order_by);
@@ -212,7 +212,7 @@ class WP_Event_Manager_Shortcodes{
 			'author'              => get_current_user_id()
 		));
 
-		$event_manager_keyword = isset($_GET['search_keywords']) ? sanitize_text_field($_GET['search_keywords']) : '';
+		$event_manager_keyword = isset($_GET['search_keywords']) ? sanitize_text_field( wp_unslash( $_GET['search_keywords']) ) : '';
 		if(!empty($event_manager_keyword) && strlen($event_manager_keyword) >= apply_filters('event_manager_get_listings_keyword_length_threshold', 2)) {
 			$args['s'] = $event_manager_keyword;
 			add_filter('posts_search', 'get_event_listings_keyword_search');

@@ -4,13 +4,13 @@
     <div class="wpem-tabs-wrapper">
         <ul class="wpem-tabs-wrap">
             <li class="wpem-tab-link <?php echo esc_attr($active_tab) == 'current' ? 'active' : '' ?>" data-tab="current">
-                <?php _e('Current Events', 'wp-event-manager'); ?>
+                <?php esc_html_e('Current Events', 'wp-event-manager'); ?>
             </li>
             <li class="wpem-tab-link <?php echo esc_attr($active_tab) == 'upcoming' ? 'active' : '' ?>" data-tab="upcoming">
-                <?php _e('Upcoming Events', 'wp-event-manager'); ?>
+                <?php esc_html_e('Upcoming Events', 'wp-event-manager'); ?>
             </li>
             <li class="wpem-tab-link <?php echo esc_attr($active_tab) == 'past' ? 'active' : '' ?>" data-tab="past">
-                <?php _e('Past Events', 'wp-event-manager'); ?>
+                <?php esc_html_e('Past Events', 'wp-event-manager'); ?>
             </li>
         </ul>
 
