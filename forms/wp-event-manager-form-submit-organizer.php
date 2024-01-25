@@ -472,7 +472,13 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			}
 			foreach($maybe_attach as $attachment_url) {
 				if(!in_array($attachment_url, $attachment_urls) && !is_numeric($attachment_url)) {
-					$this->create_attachment($attachment_url);
+					$attachment_id = $this->create_attachment($attachment_url);
+
+					if ( empty( $attachment_id ) ) {
+						delete_post_thumbnail( $this->organizer_id );
+					} else {
+						set_post_thumbnail( $this->organizer_id, $attachment_id );
+					}
 				}
 			}
 		}
