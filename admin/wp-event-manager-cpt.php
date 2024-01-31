@@ -589,7 +589,9 @@ class WP_Event_Manager_CPT {
 	 * @since 3.1.16
 	 */
 	public function organizer_columns($columns)	{
-		$columns = array_slice($columns, 0, 2, true) + array('organizer_email' => __('Email', 'wp-event-manager')) + array_slice($columns, 2, count($columns) - 2, true);
+
+		$columns = array_slice($columns, 0, 2, true) + array( 'organizer_id' => __('ID', 'wp-event-manager' ), 'organizer_email' => __('Email', 'wp-event-manager') ) + array_slice($columns, 2, count($columns) - 2, true);
+		
 		return $columns;
 	}
 
@@ -606,6 +608,9 @@ class WP_Event_Manager_CPT {
 			case 'organizer_email':
 				echo esc_attr(get_post_meta($post_id, '_organizer_email', true));
 				break;
+			case 'organizer_id':
+				echo get_the_ID();
+				break;	
 		}
 	}
 
