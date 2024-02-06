@@ -1454,6 +1454,7 @@ class WP_Event_Manager_Writepanels {
 			'post_type' => 'event_listing'
 		);
 		$children = get_children($args, ARRAY_A);
+		$retain_attachment = get_option( 'wpem_retain_attachment' );
 		if(sizeof($children) == 0) {
 			$event_banner = get_event_banner($post_id);
 			if(!empty($event_banner)) {
@@ -1470,7 +1471,7 @@ class WP_Event_Manager_Writepanels {
 						);
 						$attachments = get_posts($args);
 						if(!empty($attachments)) {
-							if(!(get_option( 'wpem_retain_attachment' ))){
+							if( !$retain_attachment ){
 								foreach ($attachments as $attachment) {
 									wp_delete_attachment($attachment->ID, true);
 								}
@@ -1487,7 +1488,7 @@ class WP_Event_Manager_Writepanels {
 					);
 					$attachments = get_posts($args);
 					if(!empty($attachments)) {
-						if(!(get_option( 'wpem_retain_attachment' ))){
+						if( !$retain_attachment ){
 							foreach ($attachments as $attachment) {
 								wp_delete_attachment($attachment->ID, true);
 							}
@@ -1497,7 +1498,7 @@ class WP_Event_Manager_Writepanels {
 			}
 			$thumbnail_id = get_post_thumbnail_id($post_id);
 			if(!empty($thumbnail_id)) {
-				if(!(get_option( 'wpem_retain_attachment' ))){
+				if( !$retain_attachment ){
 					wp_delete_attachment($thumbnail_id, true);
 				}
 			}
