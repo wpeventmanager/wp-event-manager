@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.3.1
-Stable tag: 3.1.41
+Stable tag: 3.1.42
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -299,6 +299,17 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= [3.1.42] 07-02-2024 =
+
+Fixed : The problem of the undefined arrow key while updating Elementor is resolved.
+Fixed : The organizer logo can now be saved in the backend.
+Fixed : In organizer, ID field is available in the backend.
+Fixed: The issue of image removal after deleting an event is resolved.
+Fixed : Visual Composer added event listing shortcodes.
+Fixed : Security issue fixed and improved.
+Added : The event country field can now be hidden with a snippet code.
+Added : Event list view is now available in Elementor.
 
 = [3.1.41] 29-12-2023 =
 
