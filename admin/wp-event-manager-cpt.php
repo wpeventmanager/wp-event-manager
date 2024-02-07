@@ -126,7 +126,7 @@ class WP_Event_Manager_CPT {
 	 * Approve a single event.
 	 */
 	public function approve_event()	{
-		if(!empty($_GET['approve_event']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'approve_event') && current_user_can('publish_post',sanitize_text_field($_GET['approve_event']))) {
+		if(!empty($_GET['approve_event']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'approve_event') && current_user_can('publish_post',sanitize_text_field( wp_unslash( $_GET['approve_event'] )))) {
 			$post_id = absint($_GET['approve_event']);
 			$event_end_date    = get_post_meta($post_id, '_event_end_date', true);
 			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
@@ -212,7 +212,7 @@ class WP_Event_Manager_CPT {
 			return;
 		}
 		$output = "<select name='event_listing_category' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected(isset($_GET['event_listing_category']) ? $_GET['event_listing_category'] : '', '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
+		$output .= '<option value="" ' . selected(isset($_GET['event_listing_category']) ? sanitize_text_field( wp_unslash( $_GET['event_listing_category'] ) ) : '', '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $r);
 		$output .= '</select>';
 		printf('%s', $output);
@@ -243,7 +243,7 @@ class WP_Event_Manager_CPT {
 		}
 
 		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected(isset($_GET['event_listing_type']) ? $_GET['event_listing_type'] : '', '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
+		$output .= '<option value="" ' . selected(isset($_GET['event_listing_type']) ? sanitize_text_field( wp_unslash( $_GET['event_listing_type'] ) ) : '', '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
 
@@ -589,7 +589,9 @@ class WP_Event_Manager_CPT {
 	 * @since 3.1.16
 	 */
 	public function organizer_columns($columns)	{
-		$columns = array_slice($columns, 0, 2, true) + array('organizer_email' => __('Email', 'wp-event-manager')) + array_slice($columns, 2, count($columns) - 2, true);
+
+		$columns = array_slice($columns, 0, 2, true) + array( 'organizer_id' => __('ID', 'wp-event-manager' ), 'organizer_email' => __('Email', 'wp-event-manager') ) + array_slice($columns, 2, count($columns) - 2, true);
+		
 		return $columns;
 	}
 
@@ -606,6 +608,9 @@ class WP_Event_Manager_CPT {
 			case 'organizer_email':
 				echo esc_attr(get_post_meta($post_id, '_organizer_email', true));
 				break;
+			case 'organizer_id':
+				echo get_the_ID();
+				break;	
 		}
 	}
 

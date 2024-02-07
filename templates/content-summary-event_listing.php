@@ -14,7 +14,7 @@
 					</div>
 					<div class="wpem-event-location">
 						<span class="wpem-event-location-text">
-							<?php if(get_event_location()=='Online Event'): echo esc_attr('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?>
+							<?php if(get_event_location()=='Online Event'): esc_html_e('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?>
 						</span>
 					</div>                        
 				    <div class="wpem-event-type"><?php display_event_type(); ?></div>

@@ -15,12 +15,12 @@ if (!empty($field['value']) && is_array($field['value'])) :
                     <div class="wpem-ticket-counter-wrapper">
                         <div class="wpem-ticket-counter"><?php echo esc_attr(absint($index)+1); ?></div>
                     </div>
-                    <div class="wpem-ticket-notice-info"><a class="ticket-notice-info" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?php _e('You can\'t delete ticket once it is added.You can make it private from settings tab.', 'wp-event-manager'); ?>" title="<?php _e('You can\'t delete ticket once it is added.You can make it private from settings tab.', 'wp-event-manager');?>"><i class="wpem-icon-blocked"></i></a></div>
+                    <div class="wpem-ticket-notice-info"><a class="ticket-notice-info" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?php esc_attr_e('You can\'t delete ticket once it is added.You can make it private from settings tab.', 'wp-event-manager'); ?>" title="<?php esc_attr_e('You can\'t delete ticket once it is added.You can make it private from settings tab.', 'wp-event-manager');?>"><i class="wpem-icon-blocked"></i></a></div>
                 </div>
 
                 <ul class="wpem-tabs-wrap">
-                    <li class="wpem-tab-link active" data-tab="sell-ticket-details_<?php echo esc_attr($index); ?>"><?php _e('Ticket details', 'wp-event-manager'); ?></li>
-                    <li class="wpem-tab-link" data-tab="<?php echo esc_attr($key); ?>_<?php echo esc_attr(absint($index)); ?>"><?php _e('Settings', 'wp-event-manager'); ?></li>
+                    <li class="wpem-tab-link active" data-tab="sell-ticket-details_<?php echo esc_attr($index); ?>"><?php esc_html_e('Ticket details', 'wp-event-manager'); ?></li>
+                    <li class="wpem-tab-link" data-tab="<?php echo esc_attr($key); ?>_<?php echo esc_attr(absint($index)); ?>"><?php esc_html_e('Settings', 'wp-event-manager'); ?></li>
                 </ul>
 
                 <div id="sell-ticket-details-<?php echo esc_attr($key) . '-' . $index; ?>" class="wpem-tab-content current">

@@ -6,7 +6,7 @@ if (is_user_logged_in()) : ?>
 		<div class="field account-sign-in wpem-alert wpem-alert-info"> <?php $user = wp_get_current_user();
 			printf(wp_kses(__('You are currently signed in as <strong>%s</strong>.', 'wp-event-manager'), array('strong' => array())), $user->user_login); ?>
 			 <a href="<?php echo apply_filters('submit_event_form_logout_url', esc_url(wp_logout_url(get_permalink()))); ?>">
-			 	<?php _e('Sign out', 'wp-event-manager'); ?>
+			 	<?php esc_html_e('Sign out', 'wp-event-manager'); ?>
 			</a>
 		</div>
 	</div>
@@ -16,9 +16,9 @@ if (is_user_logged_in()) : ?>
 	$registration_fields          = wp_event_manager_get_registration_fields();
 	$generate_username_from_email = event_manager_generate_username_from_email();	?>
 	<div class="wpem-form-group">
-		<label class="wpem-form-label-text"><?php _e('Have an account?', 'wp-event-manager'); ?></label>
+		<label class="wpem-form-label-text"><?php esc_html_e('Have an account?', 'wp-event-manager'); ?></label>
 		<div class="field account-sign-in wpem-alert wpem-alert-info">
-			<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) : 	esc_url(home_url() . '/wp-login.php'); ?>"><?php _e('Sign in', 'wp-event-manager'); ?></a>
+			<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) : 	esc_url(home_url() . '/wp-login.php'); ?>"><?php esc_html_e('Sign in', 'wp-event-manager'); ?></a>
 			<?php if ($registration_enabled) : ?>
 				<?php sprintf( _e('If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email.', 'wp-event-manager'));
 				 $account_required ? '' : __('(optional)', 'wp-event-manager'); ?>

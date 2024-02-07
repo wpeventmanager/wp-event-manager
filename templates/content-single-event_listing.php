@@ -18,15 +18,15 @@ $event = $post; ?>
         <?php 
         //check if event is expired/cancelled/preview mode then display message else display event details
         if (get_option('event_manager_hide_expired_content', 1) && 'expired' === $post->post_status) : ?>
-            <div class="wpem-alert wpem-alert-danger"><?php _e('This listing has been expired.', 'wp-event-manager'); ?></div>
+            <div class="wpem-alert wpem-alert-danger"><?php esc_html_e('This listing has been expired.', 'wp-event-manager'); ?></div>
         <?php else : 
             if (is_event_cancelled()) : ?>
                 <div class="wpem-alert wpem-alert-danger">
-                    <span class="event-cancelled"><?php _e('This event has been cancelled.', 'wp-event-manager'); ?></span>
+                    <span class="event-cancelled"><?php esc_html_e('This event has been cancelled.', 'wp-event-manager'); ?></span>
                 </div>
             <?php elseif (!attendees_can_apply() && 'preview' !== $post->post_status) : ?>
                 <div class="wpem-alert wpem-alert-danger">
-                    <span class="listing-expired"><?php _e('Registrations have closed.', 'wp-event-manager'); ?></span>
+                    <span class="listing-expired"><?php esc_html_e('Registrations have closed.', 'wp-event-manager'); ?></span>
                 </div>
             <?php endif;
             
@@ -449,7 +449,7 @@ $event = $post; ?>
                                         </span>
                                         <?php
                                         if (get_event_end_date() != '') {
-                                            _e(' to', 'wp-event-manager'); ?>
+                                            esc_html_e(' to', 'wp-event-manager'); ?>
                                             <br />
                                             <span class="wpem-event-date-time-text"><?php echo  wp_kses_post(date_i18n($date_format, strtotime($end_date))); ?>
                                                 <?php if ($end_time) {
@@ -464,14 +464,14 @@ $event = $post; ?>
                                     <!-- Event Registration End Date start-->
                                     <?php if (get_event_registration_end_date()) : ?>
                                         <div class="clearfix">&nbsp;</div>
-                                        <h3 class="wpem-heading-text"><?php _e('Registration End Date', 'wp-event-manager'); ?></h3>
+                                        <h3 class="wpem-heading-text"><?php esc_html_e('Registration End Date', 'wp-event-manager'); ?></h3>
                                         <?php display_event_registration_end_date(); ?>
                                     <?php endif; ?>
                                     <!-- Registration End Date End-->
                                      <!-- Event location section start-->
                                     <div>
                                         <div class="clearfix">&nbsp;</div>
-                                        <h3 class="wpem-heading-text"><?php _e('Location', 'wp-event-manager'); ?></h3>
+                                        <h3 class="wpem-heading-text"><?php esc_html_e('Location', 'wp-event-manager'); ?></h3>
                                         <div>
                                             <?php
                                             if (get_event_address()) { ?>
@@ -493,24 +493,24 @@ $event = $post; ?>
                                     <?php /*event types section */ ?>
                                     <?php if (get_option('event_manager_enable_event_types') && get_event_type($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
-                                        <h3 class="wpem-heading-text"><?php _e('Event Types', 'wp-event-manager'); ?></h3>
+                                        <h3 class="wpem-heading-text"><?php esc_html_e('Event Types', 'wp-event-manager'); ?></h3>
                                         <div class="wpem-event-type"><?php display_event_type($event); ?></div>
                                     <?php endif;
                                     /* event categories section */
                                     if (get_option('event_manager_enable_categories') && get_event_category($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
-                                        <h3 class="wpem-heading-text"><?php _e('Event Category', 'wp-event-manager'); ?></h3>
+                                        <h3 class="wpem-heading-text"><?php esc_html_e('Event Category', 'wp-event-manager'); ?></h3>
                                         <div class="wpem-event-category"><?php display_event_category($event); ?></div>
                                     <?php endif; 
                                     /* youtube video button section */    
                                     if (get_organizer_youtube($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
-                                        <a id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php _e('Watch video', 'wp-event-manager'); ?></a>
+                                        <a id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php esc_html_e('Watch video', 'wp-event-manager'); ?></a>
                                         <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php _e('Watch video', 'wp-event-manager'); ?>">
                                             <div class="wpem-modal-content-wrapper">
                                                 <div class="wpem-modal-header">
                                                     <div class="wpem-modal-header-title">
-                                                        <h3 class="wpem-modal-header-title-text"><?php _e('Watch video', 'wp-event-manager'); ?></h3>
+                                                        <h3 class="wpem-modal-header-title-text"><?php esc_html_e('Watch video', 'wp-event-manager'); ?></h3>
                                                     </div>
                                                     <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                                                 </div>
@@ -532,24 +532,24 @@ $event = $post; ?>
                                 $is_friend_share = apply_filters('event_manager_event_friend_share', true);
 
                                 if ($is_friend_share) : ?>
-                                    <h3 class="wpem-heading-text"><?php _e('Share With Friends', 'wp-event-manager'); ?></h3>
+                                    <h3 class="wpem-heading-text"><?php esc_html_e('Share With Friends', 'wp-event-manager'); ?></h3>
                                     <div class="wpem-share-this-event">
                                         <div class="wpem-event-share-lists">
                                             <?php do_action('single_event_listing_social_share_start'); ?>
                                             <div class="wpem-social-icon wpem-facebook">
-                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink(); ?>" title="Share this page on Facebook"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink(); ?>" title="Share this page on Facebook"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
                                             </div>
                                             <div class="wpem-social-icon wpem-twitter">
-                                                <a href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink(); ?>" title="Share this page on Twitter"><?php _e('Twitter', 'wp-event-manager'); ?></a>
+                                                <a href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink(); ?>" title="Share this page on Twitter"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
                                             </div>
                                             <div class="wpem-social-icon wpem-linkedin">
-                                                <a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php display_event_permalink(); ?>" title="Share this page on Linkedin"><?php _e('Linkedin', 'wp-event-manager'); ?></a>
+                                                <a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php display_event_permalink(); ?>" title="Share this page on Linkedin"><?php esc_html_e('Linkedin', 'wp-event-manager'); ?></a>
                                             </div>
                                             <div class="wpem-social-icon wpem-xing">
-                                                <a href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink(); ?>" title="Share this page on Xing"><?php _e('Xing', 'wp-event-manager'); ?></a>
+                                                <a href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink(); ?>" title="Share this page on Xing"><?php esc_html_e('Xing', 'wp-event-manager'); ?></a>
                                             </div>
                                             <div class="wpem-social-icon wpem-pinterest">
-                                                <a href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink(); ?>" title="Share this page on Pinterest"><?php _e('Pinterest', 'wp-event-manager'); ?></a>
+                                                <a href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink(); ?>" title="Share this page on Pinterest"><?php esc_html_e('Pinterest', 'wp-event-manager'); ?></a>
                                             </div>
                                             <?php do_action('single_event_listing_social_share_end'); ?>
                                         </div>

@@ -18,7 +18,7 @@ global $event_manager; ?>
         //     $organizer_fields['organizer_email']['value'] = $user->user_email;
         // }  ?>
 
-        <h2 class="wpem-form-title wpem-heading-text"><?php _e('Organizer Details', 'wp-event-manager'); ?></h2>
+        <h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Organizer Details', 'wp-event-manager'); ?></h2>
         <?php if (isset($resume_edit) && $resume_edit) {
             printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing organizer. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . __('Create A New organizer', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
         }        
@@ -44,9 +44,9 @@ global $event_manager; ?>
         </div>
     <?php } else {   ?>
         <div class="wpem-form-group">
-            <label class="wpem-form-label-text"><?php _e('Have an account?', 'wp-event-manager'); ?></label>
+            <label class="wpem-form-label-text"><?php esc_html_e('Have an account?', 'wp-event-manager'); ?></label>
             <div class="field account-sign-in wpem-alert wpem-alert-info">
-                <a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) :esc_url(home_url() . '/wp-login.php'); ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>
+                <a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) :esc_url(home_url() . '/wp-login.php'); ?>"><?php esc_html_e('Log In', 'wp-event-manager'); ?></a>
                 <?php echo esc_attr(" to Submit the List of Organizers from your account.", "wp-event-manager"); ?>
             </div>
         </div>

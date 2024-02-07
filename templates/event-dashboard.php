@@ -98,15 +98,15 @@
 			<?php else : ?>
 				<div class="wpem-dashboard-main-header">
 					<div class="wpem-dashboard-main-title wpem-dashboard-main-filter">
-						<h3 class="wpem-theme-text"><?php _e('Event Dashboard', 'wp-event-manager'); ?></h3>
+						<h3 class="wpem-theme-text"><?php esc_html_e('Event Dashboard', 'wp-event-manager'); ?></h3>
 						<div class="wpem-d-inline-block wpem-dashboard-i-block-btn">
 							<?php do_action('event_manager_event_dashboard_button_action_start'); ?>
 							<?php $submit_event = get_option('event_manager_submit_event_form_page_id');
 							if (!empty($submit_event)) : ?>
-								<a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php _e('Add Event', 'wp-event-manager'); ?>" href="<?php echo get_permalink($submit_event); ?>"><i class="wpem-icon-plus"></i></a>
+								<a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php esc_attr_e('Add Event', 'wp-event-manager'); ?>" href="<?php echo get_permalink($submit_event); ?>"><i class="wpem-icon-plus"></i></a>
 							<?php endif; ?>
 							<?php do_action('event_manager_event_dashboard_button_action_end'); ?>
-							<a href="javascript:void(0)" title="<?php _e('Filter', 'wp-event-manager'); ?>" class="wpem-dashboard-event-filter wpem-dashboard-header-btn"><i class="wpem-icon-filter"></i></a>
+							<a href="javascript:void(0)" title="<?php esc_attr_e('Filter', 'wp-event-manager'); ?>" class="wpem-dashboard-event-filter wpem-dashboard-header-btn"><i class="wpem-icon-filter"></i></a>
 						</div>
 					</div>
 
@@ -147,12 +147,12 @@
 							<?php do_action('event_manager_event_dashboard_event_filter_end'); ?>
 							<div class="wpem-events-filter-block wpem-events-filter-submit">
 								<div class="wpem-form-group">
-									<button type="submit" class="wpem-theme-button"><?php _e('Filter', 'wp-event-manager'); ?></button>
+									<button type="submit" class="wpem-theme-button"><?php esc_html_e('Filter', 'wp-event-manager'); ?></button>
 								</div>
 							</div>
 							<div class="wpem-events-filter-block wpem-events-filter-submit">
 								<div class="wpem-form-group">
-									<button type="reset" class="wpem-theme-button" id="reset_dashboard"><?php _e('Reset', 'wp-event-manager'); ?></button>
+									<button type="reset" class="wpem-theme-button" id="reset_dashboard"><?php esc_html_e('Reset', 'wp-event-manager'); ?></button>
 								</div>
 							</div>
 						</div>
@@ -164,7 +164,7 @@
 						<div class="wpem-dashboard-event-list-body">
 
 							<?php if (!$events) : ?>
-								<div class="wpem-alert wpem-alert-danger"><?php _e('You do not have any active events.', 'wp-event-manager'); ?></div>
+								<div class="wpem-alert wpem-alert-danger"><?php esc_html_e('You do not have any active events.', 'wp-event-manager'); ?></div>
 							<?php else :
 								foreach ($events as $event) : ?>
 									<div class="wpem-dashboard-event-list">
@@ -177,10 +177,10 @@
 														<?php echo esc_attr($event->post_title); ?> <small class="wpem-event-status-<?php echo sanitize_title(get_event_status($event)); ?>"><?php display_event_status($event); ?></small>
 													<?php endif; 
 													if (is_event_cancelled($event)) : ?>
-														<small class="wpem-event-status-cancelled"><?php _e('Cancelled', 'wp-event-manager'); ?></small>
+														<small class="wpem-event-status-cancelled"><?php esc_html_e('Cancelled', 'wp-event-manager'); ?></small>
 													<?php endif;
 													if (is_event_featured($event)) : ?>
-														<small class="wpem-event-status-featured"><?php _e('Featured', 'wp-event-manager'); ?></small>
+														<small class="wpem-event-status-featured"><?php esc_html_e('Featured', 'wp-event-manager'); ?></small>
 													<?php endif; ?>
 												</div>
 											</div>
@@ -269,10 +269,10 @@
 													} ?>
 											</div>
 											<div class="wpem-dashboard-event-location">
-												<div class="wpem-dashboard-event-placeholder"><strong><?php _e('Location', 'wp-event-manager') ?></strong></div>
+												<div class="wpem-dashboard-event-placeholder"><strong><?php esc_html_e('Location', 'wp-event-manager') ?></strong></div>
 												<?php
 												if (get_event_location($event) === 'Online Event') :
-													_e('Online Event', 'wp-event-manager');
+													esc_html_e('Online Event', 'wp-event-manager');
 												else :
 													display_event_location(false, $event);
 												endif; ?>
@@ -280,10 +280,10 @@
 											<?php do_action('wpem_event_dashboard_event_info_end', $event); ?>
 										</div>
 
-										<section class="wpem-event-dashboard-information wpem-event-dashboard-information-toggle"><a href="#" class="hide_section" title="<?php _e('Hide', 'wp-event-manager'); ?>"><?php _e('Hide', 'wp-event-manager'); ?></a>
+										<section class="wpem-event-dashboard-information wpem-event-dashboard-information-toggle"><a href="#" class="hide_section" title="<?php esc_attr_e('Hide', 'wp-event-manager'); ?>"><?php esc_html_e('Hide', 'wp-event-manager'); ?></a>
 											<div class="wpem-event-dashboard-information-wrapper">
 												<div class="wpem-event-dashboard-information-table">
-													<h4 class="wpem-event-dashboard-information-title-box"><?php _e('Event Details', 'wp-event-manager'); ?></h4>
+													<h4 class="wpem-event-dashboard-information-title-box"><?php esc_html_e('Event Details', 'wp-event-manager'); ?></h4>
 													<?php foreach ($event_dashboard_columns as $key => $column) : ?>
 
 														<div class="wpem-row wpem-event-dashboard-information-table-row">

@@ -18,7 +18,7 @@ if (get_option('event_manager_form_fields')) {
                 <?php $event_content_toggle = apply_filters('event_manager_event_content_toggle', true);
                 $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-organizer-info-title'; ?>
                 <div class="<?php echo esc_attr($event_content_toggle_class); ?> active">
-                    <h3 class="wpem-heading-text"><?php _e('Organizer', 'wp-event-manager'); ?></h3>
+                    <h3 class="wpem-heading-text"><?php esc_html_e('Organizer', 'wp-event-manager'); ?></h3>
                 </div>
                 <div class="wpem-organizer-wrapper wpem-listing-accordion-panel active" style="display: block;">
                     <div class="wpem-organizer-profile">
@@ -73,30 +73,30 @@ if (get_option('event_manager_form_fields')) {
                                                            
                                                             if (!empty($organizer_website)) { ?>
                                                                 <div class="wpem-social-icon wpem-weblink">
-                                                                    <a href="<?php echo esc_url($organizer_website); ?>" target="_blank" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>"><?php _e('Website', 'wp-event-manager'); ?></a>
+                                                                    <a href="<?php echo esc_url($organizer_website); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>"><?php esc_html_e('Website', 'wp-event-manager'); ?></a>
                                                                 </div>
                                                             <?php }
 
                                                             if (!empty($organizer_facebook)) { ?>
                                                                 <div class="wpem-social-icon wpem-facebook">
-                                                                    <a href="<?php echo esc_url($organizer_facebook); ?>" target="_blank" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php _e('Facebook', 'wp-event-manager'); ?></a>
+                                                                    <a href="<?php echo esc_url($organizer_facebook); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
                                                                 </div>
                                                             <?php }
 
                                                             if (!empty($organizer_instagram)) { ?>
                                                                 <div class="wpem-social-icon wpem-instagram">
-                                                                    <a href="<?php echo esc_url($organizer_instagram); ?>" target="_blank" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php _e('Instagram', 'wp-event-manager'); ?></a>
+                                                                    <a href="<?php echo esc_url($organizer_instagram); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php esc_html_e('Instagram', 'wp-event-manager'); ?></a>
                                                                 </div>
                                                             <?php }
 
                                                             if (!empty($organizer_twitter)) { ?>
                                                                 <div class="wpem-social-icon wpem-twitter">
-                                                                    <a href="<?php echo esc_url($organizer_twitter); ?>" target="_blank" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php _e('Twitter', 'wp-event-manager'); ?></a>
+                                                                    <a href="<?php echo esc_url($organizer_twitter); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
                                                                 </div>
                                                             <?php }
                                                             if (!empty($organizer_youtube)) { ?>
                                                                 <div class="wpem-social-icon wpem-youtube">
-                                                                    <a href="<?php echo esc_url($organizer_youtube); ?>" target="_blank" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php _e('Youtube', 'wp-event-manager'); ?></a>
+                                                                    <a href="<?php echo esc_url($organizer_youtube); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php esc_html_e('Youtube', 'wp-event-manager'); ?></a>
                                                                 </div>
                                                             <?php } ?>
 
@@ -156,7 +156,7 @@ if (get_option('event_manager_form_fields')) {
                     <div class="wpem-organizer-profile-wrapper" id="wpem_organizer_profile">
 
                         <div class="wpem-event-organizer-info-title">
-                            <h3 class="wpem-heading-text"><?php _e('Organizer', 'wp-event-manager'); ?></h3>
+                            <h3 class="wpem-heading-text"><?php esc_html_e('Organizer', 'wp-event-manager'); ?></h3>
                         </div>
                         <div class="wpem-organizer-profile">
 
@@ -191,19 +191,19 @@ if (get_option('event_manager_form_fields')) {
                                                 $organizer_youtube  = get_organizer_youtube($event_id);
                                                 
                                                 if (!empty($organizer_website)) { ?>
-                                                    <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php _e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php _e('Website', 'wp-event-manager'); ?></a></div>
+                                                    <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php esc_html_e('Website', 'wp-event-manager'); ?></a></div>
                                                 <?php }
                                                 if (!empty($organizer_facebook)) { ?>
-                                                    <div class="wpem-social-icon wpem-facebook"><a href="<?php echo esc_url($organizer_facebook); ?>" title="<?php _e('Get Connect on Facebook', 'wp-event-manager'); ?>" target="_blank"><?php _e('Faceboo', 'wp-event-manager'); ?></a></div>
+                                                    <div class="wpem-social-icon wpem-facebook"><a href="<?php echo esc_url($organizer_facebook); ?>" title="<?php esc_attr_e('Get Connect on Facebook', 'wp-event-manager'); ?>" target="_blank"><?php esc_html_e('Faceboo', 'wp-event-manager'); ?></a></div>
                                                 <?php }
                                                 if (!empty($organizer_instagram)) { ?>
-                                                    <div class="wpem-social-icon wpem-instagram"><a href="<?php echo esc_url($organizer_instagram); ?>" title="<?php _e('Get Connect on Instagram', 'wp-event-manager'); ?>" target="_blank"><?php _e('Instagram', 'wp-event-manager'); ?></a></div>
+                                                    <div class="wpem-social-icon wpem-instagram"><a href="<?php echo esc_url($organizer_instagram); ?>" title="<?php esc_attr_e('Get Connect on Instagram', 'wp-event-manager'); ?>" target="_blank"><?php esc_html_e('Instagram', 'wp-event-manager'); ?></a></div>
                                                 <?php }
                                                 if (!empty($organizer_twitter)) { ?>
-                                                    <div class="wpem-social-icon wpem-twitter"><a href="<?php echo esc_url($organizer_twitter); ?>" title="<?php _e('Get Connect on Twitter', 'wp-event-manager'); ?>" target="_blank"><?php _e('Twitter', 'wp-event-manager'); ?></a></div>
+                                                    <div class="wpem-social-icon wpem-twitter"><a href="<?php echo esc_url($organizer_twitter); ?>" title="<?php esc_attr_e('Get Connect on Twitter', 'wp-event-manager'); ?>" target="_blank"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a></div>
                                                 <?php }
                                                 if (!empty($organizer_youtube)) { ?>
-                                                    <div class="wpem-social-icon wpem-youtube"><a href="<?php echo esc_url($organizer_youtube); ?>" title="<?php _e('Get Connect on Youtube', 'wp-event-manager'); ?>" target="_blank"><?php _e('Youtube', 'wp-event-manager'); ?></a></div>
+                                                    <div class="wpem-social-icon wpem-youtube"><a href="<?php echo esc_url($organizer_youtube); ?>" title="<?php esc_attr_e('Get Connect on Youtube', 'wp-event-manager'); ?>" target="_blank"><?php esc_html_e('Youtube', 'wp-event-manager'); ?></a></div>
                                                 <?php } ?>
                                                 <?php do_action('single_event_listing_organizer_single_social_end'); ?>
                                             </div>
