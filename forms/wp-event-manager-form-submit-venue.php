@@ -211,7 +211,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				foreach($group_fields as $key => $field) {
 					switch($key) {
 						case 'venue_name' :
-							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($venue->post_title);
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr($venue->post_title);
 						break;
 						case 'venue_description' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($venue->post_content);
@@ -220,7 +220,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($venue->ID) ? get_post_thumbnail_id($venue->ID) : get_post_meta($venue->ID, '_' . $key, true);
 						break;
 						default:
-							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($venue->ID, '_' . $key, true));
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($venue->ID, '_' . $key, true));
 						break;
 					}
 					if(!empty($field['taxonomy'])) {
@@ -228,7 +228,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					}
 					
 					if(!empty($field['type']) &&  $field['type'] == 'date'){
-						$event_date = sanitize_text_field(get_post_meta($venue->ID, '_' . $key, true));
+						$event_date = esc_attr(get_post_meta($venue->ID, '_' . $key, true));
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date));
 					}
 				}

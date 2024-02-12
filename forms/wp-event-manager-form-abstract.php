@@ -81,7 +81,7 @@ abstract class WP_Event_Manager_Form {
 	 * @param string $error
 	 */
 	public function add_error($error) {
-		$this->errors[] = sanitize_text_field($error);
+		$this->errors[] = esc_attr($error);
 	}
 
 	/**

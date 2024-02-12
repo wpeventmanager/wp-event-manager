@@ -223,9 +223,9 @@ class WP_Event_Manager_Geocode {
 			return new WP_Error('error', $e->getMessage());
 		}
 		$address                      = array();
-		$address['lat']               = sanitize_text_field($geocoded_address->results[0]->geometry->location->lat);
-		$address['long']              = sanitize_text_field($geocoded_address->results[0]->geometry->location->lng);
-		$address['formatted_address'] = sanitize_text_field($geocoded_address->results[0]->formatted_address);
+		$address['lat']               = esc_attr($geocoded_address->results[0]->geometry->location->lat);
+		$address['long']              = esc_attr($geocoded_address->results[0]->geometry->location->lng);
+		$address['formatted_address'] = esc_attr($geocoded_address->results[0]->formatted_address);
 		if(!empty($geocoded_address->results[0]->address_components)) {
 			$address_data             = $geocoded_address->results[0]->address_components;
 			$address['street_number'] = false;
@@ -239,27 +239,27 @@ class WP_Event_Manager_Geocode {
 			foreach ($address_data as $data) {
 				switch ($data->types[0]) {
 					case 'street_number' :
-						$address['street_number'] = sanitize_text_field($data->long_name);
+						$address['street_number'] = esc_attr($data->long_name);
 						break;
 					case 'route' :
-						$address['street']        = sanitize_text_field($data->long_name);
+						$address['street']        = esc_attr($data->long_name);
 						break;
 					case 'sublocality_level_1' :
 					case 'locality' :
 					case 'postal_town' :
-						$address['city']          = sanitize_text_field($data->long_name);
+						$address['city']          = esc_attr($data->long_name);
 						break;
 					case 'administrative_area_level_1' :
 					case 'administrative_area_level_2' :
-						$address['state_short']   = sanitize_text_field($data->short_name);
-						$address['state_long']    = sanitize_text_field($data->long_name);
+						$address['state_short']   = esc_attr($data->short_name);
+						$address['state_long']    = esc_attr($data->long_name);
 						break;
 					case 'postal_code' :
-						$address['postcode']      = sanitize_text_field($data->long_name);
+						$address['postcode']      = esc_attr($data->long_name);
 						break;
 					case 'country' :
-						$address['country_short'] = sanitize_text_field($data->short_name);
-						$address['country_long']  = sanitize_text_field($data->long_name);
+						$address['country_short'] = esc_attr($data->short_name);
+						$address['country_long']  = esc_attr($data->long_name);
 						break;
 				}
 			}

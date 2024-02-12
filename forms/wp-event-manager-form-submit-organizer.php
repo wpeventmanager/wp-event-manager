@@ -49,7 +49,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		}
 
 		$this->organizer_id =!empty($_REQUEST['organizer_id']) ? absint($_REQUEST[ 'organizer_id' ]) : 0;
-		if(!event_manager_user_can_edit_event(sanitize_text_field($this->organizer_id))){
+		if(!event_manager_user_can_edit_event($this->organizer_id)){
 			$this->organizer_id = 0;
 		}
 		
@@ -230,7 +230,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 				foreach($group_fields as $key => $field) {
 					switch($key) {
 						case 'organizer_name' :
-							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($organizer->post_title);
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr($organizer->post_title);
 						break;
 						case 'organizer_description' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($organizer->post_content);
@@ -239,7 +239,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($organizer->ID) ? get_post_thumbnail_id($organizer->ID) : get_post_meta($organizer->ID, '_' . $key, true);
 						break;
 						default:
-							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($organizer->ID, '_' . $key, true));
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($organizer->ID, '_' . $key, true));
 						break;
 					}
 					if(!empty($field['taxonomy'])) {

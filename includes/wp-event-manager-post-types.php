@@ -530,7 +530,7 @@ class WP_Event_Manager_Post_Types {
 		}
 	
 		if(!empty($_GET['search_event_types'])) {
-			$cats     = explode(',', sanitize_text_field($_GET['search_event_types'])) + array(0);
+			$cats     = explode(',', esc_attr($_GET['search_event_types'])) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
 			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && sizeof($args['search_event_types']) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
@@ -543,7 +543,7 @@ class WP_Event_Manager_Post_Types {
 		}
 	
 		if(!empty($_GET['search_categories'])) {
-			$cats     = explode(',', sanitize_text_field($_GET['search_categories'])) + array(0);
+			$cats     = explode(',', esc_attr($_GET['search_categories'])) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
 			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($args['search_categories']) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
@@ -554,7 +554,7 @@ class WP_Event_Manager_Post_Types {
 				'operator'         => $operator
 			);
 		}
-		if($event_manager_keyword = sanitize_text_field($_GET['search_keywords'])) {
+		if($event_manager_keyword = esc_attr($_GET['search_keywords'])) {
 			$query_args['s'] = $event_manager_keyword;
 			add_filter('posts_search', 'get_event_listings_keyword_search');
 		}

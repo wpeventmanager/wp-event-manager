@@ -126,7 +126,7 @@ class WP_Event_Manager_CPT {
 	 * Approve a single event.
 	 */
 	public function approve_event()	{
-		if(!empty($_GET['approve_event']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'approve_event') && current_user_can('publish_post',sanitize_text_field( wp_unslash( $_GET['approve_event'] )))) {
+		if(!empty($_GET['approve_event']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'approve_event') && current_user_can('publish_post',esc_attr( wp_unslash( $_GET['approve_event'] )))) {
 			$post_id = absint($_GET['approve_event']);
 			$event_end_date    = get_post_meta($post_id, '_event_end_date', true);
 			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
@@ -153,7 +153,7 @@ class WP_Event_Manager_CPT {
 	public function approved_notice() {
 		global $post_type, $pagenow;
 		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['approved_events'])) {
-			$approved_events = sanitize_text_field($_REQUEST['approved_events']);
+			$approved_events = esc_attr($_REQUEST['approved_events']);
 			if(is_array($approved_events)) {
 				$approved_events = array_map('absint', $approved_events);
 				$titles = array();
@@ -174,7 +174,7 @@ class WP_Event_Manager_CPT {
 		global $post_type, $pagenow;
 
 		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events'])) {
-			$expired_events = sanitize_text_field($_REQUEST['expired_events']);
+			$expired_events = esc_attr($_REQUEST['expired_events']);
 			if(is_array($expired_events)) {
 				$expired_events = array_map('absint', $expired_events);
 				$titles = array();
@@ -212,7 +212,7 @@ class WP_Event_Manager_CPT {
 			return;
 		}
 		$output = "<select name='event_listing_category' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected(isset($_GET['event_listing_category']) ? sanitize_text_field( wp_unslash( $_GET['event_listing_category'] ) ) : '', '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
+		$output .= '<option value="" ' . selected(isset($_GET['event_listing_category']) ? esc_attr( wp_unslash( $_GET['event_listing_category'] ) ) : '', '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $r);
 		$output .= '</select>';
 		printf('%s', $output);
@@ -243,7 +243,7 @@ class WP_Event_Manager_CPT {
 		}
 
 		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected(isset($_GET['event_listing_type']) ? sanitize_text_field( wp_unslash( $_GET['event_listing_type'] ) ) : '', '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
+		$output .= '<option value="" ' . selected(isset($_GET['event_listing_type']) ? esc_attr( wp_unslash( $_GET['event_listing_type'] ) ) : '', '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
 

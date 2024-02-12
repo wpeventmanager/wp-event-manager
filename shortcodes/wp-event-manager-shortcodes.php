@@ -189,7 +189,7 @@ class WP_Event_Manager_Shortcodes{
 
 		ob_start();
 
-		$search_order_by = 	isset($_GET['search_order_by']) ? sanitize_text_field( wp_unslash( $_GET['search_order_by']) ) : '';
+		$search_order_by = 	isset($_GET['search_order_by']) ? esc_attr( wp_unslash( $_GET['search_order_by']) ) : '';
 
 		if(isset($search_order_by) && !empty($search_order_by)) {
 			$search_order_by = explode('|', $search_order_by);
@@ -212,7 +212,7 @@ class WP_Event_Manager_Shortcodes{
 			'author'              => esc_attr(get_current_user_id())
 		));
 
-		$event_manager_keyword = isset($_GET['search_keywords']) ? sanitize_text_field( wp_unslash( $_GET['search_keywords']) ) : '';
+		$event_manager_keyword = isset($_GET['search_keywords']) ? esc_attr( wp_unslash( $_GET['search_keywords']) ) : '';
 		if(!empty($event_manager_keyword) && strlen($event_manager_keyword) >= apply_filters('event_manager_get_listings_keyword_length_threshold', 2)) {
 			$args['s'] = $event_manager_keyword;
 			add_filter('posts_search', 'get_event_listings_keyword_search');
@@ -1025,7 +1025,7 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		if(!empty($selected_categories)) {
-			$categories = explode(',', sanitize_text_field($selected_categories));
+			$categories = explode(',', esc_attr($selected_categories));
 			$args_past['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
 				'field'   	=> 'slug',
@@ -1034,7 +1034,7 @@ class WP_Event_Manager_Shortcodes{
 		}
 		
 		if(!empty($selected_event_types)) {
-			$event_types = explode(',', sanitize_text_field($selected_event_types));
+			$event_types = explode(',', esc_attr($selected_event_types));
 			$args_past['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_type',
 				'field'   	=> 'slug',
@@ -1198,7 +1198,7 @@ class WP_Event_Manager_Shortcodes{
 
 		$organizer    = $organizers->posts[0];
 		$paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
-		$current_page    = isset($_REQUEST['pagination']) ? sanitize_text_field($_REQUEST['pagination']) : sanitize_text_field($paged);
+		$current_page    = isset($_REQUEST['pagination']) ? esc_attr($_REQUEST['pagination']) : esc_attr($paged);
 		$per_page        = 10;
 		$today_date      = date("Y-m-d");
 		$organizer_id    = $organizer->ID;
@@ -1565,7 +1565,7 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		if(!empty($selected_categories)) {
-			$categories = explode(',', sanitize_text_field($selected_categories));
+			$categories = explode(',', esc_attr($selected_categories));
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_category',
 				'field'   	=> 'name',
@@ -1575,7 +1575,7 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		if(!empty($selected_event_types)) {
-			$event_types = explode(',', sanitize_text_field($selected_event_types));
+			$event_types = explode(',', esc_attr($selected_event_types));
 			$args['tax_query'][] = [
 				'taxonomy'	=> 'event_listing_type',
 				'field'   	=> 'name',

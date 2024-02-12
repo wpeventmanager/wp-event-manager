@@ -88,7 +88,7 @@ class WP_Event_Manager_Ajax {
 	public static function do_em_ajax() {
 		global $wp_query;
 		if(!empty($_GET['em-ajax'])) {
-			 $wp_query->set('em-ajax', sanitize_text_field($_GET['em-ajax']));
+			 $wp_query->set('em-ajax', esc_attr($_GET['em-ajax']));
 		}
 
    		if($action = $wp_query->get('em-ajax')) {
@@ -97,7 +97,7 @@ class WP_Event_Manager_Ajax {
 			}
 			// Not home - this is an ajax endpoint
 			$wp_query->is_home = false;
-   			do_action('event_manager_ajax_' . sanitize_text_field($action));
+   			do_action('event_manager_ajax_' . esc_attr($action));
    			die();
    		}
 	}
@@ -108,10 +108,10 @@ class WP_Event_Manager_Ajax {
 	public function get_listings() {
 		global $wp_post_types;
 		$result            = array();
-		$search_location   = sanitize_text_field(stripslashes($_REQUEST['search_location']));
-		$search_keywords   = sanitize_text_field(stripslashes($_REQUEST['search_keywords']));
+		$search_location   = esc_attr(stripslashes($_REQUEST['search_location']));
+		$search_keywords   = esc_attr(stripslashes($_REQUEST['search_keywords']));
 		$post_type_label   = $wp_post_types['event_listing']->labels->name;
-		$orderby           = sanitize_text_field($_REQUEST['orderby']);
+		$orderby           = esc_attr($_REQUEST['orderby']);
 		$search_datetimes = '';
 		$search_categories = '';
 		$search_event_types = '';
@@ -140,7 +140,7 @@ class WP_Event_Manager_Ajax {
 			'search_event_types'  	=> $search_event_types,
 			'search_ticket_prices'	=> $search_ticket_prices,			
 			'orderby'            	=> $orderby,
-			'order'              	=> sanitize_text_field($_REQUEST['order']),
+			'order'              	=> esc_attr($_REQUEST['order']),
 			'offset'             	=> (absint($_REQUEST['page']) - 1) * absint($_REQUEST['per_page']),
 			'posts_per_page'     	=> absint($_REQUEST['per_page']),
 			'lang'    	            => apply_filters('wpem_set_default_page_language', $_REQUEST['lang']),

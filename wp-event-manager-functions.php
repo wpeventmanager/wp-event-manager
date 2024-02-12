@@ -256,7 +256,7 @@ if(!function_exists('get_event_listings')) :
 			);
 		}
 	
-		$event_manager_keyword = sanitize_text_field($args['search_keywords']); 
+		$event_manager_keyword = esc_attr($args['search_keywords']); 
 		if(!empty($event_manager_keyword) && strlen($event_manager_keyword) >= apply_filters('event_manager_get_listings_keyword_length_threshold', 2)) {
 			$query_args['s'] = $event_manager_keyword;
 			add_filter('posts_search', 'get_event_listings_keyword_search');

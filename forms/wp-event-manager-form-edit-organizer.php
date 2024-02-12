@@ -66,7 +66,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 			foreach ($group_fields as $key => $field) {
 				if(!isset($this->fields[ $group_key ][ $key ]['value'])) {
 					if('organizer_name' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($organizer->post_title);
+						$this->fields[ $group_key ][ $key ]['value'] = esc_attr($organizer->post_title);
 					} elseif('event_description' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($organizer->post_content);
 					} elseif('organizer_logo' === $key) {
@@ -74,7 +74,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 					} elseif(!empty($field['taxonomy'])) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($organizer->ID, esc_attr($field['taxonomy']), array('fields' => 'ids'));
 					} else {
-						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($organizer->ID, '_' . esc_attr($key), true));
+						$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($organizer->ID, '_' . esc_attr($key), true));
 					}
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){

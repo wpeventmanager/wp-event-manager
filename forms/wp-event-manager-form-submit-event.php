@@ -532,7 +532,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				foreach ( $group_fields as $key => $field ) {
 					switch ( $key ) {
 						case 'event_title' :
-							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($event->post_title);
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr($event->post_title);
 							break;
 
 						case 'event_description' :
@@ -579,7 +579,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 					if(! empty( $field['type'] ) &&  $field['type'] == 'button'){
 						if(isset($this->fields[ $group_key ][ $key ]['value']) && empty($this->fields[ $group_key ][ $key ]['value'])){
-							$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($field['placeholder']);
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr($field['placeholder']);
 						}
 					}
 				}

@@ -1,4 +1,4 @@
-<?php $active_tab = sanitize_text_field(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'upcoming'); ?>
+<?php $active_tab = esc_attr(isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'upcoming'); ?>
 
 <div class="wpem-event-organizer-tabs">
     <div class="wpem-tabs-wrapper">
