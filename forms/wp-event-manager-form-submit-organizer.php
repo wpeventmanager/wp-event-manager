@@ -58,7 +58,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		if(!isset($_GET[ 'new' ]) &&(!$this->organizer_id) &&!empty($_COOKIE['wp-event-manager-submitting-organizer-id']) &&!empty($_COOKIE['wp-event-manager-submitting-organizer-key'])){
 			$organizer_id     = absint($_COOKIE['wp-event-manager-submitting-organizer-id']);
 			$organizer_status = get_post_status($organizer_id);
-			if('preview' === $organizer_status && get_post_meta($organizer_id, '_wpem_unique_key', true) === $_COOKIE['wp-event-manager-submitting-organizer-key']) {
+			if('preview' === $organizer_status && esc_attr(get_post_meta($organizer_id, '_wpem_unique_key', true)) === $_COOKIE['wp-event-manager-submitting-organizer-key']) {
 				$this->organizer_id = $organizer_id;
 			}
 		}
@@ -236,7 +236,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($organizer->post_content);
 						break;
 						case  'organizer_logo':
-							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($organizer->ID) ? get_post_thumbnail_id($organizer->ID) : get_post_meta($organizer->ID, '_' . $key, true);
+							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($organizer->ID) ? get_post_thumbnail_id($organizer->ID) : esc_url(get_post_meta($organizer->ID, '_' . $key, true));
 						break;
 						default:
 							$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($organizer->ID, '_' . $key, true));
@@ -247,7 +247,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					}
 					
 					if(!empty($field['type']) &&  $field['type'] == 'date'){
-						$event_date = get_post_meta($organizer->ID, '_' . $key, true);
+						$event_date = esc_html(get_post_meta($organizer->ID, '_' . $key, true));
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date));
 					}
 				}

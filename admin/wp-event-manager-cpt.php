@@ -127,8 +127,8 @@ class WP_Event_Manager_CPT {
 	 */
 	public function approve_event()	{
 		if(!empty($_GET['approve_event']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'approve_event') && current_user_can('publish_post',esc_attr( wp_unslash( $_GET['approve_event'] )))) {
-			$post_id = absint($_GET['approve_event']);
-			$event_end_date    = get_post_meta($post_id, '_event_end_date', true);
+			$post_id = absint(esc_attr($_GET['approve_event']));
+			$event_end_date    = esc_attr(get_post_meta($post_id, '_event_end_date', true));
 			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
 			if(strtotime($event_end_date) > $current_timestamp) {
 				$event_data = array(
@@ -606,7 +606,7 @@ class WP_Event_Manager_CPT {
 	public function organizer_columns_data($column, $post_id) {
 		switch ($column) {
 			case 'organizer_email':
-				echo esc_attr(get_post_meta($post_id, '_organizer_email', true));
+				echo esc_html(get_post_meta($post_id, '_organizer_email', true));
 				break;
 			case 'organizer_id':
 				echo get_the_ID();

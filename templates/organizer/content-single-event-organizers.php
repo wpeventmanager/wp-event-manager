@@ -32,7 +32,7 @@ if (get_option('event_manager_form_fields')) {
                                 if (get_option('event_manager_form_fields')) {
                                     $organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
                                 }
-                                $organizer_email = get_post_meta($organizer_id, '_organizer_email', true);
+                                $organizer_email = esc_html(get_post_meta($organizer_id, '_organizer_email', true));
                                 
                                 do_action('single_event_listing_organizer_start'); ?>
                                 

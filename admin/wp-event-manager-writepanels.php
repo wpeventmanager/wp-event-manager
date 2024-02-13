@@ -62,9 +62,9 @@ class WP_Event_Manager_Writepanels {
 		
 		$current_user = wp_get_current_user();
 		if(isset($post->ID)) {
-			$registration = metadata_exists('post', $post->ID, '_event_registration_email') ? get_post_meta($post->ID, '_event_registration_email', true) : $current_user->user_email;
-			$registration = metadata_exists('post', $post->ID, '_registration') ? get_post_meta($post->ID, '_registration', true) : $registration;
-			$expiry_date  = get_post_meta($post->ID, '_event_expiry_date', true);
+			$registration = metadata_exists('post', $post->ID, '_event_registration_email') ? esc_html(get_post_meta($post->ID, '_event_registration_email', true)) : $current_user->user_email;
+			$registration = metadata_exists('post', $post->ID, '_registration') ? esc_html(get_post_meta($post->ID, '_registration', true)) : $registration;
+			$expiry_date  = esc_attr(get_post_meta($post->ID, '_event_expiry_date', true));
 			if($expiry_date) {
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 				$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
@@ -405,7 +405,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_text($key, $field)	{
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -435,7 +435,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_wp_editor($key, $field) {
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = wp_kses_post(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -464,7 +464,7 @@ class WP_Event_Manager_Writepanels {
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 		$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 		if(!isset($field['value']) || empty($field['value'])) {
-			$date = get_post_meta($post_id, stripslashes($key), true);
+			$date = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 			if(!empty($date)) {
 				$date = date($php_date_format, strtotime($date));
 				$field['value']         = $date;
@@ -496,7 +496,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_textarea($key, $field) {
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_html(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -525,7 +525,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_select($key, $field) {
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -563,7 +563,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_multiselect($key, $field)	{
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = wp_kses_post(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -598,7 +598,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_checkbox($key, $field)	{
 		global $post_id;
 		if(empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -625,7 +625,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_time($key, $field)	{
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -652,7 +652,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_timezone($key, $field)	{
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_html(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -684,7 +684,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_number($key, $field) {
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -711,7 +711,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_url($key, $field) {
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_url(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -772,7 +772,7 @@ class WP_Event_Manager_Writepanels {
 			$author_id = $post->post_author;
 		}
 		$posted_by      = get_user_by('id', $author_id);
-		$field['value'] = !isset($field['value']) ? get_post_meta($post_id, stripslashes($key), true) : $field['value'];
+		$field['value'] = !isset($field['value']) ? esc_attr(get_post_meta($post_id, stripslashes($key), true)) : $field['value'];
 		$name           = !empty($field['name']) ? $field['name'] : $key; ?>
 		<p class="form-field form-field-author">
 			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:</label>
@@ -803,7 +803,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_radio($key, $field) {
 		global $post_id;
 		if(empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
+			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -1116,14 +1116,14 @@ class WP_Event_Manager_Writepanels {
 		// For eg. if each event selected then Berlin timezone will be different then current site timezone.
 		if(WP_Event_Manager_Date_Time::get_event_manager_timezone_setting() == 'each_event') {
 			/* Set Post Status To Expired If Already Expired */
-			$event_timezone = get_post_meta($post_id, '_event_timezone', true);
+			$event_timezone = esc_html(get_post_meta($post_id, '_event_timezone', true));
 			$current_timestamp = WP_Event_Manager_Date_Time::current_timestamp_from_event_timezone($event_timezone);
 		} else {
 			$current_timestamp = current_time('timestamp'); // If site wise timezone selected
 		}
 
 		// Set expire date at 12:00 PM of the selected day     
-		$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(get_post_meta($post_id, '_event_expiry_date', true). ' 23:59:30')), $post);     
+		$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($post_id, '_event_expiry_date', true)). ' 23:59:30')), $post);     
 		$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', $current_timestamp));     
 
 		// Check for event expire    

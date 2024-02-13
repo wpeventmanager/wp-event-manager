@@ -64,7 +64,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if( !isset( $_GET[ 'new' ] ) && ( 'before' === get_option( 'event_manager_paid_listings_flow' ) || !$this->event_id  ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ){
 			$event_id     = absint( $_COOKIE['wp-event-manager-submitting-event-id'] );
 			$event_status = get_post_status( $event_id );
-			if ( 'preview' === $event_status && get_post_meta( $event_id, '_submitting_key', true ) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
+			if ( 'preview' === $event_status && esc_attr(get_post_meta( $event_id, '_submitting_key', true )) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
 				$this->event_id = $event_id;
 			}
 		}
@@ -540,11 +540,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							break;
 
 						case  'organizer_logo':
-							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $event->ID ) ? get_post_thumbnail_id( $event->ID ) : get_post_meta( $event->ID, '_' . $key, true );
+							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $event->ID ) ? get_post_thumbnail_id( $event->ID ) : esc_url(get_post_meta( $event->ID, '_' . $key, true ));
 							break;
 						
 						case ( $key ==  'event_start_date' ||  $key == 'event_end_date' ) :
-							$event_date = get_post_meta( $event->ID, '_' . $key, true );
+							$event_date = esc_html(get_post_meta( $event->ID, '_' . $key, true ));
 							$default_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 							$default_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $default_date_format );
 							if(isset($event_date) && $event_date!=""){
@@ -571,7 +571,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					}
 					
 					if( !empty( $field['type'] ) &&  $field['type'] == 'date' ){
-						$event_date = get_post_meta( $event->ID, '_' . $key, true );
+						$event_date = esc_html(get_post_meta( $event->ID, '_' . $key, true ));
 						if(!empty($event_date))	{
 							$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );	
 						}						

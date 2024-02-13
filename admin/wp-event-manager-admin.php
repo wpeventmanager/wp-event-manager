@@ -283,7 +283,7 @@ A prior Backup does no harm before updating the plugin!',
 
 			if(!empty($attachments)) {
 				foreach ($attachments as $attachment) {
-					update_post_meta($event->ID, '_thumbnail_id', $attachment->ID);
+					update_post_meta($event->ID, '_thumbnail_id', sanitize_text_field($attachment->ID));
 				}
 			}
 		}

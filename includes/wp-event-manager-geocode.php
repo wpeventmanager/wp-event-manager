@@ -69,7 +69,7 @@ class WP_Event_Manager_Geocode {
 	 * @return boolean
 	 */
 	public static function has_location_data($event_id) {
-		return get_post_meta($event_id, 'geolocated', true) == 1;
+		return esc_attr(get_post_meta($event_id, 'geolocated', true)) == 1;
 	}
 	
 	/**

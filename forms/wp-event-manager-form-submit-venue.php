@@ -56,7 +56,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		if(!isset($_GET[ 'new' ]) &&(!$this->venue_id) && !empty($_COOKIE['wp-event-manager-submitting-venue-id']) && !empty($_COOKIE['wp-event-manager-submitting-venue-key'])){
 			$venue_id     = absint($_COOKIE['wp-event-manager-submitting-venue-id']);
 			$venue_status = get_post_status($venue_id);
-			if('preview' === $venue_status && get_post_meta($venue_id, '_wpem_unique_key', true) === $_COOKIE['wp-event-manager-submitting-venue-key']) {
+			if('preview' === $venue_status && esc_attr(get_post_meta($venue_id, '_wpem_unique_key', true)) === $_COOKIE['wp-event-manager-submitting-venue-key']) {
 				$this->venue_id = $venue_id;
 			}
 		}
@@ -217,7 +217,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($venue->post_content);
 						break;
 						case  'venue_logo':
-							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($venue->ID) ? get_post_thumbnail_id($venue->ID) : get_post_meta($venue->ID, '_' . $key, true);
+							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($venue->ID) ? get_post_thumbnail_id($venue->ID) : esc_url(get_post_meta($venue->ID, '_' . $key, true));
 						break;
 						default:
 							$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($venue->ID, '_' . $key, true));
@@ -228,7 +228,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					}
 					
 					if(!empty($field['type']) &&  $field['type'] == 'date'){
-						$event_date = esc_attr(get_post_meta($venue->ID, '_' . $key, true));
+						$event_date = esc_html(get_post_meta($venue->ID, '_' . $key, true));
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date));
 					}
 				}

@@ -657,7 +657,7 @@ class WP_Event_Manager_Post_Types {
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
 				$event = get_post($event_id);
-				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(get_post_meta($event_id, '_event_expiry_date', true). ' 23:59:30')), $event);     
+				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($event_id, '_event_expiry_date', true)). ' 23:59:30')), $event);     
 				$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', current_time('timestamp')));     
 				
 				// Check for event expire    
@@ -749,9 +749,9 @@ class WP_Event_Manager_Post_Types {
 		}
 		// See if it is already set
 		if(metadata_exists('post', $post->ID, '_event_expiry_date')) {
-			$expires = get_post_meta($post->ID, '_event_expiry_date', true);
+			$expires = esc_html(get_post_meta($post->ID, '_event_expiry_date', true));
 			if($expires && strtotime($expires) < current_time('timestamp')) {
-				update_post_meta($post->ID, '_event_expiry_date', '');
+				update_post_meta($post->ID, '_event_expiry_date', sanitize_text_field(''));
 			}
 		}
 		
@@ -795,15 +795,15 @@ class WP_Event_Manager_Post_Types {
 	*/
 	public function set_post_views($post_id) {
 		$count_key = '_view_count';
-		$count = get_post_meta($post_id, $count_key, true);
+		$count = esc_attr(get_post_meta($post_id, $count_key, true));
 
 		if($count=='' || $count==null) {
 			$count = 0;
 			delete_post_meta($post_id, $count_key);
-			add_post_meta($post_id, $count_key, '0');
+			add_post_meta($post_id, $count_key, sanitize_text_field('0'));
 		}  else {
 			$count++;
-			update_post_meta($post_id, $count_key, $count);
+			update_post_meta($post_id, $count_key, sanitize_text_field($count));
 		}
 	}
 	
@@ -919,7 +919,7 @@ class WP_Event_Manager_Post_Types {
 	public function pmxi_saved_post($post_id) {
 		if('event_listing' === get_post_type($post_id)) {
 			$this->maybe_add_default_meta_data($post_id);
-			if(!WP_Event_Manager_Geocode::has_location_data($post_id) && ($location = get_post_meta($post_id, '_event_location', true))) {
+			if(!WP_Event_Manager_Geocode::has_location_data($post_id) && ($location = esc_attr(get_post_meta($post_id, '_event_location', true)))) {
 				WP_Event_Manager_Geocode::generate_location_data($post_id, $location);
 			}
 		}

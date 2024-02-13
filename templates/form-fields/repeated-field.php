@@ -44,7 +44,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
                                 $subfield['id']    = $key . '_' . $subkey . '_' . $index;
                                 $subfield['value'] = isset($value[$subkey]) ? $value[$subkey] : '';
                                 if ($subkey === 'ticket_quantity' && isset($value['product_id'])) {
-                                    $stock = get_post_meta($value['product_id'], '_stock', true);
+                                    $stock = esc_attr(get_post_meta($value['product_id'], '_stock', true));
                                     if (isset($stock) && !empty($stock)) {
                                         $subfield['value'] = $stock;
                                     }
