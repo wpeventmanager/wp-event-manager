@@ -2201,3 +2201,7 @@ function wpem_get_all_countries() {
 		'ZW' => 'Zimbabwe',
 	) );
 }
+
+function wpem_embed_oembed_html($content) {
+	echo apply_filters('wpem_embed_oembed_custome', $content);
+}

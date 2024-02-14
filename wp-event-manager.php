@@ -132,7 +132,7 @@ class WP_Event_Manager {
 		add_filter('wpem_the_content', 'wpautop'           );
 		add_filter('wpem_the_content', 'shortcode_unautop' );
 		add_filter('wpem_the_content', 'do_shortcode'      );
-		
+		add_filter('wpem_the_content', 'wpem_embed_oembed_html'      );
 		// Schedule cron events
 		self::check_schedule_crons();
 	}
