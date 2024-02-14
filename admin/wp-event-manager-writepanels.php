@@ -563,7 +563,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_multiselect($key, $field)	{
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = wp_kses_post(get_post_meta($post_id, stripslashes($key), true));
+			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
