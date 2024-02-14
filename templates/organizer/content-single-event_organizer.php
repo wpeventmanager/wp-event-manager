@@ -1,11 +1,11 @@
 <?php $organizer = get_post($organizer_id);
 $organizer_email = esc_html(get_post_meta($organizer_id, '_organizer_email', true)); 
 if (get_option('event_manager_form_fields') && is_array(get_option('event_manager_form_fields'))) {
-    $organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
+    $organizer_custom_fields = get_option('event_manager_form_fields', true)['organizer'];
 } else {
     $GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
     $form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Organizer', 'instance' ) );
-    $organizer_fields = $form_submit_organizer_instance->merge_with_custom_fields( 'backend' );
+    $organizer_custom_fields = $form_submit_organizer_instance->merge_with_custom_fields( 'backend' );
 } ?>
 
 <div class="wpem-single-organizer-profile-wrapper" id="wpem_organizer_profile">
