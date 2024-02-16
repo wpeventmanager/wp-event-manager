@@ -268,9 +268,9 @@ abstract class WP_Event_Manager_Form {
 
 		$items       = array();
 		$field_keys  = array_keys($fields);
-		$field_prefix = wp_kses_post($field_prefix);
+		$field_prefix = esc_attr($field_prefix);
 		if(!empty($_POST[ 'repeated-row-' . $field_prefix ]) && is_array($_POST[ 'repeated-row-' . $field_prefix ])) {
-			$indexes = array_map('absint', $_POST[ ' -row-' . $field_prefix ]);
+			$indexes = array_map('absint', $_POST[ 'repeated-row-' . $field_prefix ]);
 			foreach ($indexes as $index) {
 				$item = array();
 				foreach ($fields as $key => $field) {
