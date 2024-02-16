@@ -458,23 +458,24 @@ class WP_Event_Manager_Post_Types {
 			'post_type'           => 'event_listing',
 			'post_status'         => $post_status,
 			'ignore_sticky_posts' => 1,
-			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : -1,
+			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint(esc_attr($_GET['posts_per_page'])) : -1,
 			'tax_query'           => array(),
 			'meta_query'          => array()
 		);		
 		if(!empty($_GET['search_location'])) {
+			$search_location = esc_html($_GET['search_location']);
 			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
 			foreach($location_meta_keys as $meta_key) {
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => 	$_GET['search_location'], 
+					'value'   => $search_location, 
 					'compare' => 'like',
 					'type'    => 'char',
 				);
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $_GET['search_location']), ','),
+					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $search_location), ','),
 					'compare' => 'like',
 					'type'    => 'char',
 				);
@@ -515,11 +516,11 @@ class WP_Event_Manager_Post_Types {
 		}
 
 		if(!empty($_GET['search_ticket_prices'])) {
-			
-			if($_GET['search_ticket_prices'] =='ticket_price_paid') {  
-			$ticket_price_value='paid';     
-			} else if($_GET['search_ticket_prices'] =='ticket_price_free')	{
-			$ticket_price_value='free';
+			$search_ticket_prices = esc_attr($_GET['search_ticket_prices']);
+			if($search_ticket_prices =='ticket_price_paid') {  
+				$ticket_price_value='paid';     
+			} else if($search_ticket_prices =='ticket_price_free')	{
+				$ticket_price_value='free';
 			}
 			$ticket_search[] = array(
 				'key'     => '_event_ticket_options',
@@ -530,9 +531,10 @@ class WP_Event_Manager_Post_Types {
 		}
 	
 		if(!empty($_GET['search_event_types'])) {
-			$cats     = explode(',', esc_attr($_GET['search_event_types'])) + array(0);
+			$search_event_types = esc_attr($_GET['search_event_types']);
+			$cats     = explode(',', $search_event_types) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && sizeof($args['search_event_types']) > 1 ? 'AND' : 'IN';
+			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && sizeof($search_event_types) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
 				'taxonomy'         => 'event_listing_type',
 				'field'            => $field,
@@ -543,9 +545,10 @@ class WP_Event_Manager_Post_Types {
 		}
 	
 		if(!empty($_GET['search_categories'])) {
-			$cats     = explode(',', esc_attr($_GET['search_categories'])) + array(0);
+			$search_categories = esc_attr($_GET['search_categories']);
+			$cats     = explode(',', $search_categories) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($args['search_categories']) > 1 ? 'AND' : 'IN';
+			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($search_categories) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
 				'taxonomy'         => 'event_listing_category',
 				'field'            => $field,
@@ -554,7 +557,8 @@ class WP_Event_Manager_Post_Types {
 				'operator'         => $operator
 			);
 		}
-		if($event_manager_keyword = esc_attr($_GET['search_keywords'])) {
+		if(!empty($_GET['search_keywords'])) {
+			$event_manager_keyword = esc_attr($_GET['search_keywords']);
 			$query_args['s'] = $event_manager_keyword;
 			add_filter('posts_search', 'get_event_listings_keyword_search');
 		}

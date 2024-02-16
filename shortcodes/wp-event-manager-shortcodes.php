@@ -663,11 +663,11 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		if(!empty($_GET['search_location'])) {
-			$location = esc_attr($_GET['search_location']);
+			$location = esc_html($_GET['search_location']);
 		}
 
 		if(!empty($_GET['search_datetime'])) {
-			$selected_datetime = esc_attr($_GET['search_datetime']);
+			$selected_datetime = esc_html($_GET['search_datetime']);
 		}
 
 		if(!empty($_GET['search_category'])) {

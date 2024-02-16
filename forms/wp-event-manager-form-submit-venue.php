@@ -45,7 +45,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		if(isset($_POST['step'])) {
 			$this->step = is_numeric($_POST['step']) ? max(absint($_POST['step']), 0) : array_search($_POST['step'], array_keys($this->steps));
 		} elseif(!empty($_GET['step'])) {
-			$this->step = is_numeric($_GET['step']) ? max(absint($_GET['step']), 0) : array_search($_GET['step'], array_keys($this->steps));
+			$this->step = is_numeric(esc_attr($_GET['step'])) ? max(absint(esc_attr($_GET['step'])), 0) : array_search(esc_attr($_GET['step']), array_keys($this->steps));
 		}
 		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint($_REQUEST[ 'venue_id' ]) : 0;
 		if(!event_manager_user_can_edit_event($this->venue_id)) {

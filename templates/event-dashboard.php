@@ -4,8 +4,8 @@
 		<div class="wpem-main-vmenu-dashboard-nav" id="wpem-main-vmenu-dashboard-nav">
 			<ul class="wpem-main-vmenu-dashboard-ul">
 				<?php
-				$current_action = isset($_GET['action']) ? sanitize_title( $_GET['action'] ): 'event_dashboard';
-				$event_id = isset($_GET['event_id']) ? absint($_GET['event_id']) : '';
+				$current_action = isset($_GET['action']) ? esc_attr( $_GET['action'] ): 'event_dashboard';
+				$event_id = isset($_GET['event_id']) ? absint(esc_attr($_GET['event_id'])) : '';
 				$menus = [
 					'event_dashboard' => [
 						'title' => __('Events', 'wp-event-manager'),
@@ -124,7 +124,7 @@
 						<div class="wpem-events-filter">
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
 							<div class="wpem-events-filter-block">
-								<?php $search_keywords = isset($_GET['search_keywords']) ? $_GET['search_keywords'] : ''; ?>
+								<?php $search_keywords = isset($_GET['search_keywords']) ? esc_attr($_GET['search_keywords']) : ''; ?>
 								<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo esc_attr($search_keywords); ?>" placeholder="<?php _e('Keywords', 'wp-event-manager'); ?>"></div>
 							</div>
 							<div class="wpem-events-filter-block">

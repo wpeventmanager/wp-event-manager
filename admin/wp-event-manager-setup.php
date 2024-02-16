@@ -22,7 +22,7 @@ class WP_Event_Manager_Setup {
 		add_action('admin_menu', array($this, 'admin_menu'), 12);
 		add_action('admin_head', array($this, 'admin_head'));
 		add_action('admin_init', array($this, 'redirect'));
-		if(isset($_GET['page']) && 'event-manager-setup' === $_GET['page']) {
+		if(isset($_GET['page']) && 'event-manager-setup' === esc_attr($_GET['page'])) {
 			add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 12);
 		}
 	}
@@ -53,7 +53,7 @@ class WP_Event_Manager_Setup {
 	public function redirect() {
 		global $pagenow;
 
-		if(isset($_GET['page']) && $_GET['page'] === 'event-manager-setup') {
+		if(isset($_GET['page']) && esc_attr($_GET['page']) === 'event-manager-setup') {
 			if(get_option('wpem_installation', false)) {
 				wp_redirect(admin_url('index.php'));
 				exit;
@@ -72,7 +72,7 @@ class WP_Event_Manager_Setup {
 		if(is_network_admin() || isset($_GET['activate-multi']) || defined('IFRAME_REQUEST')) {
 			return;
 		}
-		if((isset($_GET['action']) && 'upgrade-plugin' == $_GET['action']) && (isset($_GET['plugin']) && strstr($_GET['plugin'], 'wp-event-manager.php'))) {
+		if((isset($_GET['action']) && 'upgrade-plugin' == esc_attr($_GET['action'])) && (isset($_GET['plugin']) && strstr(esc_attr($_GET['plugin']), 'wp-event-manager.php'))) {
 			return;
 		}
 		wp_redirect(admin_url('index.php?page=event-manager-setup'));
@@ -114,7 +114,7 @@ class WP_Event_Manager_Setup {
 	 * Output addons page.
 	 */
 	public function output() {
-		$step = !empty($_GET['step']) ? absint($_GET['step']) : 1;
+		$step = !empty($_GET['step']) ? absint(esc_attr($_GET['step'])) : 1;
 		if(isset($_GET['skip-event-manager-setup']) === 1) {
 			update_option('wpem_installation', 0);
 			update_option('wpem_installation_skip', 1);

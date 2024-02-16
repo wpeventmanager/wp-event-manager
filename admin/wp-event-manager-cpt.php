@@ -279,7 +279,7 @@ class WP_Event_Manager_CPT {
 			2  => __('Custom field updated.', 'wp-event-manager'),
 			3  => __('Custom field deleted.', 'wp-event-manager'),
 			4  => sprintf(wp_kses('%s updated.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name),
-			5  => isset($_GET['revision']) ? sprintf(wp_kses('%1$s restored to revision from %2$s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, wp_post_revision_title((int) $_GET['revision'], false)) : false,
+			5  => isset($_GET['revision']) ? sprintf(wp_kses('%1$s restored to revision from %2$s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, wp_post_revision_title((int) esc_attr($_GET['revision']), false)) : false,
 			6  => sprintf(wp_kses('%1$s published. <a href="%2$s">View</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(get_permalink($post_ID))),
 			7  => sprintf('%s saved.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name,
 			8  => sprintf(wp_kses('%1$s submitted. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
