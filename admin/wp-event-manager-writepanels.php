@@ -919,7 +919,7 @@ class WP_Event_Manager_Writepanels {
 			// Event Expiry date
 			if('_event_expiry_date' === $key) {
 				if(!empty($_POST[$key])) {
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses($_POST['date_format']), sanitize_text_field($_POST[$key]));
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']), sanitize_text_field($_POST[$key]));
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
