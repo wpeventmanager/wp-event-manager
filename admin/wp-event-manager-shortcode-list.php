@@ -21,7 +21,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 			
 			wp_enqueue_script('wp-event-manager-admin-js');
 			
-			$detail_link = "https://wp-eventmanager.com/knowledge-base/";
+			$detail_link = esc_url("https://wp-eventmanager.com/knowledge-base/");
 
 			$shortcode_plugins = apply_filters('wp_event_manager_shortcode_plugin', 
 				array(
@@ -29,12 +29,12 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 				)
 			);	
 			if(isset($_GET['plugin']) && !empty($_GET['plugin']))
-				$plugin_slug = $_GET['plugin'];
+				$plugin_slug = esc_attr($_GET['plugin']);
 			else
-				$plugin_slug = 'wp-event-manager';
+				$plugin_slug = esc_attr('wp-event-manager');
 			?>
 			<style>
-				.<?php echo $plugin_slug;?>{display:table-row;}
+				.<?php echo esc_attr($plugin_slug);?>{display:table-row;}
 			</style>
 			<div class="wrap wp_event_manager wp_event_manager_shortcodes_wrap">
 				<h2><?php _e('WP Event Manager shortcodes', 'wp-event-manager'); ?></h2>
@@ -49,7 +49,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 									$selected = 'selected="selected"';
 								else
 									$selected = ''; 
-								echo '<option class="level-0" value="'.$key.'" '.$selected.'>'.$value.'</option>';
+								echo '<option class="level-0" value="'.esc_attr($key).'" '.$selected.'>'.esc_attr($value).'</option>';
 							 } ?>
 						</select>
 						<input type="button" name="shortcode_list_filter_action" id="shortcode_list_filter_action" class="button" value="<?php _e('Filter', 'wp-event-manager');?>">
