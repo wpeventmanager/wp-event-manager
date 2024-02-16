@@ -977,7 +977,7 @@ class WP_Event_Manager_Writepanels {
 					// Combine event start date value with event start time
 					$date = sanitize_text_field(explode(' ', $_POST[$key])[0] . ' ' . $start_time);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses($_POST['date_format']) . ' H:i:s', $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']) . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(($date_dbformatted)));
 				} else {
@@ -993,7 +993,7 @@ class WP_Event_Manager_Writepanels {
 					// Combine event start date value with event start time
 					$date = sanitize_text_field(explode(' ', $_POST[$key])[0] . ' ' . $start_time);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses($_POST['date_format']) . ' H:i:s', $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']) . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(trim($date_dbformatted)));
@@ -1006,7 +1006,7 @@ class WP_Event_Manager_Writepanels {
 					// Combine event start date value with event start time
 					$date = sanitize_text_field(explode(' ', $_POST[$key])[0]);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses($_POST['date_format']), $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']), $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(trim($date_dbformatted)));
