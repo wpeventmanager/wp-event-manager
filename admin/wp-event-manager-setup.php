@@ -114,7 +114,7 @@ class WP_Event_Manager_Setup {
 	 * Output addons page.
 	 */
 	public function output() {
-		$step = !empty($_GET['step']) ? absint(esc_attr($_GET['step'])) : 1;
+		$step = !empty($_GET['step']) ? absint($_GET['step']) : 1;
 		if(isset($_GET['skip-event-manager-setup']) === 1) {
 			update_option('wpem_installation', 0);
 			update_option('wpem_installation_skip', 1);
@@ -143,7 +143,7 @@ class WP_Event_Manager_Setup {
 				if(!isset($create_pages[$page]) || empty($page_titles[$page])) {
 					continue;
 				}
-				$this->create_page(sanitize_text_field($page_titles[$page]), $content, 'event_manager_' . $page . '_page_id');
+				$this->create_page($page_titles[$page], $content, 'event_manager_' . $page . '_page_id');
 			}
 			update_option('wpem_installation', 1);
 			update_option('wpem_installation_skip', 0);

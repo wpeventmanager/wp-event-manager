@@ -98,7 +98,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function event_dashboard_handler(){
 
-		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'event_manager_my_event_actions')) {
+		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'event_manager_my_event_actions')) {
 			$action = sanitize_title($_REQUEST['action']);
 			$event_id = absint($_REQUEST['event_id']);
 
@@ -296,7 +296,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function organizer_dashboard_handler(){
 
-		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'event_manager_my_organizer_actions')) {
+		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'event_manager_my_organizer_actions')) {
 			$action = sanitize_title($_REQUEST['action']);
 			$organizer_id = absint($_REQUEST['organizer_id']);
 
@@ -428,7 +428,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function venue_dashboard_handler()	{
 
-		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'event_manager_my_venue_actions')) {
+		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'event_manager_my_venue_actions')) {
 			$action = sanitize_title($_REQUEST['action']);
 			$venue_id = absint($_REQUEST['venue_id']);
 

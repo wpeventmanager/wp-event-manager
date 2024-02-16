@@ -5,7 +5,7 @@
 			<ul class="wpem-main-vmenu-dashboard-ul">
 				<?php
 				$current_action = isset($_GET['action']) ? esc_attr( $_GET['action'] ): 'event_dashboard';
-				$event_id = isset($_GET['event_id']) ? absint(esc_attr($_GET['event_id'])) : '';
+				$event_id = isset($_GET['event_id']) ? absint($_GET['event_id']) : '';
 				$menus = [
 					'event_dashboard' => [
 						'title' => __('Events', 'wp-event-manager'),
@@ -244,7 +244,7 @@
 														),
 														get_permalink($event_dashboard)
 													);
-													if ($value['nonce']) {
+													if (sanitize_key($value['nonce'])) {
 														$action_url = wp_nonce_url($action_url, 'event_manager_my_event_actions');
 													} ?>
 													<div class="wpem-dboard-event-act-btn"><a href="<?php echo esc_url($action_url);?>" class="event-dashboard-action-<?php echo esc_attr($action);?>" title="<?php echo esc_html($value['label']);?>" ><?php echo esc_html($value['label']);?></a></div>

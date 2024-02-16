@@ -458,7 +458,7 @@ class WP_Event_Manager_Post_Types {
 			'post_type'           => 'event_listing',
 			'post_status'         => $post_status,
 			'ignore_sticky_posts' => 1,
-			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint(esc_attr($_GET['posts_per_page'])) : -1,
+			'posts_per_page'      => isset($_GET['posts_per_page']) ? absint($_GET['posts_per_page']) : -1,
 			'tax_query'           => array(),
 			'meta_query'          => array()
 		);		
@@ -762,7 +762,7 @@ class WP_Event_Manager_Post_Types {
 		// No metadata set so we can generate an expiry date
 		// See if the user has set the expiry manually:
 		if(!empty($_POST[ '_event_expiry_date' ])) {
-			update_post_meta($post->ID, '_event_expiry_date', date('Y-m-d', strtotime(sanitize_text_field($_POST[ '_event_expiry_date' ]))));
+			update_post_meta($post->ID, '_event_expiry_date', date('Y-m-d', strtotime(wp_kses_post($_POST[ '_event_expiry_date' ]))));
 			// No manual setting? Lets generate a date
 		} elseif(false == isset($expires)){
 			$expires = get_event_expiry_date($post->ID);

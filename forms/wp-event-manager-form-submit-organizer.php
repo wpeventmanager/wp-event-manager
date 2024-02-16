@@ -43,9 +43,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		uasort($this->steps, array($this, 'sort_by_priority'));
 		// Get step/event
 		if(isset($_POST['step'])) {
-			$this->step = is_numeric($_POST['step']) ? max(absint($_POST['step']), 0) : array_search($_POST['step'], array_keys($this->steps));
+			$this->step = is_numeric($_POST['step']) ? max(absint($_POST['step']), 0) : array_search(esc_attr($_POST['step']), array_keys($this->steps));
 		} elseif(!empty($_GET['step'])) {
-			$this->step = is_numeric($_GET['step']) ? max(absint(esc_attr($_GET['step'])), 0) : array_search(esc_attr($_GET['step']), array_keys($this->steps));
+			$this->step = is_numeric($_GET['step']) ? max(absint($_GET['step']), 0) : array_search(esc_attr($_GET['step']), array_keys($this->steps));
 		}
 
 		$this->organizer_id =!empty($_REQUEST['organizer_id']) ? absint($_REQUEST[ 'organizer_id' ]) : 0;

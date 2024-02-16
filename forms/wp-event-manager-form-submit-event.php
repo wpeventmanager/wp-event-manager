@@ -49,7 +49,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 		// Get step/event
 		if( isset( $_POST['step'] ) ) {
-			$this->step = is_numeric( $_POST['step'] ) ? max( absint( $_POST['step'] ), 0 ) : array_search( $_POST['step'], array_keys( $this->steps ) );
+			$this->step = is_numeric( $_POST['step'] ) ? max( absint( esc_attr($_POST['step'] )), 0 ) : array_search( esc_attr($_POST['step']), array_keys( $this->steps ) );
 		} elseif ( !empty( $_GET['step'] ) ) {
 			$this->step = is_numeric( $_GET['step'] ) ? max( absint( esc_attr($_GET['step'] )), 0 ) : array_search( esc_attr($_GET['step']), array_keys( $this->steps ) );
 		}
@@ -670,7 +670,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						if( empty( $_POST['create_account_password_verify'] ) || $_POST['create_account_password_verify'] !== $_POST['create_account_password'] ) {
 							throw new Exception( __( 'Passwords must match.', 'wp-event-manager' ) );
 						}
-						if( !event_manager_validate_new_password( $_POST['create_account_password'] ) ) {
+						if( !event_manager_validate_new_password( esc_html($_POST['create_account_password']) ) ) {
 							$password_hint = sanitize_text_field(event_manager_get_password_rules_hint());
 							if( $password_hint ) {
 								throw new Exception( sprintf(wp_kses( 'Invalid Password: %s', 'wp-event-manager' ), esc_attr( $password_hint ) ) );

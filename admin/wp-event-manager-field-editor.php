@@ -104,17 +104,17 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	private function form_editor() {
 
-		if(!empty($_GET['event-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
+		if(!empty($_GET['event-reset-fields']) && !empty(sanitize_key($_GET['_wpnonce'])) && wp_verify_nonce(sanitize_key($_GET['_wpnonce']), 'reset')) {
 			delete_option('event_manager_submit_event_form_fields');
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
-		if(!empty($_GET['organizer-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
+		if(!empty($_GET['organizer-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce(sanitize_key($_GET['_wpnonce']), 'reset')) {
 			delete_option('event_manager_submit_organizer_form_fields');
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
-		if(!empty($_GET['venue-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'reset')) {
+		if(!empty($_GET['venue-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce(sanitize_key($_GET['_wpnonce']), 'reset')) {
 			delete_option('event_manager_submit_venue_form_fields');
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
@@ -287,7 +287,7 @@ class WP_Event_Manager_Field_Editor {
 	 * Save the form fields.
 	 */
 	private function form_editor_save()	{
-		if(wp_verify_nonce($_POST['_wpnonce'], 'save-wp-event-manager-form-field-editor')) {
+		if(wp_verify_nonce(sanitize_key($_POST['_wpnonce']), 'save-wp-event-manager-form-field-editor')) {
 			
 			$event_field     = !empty($_POST['event']) ? $this->sanitize_array( wp_unslash( $_POST['event'] ) ) : array();
 			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array( wp_unslash( $_POST['organizer'] ) ) : array();
@@ -304,7 +304,7 @@ class WP_Event_Manager_Field_Editor {
 				foreach ($new_fields as $group_key => $group_fields) {
 					$index = 0;
 					foreach ($group_fields as $field_key => $field_value) {
-						$new_fields[$group_key][$field_key]['visibility'] = isset($_POST['_'.$field_key.'_visibility']) ? $_POST['_'.$field_key.'_visibility'] : 1; 
+						$new_fields[$group_key][$field_key]['visibility'] = isset($_POST['_'.$field_key.'_visibility']) ? sanitize_text_field($_POST['_'.$field_key.'_visibility']) : 1; 
 						if(!empty($field_value['label'])) {
 							$index++;
 							if(isset($new_fields[$group_key][$field_key]['type']) && $new_fields[$group_key][$field_key]['type'] === 'group') {

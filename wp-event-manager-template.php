@@ -369,7 +369,7 @@ function wp_event_manager_get_registration_fields(){
 				'type'     => 'text',
 				'label'    => __('Username', 'wp-event-manager'),
 				'required' => $account_required,
-				'value'    => isset($_POST['create_account_username']) ? sanitize_text_field($_POST['create_account_username']) : '',
+				'value'    => isset($_POST['create_account_username']) ? sanitize_text_field(wp_unslash($_POST['create_account_username'])) : '',
 			);
 		}
 		if(!$use_standard_password_setup_email) {

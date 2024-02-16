@@ -1306,7 +1306,7 @@ function get_event_expiry_date($event_id) {
 		$duration = esc_attr(get_post_meta($event_id, '_event_duration', true));		
 
 		if(!$duration) {		   
-			$duration = absint(esc_attr(get_option('event_manager_submission_duration')));
+			$duration = absint(get_option('event_manager_submission_duration'));
 		}
 		if($duration) 
 			return date('Y-m-d', strtotime("+{$duration} days", strtotime($expiry_base_date)));
@@ -1841,7 +1841,7 @@ if(!function_exists('get_wpem_email_from_address')){
 	function get_wpem_email_from_address( $from_email = '' ) {
 		$from_email = get_option('wpem_email_from_address');
 		if(empty($from_email))
-			$from_email = 'noreply@' . (isset($_SERVER['HTTP_HOST']) ? str_replace('www.', '', $_SERVER['HTTP_HOST']) : 'noreply.com');
+			$from_email = 'noreply@' . (isset($_SERVER['HTTP_HOST']) ? str_replace('www.', '', esc_url_raw( wp_unslash($_SERVER['HTTP_HOST']))) : 'noreply.com');
 			// $from_email = "wordpress@".trim( str_replace( array( 'http://', 'https://' ), '', get_bloginfo('url')));
 		$from_email = apply_filters( 'wpem_email_from_address', $from_email );
 		return sanitize_email( $from_email );
