@@ -574,32 +574,32 @@ class WP_Event_Manager_Shortcodes{
 			'order'                     => esc_attr('ASC'),
 			
 			// Filters + cats
-			'show_filters'              => esc_attr(true),
+			'show_filters'              => true,
 			'filter_style'              => esc_attr(''),
-			'show_categories'           => esc_attr(true),
-			'show_event_types'          => esc_attr(true),
-			'show_ticket_prices'        => esc_attr(true),
-			'show_category_multiselect' => esc_attr(get_option('event_manager_enable_default_category_multiselect', false)),
-			'show_event_type_multiselect' => esc_attr(get_option('event_manager_enable_default_event_type_multiselect', false)),
-			'show_pagination'           => esc_attr(false),
-			'show_more'                 => esc_attr(true),
+			'show_categories'           => true,
+			'show_event_types'          => true,
+			'show_ticket_prices'        => true,
+			'show_category_multiselect' => get_option('event_manager_enable_default_category_multiselect', false),
+			'show_event_type_multiselect' => get_option('event_manager_enable_default_event_type_multiselect', false),
+			'show_pagination'           => false,
+			'show_more'                 => true,
 			
 			// Limit what events are shown based on category and type
-			'categories'                => esc_attr(''),
-			'event_types'               => esc_attr(''),
-			'ticket_prices'             => esc_attr(''),
-			'featured'                  => esc_attr(null), // True to show only featured, false to hide featured, leave null to show both.
-			'cancelled'                 => esc_attr(null), // True to show only cancelled, false to hide cancelled, leave null to show both/use the settings.
+			'categories'                => '',
+			'event_types'               => '',
+			'ticket_prices'             => '',
+			'featured'                  => null, // True to show only featured, false to hide featured, leave null to show both.
+			'cancelled'                 => null, // True to show only cancelled, false to hide cancelled, leave null to show both/use the settings.
 
 			// Default values for filters
-			'location'                  => esc_attr(''),
-			'keywords'                  => esc_attr(''),
-			'selected_datetime'         => esc_attr(''),
-			'selected_category'         => esc_attr(''),
-			'selected_event_type'       => esc_attr(''),
-			'selected_ticket_price'     => esc_attr(''),
+			'location'                  => '',
+			'keywords'                  => '',
+			'selected_datetime'         => '',
+			'selected_category'         => '',
+			'selected_event_type'       => '',
+			'selected_ticket_price'     => '',
 			'layout_type'      			=> esc_attr('all'),
-			'event_online'      		=> esc_attr(''),
+			'event_online'      		=> '',
 			'title'                     => esc_attr(__('Events', 'wp-event-manager')),
 		)), $atts));
 
@@ -1123,8 +1123,8 @@ class WP_Event_Manager_Shortcodes{
 		extract($atts = shortcode_atts(apply_filters('event_manager_output_event_organizers_defaults', array(
 			'orderby'	=> esc_attr('title'), // title
 			'order'     => esc_attr('ASC'),
-			'show_thumb'	=> esc_attr(true),
-			'show_count'	=> esc_attr(true),
+			'show_thumb'	=> true,
+			'show_count'	=> true,
 		)), $atts));
 		ob_start();
 
@@ -1319,8 +1319,8 @@ class WP_Event_Manager_Shortcodes{
 		extract($atts = shortcode_atts(apply_filters('event_manager_output_event_venues_defaults', array(
 			'orderby'	=> esc_attr('title'), // title
 			'order'     => esc_attr('ASC'),
-			'show_thumb'	=> esc_attr(true),
-			'show_count'	=> esc_attr(true),
+			'show_thumb'	=> true,
+			'show_count'	=> true,
 		)), $atts));
 
 		ob_start();
