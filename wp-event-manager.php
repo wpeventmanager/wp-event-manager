@@ -42,6 +42,7 @@ class WP_Event_Manager {
 	 */
 	private static $wpem_verion = '3.1.43';
 
+
 	/**
 	 * REST API instance.
 	 *
