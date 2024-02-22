@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.3.1
-Stable tag: 3.1.42
+Stable tag: 3.1.43
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -299,6 +299,14 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= [3.1.43] 22-02-2024 =
+
+Fixed : URL type value is now shown on the organizer details page.
+Fixed : Orgnaizer and venue section image is missing.
+Fixed : Venue shortcode and details are added to the shortcode menu
+Fixed : YouTube videos on Gutenberg blocks are now working properly.
+Fixed : The security issue faced while updating events has been resolved.
 
 = [3.1.42] 07-02-2024 =
 

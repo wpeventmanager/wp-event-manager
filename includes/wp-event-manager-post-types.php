@@ -463,18 +463,19 @@ class WP_Event_Manager_Post_Types {
 			'meta_query'          => array()
 		);		
 		if(!empty($_GET['search_location'])) {
+			$search_location = esc_html($_GET['search_location']);
 			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
 			foreach($location_meta_keys as $meta_key) {
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => 	$_GET['search_location'], 
+					'value'   => $search_location, 
 					'compare' => 'like',
 					'type'    => 'char',
 				);
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $_GET['search_location']), ','),
+					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $search_location), ','),
 					'compare' => 'like',
 					'type'    => 'char',
 				);
@@ -515,11 +516,11 @@ class WP_Event_Manager_Post_Types {
 		}
 
 		if(!empty($_GET['search_ticket_prices'])) {
-			
-			if($_GET['search_ticket_prices'] =='ticket_price_paid') {  
-			$ticket_price_value='paid';     
-			} else if($_GET['search_ticket_prices'] =='ticket_price_free')	{
-			$ticket_price_value='free';
+			$search_ticket_prices = esc_attr($_GET['search_ticket_prices']);
+			if($search_ticket_prices =='ticket_price_paid') {  
+				$ticket_price_value='paid';     
+			} else if($search_ticket_prices =='ticket_price_free')	{
+				$ticket_price_value='free';
 			}
 			$ticket_search[] = array(
 				'key'     => '_event_ticket_options',
@@ -530,9 +531,10 @@ class WP_Event_Manager_Post_Types {
 		}
 	
 		if(!empty($_GET['search_event_types'])) {
-			$cats     = explode(',', sanitize_text_field($_GET['search_event_types'])) + array(0);
+			$search_event_types = esc_attr($_GET['search_event_types']);
+			$cats     = explode(',', $search_event_types) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && sizeof($args['search_event_types']) > 1 ? 'AND' : 'IN';
+			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && sizeof($search_event_types) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
 				'taxonomy'         => 'event_listing_type',
 				'field'            => $field,
@@ -543,9 +545,10 @@ class WP_Event_Manager_Post_Types {
 		}
 	
 		if(!empty($_GET['search_categories'])) {
-			$cats     = explode(',', sanitize_text_field($_GET['search_categories'])) + array(0);
+			$search_categories = esc_attr($_GET['search_categories']);
+			$cats     = explode(',', $search_categories) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($args['search_categories']) > 1 ? 'AND' : 'IN';
+			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($search_categories) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
 				'taxonomy'         => 'event_listing_category',
 				'field'            => $field,
@@ -554,7 +557,8 @@ class WP_Event_Manager_Post_Types {
 				'operator'         => $operator
 			);
 		}
-		if($event_manager_keyword = sanitize_text_field($_GET['search_keywords'])) {
+		if(!empty($_GET['search_keywords'])) {
+			$event_manager_keyword = esc_attr($_GET['search_keywords']);
 			$query_args['s'] = $event_manager_keyword;
 			add_filter('posts_search', 'get_event_listings_keyword_search');
 		}
@@ -657,7 +661,7 @@ class WP_Event_Manager_Post_Types {
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
 				$event = get_post($event_id);
-				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(get_post_meta($event_id, '_event_expiry_date', true). ' 23:59:30')), $event);     
+				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($event_id, '_event_expiry_date', true)). ' 23:59:30')), $event);     
 				$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', current_time('timestamp')));     
 				
 				// Check for event expire    
@@ -749,16 +753,16 @@ class WP_Event_Manager_Post_Types {
 		}
 		// See if it is already set
 		if(metadata_exists('post', $post->ID, '_event_expiry_date')) {
-			$expires = get_post_meta($post->ID, '_event_expiry_date', true);
+			$expires = esc_html(get_post_meta($post->ID, '_event_expiry_date', true));
 			if($expires && strtotime($expires) < current_time('timestamp')) {
-				update_post_meta($post->ID, '_event_expiry_date', '');
+				update_post_meta($post->ID, '_event_expiry_date', sanitize_text_field(''));
 			}
 		}
 		
 		// No metadata set so we can generate an expiry date
 		// See if the user has set the expiry manually:
 		if(!empty($_POST[ '_event_expiry_date' ])) {
-			update_post_meta($post->ID, '_event_expiry_date', date('Y-m-d', strtotime(sanitize_text_field($_POST[ '_event_expiry_date' ]))));
+			update_post_meta($post->ID, '_event_expiry_date', date('Y-m-d', strtotime(wp_kses_post($_POST[ '_event_expiry_date' ]))));
 			// No manual setting? Lets generate a date
 		} elseif(false == isset($expires)){
 			$expires = get_event_expiry_date($post->ID);
@@ -795,15 +799,15 @@ class WP_Event_Manager_Post_Types {
 	*/
 	public function set_post_views($post_id) {
 		$count_key = '_view_count';
-		$count = get_post_meta($post_id, $count_key, true);
+		$count = esc_attr(get_post_meta($post_id, $count_key, true));
 
 		if($count=='' || $count==null) {
 			$count = 0;
 			delete_post_meta($post_id, $count_key);
-			add_post_meta($post_id, $count_key, '0');
+			add_post_meta($post_id, $count_key, sanitize_text_field('0'));
 		}  else {
 			$count++;
-			update_post_meta($post_id, $count_key, $count);
+			update_post_meta($post_id, $count_key, sanitize_text_field($count));
 		}
 	}
 	
@@ -919,7 +923,7 @@ class WP_Event_Manager_Post_Types {
 	public function pmxi_saved_post($post_id) {
 		if('event_listing' === get_post_type($post_id)) {
 			$this->maybe_add_default_meta_data($post_id);
-			if(!WP_Event_Manager_Geocode::has_location_data($post_id) && ($location = get_post_meta($post_id, '_event_location', true))) {
+			if(!WP_Event_Manager_Geocode::has_location_data($post_id) && ($location = esc_attr(get_post_meta($post_id, '_event_location', true)))) {
 				WP_Event_Manager_Geocode::generate_location_data($post_id, $location);
 			}
 		}

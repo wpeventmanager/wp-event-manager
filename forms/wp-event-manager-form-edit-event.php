@@ -70,13 +70,13 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 					} elseif('event_description' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($event->post_content);
 					} elseif('organizer_logo' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($event->ID) ? get_post_thumbnail_id($event->ID) : get_post_meta($event->ID, '_' . $key, true);
+						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($event->ID) ? get_post_thumbnail_id($event->ID) : esc_url(get_post_meta($event->ID, '_' . $key, true));
 					} elseif('event_start_date' === $key) {
-						$event_start_date = get_post_meta($event->ID, '_' . $key, true);
+						$event_start_date = esc_html(get_post_meta($event->ID, '_' . $key, true));
         				// Convert date and time value into selected datepicker value
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_start_date));
 					} elseif('event_end_date' === $key) {
-						$event_end_date = get_post_meta($event->ID, '_' . $key, true);
+						$event_end_date = esc_html(get_post_meta($event->ID, '_' . $key, true));
         				// Convert date and time value into selected datepicker value
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_end_date));
 					} elseif(!empty($field['taxonomy'])) {
@@ -86,7 +86,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 					}
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
-					$event_date = get_post_meta($event->ID, '_' . stripslashes($key), true);
+					$event_date = esc_html(get_post_meta($event->ID, '_' . stripslashes($key), true));
 					$this->fields[ $group_key ][ $key ]['value'] = !empty($event_date) ? date($php_date_format ,strtotime($event_date)) :'';
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'button'){

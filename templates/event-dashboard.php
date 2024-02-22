@@ -4,7 +4,7 @@
 		<div class="wpem-main-vmenu-dashboard-nav" id="wpem-main-vmenu-dashboard-nav">
 			<ul class="wpem-main-vmenu-dashboard-ul">
 				<?php
-				$current_action = isset($_GET['action']) ? sanitize_title( $_GET['action'] ): 'event_dashboard';
+				$current_action = isset($_GET['action']) ? esc_attr( $_GET['action'] ): 'event_dashboard';
 				$event_id = isset($_GET['event_id']) ? absint($_GET['event_id']) : '';
 				$menus = [
 					'event_dashboard' => [
@@ -112,8 +112,8 @@
 
 					<?php
 					$_GET = array_map('stripslashes_deep', $_GET);
-					$search_keywords = isset($_GET['search_keywords']) ? sanitize_text_field($_GET['search_keywords']) : '';
-					$search_order_by = isset($_GET['search_order_by']) ? sanitize_text_field($_GET['search_order_by']) : '';
+					$search_keywords = isset($_GET['search_keywords']) ? esc_attr($_GET['search_keywords']) : '';
+					$search_order_by = isset($_GET['search_order_by']) ? esc_attr($_GET['search_order_by']) : '';
 
 					$display_block = '';
 					if (!empty($search_keywords) || !empty($search_order_by)) {
@@ -124,7 +124,7 @@
 						<div class="wpem-events-filter">
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
 							<div class="wpem-events-filter-block">
-								<?php $search_keywords = isset($_GET['search_keywords']) ? $_GET['search_keywords'] : ''; ?>
+								<?php $search_keywords = isset($_GET['search_keywords']) ? esc_attr($_GET['search_keywords']) : ''; ?>
 								<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo esc_attr($search_keywords); ?>" placeholder="<?php _e('Keywords', 'wp-event-manager'); ?>"></div>
 							</div>
 							<div class="wpem-events-filter-block">
@@ -244,7 +244,7 @@
 														),
 														get_permalink($event_dashboard)
 													);
-													if ($value['nonce']) {
+													if (sanitize_key($value['nonce'])) {
 														$action_url = wp_nonce_url($action_url, 'event_manager_my_event_actions');
 													} ?>
 													<div class="wpem-dboard-event-act-btn"><a href="<?php echo esc_url($action_url);?>" class="event-dashboard-action-<?php echo esc_attr($action);?>" title="<?php echo esc_html($value['label']);?>" ><?php echo esc_html($value['label']);?></a></div>

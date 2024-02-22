@@ -38,7 +38,7 @@ class WP_Event_Manager_Forms {
 	 */
 	public function load_posted_form() {
 		if(!empty($_POST['event_manager_form'])) {
-			$this->load_form_class(sanitize_title($_POST['event_manager_form']));
+			$this->load_form_class(esc_attr($_POST['event_manager_form']));
 		}
 	}
 

@@ -176,7 +176,7 @@ class WP_Event_Manager_Data_Cleaner {
 		if(!in_array(get_post_type($post_id), ['event_listing', 'event_organizer']))
 			return;
 		
- 		$event_banner = get_post_meta($post_id, '_event_banner', true);
+ 		$event_banner = esc_url(get_post_meta($post_id, '_event_banner', true));
 		if(!empty($event_banner)){
 			$wp_upload_dir = wp_get_upload_dir();
 			$baseurl = $wp_upload_dir['baseurl'] . '/';

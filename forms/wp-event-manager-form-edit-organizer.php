@@ -66,19 +66,19 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 			foreach ($group_fields as $key => $field) {
 				if(!isset($this->fields[ $group_key ][ $key ]['value'])) {
 					if('organizer_name' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($organizer->post_title);
+						$this->fields[ $group_key ][ $key ]['value'] = esc_attr($organizer->post_title);
 					} elseif('event_description' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($organizer->post_content);
 					} elseif('organizer_logo' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($organizer->ID) ? get_post_thumbnail_id($organizer->ID) : get_post_meta($organizer->ID, '_' . $key, true);
+						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($organizer->ID) ? get_post_thumbnail_id($organizer->ID) : esc_url(get_post_meta($organizer->ID, '_' . $key, true));
 					} elseif(!empty($field['taxonomy'])) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($organizer->ID, esc_attr($field['taxonomy']), array('fields' => 'ids'));
 					} else {
-						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($organizer->ID, '_' . esc_attr($key), true));
+						$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($organizer->ID, '_' . esc_attr($key), true));
 					}
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
-					$organizer_date = get_post_meta($organizer->ID, '_' . $key, true);
+					$organizer_date = esc_html(get_post_meta($organizer->ID, '_' . $key, true));
 					$this->fields[ $group_key ][ $key ]['value'] = !empty($organizer_date) ? date($php_date_format ,strtotime($organizer_date)) :'';
 				}
 			}

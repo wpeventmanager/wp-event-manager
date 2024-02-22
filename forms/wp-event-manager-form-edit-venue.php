@@ -66,19 +66,19 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 			foreach ($group_fields as $key => $field) {
 				if(!isset($this->fields[ $group_key ][ $key ]['value'])) {
 					if('venue_name' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field($venue->post_title);
+						$this->fields[ $group_key ][ $key ]['value'] = esc_attr($venue->post_title);
 					} elseif('venue_description' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($venue->post_content);
 					} elseif('venue_logo' === $key) {
-						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($venue->ID) ? get_post_thumbnail_id($venue->ID) : get_post_meta($venue->ID, '_' . $key, true);
+						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($venue->ID) ? get_post_thumbnail_id($venue->ID) : esc_url(get_post_meta($venue->ID, '_' . $key, true));
 					} elseif(!empty($field['taxonomy'])) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($venue->ID, esc_attr($field['taxonomy']), array('fields' => 'ids'));
 					} else {
-						$this->fields[ $group_key ][ $key ]['value'] = sanitize_text_field(get_post_meta($venue->ID, '_' . esc_attr($key), true));
+						$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($venue->ID, '_' . esc_attr($key), true));
 					}
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
-					$venue_date = get_post_meta($venue->ID, '_' . $key, true);
+					$venue_date = esc_html(get_post_meta($venue->ID, '_' . $key, true));
 					$this->fields[ $group_key ][ $key ]['value'] = !empty($venue_date) ? date($php_date_format ,strtotime($venue_date)) :'';
 				}
 			}

@@ -21,7 +21,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 			
 			wp_enqueue_script('wp-event-manager-admin-js');
 			
-			$detail_link = "https://wp-eventmanager.com/knowledge-base/";
+			$detail_link = esc_url("https://wp-eventmanager.com/knowledge-base/");
 
 			$shortcode_plugins = apply_filters('wp_event_manager_shortcode_plugin', 
 				array(
@@ -29,12 +29,12 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 				)
 			);	
 			if(isset($_GET['plugin']) && !empty($_GET['plugin']))
-				$plugin_slug = $_GET['plugin'];
+				$plugin_slug = esc_attr($_GET['plugin']);
 			else
-				$plugin_slug = 'wp-event-manager';
+				$plugin_slug = esc_attr('wp-event-manager');
 			?>
 			<style>
-				.<?php echo $plugin_slug;?>{display:table-row;}
+				.<?php echo esc_attr($plugin_slug);?>{display:table-row;}
 			</style>
 			<div class="wrap wp_event_manager wp_event_manager_shortcodes_wrap">
 				<h2><?php _e('WP Event Manager shortcodes', 'wp-event-manager'); ?></h2>
@@ -49,7 +49,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 									$selected = 'selected="selected"';
 								else
 									$selected = ''; 
-								echo '<option class="level-0" value="'.$key.'" '.$selected.'>'.$value.'</option>';
+								echo '<option class="level-0" value="'.esc_attr($key).'" '.$selected.'>'.esc_attr($value).'</option>';
 							 } ?>
 						</select>
 						<input type="button" name="shortcode_list_filter_action" id="shortcode_list_filter_action" class="button" value="<?php _e('Filter', 'wp-event-manager');?>">
@@ -119,6 +119,49 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 									<td><?php _e('Event Organizers', 'wp-event-manager');?></td>
 									<td><?php _e('The event Organizer page displays event organizers list in alphabetical order with an alphabetic filter option. To set up the Event Organizer page, paste the shortcode [event_organizers] in the content area of the Event Organizer page.', 'wp-event-manager');?></td>
 									<td><a class="button add-field" href="<?php echo $detail_link.'organizer-shortcode/#articleTOC_2';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[event_organizer]</td>
+									<td><?php _e('Event Organizer', 'wp-event-manager');?></td>
+									<td><?php _e('In order to display a particular organizer on the page, a user can add this shortcode.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo $detail_link.'organizer-shortcode/#articleTOC_4';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[single_event_organizer]</td>
+									<td><?php _e('Single Event Organizers', 'wp-event-manager');?></td>
+									<td><?php _e('In order to display a particular event’s Organizer, a user can add this shortcode.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo $detail_link.'organizer-shortcode/#articleTOC_5';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td"> [submit_venue_form]</td>
+									<td><?php _e('Submit Venue Page', 'wp-event-manager');?></td>
+									<td><?php _e('The “Submit Venue” Page contains a form in which a user needs to fill in the details of the event venues.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo $detail_link.'venue-shortcode/#articleTOC_0';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[venue_dashboard]</td>
+									<td><?php _e('Venue Dashboard', 'wp-event-manager');?></td>
+									<td><?php _e('The dashboard displays the list of all the Venues created by the logged in users. A user can add, edit, delete, create, duplicate Venues and view a specific venue’s event list from the Venue Dashboard.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo $detail_link.'venue-shortcode/#articleTOC_1';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[event_venues]</td>
+									<td><?php _e('Event Venues', 'wp-event-manager');?></td>
+									<td><?php _e('The Event Venue  page displays the list of event venues in alphanumerical order with an alphanumeric filter option.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo $detail_link.'venue-shortcode/#articleTOC_2';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[event_venue]</td>
+									<td><?php _e('Event Venue', 'wp-event-manager');?></td>
+									<td><?php _e('In order to display a particular Venue on the page, a user can add this shortcode.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo $detail_link.'venue-shortcode/#articleTOC_4';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[single_event_venue]</td>
+									<td><?php _e('Single Event Venues', 'wp-event-manager');?></td>
+									<td><?php _e('In order to display a particular event’s Venue, a user can add this shortcode.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo $detail_link.'venue-shortcode/#articleTOC_5';?>" target="_blank"><?php _e('View Details', 'wp-event-manager');?></a></td>
 								</tr>
 								<?php do_action('wp_event_manager_shortcode_list', $detail_link); ?>
 							</tbody>

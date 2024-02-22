@@ -283,7 +283,7 @@ A prior Backup does no harm before updating the plugin!',
 
 			if(!empty($attachments)) {
 				foreach ($attachments as $attachment) {
-					update_post_meta($event->ID, '_thumbnail_id', $attachment->ID);
+					update_post_meta($event->ID, '_thumbnail_id', sanitize_text_field($attachment->ID));
 				}
 			}
 		}
@@ -344,7 +344,7 @@ A prior Backup does no harm before updating the plugin!',
 	 * Ran on WP admin_init hook.
 	 */
 	public function admin_init() {
-		if(!empty( sanitize_text_field( isset( $_GET['event-manager-main-admin-dismiss']) ) )) {
+		if(isset( $_GET['event-manager-main-admin-dismiss']) && !empty($_GET['event-manager-main-admin-dismiss'])){
 			update_option('event_manager_rating_showcase_admin_notices_dismiss', 1);
 		}
 	}

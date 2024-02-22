@@ -369,7 +369,7 @@ function wp_event_manager_get_registration_fields(){
 				'type'     => 'text',
 				'label'    => __('Username', 'wp-event-manager'),
 				'required' => $account_required,
-				'value'    => isset($_POST['create_account_username']) ? sanitize_text_field($_POST['create_account_username']) : '',
+				'value'    => isset($_POST['create_account_username']) ? sanitize_text_field(wp_unslash($_POST['create_account_username'])) : '',
 			);
 		}
 		if(!$use_standard_password_setup_email) {
@@ -909,7 +909,7 @@ function get_event_venue_name($post = null, $link = false){
 		if($link) {
 			$venue_name .= '<a href="' . get_permalink($post->_event_venue_ids) . '">';
 		}
-		$venue_name .= get_post_meta($post->_event_venue_ids, '_venue_name', true);
+		$venue_name .= esc_attr(get_post_meta($post->_event_venue_ids, '_venue_name', true));
 
 		if($link) {
 			$venue_name .= '</a>';
@@ -1072,7 +1072,7 @@ function get_organizer_name($post = null, $link = false, $link_type = 'frontend'
 					$organizer_name .= '<a href="' . get_permalink($organizer_id) . '">';
 				}
 			}
-			$organizer_name .= get_post_meta($organizer_id, '_organizer_name', true);
+			$organizer_name .= esc_attr(get_post_meta($organizer_id, '_organizer_name', true));
 			if($link) {
 				$organizer_name .= '</a>';
 			}
@@ -1357,7 +1357,7 @@ function get_event_organizer_email($post = null){
 			if($key > 0) {
 				$organizers_email .= ', ';
 			}
-			$organizers_email .= get_post_meta($organizer_id, '_organizer_email', true);
+			$organizers_email .= esc_html(get_post_meta($organizer_id, '_organizer_email', true));
 		}
 		return apply_filters('display_organizer_email', $organizers_email, $post);
 	}
@@ -1439,7 +1439,7 @@ function get_organizer_website($post = null){
 	if(!empty($post->_event_organizer_ids)) {
 		$website = '';
 		foreach($post->_event_organizer_ids as $key => $organizer_id) {
-			$website .= get_post_meta($organizer_id, '_organizer_website', true);
+			$website .= esc_url(get_post_meta($organizer_id, '_organizer_website', true));
 			if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 				$website .= 'http://' . $website;
 			}
@@ -1490,7 +1490,7 @@ function get_venue_website($post = null){
 
 	if(!empty($post->_event_venue_ids)) {
 		$website = '';
-		$website .= get_post_meta($post->_event_venue_ids, '_venue_website', true);
+		$website .= esc_url(get_post_meta($post->_event_venue_ids, '_venue_website', true));
 
 		if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 			$website .= 'http://' . $website;
@@ -2132,7 +2132,7 @@ function get_event_listing_class($class = '', $post_id = null){
  **/
 function get_post_views_count($post){
 	$count_key = '_view_count';
-	$count = get_post_meta($post->ID, $count_key, true);
+	$count = esc_attr(get_post_meta($post->ID, $count_key, true));
 
 	if($count == '' || $count == null) {
 		delete_post_meta($post->ID, $count_key);
@@ -2273,7 +2273,7 @@ function event_manager_get_event_listing_structured_data($post = null){
 	$data['@context'] = 'http://schema.org/';
 	$data['@type'] = 'Event';
 
-	$event_expires = get_post_meta($post->ID, '_event_expires', true);
+	$event_expires = esc_attr(get_post_meta($post->ID, '_event_expires', true));
 	if(!empty($event_expires)) {
 		$data['validThrough'] = date('c', strtotime($event_expires));
 	}
@@ -2342,14 +2342,14 @@ function event_manager_get_event_listing_location_structured_data($post){
 		if(is_array($geolocation_key)) {
 			$values = array();
 			foreach($geolocation_key as $sub_geo_key) {
-				$geo_value = get_post_meta($post->ID, 'geolocation_' . $sub_geo_key, true);
+				$geo_value = esc_attr(get_post_meta($post->ID, 'geolocation_' . $sub_geo_key, true));
 				if(!empty($geo_value)) {
 					$values[] = $geo_value;
 				}
 			}
 			$value = implode(' ', $values);
 		} else {
-			$value = get_post_meta($post->ID, 'geolocation_' . $geolocation_key, true);
+			$value = esc_attr(get_post_meta($post->ID, 'geolocation_' . $geolocation_key, true));
 		}
 		if(!empty($value)) {
 			$address[$schema_key] = $value;
