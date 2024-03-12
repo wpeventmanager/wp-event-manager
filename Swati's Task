@@ -1,0 +1,206 @@
+WordPress Test Answers
+
+Q: Visual Composer : - Shortcode not working. #499
+A: public function shortcode_action_handler() {
+global $post;
+// Check if the current page contains any of the specified shortcodes in its content
+if (is_page() && strstr($post->post_content, '[event_dashboard')) {
+// Call the event dashboard handler method
+$this->event_dashboard_handler();
+// Call the organizer dashboard handler method
+$this->organizer_dashboard_handler();
+// Call the venue dashboard handler method
+$this->venue_dashboard_handler();
+} elseif (is_page() && (strstr($post->post_content, '[organizer_dashboard') ||
+stristr($post->post_content, 'organizer dashboard'))) {
+// Call the organizer dashboard handler method
+$this->organizer_dashboard_handler();
+} elseif (is_page() && (strstr($post->post_content, '[venue_dashboard') ||
+stristr($post->post_content, 'venue dashboard'))) {
+// Call the venue dashboard handler method
+$this->venue_dashboard_handler();
+}
+}
+
+Q: Visual Composer : - Some element missing. #500
+A: function get_event_listings($args = array()) {
+$args = wp_parse_args($args, array(
+// Other arguments...
+'orderby' => 'meta_value', // Order by custom field value
+'meta_key' => 'event_start_date', // Custom field key for event start date
+'order' => 'ASC', // Order by ascending event start date
+));
+// Continue with existing code for querying event listings
+}
+
+Q: Visual composer - Event Dashboard - First time when page is load then only display
+one event #820
+A: Check the Query:
+$args = array(
+'post_type' => 'event_listing',
+'posts_per_page' => -1, // Fetch all events, adjust as needed
+);
+$events = new WP_Query($args);
+Pagination:
+$args = array(
+'post_type' => 'event_listing',
+'posts_per_page' => 10, // Adjust as needed
+'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
+);
+$events = new WP_Query($args);
+Conditional Checks:
+if (have_posts()) {
+while (have_posts()) {
+the_post();
+// Display event content
+}
+}
+Debugging:
+echo 'Number of events: ' . $events->post_count;
+
+Q: Visual composer - Single event listing issue #822
+A: Debugging Output:
+function get_event_listings($args = array()) {
+// ... (existing code)
+$events_query = new WP_Query($args);
+// Output the generated SQL query for debugging
+echo 'Generated SQL Query: ' . $events_query->request;
+// ... (continue with the existing code)
+}
+Error Handling:
+function get_event_listings($args = array()) {
+// ... (existing code)
+$events_query = new WP_Query($args);
+// Check for errors
+if ($events_query->have_posts()) {
+// ... (continue with the existing code)
+} else {
+echo 'Error in WP_Query: ' . $events_query->get('error');
+}
+}
+Check Post Status:
+$args = array(
+'post_type' => 'event_listing',
+'post_status' => 'publish', // Adjust as needed
+'p' => $event_id, // Specify the event ID you want to retrieve
+);
+Check Event ID:
+$args = array(
+'post_type' => 'event_listing',
+'p' => $event_id, // Specify the correct event ID
+);
+
+Q: Visual composer - Event listing - Order by as select - Event start date #888
+A: if (!function_exists('get_event_listings')) :
+/**
+* Queries event listings with certain criteria and returns them.
+*
+* @access public
+* @return WP_Query
+*/
+function get_event_listings($args = array())
+{
+global $wpdb, $event_manager_keyword;
+$args = wp_parse_args($args, array(
+'search_location' => '',
+'search_keywords' => '',
+'search_datetimes' => array(),
+'search_categories' => array(),
+'search_event_types' => array(),
+'search_ticket_prices' => array(),
+'offset' => 0,
+'posts_per_page' => 15,
+'orderby' => 'date',
+'order' => 'DESC',
+'featured' => null,
+'cancelled' => null,
+'event_online' => null,
+'fields' => 'all',
+'lang' => '',
+'post_status' => array(),
+));
+// Add support for ordering by event start date
+if ($args['orderby'] === 'event_start_date') {
+$args['meta_key'] = '_event_start_date';
+$args['orderby'] = 'meta_value';
+}
+$events_query = new WP_Query($args);
+return $events_query;
+}
+endif;
+
+Q: Visual Composer : - Event Listing widget not working. #498
+A: function event_listing_widget_shortcode($atts) {
+// Add your widget logic here
+// You can use the WP_Query to retrieve event listings based on your requirements
+$args = array(
+'post_type' => 'event_listing',
+'posts_per_page' => 5, // Adjust the number of listings to display
+'post_status' => 'publish',
+// Add any additional parameters you need
+);
+$event_query = new WP_Query($args);
+// Check if there are listings
+if ($event_query->have_posts()) {
+// Start output buffer
+ob_start();
+// Loop through the listings
+while ($event_query->have_posts()) {
+$event_query->the_post();
+// Display the event listing content
+// Customize this part based on how you want to display each listing
+echo '<div class="event-listing">';
+echo '<h2>' . get_the_title() . '</h2>';
+echo '<div class="event-content">' . get_the_content() . '</div>';
+// Add more details as needed
+echo '</div>';
+}
+// End output buffer and return content
+return ob_get_clean();
+} else {
+// No listings found
+return 'No event listings found.';
+}
+// Restore original post data
+wp_reset_postdata();
+}
+// Register the shortcode
+add_shortcode('event_listing_widget', 'event_listing_widget_shortcode');
+
+Q: Event Listing and other Shortcodes for Visual Editor #194
+A:
+//For Past Events
+// Add a shortcode for past events
+function wpem_past_events_shortcode($atts) {
+$args = array(
+'post_type' => 'event',
+'posts_per_page' => -1,
+'meta_key' => '_event_end_date',
+'orderby' => 'meta_value',
+'order' => 'DESC',
+'meta_query' => array(
+array(
+'key' => '_event_end_date',
+'value' => date('Y-m-d'),
+'compare' => '<',
+'type' => 'DATE',
+),
+),
+);
+$query = new WP_Query($args);
+if ($query->have_posts()) {
+ob_start();
+?>
+<ul>
+<?php while ($query->have_posts()) : $query->the_post(); ?>
+<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+<?php endwhile; ?>
+</ul>
+<?php
+wp_reset_postdata();
+return ob_get_clean();
+} else {
+return 'No past events found.';
+}
+}
+add_shortcode('past_events', 'wpem_past_events_shortcode');
