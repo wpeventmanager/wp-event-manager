@@ -304,6 +304,7 @@ class WP_Event_Manager_Field_Editor {
 				foreach ($new_fields as $group_key => $group_fields) {
 					$index = 0;
 					foreach ($group_fields as $field_key => $field_value) {
+						
 						$new_fields[$group_key][$field_key]['visibility'] = isset($_POST['_'.$field_key.'_visibility']) ? sanitize_text_field($_POST['_'.$field_key.'_visibility']) : 1; 
 						if(!empty($field_value['label'])) {
 							$index++;
@@ -340,7 +341,7 @@ class WP_Event_Manager_Field_Editor {
 								continue;
 							}
 							if(isset($new_fields[$group_key][$field_key]['label'])) {
-								$label_key = str_replace(' ', '_', $new_fields[$group_key][$field_key]['label']);
+								$label_key = sanitize_key(str_replace(' ', '_', $new_fields[$group_key][$field_key]['label']));
 								$new_fields[$group_key][strtolower($label_key)] = $new_fields[$group_key][$field_key];
 							}
 							unset($new_fields[$group_key][$field_key]);
