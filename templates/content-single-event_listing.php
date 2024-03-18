@@ -161,7 +161,7 @@ $event = $post; ?>
                                                     $field_key = '_' . stripslashes($name);
                                                     $field_label =  stripslashes( $field['label'] );
                                                     $field_value = $event->$field_key;
-                                                    if (isset($field_value) && apply_filters('wpem_single_event_additional_detail', true, $name, $field)) :
+                                                    if (isset($field_value) && apply_filters('wpem_single_event_additional_detail', true, $name, $field, $event)) :
                                                         do_action('single_event_additional_details_field_start');
                                                         if ($field['type'] == 'textarea' || $field['type'] == 'wp-editor') : ?>
                                                             <div class="wpem-col-12 wpem-additional-info-block-textarea">
