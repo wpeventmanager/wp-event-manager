@@ -705,7 +705,7 @@ class WP_Event_Manager_Shortcodes{
 				'event_online' => $event_online,
 			));
 
-			get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
+			get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 			get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
 
 		} else {
@@ -754,7 +754,7 @@ class WP_Event_Manager_Shortcodes{
 			if($events->have_posts()) :
 
 				wp_enqueue_script('wp-event-manager-ajax-filters');
-				get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
+				get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($events->have_posts()) : $events->the_post();
 					get_event_manager_template_part('content', 'event_listing');
 				endwhile; 
@@ -1088,7 +1088,7 @@ class WP_Event_Manager_Shortcodes{
 
 		if($past_events->have_posts()) : ?>
 			<div class="past_event_listings">
-				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
+				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($past_events->have_posts()) : $past_events->the_post();
 					get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
@@ -1618,7 +1618,7 @@ class WP_Event_Manager_Shortcodes{
 
 		if($upcoming_events->have_posts()) : ?>
 			<div class="event_listings">
-				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => $layout_type, 'title' => $title));
+				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 					get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
