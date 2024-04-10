@@ -1058,7 +1058,7 @@ function event_manager_dropdown_selection($args = '') {
 			'exclude'         => $query['exclude'],
 			'hierarchical'    => $query['hierarchical']
 		));
-
+ 
 		set_transient($categories_hash, $categories, DAY_IN_SECONDS * 30);
 	}
 
@@ -1072,7 +1072,7 @@ function event_manager_dropdown_selection($args = '') {
 		$multiple_text = __('Choose event types', 'wp-event-manager');
 	endif;
 
-	$output = "<select name='" . esc_attr($name) . "[]' id='" . esc_attr($id) . "' class='" . esc_attr($class) . "' " . ($multiple ? "multiple='multiple'" : '') . " data-placeholder='" . esc_attr($placeholder) . "' data-no_results_text='" . esc_attr($no_results_text) . "' data-multiple_text='" . esc_attr($placeholder) . "'>\n";
+	$output = "<select name='" . esc_attr($name) . "[]' id='" . esc_attr($id) . "' class='" . esc_attr($class) . "' " . ($multiple ? "multiple='multiple'" : '') . " data-placeholder='" . esc_attr($placeholder) . "' data-no_results_text='" . esc_attr($no_results_text) . "' data-multiple_text='" . esc_attr($multiple_text) . "'>\n";
 
 	if($show_option_all) {
 		$output .= '<option value="">' . $show_option_all . '</option>';
