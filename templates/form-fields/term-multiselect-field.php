@@ -23,6 +23,11 @@ $args = array(
 if (isset($field['placeholder']) && !empty($field['placeholder'])) 
 	$args['placeholder'] = $field['placeholder'];
 
+if(isset( $field['taxonomy'] ) &&  $field['taxonomy'] === 'event_listing_type'):
+	$args['placeholder'] = isset($field['placeholder']) ? $field['placeholder'] : __('Choose an event type', 'wp-event-manager');
+	$args['multiple_text'] = isset($field['multiple_text']) ? $field['multiple_text'] : __('Choose event types', 'wp-event-manager');
+endif;
+
 event_manager_dropdown_selection(apply_filters('event_manager_term_multiselect_field_args', $args));
 
 if (!empty($field['description'])) : ?>

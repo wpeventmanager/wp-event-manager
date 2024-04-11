@@ -120,9 +120,31 @@ do_action('event_manager_event_filters_before', $atts); ?>
 					<div class="wpem-form-group">
 						<label for="search_event_types" class="wpem-form-label"><?php _e('Event Type', 'wp-event-manager'); ?></label>
 						<?php if($show_event_type_multiselect) :
-							 event_manager_dropdown_selection(array('value' => 'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'hide_empty' => false)); ?>
+							 event_manager_dropdown_selection(
+								array('value' => 'slug',
+									'taxonomy' => 'event_listing_type', 
+									'hierarchical' => 1, 
+									'name' => 'search_event_types',
+									'orderby' => 'name', 
+									'selected' => $selected_event_type, 
+									'hide_empty' => false, 
+									'placeholder' => 'Choose an event type', 
+									'multiple_text' => 'Choose event types')); ?>
 						<?php else :
-							event_manager_dropdown_selection(array('value' => 'slug', 'taxonomy' => 'event_listing_type', 'hierarchical' => 1, 'show_option_all' => __('Choose an Event Type', 'wp-event-manager'), 'name' => 'search_event_types', 'orderby' => 'name', 'selected' => $selected_event_type, 'multiple' => false, 'hide_empty' => false));
+							event_manager_dropdown_selection(
+								array('value' => 'slug',
+									'taxonomy' => 'event_listing_type',
+									'hierarchical' => 1,
+									'show_option_all' => __('Choose an Event Type', 'wp-event-manager'),
+									'name' => 'search_event_types',
+									'orderby' => 'name',
+									'selected' => $selected_event_type,
+									'multiple' => false, 
+									'hide_empty' => false,
+									'placeholder' => __('Choose an event type', 'wp-event-manager'), 
+									'multiple_text' => __('Choose event types', 'wp-event-manager')
+								)
+							);
 						endif; ?>
 					</div>
 				</div>
