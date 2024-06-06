@@ -1953,7 +1953,7 @@ if ( !function_exists( 'get_event_by_user_id' ) ) {
  */
 function wpem_get_all_countries() {
 	return apply_filters('wpem_all_countries', array (
-		'' => 'Select Country',
+		'' => __('Select Country', 'wp-event-manager'),
 		'AF' => 'Afghanistan',
 		'AX' => 'Aland Islands',
 		'AL' => 'Albania',
