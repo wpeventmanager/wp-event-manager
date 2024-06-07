@@ -49,6 +49,8 @@ EventSubmission = function () {
                         dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                         firstDay: wp_event_manager_event_submission.start_of_week,
                         monthNames: wp_event_manager_event_submission.monthNames,
+                        dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                        dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                     }).on('change', function () {
 
                         jQuery("#event_end_date").datepicker("destroy");
@@ -58,6 +60,8 @@ EventSubmission = function () {
                             dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                             firstDay: wp_event_manager_event_submission.start_of_week,
                             monthNames: wp_event_manager_event_submission.monthNames,
+                            dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                            dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                         });
 
                     });
@@ -67,6 +71,8 @@ EventSubmission = function () {
                         dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                         firstDay: wp_event_manager_event_submission.start_of_week,
                         monthNames: wp_event_manager_event_submission.monthNames,
+                        dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                        dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                     }).on('change', function () {
                         // set the "event_start_date" end to not be later than "event_end_date" starts:
                         //jQuery('#event_start_date').datepicker('minDate', new Date(jQuery(this).val()));
@@ -78,6 +84,8 @@ EventSubmission = function () {
                             dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                             firstDay: wp_event_manager_event_submission.start_of_week,
                             monthNames: wp_event_manager_event_submission.monthNames,
+                            dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                            dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                         });
 
                     });
@@ -89,6 +97,8 @@ EventSubmission = function () {
                     dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                     firstDay: wp_event_manager_event_submission.start_of_week,
                     monthNames: wp_event_manager_event_submission.monthNames,
+                    dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                    dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin,
                     beforeShow: function (input, inst) {
                         var mindate = jQuery('input[data-picker="datepicker"]#event_start_date').datepicker('getDate');
                         jQuery(this).datepicker('option', 'minDate', mindate);
@@ -103,6 +113,8 @@ EventSubmission = function () {
                             dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                             firstDay: wp_event_manager_event_submission.start_of_week,
                             monthNames: wp_event_manager_event_submission.monthNames,
+                            dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                            dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                         });
                     }
                     else {
@@ -112,6 +124,8 @@ EventSubmission = function () {
                             dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                             firstDay: wp_event_manager_event_submission.start_of_week,
                             monthNames: wp_event_manager_event_submission.monthNames,
+                            dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                            dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                         });
                     }
                 });
@@ -124,6 +138,8 @@ EventSubmission = function () {
                         dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                         firstDay: wp_event_manager_event_submission.start_of_week,
                         monthNames: wp_event_manager_event_submission.monthNames,
+                        dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                        dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                     });
                 }
                 else {
@@ -133,6 +149,8 @@ EventSubmission = function () {
                         dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                         firstDay: wp_event_manager_event_submission.start_of_week,
                         monthNames: wp_event_manager_event_submission.monthNames,
+                        dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                        dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                     });
                 }
             }
@@ -143,6 +161,8 @@ EventSubmission = function () {
                         dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                         firstDay: wp_event_manager_event_submission.start_of_week,
                         monthNames: wp_event_manager_event_submission.monthNames,
+                        dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                        dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                     });
                 }
                 else {
@@ -151,6 +171,8 @@ EventSubmission = function () {
                         dateFormat: wp_event_manager_event_submission.i18n_datepicker_format,
                         firstDay: wp_event_manager_event_submission.start_of_week,
                         monthNames: wp_event_manager_event_submission.monthNames,
+                        dayNames: wp_event_manager_event_submission.i18n_dayNames,
+                        dayNamesMin: wp_event_manager_event_submission.i18n_dayNamesMin
                     });
                 }
             }

@@ -284,6 +284,8 @@ class WP_Event_Manager {
 			'i18n_timepicker_format' => WP_Event_Manager_Date_Time::get_timepicker_format(),
 			'i18n_timepicker_step' => WP_Event_Manager_Date_Time::get_timepicker_step(),
 			'monthNames'           => $this->strip_array_indices($wp_locale->month),
+			'i18n_dayNames' => $this->strip_array_indices($wp_locale->weekday),
+			'i18n_dayNamesMin' => $this->strip_array_indices($wp_locale->weekday_abbrev),
 			'ajax_url' 	 => admin_url('admin-ajax.php'),
 			'show_past_date' => apply_filters('event_manager_show_past_date_frontend', false),
 		));		
@@ -305,7 +307,8 @@ class WP_Event_Manager {
 				'i18n_clearButtonText' => __('Clear', 'wp-event-manager'),
 				'i18n_cancelButtonText' => __('Cancel', 'wp-event-manager'),
 				'i18n_monthNames' => $this->strip_array_indices($wp_locale->month),
-
+				'i18n_dayNames' => $this->strip_array_indices($wp_locale->weekday),
+				'i18n_dayNamesMin' => $this->strip_array_indices($wp_locale->weekday_abbrev),
 				'i18n_today' => __('Today', 'wp-event-manager'),
 				'i18n_tomorrow' => __('Tomorrow', 'wp-event-manager'),
 				'i18n_thisWeek' => __('This Week', 'wp-event-manager'),

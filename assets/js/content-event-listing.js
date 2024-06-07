@@ -61,7 +61,9 @@ var ContentEventListing= function () {
 		                        numberOfMonths : 2,
 		                        minDate: null,
 						        maxDate: null,
-						        monthNames: event_manager_content_event_listing.i18n_monthNames
+						        monthNames: event_manager_content_event_listing.i18n_monthNames,
+						        dayNames: event_manager_content_event_listing.i18n_dayNames,
+						        dayNamesMin: event_manager_content_event_listing.i18n_dayNamesMin
 		                    },
 		                    initialText: event_manager_content_event_listing.i18n_initialText,
 		                    applyButtonText: event_manager_content_event_listing.i18n_applyButtonText,
