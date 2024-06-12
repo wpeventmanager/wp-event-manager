@@ -749,7 +749,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 			}
 			$event_slug[]            	= sanitize_title($post_title);
-			$event_slugs				= implode( '-', $event_slug ) ;
+			$event_slugs				= $event_slug[1];
 			$event_data['post_name'] 	= apply_filters('submit_event_form_save_slug_data', $event_slugs);
 		}
 		if ( $status ) {
