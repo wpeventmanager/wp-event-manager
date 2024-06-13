@@ -24,6 +24,7 @@ if(!defined('ABSPATH')) {
 /**
  * A class that defines the main features of the WP event manager plugin.
  */
+#[AllowDynamicProperties]
 class WP_Event_Manager {
 
 	/**

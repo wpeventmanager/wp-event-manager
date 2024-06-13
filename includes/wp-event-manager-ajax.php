@@ -8,6 +8,7 @@ if(!defined('ABSPATH')) exit; // Exit if accessed directly
 /**
  * WP_Event_Manager_Ajax class.
 */
+#[AllowDynamicProperties]
 class WP_Event_Manager_Ajax {
 	/**
 	 * The single instance of the class.

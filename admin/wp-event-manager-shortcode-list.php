@@ -12,6 +12,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 	/**
 	 * WP_Event_Manager_Shortcode_List Class
 	*/
+	#[AllowDynamicProperties]
 	class WP_Event_Manager_Shortcode_List {
 		/**
 		 * Handles output of the reports page in admin.

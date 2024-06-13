@@ -2,6 +2,7 @@
 /**
  * WP_Event_Manager_Content class.
  */
+#[AllowDynamicProperties]
 class WP_Event_Manager_Post_Types {
 	/**
 	 * The single instance of the class.

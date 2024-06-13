@@ -12,6 +12,7 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 	/**
 	 * WP_Event_Manager_Addons Class.
 	*/
+	#[AllowDynamicProperties]
 	class WP_Event_Manager_Addons {
 		/**
 		 * Handles output of the reports page in admin.

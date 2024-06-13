@@ -2,6 +2,7 @@
 /**
  * WP_Event_Manager_Registrations_Form_Editor class.
  */
+#[AllowDynamicProperties]
 class WP_Event_Manager_Field_Editor {
 
 	/**

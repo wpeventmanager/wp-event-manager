@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) exit;
 /**
  * WP Manager Widget base
  */
+#[AllowDynamicProperties]
 class WP_Event_Manager_Widget extends WP_Widget{
 
 	public $widget_cssclass;

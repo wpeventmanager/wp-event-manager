@@ -7,6 +7,7 @@ if(!defined('ABSPATH') ) {
 /**
  * WP_Event_Manager_Filters class.
  */
+#[AllowDynamicProperties]
 class WP_Event_Manager_Filters {
     
 	/**

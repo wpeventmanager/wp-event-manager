@@ -10,6 +10,7 @@ if(!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_Admin class.
  */
+#[AllowDynamicProperties]
 class WP_Event_Manager_Admin {
 	/**
 	 * Constructor.

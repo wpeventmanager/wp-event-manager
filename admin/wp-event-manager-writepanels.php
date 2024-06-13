@@ -9,6 +9,7 @@ if(!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_Writepanels class.
  */
+#[AllowDynamicProperties]
 class WP_Event_Manager_Writepanels {
 
 	/**

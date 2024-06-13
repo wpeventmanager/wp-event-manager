@@ -9,6 +9,7 @@ if(!defined('ABSPATH')) {
 /**
  * Class of WP Event Manager custom post types.
  */
+#[AllowDynamicProperties]
 class WP_Event_Manager_CPT {
 
 	/**
