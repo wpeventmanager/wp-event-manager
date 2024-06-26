@@ -10,6 +10,9 @@ if (isset($field['value'])) {
 } else {
 	$selected = '';
 }
+
+$placeholder = '';
+
 if($key == 'event_category'){
 	$placeholder=__( 'Choose a Category', 'wp-event-manager' );
 }else if($key == 'event_type'){
