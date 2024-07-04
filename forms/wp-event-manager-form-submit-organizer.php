@@ -2,7 +2,6 @@
 /**
  * WP_Event_Manager_Form_Submit_Organizer class.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	public    $form_name = 'submit-organizer';
 	protected $organizer_id;

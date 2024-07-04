@@ -6,7 +6,6 @@ if(!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_Cache_Helper class.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Cache_Helper {
 
 	public static function init() {

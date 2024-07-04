@@ -8,7 +8,6 @@ if(!defined('ABSPATH')) {
  *
  * @since 2.5
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Permalink_Settings {
 	/**
 	 * The single instance of the class.

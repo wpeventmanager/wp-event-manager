@@ -16,7 +16,6 @@ if(!defined('ABSPATH')) {
  *
  * @since 2.5
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Data_Cleaner {
 
 	/**

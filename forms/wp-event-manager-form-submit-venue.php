@@ -2,7 +2,6 @@
 /**
  * WP_Event_Manager_Form_Submit_Venue class.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	public    $form_name = 'submit-venue';
 	protected $venue_id;

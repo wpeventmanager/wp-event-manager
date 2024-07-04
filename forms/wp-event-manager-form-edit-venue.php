@@ -4,7 +4,6 @@ include_once('wp-event-manager-form-submit-venue.php');
 /**
  * WP_Event_Manager_Form_Edit_Venue class.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venue {
 
 	public $form_name           = 'edit-venue';

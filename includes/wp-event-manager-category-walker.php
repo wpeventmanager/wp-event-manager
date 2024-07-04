@@ -6,7 +6,6 @@ if(!defined('ABSPATH')) exit; // Exit if accessed directly
  *
  * @extends Walker
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Category_Walker extends Walker {
 
 	var $tree_type = 'category';

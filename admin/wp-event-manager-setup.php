@@ -10,7 +10,6 @@ if(!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_Setup class.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Setup {
 
 	/**

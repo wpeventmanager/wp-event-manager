@@ -6,7 +6,6 @@ if(!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_Date_Time
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Date_Time {
 
 	const DATABASE_DATE_TIME_FORMAT      = 'Y-m-d H:i:s';

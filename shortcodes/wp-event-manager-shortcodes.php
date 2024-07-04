@@ -8,7 +8,6 @@ if(!defined('ABSPATH')) exit; // Exit if accessed directly
 /**
  * WP_Event_Manager_Shortcodes class.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Shortcodes{
 	private $event_dashboard_message = '';
 	private $organizer_dashboard_message = '';

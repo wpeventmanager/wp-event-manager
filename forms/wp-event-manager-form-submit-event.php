@@ -2,7 +2,6 @@
 /**
  * WP_Event_Manager_Form_Submit_Event class used to create event submit form and add event data into database.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
     
 	public    $form_name = 'submit-event';

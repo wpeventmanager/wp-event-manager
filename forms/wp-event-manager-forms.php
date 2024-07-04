@@ -2,7 +2,6 @@
 /**
  * WP_Event_Manager_Forms class.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Forms {
 
 	/**

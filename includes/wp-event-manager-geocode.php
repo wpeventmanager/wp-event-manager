@@ -6,7 +6,6 @@ if(!defined('ABSPATH')) exit; // Exit if accessed directly
  *
  * Obtains Geolocation data for posted events from Google.
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Geocode {
 	const GOOGLE_MAPS_GEOCODE_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json';
 	/**

@@ -6,7 +6,6 @@ if(!defined('ABSPATH')) {
 /**
  * WP_Event_Manager_Install
  */
-#[AllowDynamicProperties]
 class WP_Event_Manager_Install {
 
 	/**
