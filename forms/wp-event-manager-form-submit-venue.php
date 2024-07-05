@@ -3,7 +3,11 @@
  * WP_Event_Manager_Form_Submit_Venue class.
  */
 class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
+	
 	public    $form_name = 'submit-venue';
+	public    $steps;
+	public    $resume_edit;
+	public    $fields;
 	protected $venue_id;
 	protected $preview_venue;
 	/** @var 

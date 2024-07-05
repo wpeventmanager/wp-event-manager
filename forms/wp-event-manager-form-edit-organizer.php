@@ -7,6 +7,8 @@ include_once('wp-event-manager-form-submit-organizer.php');
 class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_Organizer {
 
 	public $form_name           = 'edit-organizer';
+	public $organizer_id;
+	public $fields;
 
 	/** @var WP_Event_Manager_Form_Edit_Organizer The single instance of the class */
 

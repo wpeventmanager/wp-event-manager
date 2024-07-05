@@ -3,7 +3,11 @@
  * WP_Event_Manager_Form_Submit_Organizer class.
  */
 class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
+	
 	public    $form_name = 'submit-organizer';
+	public    $steps;
+	public    $resume_edit;
+	public    $fields;
 	protected $organizer_id;
 	protected $preview_organizer;
 	

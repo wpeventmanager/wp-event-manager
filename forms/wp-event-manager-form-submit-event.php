@@ -5,6 +5,9 @@
 class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
     
 	public    $form_name = 'submit-event';
+	public    $resume_edit;
+	public    $steps;
+	public    $fields;
 	protected $event_id;
 	protected $preview_event;
 	/** @var WP_Event_Manager_Form_Submit_Event The single instance of the class */

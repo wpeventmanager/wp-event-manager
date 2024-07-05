@@ -11,6 +11,9 @@ if(!defined('ABSPATH')) {
  */
 class WP_Event_Manager_Settings{
 
+	public $settings_group;
+	public $settings;
+
 	/**
 	 * Constructor.
 	 *

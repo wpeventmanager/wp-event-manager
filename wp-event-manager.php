@@ -26,6 +26,9 @@ if(!defined('ABSPATH')) {
  */
 class WP_Event_Manager {
 
+	public $forms;
+	public $post_types;
+
 	/**
 	 * The single instance of the class.
 	 *
