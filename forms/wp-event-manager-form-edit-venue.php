@@ -8,8 +8,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 
 	public $form_name           = 'edit-venue';
 	public $venue_id;
-	public $fields;
-
+	
 	/** @var WP_Event_Manager_Form_Edit_Venue The single instance of the class */
 
 	protected static $_instance = null;

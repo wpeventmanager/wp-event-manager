@@ -8,7 +8,6 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 
 	public $form_name           = 'edit-organizer';
 	public $organizer_id;
-	public $fields;
 
 	/** @var WP_Event_Manager_Form_Edit_Organizer The single instance of the class */
 

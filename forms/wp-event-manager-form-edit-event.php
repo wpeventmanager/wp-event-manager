@@ -8,7 +8,6 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 
 	public $form_name           = 'edit-event';
 	public $event_id;
-	public $fields;
 
 	/** @var WP_Event_Manager_Form_Edit_Event The single instance of the class */
 
