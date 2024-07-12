@@ -4,8 +4,8 @@ Contributors: wpeventmanager,ashokdudhat,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
-Tested up to: 6.3.1
-Stable tag: 3.1.43
+Tested up to: 6.5.5
+Stable tag: 3.1.44
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -299,6 +299,20 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 
 
 == Changelog ==
+
+= [3.1.44] 12-07-2024 =
+
+Fixed : The error message displayed on the sign-out page is removed.
+Fixed : Creation of the wrong permalink when an event is submitted from the front end is now resolved.
+Fixed : Now multiple logos can be saved in the venue and organizer section.
+Fixed : Depreciated error message is removed from PHP 8.2
+Fixed : The fatal error message that appeared on the edit venue segment is now removed.
+Fixed : The venue logo is now saved at the backend.
+Fixed : The date-related issue in the upcoming event shortcode is now resolved.
+Fixed : The problem associated with the “multi-select event types” option is now resolved.
+Fixed : Security issue of WP Event Manager is resolved.
+Fixed : The custom field issue in the field editor is now resolved.
+Fixed : A new filter is added to hide a specific field from the single event page.
 
 = [3.1.43] 22-02-2024 =
 
