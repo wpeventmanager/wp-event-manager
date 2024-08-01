@@ -849,12 +849,38 @@ class WP_Event_Manager_Writepanels {
 				do_action('event_manager_input_' . $type, $key, $field);
 			} elseif(method_exists($this, 'input_' . $type)) {
 				call_user_func(array($this, 'input_' . $type), $key, $field);
+			}  elseif ( $type == 'term-select' ) {
+				$this->input_term_select( $key, $field );
 			}
 		}
 		do_action('event_manager_event_listing_data_end', $post_id);
 		echo wp_kses_post('</div>');
 	}
-
+	/**
+	 * manage term_select field function.
+	 *
+	 * @access public
+	 * @param $key meta key of field
+	 * @param $field name of the field
+	 * @return void
+	 */
+	public function input_term_select( $key, $field ) {
+		$taxonomy = !empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category'; 
+		$terms = get_terms( array('taxonomy' => $taxonomy, 'hide_empty' => false ) );
+		$value = get_post_meta( get_the_ID(), $key, true ); 
+		?>
+		<p class="form-field">
+			<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ); ?>:</label>
+			<select name="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $key ); ?>" class="input-select <?php echo esc_attr( $key ); ?>">
+				<?php foreach ( $terms as $term ) : ?>
+					<option value="<?php echo esc_attr( $term->term_id ); ?>" <?php selected( $value, $term->term_id ); ?>>
+						<?php echo esc_html( $term->name ); ?>
+					</option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+		<?php
+	}
 	/**
 	 * Save post.
 	 *
