@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.5.5
-Stable tag: 3.1.44
+Stable Tag: 3.1.44
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -14,257 +14,399 @@ Lightweight, scalable and full-featured event listings & management plugin for m
 
 == Description ==
 
+WP Event Manager brings you a feature-packed event management plugin that helps you create event listings and manage them all from your WordPress events site effortlessly. It is the ultimate solution for all types of events including in-person, virtual, and hybrid. 
 
-Suffering with a complicated and feature-bloated event management plugin is not a situation you need to be in. You’ll want an intuitive, snappy way to create events fast. What’s more, you’ll need a quick way to set events up regardless of whether they are in-person, virtual, or everything in between. **[WP Event Manager](https://wp-eventmanager.com) is a lightweight and scalable plugin that helps you implement a full-featured event management system within WordPress** for both live and virtual events.
+The superior events plugin users can easily **[create an event](https://wp-eventmanager.com/knowledge-base/adding-your-first-event/) **, add an events **[calendar](https://wp-eventmanager.com/knowledge-base/event-calendar/) **, manage event **[registrations](https://wp-eventmanager.com/knowledge-base/registrations/) **, and **[sell tickets](https://wp-eventmanager.com/knowledge-base/sell-tickets/) ** for events through their website. 
 
-[youtube https://www.youtube.com/watch?v=CPK0P7ToRgM]
+Now managing events online has become easy and convenient for everyone including event planners with  WP Event Manager as it does not require any coding expertise. The **all-in-one** events plugin is everything that you need to manage your event listings on your events website.
 
+Besides excellent event plugins, the brand also offers a set of **WordPress event themes that are responsive, compatible with WooCommerce, and SEO-friendly.**
 
-WP Event Manager works out of the box with practically every WordPress theme, so you won’t need to develop any custom solutions or make extra purchases. It also offers a number of ways to customize the look of your events listings, and you can even supercharge your event management using [premium add-ons](https://wp-eventmanager.com).
+There is a team of WordPress experts behind the event management plugin who work day and night to keep the plugin bug-free and updated to ensure customer satisfaction at every step.
 
+**[Click here](https://www.youtube.com/@WPEventManager) ** to explore WP Event Manager tutorials for a detailed user guide. 👇
 
-Both [attendees and site owners](https://wp-eventmanager.com/expert-reviews/) love to use WP Event Manager, and our team is ready to stand by your side to help you run any and every event you hold:
+**[Knowledgebase](https://wp-eventmanager.com/help-center/), [FAQs](https://wp-eventmanager.com/faqs/), [Event Themes](https://wp-eventmanager.com/wodpress-event-themes/) **
 
->“…users rave about the developer support for the free version of the plugin…”
-><strong>– Brian Jackson, woorkup</strong>
+== ** Who Can Use WP Event Manager? ** ==
 
-It’s the number one way to set up and list events on your WordPress website.
+WP Event Manager is an easy-to-use, beginner-friendly events plugin that offers a coding-free solution to the users making it a suitable choice for people from different professional backgrounds including: 
 
+* Event organizers 
+* Business owners 
+* Teachers 
+* Fitness trainers 
+* Music trainers 
+* Conference organizers 
+* Virtual event organizers
+* Wedding planners 
+* Doctors and more
+
+**Unveil the easiest way of creating events on your WordPress site**
+
+https://www.youtube.com/watch?v=AUIJIHPnDws&t=59s&pp=ygUQd3AgZXZlbnQgbWFuYWdlcg%3D%3D
 
-== 👉🏻 WP Event Manager: Everything You Need to Manage Your Events for Free ==
+https://www.youtube.com/watch?v=Xaty-rpx95Y&pp=ygUQd3AgZXZlbnQgbWFuYWdlcg%3D%3D
 
-If you want to set up events in a hurry, WP Event Manager has all the core features and functionalities you need to create a robust event management system in just a few minutes:
+**Display an impressive event calendar, manage event registrations and maximize event ticket sales with WP Event Manager**
 
-* Add, remove, and organize your event listings using the familiar WordPress interface – you won’t need to leave the dashboard.
-* Assign event locations to each of your events, and group them by those locations.
-* Create custom event fields, to help you personalize your events and make them unique.
-* Event organizers can log in and access full event management features, such as viewing, editing, deleting, and canceling events.
-* Get live previews of every event you create, so you’ll know how your attendees will see your event listing.
-* Display each event listing by simply using shortcodes within your content. There are different shortcodes to help you present your events in many different ways.
+**Meet the most user-friendly event management plugin for WordPress: WP Event Manager**
 
+WP Event Manager magically **simplifies** the process of event management online through a WordPress website. It offers more than **[37 premium event plugins](https://wp-eventmanager.com/plugins/) ** and each of them is developed to fulfill different event management requirements including, **[event calendar](https://wp-eventmanager.com/product/wp-event-manager-calendar/), [sell tickets](https://wp-eventmanager.com/product/wp-event-manager-sell-tickets/), [event registrations](https://wp-eventmanager.com/product/wp-event-manager-registrations/), [recurring events](https://wp-eventmanager.com/product/wp-event-manager-recurring-events/), [event countdown](https://wp-eventmanager.com/product/event-countdown/) and more.**
 
-== 👉🏻 Give Users the Power to Find Events Through Search ==
-Once you add events to your site, you’ll want users to find them. WP Event Manager includes lots of ways to direct your users towards your events, fast:
+== **Create interactive events** ==
 
-* You can search and filter events on the front-end using shortcodes. Each listing is ‘AJAX-powered’ for a super slick presentation.
-* Guests and registered users can submit and manage event listings using a front-end form.
-* You’re able to easily attach an email address and/or website URL to each event listing, so users have more ways to find your event, and search engines get the opportunity to index it.
-* A user can also employ built-in RSS functionality to subscribe to similar events, meaning they’ll never miss your next one.
-* There is full-featured taxonomy management included in WP Event Manager, and users can also filter events based on their current location.
+**Create interactive events**
 
-There’s more to discover about WP Event Manager, and [our website](https://wp-eventmanager.com/product/wp-event-manager/) and [documentation](https://wp-eventmanager.com/help-center/) have everything you need to know about the complete experience.
+- **Create multiple events**: Get the ultimate freedom to create as many events as you want on your WordPress events website.  
+- **Choose your preferred view**: Display your events in box view or list view to maximize your events exposure.  
+- **Make event search easy**: Let visitors search events quickly using multiple event filters.
 
-== 👉🏻 WP Event Manager Provides a Class-Leading User Experience ==
-WP Event Manager is a user-focused event management solution, and provides a class-leading experience for every user:
+== **Empower Your Events With Robust Features** ==
 
-* The plugin offers typical cross-browser support for Google Chrome, Firefox, Apple Safari, and Opera.
-* The interface is smooth to scroll through, thanks for AJAX-powered design elements. What’s more, it looks fantastic on all screen sizes.
-* There are widgets available for recent events, upcoming events, and featured events. This means you can display your events almost anywhere on your site. With our premium [Calendar add-on](https://wp-eventmanager.com/product/wp-event-manager-calendar/), you can display calendar events in multiple places on your website, in a number of different ways.
-* Every user gets [comprehensive documentation](https://wp-eventmanager.com/help-center/) and video tutorials on how to get the best out of WP Event Manager.
-* There are [lots of different ways](https://wp-eventmanager.com/support-policy/) to get support if you need it. Free WP Event Manager users can submit a request to our dedicated WordPress.org forum. There’s also a [support forum](https://support.wp-eventmanager.com/portal/en/signin) to provide a community that’s ready to help you [solve any issues](https://wp-eventmanager.com/support-policy/) you have with WP Event Manager.
+- **WooCommerce compatibility**: Get WooCommerce compatibility to sell your event tickets with ease and security. 
 
+- **Frontend event submission form**: Allow event organizers to post events on your website by filling up the frontend event submission form. 
 
-Site owners [love WP Event Manager](https://wp-eventmanager.com/expert-reviews/), and so do users. This is why it’s the leading event management plugin on the market:
+- **Multi-language support for global events**: Offer a great user experience to your global audiences with multiple language translation facilities. 
 
+WP Event Manager magically transforms the way you manage your events and strengthens your event management strategies online with the right event tools.
 
-> “…This is a valuable plugin that many WordPress users can benefit from.…”
-> <strong>David Coleman – WP Mayor</strong>
+== **Discover the key features of WP Event Manager** ==
 
-You’ll find plenty of five-star reviews and recommendations across our site, and here on WordPress.org too!
+- **Easy to use**: Anyone who wants to create and manage events on their event website can use it as no coding expertise is needed. 
 
-== 👉🏻 A Developer-Focused Event Management Plugin for Serious WordPress Businesses ==
+- **Developer friendly**: Built with a straightforward coding structure making it easy for developers to work with it as per their event business requirements.  
 
-Developers will also love to work with WP Event Manager. It’s a clean, well-coded solution under the hood that comes with a number of helpful inclusions:
+- **Customizable**: Make changes to the event plugin settings as per your need.
+ 
+- **Field editor**: Easily add, edit or delete form fields from your event submission form. 
 
-* Search engine optimization built into the code as standard.
-* A translation-ready codebase to help globalize event copy.
-* Caching support, to keep things running fast and friction-free.
-* Plenty of endpoints and template files to provide deep customization to the core WP Event Manager code.
-* A debug mode to ensure your WP Event Manager installation runs smooth at all times.
+- **Easy event classification**: Classify events into different types and categories for better identification.
+ 
+- **Event preview**: Get an event preview before going live to make any last-minute changes if needed.
+ 
+- **Page builder compatibility**: The events plugin is compatible with major page builders like Gutenberg, Elementor etc.  
 
-You can also contribute to WP Event Manager – the [WP Event Manager GitHub Repository](https://github.com/wpeventmanager/wp-event-manager) is always looking for Added contributors to help with the project. Regardless of whether you are a stie owner, end user, or developer, WP Event Manager is the go-to event management plugin for WordPress.
+- **Detailed event dashboard**: Get a detailed dashboard for all your events and make changes to it as per requirements. 
+ 
+- **Fully responsive**: it is fully responsive and it fits well with every screen size. 
 
+- **Frontend event submission form**: GIve event organizers the ultimate freedom of submitting their events on your website. 
+ 
+- **Multi-lingual support**: Translate the event plugin into your preferred language to offer a better user experience.
+ 
+WP Event Manager comes with 40 inbuilt language translations to make it more convenient for you to use the plugin. 
+Here are the 40 in-built languages: 
 
-== 👉🏻 WP Event Manager Offers Translations Into a Number of Different Languages ==
+[Arabic](https://translate.wordpress.org/locale/ar/default/wp-plugins/wp-event-manager) - (ar)
+[Arabic (Algerian)](https://translate.wordpress.org/locale/arq/default/wp-plugins/wp-event-manager) - (arq)
+[Arabic (Moroccan)](https://translate.wordpress.org/locale/ary/default/wp-plugins/wp-event-manager) - (ary)
+[Bengali](https://translate.wordpress.org/locale/bn/default/wp-plugins/wp-event-manager) - (bn_BD)
+[Bulgarian](https://translate.wordpress.org/locale/bg/default/wp-plugins/wp-event-manager) - (bg_BG)
+[Chinese (China)](https://translate.wordpress.org/locale/zh-cn/default/wp-plugins/wp-event-manager) - (zh_CN)
+[Dutch](https://translate.wordpress.org/locale/nl/default/wp-plugins/wp-event-manager) - (nl_NL)
+[English (Australia)](https://translate.wordpress.org/locale/en-au/default/wp-plugins/wp-event-manager) - (en_AU)
+[English (UK)](https://translate.wordpress.org/locale/en-gb/default/wp-plugins/wp-event-manager) - (en_GB)
+[English (Canada)](https://translate.wordpress.org/locale/en-ca/default/wp-plugins/wp-event-manager) - (en_CA)
+[English (Added Zealand)](https://translate.wordpress.org/locale/en-nz/default/wp-plugins/wp-event-manager) - (en_NZ)
+[English (South Africa)](https://translate.wordpress.org/locale/en-za/default/wp-plugins/wp-event-manager) - (en_ZA)
+[French](https://translate.wordpress.org/locale/fr/default/wp-plugins/wp-event-manager) - (fr_FR)
+[French (Belgium)](https://translate.wordpress.org/locale/fr-be/default/wp-plugins/wp-event-manager) - (fr_BE)
+[German](https://translate.wordpress.org/locale/de/default/wp-plugins/wp-event-manager) - (de_DE)
+[German (Switzerland)](https://translate.wordpress.org/locale/de-ch/default/wp-plugins/wp-event-manager) - (de_CH)
+[Greek](https://translate.wordpress.org/locale/el/default/wp-plugins/wp-event-manager) - (el)
+[Hebrew](https://translate.wordpress.org/locale/he/default/wp-plugins/wp-event-manager) - (he_IL)
+[Hindi](https://translate.wordpress.org/locale/hi/default/wp-plugins/wp-event-manager) - (hi_IN)
+[Icelandic](https://translate.wordpress.org/locale/is/default/wp-plugins/wp-event-manager) - (is_IS)
+[Indonesian](https://translate.wordpress.org/locale/id/default/wp-plugins/wp-event-manager) - (id_ID)
+[Italian](https://translate.wordpress.org/locale/it/default/wp-plugins/wp-event-manager) - (it_IT)
+[Japanese](https://translate.wordpress.org/locale/ja/default/wp-plugins/wp-event-manager) - (ja)
+[Latvian](https://translate.wordpress.org/locale/lv/default/wp-plugins/wp-event-manager) - (lv)
+[Lithuanian](https://translate.wordpress.org/locale/lt/default/wp-plugins/wp-event-manager) - (lt_LT)
+[Nepali](https://translate.wordpress.org/locale/ne/default/wp-plugins/wp-event-manager) - (ne_NP)
+[Polish](https://translate.wordpress.org/locale/pl/default/wp-plugins/wp-event-manager) - (pl_PL)
+[Portuguese (Brazil)](https://translate.wordpress.org/locale/pt-br/default/wp-plugins/wp-event-manager) - (pt_BR)
+[Portuguese (Portugal)](https://translate.wordpress.org/locale/pt/default/wp-plugins/wp-event-manager) - (pt_PT)
+[Romanian](https://translate.wordpress.org/locale/ro/default/wp-plugins/wp-event-manager) - (ro_RO)
+[Russian](https://translate.wordpress.org/locale/ru/default/wp-plugins/wp-event-manager) - (ru_RU)
+[Serbian](https://translate.wordpress.org/locale/sr/default/wp-plugins/wp-event-manager) - (sr_RS)
+[Sinhala](https://translate.wordpress.org/locale/si/default/wp-plugins/wp-event-manager) - (si_LK)
+[Slovak](https://translate.wordpress.org/locale/sk/default/wp-plugins/wp-event-manager) - (sk_SK)
+[Spanish (Spain)](https://translate.wordpress.org/locale/es/default/wp-plugins/wp-event-manager) - (es_ES)
+[Spanish (Mexico)](https://translate.wordpress.org/locale/es-mx/default/wp-plugins/wp-event-manager) - (es_MX)
+[Spanish (Colombia)](https://translate.wordpress.org/locale/es-co/default/wp-plugins/wp-event-manager) - (es_CO)
+[Spanish (Chile)](https://translate.wordpress.org/locale/es-cl/default/wp-plugins/wp-event-manager) - (es_CL)
+[Swedish](https://translate.wordpress.org/locale/sv/default/wp-plugins/wp-event-manager) - (sv_SE)
+[Turkish](https://translate.wordpress.org/locale/tr/default/wp-plugins/wp-event-manager) - (tr_TR)
+[Ukrainian](https://translate.wordpress.org/locale/uk/default/wp-plugins/wp-event-manager) - (uk)
+[Vietnamese](https://translate.wordpress.org/locale/vi/default/wp-plugins/wp-event-manager) - (vi)
 
-The WP Event Manager plugin offers over 40 inbuilt translations, making sure your events setup is easy and immediately available in your own language:
+WP Event Manager also supports Right-To-Left (RTL) languages as standard, so you can use the plugin for international events.
 
-✔️ [Arabic](https://translate.wordpress.org/locale/ar/default/wp-plugins/wp-event-manager) - (ar)
-✔️ [Arabic (Algerian)](https://translate.wordpress.org/locale/arq/default/wp-plugins/wp-event-manager) - (arq)
-✔️ [Arabic (Moroccan)](https://translate.wordpress.org/locale/ary/default/wp-plugins/wp-event-manager) - (ary)
-✔️ [Bengali](https://translate.wordpress.org/locale/bn/default/wp-plugins/wp-event-manager) - (bn_BD)
-✔️ [Bulgarian](https://translate.wordpress.org/locale/bg/default/wp-plugins/wp-event-manager) - (bg_BG)
-✔️ [Chinese (China)](https://translate.wordpress.org/locale/zh-cn/default/wp-plugins/wp-event-manager) - (zh_CN)
-✔️ [Dutch](https://translate.wordpress.org/locale/nl/default/wp-plugins/wp-event-manager) - (nl_NL)
-✔️ [English (Australia)](https://translate.wordpress.org/locale/en-au/default/wp-plugins/wp-event-manager) - (en_AU)
-✔️ [English (UK)](https://translate.wordpress.org/locale/en-gb/default/wp-plugins/wp-event-manager) - (en_GB)
-✔️ [English (Canada)](https://translate.wordpress.org/locale/en-ca/default/wp-plugins/wp-event-manager) - (en_CA)
-✔️ [English (Added Zealand)](https://translate.wordpress.org/locale/en-nz/default/wp-plugins/wp-event-manager) - (en_NZ)
-✔️ [English (South Africa)](https://translate.wordpress.org/locale/en-za/default/wp-plugins/wp-event-manager) - (en_ZA)
-✔️ [French](https://translate.wordpress.org/locale/fr/default/wp-plugins/wp-event-manager) - (fr_FR)
-✔️ [French (Belgium)](https://translate.wordpress.org/locale/fr-be/default/wp-plugins/wp-event-manager) - (fr_BE)
-✔️ [German](https://translate.wordpress.org/locale/de/default/wp-plugins/wp-event-manager) - (de_DE)
-✔️ [German (Switzerland)](https://translate.wordpress.org/locale/de-ch/default/wp-plugins/wp-event-manager) - (de_CH)
-✔️ [Greek](https://translate.wordpress.org/locale/el/default/wp-plugins/wp-event-manager) - (el)
-✔️ [Hebrew](https://translate.wordpress.org/locale/he/default/wp-plugins/wp-event-manager) - (he_IL)
-✔️ [Hindi](https://translate.wordpress.org/locale/hi/default/wp-plugins/wp-event-manager) - (hi_IN)
-✔️ [Icelandic](https://translate.wordpress.org/locale/is/default/wp-plugins/wp-event-manager) - (is_IS)
-✔️ [Indonesian](https://translate.wordpress.org/locale/id/default/wp-plugins/wp-event-manager) - (id_ID)
-✔️ [Italian](https://translate.wordpress.org/locale/it/default/wp-plugins/wp-event-manager) - (it_IT)
-✔️ [Japanese](https://translate.wordpress.org/locale/ja/default/wp-plugins/wp-event-manager) - (ja)
-✔️ [Latvian](https://translate.wordpress.org/locale/lv/default/wp-plugins/wp-event-manager) - (lv)
-✔️ [Lithuanian](https://translate.wordpress.org/locale/lt/default/wp-plugins/wp-event-manager) - (lt_LT)
-✔️ [Nepali](https://translate.wordpress.org/locale/ne/default/wp-plugins/wp-event-manager) - (ne_NP)
-✔️ [Polish](https://translate.wordpress.org/locale/pl/default/wp-plugins/wp-event-manager) - (pl_PL)
-✔️ [Portuguese (Brazil)](https://translate.wordpress.org/locale/pt-br/default/wp-plugins/wp-event-manager) - (pt_BR)
-✔️ [Portuguese (Portugal)](https://translate.wordpress.org/locale/pt/default/wp-plugins/wp-event-manager) - (pt_PT)
-✔️ [Romanian](https://translate.wordpress.org/locale/ro/default/wp-plugins/wp-event-manager) - (ro_RO)
-✔️ [Russian](https://translate.wordpress.org/locale/ru/default/wp-plugins/wp-event-manager) - (ru_RU)
-✔️ [Serbian](https://translate.wordpress.org/locale/sr/default/wp-plugins/wp-event-manager) - (sr_RS)
-✔️ [Sinhala](https://translate.wordpress.org/locale/si/default/wp-plugins/wp-event-manager) - (si_LK)
-✔️ [Slovak](https://translate.wordpress.org/locale/sk/default/wp-plugins/wp-event-manager) - (sk_SK)
-✔️ [Spanish (Spain)](https://translate.wordpress.org/locale/es/default/wp-plugins/wp-event-manager) - (es_ES)
-✔️ [Spanish (Mexico)](https://translate.wordpress.org/locale/es-mx/default/wp-plugins/wp-event-manager) - (es_MX)
-✔️ [Spanish (Colombia)](https://translate.wordpress.org/locale/es-co/default/wp-plugins/wp-event-manager) - (es_CO)
-✔️ [Spanish (Chile)](https://translate.wordpress.org/locale/es-cl/default/wp-plugins/wp-event-manager) - (es_CL)
-✔️ [Swedish](https://translate.wordpress.org/locale/sv/default/wp-plugins/wp-event-manager) - (sv_SE)
-✔️ [Turkish](https://translate.wordpress.org/locale/tr/default/wp-plugins/wp-event-manager) - (tr_TR)
-✔️ [Ukrainian](https://translate.wordpress.org/locale/uk/default/wp-plugins/wp-event-manager) - (uk)
-✔️ [Vietnamese](https://translate.wordpress.org/locale/vi/default/wp-plugins/wp-event-manager) - (vi)
+More languages can be added to this list in the future. You can be a contributor to our translation efforts to help us add more languages to it. [Click](https://translate.wordpress.org/) here to be a contributor. 
 
-WP Event Manager also supports Right-To-Left (RTL) languages as standard, so you can use the plugin for international events, regardless of your target primary language. 
+== **Get More From WP Event Manager With Its Premium addons** ==
 
-More languages are earmarked for addition in the future too. We’d love more contributors to our translation efforts, and you can assist through the [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-event-manager) website!
+WP Event Manager offers 37+ premium add-ons for different event management needs. These event add-ons are known for their excellent features and affordability. 
 
-== 👉🏻 Get More From Your Event Management Using Premium Add-Ons ==
+Explore some of the best-selling event addons of WP Event Manager: 
 
-The free version of WP Event Manager is full-featured and ready to use. However, if you want more functionality without learning to code (or hiring a developer), the plugin lets you purchase and install a [number of add-ons](https://wp-eventmanager.com/plugins/) to enhance your experience.
+- **Event Calendar**: Enables you to display your event dates and details through an interactive events calendar on your events website. 
 
+- **Sell Tickets**: Allows you to efficiently sell event tickets, share them with attendees through emails and accept payment through WooCommerce.  
 
-👥 **[Registrations](http://www.wp-eventmanager.com/plugins/wp-event-manager-registrations/)**
-Attendees can register for events using a form, and organizers can view and manage registrations from WordPress.
+- **Event Registration**: Helps you manage event registrations through an easily customizable events registration form that your attendees need to fill in.
 
-🎟 **[Sell Tickets](http://www.wp-eventmanager.com/plugins/wp-event-manager-sell-tickets/)**
-Gives you the ability to integrate the ability to sell tickets for your events with WooCommerce – the most popular e-commerce platform for WordPress. You can create multiple event tickets for purchase (or that you can redeem) during submission.
+- **Recurring events**: Simplifies your recurring event management process by updating your recurring event dates automatically on your events calendar.  
 
-🗓 **[Calendar](https://wp-eventmanager.com/plugins/wp-event-manager-calendar/)**
-This lets you display an event calendar that lists upcoming events on your website. We think calendar events are the most convenient way to display your listings!
+- **Stripe Split Payment**: Distributes the events ticket revenue among the website owner and event organizer making it easy for admins to monetize their events website.
 
-🗺 **[Google Maps](https://wp-eventmanager.com/plugins/wp-event-manager-google-maps/)**
-This add-on lets you integrate the popular map functionality on your site.  You can find events based on location, and the add-on also enables proximity search on your site.
+- **WooCommerce Paid Listing**: Offers a great way to monetize your events website by earning commissions from event organizers for posting their events on your events website. 
 
-📆 **[Recurring Events](https://wp-eventmanager.com/product/wp-event-manager-recurring-events/)**
-If you need to create a batch of events to generate on a regular basis, this add-on will be perfect.
+- **Expo Networking**: Creates engaging virtual exhibitions or events with interactive booths, sessions, and more. 
 
+- **Zoom**: lets you create uninterrupted virtual meets with the power of Zoom where meeting links can be shared directly from the events website.
 
-📝 **[Attendee Information](https://wp-eventmanager.com/product/wp-event-manager-attendee-information/)**
-Coordination is a big part of event management, and this add-on lets you collect information about the attendees at the point of registration.
+- **Speaker and schedule**: Displays the names of your event speakers and their speech schedule at your event. 
 
-✉ **[Emails](http://www.wp-eventmanager.com/plugins/wp-event-manager-emails/)**
-Getting notifications about your events will help you manage them better. This add-on will send you notifications in three situations: when you submit an event, when you approve an event, and when an event is over.
+The list goes on. Explore the entire list of our event addons here.
 
-🎨 **[Colors](https://wp-eventmanager.com/product/wp-event-manager-colors/)**
-While there is a lot of customization within WP Event Manager, the Colors add-on gives you more options. With this add-on you’re able to change the colors for the event type and categories, to help direct visitors to the right event listing.
+== **Documentation: Simplifying Plugin Usage for Everyone** ==
 
+For a detailed user guide, check out our **[knowledge base section](https://wp-eventmanager.com/knowledge-base/) ** on our official WP Event Manager website or visit our **[YouTube channel](https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg) ** for tutorial videos on our event plugins.
 
-WP Event Manager can also be your [virtual event platform](https://wp-eventmanager.com/virtual-event-platform/) too. Our [Expo Networking](https://wp-eventmanager.com/product/expo-networking/) add-on turns your WordPress website into a live streaming platform that includes a number of necessary features:
+== **Support: Quality Assistance for Seamless Event Management** ==
 
-* A 360-degree experience, including one-to-one meeting rooms, virtual booths, and much more.
-* A great-looking ‘reception area’, designed to greet attendees and direct them to the right room or booth.
-* You can include polls, Question-and-Answer sessions, and other ‘fact-finding’ engagement features.
-* Speaking of which, you can also implement other engagement functionalities including speed networking, breakout rooms, and more.
+WP Event Manager is backed by a friendly and sincere support team who are always ready to assist its users in case of need. 
 
-Combined with our [Speaker and Schedule](https://wp-eventmanager.com/product/speaker-and-schedule/), and [Registrations](https://wp-eventmanager.com/product/wp-event-manager-registrations/) add-ons, you’ll have a complete live streaming platform ready to go, from within your WordPress dashboard.
+The free version of WP Event Manager users get full access to all our documentation, FAQs, and YouTube video tutorials for assistance whereas the paid event plugin owners can reach out to our support team by raising support tickets whenever they face any difficulties with our event plugins for managing their events. 
 
-== 👉🏻 Choose Bundles to Grab Related WP Event Manager Add-Ons for Your Site ==
-We package a number of add-ons in three different bundles, to save you money and offer you related functionality at a steal:
+[Click here](https://support.wp-eventmanager.com/portal/en/signin) to raise a support ticket if you are using any of our event plugins and facing issues with it. 
 
+== **Supercharge Your Events with Powerful Integrations** ==
 
-👤 **[Personal Bundle](https://wp-eventmanager.com/product/personal-bundle-package/)**
-You’ll find every add-on we produce in one complete package.
+- **[WooCommerce integration](https://wp-eventmanager.com/product/wp-event-manager-woocommerce-paid-listings/) **: Strengthen the payment structure of your event business and sell event tickets freely with WooCommerce. 
 
-📡 **[Virtual Bundle](https://wp-eventmanager.com/product/virtual-bundle-package/)**
-This provides a collection of add-ons to help you run online events and expos, so you can set up a virtual event platform of your own.
+- **[Zoom integration](https://wp-eventmanager.com/product/wp-event-manager-zoom/) **: Make your virtual meetings and conferences interruption-free. 
 
-💻 **[Developer Bundle](https://wp-eventmanager.com/product/developer-bundle-package/)**
-This bundle also provides all of our add-ons, but lets you use them on five different domains.
+- **[Google Maps integration](https://wp-eventmanager.com/product/wp-event-manager-google-maps/) **: Display the location of your events on Google Maps on your events website. 
 
-Whatever your budget, WP Event Manager has a solution to help you implement top-notch event management for your site. Regardless, the free version of the plugin is free forever, and its core functionality will always be free.
+- **[Hubspot CRM integration](https://wp-eventmanager.com/product/hubspot-crm/) **: Manage your events attendee data like a pro with Hubspot integration. 
 
+- **[Sendinblue integrations](https://wp-eventmanager.com/product/wp-event-manager-sendinblue/) **: Synchronize events attendee data and automate email marketing. 
 
-== 👉🏻 Documentation and Support ==
+- **[Mailchimp integration](https://wp-eventmanager.com/product/wp-event-manager-mailchimp/) **: Automatically synchronize event attendee information and strengthen email marketing strategies. 
 
-There are [lots of ways](https://wp-eventmanager.com/help-center/) to find out the information you need to use WP Event Manager in an optimal way:
+- **[Zoho integration](https://wp-eventmanager.com/product/zoho-crm/) **: Know your event guests better and send customized emails to them to improve your events marketing style.  
 
-* For answers to basic questions on WP Event Manager, WordPress, and our ecosystem, you’ll want to look at the [Frequently Asked Questions (FAQs) page](https://wp-eventmanager.com/faqs/) on our site.
-* For general information, our [knowledge base](https://wp-eventmanager.com/knowledge-base/) is the best place to head to.
-* If you’re a visual learner, the [WP Event Manager YouTube channel](https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg) offers lots of guides to both basic and advanced use cases.
-* Social media users will want to join the [Facebook community](https://www.facebook.com/groups/wpeventmanager/) for WP Event Manager.
-* Developers should head [over to Slack](https://wpeventmanager.slack.com/) or [GitHub](https://github.com/wpeventmanager/wp-event-manager) to ask any questions, and find out more about how WP Event Manager is customizable to fulfil different project requirements.
+- **[Constant Contact integration](https://wp-eventmanager.com/product/constant-contact/) **: Experience email marketing automation and real-time event attendee data synchronization. 
 
+- **[Salesforce CRM integration](https://wp-eventmanager.com/product/salesforce-crm/) **: Simplifying events guest data management and events email marketing. 
 
+- **[Active Campaign integration](https://wp-eventmanager.com/product/active-campaign/) **: Manage user data easily with an automatic data syncing facility.
 
-As with every WordPress plugin, you can ask for general support from the free version of WP Event Manager on the dedicated [WordPress.org support forum](https://wordpress.org/support/plugin/wp-event-manager/). Premium support customers have a [specific point on our site](https://support.wp-eventmanager.com/) to direct tickets.
+- **[Stripe integration](https://wp-eventmanager.com/product/wp-event-manager-stripe-split-payment/) **: Allows you to earn commission from your events website without hassle. 
 
+- **[Google Analytics](https://wp-eventmanager.com/product/wp-event-manager-google-analytics/) **: Easily measure the success of your events by tracking event ticket sales and more. 
 
-== Frequently Asked Questions ==
+- **Elementor**: Create an event calendar, sell event tickets, manage event registrations and do more on your events website and place all your website elements in your preferred location by simply dragging and dropping. 
 
-= What does the free version of WP Event Manager give me? =
+- **Google Calendar Integration**: Display your events on Google Calendar or any other calendar with our iCAL plugin. 
 
-You can manage your event listings in full, such as adding, removing, and organizing them using the WordPress dashboard. You can also create custom event fields. You’re able to assign locations to an event, and group collections using those locations.
+== **Boost Ticket Sales with Our Dynamic Ticketing Plugin** ==
 
-For all other functionality, you’ll want to make use of any of our premium add-ons for WP Event Manager.
+Sell event tickets, manage registrations and take control of your entire ticketing system with our robust event management plugin: **[Sell Tickets](https://wp-eventmanager.com/product/wp-event-manager-sell-tickets/) **
 
-= How do I set up WP Event Manager? =
+- **Sell multiple tickets**: Maximize ticket sales by offering multiple ticket types including paid, donation and free. 
 
-Our [installation guide](https://wp-eventmanager.com/knowledge-base/install-wp-event-manager/) will help you get WP Event Manager onto your WordPress system. [Adding your first event](https://wp-eventmanager.com/knowledge-base/adding-your-first-event/) is straightforward, and for most cases, you’ll simply need to insert a shortcode into your content.
+- **Share digital tickets**: Send event tickets in easily downloadable PDFs through emails to buyers. 
 
-= Can I use WP Event Manager without front-end submissions? =
+- **Secure payment with WooCommerce**: Experience the ultimate comfort of managing ticket transactions through WooCommerce. 
 
-Of course! You can use WP Event Manager without submitting anything from the front end by omitting the [submit_event_form] shortcode. You’ll still get the full experience of listing events.
+- **Detailed report**: Measure the success of your events with a detailed report on your event ticket sales and registrations. 
 
-= How can I customize the event submission form? =
+- **Customizable registration**: Create customized registration forms for event ticket buyers to fill in at the time of purchasing tickets. 
 
-We have [full documentation](https://wp-eventmanager.com/knowledge-base/the-event-submission-form/) on the event submission form shortcode within our knowledge base. However, to customize the form itself, you can follow the same process we recommend for [editing fields](https://wp-eventmanager.com/knowledge-base/event-fields/).
+- **QR scan code**: Add QR scan code on tickets to simplify the check-in process for both event attendees and event organizers. 
 
-= Is there a way to add more functionalities to WP Event Manager? =
+- **Create a multi-vendor marketplace**: Transform your ordinary events website into a multi-vendor marketplace where you can earn commission from other event organizers for selling their event tickets on your website
 
-Yes – WP Event Manager is a full-featured event management plugin, but you can also add even more to the feature set.
+== **Organizer App: A Game-Changer for All Event Organizers** ==
 
-A wide variety of [add-ons are available](https://wp-eventmanager.com/plugins/) to help you add live streaming, a calendar, more customizability, and Google Maps functionality (among others). You can even sell tickets, manage attendees, and much more.
+The Organizer app from WP Event Manager brings the best event management solution for event organizers at their fingertips.
 
-You can buy each add-on within a bundle, or for an individual price, which means you’re able to tailor WP Event Manager to your own requirements
+- **Track attendee check-in**: Offering event organizers the comfort of managing and tracking attendee check-ins through their mobiles. 
 
-= How can I add a calendar to my WP Event Manager setup? =
+- **Manage attendee data**: Organizers can manage event attendee data and experience real-time data syncing on all devices. 
 
-Adding a calendar to your site is a great way to showcase events in a familiar and intuitive layout. WP Events Manager provides the [Calendar add-on](https://wp-eventmanager.com/product/wp-event-manager-calendar/). You can show a calendar with listing, individual calendar events, in a variety of different presentations.
+- **Work offline**: When offline, it saves all the important event data and syncs it immediately after the connection is restored. 
 
-For example, you can show upcoming calendar events, single-date calendar events, and more. You’re also able to display the calendar in a number of locations using shortcodes and widgets.
+- **Handle event lists**: Organizers get a detailed dashboard for all their past and upcoming events. 
 
-= Is there a way to stream live events using WP Event Manager? =
+- **YouTube video of [Organizer app](https://www.youtube.com/watch?v=lfX1uz-CvHc&t=1s) **
 
-Yes! WP Event Manager is a full-scale [virtual event platform](https://wp-eventmanager.com/virtual-event-platform/) that lets you carry out live streaming. We package a number of related add-ons together in [our Virtual Bundle](https://wp-eventmanager.com/product/virtual-bundle-package/). This lets you access the features in our Expo Networking and Speaker and Schedule add-ons. What’s more, you can sell tickets, collect attendee data, manage those attendees, provide virtual name tags, and even add users to either Zoho or HubSpot CRMs.
+== **Manage Event Schedules effortlessly with the Event Calendar** ==
 
-= Can I sell tickets to events using WP Event Manager? =
+Making event schedule management super easy with an event calendar that offers much more than an ordinary calendar. 
 
-You can sell tickets using the [WP Event Manager Sell Tickets add-on](https://wp-eventmanager.com/product/wp-event-manager-sell-tickets/). This combines with the WooCommerce plugin to let you set up multi-level pricing tiers, and track the ticket sales you make.
+- **Display upcoming events**: Attract more audiences to your events website by showcasing event dates on an interactive calendar. 
 
-You could sell tickets live too, as the interface lets you add Added paid tickets to WP Event Manager. In fact, there are a number of ticket options you can use to refine the experience for both you and your attendees.
+- **Calendar widget**: Maximize your calendar exposure by displaying it in a widget form. 
 
-= Can I pass on my ideas and thoughts about WP Event Manager to you? =
+- **Quick Calendar access**: let your customers get the details of your events by simply placing the cursor on the calendar at their targetted date.
 
-We love to hear from every user of WP Event Manager! You’re welcome to contact us using the [form on our website](https://wp-eventmanager.com/contact/), although we also have a lot of social media channels to browse through:
+- **Shortcode calendar view**: Display past and upcoming events all on your event calendar with shortcodes. 
 
-* [Facebook](https://www.facebook.com/wpeventmanager/)
-* [Twitter](https://twitter.com/wp_eventmanager)
-* [Instagram](https://www.instagram.com/wpeventmanager/)
-* [YouTube](https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg)
+- **Calendar layout**: Choose your preferred layout for your events calendar on your website. 
 
-Feel free to drop us a message to pass on your thoughts about how you use WP Event Manager.
+- **Simplify event search**: Show all your events on a calendar to make it easy for website visitors to find events quickly. 
 
-= Where can I find out more about how to use WP Event Manager? =
-Our Help Center is the best place to find out more about WP Event Manager. Within, you’ll find a dedicated FAQ section, a full knowledge base, support for any add-on purchases, and much more.
+Use the Event Calendar addon for the best event schedule management on your website.
 
+== **Awards and Recognitions** ==
+ 
+The event plugin has received several awards and recognition due to its sheer excellence. 
+*Won the 2nd position in **[Monster Awards 2022](https://wp-eventmanager.com/monster-award-winner-2022/) ** for being the best booking and appointment WordPress plugin. 
+*Recognized as one of the **[most trusted Indian companies in 2023](https://wp-eventmanager.com/most-trusted-indian-companies-2023/) ** by World Brand Affairs.
+*Awarded for being one of the **[fastest-growing WordPress product companies](https://wp-eventmanager.com/fastest-growing-wordpress-product-company/) ** at the WASME.
+*Secured a Bronze at **[WP Awards 2023](https://wp-eventmanager.com/wp-awards-2023/) **. 
+*Became the first runner-up at the **[Startup of the Year](https://wp-eventmanager.com/first-runner-up-startup-2023/) ** award. 
+*Awarded at the International Business Conclave 2024 for being the **[best Event Management plugin for WordPress](https://wp-eventmanager.com/international-business-conclave-2024/) **.
+*Awarded for being one of the top SME Businesses in the IT Services - CMS - Extensions/Plugins category 2024.
+
+== **WP Event Manager themes** ==
+
+With power-packed event plugins, WP Event Manager has recently launched a set of event themes that are fully compatible with its plugins. 
+
+Now you can get superior event themes that work well with our event plugins. 
+
+Key features of the event themes include: 
+
+- **Fully responsive**: Get designs that look good on every screen. 
+- **Compatible with WooCommerce**: Sell your event tickets with ease.  
+- **Simple and classy designs**: Sleek designs that attract every eye to your events. 
+- **Cross-browser support**: Suitable for all types of browsers. 
+- **Friendly support**: Get assistance whenever you need. 
+
+[Discover the event themes now!](https://wp-eventmanager.com/wodpress-event-themes/) 
+
+== **Reviews** ==
+
+https://www.youtube.com/watch?v=AUIJIHPnDws&t=59s&pp=ygUQd3AgZXZlbnQgbWFuYWdlcg%3D%3D
+
+https://www.youtube.com/watch?v=Xaty-rpx95Y&pp=ygUQd3AgZXZlbnQgbWFuYWdlcg%3D%3D
+
+== **Join our community** ==
+
+Join our **[Facebook community](https://www.facebook.com/groups/wpeventmanager) ** to interact with our users, and share your experiences and queries related to our events plugin. 
+Subscribe to our **[YouTube channel](https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg) ** for regular updates and tutorials. 
+If you are already a user, please share your reviews on **[WordPress](https://wordpress.org/plugins/wp-event-manager/)**. 
+
+== **WordPress Experts That Featured Us** ==
+
+- **[Kinsta](https://kinsta.com/blog/wordpress-events-plugin/) **: "The WP Event Manager plugin **features a lightweight interface and a beautiful user experience**. It has caching built-in, a wonderful search module and a completely responsive design."
+
+- **Hubspot**: "[WP Event Manager](http://www.wp-eventmanager.com/) is a WordPress plugin that allows you to add event listings directly to your website. This feature-rich event management plugin lets you add, manage, and categorize event listings in your WordPress dashboard."
+
+- **Torque**: "The plugin is perfect for websites that need event functionality on their site. It integrates well with any theme and the free version offers a good range of functionality."
+
+- **[WP Mayor](https://wpmayor.com/wp-event-manager-review/) **: "I was very impressed how fast and easy it was to set up the plugin. After installation, it literally took just two clicks to create the pages and shortcodes for a basic event management system."
+
+- **[WPlift](https://wplift.com/wp-event-manager-review/) **: "WP Event Manager adds full support for event listings to WordPress. It’s like EventBrite, but unique to your WordPress site."
+
+- **[Visual Composer](https://visualcomposer.com/blog/visual-composer-and-wp-event-manager-integration/) **: “WP Event Manager is a user-friendly, scalable and full-featured event management plugin for adding event listing functionality to the WordPress site."
+
+- **[Themeisle](https://themeisle.com/blog/wp-event-manager-plugin-review/) **: "WP Event Manager is a free WordPress plugin that makes any event look appealing on your site. With it, you can create events yourself and/or give a free hand to other people too." 
+
+- **Colorib**: "WP Event Manager is also very easy to use. New and experienced WordPress users alike will find creating and managing events very intuitive and straightforward."
+
+- **[Competetheme](https://www.competethemes.com/blog/event-management-wordpress-plugins/) **: "Easily manage events via your WP dashboard with this events plugin. Adding new events is as simple as creating a new post."
+ 
+- **[WPArena](https://wparena.com/wp-event-manager-review/) **: "Handling events can sometimes get a little messy if you are not selecting the correct features or even how you word things. It’s a great idea to use this event plugin which saves you and your customers time."
+
+== **WP Event Manager pricing** ==
+
+**WP Event Manager** offers a flexible pricing structure where addons are available for individual purchases and in bundles. The pricing structure is created in such a way that event businesses of all sizes can access it. 
+
+The cost of an individual plugin or bundle usually varies based on the number of sites they are being purchased for. To get more details on our event plugin prices and bundles, click here. 
+
+All our premium event plugins are divided in four power-packed bundles that include: 
+
+*Event manager plus 
+*Event manager pro 
+*Virtual event manager pro 
+*All event manager pro 
+
+[Select your preferred bundle now!](https://wp-eventmanager.com/pricing/)
+
+We also offer paid customization services to our clients. Find out the details from [here](#).
+
+== **What Else Do We Have for You?** ==
+
+If you have liked our WordPress event management plugin and its features, you can also have a look at our newly launched restaurant management solution:
+
+**[WP Food Manager](https://wpfoodmanager.com/) **: It offers a comprehensive restaurant business management solution that covers everything that you need to take your food business online and increase sales. 
+
+Starting from creating a full-fledged restaurant website to adding online order and delivery facility we will provide all the necessary services to give your restaurant a complete digital makeover. 
+
+The WP Food Manager package consists of some feature-rich WordPress plugins that help you add various restaurant management functionalities including online food ordering, delivery services, and more.
+
+== **FAQs** == 
+
+**Do you support multiple payment gateways?**
+Yes, our payment system is backed by WooCommerce offering our customers the option to use their preferred payment gateways for payments. 
+
+**Is the plugin compatible with any page builder?** 
+Yes, WP Event Manager is compatible with the major page builders including Gutenberg, Divi, etc.
+
+**What is the difference between the Event Manager Plus and Event Manager Pro bundle?** 
+Event Manager Plus and Event Manager Pro differ from each other in terms of the number of add-ons included in them. The Event Manager Pro bundle contains 20 plugins for a single site whereas the event manager pro offers 27 plugins.
+
+**Does WP Event Manager offer a QR scan code for attendee check-in?** 
+Yes, with the Sell Tickets plugin of WP Event Manager, users can generate event tickets that contain a QR code to help them check into the event by simply scanning the code. 
+
+**Is WP Event Manager compatible with the latest version of WordPress?**
+Yes, we update our plugins regularly based on WordPress updates to ensure that they work well with the latest WordPress version. 
+
+**Does WP Event Manager offer multi-language support?** 
+Yes, you can translate it into your preferred language for a better user experience. 
+
+**Can I add multiple types of event tickets with Sell Tickets?**
+Yes, with the Sell Tickets addon, you can sell three types of event tickets: Paid, Free, and Donation. 
+
+**How do I add an event calendar to my WordPress?** 
+To add an event calendar to your WordPress site you need to rely on a  feature-packed plugin like Event Calendar from WP Event Manager and follow the below-mentioned steps: 
+	*Install WP Event Manager 
+	*Purchase the Event Calendar addon 
+	*Install it and you are ready to work with it.
+
+**How do I edit an event calendar in WordPress?** 
+WP Event Manager offers an easily customizable event calendar addon to help you make changes to your calendar preferences through its template overriding facility.
+
+**Is WP Event Manager customizable?** 
+Yes, WP Event Manager is a fully customizable events plugin that is developed with a simple coding structure. The developer-friendly plugin is easily customizable with our template-overriding facility. We also offer paid customization services to our clients for their customization needs. 
+
+**Do you have any mobile apps?**
+Yes WP Event Manager offers a free mobile app that you can use to manage your events, attendee list, check-ins and more. 
+
+**Do you offer plugin trials?** 
+We offer demos for all our premium event plugins in which you will be given access to a demo site and try all the plugins that you want to purchase from us to see the results and how it works on an event site.
+
+**How can I add an event calendar to my WordPress events site?**
+To add an event calendar to your WordPress site, you need to follow the below-mentioned steps: 
+	*Install WP Event Manager 
+	*Purchase the event [calendar addon](https://wp-eventmanager.com/product/wp-event-manager-calendar/). 
+	*Install it and start working. 
+	
+**How do I sell tickets to events on my events calendar?**
+The calendar addon from WP Event Manager lets you add an attractive events calendar on your website and for the ticket selling feature, you need to pick the Sell Tickets addon with which you can sell your tickets seamlessly. 
+
+**Does WordPress have a Calendar feature?**
+WordPress does not have a built-in event calendar. However, if you want to add a calendar to your events website, you can easily do that with a specialized calendar plugin like WP Event Manager’s calendar addon.
+
+**Can other event organizers submit events on my calendar?** 
+Yes, WP Event Manager offers a front-end event submission facility that enables event organizers to post their events on your event's website by filling up a customizable event submission form. As an admin, you have the right to accept or decline the events based on your wish.
 
 == Screenshots ==
 
@@ -296,7 +438,6 @@ Our Help Center is the best place to find out more about WP Event Manager. Withi
 13. Event Submission Settings From Backend - Admin Panel.
 
 14. Event Page Settings From Backend - Admin Panel.
-
 
 == Changelog ==
 
