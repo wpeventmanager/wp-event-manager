@@ -1876,7 +1876,7 @@ if(!function_exists('get_wpem_email_headers')) {
 }
 
 /**
- * wpem_convert_php_to_moment_format function
+ * Return monment format from php code function
  * 
  */
 function wpem_convert_php_to_moment_format($format) {
@@ -2201,7 +2201,14 @@ function wpem_get_all_countries() {
 		'ZW' => 'Zimbabwe',
 	) );
 }
-
+/**
+ * Convert embed code to html.
+ * 
+ * We have used this method for convert code to html.
+ * @param $content content which we need to convert as html
+ * @since 3.1.39
+ * @return html
+ */
 function wpem_embed_oembed_html($content) {
 	echo apply_filters('wpem_embed_oembed_custome', $content);
 }

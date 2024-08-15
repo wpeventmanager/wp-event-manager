@@ -10,50 +10,6 @@ class WP_Event_Manager_Field_Editor {
 	public function __construct() {
 		add_action('admin_menu', array($this, 'admin_menu'));
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
-		add_action('wp_ajax_get_group_field_html', array($this, 'get_group_field_html'));
-	}
-
-	/**
-	 * get_on_demand_label_size function.
-	 *
-	 * @access public
-	 * @param
-	 * @return
-	 * @since 1.0.0
-	 */
-	public function get_group_field_html() {
-		check_ajax_referer('_nonce_wp_event_manager_form_editor_security', 'security');
-
-		$field_types = apply_filters(
-			'event_manager_form_group_field_types',
-			array(
-				'text'        => esc_html__('Text', 'wp-event-manager'),
-				'time'        => esc_html__('Time', 'wp-event-manager'),
-				'checkbox'    => esc_html__('Checkbox', 'wp-event-manager'),
-				'date'        => esc_html__('Date', 'wp-event-manager'),
-				'timezone'    => esc_html__('Timezone', 'wp-event-manager'),
-				'file'        => esc_html__('File', 'wp-event-manager'),
-				'hidden'      => esc_html__('Hidden', 'wp-event-manager'),
-				'multiselect' => esc_html__('Multiselect', 'wp-event-manager'),
-				'number'      => esc_html__('Number', 'wp-event-manager'),
-				'password'    => esc_html__('Password', 'wp-event-manager'),
-				'radio'       => esc_html__('Radio', 'wp-event-manager'),
-				'select'      => esc_html__('Select', 'wp-event-manager'),
-				'textarea'    => esc_html__('Textarea', 'wp-event-manager'),
-			)
-		);
-
-		ob_start();
-		$child_index     = -1;
-		$child_field_key = '';
-		$child_field     = array(
-			'type'        => 'text',
-			'label'       => '',
-			'placeholder' => '',
-		);
-		include 'wp-event-manager-form-field-editor-group-field-row.php';
-		echo esc_attr(ob_get_clean());
-		wp_die();
 	}
 
 	/**

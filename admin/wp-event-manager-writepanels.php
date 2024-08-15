@@ -7,7 +7,7 @@ if(!defined('ABSPATH')) {
 }
 
 /**
- * WP_Event_Manager_Writepanels class.
+ *  Class with details of Field editor functionality .
  */
 class WP_Event_Manager_Writepanels {
 
@@ -199,7 +199,12 @@ class WP_Event_Manager_Writepanels {
 			add_meta_box('event_venue_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_venue']->labels->singular_name), array($this, 'event_venue_data'), 'event_venue', 'normal', 'high');
 		}
 	}
-
+	/**
+	 * Hide texonomy metabox on event edit page.
+	 *
+	 * @access public
+	 * @return void
+	 */
 	public function wpem_hide_taxonomy_metabox($response, $taxonomy){
 		if(false == event_manager_multiselect_event_type()) {
 			if('event_listing_type' === $taxonomy->name) {
@@ -827,7 +832,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * event_listing_data function.
+	 * return event list data function.
 	 *
 	 * @access public
 	 * @param mixed $post
@@ -849,38 +854,12 @@ class WP_Event_Manager_Writepanels {
 				do_action('event_manager_input_' . $type, $key, $field);
 			} elseif(method_exists($this, 'input_' . $type)) {
 				call_user_func(array($this, 'input_' . $type), $key, $field);
-			}  elseif ( $type == 'term-select' ) {
-				$this->input_term_select( $key, $field );
 			}
 		}
 		do_action('event_manager_event_listing_data_end', $post_id);
 		echo wp_kses_post('</div>');
 	}
-	/**
-	 * manage term_select field function.
-	 *
-	 * @access public
-	 * @param $key meta key of field
-	 * @param $field name of the field
-	 * @return void
-	 */
-	public function input_term_select( $key, $field ) {
-		$taxonomy = !empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category'; 
-		$terms = get_terms( array('taxonomy' => $taxonomy, 'hide_empty' => false ) );
-		$value = get_post_meta( get_the_ID(), $key, true ); 
-		?>
-		<p class="form-field">
-			<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ); ?>:</label>
-			<select name="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $key ); ?>" class="input-select <?php echo esc_attr( $key ); ?>">
-				<?php foreach ( $terms as $term ) : ?>
-					<option value="<?php echo esc_attr( $term->term_id ); ?>" <?php selected( $value, $term->term_id ); ?>>
-						<?php echo esc_html( $term->name ); ?>
-					</option>
-				<?php endforeach; ?>
-			</select>
-		</p>
-		<?php
-	}
+	
 	/**
 	 * Save post.
 	 *
@@ -1465,7 +1444,7 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
-	 * wpem_delete_event_with_attachment function.
+	 * Delete attachment  function.
 	 *
 	 * @param $post_id
 	 * @access public

@@ -8,7 +8,7 @@ if(!defined('ABSPATH')) {
 }
 
 /**
- * WP_Event_Manager_Admin class.
+ * Class with Event admin side functionality.
  */
 class WP_Event_Manager_Admin {
 	
@@ -40,10 +40,6 @@ class WP_Event_Manager_Admin {
 			add_action('admin_notices', array($this, 'upgrade_database_notice'));
 		}
 
-		if(get_option('wpem_installation_skip', false)) {
-			//add_action('admin_notices', array($this, 'wpem_installation_notices'));
-		}
-
 		// Ajax
 		add_action('wp_ajax_wpem_upgrade_database', array($this, 'wpem_upgrade_database'));
 	}
@@ -58,22 +54,6 @@ class WP_Event_Manager_Admin {
 		if(version_compare(get_option('wp_event_manager_db_version', 0), '3.1.13', '<')) { ?>
 			<div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
 				<p><?php echo sprintf(wp_kses('Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager'), esc_url(admin_url('edit.php?post_type=event_listing&page=event-manager-upgrade-database'))); ?></p>
-			</div>
-		<?php
-		}
-	}
-
-	/**
-	 * Installation notices of WP Event Manager.
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function wpem_installation_notices()	{
-		if(get_option('wpem_installation_skip', false)) { ?>
-			<div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
-				<p><?php echo sprintf(wp_kses('<strong>Welcome to WP Event Manager</strong> – All in One Event Management Plugin for WordPress', 'wp-event-manager')); ?></p>
-				<p><?php echo sprintf(wp_kses('<a class="button button-primary" href="%1$s">Run the Setup Wizard</a> <a class="button" href="%2$s">Skip setup</a>', 'wp-event-manager'), esc_url(admin_url('index.php?page=event-manager-setup&step=1')), esc_url(admin_url('index.php?page=event-manager-setup&step=3&skip-event-manager-setup=1'))); ?></p>
 			</div>
 		<?php
 		}

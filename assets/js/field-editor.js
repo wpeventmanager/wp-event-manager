@@ -141,35 +141,8 @@ var FieldEditor = function() {
 					jQuery(this).closest('tr').find('.field-options .file-options').show();
 				} else if ('term-select' === jQuery(this).val() || 'term-checklist' === jQuery(this).val() || 'term-multiselect' === jQuery(this).val()) {
 					jQuery(this).closest('tr').find('.field-options .taxonomy-select').show();
-				} else if ('group' === jQuery(this).val()) {
-					if(jQuery(this).closest('tr').next().hasClass('group')){
-						
-					}else{
-						var obj = jQuery(this);
-
-						jQuery.ajax({
-	                        url: wp_event_manager_form_editor.ajax_url,
-	                        type: 'POST',
-	                        dataType: 'HTML',
-	                        data: {
-	                            action: 'get_group_field_html',
-	                            security: wp_event_manager_form_editor.wp_event_manager_form_editor_security,
-	                        },
-	                        success: function (responce)
-	                        {
-	                        	obj.closest('tr').attr('data-field-type', 'group');
-	                            obj.closest('tr').after(responce);
-	                        }
-	                    });
-					}
 				} else {
 					jQuery(this).closest('tr').find('.field-options .placeholder').show();
-				}
-
-				if(field_type === 'group' && jQuery(this).val() !== 'group') {
-					if(jQuery(this).closest('tr').next().hasClass('group')) {
-						jQuery(this).closest('tr').next().remove();
-					}
 				}
 
 				jQuery(this).closest('tr').find('.field-rules .rules').hide();
