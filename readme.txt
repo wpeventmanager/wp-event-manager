@@ -280,7 +280,7 @@ The event plugin has received several awards and recognition due to its sheer ex
  
 * Awarded at the International Business Conclave 2024 for being the **[Best Event Management plugin for WordPress](https://wp-eventmanager.com/international-business-conclave-2024/)**.
 
-* Awarded for being one of the top SME Businesses in the IT Services - CMS - Extensions/Plugins category 2024.
+* Awarded for being one of the top **[SME Businesses](https://wp-eventmanager.com/flaunts-fruits-labor-award/)** in the IT Services - CMS - Extensions/Plugins category 2024.
 
 == 🎨 WP Event Manager themes ==
 
@@ -306,7 +306,7 @@ https://www.youtube.com/watch?v=Xaty-rpx95Y
 
 == 📢 Join our community ==
 
-Join our **[Facebook community](https://www.facebook.com/groups/wpeventmanager)** to interact with our users, and share your experiences and queries related to our events plugin. 
+Join our **[Facebook community](https://www.facebook.com/groups/wpeventmanager)** and **[Slack community](https://join.slack.com/t/wpeventmanager/shared_invite/zt-1paer3jkl-IJer09kGsWL1DS2rU2yG~Q)** to interact with our users, and share your experiences and queries related to our events plugin. 
 Subscribe to our **[YouTube channel](https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg)** for regular updates and tutorials. 
 If you are already a user, please share your reviews on **[WordPress](https://wordpress.org/plugins/wp-event-manager/)**. 
 
