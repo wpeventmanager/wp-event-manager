@@ -42,12 +42,6 @@ WP Event Manager is an easy-to-use, beginner-friendly events plugin that offers 
 * 💍 Wedding planners 
 * 🩺 Doctors and more. 🙌
 
-**Unveil the easiest way of creating events on your WordPress site**
-
-https://www.youtube.com/watch?v=AUIJIHPnDws&t=59s&pp=ygUQd3AgZXZlbnQgbWFuYWdlcg%3D%3D
-
-https://www.youtube.com/watch?v=Xaty-rpx95Y&pp=ygUQd3AgZXZlbnQgbWFuYWdlcg%3D%3D
-
 **Display an impressive event calendar, manage event registrations and maximize event ticket sales with WP Event Manager**
 
 **Meet the most user-friendly event management plugin for WordPress: WP Event Manager**
