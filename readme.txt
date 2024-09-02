@@ -162,9 +162,9 @@ Sell event tickets, manage registrations and take control of your entire ticketi
 
 - **Customizable registration**: Create customized registration forms for event ticket buyers to fill in at the time of purchasing tickets. 
 
-- **🔍 QR scan code**: Add QR scan code on tickets to simplify the check-in process for both event attendees and event organizers. 
+- **QR scan code**: Add QR scan code on tickets to simplify the check-in process for both event attendees and event organizers. 
 
-- **👥 Create a multi-vendor marketplace**: Transform your ordinary events website into a multi-vendor marketplace where you can earn commission from other event organizers for selling their event tickets on your website
+- **Create a multi-vendor marketplace**: Transform your ordinary events website into a multi-vendor marketplace where you can earn commission from other event organizers for selling their event tickets on your website
 
 == 📱 Organizer App: A Game-Changer for All Event Organizers ==
 
@@ -256,7 +256,7 @@ If you are already a user, please share your reviews on **[WordPress](https://wo
 
 - **[Themeisle](https://themeisle.com/blog/wp-event-manager-plugin-review/)**: "WP Event Manager is a free WordPress plugin that makes any event look appealing on your site. With it, you can create events yourself and/or give a free hand to other people too." 
 
-== 💲 WP Event Manager pricing ==
+== 💲 WP Event Manager Pricing ==
 
 **WP Event Manager** offers a flexible pricing structure where addons are available for individual purchases and in bundles. The pricing structure is created in such a way that event businesses of all sizes can access it. 
 
@@ -288,11 +288,11 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 == Screenshots ==
 
-1. The submit Event Form.
+1. The submit Event Form
 
-2. Submit Event Preview.
+2. Submit Event Preview
 
-3. A Single Event Listing.
+3. A Single Event Listing
 
 4. Event Search Filters
 
@@ -300,141 +300,141 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 6. Event Listing - Box Layout
 
-7. Frontend - Event Dashboard.
+7. Frontend - Event Dashboard
 
-8. Backend - Event Dashboard.
+8. Backend - Event Dashboard
 
-9. Add Added Event From Backend - Admin Panel.
+9. Add Added Event From Backend - Admin Panel
 
-10. Add Event Type From Backend - Admin Panel.
+10. Add Event Type From Backend - Admin Panel
 
-11. Add Event Category From Backend - Admin Panel.
+11. Add Event Category From Backend - Admin Panel
 
-12. Event Listing Settings From Backend - Admin Panel.
+12. Event Listing Settings From Backend - Admin Panel
 
-13. Event Submission Settings From Backend - Admin Panel.
+13. Event Submission Settings From Backend - Admin Panel
 
-14. Event Page Settings From Backend - Admin Panel.
+14. Event Page Settings From Backend - Admin Panel
 
 
 == Changelog ==
 
 = [3.1.44] 12-07-2024 =
 
-Fixed : The Error Message Displayed On The Sign-Out Page Is Removed.
-Fixed : Now Multiple Logos Can Be Saved In The Venue And Organizer Section.
-Fixed : Security Issue Of WP Events Manager Is Resolved.
+Fixed : The Error Message Displayed On The Sign-Out Page Is Removed
+Fixed : Now Multiple Logos Can Be Saved In The Venue And Organizer Section
+Fixed : Security Issue Of WP Events Manager Is Resolved
 
 = [3.1.43] 22-02-2024 =
 
-Fixed : Url Type Value Is Now Shown On The Organizer Details Page.
-Fixed : Orgnaizer And Venue Section Image Is Missing.
+Fixed : Url Type Value Is Now Shown On The Organizer Details Page
+Fixed : Orgnaizer And Venue Section Image Is Missing
 Fixed : Venue Shortcode And Details Are Added To The Shortcode Menu
-Fixed : Youtube Videos On Gutenberg Blocks Are Now Working Properly.
-Fixed : The Security Issue Faced While Updating Events Has Been Resolved.
+Fixed : Youtube Videos On Gutenberg Blocks Are Now Working Properly
+Fixed : The Security Issue Faced While Updating Events Has Been Resolved
 
 = [3.1.42] 07-02-2024 =
 
-Fixed : The Organizer Logo Can Now Be Saved In The Backend.
-Fixed : In Organizer, Id Field Is Available In The Backend.
-Fixed : The Issue Of Image Removal After Deleting An Event Is Resolved.
-Fixed : Visual Composer Added Events Listing Shortcodes.
-Fixed : Security Issue Fixed And Improved.
-Added : The Events Country Field Can Now Be Hidden With A Snippet Code.
-Added : Event List View Is Now Available In Elementor.
+Fixed : The Organizer Logo Can Now Be Saved In The Backend
+Fixed : In Organizer, Id Field Is Available In The Backend
+Fixed : The Issue Of Image Removal After Deleting An Event Is Resolved
+Fixed : Visual Composer Added Events Listing Shortcodes
+Fixed : Security Issue Fixed And Improved
+Added : The Events Country Field Can Now Be Hidden With A Snippet Code
+Added : Event List View Is Now Available In Elementor
 
 = [3.1.41] 29-12-2023 =
 
-Fixed: Pagination Issue On Past Event Listing Page.
-Fixed: Remove Deleted Field From Elementor Single Event Field Widget.
-Fixed: Security Issue With Version 3.1.40 Is Resolved Now.
+Fixed: Pagination Issue On Past Event Listing Page
+Fixed: Remove Deleted Field From Elementor Single Event Field Widget
+Fixed: Security Issue With Version 3.1.40 Is Resolved Now
 
 = [3.1.40] 05-12-2023 =
 
-Fixed: The Event summary Shortcode Is Now Working Properly.
-Fixed: The Order By Name Attribute Is Now Working Properly.
-Fixed: The Problem Of Adding An Organizer Is Now Resolved.
+Fixed: The Event summary Shortcode Is Now Working Properly
+Fixed: The Order By Name Attribute Is Now Working Properly
+Fixed: The Problem Of Adding An Organizer Is Now Resolved
 = [3.1.39] 24-10-2023 =
 
-Fixed : The Availability Issue Of The Field Editor Option Is Resolved.
-Fixed : Hook Would Be Used To Validate Additional Fields.
-Fixed : Event Banner Missing On Single Event Page.
+Fixed : The Availability Issue Of The Field Editor Option Is Resolved
+Fixed : Hook Would Be Used To Validate Additional Fields
+Fixed : Event Banner Missing On Single Event Page
 
 = [3.1.38] 20-08-2023 =
 
-Fixed : Apostrophes Issue With Custom Field Names Is Fixed.
-Fixed : WP Editor Field Is Now Showing Default Placeholder.
-Fixed : Registration Email, Url Field With Updated Value Can Now Be Displayed.
+Fixed : Apostrophes Issue With Custom Field Names Is Fixed
+Fixed : WP Editor Field Is Now Showing Default Placeholder
+Fixed : Registration Email, Url Field With Updated Value Can Now Be Displayed
 
 = [3.1.37.1] 14-08-2023 =
 
-Fixed: Plugin Is Tested With The Latest Wordpress Version And Removed Compatibility Issues With It.
-Fixed: The  My Registration Email/Url Is Fixed In WP Event Manager.
+Fixed: Plugin Is Tested With The Latest Wordpress Version And Removed Compatibility Issues With It
+Fixed: The  My Registration Email/Url Is Fixed In WP Event Manager
 
 = [3.1.37] 07-08-2023 =
 
-Fixed: The Appearance Of The Deleted Event Field In The Field Editor Is Fixed.
-Fixed: Space Issue Between The Date And Time Separator Is Resolved.
-Fixed: Users Are Now Able To Select Values From Dropdown.
-Added: A New Feature Added In The Event Layout Type Shortcode.
+Fixed: The Appearance Of The Deleted Event Field In The Field Editor Is Fixed
+Fixed: Space Issue Between The Date And Time Separator Is Resolved
+Fixed: Users Are Now Able To Select Values From Dropdown
+Added: A New Feature Added In The Event Layout Type Shortcode
 
 = [3.1.36] 30-06-2023 =
 
-Fixed : Validate Number Field For Decimal Value.
-Fixed : Calendar Design Issue With Core Plugin.
-Added : Email Field Type Added In The Field Editor.
+Fixed : Validate Number Field For Decimal Value
+Fixed : Calendar Design Issue With Core Plugin
+Added : Email Field Type Added In The Field Editor
 
 = [3.1.35] 23-06-2023 =
 
-Fixed : Repetition Of Events Titles In The Post_meta Table Is Now Resolved.
-Fixed : The Problem With The Past Events Display In The Widget Is Fixed.
-Fixed : The Issue Of Improper Email In The Registration Database Is Resolved.
+Fixed : Repetition Of Events Titles In The Post_meta Table Is Now Resolved
+Fixed : The Problem With The Past Events Display In The Widget Is Fixed
+Fixed : The Issue Of Improper Email In The Registration Database Is Resolved
 
 = [3.1.34] 18-05-2023 =
 
-Fixed - Events Ticket Price Is Displayed On The Event Details Page Even After Changing The Event Ticket Type From Paid To Free.
-Fixed - Price And Ticket Icons Should Be Displayed In A Horizontal Line.
-Fixed - Event Ticket Numbering Issue While Creating Added Tickets For An Event.
+Fixed - Events Ticket Price Is Displayed On The Event Details Page Even After Changing The Event Ticket Type From Paid To Free
+Fixed - Price And Ticket Icons Should Be Displayed In A Horizontal Line
+Fixed - Event Ticket Numbering Issue While Creating Added Tickets For An Event
 
 = [3.1.33] 07-11-2022 =
 
-Fixed - Events Language Translation Issues. 
-Fixed - Featured Event Search Issue On The Event Listing Page.
-Fixed - Single Event Venue And Organizer Issue With Elementor.
-Fixed - Priority Values Issue In The Event Field Editor On The Admin Side.
-Fixed - Issue With Event Listing Shortcode Attributes.
-Removed - Removed Unwanted Files From The Event Manager.
-Fixed - Issue Of Spelling Mistakes And Security Fixes.
-Fixed - Setting The Issue Of Expired Events On The Event Listing Page.
+Fixed - Events Language Translation Issues
+Fixed - Featured Event Search Issue On The Event Listing Page
+Fixed - Single Event Venue And Organizer Issue With Elementor
+Fixed - Priority Values Issue In The Event Field Editor On The Admin Side
+Fixed - Issue With Event Listing Shortcode Attributes
+Removed - Removed Unwanted Files From The Event Manager
+Fixed - Issue Of Spelling Mistakes And Security Fixes
+Fixed - Setting The Issue Of Expired Events On The Event Listing Page
 
 = [3.1.32] 12-09-2022 =
 
-Fixed - Event Manager Security Issues. 
-Fixed - Event Details Page End Date Issue.
-Fixed - Event Organizer Ditelse Visibility Issue.
+Fixed - Event Manager Security Issues
+Fixed - Event Details Page End Date Issue
+Fixed - Event Organizer Ditelse Visibility Issue
 
 = [3.1.31] 22-08-2022 =
 
-Fixed - Email Id Field In Evenst Registration Form. 
-Fixed - Location Issue On Events Details Page When Selected Online Event. 
-Fixed - The End Date Of An Events In The Event Calendar. 
-Fixed - Issue With Sell Tickets Display. 
+Fixed - Email Id Field In Evenst Registration Form
+Fixed - Location Issue On Events Details Page When Selected Online Event
+Fixed - The End Date Of An Events In The Event Calendar
+Fixed - Issue With Sell Tickets Display
 
 = [3.1.30] 04-07-2022 =
 
-Fixed - Selected Datetime Shortcode And Event Location Issue. 
-Fixed - Event Dashboard Setting Issue.
-Fixed - Some Js And Css Tweaks For Event Calendar.
-Fixed - Elementor Shows Html Code With Event Manager.
-Tweak - Event Listing Compatibility With Event Calendar.
+Fixed - Selected Datetime Shortcode And Event Location Issue
+Fixed - Event Dashboard Setting Issue
+Fixed - Some Js And Css Tweaks For Event Calendar
+Fixed - Elementor Shows Html Code With Event Manager
+Tweak - Event Listing Compatibility With Event Calendar
 
 = [3.1.29] 22-06-2022 =
 
-Fixed - WP Event Manager Reinstallation Issue. 
-Fixed - Events Listing Page Issue In Event Calendar.
-Fixed - Past Events Listing Pagination Issue. 
-Fixed - Single Event Details Page Issue. 
-Fixed - Event Date Issue At The Backend. 
+Fixed - WP Event Manager Reinstallation Issue
+Fixed - Events Listing Page Issue In Event Calendar
+Fixed - Past Events Listing Pagination Issue
+Fixed - Single Event Details Page Issue
+Fixed - Event Date Issue At The Backend
 
 = [3.1.28] 14-06-2022 =
 
@@ -467,258 +467,258 @@ Fixed - Shortcode Related Issue With Elementor
 
 = [3.1.24] 21-02-2022 =
 
-Fixed - Event Image Duplicate Issue.
-Fixed - Single Event Detail Page. 
-Fixed - The Submit Organizer Form. 
-Fixed - Issue In Adding Event Organizer On Post An Event Page. 
-Fixed - The Event Category Permalink.
+Fixed - Event Image Duplicate Issue
+Fixed - Single Event Detail Page
+Fixed - The Submit Organizer Form
+Fixed - Issue In Adding Event Organizer On Post An Event Page
+Fixed - The Event Category Permalink
 
  = [3.1.23] 10-12-2021 =
 
-Fixed - Improved Security And Escaping Output For Events.
-Fixed - Event Banners At The Backend. 
-Fixed - The Page Creation After Reinstallation Of The Plugin. 
-Fixed - Event Time Related Issue In Event Manager. 
-Fixed - Event Translation Related Issue.
+Fixed - Improved Security And Escaping Output For Events
+Fixed - Event Banners At The Backend
+Fixed - The Page Creation After Reinstallation Of The Plugin
+Fixed - Event Time Related Issue In Event Manager
+Fixed - Event Translation Related Issue
 
 = [3.1.22] 10-09-2021 =
 
-Fixed - The Donation Ticket Details In The Event Registration Section. 
-Fixed - The Last Name Field In The Event Frontend Form. 
-Fixed - The Event Detail Page In Elementor.
-Fixed - Event Manager Expo And Virtual Compatibility.
+Fixed - The Donation Ticket Details In The Event Registration Section
+Fixed - The Last Name Field In The Event Frontend Form
+Fixed - The Event Detail Page In Elementor
+Fixed - Event Manager Expo And Virtual Compatibility
 
 = [3.1.21] 27-05-2021 =
 
-Fixed - The Notice Text On Event Organizer Submit Form Page For Events. 
-Fixed - Bool(True) On The Event Submit Page. 
+Fixed - The Notice Text On Event Organizer Submit Form Page For Events
+Fixed - Bool(True) On The Event Submit Page
 
 = [3.1.20] 06-04-2021 =
 
-Fixed - The Password Field In The Event Field Editor. 
-Fixed - Value Display Related Issue On The Event Page.
-Fixed - The Past Events In The Event Listing. 
-Fixed - Punctuation Related Issue In The Event Calendar. 
-Fixed - The Woocommerce Deactivation. 
+Fixed - The Password Field In The Event Field Editor
+Fixed - Value Display Related Issue On The Event Page
+Fixed - The Past Events In The Event Listing
+Fixed - Punctuation Related Issue In The Event Calendar
+Fixed - The Woocommerce Deactivation
 
 = [3.1.19] 23-01-2021 =
 
-Fixed - The Edit Single Event Summary Section. 
-Fixed - The Past Event Widget. 
-Fixed - Theme Issue In The Event Dashboard Menu. 
+Fixed - The Edit Single Event Summary Section
+Fixed - The Past Event Widget
+Fixed - Theme Issue In The Event Dashboard Menu
 
 = [3.1.18] 23-12-2020 =
 
-Fixed - Content Related Issue On The Event Dashboard. 
-Fixed - Text Related Issue In The Event Registration Form. 
-Fixed - Pagination Issue On The Event Organizer Page. 
-Fixed - Punctuation Related Issue In The Event Calendar. 
+Fixed - Content Related Issue On The Event Dashboard
+Fixed - Text Related Issue In The Event Registration Form
+Fixed - Pagination Issue On The Event Organizer Page
+Fixed - Punctuation Related Issue In The Event Calendar
 
 = [3.1.17] 22-12-2020 =
 
-Fixed - The Field Editor In Elementor.
-Fixed - The WP Event Manager Set Up Page. 
-Added - Design Issue In The WP Event Manager Plugin. 
-Fixed - The Event Ticket Price Option. 
+Fixed - The Field Editor In Elementor
+Fixed - The WP Event Manager Set Up Page
+Added - Design Issue In The WP Event Manager Plugin
+Fixed - The Event Ticket Price Option
 
 = [3.1.16] 02-12-2020 =
 
-Fixed - Compatibility Issue Between WP Event Manager And WPml.
-Fixed - Adding Event Venue Page In Page Setup. 
-Fixed - The Event Listing Page Banner. 
-Fixed - The Event Organizer And Venue Pop Up Option. 
-Fixed - Design Issue For Date Selection In The Event Calendar. 
-Fixed - Event Shortcode Related Issue In Event Theme Layout. 
-Added - Added Event Listings Shortcode Attributes To Elementor Widget. 
-Fixed - Deleting Events From Events Dashboard. 
-Added - Event Dashboard Shortcode Issue With Elementor. 
-Fixed - Event Organizer And Venue Related Issue.
+Fixed - Compatibility Issue Between WP Event Manager And WPml
+Fixed - Adding Event Venue Page In Page Setup
+Fixed - The Event Listing Page Banner
+Fixed - The Event Organizer And Venue Pop Up Option
+Fixed - Design Issue For Date Selection In The Event Calendar
+Fixed - Event Shortcode Related Issue In Event Theme Layout
+Added - Added Event Listings Shortcode Attributes To Elementor Widget
+Fixed - Deleting Events From Events Dashboard
+Added - Event Dashboard Shortcode Issue With Elementor
+Fixed - Event Organizer And Venue Related Issue
 
 = [3.1.15] 02-12-2020 =
 
-Added - Improved Category Name On The Events Listing Page. 
-Fixed - Delete Event Option Related Issue. 
-Added - Auto Removes Banners When Event Listing Expires. 
+Added - Improved Category Name On The Events Listing Page
+Fixed - Delete Event Option Related Issue
+Added - Auto Removes Banners When Event Listing Expires
 
 = [3.1.14] 02-12-2020 =
 
-Added - Option To Notify People When Registration Date Is Passed. 
-Fixed - The Event Organizer Venue On Field Editor. 
-Fixed - Linkedin Share Button Issue On Single Event Page. 
-Fixed - Event Types And Event Category Related Issues. 
-Fixed - Event Listing Shortcode Related Issue. 
-Fixed - Event Organizer Details Section  In The Field Editor. 
-Fixed - The Event Category And Type Settings.
+Added - Option To Notify People When Registration Date Is Passed
+Fixed - The Event Organizer Venue On Field Editor
+Fixed - Linkedin Share Button Issue On Single Event Page
+Fixed - Event Types And Event Category Related Issues
+Fixed - Event Listing Shortcode Related Issue
+Fixed - Event Organizer Details Section  In The Field Editor
+Fixed - The Event Category And Type Settings
 
 = [3.1.12] 11-06-2020 =
 
-Fixed - Date And Time Separator Issue. 
-Fixed - The Share With Friends Section On A Single Event Page.
-Fixed - Button Added To Add Added Event On Event Dashboard. 
-Fixed - Event Category And Type Dropdown Added For Added Events. 
+Fixed - Date And Time Separator Issue
+Fixed - The Share With Friends Section On A Single Event Page
+Fixed - Button Added To Add Added Event On Event Dashboard
+Fixed - Event Category And Type Dropdown Added For Added Events
 
 = [3.1.10] 02-02-2020 =
 
-Fixed - One Day Event Date And Time. 
-Fixed - Event Shortcode Related Issue In Elementor. 
-Fixed - The Registration Button. 
-Fixed - Date Conversion Issue In Event Calendar. 
+Fixed - One Day Event Date And Time
+Fixed - Event Shortcode Related Issue In Elementor
+Fixed - The Registration Button
+Fixed - Date Conversion Issue In Event Calendar
 
 = [3.1.9] 30-09-2019 =
 
-Fixed - Category Impact On Field Editor. 
-Fixed - Event Search Related Issue. 
+Fixed - Category Impact On Field Editor
+Fixed - Event Search Related Issue
 Added - Rss Link Enabled And Disabled Settings
-Fixed - The Position Of Event Title On Event Detail Page. 
+Fixed - The Position Of Event Title On Event Detail Page
 
 = [3.1.8] 19-09-2019 =
 
-Fixed - The Visual Composer Element For Shortcode.
-Fixed - Backen Date Format Issue In Event Calendar. 
+Fixed - The Visual Composer Element For Shortcode
+Fixed - Backen Date Format Issue In Event Calendar
 Fixed - Default Layout And Event Calendar Layout Issue
 Fixed - View Count On Single Event Page
 
 = [3.1] 18-10-2019 =
 
-Added - WP Event Manager Backend Improved. 
-Added - Event Slug Improved For Event Listing.
-Fixed - Custom Field Improvement Issue. 
-Fixed - Listing Expiry Date Issue In Event Manager. 
+Added - WP Event Manager Backend Improved
+Added - Event Slug Improved For Event Listing
+Fixed - Custom Field Improvement Issue
+Fixed - Listing Expiry Date Issue In Event Manager
 
 = [2.8] 25-04-2019 =
 
-Fixed - Event Registration Method Issue. 
-Fixed - Updating WP Event Manager Manually. 
-Fixed - Adding Event Calendar Widget. 
-Fixed - The Event Timezone Format. 
+Fixed - Event Registration Method Issue
+Fixed - Updating WP Event Manager Manually
+Fixed - Adding Event Calendar Widget
+Fixed - The Event Timezone Format
 
 = [2.7] 25-04-2019 =
 
-Fixed - The Event Calendar Widget Appearance, 
-Fixed - Displaying Event Calendar On A Specific Page. 
-Fixed - The Frontend Event Calendar Layout. 
-Fixed - Event Calendar Shortcode Issue. 
+Fixed - The Event Calendar Widget Appearance
+Fixed - Displaying Event Calendar On A Specific Page
+Fixed - The Frontend Event Calendar Layout
+Fixed - Event Calendar Shortcode Issue
 
 = [2.6] 22-04-2019 =
 
-Added - Custom Event Search Filter Can Be Created. 
-Fixed – Improve Compatibility With The Event Calendar. 
-Fixed – Admin Panel Css Issue Is Fixed For Admin Events View.
+Added - Custom Event Search Filter Can Be Created
+Fixed – Improve Compatibility With The Event Calendar
+Fixed – Admin Panel Css Issue Is Fixed For Admin Events View
 
 = [2.5] 15-01-2019 =
 
-Fixed - Adding Upcoming Event Widget In Event Calendar. 
-Fixed - The Event Calendar Icon On The Event Listing Page. 
-Fixed - The Manual Installation Of The Calendar Addon For Events. 
+Fixed - Adding Upcoming Event Widget In Event Calendar
+Fixed - The Event Calendar Icon On The Event Listing Page
+Fixed - The Manual Installation Of The Calendar Addon For Events
 
 = [2.4] 30-12-2018 =
 
-Fixed - The Installation Of Sell Tickets Addon. 
-Fixed - The Show Free Tickets Field Section In Event Manager. 
-Fixed - Adding Paid Tickets For Events On Frontend. 
-Fixed - The Ticket Details Section. 
-Fixed - Event Calendar Shortcode Related Issue. 
+Fixed - The Installation Of Sell Tickets Addon
+Fixed - The Show Free Tickets Field Section In Event Manager
+Fixed - Adding Paid Tickets For Events On Frontend
+Fixed - The Ticket Details Section
+Fixed - Event Calendar Shortcode Related Issue
 
 = [2.3] 15-09-2018 =
 
 Fixed - Adding The Start Date And End Date In The Tickets Detail Section Of Donation Tickets 
 Fixed - Customizing Templates In The Sell Tickets Addon 
-Fixed - Changing The Event Registration Status In Sell Tickets Addon. 
-Fixed - The Ticket Information Block Event Details Page. 
+Fixed - Changing The Event Registration Status In Sell Tickets Addon
+Fixed - The Ticket Information Block Event Details Page
 
 = [2.2] 15-05-2018 =
 
-Fixed - Billing Details Section On The Check Out Page Of Event Tickets.
-Fixed - The Ticket Information Block On The Event Detail Page.
-Fixed - Ticket Description Section In Event Manager For Sell Tickets Addon. 
-Fixed - Show Paid Tickets Field In Ticket Setting In Sell Tickets Addon. 
-Fixed - Event Calendar Widget Related Issue. 
+Fixed - Billing Details Section On The Check Out Page Of Event Tickets
+Fixed - The Ticket Information Block On The Event Detail Page
+Fixed - Ticket Description Section In Event Manager For Sell Tickets Addon
+Fixed - Show Paid Tickets Field In Ticket Setting In Sell Tickets Addon
+Fixed - Event Calendar Widget Related Issue
 
 = [2.1] 15-11-2017 =
 
-Fixed - Display Of Sell Tickets Options On Event Submission Page.  
-Fixed - Editing Inbuilt Event Theme Offered By WP Event Manager.
-Fixed - The Event Calendar Field At The Widget Section.  
-Fixed - The Yearly Visibility Of Events On Event Calendar. 
+Fixed - Display Of Sell Tickets Options On Event Submission Page
+Fixed - Editing Inbuilt Event Theme Offered By WP Event Manager
+Fixed - The Event Calendar Field At The Widget Section
+Fixed - The Yearly Visibility Of Events On Event Calendar
 
 = [2.0] 30-10-2017 =
 
-Fixed - The Backend Ticket Fees Setting. 
-Fixed - Country Section In The Billing Details In Sell Tickets Addon. 
+Fixed - The Backend Ticket Fees Setting
+Fixed - Country Section In The Billing Details In Sell Tickets Addon
 Fixed - The List View Of The Event Calendar
-Fixed - Adding Event Description To The Event Calendar. 
+Fixed - Adding Event Description To The Event Calendar
 
 = [1.9] 30-09-2017 =
 
-Fixed - The Sales Start Date And Sales Event Date`For Event Tickets In Sell Tickets Addons. 
-Fixed - The Quick Event View Of The Event Calendar. 
-Fixed - The Translation Of The Event Calendar Addon In Hindi. 
-Added - Feature To Display Events On Google Calendar Is Added. 
+Fixed - The Sales Start Date And Sales Event Date`For Event Tickets In Sell Tickets Addons
+Fixed - The Quick Event View Of The Event Calendar
+Fixed - The Translation Of The Event Calendar Addon In Hindi
+Added - Feature To Display Events On Google Calendar Is Added
 
 = [1.8] 30-08-2017 =
 
-Fixed - Expired Events Removed From Seo Indexing.
-Fixed - Themes On Single Event Listing Page. 
-Fixed - The Ticket Registration Field On The Check Out Page. 
-Fixed - The Frontend Registration Dashboard.
-Fixed - Ticket Quantity Section In The Ticket Details Area Of Adding Free Event Tickets Section. 
-Fixed - Editing The Submitted Event On Event Calendar. 
+Fixed - Expired Events Removed From Seo Indexing
+Fixed - Themes On Single Event Listing Page
+Fixed - The Ticket Registration Field On The Check Out Page
+Fixed - The Frontend Registration Dashboard
+Fixed - Ticket Quantity Section In The Ticket Details Area Of Adding Free Event Tickets Section
+Fixed - Editing The Submitted Event On Event Calendar
 
 = [1.7] 30-07-2017 =
 
-Fixed - Adding A Added Event Field On The Event Submission Form. 
-Fixed - Adding Paid Tickets, Donation Tickets And Free Tickets From The Backend Of The Events Website. 
-Tweak - Quick View Of Events Featured On The Event Calendar Improved. 
-Fixed - Editing The Submitted Event On Event Calendar. 
+Fixed - Adding A Added Event Field On The Event Submission Form
+Fixed - Adding Paid Tickets, Donation Tickets And Free Tickets From The Backend Of The Events Website
+Tweak - Quick View Of Events Featured On The Event Calendar Improved
+Fixed - Editing The Submitted Event On Event Calendar
 
 = [1.6] 15-06-2017 =
 
-Fixed - Start Date Validation Issue For Event And Event Calendar.
-Fixed - Improve Compatibility With The Event Calendar.
-Fixed - Feature To Display Events On Google Calendar Is Added. 
-Fixed - Importing Events On Google Calendar. 
+Fixed - Start Date Validation Issue For Event And Event Calendar
+Fixed - Improve Compatibility With The Event Calendar
+Fixed - Feature To Display Events On Google Calendar Is Added
+Fixed - Importing Events On Google Calendar
 
 = [1.5] 30-05-2017 =
 
-Fixed - Event Type And Event Category Issue On Event Calendar. 
-Fixed - Improve Compatibility With The Event Calendar.
-Fixed - The Default Sidebar Section Of The Event Calendar. 
-Tweak - Event Listing Compatibility With Event Calendar.
+Fixed - Event Type And Event Category Issue On Event Calendar
+Fixed - Improve Compatibility With The Event Calendar
+Fixed - The Default Sidebar Section Of The Event Calendar
+Tweak - Event Listing Compatibility With Event Calendar
 
 = [1.4] 15-05-2017 =
 
-Fixed - The Functionality Of The Donation Tickets For Events. 
-Fixed - The Event Category Field In The Event Details Section. 
-Added - Various Settings Are Added To The Event Registration Dashboard.
-Fixed - Date-Timepicker Removed For Event Calendar.
-Tweak - Event Listing Compatibility With Event Calendar.
+Fixed - The Functionality Of The Donation Tickets For Events
+Fixed - The Event Category Field In The Event Details Section
+Added - Various Settings Are Added To The Event Registration Dashboard
+Fixed - Date-Timepicker Removed For Event Calendar
+Tweak - Event Listing Compatibility With Event Calendar
 
 = [1.3] 30-04-2017 =
 
-Fixed - The Ticket Start Date In The Donation Ticket Section. 
-Fixed - Adding Tickets From The Woocommerce Page. 
-Fixed - The Orderby Attribute For Past Event Listings. 
-Fixed - Editing Event Venue Field.
-Fixed - The Event Registration Form Fields. 
-Fixed - Uploading An Ics File On Google Calendar.
-Fixed - Importing Events On Google Calendar. 
+Fixed - The Ticket Start Date In The Donation Ticket Section
+Fixed - Adding Tickets From The Woocommerce Page
+Fixed - The Orderby Attribute For Past Event Listings
+Fixed - Editing Event Venue Field
+Fixed - The Event Registration Form Fields
+Fixed - Uploading An Ics File On Google Calendar
+Fixed - Importing Events On Google Calendar
 
 = [1.2] 15-04-2017 =
 
-Fixed - The Sell Tickets Options On Event Submit Form.
-Fixed - Show Remaining Tickets Section On The Event Detail Page.
-Fixed - Uploading An Ics File On Google Calendar.
-Fixed - Enabling Free Ticket Option In Sell Tickets Addon For Events.
-Fixed - Editing The Submitted Event On Event Calendar.
+Fixed - The Sell Tickets Options On Event Submit Form
+Fixed - Show Remaining Tickets Section On The Event Detail Page
+Fixed - Uploading An Ics File On Google Calendar
+Fixed - Enabling Free Ticket Option In Sell Tickets Addon For Events
+Fixed - Editing The Submitted Event On Event Calendar
 
 = [1.1] 30-03-2017 =
 
-Fixed - Show Event Registration Addon Form In Sell Tickets Addon.
-Fixed - Sale End Date In The Ticket Details Section Of The Sell Tickets Addon.
-Fixed - Order Summary Page In Sell Tickets Addon.
-Fixed - Available Widget Section On The Event Calendar Admin Panel.
-Fixed - Adding Donation Tickets, And Paid Tickets From The Frontend Of Events Site.
+Fixed - Show Event Registration Addon Form In Sell Tickets Addon
+Fixed - Sale End Date In The Ticket Details Section Of The Sell Tickets Addon
+Fixed - Order Summary Page In Sell Tickets Addon
+Fixed - Available Widget Section On The Event Calendar Admin Panel
+Fixed - Adding Donation Tickets, And Paid Tickets From The Frontend Of Events Site
 
 = [1.0] 10-03-2017 =
 
-First Stable Release Of Event Manager.
+First Stable Release Of Event Manager
