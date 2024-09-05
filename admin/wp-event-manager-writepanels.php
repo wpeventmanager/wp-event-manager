@@ -493,6 +493,146 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
+ * input_multidate function.
+ *
+ * @param mixed $key
+ * @param mixed $field
+ */
+public static function input_multidate($key, $field) {
+    global $post_id;
+
+    $datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+    $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+
+    $dates = [];
+    if (!isset($field['value']) || empty($field['value'])) {
+        $saved_dates = esc_attr(get_post_meta($post_id, stripslashes($key), true));
+        if (!empty($saved_dates)) {
+            $dates = explode(',', $saved_dates);
+            $dates = array_map(function($date) use ($php_date_format) {
+                return date($php_date_format, strtotime($date));
+            }, $dates);
+        }
+    } else {
+        $dates = is_array($field['value']) ? $field['value'] : explode(',', $field['value']);
+    }
+
+    $name = isset($field['name']) ? $field['name'] : $key;
+
+    ?>
+    <div id="recure_custom_dates_field" class="controls form-field" position: relative; style="display:none;">
+        <label for="<?php echo esc_attr($key); ?>">
+            <?php _e('Custom Dates', 'wp-event-manager-recurring-events'); ?>
+        </label>
+        <div id="custom_dates_container">
+            <?php if (!empty($dates)) : ?>
+                <?php foreach ($dates as $date) : ?>
+                    <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" value="<?php echo esc_attr($date); ?>" placeholder="<?php _e('Select Date', 'wp-event-manager-recurring-events'); ?>" data-picker="datepicker" />
+                <?php endforeach; ?>
+            <?php else : ?>
+                <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager-recurring-events'); ?>" data-picker="datepicker" />
+            <?php endif; ?>
+        </div>
+        <button type="button" id="add_custom_date" class="button">
+            <?php _e('Add Another Date', 'wp-event-manager-recurring-events'); ?>
+        </button>
+			</div>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+
+        // Initialize date pickers for existing inputs
+        $('input[data-picker="datepicker"]').datepicker({
+            dateFormat: '<?php echo esc_js($datepicker_date_format); ?>'
+        });
+
+        // Add new date input when "Add Another Date" button is clicked
+        $('#add_custom_date').on('click', function(e) {
+            e.preventDefault();
+            console.log('Add date button clicked'); // Debugging line
+            var newDateField = $('<input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager-recurring-events'); ?>" data-picker="datepicker" />');
+            $('#custom_dates_container').append(newDateField);
+
+            // Initialize date picker for the newly added input
+            newDateField.datepicker({
+                dateFormat: '<?php echo esc_js($datepicker_date_format); ?>'
+            });
+        });
+
+    });
+    </script>
+    <?php
+}
+
+
+
+
+/**
+ * input_multiweek function.
+ *
+ * @param mixed $key
+ * @param mixed $field
+ */
+public static function input_multiweek($key, $field) {
+    global $post_id;
+
+    $weeks = [];
+    if (!isset($field['value']) || empty($field['value'])) {
+        $saved_weeks = esc_attr(get_post_meta($post_id, stripslashes($key), true));
+        if (!empty($saved_weeks)) {
+            $weeks = explode(',', $saved_weeks);
+        }
+    } else {
+        $weeks = is_array($field['value']) ? $field['value'] : explode(',', $field['value']);
+    }
+
+    $name = isset($field['name']) ? $field['name'] : $key;
+
+    ?>
+    <div id="recure_custom_weeks_field" class="controls form-field" style="display:none;">
+        <label for="<?php echo esc_attr($key); ?>">
+            <?php _e('Custom Weeks', 'wp-event-manager-recurring-events'); ?>
+        </label>
+        <div id="custom_weeks_container">
+            <?php if (!empty($weeks)) : ?>
+                <?php foreach ($weeks as $week) : ?>
+                    <select name="<?php echo esc_attr($name); ?>[]" class="input-select">
+                        <?php foreach ($field['options'] as $week_key => $week_label) : ?>
+                            <option value="<?php echo esc_attr($week_key); ?>" <?php selected($week, $week_key); ?>>
+                                <?php echo esc_html($week_label); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <select name="<?php echo esc_attr($name); ?>[]" class="input-select">
+                    <?php foreach ($field['options'] as $week_key => $week_label) : ?>
+                        <option value="<?php echo esc_attr($week_key); ?>">
+                            <?php echo esc_html($week_label); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            <?php endif; ?>
+        </div>
+        <button type="button" id="add_custom_week" class="button">
+            <?php _e('Add Another Week Day', 'wp-event-manager-recurring-events'); ?>
+        </button>
+    </div>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('#add_custom_week').on('click', function(e) {
+            e.preventDefault();
+            var newWeekField = $('<select name="<?php echo esc_attr($name); ?>[]" class="input-select"><?php foreach ($field['options'] as $week_key => $week_label) : ?><option value="<?php echo esc_attr($week_key); ?>"><?php echo esc_html($week_label); ?></option><?php endforeach; ?></select>');
+            $('#custom_weeks_container').append(newWeekField);
+        });
+
+    });
+    </script>
+    <?php
+}
+
+	/**
 	 * Manage of textarea input.
 	 *
 	 * @param mixed $key
@@ -1087,6 +1227,29 @@ class WP_Event_Manager_Writepanels {
 							update_post_meta($post_id, sanitize_key($key), $v_text);
 						}
 						break;
+					case 'multidate':
+						if (isset($_POST[$key]) && is_array($_POST[$key])) {
+							$dates = array_map('sanitize_text_field', $_POST[$key]);
+							$dates = array_filter($dates);
+							$dates = array_map(function($date) {
+								return date('Y-m-d', strtotime($date));
+							}, $dates);
+							$dates = implode(',', $dates);
+							update_post_meta($post_id, sanitize_key($key), $dates);
+						} else {
+							update_post_meta($post_id, sanitize_key($key), '');
+						}
+						break;
+						case 'multiweek':
+							if (isset($_POST[$key]) && is_array($_POST[$key])) {
+								$weeks = array_map('sanitize_text_field', $_POST[$key]);
+								$weeks = array_filter($weeks);
+								$weeks = implode(',', $weeks);
+								update_post_meta($post_id, sanitize_key($key), $weeks);
+							} else {
+								update_post_meta($post_id, sanitize_key($key), '');
+							}
+							break;
 					default:
 						if(!isset($_POST[$key])) {
 							continue 2;

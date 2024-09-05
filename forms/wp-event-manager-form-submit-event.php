@@ -865,6 +865,29 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					
 					// Save meta data
 				}
+		elseif ( 'multidate' === $field['type'] ) {
+			if ( isset( $values[ $group_key ][ $key ] ) && is_array( $values[ $group_key ][ $key ] ) ) {
+				$dates = array_map( 'sanitize_text_field', $values[ $group_key ][ $key ] );
+				$dates = array_filter( $dates );
+				$dates = array_map( function( $date ) {
+					return date( 'Y-m-d', strtotime( $date ) );
+				}, $dates );
+				$dates = implode( ',', $dates );
+				update_post_meta( $this->event_id, '_' . $key, $dates );
+			    } else {
+				update_post_meta( $this->event_id, '_' . $key, '' );
+			   }
+		       }
+		elseif ( 'multiweek' === $field['type'] ) {
+			if ( isset( $values[ $group_key ][ $key ] ) && is_array( $values[ $group_key ][ $key ] ) ) {
+				$weeks = array_map( 'sanitize_text_field', $values[ $group_key ][ $key ] );
+				$weeks = array_filter( $weeks );
+				$weeks = implode( ',', $weeks );
+				update_post_meta( $this->event_id, '_' . $key, $weeks );
+			    } else {
+				update_post_meta( $this->event_id, '_' . $key, '' );
+			    }
+		        }
 				
 				// Save event start date according to mysql date format with event start time
 				elseif( $key === 'event_start_date'  ){
