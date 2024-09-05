@@ -288,33 +288,55 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 == Screenshots ==
 
-1. The submit Event Form
+1. Event Listing - Grid Layout
 
-2. Submit Event Preview
+2. Event Listing - List Layout
 
-3. A Single Event Listing
+3. Event Dashboard - Frontend
 
-4. Event Search Filters
+4. Organizer Dashboard - Frontend
 
-5. Event Listing - Line Layout
+5. Venue Dashboard - Frontend
 
-6. Event Listing - Box Layout
+6. Event Details - Frontend
 
-7. Frontend - Event Dashboard
+7. Event Calendar - Frontend
 
-8. Backend - Event Dashboard
+8. Event Registrations - Frontend
 
-9. Add Added Event From Backend - Admin Panel
+9. Sell Tickets - Frontend
 
-10. Add Event Type From Backend - Admin Panel
+10. All your events at your fingertips - Mobile App
 
-11. Add Event Category From Backend - Admin Panel
+11. Access data in your event dashboard - Mobile App
 
-12. Event Listing Settings From Backend - Admin Panel
+12. Add and Grophify Guest - Mobile App
 
-13. Event Submission Settings From Backend - Admin Panel
+13. View attendee details  - Mobile App
 
-14. Event Page Settings From Backend - Admin Panel
+14. Scan tickets for faster check-ins - Mobile App
+
+15. All Events - Admin Panel
+
+16. Add New Event - Admin Panel
+
+17. Event Categories - Admin Panel
+
+18. Event Types - Admin Panel
+
+19. Organizers - Admin Panel
+
+20. Venues - Admin Panel
+
+21. Field Editor - Admin Panel
+
+22. Settings - Admin Panel
+
+23. Shortcodes - Admin Panel
+
+24. Add-ons - Admin Panel
+
+25. All Event Registrations - Admin Panel
 
 
 == Changelog ==
