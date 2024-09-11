@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2024-08-06 10:09+0530\n"
-"PO-Revision-Date: 2024-08-06 10:08+0530\n"
+"POT-Creation-Date: 2024-09-11 13:22+0530\n"
+"PO-Revision-Date: 2024-09-11 13:21+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,48 +21,48 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: admin/wp-event-manager-addons.php:21 admin/wp-event-manager-admin.php:145
+#: admin/wp-event-manager-addons.php:21 admin/wp-event-manager-admin.php:125
 msgid "WP Event Manager Add-ons"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:109
+#: admin/wp-event-manager-admin.php:89
 msgid "Your database upgrading now"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:110
+#: admin/wp-event-manager-admin.php:90
 msgid ""
 "Your database has been upgraded successfully! In order to take advantage, "
 "save the permalink and proceed."
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:139 admin/wp-event-manager-settings.php:494
+#: admin/wp-event-manager-admin.php:119 admin/wp-event-manager-settings.php:494
 #: admin/wp-event-manager-setup.php:301
 #: templates/form-fields/repeated-field.php:23
 #: templates/form-fields/repeated-field.php:81 wp-event-manager.php:428
 msgid "Settings"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:140
+#: admin/wp-event-manager-admin.php:120
 msgid "WP Event Manager Shortcodes"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:140
+#: admin/wp-event-manager-admin.php:120
 msgid "Shortcodes"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:142
+#: admin/wp-event-manager-admin.php:122
 msgid "Upgrade Database"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:145
+#: admin/wp-event-manager-admin.php:125
 msgid "Add-ons"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:158
+#: admin/wp-event-manager-admin.php:138
 msgid "Upgrade yor database for new version of WP Event Manager"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:167
+#: admin/wp-event-manager-admin.php:147
 msgid ""
 "3.1.15 has released!\n"
 "We are constantly working to improve your event management experience, We "
@@ -75,15 +75,15 @@ msgid ""
 "A prior Backup does no harm before updating the plugin!"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:181
+#: admin/wp-event-manager-admin.php:161
 msgid "Upgrade"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:225
+#: admin/wp-event-manager-admin.php:205
 msgid "Your database upgraded successfully!"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:321
+#: admin/wp-event-manager-admin.php:301
 msgid ""
 "We've noticed you've been using <strong>WP Event Manager</strong> for some "
 "time now. we hope you love it! We'd be thrilled if you could <strong><a href="
@@ -94,11 +94,11 @@ msgid ""
 "traffic from our site."
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:323
+#: admin/wp-event-manager-admin.php:303
 msgid "Run Setup"
 msgstr ""
 
-#: admin/wp-event-manager-admin.php:324
+#: admin/wp-event-manager-admin.php:304
 msgid "Dismiss"
 msgstr ""
 
@@ -152,9 +152,7 @@ msgid "Banner"
 msgstr ""
 
 #: admin/wp-event-manager-cpt.php:308
-#: admin/wp-event-manager-field-editor.php:190
-#: admin/wp-event-manager-form-field-editor-field.php:151
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:8
+#: admin/wp-event-manager-field-editor.php:146
 msgid "Type"
 msgstr ""
 
@@ -265,211 +263,161 @@ msgid "ID"
 msgstr ""
 
 #: admin/wp-event-manager-cpt.php:593
-#: admin/wp-event-manager-field-editor.php:149
+#: admin/wp-event-manager-field-editor.php:105
 msgid "Email"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:30
-#: admin/wp-event-manager-field-editor.php:131
-#: admin/wp-event-manager-form-field-editor-field.php:128
-msgid "Text"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:31
-#: admin/wp-event-manager-field-editor.php:132
-#: admin/wp-event-manager-form-field-editor-field.php:129
-msgid "Time"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:32
-#: admin/wp-event-manager-field-editor.php:133
-#: admin/wp-event-manager-form-field-editor-field.php:130
-msgid "Checkbox"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:33
-#: admin/wp-event-manager-field-editor.php:134
-#: admin/wp-event-manager-form-field-editor-field.php:131
-msgid "Date"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:34
-#: admin/wp-event-manager-field-editor.php:135
-#: admin/wp-event-manager-form-field-editor-field.php:132
-msgid "Timezone"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:35
-#: admin/wp-event-manager-field-editor.php:136
-#: admin/wp-event-manager-form-field-editor-field.php:133
-msgid "File"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:36
-#: admin/wp-event-manager-field-editor.php:137
-#: admin/wp-event-manager-form-field-editor-field.php:134
-msgid "Hidden"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:37
-#: admin/wp-event-manager-field-editor.php:138
-#: admin/wp-event-manager-form-field-editor-field.php:135
-msgid "Multiselect"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:38
-#: admin/wp-event-manager-field-editor.php:139
-#: admin/wp-event-manager-form-field-editor-field.php:136
-msgid "Number"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:39
-#: admin/wp-event-manager-form-field-editor-field.php:137
-#: wp-event-manager-template.php:378 wp-event-manager-template.php:379
-#: wp-event-manager-template.php:2176
-msgid "Password"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:40
-#: admin/wp-event-manager-field-editor.php:140
-#: admin/wp-event-manager-form-field-editor-field.php:138
-msgid "Radio"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:41
-#: admin/wp-event-manager-field-editor.php:142
-#: admin/wp-event-manager-form-field-editor-field.php:139
-msgid "Select"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:42
-#: admin/wp-event-manager-field-editor.php:146
-#: admin/wp-event-manager-form-field-editor-field.php:140
-msgid "Textarea"
-msgstr ""
-
-#: admin/wp-event-manager-field-editor.php:63
+#: admin/wp-event-manager-field-editor.php:19
 msgid "Field Editor"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:76
+#: admin/wp-event-manager-field-editor.php:32
 msgid "Are you sure you want to delete this row?"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:77
+#: admin/wp-event-manager-field-editor.php:33
 msgid "Are you sure you want to reset your changes? This cannot be undone."
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:91
+#: admin/wp-event-manager-field-editor.php:47
 msgid "Form fields"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:141
+#: admin/wp-event-manager-field-editor.php:87
+msgid "Text"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:88
+msgid "Time"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:89
+msgid "Checkbox"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:90
+msgid "Date"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:91
+msgid "Timezone"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:92
+msgid "File"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:93
+msgid "Hidden"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:94
+msgid "Multiselect"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:95
+msgid "Number"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:96
+msgid "Radio"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:97
 msgid "Repeated"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:143
+#: admin/wp-event-manager-field-editor.php:98
+msgid "Select"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:99
 msgid "Term Checklist"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:144
+#: admin/wp-event-manager-field-editor.php:100
 msgid "Term Multiselect"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:145
+#: admin/wp-event-manager-field-editor.php:101
 msgid "Term Select"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:147
+#: admin/wp-event-manager-field-editor.php:102
+msgid "Textarea"
+msgstr ""
+
+#: admin/wp-event-manager-field-editor.php:103
 msgid "WP Editor"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:148
+#: admin/wp-event-manager-field-editor.php:104
 msgid "URL"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:184
+#: admin/wp-event-manager-field-editor.php:140
 #, php-format
 msgid "%s form fields"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:189
-#: admin/wp-event-manager-form-field-editor-field.php:150
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:7
+#: admin/wp-event-manager-field-editor.php:145
 msgid "Field Label"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:191
-#: admin/wp-event-manager-form-field-editor-field.php:152
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:9
+#: admin/wp-event-manager-field-editor.php:147
 #: admin/wp-event-manager-shortcode-list.php:64
 #: forms/wp-event-manager-form-submit-event.php:245
 msgid "Description"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:192
-#: admin/wp-event-manager-form-field-editor-field.php:153
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:10
+#: admin/wp-event-manager-field-editor.php:148
 msgid "Placeholder / Options"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:193
-#: admin/wp-event-manager-form-field-editor-field.php:154
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:11
+#: admin/wp-event-manager-field-editor.php:149
 msgid "Meta Key"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:194
-#: admin/wp-event-manager-form-field-editor-field.php:155
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:12
+#: admin/wp-event-manager-field-editor.php:150
 msgid "Only For Admin"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:195
-#: admin/wp-event-manager-form-field-editor-field.php:156
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:13
+#: admin/wp-event-manager-field-editor.php:151
 msgid "Priority"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:196
-#: admin/wp-event-manager-form-field-editor-field.php:157
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:14
+#: admin/wp-event-manager-field-editor.php:152
 msgid "Validation"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:203
+#: admin/wp-event-manager-field-editor.php:159
 msgid "Add field"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:207
+#: admin/wp-event-manager-field-editor.php:163
 msgid "Reset to default"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:208
+#: admin/wp-event-manager-field-editor.php:164
 #: admin/wp-event-manager-settings.php:652
 msgid "Save Changes"
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:405
+#: admin/wp-event-manager-field-editor.php:361
 msgid "The fields were successfully saved."
 msgstr ""
 
-#: admin/wp-event-manager-field-editor.php:407
+#: admin/wp-event-manager-field-editor.php:363
 msgid "Please try again to save fields."
 msgstr ""
 
 #: admin/wp-event-manager-form-field-editor-field.php:36
 #: admin/wp-event-manager-form-field-editor-field.php:56
 #: admin/wp-event-manager-form-field-editor-field.php:91
-#: admin/wp-event-manager-form-field-editor-group-field.php:27
-#: admin/wp-event-manager-form-field-editor-group-field.php:49
-#: admin/wp-event-manager-form-field-editor-group-field.php:85
 msgid "N/A"
 msgstr ""
 
 #: admin/wp-event-manager-form-field-editor-field.php:55
-#: admin/wp-event-manager-form-field-editor-group-field.php:47
-#: admin/wp-event-manager-form-field-editor-group-field.php:83
 #: templates/content-single-event_listing.php:169
 #: templates/content-single-event_listing.php:170
 #: templates/content-single-event_listing.php:181
@@ -490,28 +438,19 @@ msgid "%s"
 msgstr ""
 
 #: admin/wp-event-manager-form-field-editor-field.php:57
-#: admin/wp-event-manager-form-field-editor-group-field.php:50
 msgid "Pipe (|) separate options."
 msgstr ""
 
 #: admin/wp-event-manager-form-field-editor-field.php:59
-#: admin/wp-event-manager-form-field-editor-group-field.php:53
 msgid "Multiple Files?"
 msgstr ""
 
 #: admin/wp-event-manager-form-field-editor-field.php:103
-#: admin/wp-event-manager-form-field-editor-group-field.php:98
 msgid "Not Required"
 msgstr ""
 
 #: admin/wp-event-manager-form-field-editor-field.php:109
-#: admin/wp-event-manager-form-field-editor-group-field.php:105
 msgid "Required"
-msgstr ""
-
-#: admin/wp-event-manager-form-field-editor-field.php:164
-#: admin/wp-event-manager-form-field-editor-group-field-row.php:21
-msgid "Add Child field"
 msgstr ""
 
 #: admin/wp-event-manager-permalink-settings.php:57
@@ -1680,41 +1619,69 @@ msgid "Please enter event expiry date"
 msgstr ""
 
 #: admin/wp-event-manager-writepanels.php:135
-#: admin/wp-event-manager-writepanels.php:1211
-#: admin/wp-event-manager-writepanels.php:1362
+#: admin/wp-event-manager-writepanels.php:1353
+#: admin/wp-event-manager-writepanels.php:1504
 msgid "Posted by"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:254
-#: admin/wp-event-manager-writepanels.php:322
+#: admin/wp-event-manager-writepanels.php:259
+#: admin/wp-event-manager-writepanels.php:327
 msgid "Most Used"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:382
-#: admin/wp-event-manager-writepanels.php:389
-#: admin/wp-event-manager-writepanels.php:392
+#: admin/wp-event-manager-writepanels.php:387
+#: admin/wp-event-manager-writepanels.php:394
+#: admin/wp-event-manager-writepanels.php:397
 msgid "Use file"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:382
-#: admin/wp-event-manager-writepanels.php:389
-#: admin/wp-event-manager-writepanels.php:392
+#: admin/wp-event-manager-writepanels.php:387
+#: admin/wp-event-manager-writepanels.php:394
+#: admin/wp-event-manager-writepanels.php:397
 msgid "Upload"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:392
+#: admin/wp-event-manager-writepanels.php:397
 msgid "Add file"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:784
+#: admin/wp-event-manager-writepanels.php:525
+msgid "Custom Dates"
+msgstr ""
+
+#: admin/wp-event-manager-writepanels.php:530
+#: admin/wp-event-manager-writepanels.php:533
+#: admin/wp-event-manager-writepanels.php:553
+#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
+#: templates/form-fields/multidate-field.php:26
+#: templates/form-fields/multidate-field.php:29
+#: templates/form-fields/multidate-field.php:49
+msgid "Select Date"
+msgstr ""
+
+#: admin/wp-event-manager-writepanels.php:537
+#: templates/form-fields/multidate-field.php:33
+msgid "Add Another Date"
+msgstr ""
+
+#: admin/wp-event-manager-writepanels.php:594
+msgid "Custom Weeks"
+msgstr ""
+
+#: admin/wp-event-manager-writepanels.php:618
+#: templates/form-fields/multiweek-field.php:40
+msgid "Add Another Week Day"
+msgstr ""
+
+#: admin/wp-event-manager-writepanels.php:929
 msgid "Guest User"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:787
+#: admin/wp-event-manager-writepanels.php:932
 msgid "Change"
 msgstr ""
 
-#: admin/wp-event-manager-writepanels.php:791
+#: admin/wp-event-manager-writepanels.php:936
 msgid "Enter the ID of the user, or leave blank if submitted by a guest."
 msgstr ""
 
@@ -2321,10 +2288,6 @@ msgstr ""
 
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 msgid "Event-Type is not available"
-msgstr ""
-
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
-msgid "Select Date"
 msgstr ""
 
 #: external/visual-composer/eventListing/eventListing/EventListingController.php:269
@@ -3789,6 +3752,11 @@ msgstr ""
 
 #: wp-event-manager-template.php:370 wp-event-manager-template.php:2168
 msgid "Username"
+msgstr ""
+
+#: wp-event-manager-template.php:378 wp-event-manager-template.php:379
+#: wp-event-manager-template.php:2176
+msgid "Password"
 msgstr ""
 
 #: wp-event-manager-template.php:389 wp-event-manager-template.php:2186
