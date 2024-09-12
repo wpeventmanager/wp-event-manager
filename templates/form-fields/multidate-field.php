@@ -45,7 +45,6 @@
         // Add new date input when "Add Another Date" button is clicked
         $('#add_custom_date').on('click', function(e) {
             e.preventDefault();
-            console.log('Add date button clicked'); // Debugging line
             var newDateField = $('<input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager-recurring-events'); ?>" data-picker="datepicker" />');
             $('#custom_dates_container').append(newDateField);
 
