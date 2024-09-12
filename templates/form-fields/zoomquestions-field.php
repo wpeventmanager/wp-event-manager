@@ -1,6 +1,10 @@
 <?php
 wp_register_script( 'wp-event-manager-zoomquestions', EVENT_MANAGER_PLUGIN_URL . '/assets/js/zoomquestions.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
 wp_enqueue_script('wp-event-manager-zoomquestions'); 
+$event_zoom_id = !empty($_REQUEST['event_zoom_id']) ? absint($_REQUEST['event_zoom_id']) : 0;
+$event_zoom = get_post($event_zoom_id);
+$post_id = $event_zoom->ID;
+$meeting_questions = get_post_meta($post_id,'_custom_questions',true);
 global $post_id;
 if(!isset($field['value']) || empty($field['value'])) {
     $field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
