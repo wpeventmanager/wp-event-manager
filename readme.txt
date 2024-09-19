@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.5.5
-Stable Tag: 3.1.44
+Stable Tag: 3.1.45
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -340,6 +340,13 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 
 == Changelog ==
+
+= [3.1.45] 19-09-2024 =
+
+Fixed: The transaction issue in German Language on the filter page is resolved.
+Fixed: Transaction issue is resolved on all pages.
+Added : Multidate and multiweek form field added for recurring addon.
+Added : Questions Field is added to the Zoom addon.
 
 = [3.1.44] 12-07-2024 =
 
