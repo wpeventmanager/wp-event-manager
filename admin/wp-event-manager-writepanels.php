@@ -1240,31 +1240,34 @@ public static function input_multiweek($key, $field) {
 							update_post_meta($post_id, sanitize_key($key), '');
 						}
 						break;
-						case 'multiweek':
-							if (isset($_POST[$key]) && is_array($_POST[$key])) {
-								$weeks = array_map('sanitize_text_field', $_POST[$key]);
-								$weeks = array_filter($weeks);
-								$weeks = implode(',', $weeks);
-								update_post_meta($post_id, sanitize_key($key), $weeks);
-							} else {
-								update_post_meta($post_id, sanitize_key($key), '');
-							}
-							break;
-					default:
-						if(!isset($_POST[$key])) {
-							continue 2;
-						} elseif(is_array($_POST[$key])) {
-							update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
+					case 'multiweek':
+						if (isset($_POST[$key]) && is_array($_POST[$key])) {
+							$weeks = array_map('sanitize_text_field', $_POST[$key]);
+							$weeks = array_filter($weeks);
+							$weeks = implode(',', $weeks);
+							update_post_meta($post_id, sanitize_key($key), $weeks);
 						} else {
-							update_post_meta($post_id, sanitize_key($key), sanitize_text_field($_POST[$key]));
+							update_post_meta($post_id, sanitize_key($key), '');
 						}
-						if($key=='_event_ticket_options' && $_POST[$key]=='free'){
-							$ticket_type=$_POST[$key];
-						}
-						// Set event online or not
-						if($key == '_event_online') 
-							$event_online = $_POST[$key];
 						break;
+					default:
+						$add_data = apply_filters('wpem_save_event_data', true, $key, $_POST[$key]);
+						if( $add_data ) {
+							if(!isset($_POST[$key])) {
+								continue 2;
+							} elseif(is_array($_POST[$key])) {
+								update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
+							} else {
+								update_post_meta($post_id, sanitize_key($key), sanitize_text_field($_POST[$key]));
+							}
+							if($key=='_event_ticket_options' && $_POST[$key]=='free'){
+								$ticket_type=$_POST[$key];
+							}
+							// Set event online or not
+							if($key == '_event_online') 
+								$event_online = $_POST[$key];
+							break;
+						}
 				}
 			}
 		}
