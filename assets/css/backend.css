@@ -1399,9 +1399,6 @@ ul.wpem-product-action-list li {
         width: inherit;
     }
 }
-
-
-
 .wpem-shortcode-page {
     margin-top: 10px;
 }
@@ -1429,3 +1426,7 @@ ul.wpem-product-action-list li {
     background-color: #f6f7f7;
 }
 .shortcode_list{display:none;}
+h2.nav-tab-wrapper { 
+	display: flex;
+    flex-wrap: wrap;
+} 
