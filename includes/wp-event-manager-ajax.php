@@ -1,7 +1,7 @@
 <?php
 /*
 * This file the functionality of ajax for event listing and file upload.
-*/
+*/ 
 
 if(!defined('ABSPATH')) exit; // Exit if accessed directly
 
@@ -164,6 +164,13 @@ class WP_Event_Manager_Ajax {
 		$result['found_events'] = false;
 		if($events->have_posts()) : $result['found_events'] = true;
 			while ($events->have_posts()) : $events->the_post(); 
+				$registration_limit = get_post_meta( get_the_id(),'_registration_limit',true );
+				$registered_count = get_event_registration_count( get_the_id() );
+				
+				if ( $registration_limit && $registered_count && $registration_limit == $registered_count ) {
+					$fully_registered_events++;
+					continue;
+				}
 				get_event_manager_template_part('content', 'event_listing');
 			endwhile; ?>
 		<?php else : 
