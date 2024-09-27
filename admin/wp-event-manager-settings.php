@@ -42,6 +42,38 @@ class WP_Event_Manager_Settings{
 			$account_roles[$key] = $role['name'];
 		}
 
+		// Get organizers list
+		$args = array(
+			'post_type'      => 'event_organizer',
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		);
+		$all_organizers = get_all_event_organizer('', $args);
+		$organizer_options = array('no_default' => __('No Default', 'wp-event-manager'));
+
+		if (!empty($all_organizers)) {
+			foreach ($all_organizers as $organizer) {
+				$organizer_options[$organizer->ID] = $organizer->post_title;
+			}
+		}
+		//Get Venue list
+		
+		$args = array(
+			'post_type'      => 'event_venue',
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		);
+		$all_venue = get_all_event_venue('', $args);
+		$venue_options = array('no_default' => __('No Default', 'wp-event-manager'));
+
+		if (!empty($all_venue)) {
+			foreach ($all_venue as $venue) {
+				$venue_options[$venue->ID] = $venue->post_title;
+			}
+		}
+
 		$this->settings = apply_filters(
 			'event_manager_settings',
 			array(
@@ -455,6 +487,27 @@ class WP_Event_Manager_Settings{
 								'site_timezone' => __('Use website timezone.', 'wp-event-manager'),
 								'each_event'    => __('Select a timezone on each event.', 'wp-event-manager'),
 							),
+						),
+					),
+				),
+				'event_default_content' => array(
+					__('Default Content', 'wp-event-manager'),
+					array(
+						array(
+							'name'    => 'default_organizer', 
+							'std'     => 'no_default', 
+							'label'   => __('Default Organizer', 'wp-event-manager'), 
+							'type'    => 'select', 
+							'options' => $organizer_options,
+							'desc'    => __('The current default organizer is: No default set', 'wp-event-manager'),
+						),
+						array(
+							'name'    => 'default_venue', 
+							'std'     => 'no_default', 
+							'label'   => __('Default Venue', 'wp-event-manager'), 
+							'type'    => 'select', 
+							'options' => $venue_options,
+							'desc'    => __('The current default venue is: No default set', 'wp-event-manager'),
 						),
 					),
 				),
