@@ -341,7 +341,7 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 == Changelog ==
 
-= [3.1.45] 26-09-2024 =
+= [3.1.45] 30-09-2024 =
 
 Fixed: The transaction issue in German Language on the filter page is resolved.
 Fixed: Transaction issue is resolved on all pages.
