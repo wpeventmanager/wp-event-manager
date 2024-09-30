@@ -35,6 +35,7 @@ class WP_Event_Manager_Shortcodes{
 		add_shortcode('past_events', array($this, 'output_past_events'));
 		add_shortcode('event_register', array($this, 'output_event_register'));
 		add_shortcode('upcoming_events', array($this, 'output_upcoming_events'));
+		add_shortcode('related_events', array($this, 'output_related_events'));
 
 		// Hide the shortcode if organizer not enabled
 		if(get_option('enable_event_organizer')) {
@@ -1639,6 +1640,64 @@ class WP_Event_Manager_Shortcodes{
 		wp_reset_postdata();
 		$event_listings_output = apply_filters('event_manager_upcoming_event_listings_output', ob_get_clean());
 		return  $event_listings_output;
+	}
+	/**
+	 * Outputs related events based on the categories of the current event.
+	 *
+	 * Shortcode Attributes:
+	 * - post_id: The ID of the post to find related events for (default: current post ID).
+	 * - posts_per_page: The number of related events to display (default: 5).
+	 *
+	 * @param array $atts Shortcode attributes.
+	 * @return string HTML output of related events or a message if none are found.
+	 */
+	public function output_related_events($atts) {
+		// Extract shortcode attributes
+		$atts = shortcode_atts(array(
+			'post_id' => get_the_ID(), 
+			'posts_per_page' => 5,
+		), $atts, 'related_events');
+	
+		$post_id = $atts['post_id'];
+	
+		// Get the current event's categories
+		$categories = wp_get_post_terms($post_id, 'event_listing_category', array('fields' => 'ids'));
+	
+		if (empty($categories)) {
+			return '<p>No related events found.</p>';
+		}
+	
+		// Query for related events
+		$args = array(
+			'post_type'      => 'event_listing',
+			'posts_per_page' => $atts['posts_per_page'],
+			'post__not_in'   => array($post_id),
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'event_listing_category',
+					'field'    => 'term_id',
+					'terms'    => $categories,
+				),
+			),
+		);
+	
+		$related_events = new WP_Query($args);
+	
+		// Display related events using the content-event_listing.php template
+		if ($related_events->have_posts()) {
+			ob_start(); 
+			while ($related_events->have_posts()) {
+				$related_events->the_post();
+	
+				get_event_manager_template('content-event_listing.php', array('post' => get_post()));
+			}
+	
+			wp_reset_postdata();
+	
+			return ob_get_clean(); 
+		} else {
+			return '<p>No related events found.</p>';
+		}
 	}
 
 	/**
