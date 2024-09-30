@@ -407,28 +407,41 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_text($key, $field)	{
+	public static function input_text($key, $field) {
 		global $post_id;
-		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
+	
+		// Get the default address from options
+		$default_address = get_option('default_address');
+	
+		// Set the field value: prioritize post meta value, then default address, then empty
+		if (!isset($field['value']) || empty($field['value'])) {
+			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: esc_attr($default_address);
 		}
-		if(!empty($field['name'])) {
+	
+		// Determine the name for the input field
+		if (!empty($field['name'])) {
 			$name = $field['name'];
 		} else {
 			$name = $key;
-		} ?>
-
+		}
+		?>
+	
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
-				<?php 
-				if(!empty($field['description'])) : ?>
+			<label for="<?php echo esc_attr($key); ?>">
+				<?php _e(esc_attr($field['label']), 'wp-event-manager');?>:
+				<?php if (!empty($field['description'])) : ?>
 					<span class="tips" data-tip="<?php _e(esc_attr($field['description']), 'wp-event-manager');?>">[?]</span>
 				<?php endif; ?>
 			</label>
-			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			<input type="text" 
+				   name="<?php echo esc_attr($name); ?>" 
+				   id="<?php echo esc_attr($key); ?>" 
+				   placeholder="<?php _e(esc_attr($field['placeholder']), 'wp-event-manager'); ?>" 
+				   value="<?php echo esc_attr($field['value']); ?>" />
 		</p>
-	<?php
+		<?php
 	}
+	
 
 	/**
 	 * Manage of wp_editor.
@@ -669,8 +682,13 @@ public static function input_multiweek($key, $field) {
 	 */
 	public static function input_select($key, $field) {
 		global $post_id;
+		$default_venue = get_option( 'default_venue' );
 		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
+			// If the meta value is still empty, use the default venue
+			if (empty($field['value']) && !empty($default_venue)) {
+				$field['value'] = $default_venue;
+			}
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -707,6 +725,7 @@ public static function input_multiweek($key, $field) {
 	 */
 	public static function input_multiselect($key, $field)	{
 		global $post_id;
+		$default_organizer = get_option('default_organizer');
 		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		}
@@ -726,6 +745,8 @@ public static function input_multiweek($key, $field) {
 					<option value="<?php echo esc_attr($key); ?>" <?php
 											if(!empty($field['value']) && is_array($field['value'])) {
 												selected(in_array($key, $field['value']), true);
+											}elseif ($key == $default_organizer) {
+												echo 'selected="selected"';
 											}
 											?>><?php echo esc_html($value); ?></option>
 				<?php endforeach; ?>

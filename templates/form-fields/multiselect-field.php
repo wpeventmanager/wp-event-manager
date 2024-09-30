@@ -5,9 +5,15 @@ wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '
 wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' ); ?>
 
 <select multiple="multiple" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>[]" id="<?php echo esc_attr($key); ?>" class="event-manager-multiselect" data-no_results_text="<?php esc_attr_e('No results match', 'wp-event-manager'); ?>" attribute="<?php echo esc_attr(isset($field['attribute']) ? $field['attribute'] : ''); ?>" data-multiple_text="<?php esc_attr_e('Select Some Options', 'wp-event-manager'); ?>">
-	<?php foreach ($field['options'] as $key => $value) : ?>
-		<option value="<?php echo esc_attr($key); ?>" <?php if (!empty($field['value']) && is_array($field['value'])) selected(in_array($key, $field['value']), true); ?>><?php echo esc_html($value); ?></option>
-	<?php endforeach; ?>
+    <?php 
+    // Get the default value (array of default organizers)
+    $default_value = isset($field['default']) ? (array)$field['default'] : []; // Ensure it's an array
+
+    foreach ($field['options'] as $option_key => $option_value) : ?>
+        <option value="<?php echo esc_attr($option_key); ?>" <?php echo in_array($option_key, $default_value) || (!empty($field['value']) && is_array($field['value']) && in_array($option_key, $field['value'])) ? 'selected' : ''; ?>>
+            <?php echo esc_html($option_value); ?>
+        </option>
+    <?php endforeach; ?>
 </select>
 
 <?php if (!empty($field['description'])) : ?>
