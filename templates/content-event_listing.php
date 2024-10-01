@@ -10,12 +10,6 @@ if (is_array($event_type) && isset($event_type[0]))
 
 $thumbnail  = get_event_thumbnail( $post, 'full' ); 
 
-$registration_limit = get_post_meta( get_the_id(),'_registration_limit',true );
-$registered_count = function_exists('get_event_registration_count') ? get_event_registration_count(get_the_id()) : 0;
-
-if ( $registration_limit == $registered_count ) {
-    return; 
-}	
 ?>
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-<?php echo esc_attr(apply_filters('event_manager_event_wpem_column', '4')); ?>">
     <!----- wpem-col-lg-4 value can be change by admin settings ------->

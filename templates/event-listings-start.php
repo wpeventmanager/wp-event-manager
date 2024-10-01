@@ -32,12 +32,6 @@ else
 
 $list_type_class = apply_filters('wpem_default_listing_layout_class', $list_type_class, $layout_type);
 
-$registration_limit = get_post_meta(get_the_id(),'_registration_limit',true);
-$registered_count = function_exists('get_event_registration_count') ? get_event_registration_count(get_the_id()) : 0;
-
-if ($registration_limit == $registered_count) {
-    return; 
-}
 ?>
 <div class="event_listings_main">
     <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings <?php echo $list_type_class;?>" data-id="<?php echo $layout_type;?>">
