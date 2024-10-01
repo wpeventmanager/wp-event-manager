@@ -1689,7 +1689,7 @@ class WP_Event_Manager_Shortcodes{
 			while ($related_events->have_posts()) {
 				$related_events->the_post();
 	
-				get_event_manager_template('content-event_listing.php', array('post' => get_post()));
+				get_event_manager_template_part('content-summary', 'event_listing');
 			}
 	
 			wp_reset_postdata();
