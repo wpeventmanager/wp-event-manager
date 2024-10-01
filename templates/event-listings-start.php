@@ -33,9 +33,9 @@ else
 $list_type_class = apply_filters('wpem_default_listing_layout_class', $list_type_class, $layout_type);
 
 $registration_limit = get_post_meta(get_the_id(),'_registration_limit',true);
-$registred_count = get_event_registration_count(get_the_id());
+$registered_count = function_exists('get_event_registration_count') ? get_event_registration_count(get_the_id()) : 0;
 
-if ($registration_limit == $registred_count) {
+if ($registration_limit == $registered_count) {
     return; 
 }
 ?>
