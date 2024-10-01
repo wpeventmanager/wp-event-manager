@@ -32,6 +32,11 @@ else
 
 $list_type_class = apply_filters('wpem_default_listing_layout_class', $list_type_class, $layout_type);
 
+$html_before_event_list = get_option( 'enable_before_html' );
+if( $html_before_event_list ){
+	$html_content = get_option( 'event_content_html' );
+	echo $html_content;
+}
 ?>
 <div class="event_listings_main">
     <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings <?php echo $list_type_class;?>" data-id="<?php echo $layout_type;?>">

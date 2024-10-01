@@ -17,5 +17,12 @@
 			<?php endif;
 		endif;
 	} 
-}?>
+}
+
+$html_after_event_list = get_option( 'enable_after_html' );
+if( $html_after_event_list ){
+	$html_content = get_option( 'event_content_after_html' );
+	echo $html_content;
+}
+?>
 </div>
