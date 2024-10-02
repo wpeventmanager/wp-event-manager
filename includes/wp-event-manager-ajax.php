@@ -164,6 +164,8 @@ class WP_Event_Manager_Ajax {
 		$result['found_events'] = false;
 		if($events->have_posts()) : $result['found_events'] = true;
 			while ($events->have_posts()) : $events->the_post(); 
+
+				// compare event registration limit and total registration of that event
 				$registration_limit = get_post_meta( get_the_id(),'_registration_limit',true );
 				$statuses_to_count = array('new', 'confirmed', 'waiting', 'cancelled', 'archived', 'publish'); 
 				$registered_count = sizeof(get_posts(array(
@@ -178,7 +180,7 @@ class WP_Event_Manager_Ajax {
 					$fully_registered_events++;
 					continue;
 				}
-				get_event_manager_template_part('content', 'event_listing');
+				get_event_manager_template_part( 'content', 'event_listing' );
 			endwhile;
 			$events->found_posts -= $fully_registered_events;
 			?>
