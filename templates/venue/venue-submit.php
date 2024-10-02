@@ -3,7 +3,9 @@
  * Event Submission Form
  */
 if (!defined('ABSPATH')) exit;
-global $event_manager; ?>
+global $event_manager; 
+do_action('wp_event_manager_venue_submit_before');
+?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-venue-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if (is_user_logged_in()) { ?>

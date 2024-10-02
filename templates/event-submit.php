@@ -4,8 +4,9 @@
  * Event Submission Form
  */
 if(!defined('ABSPATH')) exit;
-
-global $event_manager; ?>
+global $event_manager; 
+do_action('wp_event_manager_event_submit_before');
+?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-event-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if(apply_filters('submit_event_form_show_signin', true)) : 
