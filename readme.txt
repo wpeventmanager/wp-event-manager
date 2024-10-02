@@ -343,7 +343,7 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 = [3.1.45.1] 02-10-2024 =
 
-Fixed : Fatal error.
+Fixed : Solved fatal error on event listing page on front end.
 
 = [3.1.45] 30-09-2024 =
 
