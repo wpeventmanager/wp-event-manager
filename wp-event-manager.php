@@ -436,16 +436,17 @@ class WP_Event_Manager {
 	 *
 	 * @return void
 	 */
-	public function wpem_restrict_non_organizer_access_to_dashboard(){
-			
-		if (!current_user_can('organizer') && !current_user_can('administrator')) {
-			?>
-			<p class="account-sign-in wpem-alert wpem-alert-info">
-			<?php 
-			esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?> 
-			</p>
-			<?php
-			exit; 
+	public function wpem_restrict_non_organizer_access_to_dashboard() {
+		if ( is_user_logged_in() ) {
+			if (!current_user_can('organizer') && !current_user_can('administrator')) {
+				?>
+				<p class="account-sign-in wpem-alert wpem-alert-info">
+				<?php 
+				esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?> 
+				</p>
+				<?php
+				exit; 
+			}
 		}
 	}
 }
