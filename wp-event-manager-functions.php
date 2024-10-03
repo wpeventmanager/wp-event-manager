@@ -2212,3 +2212,21 @@ function wpem_get_all_countries() {
 function wpem_embed_oembed_html($content) {
 	echo apply_filters('wpem_embed_oembed_custome', $content);
 }
+
+/**
+ * Check access for guest users based on the 'wpem_hide_data_from_guest' option.
+ *
+ * This function determines whether guest users have access to certain data.
+ * If the user is not logged in and the 'wpem_hide_data_from_guest' option is checked,
+ * the function returns false, indicating that access should be restricted.
+ * Otherwise, it returns true, allowing access.
+ *
+ * @return bool True if access is allowed; false if access is denied for guests.
+ */
+function wpem_checked_guest_user_access(){
+	$hide_data = get_option('hide_organizer_fields');
+    if ( !is_user_logged_in() && $hide_data ) {
+       return false; 
+    }
+    return true;
+}

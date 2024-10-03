@@ -74,6 +74,18 @@ class WP_Event_Manager_Settings{
 			}
 		}
 
+		// Get organizer form fields. 
+		$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
+		$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
+		$organizer_fields               = $form_submit_organizer_instance->merge_with_custom_fields('backend');
+		
+		$organizer_options = array();
+
+		// Loop through the organizer fields array
+		foreach ($organizer_fields['organizer'] as $key => $field) {
+			$organizer_options[$key] = $field['label'];
+		}
+
 		$this->settings = apply_filters(
 			'event_manager_settings',
 			array(
@@ -141,7 +153,27 @@ class WP_Event_Manager_Settings{
 							'desc'        => __("If you are going to deal with Registration emails or Event emails then you need the sender's email appears in outgoing WP Event Manager emails.", 'wp-event-manager'), 
 							'type'        => 'email'
 						),
-						
+						array(
+							'name'       => 'wpem_hide_data_from_guest',
+							'std'        => '0',  
+							'label'      => __('Hide Data from Guest Users', 'wp-event-manager'),
+							'cb_label'   => __('Hide sensitive event data from non-logged-in(guest) users.', 'wp-event-manager'),
+							'desc'       => '',
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
+						 array(
+							'name'       => 'hide_organizer_fields',
+							'class'		=> 'hide_organizer_fields',
+							'label'      => __('Select Organizer Fields to Hide', 'wp-event-manager'),
+							'desc'       => __('Choose which organizer fields to hide on the front end.', 'wp-event-manager'),
+							'type'       => 'multiselect',
+							'options'    => $organizer_options, 
+							'attributes' => array(
+								'multiple' => 'multiple',
+								'style'    => 'height: 100px;display:none;',
+							),
+						),
 					),
 				),
 				'event_listings'       => array(
@@ -219,8 +251,8 @@ class WP_Event_Manager_Settings{
 							'desc'    => __('If enabled, the event type select box will default to a multi select on the [events] shortcode.', 'wp-event-manager'),
 							'type'    => 'select',
 							'options' => array(
-								'any' => __('Events will be shown if within ANY selected event type.', 'wp-event-manager'),
-								'all' => __('Events will be shown if within ALL selected event types.', 'wp-event-manager'),
+							'any' => __('Events will be shown if within ANY selected event type.', 'wp-event-manager'),
+							'all' => __('Events will be shown if within ALL selected event types.', 'wp-event-manager'),
 							),
 						),
 						array(

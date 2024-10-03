@@ -1,3 +1,12 @@
+<?php
+$check_user_access = wpem_checked_guest_user_access();
+if($check_user_access == false){
+	$field_to_hide = get_option('hide_organizer_fields');
+	
+}else{
+	$field_to_hide = array();
+}
+?>
 <!-- Organizer Counter -->
 <div class="wpem-organizer-connter">
 
@@ -56,12 +65,12 @@
                                         $count = get_event_organizer_count($organizer_id); ?>
                                         <div class="organizer-list-items">
                                             <a href="<?php echo esc_url(get_the_permalink($organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
-                                                <?php $organizer = get_post($organizer_id); ?>
+                                                <?php $organizer = get_post($organizer_id); if(!in_array('organizer_logo', $field_to_hide)){?>
                                                 <?php if ($show_thumb && $show_thumb == 'true') : ?>
                                                     <div class="wpem-organizer-logo"><?php display_organizer_logo('', '', $organizer); ?></div>
-                                                <?php endif; ?>
+                                                <?php endif;} ?>
 
-                                                <div class="wpem-organizer-name"><?php echo esc_attr($organizer_name); ?></div>
+                                                <div class="wpem-organizer-name"><?php if(!in_array('organizer_name', $field_to_hide)){echo esc_attr($organizer_name); }?></div>
 
                                                 <?php if ($count != 0 && $show_count && $show_count == 'true') : ?>
                                                     <div class="wpem-event-organizer-conunt-number"><?php echo esc_attr($count); ?></div>

@@ -14,7 +14,24 @@ var AdminSettings= function () {
             jQuery('.nav-tab-wrapper a:first').click();		
 			jQuery("#setting-event_manager_enable_registration").on('change',AdminSettings.actions.allowAccountCreation);
 			jQuery("#setting-event_manager_submission_expire_options").on('change',AdminSettings.actions.selectEventExpiryOption);						
-	   },
+			
+			// Show hide organizer fields dropdown in settings
+			if (jQuery('#setting-wpem_hide_data_from_guest').is(':checked')) {
+				jQuery('.hide_organizer_fields').show();
+				jQuery('#setting-hide_organizer_fields').show();
+			}else{
+				 jQuery('.hide_organizer_fields').hide();
+			}
+			jQuery('#setting-wpem_hide_data_from_guest').change( function(){
+				 if (jQuery('#setting-wpem_hide_data_from_guest').is(':checked')) {
+					jQuery('.hide_organizer_fields').show();
+					jQuery('#setting-hide_organizer_fields').show();
+					} else {
+					jQuery('.hide_organizer_fields').hide(); 
+					jQuery('#setting-hide_organizer_fields').hide();
+					}
+			});
+		},
 
 	actions :{
 	    	   /// <summary>
