@@ -16,7 +16,7 @@ Lightweight, scalable and full-featured event listings & management plugin for m
 
 WP Event Manager brings you a feature-packed event management plugin that helps you create event listings and manage them all from your WordPress events site effortlessly. It is the ultimate solution for all types of events including in-person, virtual, and hybrid. 
 
-The superior events plugin users can easily **[Create an Event](https://wp-eventmanager.com/knowledge-base/adding-your-first-event/)**, add an events **[Calendar](https://wp-eventmanager.com/knowledge-base/event-calendar/)**, manage event **[Registrations](https://wp-eventmanager.com/knowledge-base/registrations/)**, and **[Sell Tickets](https://wp-eventmanager.com/knowledge-base/sell-tickets/)** for events through their website.
+The superior events plugin users can **easily** **[Create An Event](https://wp-eventmanager.com/knowledge-base/adding-your-first-event/)**, manage **[Event listing]*(https://wp-eventmanager.com/knowledge-base/the-event-listings/)*, add an events **[Calendar](https://wp-eventmanager.com/product/wp-event-manager-calendar/)**, **Automate marketing**, conduct automated **[Recurring events](https://wp-eventmanager.com/product/wp-event-manager-recurring-events/)**,  manage event **[Registrations](https://wp-eventmanager.com/product/wp-event-manager-registrations/)**, and **[Sell Tickets](https://wp-eventmanager.com/product/wp-event-manager-sell-tickets/)** with **[QR code](https://wp-eventmanager.com/knowledge-base/organizer-app/)**, through their WordPress website. The plugin also offers an **[Organizer App](https://wp-eventmanager.com/product/organizer-app/)** that allows organizers to track all their events along with check-ins and check-outs with their mobiles. 
 
 Now managing events online has become easy and convenient for everyone including event planners with  WP Event Manager(WPEM) as it does not require any coding expertise. The All-In-One events plugin is everything that you need to manage your event listings on your events website.
 
@@ -40,41 +40,39 @@ WP Event Manager offers more than **[37 Premium Event Plugins](https://wp-eventm
 
 == 🗓️ Create interactive events ==
 
-**Create interactive events**
-
-- **Create multiple events**: Get the ultimate freedom to create as many events as you want on your WordPress events website.  
-- **Choose your preferred view**: Display your events in box view or list view to maximize your events exposure.  
-- **Make event search easy**: Let visitors search events quickly using multiple event filters.
+- **📅 Create multiple events**: Get the ultimate freedom to create as many events as you want on your WordPress events website.  
+- **👀 Choose your preferred view**: Display your events in box view or list view to maximize your events exposure.  
+- **🔎 Make event search easy**: Let visitors search events quickly using multiple event filters.
 
 == 👏 Empower Your Events With Robust Features ==
 
-- **[WooCommerce compatibility](https://wp-eventmanager.com/knowledge-base/sell-tickets/)**: Get WooCommerce compatibility to sell your event tickets with ease and security. 
+- **🤝 [WooCommerce compatibility](https://wp-eventmanager.com/knowledge-base/sell-tickets/)**: Get WooCommerce compatibility to sell your event tickets with ease and security. 
 
-- **[Frontend event submission form](https://wp-eventmanager.com/knowledge-base/the-event-submission-form/)**: Allow event organizers to post events on your website by filling up the frontend event submission form.
+- **🎪 [Frontend event submission form](https://wp-eventmanager.com/knowledge-base/the-event-submission-form/)**: Allow event organizers to post events on your website by filling up the frontend event submission form.
 
 == ✨ Discover the key features of WP Event Manager ==
 
-- **Easy to use**: Anyone who wants to create and manage events on their event website can use it as no coding expertise is needed. 
+- **😎 Easy to use**: Anyone who wants to create and manage events on their event website can use it as no coding expertise is needed. 
 
-- **Developer friendly**: Built with a straightforward coding structure making it easy for developers to work with it as per their event business requirements.  
+- **👨‍💻 Developer friendly**: Built with a straightforward coding structure making it easy for developers to work with it as per their event business requirements.  
 
-- **Customizable**: Make changes to the event plugin settings as per your need.
+- **⚙️ Customizable**: Make changes to the event plugin settings as per your need.
  
-- **Field editor**: Easily add, edit or delete form fields from your event submission form. 
+- **✏️ Field editor**: Easily add, edit or delete form fields from your event submission form. 
 
-- **Easy event classification**: Classify events into different types and categories for better identification.
+- **🏷️ Easy event classification**: Classify events into different types and categories for better identification.
  
-- **Event preview**: Get an event preview before going live to make any last-minute changes if needed.
+- **👁️ Event preview**: Get an event preview before going live to make any last-minute changes if needed.
  
-- **Page builder compatibility**: The events plugin is compatible with major page builders like Gutenberg, Elementor etc.  
+- **🤖 Page builder compatibility**: The events plugin is compatible with major page builders like Gutenberg, Elementor etc.  
 
-- **Detailed event dashboard**: Get a detailed dashboard for all your events and make changes to it as per requirements. 
+- **📊 Detailed event dashboard**: Get a detailed dashboard for all your events and make changes to it as per requirements. 
  
-- **Fully responsive**: it is fully responsive and it fits well with every screen size. 
+- **📲 Fully responsive**: it is fully responsive and it fits well with every screen size. 
 
-- **Frontend event submission form**: GIve event organizers the ultimate freedom of submitting their events on your website. 
+- **🎪 Frontend event submission form**: GIve event organizers the ultimate freedom of submitting their events on your website. 
  
-- **Multi-lingual support**: Translate the event plugin into your preferred language to offer a better user experience.
+- **🔠 Multi-lingual support**: Translate the event plugin into your preferred language to offer a better user experience.
  
 WP Event Manager comes with 40 inbuilt language translations to make it more convenient for you to use the plugin. 
 
@@ -86,23 +84,23 @@ More languages can be added to this list. You can be a contributor to our transl
 
 We offers 37+ premium add-ons for different event management needs. Explore some of our best-selling event addons:
 
-- **[Event Calendar](https://wp-eventmanager.com/knowledge-base/event-calendar/)**: Enables you to display your event dates and details through an interactive events calendar on your events website. 
+- **📅 [Event Calendar](https://wp-eventmanager.com/knowledge-base/event-calendar/)**: Enables you to display your event dates and details through an interactive events calendar on your events website. 
 
-- **[Sell Tickets](https://wp-eventmanager.com/knowledge-base/sell-tickets/)**: Allows you to efficiently sell event tickets, share them with attendees through emails and accept payment through WooCommerce.  
+- **🎫 [Sell Tickets](https://wp-eventmanager.com/knowledge-base/sell-tickets/)**: Allows you to efficiently sell event tickets, share them with attendees through emails and accept payment through WooCommerce.  
 
-- **[Event Registration](https://wp-eventmanager.com/knowledge-base/registrations/)**: Helps you manage event registrations through an easily customizable events registration form that your attendees need to fill in.
+- **📇 [Event Registration](https://wp-eventmanager.com/knowledge-base/registrations/)**: Helps you manage event registrations through an easily customizable events registration form that your attendees need to fill in.
 
-- **[Recurring Events](https://wp-eventmanager.com/knowledge-base/recurring-events/)**: Simplifies your recurring event management process by updating your recurring event dates automatically on your events calendar.  
+- **🔁 [Recurring Events](https://wp-eventmanager.com/knowledge-base/recurring-events/)**: Simplifies your recurring event management process by updating your recurring event dates automatically on your events calendar.  
 
-- **[Stripe Split Payment](https://wp-eventmanager.com/knowledge-base/stripe-split-payment/)**: Distributes the events ticket revenue among the website owner and event organizer making it easy for admins to monetize their events website.
+- **💳 [Stripe Split Payment](https://wp-eventmanager.com/knowledge-base/stripe-split-payment/)**: Distributes the events ticket revenue among the website owner and event organizer making it easy for admins to monetize their events website.
 
-- **[WooCommerce Paid Listing](https://wp-eventmanager.com/knowledge-base/woocommerce-paid-listings/)**: Offers a great way to monetize your events website by earning commissions from event organizers for posting their events on your events website. 
+- **🤑 [WooCommerce Paid Listing](https://wp-eventmanager.com/knowledge-base/woocommerce-paid-listings/)**: Offers a great way to monetize your events website by earning commissions from event organizers for posting their events on your events website. 
 
-- **[Expo Networking](https://wp-eventmanager.com/knowledge-base/expo-and-networking-for-organizers/)**: Creates engaging virtual exhibitions or events with interactive booths, sessions, and more. 
+- **💻 [Expo Networking](https://wp-eventmanager.com/knowledge-base/expo-and-networking-for-organizers/)**: Creates engaging virtual exhibitions or events with interactive booths, sessions, and more. 
 
-- **[Zoom](https://wp-eventmanager.com/knowledge-base/zoom/)**: lets you create uninterrupted virtual meets with the power of Zoom where meeting links can be shared directly from the events website.
+- **🎦 [Zoom](https://wp-eventmanager.com/knowledge-base/zoom/)**: lets you create uninterrupted virtual meets with the power of Zoom where meeting links can be shared directly from the events website.
 
-- **[Speaker and Schedule](https://wp-eventmanager.com/knowledge-base/speaker-and-schedule/)**: Displays the names of your event speakers and their speech schedule at your event. 
+- **🎙️ [Speaker and Schedule](https://wp-eventmanager.com/knowledge-base/speaker-and-schedule/)**: Displays the names of your event speakers and their speech schedule at your event. 
 
 The list goes on. Explore the entire list of our event addons here.
 
@@ -120,51 +118,51 @@ The users of WP Event Manager free version get full access to all our documentat
 
 == 🧩 Supercharge Your Events with Powerful Integrations ==
 
-- **[WooCommerce integration](https://wp-eventmanager.com/product/wp-event-manager-woocommerce-paid-listings/)**: Strengthen the payment structure of your event business and sell event tickets freely with WooCommerce. 
+- **🚾 [WooCommerce integration](https://wp-eventmanager.com/product/wp-event-manager-woocommerce-paid-listings/)**: Strengthen the payment structure of your event business and sell event tickets freely with WooCommerce. 
 
-- **[Zoom integration](https://wp-eventmanager.com/product/wp-event-manager-zoom/)**: Make your virtual meetings and conferences interruption-free. 
+- **🎦 [Zoom integration](https://wp-eventmanager.com/product/wp-event-manager-zoom/)**: Make your virtual meetings and conferences interruption-free. 
 
-- **[Google Maps integration](https://wp-eventmanager.com/product/wp-event-manager-google-maps/)**: Display the location of your events on Google Maps on your events website. 
+- **📍 [Google Maps integration](https://wp-eventmanager.com/product/wp-event-manager-google-maps/)**: Display the location of your events on Google Maps on your events website. 
 
-- **[Hubspot CRM integration](https://wp-eventmanager.com/product/hubspot-crm/)**: Manage your events attendee data like a pro with Hubspot integration. 
+- **📨 [Hubspot CRM integration](https://wp-eventmanager.com/product/hubspot-crm/)**: Manage your events attendee data like a pro with Hubspot integration. 
 
-- **[Sendinblue integrations](https://wp-eventmanager.com/product/wp-event-manager-sendinblue/)**: Synchronize events attendee data and automate email marketing. 
+- **📨 [Sendinblue integrations](https://wp-eventmanager.com/product/wp-event-manager-sendinblue/)**: Synchronize events attendee data and automate email marketing. 
 
-- **[Mailchimp integration](https://wp-eventmanager.com/product/wp-event-manager-mailchimp/)**: Automatically synchronize event attendee information and strengthen email marketing strategies. 
+- **📨 [Mailchimp integration](https://wp-eventmanager.com/product/wp-event-manager-mailchimp/)**: Automatically synchronize event attendee information and strengthen email marketing strategies. 
 
-- **[Zoho integration](https://wp-eventmanager.com/product/zoho-crm/)**: Know your event guests better and send customized emails to them to improve your events marketing style.  
+- **📨 [Zoho integration](https://wp-eventmanager.com/product/zoho-crm/)**: Know your event guests better and send customized emails to them to improve your events marketing style.  
 
-- **[Constant Contact integration](https://wp-eventmanager.com/product/constant-contact/)**: Experience email marketing automation and real-time event attendee data synchronization. 
+- **📨 [Constant Contact integration](https://wp-eventmanager.com/product/constant-contact/)**: Experience email marketing automation and real-time event attendee data synchronization. 
 
-- **[Salesforce CRM integration](https://wp-eventmanager.com/product/salesforce-crm/)**: Simplifying events guest data management and events email marketing. 
+- **📨 [Salesforce CRM integration](https://wp-eventmanager.com/product/salesforce-crm/)**: Simplifying events guest data management and events email marketing. 
 
-- **[Active Campaign integration](https://wp-eventmanager.com/product/active-campaign/)**: Manage user data easily with an automatic data syncing facility.
+- **📨 [Active Campaign integration](https://wp-eventmanager.com/product/active-campaign/)**: Manage user data easily with an automatic data syncing facility.
 
-- **[Stripe integration](https://wp-eventmanager.com/product/wp-event-manager-stripe-split-payment/)**: Allows you to earn commission from your events website without hassle. 
+- **💳 [Stripe integration](https://wp-eventmanager.com/product/wp-event-manager-stripe-split-payment/)**: Allows you to earn commission from your events website without hassle. 
 
-- **[Google Analytics](https://wp-eventmanager.com/product/wp-event-manager-google-analytics/)**: Easily measure the success of your events by tracking event ticket sales and more. 
+- **📈 [Google Analytics](https://wp-eventmanager.com/product/wp-event-manager-google-analytics/)**: Easily measure the success of your events by tracking event ticket sales and more. 
 
-- **[Elementor](https://wp-eventmanager.com/integrations/)**: Create an event calendar, sell event tickets, manage event registrations and do more on your events website and place all your website elements in your preferred location by simply dragging and dropping. 
+- **🤖 [Elementor](https://wp-eventmanager.com/integrations/)**: Create an event calendar, sell event tickets, manage event registrations and do more on your events website and place all your website elements in your preferred location by simply dragging and dropping. 
 
-- **[Google Calendar Integration](https://wp-eventmanager.com/product/wp-event-manager-ical/)**: Display your events on Google Calendar or any other calendar with our iCAL plugin. 
+- **🗓️ [Google Calendar Integration](https://wp-eventmanager.com/product/wp-event-manager-ical/)**: Display your events on Google Calendar or any other calendar with our iCAL plugin. 
 
 == 🔖 Boost Ticket Sales with Our Dynamic Ticketing Plugin ==
 
 Sell event tickets, manage registrations and take control of your entire ticketing system with our robust event management plugin: **[Sell Tickets](https://wp-eventmanager.com/product/wp-event-manager-sell-tickets/)**
 
-- **Sell multiple tickets**: Maximize ticket sales by offering multiple ticket types including paid, donation and free. 
+- **🎫 Sell multiple tickets**: Maximize ticket sales by offering multiple ticket types including paid, donation and free. 
 
-- **Share digital tickets**: Send event tickets in easily downloadable PDFs through emails to buyers. 
+- **📧 Share digital tickets**: Send event tickets in easily downloadable PDFs through emails to buyers. 
 
-- **Secure payment with WooCommerce**: Experience the ultimate comfort of managing ticket transactions through WooCommerce. 
+- **🔐 Secure payment with WooCommerce**: Experience the ultimate comfort of managing ticket transactions through WooCommerce. 
 
-- **Detailed report**: Measure the success of your events with a detailed report on your event ticket sales and registrations. 
+- **📃 Detailed report**: Measure the success of your events with a detailed report on your event ticket sales and registrations. 
 
-- **Customizable registration**: Create customized registration forms for event ticket buyers to fill in at the time of purchasing tickets. 
+- **📇 Customizable registration**: Create customized registration forms for event ticket buyers to fill in at the time of purchasing tickets. 
 
-- **QR scan code**: Add QR scan code on tickets to simplify the check-in process for both event attendees and event organizers. 
+- **🔍 QR scan code**: Add QR scan code on tickets to simplify the check-in process for both event attendees and event organizers. 
 
-- **Create a multi-vendor marketplace**: Transform your ordinary events website into a multi-vendor marketplace where you can earn commission from other event organizers for selling their event tickets on your website
+- **👥 Create a multi-vendor marketplace**: Transform your ordinary events website into a multi-vendor marketplace where you can earn commission from other event organizers for selling their event tickets on your website
 
 == 📱 Organizer App: A Game-Changer for All Event Organizers ==
 
