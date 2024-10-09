@@ -120,6 +120,9 @@ class WP_Event_Manager {
 		add_action('wp_event_manager_organizer_submit_before', array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
 		add_action('wp_event_manager_event_submit_before', array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
 
+		// add thumbnail upload field in post event form
+		add_action('submit_event_form_event_fields_end',array( $this, 'add_thumbnail_upload_field') );
+
 		// Switch theme
 		add_action('after_switch_theme', array('WP_Event_Manager_Ajax', 'add_endpoint'), 10);
 		add_action('after_switch_theme', array($this->post_types, 'register_post_types'), 11);
@@ -447,6 +450,35 @@ class WP_Event_Manager {
 				<?php
 				exit; 
 			}
+		}
+	}
+	/**
+	 * Outputs an upload field for the event thumbnail if the custom thumbnail upload feature is enabled.
+	 *
+	 * This field is required for event submissions when the option is enabled.
+	 *
+	 * @return void
+	*/
+	public function add_thumbnail_upload_field(){
+		
+		$is_thumbnail_upload = get_option('event_manager_upload_custom_thumbnail');
+		if($is_thumbnail_upload) {
+		?>
+		<fieldset class="wpem-form-group fieldset-event_thumbnail">
+        <label for="event_thumbnail">
+            <?php esc_html_e('Event Thumbnail', 'wp-event-manager'); ?>
+            <span class="require-field">*</span>
+        </label>
+        <div class="field required-field">
+            <div class="event-manager-uploaded-files">
+            </div>
+            <input type="file" class="input-text wp-event-manager-file-upload" data-file_types="jpg|jpeg|gif|png" name="event_thumbnail" id="event_thumbnail" placeholder="">
+            <small class="description">
+                <?php esc_html_e('Maximum file size: 40 MB.', 'wp-event-manager'); ?>
+            </small>
+        </div>
+    </fieldset>
+	<?php
 		}
 	}
 }
