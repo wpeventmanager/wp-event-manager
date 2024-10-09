@@ -43,16 +43,17 @@ var EventAjaxFilters = function() {
             } else {
                 supportHtml5History = false
             }
-            jQuery(document).ready(EventAjaxFilters.actions.windowLoad);
+            //jQuery(document).ready(EventAjaxFilters.actions.windowLoad);
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('.event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset);
             jQuery('div.event_listings').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
-            jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
+            //jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
             jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(function() {
                 var target = jQuery(this).closest('div.event_listings');
                 target.triggerHandler('update_event_listings', [1, false]);
                 EventAjaxFilters.event_manager_store_state(target, 1)
-            }).on("keyup", function(e) {
+            }).on("change", function(e) {
+                EventAjaxFilters.actions.getEventListings(e);
                 if (e.which === 13) {
                     jQuery(this).trigger('change')
                 }
@@ -136,12 +137,12 @@ var EventAjaxFilters = function() {
                 return false;
                 event.preventDefault()
             },
-            getEventListings: function(event, page, append, loading_previous) {
+            getEventListings: function(event, page=1, append, loading_previous) {
                 Common.logInfo("EventAjaxFilters.actions.getEventListings...");
 
                 jQuery('.load_more_events').hide();
                 var data = '';
-                var target = jQuery(this);
+                var target = jQuery('.event_listings');
                 var form = target.find('.event_filters');
                 var filters_bar = target.find('.showing_applied_filters');
                 var results = target.find('.event_listings');
@@ -152,9 +153,9 @@ var EventAjaxFilters = function() {
                 var cancelled = target.data('cancelled');
                 var event_online = target.data('event_online');
                 var index = jQuery('div.event_listings').index(this);
-                if (index < 0) {
+                /*if (index < 0) {
                     return
-                }
+                }*/
                 if (xmlHttpRequest[index]) {
                     xmlHttpRequest[index].abort()
                 }
@@ -162,7 +163,7 @@ var EventAjaxFilters = function() {
                     
                     jQuery(results).parent().addClass('wpem-loading');
                     jQuery('div.event_listing, div.no_event_listings_found', results).css('visibility', 'hidden');         
-                    target.find('.load_more_events').data('page', page)
+                    target.find('.load_more_events').data('page', page);
                 }
 
                 if (true == target.data('show_filters')) {

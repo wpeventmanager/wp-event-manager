@@ -706,8 +706,8 @@ class WP_Event_Manager_Shortcodes{
 				'event_online' => $event_online,
 			));
 
-			get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
-			get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
+			//get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
+			//get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
 
 		} else {
 			$arr_selected_datetime = [];
@@ -737,43 +737,43 @@ class WP_Event_Manager_Shortcodes{
 
 				$selected_datetime = json_encode($arr_selected_datetime);
 			}
-			
-			$events = get_event_listings(apply_filters('event_manager_output_events_args', array(
-				'search_location'   => $location,
-				'search_keywords'   => $keywords,
-				'search_datetimes'  => array($selected_datetime),
-				'search_categories' => !empty($categories) ? $categories : '',
-				'search_event_types'	=> !empty($event_types) ? $event_types : '',
-				'search_ticket_prices'  => !empty($ticket_prices) ? $ticket_prices : '',
-				'orderby'           => $orderby,
-				'order'             => $order,
-				'posts_per_page'    => $per_page,
-				'featured'          => $featured,
-				'cancelled'         => $cancelled,
-				'event_online'    	=> $event_online,
-			)));
-			if($events->have_posts()) :
-
-				wp_enqueue_script('wp-event-manager-ajax-filters');
-				get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
-				while ($events->have_posts()) : $events->the_post();
-					get_event_manager_template_part('content', 'event_listing');
-				endwhile; 
-				get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));?>
-			<?php else :
-				$default_events = get_posts(array(
-					'numberposts' => -1,
-					'post_type'   => 'event_listing',
-					'post_status'   => 'publish'
-				));
-				if(count($default_events) == 0): ?>
-					<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php _e('There are currently no events.', 'wp-event-manager'); ?></div>
-				<?php else:
-					 do_action('event_manager_output_events_no_results');
-				endif;
-			endif;
-			wp_reset_postdata();
 		}
+
+		$events = get_event_listings(apply_filters('event_manager_output_events_args', array(
+			'search_location'   => $location,
+			'search_keywords'   => $keywords,
+			'search_datetimes'  => array($selected_datetime),
+			'search_categories' => !empty($categories) ? $categories : '',
+			'search_event_types'	=> !empty($event_types) ? $event_types : '',
+			'search_ticket_prices'  => !empty($ticket_prices) ? $ticket_prices : '',
+			'orderby'           => $orderby,
+			'order'             => $order,
+			'posts_per_page'    => $per_page,
+			'featured'          => $featured,
+			'cancelled'         => $cancelled,
+			'event_online'    	=> $event_online,
+		)));
+		if($events->have_posts()) :
+
+			wp_enqueue_script('wp-event-manager-ajax-filters');
+			get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
+			while ($events->have_posts()) : $events->the_post();
+				get_event_manager_template_part('content', 'event_listing');
+			endwhile; 
+			get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));?>
+		<?php else :
+			$default_events = get_posts(array(
+				'numberposts' => -1,
+				'post_type'   => 'event_listing',
+				'post_status'   => 'publish'
+			));
+			if(count($default_events) == 0): ?>
+				<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php _e('There are currently no events.', 'wp-event-manager'); ?></div>
+			<?php else:
+				 do_action('event_manager_output_events_no_results');
+			endif;
+		endif;
+		wp_reset_postdata();
 
 		$data_attributes_string = '';
 
