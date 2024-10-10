@@ -21,10 +21,21 @@ do_action('wp_event_manager_event_submit_before');
 		}
 
 		do_action('submit_event_form_event_fields_start'); 
+
+		//Show Hide event thumbnail field on front end
+		$thumbnail_key = 'event_thumbnail'; 
+		$show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false); 
+
 		foreach($event_fields as $key => $field) : 
 			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
 				continue;
-			endif; ?>
+			endif; 
+			
+			if ($key === $thumbnail_key && $show_thumbnail_field != 1) {
+				continue; 
+			}
+			
+			?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 				<label for="<?php esc_attr_e($key); ?>">
 					<?php _e(esc_attr($field['label']), 'wp-event-manager');

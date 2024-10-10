@@ -864,6 +864,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						wp_set_object_terms( $this->event_id, array( $values[ $group_key ][ $key ] ), $field['taxonomy'], false );
 					}				
 				// Oragnizer logo is a featured image
+				}elseif( 'event_thumbnail' === $key ) {
+					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
+					set_post_thumbnail( $this->event_id, $attachment_id );
 				}
 				elseif ( 'organizer_logo' === $key ) {
 					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
@@ -1051,9 +1054,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					/*
 					* set first image of banner as a thumbnail
 					*/
-					if($key == 0){
+					/*if($key == 0){
 						set_post_thumbnail($this->event_id, $attachment_id);
-					}
+					}*/
 				}
 			}
 		}
