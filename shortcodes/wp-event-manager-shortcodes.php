@@ -756,6 +756,10 @@ class WP_Event_Manager_Shortcodes{
 				wp_enqueue_script('wp-event-manager-ajax-filters');
 				get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($events->have_posts()) : $events->the_post();
+					$hide_event = apply_filters('wpem_hide_selected_event', false, get_the_id());
+					if($hide_event == true){
+						continue;
+					}
 					get_event_manager_template_part('content', 'event_listing');
 				endwhile; 
 				get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));?>
