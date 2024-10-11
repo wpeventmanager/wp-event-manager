@@ -313,6 +313,15 @@ class WP_Event_Manager_Settings{
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
+						array(
+							'name'       => 'event_manager_hide_fully_registered',
+							'std'        => '0', // Default unchecked
+							'label'      => __('Hide Fully Registered Events', 'wp-event-manager'),
+							'cb_label'   => __('Hide fully registered events from the event listings.', 'wp-event-manager'),
+							'desc'       => __('If enabled, events that have reached their registration limit will be hidden from the archive/search listings.', 'wp-event-manager'),
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
 					),
 				),
 				'event_submission'     => array(
@@ -490,7 +499,7 @@ class WP_Event_Manager_Settings{
 						array(
 							'name'  => 'event_manager_login_page_url',
 							'std'   => wp_login_url(),
-							'label' => __('Login Page URL', 'wp-event-manager'),
+			 				'label' => __('Login Page URL', 'wp-event-manager'),
 							'desc'  => __('Enter the Login page URL.', 'wp-event-manager'),
 							'type'  => 'text',
 						),
