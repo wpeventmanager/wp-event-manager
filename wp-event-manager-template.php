@@ -581,26 +581,44 @@ function get_event_banner($post = null){
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_thumbnail($post = null, $size = 'full'){
+function get_event_thumbnail($post = null, $size = 'full') {
+    $post = get_post($post);
+    
+    if($post->post_type !== 'event_listing') {
+        return;
+    }
 
-	$post = get_post($post);
-	if($post->post_type !== 'event_listing')
-		return;
+    $use_custom_thumbnail = get_option('event_manager_use_custom_thumbnail');
 
-	$event_thumbnail = get_the_post_thumbnail_url($post, $size);
-	// If thumbnail is not set then check for banner
-	if(isset($event_thumbnail) && empty($event_thumbnail)){
-		if(isset($post->_event_banner) && empty($post->_event_banner)){
-			$event_thumbnail = apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder-wide.jpg');
-		}else{
-			$event_banner = $post->_event_banner;
-			if(is_array($event_banner))
-				$event_thumbnail = $event_banner[0];
-			else
-				$event_thumbnail = $event_banner;
-		}
-	}
-	return apply_filters('display_event_thumbnail', $event_thumbnail, $post);
+    if ($use_custom_thumbnail) {
+        $event_thumbnail = get_the_post_thumbnail_url($post, $size);
+        
+        // If no thumbnail is set, show the default placeholder
+        if (empty($event_thumbnail)) {
+            $event_thumbnail = apply_filters('event_manager_default_event_thumbnail', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder-wide.jpg');
+        }
+    } else {
+        
+        $event_thumbnail = get_the_post_thumbnail_url($post, $size);
+        
+        // If no thumbnail is set, check for the banner
+        if (empty($event_thumbnail)) {
+            if (!empty($post->_event_banner)) {
+                // If event banner is set, use it
+                $event_banner = $post->_event_banner;
+                if (is_array($event_banner)) {
+                    $event_thumbnail = $event_banner[0];
+                } else {
+                    $event_thumbnail = $event_banner;
+                }
+            } else {
+                // If no banner is set, show the default placeholder
+                $event_thumbnail = apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder-wide.jpg');
+            }
+        }
+    }
+	
+    return apply_filters('display_event_thumbnail', $event_thumbnail, $post);
 }
 
 /**
