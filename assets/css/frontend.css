@@ -1188,6 +1188,44 @@ input.wpem-theme-button:hover span {
   font-size: 14px;
   border-radius: 4px;
 }
+
+.wpem_related_events .wpem-col-lg-4 {
+  margin-bottom: 30px;
+}
+.wpem_related_events .wpem-single-event-widget {
+  margin: 0 15px;
+  height: inherit !important;
+}
+.wpem_related_events .wpem-event-banner-img img {
+  height: 230px;
+  width: 100%;
+  object-fit: cover;
+}
+.wpem_related_events .slick-track {
+  display: flex;
+}
+.wpem_related_events-slider {
+  margin: 0 -15px;
+}
+.wpem_related_events .slick-prev:before, .wpem_related_events .slick-next:before {
+  color: var(--wpem-dark-color);
+  font-size: 24px;
+}
+.wpem_related_events .slick-prev, .wpem_related_events .slick-next {
+  top: -30px;
+}
+.wpem_related_events .slick-prev {
+  right: 50px;
+  left: inherit;
+}
+.wpem_related_events .slick-next {
+  right: 17px;
+}
+.wpem-no-data-found {
+  text-align: center;
+}
+
+
 .wpem-single-event-page .wpem-single-event-wrapper {
   border: 1px solid var(--wpem-gray-border-color);
 }

@@ -1668,7 +1668,7 @@ class WP_Event_Manager_Shortcodes{
 		$categories = wp_get_post_terms($post_id, 'event_listing_category', array('fields' => 'ids'));
 	
 		if (empty($categories)) {
-			return '<p>No related events found.</p>';
+			return '<p class="wpem-no-data-found">No related events found.</p>';
 		}
 	
 		// Query for related events
@@ -1693,14 +1693,14 @@ class WP_Event_Manager_Shortcodes{
 			while ($related_events->have_posts()) {
 				$related_events->the_post();
 	
-				get_event_manager_template_part('content-summary', 'event_listing');
+				get_event_manager_template_part('content-related', 'event_listing');
 			}
 	
 			wp_reset_postdata();
 	
 			return ob_get_clean(); 
 		} else {
-			return '<p>No related events found.</p>';
+			return '<p class="wpem-no-data-found">No related events found.</p>';
 		}
 	}
 

@@ -490,13 +490,41 @@ $event = $post; ?>
     <!-- / wpem-main end  -->
 </div>
 
-<div class="wpem_related_events">
-<h3>Related Events</h3>
-<?php
-// Display related events with a proper design
-echo do_shortcode('[related_events event_id="' . get_the_ID() . '"]');
-?>
+<div class="wpem_related_events wpem-mt-3">
+    <h3 class="wpem-heading-text wpem-mb-3">Related Events</h3>
+    <div class="wpem_related_events-slider">
+        <?php
+        // Display related events with a proper design
+        echo do_shortcode('[related_events event_id="' . get_the_ID() . '"]');
+        ?>
+    </div>
 </div>
+
+<!-- Related event slider override the script if needed -->
+<script>
+    jQuery(document).ready(function() {
+        jQuery('.wpem_related_events-slider').slick({
+            arrow: true,
+            infinite: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2
+                }
+                },
+                {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 1
+                }
+                }
+            ]
+        });
+    });
+</script>
 
 <!-- override the script if needed -->
 
