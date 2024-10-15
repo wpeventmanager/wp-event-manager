@@ -489,6 +489,15 @@ $event = $post; ?>
     </div>
     <!-- / wpem-main end  -->
 </div>
+
+<div class="wpem_related_events">
+<h3>Related Events</h3>
+<?php
+// Display related events with a proper design
+echo do_shortcode('[related_events event_id="' . get_the_ID() . '"]');
+?>
+</div>
+
 <!-- override the script if needed -->
 
 <script type="text/javascript">
