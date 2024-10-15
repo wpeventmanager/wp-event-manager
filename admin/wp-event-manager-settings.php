@@ -74,16 +74,12 @@ class WP_Event_Manager_Settings{
 			}
 		}
 
-		// Get organizer form fields. 
-		$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-		$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
-		$organizer_fields               = $form_submit_organizer_instance->merge_with_custom_fields('backend');
-		
-		$organizer_options = array();
+		$organizer_fields = apply_filters('event_manager_submit_organizer_form_fields', get_option('event_manager_submit_organizer_form_fields', false));
+		$organizer_form_fields = array();
 
 		// Loop through the organizer fields array
 		foreach ($organizer_fields['organizer'] as $key => $field) {
-			$organizer_options[$key] = $field['label'];
+			$organizer_form_fields[$key] = $field['label'];
 		}
 
 		$this->settings = apply_filters(
@@ -168,7 +164,7 @@ class WP_Event_Manager_Settings{
 							'label'      => __('Select Organizer Fields to Hide', 'wp-event-manager'),
 							'desc'       => __('Choose which organizer fields to hide on the front end.', 'wp-event-manager'),
 							'type'       => 'multiselect',
-							'options'    => $organizer_options, 
+							'options'    => $organizer_form_fields, 
 							'attributes' => array(
 								'multiple' => 'multiple',
 								'style'    => 'height: 100px;display:none;',
