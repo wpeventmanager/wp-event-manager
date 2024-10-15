@@ -37,7 +37,7 @@ global $post_id;
             <?php endif; ?>
         </div>
         <button type="button" id="add_custom_week" class="button wpem-theme-button">
-            <?php _e('Add Another Week Day', 'wp-event-manager-recurring-events'); ?>
+            <?php _e('Add Another Week Day', 'wp-event-manager'); ?>
         </button>
     </div>
 

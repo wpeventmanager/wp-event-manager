@@ -535,19 +535,19 @@ public static function input_multidate($key, $field) {
     ?>
     <div id="recure_custom_dates_field" class="controls form-field" position: relative; style="display:none;">
         <label for="<?php echo esc_attr($key); ?>">
-            <?php _e('Custom Dates', 'wp-event-manager-recurring-events'); ?>
+            <?php _e('Custom Dates', 'wp-event-manager'); ?>
         </label>
         <div id="custom_dates_container">
             <?php if (!empty($dates)) : ?>
                 <?php foreach ($dates as $date) : ?>
-                    <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" value="<?php echo esc_attr($date); ?>" placeholder="<?php _e('Select Date', 'wp-event-manager-recurring-events'); ?>" data-picker="datepicker" />
+                    <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" value="<?php echo esc_attr($date); ?>" placeholder="<?php _e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />
                 <?php endforeach; ?>
             <?php else : ?>
-                <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager-recurring-events'); ?>" data-picker="datepicker" />
+                <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />
             <?php endif; ?>
         </div>
         <button type="button" id="add_custom_date" class="button">
-            <?php _e('Add Another Date', 'wp-event-manager-recurring-events'); ?>
+            <?php _e('Add Another Date', 'wp-event-manager'); ?>
         </button>
 			</div>
 
@@ -563,7 +563,7 @@ public static function input_multidate($key, $field) {
         $('#add_custom_date').on('click', function(e) {
             e.preventDefault();
             console.log('Add date button clicked'); // Debugging line
-            var newDateField = $('<input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager-recurring-events'); ?>" data-picker="datepicker" />');
+            var newDateField = $('<input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />');
             $('#custom_dates_container').append(newDateField);
 
             // Initialize date picker for the newly added input
@@ -604,7 +604,7 @@ public static function input_multiweek($key, $field) {
     ?>
     <div id="recure_custom_weeks_field" class="controls form-field" style="display:none;">
         <label for="<?php echo esc_attr($key); ?>">
-            <?php _e('Custom Weeks', 'wp-event-manager-recurring-events'); ?>
+            <?php _e('Custom Weeks', 'wp-event-manager'); ?>
         </label>
         <div id="custom_weeks_container">
             <?php if (!empty($weeks)) : ?>
@@ -628,7 +628,7 @@ public static function input_multiweek($key, $field) {
             <?php endif; ?>
         </div>
         <button type="button" id="add_custom_week" class="button">
-            <?php _e('Add Another Week Day', 'wp-event-manager-recurring-events'); ?>
+            <?php _e('Add Another Week Day', 'wp-event-manager'); ?>
         </button>
     </div>
 
