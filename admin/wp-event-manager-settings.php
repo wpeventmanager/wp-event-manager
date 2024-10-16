@@ -74,7 +74,7 @@ class WP_Event_Manager_Settings{
 			}
 		}
 
-		$organizer_fields = apply_filters('event_manager_submit_organizer_form_fields', get_option('event_manager_submit_organizer_form_fields', false));
+		$organizer_fields = $GLOBALS['event_manager']->forms->get_fields('submit-organizer');
 		$organizer_form_fields = array();
 
 		// Loop through the organizer fields array
