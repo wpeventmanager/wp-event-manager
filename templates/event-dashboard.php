@@ -1,3 +1,5 @@
+<?php if ( current_user_can('organizer') || current_user_can('administrator') ) : ?>
+
 <!-- Vertical Menu Start-->
 <div class="wpem-main-vmenu-dashboard-wrapper wpem-row">
 	<div class="wpem-main-vmenu-dashboard-nav-menu wpem-col-md-3">
@@ -80,7 +82,7 @@
 			</ul>
 		</div>
 	</div>
-
+	<?php endif; ?>
 	<!-- Event Dashboard Start -->
 	<div class="wpem-main-vmenu-dashboard-content-wrap wpem-col-md-9">
 		<div class="wpem-dashboard-main-content">
