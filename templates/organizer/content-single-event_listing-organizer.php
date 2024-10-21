@@ -7,8 +7,10 @@
  */
 
 $check_user_access = wpem_checked_guest_user_access();
-if($user_access == false) {
+if($check_user_access == false) {
     $field_to_hide = get_option('hide_organizer_fields');
+}else {
+	$field_to_hide = array();
 }
 
 if (has_event_organizer_ids()) : ?>
