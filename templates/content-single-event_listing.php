@@ -489,16 +489,21 @@ $event = $post; ?>
     </div>
     <!-- / wpem-main end  -->
 </div>
-
-<div class="wpem_related_events wpem-mt-3">
-    <h3 class="wpem-heading-text wpem-mb-3">Related Events</h3>
-    <div class="wpem_related_events-slider">
-        <?php
-        // Display related events with a proper design
-        echo do_shortcode('[related_events event_id="' . get_the_ID() . '"]');
-        ?>
+<?php 
+	$related_events_output = do_shortcode('[related_events event_id="' . get_the_ID() . '"]'); 
+	// check related events available or not
+	if (!empty($related_events_output)) {
+?>
+    <div class="wpem_related_events wpem-mt-3">
+        <h3 class="wpem-heading-text wpem-mb-3">Related Events</h3>
+        <div class="wpem_related_events-slider">
+            <?php
+            // Display related events with a proper design
+            echo $related_events_output;
+            ?>
+        </div>
     </div>
-</div>
+<?php } ?>
 
 <!-- Related event slider override the script if needed -->
 <script>

@@ -1649,8 +1649,8 @@ class WP_Event_Manager_Shortcodes{
 	 * Outputs related events based on the categories of the current event.
 	 *
 	 * Shortcode Attributes:
-	 * - post_id: The ID of the post to find related events for (default: current post ID).
-	 * - posts_per_page: The number of related events to display (default: 5).
+	 * - event_id : The ID of the event to find related events for (default: current event ID).
+	 * - posts_per_page: The number of related events to display 
 	 *
 	 * @param array $atts Shortcode attributes.
 	 * @return string HTML output of related events or a message if none are found.
@@ -1658,24 +1658,24 @@ class WP_Event_Manager_Shortcodes{
 	public function output_related_events($atts) {
 		// Extract shortcode attributes
 		$atts = shortcode_atts(array(
-			'post_id' => get_the_ID(), 
+			'event_id' => get_the_ID(), 
 			'posts_per_page' => 5,
 		), $atts, 'related_events');
 	
-		$post_id = $atts['post_id'];
+		$event_id = $atts['event_id'];
 	
 		// Get the current event's categories
-		$categories = wp_get_post_terms($post_id, 'event_listing_category', array('fields' => 'ids'));
+		$categories = wp_get_post_terms($event_id, 'event_listing_category', array('fields' => 'ids'));
 	
 		if (empty($categories)) {
-			return '<p class="wpem-no-data-found">No related events found.</p>';
+			return '';
 		}
 	
-		// Query for related events
+		// Query for related events based on categories
 		$args = array(
 			'post_type'      => 'event_listing',
 			'posts_per_page' => $atts['posts_per_page'],
-			'post__not_in'   => array($post_id),
+			'post__not_in'   => array($event_id),
 			'tax_query'      => array(
 				array(
 					'taxonomy' => 'event_listing_category',
@@ -1692,15 +1692,12 @@ class WP_Event_Manager_Shortcodes{
 			ob_start(); 
 			while ($related_events->have_posts()) {
 				$related_events->the_post();
-	
 				get_event_manager_template_part('content-related', 'event_listing');
 			}
-	
 			wp_reset_postdata();
-	
 			return ob_get_clean(); 
 		} else {
-			return '<p class="wpem-no-data-found">No related events found.</p>';
+			return '';
 		}
 	}
 
