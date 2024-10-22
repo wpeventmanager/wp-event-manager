@@ -168,6 +168,7 @@ class WP_Event_Manager_Ajax {
 				
 				$hide_event = apply_filters('wpem_hide_selected_event', false, get_the_id());
 				if($hide_event == true){
+					$fully_registered_events++;
 					continue;
 				}
 				get_event_manager_template_part('content', 'event_listing');
