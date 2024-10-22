@@ -32,6 +32,9 @@
 				$event_dashboard = get_option('event_manager_event_dashboard_page_id');
 				do_action('wpem_dashboard_menu_before', $menus);
 				foreach ($menus as $name => $menu) {
+					if (($name === 'registration' || $name === 'guest_lists')  && !current_user_can('administrator') && !current_user_can('organizer')) {
+						continue; // Skip rendering this menu item
+					}
 					if (isset($menu['submenu']) && !empty($menu['submenu'])) {
 						$active_parent_menu = '';
 						$child_menu_html = '<ul class="wpem-main-vmenu-dashboard-submenu-ul">';
