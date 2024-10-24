@@ -415,7 +415,11 @@ class WP_Event_Manager_Writepanels {
 	
 		// Set the field value: prioritize post meta value, then default address, then empty
 		if (!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: esc_attr($default_address);
+			if ($key === '_event_location') {
+				$field['value'] = esc_attr($default_address); // Use the default address
+			} else {
+				$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: '';
+			}
 		}
 	
 		// Determine the name for the input field
