@@ -40,7 +40,7 @@ var ContentEventListing= function () {
 		                   jQuery(".wpem-event-listings").addClass('wpem-row');
 	
 						jQuery(".wpem-event-listings").removeClass("wpem-event-listing-list-view");
-						jQuery(".wpem-event-listings").removeClass("wpem-event-listing-box-view");      
+						jQuery(".wpem-event-listings").addClass("wpem-event-listing-box-view");      
 						jQuery(".wpem-event-listings").addClass("wpem-event-listing-calendar-view");      	                 
 		              }  else {   
 		                jQuery(".wpem-event-box-col").show();
