@@ -43,7 +43,7 @@ var EventAjaxFilters = function() {
             } else {
                 supportHtml5History = false
             }
-            //jQuery(document).ready(EventAjaxFilters.actions.windowLoad);
+            jQuery(document).ready(EventAjaxFilters.actions.windowLoad);
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('.event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset);
             jQuery('div.event_listings').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
