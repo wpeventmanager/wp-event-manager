@@ -2512,7 +2512,7 @@ function get_wpem_date_time_separator(){
  **/
 function display_date_time_separator(){
 	$separator = get_wpem_date_time_separator();
-	printf(' '.__('%s', 'wp-event-manager').' ', $separator);
+	printf(' '.esc_attr('%s', 'wp-event-manager').' ', $separator);
 }
 
 /**

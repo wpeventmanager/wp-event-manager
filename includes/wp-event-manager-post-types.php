@@ -272,6 +272,7 @@ class WP_Event_Manager_Post_Types {
 			'exclude_from_search'       => true,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
+			// translators: %s is the count of expired posts.
 			'label_count'               => _n_noop('Expired <span class="count">(%s)</span>', 'Expired <span class="count">(%s)</span>', 'wp-event-manager')
 		));
 
@@ -280,6 +281,7 @@ class WP_Event_Manager_Post_Types {
 			'exclude_from_search'       => true,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
+			// translators: %s is the count of preview posts.
 			'label_count'               => _n_noop('Preview <span class="count">(%s)</span>', 'Preview <span class="count">(%s)</span>', 'wp-event-manager')
 		));
 

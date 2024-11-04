@@ -127,7 +127,7 @@ class Elementor_Event_Field extends Widget_Base {
                 [
                     'label' => 'Event Field Before HTML',
                     'type' => Controls_Manager::TEXTAREA,
-                    'placeholder' => __('Event Field Before HTML', 'elementor'),
+                    'placeholder' => __('Event Field Before HTML', 'wp-event-manager'),
                     'show_label' => false,
                 ]
        );
@@ -144,7 +144,7 @@ class Elementor_Event_Field extends Widget_Base {
                 [
                     'label' => 'Event Field After HTML',
                     'type' => Controls_Manager::TEXTAREA,
-                    'placeholder' => __('Event Field After HTML', 'elementor'),
+                    'placeholder' => __('Event Field After HTML', 'wp-event-manager'),
                     'show_label' => false,
                 ]
        );

@@ -122,6 +122,7 @@ class WP_Event_Manager_Shortcodes{
 
 						do_action('after_event_cancelled', $action, $event_id);
 						// Message
+						// translators: %s is the title of the cancelled event.
 						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(__('%s has been cancelled.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						break;
 					case 'mark_not_cancelled':
@@ -132,6 +133,7 @@ class WP_Event_Manager_Shortcodes{
 						// Update
 						update_post_meta($event_id, '_cancelled', 0);
 						// Message
+						// translators: %s is the title of the not cancelled event.
 						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(__('%s has been marked as not cancelled.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						break;
 					case 'delete':
@@ -141,6 +143,7 @@ class WP_Event_Manager_Shortcodes{
 
 						if(!in_array($events_status, ['trash'])) {
 							// Message
+							// translators: %s is the title of the deleted event.
 							$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(__('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
 						}
 						break;

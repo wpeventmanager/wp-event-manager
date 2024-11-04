@@ -176,7 +176,7 @@ if (get_option('event_manager_form_fields')) {
 
                                         <?php do_action('single_event_listing_organizer_description_before'); ?>
 
-                                        <div class="wpem-organizer-short-info"><?php printf(__('%s', 'wp-event-manager'), get_organizer_description($event_id)); ?></div>
+                                        <div class="wpem-organizer-short-info"><?php printf(esc_attr('%s', 'wp-event-manager'), get_organizer_description($event_id)); ?></div>
 
                                         <?php do_action('single_event_listing_organizer_description_after'); ?>
                                          <!-- Organizer social link section start-->

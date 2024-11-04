@@ -250,8 +250,9 @@ class WP_Event_Manager_Ajax {
 			$result['filter_value'][] = sprintf(wp_kses('located in &ldquo;%s&rdquo;', 'wp-event-manager') , $search_location) ;
 		}
 
-		if(sizeof($result['filter_value']) > 1) {	    
-        	$message = sprintf(_n('Search completed. Found %d matching record.', 'Search completed. Found %d matching records.', $events->found_posts, 'wp-event-manager'), $events->found_posts);
+		if(sizeof($result['filter_value']) > 1) {
+			//translators: %d is the number of matching records found.
+        	$message = sprintf(esc_attr('Search completed. Found %d matching record.', 'Search completed. Found %d matching records.', $events->found_posts, 'wp-event-manager'), $events->found_posts);
 			$result['showing_applied_filters'] = true;
 		} else {
 			$message = "";
@@ -357,7 +358,7 @@ class WP_Event_Manager_Ajax {
 						'organizer_id' 	=> $organizer_id,
 						'organizer_name' => $organizer->post_title,
 					],
-					'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Successfully created') . '</div>',
+					'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Successfully created', 'wp-event-manager') . '</div>',
 				];
 			} else {
 				$data = [
@@ -368,7 +369,7 @@ class WP_Event_Manager_Ajax {
 		} else {
 			$data = [
 				'code' => 404,
-				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Organizer Name is a required field.') . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Organizer Name is a required field.', 'wp-event-manager') . '</div>',
 			];
 		}
 		wp_send_json($data);
@@ -417,7 +418,7 @@ class WP_Event_Manager_Ajax {
 						'venue_id' 	=> $venue_id,
 						'venue_name' => $venue->post_title,
 					],
-					'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Successfully created') . '</div>',
+					'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Successfully created', 'wp-event-manager') . '</div>',
 				];
 			}else{
 				$data = [
@@ -428,7 +429,7 @@ class WP_Event_Manager_Ajax {
 		} else {
 			$data = [
 				'code' => 404,
-				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Venue Name is a required field.') . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Venue Name is a required field.', 'wp-event-manager') . '</div>',
 			];
 		}
 		wp_send_json($data);

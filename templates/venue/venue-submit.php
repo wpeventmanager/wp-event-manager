@@ -12,6 +12,7 @@ do_action('wp_event_manager_venue_submit_before');
 		<h2 class="wpem-form-title wpem-heading-text"><?php _e('Venue Details', 'wp-event-manager'); ?></h2>
 		<?php
 		if (isset($resume_edit) && $resume_edit) {
+			// Translators: %s is the link to create a new venue
 			printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing venue. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . __('Create A New venue', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
 		} 
 		
@@ -22,7 +23,7 @@ do_action('wp_event_manager_venue_submit_before');
 				continue;
 			endif;?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-				<label for="<?php esc_attr_e($key); ?>"><?php _e(esc_attr($field['label']), 'wp-event-manager'); echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
+				<label for="<?php esc_attr($key, 'wp-event-manager'); ?>"><?php esc_attr($field['label'], 'wp-event-manager'); echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
 				<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 					<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
 				</div>
@@ -34,7 +35,7 @@ do_action('wp_event_manager_venue_submit_before');
 			<input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
 			<input type="hidden" name="venue_id" value="<?php echo esc_attr($venue_id); ?>" />
 			<input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
-			<input type="submit" name="submit_venue" class="wpem-theme-button" id="submit-venue-button" value="<?php esc_attr_e($submit_button_text); ?>" />
+			<input type="submit" name="submit_venue" class="wpem-theme-button" id="submit-venue-button" value="<?php esc_attr($submit_button_text, 'wp-event-manager'); ?>" />
 		</div>
 
 	<?php	} else { ?>

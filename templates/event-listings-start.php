@@ -4,7 +4,10 @@
         <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-8">
             <div class="wpem-event-listing-header-title">
                 <?php if(isset($title)) : ?>
-                    <h2 class="wpem-heading-text"><?php printf(__('%s', 'wp-event-manager'), $title);?></h2>
+                    <h2 class="wpem-heading-text"><?php 
+                        // translators: %s is the title of the event.
+                        printf(esc_html('%s', 'wp-event-manager'), $title);
+                    ?></h2>
                 <?php endif; ?>
             </div>
         </div>

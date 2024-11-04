@@ -166,7 +166,7 @@ if (has_event_organizer_ids()) : ?>
 
                                         <?php do_action('single_event_listing_organizer_description_before'); ?>
 
-                                        <div class="wpem-organizer-short-info"><?php printf(__('%s', 'wp-event-manager'), get_organizer_description()); ?></div>
+                                        <div class="wpem-organizer-short-info"><?php printf(esc_attr('%s', 'wp-event-manager'), get_organizer_description()); ?></div>
 
                                         <?php do_action('single_event_listing_organizer_description_after'); ?>
 

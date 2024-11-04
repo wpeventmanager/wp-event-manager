@@ -29,9 +29,9 @@ if (!empty($field['value']) && is_array($field['value'])) :
                     <div class="wpem-tab-pane active">
                         <?php
                         foreach ($field['fields'] as $subkey => $subfield) : ?>
-                            <fieldset class="wpem-form-group fieldset-<?php esc_attr_e($subkey); ?>">
+                            <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
                                 <?php if (!empty($subfield['label'])) : ?>
-                                    <label for="<?php esc_attr_e($subkey); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
+                                    <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
                                 <?php endif; ?>
 
                                 <div class="field">
@@ -78,9 +78,9 @@ endif; ?>
             <div class="wpem-tab-pane active">
                 <?php
                 foreach ($field['fields'] as $subkey => $subfield) : ?>
-                    <fieldset class="wpem-form-group fieldset-<?php esc_attr_e($subkey); ?>">
+                    <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
                         <?php if (!empty($subfield['label'])) : ?>
-                            <label for="<?php esc_attr_e($subkey); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
+                            <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
                         <?php endif; ?>
 
                         <div class="field">

@@ -33,9 +33,9 @@ if (!empty($field['value']) && is_array($field['value'])) :
                     <!------------end ticket details tab------>
                     <div id="<?php echo esc_attr($key) . '_' . $index; ?>" class="wpem-tab-pane">
                     <?php endif; ?>
-                    <fieldset class="wpem-form-group fieldset-<?php esc_attr_e($subkey); ?>">
+                    <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
                         <?php if (!empty($subfield['label'])) : ?>
-                            <label for="<?php esc_attr_e($subkey); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
+                            <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
                         <?php endif; ?>
 
                         <div class="field">
@@ -91,9 +91,9 @@ if (!empty($field['value']) && is_array($field['value'])) :
                 <div id="<?php echo esc_attr($key); ?>_%%repeated-row-index%%" class="wpem-tab-pane">
                 <?php endif; ?>
 
-                <fieldset class="wpem-form-group fieldset-<?php esc_attr_e($subkey); ?>">
+                <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
                     <?php if (!empty($subfield['label'])) : ?>
-                        <label for="<?php esc_attr_e($subkey); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
+                        <label for="<?php esc_attr($subkey,'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
                     <?php endif; ?>
 
                     <div class="field">

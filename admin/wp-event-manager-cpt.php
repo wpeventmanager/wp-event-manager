@@ -215,7 +215,7 @@ class WP_Event_Manager_CPT {
 		$output .= '<option value="" ' . selected(isset($_GET['event_listing_category']) ? esc_attr( wp_unslash( $_GET['event_listing_category'] ) ) : '', '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $r);
 		$output .= '</select>';
-		printf('%s', $output);
+		printf('%s', esc_html($output)); 
 	}
 
 	/**
@@ -247,7 +247,7 @@ class WP_Event_Manager_CPT {
 		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
 
-		printf('%s', $output);
+		printf('%s', esc_html($output)); 
 	}
 
 	/**
@@ -490,16 +490,18 @@ class WP_Event_Manager_CPT {
 				$admin_actions = apply_filters('event_manager_admin_actions', $admin_actions, $post);
 				foreach ($admin_actions as $action) {
 					if(is_array($action)) {
-						printf('<a class="button button-icon tips icon-%1$s" href="%2$s" data-tip="%3$s">%4$s</a>', $action['action'], esc_url($action['url']), esc_attr($action['name']), esc_html($action['name']));
+						printf('<a class="button button-icon tips icon-%1$s" href="%2$s" data-tip="%3$s">%4$s</a>', esc_attr($action['action']), esc_url($action['url']), esc_attr($action['name']), esc_html($action['name']));
 					} else {
-						echo str_replace('class="', 'class="button ', $action);
+						echo esc_attr(str_replace('class="', 'class="button ', $action));
 					}
 				}
 				echo wp_kses_post('</div>');
 				break;
 			default :
 				$value = get_post_meta($post->ID, $column, true);
-				echo apply_filters('wpem_cpt_event_custom_column', wp_kses_post($value), $column, $post);
+				//echo apply_filters('wpem_cpt_event_custom_column', wp_kses_post($value), $column, $post);
+				echo wp_kses_post(apply_filters('wpem_cpt_event_custom_column', $value, $column, $post));
+
 				break;
 		}
 	}
@@ -609,7 +611,7 @@ class WP_Event_Manager_CPT {
 				echo esc_html(get_post_meta($post_id, '_organizer_email', true));
 				break;
 			case 'organizer_id':
-				echo get_the_ID();
+				echo esc_html(get_the_ID());
 				break;	
 		}
 	}
@@ -642,7 +644,7 @@ class WP_Event_Manager_CPT {
 					jQuery('#post-status-display').html('<?php echo wp_kses_post($display); ?>');
 				<?php endif; ?>
 				var select = jQuery('#post-status-select').find('select');
-				jQuery(select).html("<?php echo $options; ?>");
+				jQuery(select).html("<?php echo wp_json_encode($options); ?>");
 			});
 		</script>
 <?php

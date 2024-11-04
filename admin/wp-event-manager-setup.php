@@ -172,7 +172,10 @@ class WP_Event_Manager_Setup {
 						<h3><?php esc_attr_e('Setup Wizard Introduction', 'wp-event-manager'); ?></h3>
 						<p><?php _e('Thanks for installing WP Event Manager!', 'wp-event-manager'); ?></p>
 						<p><?php _e('The Setup wizard helps you create various pages for event submission, event listings, handing events along with organizers and venue pages.', 'wp-event-manager'); ?></p>
-						<p><?php printf(esc_attr__('If you want to avoid the Setup wizard and want to creates pages manually, you can refer to the %1$sdocumentation%2$s for support.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/help-center/">', '</a>'); ?></p>
+						<p><?php
+							// translators: %1$s and %2$s wrap "documentation" in a hyperlink to the support page.
+							printf(esc_attr__('If you want to avoid the Setup wizard and want to creates pages manually, you can refer to the %1$sdocumentation%2$s for support.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/help-center/">', '</a>'); 
+						?></p>
 					</div>
 					<p class="submit">
 						<a href="<?php echo esc_url(add_query_arg('step', 2)); ?>" class="button button-primary"><?php esc_attr_e('Continue to page setup', 'wp-event-manager'); ?></a>
@@ -181,7 +184,10 @@ class WP_Event_Manager_Setup {
 				<?php endif; ?>
 				<?php if(2 === $step) : ?>
 					<h3><?php esc_attr_e('Page Setup', 'wp-event-manager'); ?></h3>
-					<p><?php printf(__('The <em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used to output content within your %3$spages%2$s. These can be generated directly as mentioned below. Check the shortcode documentation for more information on event %4$sshortcodes%2$s.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/knowledge-base/" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="https://wordpress.org/support/article/pages/" target="_blank" class="help-page-link">', '<a href="https://wp-eventmanager.com/knowledge-base/" target="_blank" class="help-page-link">'); ?></p>
+					<p><?php 
+						// translators: %1$s is the opening tag for shortcodes documentation link; %2$s is the closing tag for that link; %3$s is the opening tag for pages documentation link; %4$s is the opening tag for event shortcodes documentation link. 
+						printf(esc_html('The <em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used to output content within your %3$spages%2$s. These can be generated directly as mentioned below. Check the shortcode documentation for more information on event %4$sshortcodes%2$s.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/knowledge-base/" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="https://wordpress.org/support/article/pages/" target="_blank" class="help-page-link">', '<a href="https://wp-eventmanager.com/knowledge-base/" target="_blank" class="help-page-link">'); 
+					?></p>
 					<form action="<?php echo esc_url(add_query_arg('step', 3)); ?>" method="post">
 						<?php wp_nonce_field('step_3', 'setup_wizard'); ?>
 						<table class="wp-event-manager-shortcodes widefat">

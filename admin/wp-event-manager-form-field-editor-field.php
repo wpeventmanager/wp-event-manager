@@ -52,7 +52,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 			$options = '';
 		} ?>
 		<input type="text" class="input-text placeholder" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][placeholder]" value="<?php if (isset($field['placeholder'])) {
-			printf(esc_html__('%s', 'wp-event-manager'), esc_attr(stripslashes($field['placeholder'])));
+			echo esc_html(stripslashes($field['placeholder']));
 		}	?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" />
 		<input type="text" class="input-text options" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][options]" placeholder="<?php esc_attr_e('Pipe (|) separate options.', 'wp-event-manager'); ?>" value="<?php echo esc_attr($options); ?>" />
 		<div class="file-options">
