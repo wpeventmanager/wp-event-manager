@@ -25,8 +25,8 @@ $thumbnail  = get_event_thumbnail( $post, 'full' );
                                 <?php
                                 if (!empty($start_date)) { ?>
                                     <div class="wpem-from-date">
-                                        <div class="wpem-date"><?php echo date_i18n('d', strtotime($start_date)); ?></div>
-                                        <div class="wpem-month"><?php echo date_i18n('M', strtotime($start_date)); ?></div>
+                                        <div class="wpem-date"><?php echo esc_html(date_i18n('d', strtotime($start_date))); ?></div>
+                                        <div class="wpem-month"><?php echo esc_html(date_i18n('M', strtotime($start_date))); ?></div>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -41,16 +41,16 @@ $thumbnail  = get_event_thumbnail( $post, 'full' );
                             <?php
                             if (!empty($start_date)) { ?>
                                 <div class="wpem-from-date">
-                                    <div class="wpem-date"><?php echo date_i18n('d', strtotime($start_date)); ?></div>
-                                    <div class="wpem-month"><?php echo date_i18n('M', strtotime($start_date)); ?></div>
+                                    <div class="wpem-date"><?php echo esc_html(date_i18n('d', strtotime($start_date))); ?></div>
+                                    <div class="wpem-month"><?php echo esc_html(date_i18n('M', strtotime($start_date))); ?></div>
                                 </div>
                             <?php } 
                             
                             if ($start_date != $end_date && !empty($end_date)) {  ?>
                                 <div class="wpem-to-date">
                                     <div class="wpem-date-separator">-</div>
-                                    <div class="wpem-date"><?php echo date_i18n('d', strtotime($end_date)); ?></div>
-                                    <div class="wpem-month"><?php echo date_i18n('M', strtotime($end_date)); ?></div>
+                                    <div class="wpem-date"><?php echo esc_html(date_i18n('d', strtotime($end_date))); ?></div>
+                                    <div class="wpem-month"><?php echo esc_html(date_i18n('M', strtotime($end_date))); ?></div>
                                 </div>
                             <?php } ?>
                         </div>
@@ -101,7 +101,7 @@ $thumbnail  = get_event_thumbnail( $post, 'full' );
                         <!-- Show in list View // Hide in Box View -->
                         <?php
                         if (get_event_ticket_option()) { ?>
-                            <div class="wpem-event-ticket-type <?php echo display_event_ticket_option(); ?>" class="wpem-event-ticket-type-text">
+                            <div class="wpem-event-ticket-type <?php echo esc_attr(display_event_ticket_option()); ?>" class="wpem-event-ticket-type-text">
                                 <span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span>
                             </div>
                         <?php } ?>

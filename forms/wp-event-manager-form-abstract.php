@@ -489,7 +489,7 @@ abstract class WP_Event_Manager_Form {
 			foreach ($files_to_upload as $file_to_upload) {
 				$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $field_key ,'allowed_mime_types' => $allowed_mime_types));
 				if(is_wp_error($uploaded_file)) {
-					throw new Exception($uploaded_file->get_error_message());
+					throw new Exception(esc_html($uploaded_file->get_error_message()));
 				} else {
 					$file_urls[] = $uploaded_file->url;
 				}

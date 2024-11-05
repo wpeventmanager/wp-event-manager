@@ -18,7 +18,7 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 		 */
 		public function output() { ?>
 			<div class="wrap wp_event_manager wp_event_manager_addons_wrap">
-			<h2><?php esc_html_e('WP Event Manager Add-ons', 'wp-event-manager'); ?></h2>
+			<h2><?php _e('WP Event Manager Add-ons', 'wp-event-manager'); ?></h2>
 			<?php 
 			
 			if(false === ($addons = get_transient('wp_event_manager_addons_html'))) {
@@ -55,7 +55,7 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 						}
 					}
 					echo '<ul class="products columns-4">';
-					echo esc_html($addons); 
+					echo $addons; 
 					echo '</ul>';
 			} ?>
 			</div>

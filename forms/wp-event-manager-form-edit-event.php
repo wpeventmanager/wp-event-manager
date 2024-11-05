@@ -47,7 +47,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 	public function submit() {
 		$event = get_post($this->event_id);
 		if(empty($this->event_id ) || ($event->post_status !== 'publish' && !event_manager_user_can_edit_pending_submissions())) {
-			echo wpautop(__('Invalid listing', 'wp-event-manager'));
+			echo wp_kses_post(wpautop(__('Invalid listing', 'wp-event-manager')));
 			return;
 		}
 

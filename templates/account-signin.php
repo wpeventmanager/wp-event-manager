@@ -2,11 +2,11 @@
 //if user loggedin then display message and logout link else display login link
 if (is_user_logged_in()) : ?>
 	<div class="wpem-form-group ">
-		<label class="wpem-form-label-text"><?php _e('Your account', 'wp-event-manager'); ?></label>
+		<label class="wpem-form-label-text"><?php esc_attr_e('Your account', 'wp-event-manager'); ?></label>
 		<div class="field account-sign-in wpem-alert wpem-alert-info"> <?php $user = wp_get_current_user();
 			// translators: %s is the username of the signed-in user.
-			printf(wp_kses(__('You are currently signed in as <strong>%s</strong>.', 'wp-event-manager'), array('strong' => array())), $user->user_login); ?>
-			 <a href="<?php echo apply_filters('submit_event_form_logout_url', esc_url(wp_logout_url(get_permalink()))); ?>">
+			printf(wp_kses(__('You are currently signed in as <strong>%s</strong>.', 'wp-event-manager'), array('strong' => array())), esc_attr($user->user_login)); ?>
+			 <a href="<?php echo esc_url(apply_filters('submit_event_form_logout_url', esc_url(wp_logout_url(get_permalink())))); ?>">
 			 	<?php esc_html_e('Sign out', 'wp-event-manager'); ?>
 			</a>
 		</div>
@@ -32,7 +32,7 @@ if (is_user_logged_in()) : ?>
 		if (!empty($registration_fields)) {
 			foreach ($registration_fields as $key => $field) { ?>
 				<div class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-					<label class="wpem-form-label-text" for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']) . apply_filters('submit_event_form_required_label', $field['required'] ?   '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
+					<label class="wpem-form-label-text" for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']) . esc_attr(apply_filters('submit_event_form_required_label', $field['required'] ?   '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?></label>
 					<div class="field <?php echo esc_attr($field['required']) ? 'required-field' : ''; ?>">
 						<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key'   => $key, 'field' => $field)); ?>
 					</div>

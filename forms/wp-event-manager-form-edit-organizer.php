@@ -47,7 +47,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	public function submit() {
 		$organizer = get_post($this->organizer_id);
 		if(empty($this->organizer_id ) || ($organizer->post_status !== 'publish')) {
-			echo wpautop(__('Invalid listing', 'wp-event-manager'));
+			echo wp_kses_post(wpautop(__('Invalid listing', 'wp-event-manager')));
 			return;
 		}
 

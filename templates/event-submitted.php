@@ -2,10 +2,15 @@
 global $wp_post_types;
 
 switch($event->post_status) :
-
 	case 'publish' :
 		// translators: %1$s is the singular name of the listing (e.g., "Event"), and %2$s is the URL to view the listing.
-		printf('<p class="post-submitted-success-green-message wpem-alert wpem-alert-success">'.__('%s listed successfully. To view your listing <a href="%s">click here</a>.', 'wp-event-manager').'</p>', esc_attr($wp_post_types['event_listing']->labels->singular_name), esc_url(get_permalink($event->ID)));
+		printf(
+			'<p class="post-submitted-success-green-message wpem-alert wpem-alert-success">' .
+			esc_html('%1$s listed successfully. To view your listing <a href="%2$s">click here</a>.', 'wp-event-manager') .
+			'</p>',
+			esc_attr($wp_post_types['event_listing']->labels->singular_name),
+			esc_url(get_permalink($event->ID))
+		);
 		break;
 	case 'pending' :
 		// translators: %s is the singular name of the listing (e.g., "Event").

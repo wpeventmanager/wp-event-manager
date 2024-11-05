@@ -147,8 +147,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			break;
 		}
 
-		$organizer_description = is_admin() ? esc_html('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="post-new.php?post_type=event_organizer" target="_blank" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager') : esc_html('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager');
-		$venue_description = is_admin() ? esc_html('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="post-new.php?post_type=event_venue" target="_blank" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager') : esc_html('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager');
+		$organizer_description = is_admin() ? __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="post-new.php?post_type=event_organizer" target="_blank" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager') : __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager');
+		$venue_description = is_admin() ? __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="post-new.php?post_type=event_venue" target="_blank" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager') : __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager');
 		
 		// Get default organizer
 		$default_organizer = get_option('default_organizer'); 
@@ -446,7 +446,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$file_url = current( explode( '?', $file_url ) );
 							$file_info = wp_check_filetype( $file_url );
 							if( !is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'] ) ) {
-								throw new Exception( sprintf(wp_kses( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager' ), esc_attr( $field['label'] ), esc_attr( $info['ext'] ), implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
+								throw new Exception(sprintf(
+								wp_kses('" %s " (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'),
+								esc_attr($field['label']),
+								esc_attr($info['ext']),
+								implode(', ', array_map('esc_attr', array_keys($field['allowed_mime_types'])))
+							));
 							}
 						}
 					}
@@ -479,7 +484,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			switch ( $allowed_registration_method ) {
 				case 'email' :
 					if( !is_email( $values['event']['registration'] ) ) {
-						throw new Exception( __( 'Please enter a valid registration email address.', 'wp-event-manager' ) );
+						throw new Exception( esc_attr_e( 'Please enter a valid registration email address.', 'wp-event-manager' ) );
 					}
 				break;
 				case 'url' :
@@ -488,7 +493,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						$values['event']['registration'] = 'http://' . $values['event']['registration'];
 					}
 					if( !filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
-						throw new Exception( __( 'Please enter a valid registration URL.', 'wp-event-manager' ) );
+						throw new Exception( esc_attr_e( 'Please enter a valid registration URL.', 'wp-event-manager' ) );
 					}
 				break;
 				default :
@@ -498,7 +503,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$values['event']['registration'] = 'http://' . $values['event']['registration'];
 						}
 						if( !filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
-							throw new Exception( __( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
+							throw new Exception( esc_attr_e( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
 						}
 					}
 				break;

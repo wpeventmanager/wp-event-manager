@@ -108,7 +108,7 @@ $event = $post; ?>
                             <!-- Event description section start-->
                             <div class="wpem-single-event-body-content">
                                 <?php do_action('single_event_overview_start'); 
-                                echo wp_kses_post(apply_filters('wpem_the_content', $event->post_content)); 
+                                echo esc_attr(apply_filters('wpem_the_content', $event->post_content)); 
                                 do_action('single_event_overview_end'); ?>
                             </div>
                             <!-- Event description section end-->
@@ -350,7 +350,7 @@ $event = $post; ?>
                                 if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
                                     get_event_manager_template('event-registration.php');
                                 } else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
-                                    echo wp_kses_post('<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>');
+                                    echo esc_attr('<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>');
                                 }
                                 ?>
                                 <!-- Event registration button section end-->
@@ -365,7 +365,7 @@ $event = $post; ?>
                                     <div class="wpem-event-date-time">
                                         <span class="wpem-event-date-time-text">
                                             <?php if($start_date){ 
-                                                echo  wp_kses_post(date_i18n($date_format, strtotime($start_date))); ?>
+                                                echo  esc_attr(date_i18n($date_format, strtotime($start_date))); ?>
                                                 <?php if ($start_time) {
                                                     echo display_date_time_separator() . ' ' . esc_attr($start_time);
                                                 }
@@ -375,7 +375,7 @@ $event = $post; ?>
                                         if (get_event_end_date() != '') {
                                             esc_html_e(' to', 'wp-event-manager'); ?>
                                             <br />
-                                            <span class="wpem-event-date-time-text"><?php echo  wp_kses_post(date_i18n($date_format, strtotime($end_date))); ?>
+                                            <span class="wpem-event-date-time-text"><?php echo  esc_attr(date_i18n($date_format, strtotime($end_date))); ?>
                                                 <?php if ($end_time) {
                                                     echo display_date_time_separator() . ' ' . esc_attr($end_time);
                                                 }

@@ -74,14 +74,6 @@ class WP_Event_Manager_Settings{
 			}
 		}
 
-		$organizer_fields = $GLOBALS['event_manager']->forms->get_fields('submit-organizer');
-		$organizer_form_fields = array();
-
-		// Loop through the organizer fields array
-		foreach ($organizer_fields['organizer'] as $key => $field) {
-			$organizer_form_fields[$key] = $field['label'];
-		}
-
 		$this->settings = apply_filters(
 			'event_manager_settings',
 			array(
@@ -149,27 +141,7 @@ class WP_Event_Manager_Settings{
 							'desc'        => __("If you are going to deal with Registration emails or Event emails then you need the sender's email appears in outgoing WP Event Manager emails.", 'wp-event-manager'), 
 							'type'        => 'email'
 						),
-						array(
-							'name'       => 'wpem_hide_data_from_guest',
-							'std'        => '0',  
-							'label'      => __('Hide Data from Guest Users', 'wp-event-manager'),
-							'cb_label'   => __('Hide sensitive event data from non-logged-in(guest) users.', 'wp-event-manager'),
-							'desc'       => '',
-							'type'       => 'checkbox',
-							'attributes' => array(),
-						),
-						 array(
-							'name'       => 'hide_organizer_fields',
-							'class'		=> 'hide_organizer_fields',
-							'label'      => __('Select Organizer Fields to Hide', 'wp-event-manager'),
-							'desc'       => __('Choose which organizer fields to hide on the front end.', 'wp-event-manager'),
-							'type'       => 'multiselect',
-							'options'    => $organizer_form_fields, 
-							'attributes' => array(
-								'multiple' => 'multiple',
-								'style'    => 'height: 100px;display:none;',
-							),
-						),
+						
 					),
 				),
 				'event_listings'       => array(
@@ -247,8 +219,8 @@ class WP_Event_Manager_Settings{
 							'desc'    => __('If enabled, the event type select box will default to a multi select on the [events] shortcode.', 'wp-event-manager'),
 							'type'    => 'select',
 							'options' => array(
-							'any' => __('Events will be shown if within ANY selected event type.', 'wp-event-manager'),
-							'all' => __('Events will be shown if within ALL selected event types.', 'wp-event-manager'),
+								'any' => __('Events will be shown if within ANY selected event type.', 'wp-event-manager'),
+								'all' => __('Events will be shown if within ALL selected event types.', 'wp-event-manager'),
 							),
 						),
 						array(
@@ -257,64 +229,6 @@ class WP_Event_Manager_Settings{
 							'label'      => __('Ticket Prices Filter', 'wp-event-manager'),
 							'cb_label'   => __('Enable Ticket prices filter for listing page.', 'wp-event-manager'),
 							'desc'       => __('Choose whether to enable ticket prices filter on the event listing page.', 'wp-event-manager'),
-							'type'       => 'checkbox',
-							'attributes' => array(),
-						),
-						array(
-							'name'       => 'enable_before_html',
-							'std'        => '0',
-							'label'      => __('Enable the Before HTML (below) on shortcodes.', 'wp-event-manager'),
-							'cb_label'   => __('Check this to show the Before HTML from the text area below on events displayed via shortcode.', 'wp-event-manager'),
-							'desc'       =>'',
-							'type'       => 'checkbox',
-							'attributes' => array(),
-						),
-						array(
-							'name'       => 'event_content_html',
-							'std'        => '',
-							'label'      => __('Add HTML before event content', 'wp-event-manager'),
-							'desc'       => __('You can add additional HTML content here that will be displayed before the event content.', 'wp-event-manager'),
-							'type'       => 'textarea', 
-							'attributes' => array(
-							'rows' => 5, 
-							'cols' => 50 
-							),
-						),
-						array(
-							'name'       => 'enable_after_html',
-							'std'        => '0',
-							'label'      => __('Enable the After HTML (below) on shortcodes.', 'wp-event-manager'),
-							'cb_label'   => __('Check this to show the After HTML from the text area below on events displayed via shortcode.', 'wp-event-manager'),
-							'desc'       => __('If enabled, the content will be displayed after the event template.', 'wp-event-manager'),
-							'type'       => 'checkbox',
-							'attributes' => array(),
-						),
-						array(
-							'name'       => 'event_content_after_html',
-							'std'        => '',
-							'label'      => __('Add HTML after event content', 'wp-event-manager'),
-							'desc'       => __('You can add additional HTML content here that will be displayed after the event content.', 'wp-event-manager'),
-							'type'       => 'textarea', 
-							'attributes' => array(
-								'rows' => 5, 
-								'cols' => 50 
-								),
-						),
-						array(
-							'name'       => 'event_manager_use_custom_thumbnail',
-							'std'        => '0',
-							'label'      => __('Use Event Thumbnail', 'wp-event-manager'),
-							'cb_label'   => __('Enable custom thumbnail for events.', 'wp-event-manager'),
-							'desc'       => __('If enabled, users can upload custom thumbnails for their event listings.', 'wp-event-manager'),
-							'type'       => 'checkbox',
-							'attributes' => array(),
-						),
-						array(
-							'name'       => 'event_manager_hide_fully_registered',
-							'std'        => '0', // Default unchecked
-							'label'      => __('Hide Fully Registered Events', 'wp-event-manager'),
-							'cb_label'   => __('Hide fully registered events from the event listings.', 'wp-event-manager'),
-							'desc'       => __('If enabled, events that have reached their registration limit will be hidden from the archive/search listings.', 'wp-event-manager'),
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
@@ -457,15 +371,6 @@ class WP_Event_Manager_Settings{
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
-						array(
-							'name'       => 'event_manager_upload_custom_thumbnail',
-							'std'        => '0',
-							'label'      => __('Upload Your Custom Thumbnail', 'wp-event-manager'),
-							'cb_label'   => __('Allow users to upload their own custom thumbnail.', 'wp-event-manager'),
-							'desc'       => __('If enabled, users will be able to upload a custom thumbnail when submitting an event.', 'wp-event-manager'),
-							'type'       => 'checkbox',
-							'attributes' => array(),
-						),
 					),
 				),
 				'event_pages'          => array(
@@ -495,7 +400,7 @@ class WP_Event_Manager_Settings{
 						array(
 							'name'  => 'event_manager_login_page_url',
 							'std'   => wp_login_url(),
-			 				'label' => __('Login Page URL', 'wp-event-manager'),
+							'label' => __('Login Page URL', 'wp-event-manager'),
 							'desc'  => __('Enter the Login page URL.', 'wp-event-manager'),
 							'type'  => 'text',
 						),
@@ -755,7 +660,7 @@ class WP_Event_Manager_Settings{
 											<?php }
 											break;
 										case 'password': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr( $value, 'wp-event-manager' ); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
@@ -764,21 +669,21 @@ class WP_Event_Manager_Settings{
 										case '':
 										case 'input':
 										case 'text': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr( $value, 'wp-event-manager' ); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'email': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr( $value, 'wp-event-manager' ); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value,'wp-event-manager'); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'number': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr( $value, 'wp-event-manager' ); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>

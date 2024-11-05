@@ -140,7 +140,7 @@ class WP_Event_Manager_Field_Editor {
 				<h3>
 				<?php 
 					// translators: %s refers to the group key used in the form fields title.
-					printf(esc_attr__('%s form fields', 'wp-event-manager'), ucfirst(esc_attr($group_key))); 
+					printf(esc_html('%s form fields', 'wp-event-manager'),esc_html(ucfirst($group_key))); 
 				?>
 				</h3>
 				<table class="widefat">
@@ -165,8 +165,10 @@ class WP_Event_Manager_Field_Editor {
 							</th>
 
 							<th colspan="6" class="save-actions">
-								<a href="<?php echo wp_nonce_url(add_query_arg($group_key . '-reset-fields', 1), 'reset'); ?>" class="reset"><?php esc_attr_e('Reset to default', 'wp-event-manager'); ?></a>
-								<input type="submit" class="save-fields button-primary" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
+							<a href="<?php echo esc_url(wp_nonce_url(add_query_arg($group_key . '-reset-fields', 1), 'reset')); ?>" class="reset">
+									<?php esc_html_e('Reset to default', 'wp-event-manager'); ?>
+							</a>
+							<input type="submit" class="save-fields button-primary" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
 							</th>
 
 						</tr>

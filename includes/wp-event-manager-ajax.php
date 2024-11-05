@@ -182,7 +182,7 @@ class WP_Event_Manager_Ajax {
 					'post_status'   => 'publish'
 			));
 			if(count($default_events) == 0): ?>
-				<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php _e('There are currently no events.', 'wp-event-manager'); ?></div>
+				<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php esc_attr_e('There are currently no events.', 'wp-event-manager'); ?></div>
 			<?php else: get_event_manager_template_part('content', 'no-events-found');
 			endif;
 		endif;

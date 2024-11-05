@@ -287,11 +287,11 @@ class WP_Event_Manager_Shortcodes{
 		global $event_manager;
 
 		if(isset($_REQUEST['organizer_id']) && !empty($_REQUEST['organizer_id'])) {
-			echo $event_manager->forms->get_form('edit-organizer');
+			echo wp_kses_post($event_manager->forms->get_form('edit-organizer'));
 		} else if(isset($_REQUEST['venue_id']) && !empty($_REQUEST['venue_id'])) {
-			echo $event_manager->forms->get_form('edit-venue');
+			echo wp_kses_post($event_manager->forms->get_form('edit-venue'));
 		} else {
-			echo $event_manager->forms->get_form('edit-event');
+			echo wp_kses_post($event_manager->forms->get_form('edit-event'));
 		}
 	}
 
@@ -357,7 +357,7 @@ class WP_Event_Manager_Shortcodes{
 		if(!is_user_logged_in()) {
 			ob_start(); ?>
 			<div id="event-manager-event-dashboard">
-				<p class="account-sign-in wpem-alert wpem-alert-info"><?php _e('You need to be signed in to manage your organizer listings.', 'wp-event-manager'); ?> <a href="<?php echo apply_filters('event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url()))); ?>"><?php _e('Sign in', 'wp-event-manager'); ?></a></p>
+				<p class="account-sign-in wpem-alert wpem-alert-info"><?php esc_attr_e('You need to be signed in to manage your organizer listings.', 'wp-event-manager'); ?> <a href="<?php echo esc_url(apply_filters('event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url())))); ?>"><?php esc_attr_e('Sign in', 'wp-event-manager'); ?></a></p>
 			</div>
 			<?php 
 			return ob_get_clean();
@@ -423,7 +423,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function edit_organizer(){
 		global $event_manager;
-		printf($event_manager->forms->get_form('edit-organizer'));
+		printf(wp_kses_post($event_manager->forms->get_form('edit-organizer')));
 		// echo $event_manager->forms->get_form('edit-organizer');
 	}
 
@@ -490,7 +490,7 @@ class WP_Event_Manager_Shortcodes{
 		if(!is_user_logged_in()) {
 			ob_start();	?>
 			<div id="event-manager-event-dashboard">
-				<p class="account-sign-in wpem-alert wpem-alert-info"><?php _e('You need to be signed in to manage your venue listings.', 'wp-event-manager'); ?> <a href="<?php echo apply_filters('event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url()))); ?>"><?php _e('Sign in', 'wp-event-manager'); ?></a></p>
+				<p class="account-sign-in wpem-alert wpem-alert-info"><?php esc_attr_e('You need to be signed in to manage your venue listings.', 'wp-event-manager'); ?> <a href="<?php echo esc_url(apply_filters('event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url())))); ?>"><?php esc_attr_e('Sign in', 'wp-event-manager'); ?></a></p>
 			</div>
 			<?php 
 			return ob_get_clean();
@@ -558,7 +558,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function edit_venue(){
 		global $event_manager;
-		printf($event_manager->forms->get_form('edit-venue'));
+		printf(wp_kses_post($event_manager->forms->get_form('edit-venue')));
 		// echo $event_manager->forms->get_form('edit-venue');
 	}
 
@@ -775,7 +775,7 @@ class WP_Event_Manager_Shortcodes{
 				'post_status'   => 'publish'
 			));
 			if(count($default_events) == 0): ?>
-				<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php _e('There are currently no events.', 'wp-event-manager'); ?></div>
+				<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php esc_attr_e('There are currently no events.', 'wp-event-manager'); ?></div>
 			<?php else:
 				 do_action('event_manager_output_events_no_results');
 			endif;
@@ -835,7 +835,7 @@ class WP_Event_Manager_Shortcodes{
 		if(isset($organizer_id) && !empty($organizer_id)) {
 			$organizer_url = get_permalink($organizer_id);
 			if(isset($organizer_url) && !empty($organizer_url)) {
-				printf('<div class="wpem-organizer-page-url-button"><a href="%s" class="wpem-theme-button"><span>%s</span></a></div>',  get_permalink($organizer_id), __('More info', 'wp-event-manager'));
+				printf('<div class="wpem-organizer-page-url-button"><a href="%s" class="wpem-theme-button"><span>%s</span></a></div>',  esc_url(get_permalink($organizer_id)), esc_attr_e('More info', 'wp-event-manager'));
 			}
 		}
 	}
@@ -952,7 +952,7 @@ class WP_Event_Manager_Shortcodes{
 			endwhile;
 		}else{
 			echo '<div class="entry-content"><div class="wpem-venue-connter"><div class="wpem-alert wpem-alert-info">';
-            printf(__('There are no events.','wp-event-manager'));    
+            printf(esc_attr_e('There are no events.','wp-event-manager'));    
 			echo '</div></div></div>';
 		}
 		wp_reset_postdata();

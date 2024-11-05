@@ -297,7 +297,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 							$file_url = current(explode('?', $file_url));
 							$file_info = wp_check_filetype($file_url);
 							if(!is_numeric($file_url) && $file_info && !in_array($file_info['type'], $field['allowed_mime_types'])) {
-								throw new Exception(sprintf(wp_kses('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), esc_attr($field['label']), $info['ext'], implode(', ', array_keys($field['allowed_mime_types']))));
+								throw new Exception(sprintf(wp_kses('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), esc_attr($field['label']), esc_attr($info['ext']),esc_attr(implode(', ', array_keys($field['allowed_mime_types']))) ));
 							}
 						}
 					}
@@ -307,7 +307,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		//venue email validation
 		if(isset($values['venue']['venue_email']) && !empty($values['venue']['venue_email'])) {
 			if(!is_email($values['venue']['venue_email'])) {
-				throw new Exception(__('Please enter a valid venue email address', 'wp-event-manager'));
+				throw new Exception(esc_attr_e('Please enter a valid venue email address', 'wp-event-manager'));
 			}
 		}
 		return apply_filters('submit_venue_form_validate_fields', true, $this->fields, $values);

@@ -631,7 +631,7 @@ class WP_Event_Manager_Post_Types {
 	 * Add a custom namespace to the event feed.
 	 */
 	public function event_feed_namespace() {
-		echo 'xmlns:event_listing="' .  site_url() . '"' . "\n";
+		echo 'xmlns:event_listing="' . esc_url(site_url()) . '"' . "\n";
 	}
 
 	/**
