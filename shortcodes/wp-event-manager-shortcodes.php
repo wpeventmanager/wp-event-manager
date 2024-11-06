@@ -767,7 +767,14 @@ class WP_Event_Manager_Shortcodes{
 				}
 				get_event_manager_template_part('content', 'event_listing');
 			endwhile; 
-			get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));?>
+			get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));
+			if($events->found_posts > $per_page) :
+				if($show_pagination == "true" || $show_pagination == "on") : ?>
+					<div class="event-organizer-pagination">
+						<?php get_event_manager_template('pagination.php', array('max_num_pages' => $events->max_num_pages)); ?>
+					</div>
+				<?php endif;
+			 endif; 
 		<?php else :
 			$default_events = get_posts(array(
 				'numberposts' => -1,
