@@ -585,21 +585,21 @@ class WP_Event_Manager_Settings{
 									echo wp_kses_post('<tr valign="top" class="' . esc_attr($class) . '"><th scope="row"><label for="setting-' . esc_attr($option['name']) . '">' . esc_attr($option['label']) . '</a></th><td>');
 									switch ($option['type']) {
 										case 'checkbox':?>
-											<label><input id="setting-<?php echo esc_attr($option['name']); ?>" name="<?php echo esc_attr($option['name']); ?>" type="checkbox" value="1" <?php echo implode(' ', $attributes); ?> <?php checked('1', $value); ?> /> <?php echo esc_attr($option['cb_label']); ?></label>
+											<label><input id="setting-<?php echo esc_attr($option['name']); ?>" name="<?php echo esc_attr($option['name']); ?>" type="checkbox" value="1" <?php echo esc_attr( implode(' ', $attributes)); ?> <?php checked('1', $value); ?> /> <?php echo esc_attr($option['cb_label']); ?></label>
 											<?php
 											if($option['desc']) {
 												echo wp_kses_post(' <p class="description">' . $option['desc'] . '</p>');
 											}
 											break;
 										case 'textarea': ?>
-											<textarea id="setting-<?php echo esc_attr($option['name']); ?>" class="large-text" cols="50" rows="<?php echo isset($option['row']) ? esc_attr($option['row']) : 3; ?>" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_textarea($value); ?></textarea>
+											<textarea id="setting-<?php echo esc_attr($option['name']); ?>" class="large-text" cols="50" rows="<?php echo isset($option['row']) ? esc_attr($option['row']) : 3; ?>" name="<?php echo esc_attr($option['name']); ?>" <?php echo esc_attr( implode(' ', $attributes)); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_textarea($value); ?></textarea>
 											<?php
 											if($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'select': ?>
-											<select id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?>>
+											<select id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" name="<?php echo esc_attr($option['name']); ?>" <?php echo esc_attr( implode(' ', $attributes)); ?>>
 												<?php
 												foreach ($option['options'] as $key => $name) {
 													printf('<option value="' . esc_attr($key) . '" ' . selected($value, $key, false) . '>' . esc_html($name) . '</option>');
@@ -611,7 +611,7 @@ class WP_Event_Manager_Settings{
 										<?php	}
 											break;
 										case 'multiselect': ?>
-											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="regular-text" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo implode(' ', $attributes); ?>>
+											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="regular-text" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo esc_attr( implode(' ', $attributes)); ?>>
 												<?php
 												foreach ($option['options'] as $key => $name) {
 													$selected = '';
@@ -620,7 +620,7 @@ class WP_Event_Manager_Settings{
 															$selected = ' selected ';
 														}
 													}
-													printf('<option value="' . esc_attr($key) . '" ' . $selected . ' >' . esc_html($name) . '</option>');
+													printf('<option value="' . esc_attr($key) . '" ' . esc_attr($selected) . ' >' . esc_html($name) . '</option>');
 												} ?>
 											</select>
 											<?php
@@ -660,7 +660,7 @@ class WP_Event_Manager_Settings{
 											<?php }
 											break;
 										case 'password': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="password" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
@@ -669,28 +669,28 @@ class WP_Event_Manager_Settings{
 										case '':
 										case 'input':
 										case 'text': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo $placeholder; ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'email': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value,'wp-event-manager'); ?>" <?php echo implode(' ', $attributes); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value,'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'number': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="number" min="0" name="<?php echo esc_attr($option['name']); ?>" value="<?php echo esc_attr($value, 'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo esc_attr($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'button': ?>
-											<button class="button" id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="button" name="<?php echo esc_attr($option['name']); ?>" <?php echo implode(' ', $attributes); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_attr($option['cb_label']); ?></button>
+											<button class="button" id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="button" name="<?php echo esc_attr($option['name']); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_attr($option['cb_label']); ?></button>
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
@@ -751,7 +751,7 @@ class WP_Event_Manager_Settings{
 								</div>
 							</div>
 						</div>
-						<span class="light-grey"><?php esc_attr_e('Powered By', 'wp-event-manager'); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo EVENT_MANAGER_PLUGIN_URL; ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
+						<span class="light-grey"><?php esc_attr_e('Powered By', 'wp-event-manager'); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo esc_url(EVENT_MANAGER_PLUGIN_URL); ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
 					</div>
 				</div>
 				<?php do_action('wpem_admin_seting_side_box_end'); ?>
