@@ -43,7 +43,7 @@ do_action('wp_event_manager_organizer_submit_before');
             <input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
             <input type="hidden" name="organizer_id" value="<?php echo esc_attr($organizer_id); ?>" />
             <input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
-            <input type="submit" name="submit_organizer" id="submit-organizer-button" class="wpem-theme-button" value="<?php esc_attr($submit_button_text, 'wp-event-manager'); ?>" />
+            <input type="submit" name="submit_organizer" id="submit-organizer-button" class="wpem-theme-button" value="<?php echo esc_attr($submit_button_text, 'wp-event-manager'); ?>" />
         </div>
     <?php } else {   ?>
         <div class="wpem-form-group">
