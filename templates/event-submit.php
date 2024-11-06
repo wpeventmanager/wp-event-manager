@@ -66,7 +66,7 @@ do_action('wp_event_manager_event_submit_before');
 					<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 						<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Organizer Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php esc_attr($key, 'wp-event-manager'); ?>">
-							<?php esc_attr($field['label'], 'wp-event-manager');
+							<?php echo esc_attr($field['label'], 'wp-event-manager');
 							echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
 						</label>
 						<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
