@@ -775,7 +775,7 @@ class WP_Event_Manager_Shortcodes{
 					</div>
 				<?php endif;
 			 endif; 
-		<?php else :
+		 else :
 			$default_events = get_posts(array(
 				'numberposts' => -1,
 				'post_type'   => 'event_listing',
