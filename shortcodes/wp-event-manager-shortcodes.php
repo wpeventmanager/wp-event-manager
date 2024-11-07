@@ -842,7 +842,7 @@ class WP_Event_Manager_Shortcodes{
 		if(isset($organizer_id) && !empty($organizer_id)) {
 			$organizer_url = get_permalink($organizer_id);
 			if(isset($organizer_url) && !empty($organizer_url)) {
-				printf('<div class="wpem-organizer-page-url-button"><a href="%s" class="wpem-theme-button"><span>%s</span></a></div>',  esc_url(get_permalink($organizer_id)), esc_attr_e('More info', 'wp-event-manager'));
+				printf('<div class="wpem-organizer-page-url-button"><a href="%s" class="wpem-theme-button"><span>%s</span></a></div>',  esc_url(get_permalink($organizer_id)), esc_attr('More info', 'wp-event-manager'));
 			}
 		}
 	}
