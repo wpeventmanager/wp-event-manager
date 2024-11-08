@@ -32,7 +32,7 @@ if (is_user_logged_in()) : ?>
 		if (!empty($registration_fields)) {
 			foreach ($registration_fields as $key => $field) { ?>
 				<div class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-					<label class="wpem-form-label-text" for="<?php echo esc_attr($key); ?>"><?php echo esc_attr($field['label']) . esc_attr(apply_filters('submit_event_form_required_label', $field['required'] ?   '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?></label>
+					<label class="wpem-form-label-text" for="<?php echo esc_attr($key); ?>"><?php echo esc_attr($field['label']) . apply_filters('submit_event_form_required_label', $field['required'] ?   '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
 					<div class="field <?php echo esc_attr($field['required']) ? 'required-field' : ''; ?>">
 						<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key'   => $key, 'field' => $field)); ?>
 					</div>
