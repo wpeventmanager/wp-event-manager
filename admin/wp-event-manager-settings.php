@@ -232,6 +232,46 @@ class WP_Event_Manager_Settings{
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
+						array(
+							'name'       => 'enable_before_html',
+							'std'        => '0',
+							'label'      => __('Enable the Before HTML (below) on shortcodes.', 'wp-event-manager'),
+							'cb_label'   => __('Check this to show the Before HTML from the text area below on events displayed via shortcode.', 'wp-event-manager'),
+							'desc'       =>'',
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
+						array(
+							'name'       => 'event_content_html',
+							'std'        => '',
+							'label'      => __('Add HTML before event content', 'wp-event-manager'),
+							'desc'       => __('You can add additional HTML content here that will be displayed before the event content.', 'wp-event-manager'),
+							'type'       => 'textarea', 
+							'attributes' => array(
+							'rows' => 5, 
+							'cols' => 50 
+							),
+						),
+						array(
+							'name'       => 'enable_after_html',
+							'std'        => '0',
+							'label'      => __('Enable the After HTML (below) on shortcodes.', 'wp-event-manager'),
+							'cb_label'   => __('Check this to show the After HTML from the text area below on events displayed via shortcode.', 'wp-event-manager'),
+							'desc'       => __('If enabled, the content will be displayed after the event template.', 'wp-event-manager'),
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
+						array(
+							'name'       => 'event_content_after_html',
+							'std'        => '',
+							'label'      => __('Add HTML after event content', 'wp-event-manager'),
+							'desc'       => __('You can add additional HTML content here that will be displayed after the event content.', 'wp-event-manager'),
+							'type'       => 'textarea', 
+							'attributes' => array(
+								'rows' => 5, 
+								'cols' => 50 
+								),
+						),
 					),
 				),
 				'event_submission'     => array(
