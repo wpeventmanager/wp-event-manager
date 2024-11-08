@@ -238,7 +238,8 @@ class WP_Event_Manager_Date_Time {
 	 * @since 3.0
 	 **/
 	public static function get_event_manager_view_date_format(){
-		return get_option('event_manager_view_date_format','M d ,Y');
+		$date_format = get_option('event_manager_view_date_format','M d ,Y');
+		return $date_format != null  ? $date_format : 'Y-m-d';
 	}
 
 	/**
