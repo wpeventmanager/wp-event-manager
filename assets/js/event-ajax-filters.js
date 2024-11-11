@@ -47,7 +47,7 @@ var EventAjaxFilters = function() {
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('.event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset);
             jQuery('div.event_listings').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
-            jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
+            
             jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(function() {
                 var target = jQuery(this).closest('div.event_listings');
                 target.triggerHandler('update_event_listings', [1, false]);
@@ -114,6 +114,7 @@ var EventAjaxFilters = function() {
             },
             loadMoreEvents: function(event) {
                 Common.logInfo("EventAjaxFilters.actions.loadMoreEvents...");
+                jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
                 var target = jQuery(this).closest('div.event_listings');
                 var page = parseInt(jQuery(this).data('page') || 1);
                 var loading_previous = false;
