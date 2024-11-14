@@ -607,6 +607,8 @@ class WP_Event_Manager_Shortcodes{
 			'title'                     => esc_attr(__('Events', 'wp-event-manager')),
 		)), $atts));
 
+		$current_page = max(1, get_query_var('paged'));
+
 		// Categories
 		if(!esc_attr(get_option('event_manager_enable_categories'))) {
 			$show_categories = false;
@@ -755,6 +757,7 @@ class WP_Event_Manager_Shortcodes{
 			'featured'          => $featured,
 			'cancelled'         => $cancelled,
 			'event_online'    	=> $event_online,
+			'paged'             => $current_page,
 		)));
 		if($events->have_posts()) :
 
