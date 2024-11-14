@@ -55,7 +55,7 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 						}
 					}
 					echo '<ul class="products columns-4">';
-					echo $addons; 
+					echo wp_kses_post($addons);
 					echo '</ul>';
 			} ?>
 			</div>

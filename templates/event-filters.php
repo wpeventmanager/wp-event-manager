@@ -14,7 +14,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<div class="wpem-col">
 				<!-- shows default keywords text field  start-->
 				<div class="wpem-form-group">
-					<label for="search_keywords" class="wpem-form-label"><?php _e('Keywords', 'wp-event-manager'); ?></label>
+					<label for="search_keywords" class="wpem-form-label"><?php esc_attr_e('Keywords', 'wp-event-manager'); ?></label>
 					<input type="text" name="search_keywords" id="search_keywords" placeholder="<?php esc_attr_e('Keywords', 'wp-event-manager'); ?>" value="<?php echo esc_attr($keywords); ?>" />
 				</div>
 				<!-- shows default keywords text field end -->
@@ -24,7 +24,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<!-- Search by location section start -->
 			<div class="wpem-col">
 				<div class="wpem-form-group wpem-location-container">
-					<label for="search_location" class="wpem-form-label"><?php _e('Location', 'wp-event-manager'); ?></label>
+					<label for="search_location" class="wpem-form-label"><?php esc_attr_e('Location', 'wp-event-manager'); ?></label>
 					<input type="text" name="search_location" id="search_location" placeholder="<?php esc_attr_e('Location', 'wp-event-manager'); ?>" value="<?php echo esc_attr($location); ?>" />
 				</div>
 			</div>
@@ -70,7 +70,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 
 				<div class="wpem-col">
 					<div class="wpem-form-group">
-						<label for="search_datetimes" class="wpem-form-label"><?php _e('Any dates', 'wp-event-manager'); ?></label>
+						<label for="search_datetimes" class="wpem-form-label"><?php esc_attr_e('Any dates', 'wp-event-manager'); ?></label>
 						<input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo esc_attr($selected_datetime); ?>' class="event-manager-category-dropdown date_range_picker">
 					</div>
 				</div>
@@ -82,7 +82,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<!-- Search by event categories section start -->
 			<?php if(isset($categories) && !empty($categories)) :
 				foreach ($categories as $category) : ?>
-					<input type="hidden" name="search_categories[]" value="<?php echo sanitize_title($category); ?>" />
+					<input type="hidden" name="search_categories[]" value="<?php echo esc_attr(sanitize_title($category)); ?>" />
 				<?php endforeach;
 			elseif(isset($show_categories) && !empty($show_categories) && !is_tax('event_listing_category') && get_terms('event_listing_category', ['hide_empty' => false])) : ?>
 				<div class="wpem-col">
@@ -113,12 +113,12 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<!-- Search by event type section start -->
 			<?php if(isset($event_types) && !empty($event_types)) :
 				foreach ($event_types as $event_type) : ?>
-					<input type="hidden" name="search_event_types[]" value="<?php echo sanitize_title($event_type); ?>" />
+					<input type="hidden" name="search_event_types[]" value="<?php echo esc_attr(sanitize_title($event_type)); ?>" />
 				<?php endforeach;
 			elseif(isset($show_event_types) && !empty($show_event_types) && !is_tax('event_listing_type') && get_terms('event_listing_type', ['hide_empty' => false])) : ?>
 				<div class="wpem-col">
 					<div class="wpem-form-group">
-						<label for="search_event_types" class="wpem-form-label"><?php _e('Event Type', 'wp-event-manager'); ?></label>
+						<label for="search_event_types" class="wpem-form-label"><?php esc_attr_e('Event Type', 'wp-event-manager'); ?></label>
 						<?php if($show_event_type_multiselect) :
 							 event_manager_dropdown_selection(
 								array('value' => 'slug',
@@ -153,20 +153,20 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			if(isset($show_ticket_prices) && !empty($show_ticket_prices)) :
 				if(isset($ticket_prices) && !empty($ticket_prices)) :
 					foreach ($ticket_prices as $ticket_price) : ?>
-						<input type="hidden" name="search_ticket_prices[]" value="<?php echo sanitize_title($ticket_price); ?>" />
+						<input type="hidden" name="search_ticket_prices[]" value="<?php echo esc_attr(sanitize_title($ticket_price)); ?>" />
 					<?php endforeach; ?>
 				<?php else : ?>
 					<div class="wpem-col">
 						<div class="wpem-form-group">
-							<label for="search_ticket_prices" class="wpem-form-label"><?php _e('Ticket Prices', 'wp-event-manager'); ?></label>
-							<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php _e('No results match', 'wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options', 'wp-event-manager'); ?>">
+							<label for="search_ticket_prices" class="wpem-form-label"><?php esc_attr_e('Ticket Prices', 'wp-event-manager'); ?></label>
+							<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php esc_attr_e('No results match', 'wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options', 'wp-event-manager'); ?>">
 								<?php
 								$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
 								foreach ($ticket_prices as $key => $value) :
 									if(!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price == $key) : ?>
-										<option selected=selected value="<?php echo esc_attr($key) != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
+										<option selected=selected value="<?php echo esc_attr($key) != 'ticket_price_any' ? esc_attr($key) : ""; ?>"><?php echo  esc_attr($value); ?></option>
 									<?php else : ?>
-										<option value="<?php echo esc_attr($key) != 'ticket_price_any' ? $key : ""; ?>"><?php echo  $value; ?></option>
+										<option value="<?php echo esc_attr($key) != 'ticket_price_any' ? esc_attr($key) : ""; ?>"><?php echo  esc_attr($value); ?></option>
 								<?php endif;
 								endforeach; ?>
 							</select>
@@ -183,4 +183,4 @@ do_action('event_manager_event_filters_before', $atts); ?>
 	<?php do_action('event_manager_event_filters_end', $atts); ?>
 </form>
 <?php do_action('event_manager_event_filters_after', $atts); ?>
-<noscript><?php _e('Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled in order to view listings.', 'wp-event-manager'); ?></noscript>
+<noscript><?php esc_attr_e('Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled in order to view listings.', 'wp-event-manager'); ?></noscript>

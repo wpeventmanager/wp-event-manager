@@ -55,10 +55,11 @@
 								$active_menu = 'wpem-main-vmenu-dashboard-link-active';
 								$active_parent_menu = 'wpem-main-vmenu-dashboard-link-active';
 							}
-							$child_menu_html .= '<li class="wpem-main-vmenu-dashboard-submenu-li"><a class="wpem-main-vmenu-dashboard-link ' . $active_menu . '" href="' . $action_url . '">' . $submenu['title'] . '</a></li>';
+							$child_menu_html .= '<li class="wpem-main-vmenu-dashboard-submenu-li"><a class="wpem-main-vmenu-dashboard-link ' . esc_attr($active_menu) . '" href="' . esc_url($action_url) . '">' . esc_attr($submenu['title']) . '</a></li>';
 						}
+						
 						$child_menu_html .= '</ul>';
-						printf('<li class="wpem-main-vmenu-dashboard-li wpem-main-vmenu-dashboard-sub-menu"><a class="wpem-main-vmenu-dashboard-link %s" href="javascript:void(0)"><i class="%s"></i>%s<i class="wpem-icon-play3 wpem-main-vmenu-caret wpem-main-vmenu-caret-up"></i></a>', $active_parent_menu, $menu['icon'], $menu['title']);
+						printf('<li class="wpem-main-vmenu-dashboard-li wpem-main-vmenu-dashboard-sub-menu"><a class="wpem-main-vmenu-dashboard-link %s" href="javascript:void(0)"><i class="%s"></i>%s<i class="wpem-icon-play3 wpem-main-vmenu-caret wpem-main-vmenu-caret-up"></i></a>', esc_attr($active_parent_menu), esc_attr($menu['icon']), esc_attr($menu['title']));
 						echo wp_kses_post($child_menu_html);
 						printf('</li>');
 					} else {
@@ -77,7 +78,7 @@
 						if ($current_action === $name) {
 							$active_menu = 'wpem-main-vmenu-dashboard-link-active';
 						}
-						printf('<li class="wpem-main-vmenu-dashboard-li"><a class="wpem-main-vmenu-dashboard-link %s" href="%s"> <i class="%s"></i>%s</a></li>', $active_menu, $action_url, $menu['icon'], $menu['title']);
+						printf('<li class="wpem-main-vmenu-dashboard-li"><a class="wpem-main-vmenu-dashboard-link %s" href="%s"> <i class="%s"></i>%s</a></li>', esc_attr($active_menu), esc_url($action_url), esc_attr($menu['icon']), esc_attr($menu['title']));
 					}
 				} ?>
 			</ul>
@@ -106,7 +107,7 @@
 							<?php do_action('event_manager_event_dashboard_button_action_start'); ?>
 							<?php $submit_event = get_option('event_manager_submit_event_form_page_id');
 							if (!empty($submit_event)) : ?>
-								<a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php esc_attr_e('Add Event', 'wp-event-manager'); ?>" href="<?php echo get_permalink($submit_event); ?>"><i class="wpem-icon-plus"></i></a>
+								<a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php esc_attr_e('Add Event', 'wp-event-manager'); ?>" href="<?php echo esc_url(get_permalink($submit_event)); ?>"><i class="wpem-icon-plus"></i></a>
 							<?php endif; ?>
 							<?php do_action('event_manager_event_dashboard_button_action_end'); ?>
 							<a href="javascript:void(0)" title="<?php esc_attr_e('Filter', 'wp-event-manager'); ?>" class="wpem-dashboard-event-filter wpem-dashboard-header-btn"><i class="wpem-icon-filter"></i></a>
@@ -123,17 +124,17 @@
 						$display_block = 'wpem-d-block';
 					} ?>
 
-					<form action="<?php echo esc_url(get_permalink( get_the_ID()));?>" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf($display_block); ?>">
+					<form action="<?php echo esc_url(get_permalink( get_the_ID()));?>" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf(esc_attr($display_block)); ?>">
 						<div class="wpem-events-filter">
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
 							<div class="wpem-events-filter-block">
 								<?php $search_keywords = isset($_GET['search_keywords']) ? esc_attr($_GET['search_keywords']) : ''; ?>
-								<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo esc_attr($search_keywords); ?>" placeholder="<?php _e('Keywords', 'wp-event-manager'); ?>"></div>
+								<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo esc_attr($search_keywords); ?>" placeholder="<?php esc_attr_e('Keywords', 'wp-event-manager'); ?>"></div>
 							</div>
 							<div class="wpem-events-filter-block">
 								<div class="wpem-form-group">
 									<select name="search_order_by" id="search_order_by">
-										<option value=""><?php _e('Order by', 'wp-event-manager'); ?></option>
+										<option value=""><?php esc_attr_e('Order by', 'wp-event-manager'); ?></option>
 										<?php
 										foreach (get_event_order_by() as $order_by) : ?>
 											<?php if (isset($order_by['type']) && !empty($order_by['type'])) : ?>
@@ -177,7 +178,7 @@
 													<?php if ($event->post_status == 'publish') : ?>
 														<a href="<?php echo esc_attr(get_permalink($event->ID)); ?>"><?php echo esc_html($event->post_title); ?></a>
 													<?php else : ?>
-														<?php echo esc_attr($event->post_title); ?> <small class="wpem-event-status-<?php echo sanitize_title(get_event_status($event)); ?>"><?php display_event_status($event); ?></small>
+														<?php echo esc_attr($event->post_title); ?> <small class="wpem-event-status-<?php echo esc_attr(sanitize_title(get_event_status($event))); ?>"><?php display_event_status($event); ?></small>
 													<?php endif; 
 													if (is_event_cancelled($event)) : ?>
 														<small class="wpem-event-status-cancelled"><?php esc_html_e('Cancelled', 'wp-event-manager'); ?></small>
@@ -258,7 +259,7 @@
 										<div class="wpem-dashboard-event-datetime-location">
 											<?php do_action('wpem_event_dashboard_event_info_start', $event); ?>
 											<div class="wpem-dashboard-event-date-time">
-												<div class="wpem-dashboard-event-placeholder"><strong><?php _e('Date And Time', 'wp-event-manager') ?></strong></div>
+												<div class="wpem-dashboard-event-placeholder"><strong><?php esc_attr_e('Date And Time', 'wp-event-manager') ?></strong></div>
 												<?php display_event_start_date('', '', true, $event); ?> <?php
 													if (get_event_start_time($event)) {
 														display_date_time_separator();

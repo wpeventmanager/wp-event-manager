@@ -1,5 +1,5 @@
 <!-- Events Display Widget-->
-<div class="wpem-main wpem-single-event-widget <?php echo isset($widget_style) ? $widget_style : '';?>">
+<div class="wpem-main wpem-single-event-widget <?php echo isset($widget_style) ? esc_attr($widget_style) : '';?>">
 	<a href="<?php the_permalink(); ?>"
 		class="wpem-event-action-url event-widget">
 		<div class="wpem-event-banner">

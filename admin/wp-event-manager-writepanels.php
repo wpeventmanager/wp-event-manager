@@ -332,8 +332,9 @@ class WP_Event_Manager_Writepanels {
 					<?php
 					foreach ($terms as $term) {
 						$id = $taxonomy . '-' . $term->term_id;
-						echo wp_kses_post("<li id='$id'><label class='selectit'>");
-						echo "<input type='radio' id='in-$id' name='{$name}'" . checked($current, $term->term_id, false) . "value='$term->term_id' />$term->name<br />";
+						echo wp_kses_post("<li id='" . esc_attr($id) . "'><label class='selectit'>");
+						echo "<input type='radio' id='" . esc_attr("in-$id") . "' name='" . esc_attr($name) . "'" . checked($current, $term->term_id, false) . " value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . "<br />";
+						echo wp_kses_post('</label></li>');
 						echo wp_kses_post('</label></li>');
 					}
 					?>
@@ -345,8 +346,9 @@ class WP_Event_Manager_Writepanels {
 					<?php
 					foreach ($popular as $term) {
 						$id = wp_kses_post('popular-' . esc_attr($taxonomy) . '-' . esc_attr($term->term_id));
-						echo "<li id='$id'><label class='selectit'>";
-						echo "<input type='radio'  name='{$name}' id='in-$id'  value='$term->term_id' />" . esc_html($term->name) . '<br />';
+						echo "<li id='" . esc_attr($id) . "'><label class='selectit'>";
+						echo "<input type='radio' name='" . esc_attr($name) . "' id='" . esc_attr("in-$id") . "' value='" . esc_attr($term->term_id) . "' />" . esc_html($term->name) . "<br />";
+						echo '</label></li>';
 						echo wp_kses_post('</label></li>');
 					}
 					?>
@@ -535,19 +537,19 @@ public static function input_multidate($key, $field) {
     ?>
     <div id="recure_custom_dates_field" class="controls form-field" position: relative; style="display:none;">
         <label for="<?php echo esc_attr($key); ?>">
-            <?php _e('Custom Dates', 'wp-event-manager'); ?>
+            <?php esc_attr_e('Custom Dates', 'wp-event-manager'); ?>
         </label>
         <div id="custom_dates_container">
             <?php if (!empty($dates)) : ?>
                 <?php foreach ($dates as $date) : ?>
-                    <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" value="<?php echo esc_attr($date); ?>" placeholder="<?php _e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />
+                    <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" value="<?php echo esc_attr($date); ?>" placeholder="<?php esc_attr_e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />
                 <?php endforeach; ?>
             <?php else : ?>
-                <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />
+                <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php esc_attr_e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />
             <?php endif; ?>
         </div>
         <button type="button" id="add_custom_date" class="button">
-            <?php _e('Add Another Date', 'wp-event-manager'); ?>
+            <?php esc_attr_e('Add Another Date', 'wp-event-manager'); ?>
         </button>
 			</div>
 
@@ -563,7 +565,7 @@ public static function input_multidate($key, $field) {
         $('#add_custom_date').on('click', function(e) {
             e.preventDefault();
             console.log('Add date button clicked'); // Debugging line
-            var newDateField = $('<input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php _e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />');
+            var newDateField = $('<input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php esc_attr_e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />');
             $('#custom_dates_container').append(newDateField);
 
             // Initialize date picker for the newly added input
@@ -604,7 +606,7 @@ public static function input_multiweek($key, $field) {
     ?>
     <div id="recure_custom_weeks_field" class="controls form-field" style="display:none;">
         <label for="<?php echo esc_attr($key); ?>">
-            <?php _e('Custom Weeks', 'wp-event-manager'); ?>
+            <?php esc_attr_e('Custom Weeks', 'wp-event-manager'); ?>
         </label>
         <div id="custom_weeks_container">
             <?php if (!empty($weeks)) : ?>
@@ -628,7 +630,7 @@ public static function input_multiweek($key, $field) {
             <?php endif; ?>
         </div>
         <button type="button" id="add_custom_week" class="button">
-            <?php _e('Add Another Week Day', 'wp-event-manager'); ?>
+            <?php esc_attr_e('Add Another Week Day', 'wp-event-manager'); ?>
         </button>
     </div>
 
@@ -831,10 +833,10 @@ public static function input_multiweek($key, $field) {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
+					<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php
 				$value = isset($field['value']) ? $field['value'] : $field['default'];
-				echo WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value));
+				echo esc_attr_e(WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value)));
 				?>
 			</select>
 		</p>

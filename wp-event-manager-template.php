@@ -2515,7 +2515,7 @@ function display_date_time_separator(){
 	if($separator){
 		return	apply_filters('event_manager_date_time_format_separator', get_option('event_manager_date_time_format_separator', '@'));
 	}else {
-		return '@';
+		echo ' @ ';
 	}
 }
 

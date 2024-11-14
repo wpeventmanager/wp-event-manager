@@ -694,7 +694,7 @@ class WP_Event_Manager_Settings{
 												'echo'        => false,
 												'selected'    => absint($value),
 											);
-											echo str_replace(' id=', " data-placeholder='" . __('Select a page&hellip;', 'wp-event-manager') . "' id=", wp_dropdown_pages($args));
+											echo str_replace(' id=', " data-placeholder='" . esc_attr('Select a page&hellip;', 'wp-event-manager') . "' id=", wp_dropdown_pages($args));
 											if($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
@@ -709,14 +709,14 @@ class WP_Event_Manager_Settings{
 										case '':
 										case 'input':
 										case 'text': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo $placeholder; ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="text" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value, 'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo wp_kses_post($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
 											break;
 										case 'email': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value,'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo esc_attr($placeholder); ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value,'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo wp_kses_post($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
@@ -730,7 +730,7 @@ class WP_Event_Manager_Settings{
 											<?php }
 											break;
 										case 'button': ?>
-											<button class="button" id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="button" name="<?php echo esc_attr($option['name']); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo esc_attr($placeholder); ?>><?php echo esc_attr($option['cb_label']); ?></button>
+											<button class="button" id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="button" name="<?php echo esc_attr($option['name']); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo wp_kses_post($placeholder); ?>><?php echo esc_attr($option['cb_label']); ?></button>
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
