@@ -22,7 +22,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
                     <div class="wpem-group-counter-wrapper">
                         <div class="wpem-group-counter"><?php echo  esc_attr(absint($index + 1)); ?></div>
                     </div>
-                    <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php _e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($index); ?>"><i class="wpem-icon-cross"></i></a></div>
+                    <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($index); ?>"><i class="wpem-icon-cross"></i></a></div>
                 </div>
 
                 <div class="wpem-tab-content current">
@@ -31,7 +31,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
                         foreach ($field['fields'] as $subkey => $subfield) : ?>
                             <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
                                 <?php if (!empty($subfield['label'])) : ?>
-                                    <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
+                                    <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . wp_kses_post(apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional123)', 'wp-event-manager') . '</small>', $subfield)); ?></label>
                                 <?php endif; ?>
 
                                 <div class="field">
@@ -71,7 +71,7 @@ endif; ?>
                 <div class="wpem-group-counter"><?php echo wp_kses_post('%%group-row-index%%'); ?></div>
             </div>
 
-            <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php _e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($key . '_%%group-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
+            <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($key . '_%%group-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
         </div>
 
         <div class="wpem-tab-content current">
@@ -80,7 +80,7 @@ endif; ?>
                 foreach ($field['fields'] as $subkey => $subfield) : ?>
                     <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
                         <?php if (!empty($subfield['label'])) : ?>
-                            <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield); ?></label>
+                            <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . wp_kses_post(apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield)); ?></label>
                         <?php endif; ?>
 
                         <div class="field">

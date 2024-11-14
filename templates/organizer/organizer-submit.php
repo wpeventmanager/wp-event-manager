@@ -23,7 +23,7 @@ do_action('wp_event_manager_organizer_submit_before');
         <h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Organizer Details', 'wp-event-manager'); ?></h2>
         <?php if (isset($resume_edit) && $resume_edit) {
 			// Translators: %s is a link to create a new organizer
-            printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing organizer. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . __('Create A New organizer', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
+            printf('<p class="wpem-alert wpem-alert-info"><strong>' . esc_attr("You are editing an existing organizer. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . esc_attr('Create A New organizer', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
         }        
         do_action('submit_organizer_form_organizer_fields_start'); 
         foreach ($organizer_fields as $key => $field) : 
@@ -31,7 +31,7 @@ do_action('wp_event_manager_organizer_submit_before');
                 continue;
             endif;?>
             <fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-                <label for="<?php esc_attr($key, 'wp-event-manager'); ?>"><?php echo esc_attr($field['label'], 'wp-event-manager'); echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
+                <label for="<?php esc_attr($key, 'wp-event-manager'); ?>"><?php echo esc_attr($field['label'], 'wp-event-manager'); echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?></label>
                 <div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
                     <?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
                 </div>

@@ -408,7 +408,11 @@ function display_event_publish_date($post = null){
 	} else {
 		$display_date = sprintf(wp_kses('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
 	}
-	printf('<time datetime="' . get_post_time('Y-m-d') . '">' . esc_html($display_date) . '</time>');
+	printf(
+		'<time datetime="%s">%s</time>',
+		esc_attr(get_post_time('Y-m-d')),  // Escape the date output from get_post_time
+		esc_html($display_date)  // Escape the display date for safe HTML output
+	);
 }
 
 /**
@@ -639,14 +643,14 @@ function display_event_banner($size = 'full', $default = null, $post = null){
 			$banner = event_manager_get_resized_image($banner, $size);
 		}
 		printf('<link rel="image_src" href="' . esc_attr($banner) . '"/>');
-		printf('<img itemprop="image" content="' . esc_attr($banner) . '" src="' . esc_attr($banner) . '" alt="' . $alt_text . '" />');
+		printf('<img itemprop="image" content="' . esc_attr($banner) . '" src="' . esc_attr($banner) . '" alt="' . esc_attr($alt_text) . '" />');
 	} else if($default) {
 
-		printf('<img itemprop="image" content="' . esc_attr($default) . '" src="' . esc_attr($default) . '" alt="' . $alt_text . '" />');
+		printf('<img itemprop="image" content="' . esc_attr($default) . '" src="' . esc_attr($default) . '" alt="' . esc_attr($alt_text) . '" />');
 	} else if(is_array($banner) && isset($banner[0])) {
-		printf('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . $alt_text . '" />');
+		printf('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . esc_attr($alt_text) . '" />');
 	} else {
-		printf('<img itemprop="image" content="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" src="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . $alt_text . '" />');
+		printf('<img itemprop="image" content="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" src="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr($alt_text) . '" />');
 	}
 }
 
@@ -2094,8 +2098,8 @@ function display_organizer_google_plus($before = '', $after = '', $echo = true, 
  * @return void
  */
 function event_listing_class($class = '', $post_id = null){
-	// Separates classes with a single space, collates classes for post DIV
-	echo 'class="' . join(' ', get_event_listing_class($class, $post_id)) . '"';
+    $classes = get_event_listing_class($class, $post_id);
+    echo 'class="' . esc_attr(join(' ', $classes)) . '"';
 }
 
 /**
@@ -2600,7 +2604,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 		</ul>
 	</nav>
 <?php
-	echo ob_get_clean();
+	 ob_get_clean();
 }
 
 /**

@@ -23,7 +23,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
                     <li class="wpem-tab-link" data-tab="<?php echo esc_attr($key); ?>_<?php echo esc_attr(absint($index)); ?>"><?php esc_html_e('Settings', 'wp-event-manager'); ?></li>
                 </ul>
 
-                <div id="sell-ticket-details-<?php echo esc_attr($key) . '-' . $index; ?>" class="wpem-tab-content current">
+                <div id="sell-ticket-details-<?php echo esc_attr($key) . '-' . esc_attr($index); ?>" class="wpem-tab-content current">
                     <div id="sell-ticket-details_<?php echo esc_attr(absint($index)); ?>" class="wpem-tab-pane active">
                         <?php
                         if (isset($field['fields'])) {
@@ -31,11 +31,11 @@ if (!empty($field['value']) && is_array($field['value'])) :
                                 if ($subkey == 'ticket_description') : ?>
                     </div>
                     <!------------end ticket details tab------>
-                    <div id="<?php echo esc_attr($key) . '_' . $index; ?>" class="wpem-tab-pane">
+                    <div id="<?php echo esc_attr($key) . '_' . esc_attr($index); ?>" class="wpem-tab-pane">
                     <?php endif; ?>
                     <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
                         <?php if (!empty($subfield['label'])) : ?>
-                            <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
+                            <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . esc_attr('(optional)', 'wp-event-manager') . '</small>'); ?></label>
                         <?php endif; ?>
 
                         <div class="field">
@@ -73,12 +73,12 @@ if (!empty($field['value']) && is_array($field['value'])) :
                     <div class="wpem-ticket-counter"><?php echo wp_kses_post('%%repeated-row-index%%'); ?></div>
                 </div>
  
-                <div class="wpem-ticket-close-button"><a href="#remove" class="remove-row" title="<?php _e('Remove', 'wp-event-manager'); ?>" id="repeated-row-<?php echo esc_attr($key . '_%%repeated-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
+                <div class="wpem-ticket-close-button"><a href="#remove" class="remove-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="repeated-row-<?php echo esc_attr($key . '_%%repeated-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
             </div>
 
             <ul class="wpem-tabs-wrap">
-                <li class="wpem-tab-link active" data-tab="sell-ticket-details_%%repeated-row-index%%"><?php _e('Ticket details', 'wp-event-manager'); ?></li>
-                <li class="wpem-tab-link" data-tab="<?php echo esc_attr($key); ?>_%%repeated-row-index%%"><?php _e('Settings', 'wp-event-manager'); ?></li>
+                <li class="wpem-tab-link active" data-tab="sell-ticket-details_%%repeated-row-index%%"><?php esc_attr_e('Ticket details', 'wp-event-manager'); ?></li>
+                <li class="wpem-tab-link" data-tab="<?php echo esc_attr($key); ?>_%%repeated-row-index%%"><?php esc_attr_e('Settings', 'wp-event-manager'); ?></li>
             </ul>
             <div id="sell-ticket-details-<?php echo esc_attr($key) . '-' . '%%repeated-row-index%%'; ?>" class="wpem-tab-content current">
                 <div id="sell-ticket-details_%%repeated-row-index%%" class="wpem-tab-pane active">
@@ -93,7 +93,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
 
                 <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
                     <?php if (!empty($subfield['label'])) : ?>
-                        <label for="<?php esc_attr($subkey,'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>'); ?></label>
+                        <label for="<?php esc_attr($subkey,'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . esc_attr('(optional)', 'wp-event-manager') . '</small>'); ?></label>
                     <?php endif; ?>
 
                     <div class="field">

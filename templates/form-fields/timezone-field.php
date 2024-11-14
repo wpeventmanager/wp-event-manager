@@ -16,5 +16,5 @@
  	<?php
 		$field['default'] = isset($field['default']) ? $field['default'] : '';
 		$value = isset($field['value']) ? $field['value'] : $field['default'];	
-		echo WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value)); ?>
+		echo esc_attr_e(WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value))); ?>
  </select>

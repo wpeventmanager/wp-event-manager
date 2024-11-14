@@ -1,7 +1,7 @@
 <p>
 	<?php 
 	// translators: %1$s is the registration email, %2$s is the subject line for the email.
-	printf(__('To register for this event <strong>email your details to</strong> <a class="event_registration_email" href="mailto:%1$s%2$s">%1$s</a>', 'wp-event-manager'), esc_attr($register->email), '?subject=' . rawurlencode($register->subject)); 
+	printf(esc_attr('To register for this event <strong>email your details to</strong> <a class="event_registration_email" href="mailto:%1$s%2$s">%1$s</a>', 'wp-event-manager'), esc_attr($register->email), '?subject=' . rawurlencode($register->subject)); 
 	?>
 </p>
 

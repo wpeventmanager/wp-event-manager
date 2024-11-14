@@ -9,11 +9,11 @@ do_action('wp_event_manager_venue_submit_before');
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-venue-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if (is_user_logged_in()) { ?>
-		<h2 class="wpem-form-title wpem-heading-text"><?php _e('Venue Details', 'wp-event-manager'); ?></h2>
+		<h2 class="wpem-form-title wpem-heading-text"><?php esc_attr_e('Venue Details', 'wp-event-manager'); ?></h2>
 		<?php
 		if (isset($resume_edit) && $resume_edit) {
 			// Translators: %s is the link to create a new venue
-			printf('<p class="wpem-alert wpem-alert-info"><strong>' . __("You are editing an existing venue. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . __('Create A New venue', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
+			printf('<p class="wpem-alert wpem-alert-info"><strong>' . esc_attr("You are editing an existing venue. %s", "wp-event-manager") . '</strong></p>', '<a href="?new=1&key=%s">' . esc_attr('Create A New venue', 'wp-event-manager') . '</a>',esc_attr($resume_edit));
 		} 
 		
 		do_action('submit_venue_form_venue_fields_start'); 
@@ -23,7 +23,7 @@ do_action('wp_event_manager_venue_submit_before');
 				continue;
 			endif;?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-				<label for="<?php esc_attr($key, 'wp-event-manager'); ?>"><?php echo esc_attr($field['label'], 'wp-event-manager'); echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?></label>
+				<label for="<?php esc_attr($key, 'wp-event-manager'); ?>"><?php echo esc_attr($field['label'], 'wp-event-manager'); echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?></label>
 				<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 					<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
 				</div>
@@ -41,7 +41,7 @@ do_action('wp_event_manager_venue_submit_before');
 	<?php	} else { ?>
 		<div class="wpem-form-group">
 			<div class="field account-sign-in wpem-alert wpem-alert-info">
-				<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) : esc_url(home_url() . '/wp-login.php'); ?>"><?php _e('Log In', 'wp-event-manager'); ?></a>
+				<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? esc_url(apply_filters('submit_event_form_login_url', get_option('event_manager_login_page_url'))) : esc_url(home_url() . '/wp-login.php'); ?>"><?php esc_attr_e('Log In', 'wp-event-manager'); ?></a>
 				<?php echo esc_attr(" to Submit the List of Venue from your account.", "wp-event-manager"); ?>
 			</div>
 		</div>

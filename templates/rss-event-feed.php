@@ -9,7 +9,7 @@ do_action('event_fee_item_start'); ?>
 	<title><?php esc_attr(the_title_rss()); ?></title>
 	<link><?php esc_url(the_permalink_rss()); ?></link>
 	<dc:creator><?php esc_attr(the_author()); ?></dc:creator>
-	<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
+	<pubDate><?php echo esc_html(mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false)); ?></pubDate>
 	<guid isPermaLink="false"><?php esc_attr(the_guid()); ?></guid>
 	<description><![CDATA[<?php wp_kses_post(the_excerpt_rss()); ?>]]></description>
 	<content:encoded><![CDATA[<?php wp_kses_post(the_content_feed()); ?>]]></content:encoded>

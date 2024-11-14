@@ -46,7 +46,7 @@ do_action('wp_event_manager_event_submit_before');
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 				<label for="<?php esc_attr($key, 'wp-event-manager'); ?>">
 					<?php echo esc_attr($field['label'], 'wp-event-manager');
-					echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
+					echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 				</label>
 				<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 					<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
@@ -67,7 +67,7 @@ do_action('wp_event_manager_event_submit_before');
 						<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Organizer Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php esc_attr($key, 'wp-event-manager'); ?>">
 							<?php echo esc_attr($field['label'], 'wp-event-manager');
-							echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
+							echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 						</label>
 						<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 							<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
@@ -90,7 +90,7 @@ do_action('wp_event_manager_event_submit_before');
 						<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Venue Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php esc_attr($key, 'wp-event-manager'); ?>">
 							<?php echo esc_attr($field['label'], 'wp-event-manager');
-							echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
+							echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 						</label>
 						<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 							<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
@@ -105,7 +105,7 @@ do_action('wp_event_manager_event_submit_before');
 			<input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
 			<input type="hidden" name="event_id" value="<?php echo esc_attr($event_id); ?>" />
 			<input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
-			<input type="submit" name="submit_event" class="wpem-theme-button" value="<?php echo $submit_button_text; ?>" />
+			<input type="submit" name="submit_event" class="wpem-theme-button" value="<?php echo esc_attr($submit_button_text); ?>" />
 		</div>
 	<?php else :
 		do_action('submit_event_form_disabled');
@@ -145,7 +145,7 @@ do_action('wp_event_manager_event_submit_before');
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 							<label for="<?php echo esc_attr($key, 'wp-event-manager'); ?>">
 							<?php echo esc_attr($field['label'], 'wp-event-manager');
-							 	echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
+							 	echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 							</label>
 							<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 								<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
@@ -157,7 +157,7 @@ do_action('wp_event_manager_event_submit_before');
 					<div class="wpem-form-footer">
 						<input type="hidden" name="organizer_id" value="0">
 						<input type="hidden" name="step" value="0">
-						<input type="button" name="submit_organizer" class="wpem-theme-button wpem_add_organizer" value="<?php _e('Add Organizer', 'wp-event-manager'); ?>" />
+						<input type="button" name="submit_organizer" class="wpem-theme-button wpem_add_organizer" value="<?php esc_attr_e('Add Organizer', 'wp-event-manager'); ?>" />
 						<div id="oragnizer_message"></div>
 					</div>
 				</form>
@@ -196,7 +196,7 @@ if(get_option('enable_event_venue')) :
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 							<label for="<?php echo esc_attr($key, 'wp-event-manager'); ?>">
 								<?php echo esc_attr($field['label'], 'wp-event-manager');
-								echo apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field); ?>
+								echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 							</label>
 							<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 								<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
