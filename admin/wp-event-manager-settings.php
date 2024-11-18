@@ -272,6 +272,15 @@ class WP_Event_Manager_Settings{
 								'cols' => 50 
 								),
 						),
+						array(
+							'name'       => 'event_manager_use_custom_thumbnail',
+							'std'        => '0',
+							'label'      => __('Use Event Thumbnail', 'wp-event-manager'),
+							'cb_label'   => __('Enable custom thumbnail for events.', 'wp-event-manager'),
+							'desc'       => __('If enabled, users can upload custom thumbnails for their event listings.', 'wp-event-manager'),
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
 					),
 				),
 				'event_submission'     => array(
@@ -408,6 +417,15 @@ class WP_Event_Manager_Settings{
 							'label'      => __('Ticket Prices', 'wp-event-manager'),
 							'cb_label'   => __('Enable Ticket prices for submission form.', 'wp-event-manager'),
 							'desc'       => __('Choose whether to enable ticket prices on the event submission page.', 'wp-event-manager'),
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
+						array(
+							'name'       => 'event_manager_upload_custom_thumbnail',
+							'std'        => '0',
+							'label'      => __('Upload Your Custom Thumbnail', 'wp-event-manager'),
+							'cb_label'   => __('Allow users to upload their own custom thumbnail.', 'wp-event-manager'),
+							'desc'       => __('If enabled, users will be able to upload a custom thumbnail when submitting an event.', 'wp-event-manager'),
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
