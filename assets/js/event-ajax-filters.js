@@ -5,6 +5,13 @@ var EventAjaxFilters = function() {
         init: function() {
             Common.logInfo("EventAjaxFilters.init...");
 
+            // After deactivate calendar addon load box layout as default 
+            if(localStorage.getItem("layout")==="calendar-layout" ){
+				jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
+				jQuery("#wpem-event-box-layout").addClass("wpem-active-layout");
+				localStorage.setItem("layout", "box-layout"); 
+			}
+
             //set datepicker default range 
             var form = jQuery(this).closest('form');
             form.find(':input[name^="search_datetimes"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
