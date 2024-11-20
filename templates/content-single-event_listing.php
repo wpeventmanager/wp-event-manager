@@ -353,7 +353,7 @@ $event = $post; ?>
                                 if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
                                     get_event_manager_template('event-registration.php');
                                 } else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
-                                    echo '<div class="wpem-alert wpem-alert-warning">' . esc_attr('Event registration closed.', 'wp-event-manager') . '</div>';
+                                    echo '<div class="wpem-alert wpem-alert-warning">' . esc_html('Event registration closed.', 'wp-event-manager') . '</div>';
                                 }
                                 ?>
                                 <!-- Event registration button section end-->
