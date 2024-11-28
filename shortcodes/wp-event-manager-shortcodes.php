@@ -715,6 +715,8 @@ class WP_Event_Manager_Shortcodes{
 			//get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
 
 		} else {
+			
+			get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 			$arr_selected_datetime = [];
 			if(!empty($selected_datetime)) {
 				$selected_datetime = explode(',', $selected_datetime);
