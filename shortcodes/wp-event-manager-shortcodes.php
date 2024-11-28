@@ -716,7 +716,6 @@ class WP_Event_Manager_Shortcodes{
 
 		} else {
 			
-			get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 			$arr_selected_datetime = [];
 			if(!empty($selected_datetime)) {
 				$selected_datetime = explode(',', $selected_datetime);
@@ -774,6 +773,8 @@ class WP_Event_Manager_Shortcodes{
 			endwhile; 
 			get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));
 		 else :
+			
+			get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 			$default_events = get_posts(array(
 				'numberposts' => -1,
 				'post_type'   => 'event_listing',
