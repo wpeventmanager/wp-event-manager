@@ -452,6 +452,120 @@ class WP_Event_Manager {
 	}
 }
 
+
+function wpem_enqueue_deactivation_scripts($hook) {
+
+    if ($hook === 'plugins.php') {
+        wp_enqueue_script('wpem-deactivation-js', plugin_dir_url(__FILE__) . 'assets/js/wpem-deactivation.min.js', ['jquery'], '1.0', true);
+        wp_localize_script('wpem-deactivation-js', 'wpemAjax', [
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+        ]);
+        wp_enqueue_style('wpem-deactivation-css', plugin_dir_url(__FILE__) . 'assets/css/wpem-deactivation.min.css');
+    }
+}
+add_action('admin_enqueue_scripts', 'wpem_enqueue_deactivation_scripts');
+
+function wpem_handle_deactivation_form_submission() {
+    if (isset($_POST['reason'])) {
+        $reason = sanitize_text_field($_POST['reason']);
+        $additional_feedback = sanitize_text_field($_POST['additional_feedback']);
+
+        $current_user = wp_get_current_user();
+        $user_name = $current_user->display_name;
+        $user_email = $current_user->user_email;
+
+        $subject = "$user_name has deactivated the plugin";
+        $message = "
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    line-height: 1.6;
+                    color: #333;
+                }
+                .email-container {
+                    background-color: #f9f9f9;
+                    padding: 20px;
+                    border-radius: 5px;
+                    border: 1px solid #ddd;
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+                .header {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px;
+                    text-align: center;
+                    border-radius: 5px;
+                }
+                .content {
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 5px;
+                    margin-top: 20px;
+                }
+                .content p {
+                    margin: 10px 0;
+                }
+                .footer {
+                    font-size: 12px;
+                    color: #888;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+                .label {
+                    font-weight: bold;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <div class='email-container'>
+                <div class='header'>
+                    <h2>Plugin Deactivation Feedback</h2>
+                </div>
+                <div class='content'>
+                    <p><span class='label'>User Name:</span> $user_name</p>
+                    <p><span class='label'>User Email:</span> $user_email</p>
+                    <p><span class='label'>Reason for Deactivation:</span> $reason</p>
+                    <p><span class='label'>Additional Feedback:</span> $additional_feedback</p>
+                </div>
+                <div class='footer'>
+                    <p>Thank you for your feedback!</p>
+                </div>
+            </div>
+        </body>
+        </html>
+        ";
+
+        $headers = [
+            'Content-Type: text/html; charset=UTF-8',
+            'From: ' . $user_email,
+            'Reply-To: ' . $user_email
+        ];
+
+        wp_mail('test@mail.com', $subject, $message, $headers);
+
+        wp_send_json_success('Thank you for your feedback!');
+    } else {
+        wp_send_json_error('Please provide a reason for deactivation.');
+    }
+}
+
+add_action('wp_ajax_wpem_deactivation_form', 'wpem_handle_deactivation_form_submission');
+
+function wpem_handle_plugin_deactivation() {
+    if (!current_user_can('activate_plugins')) {
+        wp_send_json_error('You do not have permission to deactivate plugins.');
+    }
+
+    deactivate_plugins(plugin_basename(__FILE__));
+
+    wp_send_json_success('Plugin deactivated successfully.');
+}
+add_action('wp_ajax_wpem_deactivate_plugin', 'wpem_handle_plugin_deactivation');
+
 /**
  * Create link on plugin page for event manager plugin settings.
  */
