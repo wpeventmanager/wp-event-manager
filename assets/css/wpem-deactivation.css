@@ -105,3 +105,10 @@
     background: #cbd5e0;
 }
 
+.deactivating-message {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    padding: 20px !important;
+    color: #0073aa !important;
+}
