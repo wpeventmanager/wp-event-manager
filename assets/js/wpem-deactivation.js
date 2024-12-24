@@ -34,11 +34,11 @@ var Deactivation = function () {
                                         I found a better plugin
                                     </label>
                                     <label>
-                                        <input type="radio" name="reason" value="I couldn't get the plugin to work">
+                                        <input type="radio" name="reason" value="I could not get the plugin to work">
                                         I could not get the plugin to work
                                     </label>
                                     <label>
-                                        <input type="radio" name="reason" value="It's a temporary deactivation">
+                                        <input type="radio" name="reason" value="It is a temporary deactivation">
                                         It is a temporary deactivation
                                     </label>
                                     <label>
