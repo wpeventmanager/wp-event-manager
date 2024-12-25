@@ -1717,7 +1717,7 @@ i[class*="wpem-"] {
 .wpem-icon-no-sync:before {
   content: "\eaf0";
 }
-.wpem-icon-sendinblue:before {
+.wpem-icon-brevo:before {
   content: "\eaf1";
 }
 .wpem-icon-zoom:before {
