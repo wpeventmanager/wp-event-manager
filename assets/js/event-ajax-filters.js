@@ -275,6 +275,7 @@ var EventAjaxFilters = function() {
                     success: function(result) {
                         if (result) {
                             try {
+                                jQuery('.no_event_listings_found').remove();
                                 if (result.filter_value) {
                                     jQuery(filters_bar).show().html('<span>' + result.filter_value + '</span>' + result.showing_links)
                                 } else {
