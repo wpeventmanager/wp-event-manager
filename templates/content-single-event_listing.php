@@ -407,10 +407,8 @@ $event = $post; ?>
                                                     echo esc_attr(',');?>
                                                 </a><?php
                                             }
-                                            if (!is_event_online()) {?>
-                                                <a href="http://maps.google.com/maps?q=<?php display_event_location();?>" target="_blank">  
+                                            if (!is_event_online()) {?> 
                                                     <?php display_event_location();?>
-                                                </a>
                                             <?php } else {?>
                                                 <?php esc_attr_e('Online event', 'wp-event-manager'); ?>
                                             <?php } ?>
