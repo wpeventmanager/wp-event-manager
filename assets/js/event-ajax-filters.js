@@ -51,6 +51,7 @@ var EventAjaxFilters = function() {
                 supportHtml5History = false
             }
             jQuery(document).ready(EventAjaxFilters.actions.windowLoad);
+            jQuery(document.body).on('click', '.load_more_upcoming_events', EventAjaxFilters.actions.loadMoreUpcomingEvents);
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('.event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset);
             jQuery('div.event_listings_main').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
@@ -340,6 +341,35 @@ var EventAjaxFilters = function() {
                     }
                 });
                 event.preventDefault();
+            },
+
+            loadMoreUpcomingEvents: function(event){
+                event.preventDefault();
+                var currentPage = parseInt(jQuery(this).attr('data-page'));
+                jQuery.ajax({
+                    type: 'POST',
+                    url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "load_more_upcoming_events"),
+                    data: {
+                        action: 'load_more_upcoming_events',
+                        paged: currentPage,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            jQuery('.event_listings').append(response.data.events_html);                            
+                            var nextPage = currentPage + 1;
+                            jQuery('#load_more_events').attr('data-page', nextPage);
+                            if (response.data.no_more_events) {
+                                jQuery('#loadMoreButton').hide();
+                            }
+                        } else {
+                            console.error('Failed to load events:', response.data.error);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                    }
+                });
             }
         }
     }

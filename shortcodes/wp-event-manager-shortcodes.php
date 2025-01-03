@@ -1638,7 +1638,7 @@ class WP_Event_Manager_Shortcodes{
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
 
 		if($upcoming_events->have_posts()) : ?>
-			<div class="event_listings">
+			<div class="event_listings_upcoming">
 				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 					get_event_manager_template_part('content', 'past_event_listing');
@@ -1649,6 +1649,10 @@ class WP_Event_Manager_Shortcodes{
 						<div class="event-organizer-pagination">
 							<?php get_event_manager_template('pagination.php', array('max_num_pages' => $upcoming_events->max_num_pages)); ?>
 						</div>
+					<?php else : ?>
+    					<div id="load_more_events_loader">
+        				<a class="load_more_upcoming_events" id="load_more_events" href="#" data-page="1"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
+    					</div>
 					<?php endif;
 				 endif; ?>
 

@@ -41,6 +41,7 @@ class WP_Event_Manager_Ajax {
 		// EM Ajax endpoints
 		add_action('event_manager_ajax_get_listings', array($this, 'get_listings'));
 		add_action('event_manager_ajax_upload_file', array($this, 'upload_file'));
+		add_action('event_manager_ajax_load_more_upcoming_events', array($this, 'load_more_upcoming_events'));
 
 		// BW compatible handlers
 		add_action('wp_ajax_nopriv_event_manager_get_listings', array($this, 'get_listings'));
@@ -101,6 +102,66 @@ class WP_Event_Manager_Ajax {
    			die();
    		}
 	}
+
+function load_more_upcoming_events() {
+
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+    $per_page = isset($_POST['per_page']) ? intval($_POST['per_page']) : esc_attr(get_option('event_manager_per_page'));
+
+    $args = array(
+        'post_type'      => 'event_listing',
+        'post_status'    => array('publish'),
+        'posts_per_page' => $per_page,
+        'paged'          => $paged,
+        'meta_query'     => array(
+            array(
+                'relation' => 'OR',
+                array(
+                    'key'     => '_event_start_date',
+                    'value'   => current_time('Y-m-d H:i:s'),
+                    'type'    => 'DATETIME',
+                    'compare' => '>='
+                ),
+                array(
+                    'key'     => '_event_end_date',
+                    'value'   => current_time('Y-m-d H:i:s'),
+                    'type'    => 'DATETIME',
+                    'compare' => '>='
+                )
+            ),
+            array(
+                'key'     => '_cancelled',
+                'value'   => '1',
+                'compare' => '!='
+            ),
+        )
+    );
+
+    $upcoming_events = new WP_Query($args);
+
+    if ($upcoming_events->have_posts()) {
+        ob_start();
+
+        while ($upcoming_events->have_posts()) {
+            $upcoming_events->the_post();
+            get_event_manager_template_part('content', 'past_event_listing');
+        }
+
+        $events_html = ob_get_clean();
+        $no_more_events = $upcoming_events->found_posts <= $paged * $per_page;
+
+        wp_send_json_success(array(
+            'events_html' => $events_html,
+            'no_more_events' => $no_more_events
+        ));
+    } else {
+        wp_send_json_error(array(
+            'error' => __('No more events found.', 'wp-event-manager')
+        ));
+    }
+
+    wp_reset_postdata();
+}
 
 	/**
 	 * Get listings via ajax.
