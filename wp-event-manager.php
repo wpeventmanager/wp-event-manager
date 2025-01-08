@@ -474,8 +474,8 @@ add_action('admin_enqueue_scripts', 'wpem_enqueue_deactivation_scripts');
  */
 function wpem_handle_deactivation_form_submission() {
     if (isset($_POST['reason'])) {
-        $reason = sanitize_text_field($_POST['reason']);
-        $additional_feedback = sanitize_text_field($_POST['additional_feedback']);
+        $reason = sanitize_text_field(wp_unslash($_POST['reason']));
+		$additional_feedback = sanitize_text_field(wp_unslash($_POST['additional_feedback']));
 
         $current_user = wp_get_current_user();
 
