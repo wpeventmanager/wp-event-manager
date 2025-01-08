@@ -345,25 +345,29 @@ var EventAjaxFilters = function() {
 
             loadMoreUpcomingEvents: function(event){
                 event.preventDefault();
+                jQuery(this).parent().addClass('wpem-loading');
                 var currentPage = parseInt(jQuery(this).attr('data-page'));
                 jQuery.ajax({
                     type: 'POST',
                     url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "load_more_upcoming_events"),
                     data: {
                         action: 'load_more_upcoming_events',
-                        paged: currentPage,
+                        value: currentPage,
                     },
                     success: function(response) {
-                        console.log(response);
+                        jQuery('#load_more_events_loader').removeClass('wpem-loading');
                         if (response.success) {
                             jQuery('.event_listings').append(response.data.events_html);                            
                             var nextPage = currentPage + 1;
                             jQuery('#load_more_events').attr('data-page', nextPage);
-                            if (response.data.no_more_events) {
-                                jQuery('#loadMoreButton').hide();
+                            if (response.data.no_more_events===true) {
+                                jQuery('#load_more_events').hide();
                             }
                         } else {
                             console.error('Failed to load events:', response.data.error);
+                            if (response.data.error === 'No more events found.') {
+                                jQuery('#load_more_events').hide();
+                            }
                         }
                     },
                     error: function(xhr, status, error) {

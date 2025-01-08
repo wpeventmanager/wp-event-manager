@@ -103,9 +103,8 @@ class WP_Event_Manager_Ajax {
    		}
 	}
 
-function load_more_upcoming_events() {
-
-    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+function load_more_upcoming_events($atts) {
+    $paged = isset($_POST['value']) ? intval($_POST['value']) : 1;
     $per_page = isset($_POST['per_page']) ? intval($_POST['per_page']) : esc_attr(get_option('event_manager_per_page'));
 
     $args = array(
