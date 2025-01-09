@@ -347,12 +347,14 @@ var EventAjaxFilters = function() {
                 event.preventDefault();
                 jQuery(this).parent().addClass('wpem-loading');
                 var currentPage = parseInt(jQuery(this).attr('data-page'));
+                var per_page = jQuery('#per-page-settings').data('per-page');
                 jQuery.ajax({
                     type: 'POST',
                     url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "load_more_upcoming_events"),
                     data: {
                         action: 'load_more_upcoming_events',
                         value: currentPage,
+                        per_page: per_page,
                     },
                     success: function(response) {
                         jQuery('#load_more_events_loader').removeClass('wpem-loading');

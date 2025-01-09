@@ -1653,6 +1653,7 @@ class WP_Event_Manager_Shortcodes{
     					<div id="load_more_events_loader">
         				<a class="load_more_upcoming_events" id="load_more_events" href="#" data-page="2"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
     					</div>
+						<div id="per-page-settings" style="display:none;" data-per-page="<?php echo esc_attr($per_page); ?>"></div>
 					<?php endif;
 				 endif; ?>
 
