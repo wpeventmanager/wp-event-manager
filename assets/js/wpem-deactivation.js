@@ -85,10 +85,7 @@ var Deactivation = function () {
 
                     jQuery.post(wpem_ajax.ajax_url, formData + '&action=wpem_deactivation_form', function (response) {
                         if (response.success) {
-                            alert(response.data);
                             Deactivation.actions.deactivatePlugin();
-                        } else {
-                            alert(response.data);
                         }
                     });
                 });
