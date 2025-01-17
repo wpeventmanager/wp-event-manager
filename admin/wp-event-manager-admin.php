@@ -106,11 +106,7 @@ class WP_Event_Manager_Admin {
 		wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css');
 		wp_register_script('wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array('jquery', 'jquery-ui-core'), EVENT_MANAGER_VERSION, true);
 		wp_enqueue_script('wp-event-manager-jquery-timepicker');
-		wp_enqueue_script('wpem-deactivation-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/wpem-deactivation.min.js', ['jquery'], '1.0', true);
-        wp_localize_script('wpem-deactivation-js', 'wpem_ajax', [
-            'ajax_url' => admin_url('admin-ajax.php'),
-        ]);
-        wp_enqueue_style('wpem-deactivation-css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/wpem-deactivation.min.css');
+		
 	}
 
 	/**
