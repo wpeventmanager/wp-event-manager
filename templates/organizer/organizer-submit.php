@@ -31,7 +31,7 @@ do_action('wp_event_manager_organizer_submit_before');
                 continue;
             endif;?>
             <fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-                <label for="<?php esc_attr($key, 'wp-event-manager'); ?>"><?php echo esc_attr($field['label'], 'wp-event-manager'); echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?></label>
+                <label for="<?php esc_attr($key, 'wp-event-manager'); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?></label>
                 <div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
                     <?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
                 </div>

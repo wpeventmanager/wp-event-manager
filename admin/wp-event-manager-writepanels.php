@@ -379,7 +379,7 @@ class WP_Event_Manager_Writepanels {
 		} ?>
 
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) : ?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
@@ -435,7 +435,7 @@ class WP_Event_Manager_Writepanels {
 	
 		<p class="form-field">
 			<label for="<?php echo esc_attr($key); ?>">
-				<?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+				<?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php if (!empty($field['description'])) : ?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span>
 				<?php endif; ?>
@@ -469,7 +469,7 @@ class WP_Event_Manager_Writepanels {
 		} ?>
 		<div class="wpem_editor">
 			<p class="form-field">
-				<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+				<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 					<?php if(!empty($field['description'])) : ?>
 						<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
 			</p>
@@ -501,7 +501,7 @@ class WP_Event_Manager_Writepanels {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
@@ -669,7 +669,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
@@ -704,7 +704,7 @@ public static function input_multiweek($key, $field) {
 		} ?>
 
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
@@ -742,7 +742,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?>
@@ -779,7 +779,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		} ?>
 		<p class="form-field form-field-checkbox">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?></label>
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?></label>
 			<input type="checkbox" class="checkbox" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" value="1" <?php checked($field['value'], 1); ?> />
 			<?php
 			if(!empty($field['description'])) :
@@ -806,7 +806,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
@@ -833,7 +833,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		} ?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
@@ -865,7 +865,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		}?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
@@ -892,7 +892,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		}?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
@@ -920,7 +920,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		}?>
 		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 				<?php
 				if(!empty($field['description'])) :
 				?>
@@ -948,7 +948,7 @@ public static function input_multiweek($key, $field) {
 		$field['value'] = !isset($field['value']) ? esc_attr(get_post_meta($post_id, stripslashes($key), true)) : $field['value'];
 		$name           = !empty($field['name']) ? $field['name'] : $key; ?>
 		<p class="form-field form-field-author">
-			<label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label'], 'wp-event-manager'); ?>:</label>
+			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:</label>
 			<span class="current-author">
 				<?php
 				if($posted_by) {
@@ -984,7 +984,7 @@ public static function input_multiweek($key, $field) {
 			$name = $key;
 		}?>
 		<p class="form-field form-field-checkbox">
-			<label><?php echo esc_html($field['label'], 'wp-event-manager'); ?></label>
+			<label><?php esc_html_e($field['label'], 'wp-event-manager'); ?></label>
 			<?php foreach ($field['options'] as $option_key => $value) : ?>
 				<label>
 					<input type="radio" class="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($field['value'], $option_key); ?> /> 
