@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.6.2
-Stable Tag: 3.1.45
+Stable Tag: 3.1.46
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -339,6 +339,61 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 
 == Changelog ==
+
+= [3.1.46] 21-01-2025 =
+
+Fixed: Quick feedback issue is fixed.
+Fixed: The translation issue is resolved.
+Fixed: The issue related to the multiple times appearance of the no events maching message is resolved.
+Fixed: Google Maps is now available at the frontend event listing page after using filters.
+Fixed: Calendar view and grid /list view options are now available on the screen.
+Fixed: Text messages is now available in the event dashboard even without logging in.
+Fixed: Elementor custom feed HTML code issue is fixed.
+Fixed: The code display-related issue in the event details section is now resolved.
+Fixed: Elementor Video URL field issue is fixed.
+Fixed: Event display-related issue in Elementor is now resolved.
+Fixed: Past events now display titles with ASC code.
+Fixed: Deprecated error message is no longer displayed.
+Fixed: Default address value in the default content tab is now saved.
+Fixed: Custom field default content value is now visible in the backend.
+Fixed: Upload event thumbnail option is now available on the event submission and event listing page.
+Fixed: Load more events text is no longer displayed after deactivating the calendar addon,
+Fixed: Translation is available in the event listing filter.
+Fixed: All events are available on the event listing page.
+Fixed: No blank space is there in the box view first row.
+Fixed: Load more events button is now available.
+Fixed: Start and end dates are now displayed on the event listing page.
+Fixed: Code issue on the event page is resolved.
+Fixed: Issue related to the backend add event option is now resolved.
+Fixed: More info button in the organizer section of the event detail page is now available.
+Fixed: Parse syntax error is now resolved.
+Fixed: Load more option is now available in the upcoming events of Elementor.
+Fixed: Placeholder is available on the page.
+Fixed: New organizer and venue can now be created.
+Fixed: Add organizer and venues buttons are now available in post an event page.
+Fixed: Edit organizer and venue page are now working properly.
+Fixed: Event Listing Page events are loaded properly in enable debug log file.
+Fixed: The deprecated error message is now removed.
+.Fixed: Events are not loaded in the event listing page.
+Fixed: List and box shortcode is now working even after activating the calendar addon.
+Fixed: The default content tab is no longer visible while adding a custom field.
+Fixed: Load more events text is no longer displayed after deactivating the calendar addon.
+Fixed: The related events option will not be visible if there is no related events.
+Fixed: A warning message on the event details page is no longer displayed.
+Fixed: Dashboard icons are properly displayed and the layout of the edit events page is now displayed properly.
+Fixed: No error is there in the security section.
+Fixed: Error message is removed from the plugin repo option.
+Fixed: Error message is no longer displayed in the general option.
+Fixed: The additional content option issue in Google Maps is now resolved.
+Fixed: Setting tabs is now displayed properly.
+Fixed: Now event start time with start date can be saved.
+Fixed: Setting tabs are now displayed properly.
+Fixed: Events are now disabled after the closure of registrations.
+Fixed: Upload event thumbnail is added to add and edit event page.
+Added: Organizers/admins can now post news regarding the event .
+Added : The default content tab is available in settings.
+Added : Related events are now available on the event details page.
+Added : A quick feedback feature is now available after deactivating the addon.
 
 = [3.1.45] 30-09-2024 =
 
