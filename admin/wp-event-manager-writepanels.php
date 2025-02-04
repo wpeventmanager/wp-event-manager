@@ -994,7 +994,7 @@ public static function input_multiweek($key, $field) {
 			<?php
 			if(!empty($field['description'])) :
 			?>
-				<span class="description"><?php<?php echo esc_html($field['description'], 'wp-event-manager'); ?></span><?php endif; ?>
+				<span class="description"><?php echo esc_html($field['description'], 'wp-event-manager'); ?></span><?php endif; ?>
 		</p>
 	<?php
 	}
