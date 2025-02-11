@@ -1050,15 +1050,15 @@ input.wpem-theme-button:hover span {
 }
 .wpem-event-listing-box-view .no_event_listings_found,
 .wpem-event-listing-calendar-view .no_event_listings_found,
-.wpem-event-listing-list-view .no_event_listings_found {
+.wpem-event-listing-list-view .no_event_listings_found,
+.calendar-template-container .no_event_listings_found{
+  padding: 15px;
   text-align: center;
-  color: #fd6060;
+  color: #721c24;
   display: inline-block;
   width: 100%;
 }
-.wpem-event-listing-list-view .no_event_listings_found {
-  padding: 30px 20px 20px;
-}
+
 .wpem-event-listing-box-view .no_event_listings_found {
   margin-left: 15px;
   margin-right: 15px;
@@ -2802,15 +2802,6 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 }
 .wpem-register-event-form .event-manager-registration-form.event-manager-form fieldset input[type="text"],
 .wpem-register-event-form .event-manager-registration-form.event-manager-form fieldset select {
-  width: 100%;
-}
-.wpem-event-listing-box-view .no_event_listings_found,
-.wpem-event-listing-calendar-view .no_event_listings_found,
-.wpem-event-listing-list-view .no_event_listings_found {
-  padding: 15px;
-  text-align: center;
-  color: #721c24;
-  display: inline-block;
   width: 100%;
 }
 .wpem-event-organizer-tabs .wpem-tabs-wrapper,
