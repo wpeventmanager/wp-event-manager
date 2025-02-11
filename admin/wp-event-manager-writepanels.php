@@ -704,7 +704,7 @@ class WP_Event_Manager_Writepanels {
 					<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
 				<?php
 				$value = isset($field['value']) ? $field['value'] : $field['default'];
-				echo esc_attr_e(WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value)));
+				echo WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value));
 				?>
 			</select>
 		</p>
