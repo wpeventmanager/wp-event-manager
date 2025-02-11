@@ -419,7 +419,10 @@ class WP_Event_Manager_Writepanels {
 		if (!isset($field['value']) || empty($field['value'])) {
 			//$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: esc_attr($default_address);
 			if ($key === '_event_location') {
-				$field['value'] = esc_attr($default_address); // Use the default address
+				$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: '';
+				if (empty($field['value']) && !empty($default_address)) {
+					$field['value'] = $default_address;
+				}
 			} else {
 				$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: '';
 			}
