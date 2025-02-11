@@ -280,6 +280,15 @@ class WP_Event_Manager_Settings{
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
+						array(
+							'name'       => 'event_manager_hide_related_events',
+							'std'        => '1',
+							'label'      => __('Hide Related Events', 'wp-event-manager'),
+							'cb_label'   => __('Hide related events on event', 'wp-event-manager'),
+							'desc'       => __('If enabled, the related events are not shown on single post.', 'wp-event-manager'),
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
 					),
 				),
 				'event_submission'     => array(

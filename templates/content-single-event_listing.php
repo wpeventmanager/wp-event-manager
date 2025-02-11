@@ -517,6 +517,7 @@ $event = $post; ?>
     <!-- / wpem-main end  -->
 </div>
 <?php 
+    if (!get_option('event_manager_hide_related_events')) {
 	$related_events_output = do_shortcode('[related_events event_id="' . get_the_ID() . '"]'); 
 	// check related events available or not
 	if (!empty($related_events_output)) {
@@ -530,7 +531,8 @@ $event = $post; ?>
             ?>
         </div>
     </div>
-<?php } ?>
+<?php }
+    }?>
 
 <!-- Related event slider override the script if needed -->
 <script>
