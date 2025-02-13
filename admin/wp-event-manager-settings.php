@@ -742,7 +742,7 @@ class WP_Event_Manager_Settings{
 											<?php }
 											break;
 										case 'email': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value,'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo wp_kses_post($placeholder); ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php echo esc_attr($value); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo wp_kses_post($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
