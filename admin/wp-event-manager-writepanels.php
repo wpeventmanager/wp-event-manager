@@ -960,12 +960,7 @@ class WP_Event_Manager_Writepanels {
 
 					update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
 				} else {
-					$event_end_date = get_post_meta($post_id, '_event_end_date', true);
-        			if (!empty($event_end_date)) {
-            		update_post_meta($post_id, sanitize_key($key), $event_end_date);
-        			} else {
-            			update_post_meta($post_id, sanitize_key($key), '');
-        			}
+					update_post_meta($post_id, sanitize_key($key), '');
 				}
 			}
 			// Locations
