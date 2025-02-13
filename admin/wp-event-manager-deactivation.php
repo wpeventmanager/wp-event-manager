@@ -89,6 +89,40 @@ class WP_Event_Manager_Deactivation {
         </div>
         <?php
     }
+    
+    /**
+	 * This function is used to get the user ip.
+	 *@since 3.1.46
+	 */
+    public function wpem_get_user_ip() {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
+
+    /**
+	 * This function get the location from ip.
+	 *@since 3.1.46
+	 */
+    function wpem_get_location_by_ip($ip) {
+        $url = "http://ip-api.com/json/{$ip}";
+        $response = @file_get_contents($url);
+        if ($response) {
+            $data = json_decode($response, true);
+            if ($data['status'] === 'success') {
+                return [
+                    'city' => $data['city'],
+                    'country' => $data['country']
+                ];
+            }
+        }
+        return null;
+    }
 
     /**
 	 * This function handles the deactivation form submission.
@@ -100,6 +134,11 @@ class WP_Event_Manager_Deactivation {
             $additional_feedback = sanitize_text_field(wp_unslash($_POST['additional_feedback']));
 
             $current_user = wp_get_current_user();
+            $user_first_name = get_user_meta($current_user->ID, 'first_name', true);
+            $user_last_name = get_user_meta($current_user->ID, 'last_name', true);
+            $user_name = $current_user->user_login;
+            $ip = $this->wpem_get_user_ip();
+            $location = $this->wpem_get_location_by_ip($ip);
 
             if ($reason == 'Other') {
                 $reason = 'Other (' . $additional_feedback . ')';
@@ -108,12 +147,17 @@ class WP_Event_Manager_Deactivation {
             $api_url = 'https://wp-eventmanager.com/?wc-api=wpem_plugin_deactivation_review';
             $data = array(
                 'request' => 'deactivationreview',
+                'email' => get_option('admin_email'),
+                'username' => $user_name,
+                'first_name' => $user_first_name,
+                'last_name' => $user_last_name,
+                'city' => $location['city'],
+                'country' => $location['country'],
+                'ip_address' => $ip,
                 'instance' => site_url(),
                 'version' => EVENT_MANAGER_VERSION,
-                'email' => get_option('admin_email'),
                 'reason' => $reason,
             );
-        
             $args=array();
             $args    = wp_parse_args($args, $data);
             $request = wp_remote_get($api_url . '&' . http_build_query($args, '', '&'));
