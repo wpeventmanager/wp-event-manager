@@ -111,8 +111,7 @@ class WP_Event_Manager_Settings{
 							'name'       => 'wpem_retain_attachment',
 							'std'        => '1',
 							'label'      => __('Enable To Retain Attachment', 'wp-event-manager'),
-							'cb_label'   => __('Retain Banner Image After Emptying Event From
-								The Trash.', 'wp-event-manager'),
+							'cb_label'   => __('Retain Banner Image After Emptying Event From The Trash.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
 							'attributes' => array(),
