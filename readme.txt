@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.6.2
-Stable Tag: 3.1.46
+Stable Tag: 3.1.47
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -339,6 +339,16 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 
 == Changelog ==
+
+= [3.1.47] 17-02-2025 =
+
+Fixed: Event publishing status issue is resolved.
+Fixed: Date and time separator symbol is now available.
+Fixed: Data in the general setting tab is saved properly.
+Fixed: Related events can now be hidden as per user’s wish.
+Fixed: Event location name is now saved.
+Fixed: Event timezone selection is now working properly.
+Added: The username or user’s first name and last name is now added while deactivating our plugin.
 
 = [3.1.46] 21-01-2025 =
 
