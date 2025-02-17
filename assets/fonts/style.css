@@ -25,6 +25,27 @@ i[class*="wpem-"] {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.wpem-icon-temperature:before {
+  content: "\eb36";
+}
+.wpem-icon-head-side-mask:before {
+  content: "\eb37";
+}
+.wpem-icon-house-medical:before {
+  content: "\eb38";
+}
+.wpem-icon-notes-medical:before {
+  content: "\eb39";
+}
+.wpem-icon-people-distance:before {
+  content: "\eb3a";
+}
+.wpem-icon-spruce-tree:before {
+  content: "\eb3b";
+}
+.wpem-icon-syringe:before {
+  content: "\eb3c";
+}
 .wpem-icon-help:before {
   content: "\eaf9";
 }

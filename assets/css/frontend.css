@@ -3708,6 +3708,30 @@ p.post-submitted-success-green-message a {
 /*Single event widget event list view end*/
 
 
+/* Single event health guidelines box start */
+.wpem-event-health-guideline-list {
+  padding: 15px 30px;
+}
+.wpem-event-health-guideline-list-item-icon {
+  font-size: 20px;
+  flex: 0 0 40px;
+  max-width: 40px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--wpem-gray-bg-color);
+  color: var(--wpem-gray-color);
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+.wpem-event-health-guideline-list-item-title b {
+  display: block;
+}
+/* Single event health guidelines box end */
+
+
+
+
 
 @media screen and (max-width: 1024px) {
   .wpem-single-event-page .wpem-single-event-body .wpem-single-event-left-content {

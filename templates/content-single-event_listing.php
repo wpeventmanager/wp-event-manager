@@ -509,6 +509,72 @@ $event = $post; ?>
                  * single_event_listing_end hook
                  */
                 do_action('single_event_listing_end');  ?>
+
+                
+            <!-- Health Guidelines Start -->
+            <div class="wpem-single-event-footer">
+                <div class="wpem-event-health-guidelines-wrapper">
+                    <div class="wpem-listing-accordion active">
+                        <h3 class="wpem-heading-text"><?php esc_html_e('Health Guidelines', 'wp-event-manager'); ?></h3>
+                        <i class="wpem-icon-minus"></i><i class="wpem-icon-plus"></i>
+                    </div>
+
+                    <div class="wpem-listing-accordion-panel active" style="display: block;">
+                        <div class="wpem-event-health-guideline-list">
+                            <div class="wpem-row">
+                                <div class="wpem-col-md-6">
+                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-head-side-mask"></i></div>
+                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Masks Required', 'wp-event-manager'); ?></span></div>
+                                    </div>
+                                </div>
+                                <div class="wpem-col-md-6">
+                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-temperature"></i></div>
+                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Temperature Checked At Entrance', 'wp-event-manager'); ?></span></div>
+                                    </div>
+                                </div>
+                                <div class="wpem-col-md-6">
+                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-people-distance"></i></div>
+                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Physical Distance Maintained', 'wp-event-manager'); ?></span></div>
+                                    </div>
+                                </div>
+                                <div class="wpem-col-md-6">
+                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-house-medical"></i></div>
+                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Event Area Sanitized', 'wp-event-manager'); ?></span></div>
+                                    </div>
+                                </div>
+                                <div class="wpem-col-md-6">
+                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-spruce-tree"></i></div>
+                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Outdoor Event', 'wp-event-manager'); ?></span></div>
+                                    </div>
+                                </div>
+                                <div class="wpem-col-md-6">
+                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-syringe"></i></div>
+                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Vaccination Required', 'wp-event-manager'); ?></span></div>
+                                    </div>
+                                </div>
+                                <div class="wpem-col-md-12">
+                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-notes-medical"></i></div>
+                                        <div class="wpem-event-health-guideline-list-item-title">
+                                            <b><?php esc_html_e('Other Health Guidelines', 'wp-event-manager'); ?></b>
+                                            <span>Inform attendees about acceptable behavior and respect for safety.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Health Guidelines End -->
+
+
             </div>
             <!-- / wpem-wrapper end  -->
         <?php endif; ?>
