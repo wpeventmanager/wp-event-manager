@@ -25,6 +25,7 @@ class WP_Event_Manager_Setup {
 		if(isset($_GET['page']) && 'event-manager-setup' === esc_attr($_GET['page'])) {
 			add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 12);
 		}
+		add_action('wp_ajax_wpem_save_installation_settings', array($this,'wpem_save_installation_settings'));
 	}
 
 	/**
@@ -84,6 +85,12 @@ class WP_Event_Manager_Setup {
 	 */
 	public function admin_enqueue_scripts()	{
 		wp_enqueue_style('event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array('dashicons'));
+		wp_enqueue_script('event_manager_setup_js', EVENT_MANAGER_PLUGIN_URL . '/assets//js/setup.min.js', array('jquery'), null, true);
+
+		wp_localize_script('event_manager_setup_js', 'wpem_ajax', array(
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'nonce'   => wp_create_nonce('wpem_save_installation_settings_nonce')
+		));
 	}
 
 	/**
@@ -292,54 +299,36 @@ class WP_Event_Manager_Setup {
 					<div class="wpem-setup-intro-block">
 						<div class="wpem-setup-end-step-settings">
 							<h4>Settings</h4>
+							<form method="post">
 							<div class="wpem-setup-end-step-setting">
 								<label>Set Date Format:</label>
-								<select>
-									<option>Select</option>
-									<option>2025-02-12</option>
-									<option>02/12/2025</option>
-									<option>12/02/2025</option>
-									<option>02-12-2025</option>
-									<option>12-02-2025</option>
-									<option>2025.02.12</option>
-									<option>02.12.2025</option>
-									<option>12 Feb 2025</option>
-									<option>12 February 2025</option>
+								<select name="wpem_date_format">
+									<?php 
+									$date_formats = WP_Event_Manager_Date_Time::get_event_manager_date_admin_settings();
+									if ( ! empty( $date_formats ) ) :
+										foreach ( $date_formats as $key => $format ) : ?>
+											<option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $format ); ?></option>
+										<?php endforeach;
+									endif; ?>
 								</select>
 							</div>
 							<div class="wpem-setup-end-step-setting">
 								<label>Set Time Format:</label>
-								<select>
-									<option>12h</option>
-									<option>24h</option>
+								<select name="wpem-time-format">
+									<option value="12">12h</option>
+									<option value="24">24h</option>
 								</select>
 							</div>
-							<div class="wpem-setup-end-step-setting">
-								<label>Set Primary Color:</label>
-								<div class="wpem-setup-end-step-color-picker">
-									<input type="color" id="color-picker" value="#0096FF">
-									<span id="hex-code">#0096FF</span>
-								</div>
-							</div>
-							<script>
-								// Get the color input element and the span to display the hex code
-								const colorPicker = document.getElementById('color-picker');
-								const hexCodeDisplay = document.getElementById('hex-code');
-
-								colorPicker.addEventListener('input', function() {
-									hexCodeDisplay.textContent = colorPicker.value;
-								});
-							</script>
 						</div>
 						<div class="wpem-setup-end-step-block">
-							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_listing')); ?>"><i class="wpem-icon-plus"></i><?php esc_attr_e('Create new Event', 'wp-event-manager'); ?></a></div>
-							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_listing')); ?>"><i class="wpem-icon-user"></i><?php esc_attr_e('Create new Organizer', 'wp-event-manager'); ?></a></div>
-							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_listing')); ?>"><i class="wpem-icon-location"></i><?php esc_attr_e('Create new Venue', 'wp-event-manager'); ?></a></div>
+							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_listing')); ?>" target="_blank"><i class="wpem-icon-plus"></i><?php esc_attr_e('Create new Event', 'wp-event-manager'); ?></a></div>
+							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_organizer')); ?>" target="_blank"><i class="wpem-icon-user"></i><?php esc_attr_e('Create new Organizer', 'wp-event-manager'); ?></a></div>
+							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_venue')); ?>" target="_blank"><i class="wpem-icon-location"></i><?php esc_attr_e('Create new Venue', 'wp-event-manager'); ?></a></div>
 						</div>
 						<p class="submit">
-							<a href="<?php echo esc_url(add_query_arg('skip-event-manager-setup', 1, admin_url('index.php?page=event-manager-setup&step=3'))); ?>" class="button button-primary"><?php esc_attr_e('Finish Setup', 'wp-event-manager'); ?></a>
-							<a href="<?php echo esc_url(add_query_arg('skip-event-manager-setup', 1, admin_url('index.php?page=event-manager-setup&step=3'))); ?>" class="button button-border"><?php esc_attr_e('Skip for now', 'wp-event-manager'); ?></a>
+							<a href="#" name="wpem_save_installation_settings" id="wpem_save_installation_settings" class="button button-primary"><?php esc_attr_e('Finish Setup', 'wp-event-manager'); ?></a>
 						</p>
+						</form>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -363,5 +352,34 @@ class WP_Event_Manager_Setup {
 			return sanitize_text_field($input);
 		}
 	}
+
+	/**
+	 * Saving settings.
+	 *
+	 * @param  array $array
+	 * @return array
+	 */
+	public function wpem_save_installation_settings() {
+		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( $_POST['security'], 'wpem_save_installation_settings_nonce' ) ) {
+			wp_send_json_error(array('message' => 'Invalid nonce'));
+			exit;
+		}
+
+		$date_format = isset( $_POST['date_format'] ) ? sanitize_text_field( $_POST['date_format'] ) : '';
+		$time_format = isset( $_POST['time_format'] ) ? sanitize_text_field( $_POST['time_format'] ) : '';
+
+		if ( ! empty( $date_format ) ) {
+			update_option('event_manager_datepicker_format', $date_format);
+		}
+		if ( ! empty( $time_format ) ) {
+			update_option('event_manager_timepicker_format', $time_format);
+		}
+		update_option('wpem_installation', 1);
+		wp_send_json_success(array(
+			'message' => 'Settings saved successfully!',
+			'redirect_url' => admin_url('index.php')
+		));
+	}
+
 }
 new WP_Event_Manager_Setup();
