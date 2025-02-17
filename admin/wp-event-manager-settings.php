@@ -74,6 +74,17 @@ class WP_Event_Manager_Settings{
 			}
 		}
 
+		$organizer_fields = get_option('event_manager_submit_organizer_form_fields', array());
+		$organizer_options = [];
+		
+		if (!empty($organizer_fields) && is_array($organizer_fields)) {
+			foreach ($organizer_fields['organizer'] as $field_key => $field_data) {
+				if (isset($field_data['label'])) {
+					$organizer_options[$field_key] = $field_data['label'];
+				}
+			}
+		}
+
 		$this->settings = apply_filters(
 			'event_manager_settings',
 			array(
@@ -139,6 +150,27 @@ class WP_Event_Manager_Settings{
 							'label'       => __('"From" address', 'wp-event-manager'), 
 							'desc'        => __("If you are going to deal with Registration emails or Event emails then you need the sender's email appears in outgoing WP Event Manager emails.", 'wp-event-manager'), 
 							'type'        => 'email'
+						),
+						array(
+							'name'       => 'wpem_hide_data_from_guest',
+							'std'        => '0',  
+							'label'      => __('Hide Data from Guest Users', 'wp-event-manager'),
+							'cb_label'   => __('Hide sensitive event data from non-logged-in(guest) users.', 'wp-event-manager'),
+							'desc'       => '',
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
+						 array(
+							'name'       => 'hide_organizer_fields',
+							'class'		=> 'hide_organizer_fields',
+							'label'      => __('Select Organizer Fields to Hide', 'wp-event-manager'),
+							'desc'       => __('Choose which organizer fields to hide on the front end.', 'wp-event-manager'),
+							'type'       => 'multiselect',
+							'options'    => $organizer_options, 
+							'attributes' => array(
+								'multiple' => 'multiple',
+								'style'    => 'height: 100px;display:none;',
+							),
 						),
 					),
 				),
