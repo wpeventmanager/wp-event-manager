@@ -178,7 +178,7 @@ class WP_Event_Manager_Setup {
 					<div class="wpem-step-window">
 						<img src="<?php echo esc_url(EVENT_MANAGER_PLUGIN_URL.'/assets/images/wpem-setup-welcome-image.png'); ?>" alt="WP Event Manager Welcome Setup" />
 						<h3><?php esc_attr_e('Welcome to WP Event Manager!', 'wp-event-manager'); ?></h3>
-						<p><?php esc_attr_e('Thanks for choosing WP Event Manager to manage your next events. Easily create and manage unlimited online and offline events.', 'wp-event-manager'); ?></p>
+						<p><?php esc_attr_e('Thank you for trusting WP Event Manager to manage your upcoming events. Now you can effortlessly manage unlimited online and offline events independently.', 'wp-event-manager'); ?></p>
 						<p><?php
 							// translators: %1$s and %2$s wrap "documentation" in a hyperlink to the support page.
 							printf(esc_attr__('If you want to avoid the Setup wizard and want to creates pages manually, you can refer to the %1$sdocumentation%2$s for support.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/help-center/">', '</a>'); 
