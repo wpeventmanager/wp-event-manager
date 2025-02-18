@@ -4121,3 +4121,92 @@ div.wpem-empty-date{
 .wpem_loader{
   pointer-events: none; user-select: none;
 }
+
+.wpem-event-filter-version-2 {
+  position: relative;
+}
+.wpem-event-filter-version-2-search-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--wpem-gray-border-color);
+  border-radius: 6px;
+  padding: .8rem;
+}
+.wpem-event-filter-version-2-search-col {
+  flex: 1;
+  margin: 0 10px 0 0;
+  border-right: 1px solid var(--wpem-gray-border-color);
+  display: flex;
+  align-items: center;
+}
+.wpem-event-filter-version-2-search-col .wpem-event-filter-version-2-icon {
+  width: 35px;
+  flex: 0 0 35px;
+  text-align: center;
+}
+.wpem-event-filter-version-2-search-col .wpem-form-group {
+  margin: 0;
+    width: 100%;
+}
+.wpem-event-filter-version-2 .wpem-event-filter-version-2-search-col .wpem-form-group input {
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  padding-left: 0;
+  background-color: transparent;
+}
+.wpem-event-filter-version-2-search-row .wpem-event-filter-version-2-search-btn {
+  margin: 0;
+}
+
+.wpem-event-filter-version-2-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 20px 20px 0px;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid var(--wpem-gray-border-color);
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+  display: none;
+}
+.wpem-event-filter-version-2-dropdown .wpem-form-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wpem-event-filter-version-2-dropdown-title {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.wpem-event-filter-version-2-filter-action {
+  border: 0;
+  outline: none;
+  background-color: transparent !important;
+  padding: 5px 10px;
+  margin-right: 15px;
+  color: var(--wpem-dark-color) !important;
+  cursor: pointer;
+  line-height: 0;
+}
+.wpem-event-filter-version-2-filter-action:hover {
+  color: var(--wpem-primary-color) !important;
+}
+
+@media (max-width: 767px){
+  .wpem-event-filter-version-2-search-row {
+    flex-wrap: wrap;
+  }
+  .wpem-event-filter-version-2-search-col {
+    width: 100%;
+    flex: 0 0 100%;
+    border-right: 0;
+    border-bottom: 1px solid var(--wpem-gray-border-color);
+    margin: 0 0 15px 0;
+  }
+  .wpem-event-filter-version-2-filter-button{
+    order: 1;
+    margin-left: 10px;
+  }
+}
