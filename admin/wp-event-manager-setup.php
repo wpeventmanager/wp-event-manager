@@ -359,6 +359,18 @@ class WP_Event_Manager_Setup {
 									</div>
 								</div>
 							</div>
+							<div class="wpem-setup-addon-support">
+									<div class="wpem-setup-addon-support-wrap">
+										<div class="wpem-setup-help-center-block-icon">
+											<span class="wpem-setup-help-center-support-icon"></span>
+										</div>
+										<div class="wpem-setup-help-center-block-content">
+											<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Add ons Support', 'wp-event-manager'); ?></div>
+											<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Get support for all the Add ons related queries with our experienced/ talented support team.', 'wp-event-manager'); ?></div>
+											<a href="https://support.wp-eventmanager.com/" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Get Add ons Support', 'wp-event-manager'); ?> »</span></a>
+										</div>
+									</div>
+								</div>
 						</div>
 						<p class="submit">
 							<a href="#" name="wpem_save_installation_settings" id="wpem_save_installation_settings" class="button button-primary"><?php esc_attr_e('Finish Setup', 'wp-event-manager'); ?></a>

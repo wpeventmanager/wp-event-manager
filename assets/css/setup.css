@@ -345,6 +345,36 @@
   height: 82px;
 }
 
+
+
+.wpem-setup-addon-support {
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--wpem-gray-border-color);
+    margin-top: 20px;
+  }
+.wpem-setup-addon-support .wpem-setup-addon-support-wrap {
+    padding: 2rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+.wpem-setup-addon-support .wpem-setup-addon-support-wrap .wpem-setup-help-center-block-icon {
+    width: 90px;
+    margin: 0;
+    padding: 0;
+  }
+.wpem-setup-help-center-support-icon {
+    background-position: -9px -90px;
+    width: 82px;
+    height: 82px;
+  }
+.wpem-setup-addon-support .wpem-setup-addon-support-wrap .wpem-setup-help-center-block-content {
+    padding-left: 25px;
+  }
+.wpem-setup-addon-support .wpem-setup-help-center-block-heading {
+      margin-top: 0;
+  }
   /*STEP 3 END*/
   
   
@@ -367,6 +397,16 @@
       }
       .wpem-setup-help-center-block {
             width: inherit;
-        }
+    }
+    .wpem-setup-addon-support .wpem-setup-addon-support-wrap {
+        display: block;
+        text-align: center;
+    }
+    .wpem-setup-addon-support .wpem-setup-addon-support-wrap .wpem-setup-help-center-block-icon {
+        margin: 0 auto 15px;
+    }
+    .wpem-setup-addon-support .wpem-setup-addon-support-wrap .wpem-setup-help-center-block-content {
+        padding: 0;
+    }
   }
   /*MEDIA END*/
