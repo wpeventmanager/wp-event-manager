@@ -319,11 +319,46 @@ class WP_Event_Manager_Setup {
 									<option value="24">24h</option>
 								</select>
 							</div>
+							<div class="wpem-setup-end-step-block">
+								<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_listing')); ?>" target="_blank"><i class="wpem-icon-plus"></i><?php esc_attr_e('Create new Event', 'wp-event-manager'); ?></a></div>
+								<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_organizer')); ?>" target="_blank"><i class="wpem-icon-user"></i><?php esc_attr_e('Create new Organizer', 'wp-event-manager'); ?></a></div>
+								<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_venue')); ?>" target="_blank"><i class="wpem-icon-location"></i><?php esc_attr_e('Create new Venue', 'wp-event-manager'); ?></a></div>
+							</div>
 						</div>
-						<div class="wpem-setup-end-step-block">
-							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_listing')); ?>" target="_blank"><i class="wpem-icon-plus"></i><?php esc_attr_e('Create new Event', 'wp-event-manager'); ?></a></div>
-							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_organizer')); ?>" target="_blank"><i class="wpem-icon-user"></i><?php esc_attr_e('Create new Organizer', 'wp-event-manager'); ?></a></div>
-							<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_venue')); ?>" target="_blank"><i class="wpem-icon-location"></i><?php esc_attr_e('Create new Venue', 'wp-event-manager'); ?></a></div>
+						<div class="wpem-setup-help-center">
+							<h1><?php esc_attr_e('Helpful Resources', 'wp-event-manager'); ?></h1>
+							<div class="wpem-setup-help-center-block-wrap">
+								<div class="wpem-setup-help-center-block">
+									<div class="wpem-setup-help-center-block-icon">
+										<span class="wpem-setup-help-center-knowledge-base-icon"></span>
+									</div>
+									<div class="wpem-setup-help-center-block-content">
+										<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Knowledge Base', 'wp-event-manager'); ?></div>
+										<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Solve your queries by browsing our documentation.', 'wp-event-manager'); ?></div>
+										<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Browse More', 'wp-event-manager'); ?> »</span></a>
+									</div>
+								</div>
+								<div class="wpem-setup-help-center-block">
+									<div class="wpem-setup-help-center-block-icon">
+										<span class="wpem-setup-help-center-faqs-icon"></span>
+									</div>
+									<div class="wpem-setup-help-center-block-content">
+										<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('FAQs', 'wp-event-manager'); ?></div>
+										<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Explore through the frequently asked questions.', 'wp-event-manager'); ?></div>
+										<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Get Answers', 'wp-event-manager'); ?> »</span></a>
+									</div>
+								</div>
+								<div class="wpem-setup-help-center-block">
+									<div class="wpem-setup-help-center-block-icon">
+										<span class="wpem-setup-help-center-video-tutorial-icon"></span>
+									</div>
+									<div class="wpem-setup-help-center-block-content">
+										<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Video Tutorials', 'wp-event-manager'); ?></div>
+										<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Learn different skills by examining attractive video tutorials.', 'wp-event-manager'); ?></div>
+										<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Watch all', 'wp-event-manager'); ?> »</span></a>
+									</div>
+								</div>
+							</div>
 						</div>
 						<p class="submit">
 							<a href="#" name="wpem_save_installation_settings" id="wpem_save_installation_settings" class="button button-primary"><?php esc_attr_e('Finish Setup', 'wp-event-manager'); ?></a>
