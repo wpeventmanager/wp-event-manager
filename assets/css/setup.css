@@ -63,7 +63,7 @@
       color: #fff;
   }
   .wpem-setup-wrapper .help-page-link {
-      cursor: help;
+      cursor: pointer;
   }
   
   /*STEP BAR START*/
