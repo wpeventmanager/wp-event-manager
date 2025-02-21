@@ -136,7 +136,8 @@ var EventAjaxFilters = function() {
                 var target = jQuery(this).closest('div.event_listings');
                 var form = jQuery(this).closest('form');
                 form.find(':input[name="search_keywords"], :input[name="search_location"], .event-manager-filter').not(':input[type="hidden"]').val('').trigger('chosen:updated');
-                form.find(':input[name^="search_datetimes"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
+                form.find(':input[name^="search_fromdate"]').not(':input[type="hidden"]').val('').trigger('chosen:updated');
+                form.find(':input[name^="search_todate"]').not(':input[type="hidden"]').val('').trigger('chosen:updated');
                 form.find(':input[name^="search_categories"]').not(':input[type="hidden"]').val('').trigger('chosen:updated');
                 form.find(':input[name^="search_event_types"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
                 form.find(':input[name^="search_ticket_prices"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');

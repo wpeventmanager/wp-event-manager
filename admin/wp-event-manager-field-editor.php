@@ -154,6 +154,7 @@ class WP_Event_Manager_Field_Editor {
 							<th width="1%"><?php esc_attr_e('Meta Key', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Only For Admin', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Priority', 'wp-event-manager'); ?></th>
+							<th width="1%"><?php esc_attr_e('Tab Group (Only For Admin)', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Validation', 'wp-event-manager'); ?></th>
 							<th width="1%" class="field-actions">&nbsp;</th>
 						</tr>

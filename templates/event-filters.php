@@ -166,6 +166,7 @@ $datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 		<?php do_action('event_manager_event_filters_search_events_end', $atts); ?>
 		</div>
 	</div>
+	<?php do_action('event_manager_event_filters_end', $atts); ?>
 </form>
 
 	<!-- Event Filter Version 2 End -->

@@ -91,6 +91,23 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 			?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" disabled />
 	</td>
 
+	<td>
+		<select <?php if (in_array($field_key, $disbled_fields)) echo 'disabled'; ?> name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][tabgroup]" class="field_type">
+			<?php
+			$field['tabgroup'] = isset($field['tabgroup']) ? $field['tabgroup'] : 1;
+			$Writepanels = WP_Event_Manager_Writepanels::instance();
+			$cnt = 1;
+			foreach ($Writepanels->get_event_data_tabs() as $key => $tab) {
+				$selected = ($field['tabgroup'] == $cnt) ? 'selected' : '';
+				echo '<option value="' . esc_attr($cnt) . '"' . esc_attr($selected) . '>' . esc_html($tab['label']) . '</option>';
+				$cnt++;
+			}
+			?>
+		</select>
+	</td>
+
+
+
 	<td class="field-rules">
 		<?php if (!in_array($field_key, $disbled_fields)) : ?>
 			<div class="rules">

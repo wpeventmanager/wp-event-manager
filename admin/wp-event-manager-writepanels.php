@@ -52,6 +52,71 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
+	 * Display the tabs which is used in edit or add event in backend.
+	 *
+	 * @access public
+	 * @param mixed $post
+	 * @return void
+	 * @since 1.0.0
+	 */
+	public function event_manager_data($post) {
+		global $post, $thepostid;
+		$thepostid = $post->ID;
+		wp_enqueue_script('wp-event-manager-admin-js');
+		wp_nonce_field('save_meta_data', 'event_manager_nonce');
+		include('templates/listings-data-tabs.php');
+	}
+
+	/**
+	 * Return array of tabs to show.
+	 *
+	 * @access public
+	 * @return array
+	 * @since 1.0.0
+	 */
+	public function get_event_data_tabs() {
+		$tabs = apply_filters(
+			'wpem_event_data_tabs',
+			array(
+				'general'        => array(
+					'label'    => __('General Settings', 'wp-food-manager'),
+					'target'   => 'general_event_data_content',
+					'class'    => array(''),
+					'priority' => 1,
+				),
+				'venue'        => array(
+					'label'    => __('Venue/Location', 'wp-food-manager'),
+					'target'   => 'venue_event_data_content',
+					'class'    => array(),
+					'priority' => 2,
+				),
+				'date'        => array(
+					'label'    => __('Date and Time', 'wp-food-manager'),
+					'target'   => 'date_time_event_data_content',
+					'class'    => array(''),
+					'priority' => 3,
+				),
+				'registration'        => array(
+					'label'    => __('Registration', 'wp-food-manager'),
+					'target'   => 'registration_event_data_content',
+					'class'    => array(''),
+					'priority' => 4,
+				),
+				'advanced'        => array(
+					'label'    => __('Advanced', 'wp-food-manager'),
+					'target'   => 'advanced_event_data_content',
+					'class'    => array(''),
+					'priority' => 5,
+				),
+			)
+		);
+
+		// Sort tabs based on priority.
+		uasort($tabs, array($this, 'sort_by_priority'));
+		return $tabs;
+	}
+
+	/**
 	 * It used to get event listing fields.
 	 *
 	 * @access public
@@ -115,12 +180,14 @@ class WP_Event_Manager_Writepanels {
 				'type'        => 'checkbox',
 				'description' => __('Featured listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
 				'priority'    => 39,
+				'tabgroup' => 1,
 			);
 			$fields['_cancelled'] = array(
 				'label'       => __('Cancelled Listing', 'wp-event-manager'),
 				'type'        => 'checkbox',
 				'description' => __('Cancelled listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
 				'priority'    => 39,
+				'tabgroup' => 1,
 			);
 			$fields['_event_expiry_date'] = array(
 				'label'       => __('Listing Expiry Date', 'wp-event-manager'),
@@ -128,6 +195,7 @@ class WP_Event_Manager_Writepanels {
 				'placeholder' => __('Please enter event expiry date', 'wp-event-manager'),
 				'priority'    => 40,
 				'value'       => $expiry_date,
+				'tabgroup' => 1,
 			);
 		}
 		if($current_user->has_cap('edit_others_event_listings')) {
@@ -135,6 +203,7 @@ class WP_Event_Manager_Writepanels {
 				'label'    => __('Posted by', 'wp-event-manager'),
 				'type'     => 'author',
 				'priority' => 41,
+				'tabgroup' => 1,
 			);
 		}
 
@@ -173,7 +242,7 @@ class WP_Event_Manager_Writepanels {
 	public function add_meta_boxes(){
 		global $wp_post_types;
 
-		add_meta_box('event_listing_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name), array($this, 'event_listing_data'), 'event_listing', 'normal', 'high');
+		add_meta_box('event_manager_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name), array($this, 'event_manager_data'), 'event_listing', 'normal', 'high');
 
 		if(!get_option('event_manager_enable_event_types')) {
 			remove_meta_box('event_listing_typediv', 'event_listing', 'side');
@@ -860,35 +929,6 @@ class WP_Event_Manager_Writepanels {
 				<span class="description"><?php echo esc_html($field['description'], 'wp-event-manager'); ?></span><?php endif; ?>
 		</p>
 	<?php
-	}
-
-	/**
-	 * return event list data function.
-	 *
-	 * @access public
-	 * @param mixed $post
-	 * @return void
-	 */
-	public function event_listing_data($post) {
-		global $post, $post_id;
-		$post_id = $post->ID;
-		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
-		wp_nonce_field('save_meta_data', 'event_manager_nonce');
-		do_action('event_manager_event_listing_data_start', $post_id);
-		foreach ($this->event_listing_fields() as $key => $field) {
-			$type = !empty($field['type']) ? $field['type'] : 'text';
-			if($type == 'wp-editor') {
-				$type = 'wp_editor';
-			}
-
-			if(has_action('event_manager_input_' . $type)) {
-				do_action('event_manager_input_' . $type, $key, $field);
-			} elseif(method_exists($this, 'input_' . $type)) {
-				call_user_func(array($this, 'input_' . $type), $key, $field);
-			}
-		}
-		do_action('event_manager_event_listing_data_end', $post_id);
-		echo wp_kses_post('</div>');
 	}
 	
 	/**

@@ -4210,3 +4210,13 @@ div.wpem-empty-date{
     margin-left: 10px;
   }
 }
+
+#search_fromdate, #search_todate {
+  position: relative;
+  width: 100%;
+  padding-right: 35px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23777777" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-2 .89-2 2v14c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 16H5V10h14v10zm-2-8h-5v5h5v-5z"/></svg>') no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  cursor: pointer;
+}

@@ -30,6 +30,8 @@ var Admin = function () {
 
             //time settings change
             jQuery('input[name=_event_time_format]').on('change', Admin.actions.showSelectedTimeFormat);
+            jQuery(".wpem-tabs li a").on('click', Admin.actions.tabClick);
+            jQuery('.wpem-tabs li a:first').click();
 
             if (jQuery('input[data-picker="datepicker"]#_event_start_date').length > 0) {
                 wp_event_manager_admin_js.start_of_week = parseInt(wp_event_manager_admin_js.start_of_week);
@@ -209,6 +211,21 @@ var Admin = function () {
                         var old_url = window.location.href;
                         window.location = old_url + "&plugin=" + plugin_slug;
                         
+                    },
+
+                    /// <summary>
+                    /// Click on tab event manager genera or other event tab.     
+                    /// </summary>
+                    /// <param name="parent" type="Event"></param>    
+                    /// <returns type="actions" />
+                    /// <since>1.0.0</since>    
+                    tabClick: function (event) {
+                        event.preventDefault();
+                        jQuery('.wpem_panel').hide();
+                        jQuery('.nav-tab-active').removeClass('nav-tab-active');
+                        jQuery(jQuery(this).attr('href')).show();
+                        jQuery(this).addClass('nav-tab-active');
+                        return false;
                     },
 
                     /// <summary>
