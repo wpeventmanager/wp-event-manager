@@ -373,35 +373,61 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'tabgroup' => 1,
 				),
 
+				'enable_health_guideline' => array(
+			        'label'	=> __('Enable Health Guidelines','wp-event-manager'),							      	
+			        'type'  => 'radio',
+				    'default'  => 'no',
+				    'options'  => array(
+							    'yes' => __( 'Yes', 'wp-event-manager' ),
+							    'no' => __( 'No', 'wp-event-manager' )
+				 		    ),
+				    'priority'    => 4,
+			        'required'=>true,
+					'visibility'  => 1,
+					'tabgroup' => 10,
+		 		),
+
 				'event_health_guidelines' => array(  
 				'label'       => __( 'Health Guidelines', 'wp-event-manager' ),
 				'type'        => 'switch',
 				'options'     => array(
-					'enable_health_guidelines' => __( 'Enable health guidelines for this event', 'wp-event-manager' ),
 					'face_masks_required'      => __( 'Face masks required', 'wp-event-manager' ),
 					'temperature_checked'      => __( 'Temperature will be checked at entrance', 'wp-event-manager' ),
 					'physical_distance'        => __( 'Physical distance maintained event', 'wp-event-manager' ),
 					'event_sanitized'          => __( 'Event area sanitized before event', 'wp-event-manager' ),
 					'event_outside'            => __( 'Event is held outside', 'wp-event-manager' ),
 					'vaccination_required'     => __( 'Vaccination Required', 'wp-event-manager' ),
-					'other'                    => __( 'Other additional health guidelines', 'wp-event-manager' ),
 				),
 				'priority'    => 20,
 				'required'    => false,
 				'visibility'  => 1,
 				'tabgroup'    => 10,
-			),
+				),
 
-			'event_health_guidelines_other' => array(
-				'label'       => __( 'Other Additional Health Guidelines', 'wp-event-manager' ),
-				'placeholder' => __( 'Please specify other health guidelines', 'wp-event-manager' ),
-				'type'        => 'text',
-				'priority'    => 21,
-				'required'    => false,
-				'visibility'  => 1,
-				'tabgroup'    => 10,
-			),
-		),	
+				'enable_health_guideline_other' => array(
+			        'label'	=> __('Other Additional Health Guidelines','wp-event-manager'),							      	
+			        'type'  => 'radio',
+				    'default'  => 'no',
+				    'options'  => array(
+							    'yes' => __( 'Yes', 'wp-event-manager' ),
+							    'no' => __( 'No', 'wp-event-manager' )
+				 		    ),
+				    'priority'    => 21,
+			        'required'=>true,
+					'visibility'  => 1,
+					'tabgroup' => 10,
+		 		),
+
+				'event_health_guidelines_other' => array(
+					'label'       => __( 'Other Additional Health Guidelines', 'wp-event-manager' ),
+					'placeholder' => __( 'Please specify other health guidelines', 'wp-event-manager' ),
+					'type'        => 'text',
+					'priority'    => 22,
+					'required'    => false,
+					'visibility'  => 1,
+					'tabgroup'    => 10,
+				),
+			),	
 
 			'organizer' => array(
 				'event_organizer_ids' => array(
@@ -410,7 +436,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'default'  		=> $default_organizer,
 				    'options'  		=>apply_filters('wpem_set_organizer_ids', ($current_user_id) ? get_all_organizer_array($current_user_id) : []),
 				    'description'	=> $organizer_description,
-				    'priority'   	=> 20,
+				    'priority'   	=> 23,
 			        'required'		=>false,
 					'visibility'  => 1,
 					'tabgroup' => 1,
@@ -424,7 +450,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				    'default'  		=> $default_venue,
 				    'options'  		=> apply_filters('wpem_set_venue_ids', ($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')]),
 				    'description'	=> $venue_description,
-				    'priority'    	=> 21,
+				    'priority'    	=> 24,
 			        'required'		=>false,
 					'visibility'    => 1,
 					'tabgroup' => 2,

@@ -103,6 +103,7 @@ class WP_Event_Manager_Field_Editor {
 				'wp-editor'        => esc_html__('WP Editor', 'wp-event-manager'),
 				'url'              => esc_html__('URL', 'wp-event-manager'),          /*'group'       			=> __('Group', 'wp-event-manager'),	*/
 				'email'            => esc_html__('Email', 'wp-event-manager'),
+				'switch'            => esc_html__('Switch', 'wp-event-manager'),
 			)
 		);
 

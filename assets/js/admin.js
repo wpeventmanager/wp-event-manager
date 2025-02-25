@@ -182,6 +182,21 @@ var Admin = function () {
             //upgrade database
             jQuery("#wp_event_manager_upgrade_database").on('click', Admin.actions.upgradeDatabase);
 
+            
+            jQuery("input[name=_enable_health_guideline]").on('change', Admin.actions.guidelineEvent);
+            if (jQuery('input[name=_enable_health_guideline]:checked').length > 0) {
+                jQuery('input[name=_enable_health_guideline]:checked').trigger('change');
+            } else {
+                jQuery("input[name=_enable_health_guideline][value='no']").prop("checked", true).trigger("change");
+            }
+
+            jQuery("input[name=_enable_health_guideline_other]").on('change', Admin.actions.otherguidelineEvent);
+            if (jQuery('input[name=_enable_health_guideline_other]:checked').length > 0) {
+                jQuery('input[name=_enable_health_guideline_other]:checked').trigger('change');
+            } else {
+                jQuery("input[name=_enable_health_guideline_other][value='no']").prop("checked", true).trigger("change");
+            }
+
             //online event
             jQuery("input[name=_event_online]").on('change', Admin.actions.onlineEvent);
             if (jQuery('input[name=_event_online]:checked').length > 0) {
@@ -289,6 +304,36 @@ var Admin = function () {
                             jQuery('#_event_location').closest('.form-field').show();
                             jQuery('#_event_venue_ids').closest('.form-field').show();
                             jQuery('#_event_country').closest('.form-field').show();
+                        }
+                    },
+
+                    /// <summary>
+                    /// Hide guideline
+                    /// </summary>
+                    /// <returns type="initialization settings" />
+                    /// <since>3.1.16</since>
+                    guidelineEvent: function (event) {
+                        event.preventDefault();
+
+                        if (jQuery(this).val() == "yes")  {
+                            jQuery('._event_health_guidelines').closest('.form-field').show();
+                        } else {
+                            jQuery('._event_health_guidelines').closest('.form-field').hide();
+                        }
+                    },
+
+                    /// <summary>
+                    /// Hide other guideline text
+                    /// </summary>
+                    /// <returns type="initialization settings" />
+                    /// <since>3.1.16</since>
+                    otherguidelineEvent: function (event) {
+                        event.preventDefault();
+
+                        if (jQuery(this).val() == "yes")  {
+                            jQuery('#_event_health_guidelines_other').closest('.form-field').show();
+                        } else {
+                            jQuery('#_event_health_guidelines_other').closest('.form-field').hide();
                         }
                     },
 
