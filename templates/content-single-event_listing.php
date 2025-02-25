@@ -509,72 +509,69 @@ $event = $post; ?>
                  * single_event_listing_end hook
                  */
                 do_action('single_event_listing_end');  ?>
+                <?php
+                $event_health_guidelines = get_post_meta($post->ID, '_event_health_guidelines', true);
+                $event_health_guidelines = !empty($event_health_guidelines) ? (array) $event_health_guidelines : [];
+                $other_guidelines_text = get_post_meta($post->ID, '_event_health_guidelines_other', true);
+                $health_guidelines_list = array(
+                    'face_masks_required'      => array('label' => __('Masks Required', 'wp-event-manager'), 'icon' => 'wpem-icon-head-side-mask'),
+                    'temperature_checked'      => array('label' => __('Temperature Checked At Entrance', 'wp-event-manager'), 'icon' => 'wpem-icon-temperature'),
+                    'physical_distance'        => array('label' => __('Physical Distance Maintained', 'wp-event-manager'), 'icon' => 'wpem-icon-people-distance'),
+                    'event_sanitized'          => array('label' => __('Event Area Sanitized', 'wp-event-manager'), 'icon' => 'wpem-icon-house-medical'),
+                    'event_outside'            => array('label' => __('Outdoor Event', 'wp-event-manager'), 'icon' => 'wpem-icon-spruce-tree'),
+                    'vaccination_required'     => array('label' => __('Vaccination Required', 'wp-event-manager'), 'icon' => 'wpem-icon-syringe'),
+                );
 
-                
-            <!-- Health Guidelines Start -->
-            <div class="wpem-single-event-footer">
-                <div class="wpem-event-health-guidelines-wrapper">
-                    <div class="wpem-listing-accordion active">
-                        <h3 class="wpem-heading-text"><?php esc_html_e('Health Guidelines', 'wp-event-manager'); ?></h3>
-                        <i class="wpem-icon-minus"></i><i class="wpem-icon-plus"></i>
-                    </div>
+                if (!empty($event_health_guidelines)) :
+                ?>
+                <!-- Health Guidelines Start -->
+                <div class="wpem-single-event-footer">
+                    <div class="wpem-event-health-guidelines-wrapper">
+                        <div class="wpem-listing-accordion active">
+                            <h3 class="wpem-heading-text"><?php esc_html_e('Health Guidelines', 'wp-event-manager'); ?></h3>
+                            <i class="wpem-icon-minus"></i><i class="wpem-icon-plus"></i>
+                        </div>
 
-                    <div class="wpem-listing-accordion-panel active" style="display: block;">
-                        <div class="wpem-event-health-guideline-list">
-                            <div class="wpem-row">
-                                <div class="wpem-col-md-6">
-                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
-                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-head-side-mask"></i></div>
-                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Masks Required', 'wp-event-manager'); ?></span></div>
-                                    </div>
-                                </div>
-                                <div class="wpem-col-md-6">
-                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
-                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-temperature"></i></div>
-                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Temperature Checked At Entrance', 'wp-event-manager'); ?></span></div>
-                                    </div>
-                                </div>
-                                <div class="wpem-col-md-6">
-                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
-                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-people-distance"></i></div>
-                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Physical Distance Maintained', 'wp-event-manager'); ?></span></div>
-                                    </div>
-                                </div>
-                                <div class="wpem-col-md-6">
-                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
-                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-house-medical"></i></div>
-                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Event Area Sanitized', 'wp-event-manager'); ?></span></div>
-                                    </div>
-                                </div>
-                                <div class="wpem-col-md-6">
-                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
-                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-spruce-tree"></i></div>
-                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Outdoor Event', 'wp-event-manager'); ?></span></div>
-                                    </div>
-                                </div>
-                                <div class="wpem-col-md-6">
-                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
-                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-syringe"></i></div>
-                                        <div class="wpem-event-health-guideline-list-item-title"><span><?php esc_html_e('Vaccination Required', 'wp-event-manager'); ?></span></div>
-                                    </div>
-                                </div>
-                                <div class="wpem-col-md-12">
-                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
-                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center"><i class="wpem-icon-notes-medical"></i></div>
-                                        <div class="wpem-event-health-guideline-list-item-title">
-                                            <b><?php esc_html_e('Other Health Guidelines', 'wp-event-manager'); ?></b>
-                                            <span>Inform attendees about acceptable behavior and respect for safety.</span>
+                        <div class="wpem-listing-accordion-panel active" style="display: block;">
+                            <div class="wpem-event-health-guideline-list">
+                                <div class="wpem-row">
+
+                                    <?php foreach ($health_guidelines_list as $key => $data) : 
+                                        if (isset($event_health_guidelines[$key])) : ?>
+                                            <div class="wpem-col-md-6">
+                                                <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                                    <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center">
+                                                        <i class="<?php echo esc_attr($data['icon']); ?>"></i>
+                                                    </div>
+                                                    <div class="wpem-event-health-guideline-list-item-title">
+                                                        <span><?php echo esc_html($data['label']); ?></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; 
+                                    endforeach; ?>
+
+                                    <?php if (isset($event_health_guidelines['other']) && !empty($other_guidelines_text)) : ?>
+                                        <div class="wpem-col-md-12">
+                                            <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                                <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center">
+                                                    <i class="wpem-icon-notes-medical"></i>
+                                                </div>
+                                                <div class="wpem-event-health-guideline-list-item-title">
+                                                    <b><?php esc_html_e('Other Health Guidelines', 'wp-event-manager'); ?></b>
+                                                    <span><?php echo esc_html($other_guidelines_text); ?></span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Health Guidelines End -->
-
-
+                <!-- Health Guidelines End -->
+                <?php endif; ?>
             </div>
             <!-- / wpem-wrapper end  -->
         <?php endif; ?>
