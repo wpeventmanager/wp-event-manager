@@ -52,37 +52,37 @@ class WP_Event_Manager_Deactivation {
         <div id="wpem-deactivation-popup" style="display:none">
             <div class="popup-content">
                 <button id="close-popup" class="close-popup-button">&times;</button>
-                <h2 class="popup-heading">Quick Feedback</h2>
-                <p class="popup-subheading">If you have a moment, please share why you are deactivating WP Event Manager:</p>
+                <h2 class="popup-heading"><?php esc_html_e('Quick Feedback', 'wp-event-manager'); ?></h2>
+                <p class="popup-subheading"><?php esc_html_e('If you have a moment, please share why you are deactivating WP Event Manager:', 'wp-event-manager');?></p>
                 <form id="wpem-deactivation-form">
                     <div class="radio-options">
                         <label>
                             <input type="radio" name="reason" value="I no longer need the plugin" required>
-                            I no longer need the plugin
+                            <?php esc_html_e('I no longer need the plugin', 'wp-event-manager'); ?>
                         </label>
                         <label>
                             <input type="radio" name="reason" value="I found a better plugin">
-                            I found a better plugin
+                            <?php esc_html_e('I found a better plugin', 'wp-event-manager'); ?>
                         </label>
                         <label>
                             <input type="radio" name="reason" value="I could not get the plugin to work">
-                            I could not get the plugin to work
+                            <?php esc_html_e('I could not get the plugin to work', 'wp-event-manager'); ?>
                         </label>
                         <label>
                             <input type="radio" name="reason" value="It is a temporary deactivation">
-                            It is a temporary deactivation
+                            <?php esc_html_e('It is a temporary deactivation', 'wp-event-manager'); ?>
                         </label>
                         <label>
                             <input type="radio" name="reason" value="Other">
-                            Other
+                            <?php esc_html_e('Other', 'wp-event-manager'); ?>
                         </label>
                     </div>
                     <div id="other-reason-box" style="display: none; margin-top: 10px;">
                         <textarea id="additional_feedback" name="additional_feedback" placeholder="Tell us more"></textarea>
                     </div>
                     <div class="popup-buttons">
-                        <button type="submit" class="btn-submit-deactivate">Submit & Deactivate</button>
-                        <button type="button" id="skip-deactivate" class="btn-skip-deactivate">Skip & Deactivate</button>
+                        <button type="submit" class="btn-submit-deactivate"><?php esc_html_e('Submit & Deactivate', 'wp-event-manager'); ?></button>
+                        <button type="button" id="skip-deactivate" class="btn-skip-deactivate"><?php esc_html_e('Skip & Deactivate', 'wp-event-manager'); ?></button>
                     </div>
                 </form>
             </div>
