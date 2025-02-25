@@ -15,9 +15,9 @@
 					<label class="switch">
 						<input type="checkbox" 
 							name="<?php echo esc_attr($key); ?>[<?php echo esc_attr($option_key); ?>]" 
-							id="<?php echo esc_attr($key . '_' . $option_key); ?>"
+							id="<?php echo esc_attr($key . '_' . $option_key); ?>" class="<?php echo esc_attr($key); ?>"
 							value="1"
-							<?php echo isset($saved_values[$option_key]) ? 'checked' : ''; ?>>
+							<?php echo isset($field['value'][$option_key]) ? 'checked' : ''; ?>>
 						<span class="slider round"></span>
 					</label>
 					<label for="<?php echo esc_attr($key . '_' . $option_key); ?>">

@@ -4266,3 +4266,9 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(18px);
 }
+
+.health-guidelines-switches .form-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

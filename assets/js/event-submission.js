@@ -241,6 +241,20 @@ EventSubmission = function () {
 
             //delete tickets 
             jQuery(document).delegate('.remove-group-row', 'click', EventSubmission.actions.removeGroupField);
+
+            jQuery("input[name=enable_health_guideline]").on('change', EventSubmission.actions.guidelineEvent);
+            if (jQuery('input[name=enable_health_guideline]:checked').length > 0) {
+                jQuery('input[name=enable_health_guideline]:checked').trigger('change');
+            } else {
+                jQuery("input[name=enable_health_guideline][value='no']").prop("checked", true).trigger("change");
+            }
+
+            jQuery("input[name=enable_health_guideline_other]").on('change', EventSubmission.actions.otherguidelineEvent);
+            if (jQuery('input[name=enable_health_guideline_other]:checked').length > 0) {
+                jQuery('input[name=enable_health_guideline_other]:checked').trigger('change');
+            } else {
+                jQuery("input[name=enable_health_guideline_other][value='no']").prop("checked", true).trigger("change");
+            }
         },
 
         actions: {
@@ -292,6 +306,37 @@ EventSubmission = function () {
             removeGroupField: function (event) {
                 jQuery("." + this.id).remove();
                 event.preventDefault();
+            },
+
+            /// <summary>
+            /// Hide guideline
+            /// </summary>
+            /// <returns type="initialization settings" />
+            /// <since>3.1.16</since>
+            guidelineEvent: function (event) {
+                event.preventDefault();
+                var selectedValue = this.value;
+                if (selectedValue == '' || selectedValue == 'no') {
+                    jQuery('.fieldset-event_health_guidelines').hide();
+                } else {
+                    jQuery('.fieldset-event_health_guidelines').show();
+                }
+            },
+
+
+            /// <summary>
+            /// Hide other guideline text
+            /// </summary>
+            /// <returns type="initialization settings" />
+            /// <since>3.1.16</since>
+            otherguidelineEvent: function (event) {
+                event.preventDefault();
+                var selectedValue = this.value;
+                if (selectedValue == '' || selectedValue == 'no')  {
+                    jQuery('.fieldset-event_health_guidelines_other').hide();
+                } else {
+                    jQuery('.fieldset-event_health_guidelines_other').show();
+                }
             },
 
             /// <summary>
