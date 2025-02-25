@@ -389,7 +389,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				'priority'    => 20,
 				'required'    => false,
 				'visibility'  => 1,
-				'tabgroup'    => 5,
+				'tabgroup'    => 10,
 			),
 
 			'event_health_guidelines_other' => array(
@@ -399,7 +399,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				'priority'    => 21,
 				'required'    => false,
 				'visibility'  => 1,
-				'tabgroup'    => 5,
+				'tabgroup'    => 10,
 			),
 		),	
 

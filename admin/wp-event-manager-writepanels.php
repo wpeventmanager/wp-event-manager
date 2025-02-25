@@ -106,7 +106,7 @@ class WP_Event_Manager_Writepanels {
 					'label'    => __('Advanced', 'wp-food-manager'),
 					'target'   => 'advanced_event_data_content',
 					'class'    => array(''),
-					'priority' => 5,
+					'priority' => 10,
 				),
 			)
 		);
