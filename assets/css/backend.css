@@ -262,7 +262,6 @@ a {
 }
 .wp_event_manager_meta_data .form-field .tips {
     cursor: help;
-    float: right;
     font-weight: 400;
     color: #999;
 }
@@ -1431,21 +1430,20 @@ h2.nav-tab-wrapper {
     flex-wrap: wrap;
 } 
 
+
 /* Switch Style */
-.switch {
+.wpem_panel .health-guidelines-switches .switch {
     position: relative;
     display: inline-block;
-    width: 40px;
+    width: 40px !important;
     height: 22px;
 }
-
-.switch input {
+.health-guidelines-switches .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
-
-.slider {
+.health-guidelines-switches .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -1456,8 +1454,7 @@ h2.nav-tab-wrapper {
     transition: .4s;
     border-radius: 22px;
 }
-
-.slider:before {
+.health-guidelines-switches .slider:before {
     position: absolute;
     content: "";
     height: 16px;
@@ -1468,11 +1465,9 @@ h2.nav-tab-wrapper {
     transition: .4s;
     border-radius: 50%;
 }
-
 input:checked + .slider {
     background-color: #2196F3;
 }
-
 input:checked + .slider:before {
     transform: translateX(18px);
 }
@@ -1526,17 +1521,17 @@ input:checked + .slider:before {
   #event_manager_data ul.wpem-tabs li.general_options a::before {
     content: "\f107";
   }
-  
   #event_manager_data ul.wpem-tabs li.advanced_tab a::before {
     content: "\f111";
   }
-  
-  #event_manager_data ul.wpem-tabs li.nutritions_tab a::before {
-    content: "\f511";
+  #event_manager_data ul.wpem-tabs li.venue_tab a::before {
+    content: "\f230";
   }
-  
-  #event_manager_data ul.wpem-tabs li.ingredient_tab a::before {
-    content: "\f175";
+  #event_manager_data ul.wpem-tabs li.date_tab a::before {
+    content: "\f469";
+  }
+  #event_manager_data ul.wpem-tabs li.registration_tab a::before {
+    content: "\f110";
   }
   
   #event_manager_data ul.wpem-tabs li a::before {
@@ -1550,55 +1545,49 @@ input:checked + .slider:before {
     font-variant: normal;
     text-decoration: none;
   }
-  
-  #event_manager_data ul.wpem-tabs li.toppings_tab a::before {
-    content: "\f509";
-  }
-  
-  #event_manager_data ul.wpem-tabs li.tax_classes_tab a::before {
-    content: "\f16a";
-  }
-  #event_manager_data ul.wpem-tabs li.ingredients_tab a::before {
-    content: "\f450";
-  }
-  
   #event_manager_data .wpem_panel {
     float: left;
     width: 80%;
   }
-  
   .wpem_panel {
     min-height: 175px;
     box-sizing: border-box;
   }
-  
   .panel,
   .wpem_panel {
     color: #555;
   }
-  
   #event_manager_data .wpem-tabs a.nav-tab-active {
     border-left: 3px solid #0b8ac7;
   }
-  
-  .wpem_panel p.wpem-admin-postbox-form-field {
-    padding: 5px 20px 5px 200px !important;
+  .wpem_panel p.form-field {
+    padding: 5px 5px 5px 200px !important;
     display: flex;
     align-items: center;
-    column-gap: 5px;
+    column-gap: 10px;
+    margin: 0;
+    width: 100%;
+    float: inherit;
   }
-  
-  #advanced_product_data p.wpem-admin-postbox-form-field {
-    display: flex;
-    align-items: center;
-  }
-  
-  .wpem_panel label {
+.wpem_panel p.form-field .wpem-input-field label {
+    float: inherit;
+    width: inherit;
+    margin: 0;
+}
+.wpem_panel p.form-field label {
     float: left;
     width: 200px;
+    padding: 0;
+    margin: 0 0 0 -200px;
     font-size: 14px;
     color: #555;
-  }
+    font-weight: normal;
+}
+.wpem-admin-radio-inline {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+}
   
   .wpem_panel .wpem-small-field,
   .wpem_panel input[type="email"].wpem-small-field,
@@ -2052,7 +2041,7 @@ input:checked + .slider:before {
     margin: 0;
   }
   
-  .wpem-input-field {
+  .wpem_panel p .wpem-input-field {
     background: #f6f7f7;
     padding: 15px;
     position: relative;
@@ -2146,3 +2135,44 @@ input:checked + .slider:before {
   }
 
   
+
+  @media (max-width: 992px) {
+    #event_manager_data ul.wpem-tabs {
+        width: 10%;
+    }
+    #event_manager_data .wpem_panel {
+        width: 90%;
+    }
+    #event_manager_data ul.wpem-tabs li a {
+        position: relative;
+        text-indent: -999px;
+        padding: 10px;
+    }
+    #event_manager_data ul.wpem-tabs li a::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        text-indent: 0;
+        text-align: center;
+        line-height: 40px;
+        width: 100%;
+        height: 40px;
+    }
+    .wpem_panel p.form-field label {
+        width: 100px;
+        margin: 0 0 0 -100px;
+    }
+    .wpem_panel p.form-field {
+        padding: 5px 5px 5px 100px !important;
+    }
+}
+
+
+@media screen and (max-width: 782px) {
+    input[type=checkbox], input[type=radio] {
+        height: 1.5625rem !important;
+        width: 1.5625rem !important;
+    }
+}

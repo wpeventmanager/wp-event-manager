@@ -455,14 +455,14 @@ class WP_Event_Manager_Writepanels {
 			<?php
 			if(!empty($field['multiple'])) {
 				foreach ((array) $field['value'] as $value) {?>
-					<span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($value); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span>
+					<span class="wpem-input-field"> <span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($value); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span></span>
 				<?php
 				}
 			} else {
 				if(isset($field['value']) && is_array($field['value'])) {
 					$field['value'] = array_shift($field['value']);
 				} ?>
-				<span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span>
+				<span class="wpem-input-field"><span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span></span>
 			<?php }
 			if(!empty($field['multiple'])) { ?>
 				<button class="button button-small wp_event_manager_add_another_file_button" data-field_name="<?php echo esc_attr($key); ?>" data-field_placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>" data-uploader_button="<?php esc_attr_e('Upload', 'wp-event-manager'); ?>"><?php esc_attr_e('Add file', 'wp-event-manager'); ?></button>
@@ -490,19 +490,21 @@ class WP_Event_Manager_Writepanels {
 		<div class="health-guidelines-switches">
 			<?php foreach ($options as $option_key => $option_label) : ?>
 				<p class="form-field">
-					<label class="switch">
-						<input type="checkbox" 
-							name="<?php echo esc_attr($key); ?>[<?php echo esc_attr($option_key); ?>]" 
-							id="<?php echo esc_attr($key . '_' . $option_key); ?>"
-							value="1"
-							<?php echo isset($saved_values[$option_key]) ? 'checked' : ''; ?>>
-						<span class="slider round"></span>
-					</label>
 					<label for="<?php echo esc_attr($key . '_' . $option_key); ?>">
 						<?php echo esc_html($option_label); ?>
 					</label>
+					<span class="wpem-input-field">
+						<label class="switch">
+							<input type="checkbox" 
+								name="<?php echo esc_attr($key); ?>[<?php echo esc_attr($option_key); ?>]" 
+								id="<?php echo esc_attr($key . '_' . $option_key); ?>"
+								value="1"
+								<?php echo isset($saved_values[$option_key]) ? 'checked' : ''; ?>>
+							<span class="slider round"></span>
+						</label>
+					</span>
 				</p>
-
+				
 				<?php if ($option_key === 'custom_guidelines') : ?>
 					<input type="text" 
 						name="<?php echo esc_attr($key); ?>[custom_text]" 
@@ -557,11 +559,13 @@ class WP_Event_Manager_Writepanels {
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span>
 				<?php endif; ?>
 			</label>
-			<input type="text" 
+			<span class="wpem-input-field">
+				<input type="text" 
 				   name="<?php echo esc_attr($name); ?>" 
 				   id="<?php echo esc_attr($key); ?>" 
 				   placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" 
 				   value="<?php echo esc_attr($field['value']); ?>" />
+			</span>
 		</p>
 		<?php
 	}
@@ -590,7 +594,7 @@ class WP_Event_Manager_Writepanels {
 					<?php if(!empty($field['description'])) : ?>
 						<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
 			</p>
-			<?php wp_editor($field['value'], $name, array('media_buttons' => false)); ?>
+			<span class="wpem-input-field"><?php wp_editor($field['value'], $name, array('media_buttons' => false)); ?></span>
 		</div>
 	<?php
 	}
@@ -623,8 +627,10 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="hidden" name="date_format" id="date_format" value="<?php echo esc_attr($php_date_format)   ?>" />
-			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
+			<span class="wpem-input-field">		
+				<input type="hidden" name="date_format" id="date_format" value="<?php echo esc_attr($php_date_format)   ?>" />
+				<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
+			</span>
 		</p>
 	<?php
 	}
@@ -653,7 +659,7 @@ class WP_Event_Manager_Writepanels {
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span>
 				<?php endif; ?>
 			</label>
-			<textarea name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>"><?php echo esc_html($field['value']); ?></textarea>
+			<span class="wpem-input-field"><textarea name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>"><?php echo esc_html($field['value']); ?></textarea></span>
 		</p>
 	<?php
 	}
@@ -686,17 +692,19 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input name="<?php echo esc_attr($name); ?>_hidden" type="hidden" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" />
-			<select name=" <?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
-				<?php foreach ($field['options'] as $key => $value) : ?>
-					<option value="<?php echo esc_attr($key); ?>" <?php
-						if(isset($field['value'])) {
-							selected($field['value'], $key);
-						}?>>
-					<?php echo esc_html($value); ?>
-					</option>
-				<?php endforeach; ?>
-			</select>
+			<span class="wpem-input-field">
+				<input name="<?php echo esc_attr($name); ?>_hidden" type="hidden" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" />
+				<select name=" <?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
+					<?php foreach ($field['options'] as $key => $value) : ?>
+						<option value="<?php echo esc_attr($key); ?>" <?php
+							if(isset($field['value'])) {
+								selected($field['value'], $key);
+							}?>>
+						<?php echo esc_html($value); ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</span>
 		</p>
 	<?php
 	}
@@ -724,17 +732,19 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?>
 			</label>
-			<select multiple="multiple" name="<?php echo esc_attr($name); ?>[]" id="<?php echo esc_attr($key); ?>" class="input-select event-manager-select-chosen <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
-				<?php foreach ($field['options'] as $key => $value) : ?>
-					<option value="<?php echo esc_attr($key); ?>" <?php
-											if(!empty($field['value']) && is_array($field['value'])) {
-												selected(in_array($key, $field['value']), true);
-											}elseif ($key == $default_organizer) {
-												echo 'selected="selected"';
-											}
-											?>><?php echo esc_html($value); ?></option>
-				<?php endforeach; ?>
-			</select>
+			<span class="wpem-input-field">
+				<select multiple="multiple" name="<?php echo esc_attr($name); ?>[]" id="<?php echo esc_attr($key); ?>" class="input-select event-manager-select-chosen <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
+					<?php foreach ($field['options'] as $key => $value) : ?>
+						<option value="<?php echo esc_attr($key); ?>" <?php
+												if(!empty($field['value']) && is_array($field['value'])) {
+													selected(in_array($key, $field['value']), true);
+												}elseif ($key == $default_organizer) {
+													echo 'selected="selected"';
+												}
+												?>><?php echo esc_html($value); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</span>
 		</p>
 	<?php
 	}
@@ -757,11 +767,13 @@ class WP_Event_Manager_Writepanels {
 		} ?>
 		<p class="form-field form-field-checkbox">
 			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?></label>
-			<input type="checkbox" class="checkbox" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" value="1" <?php checked($field['value'], 1); ?> />
-			<?php
-			if(!empty($field['description'])) :
-			?>
-				<span class="description"><?php echo esc_attr($field['description']); ?></span><?php endif; ?>
+			<span class="wpem-input-field">
+				<input type="checkbox" class="checkbox" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" value="1" <?php checked($field['value'], 1); ?> />
+				<?php
+				if(!empty($field['description'])) :
+				?>
+					<span class="description"><?php echo esc_attr($field['description']); ?></span><?php endif; ?>
+			</span>
 		</p>
 	<?php
 	}
@@ -788,7 +800,9 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" data-picker="timepicker" />
+			<span class="wpem-input-field">
+				<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" data-picker="timepicker" />
+			</span>
 		</p>
 	<?php
 	}
@@ -815,12 +829,14 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-					<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
-				<?php
-				$value = isset($field['value']) ? $field['value'] : $field['default'];
-				echo WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value));
-				?>
-			</select>
+			<span class="wpem-input-field">
+				<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
+					<?php
+					$value = isset($field['value']) ? $field['value'] : $field['default'];
+					echo WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value));
+					?>
+				</select>
+			</span>
 		</p>
 	<?php
 	}
@@ -847,7 +863,9 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" min="<?php echo isset($field['min']) ? esc_attr($field['min']) : esc_attr('0'); ?>" max="<?php echo isset($field['max']) ? esc_attr($field['max']) : ''; ?>" />
+			<span class="wpem-input-field">
+				<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" min="<?php echo isset($field['min']) ? esc_attr($field['min']) : esc_attr('0'); ?>" max="<?php echo isset($field['max']) ? esc_attr($field['max']) : ''; ?>" />
+			</span>
 		</p>
 	<?php
 	}
@@ -874,7 +892,9 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="url" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			<span class="wpem-input-field">
+				<input type="url" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			</span>
 		</p>
 	<?php
 	}
@@ -902,7 +922,9 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="button" class="button button-small" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			<span class="wpem-input-field">
+				<input type="button" class="button button-small" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			</span>
 		</p>
 	<?php
 	}
@@ -926,19 +948,21 @@ class WP_Event_Manager_Writepanels {
 		$name           = !empty($field['name']) ? $field['name'] : $key; ?>
 		<p class="form-field form-field-author">
 			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:</label>
-			<span class="current-author">
-				<?php
-				if($posted_by) {
-					echo wp_kses_post('<a href="' . esc_url(admin_url('user-edit.php?user_id=' . absint($author_id))) . '">#' . absint($author_id) . ' &ndash; ' . esc_attr($posted_by->user_login) . '</a>');
-				} else {
-					esc_attr_e('Guest User', 'wp-event-manager');
-				}
-				?>
-				<a href="#" class="change-author button button-small"><?php esc_attr_e('Change', 'wp-event-manager'); ?></a>
-			</span>
-			<span class="hidden change-author">
-				<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" step="1" value="<?php echo esc_attr($author_id); ?>" style="width: 4em;" />
-				<span class="description"><?php esc_attr_e('Enter the ID of the user, or leave blank if submitted by a guest.', 'wp-event-manager'); ?></span>
+			<span class="wpem-input-field">
+				<span class="current-author">
+					<?php
+					if($posted_by) {
+						echo wp_kses_post('<a href="' . esc_url(admin_url('user-edit.php?user_id=' . absint($author_id))) . '">#' . absint($author_id) . ' &ndash; ' . esc_attr($posted_by->user_login) . '</a>');
+					} else {
+						esc_attr_e('Guest User', 'wp-event-manager');
+					}
+					?>
+					<a href="#" class="change-author button button-small"><?php esc_attr_e('Change', 'wp-event-manager'); ?></a>
+				</span>
+				<span class="hidden change-author">
+					<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" step="1" value="<?php echo esc_attr($author_id); ?>" style="width: 4em;" />
+					<span class="description"><?php esc_attr_e('Enter the ID of the user, or leave blank if submitted by a guest.', 'wp-event-manager'); ?></span>
+				</span>
 			</span>
 		</p>
 	<?php
@@ -962,16 +986,21 @@ class WP_Event_Manager_Writepanels {
 		}?>
 		<p class="form-field form-field-checkbox">
 			<label><?php esc_html_e($field['label'], 'wp-event-manager'); ?></label>
-			<?php foreach ($field['options'] as $option_key => $value) : ?>
-				<label>
-					<input type="radio" class="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($field['value'], $option_key); ?> /> 
-					<?php echo esc_html($value, 'wp-event-manager'); ?>
-				</label>
-			<?php endforeach; ?>
-			<?php
-			if(!empty($field['description'])) :
-			?>
-				<span class="description"><?php echo esc_html($field['description'], 'wp-event-manager'); ?></span><?php endif; ?>
+			<span class="wpem-input-field">
+				<span class="wpem-admin-radio-inline">
+					<?php foreach ($field['options'] as $option_key => $value) : ?>
+						<label>
+							<input type="radio" class="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($field['value'], $option_key); ?> /> 
+							<?php echo esc_html($value, 'wp-event-manager'); ?>
+						</label>
+					<?php endforeach; ?>
+					</span>
+					<?php
+					if(!empty($field['description'])) :
+					?>
+						<span class="description"><?php echo esc_html($field['description'], 'wp-event-manager'); ?></span><?php endif; ?>
+				
+			</span>
 		</p>
 	<?php
 	}
