@@ -79,31 +79,31 @@ class WP_Event_Manager_Writepanels {
 			'wpem_event_data_tabs',
 			array(
 				'general'        => array(
-					'label'    => __('General Settings', 'wp-food-manager'),
+					'label'    => __('General Settings', 'wp-event-manager'),
 					'target'   => 'general_event_data_content',
 					'class'    => array(''),
 					'priority' => 1,
 				),
 				'venue'        => array(
-					'label'    => __('Venue/Location', 'wp-food-manager'),
+					'label'    => __('Venue/Location', 'wp-event-manager'),
 					'target'   => 'venue_event_data_content',
 					'class'    => array(),
 					'priority' => 2,
 				),
 				'date'        => array(
-					'label'    => __('Date and Time', 'wp-food-manager'),
+					'label'    => __('Date and Time', 'wp-event-manager'),
 					'target'   => 'date_time_event_data_content',
 					'class'    => array(''),
 					'priority' => 3,
 				),
 				'registration'        => array(
-					'label'    => __('Registration', 'wp-food-manager'),
+					'label'    => __('Registration', 'wp-event-manager'),
 					'target'   => 'registration_event_data_content',
 					'class'    => array(''),
 					'priority' => 4,
 				),
 				'advanced'        => array(
-					'label'    => __('Advanced', 'wp-food-manager'),
+					'label'    => __('Advanced', 'wp-event-manager'),
 					'target'   => 'advanced_event_data_content',
 					'class'    => array(''),
 					'priority' => 10,

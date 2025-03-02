@@ -96,11 +96,9 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 			<?php
 			$field['tabgroup'] = isset($field['tabgroup']) ? $field['tabgroup'] : 1;
 			$Writepanels = WP_Event_Manager_Writepanels::instance();
-			$cnt = 1;
 			foreach ($Writepanels->get_event_data_tabs() as $key => $tab) {
-				$selected = ($field['tabgroup'] == $cnt) ? 'selected' : '';
-				echo '<option value="' . esc_attr($cnt) . '"' . esc_attr($selected) . '>' . esc_html($tab['label']) . '</option>';
-				$cnt++;
+				$selected = ($field['tabgroup'] == $tab['priority']) ? 'selected' : '';
+				echo '<option value="' . esc_attr($tab['priority']) . '"' . esc_attr($selected) . '>' . esc_html($tab['label']) . '</option>';
 			}
 			?>
 		</select>
