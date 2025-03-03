@@ -438,12 +438,17 @@ class WP_Event_Manager {
 	 * @return void
 	 */
 	public function wpem_restrict_non_organizer_access_to_dashboard() {
-		if ( is_user_logged_in() ) {
-			if (!current_user_can('organizer') && !current_user_can('administrator')) {
+		if (is_user_logged_in()) {
+			$current_user = wp_get_current_user();
+			$allowed_roles = get_option('event_manager_allowed_submission_roles', array_keys(wp_roles()->roles));
+	
+			$allowed_roles = array_map('strtolower', $allowed_roles);
+			$user_roles = array_map('strtolower', $current_user->roles);
+	
+			if (!in_array('administrator', $user_roles) && !array_intersect($allowed_roles, $user_roles)) {
 				?>
 				<p class="account-sign-in wpem-alert wpem-alert-info">
-				<?php 
-				esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?> 
+					<?php esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?>
 				</p>
 				<?php
 				exit; 
