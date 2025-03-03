@@ -6,7 +6,16 @@
 if(!defined('ABSPATH')) exit;
 global $event_manager; 
 do_action('wp_event_manager_event_submit_before');
-?>
+$current_user = wp_get_current_user();
+$allowed_roles = get_option('event_manager_allowed_submission_roles', array_keys(wp_roles()->roles));
+
+$allowed_roles = array_map('strtolower', $allowed_roles);
+$user_roles = array_map('strtolower', $current_user->roles);
+
+if (!in_array('administrator', $user_roles) && !array_intersect($allowed_roles, $user_roles)) {
+    echo '<div class="event-manager-error wpem-alert wpem-alert-danger">' . esc_html__('You are not allowed to submit an event.', 'wp-event-manager') . '</div>';
+    return false;
+}?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-event-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if(apply_filters('submit_event_form_show_signin', true)) : 

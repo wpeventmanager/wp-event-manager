@@ -468,6 +468,15 @@ class WP_Event_Manager_Settings{
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
+						array(
+							'name'    => 'event_manager_allowed_submission_roles',
+							'std'     => array_keys($account_roles),
+							'label'   => __('Who Can Submit Events', 'wp-event-manager'),
+							'desc'    => __('Select which user roles can submit events. By default, all roles can submit.', 'wp-event-manager'),
+							'type'    => 'multiselect',
+							'options' => $account_roles,
+						),
+						
 					),
 				),
 				'event_pages'          => array(
