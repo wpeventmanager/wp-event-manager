@@ -959,9 +959,9 @@ h1.nav-tab-wrapper, h2.nav-tab-wrapper, h3.nav-tab-wrapper {
 .form-field .chosen-container {
     width: 100% !important;
 }
-.wp_event_manager_addons_wrap .products li img:last-child {
+/* .wp_event_manager_addons_wrap .products li img:last-child {
     display: none;
-}
+} */
 .wpem-product-image-wrapper {
     text-align: center;
     position: relative;
