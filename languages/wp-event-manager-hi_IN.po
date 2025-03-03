@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2025-03-03 18:19+0530\n"
-"PO-Revision-Date: 2025-03-03 18:21+0530\n"
+"POT-Creation-Date: 2025-03-03 19:23+0530\n"
+"PO-Revision-Date: 2025-03-03 19:24+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3689,6 +3689,10 @@ msgstr "घटना के लिए रजिस्टर करें"
 #: templates/event-filters.php:39
 msgid "Find Events"
 msgstr "डुप्लिकेट आवर्ती ईवेंट"
+
+#: templates/event-filters.php:47
+msgid "Additional Filters"
+msgstr "अतिरिक्त फिल्टर"
 
 #: templates/event-filters.php:52
 msgid "From"

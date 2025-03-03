@@ -44,7 +44,7 @@ $datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 		<?php do_action('event_manager_event_filters_search_events_start', $atts); ?>
 
 		<div class="wpem-event-filter-version-2-dropdown-additional-filters">
-			<div class="wpem-event-filter-version-2-dropdown-title">Additional Filters</div>
+			<div class="wpem-event-filter-version-2-dropdown-title"><?php esc_attr_e('Additional Filters', 'wp-event-manager');?></div>
 			<div class="wpem-row">
 				<!-- Search by date section start -->
 				<div class="wpem-col">
