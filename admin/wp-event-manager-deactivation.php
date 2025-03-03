@@ -78,7 +78,7 @@ class WP_Event_Manager_Deactivation {
                         </label>
                     </div>
                     <div id="other-reason-box" style="display: none; margin-top: 10px;">
-                        <textarea id="additional_feedback" name="additional_feedback" placeholder="Tell us more"></textarea>
+                        <textarea id="additional_feedback" name="additional_feedback" placeholder="<?php esc_html_e('Tell us more', 'wp-event-manager'); ?>"></textarea>
                     </div>
                     <div class="popup-buttons">
                         <button type="submit" class="btn-submit-deactivate"><?php esc_html_e('Submit & Deactivate', 'wp-event-manager'); ?></button>
