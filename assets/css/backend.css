@@ -291,6 +291,7 @@ a {
 }
 .wp_event_manager_meta_data .form-field .button {
     margin-left: 4px;
+    margin-top: 4px !important;
 }
 #tiptip_holder {
     display: none;
