@@ -12,9 +12,9 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
 $check_user_access 	 = wpem_checked_guest_user_access();
 
 // If user not logged in hide some fields from that
-if ( $check_user_access == false ) {
-    $field_to_hide = get_option( 'hide_organizer_fields' );
-} else {
+if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
+    $field_to_hide = get_option('hide_organizer_fields');
+}else {
 	$field_to_hide = array();
 }
 ?>

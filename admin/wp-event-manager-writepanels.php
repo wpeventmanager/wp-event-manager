@@ -79,7 +79,7 @@ class WP_Event_Manager_Writepanels {
 			'wpem_event_data_tabs',
 			array(
 				'general'        => array(
-					'label'    => __('General Settings', 'wp-event-manager'),
+					'label'    => __('General', 'wp-event-manager'),
 					'target'   => 'general_event_data_content',
 					'class'    => array(''),
 					'priority' => 1,
