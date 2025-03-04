@@ -166,11 +166,7 @@ class WP_Event_Manager_Settings{
 							'label'      => __('Select Organizer Fields to Hide', 'wp-event-manager'),
 							'desc'       => __('Choose which organizer fields to hide on the front end.', 'wp-event-manager'),
 							'type'       => 'multiselect',
-							'options'    => $organizer_options, 
-							'attributes' => array(
-								'multiple' => 'multiple',
-								'style'    => 'height: 100px;display:none;',
-							),
+							'options'    => $organizer_options,
 						),
 					),
 				),
@@ -653,6 +649,10 @@ class WP_Event_Manager_Settings{
 	 * @return void
 	 */
 	public function output() {
+		wp_enqueue_script('wp-event-manager-multiselect'); 
+		wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
+		wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
+		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
 		$this->init_settings(); ?>
 
 		<div class="wrap event-manager-settings-wrap">
@@ -717,7 +717,7 @@ class WP_Event_Manager_Settings{
 										<?php	}
 											break;
 										case 'multiselect': ?>
-											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="regular-text" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo esc_attr( implode(' ', $attributes)); ?>>
+											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="event-manager-multiselect" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo esc_attr( implode(' ', $attributes)); ?>>
 												<?php
 												foreach ($option['options'] as $key => $name) {
 													$selected = '';
