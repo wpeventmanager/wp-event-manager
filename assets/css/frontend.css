@@ -653,6 +653,11 @@ input.wpem-theme-button:hover span {
 .wpem-theme-text-button:hover {
   color: var(--wpem-dark-color);
 }
+.wpem-theme-sm-button, a.wpem-theme-sm-button, button.wpem-theme-sm-button, input.wpem-theme-sm-button {
+  padding: 6px 10px;
+  color: var(--wpem-white-color);
+  font-size: 14px;
+}
 .wpem-tabs-wrapper {
   width: 100%;
   margin-bottom: 20px;
@@ -2136,6 +2141,11 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   max-width: 100%;
   max-height: 400px;
 }
+.wpem-modal .wpem-modal-content-wrapper.wpem-modal-xl {
+  max-width: 1140px;
+}
+
+
 .wpem-tooltip {
   position: relative;
   display: inline-block;
