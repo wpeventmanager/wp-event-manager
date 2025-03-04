@@ -717,7 +717,7 @@ class WP_Event_Manager_Settings{
 										<?php	}
 											break;
 										case 'multiselect': ?>
-											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="event-manager-multiselect" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo esc_attr( implode(' ', $attributes)); ?>>
+											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="event-manager-multiselect regular-text" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo esc_attr( implode(' ', $attributes)); ?>>
 												<?php
 												foreach ($option['options'] as $key => $name) {
 													$selected = '';
