@@ -50,13 +50,13 @@ $datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_fromdate" class="wpem-form-label"><?php esc_attr_e('From', 'wp-event-manager'); ?></label>
-						<input type="text" name="search_fromdate" id="search_fromdate" value='' placeholder="From" data-date-format="<?php echo esc_attr($datepicker_date_format); ?>" />
+						<input type="text" name="search_fromdate" id="search_fromdate" value='' placeholder="<?php esc_attr_e('From', 'wp-event-manager'); ?>" data-date-format="<?php echo esc_attr($datepicker_date_format); ?>" />
 					</div>
 				</div>
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_todate" class="wpem-form-label"><?php esc_attr_e('To', 'wp-event-manager'); ?></label>
-						<input type="text" name="search_todate" id="search_todate" value='' placeholder="To" data-date-format="<?php echo esc_attr($datepicker_date_format); ?>" />
+						<input type="text" name="search_todate" id="search_todate" value='' placeholder="<?php esc_attr_e('To', 'wp-event-manager'); ?>" data-date-format="<?php echo esc_attr($datepicker_date_format); ?>" />
 					</div>
 				</div>
 				<!-- Search by date section end -->
