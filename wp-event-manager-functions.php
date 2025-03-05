@@ -2214,6 +2214,22 @@ function wpem_embed_oembed_html($content) {
 }
 
 /**
+ * This wpem_begnWith() Checks if given string ($str) is begin with the second parameter ($begin_string) of function.
+ *
+ * @param string $str
+ * @param string $begin_string
+ * @return bool
+ * @since 1.0.1
+ */
+function wpem_begnWith($str, $begin_string) {
+	$len = strlen($begin_string);
+	if (is_array($str)) {
+		$str = '';
+	}
+	return (substr($str, 0, $len) === $begin_string);
+}
+
+/**
  * Check access for guest users based on the 'wpem_hide_data_from_guest' option.
  *
  * This function determines whether guest users have access to certain data.
