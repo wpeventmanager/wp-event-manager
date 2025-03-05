@@ -2240,9 +2240,22 @@ function wpem_begnWith($str, $begin_string) {
  * @return bool True if access is allowed; false if access is denied for guests.
  */
 function wpem_checked_guest_user_access(){
-	$hide_data = get_option('hide_organizer_fields');
+	$hide_data = get_option('wpem_hide_organizer_fields');
     if ( !is_user_logged_in() && $hide_data ) {
        return false; 
     }
     return true;
+}
+
+/**
+ * Returns all fields of oganizer.
+ * 
+ * @param null
+ * @return string
+ * @since 3.1.47
+ */
+function wpem_get_organizer_all_fields() {
+	$form_instance = new WP_Event_Manager_Forms(); // Create a new instance
+    $organizer_fields = $form_instance->get_fields('submit-organizer');
+	return $organizer_fields;
 }

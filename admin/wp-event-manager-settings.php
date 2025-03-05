@@ -73,8 +73,9 @@ class WP_Event_Manager_Settings{
 				$venue_options[$venue->ID] = $venue->post_title;
 			}
 		}
-
-		$organizer_fields = get_option('event_manager_submit_organizer_form_fields', array());
+		
+		// Get oganize field list
+		$organizer_fields  = wpem_get_organizer_all_fields();
 		$organizer_options = [];
 		
 		if (!empty($organizer_fields) && is_array($organizer_fields)) {
@@ -161,7 +162,7 @@ class WP_Event_Manager_Settings{
 							'attributes' => array(),
 						),
 						 array(
-							'name'       => 'hide_organizer_fields',
+							'name'       => 'wpem_hide_organizer_fields',
 							'class'		=> 'hide_organizer_fields',
 							'label'      => __('Select Organizer Fields to Hide', 'wp-event-manager'),
 							'desc'       => __('Choose which organizer fields to hide on the front end.', 'wp-event-manager'),
