@@ -577,7 +577,7 @@ class WP_Event_Manager_Writepanels {
 				<input type="text" 
 				   name="<?php echo esc_attr($name); ?>" 
 				   id="<?php echo esc_attr($key); ?>" 
-				   placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" 
+				   placeholder="<?php esc_attr_e($field['placeholder'], 'wp-event-manager'); ?>" 
 				   value="<?php echo esc_attr($field['value']); ?>" />
 			</span>
 		</p>
@@ -643,7 +643,7 @@ class WP_Event_Manager_Writepanels {
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
 			<span class="wpem-input-field">		
 				<input type="hidden" name="date_format" id="date_format" value="<?php echo esc_attr($php_date_format)   ?>" />
-				<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
+				<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php esc_attr_e($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
 			</span>
 		</p>
 	<?php
@@ -815,7 +815,7 @@ class WP_Event_Manager_Writepanels {
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
 			<span class="wpem-input-field">
-				<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" data-picker="timepicker" />
+				<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php esc_attr_e($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" data-picker="timepicker" />
 			</span>
 		</p>
 	<?php
@@ -1005,7 +1005,7 @@ class WP_Event_Manager_Writepanels {
 					<?php foreach ($field['options'] as $option_key => $value) : ?>
 						<label>
 							<input type="radio" class="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($field['value'], $option_key); ?> /> 
-							<?php echo esc_html($value, 'wp-event-manager'); ?>
+							<?php esc_html_e($value, 'wp-event-manager'); ?>
 						</label>
 					<?php endforeach; ?>
 					</span>
