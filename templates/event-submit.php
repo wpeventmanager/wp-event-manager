@@ -48,14 +48,7 @@ do_action('wp_event_manager_event_submit_before');?>
 					echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 				</label>
 				<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
-					<?php 
-					if ($key === 'recure_custom_dates') {
-						get_event_manager_template('form-fields/multidate-field.php', array('key' => $key, 'field' => $field));
-						} elseif ($key === 'recure_custom_weeks') {
-							get_event_manager_template('form-fields/multiweek-field.php', array('key' => $key, 'field' => $field));
-						} else {
-						get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); 
-					}?>
+					<?php get_event_manager_template('form-fields/' . $field['type'] . '-field.php', array('key' => $key, 'field' => $field)); ?>
 				</div>
 			</fieldset>
 		<?php endforeach; 

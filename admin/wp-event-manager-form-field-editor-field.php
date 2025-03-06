@@ -14,6 +14,14 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 		<select name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][type]" class="field_type">
 			<?php
 			foreach ($field_types as $key => $type) {
+
+				if ($field_key !== 'recure_custom_weeks' && $key === 'multiweek') {
+					continue;
+				}
+				if ($field_key !== 'recure_custom_dates' && $key === 'multidate') {
+					continue;
+				}
+
 				if (in_array($field_key, $disbled_fields)) {
 					if ($key == $field['type']) {
 						printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
