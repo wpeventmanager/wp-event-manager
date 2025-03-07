@@ -317,6 +317,17 @@ class WP_Event_Manager_Settings{
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
+						array(
+							'name'    => 'event_manager_filter_design',
+							'std'     => 'event-classic-filters',
+							'label'   => __('Filter Design', 'wp-event-manager'),
+							'desc'    => '',
+							'type'    => 'radio',
+							'options' => array(
+								'event-classic-filters' => __('Classic View', 'wp-event-manager'),
+								'event-crystal-filters' => __('Crystal View', 'wp-event-manager'),
+							),
+						),
 					),
 				),
 				'event_submission'     => array(
@@ -741,6 +752,8 @@ class WP_Event_Manager_Settings{
 													<span><?php echo esc_html($option['label']); ?></span>
 												</legend>
 												<?php
+												if(empty($value) && $option['options'] == 'event_manager_filter_design')
+													$value = $option['std '];
 												foreach ($option['options'] as $key => $name) {
 													echo '<label><input name="' . esc_attr($option['name']) . '" type="radio" value="' . esc_attr($key) . '" ' . checked($value, $key, false) . ' />' . esc_html($name) . '</label><br>';
 												}
