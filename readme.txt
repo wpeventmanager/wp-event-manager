@@ -342,24 +342,22 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 = [3.1.47] 7-03-2025 =
 
-Fixed: Event publishing status issue is resolved.
-Fxied : Field editor Event type and category type are selected as checklist then post an event page Code is display.
-Fixied : Calendar Layout Notice issue is fixed.
-Fixed : Add-on Icon is not display issue is fixed.
+Fixed : At Back-end side, event status update issue is resolved.
+Fixed : Some css and HTML twicks.
 Fixed : Translation issue is fixed.
-Fixed : Event details page event location map link is not working.
-Fixed: Date and time separator symbol is now available.
-Fixed: Data in the general setting tab is saved properly.
-Fixed: Related events can now be hidden as per user’s wish.
-Fixed: Event location name is now saved.
-Fixed: Event timezone selection is now working properly.
-Added: The username or user’s first name and last name is now added while deactivating our plugin.
-Added : Hide some data for guest users.
-Added : Installation wizard setup UI is changed.
-Added : Admin UI is changed.
-Added : Event listing page filter UI is changed.
-Added : Health Guidelines featured is added.
-Added : Settings is added in the event submission tab select which user roles can submit events .
+Fixed : Date and time separator symbol is available.
+Fixed : General setting tab data is saved properly.
+Fixed : At Back-end side, Event location name is now saved.
+Fixed : Event timezone selection is now working properly.
+Fixed : When hide date for guest user option is uncheck then fields are still hide.
+Fixed : Tab group is only available for events fields.
+Added : Related events can now be hidden as per users' wish.
+Added : Now specific organizer data can be hidden from the guest users.
+Added : The UI of the installation setup wizard is changed.
+Added : Admin UI for Add Event is changed.
+Added : The UI of the Event listing filter at front-side is changed.
+Added : The feature to add "Health Guidelines" in Post an Event form is added.
+Added : A new setting option is added to determine who can submit events based on user role in "Event Submission" tab
 
 = [3.1.46] 21-01-2025 =
 
