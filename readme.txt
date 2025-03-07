@@ -340,15 +340,26 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 == Changelog ==
 
-= [3.1.47] 17-02-2025 =
+= [3.1.47] 7-03-2025 =
 
 Fixed: Event publishing status issue is resolved.
+Fxied : Field editor Event type and category type are selected as checklist then post an event page Code is display.
+Fixied : Calendar Layout Notice issue is fixed.
+Fixed : Add-on Icon is not display issue is fixed.
+Fixed : Translation issue is fixed.
+Fixed : Event details page event location map link is not working.
 Fixed: Date and time separator symbol is now available.
 Fixed: Data in the general setting tab is saved properly.
 Fixed: Related events can now be hidden as per user’s wish.
 Fixed: Event location name is now saved.
 Fixed: Event timezone selection is now working properly.
 Added: The username or user’s first name and last name is now added while deactivating our plugin.
+Added : Hide some data for guest users.
+Added : Installation wizard setup UI is changed.
+Added : Admin UI is changed.
+Added : Event listing page filter UI is changed.
+Added : Health Guidelines featured is added.
+Added : Settings is added in the event submission tab select which user roles can submit events .
 
 = [3.1.46] 21-01-2025 =
 
