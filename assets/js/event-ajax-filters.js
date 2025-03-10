@@ -65,7 +65,7 @@ var EventAjaxFilters = function() {
             jQuery(document).ready(EventAjaxFilters.actions.windowLoad);
             jQuery(document.body).on('click', '.load_more_upcoming_events', EventAjaxFilters.actions.loadMoreUpcomingEvents);
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
-            jQuery('.event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset);
+            jQuery('#event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset); 
             jQuery('div.event_listings_main').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
             // jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
            
@@ -144,6 +144,7 @@ var EventAjaxFilters = function() {
             },
             eventAjaxFiltersReset: function(event) {
                 Common.logInfo("EventAjaxFilters.actions.eventAjaxFiltersReset...");
+                
                 var target = jQuery(this).closest('div.event_listings');
                 var form = jQuery(this).closest('form');
                 form.find(':input[name="search_keywords"], :input[name="search_location"], .event-manager-filter').not(':input[type="hidden"]').val('').trigger('chosen:updated');
@@ -154,6 +155,7 @@ var EventAjaxFilters = function() {
                 form.find(':input[name^="search_ticket_prices"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
                 target.triggerHandler('reset');
                 target.triggerHandler('update_event_listings', [1, false]);
+                jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
                 EventAjaxFilters.actions.event_manager_store_state(target, 1);
                 return false;
                 event.preventDefault()
