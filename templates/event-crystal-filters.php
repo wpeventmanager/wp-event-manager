@@ -36,7 +36,7 @@ $datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 		<div class="wpem-event-filter-version-2-filter-button">
 			<button type="button" id="wpem-event-filter-version-2-filter-action" class="wpem-event-filter-version-2-filter-action" aria-label="Event filter button"><i class="wpem-icon-equalizer2" aria-hidden="true"></i></button>
 		</div>
-		<button type="submit" class="wpem-event-filter-version-2-search-btn wpem-theme-button"><?php esc_attr_e('Find Events', 'wp-event-manager'); ?></button>
+		<button type="button" id="wpem-event-filter-version-2-search-btn" class="wpem-event-filter-version-2-search-btn wpem-theme-button"><?php esc_attr_e('Find Events', 'wp-event-manager'); ?></button>
 		
 	</div>
 

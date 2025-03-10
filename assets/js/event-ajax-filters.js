@@ -67,7 +67,8 @@ var EventAjaxFilters = function() {
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('.event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset);
             jQuery('div.event_listings_main').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
-            jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
+            // jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
+           
             jQuery('.wpem-event-filter-version-2-search-btn').change(function() {
                 var target = jQuery(this).closest('div.event_listings');
                 target.triggerHandler('update_event_listings', [1, false]);
@@ -78,7 +79,17 @@ var EventAjaxFilters = function() {
                 if (e.which === 13) {
                     jQuery(this).trigger('change')
                 }
-            })
+            });
+            jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(function() {
+                var target = jQuery(this).closest('div.event_listings');
+                target.triggerHandler('update_event_listings', [1, false]);
+                EventAjaxFilters.actions.event_manager_store_state(target, 1)
+            }).on("change", function(e) {
+                EventAjaxFilters.actions.getEventListings(e);
+                if (e.which === 13) {
+                    jQuery(this).trigger('change')
+                }
+            });
         },
         
         actions: {
@@ -198,11 +209,18 @@ var EventAjaxFilters = function() {
 
                 if (true == target.data('show_filters')) {
                     var filter_event_type = [];
-                    var startDate = form.find('#search_fromdate').val();
-                    var endDate = form.find('#search_todate').val();
 
-                    var datetimes = (startDate || endDate) ? JSON.stringify({ start: startDate, end: endDate }) : '';
-                    var searchDatetimes = datetimes ? { '': datetimes } : {};
+                    if(form.find(':input[name^="search_datetimes"]').length > 0) {
+                        var datetimes = form.find(':input[name^="search_datetimes"]').map(function () {
+                            return jQuery(this).val()
+                        }).get();
+                    } else {
+                        var startDate = form.find('#search_fromdate').val();
+                        var endDate = form.find('#search_todate').val();
+
+                        var datetimes = (startDate || endDate) ? JSON.stringify({ start: startDate, end: endDate }) : '';
+                        var datetimes = datetimes ? { '': datetimes } : {};
+                    }
 
                     if(jQuery( 'input.date_range_picker').length > 0) {
                         jQuery( 'input.date_range_picker').daterangepicker();
@@ -239,7 +257,7 @@ var EventAjaxFilters = function() {
                         lang: event_manager_ajax_filters.lang,
                         search_keywords: keywords,
                         search_location: location,
-                        search_datetimes: searchDatetimes,
+                        search_datetimes: datetimes,
                         search_categories: categories,
                         search_event_types: event_types,
                         search_ticket_prices: ticket_prices,
@@ -257,7 +275,11 @@ var EventAjaxFilters = function() {
                     
                     var keywords = target.data('keywords');
                     var location = target.data('location');
-                    var datetimes = JSON.stringify(target.data('datetimes'));
+                    if(form.find(':input[name^="search_datetimes"]').length > 0) {
+                        var datetimes = JSON.stringify(target.data('datetimes'));
+                    } else {
+
+                    }
                     var categories = target.data('categories');
                     var event_types = target.data('event_types');
                     var ticket_prices = target.data('ticket_prices');
@@ -271,7 +293,7 @@ var EventAjaxFilters = function() {
                         lang: event_manager_ajax_filters.lang,
                         search_keywords: keywords,
                         search_location: location,
-                        search_datetimes: searchDatetimes,
+                        search_datetimes: datetimes,
                         search_categories: categories,
                         search_event_types: event_types,
                         search_ticket_prices: ticket_prices,
