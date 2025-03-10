@@ -1071,7 +1071,6 @@ function event_manager_dropdown_selection($args = '') {
 		$placeholder = isset($placeholder) ? $placeholder : __('Choose an event type', 'wp-event-manager');
 		$multiple_text = isset($multiple_text) ? $multiple_text :__('Choose event types', 'wp-event-manager');
 	endif;
-
 	$output = "<select name='" . esc_attr($name) . "[]' id='" . esc_attr($id) . "' class='" . esc_attr($class) . "' " . ($multiple ? "multiple='multiple'" : '') . " data-placeholder='" . esc_attr($placeholder) . "' data-no_results_text='" . esc_attr($no_results_text) . "' data-multiple_text='" . esc_attr($multiple_text) . "'>\n";
 
 	if($show_option_all) {
