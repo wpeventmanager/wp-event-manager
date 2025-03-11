@@ -340,7 +340,7 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 == Changelog ==
 
-= [3.1.47] 7-03-2025 =
+= [3.1.47] 11-03-2025 =
 
 Fixed : At Back-end side, event status update issue is resolved.
 Fixed : Some css and HTML twicks.
@@ -351,6 +351,8 @@ Fixed : At Back-end side, Event location name is now saved.
 Fixed : Event timezone selection is now working properly.
 Fixed : When hide date for guest user option is uncheck then fields are still hide.
 Fixed : Tab group is only available for events fields.
+Fixed : Expiry date field move to Date and time section.
+Added : Filter option settings is added in the event listing tab.
 Added : Related events can now be hidden as per users' wish.
 Added : Now specific organizer data can be hidden from the guest users.
 Added : The UI of the installation setup wizard is changed.
