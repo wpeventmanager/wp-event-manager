@@ -312,7 +312,7 @@ function load_more_upcoming_events($atts) {
 
 		if(sizeof($result['filter_value']) > 1) {
 			//translators: %d is the number of matching records found.
-        	$message = sprintf(esc_attr('Search completed. Found %d matching record.', 'Search completed. Found %d matching records.', $events->found_posts, 'wp-event-manager'), $events->found_posts);
+        	$message = sprintf( esc_html(_n('Search completed. Found %d matching record.','Search completed. Found %d matching records.',$events->found_posts,'wp-event-manager')), $events->found_posts);
 			$result['showing_applied_filters'] = true;
 		} else {
 			$message = "";

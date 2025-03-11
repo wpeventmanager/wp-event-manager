@@ -195,7 +195,7 @@ class WP_Event_Manager_Writepanels {
 				'placeholder' => __('Please enter event expiry date', 'wp-event-manager'),
 				'priority'    => 40,
 				'value'       => $expiry_date,
-				'tabgroup' => 1,
+				'tabgroup' => 3,
 			);
 		}
 		if($current_user->has_cap('edit_others_event_listings')) {

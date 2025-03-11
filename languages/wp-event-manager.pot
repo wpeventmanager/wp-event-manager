@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2025-03-10 15:05+0530\n"
-"PO-Revision-Date: 2025-03-10 15:03+0530\n"
+"POT-Creation-Date: 2025-03-11 16:01+0530\n"
+"PO-Revision-Date: 2025-03-11 16:01+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr ""
 
 #: admin/wp-event-manager-cpt.php:261
 #: forms/wp-event-manager-form-submit-event.php:166
-#: wp-event-manager-functions.php:1784
+#: wp-event-manager-functions.php:1783
 msgid "Event Title"
 msgstr ""
 
@@ -1958,9 +1958,9 @@ msgstr ""
 #: widgets/wp-event-manager-widgets.php:193
 #: widgets/wp-event-manager-widgets.php:302
 #: widgets/wp-event-manager-widgets.php:419
-#: widgets/wp-event-manager-widgets.php:567 wp-event-manager-functions.php:1786
-#: wp-event-manager-functions.php:1793 wp-event-manager-functions.php:1800
-#: wp-event-manager-functions.php:1807
+#: widgets/wp-event-manager-widgets.php:567 wp-event-manager-functions.php:1785
+#: wp-event-manager-functions.php:1792 wp-event-manager-functions.php:1799
+#: wp-event-manager-functions.php:1806
 msgid "Ascending (ASC)"
 msgstr ""
 
@@ -2016,7 +2016,7 @@ msgstr ""
 #: external/elementor-widgets/elementor-past-event-listing.php:135
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:126
 #: widgets/wp-event-manager-widgets.php:433
-#: widgets/wp-event-manager-widgets.php:581 wp-event-manager-functions.php:1791
+#: widgets/wp-event-manager-widgets.php:581 wp-event-manager-functions.php:1790
 msgid "Event Start Date"
 msgstr ""
 
@@ -2336,7 +2336,7 @@ msgstr ""
 
 #: external/elementor-widgets/elementor-single-venue.php:103
 #: forms/wp-event-manager-form-submit-event.php:451
-#: wp-event-manager-functions.php:1623
+#: wp-event-manager-functions.php:1622
 msgid "Select Venue"
 msgstr ""
 
@@ -2635,7 +2635,7 @@ msgid "Please enter zip code(Area code)"
 msgstr ""
 
 #: forms/wp-event-manager-form-submit-event.php:221
-#: wp-event-manager-functions.php:1805
+#: wp-event-manager-functions.php:1804
 msgid "Event Location"
 msgstr ""
 
@@ -2982,6 +2982,14 @@ msgstr ""
 #: templates/content-widget-no-events-found.php:4
 msgid "There are currently no events."
 msgstr ""
+
+#. translators: %d is the number of matching records found.
+#: includes/wp-event-manager-ajax.php:315
+#, php-format
+msgid "Search completed. Found %d matching record."
+msgid_plural "Search completed. Found %d matching records."
+msgstr[0] ""
+msgstr[1] ""
 
 #: includes/wp-event-manager-ajax.php:357
 msgid "You must be logged in to upload files using this method."
@@ -3475,9 +3483,7 @@ msgstr ""
 msgid "Choose an event type"
 msgstr ""
 
-#: templates/event-classic-filters.php:132
 #: templates/event-classic-filters.php:145
-#: templates/event-crystal-filters.php:117
 #: templates/event-crystal-filters.php:130
 #: templates/form-fields/term-multiselect-field.php:28
 #: wp-event-manager-functions.php:1072
@@ -3898,20 +3904,20 @@ msgstr ""
 msgid "Choose Categories"
 msgstr ""
 
-#: wp-event-manager-functions.php:1471
+#: wp-event-manager-functions.php:1470
 msgid "Passwords must be at least 8 characters long."
 msgstr ""
 
-#: wp-event-manager-functions.php:1787 wp-event-manager-functions.php:1794
-#: wp-event-manager-functions.php:1801 wp-event-manager-functions.php:1808
+#: wp-event-manager-functions.php:1786 wp-event-manager-functions.php:1793
+#: wp-event-manager-functions.php:1800 wp-event-manager-functions.php:1807
 msgid "Descending (DESC)"
 msgstr ""
 
-#: wp-event-manager-functions.php:1798
+#: wp-event-manager-functions.php:1797
 msgid "Event End Date"
 msgstr ""
 
-#: wp-event-manager-functions.php:1956
+#: wp-event-manager-functions.php:1955
 msgid "Select Country"
 msgstr ""
 

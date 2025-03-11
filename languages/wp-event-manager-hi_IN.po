@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "Project-Id-Version: WP Event Manager\n"
-"POT-Creation-Date: 2025-03-10 15:05+0530\n"
-"PO-Revision-Date: 2025-03-10 15:06+0530\n"
+"POT-Creation-Date: 2025-03-11 16:01+0530\n"
+"PO-Revision-Date: 2025-03-11 16:03+0530\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,7 +135,7 @@ msgstr "इवेंट प्रकार का चयन करें"
 
 #: admin/wp-event-manager-cpt.php:261
 #: forms/wp-event-manager-form-submit-event.php:166
-#: wp-event-manager-functions.php:1784
+#: wp-event-manager-functions.php:1783
 msgid "Event Title"
 msgstr "इवेंट का शीर्षक"
 
@@ -1758,7 +1758,7 @@ msgstr "छलनी"
 #: admin/wp-event-manager-shortcode-list.php:62
 
 msgid "Shortcode"
-msgstr "插入短代码"
+msgstr "छोटे लक्षण"
 
 #: admin/wp-event-manager-shortcode-list.php:65
 #: shortcodes/wp-event-manager-shortcodes.php:269
@@ -2234,7 +2234,7 @@ msgstr "सच्चा"
 #: widgets/wp-event-manager-widgets.php:417
 #: widgets/wp-event-manager-widgets.php:565
 msgid "Order"
-msgstr "आदेश"
+msgstr "आदेश "
 
 #: external/elementor-widgets/elementor-event-listing.php:126
 #: external/elementor-widgets/elementor-event-organizers.php:99
@@ -2244,9 +2244,9 @@ msgstr "आदेश"
 #: widgets/wp-event-manager-widgets.php:193
 #: widgets/wp-event-manager-widgets.php:302
 #: widgets/wp-event-manager-widgets.php:419
-#: widgets/wp-event-manager-widgets.php:567 wp-event-manager-functions.php:1786
-#: wp-event-manager-functions.php:1793 wp-event-manager-functions.php:1800
-#: wp-event-manager-functions.php:1807
+#: widgets/wp-event-manager-widgets.php:567 wp-event-manager-functions.php:1785
+#: wp-event-manager-functions.php:1792 wp-event-manager-functions.php:1799
+#: wp-event-manager-functions.php:1806
 msgid "Ascending (ASC)"
 msgstr "आरोही (एएससी)"
 
@@ -2302,7 +2302,7 @@ msgstr "जनक"
 #: external/elementor-widgets/elementor-past-event-listing.php:135
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:126
 #: widgets/wp-event-manager-widgets.php:433
-#: widgets/wp-event-manager-widgets.php:581 wp-event-manager-functions.php:1791
+#: widgets/wp-event-manager-widgets.php:581 wp-event-manager-functions.php:1790
 msgid "Event Start Date"
 msgstr "इवेंट प्रारंभ दिनांक"
 
@@ -2625,7 +2625,7 @@ msgstr "स्थान नहीं मिला"
 
 #: external/elementor-widgets/elementor-single-venue.php:103
 #: forms/wp-event-manager-form-submit-event.php:451
-#: wp-event-manager-functions.php:1623
+#: wp-event-manager-functions.php:1622
 msgid "Select Venue"
 msgstr "स्थान का चयन करें"
 
@@ -2945,7 +2945,7 @@ msgid "Please enter zip code(Area code)"
 msgstr "कृपया ज़िप कोड (क्षेत्र कोड) दर्ज करें"
 
 #: forms/wp-event-manager-form-submit-event.php:221
-#: wp-event-manager-functions.php:1805
+#: wp-event-manager-functions.php:1804
 msgid "Event Location"
 msgstr "इवेंट स्थान"
 
@@ -2955,6 +2955,7 @@ msgstr "गूगल मैप के लिए स्थान"
 
 #: forms/wp-event-manager-form-submit-event.php:232
 #: forms/wp-event-manager-form-submit-event.php:235
+
 msgid "Event Country"
 msgstr "घटना देश"
 
@@ -3023,50 +3024,60 @@ msgid "Please select timezone for event"
 msgstr "कृपया ईवेंट के लिए टाइमज़ोन का चयन करें"
 
 #: forms/wp-event-manager-form-submit-event.php:377
+
 msgid "Enable Health Guidelines"
 msgstr "स्वास्थ्य दिशानिर्देश सक्षम करें"
 
 #: forms/wp-event-manager-form-submit-event.php:391
 #: templates/content-single-event_listing.php:535
+
 msgid "Health Guidelines"
 msgstr "स्वास्थ्य दिशानिर्देश"
 
 #: forms/wp-event-manager-form-submit-event.php:394
 #: templates/content-single-event_listing.php:521
+
 msgid "Face masks required"
 msgstr "फेस मास्क जरूरी"
 
 #: forms/wp-event-manager-form-submit-event.php:395
 #: templates/content-single-event_listing.php:522
+
 msgid "Temperature will be checked at entrance"
 msgstr "प्रवेश द्वार पर तापमान की जांच की जाएगी"
 
 #: forms/wp-event-manager-form-submit-event.php:396
 #: templates/content-single-event_listing.php:523
+
 msgid "Physical distance maintained event"
 msgstr "शारीरिक दूरी बनाए रखा घटना"
 
 #: forms/wp-event-manager-form-submit-event.php:397
 #: templates/content-single-event_listing.php:524
+
 msgid "Event area sanitized before event"
 msgstr "इवेंट से पहले इवेंट एरिया को सैनिटाइज किया गया"
 
 #: forms/wp-event-manager-form-submit-event.php:398
 #: templates/content-single-event_listing.php:525
+
 msgid "Event is held outside"
 msgstr "कार्यक्रम बाहर आयोजित किया जाता है"
 
 #: forms/wp-event-manager-form-submit-event.php:399
 #: templates/content-single-event_listing.php:526
+
 msgid "Vaccination Required"
 msgstr "टीकाकरण आवश्यक"
 
 #: forms/wp-event-manager-form-submit-event.php:408
 #: forms/wp-event-manager-form-submit-event.php:422
+
 msgid "Other Additional Health Guidelines"
 msgstr "अन्य अतिरिक्त स्वास्थ्य दिशानिर्देश"
 
 #: forms/wp-event-manager-form-submit-event.php:423
+
 msgid "Please specify other health guidelines"
 msgstr "कृपया अन्य स्वास्थ्य दिशानिर्देश निर्दिष्ट करें"
 
@@ -3119,6 +3130,7 @@ msgid "Organizer name"
 msgstr "आयोजक का नाम"
 
 #: forms/wp-event-manager-form-submit-organizer.php:102
+
 msgid "Enter the name of the organizer"
 msgstr "आयोजक का नाम दर्ज करें"
 
@@ -3132,6 +3144,7 @@ msgid "Organizer Description"
 msgstr "आयोजक विवरण"
 
 #: forms/wp-event-manager-form-submit-organizer.php:131
+
 msgid "Organizer Country"
 msgstr "आयोजक देश"
 
@@ -3283,6 +3296,7 @@ msgid "Please enter a valid venue email address"
 msgstr "कृपया कोई मान्य स्थान ईमेल पता दर्ज करें"
 
 #: includes/wp-event-manager-ajax.php:158
+
 msgid "No more events found."
 msgstr "कोई और इवेंट नहीं मिला."
 
@@ -3292,6 +3306,14 @@ msgstr "कोई और इवेंट नहीं मिला."
 #: templates/content-widget-no-events-found.php:4
 msgid "There are currently no events."
 msgstr "वर्तमान में कोई इवेंट नहीं है।"
+
+#. translators: %d is the number of matching records found.
+#: includes/wp-event-manager-ajax.php:315
+#, php-format
+msgid "Search completed. Found %d matching record."
+msgid_plural "Search completed. Found %d matching records."
+msgstr[0] "खोज पूरी हो गई है। मिलान रिकॉर्ड %d मिला."
+msgstr[1] "खोज पूरी हो गई है। मिलान करने वाले रिकॉर्ड %d मिला."
 
 #: includes/wp-event-manager-ajax.php:357
 msgid "You must be logged in to upload files using this method."
@@ -3619,6 +3641,7 @@ msgid "Viewed"
 msgstr "देखा गया"
 
 #: shortcodes/wp-event-manager-shortcodes.php:360
+
 msgid "You need to be signed in to manage your organizer listings."
 msgstr "आपको अपनी आयोजक प्रविष्टियों को प्रबंधित करने के लिए साइन इन करना होगा."
 
@@ -3635,6 +3658,7 @@ msgid "Details"
 msgstr "ब्यौरा"
 
 #: shortcodes/wp-event-manager-shortcodes.php:493
+
 msgid "You need to be signed in to manage your venue listings."
 msgstr "आपको अपनी स्थल लिस्टिंग प्रबंधित करने के लिए साइन इन करने की आवश्यकता है।"
 
@@ -3643,6 +3667,7 @@ msgid "Venue name"
 msgstr "स्थान का नाम"
 
 #: shortcodes/wp-event-manager-shortcodes.php:969
+
 msgid "There are no events."
 msgstr "कोई घटना नहीं है।"
 
@@ -3676,6 +3701,7 @@ msgid "Have an account?"
 msgstr "एक खाता है?"
 
 #: templates/account-signin.php:24
+
 msgid ""
 "If you don&rsquo;t have an account with us, just enter your email address "
 "and create a new one.  You will receive your password shortly in your email."
@@ -3752,6 +3778,7 @@ msgid "Pinterest"
 msgstr "पिनट्रेस्ट"
 
 #: templates/content-single-event_listing.php:566
+
 msgid "Other Health Guidelines"
 msgstr "अन्य स्वास्थ्य दिशानिर्देश"
 
@@ -3787,9 +3814,7 @@ msgstr "कोई ईवेंट प्रकार चुनें"
 msgid "Choose an event type"
 msgstr "कोई ईवेंट प्रकार चुनें"
 
-#: templates/event-classic-filters.php:132
 #: templates/event-classic-filters.php:145
-#: templates/event-crystal-filters.php:117
 #: templates/event-crystal-filters.php:130
 #: templates/form-fields/term-multiselect-field.php:28
 #: wp-event-manager-functions.php:1072
@@ -3820,14 +3845,17 @@ msgstr ""
 
 #: templates/event-crystal-filters.php:21
 #: templates/event-crystal-filters.php:22
+
 msgid "Search for events"
 msgstr "इवेंट खोजें"
 
 #: templates/event-crystal-filters.php:39
+
 msgid "Find Events"
 msgstr "कार्यक्रम खोजें"
 
 #: templates/event-crystal-filters.php:47
+
 msgid "Additional Filters"
 msgstr "अतिरिक्त फिल्टर"
 
@@ -3979,6 +4007,7 @@ msgid "Remove"
 msgstr "हटाना"
 
 #: templates/form-fields/group-field.php:34
+
 msgid "(optional123)"
 msgstr "(वैकल्पिक123)"
 
@@ -4220,20 +4249,20 @@ msgstr "यह ईमेल पहले से ही पंजीकृत ह
 msgid "Choose Categories"
 msgstr "श्रेणियाँ चुनें"
 
-#: wp-event-manager-functions.php:1471
+#: wp-event-manager-functions.php:1470
 msgid "Passwords must be at least 8 characters long."
 msgstr "पासवर्ड कम से कम 8 वर्ण लंबा होना चाहिए."
 
-#: wp-event-manager-functions.php:1787 wp-event-manager-functions.php:1794
-#: wp-event-manager-functions.php:1801 wp-event-manager-functions.php:1808
+#: wp-event-manager-functions.php:1786 wp-event-manager-functions.php:1793
+#: wp-event-manager-functions.php:1800 wp-event-manager-functions.php:1807
 msgid "Descending (DESC)"
 msgstr "अवरोही (डीईएससी)"
 
-#: wp-event-manager-functions.php:1798
+#: wp-event-manager-functions.php:1797
 msgid "Event End Date"
 msgstr "इवेंट समाप्ति दिनांक"
 
-#: wp-event-manager-functions.php:1956
+#: wp-event-manager-functions.php:1955
 msgid "Select Country"
 msgstr "देश का चयन करें"
 
