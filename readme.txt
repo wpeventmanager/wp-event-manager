@@ -352,6 +352,7 @@ Fixed : Event timezone selection is now working properly.
 Fixed : When hide date for guest user option is uncheck then fields are still hide.
 Fixed : Tab group is only available for events fields.
 Fixed : Expiry date field move to Date and time section.
+Fixed : A line is shown below filter is fixed.
 Added : Filter option settings is added in the event listing tab.
 Added : Related events can now be hidden as per users' wish.
 Added : Now specific organizer data can be hidden from the guest users.
