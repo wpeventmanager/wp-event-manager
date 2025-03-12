@@ -24,6 +24,12 @@ var EventAjaxFilters = function() {
                 jQuery("#wpem-event-filter-version-2-dropdown").toggle();
             });
 
+            if (jQuery(".showing_applied_filters").hasClass("showing-applied-filters")) {
+                jQuery(".showing_applied_filters").show();
+            }else{
+                jQuery(".showing_applied_filters").hide();
+            }
+
             //set datepicker default range 
             var form = jQuery(this).closest('form');
             form.find(':input[name^="search_datetimes"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
