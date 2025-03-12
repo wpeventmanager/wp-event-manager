@@ -340,7 +340,7 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 == Changelog ==
 
-= [3.1.47] 11-03-2025 =
+= [3.1.47] 12-03-2025 =
 
 Fixed : At Back-end side, event status update issue is resolved.
 Fixed : Some css and HTML twicks.
