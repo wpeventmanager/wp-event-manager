@@ -30,6 +30,11 @@ var Admin = function () {
 
             //time settings change
             jQuery('input[name=_event_time_format]').on('change', Admin.actions.showSelectedTimeFormat);
+            jQuery(".wpem-tabs li a").on('click', Admin.actions.tabClick);
+            jQuery('.wpem-tabs li a:first').click();
+            jQuery("body").on("click", ".event-manager-remove-uploaded-file", function () {
+                return jQuery(this).closest(".event-manager-uploaded-file").remove();
+            });
 
             if (jQuery('input[data-picker="datepicker"]#_event_start_date').length > 0) {
                 wp_event_manager_admin_js.start_of_week = parseInt(wp_event_manager_admin_js.start_of_week);
@@ -177,8 +182,27 @@ var Admin = function () {
             jQuery('body').on('click', '.wp_event_manager_upload_file_button', Admin.fileUpload.addFile);
             jQuery(".wp_event_manager_add_another_file_button").on('click', Admin.fileUpload.addAnotherFile);
 
+            jQuery('body').on('click', '.wp_event_manager_upload_file_button_multiple', Admin.fileUpload.multipleFile);
+            jQuery('body').on('click', '.wp_event_manager_upload_file_button', Admin.fileUpload.addFile);
+            jQuery(".wp_event_manager_add_another_file_button").on('click', Admin.fileUpload.addAnotherFile);
+
             //upgrade database
             jQuery("#wp_event_manager_upgrade_database").on('click', Admin.actions.upgradeDatabase);
+
+            
+            jQuery("input[name=_enable_health_guideline]").on('change', Admin.actions.guidelineEvent);
+            if (jQuery('input[name=_enable_health_guideline]:checked').length > 0) {
+                jQuery('input[name=_enable_health_guideline]:checked').trigger('change');
+            } else {
+                jQuery("input[name=_enable_health_guideline][value='no']").prop("checked", true).trigger("change");
+            }
+
+            jQuery("input[name=_enable_health_guideline_other]").on('change', Admin.actions.otherguidelineEvent);
+            if (jQuery('input[name=_enable_health_guideline_other]:checked').length > 0) {
+                jQuery('input[name=_enable_health_guideline_other]:checked').trigger('change');
+            } else {
+                jQuery("input[name=_enable_health_guideline_other][value='no']").prop("checked", true).trigger("change");
+            }
 
             //online event
             jQuery("input[name=_event_online]").on('change', Admin.actions.onlineEvent);
@@ -209,6 +233,21 @@ var Admin = function () {
                         var old_url = window.location.href;
                         window.location = old_url + "&plugin=" + plugin_slug;
                         
+                    },
+
+                    /// <summary>
+                    /// Click on tab event manager genera or other event tab.     
+                    /// </summary>
+                    /// <param name="parent" type="Event"></param>    
+                    /// <returns type="actions" />
+                    /// <since>1.0.0</since>    
+                    tabClick: function (event) {
+                        event.preventDefault();
+                        jQuery('.wpem_panel').hide();
+                        jQuery('.nav-tab-active').removeClass('nav-tab-active');
+                        jQuery(jQuery(this).attr('href')).show();
+                        jQuery(this).addClass('nav-tab-active');
+                        return false;
                     },
 
                     /// <summary>
@@ -276,6 +315,36 @@ var Admin = function () {
                     },
 
                     /// <summary>
+                    /// Hide guideline
+                    /// </summary>
+                    /// <returns type="initialization settings" />
+                    /// <since>3.1.16</since>
+                    guidelineEvent: function (event) {
+                        event.preventDefault();
+
+                        if (jQuery(this).val() == "yes")  {
+                            jQuery('._event_health_guidelines').closest('.form-field').show();
+                        } else {
+                            jQuery('._event_health_guidelines').closest('.form-field').hide();
+                        }
+                    },
+
+                    /// <summary>
+                    /// Hide other guideline text
+                    /// </summary>
+                    /// <returns type="initialization settings" />
+                    /// <since>3.1.16</since>
+                    otherguidelineEvent: function (event) {
+                        event.preventDefault();
+
+                        if (jQuery(this).val() == "yes")  {
+                            jQuery('#_event_health_guidelines_other').closest('.form-field').show();
+                        } else {
+                            jQuery('#_event_health_guidelines_other').closest('.form-field').hide();
+                        }
+                    },
+
+                    /// <summary>
                     /// Hide ticket price when ticket option free.
                     /// </summary>
                     /// <returns type="initialization settings" />
@@ -330,35 +399,80 @@ var Admin = function () {
             /// <since>1.0.0</since>
             addFile: function (event) {
                 event.preventDefault();
-                file_target_wrapper = jQuery(this).closest('.file_url');
+                file_target_wrapper = jQuery(this).closest('.event-manager-uploaded-file');
                 file_target_input = file_target_wrapper.find('input');
+                var data_field_name = jQuery(this).parents(".form-field")[0].dataset.fieldName;
+                console.log(data_field_name);
+                var image_types = ['jpg', 'gif', 'png', 'jpeg', 'jpe', 'webp'];
+                file_target_wrapper_append = jQuery(this).closest('.event-manager-uploaded-file2');
                 // If the media frame already exists, reopen it.
-
                 if (file_frame) {
                     file_frame.open();
                     return;
                 }
-
                 // Create the media frame.
                 file_frame = wp.media.frames.file_frame = wp.media({
                     title: jQuery(this).data('uploader_title'),
                     button: {
                         text: jQuery(this).data('uploader_button_text'),
                     },
-                    multiple: false  // Set to true to allow multiple files to be selected
+                    multiple: false  // Set to true to allow multiple files to be selected.
                 });
-
                 // When an image is selected, run a callback.
-                file_frame.on('select', function ()
-                {
-                    // We set multiple to false so only get one image from the uploader
+                file_frame.on('select', function () {
+                    // We set multiple to false so only get one image from the uploader.
                     attachment = file_frame.state().get('selection').first().toJSON();
                     jQuery(file_target_input).val(attachment.url);
+                    jQuery(file_target_wrapper_append).find(".event-manager-uploaded-file").remove();
+                    if (jQuery.inArray(attachment.subtype, image_types) >= 0) {
+                        jQuery(file_target_wrapper_append).prepend("<span class='event-manager-uploaded-file'><input type='hidden' name='" + data_field_name + "' id='" + data_field_name + "' placeholder='' value='" + attachment.url + "'><span class='event-manager-uploaded-file-preview'><img src='" + attachment.url + "'><a class='event-manager-remove-uploaded-file' href='javascript:void(0);'>[remove]</a></span>");
+                    } else {
+                        jQuery(file_target_wrapper_append).prepend("<span class='event-manager-uploaded-file'><input type='hidden' name='" + data_field_name + "' id='" + data_field_name + "' placeholder='' value='" + attachment.url + "'><span class='event-manager-uploaded-file-preview'><a class='event-manager-remove-uploaded-file' href='javascript:void(0);'>[remove]</a></span></span>");
+                    }
                 });
-                // Finally, open the modal
+                // Finally, open the modal.
                 file_frame.open();
             },
-
+            multipleFile: function (event) {
+                event.preventDefault();
+                file_target_wrapper = jQuery(this).parent(".file_url").find('.event-manager-uploaded-file.multiple-file');
+                file_target_input = file_target_wrapper.find('input');
+                var data_field_name = jQuery(this).parents(".form-field")[0].dataset.fieldName;
+                var image_types = ['jpg', 'gif', 'png', 'jpeg', 'jpe', 'webp'];
+                file_target_wrapper_apeend = jQuery(this).prev();
+                // If the media frame already exists, reopen it.
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+                // Create the media frame.
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: jQuery(this).data('uploader_title'),
+                    button: {
+                        text: jQuery(this).data('uploader_button_text'),
+                    },
+                    multiple: true  // Set to true to allow multiple files to be selected.
+                });
+                // When an image is selected, run a callback.
+                file_frame.on('select', function () {
+                    // We set multiple to false so only get one image from the uploader.
+                    attachment = file_frame.state().get('selection').map(
+                        function (attachment) {
+                            attachment.toJSON();
+                            return attachment;
+                        });
+                    jQuery.each(attachment, function (index, attach) {
+                        jQuery(file_target_input).val(attach.attributes.url);
+                        if (jQuery.inArray(attach.attributes.subtype, image_types) >= 0) {
+                            jQuery(file_target_wrapper_apeend).append("<span class='event-manager-uploaded-file multiple-file'><input type='hidden' name='" + data_field_name + "[]' placeholder='' value='" + attach.attributes.url + "'><span class='event-manager-uploaded-file-preview'><img src='" + attach.attributes.url + "'><a class='event-manager-remove-uploaded-file' href='javascript:void(0);'>[remove]</a></span>");
+                        } else {
+                            jQuery(file_target_wrapper_apeend).append("<span class='event-manager-uploaded-file multiple-file'><input type='hidden' name='" + data_field_name + "[]' placeholder='' value='" + attach.attributes.url + "'><span class='event-manager-uploaded-file-preview'><a class='event-manager-remove-uploaded-file' href='javascript:void(0);'>[remove]</a></span></span>");
+                        }
+                    });
+                });
+                // Finally, open the modal.
+                file_frame.open();
+            },
             /// <summary>
             /// Upload new file from admi area. when admin want to add another file then admin can add new file.
             /// </summary>
@@ -373,7 +487,8 @@ var Admin = function () {
                 var button_text = jQuery(this).data('uploader_button_text');
                 var button = jQuery(this).data('uploader_button');
                 jQuery(this).before('<span class="file_url"><input type="text" name="' + field_name + '[]" placeholder="' + field_placeholder + '" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="' + button_text + '">' + button + '</button></span>');
-            }
+            },
+            
         }
     } //enf of return
 }; //end of class

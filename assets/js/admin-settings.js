@@ -17,18 +17,15 @@ var AdminSettings= function () {
 			
 			// Show hide organizer fields dropdown in settings
 			if (jQuery('#setting-wpem_hide_data_from_guest').is(':checked')) {
-				jQuery('.hide_organizer_fields').show();
-				jQuery('#setting-hide_organizer_fields').show();
+				jQuery('.hide_organizer_fields').closest('.hide_organizer_fields').show();
 			}else{
-				 jQuery('.hide_organizer_fields').hide();
+				 jQuery('.hide_organizer_fields').closest('.hide_organizer_fields').hide();
 			}
 			jQuery('#setting-wpem_hide_data_from_guest').change( function(){
 				 if (jQuery('#setting-wpem_hide_data_from_guest').is(':checked')) {
-					jQuery('.hide_organizer_fields').show();
-					jQuery('#setting-hide_organizer_fields').show();
+					jQuery('.hide_organizer_fields').closest('.hide_organizer_fields').show();
 					} else {
-					jQuery('.hide_organizer_fields').hide(); 
-					jQuery('#setting-hide_organizer_fields').hide();
+						jQuery('.hide_organizer_fields').closest('.hide_organizer_fields').hide();
 					}
 			});
 		},

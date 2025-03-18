@@ -2,6 +2,8 @@
 $start_date = get_event_start_date();
 $end_date   = get_event_end_date();
 $event_type = get_event_type();
+$start_time = get_event_start_time();
+$end_time   = get_event_end_time();
 if (is_array($event_type) && isset($event_type[0]))
     $event_type = $event_type[0]->slug;
 
@@ -56,7 +58,19 @@ $thumbnail     = get_event_thumbnail(); ?>
                             <h3 class="wpem-heading-text"><?php echo esc_html(get_the_title()); ?></h3>
                         </div>
                         <div class="wpem-event-date-time">
-                            <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?> <?php display_event_start_time(); ?> - <?php display_event_end_date(); ?> <?php display_event_end_time(); ?></span>
+                            <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?>
+                            <?php 
+                                if (!empty($start_time)) {
+                                        echo ' ' . display_date_time_separator() .' ';
+                                    }
+                            ?>
+                            <?php display_event_start_time(); ?> - <?php display_event_end_date(); ?>
+                            <?php
+                                if (!empty($end_date) && !empty($end_time)) {
+                                    echo ' ' . display_date_time_separator() . ' ';
+                                }
+                            ?>
+                            <?php display_event_end_time(); ?></span>
                         </div>
                         <div class="wpem-event-location">
                             <span class="wpem-event-location-text">

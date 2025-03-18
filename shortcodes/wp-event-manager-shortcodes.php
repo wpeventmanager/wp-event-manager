@@ -687,8 +687,9 @@ class WP_Event_Manager_Shortcodes{
 		if(!empty($_GET['search_ticket_price'])) {
 			$selected_ticket_price = esc_attr($_GET['search_ticket_price']);
 		}
+		$filter_file = get_option('event_manager_filter_design') ? get_option('event_manager_filter_design').'.php' : 'event-classic-filters.php';
 		if($show_filters) {
-			get_event_manager_template('event-filters.php', array(
+			get_event_manager_template($filter_file, array(
 				'per_page' => $per_page,
 				'orderby' => $orderby,
 				'order' => $order,

@@ -79,7 +79,7 @@ class WP_Event_Manager_Field_Editor {
 			echo wp_kses_post($this->form_editor_save());
 		}
 
-		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country'));
+		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country', 'event_type', 'event_category'));
 		$taxonomy_fields = apply_filters('wpem_admin_field_editor_taxonomy_fields', array('event_type', 'event_category'));
 		$field_types    = apply_filters(
 			'event_manager_form_field_types',
@@ -103,6 +103,7 @@ class WP_Event_Manager_Field_Editor {
 				'wp-editor'        => esc_html__('WP Editor', 'wp-event-manager'),
 				'url'              => esc_html__('URL', 'wp-event-manager'),          /*'group'       			=> __('Group', 'wp-event-manager'),	*/
 				'email'            => esc_html__('Email', 'wp-event-manager'),
+				'switch'            => esc_html__('Switch', 'wp-event-manager'),
 			)
 		);
 
@@ -154,6 +155,9 @@ class WP_Event_Manager_Field_Editor {
 							<th width="1%"><?php esc_attr_e('Meta Key', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Only For Admin', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Priority', 'wp-event-manager'); ?></th>
+							<?php if ($group_key == 'event') { ?>
+								<th width="1%"><?php esc_attr_e('Tab Group (Only For Admin)', 'wp-event-manager'); ?></th>
+							<?php } ?>
 							<th width="1%"><?php esc_attr_e('Validation', 'wp-event-manager'); ?></th>
 							<th width="1%" class="field-actions">&nbsp;</th>
 						</tr>

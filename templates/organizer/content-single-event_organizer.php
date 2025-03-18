@@ -12,9 +12,9 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
 $check_user_access 	 = wpem_checked_guest_user_access();
 
 // If user not logged in hide some fields from that
-if ( $check_user_access == false ) {
-    $field_to_hide = get_option( 'hide_organizer_fields' );
-} else {
+if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
+    $field_to_hide = get_option('wpem_hide_organizer_fields');
+}else {
 	$field_to_hide = array();
 }
 ?>
@@ -100,21 +100,28 @@ if ( $check_user_access == false ) {
                     </div>
                     <?php do_action('submit_organizer_form_organizer_fields_start'); 
                     if (isset($organizer_custom_fields)) {
-                        foreach ($organizer_custom_fields as $key => $field) :?>
-                            <?php if (!strstr($key, 'organizer') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($organizer_id, '_' . $key))) : ?>
+                        foreach ($organizer_custom_fields as $key => $field) :
+                            if (!in_array($key, $field_to_hide) && 
+                                !strstr($key, 'organizer') && 
+                                !strstr($key, 'vcv') && 
+                                !strstr($key, 'submitting') && 
+                                !empty(get_post_meta($organizer_id, '_' . $key))) : ?>
                                 <div class="wpem-organizer-additional-information">
                                     <strong><?php echo esc_attr($field['label']); ?>:</strong>
-                                    <span><?php 
-                                        $value = get_post_meta($organizer_id, '_' . $key, true);
-                                        if($field['type'] == 'url' && !empty($value))
-                                            echo '<a href="'.esc_url($value).'" target="_blank">'.esc_url($value).'</a>';
-                                        else
-                                            echo esc_attr($value); ?>
+                                    <span>
+                                        <?php 
+                                            $value = get_post_meta($organizer_id, '_' . $key, true);
+                                            if ($field['type'] == 'url' && !empty($value)) {
+                                                echo '<a href="'.esc_url($value).'" target="_blank">'.esc_url($value).'</a>';
+                                            } else {
+                                                echo esc_attr($value);
+                                            }
+                                        ?>
                                     </span>
                                 </div>
                             <?php endif;
                         endforeach;
-                    } 
+                    }                     
                     do_action('organizer_form_organizer_fields_end'); ?>
                     <div class="wpem-organizer-contact-actions">
                         <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>

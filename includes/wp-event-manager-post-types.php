@@ -560,6 +560,7 @@ class WP_Event_Manager_Post_Types {
 			);
 		}
 		if(!empty($_GET['search_keywords'])) {
+			global $event_manager_keyword;
 			$event_manager_keyword = esc_attr($_GET['search_keywords']);
 			$query_args['s'] = $event_manager_keyword;
 			add_filter('posts_search', 'get_event_listings_keyword_search');

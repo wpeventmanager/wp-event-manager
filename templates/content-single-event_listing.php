@@ -509,6 +509,74 @@ $event = $post; ?>
                  * single_event_listing_end hook
                  */
                 do_action('single_event_listing_end');  ?>
+                <?php
+                $enable_health_guideline = get_post_meta($post->ID, '_enable_health_guideline', true);
+                $event_health_guidelines = get_post_meta($post->ID, '_event_health_guidelines', true);
+                $event_health_guidelines = !empty($event_health_guidelines) ? (array) $event_health_guidelines : [];
+
+                $enable_health_guideline_other = get_post_meta($post->ID, '_enable_health_guideline_other', true);
+                $other_guidelines_text = get_post_meta($post->ID, '_event_health_guidelines_other', true);
+
+                $health_guidelines_list = array(
+                    'face_masks_required'      => array('label' => __('Face masks required', 'wp-event-manager'), 'icon' => 'wpem-icon-head-side-mask'),
+                    'temperature_checked'      => array('label' => __('Temperature will be checked at entrance', 'wp-event-manager'), 'icon' => 'wpem-icon-temperature'),
+                    'physical_distance'        => array('label' => __('Physical distance maintained event', 'wp-event-manager'), 'icon' => 'wpem-icon-people-distance'),
+                    'event_sanitized'          => array('label' => __('Event area sanitized before event', 'wp-event-manager'), 'icon' => 'wpem-icon-house-medical'),
+                    'event_outside'            => array('label' => __('Event is held outside', 'wp-event-manager'), 'icon' => 'wpem-icon-spruce-tree'),
+                    'vaccination_required'     => array('label' => __('Vaccination Required', 'wp-event-manager'), 'icon' => 'wpem-icon-syringe'),
+                );
+
+                if ($enable_health_guideline === 'yes' && !empty($event_health_guidelines)) :
+                ?>
+                    <!-- Health Guidelines Start -->
+                    <div class="wpem-single-event-footer">
+                        <div class="wpem-event-health-guidelines-wrapper">
+                            <div class="wpem-listing-accordion active">
+                                <h3 class="wpem-heading-text"><?php esc_html_e('Health Guidelines', 'wp-event-manager'); ?></h3>
+                                <i class="wpem-icon-minus"></i><i class="wpem-icon-plus"></i>
+                            </div>
+
+                            <div class="wpem-listing-accordion-panel active" style="display: block;">
+                                <div class="wpem-event-health-guideline-list">
+                                    <div class="wpem-row">
+
+                                        <?php foreach ($health_guidelines_list as $key => $data) :
+                                            if (isset($event_health_guidelines[$key])) : ?>
+                                                <div class="wpem-col-md-6">
+                                                    <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                                        <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center">
+                                                            <i class="<?php echo esc_attr($data['icon']); ?>"></i>
+                                                        </div>
+                                                        <div class="wpem-event-health-guideline-list-item-title">
+                                                            <span><?php echo esc_html($data['label']); ?></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endif;
+                                        endforeach; ?>
+
+                                        <?php 
+                                        if ($enable_health_guideline_other === 'yes' && !empty($other_guidelines_text)) : ?>
+                                            <div class="wpem-col-md-12">
+                                                <div class="wpem-event-health-guideline-list-item wpem-d-flex wpem-align-items-center wpem-my-2">
+                                                    <div class="wpem-event-health-guideline-list-item-icon wpem-d-flex wpem-align-items-center wpem-justify-content-center">
+                                                        <i class="wpem-icon-notes-medical"></i>
+                                                    </div>
+                                                    <div class="wpem-event-health-guideline-list-item-title">
+                                                        <b><?php esc_html_e('Other Health Guidelines', 'wp-event-manager'); ?></b>
+                                                        <span><?php echo esc_html($other_guidelines_text); ?></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Health Guidelines End -->
+                <?php endif; ?>
             </div>
             <!-- / wpem-wrapper end  -->
         <?php endif; ?>
@@ -517,6 +585,7 @@ $event = $post; ?>
     <!-- / wpem-main end  -->
 </div>
 <?php 
+    if (!get_option('event_manager_hide_related_events')) {
 	$related_events_output = do_shortcode('[related_events event_id="' . get_the_ID() . '"]'); 
 	// check related events available or not
 	if (!empty($related_events_output)) {
@@ -530,7 +599,8 @@ $event = $post; ?>
             ?>
         </div>
     </div>
-<?php } ?>
+<?php }
+    }?>
 
 <!-- Related event slider override the script if needed -->
 <script>

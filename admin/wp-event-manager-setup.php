@@ -25,6 +25,7 @@ class WP_Event_Manager_Setup {
 		if(isset($_GET['page']) && 'event-manager-setup' === esc_attr($_GET['page'])) {
 			add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 12);
 		}
+		add_action('wp_ajax_wpem_save_installation_settings', array($this,'wpem_save_installation_settings'));
 	}
 
 	/**
@@ -84,6 +85,12 @@ class WP_Event_Manager_Setup {
 	 */
 	public function admin_enqueue_scripts()	{
 		wp_enqueue_style('event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array('dashicons'));
+		wp_enqueue_script('event_manager_setup_js', EVENT_MANAGER_PLUGIN_URL . '/assets//js/setup.min.js', array('jquery'), null, true);
+
+		wp_localize_script('event_manager_setup_js', 'wpem_ajax', array(
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'nonce'   => wp_create_nonce('wpem_save_installation_settings_nonce')
+		));
 	}
 
 	/**
@@ -149,7 +156,7 @@ class WP_Event_Manager_Setup {
 			update_option('wpem_installation_skip', 0);
 		} ?>
 
-		<div class="wrap wp_event_manager wp_event_manager_addons_wrap">
+		<div class="wp_event_manager wp_event_manager_addons_wrap">
 			<h2><?php esc_attr_e('WP Event Manager Setup', 'wp-event-manager'); ?></h2>
 			<div class="wpem-setup-wrapper">
 				<ul class="wp-event-manager-setup-steps">
@@ -169,9 +176,9 @@ class WP_Event_Manager_Setup {
 				</ul>
 				<?php if(1 === $step) : ?>
 					<div class="wpem-step-window">
-						<h3><?php esc_attr_e('Setup Wizard Introduction', 'wp-event-manager'); ?></h3>
-						<p><?php esc_attr_e('Thanks for installing WP Event Manager!', 'wp-event-manager'); ?></p>
-						<p><?php esc_attr_e('The Setup wizard helps you create various pages for event submission, event listings, handing events along with organizers and venue pages.', 'wp-event-manager'); ?></p>
+						<img src="<?php echo esc_url(EVENT_MANAGER_PLUGIN_URL.'/assets/images/wpem-setup-welcome-image.png'); ?>" alt="WP Event Manager Welcome Setup" />
+						<h3><?php esc_attr_e('Welcome to WP Event Manager!', 'wp-event-manager'); ?></h3>
+						<p><?php esc_attr_e('Thank you for trusting WP Event Manager to manage your upcoming events. Now you can effortlessly manage unlimited online and offline events independently.', 'wp-event-manager'); ?></p>
 						<p><?php
 							// translators: %1$s and %2$s wrap "documentation" in a hyperlink to the support page.
 							printf(esc_attr__('If you want to avoid the Setup wizard and want to creates pages manually, you can refer to the %1$sdocumentation%2$s for support.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/help-center/">', '</a>'); 
@@ -179,169 +186,180 @@ class WP_Event_Manager_Setup {
 					</div>
 					<p class="submit">
 						<a href="<?php echo esc_url(add_query_arg('step', 2)); ?>" class="button button-primary"><?php esc_attr_e('Continue to page setup', 'wp-event-manager'); ?></a>
-						<a href="<?php echo esc_url(add_query_arg('skip-event-manager-setup', 1, admin_url('index.php?page=event-manager-setup&step=3'))); ?>" class="button"><?php esc_attr_e('Skip for now', 'wp-event-manager'); ?></a>
+						<a href="<?php echo esc_url(add_query_arg('skip-event-manager-setup', 1, admin_url('index.php?page=event-manager-setup&step=3'))); ?>" class="button button-border"><?php esc_attr_e('Skip for now', 'wp-event-manager'); ?></a>
 					</p>
 				<?php endif; ?>
 				<?php if(2 === $step) : ?>
 					<h3><?php esc_attr_e('Page Setup', 'wp-event-manager'); ?></h3>
 					<p><?php 
 						// translators: %1$s is the opening tag for shortcodes documentation link; %2$s is the closing tag for that link; %3$s is the opening tag for pages documentation link; %4$s is the opening tag for event shortcodes documentation link. 
-						printf(esc_html('The <em>WP Event Manager</em> includes %1$sshortcodes%2$s which can be used to output content within your %3$spages%2$s. These can be generated directly as mentioned below. Check the shortcode documentation for more information on event %4$sshortcodes%2$s.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/knowledge-base/" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="https://wordpress.org/support/article/pages/" target="_blank" class="help-page-link">', '<a href="https://wp-eventmanager.com/knowledge-base/" target="_blank" class="help-page-link">'); 
+						printf(esc_html('The WP Event Manager includes %1$sshortcodes%2$s which can be used to output content within your %3$spages%2$s. These can be generated directly as mentioned below. Check the shortcode documentation for more information on event %4$sshortcodes%2$s.', 'wp-event-manager'), '<a href="https://wp-eventmanager.com/knowledge-base/" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="https://wordpress.org/support/article/pages/" target="_blank" class="help-page-link">', '<a href="https://wp-eventmanager.com/knowledge-base/" target="_blank" class="help-page-link">'); 
 					?></p>
 					<form action="<?php echo esc_url(add_query_arg('step', 3)); ?>" method="post">
 						<?php wp_nonce_field('step_3', 'setup_wizard'); ?>
-						<table class="wp-event-manager-shortcodes widefat">
-							<thead>
-								<tr>
-									<th>&nbsp;</th>
-									<th><?php esc_attr_e('Page Title', 'wp-event-manager'); ?></th>
-									<th><?php esc_attr_e('Page Description', 'wp-event-manager'); ?></th>
-									<th><?php esc_attr_e('Content Shortcode', 'wp-event-manager'); ?></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_event_form]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Post an Event', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[submit_event_form]" /></td>
-									<td>
-										<p><?php esc_attr_e('This page allows peoples to add events to your website from the front-end.', 'wp-event-manager'); ?></p>
-										<p><?php esc_attr_e('If you do not wish to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager'); ?></p>
-									</td>
-									<td><code>[submit_event_form]</code></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_dashboard]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Event Dashboard', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[event_dashboard]" /></td>
-									<td>
-										<p><?php esc_attr_e('This page allows peoples to manage (edit, delete and duplicate) their own events from the front-end.', 'wp-event-manager'); ?></p>
-										<p><?php esc_attr_e('If you plan on managing all listings from the admin dashboard you can skip creating this page.', 'wp-event-manager'); ?></p>
-									</td>
-									<td><code>[event_dashboard]</code></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[events]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Events', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[events]" /></td>
-									<td><?php esc_attr_e('This page allows users to browse, search, and filter event listings on the front-end of your site.', 'wp-event-manager'); ?></td>
-									<td><code>[events]</code></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_organizer_form]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Submit Organizer Form', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[submit_organizer_form]" /></td>
-									<td>
-										<p><?php esc_attr_e('This page allows users to Submit the organizers form the frontend.', 'wp-event-manager'); ?></p>
-										<p><?php esc_attr_e('In case if you do not want to allow your users to submit organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
-									</td>
-									<td><code>[submit_organizer_form]</code></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[organizer_dashboard]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Organizer Dashboard', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[organizer_dashboard]" /></td>
-									<td>
-										<p><?php esc_attr_e('This page allows people to manage (edit, delete and duplicate) the organizers form the frontend.', 'wp-event-manager'); ?></p>
-										<p><?php esc_attr_e('In case if you do not want to allow your users to manage organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
-									</td>
-									<td><code>[organizer_dashboard]</code></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_organizers]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Event Organizers', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
-									<td>
-										<p><?php esc_attr_e('This page allows peoples to show organizers from the front-end.', 'wp-event-manager'); ?></p>
-										<p><?php esc_attr_e('In case if you do not want to allow your users to show organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
-									</td>
-									<td><code>[event_organizers]</code></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_venue_form]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Submit Venue Form', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[submit_venue_form]" /></td>
-									<td>
-										<p><?php esc_attr_e('This page allows people to Submit the venues from the frontend.', 'wp-event-manager'); ?></p>
-										<p><?php esc_attr_e('In case if you do not want to allow your users to submit venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
-									</td>
-									<td><code>[submit_venue_form]</code></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[venue_dashboard]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Venue Dashboard', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[venue_dashboard]" /></td>
-									<td>
-										<p><?php esc_attr_e('This page allows people to manage (edit, delete and duplicate) the venues form the frontend.', 'wp-event-manager'); ?></p>
-										<p><?php esc_attr_e('In case if you do not want to allow your users to manage venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
-									</td>
-									<td><code>[venue_dashboard]</code></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_venues]" /></td>
-									<td><input type="text" value="<?php echo esc_attr(_x('Event Venues', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[event_venues]" /></td>
-									<td>
-										<p><?php esc_attr_e('This page allows peoples to show venues from the front-end.', 'wp-event-manager'); ?></p>
-										<p><?php esc_attr_e('In case if you do not want to allow your users to show venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
-									</td>
-									<td><code>[event_venues]</code></td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th colspan="4">
-										<input type="submit" class="button button-primary" value="Create selected pages" />
-										<a href="<?php echo esc_url(add_query_arg('step', 3)); ?>" class="button"><?php esc_attr_e('Skip this step', 'wp-event-manager'); ?></a>
-									</th>
-								</tr>
-							</tfoot>
-						</table>
+						<div class="wpem-table-responsive">
+							<table class="wp-event-manager-shortcodes widefat">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th><?php esc_attr_e('Page Title', 'wp-event-manager'); ?></th>
+										<th><?php esc_attr_e('Page Description', 'wp-event-manager'); ?></th>
+										<th><?php esc_attr_e('Content Shortcode', 'wp-event-manager'); ?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_event_form]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Post an Event', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[submit_event_form]" /></td>
+										<td>
+											<p><?php esc_attr_e('This page allows peoples to add events to your website from the front-end.', 'wp-event-manager'); ?></p>
+											<p><?php esc_attr_e('If you do not wish to accept submissions from users in this way (for example you just want to post events from the admin dashboard) you can skip creating this page.', 'wp-event-manager'); ?></p>
+										</td>
+										<td><code>[submit_event_form]</code></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_dashboard]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Event Dashboard', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[event_dashboard]" /></td>
+										<td>
+											<p><?php esc_attr_e('This page allows peoples to manage (edit, delete and duplicate) their own events from the front-end.', 'wp-event-manager'); ?></p>
+											<p><?php esc_attr_e('If you plan on managing all listings from the admin dashboard you can skip creating this page.', 'wp-event-manager'); ?></p>
+										</td>
+										<td><code>[event_dashboard]</code></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[events]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Events', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[events]" /></td>
+										<td><?php esc_attr_e('This page allows users to browse, search, and filter event listings on the front-end of your site.', 'wp-event-manager'); ?></td>
+										<td><code>[events]</code></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_organizer_form]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Submit Organizer Form', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[submit_organizer_form]" /></td>
+										<td>
+											<p><?php esc_attr_e('This page allows users to Submit the organizers form the frontend.', 'wp-event-manager'); ?></p>
+											<p><?php esc_attr_e('In case if you do not want to allow your users to submit organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
+										</td>
+										<td><code>[submit_organizer_form]</code></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[organizer_dashboard]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Organizer Dashboard', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[organizer_dashboard]" /></td>
+										<td>
+											<p><?php esc_attr_e('This page allows people to manage (edit, delete and duplicate) the organizers form the frontend.', 'wp-event-manager'); ?></p>
+											<p><?php esc_attr_e('In case if you do not want to allow your users to manage organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
+										</td>
+										<td><code>[organizer_dashboard]</code></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_organizers]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Event Organizers', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[event_organizers]" /></td>
+										<td>
+											<p><?php esc_attr_e('This page allows peoples to show organizers from the front-end.', 'wp-event-manager'); ?></p>
+											<p><?php esc_attr_e('In case if you do not want to allow your users to show organizers from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
+										</td>
+										<td><code>[event_organizers]</code></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[submit_venue_form]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Submit Venue Form', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[submit_venue_form]" /></td>
+										<td>
+											<p><?php esc_attr_e('This page allows people to Submit the venues from the frontend.', 'wp-event-manager'); ?></p>
+											<p><?php esc_attr_e('In case if you do not want to allow your users to submit venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
+										</td>
+										<td><code>[submit_venue_form]</code></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[venue_dashboard]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Venue Dashboard', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[venue_dashboard]" /></td>
+										<td>
+											<p><?php esc_attr_e('This page allows people to manage (edit, delete and duplicate) the venues form the frontend.', 'wp-event-manager'); ?></p>
+											<p><?php esc_attr_e('In case if you do not want to allow your users to manage venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
+										</td>
+										<td><code>[venue_dashboard]</code></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" checked="checked" name="wp-event-manager-create-page[event_venues]" /></td>
+										<td><input type="text" value="<?php echo esc_attr(_x('Event Venues', 'Default page title (wizard)', 'wp-event-manager')); ?>" name="wp-event-manager-page-title[event_venues]" /></td>
+										<td>
+											<p><?php esc_attr_e('This page allows peoples to show venues from the front-end.', 'wp-event-manager'); ?></p>
+											<p><?php esc_attr_e('In case if you do not want to allow your users to show venues from the frontend, you can uncheck this and skip creating this page.', 'wp-event-manager'); ?></p>
+										</td>
+										<td><code>[event_venues]</code></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="submit">
+							<input type="submit" class="button button-primary" value="Create selected pages" />
+							<a href="<?php echo esc_url(add_query_arg('step', 3)); ?>" class="button button-border"><?php esc_attr_e('Skip this step', 'wp-event-manager'); ?></a>
+						</p>
 					</form>
 				<?php endif; ?>
 				<?php if(3 === $step) : ?>
-					<div class="wpem-setup-next-block-wrap">
-						<div class="wpem-setup-intro-block">
-							<div class="wpem-setup-done"><i class="wpem-icon-checkmark"></i>
-								<h3><?php esc_attr_e('All Done!', 'wp-event-manager'); ?></h3>
+					<div class="wpem-setup-intro-block">
+						<div class="wpem-setup-end-step-settings">
+							<h4>Settings</h4>
+							<form method="post">
+							<div class="wpem-setup-end-step-setting">
+								<label>Set Date Format:</label>
+								<select name="wpem_date_format">
+									<?php 
+									$date_formats = WP_Event_Manager_Date_Time::get_event_manager_date_admin_settings();
+									if ( ! empty( $date_formats ) ) :
+										foreach ( $date_formats as $key => $format ) : ?>
+											<option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $format ); ?></option>
+										<?php endforeach;
+									endif; ?>
+								</select>
 							</div>
-							<div class="wpem-setup-intro-block-welcome">
-								<img src="<?php echo esc_url(EVENT_MANAGER_PLUGIN_URL.'/assets/images/wpem-logo.svg'); ?>" alt="WP Event Manager">
-								<p><?php esc_attr_e('Thanks for installing WP Event Manager! Here are some valuable resources that will assist you in getting started with our plugins.', 'wp-event-manager'); ?></p>
-								<div class="wpem-backend-video-wrap">
-									<iframe width="560" height="315" src="https://www.youtube.com/embed/hlDVYtEDOgQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<div class="wpem-setup-end-step-setting">
+								<label>Set Time Format:</label>
+								<select name="wpem-time-format">
+									<option value="12">12h</option>
+									<option value="24">24h</option>
+								</select>
+							</div>
+							<div class="wpem-setup-end-step-block">
+								<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_listing')); ?>" target="_blank"><i class="wpem-icon-plus"></i><?php esc_attr_e('Create new Event', 'wp-event-manager'); ?></a></div>
+								<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_organizer')); ?>" target="_blank"><i class="wpem-icon-user"></i><?php esc_attr_e('Create new Organizer', 'wp-event-manager'); ?></a></div>
+								<div class="wpem-setup-end-step-link"><a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_venue')); ?>" target="_blank"><i class="wpem-icon-location"></i><?php esc_attr_e('Create new Venue', 'wp-event-manager'); ?></a></div>
+							</div>
+						</div>
+						<div class="wpem-setup-help-center">
+							<h1><?php esc_attr_e('Helpful Resources', 'wp-event-manager'); ?></h1>
+							<div class="wpem-setup-help-center-block-wrap">
+								<div class="wpem-setup-help-center-block">
+									<div class="wpem-setup-help-center-block-icon">
+										<span class="wpem-setup-help-center-knowledge-base-icon"></span>
+									</div>
+									<div class="wpem-setup-help-center-block-content">
+										<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Knowledge Base', 'wp-event-manager'); ?></div>
+										<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Solve your queries by browsing our documentation.', 'wp-event-manager'); ?></div>
+										<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Browse More', 'wp-event-manager'); ?> »</span></a>
+									</div>
 								</div>
-								<div class="wpem-setup-intro-block-btn">
-									<a href="<?php echo esc_url(admin_url('post-new.php?post_type=event_listing')); ?>" class="button button-primary button-hero"><?php esc_attr_e('Create Your First Event', 'wp-event-manager'); ?></a>
-									<a href="<?php echo esc_url(admin_url('edit.php?post_type=event_listing&page=event-manager-settings')); ?>" class="button button-secondary button-hero"><?php esc_attr_e('Settings', 'wp-event-manager'); ?></a>
+								<div class="wpem-setup-help-center-block">
+									<div class="wpem-setup-help-center-block-icon">
+										<span class="wpem-setup-help-center-faqs-icon"></span>
+									</div>
+									<div class="wpem-setup-help-center-block-content">
+										<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('FAQs', 'wp-event-manager'); ?></div>
+										<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Explore through the frequently asked questions.', 'wp-event-manager'); ?></div>
+										<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Get Answers', 'wp-event-manager'); ?> »</span></a>
+									</div>
+								</div>
+								<div class="wpem-setup-help-center-block">
+									<div class="wpem-setup-help-center-block-icon">
+										<span class="wpem-setup-help-center-video-tutorial-icon"></span>
+									</div>
+									<div class="wpem-setup-help-center-block-content">
+										<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Video Tutorials', 'wp-event-manager'); ?></div>
+										<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Learn different skills by examining attractive video tutorials.', 'wp-event-manager'); ?></div>
+										<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Watch all', 'wp-event-manager'); ?> »</span></a>
+									</div>
 								</div>
 							</div>
-							<div class="wpem-setup-help-center">
-								<h1><?php esc_attr_e('Helpful Resources', 'wp-event-manager'); ?></h1>
-								<div class="wpem-setup-help-center-block-wrap">
-									<div class="wpem-setup-help-center-block">
-										<div class="wpem-setup-help-center-block-icon">
-											<span class="wpem-setup-help-center-knowledge-base-icon"></span>
-										</div>
-										<div class="wpem-setup-help-center-block-content">
-											<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Knowledge Base', 'wp-event-manager'); ?></div>
-											<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Solve your queries by browsing our documentation.', 'wp-event-manager'); ?></div>
-											<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Browse More', 'wp-event-manager'); ?> »</span></a>
-										</div>
-									</div>
-									<div class="wpem-setup-help-center-block">
-										<div class="wpem-setup-help-center-block-icon">
-											<span class="wpem-setup-help-center-faqs-icon"></span>
-										</div>
-										<div class="wpem-setup-help-center-block-content">
-											<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('FAQs', 'wp-event-manager'); ?></div>
-											<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Explore through the frequently asked questions.', 'wp-event-manager'); ?></div>
-											<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Get Answers', 'wp-event-manager'); ?> »</span></a>
-										</div>
-									</div>
-									<div class="wpem-setup-help-center-block">
-										<div class="wpem-setup-help-center-block-icon">
-											<span class="wpem-setup-help-center-video-tutorial-icon"></span>
-										</div>
-										<div class="wpem-setup-help-center-block-content">
-											<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Video Tutorials', 'wp-event-manager'); ?></div>
-											<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Learn different skills by examining attractive video tutorials.', 'wp-event-manager'); ?></div>
-											<a href="https://www.youtube.com/channel/UCnfYxg-fegS_n9MaPNU61bg" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Watch all', 'wp-event-manager'); ?> »</span></a>
-										</div>
-									</div>
-								</div>
-								<div class="wpem-setup-addon-support">
+							<div class="wpem-setup-addon-support">
 									<div class="wpem-setup-addon-support-wrap">
 										<div class="wpem-setup-help-center-block-icon">
 											<span class="wpem-setup-help-center-support-icon"></span>
@@ -353,8 +371,11 @@ class WP_Event_Manager_Setup {
 										</div>
 									</div>
 								</div>
-							</div>
 						</div>
+						<p class="submit">
+							<a href="#" name="wpem_save_installation_settings" id="wpem_save_installation_settings" class="button button-primary"><?php esc_attr_e('Finish Setup', 'wp-event-manager'); ?></a>
+						</p>
+						</form>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -378,5 +399,34 @@ class WP_Event_Manager_Setup {
 			return sanitize_text_field($input);
 		}
 	}
+
+	/**
+	 * Saving settings.
+	 *
+	 * @param  array $array
+	 * @return array
+	 */
+	public function wpem_save_installation_settings() {
+		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( $_POST['security'], 'wpem_save_installation_settings_nonce' ) ) {
+			wp_send_json_error(array('message' => 'Invalid nonce'));
+			exit;
+		}
+
+		$date_format = isset( $_POST['date_format'] ) ? sanitize_text_field( $_POST['date_format'] ) : '';
+		$time_format = isset( $_POST['time_format'] ) ? sanitize_text_field( $_POST['time_format'] ) : '';
+
+		if ( ! empty( $date_format ) ) {
+			update_option('event_manager_datepicker_format', $date_format);
+		}
+		if ( ! empty( $time_format ) ) {
+			update_option('event_manager_timepicker_format', $time_format);
+		}
+		update_option('wpem_installation', 1);
+		wp_send_json_success(array(
+			'message' => 'Settings saved successfully!',
+			'redirect_url' => admin_url('index.php')
+		));
+	}
+
 }
 new WP_Event_Manager_Setup();

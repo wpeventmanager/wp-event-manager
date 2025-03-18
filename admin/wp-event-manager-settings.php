@@ -73,6 +73,18 @@ class WP_Event_Manager_Settings{
 				$venue_options[$venue->ID] = $venue->post_title;
 			}
 		}
+		
+		// Get oganize field list
+		$organizer_fields  = wpem_get_organizer_all_fields();
+		$organizer_options = [];
+		
+		if (!empty($organizer_fields) && is_array($organizer_fields)) {
+			foreach ($organizer_fields['organizer'] as $field_key => $field_data) {
+				if (isset($field_data['label'])) {
+					$organizer_options[$field_key] = $field_data['label'];
+				}
+			}
+		}
 
 		$this->settings = apply_filters(
 			'event_manager_settings',
@@ -111,8 +123,7 @@ class WP_Event_Manager_Settings{
 							'name'       => 'wpem_retain_attachment',
 							'std'        => '1',
 							'label'      => __('Enable To Retain Attachment', 'wp-event-manager'),
-							'cb_label'   => __('Retain Banner Image After Emptying Event From
-								The Trash.', 'wp-event-manager'),
+							'cb_label'   => __('Retain Banner Image After Emptying Event From The Trash.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
 							'attributes' => array(),
@@ -140,6 +151,23 @@ class WP_Event_Manager_Settings{
 							'label'       => __('"From" address', 'wp-event-manager'), 
 							'desc'        => __("If you are going to deal with Registration emails or Event emails then you need the sender's email appears in outgoing WP Event Manager emails.", 'wp-event-manager'), 
 							'type'        => 'email'
+						),
+						array(
+							'name'       => 'wpem_hide_data_from_guest',
+							'std'        => '0',  
+							'label'      => __('Hide Data from Guest Users', 'wp-event-manager'),
+							'cb_label'   => __('Hide sensitive event data from non-logged-in(guest) users.', 'wp-event-manager'),
+							'desc'       => '',
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
+						 array(
+							'name'       => 'wpem_hide_organizer_fields',
+							'class'		=> 'hide_organizer_fields',
+							'label'      => __('Select Organizer Fields to Hide', 'wp-event-manager'),
+							'desc'       => __('Choose which organizer fields to hide on the front end.', 'wp-event-manager'),
+							'type'       => 'multiselect',
+							'options'    => $organizer_options,
 						),
 					),
 				),
@@ -279,6 +307,26 @@ class WP_Event_Manager_Settings{
 							'desc'       => __('If enabled, users can upload custom thumbnails for their event listings.', 'wp-event-manager'),
 							'type'       => 'checkbox',
 							'attributes' => array(),
+						),
+						array(
+							'name'       => 'event_manager_hide_related_events',
+							'std'        => '1',
+							'label'      => __('Hide Related Events', 'wp-event-manager'),
+							'cb_label'   => __('Hide related events on event', 'wp-event-manager'),
+							'desc'       => __('If enabled, the related events are not shown on single post.', 'wp-event-manager'),
+							'type'       => 'checkbox',
+							'attributes' => array(),
+						),
+						array(
+							'name'    => 'event_manager_filter_design',
+							'std'     => 'event-classic-filters',
+							'label'   => __('Filter Design', 'wp-event-manager'),
+							'desc'    => '',
+							'type'    => 'radio',
+							'options' => array(
+								'event-classic-filters' => __('Classic View', 'wp-event-manager'),
+								'event-crystal-filters' => __('Crystal View', 'wp-event-manager'),
+							),
 						),
 					),
 				),
@@ -428,6 +476,15 @@ class WP_Event_Manager_Settings{
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
+						array(
+							'name'    => 'event_manager_allowed_submission_roles',
+							'std'     => array_keys($account_roles),
+							'label'   => __('Who Can Submit Events', 'wp-event-manager'),
+							'desc'    => __('Select which user roles can submit events. By default, all roles can submit.', 'wp-event-manager'),
+							'type'    => 'multiselect',
+							'options' => $account_roles,
+						),
+						
 					),
 				),
 				'event_pages'          => array(
@@ -604,6 +661,10 @@ class WP_Event_Manager_Settings{
 	 * @return void
 	 */
 	public function output() {
+		wp_enqueue_script('wp-event-manager-multiselect'); 
+		wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
+		wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
+		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
 		$this->init_settings(); ?>
 
 		<div class="wrap event-manager-settings-wrap">
@@ -668,7 +729,7 @@ class WP_Event_Manager_Settings{
 										<?php	}
 											break;
 										case 'multiselect': ?>
-											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="regular-text" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo esc_attr( implode(' ', $attributes)); ?>>
+											<select id="setting-<?php echo esc_attr($option['name']); ?>" multiple="multiple" class="event-manager-multiselect regular-text" name="<?php echo esc_attr($option['name']); ?>[]" <?php echo esc_attr( implode(' ', $attributes)); ?>>
 												<?php
 												foreach ($option['options'] as $key => $name) {
 													$selected = '';
@@ -691,6 +752,8 @@ class WP_Event_Manager_Settings{
 													<span><?php echo esc_html($option['label']); ?></span>
 												</legend>
 												<?php
+												if(empty($value) && $option['options'] == 'event_manager_filter_design')
+													$value = $option['std '];
 												foreach ($option['options'] as $key => $name) {
 													echo '<label><input name="' . esc_attr($option['name']) . '" type="radio" value="' . esc_attr($key) . '" ' . checked($value, $key, false) . ' />' . esc_html($name) . '</label><br>';
 												}
@@ -733,7 +796,7 @@ class WP_Event_Manager_Settings{
 											<?php }
 											break;
 										case 'email': ?>
-											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php esc_attr($value,'wp-event-manager'); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo wp_kses_post($placeholder); ?> />
+											<input id="setting-<?php echo esc_attr($option['name']); ?>" class="regular-text" type="email" name="<?php echo esc_attr($option['name']); ?>" value="<?php echo esc_attr($value); ?>" <?php echo esc_attr(implode(' ', $attributes)); ?> <?php echo wp_kses_post($placeholder); ?> />
 											<?php
 											if($option['desc']) { ?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>

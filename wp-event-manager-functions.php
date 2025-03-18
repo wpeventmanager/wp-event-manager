@@ -1071,7 +1071,6 @@ function event_manager_dropdown_selection($args = '') {
 		$placeholder = isset($placeholder) ? $placeholder : __('Choose an event type', 'wp-event-manager');
 		$multiple_text = isset($multiple_text) ? $multiple_text :__('Choose event types', 'wp-event-manager');
 	endif;
-
 	$output = "<select name='" . esc_attr($name) . "[]' id='" . esc_attr($id) . "' class='" . esc_attr($class) . "' " . ($multiple ? "multiple='multiple'" : '') . " data-placeholder='" . esc_attr($placeholder) . "' data-no_results_text='" . esc_attr($no_results_text) . "' data-multiple_text='" . esc_attr($multiple_text) . "'>\n";
 
 	if($show_option_all) {
@@ -2214,6 +2213,22 @@ function wpem_embed_oembed_html($content) {
 }
 
 /**
+ * This wpem_begnWith() Checks if given string ($str) is begin with the second parameter ($begin_string) of function.
+ *
+ * @param string $str
+ * @param string $begin_string
+ * @return bool
+ * @since 1.0.1
+ */
+function wpem_begnWith($str, $begin_string) {
+	$len = strlen($begin_string);
+	if (is_array($str)) {
+		$str = '';
+	}
+	return (substr($str, 0, $len) === $begin_string);
+}
+
+/**
  * Check access for guest users based on the 'wpem_hide_data_from_guest' option.
  *
  * This function determines whether guest users have access to certain data.
@@ -2224,9 +2239,22 @@ function wpem_embed_oembed_html($content) {
  * @return bool True if access is allowed; false if access is denied for guests.
  */
 function wpem_checked_guest_user_access(){
-	$hide_data = get_option('hide_organizer_fields');
+	$hide_data = get_option('wpem_hide_organizer_fields');
     if ( !is_user_logged_in() && $hide_data ) {
        return false; 
     }
     return true;
+}
+
+/**
+ * Returns all fields of oganizer.
+ * 
+ * @param null
+ * @return string
+ * @since 3.1.47
+ */
+function wpem_get_organizer_all_fields() {
+	$form_instance = new WP_Event_Manager_Forms(); // Create a new instance
+    $organizer_fields = $form_instance->get_fields('submit-organizer');
+	return $organizer_fields;
 }

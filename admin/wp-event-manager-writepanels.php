@@ -52,6 +52,71 @@ class WP_Event_Manager_Writepanels {
 	}
 
 	/**
+	 * Display the tabs which is used in edit or add event in backend.
+	 *
+	 * @access public
+	 * @param mixed $post
+	 * @return void
+	 * @since 1.0.0
+	 */
+	public function event_manager_data($post) {
+		global $post, $thepostid;
+		$thepostid = $post->ID;
+		wp_enqueue_script('wp-event-manager-admin-js');
+		wp_nonce_field('save_meta_data', 'event_manager_nonce');
+		include('templates/listings-data-tabs.php');
+	}
+
+	/**
+	 * Return array of tabs to show.
+	 *
+	 * @access public
+	 * @return array
+	 * @since 1.0.0
+	 */
+	public function get_event_data_tabs() {
+		$tabs = apply_filters(
+			'wpem_event_data_tabs',
+			array(
+				'general'        => array(
+					'label'    => __('General', 'wp-event-manager'),
+					'target'   => 'general_event_data_content',
+					'class'    => array(''),
+					'priority' => 1,
+				),
+				'venue'        => array(
+					'label'    => __('Venue/Location', 'wp-event-manager'),
+					'target'   => 'venue_event_data_content',
+					'class'    => array(),
+					'priority' => 2,
+				),
+				'date'        => array(
+					'label'    => __('Date and Time', 'wp-event-manager'),
+					'target'   => 'date_time_event_data_content',
+					'class'    => array(''),
+					'priority' => 3,
+				),
+				'registration'        => array(
+					'label'    => __('Registration', 'wp-event-manager'),
+					'target'   => 'registration_event_data_content',
+					'class'    => array(''),
+					'priority' => 4,
+				),
+				'advanced'        => array(
+					'label'    => __('Advanced', 'wp-event-manager'),
+					'target'   => 'advanced_event_data_content',
+					'class'    => array(''),
+					'priority' => 10,
+				),
+			)
+		);
+
+		// Sort tabs based on priority.
+		uasort($tabs, array($this, 'sort_by_priority'));
+		return $tabs;
+	}
+
+	/**
 	 * It used to get event listing fields.
 	 *
 	 * @access public
@@ -115,12 +180,14 @@ class WP_Event_Manager_Writepanels {
 				'type'        => 'checkbox',
 				'description' => __('Featured listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
 				'priority'    => 39,
+				'tabgroup' => 1,
 			);
 			$fields['_cancelled'] = array(
 				'label'       => __('Cancelled Listing', 'wp-event-manager'),
 				'type'        => 'checkbox',
 				'description' => __('Cancelled listings will be sticky during searches, and can be styled differently.', 'wp-event-manager'),
 				'priority'    => 39,
+				'tabgroup' => 1,
 			);
 			$fields['_event_expiry_date'] = array(
 				'label'       => __('Listing Expiry Date', 'wp-event-manager'),
@@ -128,6 +195,7 @@ class WP_Event_Manager_Writepanels {
 				'placeholder' => __('Please enter event expiry date', 'wp-event-manager'),
 				'priority'    => 40,
 				'value'       => $expiry_date,
+				'tabgroup' => 3,
 			);
 		}
 		if($current_user->has_cap('edit_others_event_listings')) {
@@ -135,6 +203,7 @@ class WP_Event_Manager_Writepanels {
 				'label'    => __('Posted by', 'wp-event-manager'),
 				'type'     => 'author',
 				'priority' => 41,
+				'tabgroup' => 1,
 			);
 		}
 
@@ -173,7 +242,7 @@ class WP_Event_Manager_Writepanels {
 	public function add_meta_boxes(){
 		global $wp_post_types;
 
-		add_meta_box('event_listing_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name), array($this, 'event_listing_data'), 'event_listing', 'normal', 'high');
+		add_meta_box('event_manager_data', sprintf(wp_kses('%s Data', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name), array($this, 'event_manager_data'), 'event_listing', 'normal', 'high');
 
 		if(!get_option('event_manager_enable_event_types')) {
 			remove_meta_box('event_listing_typediv', 'event_listing', 'side');
@@ -377,31 +446,92 @@ class WP_Event_Manager_Writepanels {
 		} else {
 			$name = $key;
 		} ?>
-
-		<p class="form-field">
-			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
-				<?php
-				if(!empty($field['description'])) : ?>
-					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
+		<p class="form-field <?php echo esc_attr($key); ?>" data-field-name="<?php echo esc_attr($key); ?>">
+		<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:
 			<?php
-			if(!empty($field['multiple'])) {
-				foreach ((array) $field['value'] as $value) {?>
-					<span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($value); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span>
-				<?php
-				}
-			} else {
-				if(isset($field['value']) && is_array($field['value'])) {
-					$field['value'] = array_shift($field['value']);
-				} ?>
-				<span class="file_url"><input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" /><button class="button button-small wp_event_manager_upload_file_button" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button></span>
+			if(!empty($field['description'])) : ?>
+			<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
+			<span class="wpem-input-field">
+				<span class="file_url">
+					<?php foreach ((array) $field['value'] as $value) { ?>
+						<span class="event-manager-uploaded-file multiple-file">
+							<input type="hidden" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($value); ?>" />
+							<span class="event-manager-uploaded-file-preview">
+								<?php if (in_array(pathinfo($value, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'])) : ?>
+									<img src="<?php echo esc_attr($value); ?>">
+									<a class="event-manager-remove-uploaded-file" href="javascript:void(0);">[remove]</a>
+									<?php else :
+									if (!wpem_begnWith($value, "http")) {
+										$value	= '';
+									}
+									if (!empty($value)) { ?>
+										<span class="wpfm-icon">
+											<strong style="display: block; padding-top: 5px;"><?php echo esc_attr(wp_basename($value)); ?></strong>
+										</span>
+										<a class="event-manager-remove-uploaded-file" href="javascript:void(0);">[remove]</a>
+								<?php }
+								endif; ?>
+							</span>
+						</span>
+					<?php } ?>
+			</span> 
+			<?php
+			if (!empty($field['multiple'])) { ?>
+				<button class="button button-small wp_event_manager_upload_file_button_multiple" style="display: block;" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button>
+			<?php } else { ?>
+				<span class="event-manager-uploaded-file2">
+					<button class="button button-small wp_event_manager_upload_file_button" style="display: block;" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>"><?php esc_attr_e('Upload', 'wp-event-manager'); ?></button>
+				</span>
+				<?php if (!empty($field['description'])) : ?><small class="description"><?php echo esc_html(trim($field['description'])); ?></small><?php endif; ?>
 			<?php }
-			if(!empty($field['multiple'])) { ?>
-				<button class="button button-small wp_event_manager_add_another_file_button" data-field_name="<?php echo esc_attr($key); ?>" data-field_placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" data-uploader_button_text="<?php esc_attr_e('Use file', 'wp-event-manager'); ?>" data-uploader_button="<?php esc_attr_e('Upload', 'wp-event-manager'); ?>"><?php esc_attr_e('Add file', 'wp-event-manager'); ?></button>
-			<?php
-			} ?>
-		</p>
-	<?php
 	}
+
+	/**
+	 * Manage switch input with multiple options.
+	 *
+	 * @param mixed $key
+	 * @param mixed $field
+	 */
+	public static function input_switch($key, $field) {
+		global $post_id;
+		
+		$saved_values = get_post_meta($post_id, stripslashes($key), true);
+		$saved_values = !empty($saved_values) ? (array) $saved_values : [];
+
+		$options = isset($field['options']) ? $field['options'] : [];
+
+		?>
+		<div class="health-guidelines-switches">
+			<?php foreach ($options as $option_key => $option_label) : ?>
+				<p class="form-field">
+					<label for="<?php echo esc_attr($key . '_' . $option_key); ?>">
+						<?php echo esc_html($option_label); ?>
+					</label>
+					<span class="wpem-input-field">
+						<label class="switch">
+							<input type="checkbox" 
+								name="<?php echo esc_attr($key); ?>[<?php echo esc_attr($option_key); ?>]" 
+								id="<?php echo esc_attr($key . '_' . $option_key); ?>" class="<?php echo esc_attr($key); ?>"
+								value="1"
+								<?php echo isset($saved_values[$option_key]) ? 'checked' : ''; ?>>
+							<span class="slider round"></span>
+						</label>
+					</span>
+				</p>
+				
+				<?php if ($option_key === 'custom_guidelines') : ?>
+					<input type="text" 
+						name="<?php echo esc_attr($key); ?>[custom_text]" 
+						id="<?php echo esc_attr($key . '_custom_text'); ?>"
+						placeholder="<?php esc_attr_e('Enter custom health guideline', 'wp-event-manager'); ?>"
+						value="<?php echo isset($saved_values['custom_text']) ? esc_attr($saved_values['custom_text']) : ''; ?>">
+				<?php endif; ?>
+
+			<?php endforeach; ?>
+		</div>
+		<?php
+	}
+
 
 	/**
 	 * Manage of text input.
@@ -419,7 +549,10 @@ class WP_Event_Manager_Writepanels {
 		if (!isset($field['value']) || empty($field['value'])) {
 			//$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: esc_attr($default_address);
 			if ($key === '_event_location') {
-				$field['value'] = esc_attr($default_address); // Use the default address
+				$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: '';
+				if (empty($field['value']) && !empty($default_address)) {
+					$field['value'] = $default_address;
+				}
 			} else {
 				$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true)) ?: '';
 			}
@@ -440,11 +573,13 @@ class WP_Event_Manager_Writepanels {
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span>
 				<?php endif; ?>
 			</label>
-			<input type="text" 
+			<span class="wpem-input-field">
+				<input type="text" 
 				   name="<?php echo esc_attr($name); ?>" 
 				   id="<?php echo esc_attr($key); ?>" 
-				   placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" 
+				   placeholder="<?php esc_attr_e($field['placeholder'], 'wp-event-manager'); ?>" 
 				   value="<?php echo esc_attr($field['value']); ?>" />
+			</span>
 		</p>
 		<?php
 	}
@@ -473,7 +608,7 @@ class WP_Event_Manager_Writepanels {
 					<?php if(!empty($field['description'])) : ?>
 						<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
 			</p>
-			<?php wp_editor($field['value'], $name, array('media_buttons' => false)); ?>
+			<span class="wpem-input-field"><?php wp_editor($field['value'], $name, array('media_buttons' => false)); ?></span>
 		</div>
 	<?php
 	}
@@ -506,151 +641,13 @@ class WP_Event_Manager_Writepanels {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="hidden" name="date_format" id="date_format" value="<?php echo esc_attr($php_date_format)   ?>" />
-			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
+			<span class="wpem-input-field">		
+				<input type="hidden" name="date_format" id="date_format" value="<?php echo esc_attr($php_date_format)   ?>" />
+				<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php esc_attr_e($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" data-picker="datepicker" />
+			</span>
 		</p>
 	<?php
 	}
-
-	/**
- * input_multidate function.
- *
- * @param mixed $key
- * @param mixed $field
- */
-public static function input_multidate($key, $field) {
-    global $post_id;
-
-    $datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
-    $php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-
-    $dates = [];
-    if (!isset($field['value']) || empty($field['value'])) {
-        $saved_dates = esc_attr(get_post_meta($post_id, stripslashes($key), true));
-        if (!empty($saved_dates)) {
-            $dates = explode(',', $saved_dates);
-            $dates = array_map(function($date) use ($php_date_format) {
-                return date($php_date_format, strtotime($date));
-            }, $dates);
-        }
-    } else {
-        $dates = is_array($field['value']) ? $field['value'] : explode(',', $field['value']);
-    }
-
-    $name = isset($field['name']) ? $field['name'] : $key;
-
-    ?>
-    <div id="recure_custom_dates_field" class="controls form-field" position: relative; style="display:none;">
-        <label for="<?php echo esc_attr($key); ?>">
-            <?php esc_attr_e('Custom Dates', 'wp-event-manager'); ?>
-        </label>
-        <div id="custom_dates_container">
-            <?php if (!empty($dates)) : ?>
-                <?php foreach ($dates as $date) : ?>
-                    <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" value="<?php echo esc_attr($date); ?>" placeholder="<?php esc_attr_e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />
-                <?php endforeach; ?>
-            <?php else : ?>
-                <input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php esc_attr_e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />
-            <?php endif; ?>
-        </div>
-        <button type="button" id="add_custom_date" class="button">
-            <?php esc_attr_e('Add Another Date', 'wp-event-manager'); ?>
-        </button>
-			</div>
-
-    <script type="text/javascript">
-    jQuery(document).ready(function($) {
-
-        // Initialize date pickers for existing inputs
-        $('input[data-picker="datepicker"]').datepicker({
-            dateFormat: '<?php echo esc_js($datepicker_date_format); ?>'
-        });
-
-        // Add new date input when "Add Another Date" button is clicked
-        $('#add_custom_date').on('click', function(e) {
-            e.preventDefault();
-            console.log('Add date button clicked'); // Debugging line
-            var newDateField = $('<input type="text" class="input-text" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php esc_attr_e('Select Date', 'wp-event-manager'); ?>" data-picker="datepicker" />');
-            $('#custom_dates_container').append(newDateField);
-
-            // Initialize date picker for the newly added input
-            newDateField.datepicker({
-                dateFormat: '<?php echo esc_js($datepicker_date_format); ?>'
-            });
-        });
-
-    });
-    </script>
-    <?php
-}
-
-
-
-
-/**
- * input_multiweek function.
- *
- * @param mixed $key
- * @param mixed $field
- */
-public static function input_multiweek($key, $field) {
-    global $post_id;
-
-    $weeks = [];
-    if (!isset($field['value']) || empty($field['value'])) {
-        $saved_weeks = esc_attr(get_post_meta($post_id, stripslashes($key), true));
-        if (!empty($saved_weeks)) {
-            $weeks = explode(',', $saved_weeks);
-        }
-    } else {
-        $weeks = is_array($field['value']) ? $field['value'] : explode(',', $field['value']);
-    }
-
-    $name = isset($field['name']) ? $field['name'] : $key;
-
-    ?>
-    <div id="recure_custom_weeks_field" class="controls form-field" style="display:none;">
-        <label for="<?php echo esc_attr($key); ?>">
-            <?php esc_attr_e('Custom Weeks', 'wp-event-manager'); ?>
-        </label>
-        <div id="custom_weeks_container">
-            <?php if (!empty($weeks)) : ?>
-                <?php foreach ($weeks as $week) : ?>
-                    <select name="<?php echo esc_attr($name); ?>[]" class="input-select">
-                        <?php foreach ($field['options'] as $week_key => $week_label) : ?>
-                            <option value="<?php echo esc_attr($week_key); ?>" <?php selected($week, $week_key); ?>>
-                                <?php echo esc_html($week_label); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                <?php endforeach; ?>
-            <?php else : ?>
-                <select name="<?php echo esc_attr($name); ?>[]" class="input-select">
-                    <?php foreach ($field['options'] as $week_key => $week_label) : ?>
-                        <option value="<?php echo esc_attr($week_key); ?>">
-                            <?php echo esc_html($week_label); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            <?php endif; ?>
-        </div>
-        <button type="button" id="add_custom_week" class="button">
-            <?php esc_attr_e('Add Another Week Day', 'wp-event-manager'); ?>
-        </button>
-    </div>
-
-    <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $('#add_custom_week').on('click', function(e) {
-            e.preventDefault();
-            var newWeekField = $('<select name="<?php echo esc_attr($name); ?>[]" class="input-select"><?php foreach ($field['options'] as $week_key => $week_label) : ?><option value="<?php echo esc_attr($week_key); ?>"><?php echo esc_html($week_label); ?></option><?php endforeach; ?></select>');
-            $('#custom_weeks_container').append(newWeekField);
-        });
-
-    });
-    </script>
-    <?php
-}
 
 	/**
 	 * Manage of textarea input.
@@ -676,7 +673,7 @@ public static function input_multiweek($key, $field) {
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span>
 				<?php endif; ?>
 			</label>
-			<textarea name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>"><?php echo esc_html($field['value']); ?></textarea>
+			<span class="wpem-input-field"><textarea name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>"><?php echo esc_html($field['value']); ?></textarea></span>
 		</p>
 	<?php
 	}
@@ -709,17 +706,19 @@ public static function input_multiweek($key, $field) {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input name="<?php echo esc_attr($name); ?>_hidden" type="hidden" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" />
-			<select name=" <?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
-				<?php foreach ($field['options'] as $key => $value) : ?>
-					<option value="<?php echo esc_attr($key); ?>" <?php
-						if(isset($field['value'])) {
-							selected($field['value'], $key);
-						}?>>
-					<?php echo esc_html($value); ?>
-					</option>
-				<?php endforeach; ?>
-			</select>
+			<span class="wpem-input-field">
+				<input name="<?php echo esc_attr($name); ?>_hidden" type="hidden" value="<?php echo (isset($field['value']) ?  esc_attr($field['value']) : '') ?>" />
+				<select name=" <?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
+					<?php foreach ($field['options'] as $key => $value) : ?>
+						<option value="<?php echo esc_attr($key); ?>" <?php
+							if(isset($field['value'])) {
+								selected($field['value'], $key);
+							}?>>
+						<?php echo esc_html($value); ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</span>
 		</p>
 	<?php
 	}
@@ -747,17 +746,19 @@ public static function input_multiweek($key, $field) {
 				if(!empty($field['description'])) :?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?>
 			</label>
-			<select multiple="multiple" name="<?php echo esc_attr($name); ?>[]" id="<?php echo esc_attr($key); ?>" class="input-select event-manager-select-chosen <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
-				<?php foreach ($field['options'] as $key => $value) : ?>
-					<option value="<?php echo esc_attr($key); ?>" <?php
-											if(!empty($field['value']) && is_array($field['value'])) {
-												selected(in_array($key, $field['value']), true);
-											}elseif ($key == $default_organizer) {
-												echo 'selected="selected"';
-											}
-											?>><?php echo esc_html($value); ?></option>
-				<?php endforeach; ?>
-			</select>
+			<span class="wpem-input-field">
+				<select multiple="multiple" name="<?php echo esc_attr($name); ?>[]" id="<?php echo esc_attr($key); ?>" class="input-select event-manager-select-chosen <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
+					<?php foreach ($field['options'] as $key => $value) : ?>
+						<option value="<?php echo esc_attr($key); ?>" <?php
+												if(!empty($field['value']) && is_array($field['value'])) {
+													selected(in_array($key, $field['value']), true);
+												}elseif ($key == $default_organizer) {
+													echo 'selected="selected"';
+												}
+												?>><?php echo esc_html($value); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</span>
 		</p>
 	<?php
 	}
@@ -780,11 +781,13 @@ public static function input_multiweek($key, $field) {
 		} ?>
 		<p class="form-field form-field-checkbox">
 			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?></label>
-			<input type="checkbox" class="checkbox" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" value="1" <?php checked($field['value'], 1); ?> />
-			<?php
-			if(!empty($field['description'])) :
-			?>
-				<span class="description"><?php echo esc_attr($field['description']); ?></span><?php endif; ?>
+			<span class="wpem-input-field">
+				<input type="checkbox" class="checkbox" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" value="1" <?php checked($field['value'], 1); ?> />
+				<?php
+				if(!empty($field['description'])) :
+				?>
+					<span class="description"><?php echo esc_attr($field['description']); ?></span><?php endif; ?>
+			</span>
 		</p>
 	<?php
 	}
@@ -811,7 +814,9 @@ public static function input_multiweek($key, $field) {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" data-picker="timepicker" />
+			<span class="wpem-input-field">
+				<input type="text" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php esc_attr_e($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" data-picker="timepicker" />
+			</span>
 		</p>
 	<?php
 	}
@@ -838,12 +843,14 @@ public static function input_multiweek($key, $field) {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-					<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
-				<?php
-				$value = isset($field['value']) ? $field['value'] : $field['default'];
-				echo esc_attr_e(WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value)));
-				?>
-			</select>
+			<span class="wpem-input-field">
+				<select name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" class="input-select <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>">
+					<?php
+					$value = isset($field['value']) ? $field['value'] : $field['default'];
+					echo WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(esc_attr($value));
+					?>
+				</select>
+			</span>
 		</p>
 	<?php
 	}
@@ -870,7 +877,9 @@ public static function input_multiweek($key, $field) {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" min="<?php echo isset($field['min']) ? esc_attr($field['min']) : esc_attr('0'); ?>" max="<?php echo isset($field['max']) ? esc_attr($field['max']) : ''; ?>" />
+			<span class="wpem-input-field">
+				<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" min="<?php echo isset($field['min']) ? esc_attr($field['min']) : esc_attr('0'); ?>" max="<?php echo isset($field['max']) ? esc_attr($field['max']) : ''; ?>" />
+			</span>
 		</p>
 	<?php
 	}
@@ -897,7 +906,9 @@ public static function input_multiweek($key, $field) {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="url" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			<span class="wpem-input-field">
+				<input type="url" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			</span>
 		</p>
 	<?php
 	}
@@ -925,7 +936,9 @@ public static function input_multiweek($key, $field) {
 				if(!empty($field['description'])) :
 				?>
 					<span class="tips" data-tip="<?php echo esc_html($field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>
-			<input type="button" class="button button-small" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			<span class="wpem-input-field">
+				<input type="button" class="button button-small" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo esc_attr($field['placeholder'], 'wp-event-manager'); ?>" value="<?php echo esc_attr($field['value']); ?>" />
+			</span>
 		</p>
 	<?php
 	}
@@ -949,19 +962,21 @@ public static function input_multiweek($key, $field) {
 		$name           = !empty($field['name']) ? $field['name'] : $key; ?>
 		<p class="form-field form-field-author">
 			<label for="<?php echo esc_attr($key); ?>"><?php esc_html_e($field['label'], 'wp-event-manager'); ?>:</label>
-			<span class="current-author">
-				<?php
-				if($posted_by) {
-					echo wp_kses_post('<a href="' . esc_url(admin_url('user-edit.php?user_id=' . absint($author_id))) . '">#' . absint($author_id) . ' &ndash; ' . esc_attr($posted_by->user_login) . '</a>');
-				} else {
-					esc_attr_e('Guest User', 'wp-event-manager');
-				}
-				?>
-				<a href="#" class="change-author button button-small"><?php esc_attr_e('Change', 'wp-event-manager'); ?></a>
-			</span>
-			<span class="hidden change-author">
-				<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" step="1" value="<?php echo esc_attr($author_id); ?>" style="width: 4em;" />
-				<span class="description"><?php esc_attr_e('Enter the ID of the user, or leave blank if submitted by a guest.', 'wp-event-manager'); ?></span>
+			<span class="wpem-input-field">
+				<span class="current-author">
+					<?php
+					if($posted_by) {
+						echo wp_kses_post('<a href="' . esc_url(admin_url('user-edit.php?user_id=' . absint($author_id))) . '">#' . absint($author_id) . ' &ndash; ' . esc_attr($posted_by->user_login) . '</a>');
+					} else {
+						esc_attr_e('Guest User', 'wp-event-manager');
+					}
+					?>
+					<a href="#" class="change-author button button-small"><?php esc_attr_e('Change', 'wp-event-manager'); ?></a>
+				</span>
+				<span class="hidden change-author">
+					<input type="number" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($key); ?>" step="1" value="<?php echo esc_attr($author_id); ?>" style="width: 4em;" />
+					<span class="description"><?php esc_attr_e('Enter the ID of the user, or leave blank if submitted by a guest.', 'wp-event-manager'); ?></span>
+				</span>
 			</span>
 		</p>
 	<?php
@@ -985,47 +1000,23 @@ public static function input_multiweek($key, $field) {
 		}?>
 		<p class="form-field form-field-checkbox">
 			<label><?php esc_html_e($field['label'], 'wp-event-manager'); ?></label>
-			<?php foreach ($field['options'] as $option_key => $value) : ?>
-				<label>
-					<input type="radio" class="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($field['value'], $option_key); ?> /> 
-					<?php echo esc_html($value, 'wp-event-manager'); ?>
-				</label>
-			<?php endforeach; ?>
-			<?php
-			if(!empty($field['description'])) :
-			?>
-				<span class="description"><?php echo esc_html($field['description'], 'wp-event-manager'); ?></span><?php endif; ?>
+			<span class="wpem-input-field">
+				<span class="wpem-admin-radio-inline">
+					<?php foreach ($field['options'] as $option_key => $value) : ?>
+						<label>
+							<input type="radio" class="radio" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" value="<?php echo esc_attr($option_key); ?>" <?php checked($field['value'], $option_key); ?> /> 
+							<?php esc_html_e($value, 'wp-event-manager'); ?>
+						</label>
+					<?php endforeach; ?>
+					</span>
+					<?php
+					if(!empty($field['description'])) :
+					?>
+						<span class="description"><?php echo esc_html($field['description'], 'wp-event-manager'); ?></span><?php endif; ?>
+				
+			</span>
 		</p>
 	<?php
-	}
-
-	/**
-	 * return event list data function.
-	 *
-	 * @access public
-	 * @param mixed $post
-	 * @return void
-	 */
-	public function event_listing_data($post) {
-		global $post, $post_id;
-		$post_id = $post->ID;
-		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
-		wp_nonce_field('save_meta_data', 'event_manager_nonce');
-		do_action('event_manager_event_listing_data_start', $post_id);
-		foreach ($this->event_listing_fields() as $key => $field) {
-			$type = !empty($field['type']) ? $field['type'] : 'text';
-			if($type == 'wp-editor') {
-				$type = 'wp_editor';
-			}
-
-			if(has_action('event_manager_input_' . $type)) {
-				do_action('event_manager_input_' . $type, $key, $field);
-			} elseif(method_exists($this, 'input_' . $type)) {
-				call_user_func(array($this, 'input_' . $type), $key, $field);
-			}
-		}
-		do_action('event_manager_event_listing_data_end', $post_id);
-		echo wp_kses_post('</div>');
 	}
 	
 	/**
@@ -1253,29 +1244,6 @@ public static function input_multiweek($key, $field) {
 						if(!empty($_POST[$key])) {
 							$v_text = wp_kses_post(stripslashes($_POST[$key]));
 							update_post_meta($post_id, sanitize_key($key), $v_text);
-						}
-						break;
-					case 'multidate':
-						if (isset($_POST[$key]) && is_array($_POST[$key])) {
-							$dates = array_map('sanitize_text_field', $_POST[$key]);
-							$dates = array_filter($dates);
-							$dates = array_map(function($date) {
-								return date('Y-m-d', strtotime($date));
-							}, $dates);
-							$dates = implode(',', $dates);
-							update_post_meta($post_id, sanitize_key($key), $dates);
-						} else {
-							update_post_meta($post_id, sanitize_key($key), '');
-						}
-						break;
-					case 'multiweek':
-						if (isset($_POST[$key]) && is_array($_POST[$key])) {
-							$weeks = array_map('sanitize_text_field', $_POST[$key]);
-							$weeks = array_filter($weeks);
-							$weeks = implode(',', $weeks);
-							update_post_meta($post_id, sanitize_key($key), $weeks);
-						} else {
-							update_post_meta($post_id, sanitize_key($key), '');
 						}
 						break;
 					default:

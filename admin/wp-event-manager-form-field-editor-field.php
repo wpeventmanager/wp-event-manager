@@ -14,6 +14,14 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 		<select name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][type]" class="field_type">
 			<?php
 			foreach ($field_types as $key => $type) {
+
+				if ($field_key !== 'recure_custom_weeks' && $key === 'multiweek') {
+					continue;
+				}
+				if ($field_key !== 'recure_custom_dates' && $key === 'multidate') {
+					continue;
+				}
+
 				if (in_array($field_key, $disbled_fields)) {
 					if ($key == $field['type']) {
 						printf('<option value="' . esc_attr($key) . '" ' . selected($field['type'], $key, false) . '>' . esc_html($type) . '</option>');
@@ -90,6 +98,21 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 			}
 			?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" disabled />
 	</td>
+
+	<?php if ($group_key == 'event') { ?>
+		<td>
+			<select <?php if (in_array($field_key, $disbled_fields)) echo 'disabled'; ?> name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][tabgroup]" class="field_type">
+				<?php
+				$field['tabgroup'] = isset($field['tabgroup']) ? $field['tabgroup'] : 1;
+				$Writepanels = WP_Event_Manager_Writepanels::instance();
+				foreach ($Writepanels->get_event_data_tabs() as $key => $tab) {
+					$selected = ($field['tabgroup'] == $tab['priority']) ? 'selected' : '';
+					echo '<option value="' . esc_attr($tab['priority']) . '"' . esc_attr($selected) . '>' . esc_html($tab['label']) . '</option>';
+				}
+				?>
+			</select>
+		</td>
+	<?php } ?>
 
 	<td class="field-rules">
 		<?php if (!in_array($field_key, $disbled_fields)) : ?>

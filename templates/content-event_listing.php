@@ -67,7 +67,7 @@ $thumbnail  = get_event_thumbnail( $post, 'full' );
                                 <?php display_event_start_date(); ?>
                                 <?php
                                 if (!empty($start_time)) {
-                                    display_date_time_separator();
+                                    echo ' ' . display_date_time_separator() .' ';
                                 }
 									display_event_start_time(); 
                                 if (!empty($end_date) || !empty($end_time)) {
@@ -77,7 +77,7 @@ $thumbnail  = get_event_thumbnail( $post, 'full' );
                                     display_event_end_date();
                                 }
                                 if (!empty($end_date) && !empty($end_time)) {
-                                    display_date_time_separator();
+                                    echo ' ' . display_date_time_separator() . ' ';
                                 }
 									display_event_end_time(); ?>
                             </span>
