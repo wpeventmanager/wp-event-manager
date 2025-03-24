@@ -32,7 +32,8 @@ var Admin = function () {
             jQuery('input[name=_event_time_format]').on('change', Admin.actions.showSelectedTimeFormat);
             jQuery(".wpem-tabs li a").on('click', Admin.actions.tabClick);
             jQuery('.wpem-tabs li a:first').click();
-            jQuery("body").on("click", ".event-manager-remove-uploaded-file", function () {
+            jQuery("body").on("click", ".event-manager-remove-uploaded-file", function (e) {
+                e.preventDefault();
                 return jQuery(this).closest(".event-manager-uploaded-file").remove();
             });
 
