@@ -20,7 +20,8 @@ if (!empty($field['ajax']) && event_manager_user_can_upload_file_via_ajax()) {
 		endif;
 	endif; ?>
 	<?php if($key =='ticket_image'){ ?>
-	<input type="hidden" class="input-text" name="<?php echo esc_attr('current_' . $field_name); ?>" value="<?php echo $field['value'] ?>" />
+	<input type="hidden" class="input-text" name="<?php echo esc_attr('current_' . $field_name); ?>" value="<?php echo isset($field['value']) ? $field['value'] : ''; ?>"
+	/>
 	<?php } ?>
 </div>
 
