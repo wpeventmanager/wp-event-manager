@@ -192,9 +192,8 @@ var EventAjaxFilters = function() {
                 event.preventDefault();
                 Common.logInfo("EventAjaxFilters.actions.getEventListings...");
 
-                jQuery('.load_more_events').hide();
                 var data = '';
-                var target = jQuery('.event_listings');
+                var target = jQuery(this).closest('.event_listings');
                 var form = target.find('.event_filters');
                 var filters_bar = target.find('.showing_applied_filters');
                 var results = target.find('.event_listings');
@@ -362,7 +361,7 @@ var EventAjaxFilters = function() {
                                     } else if (!loading_previous) {
                                         jQuery('.load_more_events', target).show()
                                     }
-                                    jQuery('#load_more_events_loader').removeClass('wpem-loading');
+                                    jQuery('[id="load_more_events_loader"]').removeClass('wpem-loading');
                                     jQuery('li.event_listing', results).css('visibility', 'visible')
                                 }
                                 jQuery(results).parent().removeClass('wpem-loading');
