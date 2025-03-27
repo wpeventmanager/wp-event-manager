@@ -10,9 +10,14 @@ EventSubmission = function () {
         init: function () {
             Common.logInfo("EventSubmission.init...");
 
-            jQuery('body').on('click', '.event-manager-remove-uploaded-file', function () {
-                jQuery(this).closest('.event-manager-uploaded-file').remove();
-                return false;
+            jQuery("body").on("click", ".event-manager-remove-uploaded-file", function (e) {
+                e.preventDefault();
+                
+                var $uploadedFilesContainer = jQuery(this).closest(".event-manager-uploaded-files");
+                
+                $uploadedFilesContainer.find("input[type='hidden']").val("");
+            
+                jQuery(this).closest(".event-manager-uploaded-file").remove();
             });
             jQuery(".wpem_add_organizer_popup").on('click', function(){
                 jQuery("#oragnizer_message").html('');
