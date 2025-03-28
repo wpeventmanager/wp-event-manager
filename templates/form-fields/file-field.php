@@ -19,10 +19,6 @@ if (!empty($field['ajax']) && event_manager_user_can_upload_file_via_ajax()) {
 			get_event_manager_template('form-fields/uploaded-file-html.php', array('key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field));
 		endif;
 	endif; ?>
-	<?php if($key =='ticket_image'){ ?>
-	<input type="hidden" class="input-text" name="<?php echo esc_attr('current_' . $field_name); ?>" value="<?php echo isset($field['value']) ? $field['value'] : ''; ?>"
-	/>
-	<?php } ?>
 </div>
 
 <input type="file" class="<?php echo esc_attr(implode(' ', $classes)); ?>" attribute="<?php echo esc_attr(isset($field['attribute']) ? $field['attribute'] : ''); ?>" data-file_types="<?php echo esc_attr(implode('|', $allowed_mime_types)); ?>" <?php if (!empty($field['multiple'])) echo esc_attr('multiple'); ?> name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?><?php if (!empty($field['multiple'])) echo esc_attr('[]'); ?>" id="<?php echo esc_attr($key); ?>" placeholder="<?php echo empty($field['placeholder']) ? '' : esc_attr($field['placeholder']); ?>" />

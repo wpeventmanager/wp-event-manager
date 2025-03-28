@@ -454,7 +454,7 @@ class WP_Event_Manager_Writepanels {
 			<span class="wpem-input-field">
 				<span class="file_url">
 					<?php foreach ((array) $field['value'] as $value) { ?>
-						<span class="event-manager-uploaded-file multiple-file">
+						<span class="event-manager-uploaded-file event-manager-uploaded-files multiple-file">
 							<input type="hidden" name="<?php echo esc_attr($name); ?>[]" placeholder="<?php echo esc_attr($field['placeholder']); ?>" value="<?php echo esc_attr($value); ?>" />
 							<span class="event-manager-uploaded-file-preview">
 								<?php if (in_array(pathinfo($value, PATHINFO_EXTENSION), ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'])) : ?>
