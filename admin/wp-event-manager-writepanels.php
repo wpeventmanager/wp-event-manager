@@ -173,6 +173,9 @@ class WP_Event_Manager_Writepanels {
 		if(isset($fields['_organizer_logo'])) {
 			unset($fields['_organizer_logo']);
 		}
+		if(isset($fields['_event_thumbnail'])) {
+			unset($fields['_event_thumbnail']);
+		}
 
 		if($current_user->has_cap('manage_event_listings')) {
 			$fields['_featured'] = array(
