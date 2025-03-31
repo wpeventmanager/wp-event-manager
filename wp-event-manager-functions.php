@@ -236,13 +236,6 @@ if(!function_exists('get_event_listings')) :
 			$query_args['orderby'] ='meta_value';
 			$query_args['meta_key'] ='_event_start_date';
 			$query_args['meta_type'] ='DATETIME';
-			$today = date('Y-m-d H:i:s');
-			$query_args['meta_query'] = [
-				['key'     => '_event_start_date',
-					'value'   => $today,
-					'compare' => '>=',
-					'type'    => 'DATETIME']
-			];
 		}
 		// If orderby event_start_date and time  both
 		if('event_start_date_time' === $args['orderby']) {
