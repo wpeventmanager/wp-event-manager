@@ -2263,5 +2263,9 @@ function wpem_checked_guest_user_access(){
 function wpem_get_organizer_all_fields() {
 	$form_instance = new WP_Event_Manager_Forms(); // Create a new instance
     $organizer_fields = $form_instance->get_fields('submit-organizer');
+	if (isset($organizer_fields['organizer'])) {
+        unset($organizer_fields['organizer']['organizer_email']);
+        unset($organizer_fields['organizer']['organizer_country']);
+    }
 	return $organizer_fields;
 }
