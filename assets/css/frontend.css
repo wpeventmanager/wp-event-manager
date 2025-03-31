@@ -3741,6 +3741,75 @@ p.post-submitted-success-green-message a {
 
 
 
+/*Date Picker Start*/
+.ui-datepicker .ui-datepicker-header {
+  border: 0;
+  background-color: var(--wpem-gray-bg-color);
+  padding: 8px !important;
+}
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+  width: 30%;
+  padding-right: 15px !important;
+  background-position: right 5px center;
+  border: 1px solid var(--wpem-gray-border-color);
+  border-radius: 2px;
+  padding: 1px 7px;
+  margin: 0;
+}
+.ui-datepicker .ui-datepicker-title {
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+}
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+  top: 7px !important;
+}
+.ui-datepicker .ui-datepicker-prev {
+  left: 5px !important;
+}
+.ui-datepicker .ui-datepicker-next {
+  right: 5px !important;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  background: var(--wpem-gray-bg-color) !important;
+  border: 0 !important;
+  text-align: center;
+  padding: 10px;
+  border-radius: 2px;
+  line-height: normal;
+}
+.ui-widget-content .ui-state-default:hover {
+  background-color: var(--wpem-gray-border-color) !important;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight,
+.ui-state-highlight:hover, .ui-widget-content .ui-state-highlight:hover, .ui-widget-header .ui-state-highlight:hover {
+  background: var(--wpem-primary-color) !important;
+  color: #fff !important;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover{
+  color: var(--wpem-dark-color);
+  background-color: var(--wpem-gray-border-color) !important;
+}
+.ui-widget.ui-widget-content {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--wpem-gray-border-color);
+  box-shadow: 0px 10px 10px rgb(0 0 0 / 15%);
+  max-width: 280px;
+  width: 100%;
+}
+.ui-datepicker td {
+  padding: 3px !important;
+}
+.ui-datepicker table {
+  border: 0;
+}
+
+/*Date Picker End*/
+
+
+
 
 
 @media screen and (max-width: 1024px) {
