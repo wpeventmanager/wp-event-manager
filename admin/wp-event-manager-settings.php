@@ -50,11 +50,11 @@ class WP_Event_Manager_Settings{
 			'order'          => 'ASC',
 		);
 		$all_organizers = get_all_event_organizer('', $args);
-		$organizer_options = array('no_default' => __('No Default', 'wp-event-manager'));
+		$organizer_options_list = array('no_default' => __('No Default', 'wp-event-manager'));
 
 		if (!empty($all_organizers)) {
 			foreach ($all_organizers as $organizer) {
-				$organizer_options[$organizer->ID] = $organizer->post_title;
+				$organizer_options_list[$organizer->ID] = $organizer->post_title;
 			}
 		}
 		//Get Venue list
@@ -603,7 +603,7 @@ class WP_Event_Manager_Settings{
 							'std'     => 'no_default', 
 							'label'   => __( 'Default Organizer', 'wp-event-manager' ), 
 							'type'    => 'select', 
-							'options' => $organizer_options,
+							'options' => $organizer_options_list,
 							'desc'    => __( 'You can choose default organizer from here.', 'wp-event-manager' ),
 						),
 						array(
