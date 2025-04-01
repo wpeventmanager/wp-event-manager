@@ -300,15 +300,6 @@ class WP_Event_Manager_Settings{
 								),
 						),
 						array(
-							'name'       => 'event_manager_use_custom_thumbnail',
-							'std'        => '0',
-							'label'      => __('Use Event Thumbnail', 'wp-event-manager'),
-							'cb_label'   => __('Enable custom thumbnail for events.', 'wp-event-manager'),
-							'desc'       => __('If enabled, users can upload custom thumbnails for their event listings.', 'wp-event-manager'),
-							'type'       => 'checkbox',
-							'attributes' => array(),
-						),
-						array(
 							'name'       => 'event_manager_hide_related_events',
 							'std'        => '1',
 							'label'      => __('Hide Related Events', 'wp-event-manager'),
