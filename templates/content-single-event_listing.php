@@ -148,7 +148,9 @@ $event = $post; ?>
 
                                     if (isset($additional_fields['attendee_information_fields']))
                                         unset($additional_fields['attendee_information_fields']);
-
+                                    if (isset($additional_fields['event_thumbnail'])){
+                                        unset($additional_fields['event_thumbnail']);
+                                    }
                                     $additional_fields = apply_filters('event_manager_show_additional_details_fields', $additional_fields);
                                 }
 
