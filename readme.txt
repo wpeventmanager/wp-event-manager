@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.6.2
-Stable Tag: 3.1.47
+Stable Tag: 3.1.48
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -339,6 +339,19 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 
 == Changelog ==
+
+= [3.1.48] 01-04-2025 =
+
+Fixed : When it comes to one active event on the list, the load more button is no more displayed.
+Fixed : While adding a ticket, the event details page shows multiple labels.
+Fixed : When you embed a YouTube video it will be displayed on the event page.
+Fixed : Vulnerable issue is fixed.
+Fixed : The load more button is now working when two shortcodes are added on the same page.
+Fixed : The organizer can now change the event page image, as well as the preview image.
+Fixed : The terms checklist and multi-select options in the Field editor's event type and category are now available.
+Fixed : Default content tab organizer list are available.
+Fixed : Even details page additional section thumbnail image issue is fixed.
+Fixed : Translation issue is fixed.
 
 = [3.1.47] 12-03-2025 =
 

@@ -32,8 +32,13 @@ var Admin = function () {
             jQuery('input[name=_event_time_format]').on('change', Admin.actions.showSelectedTimeFormat);
             jQuery(".wpem-tabs li a").on('click', Admin.actions.tabClick);
             jQuery('.wpem-tabs li a:first').click();
-            jQuery("body").on("click", ".event-manager-remove-uploaded-file", function () {
-                return jQuery(this).closest(".event-manager-uploaded-file").remove();
+            jQuery(document).on("click", ".event-manager-remove-uploaded-file", function (e) {
+                e.preventDefault(); // Prevent default anchor behavior
+                var parentDiv = jQuery(this).closest(".event-manager-uploaded-files");
+                // Remove the preview span
+                parentDiv.find(".event-manager-uploaded-file-preview").remove();
+                // Clear the hidden input field value
+                parentDiv.find('input[type="hidden"]').val('');
             });
 
             if (jQuery('input[data-picker="datepicker"]#_event_start_date').length > 0) {
@@ -402,7 +407,7 @@ var Admin = function () {
                 file_target_wrapper = jQuery(this).closest('.event-manager-uploaded-file');
                 file_target_input = file_target_wrapper.find('input');
                 var data_field_name = jQuery(this).parents(".form-field")[0].dataset.fieldName;
-                console.log(data_field_name);
+
                 var image_types = ['jpg', 'gif', 'png', 'jpeg', 'jpe', 'webp'];
                 file_target_wrapper_append = jQuery(this).closest('.event-manager-uploaded-file2');
                 // If the media frame already exists, reopen it.

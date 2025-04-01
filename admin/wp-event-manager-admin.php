@@ -36,6 +36,7 @@ class WP_Event_Manager_Admin {
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
 		add_action('admin_init', array($this, 'admin_init'));
 		add_action('current_screen', array($this, 'conditional_includes'));
+		add_filter('pre_insert_term', [$this,'secure_event_manager_category_name'], 10, 2);
 
 		if(version_compare(get_option('wp_event_manager_db_version', 0), '3.1.13', '<')) {
 			add_action('admin_notices', array($this, 'upgrade_database_notice'));
@@ -43,6 +44,21 @@ class WP_Event_Manager_Admin {
 
 		// Ajax
 		add_action('wp_ajax_wpem_upgrade_database', array($this, 'wpem_upgrade_database'));
+	}
+
+		/**
+	* secure saving event type and category.
+	* 
+	* @since 1.0.0
+	*/
+	function secure_event_manager_category_name($term_name, $taxonomy) {
+	
+		if ($taxonomy === 'event_listing_category' || $taxonomy === 'event_listing_type') {
+			$term_name = html_entity_decode($term_name, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+			$term_name = wp_strip_all_tags($term_name);
+			$term_name = esc_html($term_name);
+		}
+		return $term_name;
 	}
 
 	/**

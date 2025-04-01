@@ -101,7 +101,7 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 
 	<?php if ($group_key == 'event') { ?>
 		<td>
-			<select <?php if (in_array($field_key, $disbled_fields)) echo 'disabled'; ?> name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][tabgroup]" class="field_type">
+			<select <?php if (in_array($field_key, $disbled_fields_tab_group)) echo 'disabled'; ?> name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][tabgroup]" class="field_type">
 				<?php
 				$field['tabgroup'] = isset($field['tabgroup']) ? $field['tabgroup'] : 1;
 				$Writepanels = WP_Event_Manager_Writepanels::instance();

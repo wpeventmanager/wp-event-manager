@@ -84,6 +84,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				$this->step   = 0;
 			}
 		}
+		add_filter('submit_event_form_fields', array($this,'add_event_thumbnail_field'));
 	}
 	
 	/**
@@ -587,6 +588,31 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	}
 
 	/**
+	 * add event thumbnail field.
+	 */
+	function add_event_thumbnail_field($fields) {
+		if (get_option('event_manager_upload_custom_thumbnail', false)) {
+			$fields['event']['event_thumbnail'] = array(
+				'label'       => __( 'Event Thumbnail', 'wp-event-manager' ),
+				'type'        => 'file',
+				'required'    => true,
+				'placeholder' => '',
+				'priority'    => 8,
+				'ajax'        => true,
+				'allowed_mime_types' => array(
+					'jpg'  => 'image/jpeg',
+					'jpeg' => 'image/jpeg',
+					'gif'  => 'image/gif',
+					'png'  => 'image/png',
+				),
+				'visibility'  => 1,
+				'tabgroup'    => 1,
+			);
+		}
+		return $fields;
+	}
+
+	/**
 	 * Gets event types.
 	 */
 
@@ -945,6 +971,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}elseif( 'event_thumbnail' === $key ) {
 					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
 					set_post_thumbnail( $this->event_id, $attachment_id );
+					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 				}
 				elseif ( 'organizer_logo' === $key ) {
 					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );

@@ -31,6 +31,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 		if  (!event_manager_user_can_edit_event($this->event_id)) {
 			$this->event_id = 0;
 		}
+		add_filter('submit_event_form_fields', array($this,'add_event_thumbnail_field'));
 	}
 
 	/**

@@ -2,9 +2,11 @@
 <?php if(isset($show_filters)) {
 	if($show_filters){
 		if (!$show_pagination && $show_more) {
+			if($events->found_posts > $per_page){
 			echo '<div id="load_more_events_loader">';
 				echo wp_kses_post('<a class="load_more_events" id="load_more_events" href="#" style="display:none;"><strong>' . __('Load more events', 'wp-event-manager') . '</strong></a>');
 			echo '</div>';
+			}
 		}else{
 			
 			echo wp_kses_post(get_event_listing_pagination($events->max_num_pages));

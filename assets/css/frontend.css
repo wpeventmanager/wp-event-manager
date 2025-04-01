@@ -3741,6 +3741,69 @@ p.post-submitted-success-green-message a {
 
 
 
+/*Date Picker Start*/
+.ui-datepicker .ui-datepicker-header {
+  border: 0;
+  background-color: var(--wpem-gray-bg-color);
+  padding: 8px !important;
+}
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+  width: 30%;
+  padding-right: 15px !important;
+  background-position: right 5px center;
+  border: 1px solid var(--wpem-gray-border-color);
+  border-radius: 2px;
+  padding: 1px 7px;
+  margin: 0;  
+}
+.ui-datepicker .ui-datepicker-title {
+  gap: 3px;
+  display: flex;
+  justify-content: center;
+}
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+  top: 7px !important;
+}
+.ui-datepicker .ui-datepicker-prev {
+  left: 5px !important;
+}
+.ui-datepicker .ui-datepicker-next {
+  right: 5px !important;
+}
+.ui-state-default{
+  background: var(--wpem-gray-bg-color) !important;
+  border: 0 !important;
+  text-align: center;
+  border-radius: 2px;
+}
+.ui-state-default:hover {
+  background-color: var(--wpem-gray-border-color) !important;
+  color: var(--wpem-dark-color);
+}
+a.ui-state-highlight, a.ui-state-highlight:hover {
+  background: var(--wpem-primary-color) !important;
+  color: #fff !important;
+}
+td.ui-state-highlight a {
+  background-color: var(--wpem-gray-border-color) !important;
+  color: var(--wpem-dark-color);
+}
+.ui-state-active, .ui-state-active:hover{
+  background-color: var(--wpem-gray-border-color) !important;
+  color: var(--wpem-dark-color) !important;
+}
+.ui-widget.ui-widget-content {
+  border-radius: 4px;
+  border: 1px solid var(--wpem-gray-border-color);
+}
+.ui-datepicker table {
+  border: 0;
+}
+
+/*Date Picker End*/
+
+
+
 
 
 @media screen and (max-width: 1024px) {
