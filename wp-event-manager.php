@@ -7,7 +7,7 @@
 * Author URI: https://www.wp-eventmanager.com
 * Text Domain: wp-event-manager
 * Domain Path: /languages
-* Version: 3.1.47
+* Version: 3.1.48
 * Since: 1.0.0
 * Requires WordPress Version at least: 5.4.1
 * Copyright: 2019 WP Event Manager
