@@ -145,10 +145,12 @@ class WP_Event_Manager_Field_Editor {
 					printf(esc_html('%s form fields', 'wp-event-manager'),esc_html(ucfirst($group_key))); 
 				?>
 				</h3>
+				<button class="remove-button" style="display:none;">Delete selected fields</button>
 				<table class="widefat">
 					<thead>
 						<tr>
 							<th width="1%">&nbsp;</th>
+							<th><?php esc_attr_e('Bulk Select', 'wp-event-manager'); ?></th>
 							<th><?php esc_attr_e('Field Label', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Type', 'wp-event-manager'); ?></th>
 							<th><?php esc_attr_e('Description', 'wp-event-manager'); ?></th>

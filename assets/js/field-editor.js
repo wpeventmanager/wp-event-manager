@@ -19,9 +19,43 @@ var FieldEditor = function() {
 			
 			jQuery('.wp-event-manager-organizer-form-field-editor').on('init',FieldEditor.actions.initSortable);
 			jQuery(	'.wp-event-manager-organizer-form-field-editor').trigger('init');
+
+			jQuery(	'body').on('change', '.wp-event-manager-event-form-field-editor #bulk-select', FieldEditor.actions.displayRemoveButton);
+			jQuery('.remove-button').on('click', FieldEditor.actions.deleteBulkSelectField);
         },
         actions: {
-			
+			///<summary>
+			///dsiplay remove button
+			///</summary>     
+			///<returns type="initialization settings" />   
+			/// <since>1.0</since> 
+			displayRemoveButton :function(e) {
+				e.preventDefault();
+				var parentContainer = jQuery(this).closest('.wp-event-manager-event-form-field-editor');
+				var removeButton = parentContainer.find('.remove-button');
+				if (parentContainer.find('#bulk-select:checked').length > 0) {
+					removeButton.show();
+				} else {
+					removeButton.hide();
+				}
+			},
+
+			///<summary>
+			///remove bulk select field
+			///</summary>     
+			///<returns type="initialization settings" />   
+			/// <since>1.0</since> 
+			deleteBulkSelectField :function(e) {
+					e.preventDefault();
+					if (!confirm("Are you sure you want to delete the selected fields?")) {
+						return;
+					}
+					var parentContainer = jQuery(this).closest('.wp-event-manager-event-form-field-editor');
+					parentContainer.find('#bulk-select:checked').closest('tr').remove();
+					
+					jQuery(this).hide();
+			},
+
 			///<summary>
 			///Initializes sortable.  
 			///</summary>     

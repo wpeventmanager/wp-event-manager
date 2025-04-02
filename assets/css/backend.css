@@ -2188,6 +2188,20 @@ input:checked + .slider:before {
     margin-right: 10px;
   }
 
+  .remove-button {
+    display: none;
+    background-color: #ff4d4d;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 0 10px 0;
+}
+
   
 
   @media (max-width: 992px) {
