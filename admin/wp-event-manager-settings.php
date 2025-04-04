@@ -623,6 +623,23 @@ class WP_Event_Manager_Settings{
 						),
 					),
 				),
+				'event_dynamic_messages' => array(
+					__( 'Dynamic Messages', 'wp-event-manager' ),
+					array(
+						array(
+							'name'    => 'success_message', 
+							'label'   => __( 'Success Message', 'wp-event-manager' ), 
+							'type'    => 'textarea', 
+							'desc'    => __( 'Customize the message that your your see after the event is submitted.', 'wp-event-manager' ),
+						),
+						array(
+							'name'    => 'updated_message', 
+							'label'   => __( 'Successfully Updated Message', 'wp-event-manager' ), 
+							'type'    => 'textarea', 
+							'desc'    => __( 'Customize the message that your your see after the event is updated.', 'wp-event-manager' ),
+						),
+					),
+				),
 			)
 		);
 	}

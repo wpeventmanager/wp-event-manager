@@ -12,10 +12,15 @@ switch($event->post_status) :
 			esc_url(get_permalink($event->ID))
 		);
 		break;
-	case 'pending' :
-		// translators: %s is the singular name of the listing (e.g., "Event").
-		printf('<p class="post-submitted-success-green-message wpem-alert wpem-alert-success">'.esc_attr('%s submitted successfully. Your listing will be visible once approved.', 'wp-event-manager').'</p>', esc_attr($wp_post_types['event_listing']->labels->singular_name), esc_url(get_permalink($event->ID)));
-		break;
+		case 'pending':
+			$event_singular = esc_attr($wp_post_types['event_listing']->labels->singular_name);
+			$custom_message = get_option('success_message');
+			if (empty($custom_message)) {
+				$custom_message = '%s submitted successfully. Your listing will be visible once approved.';
+			}
+			$formatted_message = sprintf(esc_html__($custom_message, 'wp-event-manager'), $event_singular);
+			echo '<p class="post-submitted-success-green-message wpem-alert wpem-alert-success">' . $formatted_message . '</p>';
+			break;
 	default :
 		do_action('event_manager_event_submitted_content_' . str_replace('-', '_', sanitize_title($event->post_status)), $event);
 		break;
