@@ -1250,7 +1250,7 @@ class WP_Event_Manager_Writepanels {
 						}
 						break;
 					default:
-						$add_data = apply_filters('wpem_save_event_data', true, $key, $_POST[$key]);
+					$add_data = apply_filters('wpem_save_event_data', true, $key, isset($_POST[$key]) ? $_POST[$key] : null);
 						if( $add_data ) {
 							if(!isset($_POST[$key])) {
 								continue 2;
