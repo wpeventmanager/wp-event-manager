@@ -2202,9 +2202,9 @@ input:checked + .slider:before {
     margin: 0 0 10px 0;
 }
 
-  
+.wp-event-manager-event-form-field-editor .widefat .save-actions{text-align: right !important;}
 
-  @media (max-width: 992px) {
+@media (max-width: 992px) {
     #event_manager_data ul.wpem-tabs {
         width: 10%;
     }
@@ -2236,7 +2236,6 @@ input:checked + .slider:before {
         padding: 5px 5px 5px 100px !important;
     }
 }
-
 
 @media screen and (max-width: 782px) {
     input[type=checkbox], input[type=radio] {
