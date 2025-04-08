@@ -801,16 +801,24 @@ class WP_Event_Manager_Post_Types {
 	 * @param  int $post_id	 
 	*/
 	public function set_post_views($post_id) {
+		if (session_status() === PHP_SESSION_NONE) {
+			session_start();
+		}
+	
 		$count_key = '_view_count';
-		$count = esc_attr(get_post_meta($post_id, $count_key, true));
-
-		if($count=='' || $count==null) {
-			$count = 0;
-			delete_post_meta($post_id, $count_key);
-			add_post_meta($post_id, $count_key, sanitize_text_field('0'));
-		}  else {
+		$count = get_post_meta($post_id, $count_key, true);
+	
+		if (!isset($_SESSION['viewed_posts'])) {
+			$_SESSION['viewed_posts'] = [];
+		}
+	
+		if (!in_array($post_id, $_SESSION['viewed_posts'])) {
+			$count = ($count == '' || $count == null) ? 0 : (int) $count;
 			$count++;
+	
 			update_post_meta($post_id, $count_key, sanitize_text_field($count));
+	
+			$_SESSION['viewed_posts'][] = $post_id;
 		}
 	}
 	
