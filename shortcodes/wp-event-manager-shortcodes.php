@@ -608,7 +608,6 @@ class WP_Event_Manager_Shortcodes{
 		)), $atts));
 
 		$current_page = max(1, get_query_var('paged'));
-
 		// Categories
 		if(!esc_attr(get_option('event_manager_enable_categories'))) {
 			$show_categories = false;
@@ -752,7 +751,12 @@ class WP_Event_Manager_Shortcodes{
 			}
 
 		}
-
+		if(empty($event_types) && !empty($selected_category)) {
+			$event_types = array_filter(array_map('trim', explode(',', $selected_category)));
+		}
+		if(empty($categories) && !empty($selected_event_type)) {
+			$categories = array_filter(array_map('trim', explode(',', $selected_event_type)));
+		}
 		$events = get_event_listings(apply_filters('event_manager_output_events_args', array(
 			'search_location'   => $location,
 			'search_keywords'   => $keywords,
