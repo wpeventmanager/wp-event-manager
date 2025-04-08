@@ -136,7 +136,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 			// Successful
 			switch (get_post_status($this->event_id)) {
 				case 'publish':
-					$custom_message = get_option('updated_message');
+					$custom_message = get_option('wpem_event_updated_message');
 					if (empty($custom_message)) {
 						$custom_message = __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . esc_url(get_permalink($this->event_id)) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>';
 					} else {
