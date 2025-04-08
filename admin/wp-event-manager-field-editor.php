@@ -168,26 +168,20 @@ class WP_Event_Manager_Field_Editor {
 					<tfoot>
 						<tr>
 							<?php if ($group_key == 'event') { ?>
-								<th colspan="9">
+								<th colspan="8">
 									<a class="button add-field" href="#"><?php esc_attr_e('Add field', 'wp-event-manager'); ?></a>
 								</th>
-								<th colspan="3" class="save-actions">
+							<?php } else { ?>
+								<th colspan="7">
+									<a class="button add-field" href="#"><?php esc_attr_e('Add field', 'wp-event-manager'); ?></a>
+								</th>
+							<?php } ?>
+							<th colspan="4" class="save-actions">
 								<a href="<?php echo esc_url(wp_nonce_url(add_query_arg($group_key . '-reset-fields', 1), 'reset')); ?>" class="reset">
 										<?php esc_html_e('Reset to default', 'wp-event-manager'); ?>
 								</a>
 								<input type="submit" class="save-fields button-primary" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
 							</th>
-							<?php } else { ?>
-								<th colspan="8">
-									<a class="button add-field" href="#"><?php esc_attr_e('Add field', 'wp-event-manager'); ?></a>
-								</th>
-								<th colspan="3" class="save-actions">
-									<a href="<?php echo esc_url(wp_nonce_url(add_query_arg($group_key . '-reset-fields', 1), 'reset')); ?>" class="reset">
-											<?php esc_html_e('Reset to default', 'wp-event-manager'); ?>
-									</a>
-									<input type="submit" class="save-fields button-primary" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
-								</th>
-							<?php } ?>
 						</tr>
 					</tfoot>
 					<tbody id="form-fields" data-field="
