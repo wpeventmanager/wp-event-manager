@@ -208,7 +208,7 @@ class WP_Event_Manager_Writepanels {
 				'priority' => 41,
 				'tabgroup' => 1,
 			);
-		}
+		} 
 
 		if( !isset( $fields['_event_end_date'] ) ) {
 			unset( $fields['_event_expiry_date'] );
@@ -223,7 +223,7 @@ class WP_Event_Manager_Writepanels {
 			unset( $fields['event_venue_ids'] );
 		}
 		uasort($fields, array($this, 'sort_by_priority'));
-		return $fields;
+		return apply_filters( 'wpem_admin_event_form_fields', $fields);
 	}
 
 	/**
