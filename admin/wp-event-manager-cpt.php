@@ -492,7 +492,7 @@ class WP_Event_Manager_CPT {
 					if(is_array($action)) {
 						printf('<a class="button button-icon tips icon-%1$s" href="%2$s" data-tip="%3$s">%4$s</a>', esc_attr($action['action']), esc_url($action['url']), esc_attr($action['name']), esc_html($action['name']));
 					} else {
-						echo esc_attr(str_replace('class="', 'class="button ', $action));
+						echo wp_kses_post(str_replace('class="', 'class="button ', $action));
 					}
 				}
 				echo wp_kses_post('</div>');
