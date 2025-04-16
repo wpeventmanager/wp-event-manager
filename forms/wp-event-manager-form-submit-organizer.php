@@ -443,6 +443,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 						update_post_meta($this->organizer_id, '_' . $key, '');
 					
 				} elseif('file' === $field['type']) { 
+					if($key == 'organizer_logo' && empty($values[ $group_key ][ $key ])){
+						update_post_meta($this->organizer_id, '_thumbnail_id', '');
+					}
 					update_post_meta($this->organizer_id, '_' . $key, $values[ $group_key ][ $key ]);
 					// Handle attachments.
 					if(is_array($values[ $group_key ][ $key ])) {

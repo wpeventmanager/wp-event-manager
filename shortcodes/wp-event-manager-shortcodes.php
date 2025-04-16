@@ -326,7 +326,7 @@ class WP_Event_Manager_Shortcodes{
 							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
 						}
 						$new_organizer_id = event_manager_duplicate_listing($organizer_id);
-						if($new_organizer_id) {
+						if($new_organizer_id) { 
 							// Puslish organizer
 							$my_post = array(
 								'ID'           => esc_attr($new_organizer_id),
@@ -334,7 +334,7 @@ class WP_Event_Manager_Shortcodes{
 							);
 							// Update the post into the database
 							wp_update_post($my_post);
-							wp_redirect(add_query_arg(array('organizer_id' => absint($new_organizer_id)), event_manager_get_permalink('submit_organizer_form')));
+							wp_redirect(add_query_arg(array('action' => 'edit', 'organizer_id' => absint($new_organizer_id)), event_manager_get_permalink('submit_organizer_form')));
 							exit;
 						}
 						break;
@@ -451,7 +451,7 @@ class WP_Event_Manager_Shortcodes{
 						wp_trash_post($venue_id);
 						// Message
 						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager'), esc_html($venue->post_title)) . '</div>';
-						wp_redirect(add_query_arg(array('venue_id' => absint($new_venue_id), 'action' => 'venue_dashboard'), event_manager_get_permalink('event_dashboard')));
+						wp_redirect(add_query_arg(array('venue_id' => absint($venue_id), 'action' => 'venue_dashboard'), event_manager_get_permalink('event_dashboard')));
 						break;
 					case 'duplicate':
 						if(!event_manager_get_permalink('submit_venue_form')) {
@@ -467,7 +467,7 @@ class WP_Event_Manager_Shortcodes{
 							// Update the post into the database
 							wp_update_post($my_post);
 
-							wp_redirect(add_query_arg(array('venue_id' => absint($new_venue_id)), event_manager_get_permalink('submit_venue_form')));
+							wp_redirect(add_query_arg(array('action' => 'edit', 'venue_id' => absint($new_venue_id)), event_manager_get_permalink('submit_venue_form')));
 							exit;
 						}
 						break;
