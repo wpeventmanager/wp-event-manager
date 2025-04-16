@@ -23,6 +23,7 @@ class WP_Event_Manager_Settings{
 	public function __construct() {
 		$this->settings_group = 'event_manager';
 		add_action('admin_init', array($this, 'register_settings'));
+		add_action('update_option_event_manager_upload_custom_thumbnail', array($this, 'wpem_handle_thumbnail_setting_change'), 10, 3);
 	}
 
 	/**
@@ -917,4 +918,48 @@ class WP_Event_Manager_Settings{
 		<?php } ?>
 		</ul>
 	<?php }
+
+	/** This function used to update fields when save settings */
+	public function wpem_handle_thumbnail_setting_change($old_value, $new_value, $option_name) {
+		if($old_value !== $new_value) {
+			$all_fields = get_option( 'event_manager_form_fields', true );
+			if(is_array( $all_fields ) && !empty( $all_fields ) ) {
+				if($new_value == '1') {
+					$event_field_count = 50;
+
+					if(isset($count['event']) && !empty($count['event'])){
+						$event_field_count = count($fields['event']);
+					}
+
+					$event_form_fields = get_option('event_manager_submit_event_form_fields');
+
+					if(isset($event_form_fields['event']) && !empty($event_form_fields['event'])) {
+						$event_field_count = count($event_form_fields['event']);
+					}
+
+					$all_fields['event']['event_thumbnail'] = array(
+						'label'       => __( 'Event Thumbnail', 'wp-event-manager' ),
+						'type'        => 'file',
+						'required'    => true,
+						'placeholder' => '',
+						'priority'    => $event_field_count + 1,
+						'ajax'        => true,
+						'allowed_mime_types' => array(
+							'jpg'  => 'image/jpeg',
+							'jpeg' => 'image/jpeg',
+							'gif'  => 'image/gif',
+							'png'  => 'image/png',
+						),
+						'visibility'  => 1,
+						'tabgroup'    => 1,
+					);
+				} else {
+					if( isset( $all_fields['event']['event_thumbnail'] ) )
+						unset( $all_fields['event']['event_thumbnail'] );
+				}
+				update_option( 'event_manager_form_fields', $all_fields );
+				update_option( 'event_manager_submit_event_form_fields', array('event' => $all_fields['event'] ) );
+			} 
+		}
+	}
 }

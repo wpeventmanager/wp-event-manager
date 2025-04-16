@@ -12,7 +12,6 @@
 			echo wp_kses_post(get_event_listing_pagination($events->max_num_pages));
 		}
 	}else{
-		//error_log("show filter is not set");
 		if ($events->found_posts > $per_page && $show_more) :
 			if ($show_pagination) :
 				echo wp_kses_post(get_event_listing_pagination($events->max_num_pages));?>
