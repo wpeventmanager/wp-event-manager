@@ -319,7 +319,7 @@ class WP_Event_Manager_Shortcodes{
 
 						// Message
 						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(wp_kses('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
-						wp_redirect(add_query_arg(array('venue_id' => absint($$organizer_id), 'action' => 'organizer_dashboard'), event_manager_get_permalink('event_dashboard')));
+						wp_redirect(add_query_arg(array('venue_id' => absint($organizer_id), 'action' => 'organizer_dashboard'), event_manager_get_permalink('event_dashboard')));
 						break;
 					case 'duplicate':
 						if(!event_manager_get_permalink('submit_organizer_form')) {
