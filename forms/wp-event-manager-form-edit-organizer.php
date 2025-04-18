@@ -119,7 +119,13 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 			}
 			
 			// Update the event
-			$this->save_organizer($values['organizer']['organizer_name'], $values['organizer']['organizer_description'], '', $values, false);
+			$organizer_name        = html_entity_decode( $values['organizer']['organizer_name'] );
+			$organizer_description = html_entity_decode( $values['organizer']['organizer_description'] );
+
+			$organizer_name        = wp_strip_all_tags( $organizer_name );
+			$organizer_description = wp_strip_all_tags( $organizer_description );
+
+			$this->save_organizer( $organizer_name, $organizer_description, '', $values, false );
 
 			$this->update_organizer_data($values);
 

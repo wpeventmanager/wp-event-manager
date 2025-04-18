@@ -816,8 +816,13 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				throw new Exception( __( 'You must be signed in to post a new listing.','wp-event-manager' ) );
 			}
 
-			// Update the event
-			$this->save_event( $values['event']['event_title'], $values['event']['event_description'], $this->event_id ? '' : 'preview', $values );
+			$event_title       = html_entity_decode( $values['event']['event_title'] );
+			$event_description = html_entity_decode( $values['event']['event_description'] );
+			$event_title       = wp_strip_all_tags( $event_title );
+			$event_description = wp_strip_all_tags( $event_description );
+			
+			$this->save_event( $event_title, $event_description, $this->event_id ? '' : 'preview', $values );
+		
 			$this->update_event_data( $values );
 			// Successful, show next step
 			$this->step ++;

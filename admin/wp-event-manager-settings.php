@@ -37,7 +37,7 @@ class WP_Event_Manager_Settings{
 		$roles = get_editable_roles();
 		$account_roles = array();
 		foreach ($roles as $key => $role) {
-			if($key == 'administrator') {
+			if ($key == 'administrator' || $key == 'subscriber') {
 				continue;
 			}
 			$account_roles[$key] = $role['name'];
