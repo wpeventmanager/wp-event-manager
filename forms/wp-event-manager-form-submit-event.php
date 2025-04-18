@@ -1116,7 +1116,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				} elseif('email' === $field['type']) { 
 					update_post_meta($this->event_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
 					
-				} else { 
+				}elseif('text' === $field['type']) { 
+					update_post_meta( $this->event_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ) );
+				}else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
 					    $ticket_type=$values[ $group_key ][ $key ];
