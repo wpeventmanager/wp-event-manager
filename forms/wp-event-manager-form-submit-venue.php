@@ -307,7 +307,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		//venue email validation
 		if(isset($values['venue']['venue_email']) && !empty($values['venue']['venue_email'])) {
 			if(!is_email($values['venue']['venue_email'])) {
-				throw new Exception(esc_attr_e('Please enter a valid venue email address', 'wp-event-manager'));
+				throw new Exception(esc_attr__('Please enter a valid venue email address', 'wp-event-manager'));
 			}
 		}
 		return apply_filters('submit_venue_form_validate_fields', true, $this->fields, $values);

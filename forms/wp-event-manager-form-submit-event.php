@@ -576,9 +576,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						if( !strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
 							$values['event']['registration'] = 'http://' . $values['event']['registration'];
 						}
-						if( !filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
-							throw new Exception( esc_attr_e( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
+						if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
+							throw new Exception( esc_attr__( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
 						}
+						
 					}
 				break;
 			}
