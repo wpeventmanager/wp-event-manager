@@ -1696,13 +1696,20 @@ function has_event_organizer_ids($post = null) {
  * 
  * @since 3.1.13
  **/
-function get_event_organizer_ids($post = null) {
-	$post = get_post($post);
-
-	if($post->post_type !== 'event_listing')
-		return;
-
-	return !empty($post->_event_organizer_ids) ? $post->_event_organizer_ids : '';
+function get_event_organizer_ids( $post = null ) {
+    $post = get_post( $post );
+    if ( $post->post_type !== 'event_listing' ) {
+        return;
+    }
+    if ( class_exists('SitePress') && !empty($post->_event_organizer_ids) ) {
+        foreach ($post->_event_organizer_ids as $key => $organizer_id ) {
+            $result = $post->_event_organizer_ids;
+            $result[$key] = apply_filters( 'wpml_object_id', $organizer_id, 'event_organizer', TRUE  );
+        }
+ 
+        return $result;
+    }
+    return !empty($post->_event_organizer_ids) ? $post->_event_organizer_ids : '';
 }
 
 /**
@@ -1762,13 +1769,16 @@ function has_event_venue_ids($post = null) {
  * 
  * @since 3.1.16
  **/
-function get_event_venue_ids($post = null) {
-	$post = get_post($post);
-
-	if($post->post_type !== 'event_listing')
-		return;
-
-	return !empty($post->_event_venue_ids) ? $post->_event_venue_ids : '';
+function get_event_venue_ids( $post = null ) {
+    $post = get_post( $post );
+    if ( $post->post_type !== 'event_listing' )
+        return;
+    if ( class_exists('SitePress') && !empty($post->_event_venue_ids) ) {
+        $result = apply_filters( 'wpml_object_id', $post->_event_venue_ids , 'event_listing', TRUE  );
+        return $result;
+    }   
+ 
+    return !empty($post->_event_venue_ids) ? $post->_event_venue_ids : '';
 }
 
 /**
