@@ -78,6 +78,7 @@ class WP_Event_Manager_Post_Types {
  
         // View count action
         add_action('set_single_listing_view_count', array($this, 'set_single_listing_view_count'));
+		add_action('init', array($this, 'wpem_session_start'));
 
         // Admin notices.
         add_filter('bulk_post_updated_messages', array($this, 'bulk_post_updated_messages'), 10, 2);
@@ -795,15 +796,22 @@ class WP_Event_Manager_Post_Types {
 		}        
 	}
 
+	/**
+	* Session start function
+	* @param  array $post	 
+	*/
+	public function wpem_session_start() {     
+		if (session_status() === PHP_SESSION_NONE) {
+			session_start();
+		}
+	}
+
     /**
 	 * This function is use to set the counts the event views and attendees views.
      * This function also used at attendees dashboard file.
 	 * @param  int $post_id	 
 	*/
 	public function set_post_views($post_id) {
-		if (session_status() === PHP_SESSION_NONE) {
-			session_start();
-		}
 	
 		$count_key = '_view_count';
 		$count = get_post_meta($post_id, $count_key, true);
