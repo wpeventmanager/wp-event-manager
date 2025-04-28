@@ -19,6 +19,7 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 		public function output() { 
 			wp_enqueue_script('wp-event-manager-admin-addons-js');?>
 			<div class="wrap wp_event_manager wp_event_manager_addons_wrap">
+			<h2 style="display: none;"><?php esc_attr_e('WP Event Manager Add-ons', 'wp-event-manager'); ?></h2>
 				<div class="wpem-admin-extensions-page-header">
 					<img src="<?php echo esc_url(EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-logo.svg'); ?>" alt="<?php esc_attr_e('WP Event Manager', 'wp-event-manager'); ?>" />
 					<button class="wpem-admin-theme-button wpem-admin-extensions-help-button"><i class="wpem-icon-info"></i> <?php esc_attr_e('Help', 'wp-event-manager'); ?></button>
