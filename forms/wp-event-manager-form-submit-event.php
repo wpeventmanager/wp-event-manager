@@ -143,8 +143,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				$registration_method_placeholder = __( 'http://', 'wp-event-manager' );
 			break;
 			default :
-				$registration_method_label       = __( 'Registration email/URL', 'wp-event-manager' );
+				$registration_method_label       = __( ' Registration email ID / website URL', 'wp-event-manager' );
 				$registration_method_placeholder = __( 'Enter an email address or website URL', 'wp-event-manager' );
+				$registration_method_description = __( 'Attendee will register through email ID or external website.', 'wp-event-manager' );
 			break;
 		}
 
@@ -272,6 +273,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => $registration_method_placeholder,
+					'description'	=> $registration_method_description,
 					'priority'    => 10,
 					'visibility'  => 1,
 					'tabgroup' => 4,
