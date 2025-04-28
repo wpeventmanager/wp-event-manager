@@ -95,7 +95,7 @@ class WP_Event_Manager_Admin {
 
 			wp_enqueue_style('jquery-ui-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.min.css', array(), $jquery_version);
 			wp_register_script('jquery-tiptip', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-tiptip/jquery.tipTip.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
-
+			wp_register_script('wp-event-manager-admin-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/admin.min.js', array('jquery', 'jquery-tiptip', 'jquery-ui-core', 'jquery-ui-datepicker'), EVENT_MANAGER_VERSION, true);
 			wp_register_script('wp-event-manager-admin-addons-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/admin-addons.min.js', array('jquery', 'jquery-tiptip', 'jquery-ui-core', 'jquery-ui-datepicker'), EVENT_MANAGER_VERSION, true);
 
 
