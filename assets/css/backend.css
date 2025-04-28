@@ -772,6 +772,10 @@ h3.nav-tab-wrapper {
 	font-weight: 700
 }
 
+.wp_event_manager_addons_wrap .products>li:hover .wpem-product-video {
+    opacity: 1;
+}
+
 .wp-event-manager-notice>div {
 	display: table-cell;
 	vertical-align: middle;
