@@ -49,8 +49,22 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 					</ul>
 
 					<div class="wpem-admin-addon-category-extensions wpem-admin-addon-category-item-active" id="wpem-feature">
-						<h3><?php esc_attr_e('Feature Add-ons', 'wp-event-manager'); ?></h3>
-						<p><?php esc_attr_e('Get all our useful plugins in a single package to build a fully functional and affordable event website.', 'wp-event-manager'); ?></p>
+						<div class="product_cat-feature-add-ons">
+							<h3><?php esc_attr_e('Feature Add-ons', 'wp-event-manager'); ?></h3>
+							<p><?php esc_attr_e('Get all our useful plugins in a single package to build a fully functional and affordable event website.', 'wp-event-manager'); ?></p>
+						</div>
+						<div class="product_cat-ticket-selling-add-ons">
+							<h3><?php esc_attr_e('Ticket selling Add-ons', 'wp-event-manager'); ?></h3>
+							<p><?php esc_attr_e('Our ticket selling add-ons are designed to accelerate your ticket sales and help manage your registration data.', 'wp-event-manager'); ?></p>
+						</div>
+						<div class="product_cat-marketing-add-ons">
+							<h3><?php esc_attr_e('Marketing Add-ons', 'wp-event-manager'); ?></h3>
+							<p><?php esc_attr_e('Reach your target audience through simplified yet effective marketing strategies with our marketing add-on.', 'wp-event-manager'); ?></p>
+						</div>
+						<div class="product_cat-virtual-add-ons">
+							<h3><?php esc_attr_e('Virtual Add-ons', 'wp-event-manager'); ?></h3>
+							<p><?php esc_attr_e('Conduct interactive and professional hybrid event experiences using our virtual add-ons.', 'wp-event-manager'); ?></p>
+						</div>
 						<?php 
 						if(false === ($addons = get_transient('wp_event_manager_addons_html'))) {
 								$raw_addons = wp_remote_get(
