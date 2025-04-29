@@ -355,6 +355,7 @@ Fixed : The proper number of views is displayed after refreshing the visit event
 Fixed : The WPML translation issue is fixed.
 Fixed : Title is updated for Registration email & URL field.
 Fixed : No warning message is displayed in the event details page after logging out.
+Fixed : Translation issue is fixed.
 Added : Add-ons section added Extension menu.
 Added : The Delete bulk option is added to the field editor.
 Added : Dynamic message settings are added to the event submission form.
