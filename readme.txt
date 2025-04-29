@@ -340,6 +340,25 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 == Changelog ==
 
+= [3.1.49] 30-04-2025 =
+
+Fixed : The logo of the deleted organizer and venue is no longer displayed on the details page.
+Fixed : No vulnerability issue is detected while creating a post an event using the front side.
+Fixed : No warning message is found while deleting an organizer or venue from the frontend side.
+Fixed : When the Upload Custom Thumbnail option is disabled no validation message is displayed on the post-event page after submitting an event.
+Fixed : HTML code is no longer displayed on the event listing page in the dashboard.
+Fixed : The selected event type parameter is working properly.
+Fixed : The event form field button now shows the proper position.
+Fixed : From the admin side no warning message is displayed while editing or updating an event.
+Fixed : Now the author remains unchanged even if an admin edits an event after its expiry.
+Fixed : The proper number of views is displayed after refreshing the visit event page.
+Fixed : The WPML translation issue is fixed.
+Fixed : Title is updated for Registration email & URL field.
+Fixed : No warning message is displayed in the event details page after logging out.
+Added : Add-ons section added Extension menu.
+Added : The Delete bulk option is added to the field editor.
+Added : Dynamic message settings are added to the event submission form.
+
 = [3.1.48] 01-04-2025 =
 
 Fixed : When it comes to one active event on the list, the load more button is no more displayed.
