@@ -42,18 +42,21 @@ jobs:
           echo "msg_title=${{ inputs.custom_title != '' && inputs.custom_title || '🚀 New Iteration Started' }}" >> $GITHUB_OUTPUT
           echo "msg_body=${{ inputs.custom_message != '' && inputs.custom_message || format('Hi {0},\nPlease check the project board: {1}', inputs.assignee_name != '' && inputs.assignee_name || 'team', inputs.project_url != '' && inputs.project_url || 'https://github.com/orgs/YOUR_ORG/projects') }}" >> $GITHUB_OUTPUT
 
-      - name: Prepare Project URL and Webhook
+      - name: Prepare Project URL
         run: |
           echo "PROJECT_URL=${{ inputs.project_url != '' && inputs.project_url || 'https://github.com/wpeventmanager/wpem-organizer-app' }}" >> $GITHUB_ENV
+
+      - name: Set Slack Webhook
+        run: |
           if [ -n "${{ inputs.slack_webhook }}" ]; then
-              echo "SLACK_WEBHOOK=${{ inputs.slack_webhook }}" >> $GITHUB_ENV
+            echo "SLACK_WEBHOOK=${{ inputs.slack_webhook }}" >> $GITHUB_ENV
           elif [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
             echo "SLACK_WEBHOOK=${{ secrets.SLACK_WEBHOOK_URL }}" >> $GITHUB_ENV
           else
             echo "❌ SLACK_WEBHOOK is not defined!"
             exit 1
           fi
-          
+
       - name: Notify via GitHub Issue
         if: inputs.notify_type == 'github'
         uses: actions/github-script@v7
