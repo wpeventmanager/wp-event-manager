@@ -45,7 +45,7 @@ jobs:
       - name: Set Slack Webhook Fallback
         if: inputs.notify_type == 'slack'
         run: |
-          echo "SLACK_WEBHOOK=${{ inputs.slack_webhook || secrets.SLACK_WEBHOOK_URL }}" >> $GITHUB_ENV
+          echo "SLACK_WEBHOOK=${{ inputs.slack_webhook || https://hooks.slack.com/services/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 }}" >> $GITHUB_ENV
 
       - name: Notify via GitHub Issue
         if: inputs.notify_type == 'github'
