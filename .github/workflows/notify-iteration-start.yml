@@ -21,6 +21,12 @@ on:
       custom_title:
         required: false
         type: string
+      assignee_name:
+        required: false
+        type: string
+      project_url:
+        required: false
+        type: string
 
 jobs:
   notify:
@@ -34,7 +40,7 @@ jobs:
         id: defaults
         run: |
           echo "msg_title=${{ inputs.custom_title || '🚀 New Iteration Started' }}" >> $GITHUB_OUTPUT
-          echo "msg_body=${{ inputs.custom_message || 'Please check the project board for updated tasks.' }}" >> $GITHUB_OUTPUT
+          echo "msg_body=${{ inputs.custom_message || format('Hi {0},\nPlease check the project board: {1}', inputs.assignee_name || 'team', inputs.project_url || '[Project Board]') }}" >> $GITHUB_OUTPUT
 
       - name: Notify via GitHub Issue
         if: inputs.notify_type == 'github'
@@ -42,14 +48,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const title = process.env.msg_title || '🚀 New Iteration Started';
-            const body = process.env.msg_body || 'Please check the project board for updated tasks.';
+            const assignee = '${{ inputs.assignee_name || 'team' }}';
+            const projectUrl = '${{ inputs.project_url || 'https://github.com/orgs/YOUR_ORG/projects' }}';
+            const body = `${{ inputs.custom_message || '' }}\n\n👤 *Assigned to:* ${assignee}\n📎 ${projectUrl}\n📅 Date: ${new Date().toDateString()}`;
 
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `[Sprint Notification] ${title}`,
-              body: `${body}\n\n📅 Date: ${new Date().toDateString()}`,
+              title: `${{ inputs.custom_title || '🚀 New Iteration Started' }}`,
+              body,
               labels: ['iteration']
             });
 
@@ -71,7 +78,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "📅 *Date:* $(date -I)\n${{ inputs.custom_message || 'Please check the project board for updated tasks.' }}"
+                  "text": "👤 *Assigned to:* ${{ inputs.assignee_name || 'team' }}\n📎 ${{ inputs.project_url || 'Project Board' }}\n📅 *Date:* $(date -I)\n\n${{ inputs.custom_message || 'Please check the project board for updated tasks.' }}"
                 }
               },
               {
@@ -91,7 +98,7 @@ jobs:
         if: inputs.notify_type == 'discord'
         run: |
           curl -H "Content-Type: application/json" \
-          -X POST -d "{\"content\": \"${{ inputs.custom_title || '🚀 New Iteration Started' }}\\n📅 Date: $(date -I)\\n${{ inputs.custom_message || 'Please check the project board for updated tasks.' }}\"}" \
+          -X POST -d "{\"content\": \"${{ inputs.custom_title || '🚀 New Iteration Started' }}\\n👤 Assigned to: ${{ inputs.assignee_name || 'team' }}\\n📎 ${{ inputs.project_url || 'Project Board' }}\\n📅 Date: $(date -I)\\n${{ inputs.custom_message || 'Please check the project board for updated tasks.' }}\"}" \
           ${{ inputs.discord_webhook }}
 
       - name: Notify via Email (Mailgun Example)
@@ -102,5 +109,4 @@ jobs:
           -F from='Notifier <notifier@YOUR_DOMAIN>' \
           -F to=${{ inputs.notify_email }} \
           -F subject="${{ inputs.custom_title || '🚀 New Iteration Started' }}" \
-          -F text="📅 Date: $(date -I)\n${{ inputs.custom_message || 'Please check the GitHub Project board. New sprint begins today.' }}"
-
+          -F text="👤 Assigned to: ${{ inputs.assignee_name || 'team' }}\n📎 ${{ inputs.project_url || 'Project Board' }}\n📅 Date: $(date -I)\n${{ inputs.custom_message || 'Please check the GitHub Project board. New sprint begins today.' }}"
