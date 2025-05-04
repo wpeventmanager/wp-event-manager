@@ -42,6 +42,11 @@ jobs:
           echo "msg_title=${{ inputs.custom_title || '🚀 New Iteration Started' }}" >> $GITHUB_OUTPUT
           echo "msg_body=${{ inputs.custom_message || format('Hi {0},\nPlease check the project board: {1}', inputs.assignee_name || 'team', inputs.project_url || '[Project Board]') }}" >> $GITHUB_OUTPUT
 
+      - name: Set Slack Webhook Fallback
+        if: inputs.notify_type == 'slack'
+        run: |
+          echo "SLACK_WEBHOOK=${{ inputs.slack_webhook || secrets.SLACK_WEBHOOK_URL }}" >> $GITHUB_ENV
+
       - name: Notify via GitHub Issue
         if: inputs.notify_type == 'github'
         uses: actions/github-script@v7
@@ -92,7 +97,7 @@ jobs:
               }
             ]
           }' \
-          "${{ inputs.slack_webhook }}"
+          "$SLACK_WEBHOOK"
 
       - name: Notify via Discord
         if: inputs.notify_type == 'discord'
