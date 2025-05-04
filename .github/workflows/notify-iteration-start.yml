@@ -44,7 +44,7 @@ jobs:
 
       - name: Prepare Project URL
         run: |
-          echo "PROJECT_URL=${{ inputs.project_url != '' && inputs.project_url || 'https://github.com/wpeventmanager/wpem-organizer-app' }}" >> $GITHUB_ENV
+          echo "PROJECT_URL=${{ inputs.project_url != '' && inputs.project_url || 'https://github.com/wpeventmanager/wp-event-manager' }}" >> $GITHUB_ENV
 
       - name: Set Slack Webhook
         run: |
