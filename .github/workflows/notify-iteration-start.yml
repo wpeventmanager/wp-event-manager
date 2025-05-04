@@ -45,8 +45,15 @@ jobs:
       - name: Prepare Project URL and Webhook
         run: |
           echo "PROJECT_URL=${{ inputs.project_url != '' && inputs.project_url || 'https://github.com/wpeventmanager/wpem-organizer-app' }}" >> $GITHUB_ENV
-          echo "SLACK_WEBHOOK=${{ inputs.slack_webhook != '' && inputs.slack_webhook || secrets.SLACK_WEBHOOK_URL }}" >> $GITHUB_ENV
-
+          if [ -n "${{ inputs.slack_webhook }}" ]; then
+              echo "SLACK_WEBHOOK=${{ inputs.slack_webhook }}" >> $GITHUB_ENV
+          elif [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
+            echo "SLACK_WEBHOOK=${{ secrets.SLACK_WEBHOOK_URL }}" >> $GITHUB_ENV
+          else
+            echo "❌ SLACK_WEBHOOK is not defined!"
+            exit 1
+          fi
+          
       - name: Notify via GitHub Issue
         if: inputs.notify_type == 'github'
         uses: actions/github-script@v7
