@@ -1,0 +1,106 @@
+name: Notify Iteration Start
+
+on:
+  workflow_call:
+    inputs:
+      notify_type:
+        required: true
+        type: string
+      slack_webhook:
+        required: false
+        type: string
+      discord_webhook:
+        required: false
+        type: string
+      notify_email:
+        required: false
+        type: string
+      custom_message:
+        required: false
+        type: string
+      custom_title:
+        required: false
+        type: string
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Today Date
+        id: date
+        run: echo "today=$(date -I)" >> $GITHUB_OUTPUT
+
+      - name: Set Defaults
+        id: defaults
+        run: |
+          echo "msg_title=${{ inputs.custom_title || '🚀 New Iteration Started' }}" >> $GITHUB_OUTPUT
+          echo "msg_body=${{ inputs.custom_message || 'Please check the project board for updated tasks.' }}" >> $GITHUB_OUTPUT
+
+      - name: Notify via GitHub Issue
+        if: inputs.notify_type == 'github'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const title = process.env.msg_title || '🚀 New Iteration Started';
+            const body = process.env.msg_body || 'Please check the project board for updated tasks.';
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[Sprint Notification] ${title}`,
+              body: `${body}\n\n📅 Date: ${new Date().toDateString()}`,
+              labels: ['iteration']
+            });
+
+      - name: Notify via Slack
+        if: inputs.notify_type == 'slack'
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "${{ inputs.custom_title || '🚀 New Iteration Started' }}",
+                  "emoji": true
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "📅 *Date:* $(date -I)\n${{ inputs.custom_message || 'Please check the project board for updated tasks.' }}"
+                }
+              },
+              {
+                "type": "context",
+                "elements": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "Stay focused and ship something awesome! 🔥"
+                  }
+                ]
+              }
+            ]
+          }' \
+          "${{ inputs.slack_webhook }}"
+
+      - name: Notify via Discord
+        if: inputs.notify_type == 'discord'
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST -d "{\"content\": \"${{ inputs.custom_title || '🚀 New Iteration Started' }}\\n📅 Date: $(date -I)\\n${{ inputs.custom_message || 'Please check the project board for updated tasks.' }}\"}" \
+          ${{ inputs.discord_webhook }}
+
+      - name: Notify via Email (Mailgun Example)
+        if: inputs.notify_type == 'email'
+        run: |
+          curl -s --user "api:${{ secrets.MAILGUN_API_KEY }}" \
+          https://api.mailgun.net/v3/YOUR_DOMAIN/messages \
+          -F from='Notifier <notifier@YOUR_DOMAIN>' \
+          -F to=${{ inputs.notify_email }} \
+          -F subject="${{ inputs.custom_title || '🚀 New Iteration Started' }}" \
+          -F text="📅 Date: $(date -I)\n${{ inputs.custom_message || 'Please check the GitHub Project board. New sprint begins today.' }}"
+
