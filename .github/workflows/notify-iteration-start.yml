@@ -68,6 +68,7 @@ jobs:
       - name: Notify via Slack
         if: inputs.notify_type == 'slack'
         run: |
+         : "${{ inputs.project_url || 'https://github.com/orgs/YOUR_ORG/projects' }}"  # ensure not empty
           curl -X POST -H 'Content-type: application/json' \
           --data '{
             "blocks": [
