@@ -182,7 +182,7 @@ $event = $post; ?>
                                                                     printf(esc_html('%s', 'wp-event-manager'), esc_attr($field_label)); ?></strong></p>
                                                                                                                                     <p class="wpem-additional-info-block-textarea-text"><?php
                                                                     // translators: %s is the value of the field.
-                                                                    printf(esc_html('%s', 'wp-event-manager'),  esc_attr($field_value)); ?></p>
+                                                                    printf(esc_html('%s', 'wp-event-manager'),  $field_value); ?></p>
                                                                 </div>
                                                             </div>
                                                         <?php elseif ($field['type'] == 'multiselect') : ?>
