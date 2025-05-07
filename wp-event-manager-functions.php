@@ -57,12 +57,12 @@ if(!function_exists('get_event_listings')) :
 			$query_args['no_found_rows'] = true;
 		}
 		if(!empty($args['search_location'])) {
-			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
+			$location_meta_keys = array('geolocation_formatted_address', '_event_location', '_event_pincode', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
 			foreach($location_meta_keys as $meta_key) {
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => 	$args['search_location'], 
+					'value'   => $args['search_location'], 
 					'compare' => 'like',
 					'type'    => 'char',
 				);

@@ -467,7 +467,7 @@ class WP_Event_Manager_Post_Types {
 		);		
 		if(!empty($_GET['search_location'])) {
 			$search_location = esc_html($_GET['search_location']);
-			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
+			$location_meta_keys = array('geolocation_formatted_address', '_event_location', '_event_pincode', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
 			foreach($location_meta_keys as $meta_key) {
 				$location_search[] = array(
