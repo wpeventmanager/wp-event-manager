@@ -172,7 +172,7 @@ $event = $post; ?>
                                                     $field_key = '_' . stripslashes($name);
                                                     $field_label =  stripslashes( $field['label'] );
                                                     $field_value = $event->$field_key;
-                                                    if (isset($field_value) && apply_filters('wpem_single_event_additional_detail', true, $name, $field, $event)) :
+                                                    if (!empty($field_value) && apply_filters('wpem_single_event_additional_detail', true, $name, $field, $event)) :
                                                         do_action('single_event_additional_details_field_start');
                                                         if ($field['type'] == 'textarea' || $field['type'] == 'wp-editor') : ?>
                                                             <div class="wpem-col-12 wpem-additional-info-block-textarea">
@@ -182,7 +182,7 @@ $event = $post; ?>
                                                                     printf(esc_html('%s', 'wp-event-manager'), esc_attr($field_label)); ?></strong></p>
                                                                                                                                     <p class="wpem-additional-info-block-textarea-text"><?php
                                                                     // translators: %s is the value of the field.
-                                                                    printf(esc_html('%s', 'wp-event-manager'),  $field_value); ?></p>
+                                                                    printf(esc_html('%s', 'wp-event-manager'),  wp_kses_post($field_value)); ?></p>
                                                                 </div>
                                                             </div>
                                                         <?php elseif ($field['type'] == 'multiselect') : ?>
