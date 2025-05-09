@@ -42,7 +42,7 @@ var Deactivation = function () {
                     `);
                     const formData = jQuery(this).serialize();
 
-                    jQuery.post(wpem_ajax.ajax_url, formData + '&action=wpem_deactivation_form', function (response) {
+                    jQuery.post(wpem_ajax.ajax_url, formData + '&action=wpem_deactivation_form'+'&ajax_nonce=' + wpem_ajax.nonce, function (response) {
                         if (response.success) {
                             Deactivation.actions.deactivatePlugin();
                         }

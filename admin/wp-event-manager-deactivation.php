@@ -39,6 +39,7 @@ class WP_Event_Manager_Deactivation {
 		wp_enqueue_script('wpem-deactivation-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/wpem-deactivation.min.js', ['jquery'], '1.0', true);
         wp_localize_script('wpem-deactivation-js', 'wpem_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce'    => wp_create_nonce('wpem_deactivation_nonce'),
         ]);
         wp_enqueue_style('wpem-deactivation-css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/wpem-deactivation.min.css');
 	}
@@ -129,6 +130,8 @@ class WP_Event_Manager_Deactivation {
 	 *@since 3.1.46
 	 */
     public function wpem_handle_deactivation_form_submission() {
+        check_ajax_referer('wpem_deactivation_nonce');
+
         if (isset($_POST['reason'])) {
             $reason = sanitize_text_field(wp_unslash($_POST['reason']));
             $additional_feedback = sanitize_text_field(wp_unslash($_POST['additional_feedback']));
