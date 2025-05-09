@@ -284,8 +284,6 @@ if(!function_exists('get_event_listings')) :
 		if(function_exists('pll_current_language') && !empty($args['lang'])) {
 			$query_args['lang'] = $args['lang'];
 		}
-		error_log("get listing args");
-		error_log(print_r($query_args , true));
 		// Filter args
 		$query_args = apply_filters('get_event_listings_query_args', $query_args, $args);
 		do_action('before_get_event_listings', $query_args, $args);
