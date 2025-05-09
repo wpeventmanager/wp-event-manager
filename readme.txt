@@ -340,7 +340,7 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 == Changelog ==
 
-= [3.1.49] 30-04-2025 =
+= [3.1.49] 09-05-2025 =
 
 Fixed : The logo of the deleted organizer and venue is no longer displayed on the details page.
 Fixed : No vulnerability issue is detected while creating a post an event using the front side.
@@ -429,7 +429,7 @@ Fixed: Add organizer and venues buttons are now available in post an event page.
 Fixed: Edit organizer and venue page are now working properly.
 Fixed: Event Listing Page events are loaded properly in enable debug log file.
 Fixed: The deprecated error message is now removed.
-.Fixed: Events are not loaded in the event listing page.
+Fixed: Events are not loaded in the event listing page.
 Fixed: List and box shortcode is now working even after activating the calendar addon.
 Fixed: The default content tab is no longer visible while adding a custom field.
 Fixed: Load more events text is no longer displayed after deactivating the calendar addon.
