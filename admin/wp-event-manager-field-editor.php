@@ -145,10 +145,12 @@ class WP_Event_Manager_Field_Editor {
 					printf(esc_html('%s form fields', 'wp-event-manager'),esc_html(ucfirst($group_key))); 
 				?>
 				</h3>
+				<button class="remove-button" style="display:none;">Delete selected fields</button>
 				<table class="widefat">
 					<thead>
 						<tr>
 							<th width="1%">&nbsp;</th>
+							<th><?php esc_attr_e('Bulk Select', 'wp-event-manager'); ?></th>
 							<th><?php esc_attr_e('Field Label', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Type', 'wp-event-manager'); ?></th>
 							<th><?php esc_attr_e('Description', 'wp-event-manager'); ?></th>
@@ -165,17 +167,21 @@ class WP_Event_Manager_Field_Editor {
 					</thead>
 					<tfoot>
 						<tr>
-							<th colspan="4">
-								<a class="button add-field" href="#"><?php esc_attr_e('Add field', 'wp-event-manager'); ?></a>
+							<?php if ($group_key == 'event') { ?>
+								<th colspan="8">
+									<a class="button add-field" href="#"><?php esc_attr_e('Add field', 'wp-event-manager'); ?></a>
+								</th>
+							<?php } else { ?>
+								<th colspan="7">
+									<a class="button add-field" href="#"><?php esc_attr_e('Add field', 'wp-event-manager'); ?></a>
+								</th>
+							<?php } ?>
+							<th colspan="4" class="save-actions">
+								<a href="<?php echo esc_url(wp_nonce_url(add_query_arg($group_key . '-reset-fields', 1), 'reset')); ?>" class="reset">
+										<?php esc_html_e('Reset to default', 'wp-event-manager'); ?>
+								</a>
+								<input type="submit" class="save-fields button-primary" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
 							</th>
-
-							<th colspan="6" class="save-actions">
-							<a href="<?php echo esc_url(wp_nonce_url(add_query_arg($group_key . '-reset-fields', 1), 'reset')); ?>" class="reset">
-									<?php esc_html_e('Reset to default', 'wp-event-manager'); ?>
-							</a>
-							<input type="submit" class="save-fields button-primary" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
-							</th>
-
 						</tr>
 					</tfoot>
 					<tbody id="form-fields" data-field="

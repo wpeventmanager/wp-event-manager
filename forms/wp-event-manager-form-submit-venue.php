@@ -307,7 +307,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		//venue email validation
 		if(isset($values['venue']['venue_email']) && !empty($values['venue']['venue_email'])) {
 			if(!is_email($values['venue']['venue_email'])) {
-				throw new Exception(esc_attr_e('Please enter a valid venue email address', 'wp-event-manager'));
+				throw new Exception(esc_attr__('Please enter a valid venue email address', 'wp-event-manager'));
 			}
 		}
 		return apply_filters('submit_venue_form_validate_fields', true, $this->fields, $values);
@@ -338,7 +338,14 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			$status = is_user_logged_in() ? 'publish' : 'pending';
 			
 			// Update the event
-			$this->save_venue($values['venue']['venue_name'], $values['venue']['venue_description'], $this->venue_id ? '' : $status, $values);
+			$venue_name        = html_entity_decode( $values['venue']['venue_name'] );
+			$venue_description = html_entity_decode( $values['venue']['venue_description'] );
+
+			$venue_name        = wp_strip_all_tags( $venue_name );
+			$venue_description = wp_strip_all_tags( $venue_description );
+
+			$this->save_venue($venue_name, $venue_description, $this->venue_id ? '' : $status, $values);
+
 			$this->update_venue_data($values);
 			// Successful, show next step
 			$this->step ++;
@@ -422,7 +429,10 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					else
 						update_post_meta($this->venue_id, '_' . $key, '');
 					
-				} elseif('file' === $field['type']) { 
+				} elseif('file' === $field['type']) {
+					if($key == 'venue_logo' && empty($values[ $group_key ][ $key ])){
+						update_post_meta($this->venue_id, '_thumbnail_id', '');
+					}
 					update_post_meta($this->venue_id, '_' . $key, $values[ $group_key ][ $key ]);
 					// Handle attachments.
 					if(is_array($values[ $group_key ][ $key ])) {
@@ -438,7 +448,10 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				} elseif('email' === $field['type']) { 
 					update_post_meta($this->venue_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
 					
-				} else{
+				}elseif('text' === $field['type']) { 
+					update_post_meta($this->venue_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ));
+					
+				}else{
 					update_post_meta($this->venue_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ]));
 				}
 			}

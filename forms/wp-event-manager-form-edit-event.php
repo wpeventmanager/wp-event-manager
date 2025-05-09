@@ -128,15 +128,24 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 			if(is_wp_error(($return = $this->validate_fields($values)))) {
 				throw new Exception($return->get_error_message());
 			}
-			
-			// Update the event
-			$this->save_event($values['event']['event_title'], $values['event']['event_description'], '', $values, false);
-			$this->update_event_data($values);
+			$event_title       = html_entity_decode( $values['event']['event_title'] );
+			$event_description = html_entity_decode( $values['event']['event_description'] );
+			$event_title       = wp_strip_all_tags( $event_title );
+			$event_description = wp_strip_all_tags( $event_description );
+
+			$this->save_event( $event_title, $event_description, $this->event_id ? '' : 'preview', $values );
+			$this->update_event_data( $values );
 
 			// Successful
 			switch (get_post_status($this->event_id)) {
-				case 'publish' :
-					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . get_permalink($this->event_id) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>' . '</div>');
+				case 'publish':
+					$custom_message = get_option('wpem_event_updated_message');
+					if (empty($custom_message)) {
+						$custom_message = __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . esc_url(get_permalink($this->event_id)) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>';
+					} else {
+						$custom_message = $custom_message . ' <a href="' . esc_url(get_permalink($this->event_id)) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>';
+					}
+					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . $custom_message . '</div>');
 					break;
 				default :
 					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . '</div>');

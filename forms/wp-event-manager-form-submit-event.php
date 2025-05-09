@@ -143,8 +143,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				$registration_method_placeholder = __( 'http://', 'wp-event-manager' );
 			break;
 			default :
-				$registration_method_label       = __( 'Registration email/URL', 'wp-event-manager' );
+				$registration_method_label       = __( ' Registration email ID / website URL', 'wp-event-manager' );
 				$registration_method_placeholder = __( 'Enter an email address or website URL', 'wp-event-manager' );
+				$registration_method_description = __( 'Attendee will register through email ID or external website.', 'wp-event-manager' );
 			break;
 		}
 
@@ -272,6 +273,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => $registration_method_placeholder,
+					'description'	=> $registration_method_description,
 					'priority'    => 10,
 					'visibility'  => 1,
 					'tabgroup' => 4,
@@ -576,9 +578,10 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						if( !strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
 							$values['event']['registration'] = 'http://' . $values['event']['registration'];
 						}
-						if( !filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
-							throw new Exception( esc_attr_e( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
+						if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
+							throw new Exception( esc_attr__( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
 						}
+						
 					}
 				break;
 			}
@@ -816,8 +819,13 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				throw new Exception( __( 'You must be signed in to post a new listing.','wp-event-manager' ) );
 			}
 
-			// Update the event
-			$this->save_event( $values['event']['event_title'], $values['event']['event_description'], $this->event_id ? '' : 'preview', $values );
+			$event_title       = html_entity_decode( $values['event']['event_title'] );
+			$event_description = html_entity_decode( $values['event']['event_description'] );
+			$event_title       = wp_strip_all_tags( $event_title );
+			$event_description = wp_strip_all_tags( $event_description );
+			
+			$this->save_event( $event_title, $event_description, $this->event_id ? '' : 'preview', $values );
+		
 			$this->update_event_data( $values );
 			// Successful, show next step
 			$this->step ++;
@@ -1111,7 +1119,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				} elseif('email' === $field['type']) { 
 					update_post_meta($this->event_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
 					
-				} else { 
+				}elseif('text' === $field['type']) { 
+					update_post_meta( $this->event_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ) );
+				}else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
 					    $ticket_type=$values[ $group_key ][ $key ];

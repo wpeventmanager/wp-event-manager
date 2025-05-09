@@ -78,6 +78,7 @@ class WP_Event_Manager_Post_Types {
  
         // View count action
         add_action('set_single_listing_view_count', array($this, 'set_single_listing_view_count'));
+		add_action('init', array($this, 'wpem_session_start'));
 
         // Admin notices.
         add_filter('bulk_post_updated_messages', array($this, 'bulk_post_updated_messages'), 10, 2);
@@ -466,7 +467,7 @@ class WP_Event_Manager_Post_Types {
 		);		
 		if(!empty($_GET['search_location'])) {
 			$search_location = esc_html($_GET['search_location']);
-			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
+			$location_meta_keys = array('geolocation_formatted_address', '_event_location', '_event_pincode', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
 			foreach($location_meta_keys as $meta_key) {
 				$location_search[] = array(
@@ -795,22 +796,37 @@ class WP_Event_Manager_Post_Types {
 		}        
 	}
 
+	/**
+	* Session start function
+	* @param  array $post	 
+	*/
+	public function wpem_session_start() {     
+		if (session_status() === PHP_SESSION_NONE) {
+			session_start();
+		}
+	}
+
     /**
 	 * This function is use to set the counts the event views and attendees views.
      * This function also used at attendees dashboard file.
 	 * @param  int $post_id	 
 	*/
 	public function set_post_views($post_id) {
+	
 		$count_key = '_view_count';
-		$count = esc_attr(get_post_meta($post_id, $count_key, true));
-
-		if($count=='' || $count==null) {
-			$count = 0;
-			delete_post_meta($post_id, $count_key);
-			add_post_meta($post_id, $count_key, sanitize_text_field('0'));
-		}  else {
+		$count = get_post_meta($post_id, $count_key, true);
+	
+		if (!isset($_SESSION['viewed_posts'])) {
+			$_SESSION['viewed_posts'] = [];
+		}
+	
+		if (!in_array($post_id, $_SESSION['viewed_posts'])) {
+			$count = ($count == '' || $count == null) ? 0 : (int) $count;
 			$count++;
+	
 			update_post_meta($post_id, $count_key, sanitize_text_field($count));
+	
+			$_SESSION['viewed_posts'][] = $post_id;
 		}
 	}
 	

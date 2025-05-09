@@ -57,21 +57,26 @@ if(!function_exists('get_event_listings')) :
 			$query_args['no_found_rows'] = true;
 		}
 		if(!empty($args['search_location'])) {
-			$location_meta_keys = array('geolocation_formatted_address', '_event_location', 'geolocation_state_long');
+			$location_meta_keys = array('geolocation_formatted_address', '_event_location', '_event_pincode', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
 			foreach($location_meta_keys as $meta_key) {
 				$location_search[] = array(
 					'key'     => $meta_key,
-					'value'   => 	$args['search_location'], 
-					'compare' => 'like',
+					'value'   => $args['search_location'], 
+					'compare' => 'LIKE',
 					'type'    => 'char',
 				);
-				$location_search[] = array(
-					'key'     => $meta_key,
-					'value'   => trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ','),
-					'compare' => 'like',
-					'type'    => 'char',
-				);
+
+				// Cleaned value (only if it's non-empty)
+				$cleaned = trim(preg_replace("/[^a-zA-Z,\s]/", "", $args['search_location']), ',');
+				if (!empty($cleaned)) {
+					$location_search[] = array(
+						'key'     => $meta_key,
+						'value'   => $cleaned,
+						'compare' => 'LIKE',
+						'type'    => 'char',
+					);
+				}
 			}
 			$query_args['meta_query'][] = $location_search;
 		}
@@ -279,7 +284,6 @@ if(!function_exists('get_event_listings')) :
 		if(function_exists('pll_current_language') && !empty($args['lang'])) {
 			$query_args['lang'] = $args['lang'];
 		}
-
 		// Filter args
 		$query_args = apply_filters('get_event_listings_query_args', $query_args, $args);
 		do_action('before_get_event_listings', $query_args, $args);
@@ -1696,13 +1700,20 @@ function has_event_organizer_ids($post = null) {
  * 
  * @since 3.1.13
  **/
-function get_event_organizer_ids($post = null) {
-	$post = get_post($post);
-
-	if($post->post_type !== 'event_listing')
-		return;
-
-	return !empty($post->_event_organizer_ids) ? $post->_event_organizer_ids : '';
+function get_event_organizer_ids( $post = null ) {
+    $post = get_post( $post );
+    if ( $post->post_type !== 'event_listing' ) {
+        return;
+    }
+    if ( class_exists('SitePress') && !empty($post->_event_organizer_ids) ) {
+        foreach ($post->_event_organizer_ids as $key => $organizer_id ) {
+            $result = $post->_event_organizer_ids;
+            $result[$key] = apply_filters( 'wpml_object_id', $organizer_id, 'event_organizer', TRUE  );
+        }
+ 
+        return $result;
+    }
+    return !empty($post->_event_organizer_ids) ? $post->_event_organizer_ids : '';
 }
 
 /**
@@ -1762,13 +1773,16 @@ function has_event_venue_ids($post = null) {
  * 
  * @since 3.1.16
  **/
-function get_event_venue_ids($post = null) {
-	$post = get_post($post);
-
-	if($post->post_type !== 'event_listing')
-		return;
-
-	return !empty($post->_event_venue_ids) ? $post->_event_venue_ids : '';
+function get_event_venue_ids( $post = null ) {
+    $post = get_post( $post );
+    if ( $post->post_type !== 'event_listing' )
+        return;
+    if ( class_exists('SitePress') && !empty($post->_event_venue_ids) ) {
+        $result = apply_filters( 'wpml_object_id', $post->_event_venue_ids , 'event_listing', TRUE  );
+        return $result;
+    }   
+ 
+    return !empty($post->_event_venue_ids) ? $post->_event_venue_ids : '';
 }
 
 /**

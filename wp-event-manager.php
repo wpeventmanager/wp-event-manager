@@ -7,7 +7,7 @@
 * Author URI: https://www.wp-eventmanager.com
 * Text Domain: wp-event-manager
 * Domain Path: /languages
-* Version: 3.1.48
+* Version: 3.1.49
 * Since: 1.0.0
 * Requires WordPress Version at least: 5.4.1
 * Copyright: 2019 WP Event Manager
@@ -43,7 +43,7 @@ class WP_Event_Manager {
 	 * @var plugin version
 	 * @since  3.1.33
 	 */
-	private static $wpem_verion = '3.1.48';
+	private static $wpem_verion = '3.1.49';
 
 
 	/**
@@ -438,23 +438,31 @@ class WP_Event_Manager {
 	 * @return void
 	 */
 	public function wpem_restrict_non_organizer_access_to_dashboard() {
-		if (is_user_logged_in()) {
-			$current_user = wp_get_current_user();
-			$allowed_roles = get_option('event_manager_allowed_submission_roles', array_keys(wp_roles()->roles));
-	
-			$allowed_roles = array_map('strtolower', $allowed_roles);
-			$user_roles = array_map('strtolower', $current_user->roles);
-	
-			if (!in_array('administrator', $user_roles) && !array_intersect($allowed_roles, $user_roles)) {
-				?>
-				<p class="account-sign-in wpem-alert wpem-alert-info">
-					<?php esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?>
-				</p>
-				<?php
-				exit; 
-			}
-		}
-	}
+    	if (is_user_logged_in()) {
+    		$current_user = wp_get_current_user();
+    
+    		// Get allowed roles from option, fallback to all roles if not set
+    		$allowed_roles = get_option('event_manager_allowed_submission_roles', array_keys(wp_roles()->roles));
+    
+    		// Ensure $allowed_roles is always an array
+    		if (!is_array($allowed_roles)) {
+    			// Convert comma-separated string to array safely
+    			$allowed_roles = array_filter(array_map('trim', explode(',', $allowed_roles)));
+    		}
+    
+    		$allowed_roles = array_map('strtolower', $allowed_roles);
+    		$user_roles    = array_map('strtolower', $current_user->roles);
+    
+    		if (!in_array('administrator', $user_roles) && !array_intersect($allowed_roles, $user_roles)) {
+    			?>
+    			<p class="account-sign-in wpem-alert wpem-alert-info">
+    				<?php esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?>
+    			</p>
+    			<?php
+    			exit;
+    		}
+    	}
+    }
 }
 
 /**

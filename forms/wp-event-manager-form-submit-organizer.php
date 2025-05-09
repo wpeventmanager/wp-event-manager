@@ -326,9 +326,10 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		
 		// Organizer email validation
 		if(isset($values['organizer']['organizer_email']) && !empty($values['organizer']['organizer_email'])) {
-			if(!is_email($values['organizer']['organizer_email'])) {
-				throw new Exception(esc_attr_e('Please enter a valid organizer email address', 'wp-event-manager'));
-			}				
+			if (!is_email($values['organizer']['organizer_email'])) {
+				throw new Exception(esc_attr__('Please enter a valid organizer email address', 'wp-event-manager'));
+			}
+							
 		}
 		return apply_filters('submit_organizer_form_validate_fields', true, $this->fields, $values);
 	}
@@ -358,7 +359,14 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			$status = is_user_logged_in() ? 'publish' : 'pending';
 			
 			// Update the event
-			$this->save_organizer($values['organizer']['organizer_name'], $values['organizer']['organizer_description'], $this->organizer_id ? '' : $status, $values);
+			$organizer_name        = html_entity_decode( $values['organizer']['organizer_name'] );
+			$organizer_description = html_entity_decode( $values['organizer']['organizer_description'] );
+
+			$organizer_name        = wp_strip_all_tags( $organizer_name );
+			$organizer_description = wp_strip_all_tags( $organizer_description );
+
+			$this->save_organizer($organizer_name, $organizer_description, $this->organizer_id ? '' : $status,$values);
+
 			$this->update_organizer_data($values);
 			// Successful, show next step
 			$this->step ++;
@@ -443,6 +451,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 						update_post_meta($this->organizer_id, '_' . $key, '');
 					
 				} elseif('file' === $field['type']) { 
+					if($key == 'organizer_logo' && empty($values[ $group_key ][ $key ])){
+						update_post_meta($this->organizer_id, '_thumbnail_id', '');
+					}
 					update_post_meta($this->organizer_id, '_' . $key, $values[ $group_key ][ $key ]);
 					// Handle attachments.
 					if(is_array($values[ $group_key ][ $key ])) {
@@ -458,7 +469,10 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 				} elseif('email' === $field['type']) { 
 					update_post_meta($this->organizer_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
 					
-				} else{
+				}elseif('text' === $field['type']) { 
+					update_post_meta($this->organizer_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ));
+					
+				}else{
 					update_post_meta($this->organizer_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ]));
 				}
 			}
