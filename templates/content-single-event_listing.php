@@ -403,12 +403,12 @@ $event = $post; ?>
                                         <h3 class="wpem-heading-text"><?php esc_html_e('Location', 'wp-event-manager'); ?></h3>
                                         <div>
                                             <?php
-                                            if (get_event_address()) { ?>
+                                            /* if (get_event_address()) { ?>
                                                 <a href="http://maps.google.com/maps?q=<?php display_event_address();?>">  
                                                     <?php display_event_address();
                                                     echo esc_attr(',');?>
                                                 </a><?php
-                                            }
+                                            } */
                                             if (!is_event_online()) {?> 
                                                     <?php display_event_location();?>
                                             <?php } else {?>
