@@ -611,7 +611,7 @@ function get_event_thumbnail($post = null, $size = 'full') {
                 // If event banner is set, use it
                 $event_banner = $post->_event_banner;
                 if (is_array($event_banner)) {
-                    $event_thumbnail = $event_banner[0];
+                    $event_thumbnail = isset($event_banner[0]) ? $event_banner[0] : null;
                 } else {
                     $event_thumbnail = $event_banner;
                 }
