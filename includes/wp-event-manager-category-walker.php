@@ -19,7 +19,7 @@ class WP_Event_Manager_Category_Walker extends Walker {
 	 * @param object $category Category data object.
 	 * @param int $depth Depth of category in reference to parents.
 	 * @param array $args
-	 */
+	 */ 
 	function start_el(&$output, $object, $depth = 0, $args = array(), $current_object_id = 0) {
 
 		if(!empty($args['hierarchical']))
@@ -34,7 +34,7 @@ class WP_Event_Manager_Category_Walker extends Walker {
 			$output .= ' selected="selected"';
 
 		$output .= '>';
-		$output .= $pad . esc_html($cat_name);
+		$output .= $pad . esc_js($cat_name);
 
 		if(!empty($args['show_count'])) {
 			$output .= '&nbsp;(' . $object->count . ')';
