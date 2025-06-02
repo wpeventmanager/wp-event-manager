@@ -3923,7 +3923,7 @@ td.ui-state-highlight a {
     padding: 10px !important;
   }
 }
-@media screen and (max-width: 768px) and (max-width: 937px) {
+@media screen and (max-width: 767px) and (max-width: 937px) {
   .wpem-single-organizer-profile-wrapper .wpem-organizer-profile .wpem-organizer-social-links .wpem-organizer-social-lists .wpem-social-icon,
   .wpem-single-venue-profile-wrapper .wpem-venue-profile .wpem-venue-social-links .wpem-venue-social-lists .wpem-social-icon {
     margin: 2px;
@@ -3949,7 +3949,7 @@ td.ui-state-highlight a {
     width: 30px;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .wpem-modal {
     width: 100%;
     margin: 0;
@@ -4020,7 +4020,7 @@ td.ui-state-highlight a {
     margin-left: 0;
   }
 }
-@media screen and (min-width: 600px) and (max-width: 768px) {
+@media screen and (min-width: 600px) and (max-width: 767px) {
   .wpem-event-organizer-tabs .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link,
   .wpem-event-venue-tabs .wpem-tabs-wrapper .wpem-tabs-wrap .wpem-tab-link {
     display: inline-flex;
