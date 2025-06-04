@@ -1043,8 +1043,8 @@ function event_manager_dropdown_selection($args = '') {
         'multiple_text'   => __('Choose Categories', 'wp-event-manager'),
     );
 	$defaults = apply_filters('event_manager_dropdown_selection_args', $defaults);
-	$args = wp_validate_array($args, $defaults);
-    $args = wp_sanitize_array($args);
+	$args = wp_parse_args($args, $defaults);
+    $args = array_map('sanitize_text_field', $args);
 
     $nonce = wp_create_nonce('event_manager_dropdown_selection');
     if (!wp_verify_nonce($nonce, 'event_manager_dropdown_selection')) {
