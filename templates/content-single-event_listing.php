@@ -195,7 +195,7 @@ $event = $post; ?>
                                                                     } ?>
                                                                     <p class="wpem-additional-info-block-title"><strong><?php
                                                                     // translators: %s is the label of the field.
-                                                                    printf(esc_html('%s', 'wp-event-manager'),   esc_attr($field_label)); ?> -</strong> <?php printf(esc_html('%s', 'wp-event-manager'),  implode(', ', esc_attr($my_value_arr))); ?></p>
+                                                                    printf(esc_html('%s', 'wp-event-manager'),   esc_attr($field_label)); ?> -</strong> <?php printf(esc_html('%s', 'wp-event-manager'),  esc_attr(implode(', ', $my_value_arr))); ?></p>
                                                                 </div>
                                                             </div>
                                                         <?php elseif ($field['type'] == 'select') : ?>
