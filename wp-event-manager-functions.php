@@ -1268,6 +1268,19 @@ function event_manager_upload_file($file, $args = array()) {
 }
 
 /**
+ * Get duplicate post link.
+ * @param   string
+ * @return  array
+ */
+function get_duplicate_post_link($post_id) {
+	if (!post_type_exists(get_post_type($post_id))) {
+		return '';
+	}
+	$nonce = wp_create_nonce('duplicate_event_' . $post_id);
+	return admin_url('admin.php?action=duplicate_event&post=' . $post_id . '&_wpnonce=' . $nonce);
+}
+
+/**
  * Allowed Mime types specifically for WP Event Manager.
  * @param   string $field Field used.
  * @return  array  Array of allowed mime types

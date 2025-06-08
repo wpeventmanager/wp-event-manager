@@ -56,6 +56,7 @@ class WP_Event_Manager_CPT {
 		foreach (array('post', 'post-new') as $hook) {
 			add_action("admin_footer-{$hook}.php", array($this, 'extend_submitdiv_post_status'));
 		}
+		add_action('admin_action_duplicate_event', array($this,'duplicate_event_post'));
 	}
 	
 	/**
@@ -478,6 +479,11 @@ class WP_Event_Manager_CPT {
 							'name'   => __('Edit', 'wp-event-manager'),
 							'url'    => get_edit_post_link($post->ID),
 						);
+						$admin_actions['duplicate'] = array(
+							'action' => 'duplicate',
+							'name'   => __('Duplicate', 'wp-event-manager'),
+							'url'    => esc_url(get_duplicate_post_link($post->ID)),
+						);
 					}
 					if(current_user_can('delete_post', $post->ID)) {
 						$admin_actions['delete'] = array(
@@ -502,6 +508,58 @@ class WP_Event_Manager_CPT {
 				echo esc_attr(apply_filters('wpem_cpt_event_custom_column', wp_kses_post($value), $column, $post));
 				break;
 		}
+	}
+
+	/**
+	 * Duplicate event.
+	 *
+	 * @access public
+	 * @param mixed $columns
+	 * @return void
+	 */
+	public function duplicate_event_post() {
+		if (!isset($_GET['post']) || !current_user_can('edit_posts')) {
+			wp_die('No permission or invalid request');
+		}
+
+		$post_id = absint($_GET['post']);
+		$nonce = $_GET['_wpnonce'];
+
+		if (!wp_verify_nonce($nonce, 'duplicate_event_' . $post_id)) {
+			wp_die('Nonce verification failed');
+		}
+
+		$post = get_post($post_id);
+		if (!$post || $post->post_type !== 'event_listing') {
+			wp_die('Invalid event');
+		}
+
+		$new_post = array(
+			'post_title'    => $post->post_title . ' (Copy)',
+			'post_content'  => $post->post_content,
+			'post_excerpt'  => $post->post_excerpt,
+			'post_status'   => 'draft',
+			'post_type'     => $post->post_type,
+			'post_author'   => get_current_user_id(),
+		);
+
+		$new_post_id = wp_insert_post($new_post);
+
+		$meta = get_post_meta($post_id);
+		foreach ($meta as $key => $values) {
+			foreach ($values as $value) {
+				add_post_meta($new_post_id, $key, maybe_unserialize($value));
+			}
+		}
+
+		$taxonomies = get_object_taxonomies($post->post_type);
+		foreach ($taxonomies as $taxonomy) {
+			$terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
+			wp_set_object_terms($new_post_id, $terms, $taxonomy, false);
+		}
+
+		wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
+		exit;
 	}
 
 	/**
