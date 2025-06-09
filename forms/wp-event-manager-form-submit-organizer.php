@@ -363,7 +363,6 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			$organizer_description = html_entity_decode( $values['organizer']['organizer_description'] );
 
 			$organizer_name        = wp_strip_all_tags( $organizer_name );
-			$organizer_description = wp_strip_all_tags( $organizer_description );
 
 			$this->save_organizer($organizer_name, $organizer_description, $this->organizer_id ? '' : $status,$values);
 
