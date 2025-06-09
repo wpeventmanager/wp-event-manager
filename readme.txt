@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.6.2
-Stable Tag: 3.1.49
+Stable Tag: 3.1.50
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -339,6 +339,17 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 
 == Changelog ==
+
+= [3.1.50] 10-06-2025 =
+
+Fixed: No Undefined array key message appears while using a custom event thumbnail.
+Fixed: Location is displayed once properly without code.
+Fixed: No error is displayed in the Site Health regarding starting a session.
+Fixed: Updated CSS Media Breakpoint
+Fixed: The event detail page no longer shows a warning while using a multi-select field type in the field editor.
+Fixed: The event Description format is now working properly.
+Fixed: Various Code Improvements are performed along with bug fixes.
+Added: Events can now be duplicated on the admin side.
 
 = [3.1.49] 09-05-2025 =
 
