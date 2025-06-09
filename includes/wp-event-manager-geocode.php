@@ -192,7 +192,7 @@ class WP_Event_Manager_Geocode {
 						);
 				$result           = wp_remote_retrieve_body($result);
 				$geocoded_address = json_decode($result);
-				if($geocoded_address->status) {
+				if($geocoded_address && isset($geocoded_address->status)) {
 					switch ($geocoded_address->status) {
 						case 'ZERO_RESULTS' :
 							throw new Exception(__("No results found", 'wp-event-manager'));
