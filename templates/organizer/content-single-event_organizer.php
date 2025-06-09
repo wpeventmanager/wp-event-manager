@@ -49,7 +49,9 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
                         <?php 
                         if(!in_array('organizer_description', $field_to_hide)) {
                             $content = apply_filters('wpem_the_content',$organizer->post_content);
-                            echo wp_kses_post($content);
+                            if(!empty($content)){
+                                echo wp_kses_post($content);
+                            }
                         }
                         ?>
                      </div>

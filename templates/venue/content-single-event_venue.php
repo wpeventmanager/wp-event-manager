@@ -25,7 +25,8 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
                     </div>
                     <div class="wpem-venue-description">
                     <?php $content = apply_filters('wpem_the_content',$venue->post_content);
-                        echo wp_kses_post( $content );?>
+                    if(!empty($content)){
+                        echo wp_kses_post( $content );}?>
                     </div>
                     <div class="wpem-venue-social-links">
                         <div class="wpem-venue-social-lists">

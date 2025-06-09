@@ -57,7 +57,8 @@ if (get_option('event_manager_form_fields')) {
                                                     <!-- Organizer description-->
                                                     <div class="wpem-organizer-description"><?php 
                                                         $content = apply_filters('wpem_the_content',$organizer->post_content);
-                                                        echo wp_kses_post( $content );?>
+                                                        if(!empty($content)){
+                                                        echo wp_kses_post( $content );}?>
                                                     </div>
                                                     <!-- Organizer social link section start-->
                                                     <div class="wpem-organizer-social-links">
