@@ -2697,3 +2697,7 @@ body.event_listing_page_event-manager-addons {
 		padding: 20px;
 	}
 }
+
+.widefat .column-event_actions .icon-duplicate:before {
+    content: "\e92c";
+}
