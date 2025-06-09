@@ -177,8 +177,22 @@ function load_more_upcoming_events($atts) {
 		$search_event_types = '';
 		$search_ticket_prices = '';
 
-		if(isset($_REQUEST['search_datetimes'])) {
-			$search_datetimes = is_array($_REQUEST['search_datetimes']) ?  array_filter( array_map('stripslashes', $_REQUEST['search_datetimes'])) : array_filter(array(stripslashes($_REQUEST['search_datetimes'])));
+		if (isset($_REQUEST['search_datetimes'])) {
+			$raw_dates = is_array($_REQUEST['search_datetimes']) 
+				? array_filter(array_map('stripslashes', $_REQUEST['search_datetimes'])) 
+				: array_filter([stripslashes($_REQUEST['search_datetimes'])]);
+
+			if (!empty($raw_dates[0])) {
+				$decoded = json_decode($raw_dates[0], true);
+
+				if (!empty($decoded['start']) && !empty($decoded['end'])) {
+					$search_datetimes = [$raw_dates[0]];
+				} else {
+					$search_datetimes = [];
+				}
+			} else {
+				$search_datetimes = [];
+			}
 		}
 
 		if(isset($_REQUEST['search_categories'])) {
