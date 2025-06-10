@@ -342,7 +342,7 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 = [3.1.50] 10-06-2025 =
 
-Fixed: vulnerability issue Resolved.
+Fixed: Vulnerability issue Resolved.
 Fixed: Undefined array key message not appears while using a custom event thumbnail.
 Fixed: Location is displayed properly without code.
 Fixed: No error is displayed in the Site Health regarding starting a session.
