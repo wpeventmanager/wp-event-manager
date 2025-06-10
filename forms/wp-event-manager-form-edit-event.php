@@ -131,7 +131,6 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 			$event_title       = html_entity_decode( $values['event']['event_title'] );
 			$event_description = html_entity_decode( $values['event']['event_description'] );
 			$event_title       = wp_strip_all_tags( $event_title );
-			$event_description = wp_strip_all_tags( $event_description );
 
 			$this->save_event( $event_title, $event_description, $this->event_id ? '' : 'preview', $values );
 			$this->update_event_data( $values );

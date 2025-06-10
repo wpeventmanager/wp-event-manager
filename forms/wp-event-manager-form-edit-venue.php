@@ -123,7 +123,6 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 			$venue_description = html_entity_decode( $values['venue']['venue_description'] );
 
 			$venue_name        = wp_strip_all_tags( $venue_name );
-			$venue_description = wp_strip_all_tags( $venue_description );
 
 			$this->save_venue($venue_name, $venue_description, '', $values, false);
 

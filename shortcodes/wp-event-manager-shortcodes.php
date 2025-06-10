@@ -1163,9 +1163,13 @@ class WP_Event_Manager_Shortcodes{
 		$countAllEvents = get_event_organizer_count();
 		$organizers_array = [];
 
-		if(!empty($organizers)) {
+		if (!empty($organizers)) {
 			foreach ($organizers as $organizer_id => $organizer) {
-				$organizers_array[strtoupper($organizer[0])][$organizer_id] = $organizer;
+				if (is_array($organizer) && isset($organizer[0])) {
+					$organizers_array[strtoupper($organizer[0])][$organizer_id] = $organizer;
+				} elseif (is_string($organizer) && strlen($organizer) > 0) {
+					$organizers_array[strtoupper($organizer[0])][$organizer_id] = $organizer;
+				}
 			}
 		}
 

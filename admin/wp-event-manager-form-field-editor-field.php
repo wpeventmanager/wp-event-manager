@@ -5,14 +5,14 @@ if (empty($field_key)) {
 $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing')); ?>
 
 <tr data-field-type="text-field" data-field-meta="_<?php echo esc_attr(stripslashes($field_key)); ?>">
-	<td class="sort-column">&nbsp;</td>
-	<td>
-		<input <?php if (in_array($field_key, $disbled_fields)) echo 'disabled'; ?> type="checkbox" id="bulk-select" class="input-checkbox" name="" value="" />
-	</td>
-	<td>
-		<input type="text" class="input-text" name="<?php echo wp_kses_post($group_key); ?>[<?php echo esc_attr($field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($field['label'])); ?>" />
-		<input type="hidden" name="_<?php echo esc_attr(stripslashes($field_key)); ?>_visibility" id="_<?php echo esc_attr(stripslashes($field_key)); ?>_visibility" value="1" />
-	</td>
+	 <td class="sort-column">&nbsp;</td>
+    <td>
+        <input <?php if (in_array($field_key, $disbled_fields)) echo 'disabled'; ?> type="checkbox" id="bulk-select" class="input-checkbox" name="" value="" />
+    </td>
+    <td>
+        <input type="text" class="input-text" name="<?php echo wp_kses_post($group_key); ?>[<?php echo esc_attr($field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($field['label'])); ?>" />
+        <input type="hidden" name="_<?php echo esc_attr(stripslashes($field_key)); ?>_visibility" id="_<?php echo esc_attr(stripslashes($field_key)); ?>_visibility" value="1" />
+    </td>
 	<td class="field-type">
 		<select name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][type]" class="field_type">
 			<?php

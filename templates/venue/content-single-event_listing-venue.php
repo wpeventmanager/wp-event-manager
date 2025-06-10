@@ -47,7 +47,8 @@ if (has_event_venue_ids() && !is_event_online()) : ?>
                                         <div class="wpem-venue-description"><?php
                                             $venue_content = get_post( $venue_id );
                                             $content = apply_filters('wpem_the_content',$venue_content->post_content);
-                                            echo wp_kses_post( $content ); ?>
+                                            if(!empty($content)){
+                                            echo wp_kses_post( $content );}?>
                                         </div>
 
                                          <?php do_action('single_event_listing_venue_description_after', $venue_id); ?>

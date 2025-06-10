@@ -72,9 +72,9 @@ if (has_event_organizer_ids()) : ?>
                                                 if(!in_array('organizer_description', $field_to_hide)) {
                                                     $organizer_content = get_post( $organizer_id );
                                                     $content = apply_filters('wpem_the_content',$organizer_content->post_content);
-                                                    
-                                                    echo wp_kses_post($content); 
-                                                    
+                                                    if(!empty($content)){
+                                                        echo wp_kses_post($content);
+                                                    }
                                                 }
                                                     ?>
                                                 </div>

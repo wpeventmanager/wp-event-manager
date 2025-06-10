@@ -38,9 +38,34 @@ function get_event_manager_template($template_name, $args = array(), $template_p
 	if($args && is_array($args)) {
 		extract($args);
 	}
-	if( file_exists( locate_event_manager_template( $template_name, $template_path, $default_path ) ) ){
-		include( locate_event_manager_template( $template_name, $template_path, $default_path ) );
-	}
+
+    $template_name = str_replace("\0", '', $template_name);
+    $template_name = str_replace('\\', '/', $template_name);
+    $template_name = preg_replace('#\.\./#', '', $template_name);
+    $template_name = preg_replace('#\.\.\\\#', '', $template_name);
+
+    $template_path_full = locate_event_manager_template($template_name, $template_path, $default_path);
+    if (!$template_path_full || !file_exists($template_path_full)) {
+        return;
+    }
+    $real_template_path = realpath($template_path_full);
+    $allowed_paths = [
+        realpath(get_stylesheet_directory() . '/' . $template_path),
+        realpath(get_template_directory() . '/' . $template_path),
+        realpath($default_path),
+    ];
+    $is_valid = false;
+    foreach ($allowed_paths as $allowed_path) {
+        if ($allowed_path && strpos($real_template_path, $allowed_path) === 0) {
+            $is_valid = true;
+            break;
+        }
+    }
+
+    if (!$is_valid) {
+        return;
+    }
+    include $real_template_path;
 }
 
 /**
@@ -611,7 +636,7 @@ function get_event_thumbnail($post = null, $size = 'full') {
                 // If event banner is set, use it
                 $event_banner = $post->_event_banner;
                 if (is_array($event_banner)) {
-                    $event_thumbnail = $event_banner[0];
+                    $event_thumbnail = isset($event_banner[0]) ? $event_banner[0] : null;
                 } else {
                     $event_thumbnail = $event_banner;
                 }

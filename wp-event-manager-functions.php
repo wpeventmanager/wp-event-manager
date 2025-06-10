@@ -1021,28 +1021,36 @@ function event_manager_user_can_edit_pending_submissions() {
  */
 function event_manager_dropdown_selection($args = '') {
 	$defaults = array(
-		'orderby'         => 'id',
-		'order'           => 'ASC',
-		'show_count'      => 0,
-		'hide_empty'      => 1,
-		'child_of'        => 0,
-		'exclude'         => '',
-		'echo'            => 1,
-		'selected'        => 0,
-		'hierarchical'    => 0,
-		'name'            => 'cat',
-		'id'              => '',
-		'class'           => 'event-manager-category-dropdown ' . (is_rtl() ? 'chosen-rtl' : ''),
-		'depth'           => 0,
-		'taxonomy'        => 'event_listing_category',
-		'value'           => 'id',
-		'multiple'        => true,
-		'show_option_all' => false,
-		'placeholder'     => __('Choose a Category', 'wp-event-manager'),
-		'no_results_text' => __('No results match', 'wp-event-manager'),
-		'multiple_text'   => __('Choose Categories', 'wp-event-manager'),
-	);
-	$query = wp_parse_args($args, $defaults);
+        'orderby'         => 'id',
+        'order'           => 'ASC',
+        'show_count'      => 0,
+        'hide_empty'      => 1,
+        'child_of'        => 0,
+        'exclude'         => '',
+        'echo'            => 1,
+        'selected'        => 0,
+        'hierarchical'    => 0,
+        'name'            => 'cat',
+        'id'              => '',
+        'class'           => 'event-manager-category-dropdown ' . (is_rtl() ? 'chosen-rtl' : ''),
+        'depth'           => 0,
+        'taxonomy'        => 'event_listing_category',
+        'value'           => 'id',
+        'multiple'        => true,
+        'show_option_all' => false,
+        'placeholder'     => __('Choose a Category', 'wp-event-manager'),
+        'no_results_text' => __('No results match', 'wp-event-manager'),
+        'multiple_text'   => __('Choose Categories', 'wp-event-manager'),
+    );
+	$defaults = apply_filters('event_manager_dropdown_selection_args', $defaults);
+	$args = wp_parse_args($args, $defaults);
+    $args = array_map('sanitize_text_field', $args);
+
+    $nonce = wp_create_nonce('event_manager_dropdown_selection');
+    if (!wp_verify_nonce($nonce, 'event_manager_dropdown_selection')) {
+        return;
+    }
+    $query = wp_parse_args($args, $defaults);
 
 	if(!isset($query['pad_counts']) && $query['show_count'] && $query['hierarchical']) {
 		$query['pad_counts'] = true;
@@ -1257,6 +1265,19 @@ function event_manager_upload_file($file, $args = array()) {
 	$event_manager_upload         = false;
 	$event_manager_uploading_file = '';
 	return $uploaded_file;
+}
+
+/**
+ * Get duplicate post link.
+ * @param   string
+ * @return  array
+ */
+function get_duplicate_post_link($post_id) {
+	if (!post_type_exists(get_post_type($post_id))) {
+		return '';
+	}
+	$nonce = wp_create_nonce('duplicate_event_' . $post_id);
+	return admin_url('admin.php?action=duplicate_event&post=' . $post_id . '&_wpnonce=' . $nonce);
 }
 
 /**

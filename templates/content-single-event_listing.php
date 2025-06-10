@@ -195,7 +195,7 @@ $event = $post; ?>
                                                                     } ?>
                                                                     <p class="wpem-additional-info-block-title"><strong><?php
                                                                     // translators: %s is the label of the field.
-                                                                    printf(esc_html('%s', 'wp-event-manager'),   esc_attr($field_label)); ?> -</strong> <?php printf(esc_html('%s', 'wp-event-manager'),  implode(', ', esc_attr($my_value_arr))); ?></p>
+                                                                    printf(esc_html('%s', 'wp-event-manager'),   esc_attr($field_label)); ?> -</strong> <?php printf(esc_html('%s', 'wp-event-manager'),  esc_attr(implode(', ', $my_value_arr))); ?></p>
                                                                 </div>
                                                             </div>
                                                         <?php elseif ($field['type'] == 'select') : ?>
@@ -403,12 +403,12 @@ $event = $post; ?>
                                         <h3 class="wpem-heading-text"><?php esc_html_e('Location', 'wp-event-manager'); ?></h3>
                                         <div>
                                             <?php
-                                            if (get_event_address()) { ?>
+                                            /* if (get_event_address()) { ?>
                                                 <a href="http://maps.google.com/maps?q=<?php display_event_address();?>">  
                                                     <?php display_event_address();
                                                     echo esc_attr(',');?>
                                                 </a><?php
-                                            }
+                                            } */
                                             if (!is_event_online()) {?> 
                                                     <?php display_event_location();?>
                                             <?php } else {?>
