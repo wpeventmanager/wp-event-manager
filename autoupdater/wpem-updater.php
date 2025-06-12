@@ -103,7 +103,6 @@ class WPEM_Updater {
 			$licence_key = get_option( $plugin_info['TextDomain'] . '_licence_key' );
 			$email       = get_option( $plugin_info['TextDomain'] . '_email' );
 			if ( ! $licence_key ) {
-				add_action( 'admin_print_styles-plugins.php', array( $this, 'styles' ) );
 				add_filter( 'plugin_action_links_' . $plugin_info['TextDomain'].'/'.$plugin_info['TextDomain'].'.php', array( $this, 'activation_links' ) );
 				$this->add_notice( array( $this, 'key_notice' ) );
 			} else {
@@ -321,13 +320,6 @@ class WPEM_Updater {
 			}
 		}
 		include( 'templates/deactivated-key.php' );
-	}
-
-	//Enqueue admin styles.
-	public function styles() {
-		if ( ! wp_style_is( 'wpem-updater-styles', 'enqueued' ) ) {
-			wp_enqueue_style( 'wpem-updater-styles', plugins_url( basename( plugin_dir_path( $this->plugin_file ) ), basename( $this->plugin_file ) ) . '/autoupdater/assets/css/backend.css' );
-		}
 	}
 
 	//Check for plugin updates.

@@ -12,13 +12,13 @@ if(!function_exists('license_enqueue_scripts')){
      * @return void
      * @since 1.2
      */
-    function license_enqueue_scripts() {
-        if ( ! wp_style_is( 'wpem-updater-styles', 'enqueued' ) ) {
+    function license_enqueue_scripts($hook) {
+		if ($hook === 'event_listing_page_wpem_license' && ! wp_style_is( 'wpem-updater-styles', 'enqueued' )) {
             wp_register_style( 'wpem-updater-styles', plugin_dir_url(__DIR__) . 'autoupdater/assets/css/backend.css' );
         }
     }
 }
-
+add_action('admin_enqueue_scripts', 'license_enqueue_scripts');
 add_action('admin_menu', 'wpem_addon_license_manage_menu', 10);
 
 if (!function_exists('wpem_addon_license_manage_menu')) {
@@ -30,6 +30,7 @@ if (!function_exists('wpem_addon_license_manage_menu')) {
 	 * @since 1.2
 	 */
 	function wpem_addon_license_manage_menu() {
+		error_log("wpem_addon_license_manage_menu");
 		if(!empty(get_wpem_plugins_info())){
 			add_submenu_page(
 				'edit.php?post_type=event_listing',
