@@ -104,7 +104,8 @@ class WP_Event_Manager extends WPEM_Updater {
 		if(is_admin()) {
 			include('admin/wp-event-manager-admin.php');
 		}
-		
+		include('wp-event-manager-functions.php');
+		include('wp-event-manager-template.php');
 		// In the case of third party support, use this. 
 		include('external/external.php');
 
@@ -132,7 +133,6 @@ class WP_Event_Manager extends WPEM_Updater {
 		add_action('after_switch_theme', 'flush_rewrite_rules', 15);
 
 		add_action('after_setup_theme', array($this, 'load_plugin_textdomain'));
-		add_action('after_setup_theme', array($this, 'include_template_functions'), 11);
 
 		add_action('widgets_init', array($this, 'widgets_init'));
 		add_action('wp_enqueue_scripts', array($this, 'frontend_scripts'));
@@ -213,15 +213,6 @@ class WP_Event_Manager extends WPEM_Updater {
         $locale = apply_filters('plugin_locale', get_locale(), $domain);
 		load_textdomain($domain, WP_LANG_DIR . "/wp-event-manager/".$domain."-" .$locale. ".mo");
 		load_plugin_textdomain($domain, false, dirname(plugin_basename(__FILE__)) . '/languages/');
-	}
-
-	/**
-	 * Load the functions files for WP Event Manager.
-	 * @since 1.0.0
-	 */
-	public function include_template_functions() {
-		include('wp-event-manager-functions.php');
-		include('wp-event-manager-template.php');
 	}
 
 	/**
