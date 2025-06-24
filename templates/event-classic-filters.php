@@ -128,8 +128,8 @@ do_action('event_manager_event_filters_before', $atts); ?>
 									'orderby' => 'name', 
 									'selected' => $selected_event_type, 
 									'hide_empty' => false, 
-									'placeholder' => 'Choose an event type', 
-									'multiple_text' => 'Choose event types')); ?>
+									'placeholder' => __('Choose an event type', 'wp-event-manager'), 
+									'multiple_text' => __('Choose event types', 'wp-event-manager'))); ?>
 						<?php else :
 							event_manager_dropdown_selection(
 								array('value' => 'slug',
