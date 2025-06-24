@@ -322,8 +322,11 @@ EventSubmission = function () {
                 var selectedValue = this.value;
                 if (selectedValue == '' || selectedValue == 'no') {
                     jQuery('.fieldset-event_health_guidelines').hide();
+                    jQuery('.fieldset-enable_health_guideline_other').hide();
+                    jQuery('input[name=enable_health_guideline_other][value="no"]').prop('checked', true).trigger('change');
                 } else {
                     jQuery('.fieldset-event_health_guidelines').show();
+                    jQuery('.fieldset-enable_health_guideline_other').show();
                 }
             },
 

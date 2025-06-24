@@ -330,8 +330,11 @@ var Admin = function () {
 
                         if (jQuery(this).val() == "yes")  {
                             jQuery('._event_health_guidelines').closest('.form-field').show();
+                            jQuery('[name="_enable_health_guideline_other"]').closest('.form-field').show();
                         } else {
                             jQuery('._event_health_guidelines').closest('.form-field').hide();
+                            jQuery('[name="_enable_health_guideline_other"]').closest('.form-field').hide();
+                            jQuery('input[name="_enable_health_guideline_other"][value="no"]').prop('checked', true).trigger('change');
                         }
                     },
 
