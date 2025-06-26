@@ -191,6 +191,7 @@ var Admin = function () {
             jQuery('body').on('click', '.wp_event_manager_upload_file_button', Admin.fileUpload.addFile);
             jQuery(".wp_event_manager_add_another_file_button").on('click', Admin.fileUpload.addAnotherFile);
             jQuery('body').on('change', '#_event_end_date, #_event_start_date, #_event_start_time, #_event_end_time', Admin.actions.checkEndDate);
+            Admin.actions.checkEndDate();
             //upgrade database
             jQuery("#wp_event_manager_upgrade_database").on('click', Admin.actions.upgradeDatabase);
 

@@ -96,6 +96,7 @@ EventSubmission = function () {
                 }
             }
             jQuery('body').on('change', '#event_end_date, #event_start_date, #event_start_time, #event_end_time', EventSubmission.actions.checkEndDate);
+            EventSubmission.actions.checkEndDate();
 
             if (jQuery('input[data-picker="datepicker"]#event_end_date').length > 0) {
                 jQuery('input[data-picker="datepicker"]#event_end_date').datepicker({
