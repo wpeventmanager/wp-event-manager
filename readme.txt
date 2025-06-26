@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 5.4.1
 Tested up to: 6.6.2
-Stable Tag: 3.1.50
+Stable Tag: 3.1.51
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -339,6 +339,16 @@ WordPress does not have a built-in event calendar. However, if you want to add a
 
 
 == Changelog ==
+
+= [3.1.51] 27-06-2025 =
+
+Fixed: Improved the Plugin Deactivation Logic
+Fixed: Events tickets can now be edited from the backend.
+Fixed: The advanced section other additional health guidance option, will work independently
+Fixed: Translation issues are resolved.
+Fixed: When the Listing Expiry Date is not set. The event end date is considered the Listing expiry date
+Fixed: While creating a new Event, the Event End time now comes after the start time
+Fixed: Vulnerability issue Resolved.
 
 = [3.1.50] 10-06-2025 =
 
