@@ -2282,7 +2282,7 @@ function wpem_get_organizer_all_fields() {
 *
 * @since 1.0.6
 */
-// if (!function_exists('get_wpem_plugins_info')) {
+if (!function_exists('get_wpem_plugins_info')) {
 	function get_wpem_plugins_info() {
 		$plugins_info = array();
 		if (!function_exists('get_plugins')) {
@@ -2295,6 +2295,7 @@ function wpem_get_organizer_all_fields() {
 				$plugin_info = array();
 				$plugin_info['Name'] = $plugin['Name'];
 				$plugin_info['TextDomain'] = $plugin['TextDomain'];
+				$plugin_info['plugin_files'] = $filename;
 				$plugin_info['Version'] = $plugin['Version'];
 				$plugin_info['Title'] = $plugin['Title'];
 				$plugin_info['AuthorName'] = $plugin['AuthorName'];
@@ -2303,4 +2304,4 @@ function wpem_get_organizer_all_fields() {
 		} 
 		return $plugins_info;
 	}
-// }
+}

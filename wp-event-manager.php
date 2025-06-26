@@ -2,6 +2,7 @@
 /**
 * Plugin Name: WP Event Manager
 * Plugin URI: https://www.wp-eventmanager.com/
+* Update URI: wp-event-manager-sell-tickets
 * Description: Lightweight, scalable and full-featured event listings & management plugin for managing event listings from the Frontend and Backend.
 * Author: WP Event Manager
 * Author URI: https://www.wp-eventmanager.com

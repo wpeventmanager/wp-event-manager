@@ -30,7 +30,6 @@ if (!function_exists('wpem_addon_license_manage_menu')) {
 	 * @since 1.2
 	 */
 	function wpem_addon_license_manage_menu() {
-		error_log("wpem_addon_license_manage_menu");
 		if(!empty(get_wpem_plugins_info())){
 			add_submenu_page(
 				'edit.php?post_type=event_listing',

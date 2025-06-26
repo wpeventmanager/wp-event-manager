@@ -51,7 +51,9 @@ class WPEM_Updater {
 		$this->load_errors();
 
 		add_action( 'shutdown', array( $this, 'store_errors' ) );
-		add_action( 'pre_set_site_transient_update_plugins', array( $this, 'check_for_updates' ) );
+		if ( is_admin() && current_user_can( 'update_plugins' ) ) {
+			add_action( 'site_transient_update_plugins', array( $this, 'check_for_updates' ), 10 );
+		}
 		add_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 
 		if ( current_user_can( 'update_plugins' ) ) {
@@ -324,48 +326,54 @@ class WPEM_Updater {
 
 	//Check for plugin updates.
 	public function check_for_updates( $check_for_updates_data ) {
-		global $wp_version;
 
 		if ( empty( $check_for_updates_data->checked ) ) {
 			return $check_for_updates_data;
 		}
-
-		$plugin_names = array();
-		$plugin_slugs = array();
-		$plugin_licenses = array();
-		$plugin_emails = array();
-		$plugin_versions = array();
-		
-		foreach($this->plugin_data as $plugin_info){
-			$licence_key = get_option(  $plugin_info['TextDomain'] . '_licence_key', true );
-			$email       = get_option(  $plugin_info['TextDomain'] . '_email', true );
-			if ( ! $licence_key ) {
-				return $check_for_updates_data;
+		$cached_response = get_transient( 'wpem_bulk_plugin_update_check' );
+		if ( false !== $cached_response ) {
+			$response = $cached_response;
+		} else {
+			$plugin_names = array();
+			$plugin_slugs = array();
+			$plugin_licenses = array();
+			$plugin_files = array();
+			$plugin_emails = array();
+			$plugin_versions = array();
+			foreach($this->plugin_data as $plugin_info){
+				$licence_key = get_option(  $plugin_info['TextDomain'] . '_licence_key', true );
+				$email       = get_option(  $plugin_info['TextDomain'] . '_email', true );
+				// if ( ! $licence_key ) {
+				// 	return $check_for_updates_data;
+				// }
+				array_push($plugin_names,  $plugin_info['Name']);
+				array_push($plugin_slugs,  $plugin_info['TextDomain']);
+				array_push($plugin_files,  $plugin_info['plugin_files']);
+				array_push($plugin_versions,  $plugin_info['Version']);
+				array_push($plugin_emails,  $email);
+				array_push($plugin_licenses,  $licence_key);
 			}
-			array_push($plugin_names,  $plugin_info['Name']);
-			array_push($plugin_slugs,  $plugin_info['TextDomain']);
-			array_push($plugin_versions,  $plugin_info['Version']);
-			array_push($plugin_emails,  $email);
-			array_push($plugin_licenses,  $licence_key);
+			// Set version variables.
+			$response = $this->get_plugin_version($plugin_names, $plugin_slugs, $plugin_licenses, $plugin_emails, $plugin_versions);
+			// Cache it
+			if ( is_object( $response ) ) {
+				set_transient( 'wpem_bulk_plugin_update_check', $response, HOUR_IN_SECONDS * 6 );
+			}
 		}
-
-		// Set version variables.
-		$response = $this->get_plugin_version($plugin_names, $plugin_slugs, $plugin_licenses, $plugin_emails, $plugin_versions);
 		if(isset($response) && !empty($response) && is_object($response)){
-			
 			foreach ($this->plugin_data as $plugin_info) {
 				$plugin_slug = $plugin_info['TextDomain'];
-				if(isset($response->$plugin_slug->new_version)){
-					
-					$new_version = $response->$plugin_slug->new_version;
-					if (isset($transient->checked[$plugin_slug]) && !isset($transient->response[$plugin_slug]) && version_compare( $new_version, $plugin_info['Version'], '>' ) ) {
-						$check_for_updates_data->response[ $plugin_info['TextDomain'] ] = $response[$plugin_slug];
+				$new_version = $response->$plugin_slug['new_version'];
+				if(isset($new_version)){
+					if (isset($check_for_updates_data->checked[$plugin_info['plugin_files']]) && version_compare( $new_version, $plugin_info['Version'], '>' ) ) {
+						$response->$plugin_slug['plugin'] = $plugin_info['plugin_files'];
+						$check_for_updates_data->response[ $plugin_info['plugin_files'] ] = (object)$response->$plugin_slug;
 					}
 				}
 			}
 		}
-			
 		return $check_for_updates_data;
+	
 	}
 
 	//Take over the Plugin info screen.
@@ -445,7 +453,7 @@ class WPEM_Updater {
 	public function handle_errors( $errors ) {
 		if ( !empty( $errors['no_key'] ) ) {
 			// translators: 1: plugin name, 2: plugin name (repeated for setup)
-			$this->add_error( sprintf( __('A licence key for %1$s could not be found. Maybe you forgot to enter a licence key when setting up %2$s.', 'wp-event-manager'), esc_html( $this->plugin_data['Name'] ), esc_html( $this->plugin_data['Name'] ) ) );
+			$this->add_error( sprintf( __('A licence key for could not be found. Maybe you forgot to enter a licence key when setting up.', 'wp-event-manager')) );
 		} elseif ( !empty( $errors['invalid_request'] ) ) {
 			$this->add_error( 'Invalid update request' );
 		} elseif ( !empty( $errors['invalid_key'] ) ) {
@@ -470,7 +478,7 @@ class WPEM_Updater {
 		}
 
 		// Remove our filter on the site transient.
-		remove_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_for_updates' ) );
+		remove_filter( 'site_transient_update_plugins', array( $this, 'check_for_updates' ) );
 
 		$update_cache = get_site_transient( 'update_plugins' );
 

@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author  WPEM Team
  */
 class WPEM_Updater_API {
-	private static $api_url = 'wp-eventmanager.com/?wc-api=wpemstore_licensing_update_api';
+	private static $api_url = 'https://wp-eventmanager.com/?wc-api=wpemstore_licensing_update_api';
 
 	/**
 	 * Sends and receives data to and from the server API.
@@ -30,7 +30,6 @@ class WPEM_Updater_API {
 
 		$args    = wp_parse_args( $args, $defaults );
 		$request = wp_remote_get( self::$api_url . '&' . http_build_query( $args, '', '&' ) );
-
 		if ( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
 			return false;
 		}
