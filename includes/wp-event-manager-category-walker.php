@@ -34,7 +34,7 @@ class WP_Event_Manager_Category_Walker extends Walker {
 			$output .= ' selected="selected"';
 
 		$output .= '>';
-		$output .= $pad . esc_js($cat_name);
+		$output .= $pad . esc_html($cat_name);
 
 		if(!empty($args['show_count'])) {
 			$output .= '&nbsp;(' . $object->count . ')';
