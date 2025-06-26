@@ -95,6 +95,7 @@ EventSubmission = function () {
                     });
                 }
             }
+            jQuery('body').on('change', '#event_end_date, #event_start_date, #event_start_time, #event_end_time', EventSubmission.actions.checkEndDate);
 
             if (jQuery('input[data-picker="datepicker"]#event_end_date').length > 0) {
                 jQuery('input[data-picker="datepicker"]#event_end_date').datepicker({
@@ -343,6 +344,38 @@ EventSubmission = function () {
                     jQuery('.fieldset-event_health_guidelines_other').hide();
                 } else {
                     jQuery('.fieldset-event_health_guidelines_other').show();
+                }
+            },
+
+            /// <summary>
+            /// Check end date and time time
+            /// </summary>
+            /// <param name="parent" type="Event"></param>
+            /// <returns type="actions" />
+            /// <since>1.0.0</since>
+            checkEndDate: function (event) {
+
+                const startDate = jQuery('#event_start_date').val();
+                const endDate = jQuery('#event_end_date').val();
+                const startTime = jQuery('#event_start_time').val();
+
+                if (startDate && endDate && startDate === endDate && startTime) {
+
+                    jQuery('#event_end_time').timepicker('remove');
+
+                    jQuery('#event_end_time').timepicker({
+                        'timeFormat': wp_event_manager_event_submission.i18n_timepicker_format,
+                        'step': wp_event_manager_event_submission.i18n_timepicker_step,
+                        'minTime': startTime
+                    });
+                } else {
+
+                    jQuery('#event_end_time').timepicker('remove');
+
+                    jQuery('#event_end_time').timepicker({
+                        'timeFormat': wp_event_manager_event_submission.i18n_timepicker_format,
+                        'step': wp_event_manager_event_submission.i18n_timepicker_step
+                    });
                 }
             },
 
