@@ -96,6 +96,7 @@ EventSubmission = function () {
                 }
             }
             jQuery('body').on('change', '#event_end_date, #event_start_date, #event_start_time, #event_end_time', EventSubmission.actions.checkEndDate);
+            EventSubmission.actions.checkEndDate();
 
             if (jQuery('input[data-picker="datepicker"]#event_end_date').length > 0) {
                 jQuery('input[data-picker="datepicker"]#event_end_date').datepicker({
@@ -362,14 +363,14 @@ EventSubmission = function () {
                 if (startDate && endDate && startDate === endDate && startTime) {
 
                     jQuery('#event_end_time').timepicker('remove');
-
                     jQuery('#event_end_time').timepicker({
                         'timeFormat': wp_event_manager_event_submission.i18n_timepicker_format,
                         'step': wp_event_manager_event_submission.i18n_timepicker_step,
-                        'minTime': startTime
+                        'disableTimeRanges': [['12:00am', startTime]],
+                        'forceRoundTime': true,
+                        'showDuration': false
                     });
                 } else {
-
                     jQuery('#event_end_time').timepicker('remove');
 
                     jQuery('#event_end_time').timepicker({
