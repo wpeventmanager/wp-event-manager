@@ -368,11 +368,12 @@ var Admin = function () {
                         if (startDate && endDate && startDate === endDate && startTime) {
 
                             jQuery('#_event_end_time').timepicker('remove');
-
                             jQuery('#_event_end_time').timepicker({
                                 'timeFormat': wp_event_manager_admin_js.i18n_timepicker_format,
                                 'step': wp_event_manager_admin_js.i18n_timepicker_step,
-                                'minTime': startTime
+                                'disableTimeRanges': [['12:00am', startTime]],
+                                'forceRoundTime': true,
+                                'showDuration': false
                             });
                         } else {
 
