@@ -95,6 +95,8 @@ EventSubmission = function () {
                     });
                 }
             }
+            jQuery('body').on('change', '#event_end_date, #event_start_date, #event_start_time, #event_end_time', EventSubmission.actions.checkEndDate);
+            EventSubmission.actions.checkEndDate();
 
             if (jQuery('input[data-picker="datepicker"]#event_end_date').length > 0) {
                 jQuery('input[data-picker="datepicker"]#event_end_date').datepicker({
@@ -322,8 +324,11 @@ EventSubmission = function () {
                 var selectedValue = this.value;
                 if (selectedValue == '' || selectedValue == 'no') {
                     jQuery('.fieldset-event_health_guidelines').hide();
+                    jQuery('.fieldset-enable_health_guideline_other').hide();
+                    jQuery('input[name=enable_health_guideline_other][value="no"]').prop('checked', true).trigger('change');
                 } else {
                     jQuery('.fieldset-event_health_guidelines').show();
+                    jQuery('.fieldset-enable_health_guideline_other').show();
                 }
             },
 
@@ -340,6 +345,38 @@ EventSubmission = function () {
                     jQuery('.fieldset-event_health_guidelines_other').hide();
                 } else {
                     jQuery('.fieldset-event_health_guidelines_other').show();
+                }
+            },
+
+            /// <summary>
+            /// Check end date and time time
+            /// </summary>
+            /// <param name="parent" type="Event"></param>
+            /// <returns type="actions" />
+            /// <since>1.0.0</since>
+            checkEndDate: function (event) {
+
+                const startDate = jQuery('#event_start_date').val();
+                const endDate = jQuery('#event_end_date').val();
+                const startTime = jQuery('#event_start_time').val();
+
+                if (startDate && endDate && startDate === endDate && startTime) {
+
+                    jQuery('#event_end_time').timepicker('remove');
+                    jQuery('#event_end_time').timepicker({
+                        'timeFormat': wp_event_manager_event_submission.i18n_timepicker_format,
+                        'step': wp_event_manager_event_submission.i18n_timepicker_step,
+                        'disableTimeRanges': [['12:00am', startTime]],
+                        'forceRoundTime': true,
+                        'showDuration': false
+                    });
+                } else {
+                    jQuery('#event_end_time').timepicker('remove');
+
+                    jQuery('#event_end_time').timepicker({
+                        'timeFormat': wp_event_manager_event_submission.i18n_timepicker_format,
+                        'step': wp_event_manager_event_submission.i18n_timepicker_step
+                    });
                 }
             },
 

@@ -115,7 +115,7 @@ class WP_Event_Manager_Admin {
 			);
 			wp_enqueue_script('wp-event-manager-admin-js');
 		}
-
+		wp_enqueue_script('wpem-dompurify', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dom-purify/dompurify.min.js', [], '3.0.5', true);
 		wp_register_script('wp-event-manager-admin-settings', EVENT_MANAGER_PLUGIN_URL . '/assets/js/admin-settings.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
 		wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
 		wp_enqueue_script('chosen');

@@ -7,7 +7,7 @@
 * Author URI: https://www.wp-eventmanager.com
 * Text Domain: wp-event-manager
 * Domain Path: /languages
-* Version: 3.1.50
+* Version: 3.1.51
 * Since: 1.0.0
 * Requires WordPress Version at least: 5.4.1
 * Copyright: 2019 WP Event Manager
@@ -43,7 +43,7 @@ class WP_Event_Manager {
 	 * @var plugin version
 	 * @since  3.1.33
 	 */
-	private static $wpem_verion = '3.1.50';
+	private static $wpem_verion = '3.1.51';
 
 
 	/**
@@ -250,6 +250,7 @@ class WP_Event_Manager {
 
 		// jQuery Chosen - vendor
 		if(apply_filters('event_manager_chosen_enabled', $chosen_used_on_page)) {
+			wp_enqueue_script('wpem-dompurify', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dom-purify/dompurify.min.js', [], '3.0.5', true);
 			wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
 			wp_register_script('wp-event-manager-term-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/term-multiselect.min.js', array('jquery', 'chosen'), EVENT_MANAGER_VERSION, true);
 			wp_register_script('wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/multiselect.min.js', array('jquery', 'chosen'), EVENT_MANAGER_VERSION, true);
@@ -395,7 +396,7 @@ class WP_Event_Manager {
 		
 		wp_register_style('wp-event-manager-grid-style', EVENT_MANAGER_PLUGIN_URL . '/assets/css/wpem-grid.min.css');
 		wp_register_style('wp-event-manager-font-style', EVENT_MANAGER_PLUGIN_URL . '/assets/fonts/style.css');
-		
+				
 		wp_enqueue_style('wp-event-manager-grid-style');
 		wp_enqueue_style('wp-event-manager-font-style');
 	}

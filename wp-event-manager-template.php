@@ -53,6 +53,7 @@ function get_event_manager_template($template_name, $args = array(), $template_p
         realpath(get_stylesheet_directory() . '/' . $template_path),
         realpath(get_template_directory() . '/' . $template_path),
         realpath($default_path),
+		realpath( EVENT_MANAGER_PLUGIN_DIR . '/templates' ),
     ];
     $is_valid = false;
     foreach ($allowed_paths as $allowed_path) {

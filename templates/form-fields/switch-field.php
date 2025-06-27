@@ -12,13 +12,13 @@
 		<div class="health-guidelines-switches">
 			<?php foreach ($options as $option_key => $option_label) : ?>
 				<p class="form-field">
-					<label class="switch">
+					<label class="wpem-input-switch">
 						<input type="checkbox" 
 							name="<?php echo esc_attr($key); ?>[<?php echo esc_attr($option_key); ?>]" 
 							id="<?php echo esc_attr($key . '_' . $option_key); ?>" class="<?php echo esc_attr($key); ?>"
 							value="1"
 							<?php echo isset($field['value'][$option_key]) ? 'checked' : ''; ?>>
-						<span class="slider round"></span>
+						<span class="wpem-input-slider round"></span>
 					</label>
 					<label for="<?php echo esc_attr($key . '_' . $option_key); ?>">
 						<?php echo esc_html($option_label); ?>

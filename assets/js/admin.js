@@ -190,7 +190,8 @@ var Admin = function () {
             jQuery('body').on('click', '.wp_event_manager_upload_file_button_multiple', Admin.fileUpload.multipleFile);
             jQuery('body').on('click', '.wp_event_manager_upload_file_button', Admin.fileUpload.addFile);
             jQuery(".wp_event_manager_add_another_file_button").on('click', Admin.fileUpload.addAnotherFile);
-
+            jQuery('body').on('change', '#_event_end_date, #_event_start_date, #_event_start_time, #_event_end_time', Admin.actions.checkEndDate);
+            Admin.actions.checkEndDate();
             //upgrade database
             jQuery("#wp_event_manager_upgrade_database").on('click', Admin.actions.upgradeDatabase);
 
@@ -220,6 +221,7 @@ var Admin = function () {
             if (jQuery('input[name=_event_ticket_options]:checked').length > 0) {
                 jQuery('input[name=_event_ticket_options]:checked').trigger('change');
             }
+            jQuery('body').on('change', '#_event_end_date', Admin.actions.setListingExpery);
 
              //upgrade database
              jQuery("#shortcode_list_filter_action").on('click', Admin.actions.getShortcodeList);
@@ -329,10 +331,62 @@ var Admin = function () {
 
                         if (jQuery(this).val() == "yes")  {
                             jQuery('._event_health_guidelines').closest('.form-field').show();
+                            jQuery('[name="_enable_health_guideline_other"]').closest('.form-field').show();
                         } else {
                             jQuery('._event_health_guidelines').closest('.form-field').hide();
+                            jQuery('[name="_enable_health_guideline_other"]').closest('.form-field').hide();
+                            jQuery('input[name="_enable_health_guideline_other"][value="no"]').prop('checked', true).trigger('change');
                         }
                     },
+
+                    /// <summary>
+                    /// Set listing expiry
+                    /// </summary>
+                    /// <returns type="initialization settings" />
+                    /// <since>3.1.16</since>
+                    setListingExpery: function (event) {
+                        event.preventDefault();
+                        var endDate = jQuery(this).val();
+                        var expiryDate = jQuery('#_event_expiry_date').val();
+
+                        if (expiryDate === '') {
+                            jQuery('#_event_expiry_date').val(endDate);
+                        }
+                    },
+
+                    /// <summary>
+                    /// Check end date and time time
+                    /// </summary>
+                    /// <param name="parent" type="Event"></param>
+                    /// <returns type="actions" />
+                    /// <since>1.0.0</since>
+                    checkEndDate: function (event) {
+
+                        const startDate = jQuery('#_event_start_date').val();
+                        const endDate = jQuery('#_event_end_date').val();
+                        const startTime = jQuery('#_event_start_time').val();
+
+                        if (startDate && endDate && startDate === endDate && startTime) {
+
+                            jQuery('#_event_end_time').timepicker('remove');
+                            jQuery('#_event_end_time').timepicker({
+                                'timeFormat': wp_event_manager_admin_js.i18n_timepicker_format,
+                                'step': wp_event_manager_admin_js.i18n_timepicker_step,
+                                'disableTimeRanges': [['12:00am', startTime]],
+                                'forceRoundTime': true,
+                                'showDuration': false
+                            });
+                        } else {
+
+                            jQuery('#_event_end_time').timepicker('remove');
+
+                            jQuery('#_event_end_time').timepicker({
+                                'timeFormat': wp_event_manager_admin_js.i18n_timepicker_format,
+                                'step': wp_event_manager_admin_js.i18n_timepicker_step
+                            });
+                        }
+                    },
+
 
                     /// <summary>
                     /// Hide other guideline text
