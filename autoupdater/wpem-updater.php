@@ -343,9 +343,9 @@ class WPEM_Updater {
 			foreach($this->plugin_data as $plugin_info){
 				$licence_key = get_option(  $plugin_info['TextDomain'] . '_licence_key', true );
 				$email       = get_option(  $plugin_info['TextDomain'] . '_email', true );
-				// if ( ! $licence_key ) {
-				// 	return $check_for_updates_data;
-				// }
+				if ( ! $licence_key ) {
+					continue;
+				}
 				array_push($plugin_names,  $plugin_info['Name']);
 				array_push($plugin_slugs,  $plugin_info['TextDomain']);
 				array_push($plugin_files,  $plugin_info['plugin_files']);
