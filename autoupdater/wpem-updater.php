@@ -359,22 +359,19 @@ class WPEM_Updater {
 				if ( is_object( $response ) ) {
 					set_transient( 'wpem_bulk_plugin_update_check', $response, HOUR_IN_SECONDS * 6 );
 				}
-				if(isset($response) && !empty($response) && is_object($response)){
-					foreach ($this->plugin_data as $plugin_info) {
-						$plugin_slug = $plugin_info['TextDomain'];
-						if(!isset($response->$plugin_slug)) {
-							continue;
-						}
-						$new_version = $response->$plugin_slug['new_version'];
-						if(isset($new_version)){
-							if (isset($check_for_updates_data->checked[$plugin_info['plugin_files']]) && version_compare( $new_version, $plugin_info['Version'], '>' ) ) {
-								$response->$plugin_slug['plugin'] = $plugin_info['plugin_files'];
-								$check_for_updates_data->response[ $plugin_info['plugin_files'] ] = (object)$response->$plugin_slug;
-							}
-						}
+			}	
+		}
+		if(isset($response) && !empty($response) && is_object($response)){
+			foreach ($this->plugin_data as $plugin_info) {
+				$plugin_slug = $plugin_info['TextDomain'];
+				$new_version = $response->$plugin_slug['new_version'];
+				if(isset($new_version)){
+					if (isset($check_for_updates_data->checked[$plugin_info['plugin_files']]) && version_compare( $new_version, $plugin_info['Version'], '>' ) ) {
+						$response->$plugin_slug['plugin'] = $plugin_info['plugin_files'];
+						$check_for_updates_data->response[ $plugin_info['plugin_files'] ] = (object)$response->$plugin_slug;
 					}
 				}
-			}	
+			}
 		}
 		return $check_for_updates_data;	
 	}
