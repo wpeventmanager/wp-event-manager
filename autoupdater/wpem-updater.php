@@ -363,6 +363,9 @@ class WPEM_Updater {
 		if(isset($response) && !empty($response) && is_object($response)){
 			foreach ($this->plugin_data as $plugin_info) {
 				$plugin_slug = $plugin_info['TextDomain'];
+				if(!isset($response->$plugin_slug)) {
+                    continue;
+                }
 				$new_version = $response->$plugin_slug['new_version'];
 				if(isset($new_version)){
 					if (isset($check_for_updates_data->checked[$plugin_info['plugin_files']]) && version_compare( $new_version, $plugin_info['Version'], '>' ) ) {
