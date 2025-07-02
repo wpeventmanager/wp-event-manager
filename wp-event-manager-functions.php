@@ -1044,7 +1044,13 @@ function event_manager_dropdown_selection($args = '') {
     );
 	$defaults = apply_filters('event_manager_dropdown_selection_args', $defaults);
 	$args = wp_parse_args($args, $defaults);
-    $args = array_map('sanitize_text_field', $args);
+	foreach ($args as $arg_key => $arg_value) {
+		if (is_array($arg_value)) {
+			$args[$arg_key] = array_map('sanitize_text_field', $arg_value);
+		} else {
+			$args[$arg_key] = sanitize_text_field($arg_value);
+		}
+	}
 
     $nonce = wp_create_nonce('event_manager_dropdown_selection');
     if (!wp_verify_nonce($nonce, 'event_manager_dropdown_selection')) {
