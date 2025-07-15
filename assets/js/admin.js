@@ -380,10 +380,12 @@ var Admin = function () {
 
                             jQuery('#_event_end_time').timepicker('remove');
 
-                            jQuery('#_event_end_time').timepicker({
-                                'timeFormat': wp_event_manager_admin_js.i18n_timepicker_format,
-                                'step': wp_event_manager_admin_js.i18n_timepicker_step
-                            });
+                            if (typeof wp_event_manager_admin_js !== 'undefined') {
+                                jQuery('#_event_end_time').timepicker({
+                                    'timeFormat': wp_event_manager_admin_js.i18n_timepicker_format,
+                                    'step': wp_event_manager_admin_js.i18n_timepicker_step
+                                });
+                            }
                         }
                     },
 
