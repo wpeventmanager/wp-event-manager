@@ -35,34 +35,26 @@ function get_event_manager_current_user_role(){
  * @return void
  */
 function get_event_manager_template($template_name, $args = array(), $template_path = 'wp-event-manager', $default_path = ''){
-	if ($args && is_array($args)) {
-        foreach ($args as $key => $val) {
-            ${$key} = $val;
-        }
-    }
+	if($args && is_array($args)) {
+		extract($args);
+	}
 
-    // Sanitize template name
-    $template_name = str_replace(["\0", '\\'], '', $template_name);
-    $template_name = preg_replace('#\.\.[\\/]#', '', $template_name); // Prevent traversal
-    $template_name = trim($template_name);
+    $template_name = str_replace("\0", '', $template_name);
+    $template_name = str_replace('\\', '/', $template_name);
+    $template_name = preg_replace('#\.\./#', '', $template_name);
+    $template_name = preg_replace('#\.\.\\\#', '', $template_name);
 
-    // Locate full path
     $template_path_full = locate_event_manager_template($template_name, $template_path, $default_path);
     if (!$template_path_full || !file_exists($template_path_full)) {
         return;
     }
-
     $real_template_path = realpath($template_path_full);
-
-    // Define allowed directories
-    $allowed_paths = array_filter([
+    $allowed_paths = [
         realpath(get_stylesheet_directory() . '/' . $template_path),
         realpath(get_template_directory() . '/' . $template_path),
-        $default_path ? realpath($default_path) : null,
-        realpath(EVENT_MANAGER_PLUGIN_DIR . '/templates'),
-    ]);
-
-    // Ensure resolved template is inside allowed paths
+        realpath($default_path),
+		realpath( EVENT_MANAGER_PLUGIN_DIR . '/templates' ),
+    ];
     $is_valid = false;
     foreach ($allowed_paths as $allowed_path) {
         if ($allowed_path && strpos($real_template_path, $allowed_path) === 0) {
@@ -72,9 +64,8 @@ function get_event_manager_template($template_name, $args = array(), $template_p
     }
 
     if (!$is_valid) {
-        return; // Block unauthorized includes
+        return;
     }
-
     include $real_template_path;
 }
 
@@ -94,22 +85,23 @@ function get_event_manager_template($template_name, $args = array(), $template_p
  */
 function locate_event_manager_template($template_name, $template_path = 'wp-event-manager', $default_path = ''){
 	// Look within passed path within the theme - this is priority.
-	 $template = locate_template([
-        trailingslashit($template_path) . $template_name,
-        $template_name,
-    ]);
+	$template = locate_template(
+		array(
+			trailingslashit($template_path) . $template_name,
+			$template_name
+		)
+	);
 
 	// Get default template.
-	if (!$template && $default_path !== false) {
-        $default_path = $default_path ?: EVENT_MANAGER_PLUGIN_DIR . '/templates/';
-        $candidate = trailingslashit($default_path) . $template_name;
-        if (file_exists($candidate)) {
-            $template = $candidate;
-        }
-    }
+	if(!$template && $default_path !== false) {
+		$default_path = $default_path ? $default_path : EVENT_MANAGER_PLUGIN_DIR . '/templates/';
+		if(file_exists(trailingslashit($default_path) . $template_name)) {
+			$template = trailingslashit($default_path) . $template_name;
+		}
+	}
 
 	// Return what we found.
-    return apply_filters('event_manager_locate_template', $template, $template_name, $template_path);
+	return apply_filters('event_manager_locate_template', $template, $template_name, $template_path);
 }
 
 /**
@@ -122,16 +114,16 @@ function locate_event_manager_template($template_name, $template_path = 'wp-even
  */
 function get_event_manager_template_part($slug, $name = '', $template_path = 'wp-event-manager', $default_path = ''){
 	$template = '';
-    if ($name) {
-        $template = locate_event_manager_template("{$slug}-{$name}.php", $template_path, $default_path);
-    }
+	if($name) {
+		$template = locate_event_manager_template("{$slug}-{$name}.php", $template_path, $default_path);
+	}
 	// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/wp-event-manager/slug.php
-	 if (!$template) {
-        $template = locate_event_manager_template("{$slug}.php", $template_path, $default_path);
-    }
-    if ($template) {
-        load_template($template, false);
-    }
+	if(!$template) {
+		$template = locate_event_manager_template("{$slug}.php", $template_path, $default_path);
+	}
+	if($template) {
+		load_template($template, false);
+	}
 }
 
 /**
