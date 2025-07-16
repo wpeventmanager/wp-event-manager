@@ -2303,3 +2303,38 @@ function wpem_get_organizer_all_fields() {
     }
 	return $organizer_fields;
 }
+
+/**
+ * Returns all fields types for wp event manager form.
+ * 
+ * @param null
+ * @return array
+ * @since 3.2.0
+ */
+function wpem_get_form_field_types() {
+	return apply_filters(
+		'event_manager_form_field_types',
+		array(
+			'text'             => esc_html__('Text', 'wp-event-manager'),
+			'time'             => esc_html__('Time', 'wp-event-manager'),
+			'checkbox'         => esc_html__('Checkbox', 'wp-event-manager'),
+			'date'             => esc_html__('Date', 'wp-event-manager'),
+			'timezone'         => esc_html__('Timezone', 'wp-event-manager'),
+			'file'             => esc_html__('File', 'wp-event-manager'),
+			'hidden'           => esc_html__('Hidden', 'wp-event-manager'),
+			'multiselect'      => esc_html__('Multiselect', 'wp-event-manager'),
+			'number'           => esc_html__('Number', 'wp-event-manager'),
+			'radio'            => esc_html__('Radio', 'wp-event-manager'),
+			'repeated'         => esc_html__('Repeated', 'wp-event-manager'),
+			'select'           => esc_html__('Select', 'wp-event-manager'),
+			'term-checklist'   => esc_html__('Term Checklist', 'wp-event-manager'),
+			'term-multiselect' => esc_html__('Term Multiselect', 'wp-event-manager'),
+			'term-select'      => esc_html__('Term Select', 'wp-event-manager'),
+			'textarea'         => esc_html__('Textarea', 'wp-event-manager'),
+			'wp-editor'        => esc_html__('WP Editor', 'wp-event-manager'),
+			'url'              => esc_html__('URL', 'wp-event-manager'),
+			'email'            => esc_html__('Email', 'wp-event-manager'),
+			'switch'            => esc_html__('Switch', 'wp-event-manager'),
+		)
+	);
+}

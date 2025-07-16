@@ -30,7 +30,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php if (!$organizers) : ?>
+				<?php if (empty($organizers)) : ?>
 					<tr>
 						<td class="wpem_data_td_empty" colspan="<?php echo esc_attr(count($organizer_dashboard_columns)); ?>"><?php esc_html_e('There are no organizers.', 'wp-event-manager'); ?></td>
 					</tr>
@@ -56,7 +56,7 @@
 										$organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?get_organizer_youtube($organizer):'';
 
 										if (empty($organizer_website) && empty($organizer_facebook) && empty($organizer_instagram) && empty($organizer_twitter) && empty($organizer_youtube)) {
-											echo wp_kses_post('<h1 class="text-center">-</h1>');
+											?><h1 class="text-center">-</h1><?php
 										} else { ?>
 											<div class="wpem-organizer-social-links">
 												<div class="wpem-organizer-social-lists">
@@ -96,17 +96,17 @@
 											</div>
 										<?php } 
 									elseif ('organizer_events' === $key) : 
-										$events = get_event_by_organizer_id($organizer->ID); ?>
+										$organizer_events = get_event_by_organizer_id($organizer->ID); ?>
 
-										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_attr(sizeof($events)); ?></a>
-											<?php if (!empty($events)) : ?>
+										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_attr(sizeof($organizer_events)); ?></a>
+											<?php if (!empty($organizer_events)) : ?>
 												<span class="organizer-events-list wpem-tooltiptext">
-													<?php foreach ($events as $event) : ?>
-														<span><a href="<?php echo esc_url(get_the_permalink($event->ID)); ?>"><?php echo esc_attr(get_the_title($event->ID)); ?></a></span>
+													<?php foreach ($organizer_events as $organizer_event) : ?>
+														<span><a href="<?php echo esc_url(get_the_permalink($organizer_event->ID)); ?>"><?php echo esc_html(get_the_title($organizer_event->ID)); ?></a></span>
 													<?php endforeach; ?>
 												</span>
 											<?php else : ?>
-												<span class="organizer-events-list wpem-tooltiptext"><span><a href="#"><?php esc_html_e('There is no event.', 'wp-event-manager'); ?></a></span></span>
+												<span class="organizer-events-list wpem-tooltiptext"><span><a href="#" onclick="return false;"><?php esc_html_e('There is no event.', 'wp-event-manager'); ?></a></span></span>
 											<?php endif; ?>
 										</div>
 
