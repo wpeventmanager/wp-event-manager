@@ -1032,40 +1032,24 @@ class WP_Event_Manager_Shortcodes{
 
 		$id = absint($atts['id']);
 
-		if($id > 0 ) {
-			$event_post = get_post($id);
-			if ( !$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_post->ID))
-				return '';
-		}
-
-		ob_start();
-
-		$args = array(
-			'post_type'   => 'event_listing',
-			'post_status' => 'publish'
-		);
-
-		if(!$id) {
+		if (!$id) {
 			return '';
-		} else {
-			$args['p'] = absint($id);
 		}
-		$events = new WP_Query($args);
-		if($events->have_posts()) :
-			while ($events->have_posts()) : $events->the_post(); ?>
-				<div class="event-manager-registration-wrapper">
-					<?php
-					$register = get_event_registration_method();
-					if (!empty($register) && isset($register->type)) {
-						/**
-						 * Output registration details for specific type
-						 * This uses dynamic hook based on method type (e.g., 'event_manager_registration_details_email')
-						 */
-						do_action('event_manager_registration_details_' . sanitize_key($register->type), $register);
-					} ?>
-				</div>
-			<?php endwhile;
-		endif;
+
+		$event_post = get_post($id);
+		if (!$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_post->ID)) {
+			return '';
+		}
+
+		setup_postdata($event_post); // Temporarily set global post data
+		ob_start();	?>
+		<div class="event-manager-registration-wrapper">
+			<?php $register = get_event_registration_method();
+			if (!empty($register) && isset($register->type)) {
+				do_action('event_manager_registration_details_' . sanitize_key($register->type), $register);
+			} ?>
+		</div>
+		<?php
 		wp_reset_postdata();
 		return ob_get_clean();
 	}
@@ -1770,7 +1754,7 @@ class WP_Event_Manager_Shortcodes{
 						</div>
 					<?php else : ?>
     					<div id="load_more_events_loader">
-        				<a class="load_more_upcoming_events" id="load_more_events" href="#" data-page="2"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
+        					<a class="load_more_upcoming_events" id="load_more_events" href="#" data-page="2"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
     					</div>
 						<div id="per-page-settings" style="display:none;" data-per-page="<?php echo esc_attr($per_page); ?>"></div>
 					<?php endif;
