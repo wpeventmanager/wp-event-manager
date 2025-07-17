@@ -285,6 +285,9 @@ The calendar addon from WP Event Manager lets you add an attractive events calen
 = Does WordPress have a Calendar feature? =
 WordPress does not have a built-in event calendar. However, if you want to add a calendar to your events website, you can easily do that with a specialized calendar plugin like WP Event Manager’s calendar addon.
 
+= How can I report security bugs? =
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.]( https://patchstack.com/database/vdp/9e5fb8c2-a4d2-4fb4-b9f5-97c718eca70a )
+
 == Screenshots ==
 
 1. Event Listing - Grid Layout
