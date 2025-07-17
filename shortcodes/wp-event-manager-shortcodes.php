@@ -935,37 +935,23 @@ class WP_Event_Manager_Shortcodes{
 	public function output_event($atts)	{
 		
 		$atts = shortcode_atts(array(
-			'id' => '',
+			'id'       => '',
 		), $atts);
 
-		$id = absint($atts['id']);
+		$event_id = absint($id);
 
-		if(!$id)
-			return;
-
-		if('' === get_option('event_manager_hide_expired_content', 1)) {
-			$post_status = array('publish', 'expired');
-		} else {
-			$post_status = 'publish';
+		$event_post = get_post($event_id);
+		if ( !$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_id)) {
+			// Optional: return a notice instead of nothing
+			return __('You are not allowed to view this event.', 'wp-event-manager');
 		}
 
 		ob_start();
 
-		$args = array(
-			'post_type'   => 'event_listing',
-			'post_status' => $post_status,
-			'p'           => $id
-		);
+		// Existing logic
+		get_event_manager_template('content-single-event_listing.php', array('event' => $event_post));
 
-		$events = new WP_Query($args);
-		if($events->have_posts()) :
-			while ($events->have_posts()) : $events->the_post(); ?>
-				<div class="clearfix" />
-				<?php get_event_manager_template_part('content-single', 'event_listing'); 
-			endwhile;
-		endif;
-		wp_reset_postdata();
-		return '<div class="event_shortcode single_event_listing">' . ob_get_clean() . '</div>';
+		return ob_get_clean();
 	}
 
 	/**
@@ -1045,6 +1031,12 @@ class WP_Event_Manager_Shortcodes{
 		), $atts);
 
 		$id = absint($atts['id']);
+
+		if($id > 0 ) {
+			$event_post = get_post($id);
+			if ( !$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_post->ID))
+				return '';
+		}
 
 		ob_start();
 
@@ -1810,12 +1802,12 @@ class WP_Event_Manager_Shortcodes{
 
 		$event_id = absint($atts['event_id']);
 		$posts_per_page = absint($atts['posts_per_page']);
-
+		$event = get_post($event_id);
 		// Bail if not valid
-		if (!$event_id || get_post_type($event_id) !== 'event_listing') {
-			return '';
+		if (!$event || $event->post_type !== 'event_listing' || !current_user_can('read_post', $id)) {
+			return ''; // Or show a "not allowed" message
 		}
-		
+
 		// Get related categories
 		$categories = wp_get_post_terms($event_id, 'event_listing_category', array('fields' => 'ids'));
 		if (empty($categories)) {
@@ -1876,16 +1868,10 @@ class WP_Event_Manager_Shortcodes{
 
 		ob_start();
 
-		$args = array(
-			'post_type'   => 'event_listing',
-			'post_status' => 'publish',
-			'p'           => $id
-		);
-
-		$event = new WP_Query($args);
-
-		if(empty($event->posts))
-			return;
+		$event = get_post($id);
+		if (!$event || $event->post_type !== 'event_listing' || !current_user_can('read_post', $id)) {
+			return ''; // Or show a "not allowed" message
+		}
 
 		ob_start();
 
@@ -1927,16 +1913,10 @@ class WP_Event_Manager_Shortcodes{
 
 		ob_start();
 
-		$args = array(
-			'post_type'   => 'event_listing',
-			'post_status' => 'publish',
-			'p'           => $id
-		);
-
-		$event = new WP_Query($args);
-
-		if(empty($event->posts))
-			return;
+		$event = get_post($id);
+		if (!$event || $event->post_type !== 'event_listing' || !current_user_can('read_post', $id)) {
+			return ''; // Or show a "not allowed" message
+		}
 
 		ob_start();
 
