@@ -21,10 +21,15 @@ if(!defined('ABSPATH')) {
 	exit;
 }
 
+// Include WPEM Plugin Updater Class
+if ( !class_exists( 'WPEM_Updater' ) ) {
+	include( 'autoupdater/wpem-updater.php' );
+}
+
 /**
  * A class that defines the main features of the WP event manager plugin.
  */
-class WP_Event_Manager {
+class WP_Event_Manager extends WPEM_Updater {
 
 	public $forms;
 	public $post_types;
@@ -120,7 +125,6 @@ class WP_Event_Manager {
 		add_action('wp_event_manager_organizer_submit_before', array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
 		add_action('wp_event_manager_event_submit_before', array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
 
-		
 		// Switch theme
 		add_action('after_switch_theme', array('WP_Event_Manager_Ajax', 'add_endpoint'), 10);
 		add_action('after_switch_theme', array($this->post_types, 'register_post_types'), 11);
@@ -138,6 +142,9 @@ class WP_Event_Manager {
 		// Defaults for core actions
 		add_action('event_manager_notify_new_user', 'wp_event_manager_notify_new_user', 10, 2);
 
+		// Call updater for WPEM addons update
+		$this->init_updates( __FILE__ );
+		
 		// Duplicate the_content filter for Wp event Manager plugin
 		global $wp_embed;
 		add_filter('wpem_the_content', array($wp_embed, 'run_shortcode'), 8);
