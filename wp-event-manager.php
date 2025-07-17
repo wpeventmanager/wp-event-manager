@@ -142,8 +142,10 @@ class WP_Event_Manager extends WPEM_Updater {
 		// Defaults for core actions
 		add_action('event_manager_notify_new_user', 'wp_event_manager_notify_new_user', 10, 2);
 
-		// Call updater for WPEM addons update
-		$this->init_updates( __FILE__ );
+		if(is_admin()){
+			// Call updater for WPEM addons update
+			$this->init_updates( __FILE__ );
+		}
 		
 		// Duplicate the_content filter for Wp event Manager plugin
 		global $wp_embed;
