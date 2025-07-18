@@ -1788,7 +1788,7 @@ class WP_Event_Manager_Shortcodes{
 		$posts_per_page = absint($atts['posts_per_page']);
 		$event = get_post($event_id);
 		// Bail if not valid
-		if (!$event || $event->post_type !== 'event_listing' || !current_user_can('read_post', $id)) {
+		if (!$event || $event->post_type !== 'event_listing' || !current_user_can('read_post', $event_id)) {
 			return ''; // Or show a "not allowed" message
 		}
 
