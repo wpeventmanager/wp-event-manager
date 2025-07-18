@@ -1178,7 +1178,7 @@ class WP_Event_Manager_Shortcodes{
 
 		if($past_events->have_posts()) : ?>
 			<div class="past_event_listings">
-				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => sanitize_key( $layout_type ), 'title' => esc_html($title)));
+				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => sanitize_key( $atts['layout_type'] ), 'title' => esc_html($atts['title'])));
 				while ($past_events->have_posts()) : $past_events->the_post();
 					get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
