@@ -1306,7 +1306,7 @@ class WP_Event_Manager_Shortcodes{
 
 		// ob_start();
 
-		$organizer    = $organizers->posts[0];
+		// $organizer    = $organizers->posts[0];
 		$paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		$current_page    = isset($_REQUEST['pagination']) ? esc_attr($_REQUEST['pagination']) : esc_attr($paged);
 		$per_page        = 10;
