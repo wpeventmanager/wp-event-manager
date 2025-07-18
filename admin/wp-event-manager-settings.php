@@ -157,7 +157,7 @@ class WP_Event_Manager_Settings{
 							'name'       => 'wpem_hide_data_from_guest',
 							'std'        => '0',  
 							'label'      => __('Hide Data from Guest Users', 'wp-event-manager'),
-							'cb_label'   => __('Hide sensitive event data from non-logged-in(guest) users.', 'wp-event-manager'),
+							'cb_label'   => __('Hide sensitive event organizer data from non-logged-in(guest) users.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
 							'attributes' => array(),
