@@ -938,7 +938,7 @@ class WP_Event_Manager_Shortcodes{
 			'id'       => '',
 		), $atts);
 
-		$event_id = absint($id);
+		$event_id = absint($atts['id']);
 
 		$event_post = get_post($event_id);
 		if ( !$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_id)) {
