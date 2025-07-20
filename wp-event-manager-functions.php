@@ -1649,6 +1649,9 @@ function get_all_venue_array($user_id = '', $args = [], $blank_option = false) {
 	$venue_array =array();
 
 	if(is_array($all_venue) && !empty($all_venue)) {
+
+		$all_venue = wp_list_sort($all_venue, 'post_title', 'ASC');
+		
 		if($blank_option) {
 			$venue_array[''] = __('Select Venue', 'wp-event-manager');
 		}
