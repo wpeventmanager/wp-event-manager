@@ -782,6 +782,9 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-register-label {
   display: none;
 }
+.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-cancel-label {
+  display: none;
+}
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-date {
   display: none;
 }
@@ -916,6 +919,19 @@ input.wpem-theme-button:hover span {
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-register-label {
   display: inline-block;
 }
+.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-cancel-label {
+  display: inline-block;
+}
+.wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-cancel-label .wpem-event-cancel-label-text {
+  background: #ff0000;
+  color: var(--wpem-white-color);
+  padding: 5px 7px;
+  display: inline-block;
+  line-height: 15px;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 4px;
+}
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-register-label .wpem-event-register-label-text {
   background: #64b60c;
   color: var(--wpem-white-color);
@@ -999,6 +1015,23 @@ input.wpem-theme-button:hover span {
   font-size: 14px;
   border-radius: 4px;
 }
+
+.wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-cancel-label {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-cancel-label .wpem-event-cancel-label-text {
+  background: #ff0000;
+  color: var(--wpem-white-color);
+  padding: 5px 7px;
+  display: inline-block;
+  line-height: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 4px;
+}
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-date .wpem-event-date-type .wpem-from-date {
   display: inline-block;
   float: left;
@@ -1030,6 +1063,9 @@ input.wpem-theme-button:hover span {
   display: none;
 }
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-register-label {
+  display: none;
+}
+.wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-cancel-label {
   display: none;
 }
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details {

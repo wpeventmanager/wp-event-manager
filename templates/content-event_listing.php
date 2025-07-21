@@ -19,7 +19,10 @@ $thumbnail  = get_event_thumbnail( $post, 'full' );
                 <div class="wpem-event-banner">
                     <div class="wpem-event-banner-img" style="background-image: url(<?php echo esc_attr($thumbnail) ?>)">
                         <!-- Hide in list View // Show in Box View -->
-                        <?php do_action('event_already_registered_title'); ?>
+                        <?php do_action('event_already_registered_title'); 
+                        if (is_event_cancelled()){
+                            echo ' <div class="wpem-event-cancel-label"><span class="wpem-event-cancel-label-text">'.__('Cancelled', 'wp-event-manager').'</span></div>';  
+                         } ?>
                         <div class="wpem-event-date">
                             <div class="wpem-event-date-type">
                                 <?php
@@ -96,7 +99,10 @@ $thumbnail  = get_event_thumbnail( $post, 'full' );
                         if (get_option('event_manager_enable_event_types') && get_event_type()) { ?>
                             <div class="wpem-event-type"><?php display_event_type(); ?></div>
                         <?php } 
-                        do_action('event_already_registered_title'); ?>
+                        do_action('event_already_registered_title');
+                        if (is_event_cancelled()){
+                            echo ' <div class="wpem-event-cancel-label"><span class="wpem-event-cancel-label-text">'.__('Cancelled', 'wp-event-manager').'</span></div>';  
+                         } ?>
 
                         <!-- Show in list View // Hide in Box View -->
                         <?php
