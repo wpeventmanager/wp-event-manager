@@ -932,27 +932,44 @@ class WP_Event_Manager_Shortcodes{
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event($atts)	{
+	public function output_event($atts) {
+		if ( defined('REST_REQUEST') && REST_REQUEST ) {
+			return '';
+		}
 		
-		$atts = shortcode_atts(array(
-			'id'       => '',
-		), $atts);
+		extract(shortcode_atts(array(
+			'id' => esc_attr(''),
+		), $atts));
 
-		$event_id = absint($atts['id']);
-
-		$event_post = get_post($event_id);
-		if ( !$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_id)) {
-			// Optional: return a notice instead of nothing
-			return __('You are not allowed to view this event.', 'wp-event-manager');
+		$event_post = get_post($id);
+		if (!$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $id)) {
+    		return __('You are not allowed to view this event.', 'wp-event-manager');
+		}
+		if('' === get_option('event_manager_hide_expired_content', 1)) {
+			$post_status = array('publish', 'expired');
+		} else {
+			$post_status = 'publish';
 		}
 
 		ob_start();
 
-		// Existing logic
-		get_event_manager_template('content-single-event_listing.php', array('event' => $event_post));
+		$args = array(
+			'post_type'   => 'event_listing',
+			'post_status' => $post_status,
+			'p'           => $id
+		);
 
-		return ob_get_clean();
+		$events = new WP_Query($args);
+		if($events->have_posts()) :
+			while ($events->have_posts()) : $events->the_post(); ?>
+				<div class="clearfix" />
+				<?php get_event_manager_template_part('content-single', 'event_listing'); 
+			endwhile;
+		endif;
+		wp_reset_postdata();
+		return '<div class="event_shortcode single_event_listing">' . ob_get_clean() . '</div>';
 	}
+
 
 	/**
 	 * Event Summary shortcode.
