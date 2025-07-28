@@ -330,10 +330,10 @@ class WPEM_Updater {
 		if ( empty( $check_for_updates_data->checked ) ) {
 			return $check_for_updates_data;
 		}
-		$cached_response = get_transient( 'wpem_bulk_plugin_update_check' );
-		if ( false !== $cached_response ) {
-			$response = $cached_response;
-		} else {
+		// $cached_response = get_transient( 'wpem_bulk_plugin_update_check' );
+		// if ( false !== $cached_response ) {
+		// 	$response = $cached_response;
+		// } else {
 			$plugin_names = array();
 			$plugin_slugs = array();
 			$plugin_licenses = array();
@@ -356,11 +356,11 @@ class WPEM_Updater {
 				// Set version variables.
 				$response = $this->get_plugin_version($plugin_names, $plugin_slugs, $plugin_licenses, $plugin_emails, $plugin_versions);
 				// Cache it
-				if ( is_object( $response ) ) {
-					set_transient( 'wpem_bulk_plugin_update_check', $response, HOUR_IN_SECONDS * 6 );
-				}
+				// if ( is_object( $response ) ) {
+				// 	set_transient( 'wpem_bulk_plugin_update_check', $response, HOUR_IN_SECONDS * 6 );
+				// }
 			}	
-		}
+		// }
 		if(isset($response) && !empty($response) && is_object($response)){
 			foreach ($this->plugin_data as $plugin_info) {
 				$plugin_slug = $plugin_info['TextDomain'];
