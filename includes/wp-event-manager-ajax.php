@@ -399,6 +399,14 @@ function load_more_upcoming_events($atts) {
 	 */
 	public function add_organizer() {
 
+		if ( ! is_user_logged_in() || ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json([
+				'code' => 403,
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Unauthorized access.', 'wp-event-manager' ) . '</div>',
+			]);
+			wp_die();
+		}
+
 		$params = array();
 		parse_str($_REQUEST['form_data'], $params);
 		$params['organizer_description'] = sanitize_text_field($_REQUEST['organizer_description']);

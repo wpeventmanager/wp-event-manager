@@ -192,6 +192,11 @@ A prior Backup does no harm before updating the plugin!',
 	 */
 	public function wpem_upgrade_database()	{
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'Unauthorized access.', 'wp-event-manager' ) );
+			wp_die();
+		}
+
 		$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 		$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
 		$organizer_fields               = $form_submit_organizer_instance->merge_with_custom_fields('backend');

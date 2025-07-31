@@ -52,6 +52,19 @@ class WP_Event_Manager_Forms {
 		if(!class_exists('WP_Event_Manager_Form')) {
 			include 'wp-event-manager-form-abstract.php';
 		}
+		$form_name = sanitize_key($form_name);
+		$allowed_forms = array(
+			'submit-event',
+			'edit-event',
+			'submit-venue',
+			'edit-venue',
+			'submit-organizer',
+			'edit-organizer',
+		);
+
+		if ( ! in_array( $form_name, $allowed_forms, true ) ) {
+			return false;
+		}
 
 		// Now try to load the form_name
 		$form_class  = 'WP_Event_Manager_Form_' . str_replace('-', '_', $form_name);
