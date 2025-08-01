@@ -2652,3 +2652,14 @@ function get_hidden_form_fields($form_option, $key_name){
 	endif;
 	return $form_fields;
 }
+
+/**
+ * Filter the '%' sign in event title.
+ * @since 3.2.0
+ * @param string $alt_text Alt text.
+ * @return string
+ */
+function filter_event_alt_text( $alt_text ) {
+	return str_replace( '%', '%%', $alt_text );
+}
+add_filter( 'display_event_alt_text', 'filter_event_alt_text' );
