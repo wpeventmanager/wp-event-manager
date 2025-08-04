@@ -1247,6 +1247,8 @@ class WP_Event_Manager_Writepanels {
 						if(!empty($_POST[$key])) {
 							$v_text = wp_kses_post(stripslashes($_POST[$key]));
 							update_post_meta($post_id, sanitize_key($key), $v_text);
+						}else{
+							update_post_meta($post_id, sanitize_key($key), '');
 						}
 						break;
 					default:
