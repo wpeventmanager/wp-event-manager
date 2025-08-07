@@ -823,6 +823,13 @@ class WP_Event_Manager_Shortcodes{
 			'event_online'    	=> $event_online,
 			'paged'             => $current_page,
 		)));
+
+		$default_view = get_option('event_manager_default_view');
+
+		if (!empty($default_view)) {
+			$layout_type = $default_view;
+		}
+
 		if($events->have_posts()) :
 
 			wp_enqueue_script('wp-event-manager-ajax-filters');

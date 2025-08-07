@@ -320,6 +320,18 @@ class WP_Event_Manager_Settings{
 								'event-crystal-filters' => __('Crystal View', 'wp-event-manager'),
 							),
 						),
+						array(
+							'name'    => 'event_manager_default_view',
+							'std'     => 'all',
+							'label'   => __('Default Event Listing View', 'wp-event-manager'),
+							'desc'    => '',
+							'type'    => 'radio',
+							'options' => array(
+								'list' => __('List View', 'wp-event-manager'),
+								'box' => __('Box View', 'wp-event-manager'),
+								'all' => __('Both', 'wp-event-manager'),
+							),
+						),
 					),
 				),
 				'event_submission'     => array(
