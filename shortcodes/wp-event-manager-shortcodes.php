@@ -1666,9 +1666,15 @@ class WP_Event_Manager_Shortcodes{
 			'selected_event_types'  => '',
 			'layout_type'           => 'all',
 			'title'                 => __('Upcoming Events', 'wp-event-manager'),
+			'show_filters'          => true,
+			'filter_style'          => '',
 		), $atts);
+		$show_filters              = $atts['show_filters'];
 
 		$paged = is_front_page() ? max(1, get_query_var('page')) : max(1, get_query_var('paged'));
+		$per_page = $atts['per_page'];
+		$layout_type = $atts['layout_type'];
+		$title = $atts['title'];
 
 		$args = array(
 			'post_type'       => 'event_listing',
@@ -1747,6 +1753,61 @@ class WP_Event_Manager_Shortcodes{
 				'value'   => sanitize_text_field($atts['location']),
 				'compare' => 'LIKE',
 			);
+		}
+
+		$allowed_templates = apply_filters('event_manager_output_events_defaults', array(
+			'event-classic-filters.php',
+			'event-crystal-filters.php',
+		));
+
+		$filter_file_option = get_option('event_manager_filter_design');
+		$filter_file = $filter_file_option ? basename($filter_file_option . '.php') : 'event-classic-filters.php';
+		$datetimes = WP_Event_Manager_Filters::get_datetimes_filter();
+		$selected_datetime = $atts['selected_datetime'];
+		$show_categories = true;
+		$show_category_multiselect = '';
+		$categories = '';
+		$selected_category = $atts['selected_categories'];
+		$show_event_types = true;
+		$show_event_type_multiselect = '';
+		$event_types = '';
+		$selected_event_type = $atts['selected_event_types'];
+		$show_ticket_prices = '';
+		$ticket_prices = '';
+		$selected_ticket_price = '';
+		$location = $atts['location'];
+		$keywords = $atts['keywords'];
+		$event_online = '';
+		if($show_filters) {
+			$event_filter_args = array(
+				'per_page' => $per_page,
+				'datetimes' => $datetimes,
+				'selected_datetime' => $selected_datetime,
+				'show_categories' => $show_categories,
+				'show_category_multiselect' => $show_category_multiselect,
+				'categories' => $categories,
+				'selected_category' => !empty($selected_category) ? explode(',', $selected_category) : '',
+				'show_event_types' => $show_event_types,
+				'show_event_type_multiselect' => $show_event_type_multiselect,
+				'event_types' => $event_types,
+				'selected_event_type' => !empty($selected_event_type) ? explode(',', $selected_event_type) : '',
+				'show_ticket_prices' => $show_ticket_prices,
+				'ticket_prices' => $ticket_prices,
+				'selected_ticket_price' => $selected_ticket_price,
+				'atts' => $atts,
+				'location' => $location,
+				'keywords' => $keywords,
+				'event_online' => $event_online,
+			);
+			// Only load if it's in the allowed list
+			if (in_array($filter_file, $allowed_templates, true)) {
+				get_event_manager_template($filter_file, $event_filter_args);
+			} else {
+				get_event_manager_template('event-classic-filters.php', $event_filter_args);
+			}
+			//get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
+			//get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
+
 		}
 
 		$args = apply_filters('event_manager_upcoming_event_listings_args', $args);

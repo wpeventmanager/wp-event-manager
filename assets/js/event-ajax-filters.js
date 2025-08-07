@@ -74,7 +74,9 @@ var EventAjaxFilters = function() {
             jQuery('#event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset); 
             jQuery('div.event_listings_main').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
             jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
-           
+            if (jQuery('.event_listings_upcoming').length > 0) {
+                jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(EventAjaxFilters.actions.getUpcomingEvents);
+            }
             jQuery('.wpem-event-filter-version-2-search-btn').change(function() {
                 var target = jQuery(this).closest('div.event_listings');
                 target.triggerHandler('update_event_listings', [1, false]);
@@ -423,7 +425,40 @@ var EventAjaxFilters = function() {
                         console.error('AJAX Error:', status, error);
                     }
                 });
-            }
+            },
+
+            getUpcomingEvents: function(event){
+                event.preventDefault();
+                var search_keywords = jQuery('#search_keywords').val();
+                var search_location = jQuery('#search_location').val();
+                var search_categories = jQuery('#search_categories').val();
+                var search_event_types = jQuery('#search_event_types').val();
+                var search_datetimes = jQuery('#search_datetimes').val();
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "get_upcoming_listings"),
+                    data: {
+                        action: 'get_upcoming_listings',
+                        search_keywords: search_keywords,
+                        search_location: search_location,
+                        search_datetimes: search_datetimes,
+                        search_categories: search_categories,
+                        search_event_types: search_event_types
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            jQuery('#event-listing-view').html(response.data.events_html);
+                            jQuery('#event-listing-view').data('locked', true);         
+                        } else {
+                            console.error('Failed to load events:', response.data.error);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                    }
+                });
+            },
         }
     }
 };
