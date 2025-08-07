@@ -4398,3 +4398,7 @@ div.wpem-empty-date{
   align-items: center;
   gap: 10px;
 }
+
+.search-field input{
+  width: 164px !important;
+}
