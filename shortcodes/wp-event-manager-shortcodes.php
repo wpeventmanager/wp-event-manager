@@ -828,6 +828,9 @@ class WP_Event_Manager_Shortcodes{
 
 		if (!empty($default_view)) {
 			$layout_type = $default_view;
+			if ($default_view == 'calendar') {
+				$layout_type = 'all';
+			}
 		}
 
 		if($events->have_posts()) :

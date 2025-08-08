@@ -326,11 +326,11 @@ class WP_Event_Manager_Settings{
 							'label'   => __('Default Event Listing View', 'wp-event-manager'),
 							'desc'    => '',
 							'type'    => 'radio',
-							'options' => array(
+							'options' => apply_filters('wpem_event_view_options', array(
 								'list' => __('List View', 'wp-event-manager'),
-								'box' => __('Box View', 'wp-event-manager'),
-								'all' => __('Both', 'wp-event-manager'),
-							),
+								'box'  => __('Box View', 'wp-event-manager'),
+								'all'  => __('Both', 'wp-event-manager'),
+							)),
 						),
 					),
 				),
