@@ -1,6 +1,9 @@
 EventSubmission = function () {
     /// <summary>Constructor function of the event EventSubmission class.</summary>
     /// <returns type="EventSubmission" />
+    var file_frame;
+    var file_target_input;
+    var file_target_wrapper;
     return {
         ///<summary>
         ///Initializes the event submission.
@@ -97,6 +100,7 @@ EventSubmission = function () {
             }
             jQuery('body').on('change', '#event_end_date, #event_start_date, #event_start_time, #event_end_time', EventSubmission.actions.checkEndDate);
             EventSubmission.actions.checkEndDate();
+            jQuery('body').on('click', '.wp_event_manager_upload_file_button', EventSubmission.actions.addFile);
 
             if (jQuery('input[data-picker="datepicker"]#event_end_date').length > 0) {
                 jQuery('input[data-picker="datepicker"]#event_end_date').datepicker({
@@ -458,6 +462,49 @@ EventSubmission = function () {
                         }
                     }
                 }
+            },
+
+            /// <summary>
+            /// Upload new file from admin area.
+            /// </summary>
+            /// <param name="parent" type="Event"></param>
+            /// <returns type="actions" />
+            /// <since>1.0.0</since>
+            addFile: function (event) {
+                event.preventDefault();
+                file_target_wrapper = jQuery(this).closest('.event-manager-uploaded-file');
+                file_target_input = file_target_wrapper.find('input');
+                var data_field_name = jQuery(this).parents(".form-field")[0].dataset.fieldName;
+
+                var image_types = ['jpg', 'gif', 'png', 'jpeg', 'jpe', 'webp'];
+                file_target_wrapper_append = jQuery(this).closest('.event-manager-uploaded-file2');
+                // If the media frame already exists, reopen it.
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+                // Create the media frame.
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: jQuery(this).data('uploader_title'),
+                    button: {
+                        text: jQuery(this).data('uploader_button_text'),
+                    },
+                    multiple: false  // Set to true to allow multiple files to be selected.
+                });
+                // When an image is selected, run a callback.
+                file_frame.on('select', function () {
+                    // We set multiple to false so only get one image from the uploader.
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    jQuery(file_target_input).val(attachment.url);
+                    jQuery(file_target_wrapper_append).find(".event-manager-uploaded-file").remove();
+                    if (jQuery.inArray(attachment.subtype, image_types) >= 0) {
+                        jQuery(file_target_wrapper_append).prepend("<span class='event-manager-uploaded-file'><input type='hidden' name='" + data_field_name + "' id='" + data_field_name + "' placeholder='' value='" + attachment.url + "'><span class='event-manager-uploaded-file-preview'><img src='" + attachment.url + "'><a class='event-manager-remove-uploaded-file' href='javascript:void(0);'>[remove]</a></span>");
+                    } else {
+                        jQuery(file_target_wrapper_append).prepend("<span class='event-manager-uploaded-file'><input type='hidden' name='" + data_field_name + "' id='" + data_field_name + "' placeholder='' value='" + attachment.url + "'><span class='event-manager-uploaded-file-preview'><a class='event-manager-remove-uploaded-file' href='javascript:void(0);'>[remove]</a></span></span>");
+                    }
+                });
+                // Finally, open the modal.
+                file_frame.open();
             },
 
             /// <summary>
