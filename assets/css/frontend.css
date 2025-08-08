@@ -2828,6 +2828,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   transition: all 0.2s;
 }
 .wpem-register-event-form .event-manager-registration-form.event-manager-form fieldset input[type="text"],
+.wpem-register-event-form .event-manager-registration-form.event-manager-form fieldset input[type="email"],
 .wpem-register-event-form .event-manager-registration-form.event-manager-form fieldset select {
   width: 100%;
 }
