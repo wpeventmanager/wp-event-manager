@@ -327,9 +327,9 @@ class WP_Event_Manager_Settings{
 							'desc'    => '',
 							'type'    => 'radio',
 							'options' => apply_filters('wpem_event_view_options', array(
+								'all'  => __('All', 'wp-event-manager'),
 								'list' => __('List View', 'wp-event-manager'),
 								'box'  => __('Box View', 'wp-event-manager'),
-								'all'  => __('Both', 'wp-event-manager'),
 							)),
 						),
 					),
