@@ -1679,7 +1679,7 @@ class WP_Event_Manager_Shortcodes{
 			'show_filters'          => true,
 			'filter_style'          => '',
 		), $atts);
-		$show_filters              = $atts['show_filters'];
+		$show_filters = filter_var( $atts['show_filters'], FILTER_VALIDATE_BOOLEAN );
 
 		$paged = is_front_page() ? max(1, get_query_var('page')) : max(1, get_query_var('paged'));
 		$per_page = $atts['per_page'];
