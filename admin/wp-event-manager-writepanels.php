@@ -1418,9 +1418,6 @@ class WP_Event_Manager_Writepanels {
 		if(isset($fields['_organizer_description'])) {
 			unset($fields['_organizer_description']);
 		}
-		if(isset($fields['_organizer_logo'])) {
-			unset($fields['_organizer_logo']);
-		}
 		if($current_user->has_cap('edit_others_event_listings')) {
 			$fields['_organizer_author'] = array(
 				'label'    => __('Posted by', 'wp-event-manager'),
@@ -1493,6 +1490,21 @@ class WP_Event_Manager_Writepanels {
 				switch ($type) {
 					case 'textarea':
 						update_post_meta($post_id, $key, wp_kses_post(stripslashes($_POST[$key])));
+						break;
+					case 'file':
+						if (isset($_POST[$key])) {
+							$value = '';
+							if (!empty($_POST['_thumbnail_id'])) {
+								$thumb_id = intval($_POST['_thumbnail_id']);
+								$thumb_url = wp_get_attachment_url($thumb_id);
+
+								if ($thumb_url) {
+									$value = esc_url_raw($thumb_url);
+								}
+							}
+
+							update_post_meta($post_id, $key, $value);
+						}
 						break;
 					case 'checkbox':
 						if(isset($_POST[$key])) {
