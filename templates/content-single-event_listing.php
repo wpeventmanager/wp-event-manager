@@ -276,7 +276,7 @@ $event = $post; ?>
                                                                             foreach ($files as $file_url) {
                                                                                 $file_ext = strtolower(pathinfo($file_url, PATHINFO_EXTENSION));
                                                                                 if (in_array($file_ext, $image_exts)) {
-                                                                                    echo '<img src="' . esc_url($file_url) . '" alt="' . esc_attr($field_label) . '" style="max-width:150px; height: 150px;; margin-right:10px;" />';
+                                                                                    echo '<img src="' . esc_url($file_url) . '" alt="' . esc_attr($field_label) . '" style="max-width:150px; height: 150px; margin-right:10px; object-fit: cover;" />';
                                                                                 } else {
                                                                                     echo '<a href="' . esc_url($file_url) . '" download class="wpem-download-button" style="margin-right:10px;">Download File</a>';
                                                                                 }
