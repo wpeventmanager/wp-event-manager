@@ -137,6 +137,9 @@ $event = $post; ?>
                                             if(isset($field_data['visibility']) && ($field_data['visibility'] == false || $field_data['visibility'] == 0 )){
                                                 continue;
                                             } 
+											if($field_value == ""){
+												continue;  //Skips over empty additional fields
+					    					}
                                             if (isset($field_value)) {
                                                 $additional_fields[$field_name] = $field_data;
                                             }
