@@ -519,7 +519,7 @@ class WP_Event_Manager_Ajax {
 		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json( [
 				'code'    => 403,
-				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Unauthorized access.', 'wp-event-manager' ) . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please log in to add an organizer!', 'wp-event-manager' ) . '</div>',
 			] );
 			wp_die();
 		}
@@ -601,7 +601,7 @@ class WP_Event_Manager_Ajax {
 		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json( [
 				'code'    => 403,
-				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Unauthorized access.', 'wp-event-manager' ) . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please log in to add venue!', 'wp-event-manager' ) . '</div>',
 			] );
 			wp_die();
 		}
