@@ -3,10 +3,10 @@
 Contributors: wpeventmanager,ashokdudhat,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
-Requires at least: 5.4.1
-Tested up to: 6.6.2
-Stable Tag: 3.1.51
-Requires PHP: 5.6
+Requires at least: 6.3.0
+Tested up to: 6.8.2
+Stable Tag: 3.2.0
+Requires PHP: 8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -342,6 +342,27 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 
 == Changelog ==
+
+= [3.2.0] 13-08-2025 =
+
+Fixed: License activation link is not working at admin side
+Fixed: Vulnerability issue
+Fixed: Rss Feed there is not field of start and end date
+Fixed: Various Code improvements and Bug Fixes
+Fixed: Registration field shows extra space in text area
+Fixed: Event type and category is selected as term multiselect then on edit event the selected value is not showing at frontside
+Fixed: Venue list shows order as alphabetically
+Fixed: Google autocomplete is not working in new filter
+Fixed: Event listing page the event tag is not showing
+Fixed: Shortcode section based on addon filter is not working
+Fixed: When submit the event, click here button is not working
+Fixed: Improved the text for the setting Hide Data from Guest Users
+Fixed: Filter text is not showing in crystal view
+Added: Filter attribute on upcoming event shortcode
+Added: The cancel event show as label with Cancelled on event listing page
+Added: Autoupdater folder
+Added: Image gallery selection for the frontend event form submission
+Added: Option to select default listing style as List or Box view
 
 = [3.1.51] 27-06-2025 =
 
