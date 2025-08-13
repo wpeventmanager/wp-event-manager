@@ -56,7 +56,7 @@
 										$organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?get_organizer_youtube($organizer):'';
 
 										if (empty($organizer_website) && empty($organizer_facebook) && empty($organizer_instagram) && empty($organizer_twitter) && empty($organizer_youtube)) {
-											?><h1 class="text-center">-</h1><?php
+											?><h1 class="text-left" style="font-weight: 200;">-</h1><?php
 										} else { ?>
 											<div class="wpem-organizer-social-links">
 												<div class="wpem-organizer-social-lists">
