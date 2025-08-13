@@ -1044,7 +1044,13 @@ function event_manager_dropdown_selection($args = '') {
     );
 	$defaults = apply_filters('event_manager_dropdown_selection_args', $defaults);
 	$args = wp_parse_args($args, $defaults);
-    $args = array_map('sanitize_text_field', $args);
+	foreach ($args as $arg_key => $arg_value) {
+		if (is_array($arg_value)) {
+			$args[$arg_key] = array_map('sanitize_text_field', $arg_value);
+		} else {
+			$args[$arg_key] = sanitize_text_field($arg_value);
+		}
+	}
 
     $nonce = wp_create_nonce('event_manager_dropdown_selection');
     if (!wp_verify_nonce($nonce, 'event_manager_dropdown_selection')) {
@@ -1643,6 +1649,9 @@ function get_all_venue_array($user_id = '', $args = [], $blank_option = false) {
 	$venue_array =array();
 
 	if(is_array($all_venue) && !empty($all_venue)) {
+
+		$all_venue = wp_list_sort($all_venue, 'post_title', 'ASC');
+		
 		if($blank_option) {
 			$venue_array[''] = __('Select Venue', 'wp-event-manager');
 		}
@@ -2296,4 +2305,40 @@ function wpem_get_organizer_all_fields() {
         unset($organizer_fields['organizer']['organizer_country']);
     }
 	return $organizer_fields;
+}
+
+/**
+ * Returns all fields types for wp event manager form.
+ * 
+ * @param null
+ * @return array
+ * @since 3.2.0
+ */
+function wpem_get_form_field_types() {
+	return apply_filters(
+		'event_manager_form_field_types',
+		array(
+			'text'             => esc_html__('Text', 'wp-event-manager'),
+			'time'             => esc_html__('Time', 'wp-event-manager'),
+			'checkbox'         => esc_html__('Checkbox', 'wp-event-manager'),
+			'date'             => esc_html__('Date', 'wp-event-manager'),
+			'timezone'         => esc_html__('Timezone', 'wp-event-manager'),
+			'file'             => esc_html__('File', 'wp-event-manager'),
+			'hidden'           => esc_html__('Hidden', 'wp-event-manager'),
+			'multiselect'      => esc_html__('Multiselect', 'wp-event-manager'),
+			'number'           => esc_html__('Number', 'wp-event-manager'),
+			'radio'            => esc_html__('Radio', 'wp-event-manager'),
+			'repeated'         => esc_html__('Repeated', 'wp-event-manager'),
+			'select'           => esc_html__('Select', 'wp-event-manager'),
+			'term-checklist'   => esc_html__('Term Checklist', 'wp-event-manager'),
+			'term-multiselect' => esc_html__('Term Multiselect', 'wp-event-manager'),
+			'term-select'      => esc_html__('Term Select', 'wp-event-manager'),
+			'textarea'         => esc_html__('Textarea', 'wp-event-manager'),
+			'wp-editor'        => esc_html__('WP Editor', 'wp-event-manager'),
+			'url'              => esc_html__('URL', 'wp-event-manager'),
+			'email'            => esc_html__('Email', 'wp-event-manager'),
+			'switch'           => esc_html__('Switch', 'wp-event-manager'),
+			'gallery'    => esc_html__('Image Galley', 'wp-event-manager'),
+		)
+	);
 }

@@ -1,4 +1,7 @@
 <?php
+if (!isset($field['type']) || $field['type'] !== 'wp-editor') {
+	return;
+}
 $editor = apply_filters('submit_event_form_wp_editor_args', array(
 	'textarea_name' => isset($field['name']) ? $field['name'] : $key,
 	'media_buttons' => false,
@@ -22,7 +25,6 @@ $editor = apply_filters('submit_event_form_wp_editor_args', array(
 
 $placeholder_text = isset($field['placeholder']) ? $field['placeholder'] : '';
 wp_editor(isset($field['value']) ? $field['value'] : $placeholder_text, $key, $editor);
-
 if (!empty($field['description'])) : ?>
 	<small class="description">
 		<?php echo wp_kses_post($field['description']); ?>

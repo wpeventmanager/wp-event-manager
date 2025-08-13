@@ -48,26 +48,54 @@ class WP_Event_Manager_Forms {
 	 * @param  string $form_name
 	 * @return string class name on success, false on failure
 	 */
-	private function load_form_class($form_name) {
-		if(!class_exists('WP_Event_Manager_Form')) {
-			include 'wp-event-manager-form-abstract.php';
+	private function load_form_class( $form_name ) {
+		// Ensure abstract base is loaded from the same directory as this file
+		if ( ! class_exists( 'WP_Event_Manager_Form' ) ) {
+			include __DIR__ . '/wp-event-manager-form-abstract.php';
 		}
 
-		// Now try to load the form_name
-		$form_class  = 'WP_Event_Manager_Form_' . str_replace('-', '_', $form_name);
-		$form_file   = EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-' . $form_name . '.php';			
+		// Normalize and strictly validate the requested form key
+		$form_name = strtolower( sanitize_key( $form_name ) );
 
-		if(class_exists($form_class)) {
-			return call_user_func(array($form_class, 'instance'));
+		// Strict allowlist: logical key => fixed filename (no user-controlled concatenation)
+		$allowed_forms = array(
+			'submit-event'     => 'wp-event-manager-form-submit-event.php',
+			'edit-event'       => 'wp-event-manager-form-edit-event.php',
+			'submit-venue'     => 'wp-event-manager-form-submit-venue.php',
+			'edit-venue'       => 'wp-event-manager-form-edit-venue.php',
+			'submit-organizer' => 'wp-event-manager-form-submit-organizer.php',
+			'edit-organizer'   => 'wp-event-manager-form-edit-organizer.php',
+		);
+
+		if ( ! isset( $allowed_forms[ $form_name ] ) ) {
+			return false; // Not whitelisted
 		}
-		if(!file_exists($form_file)) {
+
+		// Build class and target file strictly from the map above
+		$form_class = 'WP_Event_Manager_Form_' . str_replace( '-', '_', $form_name );
+
+		$forms_dir      = EVENT_MANAGER_PLUGIN_DIR . '/forms/';
+		$real_forms_dir = realpath( $forms_dir );
+		$target_file    = $forms_dir . $allowed_forms[ $form_name ];
+		$real_file_path = realpath( $target_file );
+
+		// Verify the resolved file exists and is inside the /forms directory
+		if ( false === $real_file_path || 0 !== strpos( $real_file_path, $real_forms_dir ) ) {
 			return false;
 		}
-		if(!class_exists($form_class)) {
-			include $form_file;
+
+		// Load class file if needed
+		if ( ! class_exists( $form_class ) ) {
+			include_once $real_file_path;
 		}
-		// Init the form
-		return call_user_func(array($form_class, 'instance'));
+
+		// Safety: ensure class exists and exposes instance()
+		if ( ! class_exists( $form_class ) || ! is_callable( array( $form_class, 'instance' ) ) ) {
+			return false;
+		}
+
+		// Instantiate
+		return call_user_func( array( $form_class, 'instance' ) );
 	}
 
 	/**

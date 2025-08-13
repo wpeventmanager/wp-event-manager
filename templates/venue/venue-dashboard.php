@@ -8,7 +8,7 @@
         <?php do_action('event_manager_venue_dashboard_button_action_start');
         $submit_venue = get_option('event_manager_submit_venue_form_page_id');
         if (!empty($submit_venue)) : ?>
-            <a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php esc_attr_e('Add venue', 'wp-event-manager'); ?>" href="<?php echo esc_url(get_permalink($submit_venue)); ?>"><i class="wpem-icon-plus"></i></a>
+            <a class="wpem-dashboard-header-btn wpem-dashboard-header-add-btn" title="<?php esc_html_e('Add venue', 'wp-event-manager'); ?>" href="<?php echo esc_url(get_permalink($submit_venue)); ?>"><i class="wpem-icon-plus"></i></a>
         <?php endif;
         do_action('event_manager_venue_dashboard_button_action_end'); ?>
 
@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if (!$venues) : ?>
+                <?php if (empty($venues)) : ?>
                     <tr>
                         <td colspan="4" class="wpem_data_td_empty"><?php esc_html_e('There are no venues.', 'wp-event-manager'); ?></td>
                     </tr>
@@ -52,7 +52,7 @@
                                         $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_youtube($venue):'';
 
                                         if (empty($venue_website) && empty($venue_facebook) && empty($venue_instagram) && empty($venue_twitter) && empty($venue_youtube)) {
-                                            echo wp_kses_post('<h1 class="text-center">-</h1>');
+                                            ?><span class="no-social-links">-</span><?php
                                         } else { ?>
                                             <div class="wpem-venue-social-links">
                                                 <div class="wpem-venue-social-lists">
@@ -89,12 +89,12 @@
 
                                     <?php elseif ('venue_events' === $key) : 
 
-                                        $events = get_event_by_venue_id($venue->ID); ?>
-                                        <div class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo  wp_kses_post(sizeof($events)); ?></a>
-                                            <?php if (!empty($events)) : ?>
+                                        $venue_events = get_event_by_venue_id($venue->ID); ?>
+                                        <div class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_html(count($venue_events)); ?></a>
+                                            <?php if (!empty($venue_events)) : ?>
                                                 <span class="venue-events-list wpem-tooltiptext">
-                                                    <?php foreach ($events as $event) : ?>
-                                                        <span><a href="<?php echo esc_url(get_the_permalink($event->ID)); ?>"><?php  echo wp_kses_post(get_the_title($event->ID)); ?></a></span>
+                                                    <?php foreach ($venue_events as $venue_event) : ?>
+                                                        <span><a href="<?php echo esc_url(get_the_permalink($venue_event->ID)); ?>"><?php  echo wp_kses_post(get_the_title($venue_event->ID)); ?></a></span>
                                                     <?php endforeach; ?>
                                                 </span>
                                             <?php else : ?>

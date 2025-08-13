@@ -3,16 +3,18 @@ $location = get_event_location($post_id);
 $event_type = get_event_type($post_id);
 $ticket_price  = get_event_ticket_option($post_id);
 $organizer  = get_organizer_name($post_id);
+$start_date   = get_post_meta($post_id, '_event_start_date', true);
+$end_date     = get_post_meta($post_id, '_event_end_date', true);
 
 do_action('event_fee_item_start'); ?>
 <item>
 	<title><?php esc_attr(the_title_rss()); ?></title>
-	<link><?php esc_url(the_permalink_rss()); ?></link>
+	<link><?php echo esc_url(get_permalink($post_id)); ?></link>
 	<dc:creator><?php esc_attr(the_author()); ?></dc:creator>
 	<pubDate><?php echo esc_html(mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false)); ?></pubDate>
 	<guid isPermaLink="false"><?php esc_attr(the_guid()); ?></guid>
-	<description><![CDATA[<?php wp_kses_post(the_excerpt_rss()); ?>]]></description>
-	<content:encoded><![CDATA[<?php wp_kses_post(the_content_feed()); ?>]]></content:encoded>
+	<description><![CDATA[<?php echo wp_kses_post(get_the_excerpt() ?? ''); ?>]]></description>
+	<content:encoded><![CDATA[<?php echo wp_kses_post(get_the_content_feed('rss2') ?? ''); ?>]]></content:encoded>
 	<?php
 	if($location) {
 		echo "<event_listing:location><![CDATA[" . esc_attr($location) . "]]></event_listing:location>\n";
@@ -29,5 +31,14 @@ do_action('event_fee_item_start'); ?>
 	if($organizer) {
 		echo "<event_listing:organizer><![CDATA[" . esc_attr($organizer) . "]]></event_listing:organizer>\n";
 	}
+
+	if ($start_date) {
+		echo "<event_listing:start_date><![CDATA[" . esc_html($start_date) . "]]></event_listing:start_date>\n";
+	}
+
+	if ($end_date) {
+		echo "<event_listing:end_date><![CDATA[" . esc_html($end_date) . "]]></event_listing:end_date>\n";
+	}
+
 	do_action('event_fee_item_end');  ?>
 </item> 

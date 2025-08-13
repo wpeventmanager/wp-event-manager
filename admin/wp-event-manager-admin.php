@@ -178,6 +178,7 @@ A prior Backup does no harm before updating the plugin!',
 				<tfoot>
 					<tr>
 						<td>
+							<?php wp_nonce_field( 'wpem_upgrade_database_action', 'wpem_upgrade_database_nonce' ); ?>
 							<a class="button-primary" id="wp_event_manager_upgrade_database" href="javascript:void(0)"><?php esc_attr_e('Upgrade', 'wp-event-manager'); ?></a>
 						</td>
 					</tr>
@@ -190,7 +191,17 @@ A prior Backup does no harm before updating the plugin!',
 	/**
 	 * Upgrade database.
 	 */
-	public function wpem_upgrade_database()	{
+	public function wpem_upgrade_database()	{ 
+ 
+		 // Nonce verification
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			check_ajax_referer( 'wpem_upgrade_database_action', 'wpem_upgrade_database_nonce' );
+		}
+
+		// Capability + nonce guard for database upgrade
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) || ! is_admin()) {
+			wp_die( esc_html__( 'Unauthorized access.', 'wp-event-manager' ), 403 );
+		}
 
 		$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 		$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));

@@ -12,6 +12,7 @@ $datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 <!-- Event Filter Version 2 Start -->
 
 <form class="wpem-main wpem-form-wrapper wpem-event-filter-wrapper event_filters wpem-main wpem-form-wrapper wpem-event-filter-version-2" id="event_filters">
+	<?php do_action('event_manager_event_filters_start', $atts); ?>
 	<div class="wpem-event-filter-version-2-search-row">
 		<div class="wpem-event-filter-version-2-search-col">
 			<div class="wpem-event-filter-version-2-icon">

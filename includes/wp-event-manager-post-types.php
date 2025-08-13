@@ -455,6 +455,7 @@ class WP_Event_Manager_Post_Types {
 	 * Event listing feeds.
 	 */
 	public function event_feed() {
+		header('Content-Type: application/rss+xml; charset=' . get_option('blog_charset'));
 		if(get_option('event_manager_hide_expired')) {
 			$post_status = 'publish';
 		} else {
@@ -489,7 +490,13 @@ class WP_Event_Manager_Post_Types {
 			$query_args['meta_query'][] = $location_search;
 		}
 		
-		$search_datetimes = is_array($_GET['search_datetimes']) ?  array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_GET['search_datetimes']))) : array_filter(array(sanitize_text_field(stripslashes($_GET['search_datetimes']))));
+		$search_datetimes = [];
+
+		if ( isset($_GET['search_datetimes']) ) {
+			$raw = $_GET['search_datetimes'];
+			$search_datetimes = is_array($raw) ? array_filter(array_map('sanitize_text_field', array_map('stripslashes', $raw))) : array_filter([sanitize_text_field(stripslashes($raw))]);
+		}
+
 		if(!empty($search_datetimes)) {		
 			$date_search = array();
 			
