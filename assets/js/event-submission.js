@@ -547,8 +547,9 @@ EventSubmission = function () {
                     fd.append("organizer_logo", jQuery('#organizer_logo')[0].files[0]);
 
                 fd.append("action", 'add_organizer');
-                fd.append("form_data", formData);
+                fd.append("form_data", formData); 
                 fd.append("organizer_description", organizer_description);
+                fd.append("wpem_add_organizer_nonce", jQuery('#wpem_add_organizer_nonce').val());
 
                 jQuery.ajax({
                     url: wp_event_manager_event_submission.ajax_url,
@@ -596,6 +597,7 @@ EventSubmission = function () {
                 fd.append("action", 'add_venue');
                 fd.append("form_data", formData);
                 fd.append("venue_description", venue_description);
+                fd.append("wpem_add_venue_nonce", jQuery('#wpem_add_venue_nonce').val());
 
                 jQuery.ajax({
                     url: wp_event_manager_event_submission.ajax_url,

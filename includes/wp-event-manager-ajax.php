@@ -512,10 +512,23 @@ class WP_Event_Manager_Ajax {
 	 */
 	public function add_organizer() {
 
-		if ( ! is_user_logged_in() || ! current_user_can( 'edit_posts' ) ) {
-			wp_send_json([
-				'code' => 403,
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			check_ajax_referer( 'wpem_add_organizer_action', 'wpem_add_organizer_nonce' );
+		}
+
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json( [
+				'code'    => 403,
 				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Unauthorized access.', 'wp-event-manager' ) . '</div>',
+			] );
+			wp_die();
+		}
+		
+		if ( ! isset( $_POST['wpem_add_organizer_nonce'] ) 
+			|| ! wp_verify_nonce( $_POST['wpem_add_organizer_nonce'], 'wpem_add_organizer_action' ) ) {
+			wp_send_json([
+				'code'    => 403,
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Security check failed.', 'wp-event-manager' ) . '</div>',
 			]);
 			wp_die();
 		}
@@ -580,6 +593,27 @@ class WP_Event_Manager_Ajax {
 	 * @since 3.1.16
 	 */
 	public function add_venue() {
+
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			check_ajax_referer( 'wpem_add_venue_action', 'wpem_add_venue_nonce' );
+		}
+
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json( [
+				'code'    => 403,
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Unauthorized access.', 'wp-event-manager' ) . '</div>',
+			] );
+			wp_die();
+		}
+		
+		if ( ! isset( $_POST['wpem_add_venue_nonce'] ) 
+			|| ! wp_verify_nonce( $_POST['wpem_add_venue_nonce'], 'wpem_add_venue_action' ) ) {
+			wp_send_json([
+				'code'    => 403,
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Security check failed.', 'wp-event-manager' ) . '</div>',
+			]);
+			wp_die();
+		}
 
 		$params = array();
 		parse_str($_REQUEST['form_data'], $params);

@@ -281,6 +281,7 @@ var Admin = function () {
                             dataType: 'json',
                             data: {
                                 action: 'wpem_upgrade_database',
+                                wpem_upgrade_database_nonce: jQuery('#wpem_upgrade_database_nonce').val()
                             },
                             beforeSend: function() {
                                 jQuery('.update-message').remove();

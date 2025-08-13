@@ -163,6 +163,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 					<?php do_action('submit_organizer_form_organizer_fields_end'); ?>
 
 					<div class="wpem-form-footer">
+						<?php wp_nonce_field( 'wpem_add_organizer_action', 'wpem_add_organizer_nonce' ); ?>
 						<input type="hidden" name="organizer_id" value="0">
 						<input type="hidden" name="step" value="0">
 						<input type="button" name="submit_organizer" class="wpem-theme-button wpem_add_organizer" value="<?php esc_html_e('Add Organizer', 'wp-event-manager'); ?>" />
@@ -215,6 +216,7 @@ if(get_option('enable_event_venue')) :
 					<?php do_action('submit_venue_form_venue_fields_end'); ?>
 
 					<div class="wpem-form-footer">
+						<?php wp_nonce_field( 'wpem_add_venue_action', 'wpem_add_venue_nonce' ); ?>
 						<input type="hidden" name="venue_id" value="0">
 						<input type="hidden" name="step" value="0">
 						<input type="button" name="submit_venue" class="wpem-theme-button wpem_add_venue" value="<?php esc_html_e('Add Venue', 'wp-event-manager'); ?>" />
