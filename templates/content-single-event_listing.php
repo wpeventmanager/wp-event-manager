@@ -264,6 +264,28 @@ $event = $post; ?>
 																	printf(esc_html('%s', 'wp-event-manager'),   esc_attr($field_label)); ?></a></p>
                                                                 </div>
                                                             </div>
+                                                       <?php elseif ($field['type'] == 'gallery') : ?>
+                                                            <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
+                                                                <div class="wpem-additional-info-block-details-content-items">
+                                                                    <p class="wpem-additional-info-block-title">
+                                                                        <strong><?php echo esc_attr($field_label); ?> -</strong>
+                                                                        <?php 
+                                                                        if (!empty($field_value)) {
+                                                                            $files = is_array($field_value) ? $field_value : array($field_value);
+                                                                            $image_exts = array('jpg', 'jpeg', 'png', 'gif', 'webp');
+                                                                            foreach ($files as $file_url) {
+                                                                                $file_ext = strtolower(pathinfo($file_url, PATHINFO_EXTENSION));
+                                                                                if (in_array($file_ext, $image_exts)) {
+                                                                                    echo '<img src="' . esc_url($file_url) . '" alt="' . esc_attr($field_label) . '" style="max-width:150px; height: 150px;; margin-right:10px;" />';
+                                                                                } else {
+                                                                                    echo '<a href="' . esc_url($file_url) . '" download class="wpem-download-button" style="margin-right:10px;">Download File</a>';
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
                                                         <?php elseif ($field['type'] == 'radio' && array_key_exists('options',$field)) : ?>
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
