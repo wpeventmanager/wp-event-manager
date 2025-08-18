@@ -1828,7 +1828,8 @@ class WP_Event_Manager_Shortcodes{
 		// Remove calender view
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
  
-		if($upcoming_events->have_posts()) : ?>
+		if($upcoming_events->have_posts()) : 
+			wp_enqueue_script('wp-event-manager-ajax-filters');?>
 			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>">
 				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
