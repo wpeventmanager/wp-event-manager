@@ -637,6 +637,8 @@ function get_event_thumbnail($post = null, $size = 'full') {
                 // If event banner is set, use it
                 $event_banner = $post->_event_banner;
                 if (is_array($event_banner)) {
+					$event_banner = array_filter($event_banner);
+					$event_banner = array_values($event_banner);
                     $event_thumbnail = isset($event_banner[0]) ? $event_banner[0] : null;
                 } else {
                     $event_thumbnail = $event_banner;
@@ -673,7 +675,9 @@ function display_event_banner($size = 'full', $default = null, $post = null){
 	} else if($default) {
 
 		echo('<img itemprop="image" content="' . esc_attr($default) . '" src="' . esc_attr($default) . '" alt="' . esc_attr($alt_text) . '" />');
-	} else if(is_array($banner) && isset($banner[0])) {
+	} else if(is_array($banner)) {
+		$banner = array_filter($banner);
+		$banner = array_values($banner);
 		echo('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . esc_attr($alt_text) . '" />');
 	} else {
 		echo('<img itemprop="image" content="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" src="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr($alt_text) . '" />');

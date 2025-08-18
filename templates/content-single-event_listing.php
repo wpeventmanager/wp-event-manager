@@ -41,7 +41,9 @@ $event = $post; ?>
                         <div class="wpem-col-xs-12 wpem-col-sm-12 wpem-col-md-12 wpem-single-event-images">
                             <?php
                             $event_banners = get_event_banner();
-                            if (is_array($event_banners) && sizeof($event_banners) >= 1) : ?>
+                            if (is_array($event_banners) && sizeof($event_banners) >= 1) :
+                                $event_banners = array_filter($event_banners);
+					            $event_banners = array_values($event_banners); ?>
                                 <div class="wpem-single-event-slider-wrapper">
                                     <div class="wpem-single-event-slider">
                                         <?php foreach ($event_banners as $banner_key => $banner_value) : ?>
@@ -267,7 +269,7 @@ $event = $post; ?>
 																	printf(esc_html('%s', 'wp-event-manager'),   esc_attr($field_label)); ?></a></p>
                                                                 </div>
                                                             </div>
-                                                       <?php elseif ($field['type'] == 'gallery') : ?>
+                                                       <?php elseif ($field['type'] == 'media-library-image') : ?>
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-title">
