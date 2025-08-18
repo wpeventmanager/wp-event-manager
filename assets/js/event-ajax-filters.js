@@ -69,6 +69,7 @@ var EventAjaxFilters = function() {
                 supportHtml5History = false
             }
             jQuery(document).ready(EventAjaxFilters.actions.windowLoad);
+
             jQuery(document.body).on('click', '.load_more_upcoming_events', EventAjaxFilters.actions.loadMoreUpcomingEvents);
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('#event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset); 
@@ -76,6 +77,17 @@ var EventAjaxFilters = function() {
             jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
             if (jQuery('.event_listings_upcoming').length > 0) {
                 jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(EventAjaxFilters.actions.getUpcomingEvents);
+            } else {
+                jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(function() {
+                    var target = jQuery(this).closest('div.event_listings');
+                    target.triggerHandler('update_event_listings', [1, false]);
+                    EventAjaxFilters.actions.event_manager_store_state(target, 1)
+                }).on("change", function(e) {
+                    EventAjaxFilters.actions.getEventListings(e);
+                    if (e.which === 13) {
+                        jQuery(this).trigger('change')
+                    }
+                });
             }
             jQuery('.wpem-event-filter-version-2-search-btn').change(function() {
                 var target = jQuery(this).closest('div.event_listings');
@@ -88,16 +100,7 @@ var EventAjaxFilters = function() {
                     jQuery(this).trigger('change')
                 }
             });
-            jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(function() {
-                var target = jQuery(this).closest('div.event_listings');
-                target.triggerHandler('update_event_listings', [1, false]);
-                EventAjaxFilters.actions.event_manager_store_state(target, 1)
-            }).on("change", function(e) {
-                EventAjaxFilters.actions.getEventListings(e);
-                if (e.which === 13) {
-                    jQuery(this).trigger('change')
-                }
-            });
+            
         },
         
         actions: {
@@ -392,41 +395,65 @@ var EventAjaxFilters = function() {
                 event.preventDefault();
             },
 
+            /**
+             * this function is used to load more upcoming events
+             * @param {*} event 
+             */
             loadMoreUpcomingEvents: function(event){
-                event.preventDefault();
-                jQuery(this).parent().addClass('wpem-loading');
-                var currentPage = parseInt(jQuery(this).attr('data-page'));
-                var per_page = jQuery('#per-page-settings').data('per-page');
-                jQuery.ajax({
-                    type: 'POST',
-                    url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "load_more_upcoming_events"),
-                    data: {
-                        action: 'load_more_upcoming_events',
-                        value: currentPage,
-                        per_page: per_page,
-                    },
-                    success: function(response) {
-                        jQuery('#load_more_events_loader').removeClass('wpem-loading');
-                        if (response.success) {
-                            jQuery('.event_listings').append(response.data.events_html);                            
-                            var nextPage = currentPage + 1;
-                            jQuery('#load_more_events').attr('data-page', nextPage);
-                            if (response.data.no_more_events===true) {
-                                jQuery('#load_more_events').hide();
+                if(jQuery('#upcoming_event_listing').length > 0) {
+                    event.preventDefault();
+                    jQuery(this).parent().addClass('wpem-loading');
+                    var search_keywords = jQuery('#search_keywords').val();
+                    var search_location = jQuery('#search_location').val();
+                    var search_categories = jQuery('#search_categories').val();
+                    var search_event_types = jQuery('#search_event_types').val();
+                    var search_datetimes = jQuery('#search_datetimes').val();
+                    var order = jQuery('#upcoming_event_listing').data('order');
+                    var orderby = jQuery('#upcoming_event_listing').data('orderby');
+                    var currentPage = jQuery('.load_more_upcoming_events').attr('data-page');
+                    var per_page = jQuery('#per-page-settings').data('per-page');
+                    jQuery.ajax({
+                        type: 'POST',
+                        url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "get_upcoming_listings"),
+                        data: {
+                            action: 'get_upcoming_listings',
+                            search_keywords: search_keywords,
+                            search_location: search_location,
+                            search_datetimes: search_datetimes,
+                            search_categories: search_categories,
+                            search_event_types: search_event_types,
+                            order: order,
+                            orderby: orderby,
+                            value: currentPage,
+                            per_page: per_page,
+                        },
+                        success: function(response) {
+                            jQuery('#load_more_events_loader').removeClass('wpem-loading');
+                            if (response.success) {
+                                jQuery('.event_listings').append(response.data.events_html);                            
+                                var nextPage = parseInt(currentPage) + 1;
+                                jQuery('#load_more_events').attr('data-page', nextPage);
+                                if (response.data.no_more_events===true) {
+                                    jQuery('#load_more_events').hide();
+                                }
+                            } else {
+                                console.error('Failed to load events:', response.data.error);
+                                if (response.data.error === 'No more events found.') {
+                                    jQuery('#load_more_events').hide();
+                                }
                             }
-                        } else {
-                            console.error('Failed to load events:', response.data.error);
-                            if (response.data.error === 'No more events found.') {
-                                jQuery('#load_more_events').hide();
-                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('AJAX Error:', status, error);
                         }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('AJAX Error:', status, error);
-                    }
-                });
+                    });
+                };                
             },
 
+            /**
+             * this function is used to get upcoming events
+             * @param {*} event 
+             */
             getUpcomingEvents: function(event){
                 event.preventDefault();
                 var search_keywords = jQuery('#search_keywords').val();
@@ -434,7 +461,10 @@ var EventAjaxFilters = function() {
                 var search_categories = jQuery('#search_categories').val();
                 var search_event_types = jQuery('#search_event_types').val();
                 var search_datetimes = jQuery('#search_datetimes').val();
-
+                var order = jQuery('#upcoming_event_listing').data('order');
+                var orderby = jQuery('#upcoming_event_listing').data('orderby');
+                var currentPage = jQuery('#upcoming_event_listing').attr('data-page');
+                var per_page = jQuery('#per-page-settings').data('per-page');
                 jQuery.ajax({
                     type: 'POST',
                     url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "get_upcoming_listings"),
@@ -444,14 +474,24 @@ var EventAjaxFilters = function() {
                         search_location: search_location,
                         search_datetimes: search_datetimes,
                         search_categories: search_categories,
-                        search_event_types: search_event_types
+                        search_event_types: search_event_types,
+                        order: order,
+                        orderby: orderby,
+                        value: currentPage,
+                        per_page: per_page,
                     },
                     success: function(response) {
                         if (response.success) {
                             jQuery('#event-listing-view').html(response.data.events_html);
-                            jQuery('#event-listing-view').data('locked', true);         
+                            jQuery('#event-listing-view').data('locked', true);
+                            var nextPage = parseInt(currentPage)+1;
+                            jQuery('#load_more_events').attr('data-page', nextPage);
+                            if (response.data.no_more_events===true) {
+                                jQuery('#load_more_events').hide();
+                            }      
                         } else {
                             console.error('Failed to load events:', response.data.error);
+                             jQuery('#load_more_events').hide();
                         }
                     },
                     error: function(xhr, status, error) {

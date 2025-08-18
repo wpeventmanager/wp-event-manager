@@ -1827,9 +1827,9 @@ class WP_Event_Manager_Shortcodes{
 
 		// Remove calender view
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
-
+ 
 		if($upcoming_events->have_posts()) : ?>
-			<div class="event_listings_upcoming">
+			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>">
 				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 					get_event_manager_template_part('content', 'past_event_listing');
@@ -1842,7 +1842,7 @@ class WP_Event_Manager_Shortcodes{
 						</div>
 					<?php else : ?>
     					<div id="load_more_events_loader">
-        					<a class="load_more_upcoming_events" id="load_more_events" href="#" data-page="2"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
+        					<a class="load_more_upcoming_events" id="load_more_events" href="#" data-page="<?php echo (int)$paged+1; ?>"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
     					</div>
 						<div id="per-page-settings" style="display:none;" data-per-page="<?php echo esc_attr($per_page); ?>"></div>
 					<?php endif;

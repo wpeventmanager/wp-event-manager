@@ -107,12 +107,16 @@ class WP_Event_Manager_Ajax {
 	function load_more_upcoming_events($atts) {
 		$paged = isset($_POST['value']) ? intval($_POST['value']) : 1;
 		$per_page = isset($_POST['per_page']) ? intval($_POST['per_page']) : esc_attr(get_option('event_manager_per_page'));
+		$orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
+		$order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
 
 		$args = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => array('publish'),
 			'posts_per_page' => $per_page,
 			'paged'          => $paged,
+			'order'           => $order,
+			'orderby'         => $orderby,
 			'meta_query'     => array(
 				array(
 					'relation' => 'OR',
@@ -137,6 +141,59 @@ class WP_Event_Manager_Ajax {
 			)
 		);
 
+		if('featured' === $orderby) {
+			$args['meta_query'] = array(
+				'relation' => 'AND',
+				'featured_clause' => array(
+					'key'     => '_featured',
+					'compare' => 'EXISTS',
+				),
+				'event_start_date_clause' => array(
+					'key'     => '_event_start_date',
+					'compare' => 'EXISTS',
+				), 
+				'event_start_time_clause' => array(
+					'key'     => '_event_start_time',
+					'compare' => 'EXISTS',
+				), 
+			);
+			$args['orderby'] = array(
+				'featured_clause' => 'desc',
+				'event_start_date_clause' => $order,
+				'event_start_time_clause' => $order,
+			);
+		}
+
+		if('rand_featured' === $orderby) {
+			$args['orderby'] = array(
+				'menu_order' => 'ASC',
+				'rand'       => 'ASC',
+			);
+		}
+		// If orderby meta key _event_start_date 
+		if('event_start_date' === $orderby) {
+			$args['orderby'] ='meta_value';
+			$args['meta_key'] ='_event_start_date';
+			$args['meta_type'] ='DATETIME';
+		}
+		// If orderby event_start_date and time  both
+		if('event_start_date_time' === $orderby) {
+			$args['meta_query'] = array(
+				'relation' => 'AND',
+				'event_start_date_clause' => array(
+					'key'     => '_event_start_date',
+					'compare' => 'EXISTS',
+				),
+				'event_start_time_clause' => array(
+					'key'     => '_event_start_time',
+					'compare' => 'EXISTS',
+				), 
+			);
+			$args['orderby'] = array(
+				'event_start_date_clause' => $order,
+				'event_start_time_clause' => $order,
+			);
+		}
 		$upcoming_events = new WP_Query($args);
 
 		if ($upcoming_events->have_posts()) {
@@ -184,10 +241,18 @@ class WP_Event_Manager_Ajax {
 			$search_event_types = sanitize_text_field( stripslashes( $search_event_types ) );
 			$search_event_types= explode( ',', $search_event_types );
 		}
+		$paged = isset($_POST['value']) ? intval($_POST['value']) : 1;
+		$per_page = isset($_POST['per_page']) ? intval($_POST['per_page']) : esc_attr(get_option('event_manager_per_page'));
+		$orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
+		$order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
 
 		$args = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => array('publish'),
+			'posts_per_page' => $per_page,
+			'orderby'        => $orderby,
+			'order'          => $order,
+			'paged'          => $paged,
 			'meta_query'     => array(
 				array(
 					'relation' => 'OR',
@@ -211,6 +276,60 @@ class WP_Event_Manager_Ajax {
 				),
 			)
 		);
+
+		if('featured' === $orderby) {
+			$args['meta_query'] = array(
+				'relation' => 'AND',
+				'featured_clause' => array(
+					'key'     => '_featured',
+					'compare' => 'EXISTS',
+				),
+				'event_start_date_clause' => array(
+					'key'     => '_event_start_date',
+					'compare' => 'EXISTS',
+				), 
+				'event_start_time_clause' => array(
+					'key'     => '_event_start_time',
+					'compare' => 'EXISTS',
+				), 
+			);
+			$args['orderby'] = array(
+				'featured_clause' => 'desc',
+				'event_start_date_clause' => $order,
+				'event_start_time_clause' => $order,
+			);
+		}
+
+		if('rand_featured' === $orderby) {
+			$args['orderby'] = array(
+				'menu_order' => 'ASC',
+				'rand'       => 'ASC',
+			);
+		}
+		// If orderby meta key _event_start_date 
+		if('event_start_date' === $orderby) {
+			$args['orderby'] ='meta_value';
+			$args['meta_key'] ='_event_start_date';
+			$args['meta_type'] ='DATETIME';
+		}
+		// If orderby event_start_date and time  both
+		if('event_start_date_time' === $orderby) {
+			$args['meta_query'] = array(
+				'relation' => 'AND',
+				'event_start_date_clause' => array(
+					'key'     => '_event_start_date',
+					'compare' => 'EXISTS',
+				),
+				'event_start_time_clause' => array(
+					'key'     => '_event_start_time',
+					'compare' => 'EXISTS',
+				), 
+			);
+			$args['orderby'] = array(
+				'event_start_date_clause' => $order,
+				'event_start_time_clause' => $order,
+			);
+		}
 
 		if ( isset( $search_location ) && !empty( $search_location ) ) {
 			$args['meta_query'][] = array(
@@ -259,10 +378,15 @@ class WP_Event_Manager_Ajax {
 			}
 
 			$events_html = ob_get_clean();
+			$no_more_events = $upcoming_events->found_posts <= $paged * $per_page;
 
 			wp_send_json_success(array(
 				'events_html' => $events_html,
+				'no_more_events' => $no_more_events
 			));
+			// wp_send_json_success(array(
+			// 	'events_html' => $events_html,
+			// ));
 			} else {
 				$no_events_html = '<div class="no_event_listings_found wpem-alert wpem-alert-danger">';
 				$no_events_html .= esc_html__('There are no events matching your search.', 'wp-event-manager');
