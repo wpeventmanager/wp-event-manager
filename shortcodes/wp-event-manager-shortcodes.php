@@ -1106,7 +1106,8 @@ class WP_Event_Manager_Shortcodes{
 		), $atts);
 
 		$paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
-
+		$show_pagination = sanitize_text_field($atts['show_pagination']);
+		$per_page = sanitize_text_field($atts['per_page']);
 		$args_past = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => array('expired'),
