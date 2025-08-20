@@ -37,7 +37,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
 				continue;
 			endif; 
-			if ($field['type'] === 'media-library-image' && !is_user_logged_in()) {
+			if (isset($field['type']) && $field['type'] === 'media-library-image' && !is_user_logged_in()) {
 				continue;
 			}
 			if ($key === $thumbnail_key && $show_thumbnail_field != 1) {
@@ -65,7 +65,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			if($organizer_fields) :
 				do_action('submit_event_form_organizer_fields_start');
 				foreach($organizer_fields as $key => $field) :
-					if ($field['type'] === 'media-library-image' && !is_user_logged_in()) {
+					if (isset($field['type']) && $field['type'] === 'media-library-image' && !is_user_logged_in()) {
 						continue;
 					}
 					if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
@@ -92,7 +92,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			if($venue_fields) :
 				 do_action('submit_event_form_venue_fields_start'); 
 				foreach($venue_fields as $key => $field) :
-					if ($field['type'] === 'media-library-image' && !is_user_logged_in()) {
+					if (isset($field['type']) && $field['type'] === 'media-library-image' && !is_user_logged_in()) {
 						continue;
 					}
 					if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :

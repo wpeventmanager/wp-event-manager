@@ -285,7 +285,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	    foreach($this->fields as $group_key => $group_fields){     	      
 				 
 			foreach($group_fields as $key => $field) {
-				if (!is_user_logged_in() && $field['type'] === 'media-library-image') {
+				if (!is_user_logged_in() && isset($field['type']) && $field['type'] === 'media-library-image') {
 					$$field['required'] = false;
 				}
 				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] = false ) )
