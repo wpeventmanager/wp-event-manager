@@ -1053,6 +1053,8 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the registration area.
 	 */
 	public function output_event_register($atts){
+		ob_start();	
+		
 		$atts = shortcode_atts(array(
 			'id' => '',
 		), $atts);
@@ -1063,18 +1065,17 @@ class WP_Event_Manager_Shortcodes{
 			return '';
 		}
 
-		$event_post = get_post($id);
-		if (!$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_post->ID)) {
+		$post = get_post($id);
+		if ( ! $post || $post->post_type !== 'event_listing' ) {
 			return '';
 		}
-
-		//setup_postdata($event_post); // Temporarily set global post data
-		global $post;
-		$post = $event_post;
-		setup_postdata($post);
-		ob_start();	?>
+		// If post is private, check capability
+		if ( 'private' === get_post_status( $post ) && ! current_user_can( 'read_post', $post->ID ) ) {
+			return '';
+		}
+		setup_postdata($post);?>
 		<div class="event-manager-registration-wrapper">
-			<?php $register = get_event_registration_method();
+			<?php $register = get_event_registration_method($post->ID);
 			if (!empty($register) && isset($register->type)) {
 				do_action('event_manager_registration_details_' . sanitize_key($register->type), $register);
 			} ?>
