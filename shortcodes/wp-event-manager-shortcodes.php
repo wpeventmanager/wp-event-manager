@@ -1068,7 +1068,10 @@ class WP_Event_Manager_Shortcodes{
 			return '';
 		}
 
-		setup_postdata($event_post); // Temporarily set global post data
+		//setup_postdata($event_post); // Temporarily set global post data
+		global $post;
+		$post = $event_post;
+		setup_postdata($post);
 		ob_start();	?>
 		<div class="event-manager-registration-wrapper">
 			<?php $register = get_event_registration_method();
