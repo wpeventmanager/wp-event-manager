@@ -138,8 +138,10 @@ $event = $post; ?>
                                             $field_value = $event->$meta_key;
                                             if(isset($field_data['visibility']) && ($field_data['visibility'] == false || $field_data['visibility'] == 0 )){
                                                 continue;
-                                            } 
-											if($field_value == ""){
+                                            }
+                                            if(is_array($field_value) )
+                                                $field_value = array_filter($field_value);
+											if($field_value == "" || (is_array($field_value) && empty($field_value)) || $field_value == null){
 												continue;  //Skips over empty additional fields
 					    					}
                                             if (isset($field_value)) {
@@ -173,17 +175,18 @@ $event = $post; ?>
                                                 <?php
                                                 $date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
                                                 $time_format = WP_Event_Manager_Date_Time::get_timepicker_format();
-                                                foreach ($additional_fields as $name => $field) : 
+                                                foreach ($additional_fields as $name => $field) :
                                                     $field_key = '_' . stripslashes($name);
-                                                    $field_label =  stripslashes( $field['label'] );
+                                                    $field_label = stripslashes( $field['label'] );
                                                     $field_value = $event->$field_key;
+                                                    
                                                     if (!empty($field_value) && apply_filters('wpem_single_event_additional_detail', true, $name, $field, $event)) :
                                                         do_action('single_event_additional_details_field_start');
                                                         if ($field['type'] == 'textarea' || $field['type'] == 'wp-editor') : ?>
                                                             <div class="wpem-col-12 wpem-additional-info-block-textarea">
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-title"><strong> <?php 
-                                                                 // translators: %s is the label for the field.
+                                                                    // translators: %s is the label for the field.
                                                                     printf(esc_html('%s', 'wp-event-manager'), esc_attr($field_label)); ?></strong></p>
                                                                                                                                     <p class="wpem-additional-info-block-textarea-text"><?php
                                                                     // translators: %s is the value of the field.
@@ -279,6 +282,7 @@ $event = $post; ?>
                                                                             $files = is_array($field_value) ? $field_value : array($field_value);
                                                                             $image_exts = array('jpg', 'jpeg', 'png', 'gif', 'webp');
                                                                             foreach ($files as $file_url) {
+                                                                                if(empty($file_url)) continue;
                                                                                 $file_ext = strtolower(pathinfo($file_url, PATHINFO_EXTENSION));
                                                                                 if (in_array($file_ext, $image_exts)) {
                                                                                     echo '<img src="' . esc_url($file_url) . '" alt="' . esc_attr($field_label) . '" style="max-width:150px; height: 150px; margin-right:10px; object-fit: cover;" />';
