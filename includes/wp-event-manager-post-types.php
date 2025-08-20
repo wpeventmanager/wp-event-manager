@@ -309,14 +309,13 @@ class WP_Event_Manager_Post_Types {
 					'show_in_menu'       => false,
 					'query_var'          => true,
 					'rewrite'            => array('slug' => 'event-organizer'),
-					'capability_type'    => 'post',
 					'has_archive'        => true,
 					'hierarchical'       => false,
 					'menu_position'      => null,
 					'show_in_menu' => 'edit.php?post_type=event_listing',
 					'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
 					 // ✅ Custom capabilities
-					'capability_type'     => 'event_organizer',
+					'capability_type'     => array('event_organizer', 'event_organizers'),
 					'map_meta_cap'        => true,
 	    	)));
 		}
@@ -341,7 +340,6 @@ class WP_Event_Manager_Post_Types {
 					'show_in_menu'       => false,
 					'query_var'          => true,
 					'rewrite'            => array('slug' => 'event-venue'),
-					'capability_type'    => 'post',
 					'has_archive'        => true,
 					'hierarchical'       => false,
 					'menu_position'      => null,

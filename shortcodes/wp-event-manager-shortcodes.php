@@ -88,6 +88,12 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the organizer submission form.
 	 */
 	public function submit_organizer_form($atts = array()){
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_organizers' ) ) {
+			ob_start();
+			echo '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as organizer to add organizer!', 'wp-event-manager' ) . '</div>';
+			return ob_get_clean();
+		}
+
 		return $GLOBALS['event_manager']->forms->get_form('submit-organizer', $atts);
 	}
 
@@ -95,6 +101,11 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the organizer submission form.
 	 */
 	public function submit_venue_form($atts = array()){
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_venues' ) ) ) {
+			ob_start();
+			echo '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as organizer to add venue!', 'wp-event-manager' ) . '</div>';
+			return ob_get_clean();
+		}
 		return $GLOBALS['event_manager']->forms->get_form('submit-venue', $atts);
 	}
 

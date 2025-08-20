@@ -128,6 +128,10 @@ class WP_Event_Manager_Install {
 					$wp_roles->add_cap('administrator', $cap);
 				}
 			}
+			if ( $role = get_role( 'organizer' ) ) {
+				$role->add_cap( 'manage_organizers' );
+				$role->add_cap( 'manage_venues' );
+			}
 		}
 	}
 
@@ -162,7 +166,7 @@ class WP_Event_Manager_Install {
 				"assign_event_listing_terms"
 			),
 
-			// ✅ Organizer capabilities
+			// Organizer capabilities
 			'event_organizer' => array(
 				"edit_event_organizer",
 				"read_event_organizer",
@@ -179,7 +183,7 @@ class WP_Event_Manager_Install {
 				"edit_published_event_organizers",
 			),
 
-			// ✅ Venue capabilities
+			// Venue capabilities
 			'event_venue' => array(
 				"edit_event_venue",
 				"read_event_venue",

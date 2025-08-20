@@ -281,6 +281,10 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * @return bool on success, WP_ERROR on failure
 	 */
 	protected function validate_fields($values) {
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_organizers' ) && ! current_user_can( 'manage_options' ) ) ) {
+			return new WP_Error('validation-error', esc_html__( 'Please login as Organizer to add or update an organizer!', 'wp-event-manager')) ;
+		}
+
 		$this->fields =  apply_filters('before_submit_organizer_form_validate_fields', $this->fields , $values);
 	    foreach($this->fields as $group_key => $group_fields){     	      
 				 
