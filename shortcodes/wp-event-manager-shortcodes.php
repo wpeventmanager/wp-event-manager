@@ -1685,6 +1685,7 @@ class WP_Event_Manager_Shortcodes{
 		$per_page = $atts['per_page'];
 		$layout_type = $atts['layout_type'];
 		$title = $atts['title'];
+		$show_pagination = $atts['show_pagination'];
 
 		$args = array(
 			'post_type'       => 'event_listing',
