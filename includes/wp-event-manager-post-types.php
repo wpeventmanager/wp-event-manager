@@ -315,14 +315,16 @@ class WP_Event_Manager_Post_Types {
 					'menu_position'      => null,
 					'show_in_menu' => 'edit.php?post_type=event_listing',
 					'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
-	    	))
-	  );
-	}
+					 // ✅ Custom capabilities
+					'capability_type'     => 'event_organizer',
+					'map_meta_cap'        => true,
+	    	)));
+		}
 
-	if(get_option('enable_event_venue')){
-	    $singular  = __('Venue', 'wp-event-manager');
-		$plural    = __('Venues', 'wp-event-manager');
-	    register_post_type('event_venue', apply_filters('register_event_venue_post_type',array(
+		if(get_option('enable_event_venue')){
+			$singular  = __('Venue', 'wp-event-manager');
+			$plural    = __('Venues', 'wp-event-manager');
+			register_post_type('event_venue', apply_filters('register_event_venue_post_type',array(
 				        'labels' => array(
 						'name' 					=> $plural,
 						'singular_name' 		=> $singular,
@@ -343,8 +345,11 @@ class WP_Event_Manager_Post_Types {
 					'has_archive'        => true,
 					'hierarchical'       => false,
 					'menu_position'      => null,
-					'show_in_menu' => 'edit.php?post_type=event_listing',
+					'show_in_menu'       => 'edit.php?post_type=event_listing',
 					'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
+					 // ✅ Custom capabilities
+					'capability_type'    => 'event_venue',
+					'map_meta_cap'       => true,
 	    		))
 	    	);
 		}
