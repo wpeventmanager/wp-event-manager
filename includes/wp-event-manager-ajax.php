@@ -640,10 +640,10 @@ class WP_Event_Manager_Ajax {
 			check_ajax_referer( 'wpem_add_organizer_action', 'wpem_add_organizer_nonce' );
 		}
 
-		if ( ! is_user_logged_in() || ! current_user_can( 'manage_organizers' )) {
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_organizers' ) && ! current_user_can( 'manage_options' ) ) ) {
 			wp_send_json( [
 				'code'    => 403,
-				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please log as Organizer to add an organizer!', 'wp-event-manager' ) . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as Organizer to add an organizer!', 'wp-event-manager' ) . '</div>',
 			] );
 			wp_die();
 		}
@@ -722,10 +722,10 @@ class WP_Event_Manager_Ajax {
 			check_ajax_referer( 'wpem_add_venue_action', 'wpem_add_venue_nonce' );
 		}
 
-		if ( ! is_user_logged_in() || ! current_user_can( 'manage_venues' )) {
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_venues' ) && ! current_user_can( 'manage_options' ) ) ) {
 			wp_send_json( [
 				'code'    => 403,
-				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please log as organizerin to add venue!', 'wp-event-manager' ) . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as organizerin to add venue!', 'wp-event-manager' ) . '</div>',
 			] );
 			wp_die();
 		}
