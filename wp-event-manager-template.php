@@ -678,7 +678,13 @@ function display_event_banner($size = 'full', $default = null, $post = null){
 	} else if(is_array($banner)) {
 		$banner = array_filter($banner);
 		$banner = array_values($banner);
-		echo('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . esc_attr($alt_text) . '" />');
+		if (!empty($banner) && isset($banner[0])) {
+			echo('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . esc_attr($alt_text) . '" />');
+		} else {
+			// fallback to placeholder if array is empty
+			$placeholder = apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg');
+			echo('<img itemprop="image" content="' . esc_attr($placeholder) . '" src="' . esc_attr($placeholder) . '" alt="' . esc_attr($alt_text) . '" />');
+		}
 	} else {
 		echo('<img itemprop="image" content="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" src="' . esc_attr(apply_filters('event_manager_default_event_banner', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr($alt_text) . '" />');
 	}
