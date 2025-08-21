@@ -495,7 +495,7 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $key
 	 * @param mixed $field
 	 */
-	public static function input_gallery($key, $field)	{
+	public static function input_media_library_image($key, $field)	{
 		global $post_id;
 		if(!isset($field['value']) || empty($field['value'])) {
 			$field['value'] = get_post_meta($post_id, stripslashes($key), true);

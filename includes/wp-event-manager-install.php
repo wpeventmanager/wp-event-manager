@@ -128,6 +128,10 @@ class WP_Event_Manager_Install {
 					$wp_roles->add_cap('administrator', $cap);
 				}
 			}
+			if ( $role = get_role( 'organizer' ) ) {
+				$role->add_cap( 'manage_organizers' );
+				$role->add_cap( 'manage_venues' );
+			}
 		}
 	}
 
@@ -138,7 +142,9 @@ class WP_Event_Manager_Install {
 	private static function get_core_capabilities() {
 		return array(
 			'core' => array(
-				'manage_event_listings'
+				'manage_event_listings',
+				'manage_organizers',
+				'manage_venues',
 			),
 			'event_listing' => array(
 				"edit_event_listing",
@@ -158,6 +164,40 @@ class WP_Event_Manager_Install {
 				"edit_event_listing_terms",
 				"delete_event_listing_terms",
 				"assign_event_listing_terms"
+			),
+
+			// Organizer capabilities
+			'event_organizer' => array(
+				"edit_event_organizer",
+				"read_event_organizer",
+				"delete_event_organizer",
+				"edit_event_organizers",
+				"edit_others_event_organizers",
+				"publish_event_organizers",
+				"read_private_event_organizers",
+				"delete_event_organizers",
+				"delete_private_event_organizers",
+				"delete_published_event_organizers",
+				"delete_others_event_organizers",
+				"edit_private_event_organizers",
+				"edit_published_event_organizers",
+			),
+
+			// Venue capabilities
+			'event_venue' => array(
+				"edit_event_venue",
+				"read_event_venue",
+				"delete_event_venue",
+				"edit_event_venues",
+				"edit_others_event_venues",
+				"publish_event_venues",
+				"read_private_event_venues",
+				"delete_event_venues",
+				"delete_private_event_venues",
+				"delete_published_event_venues",
+				"delete_others_event_venues",
+				"edit_private_event_venues",
+				"edit_published_event_venues",
 			)
 		);
 	}

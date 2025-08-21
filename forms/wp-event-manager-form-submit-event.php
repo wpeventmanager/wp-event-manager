@@ -487,8 +487,13 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					$group_fields['event_ticket_price']['required']=false;
 				} 			
 			}
-
+			
 	        foreach ( $group_fields as $key => $field ) {
+				error_log($key);
+				error_log( print_r( $field, true ) );
+				if (!is_user_logged_in() && isset($field['type']) && $field['type'] === 'media-library-image') {
+					$field['required'] = false;
+				}
 				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] = false ) )
 					continue;
 

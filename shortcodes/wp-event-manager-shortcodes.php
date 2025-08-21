@@ -88,6 +88,12 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the organizer submission form.
 	 */
 	public function submit_organizer_form($atts = array()){
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_organizers' ) ) {
+			ob_start();
+			echo '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as organizer to add organizer!', 'wp-event-manager' ) . '</div>';
+			return ob_get_clean();
+		}
+
 		return $GLOBALS['event_manager']->forms->get_form('submit-organizer', $atts);
 	}
 
@@ -95,6 +101,11 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the organizer submission form.
 	 */
 	public function submit_venue_form($atts = array()){
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_venues' ) ) ) {
+			ob_start();
+			echo '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as organizer to add venue!', 'wp-event-manager' ) . '</div>';
+			return ob_get_clean();
+		}
 		return $GLOBALS['event_manager']->forms->get_form('submit-venue', $atts);
 	}
 
@@ -1053,6 +1064,8 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the registration area.
 	 */
 	public function output_event_register($atts){
+		ob_start();	
+		
 		$atts = shortcode_atts(array(
 			'id' => '',
 		), $atts);
@@ -1063,15 +1076,17 @@ class WP_Event_Manager_Shortcodes{
 			return '';
 		}
 
-		$event_post = get_post($id);
-		if (!$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_post->ID)) {
+		$post = get_post($id);
+		if ( ! $post || $post->post_type !== 'event_listing' ) {
 			return '';
 		}
-
-		setup_postdata($event_post); // Temporarily set global post data
-		ob_start();	?>
+		// If post is private, check capability
+		if ( 'private' === get_post_status( $post ) && ! current_user_can( 'read_post', $post->ID ) ) {
+			return '';
+		}
+		setup_postdata($post);?>
 		<div class="event-manager-registration-wrapper">
-			<?php $register = get_event_registration_method();
+			<?php $register = get_event_registration_method($post->ID);
 			if (!empty($register) && isset($register->type)) {
 				do_action('event_manager_registration_details_' . sanitize_key($register->type), $register);
 			} ?>
@@ -1827,22 +1842,23 @@ class WP_Event_Manager_Shortcodes{
 
 		// Remove calender view
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
-
-		if($upcoming_events->have_posts()) : ?>
-			<div class="event_listings_upcoming">
+ 
+		if($upcoming_events->have_posts()) : 
+			wp_enqueue_script('wp-event-manager-ajax-filters');?>
+			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>">
 				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 					get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
 				get_event_manager_template('event-listings-end.php');
 				if($upcoming_events->found_posts > $per_page) :
-					if($show_pagination == "true" || $show_pagination == "on") : ?>
+					if($atts['show_pagination'] == "true" || $atts['show_pagination'] == "on") : ?>
 						<div class="event-organizer-pagination">
 							<?php get_event_manager_template('pagination.php', array('max_num_pages' => $upcoming_events->max_num_pages)); ?>
 						</div>
 					<?php else : ?>
     					<div id="load_more_events_loader">
-        					<a class="load_more_upcoming_events" id="load_more_events" href="#" data-page="2"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
+        					<a class="load_more_upcoming_events" id="load_more_events" href="#" data-page="<?php echo (int)$paged+1; ?>"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
     					</div>
 						<div id="per-page-settings" style="display:none;" data-per-page="<?php echo esc_attr($per_page); ?>"></div>
 					<?php endif;

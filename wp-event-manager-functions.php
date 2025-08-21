@@ -2338,7 +2338,7 @@ function wpem_get_form_field_types() {
 			'url'              => esc_html__('URL', 'wp-event-manager'),
 			'email'            => esc_html__('Email', 'wp-event-manager'),
 			'switch'           => esc_html__('Switch', 'wp-event-manager'),
-			'gallery'    => esc_html__('Image Galley', 'wp-event-manager'),
+			'media-library-image' => esc_html__('Media Library Image', 'wp-event-manager'),
 		)
 	);
 }

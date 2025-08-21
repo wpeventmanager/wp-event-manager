@@ -171,7 +171,7 @@ var FieldEditor = function() {
 				
 				if ('select' === jQuery(this).val() || 'multiselect' === jQuery(this).val() || 'button-options' === jQuery(this).val() || 'radio' === jQuery(this).val()) {
 					jQuery(this).closest('tr').find('.field-options .options').show();
-				} else if ('file' === jQuery(this).val()) {
+				} else if ('file' === jQuery(this).val() || 'media-library-image' === jQuery(this).val()) {
 					jQuery(this).closest('tr').find('.field-options .file-options').show();
 				} else if ('term-select' === jQuery(this).val() || 'term-checklist' === jQuery(this).val() || 'term-multiselect' === jQuery(this).val()) {
 					jQuery(this).closest('tr').find('.field-options .taxonomy-select').show();

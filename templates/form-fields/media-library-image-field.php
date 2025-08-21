@@ -1,5 +1,5 @@
 <?php
-wp_enqueue_media(); 
+wp_enqueue_media();
 global $post_id;
 if(!isset($field['value']) || empty($field['value'])) {
 	$field['value'] = get_post_meta($post_id, stripslashes($key), true);

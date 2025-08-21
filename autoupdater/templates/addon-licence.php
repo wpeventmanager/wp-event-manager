@@ -1,7 +1,7 @@
 <div class="licence-row">
 	<div class="plugin-info"><?php echo esc_html( $plugin['Title'] ); ?>
 		<div class="plugin-author">
-			<a target="_blank" href="https://wp-eventmanager.com/"><?php echo esc_html($plugin['Author']); ?></a>				
+			<a target="_blank" href="https://wp-eventmanager.com/"><?php echo esc_html($plugin['AuthorName']); ?></a>				
 		</div>
 	</div>
 

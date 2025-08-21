@@ -28,8 +28,10 @@
                                 $type = !empty($field['type']) ? $field['type'] : 'text';
                                 if ($type == 'wp-editor') {
                                     $type = 'wp_editor';
+                                } elseif ($type == 'media-library-image') {
+                                    $type = 'media_library_image';
                                 }
-
+                                
                                 if (has_action('event_manager_input_' . $type)) {
                                     do_action('event_manager_input_' . $type, $key, $field);
                                 } elseif (method_exists($this, 'input_' . $type)) {

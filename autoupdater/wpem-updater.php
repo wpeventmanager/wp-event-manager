@@ -4,8 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once plugin_dir_path( __FILE__ ) . 'wpem-updater-functions.php';
+
+// Only load admin functionality when in dashboard
 if ( is_admin() ) {
-	include( 'wpem-updater-license.php' );
+    require_once plugin_dir_path( __FILE__ ) . 'wpem-updater-admin.php';
 }
 
 /**
@@ -158,7 +161,7 @@ class WPEM_Updater {
 	public function error_notices() {
 		if ( !empty( $this->errors ) ) {
 			foreach ( $this->errors as $key => $error ) {
-				include( 'templates/error-notice.php' );
+				include plugin_dir_path( __FILE__ ) . 'templates/error-notice.php';
 				if ( $key !== 'invalid_key' ) {
 					unset( $this->errors[ $key ] );
 				}
@@ -168,7 +171,7 @@ class WPEM_Updater {
 			if  (! get_option( $plugin_info['TextDomain'] . '_hide_key_expire_notice' ) && ( get_option( $plugin_info['TextDomain'] . '_key_expire') || get_option( $plugin_info['TextDomain'] . '_key_expire_pre' ))) {
 				$plugin_name = $plugin_info['Name'];
 				$plugin_slug = $plugin_info['TextDomain'];
-				include( 'templates/key-expire-notice.php' );
+				include plugin_dir_path( __FILE__ ) . 'templates/key-expire-notice.php';
 			}
 		}
 	}
@@ -293,7 +296,7 @@ class WPEM_Updater {
 	public function key_notice() {
 		foreach ($this->plugin_data as $plugin) {
 			if (  sizeof( $this->errors ) === 0 && (! get_option( $plugin['TextDomain'] . '_hide_key_notice' ) && ! get_option( $plugin['TextDomain'] . '_licence_key' ))) {
-				include( 'templates/key-notice.php' );
+				include plugin_dir_path( __FILE__ ) . 'templates/key-notice.php';
 			}
 		}
 	}
@@ -308,7 +311,7 @@ class WPEM_Updater {
 				break;
 			}
 		}
-		include( 'templates/activated-key.php' );
+		include plugin_dir_path( __FILE__ ) . 'templates/activated-key.php';
 	}
 
 	//Dectivation success notice.
@@ -321,7 +324,7 @@ class WPEM_Updater {
 				break;
 			}
 		}
-		include( 'templates/deactivated-key.php' );
+		include plugin_dir_path( __FILE__ ) . 'templates/deactivated-key.php';
 	}
 
 	//Check for plugin updates.
@@ -380,23 +383,27 @@ class WPEM_Updater {
 	}
 
 	//Take over the Plugin info screen.
-	public function plugins_api( $false, $action, $args ) {
+	public function plugins_api( $default, $action, $args ) {
 		global $wp_version;
-		foreach($this->plugin_data as $plugin_info){
-			$licence_key = get_option(  $plugin_info['TextDomain'] . '_licence_key', true );
-			$email       = get_option(  $plugin_info['TextDomain'] . '_email', true );
-			if ( ! $licence_key ) {
-				return $false;
-			}
+		if(!empty($this->plugin_data)){
+			foreach($this->plugin_data as $plugin_info){
+				$licence_key = get_option(  $plugin_info['TextDomain'] . '_licence_key', true );
+				$email       = get_option(  $plugin_info['TextDomain'] . '_email', true );
+				if ( ! $licence_key ) {
+					return $default;
+				}
 
-			if ( ! isset( $args->slug ) || ( $args->slug !== $plugin_info['TextDomain'] ) ) {
-				return $false;
-			}
+				if ( ! isset( $args->slug ) || ( $args->slug !== $plugin_info['TextDomain'] ) ) {
+					return $default;
+				}
 
-			if ( $response = $this->get_plugin_info() ) {
-				return $response;
+				if ( $response = $this->get_plugin_info() ) {
+					return $response;
+				}
 			}
-		}
+		} else {
+			return $default;
+		}		
 	}
 
 	/**
@@ -508,8 +515,7 @@ class WPEM_Updater {
 
 			$wp_list_table  = _get_list_table( 'WP_Plugins_List_Table' );
 			$changelog_link = network_admin_url( 'plugin-install.php?tab=plugin-information&amp;plugin=' . $this->plugin_name . '&amp;section=changelog&amp;TB_iframe=true&amp;width=772&amp;height=597' );
-
-            include( 'templates/ms-update.php' );
+			include plugin_dir_path( __FILE__ ) . 'templates/ms-update.php';
         }
     }
 
