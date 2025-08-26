@@ -1119,6 +1119,8 @@ class WP_Event_Manager_Shortcodes{
 			'layout_type'          => 'all',
 			'title'                => __('Past Events', 'wp-event-manager'),
 		), $atts);
+		$per_page = absint($atts['per_page']);
+		$show_pagination = $atts['show_pagination'];
 
 		$paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
 
