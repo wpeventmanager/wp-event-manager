@@ -835,15 +835,17 @@ class WP_Event_Manager_Shortcodes{
 			'paged'             => $current_page,
 		)));
 
-		$default_view = get_option('event_manager_default_view');
+		if($layout_type == 'all'){
+			$default_view = get_option('event_manager_default_view');
 
-		if (!empty($default_view)) {
-			$layout_type = $default_view;
-			if ($default_view == 'calendar') {
-				$layout_type = 'all';
+			if (!empty($default_view)) {
+				$layout_type = $default_view;
+				if ($default_view == 'calendar') {
+					$layout_type = 'all';
+				}
 			}
 		}
-
+		
 		if($events->have_posts()) :
 
 			wp_enqueue_script('wp-event-manager-ajax-filters');
