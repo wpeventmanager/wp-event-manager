@@ -44,6 +44,7 @@ class WP_Event_Manager_Admin {
 
 		// Ajax
 		add_action('wp_ajax_wpem_upgrade_database', array($this, 'wpem_upgrade_database'));
+		add_action( 'admin_init', array($this, 'wpem_add_missing_capabilities' ));
 	}
 
 		/**
@@ -360,6 +361,46 @@ A prior Backup does no harm before updating the plugin!',
 	public function admin_init() {
 		if(isset( $_GET['event-manager-main-admin-dismiss']) && !empty($_GET['event-manager-main-admin-dismiss'])){
 			update_option('event_manager_rating_showcase_admin_notices_dismiss', 1);
+		}
+	}
+	
+	/**
+	 * Ensure Administrator has Organizer & Venue capabilities (for WP Event Manager 3.2.1+).
+	 */
+	function wpem_add_missing_capabilities() {
+		$role = get_role('administrator');
+		if ( ! $role ) {
+			return;
+		}
+
+		// Organizer capabilities
+		$organizer_caps = array(
+			"edit_event_organizer", "read_event_organizer", "delete_event_organizer",
+			"edit_event_organizers", "edit_others_event_organizers", "publish_event_organizers",
+			"read_private_event_organizers", "delete_event_organizers",
+			"delete_private_event_organizers", "delete_published_event_organizers",
+			"delete_others_event_organizers", "edit_private_event_organizers",
+			"edit_published_event_organizers",
+		);
+
+		// Venue capabilities
+		$venue_caps = array(
+			"edit_event_venue", "read_event_venue", "delete_event_venue",
+			"edit_event_venues", "edit_others_event_venues", "publish_event_venues",
+			"read_private_event_venues", "delete_event_venues",
+			"delete_private_event_venues", "delete_published_event_venues",
+			"delete_others_event_venues", "edit_private_event_venues",
+			"edit_published_event_venues",
+		);
+
+		$caps = array_merge( $organizer_caps, $venue_caps );
+
+		if ( ! $role->has_cap( 'edit_event_organizers' ) || ! $role->has_cap( 'edit_event_venues' ) ) {
+			foreach ( $caps as $cap ) {
+				if ( ! $role->has_cap( $cap ) ) {
+					$role->add_cap( $cap );
+				}
+			}
 		}
 	}
 }
