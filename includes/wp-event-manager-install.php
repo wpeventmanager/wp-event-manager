@@ -52,7 +52,7 @@ class WP_Event_Manager_Install {
 	public static function update() {
 
 		global $wpdb;
-
+		self::init_user_roles();
 		// 3.1.14 change field option name
 		if(!empty(get_option('event_manager_form_fields', true))) {
 			$all_fields = get_option('event_manager_form_fields', true);
