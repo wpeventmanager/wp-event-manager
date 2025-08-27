@@ -835,15 +835,17 @@ class WP_Event_Manager_Shortcodes{
 			'paged'             => $current_page,
 		)));
 
-		$default_view = get_option('event_manager_default_view');
+		if($layout_type == 'all'){
+			$default_view = get_option('event_manager_default_view');
 
-		if (!empty($default_view)) {
-			$layout_type = $default_view;
-			if ($default_view == 'calendar') {
-				$layout_type = 'all';
+			if (!empty($default_view)) {
+				$layout_type = $default_view;
+				if ($default_view == 'calendar') {
+					$layout_type = 'all';
+				}
 			}
 		}
-
+		
 		if($events->have_posts()) :
 
 			wp_enqueue_script('wp-event-manager-ajax-filters');
@@ -1119,6 +1121,8 @@ class WP_Event_Manager_Shortcodes{
 			'layout_type'          => 'all',
 			'title'                => __('Past Events', 'wp-event-manager'),
 		), $atts);
+		$per_page = absint($atts['per_page']);
+		$show_pagination = $atts['show_pagination'];
 
 		$paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
 
