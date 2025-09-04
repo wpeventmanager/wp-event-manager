@@ -187,7 +187,11 @@ class WP_Event_Manager_Post_Types {
 		            	'delete_terms' 		=> $admin_capability,
 		            	'assign_terms' 		=> $admin_capability,
 		          ),
-		           'rewrite' 				=> $rewrite,
+		           'rewrite' => array(
+						'slug'         => $permalink_structure['type_rewrite_slug'],
+						'with_front'   => false,
+						'hierarchical' => false,
+					),
 		      ))
 		  );
 	    }
