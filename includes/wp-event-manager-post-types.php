@@ -674,7 +674,9 @@ class WP_Event_Manager_Post_Types {
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
 				$event = get_post($event_id);
-				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($event_id, '_event_expiry_date', true)). ' 23:59:30')), $event);     
+				$end_time = get_post_meta( $event_id, '_event_end_time',true );
+				$expiry_date = get_post_meta( $event_id, '_event_expiry_date',true );
+				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime($expiry_date . ' ' . $end_time)), $event);     
 				$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', current_time('timestamp')));     
 				
 				// Check for event expire    
