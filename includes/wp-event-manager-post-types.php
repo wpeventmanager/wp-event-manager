@@ -42,11 +42,7 @@ class WP_Event_Manager_Post_Types {
 		add_action('event_manager_check_for_expired_events', array($this, 'check_for_expired_events'));
 		add_action('event_manager_delete_old_previews', array($this, 'delete_old_previews'));
 
-		add_action('pending_to_publish', array($this, 'set_event_expiry_date'));
-		add_action('preview_to_publish', array($this, 'set_event_expiry_date'));
-		add_action('draft_to_publish', array($this, 'set_event_expiry_date'));
-		add_action('auto-draft_to_publish', array($this, 'set_event_expiry_date'));
-		add_action('expired_to_publish', array($this, 'set_event_expiry_date'));
+		add_action('publish_event_listing', array($this, 'set_event_expiry_date'));
 		
 		add_action('wp_footer', array($this, 'output_structured_data'));
 		
@@ -678,7 +674,9 @@ class WP_Event_Manager_Post_Types {
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
 				$event = get_post($event_id);
-				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($event_id, '_event_expiry_date', true)). ' 23:59:30')), $event);     
+				$end_time = get_post_meta( $event_id, '_event_end_time',true );
+				$expiry_date = get_post_meta( $event_id, '_event_expiry_date',true );
+				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime($expiry_date . ' ' . $end_time)), $event);     
 				$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', current_time('timestamp')));     
 				
 				// Check for event expire    
@@ -764,31 +762,21 @@ class WP_Event_Manager_Post_Types {
 	/**
 	 * Set expirey date when event status changes.
 	 */
-	public function set_event_expiry_date($post) {
-		if($post->post_type !== 'event_listing') {
-			return;
-		}
-		// See if it is already set
-		if(metadata_exists('post', $post->ID, '_event_expiry_date')) {
-			$expires = esc_html(get_post_meta($post->ID, '_event_expiry_date', true));
-			if($expires && strtotime($expires) < current_time('timestamp')) {
-				update_post_meta($post->ID, '_event_expiry_date', sanitize_text_field(''));
-			}
-		}
-		
-		// No metadata set so we can generate an expiry date
+	public function set_event_expiry_date($postID) {
 		// See if the user has set the expiry manually:
 		if(!empty($_POST[ '_event_expiry_date' ])) {
-			update_post_meta($post->ID, '_event_expiry_date', date('Y-m-d', strtotime(wp_kses_post($_POST[ '_event_expiry_date' ]))));
-			// No manual setting? Lets generate a date
-		} elseif(false == isset($expires)){
-			$expires = get_event_expiry_date($post->ID);
-			update_post_meta($post->ID, '_event_expiry_date', sanitize_text_field($expires));
-			// In case we are saving a post, ensure post data is updated so the field is not overridden
-			if(isset($_POST[ '_event_expiry_date' ])) {
-				$_POST[ '_event_expiry_date' ] = $expires;
+			$expires = $_POST[ '_event_expiry_date' ];
+			if(!metadata_exists('post', $postID, '_event_expiry_date')) {
+				// expiry date is empty in db so let's update the event
+				update_post_meta($postID, '_event_expiry_date', $expires);
 			}
+			return;
+		}else{
+			// No manual setting? Let's generate a date
+			$expires = get_event_expiry_date($postID);
+            update_post_meta($postID, '_event_expiry_date', $expires);
 		}
+		return;
 	}
 
 	/**
