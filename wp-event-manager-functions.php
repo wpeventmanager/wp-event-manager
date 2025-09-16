@@ -1325,12 +1325,14 @@ function get_event_expiry_date($event_id) {
 	//get set listing expiry time duration
 	$option=get_option('event_manager_submission_expire_options');
 	$event_start_date = esc_attr(get_post_meta($event_id, '_event_start_date', true));
+	$event_start_date = substr($event_start_date, 0, 10);  // strip off any time from end of date
 	$event_end_date = esc_attr(get_post_meta($event_id, '_event_end_date', true));
+	$event_end_date = substr($event_end_date, 0, 10);  // strip off any time from end of date
+
 	$expiry_base_date = $event_end_date ? $event_end_date : $event_start_date;
 
 	if($option==='event_end_date')	{
-		if($expiry_base_date)
-			return date('Y-m-d', strtotime($expiry_base_date));
+			return $expiry_base_date;
 	} else {
 		// Get duration from the admin settings if set.
 		$duration = esc_attr(get_post_meta($event_id, '_event_duration', true));		
@@ -1338,10 +1340,11 @@ function get_event_expiry_date($event_id) {
 		if(!$duration) {		   
 			$duration = absint(get_option('event_manager_submission_duration'));
 		}
-		if($duration) 
+
+		if($duration) {
 			return date('Y-m-d', strtotime("+{$duration} days", strtotime($expiry_base_date)));
+		}
 	}
-	return '';
 }
 
 /**
