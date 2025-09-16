@@ -221,7 +221,6 @@ var Admin = function () {
             if (jQuery('input[name=_event_ticket_options]:checked').length > 0) {
                 jQuery('input[name=_event_ticket_options]:checked').trigger('change');
             }
-            jQuery('body').on('change', '#_event_end_date', Admin.actions.setListingExpery);
 
              //upgrade database
              jQuery("#shortcode_list_filter_action").on('click', Admin.actions.getShortcodeList);
@@ -337,21 +336,6 @@ var Admin = function () {
                             jQuery('._event_health_guidelines').closest('.form-field').hide();
                             jQuery('[name="_enable_health_guideline_other"]').closest('.form-field').hide();
                             jQuery('input[name="_enable_health_guideline_other"][value="no"]').prop('checked', true).trigger('change');
-                        }
-                    },
-
-                    /// <summary>
-                    /// Set listing expiry
-                    /// </summary>
-                    /// <returns type="initialization settings" />
-                    /// <since>3.1.16</since>
-                    setListingExpery: function (event) {
-                        event.preventDefault();
-                        var endDate = jQuery(this).val();
-                        var expiryDate = jQuery('#_event_expiry_date').val();
-
-                        if (expiryDate === '') {
-                            jQuery('#_event_expiry_date').val(endDate);
                         }
                     },
 
