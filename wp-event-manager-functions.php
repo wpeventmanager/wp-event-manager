@@ -2342,3 +2342,82 @@ function wpem_get_form_field_types() {
 		)
 	);
 }
+
+/**
+ * Removes WP date filter on event listing in admin area
+ * which filters on publish date not start date of event.
+ */
+add_filter('months_dropdown_results', 'disable_default_date_filters_robust', 10, 2 );
+function disable_default_date_filters_robust( $months, $post_type ) {
+    if ( $post_type == 'event_listing' ) {
+        return array(); // Return an empty array to remove the default date filter
+    }
+    return $months; // Return the original months if not our post type
+}
+
+/**
+ * Set up a new date filter on event listing in admin area.
+ */
+function custom_date_filter() {
+    global $typenow;
+    if ($typenow == 'event_listing') {
+		$month_selected = isset( $_GET['custom_date_filter'] ) ? $_GET['custom_date_filter'] : ''; // Get the selected month from the URL
+        echo '<select name="custom_date_filter">';
+        echo '<option value="">All Dates</option>';
+
+        for ( $month = 1; $month <= 12; $month++ ) {
+            $month_name = date( 'F', mktime(0, 0, 0, $month, 1) );
+            $selected = ( $month_selected == sprintf("%02d", $month) ) ? 'selected="selected"' : '';  // Check for a match
+            echo '<option value="' . esc_attr(sprintf("%02d", $month)) . '" ' . $selected . '>' . esc_html( $month_name ) . '</option>';
+        }
+        echo '</select>';
+    }
+}
+add_action('restrict_manage_posts', 'custom_date_filter');
+
+/**
+ * Get the relevant event listings to display.
+ */
+function filter_by_custom_date($query) {
+    global $pagenow, $wpdb;
+    if ($pagenow === 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'event_listing' && isset($_GET['custom_date_filter'])) {
+        $date_filter = $_GET['custom_date_filter'];
+		if($date_filter == ""){
+			$sql = $wpdb->prepare(
+				"
+				SELECT p.ID
+				FROM {$wpdb->posts} p
+				INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+				WHERE p.post_type = %s
+				",
+				'event_listing'
+			);
+
+			$post_ids = $wpdb->get_col( $sql );
+		}else{
+				$sql = $wpdb->prepare(
+				"
+				SELECT p.ID
+				FROM {$wpdb->posts} p
+				INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+				WHERE p.post_type = %s
+				AND pm.meta_key = %s
+				AND SUBSTRING(pm.meta_value, 6, 2) = %s
+				",
+				'event_listing',
+				'_event_start_date',
+				$date_filter
+			);
+
+			$post_ids = $wpdb->get_col( $sql ); // Get post IDs that match
+		}
+        if ( ! empty( $post_ids ) ) {
+            $query->set( 'post__in', $post_ids ); // Set post__in to filter by those IDs
+            $query->set( 'orderby', 'post__in' ); // Maintain original order
+        } else {
+            $query->set( 'post__in', array(0) ); // No results, use a non-existent ID to prevent results
+        }
+    }
+	return $query;
+}
+add_filter('pre_get_posts', 'filter_by_custom_date');
