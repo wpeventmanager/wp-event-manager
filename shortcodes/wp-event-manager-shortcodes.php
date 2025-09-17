@@ -952,7 +952,7 @@ class WP_Event_Manager_Shortcodes{
 		), $atts));
 
 		$event_post = get_post($id);
-		if (!$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $id)) {
+		if (!$event_post || $event_post->post_type !== 'event_listing') {
     		return __('You are not allowed to view this event.', 'wp-event-manager');
 		}
 		if('' === get_option('event_manager_hide_expired_content', 1)) {
