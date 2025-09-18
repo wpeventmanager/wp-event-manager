@@ -915,6 +915,7 @@ input.wpem-theme-button:hover span {
   font-weight: 400;
   font-size: 14px;
   border-radius: 4px;
+  margin-right: 5px;
 }
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-register-label {
   display: inline-block;
