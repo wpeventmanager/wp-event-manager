@@ -1247,7 +1247,7 @@ class WP_Event_Manager_Writepanels {
 				}
 			} elseif('_event_venue_ids' === $key) {
 				if(!empty($_POST[$key])) {
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field($_POST[$key]));
+						update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
 				} else {
 					update_post_meta($post_id, sanitize_key($key), '');
 				}

@@ -1080,13 +1080,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				} elseif ( $key == 'event_venue_ids' ) {
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 
-					if( $current_user_id && !empty($values[ $group_key ][ $key ]) )
-					{
-						$my_post = array(
-					      	'ID'           => $values[ $group_key ][ $key ],
-					      	'post_author'  => $current_user_id,
-					      	'post_status'  => 'publish',
-						);
+					if( $current_user_id && !empty($values[ $group_key ][ $key ]) ){
+						foreach ($values[ $group_key ][ $key ] as $organizer_id) {
+							$my_post = array(
+								'ID'           => $values[ $group_key ][ $key ],
+								'post_author'  => $current_user_id,
+								'post_status'  => 'publish',
+							);
+						}
 						wp_update_post($my_post);
 
 						update_post_meta( $values[ $group_key ][ $key ], '_venue_location', sanitize_text_field($values['event']['event_location'] )); 

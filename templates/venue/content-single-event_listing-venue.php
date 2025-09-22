@@ -25,7 +25,9 @@ if (has_event_venue_ids() && !is_event_online()) : ?>
                         <div class="wpem-venue-profile">
                             <?php do_action('single_event_listing_venue_start'); ?>
 
-                            <?php $venue_id = get_event_venue_ids(); ?>
+                            <?php $venue_ids = get_event_venue_ids(); 
+                             if (!empty($venue_ids)) {
+                                foreach ($venue_ids as $key => $venue_id): ?>
 
                             <div class="wpem-venue-inner-wrapper">
                                 <div class="wpem-row">
@@ -105,7 +107,7 @@ if (has_event_venue_ids() && !is_event_online()) : ?>
                                     <?php do_action('single_event_listing_venue_map'); ?>
                                 </div>
                             </div>
-                            <?php do_action('single_event_listing_venue_end'); ?>
+                            <?php endforeach;} do_action('single_event_listing_venue_end'); ?>
                         </div>
                     </div>
                 </div>
