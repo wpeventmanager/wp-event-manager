@@ -226,7 +226,7 @@ class WP_Event_Manager_Ajax {
 	function get_upcoming_listings($atts) {
 
 		$search_location = isset( $_POST['search_location'] ) ? sanitize_text_field( $_POST['search_location'] ) : '';
-		$search_categories = isset( $_POST[''] ) ? sanitize_text_field( $_POST['search_categories'] ) : '';
+		$search_categories = isset( $_POST['search_categories'] ) ? sanitize_text_field( $_POST['search_categories'] ) : '';
 		$event_manager_keyword = isset( $_POST['search_keywords'] ) ? sanitize_text_field( $_POST['search_keywords'] ) : '';
 		if( is_array( $search_categories ) ) {
 		$search_categories = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_categories ) ) );
@@ -366,6 +366,7 @@ class WP_Event_Manager_Ajax {
 		if ( !empty( $tax_query ) ) {
 			$args['tax_query'] = array_merge( array( 'relation' => 'AND' ), $tax_query );
 		}
+		error_log(print_r($args,true));
 
 		$upcoming_events = new WP_Query($args);
 
