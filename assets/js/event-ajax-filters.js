@@ -172,9 +172,10 @@ var EventAjaxFilters = function() {
                 return false;
                 event.preventDefault()
             },
+
             loadMoreEvents: function(event) {
-                //Common.logInfo("EventAjaxFilters.actions.loadMoreEvents...");
-                jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
+                event.preventDefault();
+
                 var target = jQuery(this).closest('div.event_listings');
                 var page = parseInt(jQuery(this).data('page') || 1);
                 var loading_previous = false;
@@ -184,8 +185,8 @@ var EventAjaxFilters = function() {
                 EventAjaxFilters.actions.event_manager_store_state(target, page);
                 target.triggerHandler('update_event_listings', [page, true, loading_previous]);
                 return false;
-                event.preventDefault()
             },
+
             eventPagination: function(event) {
                 Common.logInfo("EventAjaxFilters.actions.eventPagination...");
                 var target = jQuery(this).closest('div.event_listings');
@@ -193,13 +194,13 @@ var EventAjaxFilters = function() {
                 EventAjaxFilters.actions.event_manager_store_state(target, page);
                 EventAjaxFilters.actions.getEventListings(event, page, false, false);
             },
+            
             getEventListings: function(event, page=1, append, loading_previous) {
                 event.preventDefault();
                 Common.logInfo("EventAjaxFilters.actions.getEventListings...");
 
-                jQuery('.load_more_events').hide();
                 var data = '';
-                var target = jQuery('.event_listings');
+                var target = jQuery(event.currentTarget || this);
                 var form = target.find('.event_filters');
                 var filters_bar = target.find('.showing_applied_filters');
                 var results = target.find('.event_listings');
@@ -210,7 +211,7 @@ var EventAjaxFilters = function() {
                 var cancelled = target.data('cancelled');
                 var event_online = target.data('event_online');
                 var index = jQuery('div.event_listings').index(this);
-               
+                target.find('.load_more_events').hide();
                 if (xmlHttpRequest[index]) {
                     xmlHttpRequest[index].abort()
                 }
@@ -363,11 +364,11 @@ var EventAjaxFilters = function() {
                                     localStorage.setItem( 'total_event_page', result.max_num_pages);
                                     localStorage.setItem( 'current_event_page', page);
                                     if (!result.found_events || result.max_num_pages <= page) {
-                                        jQuery('.load_more_events:not(.load_previous)', target).hide()
+                                        target.find('.load_more_events:not(.load_previous)').hide();
                                     } else if (!loading_previous) {
-                                        jQuery('.load_more_events', target).show()
+                                        target.find('.load_more_events').show();
                                     }
-                                    jQuery('#load_more_events_loader').removeClass('wpem-loading');
+                                   target.find('.load_more_events_loader').removeClass('wpem-loading');
                                     jQuery('li.event_listing', results).css('visibility', 'visible')
                                 }
                                 jQuery(results).parent().removeClass('wpem-loading');
@@ -428,7 +429,7 @@ var EventAjaxFilters = function() {
                             per_page: per_page,
                         },
                         success: function(response) {
-                            jQuery('#load_more_events_loader').removeClass('wpem-loading');
+                            target.find('.load_more_events_loader').removeClass('wpem-loading');
                             if (response.success) {
                                 jQuery('.event_listings').append(response.data.events_html);                            
                                 var nextPage = parseInt(currentPage) + 1;
