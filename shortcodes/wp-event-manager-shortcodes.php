@@ -732,7 +732,40 @@ class WP_Event_Manager_Shortcodes{
 
 		$filter_file_option = get_option('event_manager_filter_design');
 		$filter_file = $filter_file_option ? basename($filter_file_option . '.php') : 'event-classic-filters.php';
+		if (!empty($selected_datetime)) {
+			// Get date and time settings defined in the admin panel Event listing -> Settings -> Date & Time formatting
+			$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+			
+			// Convert datepicker format into PHP date() function date format
+			$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
+			$selected_datetime = explode(',', $selected_datetime);
+
+			$start_date = esc_attr(strip_tags($selected_datetime[0]));
+			$end_date = isset($selected_datetime[1]) ? esc_attr(strip_tags($selected_datetime[1])) : $start_date;
+
+			if ($start_date == 'today') {
+				$start_date = date($php_date_format);
+			} else if ($start_date == 'tomorrow') {
+				$start_date = date($php_date_format, strtotime('+1 day'));
+			}
+
+			if ($end_date == 'today') {
+				$end_date = date($php_date_format);
+			} else if ($end_date == 'tomorrow') {
+				$end_date = date($php_date_format, strtotime('+1 day'));
+			}
+
+			// Parse and format the dates
+			$arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $start_date);
+			$arr_selected_datetime['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $end_date);
+
+			$arr_selected_datetime['start'] = date_i18n($php_date_format, strtotime($arr_selected_datetime['start']));
+			$arr_selected_datetime['end'] = date_i18n($php_date_format, strtotime($arr_selected_datetime['end']));
+
+			$selected_datetime = json_encode($arr_selected_datetime);
+		}
+		
 		if($show_filters) {
 			$event_filter_args = array(
 				'per_page' => $per_page,
@@ -764,42 +797,6 @@ class WP_Event_Manager_Shortcodes{
 			}
 			//get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 			//get_event_manager_template('event-listings-end.php', array('show_filters' => $show_filters, 'show_more' => $show_more, 'show_pagination' => $show_pagination));
-
-		} else {
-			
-			if (!empty($selected_datetime)) {
-				// Get date and time settings defined in the admin panel Event listing -> Settings -> Date & Time formatting
-				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
-				
-				// Convert datepicker format into PHP date() function date format
-				$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-
-				$selected_datetime = explode(',', $selected_datetime);
-
-				$start_date = esc_attr(strip_tags($selected_datetime[0]));
-				$end_date = isset($selected_datetime[1]) ? esc_attr(strip_tags($selected_datetime[1])) : $start_date;
-
-				if ($start_date == 'today') {
-					$start_date = date($php_date_format);
-				} else if ($start_date == 'tomorrow') {
-					$start_date = date($php_date_format, strtotime('+1 day'));
-				}
-
-				if ($end_date == 'today') {
-					$end_date = date($php_date_format);
-				} else if ($end_date == 'tomorrow') {
-					$end_date = date($php_date_format, strtotime('+1 day'));
-				}
-
-				// Parse and format the dates
-				$arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $start_date);
-				$arr_selected_datetime['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $end_date);
-
-				$arr_selected_datetime['start'] = date_i18n($php_date_format, strtotime($arr_selected_datetime['start']));
-				$arr_selected_datetime['end'] = date_i18n($php_date_format, strtotime($arr_selected_datetime['end']));
-
-				$selected_datetime = json_encode($arr_selected_datetime);
-			}
 
 		}
 		if(empty($event_types) && !empty($selected_event_type)) {
