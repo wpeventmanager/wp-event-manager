@@ -449,7 +449,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'venue' => array(
 				'event_venue_ids' => array(
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
-			        'type'  		=> 'select',
+			        'type'  		=> 'multiselect',
 				    'default'  		=> $default_venue,
 				    'options'  		=> apply_filters('wpem_set_venue_ids', ($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')]),
 				    'description'	=> $venue_description,
@@ -1081,9 +1081,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 
 					if( $current_user_id && !empty($values[ $group_key ][ $key ]) ){
-						foreach ($values[ $group_key ][ $key ] as $organizer_id) {
+						foreach ($values[ $group_key ][ $key ] as $venue_id) {
 							$my_post = array(
-								'ID'           => $values[ $group_key ][ $key ],
+								'ID'           => $venue_id,
 								'post_author'  => $current_user_id,
 								'post_status'  => 'publish',
 							);

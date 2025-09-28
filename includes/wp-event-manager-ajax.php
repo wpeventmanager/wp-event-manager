@@ -366,7 +366,6 @@ class WP_Event_Manager_Ajax {
 		if ( !empty( $tax_query ) ) {
 			$args['tax_query'] = array_merge( array( 'relation' => 'AND' ), $tax_query );
 		}
-		error_log(print_r($args,true));
 
 		$upcoming_events = new WP_Query($args);
 
