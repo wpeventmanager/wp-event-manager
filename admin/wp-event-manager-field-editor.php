@@ -84,6 +84,7 @@ class WP_Event_Manager_Field_Editor {
 
 		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country'));
 		$disbled_fields_tab_group = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country', 'event_type', 'event_category'));
+		$disbled_file_field = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_banner'));
 		$taxonomy_fields = apply_filters('wpem_admin_field_editor_taxonomy_fields', array('event_type', 'event_category'));
 		$field_types = wpem_get_form_field_types();
 
@@ -134,6 +135,7 @@ class WP_Event_Manager_Field_Editor {
 							<th width="1%"><?php esc_attr_e('Type', 'wp-event-manager'); ?></th>
 							<th><?php esc_attr_e('Description', 'wp-event-manager'); ?></th>
 							<th><?php esc_attr_e('Placeholder / Options', 'wp-event-manager'); ?></th>
+							<th><?php esc_attr_e('File Location', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Meta Key', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Only For Admin', 'wp-event-manager'); ?></th>
 							<th width="1%"><?php esc_attr_e('Priority', 'wp-event-manager'); ?></th>

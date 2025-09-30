@@ -1316,22 +1316,48 @@ class WP_Event_Manager_Writepanels {
 						break;
 					default:
 					$add_data = apply_filters('wpem_save_event_data', true, $key, isset($_POST[$key]) ? $_POST[$key] : null);
-						if( $add_data ) {
-							if(!isset($_POST[$key])) {
-								continue 2;
-							} elseif(is_array($_POST[$key])) {
-								update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
-							} else {
-								update_post_meta($post_id, sanitize_key($key), sanitize_text_field($_POST[$key]));
+					if ( $add_data ) {
+						if ( ! isset( $_POST[$key] ) ) {
+							continue 2;
+						} elseif ( is_array( $_POST[$key] ) ) {
+							update_post_meta( $post_id, sanitize_key( $key ), array_filter( array_map( 'sanitize_text_field', $_POST[$key] ) ) );
+						} else {
+							$saved_value = sanitize_text_field( $_POST[$key] );
+							update_post_meta( $post_id, sanitize_key( $key ), $saved_value );
+
+							if ( ! empty( $field['type'] ) && $field['type'] === 'file' && ! empty( $field['folder_location'] ) ) {
+								$upload_dir = wp_upload_dir();
+								$custom_dir = trailingslashit( $upload_dir['basedir'] ) . sanitize_file_name( $field['folder_location'] );
+
+								if ( ! file_exists( $custom_dir ) ) {
+									wp_mkdir_p( $custom_dir );
+								}
+
+								$file_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $saved_value );
+
+								if ( file_exists( $file_path ) ) {
+									$filename = basename( $file_path );
+									$new_path = trailingslashit( $custom_dir ) . $filename;
+
+									if ( @copy( $file_path, $new_path ) ) {
+										$new_url = trailingslashit( $upload_dir['baseurl'] ) . $field['folder_location'] . '/' . $filename;
+
+										update_post_meta( $post_id, sanitize_key( $key ), esc_url_raw( $new_url ) );
+									}
+								}
 							}
-							if($key=='_event_ticket_options' && $_POST[$key]=='free'){
-								$ticket_type=$_POST[$key];
-							}
-							// Set event online or not
-							if($key == '_event_online') 
-								$event_online = $_POST[$key];
-							break;
 						}
+
+						if ( $key == '_event_ticket_options' && $_POST[$key] == 'free' ) {
+							$ticket_type = $_POST[$key];
+						}
+
+						if ( $key == '_event_online' ) {
+							$event_online = $_POST[$key];
+						}
+						break;
+					}
+
 				}
 			}
 		}

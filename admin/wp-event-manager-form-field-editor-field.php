@@ -88,6 +88,17 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 		</div>
 		<span class="na">&ndash;</span>
 	</td>
+	<td class="field-options">
+		<div class="file-options">
+		<label class="folder-location">
+			<span><?php esc_html_e('Upload Folder:', 'wp-event-manager'); ?></span>
+			<input <?php if (in_array($field_key, $disbled_file_field)) echo 'disabled'; ?> type="text" class="input-text" 
+				name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($field_key); ?>][folder_location]"
+				value="<?php echo esc_attr($field['folder_location'] ?? ''); ?>"
+				placeholder="<?php esc_attr_e('uploads', 'wp-event-manager'); ?>" />
+		</label>
+		</div>
+	</td>
 	<td> <input type="text" value="_<?php echo esc_attr(stripslashes($field_key)); ?>" readonly></td>
 	<td>
 		<?php if (!in_array($field_key, $disbled_fields)) : ?>
