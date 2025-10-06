@@ -794,9 +794,7 @@ class WP_Event_Manager_Writepanels {
 	public static function input_multiselect($key, $field)	{
 		global $post_id;
 		$default_organizer = get_option('default_organizer');
-		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = get_post_meta($post_id, stripslashes($key), true);
-		}
+		$field['value'] = get_post_meta($post_id, stripslashes($key), true);
 		if(!empty($field['name'])) {
 			$name = $field['name'];
 		} else {
@@ -1052,9 +1050,7 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public static function input_radio($key, $field) {
 		global $post_id;
-		if(empty($field['value'])) {
-			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
-		}
+		$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 		if(!empty($field['name'])) {
 			$name = $field['name'];
 		} else {
