@@ -1160,6 +1160,24 @@ input.wpem-theme-button:hover span {
     color: var(--wpem-white-color);
 }
 
+.past_event_listings a.load_more_past_events {
+  text-align: center;
+  background: var(--wpem-gray-bg-color);
+  color: var(--wpem-gray-color);
+  text-transform: uppercase;
+  padding: 10px 15px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  border-radius: 4px;
+  margin: 0 auto;
+  display: table;
+}
+.past_event_listings a.load_more_past_events:hover {
+    background: var(--wpem-gray-color);
+    color: var(--wpem-white-color);
+}
+
 .wpem-single-event-widget {
   margin-bottom: 20px;
   background: var(--wpem-white-color);

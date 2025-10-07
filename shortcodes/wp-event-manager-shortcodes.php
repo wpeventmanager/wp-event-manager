@@ -1103,6 +1103,8 @@ class WP_Event_Manager_Shortcodes{
 		), $atts);
 
 		$paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
+		$per_page = $atts['per_page'];
+		$show_pagination = $atts['show_pagination'];
 
 		$args_past = array(
 			'post_type'      => 'event_listing',
@@ -1193,13 +1195,14 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		$args_past = apply_filters('event_manager_past_event_listings_args', $args_past);
+		error_log(print_r($args_past,true));
 		$past_events = new WP_Query($args_past);
 
 		wp_reset_query();
 
 		// Remove calender view
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
-
+		wp_enqueue_script('wp-event-manager-ajax-filters');
 		if($past_events->have_posts()) : ?>
 			<div class="past_event_listings">
 				<?php get_event_manager_template('event-listings-start.php', array('layout_type' => sanitize_key( $atts['layout_type'] ), 'title' => esc_html($atts['title'])));
@@ -1212,6 +1215,11 @@ class WP_Event_Manager_Shortcodes{
 						<div class="event-organizer-pagination wpem-col-12">
 							<?php get_event_manager_template('pagination.php', array('max_num_pages' => $past_events->max_num_pages)); ?>
 						</div>
+					<?php else : ?>
+    					<div id="load_more_events_loader">
+        					<a class="load_more_past_events" id="load_more_events" href="#" data-page="<?php echo (int)$paged+1; ?>"><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>
+    					</div>
+						<div id="per-page-settings" style="display:none;" data-per-page="<?php echo esc_attr($per_page); ?>"></div>
 					<?php endif;
 				endif; ?>
 			</div>

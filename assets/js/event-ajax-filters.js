@@ -71,6 +71,7 @@ var EventAjaxFilters = function() {
             jQuery(document).ready(EventAjaxFilters.actions.windowLoad);
 
             jQuery(document.body).on('click', '.load_more_upcoming_events', EventAjaxFilters.actions.loadMoreUpcomingEvents);
+            jQuery(document.body).on('click', '.load_more_past_events', EventAjaxFilters.actions.loadMorePastEvents);
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('#event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset); 
             jQuery('div.event_listings_main').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
@@ -430,6 +431,57 @@ var EventAjaxFilters = function() {
                         },
                         success: function(response) {
                             target.find('.load_more_events_loader').removeClass('wpem-loading');
+                            if (response.success) {
+                                jQuery('.event_listings').append(response.data.events_html);                            
+                                var nextPage = parseInt(currentPage) + 1;
+                                jQuery('#load_more_events').attr('data-page', nextPage);
+                                if (response.data.no_more_events===true) {
+                                    jQuery('#load_more_events').hide();
+                                }
+                            } else {
+                                console.error('Failed to load events:', response.data.error);
+                                if (response.data.error === 'No more events found.') {
+                                    jQuery('#load_more_events').hide();
+                                }
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('AJAX Error:', status, error);
+                        }
+                    });
+                };                
+            },
+
+            /**
+             * this function is used to load more upcoming events
+             * @param {*} event 
+             */
+            loadMorePastEvents: function(event){
+                if(jQuery('.past_event_listings').length > 0) {
+                    event.preventDefault();
+                    jQuery(this).parent().addClass('wpem-loading');
+                    var search_keywords = jQuery('#search_keywords').val();
+                    var search_location = jQuery('#search_location').val();
+                    var search_categories = jQuery('#search_categories').val();
+                    var search_event_types = jQuery('#search_event_types').val();
+                    var search_datetimes = jQuery('#search_datetimes').val();
+                    var currentPage = jQuery('.load_more_past_events').attr('data-page');
+                    var per_page = jQuery('#per-page-settings').data('per-page');
+                    jQuery.ajax({
+                        type: 'POST',
+                        url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "load_more_past_listings"),
+                        data: {
+                            action: 'load_more_past_listings',
+                            search_keywords: search_keywords,
+                            search_location: search_location,
+                            search_datetimes: search_datetimes,
+                            search_categories: search_categories,
+                            search_event_types: search_event_types,
+                            value: currentPage,
+                            per_page: per_page,
+                        },
+                        success: function(response) {
+                           jQuery('#load_more_events_loader').removeClass('wpem-loading');
                             if (response.success) {
                                 jQuery('.event_listings').append(response.data.events_html);                            
                                 var nextPage = parseInt(currentPage) + 1;
