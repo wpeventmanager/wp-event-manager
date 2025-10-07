@@ -288,8 +288,11 @@
 											<div class="wpem-event-dashboard-information-wrapper">
 												<div class="wpem-event-dashboard-information-table">
 													<h4 class="wpem-event-dashboard-information-title-box"><?php esc_html_e('Event Details', 'wp-event-manager'); ?></h4>
-													<?php foreach ($event_dashboard_columns as $key => $column) : ?>
-
+													<?php foreach ($event_dashboard_columns as $key => $column) : 
+														if ( $key === 'event_action' && ! has_action( 'event_manager_event_dashboard_column_event_action' ) ) {
+															continue;
+														}
+														?>
 														<div class="wpem-row wpem-event-dashboard-information-table-row">
 															<div class="wpem-col-md-6">
 																<div class="wpem-event-dashboard-information-table-lines"><strong><?php echo esc_html($column); ?></strong></div>
