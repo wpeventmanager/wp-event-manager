@@ -163,7 +163,7 @@ class WP_Event_Manager_Post_Types {
 			register_taxonomy("event_listing_type",
 			apply_filters('register_taxonomy_event_listing_type_object_type', array('event_listing')),
 		        apply_filters('register_taxonomy_event_listing_type_args', array(
-		            'hierarchical' 			=> true,
+		            'hierarchical' 			=> false,
 		            'label' 				=> $plural,
 		            'labels' => array(
 	                    'name' 				=> $plural,
@@ -176,7 +176,8 @@ class WP_Event_Manager_Post_Types {
 	                    'edit_item' 		=> sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
 	                    'update_item' 		=> sprintf(wp_kses('Update %s', 'wp-event-manager'), $singular),
 	                    'add_new_item' 		=> sprintf(wp_kses('Add New %s', 'wp-event-manager'), $singular),
-	                    'new_item_name' 	=> sprintf(wp_kses('New %s Name', 'wp-event-manager'),  $singular)
+	                    'new_item_name' 	=> sprintf(wp_kses('New %s Name', 'wp-event-manager'),  $singular),
+						'back_to_items'     => __( '← Go to Types', 'wp-event-manager' ),
 	            	),
 		            'show_ui' 				=> true,
 					'show_in_rest'          => true,
