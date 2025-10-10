@@ -78,7 +78,7 @@ if (!function_exists('wpem_manage_license')) {
 					if (!empty($licence_key)) {
 						$disabled = 'disabled';
 					}
-					require_once plugin_dir_path( __FILE__ ) . 'templates/addon-licence.php';
+					require plugin_dir_path( __FILE__ ) . 'templates/addon-licence.php';
 				} ?>
 			</div>
 			<div class="notice notice-info inline">
