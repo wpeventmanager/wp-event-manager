@@ -8,7 +8,6 @@ var TermMultiselect= function () {
         ///<returns type="initialization settings" />   
         /// <since>1.0.0</since> 
         init: function() {   
-	        Common.logInfo("TermMultiselect.init...");  
 	        jQuery(".event-manager-category-dropdown").chosen({ search_contains: !0 });
 	   }   
     } //enf of return

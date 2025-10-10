@@ -108,6 +108,19 @@ class WP_Event_Manager extends WPEM_Updater {
 		// In the case of third party support, use this. 
 		include('external/external.php');
 
+		// Include test files for update check fix validation (only in admin and for administrators)
+		if (is_admin() && current_user_can('administrator')) {
+			if (file_exists(plugin_dir_path(__FILE__) . 'test-update-fix.php')) {
+				include('test-update-fix.php');
+			}
+			if (file_exists(plugin_dir_path(__FILE__) . 'wpem-update-test-suite.php')) {
+				include('wpem-update-test-suite.php');
+			}
+			if (file_exists(plugin_dir_path(__FILE__) . 'wpem-load-test.php')) {
+				include('wpem-load-test.php');
+			}
+		}
+
 		// Init classes
 		$this->forms      = WP_Event_Manager_Forms::instance();
 		$this->post_types = WP_Event_Manager_Post_Types::instance();

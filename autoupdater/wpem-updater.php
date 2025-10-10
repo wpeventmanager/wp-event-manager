@@ -54,10 +54,18 @@ class WPEM_Updater {
 		$this->load_errors();
 
 		add_action( 'shutdown', array( $this, 'store_errors' ) );
-		if ( is_admin() && current_user_can( 'update_plugins' ) ) {
+		
+		// Use a static flag to ensure hooks are only registered once across all instances
+		static $hooks_registered = false;
+		if ( !$hooks_registered && is_admin() && current_user_can( 'update_plugins' ) ) {
 			add_action( 'site_transient_update_plugins', array( $this, 'check_for_updates' ), 10 );
+			add_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
+			
+			// Clear cache when any plugin is updated to ensure fresh checks
+			add_action( 'upgrader_process_complete', array( $this, 'clear_update_cache_on_plugin_update' ), 10, 2 );
+			
+			$hooks_registered = true;
 		}
-		add_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 
 		if ( current_user_can( 'update_plugins' ) ) {
 			$this->admin_requests();
@@ -223,6 +231,11 @@ class WPEM_Updater {
 				delete_option( $plugin_info['TextDomain'] . '_errors' );
 				delete_option( $plugin_info['TextDomain'] . '_key_expire_pre' );
 				delete_option( $plugin_info['TextDomain'] . '_key_expire' );
+				
+				// Clear update check cache when license is activated
+				if ( function_exists( 'delete_transient' ) ) {
+					delete_transient( 'wpem_bulk_plugin_update_check' );
+				}
 
 				$subscription_expire_date = $activate_results['activations']['date_expires'];
 				// Hook for registering cron job
@@ -262,6 +275,12 @@ class WPEM_Updater {
 		delete_option( $plugin_info['TextDomain'] . '_key_expire' );
 		delete_option( $plugin_info['TextDomain'] . '_key_expire_pre' );
 		delete_site_transient( 'update_plugins' );
+		
+		// Clear update check cache when license is deactivated
+		if ( function_exists( 'delete_transient' ) ) {
+			delete_transient( 'wpem_bulk_plugin_update_check' );
+		}
+		
 		$this->errors           = array();
 		$api_key          = '';
 		$activation_email = '';
@@ -333,10 +352,39 @@ class WPEM_Updater {
 		if ( empty( $check_for_updates_data->checked ) ) {
 			return $check_for_updates_data;
 		}
-		// $cached_response = get_transient( 'wpem_bulk_plugin_update_check' );
-		// if ( false !== $cached_response ) {
-		// 	$response = $cached_response;
-		// } else {
+		
+		// Use a static flag to prevent multiple simultaneous update checks
+		static $update_check_running = false;
+		if ( $update_check_running ) {
+			return $check_for_updates_data;
+		}
+		$update_check_running = true;
+		
+		// Check for cached response first (with error handling)
+		$cached_response = false;
+		if ( function_exists( 'get_transient' ) ) {
+			$cached_response = get_transient( 'wpem_bulk_plugin_update_check' );
+		}
+		
+		// Force fresh check if WordPress core update is available (prevents conflicts)
+		$wp_updates = get_site_transient( 'update_core' );
+		$force_fresh_check = false;
+		if ( ! empty( $wp_updates ) && ! empty( $wp_updates->updates ) ) {
+			foreach ( $wp_updates->updates as $update ) {
+				if ( $update->response === 'upgrade' ) {
+					$force_fresh_check = true;
+					break;
+				}
+			}
+		}
+		
+		if ( false !== $cached_response && ! $force_fresh_check ) {
+			// Log cache hit for debugging (can be removed in production)
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WPEM Update Check: Using cached response, preventing API call' );
+			}
+			$response = $cached_response;
+		} else {
 			$plugin_names = array();
 			$plugin_slugs = array();
 			$plugin_licenses = array();
@@ -357,13 +405,29 @@ class WPEM_Updater {
 					}
 				}
 				// Set version variables.
-				$response = $this->get_plugin_version($plugin_names, $plugin_slugs, $plugin_licenses, $plugin_emails, $plugin_versions);
-				// Cache it
-				// if ( is_object( $response ) ) {
-				// 	set_transient( 'wpem_bulk_plugin_update_check', $response, HOUR_IN_SECONDS * 6 );
-				// }
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+					error_log( 'WPEM Update Check: Making API call for ' . count($plugin_names) . ' plugins' );
+				}
+				
+				// Only make API call if we have licensed plugins
+				if ( ! empty( $plugin_names ) ) {
+					$response = $this->get_plugin_version($plugin_names, $plugin_slugs, $plugin_licenses, $plugin_emails, $plugin_versions);
+					
+					// Cache the response with error handling and shorter cache for paid plugins
+					if ( is_object( $response ) && function_exists( 'set_transient' ) ) {
+						// Use shorter cache time (2 hours) to ensure paid addon updates are detected quickly
+						$cache_duration = apply_filters( 'wpem_update_check_cache_duration', HOUR_IN_SECONDS * 2 );
+						set_transient( 'wpem_bulk_plugin_update_check', $response, $cache_duration );
+						if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+							error_log( 'WPEM Update Check: Response cached for ' . ( $cache_duration / 3600 ) . ' hours' );
+						}
+					}
+				} else {
+					// No licensed plugins found, create empty response
+					$response = new stdClass();
+				}
 			}	
-		// }
+		}
 		if(isset($response) && !empty($response) && is_object($response)){
 			foreach ($this->plugin_data as $plugin_info) {
 				$plugin_slug = $plugin_info['TextDomain'];
@@ -379,6 +443,10 @@ class WPEM_Updater {
 				}
 			}
 		}
+		
+		// Reset the flag to allow future update checks
+		$update_check_running = false;
+		
 		return $check_for_updates_data;	
 	}
 
@@ -610,5 +678,44 @@ class WPEM_Updater {
 		// If no matching cron job is found, schedule a new one
 		wp_schedule_single_event(time(), 'wpem_check_for_licence_expire', array($new_args));
 		return;
+	}
+
+	/**
+	 * Clear update cache when plugins are updated to ensure fresh checks
+	 * 
+	 * @param WP_Upgrader $upgrader_object
+	 * @param array $options
+	 */
+	public function clear_update_cache_on_plugin_update( $upgrader_object, $options ) {
+		// Only clear cache for plugin updates
+		if ( $options['type'] === 'plugin' ) {
+			// Check if WP Event Manager or any of its addons were updated
+			$updated_plugins = array();
+			
+			if ( isset( $options['plugins'] ) ) {
+				$updated_plugins = $options['plugins'];
+			} elseif ( isset( $options['plugin'] ) ) {
+				$updated_plugins = array( $options['plugin'] );
+			}
+			
+			$should_clear_cache = false;
+			foreach ( $updated_plugins as $plugin ) {
+				// Check if it's a WPEM plugin
+				if ( strpos( $plugin, 'wp-event-manager' ) !== false || 
+					 strpos( $plugin, 'wpem-' ) !== false ) {
+					$should_clear_cache = true;
+					break;
+				}
+			}
+			
+			if ( $should_clear_cache ) {
+				if ( function_exists( 'delete_transient' ) ) {
+					delete_transient( 'wpem_bulk_plugin_update_check' );
+				}
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+					error_log( 'WPEM Update Check: Cache cleared due to plugin update' );
+				}
+			}
+		}
 	}
 }
