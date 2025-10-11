@@ -159,12 +159,12 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 		$this->widget_cssclass    = 'event_manager widget_recent_events';
 		$this->widget_description = __('Display a list of recent listings on your site, optionally matching a keyword and location.', 'wp-event-manager');
 		$this->widget_id          = 'widget_recent_events';
-		$this->widget_name        = sprintf(wp_kses('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		$this->widget_name        = sprintf(__('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
 		
 		$this->settings           = array(
 			'title' => array(
 				'type'  => 'text',
-				'std'   => sprintf(wp_kses('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(__('Recent %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 				'label' => __('Title', 'wp-event-manager')
 			),
 			'keyword' => array(
@@ -223,7 +223,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 		if (!empty($instance['title']))
 			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 		else
-			$title = sprintf(wp_kses('Recent Events', 'wp-event-manager'));
+			$title = sprintf(__('Recent Events', 'wp-event-manager'));
 
 		if (!empty($instance['number']))
 			$number = absint($instance['number']);
@@ -278,12 +278,12 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget{
 		$this->widget_cssclass    = 'event_manager widget_featured_events';
 		$this->widget_description = __('Display a list of featured listings on your site.', 'wp-event-manager');
 		$this->widget_id          = 'widget_featured_events';
-		$this->widget_name        = sprintf(wp_kses('Featured %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		$this->widget_name        = sprintf(__('Featured %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
 		
 		$this->settings           = array(
 			'title' => array(
 				'type'  => 'text',
-				'std'   => sprintf(wp_kses('Featured %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(__('Featured %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 				'label' => __('Title', 'wp-event-manager')
 			),
 			'number' => array(
@@ -333,7 +333,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget{
 		if (!empty($instance['title']))
 			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 		else
-			$title = sprintf(wp_kses('Featured Events', 'wp-event-manager'));
+			$title = sprintf(__('Featured Events', 'wp-event-manager'));
 
 		if (!empty($instance['number']))
 			$number = absint($instance['number']);
@@ -395,12 +395,12 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 		$this->widget_cssclass    = 'event_manager widget_upcoming_events';
 		$this->widget_description = __('Display a list of upcoming listings on your site.', 'wp-event-manager');
 		$this->widget_id          = 'widget_upcoming_events';
-		$this->widget_name        = sprintf(wp_kses('Upcoming %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		$this->widget_name        = sprintf(__('Upcoming %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
 
 		$this->settings           = array(
 			'title' => array(
 				'type'  => 'text',
-				'std'   => sprintf(wp_kses('Upcoming %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(__('Upcoming %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 				'label' => __('Title', 'wp-event-manager')
 			),
 			'number' => array(
@@ -464,7 +464,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 		if (!empty($instance['title']))
 			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 		else
-			$title = sprintf(wp_kses('Upcoming Events', 'wp-event-manager'));
+			$title = sprintf(__('Upcoming Events', 'wp-event-manager'));
 
 		if (!empty($instance['number']))
 			$number = absint($instance['number']);
@@ -543,12 +543,12 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 		$this->widget_cssclass    = 'event_manager widget_past_events';
 		$this->widget_description = __('Display a list of Past listings on your site.', 'wp-event-manager');
 		$this->widget_id          = 'widget_past_events';
-		$this->widget_name        = sprintf(wp_kses('Past %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
+		$this->widget_name        = sprintf(__('Past %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name);
 
 		$this->settings           = array(
 			'title' => array(
 				'type'  => 'text',
-				'std'   => sprintf(wp_kses('Past %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
+				'std'   => sprintf(__('Past %s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->name),
 				'label' => __('Title', 'wp-event-manager')
 			),
 			'number' => array(
@@ -612,7 +612,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 		if (!empty($instance['title']))
 			$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 		else
-			$title = sprintf(wp_kses('Past Events', 'wp-event-manager'));
+			$title = sprintf(__('Past Events', 'wp-event-manager'));
 
 		if (!empty($instance['number']))
 			$number = absint($instance['number']);
@@ -680,5 +680,6 @@ register_widget('WP_Event_Manager_Widget_Recent_Events');
 register_widget('WP_Event_Manager_Widget_Featured_Events');
 
 register_widget('WP_Event_Manager_Widget_Upcoming_Events');
+
 
 register_widget('WP_Event_Manager_Widget_Past_Events');
