@@ -23,6 +23,11 @@ class WPEM_Updater {
 	private $plugin_slug = '';
 	private $errors      = array();
 	private $plugin_data = array();
+	// Runtime cache to prevent duplicate HTTP requests within a single page load
+	private static $did_update_check = false;
+	private static $update_response_cache = null;
+	// Flag to ensure the update check filter is registered only once globally
+	private static $filter_registered = false;
 
 	/**
 	 * Constructor, used if called directly.
@@ -54,8 +59,9 @@ class WPEM_Updater {
 		$this->load_errors();
 
 		add_action( 'shutdown', array( $this, 'store_errors' ) );
-		if ( is_admin() && current_user_can( 'update_plugins' ) ) {
-			add_action( 'site_transient_update_plugins', array( $this, 'check_for_updates' ), 10 );
+		if ( is_admin() && current_user_can( 'update_plugins' ) && ! self::$filter_registered ) {
+			add_filter('site_transient_update_plugins', array($this, 'check_for_updates'));
+			self::$filter_registered = true;
 		}
 		add_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 
@@ -329,41 +335,60 @@ class WPEM_Updater {
 
 	//Check for plugin updates.
 	public function check_for_updates( $check_for_updates_data ) {
-
 		if ( empty( $check_for_updates_data->checked ) ) {
 			return $check_for_updates_data;
 		}
-		// $cached_response = get_transient( 'wpem_bulk_plugin_update_check' );
-		// if ( false !== $cached_response ) {
-		// 	$response = $cached_response;
-		// } else {
-			$plugin_names = array();
-			$plugin_slugs = array();
-			$plugin_licenses = array();
-			$plugin_files = array();
-			$plugin_emails = array();
-			$plugin_versions = array();
-			if(!empty($this->plugin_data)){
-				foreach($this->plugin_data as $plugin_info){
-					$licence_key = get_option(  $plugin_info['TextDomain'] . '_licence_key', true );
-					$email       = get_option(  $plugin_info['TextDomain'] . '_email', true );
-					if ( !empty($licence_key) && !empty($email) ) {
-						array_push($plugin_names,  $plugin_info['Name']);
-						array_push($plugin_slugs,  $plugin_info['TextDomain']);
-						array_push($plugin_files,  $plugin_info['plugin_files']);
-						array_push($plugin_versions,  $plugin_info['Version']);
-						array_push($plugin_emails,  $email);
-						array_push($plugin_licenses,  $licence_key);
+		// If we've already performed an update check during this request, reuse cached response
+		if ( self::$did_update_check ) {
+
+			if ( is_object( self::$update_response_cache ) ) {
+				$response = self::$update_response_cache;
+				foreach ($this->plugin_data as $plugin_info) {
+					$plugin_slug = $plugin_info['TextDomain'];
+					// Check if property exists and is an array or object
+		    		if (isset($response->$plugin_slug) && isset($response->$plugin_slug['new_version'])) {
+						$new_version = $response->$plugin_slug['new_version'];
+						if(isset($new_version)){
+							if (isset($check_for_updates_data->checked[$plugin_info['plugin_files']]) && version_compare( $new_version, $plugin_info['Version'], '>' ) ) {
+								$response->$plugin_slug['plugin'] = $plugin_info['plugin_files'];
+								$check_for_updates_data->response[ $plugin_info['plugin_files'] ] = (object)$response->$plugin_slug;
+							}
+						}
 					}
 				}
-				// Set version variables.
-				$response = $this->get_plugin_version($plugin_names, $plugin_slugs, $plugin_licenses, $plugin_emails, $plugin_versions);
-				// Cache it
-				// if ( is_object( $response ) ) {
-				// 	set_transient( 'wpem_bulk_plugin_update_check', $response, HOUR_IN_SECONDS * 6 );
-				// }
-			}	
-		// }
+			}
+			return $check_for_updates_data;
+		}
+		
+		$plugin_names = array();
+		$plugin_slugs = array();
+		$plugin_licenses = array();
+		$plugin_files = array();
+		$plugin_emails = array();
+		$plugin_versions = array();
+		if(!empty($this->plugin_data)){
+			foreach($this->plugin_data as $plugin_info){
+				$licence_key = get_option(  $plugin_info['TextDomain'] . '_licence_key', true );
+				$email       = get_option(  $plugin_info['TextDomain'] . '_email', true );
+				if ( !empty($licence_key) && !empty($email) ) {
+					array_push($plugin_names,  $plugin_info['Name']);
+					array_push($plugin_slugs,  $plugin_info['TextDomain']);
+					array_push($plugin_files,  $plugin_info['plugin_files']);
+					array_push($plugin_versions,  $plugin_info['Version']);
+					array_push($plugin_emails,  $email);
+					array_push($plugin_licenses,  $licence_key);
+				}
+			}
+			// Set version variables.
+			$response = $this->get_plugin_version($plugin_names, $plugin_slugs, $plugin_licenses, $plugin_emails, $plugin_versions);
+			// Cache the response for subsequent calls in this request
+			if ( isset($response) && is_object( $response ) ) {
+				self::$update_response_cache = $response;
+			}
+		}
+		// Mark that we've performed the update check
+		self::$did_update_check = true;
+		
 		if(isset($response) && !empty($response) && is_object($response)){
 			foreach ($this->plugin_data as $plugin_info) {
 				$plugin_slug = $plugin_info['TextDomain'];
