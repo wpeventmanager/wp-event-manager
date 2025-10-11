@@ -68,10 +68,10 @@ class WP_Event_Manager_CPT {
 		if($post_type == 'event_listing') { ?>
 			<script type="text/javascript">
 				jQuery(document).ready(function() {
-					jQuery('<option>').val('approve_events').text('<?php printf(wp_kses('Approve %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action']");
-					jQuery('<option>').val('approve_events').text('<?php printf(wp_kses('Approve %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action2']");
-					jQuery('<option>').val('expire_events').text('<?php printf(wp_kses('Expire %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action']");
-					jQuery('<option>').val('expire_events').text('<?php printf(wp_kses('Expire %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action2']");
+					jQuery('<option>').val('approve_events').text('<?php printf(__('Approve %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action']");
+					jQuery('<option>').val('approve_events').text('<?php printf(__('Approve %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action2']");
+					jQuery('<option>').val('expire_events').text('<?php printf(__('Expire %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action']");
+					jQuery('<option>').val('expire_events').text('<?php printf(__('Expire %s', 'wp-event-manager'), esc_attr($wp_post_types['event_listing']->labels->name)); ?>').appendTo("select[name='action2']");
 				});
 			</script>
 		<?php
@@ -276,19 +276,19 @@ class WP_Event_Manager_CPT {
 
 		$messages['event_listing'] = array(
 			0  => '',
-			1  => sprintf(wp_kses('%1$s updated. <a href="%2$s">View</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(get_permalink($post_ID))),
+			1  => sprintf(__('%1$s updated. <a href="%2$s">View</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(get_permalink($post_ID))),
 			2  => __('Custom field updated.', 'wp-event-manager'),
 			3  => __('Custom field deleted.', 'wp-event-manager'),
-			4  => sprintf(wp_kses('%s updated.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name),
-			5  => isset($_GET['revision']) ? sprintf(wp_kses('%1$s restored to revision from %2$s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, wp_post_revision_title((int) esc_attr($_GET['revision']), false)) : false,
-			6  => sprintf(wp_kses('%1$s published. <a href="%2$s">View</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(get_permalink($post_ID))),
+			4  => sprintf(__('%s updated.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name),
+			5  => isset($_GET['revision']) ? sprintf(__('%1$s restored to revision from %2$s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, wp_post_revision_title((int) esc_attr($_GET['revision']), false)) : false,
+			6  => sprintf(__('%1$s published. <a href="%2$s">View</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(get_permalink($post_ID))),
 			7  => sprintf('%s saved.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name,
-			8  => sprintf(wp_kses('%1$s submitted. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
-			9  => sprintf(wp_kses('%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'),
+			8  => sprintf(__('%1$s submitted. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
+			9  => sprintf(__('%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'),
 				$wp_post_types['event_listing']->labels->singular_name,
 				date_i18n(__('M j, Y @ G:i', 'wp-event-manager'), strtotime($post->post_date)),
 				esc_url(get_permalink($post_ID))),
-			10 => sprintf(wp_kses('%1$s draft updated. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
+			10 => sprintf(__('%1$s draft updated. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
 		);
 		return $messages;
 	}
@@ -392,7 +392,7 @@ class WP_Event_Manager_CPT {
 				break;
 			case 'event_title':
 				echo wp_kses_post('<div class="event_title">');
-				echo wp_kses_post('<a href="' . esc_url(admin_url('post.php?post=' . $post->ID . '&action=edit')) . '" class="tips event_title" data-tip="' . sprintf(wp_kses('ID: %d', 'wp-event-manager'), $post->ID) . '">' . esc_html($post->post_title) . '</a>');
+				echo wp_kses_post('<a href="' . esc_url(admin_url('post.php?post=' . $post->ID . '&action=edit')) . '" class="tips event_title" data-tip="' . sprintf(__('ID: %d', 'wp-event-manager'), $post->ID) . '">' . esc_html($post->post_title) . '</a>');
 				echo wp_kses_post('</div>');
 				echo wp_kses_post('<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__('Show more details', 'wp-event-manager') . '</span></button>');
 				break;
