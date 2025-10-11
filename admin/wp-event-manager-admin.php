@@ -70,7 +70,7 @@ class WP_Event_Manager_Admin {
 	public function upgrade_database_notice()	{
 		if(version_compare(get_option('wp_event_manager_db_version', 0), '3.1.13', '<')) { ?>
 			<div class="notice notice-warning wpem-upgrade-database-notice is-dismissible">
-				<p><?php echo sprintf(wp_kses('Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager'), esc_url(admin_url('edit.php?post_type=event_listing&page=event-manager-upgrade-database'))); ?></p>
+				<p><?php echo sprintf(__('Upgrade your database! <a class="" href="%s">Please update now</a>.', 'wp-event-manager'), esc_url(admin_url('edit.php?post_type=event_listing&page=event-manager-upgrade-database'))); ?></p>
 			</div>
 		<?php
 		}
