@@ -676,8 +676,6 @@ function display_event_banner($size = 'full', $default = null, $post = null){
 
 		echo('<img itemprop="image" content="' . esc_attr($default) . '" src="' . esc_attr($default) . '" alt="' . esc_attr($alt_text) . '" />');
 	} else if(is_array($banner)) {
-		$banner = array_filter($banner);
-		$banner = array_values($banner);
 		if (!empty($banner) && isset($banner[0])) {
 			echo('<img itemprop="image" content="' . esc_attr($banner[0]) . '" src="' . esc_attr($banner[0]) . '" alt="' . esc_attr($alt_text) . '" />');
 		} else {

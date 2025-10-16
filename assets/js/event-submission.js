@@ -660,7 +660,6 @@ EventSubmission = function () {
                             jQuery('body #submit-venue-form .event-manager-uploaded-files').html("");
                             jQuery('body #submit-venue-form')[0].reset();
                             jQuery('.wpem_add_venue').css('pointer-events', 'auto');
-                            jQuery('.wpem_add_venue').css('pointer-events', 'none');
                             jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
                             jQuery('body #submit-venue-form .wpem-form-footer .wpem-alert-danger').remove();
                         } else {

@@ -19,11 +19,18 @@
                     <?php do_action('event_manager_event_data_start', $thepostid);
                     if (isset($event_fields)) {
                         foreach ($event_fields as $key => $field) {
-                            if (!isset($field['value'])) {
-                                $field['value'] = get_post_meta($thepostid, '_' . $key, true);
+                            // Get the value from post meta
+                            $field_value = get_post_meta($thepostid, '_' . $key, true);
+                            
+                            // If no value exists in post meta, use the default value
+                            if (empty($field_value) && isset($field['default'])) {
+                                $field_value = $field['default'];
                             }
+                            
+                            $field['value'] = $field_value;
                             $field['required'] = false;
                             $field['tabgroup'] = isset($field['tabgroup']) ? $field['tabgroup'] : 1;
+                            
                             if ($field['tabgroup'] == $tab['priority']) {
                                 $type = !empty($field['type']) ? $field['type'] : 'text';
                                 if ($type == 'wp-editor') {

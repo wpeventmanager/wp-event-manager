@@ -42,6 +42,7 @@ class WP_Event_Manager_Ajax {
 		add_action('event_manager_ajax_get_listings', array($this, 'get_listings'));
 		add_action('event_manager_ajax_upload_file', array($this, 'upload_file'));
 		add_action('event_manager_ajax_load_more_upcoming_events', array($this, 'load_more_upcoming_events'));
+		add_action('event_manager_ajax_load_more_past_listings', array($this, 'load_more_past_events'));
 		add_action('event_manager_ajax_get_upcoming_listings', array($this, 'get_upcoming_listings'));
 
 		// BW compatible handlers
@@ -221,12 +222,58 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
+	 * Load more past events
+	 */
+	function load_more_past_events($atts) {
+		$paged = isset($_POST['value']) ? intval($_POST['value']) : 1;
+		$per_page = isset($_POST['per_page']) ? intval($_POST['per_page']) : esc_attr(get_option('event_manager_per_page'));
+		$orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
+		$order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+
+		$args = array(
+			'post_type'      => 'event_listing',
+			'post_status'    => array('expired'),
+			'posts_per_page' => $per_page,
+			'paged'          => $paged,
+			'order'          => 'DESC',
+			'orderby'        => 'meta_value',
+			'meta_key'       => '_event_start_date',
+			'meta_type'      => 'DATETIME',
+		);
+		
+		$past_events = new WP_Query($args);
+
+		if ($past_events->have_posts()) {
+			ob_start();
+
+			while ($past_events->have_posts()) {
+				$past_events->the_post();
+				get_event_manager_template_part('content', 'past_event_listing');
+			}
+
+			$events_html = ob_get_clean();
+			$no_more_events = $past_events->found_posts <= $paged * $per_page;
+
+			wp_send_json_success(array(
+				'events_html' => $events_html,
+				'no_more_events' => $no_more_events
+			));
+		} else {
+			wp_send_json_error(array(
+				'error' => __('No more events found.', 'wp-event-manager')
+			));
+		}
+
+		wp_reset_postdata();
+	}
+
+	/**
 	 * Get Upcoming Listings
 	 */
 	function get_upcoming_listings($atts) {
 
 		$search_location = isset( $_POST['search_location'] ) ? sanitize_text_field( $_POST['search_location'] ) : '';
-		$search_categories = isset( $_POST[''] ) ? sanitize_text_field( $_POST['search_categories'] ) : '';
+		$search_categories = isset( $_POST['search_categories'] ) ? sanitize_text_field( $_POST['search_categories'] ) : '';
 		$event_manager_keyword = isset( $_POST['search_keywords'] ) ? sanitize_text_field( $_POST['search_keywords'] ) : '';
 		if( is_array( $search_categories ) ) {
 		$search_categories = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_categories ) ) );

@@ -449,7 +449,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'venue' => array(
 				'event_venue_ids' => array(
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
-			        'type'  		=> 'select',
+			        'type'  		=> 'multiselect',
 				    'default'  		=> $default_venue,
 				    'options'  		=> apply_filters('wpem_set_venue_ids', ($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')]),
 				    'description'	=> $venue_description,
@@ -879,7 +879,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 			}
 			$event_slug[]            	= sanitize_title($post_title);
-			$event_slugs				= $event_slug[1];
+			$event_slugs = isset($event_slug[1]) ? $event_slug[1] : '';
 			$event_data['post_name'] 	= apply_filters('submit_event_form_save_slug_data', $event_slugs);
 		}
 		if ( $status ) {
@@ -1085,13 +1085,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				} elseif ( $key == 'event_venue_ids' ) {
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 
-					if( $current_user_id && !empty($values[ $group_key ][ $key ]) )
-					{
-						$my_post = array(
-					      	'ID'           => $values[ $group_key ][ $key ],
-					      	'post_author'  => $current_user_id,
-					      	'post_status'  => 'publish',
-						);
+					if( $current_user_id && !empty($values[ $group_key ][ $key ]) ){
+						foreach ($values[ $group_key ][ $key ] as $venue_id) {
+							$my_post = array(
+								'ID'           => $venue_id,
+								'post_author'  => $current_user_id,
+								'post_status'  => 'publish',
+							);
+						}
 						wp_update_post($my_post);
 
 						update_post_meta( $values[ $group_key ][ $key ], '_venue_location', sanitize_text_field($values['event']['event_location'] )); 

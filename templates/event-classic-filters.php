@@ -6,6 +6,7 @@ wp_enqueue_script('wp-event-manager-ajax-filters');
 do_action('event_manager_event_filters_before', $atts); ?>
 
 <form class="wpem-main wpem-form-wrapper wpem-event-filter-wrapper event_filters" id="event_filters">
+	<?php wp_nonce_field( 'wpem_filter_action', 'wpem_filter_nonce' ); ?>
 	<?php do_action('event_manager_event_filters_start', $atts); ?>
 	<div class="search_events search-form-container">
 		<?php do_action('event_manager_event_filters_search_events_start', $atts); ?>
