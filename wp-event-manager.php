@@ -108,19 +108,6 @@ class WP_Event_Manager extends WPEM_Updater {
 		// In the case of third party support, use this. 
 		include('external/external.php');
 
-		// Include test files for update check fix validation (only in admin and for administrators)
-		if (is_admin() && current_user_can('administrator')) {
-			if (file_exists(plugin_dir_path(__FILE__) . 'test-update-fix.php')) {
-				include('test-update-fix.php');
-			}
-			if (file_exists(plugin_dir_path(__FILE__) . 'wpem-update-test-suite.php')) {
-				include('wpem-update-test-suite.php');
-			}
-			if (file_exists(plugin_dir_path(__FILE__) . 'wpem-load-test.php')) {
-				include('wpem-load-test.php');
-			}
-		}
-
 		// Init classes
 		$this->forms      = WP_Event_Manager_Forms::instance();
 		$this->post_types = WP_Event_Manager_Post_Types::instance();
@@ -180,7 +167,6 @@ class WP_Event_Manager extends WPEM_Updater {
 	 * @since 1.0.0
 	 */
 	public function activate() {
-
 		WP_Event_Manager_Ajax::add_endpoint();
 		unregister_post_type('event_listing');
 		add_filter('pre_option_event_manager_enable_categories', '__return_true');
@@ -476,13 +462,11 @@ class WP_Event_Manager extends WPEM_Updater {
     		$allowed_roles = array_map('strtolower', $allowed_roles);
     		$user_roles    = array_map('strtolower', $current_user->roles);
     
-    		if (!in_array('administrator', $user_roles) && !array_intersect($allowed_roles, $user_roles)) {
-    			?>
+    		if (!in_array('administrator', $user_roles) && !array_intersect($allowed_roles, $user_roles)) { ?>
     			<p class="account-sign-in wpem-alert wpem-alert-info">
     				<?php esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?>
     			</p>
-    			<?php
-    			exit;
+    			<?php exit;
     		}
     	}
     }
