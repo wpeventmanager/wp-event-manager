@@ -37,12 +37,12 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
 				continue;
 			endif; 
-			
-			if ($key === $thumbnail_key && $show_thumbnail_field != 1) {
-				continue; 
+			if (isset($field['type']) && $field['type'] === 'media-library-image' && !is_user_logged_in()) {
+				continue;
 			}
-			
-			?>
+			if ($key === $thumbnail_key && $show_thumbnail_field != 1) {
+				continue;
+			} ?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 				<label for="<?php echo esc_attr($key); ?>">
 					<?php echo esc_html($field['label'], 'wp-event-manager');

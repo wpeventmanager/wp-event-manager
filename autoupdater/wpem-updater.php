@@ -63,7 +63,6 @@ class WPEM_Updater {
 			add_filter('site_transient_update_plugins', array($this, 'check_for_updates'));
 			self::$filter_registered = true;
 		}
-		add_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 
 		if ( current_user_can( 'update_plugins' ) ) {
 			$this->admin_requests();
@@ -229,6 +228,11 @@ class WPEM_Updater {
 				delete_option( $plugin_info['TextDomain'] . '_errors' );
 				delete_option( $plugin_info['TextDomain'] . '_key_expire_pre' );
 				delete_option( $plugin_info['TextDomain'] . '_key_expire' );
+				
+				// Clear update check cache when license is activated
+				if ( function_exists( 'delete_transient' ) ) {
+					delete_transient( 'wpem_bulk_plugin_update_check' );
+				}
 
 				$subscription_expire_date = $activate_results['activations']['date_expires'];
 				// Hook for registering cron job
@@ -268,6 +272,12 @@ class WPEM_Updater {
 		delete_option( $plugin_info['TextDomain'] . '_key_expire' );
 		delete_option( $plugin_info['TextDomain'] . '_key_expire_pre' );
 		delete_site_transient( 'update_plugins' );
+		
+		// Clear update check cache when license is deactivated
+		if ( function_exists( 'delete_transient' ) ) {
+			delete_transient( 'wpem_bulk_plugin_update_check' );
+		}
+		
 		$this->errors           = array();
 		$api_key          = '';
 		$activation_email = '';
@@ -404,6 +414,10 @@ class WPEM_Updater {
 				}
 			}
 		}
+		
+		// Reset the flag to allow future update checks
+		$update_check_running = false;
+		
 		return $check_for_updates_data;	
 	}
 

@@ -88,6 +88,12 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the organizer submission form.
 	 */
 	public function submit_organizer_form($atts = array()){
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_organizers' ) ) {
+			ob_start();
+			echo '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as organizer to add organizer!', 'wp-event-manager' ) . '</div>';
+			return ob_get_clean();
+		}
+
 		return $GLOBALS['event_manager']->forms->get_form('submit-organizer', $atts);
 	}
 
@@ -95,6 +101,11 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the organizer submission form.
 	 */
 	public function submit_venue_form($atts = array()){
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_venues' ) ) ) {
+			ob_start();
+			echo '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as organizer to add venue!', 'wp-event-manager' ) . '</div>';
+			return ob_get_clean();
+		}
 		return $GLOBALS['event_manager']->forms->get_form('submit-venue', $atts);
 	}
 
@@ -821,15 +832,17 @@ class WP_Event_Manager_Shortcodes{
 			'paged'             => $current_page,
 		)));
 
-		$default_view = get_option('event_manager_default_view');
+		if($layout_type == 'all'){
+			$default_view = get_option('event_manager_default_view');
 
-		if (!empty($default_view)) {
-			$layout_type = $default_view;
-			if ($default_view == 'calendar') {
-				$layout_type = 'all';
+			if (!empty($default_view)) {
+				$layout_type = $default_view;
+				if ($default_view == 'calendar') {
+					$layout_type = 'all';
+				}
 			}
 		}
-
+		
 		if($events->have_posts()) :
 
 			wp_enqueue_script('wp-event-manager-ajax-filters');
@@ -1050,6 +1063,8 @@ class WP_Event_Manager_Shortcodes{
 	 * Show the registration area.
 	 */
 	public function output_event_register($atts){
+		ob_start();	
+		
 		$atts = shortcode_atts(array(
 			'id' => '',
 		), $atts);
@@ -1060,15 +1075,17 @@ class WP_Event_Manager_Shortcodes{
 			return '';
 		}
 
-		$event_post = get_post($id);
-		if (!$event_post || $event_post->post_type !== 'event_listing' || !current_user_can('read_post', $event_post->ID)) {
+		$post = get_post($id);
+		if ( ! $post || $post->post_type !== 'event_listing' ) {
 			return '';
 		}
-
-		setup_postdata($event_post); // Temporarily set global post data
-		ob_start();	?>
+		// If post is private, check capability
+		if ( 'private' === get_post_status( $post ) && ! current_user_can( 'read_post', $post->ID ) ) {
+			return '';
+		}
+		setup_postdata($post);?>
 		<div class="event-manager-registration-wrapper">
-			<?php $register = get_event_registration_method();
+			<?php $register = get_event_registration_method($post->ID);
 			if (!empty($register) && isset($register->type)) {
 				do_action('event_manager_registration_details_' . sanitize_key($register->type), $register);
 			} ?>
@@ -1101,6 +1118,8 @@ class WP_Event_Manager_Shortcodes{
 			'layout_type'          => 'all',
 			'title'                => __('Past Events', 'wp-event-manager'),
 		), $atts);
+		$per_page = absint($atts['per_page']);
+		$show_pagination = $atts['show_pagination'];
 
 		$paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
 		$per_page = $atts['per_page'];

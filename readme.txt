@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 6.3.0
 Tested up to: 6.8.2
-Stable Tag: 3.2.0
+Stable Tag: 3.2.2
 Requires PHP: 8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -342,6 +342,21 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 
 == Changelog ==
+
+= [3.2.2] 27-08-2025 =
+
+Fixed : Past Event shortcode pagination is not working
+Fixed : Venue and Organize not shows at admin side
+Fixed : License tab not shows all addons into list
+Fixed : Bug Fixes and Code Improvements
+
+= [3.2.1] 21-08-2025 =
+
+Fixed : When add new plugin it shows error
+Fixed : Vulnerability issue
+Fixed : Rename the field type of Image Gallery to Media Library Image for the field editor
+Fixed : Pagination issue for upcoming event shortcode
+Fixed : Only organizer and admin can create and edit organizer and venue
 
 = [3.2.0] 13-08-2025 =
 

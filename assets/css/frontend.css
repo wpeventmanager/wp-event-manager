@@ -4483,3 +4483,19 @@ span.event-manager-uploaded-file {
 	transition: background-color .3s;
 	margin: 0 0 10px
 }
+
+.wpem-main-vmenu-dashboard-wrapper span.event-manager-uploaded-files {
+    margin: 0;
+}
+.wpem-additional-info-block-details-content-items-images img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    object-fit: cover;
+}
+.wpem-additional-info-block-details-content-items-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}

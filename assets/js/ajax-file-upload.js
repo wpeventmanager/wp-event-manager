@@ -6,88 +6,91 @@ var AjaxFileUpload= function () {
         ///Initializes the ajax file upload.  
         ///</summary>     
         ///<returns type="initialization settings" />   
-       /// <since>1.0.0</since>
+       	/// <since>1.0.0</since>
         
         init: function() {
 
 			jQuery('.wp-event-manager-file-upload').each(function(){
-			jQuery(this).fileupload({
-				dataType: 'json',
-				dropZone: jQuery(this),
-				url: event_manager_ajax_file_upload.ajax_url.toString().replace("%%endpoint%%", "upload_file"),
-				maxNumberOfFiles: 1,
-				formData: {
-					script: true
-				},
+				console.log("img upload...");
+				jQuery(this).fileupload({
+					dataType: 'json',
+					dropZone: jQuery(this),
+					url: event_manager_ajax_file_upload.ajax_url.toString().replace("%%endpoint%%", "upload_file"),
+					maxNumberOfFiles: 1,
+					formData: {
+						script: true
+					},
 
-				add: function (e, data) {
-					var $file_field     = jQuery(this);
-					var $form           = $file_field.closest('form');
-					var $uploaded_files = $file_field.parent().find('.event-manager-uploaded-files');
-					var uploadErrors    = [];
-					// Validate type
-					var allowed_types = jQuery(this).data('file_types');
-					if(allowed_types) {
-						var acceptFileTypes = new RegExp("(\.|\/)(" + allowed_types + ")$", "i");
-						if(data.originalFiles[0]['name'].length && !acceptFileTypes.test(data.originalFiles[0]['name'])) {
-							uploadErrors.push(event_manager_ajax_file_upload.i18n_invalid_file_type + ' ' + allowed_types.replace(/\|/g, ', '));
+					add: function (e, data) {
+						console.log("img upload");
+						var $file_field     = jQuery(this);
+						var $form           = $file_field.closest('form');
+						var $uploaded_files = $file_field.parent().find('.event-manager-uploaded-files');
+						var uploadErrors    = [];
+						// Validate type
+						var allowed_types = jQuery(this).data('file_types');
+						if(allowed_types) {
+							var acceptFileTypes = new RegExp("(\.|\/)(" + allowed_types + ")$", "i");
+							if(data.originalFiles[0]['name'].length && !acceptFileTypes.test(data.originalFiles[0]['name'])) {
+								uploadErrors.push(event_manager_ajax_file_upload.i18n_invalid_file_type + ' ' + allowed_types.replace(/\|/g, ', '));
+							}
 						}
-					}
-					if(uploadErrors.length > 0) {
-						alert(uploadErrors.join("\n"));
-					} else {
-						$form.find(':input[type="submit"]').attr('disabled', 'disabled');
-						data.context = jQuery('<progress value="" max="100"></progress>').appendTo($uploaded_files);
-						data.submit();
-					}
-				},
-
-				progress: function (e, data) {
-					var $file_field     = jQuery(this);
-					var $uploaded_files = $file_field.parent().find('.event-manager-uploaded-files');
-					var progress        = parseInt(data.loaded / data.total * 100, 10);
-					data.context.val(progress);
-				},
-
-				fail: function (e, data) {
-					var $file_field     = jQuery(this);
-					var $form           = $file_field.closest('form');
-					$form.find(':input[type="submit"]').removeAttr('disabled');
-				},
-
-				done: function (e, data) {
-					var $file_field     = jQuery(this);
-					var $form           = $file_field.closest('form');
-					var $uploaded_files = $file_field.parent().find('.event-manager-uploaded-files');
-					var multiple        = $file_field.attr('multiple') ? 1 : 0;
-					var image_types     = [ 'jpg', 'gif', 'png', 'jpeg', 'jpe' ];
-					data.context.remove();
-					jQuery.each(data.result.files, function(index, file) {
-						if(file.error) {
-							alert(file.error);
+						if(uploadErrors.length > 0) {
+							alert(uploadErrors.join("\n"));
 						} else {
-							if(jQuery.inArray(file.extension, image_types) >= 0) {
-								var html = jQuery.parseHTML(event_manager_ajax_file_upload.js_field_html_img);
-								jQuery(html).find('.event-manager-uploaded-file-preview img').attr('src', file.url);
-							} else {
-								var html = jQuery.parseHTML(event_manager_ajax_file_upload.js_field_html);
-								jQuery(html).find('.event-manager-uploaded-file-name code').text(file.name);
-							}
-							jQuery(html).find('.input-text').val(file.url);
-							jQuery(html).find('.input-text').attr('name', 'current_' + $file_field.attr('name'));
-							if(multiple) {
-								$uploaded_files.append(html);
-							} else {
-								$uploaded_files.html(html);
-							}
+							$form.find(':input[type="submit"]').attr('disabled', 'disabled');
+							data.context = jQuery('<progress value="" max="100"></progress>').appendTo($uploaded_files);
+							data.submit();
 						}
-					});
-					$form.find(':input[type="submit"]').removeAttr('disabled');
-				}
-			});
-		});		
-	} 		
-  } //enf of return
+					},
+
+					progress: function (e, data) {
+						var $file_field     = jQuery(this);
+						var $uploaded_files = $file_field.parent().find('.event-manager-uploaded-files');
+						var progress        = parseInt(data.loaded / data.total * 100, 10);
+						data.context.val(progress);
+					},
+
+					fail: function (e, data) {
+						var $file_field     = jQuery(this);
+						var $form           = $file_field.closest('form');
+						$form.find(':input[type="submit"]').removeAttr('disabled');
+					},
+
+					done: function (e, data) {
+						console.log("done");
+						var $file_field     = jQuery(this);
+						var $form           = $file_field.closest('form');
+						var $uploaded_files = $file_field.parent().find('.event-manager-uploaded-files');
+						var multiple        = $file_field.attr('multiple') ? 1 : 0;
+						var image_types     = [ 'jpg', 'gif', 'png', 'jpeg', 'jpe' ];
+						data.context.remove();
+						jQuery.each(data.result.files, function(index, file) {
+							if(file.error) {
+								alert(file.error);
+							} else {
+								if(jQuery.inArray(file.extension, image_types) >= 0) {
+									var html = jQuery.parseHTML(event_manager_ajax_file_upload.js_field_html_img);
+									jQuery(html).find('.event-manager-uploaded-file-preview img').attr('src', file.url);
+								} else {
+									var html = jQuery.parseHTML(event_manager_ajax_file_upload.js_field_html);
+									jQuery(html).find('.event-manager-uploaded-file-name code').text(file.name);
+								}
+								jQuery(html).find('.input-text').val(file.url);
+								jQuery(html).find('.input-text').attr('name', 'current_' + $file_field.attr('name'));
+								if(multiple) {
+									$uploaded_files.append(html);
+								} else {
+									$uploaded_files.html(html);
+								}
+							}
+						});
+						$form.find(':input[type="submit"]').removeAttr('disabled');
+					}
+				});
+			});		
+		} 		
+  	} //enf of return
 }; //end of class
 
 AjaxFileUpload= AjaxFileUpload();

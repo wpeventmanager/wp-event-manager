@@ -7,7 +7,7 @@
 * Author URI: https://www.wp-eventmanager.com
 * Text Domain: wp-event-manager
 * Domain Path: /languages
-* Version: 3.2.0
+* Version: 3.2.2
 * Since: 1.0.0
 * Requires WordPress Version at least: 6.8.2
 * Copyright: 2019 WP Event Manager
@@ -48,7 +48,7 @@ class WP_Event_Manager extends WPEM_Updater {
 	 * @var plugin version
 	 * @since  3.1.33
 	 */
-	private static $wpem_verion = '3.2.0';
+	private static $wpem_verion = '3.2.2';
 
 
 	/**
@@ -107,6 +107,19 @@ class WP_Event_Manager extends WPEM_Updater {
 		
 		// In the case of third party support, use this. 
 		include('external/external.php');
+
+		// Include test files for update check fix validation (only in admin and for administrators)
+		if (is_admin() && current_user_can('administrator')) {
+			if (file_exists(plugin_dir_path(__FILE__) . 'test-update-fix.php')) {
+				include('test-update-fix.php');
+			}
+			if (file_exists(plugin_dir_path(__FILE__) . 'wpem-update-test-suite.php')) {
+				include('wpem-update-test-suite.php');
+			}
+			if (file_exists(plugin_dir_path(__FILE__) . 'wpem-load-test.php')) {
+				include('wpem-load-test.php');
+			}
+		}
 
 		// Init classes
 		$this->forms      = WP_Event_Manager_Forms::instance();
