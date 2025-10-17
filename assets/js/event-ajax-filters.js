@@ -15,6 +15,7 @@ var EventAjaxFilters = function() {
             });
             // After deactivate calendar addon load box layout as default 
             if(localStorage.getItem("layout")==="calendar-layout" ){
+				jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
 				jQuery("#wpem-event-box-layout").addClass("wpem-active-layout");
 				localStorage.setItem("layout", "box-layout"); 
 			}
@@ -74,8 +75,7 @@ var EventAjaxFilters = function() {
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('#event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset); 
             jQuery('div.event_listings_main').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
-            // Use event delegation and off() to prevent duplicate bindings
-            jQuery(document).off('update_event_listings', '.event_listings').on('update_event_listings', '.event_listings', EventAjaxFilters.actions.getEventListings);
+            jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
             if (jQuery('.event_listings_upcoming').length > 0) {
                 jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(EventAjaxFilters.actions.getUpcomingEvents);
             } else {
@@ -139,8 +139,6 @@ var EventAjaxFilters = function() {
                     var form = target.find('.event_filters');
                     var inital_page = 1;
                     var index = jQuery('div.event_listings').index(target);
-                    var shouldTriggerAjax = false;
-                    
                     if (window.history.state && window.location.hash) {
                         var state = window.history.state;
                         if (state.id && 'event_manager_state' === state.id && index == state.index) {
@@ -150,16 +148,10 @@ var EventAjaxFilters = function() {
                             form.find(':input[name^="search_datetimes"]').not(':input[type="hidden"]').trigger('chosen:updated');
                             form.find(':input[name^="search_categories"]').not(':input[type="hidden"]').trigger('chosen:updated');
                             form.find(':input[name^="search_event_types"]').not(':input[type="hidden"]').trigger('chosen:updated');
-                            form.find(':input[name^="search_ticket_prices"]').not(':input[type="hidden"]').trigger('chosen:updated');
-                            shouldTriggerAjax = true;
+                            form.find(':input[name^="search_ticket_prices"]').not(':input[type="hidden"]').trigger('chosen:updated')
                         }
                     }
-                    
-                    // Only trigger AJAX if we have history state or if events container is empty
-                    // This prevents unnecessary AJAX calls when events are already loaded via shortcode
-                    if (shouldTriggerAjax || target.find('.event_listings .event_listing').length === 0) {
-                        target.triggerHandler('update_event_listings', [inital_page, false]);
-                    }
+                    target.triggerHandler('update_event_listings', [inital_page, false])
                 });
             },
             eventAjaxFiltersReset: function(event) {
@@ -176,6 +168,7 @@ var EventAjaxFilters = function() {
                 form.find(':input[name^="search_ticket_prices"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
                 target.triggerHandler('reset');
                 target.triggerHandler('update_event_listings', [1, false]);
+                jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
                 EventAjaxFilters.actions.event_manager_store_state(target, 1);
                 return false;
                 event.preventDefault()
