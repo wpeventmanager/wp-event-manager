@@ -163,7 +163,7 @@ class WP_Event_Manager_Post_Types {
 			register_taxonomy("event_listing_type",
 			apply_filters('register_taxonomy_event_listing_type_object_type', array('event_listing')),
 		        apply_filters('register_taxonomy_event_listing_type_args', array(
-		            'hierarchical' 			=> false,
+		            'hierarchical' 			=> true,
 		            'label' 				=> $plural,
 		            'labels' => array(
 	                    'name' 				=> $plural,
