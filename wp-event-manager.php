@@ -94,6 +94,7 @@ class WP_Event_Manager extends WPEM_Updater {
 		include('includes/wp-event-manager-filters.php');
 		include('includes/wp-event-manager-cache-helper.php');
 		include('includes/wp-event-manager-date-time.php');
+		include('includes/wp-event-manager-rest-api.php');
 
 		// Here is the list of all the shortcodes for WP Event Manager.
 		include('shortcodes/wp-event-manager-shortcodes.php');
