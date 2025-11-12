@@ -21,7 +21,7 @@ class WP_Event_Manager_Default_REST_API {
     /**
      * Namespace for REST API
      */
-    const NAMESPACE = 'wp-event-manager/v1';
+    const NAMESPACE = 'wpem/v1';
     
     /**
      * Constructor
@@ -60,7 +60,7 @@ class WP_Event_Manager_Default_REST_API {
         
         // License deactivation endpoint (called from store)
         register_rest_route( self::NAMESPACE, '/license/deactivate', array(
-            'methods'             => WP_REST_Server::CREATABLE,
+            'methods'             => array( WP_REST_Server::READABLE, WP_REST_Server::CREATABLE ),
             'callback'            => array( $this, 'deactivate_license' ),
             'permission_callback' => '__return_true', // No auth needed - validated by store
             'args'                => array(
@@ -72,7 +72,12 @@ class WP_Event_Manager_Default_REST_API {
                 'text_domain'   => array(
                     'description' => __( 'Plugin text domain', 'wp-event-manager' ),
                     'type'        => 'string',
-                    'required'    => true,
+                    'required'    => false,
+                ),
+                'store_url'     => array(
+                    'description' => __( 'Store URL', 'wp-event-manager' ),
+                    'type'        => 'string',
+                    'required'    => false,
                 ),
             ),
         ) );
@@ -165,15 +170,28 @@ class WP_Event_Manager_Default_REST_API {
     /**
      * Deactivate license (called from store)
      * Updates license status to inactive or deletes from wp_options
+     * Handles both GET query parameters and POST JSON requests
      */
     public function deactivate_license( $request ) {
+        // Get parameters from both JSON body and query string
         $params = $request->get_json_params();
+        if ( empty( $params ) ) {
+            $params = $request->get_query_params();
+        }
         
         $licence_key = sanitize_text_field( $params['licence_key'] ?? '' );
         $text_domain = sanitize_text_field( $params['text_domain'] ?? 'wp-event-manager' );
         
+        // Log deactivation request for debugging
+        error_log( sprintf(
+            'WP Event Manager License Deactivation: licence_key=%s, text_domain=%s',
+            $licence_key,
+            $text_domain
+        ) );
+        
         // Validate required fields
         if ( empty( $licence_key ) ) {
+            error_log( 'License deactivation failed: missing licence_key' );
             return rest_ensure_response( array(
                 'success' => false,
                 'message' => __( 'License key is required.', 'wp-event-manager' ),
@@ -186,24 +204,32 @@ class WP_Event_Manager_Default_REST_API {
         $status_option = $text_domain . '_licence_status';
         $store_url_option = $text_domain . '_store_url';
         
-        // Verify the license key matches
+        // Verify the license key matches (if stored)
         $stored_licence_key = get_option( $licence_key_option );
         
-        if ( $stored_licence_key !== $licence_key ) {
+        if ( ! empty( $stored_licence_key ) && $stored_licence_key !== $licence_key ) {
+            error_log( sprintf(
+                'License deactivation failed: key mismatch. Stored: %s, Provided: %s',
+                $stored_licence_key,
+                $licence_key
+            ) );
             return rest_ensure_response( array(
                 'success' => false,
                 'message' => __( 'License key does not match.', 'wp-event-manager' ),
             ) );
         }
         
-        // Update status to inactive (or delete options)
+        // Update status to inactive and delete the options
         update_option( $status_option, 'inactive' );
-        
-        // Optionally delete the options (uncomment if you want to remove completely)
         delete_option( $licence_key_option );
         delete_option( $email_option );
         delete_option( $status_option );
         delete_option( $store_url_option );
+        
+        error_log( sprintf(
+            'License deactivated successfully: %s',
+            $licence_key
+        ) );
         
         // Log deactivation
         do_action( 'wpem_license_deactivated', $licence_key, $text_domain );
