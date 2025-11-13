@@ -1,11 +1,12 @@
 <?php
 $field['default'] = isset($field['default']) ? $field['default'] : '';
+$taxonomy = isset($field['taxonomy']) ? $field['taxonomy'] : '';
 // Get selected value
 if (isset($field['value'])) {
 	$selected = $field['value'];
 } elseif (is_int($field['default'])) {
 	$selected = $field['default'];
-} elseif (!empty($field['default']) && ($term = get_term_by('slug', $field['default'], $field['taxonomy']))) {
+} elseif (!empty($field['default']) && !empty($taxonomy) && ($term = get_term_by('slug', $field['default'], $taxonomy))) {
 	$selected = $term->term_id;
 } else {
 	$selected = '';
@@ -27,8 +28,12 @@ if (is_array($selected)) {
 }else{
 	$selected = '';
 }
+
+if (empty($taxonomy)) {
+    return;
+}
 wp_dropdown_categories(apply_filters('event_manager_term_select_field_wp_dropdown_categories_args', array(
-	'taxonomy'         => $field['taxonomy'],
+	'taxonomy'         => $taxonomy,
 	'hierarchical'     => 1,
 	'show_option_all'  => $placeholder,
 	'show_option_none' => $field['required'] ? '' : '-',
