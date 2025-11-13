@@ -32,9 +32,6 @@ class WPEM_Updater_Key_API {
 			'timeout' => 20,
 		) );
 
-		// Debug logging
-		error_log( print_r( $response, true ) );
-
 		if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) != 200 ) {
 			return false;
 		}

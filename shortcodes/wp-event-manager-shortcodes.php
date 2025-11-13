@@ -1214,7 +1214,6 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		$args_past = apply_filters('event_manager_past_event_listings_args', $args_past);
-		error_log(print_r($args_past,true));
 		$past_events = new WP_Query($args_past);
 
 		wp_reset_query();

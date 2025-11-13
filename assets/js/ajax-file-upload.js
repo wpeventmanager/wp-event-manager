@@ -9,9 +9,7 @@ var AjaxFileUpload= function () {
        	/// <since>1.0.0</since>
         
         init: function() {
-
 			jQuery('.wp-event-manager-file-upload').each(function(){
-				console.log("img upload...");
 				jQuery(this).fileupload({
 					dataType: 'json',
 					dropZone: jQuery(this),

@@ -182,16 +182,8 @@ class WP_Event_Manager_Default_REST_API {
         $licence_key = sanitize_text_field( $params['licence_key'] ?? '' );
         $text_domain = sanitize_text_field( $params['text_domain'] ?? 'wp-event-manager' );
         
-        // Log deactivation request for debugging
-        error_log( sprintf(
-            'WP Event Manager License Deactivation: licence_key=%s, text_domain=%s',
-            $licence_key,
-            $text_domain
-        ) );
-        
         // Validate required fields
         if ( empty( $licence_key ) ) {
-            error_log( 'License deactivation failed: missing licence_key' );
             return rest_ensure_response( array(
                 'success' => false,
                 'message' => __( 'License key is required.', 'wp-event-manager' ),
@@ -208,11 +200,6 @@ class WP_Event_Manager_Default_REST_API {
         $stored_licence_key = get_option( $licence_key_option );
         
         if ( ! empty( $stored_licence_key ) && $stored_licence_key !== $licence_key ) {
-            error_log( sprintf(
-                'License deactivation failed: key mismatch. Stored: %s, Provided: %s',
-                $stored_licence_key,
-                $licence_key
-            ) );
             return rest_ensure_response( array(
                 'success' => false,
                 'message' => __( 'License key does not match.', 'wp-event-manager' ),
@@ -225,12 +212,7 @@ class WP_Event_Manager_Default_REST_API {
         delete_option( $email_option );
         delete_option( $status_option );
         delete_option( $store_url_option );
-        
-        error_log( sprintf(
-            'License deactivated successfully: %s',
-            $licence_key
-        ) );
-        
+      
         // Log deactivation
         do_action( 'wpem_license_deactivated', $licence_key, $text_domain );
         
