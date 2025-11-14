@@ -206,9 +206,9 @@
   background: var(--wpem-primary-color);
   color: var(--wpem-white-color);
 }
-/*.wpem-main .wpem-heading-text {
-  font-weight: 400;
-}*/
+
+
+
 .wpem-form-wrapper {
   margin-bottom: 20px;
   line-height: 25px;
@@ -223,9 +223,8 @@
 }
 .wpem-form-wrapper fieldset {
   border: none;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 20px;
+  padding: 0px;
+  margin: 0px 0px 20px 0px;
 }
 .wpem-form-wrapper fieldset label{
   margin-bottom: 5px;
@@ -615,9 +614,7 @@ input.wpem-theme-button:hover span {
 .wpem-theme-url:hover {
   color: var(--wpem-dark-color);
 }
-/*.wpem-main fieldset {
-  border: none;
-}*/
+
 .wpem-theme-button i {
   line-height: normal;
 }
@@ -915,6 +912,7 @@ input.wpem-theme-button:hover span {
   font-weight: 400;
   font-size: 14px;
   border-radius: 4px;
+  margin-right: 5px;
 }
 .wpem-event-listings .wpem-event-layout-wrapper .wpem-event-infomation .wpem-event-details .wpem-event-register-label {
   display: inline-block;
@@ -1015,7 +1013,6 @@ input.wpem-theme-button:hover span {
   font-size: 14px;
   border-radius: 4px;
 }
-
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-cancel-label {
   display: block;
   position: absolute;
