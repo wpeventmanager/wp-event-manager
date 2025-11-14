@@ -868,6 +868,8 @@ class WP_Event_Manager_Shortcodes{
 			<?php else:
 				 do_action('event_manager_output_events_no_results');
 			endif;
+			get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));
+
 		endif;
 		wp_reset_postdata();
 
