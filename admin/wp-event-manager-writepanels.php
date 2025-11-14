@@ -1066,12 +1066,10 @@ class WP_Event_Manager_Writepanels {
 							<?php esc_html_e($value, 'wp-event-manager'); ?>
 						</label>
 					<?php endforeach; ?>
-					</span>
-					<?php
-					if(!empty($field['description'])) :
-					?>
-						<span class="description"><?php echo esc_html($field['description'], 'wp-event-manager'); ?></span><?php endif; ?>
-				
+				</span>
+				<?php if(!empty($field['description'])) : ?>
+					<span class="description"><?php echo esc_html($field['description'], 'wp-event-manager'); ?></span>
+				<?php endif; ?>
 			</span>
 		</p>
 	<?php
