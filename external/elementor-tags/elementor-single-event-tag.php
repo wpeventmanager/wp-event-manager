@@ -253,12 +253,12 @@ class Elementor_Event_Tag extends Tag {
                             if (is_array($field_value) && !empty($field_value)) {
                                 foreach ($field_value as $key => $value) {
                                     if (isset($field['options'][$value]))
-                                        echo sprintf(wp_kses('%s', 'wp-event-manager'),esc_attr($field['options'][$value]));
+                                        echo sprintf(__('%s', 'wp-event-manager'),esc_attr($field['options'][$value]));
                                 }
                             } elseif (isset($field['options'][$field_value]))
-                                echo sprintf(wp_kses('%s', 'wp-event-manager'),esc_attr($field['options'][$field_value]));
+                                echo sprintf(__('%s', 'wp-event-manager'),esc_attr($field['options'][$field_value]));
                         } elseif ($event_tag == $field_key)
-                            echo sprintf(wp_kses('%s', 'wp-event-manager'),esc_attr($field_value));
+                            echo sprintf(__('%s', 'wp-event-manager'),esc_attr($field_value));
                     }
                 }
             }

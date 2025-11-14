@@ -498,7 +498,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					continue;
 
 				if( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {	    
-					return new WP_Error( 'validation-error', sprintf(wp_kses( '%s is a required field.', 'wp-event-manager' ), esc_attr( $field['label'] ) ) );
+					return new WP_Error( 'validation-error', sprintf(__( '%s is a required field.', 'wp-event-manager' ), esc_attr( $field['label'] ) ) );
 				}
 
 			    if( !empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) {
@@ -510,7 +510,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 					foreach( $check_value as $term ) {
 						if( !term_exists( $term, $field['taxonomy'] ) ) {
-							return new WP_Error( 'validation-error', sprintf(wp_kses( '%s is invalid.', 'wp-event-manager' ), esc_attr( $field['label'] ) ) );    
+							return new WP_Error( 'validation-error', sprintf(__( '%s is invalid.', 'wp-event-manager' ), esc_attr( $field['label'] ) ) );    
 						}
 					}
 				}
@@ -528,7 +528,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$file_info = wp_check_filetype( $file_url );
 							if( !is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'] ) ) {
 								throw new Exception(sprintf(
-								wp_kses('" %s " (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'),
+								__('" %s " (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'),
 								esc_attr($field['label']),
 								esc_attr($info['ext']),
 								implode(', ', array_map('esc_attr', array_keys($field['allowed_mime_types'])))
@@ -799,7 +799,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						if( !event_manager_validate_new_password( esc_html($_POST['create_account_password']) ) ) {
 							$password_hint = sanitize_text_field(event_manager_get_password_rules_hint());
 							if( $password_hint ) {
-								throw new Exception( sprintf(wp_kses( 'Invalid Password: %s', 'wp-event-manager' ), esc_attr( $password_hint ) ) );
+								throw new Exception( sprintf(__( 'Invalid Password: %s', 'wp-event-manager' ), esc_attr( $password_hint ) ) );
 							} else {
 								throw new Exception( __( 'Password is not valid.', 'wp-event-manager' ) );
 							}

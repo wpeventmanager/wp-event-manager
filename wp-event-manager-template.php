@@ -244,7 +244,7 @@ function get_event_registration_method($post = null){
 		$method->type      = 'email';
 		$method->raw_email = $register;
 		$method->email     = antispambot($register);
-		$method->subject   = apply_filters('event_manager_registration_email_subject', sprintf(wp_kses('Registration via "%s" listing on %s', 'wp-event-manager'), $post->post_title, home_url()), $post);
+		$method->subject   = apply_filters('event_manager_registration_email_subject', sprintf(__('Registration via "%s" listing on %s', 'wp-event-manager'), $post->post_title, home_url()), $post);
 	} else {
 		if(strpos($register, 'http') !== 0)
 			$register = 'http://' . $register;
@@ -432,7 +432,7 @@ function display_event_publish_date($post = null){
 	if($date_format === 'default') {
 		$display_date = __('Posted on ', 'wp-event-manager') . get_post_time(get_option('date_format'));
 	} else {
-		$display_date = sprintf(wp_kses('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
+		$display_date = sprintf(__('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
 	}
 	printf(
 		'<time datetime="%s">%s</time>',
@@ -451,7 +451,7 @@ function get_event_publish_date($post = null){
 	if($date_format === 'default') {
 		return get_post_time(get_option('date_format'));
 	} else {
-		return sprintf(wp_kses('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
+		return sprintf(__('Posted %s ago', 'wp-event-manager'), human_time_diff(get_post_time('U'), current_time('timestamp')));
 	}
 }
 

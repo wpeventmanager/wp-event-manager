@@ -296,7 +296,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					continue;
 				
 				if($field['required'] && empty($values[ $group_key ][ $key ])) {	    
-					return new WP_Error('validation-error', sprintf(wp_kses('%s is a required field.', 'wp-event-manager'), esc_attr($field['label']))) ;
+					return new WP_Error('validation-error', sprintf(__('%s is a required field.', 'wp-event-manager'), esc_attr($field['label']))) ;
 				}
 
 				if(!empty($field['taxonomy']) && in_array($field['type'], array('term-checklist', 'term-select', 'term-multiselect'))) {
@@ -307,7 +307,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					}
 					foreach($check_value as $term) {    
 						if(!term_exists($term, $field['taxonomy'])) {
-							return new WP_Error('validation-error', sprintf(wp_kses('%s is invalid', 'wp-event-manager'), esc_attr($field['label']))) ;    
+							return new WP_Error('validation-error', sprintf(__('%s is invalid', 'wp-event-manager'), esc_attr($field['label']))) ;    
 						}
 					}
 				}
@@ -323,7 +323,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 							$file_url = current(explode('?', $file_url));
 							$file_info = wp_check_filetype($file_url);
 							if(!is_numeric($file_url) && $file_info &&!in_array($file_info['type'], $field['allowed_mime_types'])) {
-								throw new Exception(sprintf(wp_kses('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), esc_attr($field['label']),  esc_attr($info['ext']),  esc_attr(implode(', ', array_keys($field['allowed_mime_types']))) )) ;
+								throw new Exception(sprintf(__('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), esc_attr($field['label']),  esc_attr($info['ext']),  esc_attr(implode(', ', array_keys($field['allowed_mime_types']))) )) ;
 							}
 						}
 					}
