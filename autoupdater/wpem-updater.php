@@ -195,7 +195,7 @@ class WPEM_Updater {
 		$plugin_slug = dirname( plugin_basename( __FILE__ ) );
 
         // Log or use the plugin slug
-		// $this->deactivate_licence();
+		$this->deactivate_licence();
 	}
 
 	//Try to activate a licence.
@@ -281,6 +281,8 @@ class WPEM_Updater {
 		$this->errors           = array();
 		$api_key          = '';
 		$activation_email = '';
+		//redirect on license page
+		return true;
 	}
 
 	//Activation links.
