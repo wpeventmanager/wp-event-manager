@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author  WPEM Team
  */
 class WPEM_Updater_Key_API {
-	private static $endpoint = 'https://wp-eventmanager.com/?wc-api=wpemstore_licensing_activation_api';
+	private static $endpoint = 'https://stg-myeventplatform-staging.kinsta.cloud/?wc-api=wpemstore_licensing_activation_api';
 
 	
 	//Attempt to activate a plugin licence.
@@ -39,21 +39,29 @@ class WPEM_Updater_Key_API {
 		return wp_remote_retrieve_body( $response );
 	}
 
-
-	//Attempt t deactivate a licence.
+	/**
+	 * Attempt to deactivate a plugin licence.
+	 */
 	public static function deactivate( $args ) {
+
 		$defaults = array(
 			'request'  => 'deactivate',
 			'instance' => site_url(),
 		);
 
-		$args    = wp_parse_args( $defaults, $args );
-		$request = wp_remote_get( self::$endpoint . '&' . http_build_query( $args, '', '&' ) );
+		$args = wp_parse_args( $args, $defaults );
 
-		if ( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
+		$response = wp_remote_post( self::$endpoint, array(
+			'body'    => $args,
+			'headers' => array(
+				'User-Agent' => 'Mozilla/5.0 (WordPress; Licensing Activation)',
+				'Accept'     => 'application/json',
+			),
+			'timeout' => 20,
+		) );
+		if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) != 200 ) {
 			return false;
-		} else {
-			return wp_remote_retrieve_body( $request );
 		}
+		return wp_remote_retrieve_body($response);
 	}
 }
