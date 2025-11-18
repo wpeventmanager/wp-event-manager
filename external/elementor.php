@@ -92,7 +92,7 @@ class Plugin {
 			wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css');
 
 			wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
-			wp_localize_script('wpem-chosen', 'wpem_chosen', array(
+			wp_localize_script('chosen', 'wpem_chosen', array(
 				'multiple_text' => __('Select Some Options', 'wp-event-manager'),
 				'single_text' => __('Select an Option', 'wp-event-manager'),
 				'no_result_text' => __('No results match', 'wp-event-manager'),
