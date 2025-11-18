@@ -158,7 +158,7 @@ class WP_Event_Manager_Settings{
 							'std'        => '0',  
 							'label'      => __('Hide Data from Guest Users', 'wp-event-manager'),
 							'cb_label'   => __('Hide sensitive event organizer data from non-logged-in(guest) users.', 'wp-event-manager'),
-							'desc'       => '',
+							'desc'       => '', 
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
@@ -702,6 +702,11 @@ class WP_Event_Manager_Settings{
 	public function output() {
 		wp_enqueue_script('wp-event-manager-multiselect'); 
 		wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
+		wp_localize_script('wpem-chosen', 'wpem_chosen', array(
+				'multiple_text' => __('Select Some Options', 'wp-event-manager'),
+				'single_text' => __('Select an Option', 'wp-event-manager'),
+				'no_result_text' => __('No results match', 'wp-event-manager'),
+			));
 		wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
 		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
 		$this->init_settings(); ?>
@@ -742,7 +747,7 @@ class WP_Event_Manager_Settings{
 									echo wp_kses_post('<tr valign="top" class="' . esc_attr($class) . '"><th scope="row"><label for="setting-' . esc_attr($option['name']) . '">' . esc_attr($option['label']) . '</a></th><td>');
 									switch ($option['type']) {
 										case 'checkbox':?>
-											<label><input id="setting-<?php echo esc_attr($option['name']); ?>" name="<?php echo esc_attr($option['name']); ?>" type="checkbox" value="1" <?php echo esc_attr( implode(' ', $attributes)); ?> <?php checked('1', $value); ?> /> <?php echo esc_attr($option['cb_label']); ?></label>
+											<label><input id="setting-<?php echo esc_attr($option['name']); ?>" name="<?php echo esc_attr($option['name']); ?>" type="checkbox" value="1" <?php echo esc_attr( implode(' ', $attributes)); ?> <?php checked('1', $value); ?> /> <?php echo esc_attr($option['cb_label']); ?></label> 
 											<?php
 											if($option['desc']) {
 												echo wp_kses_post(' <p class="description">' . $option['desc'] . '</p>');

@@ -24,6 +24,11 @@ class WP_Event_Manager_Field_Editor {
 	 */
 	public function admin_enqueue_scripts()	{
 		wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
+		wp_localize_script('wpem-chosen', 'wpem_chosen', array(
+				'multiple_text' => __('Select Some Options', 'wp-event-manager'),
+				'single_text' => __('Select an Option', 'wp-event-manager'),
+				'no_result_text' => __('No results match', 'wp-event-manager'),
+			));
 		wp_register_script('wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL . '/assets/js/field-editor.js', array('jquery', 'jquery-ui-sortable', 'chosen'), EVENT_MANAGER_VERSION, true);
 		wp_localize_script(
 			'wp-event-manager-form-field-editor',
