@@ -7,7 +7,7 @@
 * Author URI: https://www.wp-eventmanager.com
 * Text Domain: wp-event-manager
 * Domain Path: /languages
-* Version: 3.2.2
+* Version: 3.3.0
 * Since: 1.0.0
 * Requires WordPress Version at least: 6.8.2
 * Copyright: 2019 WP Event Manager
@@ -48,7 +48,7 @@ class WP_Event_Manager extends WPEM_Updater {
 	 * @var plugin version
 	 * @since  3.1.33
 	 */
-	private static $wpem_verion = '3.2.2';
+	private static $wpem_verion = '3.3.0';
 
 
 	/**

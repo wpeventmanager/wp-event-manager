@@ -343,6 +343,31 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= [3.3.0] 20-11-2025 =
+
+Fixed : Nonce field is added to the events page filter. .
+Fixed : Admin side Event location is saved properly.
+Fixed : Events are expired on time.
+Fixed : license activation message no longer appears once the licensee is activated.
+Fixed : No warning message appears while editing and updating event from the Frontside
+Fixed : View event permission issue resolved.
+Fixed : The slug of event_listing_type can now be edited.
+Fixed : No Error is shown after deleting a plugin.
+Fixed : Event Registration Email no longer Displays the Incorrect Value (Shows Admin Account Email).
+Fixed : Backend Listing Expiry Date Resets issue after publishing an event is resolved.
+Fixed : Backend Event Update no longer fails with Backend Error.
+Fixed : Admin side Event type can now be edited or updated.
+Fixed : Issue related to Excessive and Duplicate Update Checks in WP Event Manager Plugin is resolved.
+Fixed : The issue of Broken layout on empty event page is now resolved.
+Fixed : Translation issue is fixed.
+Fixed : Various Bug Fixes and Code Improvements are done.
+Added : event start date and time in confirmation email is mentioned.
+Added : Now multiple venues can be created at the Frontside Post an event page.
+Added : if added field as file then we have to give file path to store in field editor.
+Added : Add Organizer and add venue fields are added to the event form at the frontend side.
+Added : Query for some terms in a loop grid.
+Added : Manual License Activation added to the My account Page on wp event manager website.
+
 = [3.2.2] 27-08-2025 =
 
 Fixed : Past Event shortcode pagination is not working
