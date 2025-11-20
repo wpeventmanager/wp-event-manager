@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author  WPEM Team
  */
 class WPEM_Updater_Key_API {
-	private static $endpoint = 'https://stg-myeventplatform-staging.kinsta.cloud/?wc-api=wpemstore_licensing_activation_api';
+	private static $endpoint = 'https://wp-eventmanager.com/?wc-api=wpemstore_licensing_activation_api';
 
 	
 	//Attempt to activate a plugin licence.
