@@ -982,8 +982,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
 					set_post_thumbnail( $this->event_id, $attachment_id );
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
-				}
-				elseif ( 'organizer_logo' === $key ) {
+				} elseif ( 'organizer_logo' === $key ) {
 					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
 					if ( empty( $attachment_id ) ) {
 						delete_post_thumbnail( $this->event_id );
@@ -993,34 +992,30 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					update_user_meta( get_current_user_id(), '_organizer_logo', $attachment_id );
 					
 					// Save meta data
-				}
-		elseif ( 'multidate' === $field['type'] ) {
-			if ( isset( $values[ $group_key ][ $key ] ) && is_array( $values[ $group_key ][ $key ] ) ) {
-				$dates = array_map( 'sanitize_text_field', $values[ $group_key ][ $key ] );
-				$dates = array_filter( $dates );
-				$dates = array_map( function( $date ) {
-					return date( 'Y-m-d', strtotime( $date ) );
-				}, $dates );
-				$dates = implode( ',', $dates );
-				update_post_meta( $this->event_id, '_' . $key, $dates );
-			    } else {
-				update_post_meta( $this->event_id, '_' . $key, '' );
-			   }
-		       }
-		elseif ( 'multiweek' === $field['type'] ) {
-			if ( isset( $values[ $group_key ][ $key ] ) && is_array( $values[ $group_key ][ $key ] ) ) {
-				$weeks = array_map( 'sanitize_text_field', $values[ $group_key ][ $key ] );
-				$weeks = array_filter( $weeks );
-				$weeks = implode( ',', $weeks );
-				update_post_meta( $this->event_id, '_' . $key, $weeks );
-			    } else {
-				update_post_meta( $this->event_id, '_' . $key, '' );
-			    }
+				} elseif ( isset($field['type']) && 'multidate' === $field['type'] ) {
+					if ( isset( $values[ $group_key ][ $key ] ) && is_array( $values[ $group_key ][ $key ] ) ) {
+						$dates = array_map( 'sanitize_text_field', $values[ $group_key ][ $key ] );
+						$dates = array_filter( $dates );
+						$dates = array_map( function( $date ) {
+							return date( 'Y-m-d', strtotime( $date ) );
+						}, $dates );
+						$dates = implode( ',', $dates );
+						update_post_meta( $this->event_id, '_' . $key, $dates );
+					} else {
+						update_post_meta( $this->event_id, '_' . $key, '' );
+					}
+				} elseif ( isset($field['type']) && 'multiweek' === $field['type'] ) {
+					if ( isset( $values[ $group_key ][ $key ] ) && is_array( $values[ $group_key ][ $key ] ) ) {
+						$weeks = array_map( 'sanitize_text_field', $values[ $group_key ][ $key ] );
+						$weeks = array_filter( $weeks );
+						$weeks = implode( ',', $weeks );
+						update_post_meta( $this->event_id, '_' . $key, $weeks );
+					} else {
+					update_post_meta( $this->event_id, '_' . $key, '' );
+					}
 		        }
-				
 				// Save event start date according to mysql date format with event start time
 				elseif( $key === 'event_start_date'  ){
-
 					if(isset( $values[ $group_key ][ $key ] ) && !empty($values[ $group_key ][ $key ]) && !empty($values[ $group_key ][ $key ])){
 						
 						if ( isset( $values[ $group_key ][ 'event_start_time' ] ) && !empty($values[ $group_key ][ 'event_start_time' ]))
@@ -1035,12 +1030,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 						update_post_meta( $this->event_id, '_' . $key,$date_dbformatted);
-					}
-					else
+					} else
 						update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
-
-				}
-				elseif( $key ==='event_end_date' ){
+				} elseif( $key ==='event_end_date' ){
 					// Save event end date according to mysql date format with event end time
 					if( isset( $values[ $group_key ][ $key ] ) && !empty($values[ $group_key ][ $key ]) && isset( $values[ $group_key ][ 'event_end_time' ] )){
 						
@@ -1096,7 +1088,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						update_post_meta( $values[ $group_key ][ $key ], '_venue_location', sanitize_text_field($values['event']['event_location'] )); 
 						update_post_meta( $values[ $group_key ][ $key ], '_venue_zipcode', sanitize_text_field($values['event']['event_pincode'] ));
 					}					
-				} elseif ( $field['type'] == 'date' ) {
+				} elseif ( isset($field['type']) && $field['type'] == 'date' ) {
 					$date = $values[ $group_key ][ $key ];
 					if(!empty($date)) {
 						//Convert date and time value into DB formatted format and save eg. 1970-01-01
@@ -1106,7 +1098,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					} else {
 						update_post_meta( $this->event_id, '_' . $key, '' );
 					}
-				} elseif ( $field['type'] == 'time' ) {
+				} elseif ( isset($field['type']) && $field['type'] == 'time' ) {
 					$time = $values[ $group_key ][ $key ];	
 					if(!empty($time)) {
 						// Convert date and time value into DB formatted format and save eg. 1970-01-01
@@ -1116,15 +1108,15 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					} else {
 						update_post_meta( $this->event_id, '_' . $key, '' );
 					}
-				} elseif('url' === $field['type']) { 
+				} elseif( isset($field['type']) && 'url' === $field['type']) { 
 					update_post_meta($this->event_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
 
-				} elseif('email' === $field['type']) { 
+				} elseif( isset($field['type']) && 'email' === $field['type']) { 
 					update_post_meta($this->event_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
 					
-				}elseif('text' === $field['type']) { 
+				} elseif( isset($field['type']) && 'text' === $field['type']) { 
 					update_post_meta( $this->event_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ) );
-				}else { 
+				} else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 					if('_' .$key=='_event_ticket_options' && $values[ $group_key ][ $key ]=='free'){
 					    $ticket_type=$values[ $group_key ][ $key ];
@@ -1134,7 +1126,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						$event_online = $values[ $group_key ][ $key ];
 					}
 					// Handle attachments.
-					if ( 'file' === $field['type']  ) {
+					if ( isset($field['type']) && 'file' === $field['type']  ) {
 						if ( is_array( $values[ $group_key ][ $key ] ) ) {
 							foreach ( $values[ $group_key ][ $key ] as $file_url ) {
 								$maybe_attach[] = $file_url;
