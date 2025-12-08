@@ -340,6 +340,22 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 25. All Event Registrations - Admin Panel
 
+== External Services ==
+
+This plugin connects to external services in order to provide certain features.
+
+1. IP-API (http://ip-api.com/)
+   - Purpose: Used to detect approximate user location based on IP address.
+   - Data Sent: The user’s IP address is sent to IP-API when location-based features are used.
+   - Terms: http://ip-api.com/docs/legal
+   - Privacy Policy: http://ip-api.com/docs/legal
+
+2. WP Event Manager API (https://wp-eventmanager.com/)
+   - Purpose: Used to retrieve plugin-related data, addon information, and licensing validation.
+   - Data Sent: Depending on the feature used, this may include the site URL, plugin version, license key, plugin text-domain.
+   - Terms: https://wp-eventmanager.com/terms-of-use/
+   - Privacy Policy: https://wp-eventmanager.com/privacy-policy/
+
 
 == Changelog ==
 
