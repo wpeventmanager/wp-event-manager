@@ -199,14 +199,16 @@ class WP_Event_Manager_CPT {
 			return;
 		}
 		include_once EVENT_MANAGER_PLUGIN_DIR . '/includes/wp-event-manager-category-walker.php';
-		$r = array();
-		$r['pad_counts'] = 1;
-		$r['hierarchical'] = 1;
-		$r['hide_empty'] = 0;
-		$r['show_count'] = 1;
-		$r['selected'] = (isset($wp_query->query['event_listing_category'])) ? $wp_query->query['event_listing_category'] : '';
-		$r['menu_order'] = false;
-		$terms = get_terms('event_listing_category', $r);
+		$args = array(
+			'taxonomy'     => 'event_listing_category',
+			'pad_counts'   => 1,
+			'hierarchical' => 1,
+			'hide_empty'   => false,
+			'show_count'   => 1,
+			'selected'     => isset($wp_query->query['event_listing_category']) ? $wp_query->query['event_listing_category'] : '',
+			'menu_order'   => false,
+		);
+		$terms  = get_terms($args);
 		$walker = new WP_Event_Manager_Category_Walker();
 
 		if(!$terms) {
@@ -214,7 +216,7 @@ class WP_Event_Manager_CPT {
 		}
 		$output = "<select name='event_listing_category' id='dropdown_event_listing_category'>";
 		$output .= '<option value="" ' . selected(isset($_GET['event_listing_category']) ? esc_attr( wp_unslash( $_GET['event_listing_category'] ) ) : '', '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
-		$output .= $walker->walk($terms, 0, $r);
+		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
 		printf('%s', $output);
 	}
@@ -229,15 +231,17 @@ class WP_Event_Manager_CPT {
 			return;
 		}
 
-		$args = array();
-		$args['pad_counts']   = 1;
-		$args['hierarchical'] = 1;
-		$args['hide_empty']   = 0;
-		$args['show_count']   = 1;
-		$args['selected']     = (isset($wp_query->query['event_listing_type'])) ? $wp_query->query['event_listing_type'] : '';
-		$args['menu_order']   = false;
-		$terms             = get_terms('event_listing_type', $args);
-		$walker            = new WP_Event_Manager_Category_Walker();
+		$args = array(	
+			'taxonomy'     => 'event_listing_type',
+			'pad_counts'   => true,
+			'hierarchical' => true,
+			'hide_empty'   => false,
+			'show_count'   => true,
+			'selected'     => isset($wp_query->query['event_listing_type']) ? $wp_query->query['event_listing_type'] : '',
+			'menu_order'   => false,
+		);
+		$terms   = get_terms($args);
+		$walker  = new WP_Event_Manager_Category_Walker();
 
 		if(!$terms) {
 			return;

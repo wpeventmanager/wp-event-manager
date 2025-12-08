@@ -1068,14 +1068,15 @@ function event_manager_dropdown_selection($args = '') {
 	$categories      = get_transient($categories_hash);
 
 	if(empty($categories)) {
-		$categories = get_terms($taxonomy, array(
+		$categories = get_terms([
+			'taxonomy' => $taxonomy,
 			'orderby'         => $query['orderby'],
 			'order'           => $query['order'],
 			'hide_empty'      => $query['hide_empty'],
 			'child_of'        => $query['child_of'],
 			'exclude'         => $query['exclude'],
 			'hierarchical'    => $query['hierarchical']
-		));
+		]);
  
 		set_transient($categories_hash, $categories, DAY_IN_SECONDS * 30);
 	}
