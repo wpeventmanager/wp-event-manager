@@ -1054,7 +1054,7 @@ class WP_Event_Manager_Shortcodes{
 			endwhile;
 		}else{
 			echo '<div class="entry-content"><div class="wpem-venue-connter"><div class="wpem-alert wpem-alert-info">';
-			echo esc_attr_e('There are no events.','wp-event-manager');    
+			esc_html_e('There are no events.','wp-event-manager');    
 			echo '</div></div></div>';
 		}
 		wp_reset_postdata();

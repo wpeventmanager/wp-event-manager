@@ -95,10 +95,7 @@ class WP_Event_Manager_Ajax {
 		}
 
    		if($action = $wp_query->get('em-ajax')) {
-   			if(!defined('DOING_AJAX')) {
-				define('DOING_AJAX', true);
-			}
-			// Not home - this is an ajax endpoint
+   			// Not home - this is an ajax endpoint
 			$wp_query->is_home = false;
    			do_action('event_manager_ajax_' . esc_attr($action));
    			die();
