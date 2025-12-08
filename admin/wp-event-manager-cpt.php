@@ -195,6 +195,11 @@ class WP_Event_Manager_CPT {
 	public function events_by_category() {
 		global $typenow, $wp_query;
 
+		// Only show this filter to users who can edit event listings.
+		if ( ! current_user_can( 'edit_event_listings' ) ) {
+			return;
+		}
+
 		if($typenow != 'event_listing' || !taxonomy_exists('event_listing_category')) {
 			return;
 		}
