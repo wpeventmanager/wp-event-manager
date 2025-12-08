@@ -132,7 +132,6 @@ class WP_Event_Manager extends WPEM_Updater {
 		add_action('after_switch_theme', array($this->post_types, 'register_post_types'), 11);
 		add_action('after_switch_theme', 'flush_rewrite_rules', 15);
 
-		add_action('after_setup_theme', array($this, 'load_plugin_textdomain'));
 		add_action('after_setup_theme', array($this, 'include_template_functions'), 11);
 
 		add_action('widgets_init', array($this, 'widgets_init'));
@@ -204,17 +203,6 @@ class WP_Event_Manager extends WPEM_Updater {
 			WP_Event_Manager_Install::update();
 			flush_rewrite_rules();
 		}
-	}
-
-	/**
-	 * Loads a plugin's translated strings.
-	 * @since 1.0.0
-	 */
-	public function load_plugin_textdomain() {
-		$domain = 'wp-event-manager';       
-        $locale = apply_filters('plugin_locale', get_locale(), $domain);
-		load_textdomain($domain, WP_LANG_DIR . "/wp-event-manager/".$domain."-" .$locale. ".mo");
-		load_plugin_textdomain($domain, false, dirname(plugin_basename(__FILE__)) . '/languages/');
 	}
 
 	/**
