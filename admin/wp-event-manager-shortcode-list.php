@@ -21,7 +21,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 			
 			wp_enqueue_script('wp-event-manager-admin-js');
 			
-			$detail_link = esc_url("https://wp-eventmanager.com/knowledge-base/");
+			$detail_link = esc_url($wpem_url."knowledge-base/");
 
 			$shortcode_plugins = apply_filters('wp_event_manager_shortcode_plugin', 
 				array(

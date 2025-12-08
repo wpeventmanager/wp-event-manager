@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author  WPEM Team
  */
 class WPEM_Updater_Key_API {
-	private static $activation_endpoint = 'https://wp-eventmanager.com/?wc-api=wpemstore_licensing_activation_api';
-	private static $deactivation_endpoint = 'https://wp-eventmanager.com/?wc-api=wpemstore_licensing_deactivation_api';
+	private static $activation_endpoint = '?wc-api=wpemstore_licensing_activation_api';
+	private static $deactivation_endpoint = '?wc-api=wpemstore_licensing_deactivation_api';
 	
 	//Attempt to activate a plugin licence.
 	public static function activate( $args ) {
@@ -23,7 +23,7 @@ class WPEM_Updater_Key_API {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$response = wp_remote_post( self::$activation_endpoint, array(
+		$response = wp_remote_post( esc_url( get_option( 'wp_event_manager_store_url' ) .self::$activation_endpoint), array(
 			'body'    => $args,
 			'headers' => array(
 				'User-Agent' => 'Mozilla/5.0 (WordPress; Licensing Activation)',
@@ -51,7 +51,7 @@ class WPEM_Updater_Key_API {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$response = wp_remote_post( self::$deactivation_endpoint, array(
+		$response = wp_remote_post( esc_url( get_option( 'wp_event_manager_store_url' ) .self::$deactivation_endpoint), array(
 			'body'    => $args,
 			'headers' => array(
 				'User-Agent' => 'Mozilla/5.0 (WordPress; Licensing Activation)',

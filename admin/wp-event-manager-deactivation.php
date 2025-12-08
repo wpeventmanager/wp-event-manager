@@ -147,7 +147,7 @@ class WP_Event_Manager_Deactivation {
                 $reason = 'Other (' . $additional_feedback . ')';
             }		
 
-            $api_url = 'https://wp-eventmanager.com/?wc-api=wpem_plugin_deactivation_review';
+            $api_url = esc_url(get_option('wp_event_manager_store_url').'?wc-api=wpem_plugin_deactivation_review');
             $data = array(
                 'request' => 'deactivationreview',
                 'email' => get_option('admin_email'),

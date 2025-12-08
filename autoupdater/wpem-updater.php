@@ -565,7 +565,7 @@ class WPEM_Updater {
 	 */
 	public function wpem_check_for_licence_expire($activation_detail){
 		$args = array();
-		$endpoint = 'https://wp-eventmanager.com/?wc-api=wpemstore_licensing_update_api';
+		$endpoint = esc_url( get_option( 'wp_event_manager_store_url' ) .'?wc-api=wpemstore_licensing_update_api');
 		$activation_detail = apply_filters('wpem_cron_default_activation_args', $activation_detail);
 		$defaults = array(
 			'request'  => 'checklicenceexpire',

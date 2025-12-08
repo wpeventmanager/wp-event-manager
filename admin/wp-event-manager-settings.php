@@ -892,7 +892,7 @@ class WP_Event_Manager_Settings{
 								<div class="wpem-setup-help-center-block-content">
 									<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Knowledge Base', 'wp-event-manager'); ?></div>
 									<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Solve your queries by browsing our documentation.', 'wp-event-manager'); ?></div>
-									<a href="https://wp-eventmanager.com/knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Browse More', 'wp-event-manager'); ?> »</span></a>
+									<a href="<?php echo esc_url(get_option('wp_event_manager_store_url'));?>knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Browse More', 'wp-event-manager'); ?> »</span></a>
 								</div>
 							</div>
 							<div class="wpem-setup-help-center-block">
@@ -902,7 +902,7 @@ class WP_Event_Manager_Settings{
 								<div class="wpem-setup-help-center-block-content">
 									<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('FAQs', 'wp-event-manager'); ?></div>
 									<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Explore through the frequently asked questions.', 'wp-event-manager'); ?></div>
-									<a href="https://wp-eventmanager.com/faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Get Answers', 'wp-event-manager'); ?> »</span></a>
+									<a href="<?php echo esc_url(get_option('wp_event_manager_store_url'));?>faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Get Answers', 'wp-event-manager'); ?> »</span></a>
 								</div>
 							</div>
 							<div class="wpem-setup-help-center-block">
@@ -916,7 +916,7 @@ class WP_Event_Manager_Settings{
 								</div>
 							</div>
 						</div>
-						<span class="light-grey"><?php esc_attr_e('Powered By', 'wp-event-manager'); ?></span> <a href="https://wp-eventmanager.com/" target="_blank"><img src="<?php echo esc_url(EVENT_MANAGER_PLUGIN_URL); ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
+						<span class="light-grey"><?php esc_attr_e('Powered By', 'wp-event-manager'); ?></span> <a href="<?php echo esc_url(get_option('wp_event_manager_store_url'));?>" target="_blank"><img src="<?php echo esc_url(EVENT_MANAGER_PLUGIN_URL); ?>/assets/images/wpem-logo.svg" alt="WP Event Manager"></a>
 					</div>
 				</div>
 				<?php do_action('wpem_admin_seting_side_box_end'); ?>

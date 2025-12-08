@@ -44,6 +44,7 @@ class WP_Event_Manager_Install {
 
 		delete_transient('wp_event_manager_addons_html');
 		update_option('wp_event_manager_version', EVENT_MANAGER_VERSION);
+		update_option('wp_event_manager_store_url', 'https://wp-eventmanager.com/');
 	}
 
 	/**
