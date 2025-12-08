@@ -6,11 +6,8 @@
 				<?php
 				$current_action = 'event_dashboard';
 				$event_id        = '';
-
-				if ( isset( $_GET['wpem_event_dashboard_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wpem_event_dashboard_nonce'] ) ), 'wpem_event_dashboard_filter' ) ) {
-					$current_action = isset( $_GET['action'] ) ? esc_attr( $_GET['action'] ) : 'event_dashboard';
-					$event_id        = isset( $_GET['event_id'] ) ? absint( $_GET['event_id'] ) : '';
-				}
+				$current_action = isset( $_GET['action'] ) ? esc_attr( $_GET['action'] ) : 'event_dashboard';
+				$event_id        = isset( $_GET['event_id'] ) ? absint( $_GET['event_id'] ) : '';
 
 				$menus = [
 					'event_dashboard' => [
