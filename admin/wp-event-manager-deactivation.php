@@ -112,16 +112,31 @@ class WP_Event_Manager_Deactivation {
 	 */
     function wpem_get_location_by_ip($ip) {
         $url = "http://ip-api.com/json/{$ip}";
-        $response = @file_get_contents($url);
-        if ($response) {
-            $data = json_decode($response, true);
-            if ($data['status'] === 'success') {
-                return [
-                    'city' => $data['city'],
-                    'country' => $data['country']
-                ];
-            }
+
+        $response = wp_remote_get( $url, array(
+            'timeout' => 10,
+            'redirection' => 5,
+        ) );
+
+        // Error handling
+        if ( is_wp_error( $response ) ) {
+            return null;
         }
+
+        $body = wp_remote_retrieve_body( $response );
+        if ( empty( $body ) ) {
+            return null;
+        }
+
+        $data = json_decode( $body, true );
+
+        if ( isset( $data['status'] ) && $data['status'] === 'success' ) {
+            return [
+                'city'    => $data['city'] ?? '',
+                'country' => $data['country'] ?? '',
+            ];
+        }
+
         return null;
     }
 

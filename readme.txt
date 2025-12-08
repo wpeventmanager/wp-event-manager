@@ -347,6 +347,7 @@ This plugin connects to external services in order to provide certain features.
 1. IP-API (http://ip-api.com/)
    - Purpose: Used to detect approximate user location based on IP address.
    - Data Sent: The user’s IP address is sent to IP-API when location-based features are used.
+   - Data received: location information (city, country).
    - Terms: http://ip-api.com/docs/legal
    - Privacy Policy: http://ip-api.com/docs/legal
 
