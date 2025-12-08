@@ -115,21 +115,26 @@
 					</div>
 
 					<?php
-					$_GET = array_map('stripslashes_deep', $_GET);
-					$search_keywords = isset($_GET['search_keywords']) ? esc_attr($_GET['search_keywords']) : '';
-					$search_order_by = isset($_GET['search_order_by']) ? esc_attr($_GET['search_order_by']) : '';
+					$search_keywords = '';
+					$search_order_by = '';
+
+					if ( isset( $_GET['wpem_event_dashboard_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wpem_event_dashboard_nonce'] ) ), 'wpem_event_dashboard_filter' ) ) {
+						$_GET = array_map( 'stripslashes_deep', $_GET );
+						$search_keywords = isset( $_GET['search_keywords'] ) ? esc_attr( $_GET['search_keywords'] ) : '';
+						$search_order_by = isset( $_GET['search_order_by'] ) ? esc_attr( $_GET['search_order_by'] ) : '';
+					}
 
 					$display_block = '';
-					if (!empty($search_keywords) || !empty($search_order_by)) {
+					if ( ! empty( $search_keywords ) || ! empty( $search_order_by ) ) {
 						$display_block = 'wpem-d-block';
 					} ?>
 
-					<form action="<?php echo esc_url(get_permalink( get_the_ID()));?>" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf(esc_attr($display_block)); ?>">
+					<form action="<?php echo esc_url( get_permalink( get_the_ID() ) ); ?>" method="get" class="wpem-form-wrapper wpem-event-dashboard-filter-toggle wpem-dashboard-main-filter-block <?php printf( esc_attr( $display_block ) ); ?>">
+						<?php wp_nonce_field( 'wpem_event_dashboard_filter', 'wpem_event_dashboard_nonce' ); ?>
 						<div class="wpem-events-filter">
 							<?php do_action('event_manager_event_dashboard_event_filter_start'); ?>
 							<div class="wpem-events-filter-block">
-								<?php $search_keywords = isset($_GET['search_keywords']) ? esc_attr($_GET['search_keywords']) : ''; ?>
-								<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo esc_attr($search_keywords); ?>" placeholder="<?php esc_attr_e('Keywords', 'wp-event-manager'); ?>"></div>
+								<div class="wpem-form-group"><input name="search_keywords" id="search_keywords" type="text" value="<?php echo esc_attr( $search_keywords ); ?>" placeholder="<?php esc_attr_e( 'Keywords', 'wp-event-manager' ); ?>"></div>
 							</div>
 							<div class="wpem-events-filter-block">
 								<div class="wpem-form-group">
