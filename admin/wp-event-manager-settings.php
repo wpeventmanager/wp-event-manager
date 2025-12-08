@@ -688,9 +688,42 @@ class WP_Event_Manager_Settings{
 				if(isset($option['std'])) {
 					add_option($option['name'], $option['std']);
 				}
-				register_setting($this->settings_group, $option['name']);
+				$sanitize_callback = $this->get_sanitize_callback_for_option( $option );
+				$args = array();
+				if ( $sanitize_callback ) {
+					$args['sanitize_callback'] = $sanitize_callback;
+				}
+				register_setting( $this->settings_group, $option['name'], $args );
 			}
 		}
+	}
+
+	/**
+	 * This function is used to return sanitize function name
+	 * @since 3.3.0
+	 */
+	private function get_sanitize_callback_for_option( $option ) {
+		$type = isset( $option['type'] ) ? $option['type'] : '';
+
+		switch ( $type ) {
+			case 'checkbox':
+				return array( $this, 'sanitize_checkbox' );
+			case 'number':
+				return 'absint';
+			case 'email':
+				return 'sanitize_email';
+			case 'textarea':
+				return 'wp_kses_post';
+			default:
+				return 'sanitize_text_field';
+		}
+	}
+
+	/**
+	 * This function will return value for check box
+	 */
+	public function sanitize_checkbox( $value ) {
+		return ! empty( $value ) ? '1' : '0';
 	}
 
 	/**
