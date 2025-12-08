@@ -821,28 +821,34 @@ class WP_Event_Manager_Post_Types {
 	 * @param  int $post_id	 
 	*/
 	public function set_post_views($post_id) {
-
-		if ( !headers_sent() && session_status() === PHP_SESSION_NONE ) {
-        	session_start();
-    	}
-	
 		$count_key = '_view_count';
-		$count = get_post_meta($post_id, $count_key, true);
-	
-		if (!isset($_SESSION['viewed_posts'])) {
-			$_SESSION['viewed_posts'] = [];
+		$count     = get_post_meta( $post_id, $count_key, true );
+
+		// Use a cookie to track viewed posts per visitor instead of PHP sessions.
+		$cookie_name   = 'wpem_viewed_posts';
+		$viewed_posts  = array();
+		$raw_cookie    = isset( $_COOKIE[ $cookie_name ] ) ? wp_unslash( $_COOKIE[ $cookie_name ] ) : '';
+		if ( $raw_cookie ) {
+			$decoded = json_decode( $raw_cookie, true );
+			if ( is_array( $decoded ) ) {
+				$viewed_posts = array_map( 'intval', $decoded );
+			}
 		}
-	
-		if (!in_array($post_id, $_SESSION['viewed_posts'])) {
-			$count = ($count == '' || $count == null) ? 0 : (int) $count;
+
+		if ( ! in_array( (int) $post_id, $viewed_posts, true ) ) {
+			$count = ( '' === $count || null === $count ) ? 0 : (int) $count;
 			$count++;
-	
-			update_post_meta($post_id, $count_key, sanitize_text_field($count));
-	
-			$_SESSION['viewed_posts'][] = $post_id;
+
+			update_post_meta( $post_id, $count_key, sanitize_text_field( $count ) );
+
+			$viewed_posts[] = (int) $post_id;
+			$cookie_value   = wp_json_encode( $viewed_posts );
+
+			if ( ! headers_sent() ) {
+				setcookie( $cookie_name, $cookie_value, time() + DAY_IN_SECONDS * 30, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
+			}
 		}
 	}
-	
 	/**
 	 * The registration content when the registration method is an email.
 	 */
