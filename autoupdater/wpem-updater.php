@@ -338,26 +338,48 @@ class WPEM_Updater {
 
 	//Activation success notice.
 	public function activated_key_notice() {
+		if ( ! current_user_can( 'update_plugins' ) ) {
+			return;
+		}
+
+		if ( empty( $_GET['activated_licence'] ) ) {
+			return;
+		}
+
 		$plugin_name = '';
-		$plugin_slug = $_GET['activated_licence'];
-		foreach ($this->plugin_data as $plugin) {
-			if ($plugin['TextDomain'] === $plugin_slug) {
+		$plugin_slug = sanitize_text_field( wp_unslash( $_GET['activated_licence'] ) );
+		foreach ( $this->plugin_data as $plugin ) {
+			if ( $plugin['TextDomain'] === $plugin_slug ) {
 				$plugin_name = $plugin['Name'];
 				break;
 			}
+		}
+		if ( ! $plugin_name ) {
+			return;
 		}
 		include plugin_dir_path( __FILE__ ) . 'templates/activated-key.php';
 	}
 
 	//Dectivation success notice.
 	public function deactivated_key_notice() {
+		if ( ! current_user_can( 'update_plugins' ) ) {
+			return;
+		}
+
+		if ( empty( $_GET['deactivated_licence'] ) ) {
+			return;
+		}
+
 		$plugin_name = '';
-		$plugin_slug = $_GET['deactivated_licence'];
-		foreach ($this->plugin_data as $plugin) {
-			if ($plugin['TextDomain'] === $plugin_slug) {
+		$plugin_slug = sanitize_text_field( wp_unslash( $_GET['deactivated_licence'] ) );
+		foreach ( $this->plugin_data as $plugin ) {
+			if ( $plugin['TextDomain'] === $plugin_slug ) {
 				$plugin_name = $plugin['Name'];
 				break;
 			}
+		}
+		if ( ! $plugin_name ) {
+			return;
 		}
 		include plugin_dir_path( __FILE__ ) . 'templates/deactivated-key.php';
 	}
