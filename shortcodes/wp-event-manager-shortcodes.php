@@ -381,9 +381,9 @@ class WP_Event_Manager_Shortcodes{
 			$login_url = apply_filters('event_manager_event_dashboard_login_url', $login_url); ?>
 			<div id="event-manager-event-dashboard">
 				<p class="account-sign-in wpem-alert wpem-alert-info">
-					<?php esc_attr_e('You need to be signed in to manage your organizer listings.', 'wp-event-manager'); ?> 
+					<?php esc_html_e('You need to be signed in to manage your organizer listings.', 'wp-event-manager'); ?> 
 					<a href="<?php echo esc_url($login_url); ?>">
-						<?php esc_attr_e('Sign in', 'wp-event-manager'); ?>
+						<?php esc_html_e('Sign in', 'wp-event-manager'); ?>
 					</a>
 				</p>
 			</div>
@@ -525,7 +525,7 @@ class WP_Event_Manager_Shortcodes{
 		if(!is_user_logged_in()) {
 			ob_start();	?>
 			<div id="event-manager-event-dashboard">
-				<p class="account-sign-in wpem-alert wpem-alert-info"><?php esc_attr_e('You need to be signed in to manage your venue listings.', 'wp-event-manager'); ?> <a href="<?php echo esc_url(apply_filters('event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url())))); ?>"><?php esc_attr_e('Sign in', 'wp-event-manager'); ?></a></p>
+				<p class="account-sign-in wpem-alert wpem-alert-info"><?php esc_html_e('You need to be signed in to manage your venue listings.', 'wp-event-manager'); ?> <a href="<?php echo esc_url(apply_filters('event_manager_event_dashboard_login_url', esc_url(get_option('event_manager_login_page_url'),esc_url(wp_login_url())))); ?>"><?php esc_html_e('Sign in', 'wp-event-manager'); ?></a></p>
 			</div>
 			<?php 
 			return ob_get_clean();
@@ -864,7 +864,7 @@ class WP_Event_Manager_Shortcodes{
 				'post_status'   => 'publish'
 			));
 			if(count($default_events) == 0): ?>
-				<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php esc_attr_e('There are currently no events.', 'wp-event-manager'); ?></div>
+				<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php esc_html_e('There are currently no events.', 'wp-event-manager'); ?></div>
 			<?php else:
 				 do_action('event_manager_output_events_no_results');
 			endif;
