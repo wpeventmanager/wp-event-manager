@@ -173,14 +173,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/yogasan/"><h2 class="woocommerce-loop-product__title">Yogasan</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/yogasan/"><h2 class="woocommerce-loop-product__title"><?php echo __('Yogasan', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Express your passion for fitness through your Yogasana theme-based WordPress site.</div>
+										<div class="wpem-theme-description"><?php echo __('Express your passion for fitness through your Yogasana theme-based WordPress site.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -193,14 +193,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/job-fair/"><h2 class="woocommerce-loop-product__title">Job Fair</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/job-fair/"><h2 class="woocommerce-loop-product__title"><?php echo __('Job Fair', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Boost the visibility of your job fair portal with our job fair themes.</div>
+										<div class="wpem-theme-description"><?php echo __('Boost the visibility of your job fair portal with our job fair themes', 'wp-event-manager');?>.</div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -213,14 +213,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/christmas-party/"><h2 class="woocommerce-loop-product__title">Christmas Party</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/christmas-party/"><h2 class="woocommerce-loop-product__title"><?php echo __('Christmas Party', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Design your website with our exclusive Christmas themes to elevate the party mood.</div>
+										<div class="wpem-theme-description"><?php echo __('Design your website with our exclusive Christmas themes to elevate the party mood.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -233,14 +233,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/birthday/"><h2 class="woocommerce-loop-product__title">Birthday</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/birthday/"><h2 class="woocommerce-loop-product__title"><?php echo __('Birthday', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Creatively craft your event website with our birthday themes.</div>
+										<div class="wpem-theme-description"><?php echo __('Creatively craft your event website with our birthday themes.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -253,14 +253,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/conference/"><h2 class="woocommerce-loop-product__title">Conference</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/conference/"><h2 class="woocommerce-loop-product__title"><?php echo __('Conference', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Use conference themes to build highly professional websites.</div>
+										<div class="wpem-theme-description"><?php echo __('Use conference themes to build highly professional websites.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -273,14 +273,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/dj-theme/"><h2 class="woocommerce-loop-product__title">DJ Theme</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/dj-theme/"><h2 class="woocommerce-loop-product__title"><?php echo __('DJ Theme', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Attract party people to your website by using our DJ themes.</div>
+										<div class="wpem-theme-description"><?php echo __('Attract party people to your website by using our DJ themes.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -293,14 +293,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/expo/"><h2 class="woocommerce-loop-product__title">Expo</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/expo/"><h2 class="woocommerce-loop-product__title"><?php echo __('Expo', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Get inspiring WordPress themes to represent your expo and exhibitions.</div>
+										<div class="wpem-theme-description"><?php echo __('Get inspiring WordPress themes to represent your expo and exhibitions.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -313,14 +313,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/fashion-beauty/"><h2 class="woocommerce-loop-product__title">Fashion Beauty</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/fashion-beauty/"><h2 class="woocommerce-loop-product__title"><?php echo __('Fashion Beauty', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Glamourize your fashion and beauty website using our exclusive themes.</div>
+										<div class="wpem-theme-description"><?php echo __('Glamourize your fashion and beauty website using our exclusive themes.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -333,14 +333,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/festival/"><h2 class="woocommerce-loop-product__title">Festival</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/festival/"><h2 class="woocommerce-loop-product__title"><?php echo __('Festival', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Paint your website with festivities with our festival-based themes.</div>
+										<div class="wpem-theme-description"><?php echo __('Paint your website with festivities with our festival-based themes.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -353,14 +353,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/cinema/"><h2 class="woocommerce-loop-product__title">Cinema</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/cinema/"><h2 class="woocommerce-loop-product__title"><?php echo __('Cinema', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Get Filmy WordPress themes for your filmy website.</div>
+										<div class="wpem-theme-description"><?php echo __('Get Filmy WordPress themes for your filmy website.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -373,14 +373,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/fitness/"><h2 class="woocommerce-loop-product__title">Fitness</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/fitness/"><h2 class="woocommerce-loop-product__title"><?php echo __('Fitness', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Use our fitness themes on your website to inspire people to stay fit.</div>
+										<div class="wpem-theme-description"><?php echo __('Use our fitness themes on your website to inspire people to stay fit.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -393,14 +393,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/food-drink/"><h2 class="woocommerce-loop-product__title">Food Drink</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/food-drink/"><h2 class="woocommerce-loop-product__title"><?php echo __('Food Drink', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Attract foodies to our website by using our Food and Drink theme.</div>
+										<div class="wpem-theme-description"><?php echo __('Attract foodies to our website by using our Food and Drink theme.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -413,14 +413,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/games/"><h2 class="woocommerce-loop-product__title">Games</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/games/"><h2 class="woocommerce-loop-product__title"><?php echo __('Games', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Discover unconventional gaming themes to design your game-based events.</div>
+										<div class="wpem-theme-description"><?php echo __('Discover unconventional gaming themes to design your game-based events.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -433,14 +433,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/online-class/"><h2 class="woocommerce-loop-product__title">Online Class</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/online-class/"><h2 class="woocommerce-loop-product__title"><?php echo __('Online Class', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Choose the most suitable themes to maximize the visibility of your online events.</div>
+										<div class="wpem-theme-description"><?php echo __('Choose the most suitable themes to maximize the visibility of your online events.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -453,14 +453,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/online-education/"><h2 class="woocommerce-loop-product__title">Online Education</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/online-education/"><h2 class="woocommerce-loop-product__title"><?php echo __('Online Education', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Empower your online education business by using our educational theme.</div>
+										<div class="wpem-theme-description"><?php echo __('Empower your online education business by using our educational theme.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -473,14 +473,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/theater/"><h2 class="woocommerce-loop-product__title">Theater</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/theater/"><h2 class="woocommerce-loop-product__title"><?php echo __('Theater', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Get responsive theater themes to amplify the online presence of your website.</div>
+										<div class="wpem-theme-description"><?php echo __('Get responsive theater themes to amplify the online presence of your website.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -493,14 +493,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/running/"><h2 class="woocommerce-loop-product__title">Running</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/running/"><h2 class="woocommerce-loop-product__title"><?php echo __('Running', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Energize and inspire people to run and stay fit.</div>
+										<div class="wpem-theme-description"><?php echo __('Energize and inspire people to run and stay fit.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -513,14 +513,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/science-research/"><h2 class="woocommerce-loop-product__title">Science Research</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/science-research/"><h2 class="woocommerce-loop-product__title"><?php echo __('Science Research', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Let every element of your website speak science.</div>
+										<div class="wpem-theme-description"><?php echo __('Let every element of your website speak science.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -533,14 +533,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/soccer-club/"><h2 class="woocommerce-loop-product__title">Soccer Club</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/soccer-club/"><h2 class="woocommerce-loop-product__title"><?php echo __('Soccer Club', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Attract soccer to your website by using our soccer club themes.</div>
+										<div class="wpem-theme-description"><?php echo __('Attract soccer to your website by using our soccer club themes.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -553,14 +553,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/virtual-jobs-fair/"><h2 class="woocommerce-loop-product__title">Virtual Jobs Fair</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/virtual-jobs-fair/"><h2 class="woocommerce-loop-product__title"><?php echo __('Virtual Jobs Fair', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Use our virtual jobs fair themes to assemble job seekers and recruiters.</div>
+										<div class="wpem-theme-description"><?php echo __('Use our virtual jobs fair themes to assemble job seekers and recruiters.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -573,14 +573,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/water-sports/"><h2 class="woocommerce-loop-product__title">Science Research</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/water-sports/"><h2 class="woocommerce-loop-product__title"><?php echo __('Science Research', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Create a perfect website for all water sports addicts.</div>
+										<div class="wpem-theme-description"><?php echo __('Create a perfect website for all water sports addicts.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -593,14 +593,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/web-summit/"><h2 class="woocommerce-loop-product__title">Web Summit</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/web-summit/"><h2 class="woocommerce-loop-product__title"><?php echo __('Web Summit', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Get clean designs & graphic elements in our WordPress website.</div>
+										<div class="wpem-theme-description"><?php echo __('Get clean designs & graphic elements in our WordPress website.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -613,14 +613,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/webinar/"><h2 class="woocommerce-loop-product__title">Webinar</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/webinar/"><h2 class="woocommerce-loop-product__title"><?php echo __('Webinar', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Experience innovative theme designs that are perfect for your webinar.</div>
+										<div class="wpem-theme-description"><?php echo __('Experience innovative theme designs that are perfect for your webinar.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -633,14 +633,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/wedding-planner/"><h2 class="woocommerce-loop-product__title">Wedding Planner</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/wedding-planner/"><h2 class="woocommerce-loop-product__title"><?php echo __('Wedding Planner', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Get exceptional wedding planning themes designed with creativity.</div>
+										<div class="wpem-theme-description"><?php echo __('Get exceptional wedding planning themes designed with creativity.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -653,14 +653,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="https://wordpress.org/themes/event-listing/"><h2 class="woocommerce-loop-product__title">Event Listing Theme</h2></a>
+											<a href="https://wordpress.org/themes/event-listing/"><h2 class="woocommerce-loop-product__title"><?php echo __('Event Listing Theme', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Find the most alluring WordPress event listing theme to list your events.</div>
+										<div class="wpem-theme-description"><?php echo __('Find the most alluring WordPress event listing theme to list your events.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -673,14 +673,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/community/"><h2 class="woocommerce-loop-product__title">Community</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/community/"><h2 class="woocommerce-loop-product__title"><?php echo __('Community', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Get exceptional Community themes designed with creativity.</div>
+										<div class="wpem-theme-description"><?php echo __('Get exceptional Community themes designed with creativity.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -693,14 +693,14 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 									</div>
 									<div class="wpem-theme-content-wrapper">
 										<div class="wpem-theme-title">
-											<a href="<?php echo esc_url($wpem_url);?>product/insighter/"><h2 class="woocommerce-loop-product__title">Insighter</h2></a>
+											<a href="<?php echo esc_url($wpem_url);?>product/insighter/"><h2 class="woocommerce-loop-product__title"><?php echo __('Insighter', 'wp-event-manager');?></h2></a>
 										</div>
-										<div class="wpem-theme-description">Draw the party crowd to your website with the vibrant and dynamic Insighter.</div>
+										<div class="wpem-theme-description"><?php echo __('Draw the party crowd to your website with the vibrant and dynamic Insighter.', 'wp-event-manager');?></div>
 										<div class="wpem-theme-price">
 											<div class="wpem-theme-price-wrapper">
 												<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>49.00</bdi></span></span>
 											</div>
-											<span class="wpem-theme-duration">annually</span>
+											<span class="wpem-theme-duration"><?php echo __('annually', 'wp-event-manager');?></span>
 										</div>
 									</div>
 								</div>
@@ -721,9 +721,9 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 								<h2><?php esc_attr_e('Event Manager Plus', 'wp-event-manager'); ?></h2>
 								<p><?php esc_attr_e('Ticket sales, attendee management, and email marketing for your events', 'wp-event-manager'); ?></p>
 								<ul>
-									<li><i class="wpem-icon-checkmark"></i> 20 Plugins</li>
-									<li><i class="wpem-icon-checkmark"></i> Support</li>
-									<li><i class="wpem-icon-checkmark"></i> Feature Add-ons</li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('20 Plugins', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Support', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Feature Add-ons', 'wp-event-manager'); ?></li>
 								</ul>
 								<a href="<?php echo esc_url($wpem_url);?>pricing/?add-to-cart=35707" class="wpem-admin-theme-button wpem-admin-bundle-button"><?php esc_attr_e('Buy Now', 'wp-event-manager'); ?></a>
 							</div>
@@ -737,10 +737,10 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 								<h2><?php esc_attr_e('Event Manager Pro', 'wp-event-manager'); ?></h2>
 								<p><?php esc_attr_e('Ticket sales, attendee management, and email marketing for your events', 'wp-event-manager'); ?></p>
 								<ul>
-									<li><i class="wpem-icon-checkmark"></i> 20 Plugins</li>
-									<li><i class="wpem-icon-checkmark"></i> Support</li>
-									<li><i class="wpem-icon-checkmark"></i> Feature Add-ons</li>
-									<li><i class="wpem-icon-checkmark"></i> Ticket Selling Add-ons</li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('20 Plugins', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Support', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Feature Add-ons', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Ticket Selling Add-ons', 'wp-event-manager'); ?></li>
 								</ul>
 								<a href="<?php echo esc_url($wpem_url);?>pricing/?add-to-cart=20377" class="wpem-admin-theme-button wpem-admin-bundle-button"><?php esc_attr_e('Buy Now', 'wp-event-manager'); ?></a>
 							</div>
@@ -754,11 +754,11 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 								<h2><?php esc_attr_e('Virtual Event Manager Pro', 'wp-event-manager'); ?></h2>
 								<p><?php esc_attr_e('Ticket sales, attendee management, and email marketing for your events', 'wp-event-manager'); ?></p>
 								<ul>
-									<li><i class="wpem-icon-checkmark"></i> 20 Plugins</li>
-									<li><i class="wpem-icon-checkmark"></i> Support</li>
-									<li><i class="wpem-icon-checkmark"></i> Feature Add-ons</li>
-									<li><i class="wpem-icon-checkmark"></i> Ticket Selling Add-ons</li>
-									<li><i class="wpem-icon-checkmark"></i> Virtual Add-ons</li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('20 Plugins', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Support', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Feature Add-ons', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Ticket Selling Add-ons', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Virtual Add-ons', 'wp-event-manager'); ?></li>
 								</ul>
 								<a href="<?php echo esc_url($wpem_url);?>pricing/?add-to-cart=29038" class="wpem-admin-theme-button wpem-admin-bundle-button"><?php esc_attr_e('Buy Now', 'wp-event-manager'); ?></a>
 							</div>
@@ -772,17 +772,16 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 								<h2><?php esc_attr_e('All Events Manager Pro', 'wp-event-manager'); ?></h2>
 								<p><?php esc_attr_e('Ticket sales, attendee management, and email marketing for your events', 'wp-event-manager'); ?></p>
 								<ul>
-									<li><i class="wpem-icon-checkmark"></i> 20 Plugins</li>
-									<li><i class="wpem-icon-checkmark"></i> Support</li>
-									<li><i class="wpem-icon-checkmark"></i> Feature Add-ons</li>
-									<li><i class="wpem-icon-checkmark"></i> Ticket Selling Add-ons</li>
-									<li><i class="wpem-icon-checkmark"></i> Virtual Add-ons</li>
-									<li><i class="wpem-icon-checkmark"></i> Marketing Add-ons</li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('20 Plugins', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Support', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Feature Add-ons', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Ticket Selling Add-ons', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Virtual Add-ons', 'wp-event-manager'); ?></li>
+									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Marketing Add-ons', 'wp-event-manager'); ?></li>
 								</ul>
 								<a href="<?php echo esc_url($wpem_url);?>pricing/?add-to-cart=35706" class="wpem-admin-theme-button wpem-admin-bundle-button"><?php esc_attr_e('Buy Now', 'wp-event-manager'); ?></a>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
