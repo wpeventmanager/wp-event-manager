@@ -1,10 +1,10 @@
 === WP Event Manager – Events Calendar, Registrations, Sell Tickets with WooCommerce ===
 
-Contributors: wpeventmanager,ashokdudhat,krinay
+Contributors: wpeventmanager,ashokdudhat
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
-Requires at least: 6.3.0
-Tested up to: 6.8.2
+Requires at least: 6.5
+Tested up to: 6.9
 Stable Tag: 3.2.2
 Requires PHP: 8
 License: GPLv3
