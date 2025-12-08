@@ -7,6 +7,7 @@
 
 	<div class="plugin-licence">
 		<form method="post">
+			<?php wp_nonce_field( 'wpem_licence_action', 'wpem_licence_nonce' ); ?>
 			<label for="<?php echo esc_attr( $plugin['TextDomain'] ); ?>_licence_key"><?php esc_html_e('License', 'wp-event-manager'); ?>
 				<input <?php echo esc_attr( $disabled ); ?> type="text" id="<?php echo esc_attr( $plugin['TextDomain'] ); ?>_licence_key" name="<?php echo esc_attr( $plugin['TextDomain'] ); ?>_licence_key" placeholder="XXXX-XXXX-XXXX-XXXX" value="<?php echo esc_attr( $licence_key ); ?>">
 			</label>

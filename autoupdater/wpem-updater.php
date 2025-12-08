@@ -73,18 +73,35 @@ class WPEM_Updater {
 	//Process admin requests.
 	private function admin_requests() {
 		foreach($this->plugin_data as $plugin_info){
-			if ( !empty( $_POST[ $plugin_info['TextDomain'] . '_licence_key' ] ) ) {
-				$this->activate_licence_request($plugin_info);
-			} elseif ( !empty( $_GET[ 'dismiss-' . sanitize_title( $plugin_info['TextDomain'] ) ] ) ) {
-				update_option( $plugin_info['TextDomain'] . '_hide_key_notice', 1 );
-			} elseif ( !empty( $_GET[ 'dismiss-key-expire-' . sanitize_title( $plugin_info['TextDomain'] ) ] ) ) {
-				update_option( $plugin_info['TextDomain'] . '_hide_key_expire_notice', 1 );
-			} elseif ( !empty( $_GET['activated_licence'] ) && $_GET['activated_licence'] === $plugin_info['TextDomain'] ) {
+			// Handle licence activation via POST.
+			if ( ! empty( $_POST[ $plugin_info['TextDomain'] . '_licence_key' ] ) ) {
+				if ( ! current_user_can( 'update_plugins' ) ) {
+					return;
+				}
+				if ( empty( $_POST['wpem_licence_nonce'] ) || ! wp_verify_nonce( $_POST['wpem_licence_nonce'], 'wpem_licence_action' ) ) {
+					return;
+				}
+				$this->activate_licence_request( $plugin_info );
+			// Hide key notice.
+			} elseif ( ! empty( $_GET[ 'dismiss-' . sanitize_title( $plugin_info['TextDomain'] ) ] ) ) {
+				if ( current_user_can( 'update_plugins' ) ) {
+					update_option( $plugin_info['TextDomain'] . '_hide_key_notice', 1 );
+				}
+			// Hide key-expire notice.
+			} elseif ( ! empty( $_GET[ 'dismiss-key-expire-' . sanitize_title( $plugin_info['TextDomain'] ) ] ) ) {
+				if ( current_user_can( 'update_plugins' ) ) {
+					update_option( $plugin_info['TextDomain'] . '_hide_key_expire_notice', 1 );
+				}
+			// Show activation / deactivation result notices (read-only, no state change).
+			} elseif ( ! empty( $_GET['activated_licence'] ) && $_GET['activated_licence'] === $plugin_info['TextDomain'] ) {
 				$this->add_notice( array( $this, 'activated_key_notice' ) );
-			} elseif ( !empty( $_GET['deactivated_licence'] ) && $_GET['deactivated_licence'] === $plugin_info['TextDomain'] ) {
+			} elseif ( ! empty( $_GET['deactivated_licence'] ) && $_GET['deactivated_licence'] === $plugin_info['TextDomain'] ) {
 				$this->add_notice( array( $this, 'deactivated_key_notice' ) );
-			} elseif ( !empty( $_GET[ $plugin_info['TextDomain'] . '_deactivate_licence' ] ) ) {
-				$this->deactivate_licence_request($plugin_info);
+			// Deactivate licence via GET action; require capability.
+			} elseif ( ! empty( $_GET[ $plugin_info['TextDomain'] . '_deactivate_licence' ] ) ) {
+				if ( current_user_can( 'update_plugins' ) ) {
+					$this->deactivate_licence_request( $plugin_info );
+				}
 			}
 		}
 	}
