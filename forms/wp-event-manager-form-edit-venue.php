@@ -27,7 +27,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 	 * Constructor.
 	*/
 	public function __construct() {
-		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint($_REQUEST[ 'venue_id' ]) : 0;
+		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST[ 'venue_id' ])) : 0;
 		if  (!event_manager_user_can_edit_event($this->venue_id)) {
 			$this->venue_id = 0;
 		}

@@ -52,12 +52,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 		// Get step/event
 		if( isset( $_POST['step'] ) ) {
-			$this->step = is_numeric( $_POST['step'] ) ? max( absint( esc_attr($_POST['step'] )), 0 ) : array_search( esc_attr($_POST['step']), array_keys( $this->steps ) );
+			$this->step = is_numeric( $_POST['step'] ) ? max( absint( esc_attr( wp_unslash( $_POST['step'] ) )), 0 ) : array_search( esc_attr(wp_unslash($_POST['step'])), array_keys( $this->steps ) );
 		} elseif ( !empty( $_GET['step'] ) ) {
-			$this->step = is_numeric( $_GET['step'] ) ? max( absint( esc_attr($_GET['step'] )), 0 ) : array_search( esc_attr($_GET['step']), array_keys( $this->steps ) );
+			$this->step = is_numeric( $_GET['step'] ) ? max( absint( esc_attr(wp_unslash($_GET['step'] ))), 0 ) : array_search( esc_attr(wp_unslash($_GET['step'])), array_keys( $this->steps ) );
 		}
 
-		$this->event_id = !empty( $_REQUEST['event_id'] ) ? absint( $_REQUEST[ 'event_id' ] ) : 0;
+		$this->event_id = !empty( $_REQUEST['event_id'] ) ? absint( wp_unslash( $_REQUEST[ 'event_id' ] ) ) : 0;
 		if( !event_manager_user_can_edit_event( $this->event_id ) ) {
 			$this->event_id = 0;
 		}
@@ -806,9 +806,9 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 					if( !empty( $_POST['create_account_email'] ) ) {
 						$create_account = wp_event_manager_create_account(array(
-							'username' => ( event_manager_generate_username_from_email() || empty( $_POST['create_account_username'] ) ) ? '' : sanitize_user( $_POST['create_account_username'] ),
-							'password' => ( event_manager_use_standard_password_setup_email() || empty( $_POST['create_account_password'] ) ) ? '' : $_POST['create_account_password'],
-							'email'    => sanitize_email( $_POST['create_account_email'] ),
+							'username' => ( event_manager_generate_username_from_email() || empty( $_POST['create_account_username'] ) ) ? '' : sanitize_user( wp_unslash( $_POST['create_account_username'] ) ),
+							'password' => ( event_manager_use_standard_password_setup_email() || empty( $_POST['create_account_password'] ) ) ? '' : wp_unslash( $_POST['create_account_password'] ),
+							'email'    => sanitize_email(  wp_unslash( $_POST['create_account_email'] ) ),
 							'role'     => get_option( 'event_manager_registration_role','organizer' )
 						) );
 					}

@@ -78,7 +78,7 @@ class WPEM_Updater {
 				if ( ! current_user_can( 'update_plugins' ) ) {
 					return;
 				}
-				if ( empty( $_POST['wpem_licence_nonce'] ) || ! wp_verify_nonce( $_POST['wpem_licence_nonce'], 'wpem_licence_action' ) ) {
+				if ( empty( $_POST['wpem_licence_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wpem_licence_nonce'] ) ), 'wpem_licence_action' ) ) {
 					return;
 				}
 				$this->activate_licence_request( $plugin_info );
@@ -93,9 +93,9 @@ class WPEM_Updater {
 					update_option( $plugin_info['TextDomain'] . '_hide_key_expire_notice', 1 );
 				}
 			// Show activation / deactivation result notices (read-only, no state change).
-			} elseif ( ! empty( $_GET['activated_licence'] ) && $_GET['activated_licence'] === $plugin_info['TextDomain'] ) {
+			} elseif ( ! empty( $_GET['activated_licence'] ) && sanitize_text_field( wp_unslash($_GET['activated_licence'])) === $plugin_info['TextDomain'] ) {
 				$this->add_notice( array( $this, 'activated_key_notice' ) );
-			} elseif ( ! empty( $_GET['deactivated_licence'] ) && $_GET['deactivated_licence'] === $plugin_info['TextDomain'] ) {
+			} elseif ( ! empty( $_GET['deactivated_licence'] ) && sanitize_text_field( wp_unslash($_GET['deactivated_licence'])) === $plugin_info['TextDomain'] ) {
 				$this->add_notice( array( $this, 'deactivated_key_notice' ) );
 			// Deactivate licence via GET action; require capability.
 			} elseif ( ! empty( $_GET[ $plugin_info['TextDomain'] . '_deactivate_licence' ] ) ) {

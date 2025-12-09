@@ -22,7 +22,7 @@ class WP_Event_Manager_Setup {
 		add_action('admin_menu', array($this, 'admin_menu'), 12);
 		add_action('admin_head', array($this, 'admin_head'));
 		add_action('admin_init', array($this, 'redirect'));
-		if(isset($_GET['page']) && 'event-manager-setup' === esc_attr($_GET['page'])) {
+		if(isset($_GET['page']) && 'event-manager-setup' === sanitize_text_field( wp_unslash($_GET['page']))) {
 			add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 12);
 		}
 		add_action('wp_ajax_wpem_save_installation_settings', array($this,'wpem_save_installation_settings'));
@@ -54,7 +54,7 @@ class WP_Event_Manager_Setup {
 	public function redirect() {
 		global $pagenow;
 
-		if(isset($_GET['page']) && esc_attr($_GET['page']) === 'event-manager-setup') {
+		if(isset($_GET['page']) && sanitize_text_field( wp_unslash($_GET['page'])) === 'event-manager-setup') {
 			if(get_option('wpem_installation', false)) {
 				wp_redirect(admin_url('index.php'));
 				exit;
@@ -73,7 +73,7 @@ class WP_Event_Manager_Setup {
 		if(is_network_admin() || isset($_GET['activate-multi']) || defined('IFRAME_REQUEST')) {
 			return;
 		}
-		if((isset($_GET['action']) && 'upgrade-plugin' == esc_attr($_GET['action'])) && (isset($_GET['plugin']) && strstr(esc_attr($_GET['plugin']), 'wp-event-manager.php'))) {
+		if((isset($_GET['action']) && 'upgrade-plugin' == sanitize_text_field( wp_unslash($_GET['action']))) && (isset($_GET['plugin']) && strstr(sanitize_text_field( wp_unslash($_GET['plugin'])), 'wp-event-manager.php'))) {
 			return;
 		}
 		wp_redirect(admin_url('index.php?page=event-manager-setup'));
@@ -123,7 +123,7 @@ class WP_Event_Manager_Setup {
 	public function output() {
 		$step = !empty($_GET['step']) ? absint($_GET['step']) : 1;
 		$wpem_url = esc_url(get_option('wp_event_manager_store_url'));
-		if(isset($_GET['skip-event-manager-setup']) === 1) {
+		if(isset($_GET['skip-event-manager-setup']) && sanitize_text_field( wp_unslash($_GET['skip-event-manager-setup'])) === 1) {
 			update_option('wpem_installation', 0);
 			update_option('wpem_installation_skip', 1);
 			wp_redirect(admin_url('index.php'));
@@ -131,7 +131,7 @@ class WP_Event_Manager_Setup {
 		}
 
 		if(3 === $step && !empty($_POST)) {
-			if(false == wp_verify_nonce($_REQUEST['setup_wizard'], 'step_3')) {
+			if(false == wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['setup_wizard'])), 'step_3')) {
 				wp_die(esc_attr__('Error in nonce. Try again.', 'wp-event-manager'));
 			}
 			$create_pages = isset($_POST['wp-event-manager-create-page']) ? $this->sanitize_array($_POST['wp-event-manager-create-page']) : array();
@@ -408,13 +408,13 @@ class WP_Event_Manager_Setup {
 	 * @return array
 	 */
 	public function wpem_save_installation_settings() {
-		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( $_POST['security'], 'wpem_save_installation_settings_nonce' ) ) {
+		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['security'] ) ), 'wpem_save_installation_settings_nonce' ) ) {
 			wp_send_json_error(array('message' => 'Invalid nonce'));
 			exit;
 		}
 
-		$date_format = isset( $_POST['date_format'] ) ? sanitize_text_field( $_POST['date_format'] ) : '';
-		$time_format = isset( $_POST['time_format'] ) ? sanitize_text_field( $_POST['time_format'] ) : '';
+		$date_format = isset( $_POST['date_format'] ) ? sanitize_text_field( wp_unslash( $_POST['date_format'] ) ) : '';
+		$time_format = isset( $_POST['time_format'] ) ? sanitize_text_field( wp_unslash( $_POST['time_format'] ) ) : '';
 
 		if ( ! empty( $date_format ) ) {
 			update_option('event_manager_datepicker_format', $date_format);

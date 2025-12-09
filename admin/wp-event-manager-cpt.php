@@ -127,7 +127,7 @@ class WP_Event_Manager_CPT {
 	 * Approve a single event.
 	 */
 	public function approve_event()	{
-		if(!empty($_GET['approve_event']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'approve_event') && current_user_can('publish_post',esc_attr( wp_unslash( $_GET['approve_event'] )))) {
+		if(!empty($_GET['approve_event']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'approve_event') && current_user_can('publish_post',esc_attr( wp_unslash( $_GET['approve_event'] )))) {
 			$post_id = absint($_GET['approve_event']);
 			$event_end_date    = esc_attr(get_post_meta($post_id, '_event_end_date', true));
 			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
@@ -154,7 +154,7 @@ class WP_Event_Manager_CPT {
 	public function approved_notice() {
 		global $post_type, $pagenow;
 		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['approved_events'])) {
-			$approved_events = esc_attr($_REQUEST['approved_events']);
+			$approved_events = sanitize_text_field(wp_unslash($_REQUEST['approved_events']));
 			if(is_array($approved_events)) {
 				$approved_events = array_map('absint', $approved_events);
 				$titles = array();
@@ -175,7 +175,7 @@ class WP_Event_Manager_CPT {
 		global $post_type, $pagenow;
 
 		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events'])) {
-			$expired_events = esc_attr($_REQUEST['expired_events']);
+			$expired_events = sanitize_text_field(wp_unslash($_REQUEST['expired_events']));
 			if(is_array($expired_events)) {
 				$expired_events = array_map('absint', $expired_events);
 				$titles = array();
@@ -219,8 +219,13 @@ class WP_Event_Manager_CPT {
 		if(!$terms) {
 			return;
 		}
+		$selected_category = '';
+
+		if ( isset( $_GET['event_listing_category'] ) ) {
+			$selected_category = sanitize_text_field( wp_unslash( $_GET['event_listing_category'] ) );
+		}
 		$output = "<select name='event_listing_category' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected(isset($_GET['event_listing_category']) ? esc_attr( wp_unslash( $_GET['event_listing_category'] ) ) : '', '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
+		$output .= '<option value="" ' . selected($selected_category, '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
 		printf('%s', $output);
@@ -252,8 +257,12 @@ class WP_Event_Manager_CPT {
 			return;
 		}
 
+		$selected_event_type = '';
+		if ( isset( $_GET['event_listing_type'] ) ) {
+			$selected_event_type = sanitize_text_field( wp_unslash( $_GET['event_listing_type'] ) );
+		}
 		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected(isset($_GET['event_listing_type']) ? esc_attr( wp_unslash( $_GET['event_listing_type'] ) ) : '', '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
+		$output .= '<option value="" ' . selected($selected_event_type, '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
 
@@ -280,25 +289,77 @@ class WP_Event_Manager_CPT {
 	 * @param mixed $messages
 	 * @return void
 	 */
-	public function post_updated_messages($messages) {
+	public function post_updated_messages( $messages ) {
 		global $post, $post_ID, $wp_post_types;
+
+		// Allowed HTML for messages
+		$allowed_html = array(
+			'a' => array(
+				'href'   => array(),
+				'target' => array(),
+			),
+			'strong' => array(),
+		);
+
+		// Sanitize revision ID if present
+		$revision_id = isset( $_GET['revision'] ) ? absint( wp_unslash( $_GET['revision'] ) )	: 0;
 
 		$messages['event_listing'] = array(
 			0  => '',
-			1  => sprintf(wp_kses('%1$s updated. <a href="%2$s">View</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(get_permalink($post_ID))),
-			2  => __('Custom field updated.', 'wp-event-manager'),
-			3  => __('Custom field deleted.', 'wp-event-manager'),
-			4  => sprintf(wp_kses('%s updated.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name),
-			5  => isset($_GET['revision']) ? sprintf(wp_kses('%1$s restored to revision from %2$s', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, wp_post_revision_title((int) esc_attr($_GET['revision']), false)) : false,
-			6  => sprintf(wp_kses('%1$s published. <a href="%2$s">View</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(get_permalink($post_ID))),
-			7  => sprintf('%s saved.', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name,
-			8  => sprintf(wp_kses('%1$s submitted. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
-			9  => sprintf(wp_kses('%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'),
-				$wp_post_types['event_listing']->labels->singular_name,
-				date_i18n(__('M j, Y @ G:i', 'wp-event-manager'), strtotime($post->post_date)),
-				esc_url(get_permalink($post_ID))),
-			10 => sprintf(wp_kses('%1$s draft updated. <a target="_blank" href="%2$s">Preview</a>', 'wp-event-manager'), $wp_post_types['event_listing']->labels->singular_name, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
+			1  => sprintf(
+				wp_kses( '%1$s updated. <a href="%2$s">View</a>', $allowed_html ),
+				esc_html( $wp_post_types['event_listing']->labels->singular_name ),
+				esc_url( get_permalink( $post_ID ) )
+			),
+			2  => __( 'Custom field updated.', 'wp-event-manager' ),
+			3  => __( 'Custom field deleted.', 'wp-event-manager' ),
+			4  => sprintf(
+				wp_kses( '%s updated.', $allowed_html ),
+				esc_html( $wp_post_types['event_listing']->labels->singular_name )
+			),
+			5  => $revision_id
+				? sprintf(
+					wp_kses( '%1$s restored to revision from %2$s', $allowed_html ),
+					esc_html( $wp_post_types['event_listing']->labels->singular_name ),
+					wp_post_revision_title( $revision_id, false )
+				)
+				: false,
+			6  => sprintf(
+				wp_kses( '%1$s published. <a href="%2$s">View</a>', $allowed_html ),
+				esc_html( $wp_post_types['event_listing']->labels->singular_name ),
+				esc_url( get_permalink( $post_ID ) )
+			),
+			7  => sprintf(
+				__( '%s saved.', 'wp-event-manager' ),
+				esc_html( $wp_post_types['event_listing']->labels->singular_name )
+			),
+			8  => sprintf(
+				wp_kses( '%1$s submitted. <a target="_blank" href="%2$s">Preview</a>', $allowed_html ),
+				esc_html( $wp_post_types['event_listing']->labels->singular_name ),
+				esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) )
+			),
+			9  => sprintf(
+				wp_kses( '%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview</a>', $allowed_html ),
+				esc_html( $wp_post_types['event_listing']->labels->singular_name ),
+				date_i18n(
+					__( 'M j, Y @ G:i', 'wp-event-manager' ),
+					strtotime( $post->post_date )
+				),
+				esc_url( get_permalink( $post_ID ) )
+			),
+			10 => sprintf(
+				wp_kses( '%1$s draft updated. <a target="_blank" href="%2$s">Preview</a>', $allowed_html ),
+				esc_html( $wp_post_types['event_listing']->labels->singular_name ),
+				esc_url(
+					add_query_arg(
+						'preview',
+						'true',
+						get_permalink( $post_ID )
+					)
+				)
+			),
 		);
+
 		return $messages;
 	}
 
@@ -532,7 +593,7 @@ class WP_Event_Manager_CPT {
 		}
 
 		$post_id = absint($_GET['post']);
-		$nonce = $_GET['_wpnonce'];
+		$nonce = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ?? '' ) );
 
 		if (!wp_verify_nonce($nonce, 'duplicate_event_' . $post_id)) {
 			wp_die('Nonce verification failed');

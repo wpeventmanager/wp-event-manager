@@ -29,7 +29,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 				)
 			);	
 			if(isset($_GET['plugin']) && !empty($_GET['plugin']))
-				$plugin_slug = esc_attr($_GET['plugin']);
+				$plugin_slug = sanitize_text_field( wp_unslash($_GET['plugin']));
 			else
 				$plugin_slug = esc_attr('wp-event-manager');
 			?>

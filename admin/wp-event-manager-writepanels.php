@@ -1093,7 +1093,7 @@ class WP_Event_Manager_Writepanels {
 		if(is_int(wp_is_post_autosave($post))) {
 			return;
 		}
-		if(empty($_POST['event_manager_nonce']) || !wp_verify_nonce($_POST['event_manager_nonce'], 'save_meta_data')) {
+		if(empty($_POST['event_manager_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['event_manager_nonce'])), 'save_meta_data')) {
 			return;
 		}
 		if(!current_user_can('edit_post', $post_id)) {
@@ -1391,7 +1391,7 @@ class WP_Event_Manager_Writepanels {
 		}
 
 		if (isset($_POST['_event_author'])) {
-			$custom_author = intval($_POST['_event_author']);
+			$custom_author = sanitize_text_field(wp_unslash($_POST['_event_author']));
 			if ($custom_author && get_user_by('ID', $custom_author)) {
 				remove_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);
 				wp_update_post([
@@ -1498,8 +1498,8 @@ class WP_Event_Manager_Writepanels {
 		// Covert datepicker format  into php date() function date format
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
-		update_post_meta($post_id, '_organizer_name', sanitize_text_field($_POST['post_title']));
-		update_post_meta($post_id, '_organizer_description', wp_kses_post($_POST['content']));
+		update_post_meta($post_id, '_organizer_name', sanitize_text_field(wp_unslash($_POST['post_title'])));
+		update_post_meta($post_id, '_organizer_description', wp_kses_post(wp_unslash($_POST['content'])));
 
 		// Save fields
 		foreach ($this->organizer_listing_fields() as $key => $field) {
@@ -1678,7 +1678,7 @@ class WP_Event_Manager_Writepanels {
 						if (isset($_POST[$key])) {
 							$value = '';
 							if (!empty($_POST['_thumbnail_id'])) {
-								$thumb_id = intval($_POST['_thumbnail_id']);
+								$thumb_id = sanitize_text_field(wp_unslash($_POST['_thumbnail_id']));
 								$thumb_url = wp_get_attachment_url($thumb_id);
 
 								if ($thumb_url) {

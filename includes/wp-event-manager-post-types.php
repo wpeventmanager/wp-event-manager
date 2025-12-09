@@ -479,7 +479,7 @@ class WP_Event_Manager_Post_Types {
 			'meta_query'          => array()
 		);		
 		if(!empty($_GET['search_location'])) {
-			$search_location = esc_html($_GET['search_location']);
+			$search_location = wp_kses_post( wp_unslash($_GET['search_location']));
 			$location_meta_keys = array('geolocation_formatted_address', '_event_location', '_event_pincode', 'geolocation_state_long');
 			$location_search    = array('relation' => 'OR');
 			foreach($location_meta_keys as $meta_key) {
@@ -502,7 +502,7 @@ class WP_Event_Manager_Post_Types {
 		$search_datetimes = [];
 
 		if ( isset($_GET['search_datetimes']) ) {
-			$raw = $_GET['search_datetimes'];
+			$raw = wp_kses_post( wp_unslash($_GET['search_datetimes']));
 			$search_datetimes = is_array($raw) ? array_filter(array_map('sanitize_text_field', array_map('stripslashes', $raw))) : array_filter([sanitize_text_field(stripslashes($raw))]);
 		}
 
@@ -538,7 +538,7 @@ class WP_Event_Manager_Post_Types {
 		}
 
 		if(!empty($_GET['search_ticket_prices'])) {
-			$search_ticket_prices = esc_attr($_GET['search_ticket_prices']);
+			$search_ticket_prices = sanitize_text_field( wp_unslash($_GET['search_ticket_prices']));
 			if($search_ticket_prices =='ticket_price_paid') {  
 				$ticket_price_value='paid';     
 			} else if($search_ticket_prices =='ticket_price_free')	{
@@ -552,38 +552,51 @@ class WP_Event_Manager_Post_Types {
 			$query_args['meta_query'][] = $ticket_search;			
 		}
 	
-		if(!empty($_GET['search_event_types'])) {
-			$search_event_types = esc_attr($_GET['search_event_types']);
-			$cats     = explode(',', $search_event_types) + array(0);
-			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && sizeof($search_event_types) > 1 ? 'AND' : 'IN';
-			$query_args['tax_query'][] = array(
-				'taxonomy'         => 'event_listing_type',
-				'field'            => $field,
-				'terms'            => $cats,
-				'include_children' => $operator !== 'AND' ,
-				'operator'         => $operator
-			);
+		if ( ! empty( $_GET['search_event_types'] ) ) {
+			$cats = wpem_sanitize_array( $_GET['search_event_types'] );
+			if ( ! empty( $cats ) ) {
+				$field = is_int( $cats[0] ) ? 'term_id' : 'slug';
+				$operator = (
+					'all' === get_option( 'event_manager_event_type_filter_type', 'all' ) &&
+					count( $cats ) > 1
+				) ? 'AND' : 'IN';
+				$query_args['tax_query'][] = array(
+					'taxonomy'         => 'event_listing_type',
+					'field'            => $field,
+					'terms'            => $cats,
+					'include_children' => ( 'AND' !== $operator ),
+					'operator'         => $operator,
+				);
+			}
 		}
 	
-		if(!empty($_GET['search_categories'])) {
-			$search_categories = esc_attr($_GET['search_categories']);
-			$cats     = explode(',', $search_categories) + array(0);
-			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($search_categories) > 1 ? 'AND' : 'IN';
-			$query_args['tax_query'][] = array(
-				'taxonomy'         => 'event_listing_category',
-				'field'            => $field,
-				'terms'            => $cats,
-				'include_children' => $operator !== 'AND' ,
-				'operator'         => $operator
-			);
+		if ( ! empty( $_GET['search_event_categories'] ) ) {
+			$cats = wpem_sanitize_array( $_GET['search_event_categories'] );
+			if ( ! empty( $cats ) ) {
+				$field = is_int( $cats[0] ) ? 'term_id' : 'slug';
+				$operator = (
+					'all' === get_option( 'event_manager_event_category_filter_type', 'all' ) &&
+					count( $cats ) > 1
+				) ? 'AND' : 'IN';
+				$query_args['tax_query'][] = array(
+					'taxonomy'         => 'event_listing_category',
+					'field'            => $field,
+					'terms'            => $cats,
+					'include_children' => ( 'AND' !== $operator ),
+					'operator'         => $operator,
+				);
+			}
 		}
-		if(!empty($_GET['search_keywords'])) {
+
+		if ( ! empty( $_GET['search_keywords'] ) ) {
 			global $event_manager_keyword;
-			$event_manager_keyword = esc_attr($_GET['search_keywords']);
+
+			// Proper sanitization for search input
+			$event_manager_keyword = sanitize_text_field(wp_unslash( $_GET['search_keywords'] ));
+
+			// Safe to pass to WP_Query
 			$query_args['s'] = $event_manager_keyword;
-			add_filter('posts_search', 'get_event_listings_keyword_search');
+			add_filter( 'posts_search', 'get_event_listings_keyword_search' );
 		}
 		
 		if(empty($query_args['meta_query'])) {

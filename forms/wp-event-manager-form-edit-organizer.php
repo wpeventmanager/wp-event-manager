@@ -27,7 +27,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	 * Constructor.
 	*/
 	public function __construct() {
-		$this->organizer_id = !empty($_REQUEST['organizer_id']) ? absint($_REQUEST[ 'organizer_id' ]) : 0;
+		$this->organizer_id = !empty($_REQUEST['organizer_id']) ? absint(wp_unslash($_REQUEST[ 'organizer_id' ])) : 0;
 		if  (!event_manager_user_can_edit_event($this->organizer_id)) {
 			$this->organizer_id = 0;
 		}

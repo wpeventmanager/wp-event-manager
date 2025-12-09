@@ -2343,3 +2343,29 @@ function wpem_get_form_field_types() {
 		)
 	);
 }
+
+/**
+ * Sanitize GET input that can be array.
+ */
+function wpem_sanitize_array( $input ) {
+
+    if ( is_array( $input ) ) {
+        // Remove slashes + sanitize
+        $input = array_map( function ( $v ) {
+            $v = sanitize_text_field( wp_unslash( $v ) );
+            return $v;
+        }, $input );
+    } else {
+        // Convert "1,2,3" → array
+        $input = sanitize_text_field( wp_unslash( $input ) );
+        $input = explode( ',', $input );
+    }
+
+    // Trim spaces + remove empties
+    $input = array_filter( array_map( 'trim', $input ) );
+
+    // Convert numeric → int, slugs → sanitized slugs
+    return array_map( function ( $v ) {
+        return ctype_digit( $v ) ? (int) $v : sanitize_title( $v );
+    }, $input );
+}

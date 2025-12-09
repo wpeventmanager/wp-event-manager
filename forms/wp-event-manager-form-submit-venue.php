@@ -47,11 +47,11 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		uasort($this->steps, array($this, 'sort_by_priority'));
 		// Get step/event
 		if(isset($_POST['step'])) {
-			$this->step = is_numeric($_POST['step']) ? max(absint($_POST['step']), 0) : array_search(esc_attr($_POST['step']), array_keys($this->steps));
+			$this->step = is_numeric($_POST['step']) ? max(absint( wp_unslash( $_POST['step'])), 0) : array_search(esc_attr(wp_unslash($_POST['step'])), array_keys($this->steps));
 		} elseif(!empty($_GET['step'])) {
-			$this->step = is_numeric(esc_attr($_GET['step'])) ? max(absint($_GET['step']), 0) : array_search(esc_attr($_GET['step']), array_keys($this->steps));
+			$this->step = is_numeric( wp_unslash( $_GET['step'] )) ? max(absint( wp_unslash( $_GET['step'] )), 0) : array_search(esc_attr(wp_unslash($_GET['step'])), array_keys($this->steps));
 		}
-		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint($_REQUEST[ 'venue_id' ]) : 0;
+		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint( wp_unslash( $_REQUEST[ 'venue_id' ])) : 0;
 		if(!event_manager_user_can_edit_event($this->venue_id)) {
 			$this->venue_id = 0;
 		}

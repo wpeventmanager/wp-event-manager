@@ -6,8 +6,8 @@
 				<?php
 				$current_action = 'event_dashboard';
 				$event_id        = '';
-				$current_action = isset( $_GET['action'] ) ? esc_attr( $_GET['action'] ) : 'event_dashboard';
-				$event_id        = isset( $_GET['event_id'] ) ? absint( $_GET['event_id'] ) : '';
+				$current_action = isset( $_GET['action'] ) ? sanitize_title( wp_unslash( $_GET['action'] ) ) : 'event_dashboard';
+				$event_id        = isset( $_GET['event_id'] ) ? absint( wp_unslash( $_GET['event_id'] ) ) : '';
 
 				$menus = [
 					'event_dashboard' => [
@@ -123,8 +123,8 @@
 
 					if ( isset( $_GET['wpem_event_dashboard_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wpem_event_dashboard_nonce'] ) ), 'wpem_event_dashboard_filter' ) ) {
 						$_GET = array_map( 'stripslashes_deep', $_GET );
-						$search_keywords = isset( $_GET['search_keywords'] ) ? esc_attr( $_GET['search_keywords'] ) : '';
-						$search_order_by = isset( $_GET['search_order_by'] ) ? esc_attr( $_GET['search_order_by'] ) : '';
+						$search_keywords = isset( $_GET['search_keywords'] ) ? wp_kses_post( wp_unslash($_GET['search_keywords']) ) : '';
+						$search_order_by = isset( $_GET['search_order_by'] ) ? sanitize_title( wp_unslash($_GET['search_order_by']) ) : '';
 					}
 
 					$display_block = '';
