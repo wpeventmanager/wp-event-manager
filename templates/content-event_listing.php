@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 global $post;
 $start_date = get_event_start_date();
 $start_time = get_event_start_time();
@@ -8,9 +11,7 @@ $event_type = get_event_type();
 if (is_array($event_type) && isset($event_type[0]))
     $event_type = $event_type[0]->slug;
 
-$thumbnail  = get_event_thumbnail( $post, 'full' ); 
-
-?>
+$thumbnail  = get_event_thumbnail( $post, 'full' ); ?>
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-<?php echo esc_attr(apply_filters('event_manager_event_wpem_column', '4')); ?>">
     <!----- wpem-col-lg-4 value can be change by admin settings ------->
     <div class="wpem-event-layout-wrapper">

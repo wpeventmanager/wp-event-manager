@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 /**
  * WP_Event_Manager_Form_Submit_Event class used to create event submit form and add event data into database.
  */

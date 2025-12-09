@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 if (!isset($field['type']) || $field['type'] !== 'wp-editor') {
 	return;
 }

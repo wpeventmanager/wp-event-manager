@@ -246,7 +246,20 @@ class Elementor_Event_Field extends Widget_Base {
                                 <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                             </div>
                             <div class="wpem-modal-content">
-                                <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => 1, 'rel' => 0)); ?>
+                                <?php $youtube_url = get_organizer_youtube();
+                                if ( $youtube_url ) {
+                                    // Sanitize the URL first
+                                    $youtube_url = esc_url( $youtube_url );
+
+                                    // Get the embed HTML safely
+                                    $embed_html = wp_oembed_get( $youtube_url, array(
+                                        'autoplay' => 1,
+                                        'rel'      => 0,
+                                    ) );
+
+                                    // Escape the embed HTML allowing safe tags only
+                                    echo wp_kses_post( $embed_html );
+                                } ?>
                             </div>
                         </div>
                         <a href="#"><div class="wpem-modal-overlay"></div></a>
@@ -282,14 +295,12 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'view_count') {
                 $view_count = get_post_views_count($event);
 
-                if ($view_count) :
-                    ?>
+                if ($view_count) : ?>
                     <i class="wpem-icon-eye"></i> <?php echo esc_html($view_count); ?>
                     <?php
                 endif;
             } else if ($settings['event_field'] == 'event_ticket_type') {
-                if (get_event_ticket_option($event)) :
-                    ?>
+                if (get_event_ticket_option($event)) : ?>
                     <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text">
                         <span class="wpem-event-ticket-type-text"><?php display_event_ticket_option('', '', true, $event); ?></span>
                     </div>
@@ -301,8 +312,7 @@ class Elementor_Event_Field extends Widget_Base {
                 if (get_event_registration_end_date($event)) {
                     display_event_registration_end_date($event);
                 }
-            } else if ($settings['event_field'] == 'event_share') {
-                ?>
+            } else if ($settings['event_field'] == 'event_share') { ?>
                 <div class="wpem-share-this-event">
                     <div class="wpem-event-share-lists">
                         <?php do_action('single_event_listing_social_share_start'); ?>
@@ -360,10 +370,10 @@ class Elementor_Event_Field extends Widget_Base {
                                         </div>
                                         <?php
                                     } else {
-                                        echo $event_field[$key];
+                                        echo wp_kses_post($event_field[$key]);
                                     }
                                 } else {
-                                    echo $event_field[$key];
+                                    echo wp_kses_post($event_field[$key]);
                                 } ?>
                             </div>
                             <?php

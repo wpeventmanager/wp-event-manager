@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 $start_date = get_event_start_date();
 $end_date   = get_event_end_date();
 $event_type = get_event_type();
@@ -60,7 +63,7 @@ $thumbnail     = get_event_thumbnail(); ?>
                         <div class="wpem-event-date-time">
                             <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?>
                             <?php 
-                                if (!empty($start_time)) {
+                                if (!empty($start_time)) { 
                                         echo ' ' . display_date_time_separator() .' ';
                                     }
                             ?>

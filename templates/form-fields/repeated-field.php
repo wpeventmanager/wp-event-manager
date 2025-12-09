@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 /**
  * Repeated fields is generated from this page .
  * Repeated fields for the paid and free tickets.

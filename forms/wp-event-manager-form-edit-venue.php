@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 include_once('wp-event-manager-form-submit-venue.php');
 
 /**

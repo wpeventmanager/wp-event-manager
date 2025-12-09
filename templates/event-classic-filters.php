@@ -1,4 +1,8 @@
-<?php wp_enqueue_style('wp-event-manager-jquery-ui-daterangepicker'); 
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+wp_enqueue_style('wp-event-manager-jquery-ui-daterangepicker'); 
 wp_enqueue_style('wp-event-manager-jquery-ui-daterangepicker-style');
 wp_enqueue_script('wp-event-manager-jquery-ui-daterangepicker');
 wp_enqueue_script('wp-event-manager-ajax-filters');

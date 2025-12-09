@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 global $post;
 $start_date = get_event_start_date();
 $end_date   = get_event_end_date();

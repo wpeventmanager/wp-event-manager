@@ -1,4 +1,8 @@
-<?php $event_fields = $this->event_listing_fields(); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+$event_fields = $this->event_listing_fields(); ?>
 
 <div class="panel-wrap">
     <ul class="wpem-tabs">

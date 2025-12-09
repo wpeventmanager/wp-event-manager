@@ -265,7 +265,6 @@ class WP_Event_Manager_CPT {
 		$output .= '<option value="" ' . selected($selected_event_type, '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
-
 		printf('%s', $output);
 	}
 

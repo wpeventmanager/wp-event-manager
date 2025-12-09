@@ -1,3 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}?>
 <!-- venue Counter -->
 <div class="wpem-venue-connter">
     <?php if (count($venues) > 0) : ?>

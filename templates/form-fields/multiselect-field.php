@@ -1,4 +1,8 @@
-<?php wp_enqueue_script('wp-event-manager-multiselect'); 
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+wp_enqueue_script('wp-event-manager-multiselect'); 
 
 wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
 wp_localize_script('chosen', 'wpem_chosen', array(

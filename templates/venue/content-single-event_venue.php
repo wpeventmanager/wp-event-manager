@@ -1,4 +1,8 @@
-<?php $venue = get_post($venue_id); 
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+$venue = get_post($venue_id); 
 if (get_option('event_manager_form_fields') && is_array(get_option('event_manager_form_fields'))) {
     $venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
 } else {

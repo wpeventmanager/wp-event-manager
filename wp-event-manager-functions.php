@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 if(!function_exists('get_event_listings')) :
 	/**
 	 * Queries event listings with certain criteria and returns them.

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 $location = get_event_location($post_id);
 $event_type = get_event_type($post_id);
 $ticket_price  = get_event_ticket_option($post_id);

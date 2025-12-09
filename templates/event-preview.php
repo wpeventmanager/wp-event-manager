@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 /**
  * Event listing preview when submitting event listings.
  * This template can be overridden by copying it to yourtheme/wp-event-manager/event-preview.php.

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 /*
 * This file the functionality of ajax for event listing and file upload.
 */ 

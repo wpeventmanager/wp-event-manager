@@ -1,4 +1,7 @@
-<?php 
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 //if user loggedin then display message and logout link else display login link
 if (is_user_logged_in()) : ?>
 	<div class="wpem-form-group ">

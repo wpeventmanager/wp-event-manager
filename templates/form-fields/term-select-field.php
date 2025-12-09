@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 $field['default'] = isset($field['default']) ? $field['default'] : '';
 $taxonomy = isset($field['taxonomy']) ? $field['taxonomy'] : '';
 // Get selected value

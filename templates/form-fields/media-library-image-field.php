@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 wp_enqueue_media();
 global $post_id;
 if(!isset($field['value']) || empty($field['value'])) {

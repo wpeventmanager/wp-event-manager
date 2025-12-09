@@ -1,3 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}?>
 </div>
 <?php if(isset($show_filters)) {
 	if($show_filters){
@@ -11,7 +15,7 @@
 			
 			echo wp_kses_post(get_event_listing_pagination($events->max_num_pages));
 		}
-	}else{
+	} else {
 		if ($events->found_posts > $per_page && $show_more) :
 			if ($show_pagination) :
 				echo wp_kses_post(get_event_listing_pagination($events->max_num_pages));?>
@@ -27,6 +31,5 @@ $html_after_event_list = get_option( 'enable_after_html' );
 if( $html_after_event_list ){
 	$html_content = get_option( 'event_content_after_html' );
 	echo wp_kses_post($html_content);
-}
-?>
+} ?>
 </div>

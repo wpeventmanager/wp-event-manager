@@ -1,3 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}?>
 <ul class="event-manager-term-checklist event-manager-term-checklist-<?php echo esc_attr($key) ?>">
 	<?php require_once(ABSPATH . '/wp-admin/includes/template.php');
 
@@ -17,8 +21,31 @@
 	wp_terms_checklist(0, $args);
 
 	$checklist = ob_get_clean();
-
-	echo str_replace("disabled='disabled'", '', $checklist);?>
+	// Remove 'disabled' attributes safely
+    $checklist = str_replace( "disabled='disabled'", '', $checklist );
+	// Escape output while allowing safe HTML tags
+    echo wp_kses(
+        $checklist,
+        array(
+            'ul'    => array( 'id' => true, 'class' => true ),
+            'li'    => array( 'id' => true, 'class' => true ),
+            'input' => array(
+                'type'    => true,
+                'name'    => true,
+                'value'   => true,
+                'checked' => true,
+                'id'      => true,
+                'class'   => true,
+            ),
+            'label' => array(
+                'for'   => true,
+                'class' => true,
+            ),
+            'span'  => array(
+                'class' => true,
+            ),
+        )
+    );?>
 </ul>
 
 <?php if (!empty($field['description'])) : ?>

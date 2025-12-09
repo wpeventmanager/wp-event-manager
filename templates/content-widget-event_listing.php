@@ -1,3 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}?>
 <!-- Events Display Widget-->
 <div class="wpem-main wpem-single-event-widget <?php echo isset($widget_style) ? esc_attr($widget_style) : '';?>">
 	<a href="<?php the_permalink(); ?>"

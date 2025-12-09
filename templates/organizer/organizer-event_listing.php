@@ -1,4 +1,8 @@
-<?php $active_tab = esc_attr(isset($_REQUEST['tab']) ? sanitize_text_field(wp_unslash($_REQUEST['tab'])) : 'upcoming'); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+$active_tab = esc_attr(isset($_REQUEST['tab']) ? sanitize_text_field(wp_unslash($_REQUEST['tab'])) : 'upcoming'); ?>
 
 <div class="wpem-event-organizer-tabs">
     <div class="wpem-tabs-wrapper">

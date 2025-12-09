@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 // Get selected value
 if (isset($field['value'])) {
 	$selected = $field['value'];

@@ -1,3 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}?>
 <p>
 	<?php 
 	// translators: %1$s is the registration email, %2$s is the subject line for the email.

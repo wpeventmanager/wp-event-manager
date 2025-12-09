@@ -1,4 +1,8 @@
-<?php if ( defined( 'DOING_AJAX' ) ) : ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+if ( defined( 'DOING_AJAX' ) ) : ?>
 	<div class="no_event_listings_found wpem-alert wpem-alert-danger ">
 		<?php esc_html_e( 'There are no events matching your search.', 'wp-event-manager' ); ?>
 	</div>

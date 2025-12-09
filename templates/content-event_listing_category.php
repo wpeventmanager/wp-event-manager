@@ -1,10 +1,12 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 /**
  * The template for displaying archive.
  */
 
 get_header();
-
 global $wp_query; ?>
 
 <div class="wpem-container">

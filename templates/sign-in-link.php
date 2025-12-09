@@ -1,3 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}?>
 <div id="event-manager-event-login">
 	<p class="account-sign-in wpem-alert wpem-alert-info">
 		<?php 
@@ -10,7 +14,6 @@
 					esc_url(get_option('event_manager_login_page_url'))
 				)
 			)
-		);
-		?>
+		); ?>
 	</p>
 </div>

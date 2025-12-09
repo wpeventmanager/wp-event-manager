@@ -1,4 +1,8 @@
-<?php do_action('event_manager_organizer_dashboard_before'); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+do_action('event_manager_organizer_dashboard_before'); ?>
 <!-- organizer dashboard title section start-->
 <div class="wpem-dashboard-main-title wpem-dashboard-main-filter">
 	<h3 class="wpem-theme-text"><?php esc_html_e('Organizer Dashboard', 'wp-event-manager'); ?></h3>

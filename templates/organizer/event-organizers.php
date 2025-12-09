@@ -1,11 +1,13 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 $check_user_access = wpem_checked_guest_user_access();
 if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
     $field_to_hide = get_option('wpem_hide_organizer_fields');
-}else {
+} else {
 	$field_to_hide = array();
-}
-?>
+} ?>
 <!-- Organizer Counter -->
 <div class="wpem-organizer-connter">
 

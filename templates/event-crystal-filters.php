@@ -1,4 +1,8 @@
-<?php wp_enqueue_style('wp-event-manager-jquery-ui-daterangepicker'); 
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+wp_enqueue_style('wp-event-manager-jquery-ui-daterangepicker'); 
 wp_enqueue_style('wp-event-manager-jquery-ui-daterangepicker-style');
 wp_enqueue_script('wp-event-manager-jquery-ui-daterangepicker');
 wp_enqueue_script('wp-event-manager-ajax-filters');
@@ -6,11 +10,10 @@ wp_enqueue_script('wp-event-manager-ajax-filters');
 do_action('event_manager_event_filters_before', $atts); 
 $datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 					
-					//covert datepicker format  into php date() function date format
-					$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);?>
+//covert datepicker format  into php date() function date format
+$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);?>
 
 <!-- Event Filter Version 2 Start -->
-
 <form class="wpem-main wpem-form-wrapper wpem-event-filter-wrapper event_filters wpem-main wpem-form-wrapper wpem-event-filter-version-2" id="event_filters">
 	<?php wp_nonce_field( 'wpem_filter_action', 'wpem_filter_nonce' ); ?>
 	<?php do_action('event_manager_event_filters_start', $atts); ?>

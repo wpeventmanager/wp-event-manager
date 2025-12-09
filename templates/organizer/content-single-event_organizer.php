@@ -1,4 +1,7 @@
-<?php 
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 $organizer = get_post($organizer_id);
 $organizer_email = esc_html(get_post_meta($organizer_id, '_organizer_email', true)); 
 if (get_option('event_manager_form_fields') && is_array(get_option('event_manager_form_fields'))) {

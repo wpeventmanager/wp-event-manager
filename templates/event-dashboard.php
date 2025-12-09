@@ -1,3 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}?>
 <!-- Vertical Menu Start-->
 <div class="wpem-main-vmenu-dashboard-wrapper wpem-row">
 	<div class="wpem-main-vmenu-dashboard-nav-menu wpem-col-md-3">

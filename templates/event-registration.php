@@ -1,4 +1,8 @@
-<?php if($register = get_event_registration_method()) :
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+if($register = get_event_registration_method()) :
 	wp_enqueue_script('wp-event-manager-event-registration');
 
 	if($register->type) : ?>

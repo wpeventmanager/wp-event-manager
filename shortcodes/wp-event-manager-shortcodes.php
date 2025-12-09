@@ -452,8 +452,12 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function edit_organizer(){
 		global $event_manager;
-		printf($event_manager->forms->get_form('edit-organizer'));
-		// echo $event_manager->forms->get_form('edit-organizer');
+		// Get the form HTML
+		$form_html = $event_manager->forms->get_form('edit-organizer');
+		if ( $form_html ) {
+			// Output safely
+			echo wp_kses_post( $form_html );
+		}
 	}
 
 	/**
@@ -590,10 +594,15 @@ class WP_Event_Manager_Shortcodes{
 	/**
 	 * Edit venue form.
 	 */
-	public function edit_venue(){
+	public function edit_venue() {
 		global $event_manager;
-		printf($event_manager->forms->get_form('edit-venue'));
-		// echo $event_manager->forms->get_form('edit-venue');
+
+		// Get the form HTML
+		$form_html = $event_manager->forms->get_form('edit-venue');
+		if ( $form_html ) {
+			// Output safely
+			echo wp_kses_post( $form_html );
+		}
 	}
 
 	/**

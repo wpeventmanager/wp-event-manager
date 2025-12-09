@@ -1,4 +1,8 @@
-<?php wp_enqueue_script('wp-event-manager-content-event-listing'); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+wp_enqueue_script('wp-event-manager-content-event-listing'); ?>
 <div class="wpem-main wpem-event-listings-header">
     <div class="wpem-row">
         <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-8">
@@ -39,7 +43,6 @@ $html_before_event_list = get_option( 'enable_before_html' );
 if( $html_before_event_list ){
 	$html_content = get_option( 'event_content_html' );
 	echo wp_kses_post( $html_content );
-}
-?>
+} ?>
 <div class="event_listings_main">
     <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings <?php echo esc_attr($list_type_class);?>" data-id="<?php echo esc_attr($layout_type);?>">
