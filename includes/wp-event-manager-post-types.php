@@ -263,7 +263,7 @@ class WP_Event_Manager_Post_Types {
 			)
 		);
 		$nonce = wp_create_nonce('register_post_type');
-		if (!wp_verify_nonce($nonce, 'register_post_type')) {
+		if (!wp_verify_nonce(sanitize_text_field(wp_unslash($nonce)), 'register_post_type')) {
 			return;
 		}
 

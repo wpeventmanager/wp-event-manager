@@ -127,7 +127,7 @@ class WP_Event_Manager_CPT {
 	 * Approve a single event.
 	 */
 	public function approve_event()	{
-		if(!empty($_GET['approve_event']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'approve_event') && current_user_can('publish_post',esc_attr( wp_unslash( $_GET['approve_event'] )))) {
+		if(!empty($_GET['approve_event']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'approve_event') && current_user_can('publish_post',esc_attr( wp_unslash( $_GET['approve_event'] )))) {
 			$post_id = absint($_GET['approve_event']);
 			$event_end_date    = esc_attr(get_post_meta($post_id, '_event_end_date', true));
 			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
@@ -595,7 +595,7 @@ class WP_Event_Manager_CPT {
 		$post_id = absint($_GET['post']);
 		$nonce = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ?? '' ) );
 
-		if (!wp_verify_nonce($nonce, 'duplicate_event_' . $post_id)) {
+		if (!wp_verify_nonce(sanitize_text_field(wp_unslash($nonce)), 'duplicate_event_' . $post_id)) {
 			wp_die('Nonce verification failed');
 		}
 

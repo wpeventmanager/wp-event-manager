@@ -794,7 +794,7 @@ class WP_Event_Manager_Ajax {
 		}
 		
 		if ( ! isset( $_POST['wpem_add_venue_nonce'] ) 
-			|| ! wp_verify_nonce( $_POST['wpem_add_venue_nonce'], 'wpem_add_venue_action' ) ) {
+			|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wpem_add_venue_nonce'] ) ), 'wpem_add_venue_action' ) ) {
 			wp_send_json([
 				'code'    => 403,
 				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Security check failed.', 'wp-event-manager' ) . '</div>',

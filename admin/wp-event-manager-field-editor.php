@@ -247,7 +247,7 @@ class WP_Event_Manager_Field_Editor {
 	 * Save the form fields.
 	 */
 	private function form_editor_save()	{
-		if(wp_verify_nonce(sanitize_key(wp_unslash($_POST['_wpnonce'])), 'save-wp-event-manager-form-field-editor')) {
+		if(wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'save-wp-event-manager-form-field-editor')) {
 			
 			$event_field     = !empty($_POST['event']) ? $this->sanitize_array( wp_unslash( $_POST['event'] ) ) : array();
 			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array( wp_unslash( $_POST['organizer'] ) ) : array();

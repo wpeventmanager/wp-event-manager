@@ -1053,7 +1053,7 @@ function event_manager_dropdown_selection($args = '') {
 	}
 
     $nonce = wp_create_nonce('event_manager_dropdown_selection');
-    if (!wp_verify_nonce($nonce, 'event_manager_dropdown_selection')) {
+    if (!wp_verify_nonce(sanitize_text_field(wp_unslash($nonce)), 'event_manager_dropdown_selection')) {
         return;
     }
     $query = wp_parse_args($args, $defaults);
