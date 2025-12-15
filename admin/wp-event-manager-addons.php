@@ -70,7 +70,7 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 						<?php 
 						if(false === ($addons = get_transient('wp_event_manager_addons_html'))) {
 								$raw_addons = wp_remote_get(
-									'http://www.wp-eventmanager.com/plugins',
+									'https://wp-eventmanager.com/plugins',
 										array(
 												'timeout'     => 10,
 												'redirection' => 5,

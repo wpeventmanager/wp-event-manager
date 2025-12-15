@@ -111,7 +111,7 @@ class WP_Event_Manager_Deactivation {
 	 *@since 3.1.46
 	 */
     function wpem_get_location_by_ip($ip) {
-        $url = "http://ip-api.com/json/{$ip}";
+        $url = "https://ip-api.com/json/{$ip}";
 
         $response = wp_remote_get( $url, array(
             'timeout' => 10,

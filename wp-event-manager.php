@@ -11,6 +11,7 @@
 * Since: 1.0.0
 * Requires at least: 6.5
 * Tested up to: 6.9
+* Requires PHP: 8.2
 * Copyright: 2019 WP Event Manager
 * License: GNU General Public License v3.0
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -20,11 +21,6 @@
 // Exit if accessed directly
 if(!defined('ABSPATH')) {
 	exit;
-}
-
-// Include WPEM Plugin Updater Class
-if ( !class_exists( 'WPEM_Updater' ) ) {
-	include( 'autoupdater/wpem-updater.php' );
 }
 
 /**
@@ -136,7 +132,6 @@ class WP_Event_Manager extends WPEM_Updater {
 
 		add_action('widgets_init', array($this, 'widgets_init'));
 		add_action('wp_enqueue_scripts', array($this, 'frontend_scripts'));
-
 		add_action('admin_init', array($this, 'updater'));
 		add_action('wp_logout', array($this, 'cleanup_event_posting_cookies'));
 		
@@ -204,7 +199,7 @@ class WP_Event_Manager extends WPEM_Updater {
 			flush_rewrite_rules();
 		}
 	}
-
+	
 	/**
 	 * Load the functions files for WP Event Manager.
 	 * @since 1.0.0

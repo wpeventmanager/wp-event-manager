@@ -342,21 +342,41 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == External Services ==
 
-This plugin connects to external services in order to provide certain features.
+This plugin connects to external services in order to provide certain features. All external service connections are documented below with clear information about what data is sent, when, and why.
 
-1. IP-API (http://ip-api.com/)
-   - Purpose: Used to detect approximate user location based on IP address.
-   - Data Sent: The user’s IP address is sent to IP-API when location-based features are used.
-   - Data received: location information (city, country).
-   - Terms: http://ip-api.com/docs/legal
+1. IP-API (https://ip-api.com/)
+   - Purpose: Used to detect approximate user location based on IP address for location-based features.
+   - Data Sent: The user's IP address is sent to IP-API when location-based features are used.
+   - Data Received: Location information (city, country, timezone, etc.).
+   - When Used: When the plugin needs to determine user location for displaying location-relevant content.
+   - Terms of Service: http://ip-api.com/docs/legal
    - Privacy Policy: http://ip-api.com/docs/legal
 
 2. WP Event Manager API (https://wp-eventmanager.com/)
-   - Purpose: Used to retrieve plugin-related data, addon information, and licensing validation.
-   - Data Sent: Depending on the feature used, this may include the site URL, plugin version, license key, plugin text-domain.
-   - Terms: https://wp-eventmanager.com/terms-of-use/
+   - Purpose: Used for multiple functions including plugin updates, addon information retrieval, licensing validation, and deactivation feedback.
+   - Data Sent: Depending on the specific API call, this may include:
+     - Site URL and plugin version (for update checks)
+     - License key and site information (for license validation)
+     - Plugin usage data and deactivation reasons (for feedback collection)
+     - Plugin text-domain and addon information (for addon listings)
+   - Data Received: Plugin update information, license status, addon listings, and confirmation receipts.
+   - When Used: 
+     - When checking for plugin updates (automatic WordPress cron)
+     - When validating premium plugin licenses (user action)
+     - When displaying addon listings in admin panel (admin page load)
+     - When plugin is deactivated (user action)
+   - Terms of Service: https://wp-eventmanager.com/terms-of-use/
    - Privacy Policy: https://wp-eventmanager.com/privacy-policy/
 
+3. WP Event Manager Addons API (https://wp-eventmanager.com/plugins)
+   - Purpose: Used to retrieve premium addon listings and product information for the admin addons page.
+   - Data Sent: HTTP request with basic headers, no personal data transmitted.
+   - Data Received: HTML content containing addon listings, product information, and pricing.
+   - When Used: When the admin addons page is loaded and the cache has expired (7-day cache).
+   - Terms of Service: https://wp-eventmanager.com/terms-of-use/
+   - Privacy Policy: https://wp-eventmanager.com/privacy-policy/
+
+All external service calls are made using WordPress standard functions (wp_remote_get) with appropriate timeout and security settings. No sensitive user data is transmitted except as specifically documented above.
 
 == Changelog ==
 
