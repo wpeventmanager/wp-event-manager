@@ -714,6 +714,8 @@ class WP_Event_Manager_Settings{
 				return 'sanitize_email';
 			case 'textarea':
 				return 'wp_kses_post';
+			case 'multiselect':
+				return array( $this, 'sanitize_multiselect' );
 			default:
 				return 'sanitize_text_field';
 		}
@@ -724,6 +726,16 @@ class WP_Event_Manager_Settings{
 	 */
 	public function sanitize_checkbox( $value ) {
 		return ! empty( $value ) ? '1' : '0';
+	}
+
+	/**
+	 * This function will sanitize multiselect values
+	 */
+	public function sanitize_multiselect( $value ) {
+		if ( is_array( $value ) ) {
+			return array_map( 'sanitize_text_field', $value );
+		}
+		return array();
 	}
 
 	/**

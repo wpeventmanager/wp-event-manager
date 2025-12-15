@@ -23,6 +23,11 @@ if(!defined('ABSPATH')) {
 	exit;
 }
 
+// Include WPEM Plugin Updater Class
+if ( !class_exists( 'WPEM_Updater' ) ) {
+	include( 'autoupdater/wpem-updater.php' );
+}
+
 /**
  * A class that defines the main features of the WP event manager plugin.
  */

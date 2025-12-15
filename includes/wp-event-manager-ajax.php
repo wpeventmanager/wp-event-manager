@@ -448,12 +448,24 @@ class WP_Event_Manager_Ajax {
 	 * Get listings via ajax.
 	 */
 	public function get_listings() {
+		// Security: Verify nonce for AJAX requests
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			if ( ! isset( $_REQUEST['wpem_get_listings_nonce'] ) 
+				|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['wpem_get_listings_nonce'] ) ), 'wpem_get_listings_action' ) ) {
+				wp_send_json_error([
+					'code'    => 403,
+					'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Security check failed.', 'wp-event-manager' ) . '</div>',
+				]);
+				wp_die();
+			}
+		}
+		
 		global $wp_post_types;
 		$result            = array();
-		$search_location   = esc_attr(stripslashes(wp_unslash($_REQUEST['search_location'])));
-		$search_keywords   = esc_attr(stripslashes(wp_unslash($_REQUEST['search_keywords'])));
+		$search_location   = isset($_REQUEST['search_location']) ? esc_attr(stripslashes(wp_unslash($_REQUEST['search_location']))) : '';
+		$search_keywords   = isset($_REQUEST['search_keywords']) ? esc_attr(stripslashes(wp_unslash($_REQUEST['search_keywords']))) : '';
 		$post_type_label   = $wp_post_types['event_listing']->labels->name;
-		$orderby           = esc_attr(wp_unslash($_REQUEST['orderby']));
+		$orderby           = isset($_REQUEST['orderby']) ? esc_attr(wp_unslash($_REQUEST['orderby'])) : '';
 		$search_datetimes = '';
 		$search_categories = '';
 		$search_event_types = '';
