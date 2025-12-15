@@ -13,7 +13,7 @@ var AjaxFileUpload= function () {
 				jQuery(this).fileupload({
 					dataType: 'json',
 					dropZone: jQuery(this),
-					url: event_manager_ajax_file_upload.ajax_url.toString().replace("%%endpoint%%", "upload_file"),
+					url: event_manager_ajax_file_upload.ajax_upload_url,
 					maxNumberOfFiles: 1,
 					formData: {
 						script: true
@@ -50,8 +50,28 @@ var AjaxFileUpload= function () {
 					},
 
 					fail: function (e, data) {
+						console.log("fail");
 						var $file_field     = jQuery(this);
 						var $form           = $file_field.closest('form');
+						
+						// Remove progress indicator
+						if (data.context) {
+							data.context.remove();
+						}
+						
+						// Get error details
+						var errorMessage = 'Upload failed';
+						if (data.errorThrown) {
+							errorMessage = data.errorThrown;
+						} else if (data.jqXHR && data.jqXHR.responseJSON && data.jqXHR.responseJSON.message) {
+							errorMessage = data.jqXHR.responseJSON.message;
+						} else if (data.textStatus) {
+							errorMessage = 'Upload failed: ' + data.textStatus;
+						}
+						
+						console.error('Upload error:', data);
+						alert(errorMessage);
+						
 						$form.find(':input[type="submit"]').removeAttr('disabled');
 					},
 
@@ -63,9 +83,23 @@ var AjaxFileUpload= function () {
 						var multiple        = $file_field.attr('multiple') ? 1 : 0;
 						var image_types     = [ 'jpg', 'gif', 'png', 'jpeg', 'jpe' ];
 						data.context.remove();
-						jQuery.each(data.result.files, function(index, file) {
-							if(file.error) {
-								alert(file.error);
+						
+						// Handle the response properly
+						var response = data.result;
+						if (typeof response === 'string') {
+							try {
+								response = JSON.parse(response);
+							} catch (e) {
+								console.error('Invalid JSON response:', response);
+								alert('Upload failed: Invalid server response');
+								$form.find(':input[type="submit"]').removeAttr('disabled');
+								return;
+							}
+						}
+						
+						jQuery.each(response.files, function(index, file) {
+							if(file.error || !file.success) {
+								alert(file.error || 'Upload failed');
 							} else {
 								if(jQuery.inArray(file.extension, image_types) >= 0) {
 									var html = jQuery.parseHTML(event_manager_ajax_file_upload.js_field_html_img);
