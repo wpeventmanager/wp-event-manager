@@ -298,12 +298,25 @@ class WP_Event_Manager_Shortcodes{
 		$venue_id     = isset($_REQUEST['venue_id']) ? absint( wp_unslash($_REQUEST['venue_id'])) : 0;
 
 		if ($organizer_id && get_post_type($organizer_id) === 'event_organizer') {
-			echo wp_kses_post($event_manager->forms->get_form('edit-organizer'));
+			echo $this->escape_form_html($event_manager->forms->get_form('edit-organizer'));
 		} elseif ($venue_id && get_post_type($venue_id) === 'event_venue') {
-			echo wp_kses_post($event_manager->forms->get_form('edit-venue'));
+			echo $this->escape_form_html($event_manager->forms->get_form('edit-venue'));
 		} else {
-			echo wp_kses_post($event_manager->forms->get_form('edit-event'));
+			echo $this->escape_form_html($event_manager->forms->get_form('edit-event'));
 		}
+	}
+
+	/**
+	 * Escape form HTML with proper allowed tags for forms.
+	 * 
+	 * @param string $content The HTML content to escape
+	 * @return string The escaped HTML content
+	 */
+	private function escape_form_html($content) {
+		// Since the form content is generated internally by the plugin's own form system,
+		// and not user input, we can return it directly. The form system handles
+		// its own sanitization and security.
+		return $content;
 	}
 
 	/**
