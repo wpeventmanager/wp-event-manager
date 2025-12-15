@@ -392,8 +392,8 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			$this->venue_id = wp_insert_post($venue_data);
 			if(!headers_sent()) {
 				$wpem_unique_key = uniqid();
-				setcookie('wp-event-manager-submitting-venue-id', $this->venue_id, 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				setcookie('wp-event-manager-submitting-venue-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false);
+				setcookie('wp-event-manager-submitting-venue-id', $this->venue_id, 0, COOKIEPATH, COOKIE_DOMAIN, false, true);
+				setcookie('wp-event-manager-submitting-venue-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false, true);
 				update_post_meta($this->venue_id, '_wpem_unique_key', $wpem_unique_key);
 			}
 		}

@@ -64,13 +64,13 @@ $thumbnail     = get_event_thumbnail(); ?>
                             <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?>
                             <?php 
                                 if (!empty($start_time)) { 
-                                        echo ' ' . display_date_time_separator() .' ';
+                                        echo ' ' . esc_html(display_date_time_separator()) .' ';
                                     }
                             ?>
                             <?php display_event_start_time(); ?> - <?php display_event_end_date(); ?>
                             <?php
                                 if (!empty($end_date) && !empty($end_time)) {
-                                    echo ' ' . display_date_time_separator() . ' ';
+                                    echo ' ' . esc_html(display_date_time_separator()) . ' ';
                                 }
                             ?>
                             <?php display_event_end_time(); ?></span>

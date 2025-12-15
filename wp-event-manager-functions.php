@@ -2257,7 +2257,7 @@ function wpem_get_all_countries() {
  * @return html
  */
 function wpem_embed_oembed_html($content) {
-	echo apply_filters('wpem_embed_oembed_custome', $content);
+	echo wp_kses_post(apply_filters('wpem_embed_oembed_custome', $content));
 }
 
 /**

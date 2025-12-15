@@ -1191,19 +1191,19 @@ function display_organizer_logo($size = 'full', $default = null, $post = null){
 	$logo = get_organizer_logo($post, $size);
 
 	if(has_post_thumbnail($post)) {
-		echo '<img class="organizer_logo" src="' . esc_url($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo wp_kses_post('<img class="organizer_logo" src="' . esc_url($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 		// Before 1.0., logo URLs were stored in post meta.
 	} elseif(!empty($logo) && !is_array($logo) && (strstr($logo, 'http') || file_exists($logo))) {
 		if($size !== 'full') {
 			$logo = event_manager_get_resized_image($logo, $size);
 		}
-		echo '<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo wp_kses_post('<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} elseif($default) {
-		echo '<img src="' . esc_url($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo wp_kses_post('<img src="' . esc_url($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else if(is_array($logo) && isset($logo[0])) {
-		echo '<img itemprop="image" content="' . esc_url($logo[0]) . '" src="' . esc_url($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo wp_kses_post('<img itemprop="image" content="' . esc_url($logo[0]) . '" src="' . esc_url($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	} else {
-		echo '<img src="' . esc_url(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo wp_kses_post('<img src="' . esc_url(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
 	}
 }
 
@@ -1477,7 +1477,7 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
 	}
 	$video_embed = apply_filters('display_organizer_video_embed', $video_embed, $post);
 	if($video_embed) {
-		printf('<div class="organizer_video">%s</div>',esc_attr($video_embed));
+		printf('<div class="organizer_video">%s</div>', wp_kses_post($video_embed));
 	}
 }
 
@@ -2620,7 +2620,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 					printf('<li><span class="gap">...</span></li>');
 				}
 				if($current_page == $page) {
-					printf('<li><span class="page-numbers current">%s</span></li>',esc_attr($page));
+					printf('<li><span class="page-numbers current">%s</span></li>', esc_html($page));
 				} else {
 					$page_link = add_query_arg(
 						array(
@@ -2629,7 +2629,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 
 						)
 					);
-					printf('<li><a href="%s" class="page-numbers">%s</a></li>',esc_url($page_link),esc_attr($page));
+					printf('<li><a href="%s" class="page-numbers">%s</a></li>', esc_url($page_link), esc_html($page));
 				}
 				$prev_page = $page;
 			}

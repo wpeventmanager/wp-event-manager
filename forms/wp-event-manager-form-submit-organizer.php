@@ -413,8 +413,8 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			$this->organizer_id = wp_insert_post($organizer_data);
 			if(!headers_sent()) {
 				$wpem_unique_key = uniqid();
-				setcookie('wp-event-manager-submitting-organizer-id', $this->organizer_id, 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				setcookie('wp-event-manager-submitting-organizer-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false);
+				setcookie('wp-event-manager-submitting-organizer-id', $this->organizer_id, 0, COOKIEPATH, COOKIE_DOMAIN, false, true);
+				setcookie('wp-event-manager-submitting-organizer-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false, true);
 				update_post_meta($this->organizer_id, '_wpem_unique_key', $wpem_unique_key);
 			}
 		}

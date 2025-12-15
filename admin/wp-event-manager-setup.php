@@ -336,7 +336,7 @@ class WP_Event_Manager_Setup {
 									<div class="wpem-setup-help-center-block-content">
 										<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('Knowledge Base', 'wp-event-manager'); ?></div>
 										<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Solve your queries by browsing our documentation.', 'wp-event-manager'); ?></div>
-										<a href="<?php echo $wpem_url;?>knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Browse More', 'wp-event-manager'); ?> »</span></a>
+										<a href="<?php echo esc_url($wpem_url);?>knowledge-base" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Browse More', 'wp-event-manager'); ?> »</span></a>
 									</div>
 								</div>
 								<div class="wpem-setup-help-center-block">
@@ -346,7 +346,7 @@ class WP_Event_Manager_Setup {
 									<div class="wpem-setup-help-center-block-content">
 										<div class="wpem-setup-help-center-block-heading"><?php esc_attr_e('FAQs', 'wp-event-manager'); ?></div>
 										<div class="wpem-setup-help-center-block-desc"><?php esc_attr_e('Explore through the frequently asked questions.', 'wp-event-manager'); ?></div>
-										<a href="<?php echo $wpem_url;?>faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Get Answers', 'wp-event-manager'); ?> »</span></a>
+										<a href="<?php echo esc_url($wpem_url);?>faqs" target="_blank" class="wpem-setup-help-center-block-link"><span class="wpem-setup-help-center-box-target-text"><?php esc_attr_e('Get Answers', 'wp-event-manager'); ?> »</span></a>
 									</div>
 								</div>
 								<div class="wpem-setup-help-center-block">

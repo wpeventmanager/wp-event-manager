@@ -82,7 +82,7 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
                                     <span><?php 
                                         $value = get_post_meta($venue_id, '_' . $key, true);
                                         if($field['type'] == 'url' && !empty($value))
-                                            echo '<a href="'.esc_url($value).'" target="_blank">'.esc_url($value).'</a>';
+                                            echo wp_kses_post('<a href="'.esc_url($value).'" target="_blank">'.esc_html($value).'</a>');
                                         else
                                             echo esc_attr($value); ?>
                                     </span>

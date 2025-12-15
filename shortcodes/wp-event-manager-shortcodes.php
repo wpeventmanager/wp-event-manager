@@ -298,11 +298,11 @@ class WP_Event_Manager_Shortcodes{
 		$venue_id     = isset($_REQUEST['venue_id']) ? absint( wp_unslash($_REQUEST['venue_id'])) : 0;
 
 		if ($organizer_id && get_post_type($organizer_id) === 'event_organizer') {
-			echo $event_manager->forms->get_form('edit-organizer');
+			echo wp_kses_post($event_manager->forms->get_form('edit-organizer'));
 		} elseif ($venue_id && get_post_type($venue_id) === 'event_venue') {
-			echo $event_manager->forms->get_form('edit-venue');
+			echo wp_kses_post($event_manager->forms->get_form('edit-venue'));
 		} else {
-			echo $event_manager->forms->get_form('edit-event');
+			echo wp_kses_post($event_manager->forms->get_form('edit-event'));
 		}
 	}
 

@@ -20,19 +20,19 @@ do_action('event_fee_item_start'); ?>
 	<content:encoded><![CDATA[<?php echo wp_kses_post(get_the_content_feed('rss2') ?? ''); ?>]]></content:encoded>
 	<?php
 	if($location) {
-		echo "<event_listing:location><![CDATA[" . esc_attr($location) . "]]></event_listing:location>\n";
+		echo "<event_listing:location><![CDATA[" . esc_html($location) . "]]></event_listing:location>\n";
 	}
 
 	if(isset($event_type->name)) {
-		echo "<event_listing:event_type><![CDATA[" . esc_attr($event_type->name) . "]]></event_listing:event_type>\n";
+		echo "<event_listing:event_type><![CDATA[" . esc_html($event_type->name) . "]]></event_listing:event_type>\n";
 	}
 
 	if($ticket_price){
-		echo "<event_listing:ticket_price><![CDATA[" . esc_attr($ticket_price) . "]]></event_listing:ticket_price>\n";
+		echo "<event_listing:ticket_price><![CDATA[" . esc_html($ticket_price) . "]]></event_listing:ticket_price>\n";
 	}
 
 	if($organizer) {
-		echo "<event_listing:organizer><![CDATA[" . esc_attr($organizer) . "]]></event_listing:organizer>\n";
+		echo "<event_listing:organizer><![CDATA[" . esc_html($organizer) . "]]></event_listing:organizer>\n";
 	}
 
 	if ($start_date) {

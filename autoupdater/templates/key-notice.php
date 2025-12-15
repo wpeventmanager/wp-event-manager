@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     $dismiss_url = esc_url( add_query_arg( 'dismiss-' . sanitize_title( $plugin['TextDomain'] ), '1' ) );?>
     
     <p class="wpem-updater-dismiss" style="float:right;">
-        <a href="<?php echo $dismiss_url; ?>">
+        <a href="<?php echo esc_url($dismiss_url); ?>">
             <?php esc_html_e( 'Hide notice', 'wp-event-manager' ); ?>
         </a>
     </p>
