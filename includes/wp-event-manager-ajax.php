@@ -93,7 +93,7 @@ class WP_Event_Manager_Ajax {
 	 */
 	public static function do_em_ajax() {
 		if(!empty($_GET['em-ajax'])) {
-			$action = esc_attr($_GET['em-ajax']);
+			$action = sanitize_text_field(wp_unslash($_GET['em-ajax']));
 			// Not home - this is an ajax endpoint
 			do_action('event_manager_ajax_' . $action);
 			die();
@@ -462,10 +462,10 @@ class WP_Event_Manager_Ajax {
 		
 		global $wp_post_types;
 		$result            = array();
-		$search_location   = isset($_REQUEST['search_location']) ? esc_attr(stripslashes(wp_unslash($_REQUEST['search_location']))) : '';
-		$search_keywords   = isset($_REQUEST['search_keywords']) ? esc_attr(stripslashes(wp_unslash($_REQUEST['search_keywords']))) : '';
+		$search_location   = isset($_REQUEST['search_location']) ? sanitize_text_field(wp_unslash($_REQUEST['search_location'])) : '';
+		$search_keywords   = isset($_REQUEST['search_keywords']) ? sanitize_text_field(wp_unslash($_REQUEST['search_keywords'])) : '';
 		$post_type_label   = $wp_post_types['event_listing']->labels->name;
-		$orderby           = isset($_REQUEST['orderby']) ? esc_attr(wp_unslash($_REQUEST['orderby'])) : '';
+		$orderby           = isset($_REQUEST['orderby']) ? sanitize_text_field(wp_unslash($_REQUEST['orderby'])) : '';
 		$search_datetimes = '';
 		$search_categories = '';
 		$search_event_types = '';
@@ -489,15 +489,24 @@ class WP_Event_Manager_Ajax {
 		}
 
 		if(isset($_REQUEST['search_categories'])) {
-			$search_categories = is_array($_REQUEST['search_categories']) ?  array_filter( array_map('stripslashes', $_REQUEST['search_categories'])) : array_filter(array(stripslashes($_REQUEST['search_categories'])));
+			$search_categories_raw = wp_unslash($_REQUEST['search_categories']);
+			$search_categories = is_array($search_categories_raw) ? 
+				array_filter(array_map('sanitize_text_field', $search_categories_raw)) : 
+				array_filter(array(sanitize_text_field($search_categories_raw)));
 		}
 
 		if(isset($_REQUEST['search_event_types'])) {
-			$search_event_types =  is_array($_REQUEST['search_event_types']) ?  array_filter( array_map('stripslashes', $_REQUEST['search_event_types'])) :	array_filter(array(stripslashes($_REQUEST['search_event_types'])));
+			$search_event_types_raw = wp_unslash($_REQUEST['search_event_types']);
+			$search_event_types = is_array($search_event_types_raw) ? 
+				array_filter(array_map('sanitize_text_field', $search_event_types_raw)) : 
+				array_filter(array(sanitize_text_field($search_event_types_raw)));
 		}
 
 		if(isset($_REQUEST['search_ticket_prices'])) {
-			$search_ticket_prices = is_array($_REQUEST['search_ticket_prices']) ?  array_filter( array_map('stripslashes', $_REQUEST['search_ticket_prices'])) : array_filter(array(stripslashes($_REQUEST['search_ticket_prices'])));
+			$search_ticket_prices_raw = wp_unslash($_REQUEST['search_ticket_prices']);
+			$search_ticket_prices = is_array($search_ticket_prices_raw) ? 
+				array_filter(array_map('sanitize_text_field', $search_ticket_prices_raw)) : 
+				array_filter(array(sanitize_text_field($search_ticket_prices_raw)));
 		} 
 		$args = array(
 			'search_location'    	=> $search_location,

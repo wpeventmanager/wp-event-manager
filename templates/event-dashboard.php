@@ -11,15 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$current_action = 'event_dashboard';
 				$event_id        = '';
 				
-				// Verify nonce for dashboard actions
-				if ( isset( $_GET['wpem_event_dashboard_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wpem_event_dashboard_nonce'] ) ), 'wpem_event_dashboard_action' ) ) {
-					$current_action = isset( $_GET['action'] ) ? sanitize_title( wp_unslash( $_GET['action'] ) ) : 'event_dashboard';
-					$event_id        = isset( $_GET['event_id'] ) ? absint( wp_unslash( $_GET['event_id'] ) ) : '';
-					
-					// Additional security: verify user can manage this event
-					if ( $event_id && ! current_user_can( 'edit_post', $event_id ) ) {
-						$event_id = '';
-					}
+				$current_action = isset( $_GET['action'] ) ? sanitize_title( wp_unslash( $_GET['action'] ) ) : 'event_dashboard';
+				$event_id        = isset( $_GET['event_id'] ) ? absint( wp_unslash( $_GET['event_id'] ) ) : '';
+				
+				// Additional security: verify user can manage this event
+				if ( $event_id && ! current_user_can( 'edit_post', $event_id ) ) {
+					$event_id = '';
 				}
 
 				$menus = [

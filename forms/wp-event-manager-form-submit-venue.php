@@ -50,7 +50,8 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		uasort($this->steps, array($this, 'sort_by_priority'));
 		// Get step/event
 		if(isset($_POST['step'])) {
-			$this->step = is_numeric($_POST['step']) ? max(absint( wp_unslash( $_POST['step'])), 0) : array_search(esc_attr(wp_unslash($_POST['step'])), array_keys($this->steps));
+			$step_value = sanitize_text_field(wp_unslash($_POST['step']));
+			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search(esc_attr($step_value), array_keys($this->steps));
 		} elseif(!empty($_GET['step'])) {
 			$this->step = is_numeric( wp_unslash( $_GET['step'] )) ? max(absint( wp_unslash( $_GET['step'] )), 0) : array_search(esc_attr(wp_unslash($_GET['step'])), array_keys($this->steps));
 		}

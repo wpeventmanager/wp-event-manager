@@ -1221,7 +1221,8 @@ class WP_Event_Manager_Writepanels {
 				if(isset($_POST[$key]) && !empty($_POST[$key])) {
 
 					// Combine event start date value with event start time
-					$date = sanitize_text_field(explode(' ', $_POST[$key])[0]);
+					$post_value = sanitize_text_field(wp_unslash($_POST[$key]));
+					$date = sanitize_text_field(explode(' ', $post_value)[0]);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']), $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;

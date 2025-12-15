@@ -720,10 +720,11 @@ class WP_Event_Manager_Shortcodes{
 
 		if(!empty($_GET['search_category'])) {
 			if (!empty($_GET['search_category'])) {
-				if (is_array($_GET['search_category'])) {
-					$search_category = array_map('sanitize_text_field', $_GET['search_category']);
+				$search_category_raw = wp_unslash($_GET['search_category']);
+				if (is_array($search_category_raw)) {
+					$search_category = array_map('sanitize_text_field', $search_category_raw);
 				} else {
-					$search_category = array_map('sanitize_text_field', explode(',', $_GET['search_category']));
+					$search_category = array_map('sanitize_text_field', explode(',', $search_category_raw));
 				}
 			} else {
 				$search_category = array();
@@ -732,10 +733,11 @@ class WP_Event_Manager_Shortcodes{
 
 		if(!empty($_GET['search_event_type'])) {
 			if (!empty($_GET['search_event_type'])) {
-				if (is_array($_GET['search_event_type'])) {
-					$search_event_type = array_map('sanitize_text_field', $_GET['search_event_type']);
+				$search_event_type_raw = wp_unslash($_GET['search_event_type']);
+				if (is_array($search_event_type_raw)) {
+					$search_event_type = array_map('sanitize_text_field', $search_event_type_raw);
 				} else {
-					$search_event_type = array_map('sanitize_text_field', explode(',', $_GET['search_event_type']));
+					$search_event_type = array_map('sanitize_text_field', explode(',', $search_event_type_raw));
 				}
 			} else {
 				$search_event_type = array();
