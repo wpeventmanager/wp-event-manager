@@ -92,17 +92,12 @@ class WP_Event_Manager_Ajax {
 	 * Check for WC Ajax request and fire action.
 	 */
 	public static function do_em_ajax() {
-		global $wp_query;
 		if(!empty($_GET['em-ajax'])) {
-			 $wp_query->set('em-ajax', esc_attr($_GET['em-ajax']));
+			$action = esc_attr($_GET['em-ajax']);
+			// Not home - this is an ajax endpoint
+			do_action('event_manager_ajax_' . $action);
+			die();
 		}
-
-   		if($action = $wp_query->get('em-ajax')) {
-   			// Not home - this is an ajax endpoint
-			$wp_query->is_home = false;
-   			do_action('event_manager_ajax_' . esc_attr($action));
-   			die();
-   		}
 	}
 
 	/**
