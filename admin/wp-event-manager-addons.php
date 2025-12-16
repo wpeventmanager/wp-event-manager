@@ -170,96 +170,27 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 							'sslverify'   => false
 						)
 					);
+
 					if(!is_wp_error($raw_bundle)) {
 						$raw_bundle = wp_remote_retrieve_body($raw_bundle);
-						// Get Products
 						$dom = new DOMDocument();
 						libxml_use_internal_errors(true);
 						$dom->loadHTML($raw_bundle);
 		
 						$xpath = new DOMXPath($dom);
-						$bundle = "";
-						for($i = 0 ; $i <= 3 ; $i++){
-							$tags  = $xpath->query('//div[@class="pricing-plan-container"]');
-							$bundle = $tag->ownerDocument->saveXML($tag);
+						$wpem_bundle = '';
+
+						$tags = $xpath->query('//div[@class="wpem-container"]//div[@class="pricing-plan-container"]');
+
+						if ($tags && $tags->length > 0) {
+							foreach ($tags as $tag) {
+								$wpem_bundle .= $tag->ownerDocument->saveXML($tag);
+							}
 						}
-						$bundle = wp_kses_post($bundle);
 					}
 					echo '<div class="wpem-row">';
-					echo wp_kses_post($bundle);
+					echo wp_kses_post($wpem_bundle);
 					echo '</div>'; ?>
-
-					<!-- <div class="wpem-row">
-						<div class="wpem-col-lg-3 wpem-col-md-6 wpem-col-sm-12">
-							<div class="wpem-bundle-box wpem-plus-bundle">
-								<div class="wpem-bundle-img-wrapper">
-									<img src="<?php echo esc_url($wpem_url);?>wp-content/themes/wpemstore/assets/images/plugins/product-icons/event-manager-plus.svg" alt="<?php esc_attr_e('WP Event Manager', 'wp-event-manager'); ?>" />
-								</div>
-								<h2><?php esc_attr_e('Event Manager Plus', 'wp-event-manager'); ?></h2>
-								<p><?php esc_attr_e('Ticket sales, attendee management, and email marketing for your events', 'wp-event-manager'); ?></p>
-								<ul>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('20 Plugins', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Support', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Feature Add-ons', 'wp-event-manager'); ?></li>
-								</ul>
-								<a href="<?php echo esc_url($wpem_url);?>pricing/?add-to-cart=35707" class="wpem-admin-theme-button wpem-admin-bundle-button"><?php esc_attr_e('Buy Now', 'wp-event-manager'); ?></a>
-							</div>
-						</div>
-
-						<div class="wpem-col-lg-3 wpem-col-md-6 wpem-col-sm-12">
-							<div class="wpem-bundle-box wpem-pro-bundle">
-								<div class="wpem-bundle-img-wrapper">
-									<img src="<?php echo esc_url($wpem_url);?>wp-content/themes/wpemstore/assets/images/plugins/product-icons/event-manager-pro.svg" alt="<?php esc_attr_e('WP Event Manager', 'wp-event-manager'); ?>" />
-								</div>
-								<h2><?php esc_attr_e('Event Manager Pro', 'wp-event-manager'); ?></h2>
-								<p><?php esc_attr_e('Ticket sales, attendee management, and email marketing for your events', 'wp-event-manager'); ?></p>
-								<ul>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('20 Plugins', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Support', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Feature Add-ons', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Ticket Selling Add-ons', 'wp-event-manager'); ?></li>
-								</ul>
-								<a href="<?php echo esc_url($wpem_url);?>pricing/?add-to-cart=20377" class="wpem-admin-theme-button wpem-admin-bundle-button"><?php esc_attr_e('Buy Now', 'wp-event-manager'); ?></a>
-							</div>
-						</div>
-
-						<div class="wpem-col-lg-3 wpem-col-md-6 wpem-col-sm-12">
-							<div class="wpem-bundle-box wpem-virtual-bundle highlight-plan">
-								<div class="wpem-bundle-img-wrapper">
-									<img src="<?php echo esc_url($wpem_url);?>wp-content/themes/wpemstore/assets/images/plugins/product-icons/virtual-event-manager-pro.svg" alt="<?php esc_attr_e('WP Event Manager', 'wp-event-manager'); ?>" />
-								</div>
-								<h2><?php esc_attr_e('Virtual Event Manager Pro', 'wp-event-manager'); ?></h2>
-								<p><?php esc_attr_e('Ticket sales, attendee management, and email marketing for your events', 'wp-event-manager'); ?></p>
-								<ul>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('20 Plugins', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Support', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Feature Add-ons', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Ticket Selling Add-ons', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Virtual Add-ons', 'wp-event-manager'); ?></li>
-								</ul>
-								<a href="<?php echo esc_url($wpem_url);?>pricing/?add-to-cart=29038" class="wpem-admin-theme-button wpem-admin-bundle-button"><?php esc_attr_e('Buy Now', 'wp-event-manager'); ?></a>
-							</div>
-						</div>
-
-						<div class="wpem-col-lg-3 wpem-col-md-6 wpem-col-sm-12">
-							<div class="wpem-bundle-box wpem-all-pro-bundle">
-								<div class="wpem-bundle-img-wrapper">
-									<img src="<?php echo esc_url($wpem_url);?>wp-content/themes/wpemstore/assets/images/plugins/product-icons/all-events-manager-pro.svg" alt="<?php esc_attr_e('WP Event Manager', 'wp-event-manager'); ?>" />
-								</div>
-								<h2><?php esc_attr_e('All Events Manager Pro', 'wp-event-manager'); ?></h2>
-								<p><?php esc_attr_e('Ticket sales, attendee management, and email marketing for your events', 'wp-event-manager'); ?></p>
-								<ul>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('20 Plugins', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Support', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Feature Add-ons', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Ticket Selling Add-ons', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Virtual Add-ons', 'wp-event-manager'); ?></li>
-									<li><i class="wpem-icon-checkmark"></i> <?php echo __('Marketing Add-ons', 'wp-event-manager'); ?></li>
-								</ul>
-								<a href="<?php echo esc_url($wpem_url);?>pricing/?add-to-cart=35706" class="wpem-admin-theme-button wpem-admin-bundle-button"><?php esc_attr_e('Buy Now', 'wp-event-manager'); ?></a>
-							</div>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		<?php
