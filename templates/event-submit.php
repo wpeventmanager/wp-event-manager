@@ -34,7 +34,6 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		//Show Hide event thumbnail field on front end
 		$thumbnail_key = 'event_thumbnail'; 
 		$show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false); 
-
 		foreach($event_fields as $key => $field) : 
 			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
 				continue;
@@ -126,7 +125,6 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 </form>
 
 <?php if(get_option('enable_event_organizer')) : 
-
 	$organizer_fields =	$GLOBALS['event_manager']->forms->get_fields('submit-organizer');
 	if(is_user_logged_in()) {
 		$current_user = wp_get_current_user();
@@ -134,8 +132,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			$organizer_fields['organizer']['organizer_name']['value'] =  $current_user->display_name;
 		if(isset($organizer_fields['organizer']['organizer_email']))
 			$organizer_fields['organizer']['organizer_email']['value'] =  $current_user->user_email;
-	}
-	?>
+	} ?>
 
 	<div id="wpem_add_organizer_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php echo esc_attr__('Add Organizer', 'wp-event-manager'); ?>">
 		<div class="wpem-modal-content-wrapper">
@@ -165,8 +162,8 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 								get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
 							</div>
 						</fieldset>
-					<?php endforeach; ?>
-					<?php do_action('submit_organizer_form_organizer_fields_end'); ?>
+					<?php endforeach;
+					do_action('submit_organizer_form_organizer_fields_end'); ?>
 
 					<div class="wpem-form-footer">
 						<?php wp_nonce_field( 'wpem_add_organizer_action', 'wpem_add_organizer_nonce' ); ?>
@@ -194,17 +191,22 @@ if(get_option('enable_event_venue')) :
 		<div class="wpem-modal-content-wrapper">
 			<div class="wpem-modal-header">
 				<div class="wpem-modal-header-title">
-					<h3 class="wpem-modal-header-title-text"><?php esc_html_e('Add Venue', 'wp-event-manager'); ?></h3>
+					<h3 class="wpem-modal-header-title-text">
+						<?php esc_html_e('Add Venue', 'wp-event-manager'); ?>
+					</h3>
 				</div>
-				<div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
+				<div class="wpem-modal-header-close">
+					<a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a>
+				</div>
 			</div>
 			<div class="wpem-modal-content">
 				<form method="post" id="submit-venue-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
-					<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Venue Details', 'wp-event-manager'); ?></h2>
+					<h2 class="wpem-form-title wpem-heading-text">
+						<?php esc_html_e('Venue Details', 'wp-event-manager'); ?>
+					</h2>
 
-					<?php do_action('submit_venue_form_venue_fields_start'); ?>
-
-					<?php foreach($venue_fields['venue'] as $key => $field) : 
+					<?php do_action('submit_venue_form_venue_fields_start');
+					foreach($venue_fields['venue'] as $key => $field) : 
 						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
 							continue;
 						endif; ?>
@@ -219,8 +221,8 @@ if(get_option('enable_event_venue')) :
 								get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
 							</div>
 						</fieldset>
-					<?php endforeach; ?>
-					<?php do_action('submit_venue_form_venue_fields_end'); ?>
+					<?php endforeach;
+					do_action('submit_venue_form_venue_fields_end'); ?>
 
 					<div class="wpem-form-footer">
 						<?php wp_nonce_field( 'wpem_add_venue_action', 'wpem_add_venue_nonce' ); ?>

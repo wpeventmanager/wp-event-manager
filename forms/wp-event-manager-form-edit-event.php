@@ -84,6 +84,10 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 						$event_end_date = esc_html(get_post_meta($event->ID, '_' . $key, true));
         				// Convert date and time value into selected datepicker value
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_end_date));
+					} elseif('event_organizer_ids' === $key) {
+						$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($event->ID, '_' . $key, true);
+					} elseif('event_venue_ids' === $key) {
+						$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($event->ID, '_' . $key, true);
 					} elseif(!empty($field['taxonomy'])) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($event->ID, $field['taxonomy'], array('fields' => 'ids'));
 					} else {

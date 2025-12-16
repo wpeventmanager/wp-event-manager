@@ -686,7 +686,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						case 'event_type' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_type', array( 'fields' => 'ids' ) );
 							break;
-
+						case 'event_organizer_ids' :
+							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($event->ID, '_' . $key, true);
+							break;
+						case 'event_venue_ids' :
+							$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($event->ID, '_' . $key, true);
+							break;
 						case 'event_category' :
 							$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms( $event->ID, 'event_listing_category', array( 'fields' => 'ids' ) );
 							break;
@@ -727,17 +732,6 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			}
 			$this->fields = apply_filters( 'submit_event_form_fields_get_user_data', $this->fields, get_current_user_id() );
 		}
-		
-		// Set organizer and venue field
-		$organizer_enabled = get_option( 'enable_event_organizer');
-		$organizer_submit_page = get_option( 'event_manager_submit_organizer_form_page_id',false );
-		if( $organizer_enabled || $organizer_submit_page )
-			$this->fields['organizer']['event_organizer_ids'] = $default_fields['organizer']['event_organizer_ids'];
-
-		$venue_enabled = get_option( 'enable_event_venue' );
-		$venue_submit_page = get_option( 'event_manager_submit_venue_form_page_id',false );
-		if( $venue_enabled || $venue_submit_page )
-			$this->fields['venue']['event_venue_ids'] = $default_fields['venue']['event_venue_ids'];
 
 		// Unset timezone field if setting is site wise timezone
 		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
