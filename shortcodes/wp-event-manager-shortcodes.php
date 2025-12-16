@@ -469,7 +469,7 @@ class WP_Event_Manager_Shortcodes{
 		$form_html = $event_manager->forms->get_form('edit-organizer');
 		if ( $form_html ) {
 			// Output safely
-			echo wp_kses_post( $form_html );
+			echo $this->escape_form_html($form_html);
 		}
 	}
 
@@ -613,8 +613,9 @@ class WP_Event_Manager_Shortcodes{
 		// Get the form HTML
 		$form_html = $event_manager->forms->get_form('edit-venue');
 		if ( $form_html ) {
-			// Output safely
-			echo wp_kses_post( $form_html );
+			// Output form HTML - wp_kses_post strips form tags, so we use echo directly
+			// The form is already sanitized by the form class
+			echo $this->escape_form_html($form_html);
 		}
 	}
 
