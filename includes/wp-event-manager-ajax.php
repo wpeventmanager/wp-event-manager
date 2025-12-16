@@ -89,15 +89,25 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Check for WC Ajax request and fire action.
+	 * Handle AJAX requests for WP Event Manager.
+	 *
+	 * @since 1.0.0
 	 */
 	public static function do_em_ajax() {
-		if(!empty($_GET['em-ajax'])) {
-			$action = sanitize_text_field(wp_unslash($_GET['em-ajax']));
-			// Not home - this is an ajax endpoint
-			do_action('event_manager_ajax_' . $action);
-			die();
+		global $wp_query;
+		if ( ! empty( $_GET['em-ajax'] ) ) {
+			 $wp_query->set('em-ajax', sanitize_text_field(wp_unslash($_GET['em-ajax'])));
 		}
+		$action = $wp_query->get( 'em-ajax' );
+   		if( $action ) {
+   			if ( ! defined( 'DOING_AJAX' ) ) {
+				define( 'DOING_AJAX', true );
+			}
+			// Not home - this is an ajax endpoint
+			$wp_query->is_home = false;
+   			do_action('event_manager_ajax_' . sanitize_key($action));
+   			wp_die();
+   		}
 	}
 
 	/**
@@ -450,8 +460,8 @@ class WP_Event_Manager_Ajax {
 	public function get_listings() {
 		// Security: Verify nonce for AJAX requests
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			if ( ! isset( $_REQUEST['wpem_get_listings_nonce'] ) 
-				|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['wpem_get_listings_nonce'] ) ), 'wpem_get_listings_action' ) ) {
+			if ( ! isset( $_REQUEST['wpem_filter_nonce'] ) 
+				|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['wpem_filter_nonce'] ) ), 'wpem_filter_action' ) ) {
 				wp_send_json_error([
 					'code'    => 403,
 					'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Security check failed.', 'wp-event-manager' ) . '</div>',

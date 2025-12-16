@@ -285,7 +285,8 @@ var EventAjaxFilters = function() {
                         cancelled: cancelled,
                         event_online: event_online,
                         show_pagination: target.data('show_pagination'),
-                        form_data: form.serialize()
+                        form_data: form.serialize(),
+                        wpem_filter_nonce: form.find('input[name="wpem_filter_nonce"]').val()
                     }
                 } else {
                     
@@ -320,7 +321,8 @@ var EventAjaxFilters = function() {
                         featured: featured,
                         cancelled: cancelled,
                         event_online: event_online,
-                        show_pagination: target.data('show_pagination')
+                        show_pagination: target.data('show_pagination'),
+                        wpem_filter_nonce: form.find('input[name="wpem_filter_nonce"]').val()
                     }
                 }
                 xmlHttpRequest[index] = jQuery.ajax({
