@@ -75,6 +75,14 @@ class WP_Event_Manager_Writepanels {
 	 * @since 1.0.0
 	 */
 	public function get_event_data_tabs() {
+		wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
+		wp_localize_script('chosen', 'wpem_chosen', array(
+			'multiple_text' => __('Select Some Options', 'wp-event-manager'),
+			'single_text' => __('Select an Option', 'wp-event-manager'),
+			'no_result_text' => __('No results match', 'wp-event-manager'),
+		));
+		wp_enqueue_script('chosen');
+		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
 		$tabs = apply_filters(
 			'wpem_event_data_tabs',
 			array(

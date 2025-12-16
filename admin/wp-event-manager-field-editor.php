@@ -11,8 +11,8 @@ class WP_Event_Manager_Field_Editor {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action('admin_menu', array($this, 'admin_menu'));
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
+		add_action('admin_menu', array($this, 'admin_menu'));
 	}
 
 	/**
@@ -26,12 +26,6 @@ class WP_Event_Manager_Field_Editor {
 	 * Register scripts for admin.
 	 */
 	public function admin_enqueue_scripts()	{
-		wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
-		wp_localize_script('wpem-chosen', 'wpem_chosen', array(
-				'multiple_text' => __('Select Some Options', 'wp-event-manager'),
-				'single_text' => __('Select an Option', 'wp-event-manager'),
-				'no_result_text' => __('No results match', 'wp-event-manager'),
-			));
 		wp_register_script('wp-event-manager-form-field-editor', EVENT_MANAGER_PLUGIN_URL . '/assets/js/field-editor.js', array('jquery', 'jquery-ui-sortable', 'chosen'), EVENT_MANAGER_VERSION, true);
 		wp_localize_script(
 			'wp-event-manager-form-field-editor',
@@ -43,13 +37,21 @@ class WP_Event_Manager_Field_Editor {
 				'wp_event_manager_form_editor_security' => wp_create_nonce('_nonce_wp_event_manager_form_editor_security'),
 			)
 		);
+		wp_register_script( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
+		wp_localize_script('chosen', 'wpem_chosen', array(
+			'multiple_text' => __('Select Some Options', 'wp-event-manager'),
+			'single_text' => __('Select an Option', 'wp-event-manager'),
+			'no_result_text' => __('No results match', 'wp-event-manager'),
+		));
+		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
 	}
 
 	/**
 	 * Output the screen.
 	 */
 	public function output() {
-		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.min.css');
+		wp_enqueue_script('chosen');
+
 		wp_enqueue_script('wp-event-manager-form-field-editor'); ?>
 		<div class="wrap wp-event-manager-registrations-form-editor">
 			<h1 class="wp-heading-inline"><?php esc_attr_e( 'Form fields', 'wp-event-manager' ); ?></h1>
