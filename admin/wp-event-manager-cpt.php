@@ -99,7 +99,13 @@ class WP_Event_Manager_CPT {
 						}
 					}
 				}
-				wp_redirect(add_query_arg('approved_events', count($approved_events), $redirect_url));
+				wp_safe_redirect(
+					add_query_arg(
+						'approved_events',
+						count( $approved_events ),
+						$redirect_url
+					)
+				);
 				exit;
 				break;
 			case 'expire_events':
@@ -116,7 +122,13 @@ class WP_Event_Manager_CPT {
 						}
 					}
 				}
-				wp_redirect(add_query_arg('expire_events', count($expired_events), $redirect_url));
+				wp_safe_redirect(
+					add_query_arg(
+						'expire_events',
+						count( $expired_events ),
+						$redirect_url
+					)
+				);
 				exit;
 				break;
 		}
@@ -143,7 +155,16 @@ class WP_Event_Manager_CPT {
 				);
 			}
 			wp_update_post($event_data);
-			wp_redirect(remove_query_arg('approve_event', add_query_arg('approved_events', $post_id, admin_url('edit.php?post_type=event_listing'))));
+			wp_safe_redirect(
+				remove_query_arg(
+					'approve_event',
+					add_query_arg(
+						'approved_events',
+						$post_id,
+						admin_url( 'edit.php?post_type=event_listing' )
+					)
+				)
+			);
 			exit;
 		}
 	}
@@ -628,7 +649,9 @@ class WP_Event_Manager_CPT {
 			wp_set_object_terms($new_post_id, $terms, $taxonomy, false);
 		}
 
-		wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
+		wp_safe_redirect(
+			admin_url( 'post.php?action=edit&post=' . $new_post_id )
+		);
 		exit;
 	}
 

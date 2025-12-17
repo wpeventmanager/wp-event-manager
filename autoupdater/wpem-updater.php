@@ -109,17 +109,17 @@ class WPEM_Updater {
 	//Deactivate a licence request.
 	private function deactivate_licence_request($plugin_info) {
 		$this->deactivate_licence($plugin_info);
-		wp_redirect( remove_query_arg( array( 'activated_licence', $plugin_info['TextDomain'] . '_deactivate_licence' ), add_query_arg( 'deactivated_licence', $plugin_info['TextDomain'] ) ) );
+		wp_safe_redirect( remove_query_arg( array( 'activated_licence', $plugin_info['TextDomain'] . '_deactivate_licence' ), add_query_arg( 'deactivated_licence', $plugin_info['TextDomain'] ) ) );
 		exit;
 	}
 	
 	//Activate a licence request.
 	private function activate_licence_request($plugin_info) {
 		if ( $this->activate_licence( $plugin_info ) ) {
-			wp_redirect( remove_query_arg( array( 'deactivated_licence', $plugin_info['TextDomain'] . '_deactivate_licence' ), add_query_arg( 'activated_licence', $plugin_info['TextDomain'] ) ) );
+			wp_safe_redirect( remove_query_arg( array( 'deactivated_licence', $plugin_info['TextDomain'] . '_deactivate_licence' ), add_query_arg( 'activated_licence', $plugin_info['TextDomain'] ) ) );
 			exit;
 		} else {
-			wp_redirect( remove_query_arg( array( 'activated_licence', 'deactivated_licence', $plugin_info['TextDomain'] . '_deactivate_licence' ) ) );
+			wp_safe_redirect( remove_query_arg( array( 'activated_licence', 'deactivated_licence', $plugin_info['TextDomain'] . '_deactivate_licence' ) ) );
 			exit;
 		}
 	}

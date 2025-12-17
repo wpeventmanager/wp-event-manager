@@ -141,7 +141,7 @@ class WP_Event_Manager_Writepanels {
 			if($expiry_date) {
 				$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 				$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
-				$expiry_date            = date($php_date_format, strtotime($expiry_date));
+				$expiry_date = gmdate( $php_date_format, strtotime( $expiry_date ) );
 			}
 		} else {
 			$registration = $current_user->user_email;
@@ -692,7 +692,7 @@ class WP_Event_Manager_Writepanels {
 		if(!isset($field['value']) || empty($field['value'])) {
 			$date = esc_attr(get_post_meta($post_id, stripslashes($key), true));
 			if(!empty($date)) {
-				$date = date($php_date_format, strtotime($date));
+				$date = gmdate($php_date_format, strtotime($date));
 				$field['value']         = $date;
 			}
 		}
@@ -1213,7 +1213,7 @@ class WP_Event_Manager_Writepanels {
 					if(isset($_POST['_event_start_time']) && !empty($_POST['_event_start_time'])) {
 						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($_POST['_event_start_time']));
 					} else {
-						$start_time = date('H:i:s');
+						$start_time = gmdate('H:i:s');
 					}
 					// Combine event start date value with event start time
 					$date = sanitize_text_field(explode(' ', $_POST[$key])[0] . ' ' . $start_time);
@@ -1229,7 +1229,7 @@ class WP_Event_Manager_Writepanels {
 					if(isset($_POST['_event_end_time']) && !empty($_POST['_event_end_time'])) {
 						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($_POST['_event_end_time']));
 					} else {
-						$start_time = date('H:i:s');
+						$start_time = gmdate('H:i:s');
 					}
 					// Combine event start date value with event start time
 					$date = sanitize_text_field(explode(' ', $_POST[$key])[0] . ' ' . $start_time);
@@ -1308,7 +1308,7 @@ class WP_Event_Manager_Writepanels {
 
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 							update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
-							$date_dbformatted = date($php_date_format, strtotime($date_dbformatted));
+							$date_dbformatted = gmdate($php_date_format, strtotime($date_dbformatted));
 						}
 						break;
 					case 'time':
@@ -1400,8 +1400,8 @@ class WP_Event_Manager_Writepanels {
 		}
 
 		// Set expire date at 12:00 PM of the selected day     
-		$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($post_id, '_event_expiry_date', true)). ' 23:59:30')), $post);     
-		$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', $current_timestamp));     
+		$expiry_date = apply_filters('wpem_expire_date_time', gmdate('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($post_id, '_event_expiry_date', true)). ' 23:59:30')), $post);     
+		$today_date = apply_filters('wpem_get_current_expire_time', gmdate('Y-m-d H:i:s', $current_timestamp));     
 
 		// Check for event expire    
 		$post_status = $expiry_date && strtotime($today_date) > strtotime($expiry_date) ? 'expired' : false;

@@ -56,7 +56,7 @@ class WP_Event_Manager_Setup {
 
 		if(isset($_GET['page']) && sanitize_text_field( wp_unslash($_GET['page'])) === 'event-manager-setup') {
 			if(get_option('wpem_installation', false)) {
-				wp_redirect(admin_url('index.php'));
+				wp_safe_redirect( admin_url( 'index.php' ) );
 				exit;
 			}
 		}
@@ -76,7 +76,7 @@ class WP_Event_Manager_Setup {
 		if((isset($_GET['action']) && 'upgrade-plugin' == sanitize_text_field( wp_unslash($_GET['action']))) && (isset($_GET['plugin']) && strstr(sanitize_text_field( wp_unslash($_GET['plugin'])), 'wp-event-manager.php'))) {
 			return;
 		}
-		wp_redirect(admin_url('index.php?page=event-manager-setup'));
+		wp_safe_redirect(admin_url('index.php?page=event-manager-setup'));
 		exit;
 	}
 
@@ -126,7 +126,7 @@ class WP_Event_Manager_Setup {
 		if(isset($_GET['skip-event-manager-setup']) && sanitize_text_field( wp_unslash($_GET['skip-event-manager-setup'])) === 1) {
 			update_option('wpem_installation', 0);
 			update_option('wpem_installation_skip', 1);
-			wp_redirect(admin_url('index.php'));
+			wp_safe_redirect(admin_url('index.php'));
 			exit;
 		}
 

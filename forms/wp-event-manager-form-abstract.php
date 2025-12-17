@@ -44,7 +44,7 @@ abstract class WP_Event_Manager_Form {
 				delete_post_meta(absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_wpem_unique_key');
 				setcookie('wp-event-manager-submitting-event-id', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
 				setcookie('wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				wp_redirect(esc_url(remove_query_arg(array('new', 'key'), esc_url_raw( wp_unslash($_SERVER[ 'REQUEST_URI' ])))));
+				wp_safe_redirect(esc_url(remove_query_arg(array('new', 'key'), esc_url_raw( wp_unslash($_SERVER[ 'REQUEST_URI' ])))));
 			}
     			
     	$step_key = $this->get_step_key($this->step);

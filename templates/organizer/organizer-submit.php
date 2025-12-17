@@ -13,10 +13,10 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 
         <h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Organizer Details', 'wp-event-manager'); ?></h2>
         <?php if (isset($resume_edit) && $resume_edit) {
-            // Translators: %s is a link to create a new organizer.
             printf(
                 '<p class="wpem-alert wpem-alert-info"><strong>%s</strong></p>',
                 sprintf(
+                    // Translators: %s is a link to create a new organizer.
                     esc_html__( 'You are editing an existing organizer. %s', 'wp-event-manager' ),
                     sprintf(
                         '<a href="?new=1&key=%s">%s</a>',
