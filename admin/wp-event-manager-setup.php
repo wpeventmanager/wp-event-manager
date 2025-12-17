@@ -84,8 +84,8 @@ class WP_Event_Manager_Setup {
 	 * Enqueue scripts for setup page.
 	 */
 	public function admin_enqueue_scripts()	{
-		wp_enqueue_style('event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array('dashicons'), EVENT_MANAGER_VERSION, true);
-		wp_enqueue_script('event_manager_setup_js', EVENT_MANAGER_PLUGIN_URL . '/assets//js/setup.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
+		wp_enqueue_style('event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array('dashicons'));
+		wp_enqueue_script('event_manager_setup_js', EVENT_MANAGER_PLUGIN_URL . '/assets//js/setup.min.js', array('jquery'), null, true);
 
 		wp_localize_script('event_manager_setup_js', 'wpem_ajax', array(
 			'ajax_url' => admin_url('admin-ajax.php'),
@@ -299,10 +299,10 @@ class WP_Event_Manager_Setup {
 				<?php if(3 === $step) : ?>
 					<div class="wpem-setup-intro-block">
 						<div class="wpem-setup-end-step-settings">
-							<h4><?php echo __('Settings', 'wp-event-manager');?></h4>
+							<h4>Settings</h4>
 							<form method="post">
 							<div class="wpem-setup-end-step-setting">
-								<label><?php echo __('Set Date Format:', 'wp-event-manager');?></label>
+								<label>Set Date Format:</label>
 								<select name="wpem_date_format">
 									<?php 
 									$date_formats = WP_Event_Manager_Date_Time::get_event_manager_date_admin_settings();
@@ -314,7 +314,7 @@ class WP_Event_Manager_Setup {
 								</select>
 							</div>
 							<div class="wpem-setup-end-step-setting">
-								<label><?php echo __('Set Time Format:', 'wp-event-manager');?></label>
+								<label>Set Time Format:</label>
 								<select name="wpem-time-format">
 									<option value="12">12h</option>
 									<option value="24">24h</option>
@@ -381,7 +381,8 @@ class WP_Event_Manager_Setup {
 				<?php endif; ?>
 			</div>
 		</div>
-	<?php }
+<?php
+	}
 
 	/**
 	 * Sanitize a 2d array.

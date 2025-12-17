@@ -203,15 +203,8 @@ abstract class WP_Event_Manager_Form {
 	 * Enqueue the scripts for the form.
 	 */
 	public function enqueue_scripts() {
-		if ( $this->use_recaptcha_field() ) {
-			wp_register_script(
-				'wpem-recaptcha',
-				'https://www.google.com/recaptcha/api.js',
-				array(),
-				EVENT_MANAGER_VERSION,
-				true // Explicitly load in footer
-			);
-			wp_enqueue_script( 'wpem-recaptcha' );
+		if($this->use_recaptcha_field()) {
+			wp_enqueue_script('recaptcha', 'https://www.google.com/recaptcha/api.js');
 		}
 	}
 

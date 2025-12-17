@@ -329,7 +329,6 @@ class WP_Event_Manager_CPT {
 				esc_url( get_permalink( $post_ID ) )
 			),
 			7  => sprintf(
-				/* translators: %s: Post type singular name */
 				__( '%s saved.', 'wp-event-manager' ),
 				esc_html( $wp_post_types['event_listing']->labels->singular_name )
 			),
