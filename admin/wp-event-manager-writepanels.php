@@ -1144,6 +1144,17 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public function save_event_listing_data($post_id, $post){
 		global $wpdb;
+
+		// Security: verify nonce and user capability before processing form data.
+		if ( empty( $_POST ) ) {
+			return;
+		}
+		if ( empty( $_POST['event_manager_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['event_manager_nonce'] ) ), 'save_meta_data' ) ) {
+			return;
+		}
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
 		// These need to exist
 		add_post_meta($post_id, '_cancelled', 0, true);
 		add_post_meta($post_id, '_featured', 0, true);
@@ -1517,6 +1528,17 @@ class WP_Event_Manager_Writepanels {
 	public function save_organizer_listing_data($post_id, $post) {
 		global $wpdb;
 
+		// Security: verify nonce and user capability before processing form data.
+		if ( empty( $_POST ) ) {
+			return;
+		}
+		if ( empty( $_POST['event_manager_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['event_manager_nonce'] ) ), 'save_meta_data' ) ) {
+			return;
+		}
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
 		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
@@ -1678,6 +1700,17 @@ class WP_Event_Manager_Writepanels {
 	 */
 	public function save_venue_listing_data($post_id, $post){
 		global $wpdb;
+
+		// Security: verify nonce and user capability before processing form data.
+		if ( empty( $_POST ) ) {
+			return;
+		}
+		if ( empty( $_POST['event_manager_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['event_manager_nonce'] ) ), 'save_meta_data' ) ) {
+			return;
+		}
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
 
 		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
