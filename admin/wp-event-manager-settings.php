@@ -864,7 +864,32 @@ class WP_Event_Manager_Settings{
 												'echo'        => false,
 												'selected'    => absint($value),
 											);
-											echo str_replace(' id=', " data-placeholder='" . esc_attr('Select a page&hellip;', 'wp-event-manager') . "' id=", wp_dropdown_pages($args));
+											// Get the dropdown HTML
+											$dropdown = wp_dropdown_pages( $args );
+
+											// Add placeholder safely
+											$placeholder = esc_attr__( 'Select a page…', 'wp-event-manager' );
+											$dropdown    = str_replace( ' id=', " data-placeholder='{$placeholder}' id=", $dropdown );
+
+											// Output safely
+											echo wp_kses(
+												$dropdown,
+												array(
+													'select'   => array(
+														'name'             => true,
+														'id'               => true,
+														'data-placeholder' => true,
+														'class'            => true,
+													),
+													'option'   => array(
+														'value'    => true,
+														'selected' => true,
+													),
+													'optgroup' => array(
+														'label' => true,
+													),
+												)
+											);
 											if($option['desc']) {?>
 												<p class="description"><?php echo wp_kses_post($option['desc']);?></p>
 											<?php }
