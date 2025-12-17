@@ -153,19 +153,41 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				$registration_method_description = __( 'Attendee will register through email ID or external website.', 'wp-event-manager' );
 			break;
 		}
+		// Organizer description
+		if ( is_admin() ) {
+			$organizer_text = __( "If it doesn't show organizer(s). Manage your organizer(s) from %s.", 'wp-event-manager' );
+			$organizer_link = '<a href="post-new.php?post_type=event_organizer" target="_blank" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">' . esc_html__( 'here', 'wp-event-manager' ) . '</a>';
+		} else {
+			$organizer_text = __( "If it doesn't show organizer(s). Manage your organizer(s) from %s.", 'wp-event-manager' );
+			$organizer_link = '<a href="#" onclick="javascript:void(0);" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">' . esc_html__( 'here', 'wp-event-manager' ) . '</a>';
+		}
 
-		$organizer_description = is_admin() ? __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="post-new.php?post_type=event_organizer" target="_blank" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager') : __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager');
-		$venue_description = is_admin() ? __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="post-new.php?post_type=event_venue" target="_blank" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager') : __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager');
-		
+		$organizer_description = '<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">' .
+			sprintf( $organizer_text, $organizer_link ) .
+		'</div>';
+
+		// Venue description
+		if ( is_admin() ) {
+			$venue_text = __( "If it doesn't show venue(s). Manage your venue(s) from %s.", 'wp-event-manager' );
+			$venue_link = '<a href="post-new.php?post_type=event_venue" target="_blank" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">' . esc_html__( 'here', 'wp-event-manager' ) . '</a>';
+		} else {
+			$venue_text = __( "If it doesn't show venue(s). Manage your venue(s) from %s.", 'wp-event-manager' );
+			$venue_link = '<a href="#" onclick="javascript:void(0);" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">' . esc_html__( 'here', 'wp-event-manager' ) . '</a>';
+		}
+
+		$venue_description = '<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">' .
+			sprintf( $venue_text, $venue_link ) .
+		'</div>';
+
 		// Get default organizer
-		$default_organizer = get_option('default_organizer'); 
-		$default_organizer = is_array($default_organizer) ? $default_organizer : array($default_organizer);
-		
+		$default_organizer = get_option( 'default_organizer' ); 
+		$default_organizer = is_array( $default_organizer ) ? $default_organizer : array( $default_organizer );
+
 		// Get default venue
-		$default_venue = get_option('default_venue');
+		$default_venue = get_option( 'default_venue' );
 
 		// Get default address
-		$default_address = get_option('default_address');
+		$default_address = get_option( 'default_address' );
 
 		return apply_filters( 'submit_event_form_fields', array(
 			'event' => array(
