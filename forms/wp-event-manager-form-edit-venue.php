@@ -30,7 +30,13 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 	 * Constructor.
 	*/
 	public function __construct() {
-		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST[ 'venue_id' ])) : 0;
+		// Verify nonce before processing venue_id
+		if (isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'edit-venue_' . (isset($_REQUEST['venue_id']) ? absint($_REQUEST['venue_id']) : 0))) {
+			$this->venue_id = !empty($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST[ 'venue_id' ])) : 0;
+		} else {
+			$this->venue_id = 0;
+		}
+		
 		if  (!event_manager_user_can_edit_event($this->venue_id)) {
 			$this->venue_id = 0;
 		}
@@ -110,10 +116,15 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 	 * Submit Step is posted.
 	 */
 	public function submit_handler() {
-
 		if(empty($_POST['submit_venue'])) {
 			return;
 		}
+		
+		// Verify nonce before processing form data
+		if (empty($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_key(wp_unslash($_POST['_wpnonce'])), 'edit-venue_' . $this->venue_id)) {
+			wp_die(__('Security check failed. Please try again.', 'wp-event-manager'));
+		}
+		
 		try {
 			// Get posted values
 			$values = $this->get_posted_fields();

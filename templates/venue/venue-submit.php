@@ -48,6 +48,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			<input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
 			<input type="hidden" name="venue_id" value="<?php echo esc_attr($venue_id); ?>" />
 			<input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
+			<?php wp_nonce_field('edit-venue_' . $venue_id, '_wpnonce'); ?>
 			<input type="submit" name="submit_venue" class="wpem-theme-button" id="submit-venue-button" value="<?php echo esc_attr($submit_button_text, 'wp-event-manager'); ?>" />
 		</div>
 
