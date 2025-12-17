@@ -30,7 +30,13 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 	 * Constructor.
 	*/
 	public function __construct() {
-		$this->event_id = !empty($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST[ 'event_id' ])) : 0;
+		// Verify nonce before processing event_id
+		if (isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'edit-event_' . (isset($_REQUEST['event_id']) ? absint($_REQUEST['event_id']) : 0))) {
+			$this->event_id = !empty($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST[ 'event_id' ])) : 0;
+		} else {
+			$this->event_id = 0;
+		}
+		
 		if  (!event_manager_user_can_edit_event($this->event_id)) {
 			$this->event_id = 0;
 		}
@@ -127,6 +133,12 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 		if(empty($_POST['submit_event'])) {
 			return;
 		}
+		
+		// Verify nonce before processing form data
+		if (empty($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_key(wp_unslash($_POST['_wpnonce'])), 'edit-event_' . $this->event_id)) {
+			wp_die(__('Security check failed. Please try again.', 'wp-event-manager'));
+		}
+		
 		try {
 			// Get posted values
 			$values = $this->get_posted_fields();

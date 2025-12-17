@@ -85,7 +85,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
 					$venue_date = esc_html(get_post_meta($venue->ID, '_' . $key, true));
-					$this->fields[ $group_key ][ $key ]['value'] = !empty($venue_date) ? date($php_date_format ,strtotime($venue_date)) :'';
+					$this->fields[ $group_key ][ $key ]['value'] = !empty($venue_date) ? gmdate($php_date_format ,strtotime($venue_date)) :'';
 				}
 			}
 		}

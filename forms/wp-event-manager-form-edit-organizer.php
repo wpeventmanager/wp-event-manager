@@ -85,7 +85,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
 					$organizer_date = esc_html(get_post_meta($organizer->ID, '_' . $key, true));
-					$this->fields[ $group_key ][ $key ]['value'] = !empty($organizer_date) ? date($php_date_format ,strtotime($organizer_date)) :'';
+					$this->fields[ $group_key ][ $key ]['value'] = !empty($organizer_date) ? gmdate($php_date_format ,strtotime($organizer_date)) :'';
 				}
 			}
 		}

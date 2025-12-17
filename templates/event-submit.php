@@ -119,6 +119,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			<input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
 			<input type="hidden" name="event_id" value="<?php echo esc_attr($event_id); ?>" />
 			<input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
+			<?php wp_nonce_field('edit-event_' . $event_id, '_wpnonce'); ?>
 			<input type="submit" name="submit_event" class="wpem-theme-button" value="<?php echo esc_attr($submit_button_text); ?>" />
 		</div>
 	<?php else :
