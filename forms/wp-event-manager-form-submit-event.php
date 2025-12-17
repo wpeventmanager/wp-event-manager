@@ -703,7 +703,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$default_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 							$default_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $default_date_format );
 							if(isset($event_date) && $event_date!=""){
-								$this->fields[ $group_key ][ $key ]['value'] = date($default_date_format ,strtotime($event_date) );
+								$this->fields[ $group_key ][ $key ]['value'] = gmdate($default_date_format ,strtotime($event_date) );
 							} else {
 								$this->fields[ $group_key ][ $key ]['value'] = '';
 							}
@@ -733,7 +733,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					if( !empty( $field['type'] ) &&  $field['type'] == 'date' ){
 						$event_date = esc_html(get_post_meta( $event->ID, '_' . $key, true ));
 						if(!empty($event_date))	{
-							$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date) );	
+							$this->fields[ $group_key ][ $key ]['value'] = gmdate($php_date_format ,strtotime($event_date) );	
 						}						
 					}
 
@@ -819,7 +819,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						if( empty( $_POST['create_account_password_verify'] ) || $_POST['create_account_password_verify'] !== $_POST['create_account_password'] ) {
 							throw new Exception( __( 'Passwords must match.', 'wp-event-manager' ) );
 						}
-						if( !event_manager_validate_new_password( esc_html($_POST['create_account_password']) ) ) {
+						if( !event_manager_validate_new_password( esc_html(wp_unslash($_POST['create_account_password'])) ) ) {
 							$password_hint = sanitize_text_field(event_manager_get_password_rules_hint());
 							if( $password_hint ) {
 								throw new Exception( sprintf(wp_kses( 'Invalid Password: %s', 'wp-event-manager' ), esc_attr( $password_hint ) ) );
@@ -1022,7 +1022,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						$dates = array_map( 'sanitize_text_field', $values[ $group_key ][ $key ] );
 						$dates = array_filter( $dates );
 						$dates = array_map( function( $date ) {
-							return date( 'Y-m-d', strtotime( $date ) );
+							return gmdate( 'Y-m-d', strtotime( $date ) );
 						}, $dates );
 						$dates = implode( ',', $dates );
 						update_post_meta( $this->event_id, '_' . $key, $dates );

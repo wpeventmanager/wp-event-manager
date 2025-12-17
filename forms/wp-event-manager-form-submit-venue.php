@@ -237,7 +237,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					
 					if(!empty($field['type']) &&  $field['type'] == 'date'){
 						$event_date = esc_html(get_post_meta($venue->ID, '_' . $key, true));
-						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date));
+						$this->fields[ $group_key ][ $key ]['value'] = gmdate($php_date_format ,strtotime($event_date));
 					}
 				}
 			}

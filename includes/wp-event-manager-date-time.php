@@ -195,7 +195,7 @@ class WP_Event_Manager_Date_Time {
 	 */
 	public static function get_db_formatted_time($time) {
 		$time = is_numeric($time) ? $time : strtotime($time);
-		return date(self::DBTIMEFORMAT, $time);
+		return gmdate(self::DBTIMEFORMAT, $time);
 	}
 
 	/**
@@ -253,11 +253,11 @@ class WP_Event_Manager_Date_Time {
 	 * @return array
 	 */
 	public static function get_event_manager_date_admin_settings(){
-		$dummy_date = strtotime('January 15 ' . date('Y'));
+		$dummy_date = strtotime('January 15 ' . gmdate('Y'));
 		$default_foramts = self::get_default_date_formats();
 		$setting_values = array();
 		foreach($default_foramts['view_date_formats'] as $key => $value){
-			$setting_values[$key] = date($value, $dummy_date);
+			$setting_values[$key] = gmdate($value, $dummy_date);
 		}
 		return $setting_values;
 	}
@@ -375,7 +375,7 @@ class WP_Event_Manager_Date_Time {
 		$timezone = timezone_name_from_abbr('', $seconds, 0);
 
 		if(false === $timezone) {
-			$is_dst = date('I');
+			$is_dst = gmdate('I');
 
 			foreach (timezone_abbreviations_list() as $abbr) {
 				foreach ($abbr as $city) {
