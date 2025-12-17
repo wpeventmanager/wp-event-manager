@@ -82,7 +82,7 @@ class WP_Event_Manager_Writepanels {
 			'no_result_text' => __('No results match', 'wp-event-manager'),
 		));
 		wp_enqueue_script('chosen');
-		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
+		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css', array(), EVENT_MANAGER_VERSION, true );
 		$tabs = apply_filters(
 			'wpem_event_data_tabs',
 			array(

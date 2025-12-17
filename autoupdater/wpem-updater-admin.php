@@ -14,7 +14,7 @@ if(!function_exists('license_enqueue_scripts')){
      */
     function license_enqueue_scripts($hook) {
 		if ($hook === 'event_listing_page_wpem_license' && ! wp_style_is( 'wpem-updater-styles', 'enqueued' )) {
-            wp_register_style( 'wpem-updater-styles', plugin_dir_url(__DIR__) . 'autoupdater/assets/css/backend.css' );
+            wp_register_style( 'wpem-updater-styles', plugin_dir_url(__DIR__) . 'autoupdater/assets/css/backend.css', array(), EVENT_MANAGER_VERSION, true );
         }
     }
 }

@@ -89,7 +89,7 @@ class WP_Event_Manager_Admin {
 		$screen = get_current_screen();
 
 		// Main frontend style
-		wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css');
+		wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css', array(), EVENT_MANAGER_VERSION, true);
 
 		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue', 'event_listing_page_event-manager-shortcodes')))) {
 			$jquery_version = isset($wp_scripts->registered['jquery-ui-core']->ver) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
@@ -125,9 +125,9 @@ class WP_Event_Manager_Admin {
 				'no_result_text' => __('No results match', 'wp-event-manager'),
 			));
 		wp_enqueue_script('chosen');
-		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css');
+		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css', array(), EVENT_MANAGER_VERSION, true);
 
-		wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css');
+		wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css', array(), EVENT_MANAGER_VERSION, true);
 		wp_register_script('wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array('jquery', 'jquery-ui-core'), EVENT_MANAGER_VERSION, true);
 		wp_enqueue_script('wp-event-manager-jquery-timepicker');
 		
@@ -335,7 +335,23 @@ A prior Backup does no harm before updating the plugin!',
 		if(!$installation || !$skip_intallation) { ?>
 			<div class="notice wp-event-manager-notice">
 				<div class="wp-event-manager-notice-logo"><span></span></div>
-				<div class="wp-event-manager-notice-message wp-wp-event-manager-fresh"><?php esc_attr_e('We\'ve noticed you\'ve been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We\'d be thrilled if you could <strong><a href="https://wordpress.org/support/plugin/wp-event-manager/reviews/" target="_blank">give us a nice rating on WordPress.org!</a></strong> Don\'t forget to submit your site to <strong><a href="'.esc_url(get_option('wp_event_manager_store_url')).'showcase/" target="_blank">our showcase</a></strong> and generate more traffic from our site.', 'wp-event-manager'); ?></div>
+				<div class="wp-event-manager-notice-message wp-wp-event-manager-fresh">
+					<?php
+					$review_url   = 'https://wordpress.org/support/plugin/wp-event-manager/reviews/';
+					$showcase_url = esc_url( get_option( 'wp_event_manager_store_url' ) . 'showcase/' );
+
+					$message = sprintf(
+						/* translators: 1: WordPress.org review URL, 2: Showcase URL */
+						__(
+							'We\'ve noticed you\'ve been using <strong>WP Event Manager</strong> for some time now. We hope you love it! We\'d be thrilled if you could <strong><a href="%1$s" target="_blank">give us a nice rating on WordPress.org!</a></strong> Don\'t forget to submit your site to <strong><a href="%2$s" target="_blank">our showcase</a></strong> and generate more traffic from our site.',
+							'wp-event-manager'
+						),
+						esc_url( $review_url ),
+						$showcase_url
+					);
+
+					echo wp_kses_post( $message ); ?>
+				</div>
 				<div class="wp-event-manager-notice-cta">
 					<a href="<?php echo esc_url(get_option('wp_event_manager_store_url'));?>plugins/" target="_blank" class="wp-event-manager-notice-act button-primary"><?php esc_attr_e('Run Setup', 'wp-event-manager'); ?></a>
 					<button class="wp-event-manager-notice-dismiss wp-event-manager-dismiss-welcome"><a href="<?php echo esc_url(add_query_arg('event-manager-main-admin-dismiss', '1')); ?>"><?php esc_attr_e('Dismiss', 'wp-event-manager'); ?></a></span></button>

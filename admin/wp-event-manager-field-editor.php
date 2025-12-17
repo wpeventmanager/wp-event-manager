@@ -43,7 +43,7 @@ class WP_Event_Manager_Field_Editor {
 			'single_text' => __('Select an Option', 'wp-event-manager'),
 			'no_result_text' => __('No results match', 'wp-event-manager'),
 		));
-		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
+		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css', array(), EVENT_MANAGER_VERSION, true );
 	}
 
 	/**
