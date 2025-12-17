@@ -82,7 +82,7 @@ if (!function_exists('wpem_manage_license')) {
 				} ?>
 			</div>
 			<div class="notice notice-info inline">
-				<p><?php esc_html_e('Lost your license key?', 'wpem-restaurant-manager'); ?> <a target="_blank" href="wp-eventmanager.com/lost-license-key/"><?php esc_html_e('Retrieve it here', 'wp-event-manager'); ?></a>.</p>
+				<p><?php esc_html_e('Lost your license key?', 'wp-event-manager'); ?> <a target="_blank" href="wp-eventmanager.com/lost-license-key/"><?php esc_html_e('Retrieve it here', 'wp-event-manager'); ?></a>.</p>
 			</div>
 		</div>
 		<?php

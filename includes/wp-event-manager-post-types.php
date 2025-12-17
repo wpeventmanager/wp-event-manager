@@ -127,14 +127,47 @@ class WP_Event_Manager_Post_Types {
 						'name'              => $plural,
 						'singular_name'     => $singular,
 						'menu_name'         => ucwords($plural),
-						'search_items'      => sprintf(__('Search %s', 'wp-event-manager'), $plural),
-						'all_items'         => sprintf(__('All %s', 'wp-event-manager'), $plural),
-						'parent_item'       => sprintf(__('Parent %s', 'wp-event-manager'), $singular),
-						'parent_item_colon' => sprintf(__('Parent %s:', 'wp-event-manager'), $singular),
-						'edit_item'         => sprintf(__('Edit %s', 'wp-event-manager'), $singular),
-						'update_item'       => sprintf(__('Update %s', 'wp-event-manager'), $singular),
-						'add_new_item'      => sprintf(__('Add New %s', 'wp-event-manager'), $singular),
-						'new_item_name'     => sprintf(__('New %s Name', 'wp-event-manager'),  $singular)
+						'search_items'      => sprintf(
+												/* translators: %s: plural post type name */
+												__( 'Search %s', 'wp-event-manager' ),
+												$plural
+											),
+						'all_items'         => sprintf(
+												/* translators: %s: plural post type name */
+												__( 'All %s', 'wp-event-manager' ),
+												$plural
+											),
+						'parent_item'       => 
+											sprintf(
+												/* translators: %s: singular post type name */
+												__( 'Parent %s', 'wp-event-manager' ),
+												$singular
+											),
+						'parent_item_colon' => sprintf(
+												/* translators: %s: singular post type name */
+												__( 'Parent %s:', 'wp-event-manager' ),
+												$singular
+											),
+						'edit_item'         => sprintf(
+												/* translators: %s: singular post type name */
+												__( 'Edit %s', 'wp-event-manager' ),
+												$singular
+											),
+						'update_item'       => sprintf(
+												/* translators: %s: singular post type name */
+												__( 'Update %s', 'wp-event-manager' ),
+												esc_html( $singular )
+											),
+						'add_new_item'      => sprintf(
+												/* translators: %s: singular post type name */
+												__( 'Add New %s', 'wp-event-manager' ),
+												esc_html( $singular )
+											),
+						'new_item_name'     => sprintf(
+												/* translators: %s: singular post type name */
+												__( 'New %s Name', 'wp-event-manager' ),
+												esc_html( $singular )
+											)
 	            	),
 		            'show_ui' 				=> true,
 					'show_in_rest'          => true,
@@ -166,23 +199,63 @@ class WP_Event_Manager_Post_Types {
 			register_taxonomy("event_listing_type",
 			apply_filters('register_taxonomy_event_listing_type_object_type', array('event_listing')),
 		        apply_filters('register_taxonomy_event_listing_type_args', array(
-		            'hierarchical' 			=> true,
-		            'label' 				=> $plural,
-		            'labels' => array(
-	                    'name' 				=> $plural,
-	                    'singular_name' 	=> $singular,
-	                    'menu_name'         => ucwords($plural),
-	                    'search_items' 		=> sprintf(__('Search %s', 'wp-event-manager'), $plural),
-	                    'all_items' 		=> sprintf(__('All %s', 'wp-event-manager'), $plural),
-	                    'parent_item' 		=> sprintf(__('Parent %s', 'wp-event-manager'), $singular),
-	                    'parent_item_colon' => sprintf(__('Parent %s:', 'wp-event-manager'), $singular),
-	                    'edit_item' 		=> sprintf(__('Edit %s', 'wp-event-manager'), $singular),
-	                    'update_item' 		=> sprintf(__('Update %s', 'wp-event-manager'), $singular),
-	                    'add_new_item' 		=> sprintf(__('Add New %s', 'wp-event-manager'), $singular),
-	                    'new_item_name' 	=> sprintf(__('New %s Name', 'wp-event-manager'),  $singular),
-						'back_to_items'     => __( '← Go to Types', 'wp-event-manager' ),
-						'view_item' 		=> __( 'View Type', 'wp-event-manager' ),
-	            	),
+		            'hierarchical' => true,
+		            'label'        => $plural,
+		            'labels'       => array(
+						'name'               => $plural,
+						'singular_name'      => $singular,
+						'menu_name'          => ucwords( $plural ),
+
+						'search_items'       => sprintf(
+							/* translators: %s: plural post type name */
+							__( 'Search %s', 'wp-event-manager' ),
+							esc_html( $plural )
+						),
+
+						'all_items'          => sprintf(
+							/* translators: %s: plural post type name */
+							__( 'All %s', 'wp-event-manager' ),
+							esc_html( $plural )
+						),
+
+						'parent_item'        => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Parent %s', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
+
+						'parent_item_colon'  => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Parent %s:', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
+
+						'edit_item'          => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Edit %s', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
+
+						'update_item'        => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Update %s', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
+
+						'add_new_item'       => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Add New %s', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
+
+						'new_item_name'      => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'New %s Name', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
+						'back_to_items'      => __( '← Go to Types', 'wp-event-manager' ),
+						'view_item'          => __( 'View Type', 'wp-event-manager' ),
+					),
 		            'show_ui' 				=> true,
 					'show_in_rest'          => true,
 		            'public' 			    => $public,
@@ -227,28 +300,71 @@ class WP_Event_Manager_Post_Types {
 
 		$args = apply_filters("register_post_type_event_listing", array(
 				'labels' => array(
-					'name' 					=> $plural,
-					'singular_name' 		=> $singular,
-					'menu_name'             => __('Event Manager', 'wp-event-manager'),
-					'all_items'             => sprintf(__('All %s', 'wp-event-manager'), $plural),
-					'add_new' 				=> __('Add New', 'wp-event-manager'),
-					'add_new_item' 			=> sprintf(__('Add %s', 'wp-event-manager'), $singular),
-					'edit' 					=> __('Edit', 'wp-event-manager'),
-					'edit_item' 			=> sprintf(__('Edit %s', 'wp-event-manager'), $singular),
-					'new_item' 				=> sprintf(__('New %s', 'wp-event-manager'), $singular),
-					'view' 					=> sprintf(__('View %s', 'wp-event-manager'), $singular),
-					'view_item' 			=> sprintf(__('View %s', 'wp-event-manager'), $singular),
-					'search_items' 			=> sprintf(__('Search %s', 'wp-event-manager'), $plural),
-					'not_found' 			=> sprintf(__('No %s found', 'wp-event-manager'), $plural),
-					'not_found_in_trash' 	=> sprintf(__('No %s found in trash', 'wp-event-manager'), $plural),
-					'parent' 				=> sprintf(__('Parent %s', 'wp-event-manager'), $singular),
-					'featured_image'        => __('Event Thumbnail', 'wp-event-manager'),
-					'set_featured_image'    => __('Set event thumbnail', 'wp-event-manager'),
-					'remove_featured_image' => __('Remove event thumbnail', 'wp-event-manager'),
-					'use_featured_image'    => __('Use as event thumbnail', 'wp-event-manager'),
+					'name'                  => $plural,
+					'singular_name'         => $singular,
+					'menu_name'             => __( 'Event Manager', 'wp-event-manager' ),
+					'all_items'             => sprintf(
+						/* translators: %s: plural post type name */
+						__( 'All %s', 'wp-event-manager' ),
+						esc_html( $plural )
+					),
+					'add_new'               => __( 'Add New', 'wp-event-manager' ),
+					'add_new_item'          => sprintf(
+						/* translators: %s: singular post type name */
+						__( 'Add %s', 'wp-event-manager' ),
+						esc_html( $singular )
+					),
+					'edit'                  => __( 'Edit', 'wp-event-manager' ),
+					'edit_item'             => sprintf(
+						/* translators: %s: singular post type name */
+						__( 'Edit %s', 'wp-event-manager' ),
+						esc_html( $singular )
+					),
+					'new_item'              => sprintf(
+						/* translators: %s: singular post type name */
+						__( 'New %s', 'wp-event-manager' ),
+						esc_html( $singular )
+					),
+					'view'                  => sprintf(
+						/* translators: %s: singular post type name */
+						__( 'View %s', 'wp-event-manager' ),
+						esc_html( $singular )
+					),
+					'view_item'             => sprintf(
+						/* translators: %s: singular post type name */
+						__( 'View %s', 'wp-event-manager' ),
+						esc_html( $singular )
+					),
+					'search_items'          => sprintf(
+						/* translators: %s: plural post type name */
+						__( 'Search %s', 'wp-event-manager' ),
+						esc_html( $plural )
+					),
+					'not_found'             => sprintf(
+						/* translators: %s: plural post type name */
+						__( 'No %s found', 'wp-event-manager' ),
+						esc_html( $plural )
+					),
+					'not_found_in_trash'    => sprintf(
+						/* translators: %s: plural post type name */
+						__( 'No %s found in trash', 'wp-event-manager' ),
+						esc_html( $plural )
+					),
+					'parent'                => sprintf(
+						/* translators: %s: singular post type name */
+						__( 'Parent %s', 'wp-event-manager' ),
+						esc_html( $singular )
+					),
+					'featured_image'        => __( 'Event Thumbnail', 'wp-event-manager' ),
+					'set_featured_image'    => __( 'Set event thumbnail', 'wp-event-manager' ),
+					'remove_featured_image' => __( 'Remove event thumbnail', 'wp-event-manager' ),
+					'use_featured_image'    => __( 'Use as event thumbnail', 'wp-event-manager' ),
 				),
-
-				'description' => sprintf(__('This is where you can create and manage %s.', 'wp-event-manager'), $plural),
+				'description' => sprintf(
+					/* translators: %s: plural post type name */
+					__( 'This is where you can create and manage %s.', 'wp-event-manager' ),
+					esc_html( $plural )
+				),
 				'public' 				=> true,
 				'show_ui' 				=> true,
 				'capability_type' 		=> 'event_listing',
@@ -305,8 +421,17 @@ class WP_Event_Manager_Post_Types {
 				        'labels' => array(
 						'name' 					=> $plural,
 						'singular_name' 		=> $singular,
-						'add_new_item' 			=> sprintf(wp_kses('Add %s', 'wp-event-manager'), $singular),
-						'edit_item' 			=> sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
+						'add_new_item' => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Add %s', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
+
+						'edit_item'    => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Edit %s', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
 						'featured_image'        => __('Organizer Logo', 'wp-event-manager'),
 						'set_featured_image'    => __('Set organizer logo', 'wp-event-manager'),
 						'remove_featured_image' => __('Remove organizer logo', 'wp-event-manager'),
@@ -336,8 +461,17 @@ class WP_Event_Manager_Post_Types {
 				        'labels' => array(
 						'name' 					=> $plural,
 						'singular_name' 		=> $singular,
-						'add_new_item' 			=> sprintf(__('Add %s', 'wp-event-manager'), $singular),
-						'edit_item' 			=> sprintf(__('Edit %s', 'wp-event-manager'), $singular),
+						'add_new_item' => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Add %s', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
+
+						'edit_item'    => sprintf(
+							/* translators: %s: singular post type name */
+							__( 'Edit %s', 'wp-event-manager' ),
+							esc_html( $singular )
+						),
 						'featured_image'        => __('Venue Logo', 'wp-event-manager'),
 						'set_featured_image'    => __('Set venue logo', 'wp-event-manager'),
 						'remove_featured_image' => __('Remove venue logo', 'wp-event-manager'),

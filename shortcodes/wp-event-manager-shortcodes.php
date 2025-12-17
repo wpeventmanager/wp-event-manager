@@ -343,7 +343,13 @@ class WP_Event_Manager_Shortcodes{
 				switch ($action) {
 					case 'delete':
 						wp_trash_post($organizer_id);
-						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' .sprintf(esc_html__('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) .'</div>';
+						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' .
+							sprintf(
+								/* translators: %s: event title */
+								esc_html__( '%s has been deleted.', 'wp-event-manager' ),
+								esc_html( $event->post_title )
+							) .
+						'</div>';
 						wp_safe_redirect(
 							add_query_arg(
 								array(
@@ -503,7 +509,13 @@ class WP_Event_Manager_Shortcodes{
 				switch ($action) {
 					case 'delete':
 						wp_trash_post($venue_id);
-						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(esc_html__('%s has been deleted.', 'wp-event-manager'), esc_html($venue->post_title)) . '</div>';
+						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' .
+							sprintf(
+								/* translators: %s: venue title */
+								esc_html__( '%s has been deleted.', 'wp-event-manager' ),
+								esc_html( $venue->post_title )
+							) .
+						'</div>';
 						wp_safe_redirect(
 							add_query_arg(
 								array(

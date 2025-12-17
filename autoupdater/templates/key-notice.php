@@ -12,8 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
             <?php esc_html_e( 'Hide notice', 'wp-event-manager' ); ?>
         </a>
     </p>
-
-    <?php // translators: 1: plugin list URL, 2: plugin name ?>
     <p>
         <?php 
         printf(
@@ -30,13 +28,12 @@ if ( ! defined( 'ABSPATH' ) ) {
             esc_html( $plugin['Name'] )
         ); ?>
     </p>
-
-    <?php // translators: %s: URL to retrieve lost license key ?>
     <p>
         <small class="description">
             <?php 
             printf(
                 wp_kses(
+                    // translators: %s: URL to retrieve lost license key
                     __('Lost your key? <a href="%s">Retrieve it here</a>.', 'wp-event-manager'),
                     array(
                         'a' => array(

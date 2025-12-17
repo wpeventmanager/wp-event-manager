@@ -154,9 +154,10 @@ class WP_Event_Manager_Default_REST_API {
         
         return rest_ensure_response( array(
             'success' => true,
-            'message' => sprintf( 
+           'message' => sprintf(
+                /* translators: %s: email address of the license owner */
                 __( 'License activated successfully for %s', 'wp-event-manager' ), 
-                $email 
+                esc_html( $email )
             ),
             'data'    => array(
                 'licence_key' => $licence_key,

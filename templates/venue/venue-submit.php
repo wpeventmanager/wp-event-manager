@@ -14,14 +14,18 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 	<?php if (is_user_logged_in()) { ?>
 		<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Venue Details', 'wp-event-manager'); ?></h2>
 		<?php
-		if (isset($resume_edit) && $resume_edit) {
-			// Translators: %s is the link to create a new venue
+		if ( isset( $resume_edit ) && $resume_edit ) {
+			/* translators: %1$s is the static text "You are editing an existing venue.", %2$s is the link to create a new venue */
 			printf(
-				'<p class="wpem-alert wpem-alert-info"><strong>' . esc_html__('You are editing an existing venue. %s', 'wp-event-manager') . '</strong></p>',
-				sprintf('<a href="?new=1&key=%s">%s</a>', esc_attr($resume_edit), esc_html__('Create A New Venue', 'wp-event-manager'))
+				'<p class="wpem-alert wpem-alert-info"><strong>%1$s %2$s</strong></p>',
+				esc_html__( 'You are editing an existing venue.', 'wp-event-manager' ),
+				sprintf(
+					'<a href="?new=1&key=%1$s">%2$s</a>',
+					esc_attr( $resume_edit ),
+					esc_html__( 'Create A New Venue', 'wp-event-manager' )
+				)
 			);
-		} 
-		
+		}
 		do_action('submit_venue_form_venue_fields_start'); 
 		
 		foreach ($venue_fields as $key => $field) : 

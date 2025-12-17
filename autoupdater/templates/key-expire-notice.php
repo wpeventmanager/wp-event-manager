@@ -12,21 +12,18 @@ if ( get_option( $plugin_slug . '_key_expire_pre' ) ) :
                 <?php esc_html_e( 'Hide notice', 'wp-event-manager' ); ?>
             </a>
         </p>
-
-        <?php // translators: 1: plugin name, 2: license expiration date ?>
         <p>
-            <?php 
-            printf(
+            <?php printf(
                 wp_kses(
-                    __('A licence key for <strong>"%1$s"</strong> will expire on <strong>%2$s</strong>. Please renew your subscription to continue the plugin work.', 'wp-event-manager'),
+                    /* translators: %1$s: plugin name, %2$s: license expiration date */
+                    __( 'A licence key for <strong>"%1$s"</strong> will expire on <strong>%2$s</strong>. Please renew your subscription to continue the plugin work.', 'wp-event-manager' ),
                     array(
                         'strong' => array(),
                     )
                 ),
                 esc_html( $plugin_name ),
                 esc_html( $expire_date )
-            ); 
-            ?>
+            ); ?>
         </p>
     </div>
 
@@ -38,20 +35,17 @@ if ( get_option( $plugin_slug . '_key_expire_pre' ) ) :
                 <?php esc_html_e( 'Hide notice', 'wp-event-manager' ); ?>
             </a>
         </p>
-
-        <?php // translators: %1$s: plugin name ?>
         <p>
-            <?php 
-            printf(
+            <?php printf(
                 wp_kses(
+                    /* translators: %1$s: plugin name */
                     __('A licence key for <strong>"%1$s"</strong> is expired. Please renew your subscription to continue the plugin work.', 'wp-event-manager'),
                     array(
                         'strong' => array(),
                     )
                 ),
                 esc_html( $plugin_name )
-            ); 
-            ?>
+            ); ?>
         </p>
     </div>
 <?php endif; ?>

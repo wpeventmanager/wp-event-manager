@@ -636,9 +636,19 @@ class WP_Event_Manager_Ajax {
 			$result['filter_value'][] = sprintf(wp_kses('located in &ldquo;%s&rdquo;', 'wp-event-manager') , $search_location) ;
 		}
 
-		if(sizeof($result['filter_value']) > 1) {
-			//translators: %d is the number of matching records found.
-        	$message = sprintf( esc_html(_n('Search completed. Found %d matching record.','Search completed. Found %d matching records.',$events->found_posts,'wp-event-manager')), $events->found_posts);
+		if ( sizeof( $result['filter_value'] ) > 1 ) {
+			$message = sprintf(
+				esc_html(
+					/* translators: %d: number of matching records found */
+					_n(
+						'Search completed. Found %d matching record.',
+						'Search completed. Found %d matching records.',
+						$events->found_posts,
+						'wp-event-manager'
+					)
+				),
+				(int) $events->found_posts
+			);
 			$result['showing_applied_filters'] = true;
 		} else {
 			$message = "";
@@ -646,12 +656,12 @@ class WP_Event_Manager_Ajax {
 		}
 		
 		$search_values = array(
-				'location'   => $search_location,
-				'keywords'   => $search_keywords,
-				'datetimes'  => $search_datetimes,
-				'tickets'	 => $search_ticket_prices,
-				'types'		 => $search_event_types,
-				'categories' => $search_categories
+			'location'   => $search_location,
+			'keywords'   => $search_keywords,
+			'datetimes'  => $search_datetimes,
+			'tickets'	 => $search_ticket_prices,
+			'types'		 => $search_event_types,
+			'categories' => $search_categories
 		);
 		$result['filter_value'] = apply_filters('event_manager_get_listings_custom_filter_text', $message, $search_values);
 		

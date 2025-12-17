@@ -227,9 +227,12 @@ $event = $post; ?>
                                                         <?php elseif (isset($field['type']) && $field['type'] == 'date') : ?>
                                                             <div class="wpem-col-md-6 wpem-col-sm-12 wpem-additional-info-block-details-content-left">
                                                                 <div class="wpem-additional-info-block-details-content-items">
-                                                                    <p class="wpem-additional-info-block-title"><strong><?php
-                                                                    // translators: %s is the label for the field.
-                                                                    printf(esc_html__('%s', 'wp-event-manager'), esc_attr($field_label)); ?> - </strong> <?php echo esc_html(date_i18n($date_format, strtotime($field_value))); ?></p>
+                                                                    <p class="wpem-additional-info-block-title">
+                                                                        <strong>
+                                                                            <?php echo esc_html( $field_label ); ?> - 
+                                                                        </strong> 
+                                                                        <?php echo esc_html( date_i18n( $date_format, strtotime( $field_value ) ) ); ?>
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         <?php elseif (isset($field['type']) && $field['type'] == 'time') : ?>
