@@ -1,5 +1,17 @@
 @import url(../fonts/style.css);
 
+:root {
+	--main-theme-color: #0096ff;
+	--main-theme-dark-color: #0080d9;
+	--main-gray-bg-color: #f2f4f8;
+	--main-txt-color: #555;
+	--main-dark-txt-color: #111;
+	--main-txt-url-color: #111;
+	--main-txt-url-hover-color: #0096ff;
+	--main-theme-light-color: #e5f4ff;
+	--box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
 .font-icon-look,
 .widefat .column-event_actions a.button-icon:before,
 .widefat td.column-cancelled span:before,
@@ -1226,7 +1238,6 @@ ul.wpem-product-action-list {
 .wp_event_manager_addons_wrap .products li .wpem-product-footer li.wpem-product-action-item.wpem-product-action-item-1 {
 	background: #f2f4f8;
 	color: #111;
-	font-family: sans-serif;
 	font-weight: 600;
 	min-width: auto;
 	text-transform: uppercase;
@@ -1256,7 +1267,6 @@ ul.wpem-product-action-list {
 .wp_event_manager_addons_wrap .products li .wpem-product-footer li.wpem-product-action-item.wpem-product-action-item-2 a {
 	background: #0096ff;
 	color: #fff;
-	font-family: sans-serif;
 	font-weight: 600;
 	text-transform: uppercase;
 	font-size: 16px;
@@ -2656,6 +2666,201 @@ body.event_listing_page_event-manager-addons {
     border-radius: 5px;
     color: #fff !important;
 }
+
+
+
+/* New UI Bundle  */
+.pricing-plan-container{
+	display: flex;
+}
+.pricing-plan-col {
+	border: 1px solid var(--main-gray-bg-color);
+	background-color: #fff;
+	text-align: center;
+	border-left: 0;
+	flex: 0 0 280px;
+	max-width: 280px;
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pricing-plan-col.pricing-plan-left-col {
+	flex: 1;
+	max-width: inherit;
+	background-color: var(--main-theme-light-color);
+	color: var(--main-dark-txt-color);
+	border-left: 1px solid var(--main-gray-bg-color);
+}
+
+.pricing-plan-left-col .pricing-plan-detail {
+	justify-content: start;
+	padding: 0 15px;
+	white-space: nowrap;
+}
+
+.pricing-plan-left-col .pricing-plan-detail:nth-child(odd) {
+	background-color: rgba(0, 150, 255, 0.1) !important;
+}
+
+.pricing-plan-head {
+	padding: 20px 5px;
+	height: 140px;
+	position: relative;
+}
+
+.pricing-plan-head img,
+.pricing-plan-head svg {
+	max-height: 120px;
+	margin: -10px 0;
+}
+
+.pricing-plan-title {
+	font-weight: 600;
+	color: var(--main-dark-txt-color);
+	font-size: 18px;
+	line-height: 22px;
+	margin-bottom: 20px;
+}
+
+.pricing-plan-price .wcpbc-price {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.pricing-plan-price del .woocommerce-Price-currencySymbol {
+	position: relative;
+	top: -4px;
+	margin-right: 5px;
+}
+
+.pricing-plan-price ins .woocommerce-Price-currencySymbol {
+	position: relative;
+	top: -10px;
+	margin-right: 5px;
+	font-size: 22px;
+}
+
+.pricing-plan-price ins span {
+	font-size: 34px;
+	font-weight: 700;
+	color: var(--main-theme-color);
+}
+
+.pricing-plan-detail {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 500;
+}
+
+.pricing-plan-detail img,
+.pricing-plan-detail svg {
+	flex: 0 0 24px;
+	max-width: 24px;
+	max-height: 24px;
+}
+
+.hidden-pricing {
+	text-decoration: line-through;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.pricing-plan-sort-det {
+	background-color: var(--main-gray-bg-color) !important;
+}
+
+.pricing-plan-foot {
+	padding: 15px;
+}
+
+.wpem-pricing-plan-buy-btn {
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+	text-transform: uppercase;
+	background: var(--main-gray-bg-color);
+	padding: 14px 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	box-shadow: unset;
+	transition: 0.2s;
+	position: relative;
+	border: 0;
+	display: block;
+	width: 100%;
+}
+.site-selection-dropdown{
+	position: relative;
+}
+
+.site-selection-dropdown-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background-color: #fff;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	text-align: left;
+	min-width: 150px;
+	overflow: hidden;
+	display: none;
+	z-index: 1;
+}
+a {
+    transition: 0.2s;
+    text-decoration: none;
+    outline: 0;
+    color: var(--main-txt-url-color);
+}
+.site-selection-dropdown-toggle:after {
+    content: "›";
+    font-family: wpemtheme-icon;
+    position: relative;
+    right: -10px;
+    top: 2px;
+    transform: rotate(90deg);
+    font-size: 20px;
+    display: inline-block;
+}
+.site-selection-dropdown.show .site-selection-dropdown-toggle:after {
+	transform: rotate(-90deg);
+}
+.site-selection-dropdown.show .site-selection-dropdown-menu{
+	display: block;
+}
+.site-selection-dropdown-menu a:hover{
+	background-color: var(--main-gray-bg-color);
+}
+.site-selection-dropdown-menu a {
+	display: block;
+	padding: 8px 20px;
+	font-weight: 500;
+}
+
+.site-selection-dropdown-toggle {
+	position: relative;
+	cursor: pointer;
+	padding: 8px 30px 8px 10px;
+	user-select: none;
+}
+
+#pricing-plan .pricing-plan-price .wcpbc-price .wcpbc-price ins,
+.pricing-plan-price .wcpbc-price .wcpbc-price del {
+	display: block;
+	font-size: 16px;
+}
+
+#pricing-plan .pricing-plan-price {
+	font-size: 0;
+	line-height: normal;
+}
+
+
 /*Bundles css end*/
 
 

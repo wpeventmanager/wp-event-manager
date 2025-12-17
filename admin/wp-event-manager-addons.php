@@ -197,4 +197,7 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 		} 
 	}
 endif;
+
+
 return new WP_Event_Manager_Addons();
+
