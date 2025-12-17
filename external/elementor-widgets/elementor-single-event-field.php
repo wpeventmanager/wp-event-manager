@@ -193,7 +193,9 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'event_banner') {
                 display_event_banner('full', '', $event);
             } else if ($settings['event_field'] == 'event_description') {
-                echo apply_filters('display_event_description', $event->post_content); 
+                echo wp_kses_post(
+                    apply_filters( 'display_event_description', $event->post_content )
+                );            
             } else if ($settings['event_field'] == 'registration') {
                 $registration_end_date = get_event_registration_end_date($event);
                 $registration_end_date = !empty($registration_end_date) ? $registration_end_date.' 23:59:59' : '';
@@ -201,11 +203,9 @@ class Elementor_Event_Field extends Widget_Base {
             // for eg. if each event selected then Berlin timezone will be different then current site timezone.
             $current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
 
-            if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp)
-            {
-                    echo wp_kses_post('<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>');
-            }
-            else
+            if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
+                echo wp_kses_post('<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>');
+            } else
                 get_event_manager_template('event-registration.php');
             } else if ($settings['event_field'] == 'event_start_date') {
                 display_event_start_date('', '', true, $event);

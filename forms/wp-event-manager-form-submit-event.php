@@ -155,9 +155,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 		// Organizer description
 		if ( is_admin() ) {
+			/* translators: %s: link to manage organizers */
 			$organizer_text = __( "If it doesn't show organizer(s). Manage your organizer(s) from %s.", 'wp-event-manager' );
 			$organizer_link = '<a href="post-new.php?post_type=event_organizer" target="_blank" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">' . esc_html__( 'here', 'wp-event-manager' ) . '</a>';
 		} else {
+			/* translators: %s: link to manage organizers */
 			$organizer_text = __( "If it doesn't show organizer(s). Manage your organizer(s) from %s.", 'wp-event-manager' );
 			$organizer_link = '<a href="#" onclick="javascript:void(0);" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">' . esc_html__( 'here', 'wp-event-manager' ) . '</a>';
 		}
@@ -168,9 +170,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 		// Venue description
 		if ( is_admin() ) {
+			/* translators: %s: link to manage venues */
 			$venue_text = __( "If it doesn't show venue(s). Manage your venue(s) from %s.", 'wp-event-manager' );
 			$venue_link = '<a href="post-new.php?post_type=event_venue" target="_blank" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">' . esc_html__( 'here', 'wp-event-manager' ) . '</a>';
 		} else {
+			/* translators: %s: link to manage venues */
 			$venue_text = __( "If it doesn't show venue(s). Manage your venue(s) from %s.", 'wp-event-manager' );
 			$venue_link = '<a href="#" onclick="javascript:void(0);" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">' . esc_html__( 'here', 'wp-event-manager' ) . '</a>';
 		}

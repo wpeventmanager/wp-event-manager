@@ -335,7 +335,39 @@ A prior Backup does no harm before updating the plugin!',
 		if(!$installation || !$skip_intallation) { ?>
 			<div class="notice wp-event-manager-notice">
 				<div class="wp-event-manager-notice-logo"><span></span></div>
-				<div class="wp-event-manager-notice-message wp-wp-event-manager-fresh"><?php esc_attr_e('We\'ve noticed you\'ve been using <strong>WP Event Manager</strong> for some time now. we hope you love it! We\'d be thrilled if you could <strong><a href="https://wordpress.org/support/plugin/wp-event-manager/reviews/" target="_blank">give us a nice rating on WordPress.org!</a></strong> Don\'t forget to submit your site to <strong><a href="'.esc_url(get_option('wp_event_manager_store_url')).'showcase/" target="_blank">our showcase</a></strong> and generate more traffic from our site.', 'wp-event-manager'); ?></div>
+				<?php $store_url = trailingslashit( esc_url( get_option( 'wp_event_manager_store_url' ) ) ) . 'showcase/';
+
+				/* translators: %1$s: WordPress.org review link, %2$s: showcase link */
+				$message = __(
+					"We've noticed you've been using WP Event Manager for some time now. We hope you love it! We'd be thrilled if you could %1$s. Don't forget to submit your site to %2$s and generate more traffic from our site.",
+					'wp-event-manager'
+				);
+
+				$review_link = sprintf(
+					'<strong><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></strong>',
+					esc_url( 'https://wordpress.org/support/plugin/wp-event-manager/reviews/' ),
+					esc_html__( 'give us a nice rating on WordPress.org!', 'wp-event-manager' )
+				);
+
+				$showcase_link = sprintf(
+					'<strong><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></strong>',
+					esc_url( $store_url ),
+					esc_html__( 'our showcase', 'wp-event-manager' )
+				); ?>
+
+				<div class="wp-event-manager-notice-message wp-wp-event-manager-fresh">
+					<?php echo wp_kses(
+						sprintf( $message, $review_link, $showcase_link ),
+						array(
+							'strong' => array(),
+							'a'      => array(
+								'href'   => true,
+								'target' => true,
+								'rel'    => true,
+							),
+						)
+					);?>
+				</div>
 				<div class="wp-event-manager-notice-cta">
 					<a href="<?php echo esc_url(get_option('wp_event_manager_store_url'));?>plugins/" target="_blank" class="wp-event-manager-notice-act button-primary"><?php esc_attr_e('Run Setup', 'wp-event-manager'); ?></a>
 					<button class="wp-event-manager-notice-dismiss wp-event-manager-dismiss-welcome"><a href="<?php echo esc_url(add_query_arg('event-manager-main-admin-dismiss', '1')); ?>"><?php esc_attr_e('Dismiss', 'wp-event-manager'); ?></a></span></button>

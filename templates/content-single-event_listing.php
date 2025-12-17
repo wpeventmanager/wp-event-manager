@@ -481,7 +481,17 @@ $event = $post; ?>
                                                     <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                                                 </div>
                                                 <div class="wpem-modal-content">
-                                                    <?php echo wp_oembed_get(get_organizer_youtube($event), array('autoplay' => '1', 'rel' => 0)); ?>
+                                                    <div class="wpem-modal-content">
+                                                        <?php echo wp_kses_post(
+                                                            wp_oembed_get(
+                                                                get_organizer_youtube( $event ),
+                                                                array(
+                                                                    'autoplay' => '1',
+                                                                    'rel'      => 0,
+                                                                )
+                                                            )
+                                                        ); ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <a href="#">
