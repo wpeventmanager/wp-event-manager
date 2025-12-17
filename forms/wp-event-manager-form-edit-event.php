@@ -79,11 +79,11 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 					} elseif('event_start_date' === $key) {
 						$event_start_date = esc_html(get_post_meta($event->ID, '_' . $key, true));
         				// Convert date and time value into selected datepicker value
-						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_start_date));
+						$this->fields[ $group_key ][ $key ]['value'] = gmdate($php_date_format ,strtotime($event_start_date));
 					} elseif('event_end_date' === $key) {
 						$event_end_date = esc_html(get_post_meta($event->ID, '_' . $key, true));
         				// Convert date and time value into selected datepicker value
-						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_end_date));
+						$this->fields[ $group_key ][ $key ]['value'] = gmdate($php_date_format ,strtotime($event_end_date));
 					} elseif('event_organizer_ids' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = get_post_meta($event->ID, '_' . $key, true);
 					} elseif('event_venue_ids' === $key) {
@@ -96,7 +96,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'date'){
 					$event_date = esc_html(get_post_meta($event->ID, '_' . stripslashes($key), true));
-					$this->fields[ $group_key ][ $key ]['value'] = !empty($event_date) ? date($php_date_format ,strtotime($event_date)) :'';
+					$this->fields[ $group_key ][ $key ]['value'] = !empty($event_date) ? gmdate($php_date_format ,strtotime($event_date)) :'';
 				}
 				if(!empty($field['type']) &&  $field['type'] == 'button'){
 					if(isset($this->fields[ $group_key ][ $key ]['value']) && empty($this->fields[ $group_key ][ $key ]['value'])) {

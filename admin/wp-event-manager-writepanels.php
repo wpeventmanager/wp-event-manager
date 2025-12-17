@@ -1171,7 +1171,9 @@ class WP_Event_Manager_Writepanels {
 			// Event Expiry date
 			if('_event_expiry_date' === $key) {
 				if(!empty($_POST[$key])) {
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']), sanitize_text_field($_POST[$key]));
+					$date_format = isset( $_POST['date_format'] ) ? wp_kses_post( wp_unslash($_POST['date_format'] ) ) : '';
+					$date_value  = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash($_POST[ $key ] ) ) : '';
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format( $date_format, $date_value );
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
@@ -1181,13 +1183,13 @@ class WP_Event_Manager_Writepanels {
 			}
 			// Locations
 			elseif('_event_location' === $key) {
-				if(update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]))) {
+				if(update_post_meta($post_id, $key, sanitize_text_field(wp_unslash($_POST[$key])))) {
 					// Location data will be updated by hooked in methods
 				} elseif(apply_filters('event_manager_geolocation_enabled', true) && !WP_Event_Manager_Geocode::has_location_data($post_id)) {
-					WP_Event_Manager_Geocode::generate_location_data($post_id, sanitize_text_field($_POST[$key]));
+					WP_Event_Manager_Geocode::generate_location_data($post_id, sanitize_text_field(wp_unslash($_POST[$key])));
 				}
 			} elseif('_event_author' === $key) {
-				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint(sanitize_text_field($_POST[$key])) : 0), array('ID' => $post_id));
+				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint(sanitize_text_field(wp_unslash($_POST[$key]))) : 0), array('ID' => $post_id));
 			} elseif('_event_banner' === $key) {
 				if(isset($_POST[$key])){
 					if(is_array($_POST[$key])) {
@@ -1195,7 +1197,7 @@ class WP_Event_Manager_Writepanels {
 						update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
 					} else {
 						$thumbnail_image = $_POST[$key];
-						update_post_meta($post_id, sanitize_key($key), sanitize_text_field($_POST[$key]));
+						update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
 					}
 				}
 				$image = get_the_post_thumbnail_url($post_id);
@@ -1222,7 +1224,7 @@ class WP_Event_Manager_Writepanels {
 			} elseif('_event_start_date' === $key) {
 				if(isset($_POST[$key]) && !empty($_POST[$key])) {
 					if(isset($_POST['_event_start_time']) && !empty($_POST['_event_start_time'])) {
-						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($_POST['_event_start_time']));
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_start_time'])));
 					} else {
 						$start_time = gmdate('H:i:s');
 					}
@@ -1233,12 +1235,12 @@ class WP_Event_Manager_Writepanels {
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(($date_dbformatted)));
 				} else {
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field($_POST[$key]));
+					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
 				}
 			} elseif('_event_end_date' === $key) {
 				if(isset($_POST[$key]) && !empty($_POST[$key])) {
 					if(isset($_POST['_event_end_time']) && !empty($_POST['_event_end_time'])) {
-						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($_POST['_event_end_time']));
+						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_end_time'])));
 					} else {
 						$start_time = gmdate('H:i:s');
 					}
@@ -1250,7 +1252,7 @@ class WP_Event_Manager_Writepanels {
 
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(trim($date_dbformatted)));
 				} else {
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field($_POST[$key]));
+					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
 				}
 			} elseif('_event_registration_deadline' === $key) {
 				if(isset($_POST[$key]) && !empty($_POST[$key])) {
@@ -1264,7 +1266,7 @@ class WP_Event_Manager_Writepanels {
 
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(trim($date_dbformatted)));
 				} else {
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field($_POST[$key]));
+					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
 				}
 			} elseif ( '_event_organizer_ids' === $key ) {
 				if ( ! empty( $_POST[$key] ) ) {
@@ -1290,7 +1292,7 @@ class WP_Event_Manager_Writepanels {
 				$type = !empty($field['type']) ? $field['type'] : '';
 				switch ($type) {
 					case 'textarea':
-						update_post_meta($post_id, sanitize_key($key), wp_kses_post(stripslashes($_POST[$key])));
+						update_post_meta($post_id, sanitize_key($key), wp_kses_post(wp_unslash($_POST[$key])));
 						break;
 					case 'multiselect':
 						if(!empty($_POST[$key])) {
@@ -1308,7 +1310,7 @@ class WP_Event_Manager_Writepanels {
 						break;
 					case 'date':
 						if(isset($_POST[$key])) {
-							$date = sanitize_text_field($_POST[$key]);
+							$date = sanitize_text_field(wp_unslash($_POST[$key]));
 							$datetime = sanitize_text_field(explode(' ', $_POST[$key]));
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
