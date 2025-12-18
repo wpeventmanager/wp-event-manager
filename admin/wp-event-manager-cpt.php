@@ -322,7 +322,7 @@ class WP_Event_Manager_CPT {
 		);
 
 		// Sanitize revision ID if present
-		$revision_id = isset( $_GET['revision'] ) ? absint( wp_unslash( $_GET['revision'] ) )	: 0;
+		$revision_id = isset( $_GET['revision'] ) && isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'wpem_revision_check' ) ? absint( wp_unslash( $_GET['revision'] ) )	: 0;
 
 		$messages['event_listing'] = array(
 			0  => '',
