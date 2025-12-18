@@ -338,6 +338,7 @@ if(!function_exists('get_event_listings')) :
 				}
 			}
 		} else {
+			// phpcs:ignore WordPressVIPMinimum.Performance.TaxQuery
 			$result = new WP_Query($query_args);
 		}
 	
@@ -475,6 +476,7 @@ if(!function_exists('get_featured_event_ids')) :
 	 * @return array
 	 */
 	function get_featured_event_ids() {
+		// phpcs:ignore WordPressVIPMinimum.Performance.TaxQuery
 		return get_posts(array(
 			'posts_per_page' => -1,
 			'suppress_filters' => false,
@@ -1770,6 +1772,7 @@ function check_organizer_exist($organizer_email) {
 	];
 
 	$args = apply_filters('check_organizer_exist_query_args', $args);
+	// phpcs:ignore WordPressVIPMinimum.Performance.TaxQuery
 	$organizer = get_posts($args);
 
 	if(!empty($organizer) && isset($organizer[0]->ID)) {

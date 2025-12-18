@@ -1136,10 +1136,23 @@ class WP_Event_Manager_Post_Types {
 		}
 
 		global $wpdb;
-		if('1' == $_meta_value) {
-			$wpdb->update($wpdb->posts, array('menu_order' => -1), array('ID' => $object_id));
+		if ( '1' === $_meta_value ) {
+			wp_update_post(
+				array(
+					'ID'         => $object_id,
+					'menu_order' => -1,
+				)
+			);
 		} else {
-			$wpdb->update($wpdb->posts, array('menu_order' => 0), array('ID' => $object_id, 'menu_order' => -1));
+			// Only update if currently -1 (optional safety check)
+			$post = get_post( $object_id );
+			if ( $post && -1 === (int) $post->menu_order ) {
+				wp_update_post(
+					array(
+						'ID'         => $object_id,
+						'menu_order' => 0,
+					));
+			}
 		}
 		clean_post_cache($object_id);
 	}

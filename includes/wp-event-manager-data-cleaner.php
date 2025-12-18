@@ -227,22 +227,26 @@ class WP_Event_Manager_Data_Cleaner {
 	 */
 	private static function cleanup_taxonomies() {
 		global $wpdb;
-		foreach (self::$taxonomies as $taxonomy) {
+		foreach ( self::$taxonomies as $taxonomy ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$terms = $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT term_id, term_taxonomy_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s",
 					$taxonomy
 				)
 			);
-			// Delete all data for each term.
-			foreach ($terms as $term) {
-				$wpdb->delete($wpdb->term_relationships, array('term_taxonomy_id' => $term->term_taxonomy_id));
-				$wpdb->delete($wpdb->term_taxonomy, array('term_taxonomy_id' => $term->term_taxonomy_id));
-				$wpdb->delete($wpdb->terms, array('term_id' => $term->term_id));
-				$wpdb->delete($wpdb->termmeta, array('term_id' => $term->term_id));
+			foreach ( $terms as $term ) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$wpdb->delete( $wpdb->term_relationships, array( 'term_taxonomy_id' => $term->term_taxonomy_id ) );
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$wpdb->delete( $wpdb->term_taxonomy, array( 'term_taxonomy_id' => $term->term_taxonomy_id ) );
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$wpdb->delete( $wpdb->terms, array( 'term_id' => $term->term_id ) );
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$wpdb->delete( $wpdb->termmeta, array( 'term_id' => $term->term_id ) );
 			}
-			if(function_exists('clean_taxonomy_cache')) {
-				clean_taxonomy_cache($taxonomy);
+			if ( function_exists( 'clean_taxonomy_cache' ) ) {
+				clean_taxonomy_cache( $taxonomy );
 			}
 		}
 	}

@@ -95,7 +95,13 @@ class WP_Event_Manager_Cache_Helper {
 	private static function delete_version_transients($version) {
 		if(!wp_using_ext_object_cache() && !empty($version)) {
 			global $wpdb;
-			$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->options} WHERE option_name LIKE %s;", "\_transient\_%" . $version));
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->query(
+				$wpdb->prepare(
+					"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s;",
+					"_transient_%" . $version
+				)
+			);
 		}
 	}
 
@@ -112,7 +118,9 @@ class WP_Event_Manager_Cache_Helper {
 			// Table names can be safely interpolated
 			global $wpdb;
 
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$like_transient         = $wpdb->esc_like( '_transient_em_' ) . '%';
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$like_timeout_transient = $wpdb->esc_like( '_transient_timeout_em_' ) . '%';
 			$now                    = time();
 			$wpdb->query(
