@@ -944,6 +944,7 @@ class WP_Event_Manager_Settings{
 							<?php }?>
 						</div> <!-- .white-background- -->
 						<p class="submit">
+							<?php wp_nonce_field('wpem_settings_nonce', '_wpnonce'); ?>
 							<input type="submit" class="button-primary" id="save-changes" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
 						</p>
 					</div> <!-- .admin-setting-left -->
