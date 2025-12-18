@@ -1193,7 +1193,7 @@ class WP_Event_Manager_Writepanels {
 			} elseif('_event_banner' === $key) {
 				if ( isset( $_POST[ $key ] ) ) {
 					$meta_key = sanitize_key( $key );
-					$raw_value = wp_unslash( $_POST[ $key ] );
+					$raw_value = sanitize_text_field(wp_unslash( $_POST[ $key ] ));
 					if ( is_array( $raw_value ) ) {
 						$sanitized_values = array_filter(array_map( 'sanitize_text_field', $raw_value ));
 						$thumbnail_image = isset( $sanitized_values[0] ) ? $sanitized_values[0] : '';
@@ -1237,9 +1237,10 @@ class WP_Event_Manager_Writepanels {
 						$start_time = gmdate('H:i:s');
 					}
 					// Combine event start date value with event start time
-					$date = sanitize_text_field(explode(' ', $_POST[$key])[0] . ' ' . $start_time);
+					$raw_input = wp_unslash( $_POST[ $key ] );
+					$date = sanitize_text_field(explode(' ', $raw_input)[0] . ' ' . $start_time);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']) . ' H:i:s', $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(wp_unslash($_POST['date_format'])) . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
 				} else {
@@ -1253,9 +1254,10 @@ class WP_Event_Manager_Writepanels {
 						$start_time = gmdate('H:i:s');
 					}
 					// Combine event start date value with event start time
-					$date = sanitize_text_field(explode(' ', $_POST[$key])[0] . ' ' . $start_time);
+					$raw_input = wp_unslash( $_POST[ $key ] );
+					$date = sanitize_text_field(explode(' ', $raw_input)[0] . ' ' . $start_time);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']) . ' H:i:s', $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(wp_unslash($_POST['date_format']) . ' H:i:s', $date));
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
@@ -1269,7 +1271,7 @@ class WP_Event_Manager_Writepanels {
 					$post_value = sanitize_text_field(wp_unslash($_POST[$key]));
 					$date = sanitize_text_field(explode(' ', $post_value)[0]);
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']), $date);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(wp_unslash($_POST['date_format'])), $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
@@ -1278,7 +1280,7 @@ class WP_Event_Manager_Writepanels {
 				}
 			} elseif ( '_event_organizer_ids' === $key ) {
 				if ( ! empty( $_POST[$key] ) ) {
-					$value = $_POST[$key];
+					$value = wp_unslash($_POST[$key]);
 					if ( is_array( $value ) ) {
 						$value = array_filter( array_map( 'sanitize_text_field', $value ) );
 					} else {
@@ -1335,7 +1337,7 @@ class WP_Event_Manager_Writepanels {
 					case 'time':
 						if(isset($_POST[$key])) {
 
-							$time = sanitize_text_field($_POST[$key]);
+							$time = sanitize_text_field(wp_unslash($_POST[$key]));
 							if(empty($_POST[$key])) {
 								$time_dbformatted = '';
 							} else {
@@ -1736,7 +1738,7 @@ class WP_Event_Manager_Writepanels {
 				$type = !empty($field['type']) ? $field['type'] : '';
 				switch ($type) {
 					case 'textarea':
-						update_post_meta($post_id, $key, wp_kses_post(stripslashes($_POST[$key])));
+						update_post_meta($post_id, $key, wp_kses_post(wp_unslash($_POST[$key])));
 						break;
 					case 'file':
 						if (isset($_POST[$key])) {
@@ -1762,7 +1764,7 @@ class WP_Event_Manager_Writepanels {
 						break;
 					case 'date':
 						if(isset($_POST[$key])) {
-							$date = wp_kses_post($_POST[$key]);
+							$date = wp_kses_post(wp_unslash($_POST[$key]));
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);

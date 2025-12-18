@@ -117,7 +117,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	public function get_action() {
-		$action = $_SERVER['REQUEST_URI'] ? wp_kses_post(wp_unslash($_SERVER['REQUEST_URI'])) : '';
+		$action = isset($_SERVER['REQUEST_URI']) ? wp_kses_post(wp_unslash($_SERVER['REQUEST_URI'])) : '';
 		return esc_url_raw($this->action ? $this->action : $action);
 	}
 
