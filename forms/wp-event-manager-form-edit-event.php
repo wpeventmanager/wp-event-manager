@@ -136,7 +136,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 		
 		// Verify nonce before processing form data
 		if (empty($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_key(wp_unslash($_POST['_wpnonce'])), 'edit-event_' . $this->event_id)) {
-			wp_die(__('Security check failed. Please try again.', 'wp-event-manager'));
+			wp_die(esc_html__('Security check failed. Please try again.', 'wp-event-manager'));
 		}
 		
 		try {

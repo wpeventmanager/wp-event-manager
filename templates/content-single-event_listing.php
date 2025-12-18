@@ -240,7 +240,7 @@ $event = $post; ?>
                                                                 <div class="wpem-additional-info-block-details-content-items">
                                                                     <p class="wpem-additional-info-block-title"><strong><?php 
                                                                     // translators: %s is the label for the field.
-                                                                    printf(esc_html('%s', 'wp-event-manager'),   esc_attr($field_label)); ?> - </strong> <?php echo esc_attr(date($time_format, strtotime($field_value))); ?></p>
+                                                                    printf(esc_html('%s', 'wp-event-manager'),   esc_attr($field_label)); ?> - </strong> <?php echo esc_attr(gmdate($time_format, strtotime($field_value))); ?></p>
                                                                 </div>
                                                             </div>
                                                         <?php elseif ($field['type'] == 'file') : ?>

@@ -116,8 +116,7 @@ class WP_Event_Manager_Shortcodes{
 
 		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_event_actions')) {
 			$action = sanitize_title( wp_unslash($_REQUEST['action']));
-			$event_id = absint(wp_unslash($_REQUEST['event_id']));
-			error_log($action);
+			$event_id = isset($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST['event_id'])) : 0;
 			try {
 				// Get Event
 				$event    = get_post($event_id);
@@ -324,10 +323,8 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function organizer_dashboard_handler() {
     	if (!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_organizer_actions')) {
-			error_log("organizer_dashboard_handler");
 			$action = sanitize_title(wp_unslash($_REQUEST['action']));
-			error_log($action);
-			$organizer_id = absint(wp_unslash($_REQUEST['organizer_id']));
+			$organizer_id = isset($_REQUEST['organizer_id']) ? absint(wp_unslash($_REQUEST['organizer_id'])) : 0;
 
 			try {
 				$event = get_post($organizer_id);
@@ -491,7 +488,7 @@ class WP_Event_Manager_Shortcodes{
 	public function venue_dashboard_handler() {
 		if ( !empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_venue_actions')	) {
 			$action = sanitize_title( wp_unslash($_REQUEST['action']));
-			$venue_id = absint(wp_unslash($_REQUEST['venue_id']));
+			$venue_id = isset($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST['venue_id'])) : 0;
 
 			try {
 				$venue = get_post($venue_id);
@@ -803,15 +800,15 @@ class WP_Event_Manager_Shortcodes{
 			$end_date = isset($selected_datetime[1]) ? esc_attr(strip_tags($selected_datetime[1])) : $start_date;
 
 			if ($start_date == 'today') {
-				$start_date = date($php_date_format);
+				$start_date = gmdate($php_date_format);
 			} else if ($start_date == 'tomorrow') {
-				$start_date = date($php_date_format, strtotime('+1 day'));
+				$start_date = gmdate($php_date_format, strtotime('+1 day'));
 			}
 
 			if ($end_date == 'today') {
-				$end_date = date($php_date_format);
+				$end_date = gmdate($php_date_format);
 			} else if ($end_date == 'tomorrow') {
-				$end_date = date($php_date_format, strtotime('+1 day'));
+				$end_date = gmdate($php_date_format, strtotime('+1 day'));
 			}
 
 			// Parse and format the dates
@@ -1216,13 +1213,13 @@ class WP_Event_Manager_Shortcodes{
 			foreach ($datetimes as $date) {
 				switch (strtolower($date)) {
 					case 'today':
-						$converted[] = date('Y-m-d');
+						$converted[] = gmdate('Y-m-d');
 						break;
 					case 'yesterday':
-						$converted[] = date('Y-m-d', strtotime('-1 day'));
+						$converted[] = gmdate('Y-m-d', strtotime('-1 day'));
 						break;
 					case 'tomorrow':
-						$converted[] = date('Y-m-d', strtotime('+1 day'));
+						$converted[] = gmdate('Y-m-d', strtotime('+1 day'));
 						break;
 					default:
 						$converted[] = sanitize_text_field($date);
@@ -1265,7 +1262,7 @@ class WP_Event_Manager_Shortcodes{
 		$args_past = apply_filters('event_manager_past_event_listings_args', $args_past);
 		$past_events = new WP_Query($args_past);
 
-		wp_reset_query();
+		wp_reset_postdata();
 
 		// Remove calender view
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
@@ -1407,9 +1404,9 @@ class WP_Event_Manager_Shortcodes{
 
 		// $organizer    = $organizers->posts[0];
 		$paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
-		$current_page    = isset($_REQUEST['pagination']) ? esc_attr( wp_unslash($_REQUEST['pagination'])) : esc_attr($paged);
+		$current_page    = isset($_REQUEST['pagination']) ? sanitize_text_field( wp_unslash($_REQUEST['pagination'])) : esc_attr($paged);
 		$per_page        = 10;
-		$today_date      = date("Y-m-d");
+		$today_date      = gmdate("Y-m-d");
 		$organizer_id    = $organizer->ID;
 		$show_pagination = true;
 
@@ -1621,7 +1618,7 @@ class WP_Event_Manager_Shortcodes{
 		$venue            = $venues->posts[0];
 		$paged            = get_query_var('paged') ? absint(get_query_var('paged')) : 1;
 		$per_page         = 10;
-		$today_date       = date("Y-m-d");
+		$today_date       = gmdate("Y-m-d");
 		$venue_id         = $venue->ID;
 		$show_pagination  = true;
 
@@ -1895,7 +1892,7 @@ class WP_Event_Manager_Shortcodes{
 		$args = apply_filters('event_manager_upcoming_event_listings_args', $args);
 		$upcoming_events = new WP_Query($args);
 
-		wp_reset_query();
+		wp_reset_postdata();
 
 		// Remove calender view
 		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');

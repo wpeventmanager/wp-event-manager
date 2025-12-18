@@ -44,7 +44,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
                                     $subfield['value'] = isset($value[$subkey]) ? $value[$subkey] : '';
 
                                     if ($subfield['type'] === 'date') {
-                                        $subfield['value'] = !empty($subfield['value']) ? date($php_date_format, strtotime($subfield['value'])) : $subfield['value'];
+                                        $subfield['value'] = !empty($subfield['value']) ? gmdate($php_date_format, strtotime($subfield['value'])) : $subfield['value'];
                                     }
 
                                     get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));

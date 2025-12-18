@@ -177,7 +177,7 @@ class WP_Event_Manager_Post_Types {
 		            	'edit_terms' 		=> $admin_capability,
 		            	'delete_terms' 		=> $admin_capability,
 		            	'assign_terms' 		=> $admin_capability,
-		          ),
+		          	),
 		            'rewrite' 				=> $rewrite,
 		      ))
 		  );
@@ -829,13 +829,13 @@ class WP_Event_Manager_Post_Types {
 			AND postmeta.meta_value < %s
 			AND posts.post_status = 'publish'
 			AND posts.post_type = 'event_listing'
-		", date('Y-m-d H:i:s', current_time('timestamp'))));
+		", gmdate('Y-m-d H:i:s', current_time('timestamp'))));
 
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
 				$event = get_post($event_id);
-				$expiry_date = apply_filters('wpem_expire_date_time', date('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($event_id, '_event_expiry_date', true)). ' 23:59:30')), $event);     
-				$today_date = apply_filters('wpem_get_current_expire_time', date('Y-m-d H:i:s', current_time('timestamp')));     
+				$expiry_date = apply_filters('wpem_expire_date_time', gmdate('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($event_id, '_event_expiry_date', true)). ' 23:59:30')), $event);     
+				$today_date = apply_filters('wpem_get_current_expire_time', gmdate('Y-m-d H:i:s', current_time('timestamp')));     
 				
 				// Check for event expire    
 				$post_status = $expiry_date && strtotime($today_date) > strtotime($expiry_date) ? 'expired' : false;
@@ -856,7 +856,7 @@ class WP_Event_Manager_Post_Types {
 				WHERE posts.post_type = 'event_listing'
 				AND posts.post_modified < %s
 				AND posts.post_status = 'expired'
-			", date('Y-m-d H:i:s', strtotime('-' . apply_filters('event_manager_delete_expired_events_days', 30) . ' days', current_time('timestamp')))));
+			", gmdate('Y-m-d H:i:s', strtotime('-' . apply_filters('event_manager_delete_expired_events_days', 30) . ' days', current_time('timestamp')))));
 			if($event_ids) {
 				foreach ($event_ids as $event_id) {
 					wp_trash_post($event_id);
@@ -908,7 +908,7 @@ class WP_Event_Manager_Post_Types {
 			WHERE posts.post_type = 'event_listing'
 			AND posts.post_modified < %s
 			AND posts.post_status = 'preview'
-		", date('Y-m-d', strtotime('-30 days', current_time('timestamp')))));
+		", gmdate('Y-m-d', strtotime('-30 days', current_time('timestamp')))));
 
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
@@ -935,7 +935,7 @@ class WP_Event_Manager_Post_Types {
 		// No metadata set so we can generate an expiry date
 		// See if the user has set the expiry manually:
 		if(!empty($_POST[ '_event_expiry_date' ])) {
-			update_post_meta($post->ID, '_event_expiry_date', date('Y-m-d', strtotime(wp_kses_post(wp_unslash($_POST[ '_event_expiry_date' ])))));
+			update_post_meta($post->ID, '_event_expiry_date', gmdate('Y-m-d', strtotime(wp_kses_post(wp_unslash($_POST[ '_event_expiry_date' ])))));
 			// No manual setting? Lets generate a date
 		} elseif(false == isset($expires)){
 			$expires = get_event_expiry_date($post->ID);
@@ -977,7 +977,7 @@ class WP_Event_Manager_Post_Types {
 		// Use a cookie to track viewed posts per visitor instead of PHP sessions.
 		$cookie_name   = 'wpem_viewed_posts';
 		$viewed_posts  = array();
-		$raw_cookie    = isset( $_COOKIE[ $cookie_name ] ) ? wp_unslash( $_COOKIE[ $cookie_name ] ) : '';
+		$raw_cookie    = isset( $_COOKIE[ $cookie_name ] ) ? sanitize_key( wp_unslash( $_COOKIE[ $cookie_name ] ) ) : '';
 		if ( $raw_cookie ) {
 			$decoded = json_decode( $raw_cookie, true );
 			if ( is_array( $decoded ) ) {

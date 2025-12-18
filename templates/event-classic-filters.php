@@ -47,21 +47,21 @@ do_action('event_manager_event_filters_before', $atts); ?>
 
 					$selected_datetime = explode(',', $selected_datetime);
 
-					$start_date = esc_attr(strip_tags($selected_datetime[0]));
+					$start_date = esc_attr(wp_strip_all_tags($selected_datetime[0]));
 					if(isset($selected_datetime[1]) == false) {
-						$end_date = esc_attr(strip_tags($selected_datetime[0]));
+						$end_date = esc_attr(wp_strip_all_tags($selected_datetime[0]));
 					} else {
 						if(strtotime($selected_datetime[1]) !== false && $selected_datetime[1] == 'tomorrow'){
-							$end_date =  date($php_date_format, strtotime('+1 day'));
+							$end_date =  gmdate($php_date_format, strtotime('+1 day'));
 						}else{
-							$end_date = esc_attr(strip_tags($selected_datetime[1]));
+							$end_date = esc_attr(wp_strip_all_tags($selected_datetime[1]));
 						}
 					}
 
 					if($start_date == 'today') {
-						$start_date = date($php_date_format);
+						$start_date = gmdate($php_date_format);
 					} else if($start_date == 'tomorrow') {
-						$start_date = date($php_date_format, strtotime('+1 day'));
+						$start_date = gmdate($php_date_format, strtotime('+1 day'));
 					}
 
 					$arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $start_date);

@@ -105,13 +105,27 @@ class WP_Event_Manager_Cache_Helper {
 	public static function clear_expired_transients() {
 		global $wpdb;
 		if(!wp_using_ext_object_cache() && !defined('WP_SETUP_CONFIG') && !defined('WP_INSTALLING')) {
-			$sql= "
-			    DELETE a, b FROM $wpdb->options a, $wpdb->options b	
- 				WHERE a.option_name LIKE %s	
- 				AND a.option_name NOT LIKE %s
- 				AND b.option_name = CONCAT('_transient_timeout_', SUBSTRING(a.option_name, 12))
-				AND b.option_value < %s;";
-				$wpdb->query($wpdb->prepare($sql, $wpdb->esc_like('_transient_em_') . '%', $wpdb->esc_like('_transient_timeout_em_') . '%', time()));
+			$sql = "
+				DELETE a, b
+				FROM {$wpdb->options} a
+				INNER JOIN {$wpdb->options} b
+					ON b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
+				WHERE a.option_name LIKE %s
+				AND a.option_name NOT LIKE %s
+				AND b.option_value < %d
+			";
+
+			$like_transient         = $wpdb->esc_like( '_transient_em_' ) . '%';
+			$like_timeout_transient = $wpdb->esc_like( '_transient_timeout_em_' ) . '%';
+
+			$wpdb->query(
+				$wpdb->prepare(
+					$sql,
+					$like_transient,
+					$like_timeout_transient,
+					time()
+				)
+			);
  		}
 	}
 	
@@ -165,8 +179,12 @@ class WP_Event_Manager_Cache_Helper {
 			return;
 		}
 		
-		$sql        = $wpdb->prepare("SELECT option_name FROM $wpdb->options WHERE option_name RLIKE '%s'", implode('|', $rlike));
-		$transients = $wpdb->get_col($sql);
+		$pattern     = implode( '|', $rlike );
+		$sql         = $wpdb->prepare(
+			"SELECT option_name FROM $wpdb->options WHERE option_name RLIKE %s",
+			$pattern
+		);
+		$transients = $wpdb->get_col( $sql );
 		
 		// For each transient...
 		foreach ($transients as $transient) {

@@ -368,7 +368,7 @@ if(!function_exists('_wpem_shuffle_featured_post_results_helper')) :
 				return 1;
 			}
 		}
-		return rand(-1, 1);
+		return wp_rand(-1, 1);
 	}
 endif;
 
@@ -659,7 +659,7 @@ if(!function_exists('wp_event_manager_notify_new_user')) :
 		global $wp_version;
 		
 		if(version_compare($wp_version, '4.3.1', '<')) {
-			wp_new_user_notification($user_id, $password);
+			wp_new_user_notification( $user_id );
 		} else {
 			$notify = 'admin';
 			if(empty($password)) {

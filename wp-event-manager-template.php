@@ -529,7 +529,7 @@ function display_event_ticket_option($before = '', $after = '', $echo = true, $p
 	if(strlen($event_ticket_option) == 0)
 		return;
 
-	$event_ticket_option = esc_attr(strip_tags($event_ticket_option));
+	$event_ticket_option = esc_attr(wp_strip_all_tags($event_ticket_option));
 
 	//find the option value from the field editor array
 	$fields = get_option('event_manager_form_fields', true);
@@ -765,7 +765,7 @@ function display_event_start_time($before = '', $after = '', $echo = true, $post
 	if(strlen($event_start_time) == 0)
 		return;
 
-	$event_start_time = esc_attr(strip_tags($event_start_time));
+	$event_start_time = esc_attr(wp_strip_all_tags($event_start_time));
 	$event_start_time = $before . esc_html($event_start_time) . $after;
 	if($echo)
 		echo esc_attr($event_start_time);
@@ -803,7 +803,7 @@ function display_event_end_date($before = '', $after = '', $echo = true, $post =
 	if(strlen($event_end_date) == 0)
 		return;
 
-	$event_end_date = esc_attr(strip_tags($event_end_date));
+	$event_end_date = esc_attr(wp_strip_all_tags($event_end_date));
 	$date_format = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
 	$event_end_date = date_i18n($date_format, strtotime($event_end_date));
 	$event_end_date = $before . esc_html($event_end_date) . $after;
@@ -853,7 +853,7 @@ function display_event_end_time($before = '', $after = '', $echo = true, $post =
 	if(strlen($event_end_time) == 0)
 		return;
 
-	$event_end_time = esc_attr(strip_tags($event_end_time));
+	$event_end_time = esc_attr(wp_strip_all_tags($event_end_time));
 	$event_end_time = $before . esc_html($event_end_time) . $after;
 
 	if($echo)
@@ -996,7 +996,7 @@ function display_event_venue_name($before = '', $after = '', $echo = true, $post
 	if(strlen($event_venue_name) == 0)
 		return;
 
-	$event_venue_name = esc_attr(strip_tags($event_venue_name));
+	$event_venue_name = esc_attr(wp_strip_all_tags($event_venue_name));
 	$event_venue_name = $before . esc_html($event_venue_name) . $after;
 
 	if($echo)
@@ -1054,7 +1054,7 @@ function display_event_address($before = '', $after = '', $echo = true, $post = 
 	if(strlen($event_address) == 0)
 		return;
 
-	$event_address = esc_attr(strip_tags($event_address));
+	$event_address = esc_attr(wp_strip_all_tags($event_address));
 	$event_address = $before . esc_html($event_address) . $after;
 
 	if($echo)
@@ -1092,7 +1092,7 @@ function display_event_pincode($before = '', $after = '', $echo = true, $post = 
 	if(strlen($event_pincode) == 0)
 		return;
 
-	$event_pincode = esc_attr(strip_tags($event_pincode));
+	$event_pincode = esc_attr(wp_strip_all_tags($event_pincode));
 	$event_pincode = $before . esc_html($event_pincode) . $after;
 
 	if($echo)
@@ -1153,7 +1153,7 @@ function display_organizer_name($before = '', $after = '', $echo = true, $post =
 	if(strlen($organizer_name) == 0)
 		return;
 
-	$organizer_name = esc_attr(strip_tags($organizer_name));
+	$organizer_name = esc_attr(wp_strip_all_tags($organizer_name));
 	$organizer_name = $before . esc_html($organizer_name) . $after;
 	if($echo)
 		echo esc_attr($organizer_name);
@@ -1387,7 +1387,7 @@ function display_organizer_contact_person_name($before = '', $after = '', $echo 
 	if(strlen($organizer_contact_person_name) == 0)
 		return;
 
-	$organizer_contact_person_name = esc_attr(strip_tags($organizer_contact_person_name));
+	$organizer_contact_person_name = esc_attr(wp_strip_all_tags($organizer_contact_person_name));
 	$organizer_contact_person_name = $before . esc_html($organizer_contact_person_name) . $after;
 	if($echo)
 		echo esc_attr($organizer_contact_person_name);
@@ -1435,7 +1435,7 @@ function display_organizer_email($before = '', $after = '', $echo = true, $post 
 	if(strlen($organizer_email) == 0)
 		return;
 
-	$organizer_email = esc_attr(strip_tags($organizer_email));
+	$organizer_email = esc_attr(wp_strip_all_tags($organizer_email));
 	$organizer_email = $before . esc_html($organizer_email) . $after;
 	if($echo)
 		echo esc_attr($organizer_email);
@@ -1525,7 +1525,7 @@ function display_organizer_website($before = '', $after = '', $echo = true, $pos
 	if(strlen($organizer_website) == 0)
 		return;
 
-	$organizer_website = esc_attr(strip_tags($organizer_website));
+	$organizer_website = esc_attr(wp_strip_all_tags($organizer_website));
 	$organizer_website = $before . esc_html($organizer_website) . $after;
 	if($echo)
 		echo esc_attr($organizer_website);
@@ -1576,7 +1576,7 @@ function display_venue_website($before = '', $after = '', $echo = true, $post = 
 	if(strlen($venue_website) == 0)
 		return;
 
-	$venue_website = esc_attr(strip_tags($venue_website));
+	$venue_website = esc_attr(wp_strip_all_tags($venue_website));
 	$venue_website = $before . esc_html($venue_website) . $after;
 	if($echo)
 		echo esc_attr($venue_website);
@@ -1598,7 +1598,7 @@ function display_organizer_tagline($before = '', $after = '', $echo = true, $pos
 	if(strlen($organizer_tagline) == 0)
 		return;
 
-	$organizer_tagline = esc_attr(strip_tags($organizer_tagline));
+	$organizer_tagline = esc_attr(wp_strip_all_tags($organizer_tagline));
 	$organizer_tagline = $before . esc_html($organizer_tagline) . $after;
 	if($echo)
 		echo esc_attr($organizer_tagline);
@@ -1657,7 +1657,7 @@ function display_organizer_twitter($before = '', $after = '', $echo = true, $pos
 	if(strlen($organizer_twitter) == 0)
 		return;
 
-	$organizer_twitter = esc_attr(strip_tags($organizer_twitter));
+	$organizer_twitter = esc_attr(wp_strip_all_tags($organizer_twitter));
 	$organizer_twitter = $before . '<a href="http://twitter.com/' . $organizer_twitter . '" class="organizer_twitter" target="_blank">' . $organizer_twitter . '</a>' . $after;
 	if($echo)
 		echo esc_attr($organizer_twitter);
@@ -1703,7 +1703,7 @@ function display_venue_twitter($before = '', $after = '', $echo = true, $post = 
 	if(strlen($venue_twitter) == 0)
 		return;
 
-	$venue_twitter = esc_attr(strip_tags($venue_twitter));
+	$venue_twitter = esc_attr(wp_strip_all_tags($venue_twitter));
 	$venue_twitter = $before . '<a href="http://twitter.com/' . $venue_twitter . '" class="venue_twitter" target="_blank">' . $venue_twitter . '</a>' . $after;
 	if($echo)
 		echo esc_attr($venue_twitter);
@@ -1744,7 +1744,7 @@ function display_organizer_facebook($before = '', $after = '', $echo = true, $po
 	if(strlen($organizer_facebook) == 0)
 		return;
 
-	$organizer_facebook = esc_attr(strip_tags($organizer_facebook));
+	$organizer_facebook = esc_attr(wp_strip_all_tags($organizer_facebook));
 	$organizer_facebook = $before . esc_html($organizer_facebook) . $after;
 	if($echo)
 		echo esc_attr($organizer_facebook);
@@ -1785,7 +1785,7 @@ function display_venue_facebook($before = '', $after = '', $echo = true, $post =
 	if(strlen($venue_facebook) == 0)
 		return;
 
-	$venue_facebook = esc_attr(strip_tags($venue_facebook));
+	$venue_facebook = esc_attr(wp_strip_all_tags($venue_facebook));
 	$venue_facebook = $before . esc_html($venue_facebook) . $after;
 	if($echo)
 		echo esc_attr($venue_facebook);
@@ -1826,7 +1826,7 @@ function display_organizer_linkedin($before = '', $after = '', $echo = true, $po
 	if(strlen($organizer_linkedin) == 0)
 		return;
 
-	$organizer_linkedin = esc_attr(strip_tags($organizer_linkedin));
+	$organizer_linkedin = esc_attr(wp_strip_all_tags($organizer_linkedin));
 	$organizer_linkedin = $before . esc_html($organizer_linkedin) . $after;
 	if($echo)
 		echo esc_attr($organizer_linkedin);
@@ -1867,7 +1867,7 @@ function display_organizer_xing($before = '', $after = '', $echo = true, $post =
 	if(strlen($organizer_xing) == 0)
 		return;
 
-	$organizer_xing = esc_attr(strip_tags($organizer_xing));
+	$organizer_xing = esc_attr(wp_strip_all_tags($organizer_xing));
 	$organizer_xing = $before . esc_html($organizer_xing) . $after;
 	if($echo)
 		echo esc_attr($organizer_xing);
@@ -1908,7 +1908,7 @@ function display_organizer_instagram($before = '', $after = '', $echo = true, $p
 	if(strlen($organizer_instagram) == 0)
 		return;
 
-	$organizer_instagram = esc_attr(strip_tags($organizer_instagram));
+	$organizer_instagram = esc_attr(wp_strip_all_tags($organizer_instagram));
 	$organizer_instagram = $before . esc_html($organizer_instagram) . $after;
 	if($echo)
 		echo esc_attr($organizer_instagram);
@@ -1949,7 +1949,7 @@ function display_venue_instagram($before = '', $after = '', $echo = true, $post 
 	if(strlen($venue_instagram) == 0)
 		return;
 
-	$venue_instagram = esc_attr(strip_tags($venue_instagram));
+	$venue_instagram = esc_attr(wp_strip_all_tags($venue_instagram));
 	$venue_instagram = $before . esc_html($venue_instagram) . $after;
 	if($echo)
 		echo esc_attr($venue_instagram);
@@ -1990,7 +1990,7 @@ function display_organizer_pinterest($before = '', $after = '', $echo = true, $p
 	if(strlen($organizer_pinterest) == 0)
 		return;
 
-	$organizer_pinterest = esc_attr(strip_tags($organizer_pinterest));
+	$organizer_pinterest = esc_attr(wp_strip_all_tags($organizer_pinterest));
 	$organizer_pinterest = $before . esc_html($organizer_pinterest) . $after;
 	if($echo)
 		echo esc_attr($organizer_pinterest);
@@ -2035,7 +2035,7 @@ function display_organizer_youtube($before = '', $after = '', $echo = true, $pos
 	if(strlen($organizer_youtube) == 0)
 		return;
 
-	$organizer_youtube = esc_attr(strip_tags($organizer_youtube));
+	$organizer_youtube = esc_attr(wp_strip_all_tags($organizer_youtube));
 	$organizer_youtube = $before . esc_html($organizer_youtube) . $after;
 	if($echo)
 		echo esc_attr($organizer_youtube);
@@ -2076,7 +2076,7 @@ function display_venue_youtube($before = '', $after = '', $echo = true, $post = 
 	if(strlen($venue_youtube) == 0)
 		return;
 
-	$venue_youtube = esc_attr(strip_tags($venue_youtube));
+	$venue_youtube = esc_attr(wp_strip_all_tags($venue_youtube));
 	$venue_youtube = $before . esc_html($venue_youtube) . $after;
 	if($echo)
 		echo esc_attr($venue_youtube);
@@ -2117,7 +2117,7 @@ function display_organizer_google_plus($before = '', $after = '', $echo = true, 
 	if(strlen($organizer_google_plus) == 0)
 		return;
 
-	$organizer_google_plus = esc_attr(strip_tags($organizer_google_plus));
+	$organizer_google_plus = esc_attr(wp_strip_all_tags($organizer_google_plus));
 	$organizer_google_plus = $before . esc_html($organizer_google_plus) . $after;
 	if($echo)
 		echo esc_attr($organizer_google_plus);
@@ -2333,11 +2333,11 @@ function event_manager_get_event_listing_structured_data($post = null){
 
 	$event_expires = esc_attr(get_post_meta($post->ID, '_event_expires', true));
 	if(!empty($event_expires)) {
-		$data['validThrough'] = date('c', strtotime($event_expires));
+		$data['validThrough'] = gmdate('c', strtotime($event_expires));
 	}
 
 	$data['description'] = get_event_description($post);
-	$data['name'] = strip_tags(get_event_title($post));
+	$data['name'] = wp_strip_all_tags(get_event_title($post));
 	$data['image'] = get_event_banner($post);
 	$data['startDate'] = get_event_start_date($post);
 	$data['endDate'] = get_event_end_date($post);
@@ -2526,7 +2526,7 @@ function display_event_ticket_price($before = '', $after = '', $echo = true, $po
 	if(strlen($event_ticket_price) == 0)
 		return;
 
-	$event_ticket_price = strip_tags($event_ticket_price);
+	$event_ticket_price = wp_strip_all_tags($event_ticket_price);
 	$event_ticket_price = $before . esc_html($event_ticket_price) . $after;
 	if($echo)
 		echo esc_attr($event_ticket_price);
