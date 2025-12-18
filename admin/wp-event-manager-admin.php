@@ -375,7 +375,7 @@ A prior Backup does no harm before updating the plugin!',
 				</div>
 				<div class="wp-event-manager-notice-cta">
 					<a href="<?php echo esc_url(get_option('wp_event_manager_store_url'));?>plugins/" target="_blank" class="wp-event-manager-notice-act button-primary"><?php esc_attr_e('Run Setup', 'wp-event-manager'); ?></a>
-					<button class="wp-event-manager-notice-dismiss wp-event-manager-dismiss-welcome"><a href="<?php echo esc_url(add_query_arg('event-manager-main-admin-dismiss', '1')); ?>"><?php esc_attr_e('Dismiss', 'wp-event-manager'); ?></a></span></button>
+					<button class="wp-event-manager-notice-dismiss wp-event-manager-dismiss-welcome"><a href="<?php echo esc_url(wp_nonce_url(add_query_arg('event-manager-main-admin-dismiss', '1'), 'wpem_dismiss_admin_notice')); ?>"><?php esc_attr_e('Dismiss', 'wp-event-manager'); ?></a></span></button>
 				</div>
 			</div>
 		<?php
@@ -402,7 +402,9 @@ A prior Backup does no harm before updating the plugin!',
 	 */
 	public function admin_init() {
 		if(isset( $_GET['event-manager-main-admin-dismiss']) && !empty($_GET['event-manager-main-admin-dismiss'])){
-			update_option('event_manager_rating_showcase_admin_notices_dismiss', 1);
+			if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'wpem_dismiss_admin_notice' ) ) {
+				update_option('event_manager_rating_showcase_admin_notices_dismiss', 1);
+			}
 		}
 	}
 
