@@ -139,7 +139,7 @@ class WP_Event_Manager_CPT {
 	 * Approve a single event.
 	 */
 	public function approve_event()	{
-		if(isset($_REQUEST['_wpnonce']) && !empty($_GET['approve_event']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'approve_event') && current_user_can('publish_post',sanitize_text_field( wp_unslash( $_GET['approve_event'] )))) {
+		if( !empty($_GET['approve_event']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'approve_event') && current_user_can('publish_post',sanitize_text_field( wp_unslash( $_GET['approve_event'] )))) {
 			$post_id = absint($_GET['approve_event']);
 			$event_end_date    = esc_attr(get_post_meta($post_id, '_event_end_date', true));
 			$current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
@@ -174,7 +174,7 @@ class WP_Event_Manager_CPT {
 	 */
 	public function approved_notice() {
 		global $post_type, $pagenow;
-		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['approved_events'])) {
+		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['approved_events']) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'bulk-posts')) {
 			$approved_events = sanitize_text_field(wp_unslash($_REQUEST['approved_events']));
 			if(is_array($approved_events)) {
 				$approved_events = array_map('absint', $approved_events);
@@ -195,7 +195,7 @@ class WP_Event_Manager_CPT {
 	public function expired_notice() {
 		global $post_type, $pagenow;
 
-		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events'])) {
+		if($pagenow == 'edit.php' && $post_type == 'event_listing' && !empty($_REQUEST['expired_events']) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'bulk-posts')) {
 			$expired_events = sanitize_text_field(wp_unslash($_REQUEST['expired_events']));
 			if(is_array($expired_events)) {
 				$expired_events = array_map('absint', $expired_events);
