@@ -210,7 +210,7 @@ abstract class WP_Event_Manager_Form {
 	 */
 	public function enqueue_scripts() {
 		if($this->use_recaptcha_field()) {
-			wp_enqueue_script('recaptcha', 'https://www.google.com/recaptcha/api.js');
+			wp_enqueue_script('recaptcha', 'https://www.google.com/recaptcha/api.js', array(), '1.0.0');
 		}
 	}
 
