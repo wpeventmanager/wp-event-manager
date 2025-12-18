@@ -849,9 +849,7 @@ class WP_Event_Manager_Ajax {
 		$clean = [];
 
 		foreach ($params as $key => $value) {
-
 			$safe_key = sanitize_key($key);
-
 			if (is_array($value)) {
 				$clean[$safe_key] = array_map('sanitize_text_field', $value);
 			} else {
@@ -860,11 +858,10 @@ class WP_Event_Manager_Ajax {
 		}
 
 		$params = $clean;
-		$params['venue_description'] = sanitize_text_field( wp_unslash( $_POST['venue_description'] ) );
+		$params['venue_description'] = isset( $_POST['venue_description'] ) ? sanitize_text_field( wp_unslash( $_POST['venue_description'] ) ) : '';
 		$params['submit_venue'] = 'Submit';
 
 		$data = [];
-
 		if(!empty($params['venue_name']) && isset($params['venue_id'])  && $params['venue_id'] == 0) {
 			$_POST = $params;
 

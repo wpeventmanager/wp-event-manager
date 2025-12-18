@@ -1194,10 +1194,10 @@ class WP_Event_Manager_Writepanels {
 				if(isset($_POST[$key])){
 					if(is_array($_POST[$key])) {
 						$thumbnail_image = isset($_POST[$key][0]) ? sanitize_text_field(wp_unslash($_POST[$key][0])) : '';
-						update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
+						update_post_meta($post_id, sanitize_key(wp_unslash($key)), array_filter(array_map('sanitize_text_field', $_POST[$key])));
 					} else {
 						$thumbnail_image = isset($_POST[$key]) ? sanitize_text_field(wp_unslash($_POST[$key])) : '';
-						update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
+						update_post_meta($post_id, sanitize_key(wp_unslash($key)), sanitize_text_field(wp_unslash($_POST[$key])));
 					}
 				}
 				$image = get_the_post_thumbnail_url($post_id);
@@ -1233,7 +1233,7 @@ class WP_Event_Manager_Writepanels {
 					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']) . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(($date_dbformatted)));
+					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
 				} else {
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
 				}
@@ -1250,7 +1250,7 @@ class WP_Event_Manager_Writepanels {
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']) . ' H:i:s', $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(trim($date_dbformatted)));
+					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
 				} else {
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
 				}
@@ -1264,7 +1264,7 @@ class WP_Event_Manager_Writepanels {
 					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']), $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(trim($date_dbformatted)));
+					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
 				} else {
 					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
 				}
@@ -1320,7 +1320,7 @@ class WP_Event_Manager_Writepanels {
 							}
 
 							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-							update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
+							update_post_meta($post_id, sanitize_key(wp_unslash($key)), trim($date_dbformatted));
 							$date_dbformatted = gmdate($php_date_format, strtotime($date_dbformatted));
 						}
 						break;
@@ -1334,13 +1334,13 @@ class WP_Event_Manager_Writepanels {
 								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time($time);
 								$time_dbformatted = !empty($time_dbformatted) ? $time_dbformatted : $time;
 							}
-							update_post_meta($post_id, sanitize_key($key), $time_dbformatted);
+							update_post_meta($post_id, sanitize_key(wp_unslash($key)), $time_dbformatted);
 						}
 						break;
 					case 'wp-editor':
 						if(!empty($_POST[$key])) {
 							$v_text = wp_kses_post(wp_unslash($_POST[$key]));
-							update_post_meta($post_id, sanitize_key($key), $v_text);
+							update_post_meta($post_id, sanitize_key(wp_unslash($key)), $v_text);
 						}
 						break;
 					default:
@@ -1349,10 +1349,10 @@ class WP_Event_Manager_Writepanels {
 						if ( ! isset( $_POST[$key] ) ) {
 							continue 2;
 						} elseif ( is_array( $_POST[$key] ) ) {
-							update_post_meta( $post_id, sanitize_key( $key ), array_filter( array_map( 'sanitize_text_field', $_POST[$key] ) ) );
+							update_post_meta( $post_id, sanitize_key( wp_unslash($key )), array_filter( array_map( 'sanitize_text_field', $_POST[$key] ) ) );
 						} else {
 							$saved_value = sanitize_text_field( $_POST[$key] );
-							update_post_meta( $post_id, sanitize_key( $key ), $saved_value );
+							update_post_meta( $post_id, sanitize_key( wp_unslash($key) ), $saved_value );
 
 							if ( ! empty( $field['type'] ) && $field['type'] === 'file' && ! empty( $field['folder_location'] ) ) {
 								$upload_dir = wp_upload_dir();
@@ -1370,23 +1370,19 @@ class WP_Event_Manager_Writepanels {
 
 									if ( @copy( $file_path, $new_path ) ) {
 										$new_url = trailingslashit( $upload_dir['baseurl'] ) . $field['folder_location'] . '/' . $filename;
-
-										update_post_meta( $post_id, sanitize_key( $key ), esc_url_raw( $new_url ) );
+										update_post_meta( $post_id, sanitize_key( wp_unslash($key) ), esc_url_raw( $new_url ) );
 									}
 								}
 							}
 						}
-
 						if ( $key == '_event_ticket_options' && $_POST[$key] == 'free' ) {
-							$ticket_type = $_POST[$key];
+							$ticket_type = sanitize_text_field(wp_unslash($_POST[$key]));
 						}
-
 						if ( $key == '_event_online' ) {
-							$event_online = $_POST[$key];
+							$event_online = sanitize_text_field(wp_unslash($_POST[$key]));
 						}
 						break;
 					}
-
 				}
 			}
 		}
@@ -1558,7 +1554,7 @@ class WP_Event_Manager_Writepanels {
 			}
 			// Everything else
 			else {
-				$type = !empty($field['type']) ? $field['type'] : '';
+				$type = isset($field['type']) ? sanitize_text_field(wp_unslash($field['type'])) : '';
 				switch ($type) {
 					case 'textarea':
 						update_post_meta($post_id, $key, wp_kses_post(stripslashes($_POST[$key])));
@@ -1567,7 +1563,7 @@ class WP_Event_Manager_Writepanels {
 						if (isset($_POST[$key])) {
 							$value = '';
 							if (!empty($_POST['_thumbnail_id'])) {
-								$thumb_id = intval($_POST['_thumbnail_id']);
+								$thumb_id = intval(wp_unslash($_POST['_thumbnail_id']));
 								$thumb_url = wp_get_attachment_url($thumb_id);
 
 								if ($thumb_url) {
@@ -1768,7 +1764,7 @@ class WP_Event_Manager_Writepanels {
 						break;
 						case 'wp-editor':
 							if(!empty($_POST[$key])) {
-								$v_text = wp_kses_post(stripslashes($_POST[$key]));
+								$v_text = wp_kses_post(wp_unslash($_POST[$key]));
 								update_post_meta($post_id, $key, $v_text);
 							}
 							break;
@@ -1778,7 +1774,7 @@ class WP_Event_Manager_Writepanels {
 						} elseif(is_array($_POST[$key])) {
 							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
 						} else {
-							update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
+							update_post_meta($post_id, $key, sanitize_text_field(wp_unslash($_POST[$key])));
 						}
 						break;
 				}

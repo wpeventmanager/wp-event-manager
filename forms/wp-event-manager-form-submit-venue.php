@@ -53,7 +53,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			$step_value = sanitize_text_field(wp_unslash($_POST['step']));
 			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search(esc_attr($step_value), array_keys($this->steps));
 		} elseif(!empty($_GET['step'])) {
-			$step_input = isset( $_GET['step'] ) ? wp_unslash( $_GET['step'] ) : '';
+			$step_input = isset( $_GET['step'] ) ? sanitize_text_field(wp_unslash( $_GET['step'] )) : 1;
 			if ( is_numeric( $step_input ) ) {
 				$this->step = max( absint( $step_input ), 0 );
 			} else {

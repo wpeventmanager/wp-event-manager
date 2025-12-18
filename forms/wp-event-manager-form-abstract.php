@@ -45,7 +45,7 @@ abstract class WP_Event_Manager_Form {
 			setcookie('wp-event-manager-submitting-event-id', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
 			setcookie('wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
 			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
-				$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] );
+				$request_uri = wp_kses_post( wp_unslash( $_SERVER['REQUEST_URI'] ) );
 				$clean_url   = remove_query_arg( array( 'new', 'key' ), esc_url_raw( $request_uri ) );
 				wp_safe_redirect( esc_url( $clean_url ) );
 				exit;
@@ -117,7 +117,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	public function get_action() {
-		return esc_url_raw($this->action ? $this->action : wp_unslash($_SERVER['REQUEST_URI']));
+		return esc_url_raw($this->action ? $this->action : wp_kses_post(wp_unslash($_SERVER['REQUEST_URI'])));
 	}
 
 	/**
@@ -286,20 +286,20 @@ abstract class WP_Event_Manager_Form {
 					
 					switch ($field['type']) {
 						case 'textarea' :
-							$item[ $key ] = wp_kses_post(stripslashes($_POST[ $field_name ]));
+							$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
 							break;
 						case 'number' :
 							if(is_array($_POST[ $field_name ])) {
 								$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_POST[ $field_name ])));
 							} else {
-								$item[ $key ] = sanitize_text_field(stripslashes($_POST[ $field_name ]));
+								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(stripslashes($_POST[ $field_name ])) : '';
 							}	
 							break;
 						case 'date' :
 							if(!empty($_POST[ $field_name ])){
 								//Convert date and time value into DB formatted format and save eg. 1970-01-01
 								//$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, sanitize_text_field($_POST[ $field_name ]));	
-								$item[ $key ] = sanitize_text_field($_POST[ $field_name ]);
+								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field($_POST[ $field_name ]) : '';
 							} else{
 								$item[ $key ] = '';
 							}
@@ -324,7 +324,7 @@ abstract class WP_Event_Manager_Form {
 							break;
 						case 'checkbox':
 								if(!empty($_POST[ $field_name ]) && $_POST[ $field_name ] > 0) {
-									$item[ $key ] = wp_kses_post(stripslashes($_POST[ $field_name ]));			
+									$item[ $key ] =  isset($_POST[ $field_name ]) ? wp_kses_post(stripslashes($_POST[ $field_name ])) : '';			
 								}
 							break;
 						default :
@@ -332,7 +332,7 @@ abstract class WP_Event_Manager_Form {
 								if(is_array($_POST[ $field_name ])) {
 									$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_POST[ $field_name ])));
 								} else {
-									$item[ $key ] = sanitize_text_field(stripslashes($_POST[ $field_name ]));
+									$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(stripslashes($_POST[ $field_name ])) : '';
 								}	
 							}else{
 									$item[ $key ] = '';
@@ -434,7 +434,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	protected function get_posted_textarea_field($key, $field) {
-		return isset($_POST[ $key ]) ? wp_kses_post(trim(stripslashes($_POST[ $key ]))) : '';
+		return isset($_POST[ $key ]) ? wp_kses_post(trim(wp_unslash($_POST[ $key ]))) : '';
 	}
 
 	/**
@@ -488,7 +488,7 @@ abstract class WP_Event_Manager_Form {
 	protected function upload_file($field_key, $field) {
 		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]['name'])) {
 			if(!empty($field['allowed_mime_types'])) {
-				$allowed_mime_types =sanitize_text_field($field['allowed_mime_types']);
+				$allowed_mime_types =sanitize_text_field(wp_unslash($field['allowed_mime_types']));
 			} else {
 				$allowed_mime_types = get_allowed_mime_types();
 			}

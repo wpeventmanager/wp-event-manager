@@ -101,7 +101,7 @@ class WP_Event_Manager_Deactivation {
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ip = wp_kses_post(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
         } else {
-            $ip = wp_kses_post(wp_unslash($_SERVER['REMOTE_ADDR']));
+            $ip = isset($_SERVER['REMOTE_ADDR']) ? wp_kses_post(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
         }
         return $ip;
     }

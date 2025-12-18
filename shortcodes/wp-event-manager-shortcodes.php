@@ -796,8 +796,8 @@ class WP_Event_Manager_Shortcodes{
 
 			$selected_datetime = explode(',', $selected_datetime);
 
-			$start_date = esc_attr(strip_tags($selected_datetime[0]));
-			$end_date = isset($selected_datetime[1]) ? esc_attr(strip_tags($selected_datetime[1])) : $start_date;
+			$start_date = esc_attr(wp_strip_all_tags($selected_datetime[0]));
+			$end_date = isset($selected_datetime[1]) ? esc_attr(wp_strip_all_tags($selected_datetime[1])) : $start_date;
 
 			if ($start_date == 'today') {
 				$start_date = gmdate($php_date_format);

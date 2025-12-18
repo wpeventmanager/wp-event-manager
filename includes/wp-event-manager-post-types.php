@@ -1126,12 +1126,15 @@ class WP_Event_Manager_Post_Types {
 			$attachments = get_children(array(
 		        'post_parent' => $post_id,
 		        'post_type'   => 'attachment'
-		  ));
+		  	));
+			if ( ! empty( $attachments ) ) {
+				foreach ( $attachments as $attachment ) {
+					wp_delete_attachment( $attachment->ID, true );
 
-			if($attachments) {
-				foreach ($attachments as $attachment) {
-					wp_delete_attachment($attachment->ID);
-					@unlink(get_attached_file($attachment->ID));
+					$file = get_attached_file( $attachment->ID );
+					if ( $file ) {
+						wp_delete_file( $file );
+					}
 				}
 			}
 		}

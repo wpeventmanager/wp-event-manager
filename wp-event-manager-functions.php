@@ -1334,7 +1334,7 @@ function get_event_expiry_date($event_id) {
 
 	if($option==='event_end_date')	{
 		if($expiry_base_date)
-			return date('Y-m-d', strtotime($expiry_base_date));
+			return gmdate('Y-m-d', strtotime($expiry_base_date));
 	} else {
 		// Get duration from the admin settings if set.
 		$duration = esc_attr(get_post_meta($event_id, '_event_duration', true));		
@@ -1343,7 +1343,7 @@ function get_event_expiry_date($event_id) {
 			$duration = absint(get_option('event_manager_submission_duration'));
 		}
 		if($duration) 
-			return date('Y-m-d', strtotime("+{$duration} days", strtotime($expiry_base_date)));
+			return gmdate('Y-m-d', strtotime("+{$duration} days", strtotime($expiry_base_date)));
 	}
 	return '';
 }
