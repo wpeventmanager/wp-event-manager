@@ -772,7 +772,7 @@ class WP_Event_Manager_Settings{
 					</h2>
 					<div class="admin-setting-left">
 						<div class="white-background">
-							<?php if(!empty($_GET['settings-updated'])) {
+							<?php if(!empty($_GET['settings-updated']) && isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'wpem_settings_nonce')) {
 								flush_rewrite_rules();
 								echo wp_kses_post('<div class="updated fade event-manager-updated"><p>' . esc_attr__('Settings successfully saved', 'wp-event-manager') . '</p></div>');
 							}

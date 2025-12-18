@@ -402,7 +402,7 @@ A prior Backup does no harm before updating the plugin!',
 	 */
 	public function admin_init() {
 		if(isset( $_GET['event-manager-main-admin-dismiss']) && !empty($_GET['event-manager-main-admin-dismiss'])){
-			if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'wpem_dismiss_admin_notice' ) ) {
+			if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash($_GET['_wpnonce'])), 'wpem_dismiss_admin_notice' ) ) {
 				update_option('event_manager_rating_showcase_admin_notices_dismiss', 1);
 			}
 		}
