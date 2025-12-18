@@ -526,10 +526,10 @@ class WP_Event_Manager_Ajax {
 			'search_event_types'  	=> $search_event_types,
 			'search_ticket_prices'	=> $search_ticket_prices,			
 			'orderby'            	=> $orderby,
-			'order'              	=> esc_attr(wp_unslash($_REQUEST['order'])),
-			'offset'             	=> (absint(wp_unslash($_REQUEST['page'])) - 1) * absint( wp_unslash( $_REQUEST['per_page'])),
-			'posts_per_page'     	=> absint(wp_unslash($_REQUEST['per_page'])),
-			'lang'    	            => apply_filters('wpem_set_default_page_language', wp_unslash($_REQUEST['lang'])),
+			'order'              	=> isset($_REQUEST['order']) ? sanitize_text_field(wp_unslash($_REQUEST['order'])) : 'DESC',
+			'offset'             	=> isset($_REQUEST['page']) ? (absint(wp_unslash($_REQUEST['page'])) - 1) * absint( wp_unslash( $_REQUEST['per_page'])) : 0,
+			'posts_per_page'     	=> isset($_REQUEST['per_page']) ? absint(wp_unslash($_REQUEST['per_page'])) : 10,
+			'lang'    	            => isset($_REQUEST['lang']) ? apply_filters('wpem_set_default_page_language', sanitize_text_field(wp_unslash($_REQUEST['lang']))) : '',
 		);
 
 		if(isset($_REQUEST['cancelled']) && ($_REQUEST['cancelled'] === 'true' || $_REQUEST['cancelled'] === 'false')) {
@@ -542,7 +542,7 @@ class WP_Event_Manager_Ajax {
 		}
 
 		if(isset($_REQUEST['event_online']) && ($_REQUEST['event_online'] === 'true' || $_REQUEST['event_online'] === 'false')) {
-			$args['event_online'] = wp_unslash($_REQUEST['event_online']) === 'false' ? sanitize_text_field(wp_unslash($_REQUEST['event_online'])) : true;
+			$args['event_online'] = ($_REQUEST['event_online'] === 'false') ? sanitize_text_field(wp_unslash($_REQUEST['event_online'])) : true;
 		}
 
 		ob_start();
@@ -677,7 +677,8 @@ class WP_Event_Manager_Ajax {
 		
 		// Generate pagination
 		if(isset($_REQUEST['show_pagination']) && $_REQUEST['show_pagination'] === 'true') {
-			$result['pagination'] = get_event_listing_pagination($events->max_num_pages, absint(wp_unslash($_REQUEST['page'])));
+			$page = isset($_REQUEST['page']) ? absint(wp_unslash($_REQUEST['page'])) : 1;
+			$result['pagination'] = get_event_listing_pagination($events->max_num_pages, $page);
 		}
 		$result['max_num_pages'] = $events->max_num_pages;
 		wp_send_json(apply_filters('event_manager_get_listings_result', $result, $events));

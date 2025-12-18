@@ -40,12 +40,17 @@ abstract class WP_Event_Manager_Form {
 			isset($_COOKIE[ 'wp-event-manager-submitting-event-id' ]) &&
 			isset($_COOKIE[ 'wp-event-manager-submitting-event-key' ]) &&
 			esc_attr(get_post_meta(absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_wpem_unique_key', true)) == $_COOKIE['wp-event-manager-submitting-event-key']
-			) {
-				delete_post_meta(absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_wpem_unique_key');
-				setcookie('wp-event-manager-submitting-event-id', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				setcookie('wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				wp_safe_redirect(esc_url(remove_query_arg(array('new', 'key'), esc_url_raw( wp_unslash($_SERVER[ 'REQUEST_URI' ])))));
+		) {
+			delete_post_meta(absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_wpem_unique_key');
+			setcookie('wp-event-manager-submitting-event-id', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
+			setcookie('wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
+			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+				$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] );
+				$clean_url   = remove_query_arg( array( 'new', 'key' ), esc_url_raw( $request_uri ) );
+				wp_safe_redirect( esc_url( $clean_url ) );
+				exit;
 			}
+		}
     			
     	$step_key = $this->get_step_key($this->step);
         if($step_key && is_callable($this->steps[ $step_key ]['handler'])) {

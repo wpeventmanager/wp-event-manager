@@ -1193,10 +1193,10 @@ class WP_Event_Manager_Writepanels {
 			} elseif('_event_banner' === $key) {
 				if(isset($_POST[$key])){
 					if(is_array($_POST[$key])) {
-						$thumbnail_image = $_POST[$key][0];
+						$thumbnail_image = isset($_POST[$key][0]) ? sanitize_text_field(wp_unslash($_POST[$key][0])) : '';
 						update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
 					} else {
-						$thumbnail_image = $_POST[$key];
+						$thumbnail_image = isset($_POST[$key]) ? sanitize_text_field(wp_unslash($_POST[$key])) : '';
 						update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
 					}
 				}
@@ -1339,7 +1339,7 @@ class WP_Event_Manager_Writepanels {
 						break;
 					case 'wp-editor':
 						if(!empty($_POST[$key])) {
-							$v_text = wp_kses_post(stripslashes($_POST[$key]));
+							$v_text = wp_kses_post(wp_unslash($_POST[$key]));
 							update_post_meta($post_id, sanitize_key($key), $v_text);
 						}
 						break;

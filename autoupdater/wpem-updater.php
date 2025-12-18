@@ -217,8 +217,8 @@ class WPEM_Updater {
 
 	//Try to activate a licence.
 	public function activate_licence( $plugin_info ) {
-		$licence_key = sanitize_text_field( $_POST[ $plugin_info['TextDomain'] . '_licence_key' ] );
-		$email       = sanitize_text_field( $_POST[ $plugin_info['TextDomain'] . '_email' ] );
+		$licence_key = isset($_POST[ $plugin_info['TextDomain'] . '_licence_key' ]) ? sanitize_text_field( wp_unslash ( $_POST[ $plugin_info['TextDomain'] . '_licence_key' ] ) ) : '';
+		$email       = isset($_POST[ $plugin_info['TextDomain'] . '_email' ]) ? sanitize_text_field( wp_unslash ( $_POST[ $plugin_info['TextDomain'] . '_email' ] ) ) : '';
 
 		try {
 			if ( empty( $licence_key ) ) {

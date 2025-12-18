@@ -111,9 +111,9 @@ class WP_Event_Manager_Permalink_Settings {
 				switch_to_locale(get_locale());
 			}
 			$permalinks                  = (array) get_option('wpem_permalinks', array());
-			$permalinks['event_base']    = sanitize_title_with_dashes(wp_unslash($_POST['wpem_event_base_slug']));
-			$permalinks['category_base'] = sanitize_title_with_dashes(wp_unslash($_POST['wpem_event_category_slug']));
-			$permalinks['type_base']     = sanitize_title_with_dashes(wp_unslash($_POST['wpem_event_type_slug']));
+			$permalinks['event_base']    = isset($_POST['wpem_event_base_slug']) ? sanitize_title_with_dashes(wp_unslash($_POST['wpem_event_base_slug'])) : '';
+			$permalinks['category_base'] = isset($_POST['wpem_event_category_slug']) ? sanitize_title_with_dashes(wp_unslash($_POST['wpem_event_category_slug'])) : '';
+			$permalinks['type_base']     = isset($_POST['wpem_event_type_slug']) ? sanitize_title_with_dashes(wp_unslash($_POST['wpem_event_type_slug'])) : '';
 			update_option('wpem_permalinks', $permalinks);
 			if(function_exists('restore_current_locale')) {
 				restore_current_locale();

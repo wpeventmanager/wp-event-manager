@@ -53,7 +53,14 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			$step_value = sanitize_text_field(wp_unslash($_POST['step']));
 			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search(esc_attr($step_value), array_keys($this->steps));
 		} elseif(!empty($_GET['step'])) {
-			$this->step = is_numeric( wp_unslash( $_GET['step'] )) ? max(absint( wp_unslash( $_GET['step'] )), 0) : array_search(esc_attr(wp_unslash($_GET['step'])), array_keys($this->steps));
+			$step_input = isset( $_GET['step'] ) ? wp_unslash( $_GET['step'] ) : '';
+			if ( is_numeric( $step_input ) ) {
+				$this->step = max( absint( $step_input ), 0 );
+			} else {
+				// sanitize as string for safe array_search
+				$step_input_sanitized = sanitize_text_field( $step_input );
+				$this->step = array_search( $step_input_sanitized, array_keys( $this->steps ), true );
+			}
 		}
 		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint( wp_unslash( $_REQUEST[ 'venue_id' ])) : 0;
 		if(!event_manager_user_can_edit_event($this->venue_id)) {

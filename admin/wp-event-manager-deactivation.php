@@ -97,11 +97,11 @@ class WP_Event_Manager_Deactivation {
 	 */
     public function wpem_get_user_ip() {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
+            $ip = wp_kses_post(wp_unslash($_SERVER['HTTP_CLIENT_IP']));
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            $ip = wp_kses_post(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
         } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
+            $ip = wp_kses_post(wp_unslash($_SERVER['REMOTE_ADDR']));
         }
         return $ip;
     }
@@ -149,7 +149,7 @@ class WP_Event_Manager_Deactivation {
 
         if (isset($_POST['reason'])) {
             $reason = sanitize_text_field(wp_unslash($_POST['reason']));
-            $additional_feedback = sanitize_text_field(wp_unslash($_POST['additional_feedback']));
+            $additional_feedback = isset($_POST['additional_feedback']) ? sanitize_text_field(wp_unslash($_POST['additional_feedback'])) : '';
 
             $current_user = wp_get_current_user();
             $user_first_name = get_user_meta($current_user->ID, 'first_name', true);
