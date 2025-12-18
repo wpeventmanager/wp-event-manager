@@ -59,7 +59,12 @@ class WP_Event_Manager_Setup {
 	public function redirect() {
 		global $pagenow;
 
-		if(isset($_GET['page']) && sanitize_text_field( wp_unslash($_GET['page'])) === 'event-manager-setup') {
+		if(isset($_GET['page']) && sanitize_text_field( wp_unslash($_GET['page'])) === 'event-manager-setup') {		// Verify nonce for actions that modify data
+		if (isset($_GET['skip-event-manager-setup']) && sanitize_text_field(wp_unslash($_GET['skip-event-manager-setup'])) === 1) {
+			if (!isset($_GET['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'wpem_skip_setup_nonce')) {
+				wp_die('Security check failed');
+			}
+		}
 			if(get_option('wpem_installation', false)) {
 				wp_safe_redirect( admin_url( 'index.php' ) );
 			}
