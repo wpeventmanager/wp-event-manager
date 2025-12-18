@@ -299,10 +299,10 @@ class WP_Event_Manager_Setup {
 				<?php if(3 === $step) : ?>
 					<div class="wpem-setup-intro-block">
 						<div class="wpem-setup-end-step-settings">
-							<h4>Settings</h4>
+							<h4><?php esc_attr_e('Settings', 'wp-event-manager'); ?></h4>
 							<form method="post">
 							<div class="wpem-setup-end-step-setting">
-								<label>Set Date Format:</label>
+								<label><?php esc_attr_e('Set Date Format:', 'wp-event-manager'); ?></label>
 								<select name="wpem_date_format">
 									<?php 
 									$date_formats = WP_Event_Manager_Date_Time::get_event_manager_date_admin_settings();
@@ -314,7 +314,7 @@ class WP_Event_Manager_Setup {
 								</select>
 							</div>
 							<div class="wpem-setup-end-step-setting">
-								<label>Set Time Format:</label>
+								<label><?php esc_attr_e('Set Time Format:', 'wp-event-manager'); ?></label>
 								<select name="wpem-time-format">
 									<option value="12">12h</option>
 									<option value="24">24h</option>
@@ -374,6 +374,7 @@ class WP_Event_Manager_Setup {
 								</div>
 						</div>
 						<p class="submit">
+							<?php wp_nonce_field('wpem_save_installation_settings_nonce', 'security'); ?>
 							<a href="#" name="wpem_save_installation_settings" id="wpem_save_installation_settings" class="button button-primary"><?php esc_attr_e('Finish Setup', 'wp-event-manager'); ?></a>
 						</p>
 						</form>
