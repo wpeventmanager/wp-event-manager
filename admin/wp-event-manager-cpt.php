@@ -242,7 +242,7 @@ class WP_Event_Manager_CPT {
 		}
 		$selected_category = '';
 
-		if ( isset( $_GET['event_listing_category'] ) ) {
+		if ( isset( $_GET['event_listing_category'] ) && isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'wpem_category_filter' ) ) {
 			$selected_category = sanitize_text_field( wp_unslash( $_GET['event_listing_category'] ) );
 		}
 		$output = "<select name='event_listing_category' id='dropdown_event_listing_category'>";
@@ -279,7 +279,7 @@ class WP_Event_Manager_CPT {
 		}
 
 		$selected_event_type = '';
-		if ( isset( $_GET['event_listing_type'] ) ) {
+		if ( isset( $_GET['event_listing_type'] ) && isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'wpem_event_type_filter' ) ) {
 			$selected_event_type = sanitize_text_field( wp_unslash( $_GET['event_listing_type'] ) );
 		}
 		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
