@@ -4,7 +4,6 @@
 *
 */
 if(!defined('ABSPATH')) {
-	exit;
 }
 
 /**
@@ -23,6 +22,12 @@ class WP_Event_Manager_Setup {
 		add_action('admin_head', array($this, 'admin_head'));
 		add_action('admin_init', array($this, 'redirect'));
 		if(isset($_GET['page']) && 'event-manager-setup' === sanitize_text_field( wp_unslash($_GET['page']))) {
+			// Only verify nonce for actions that modify data
+			if (isset($_GET['skip-event-manager-setup']) && sanitize_text_field(wp_unslash($_GET['skip-event-manager-setup'])) === 1) {
+				if (!isset($_GET['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'wpem_skip_setup_nonce')) {
+					wp_die('Security check failed');
+				}
+			}
 			add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 12);
 		}
 		add_action('wp_ajax_wpem_save_installation_settings', array($this,'wpem_save_installation_settings'));
@@ -57,7 +62,6 @@ class WP_Event_Manager_Setup {
 		if(isset($_GET['page']) && sanitize_text_field( wp_unslash($_GET['page'])) === 'event-manager-setup') {
 			if(get_option('wpem_installation', false)) {
 				wp_safe_redirect( admin_url( 'index.php' ) );
-				exit;
 			}
 		}
 		// Bail if no activation redirect transient is set
@@ -77,7 +81,6 @@ class WP_Event_Manager_Setup {
 			return;
 		}
 		wp_safe_redirect(admin_url('index.php?page=event-manager-setup'));
-		exit;
 	}
 
 	/**
@@ -123,11 +126,6 @@ class WP_Event_Manager_Setup {
 	public function output() {
 		$step = !empty($_GET['step']) ? absint($_GET['step']) : 1;
 		$wpem_url = esc_url(get_option('wp_event_manager_store_url'));
-		if(isset($_GET['skip-event-manager-setup']) && sanitize_text_field( wp_unslash($_GET['skip-event-manager-setup'])) === 1) {
-			update_option('wpem_installation', 0);
-			update_option('wpem_installation_skip', 1);
-			wp_safe_redirect(admin_url('index.php'));
-			exit;
 		}
 
 		if(3 === $step && !empty($_POST)) {
@@ -153,8 +151,6 @@ class WP_Event_Manager_Setup {
 				}
 				$this->create_page($page_titles[$page], $content, 'event_manager_' . $page . '_page_id');
 			}
-			update_option('wpem_installation', 1);
-			update_option('wpem_installation_skip', 0);
 		} ?>
 
 		<div class="wp_event_manager wp_event_manager_addons_wrap">
@@ -187,7 +183,7 @@ class WP_Event_Manager_Setup {
 					</div>
 					<p class="submit">
 						<a href="<?php echo esc_url(add_query_arg('step', 2)); ?>" class="button button-primary"><?php esc_attr_e('Continue to page setup', 'wp-event-manager'); ?></a>
-						<a href="<?php echo esc_url(add_query_arg('skip-event-manager-setup', 1, admin_url('index.php?page=event-manager-setup&step=3'))); ?>" class="button button-border"><?php esc_attr_e('Skip for now', 'wp-event-manager'); ?></a>
+						<a href="<?php echo esc_url(wp_nonce_url(add_query_arg('skip-event-manager-setup', 1, admin_url('index.php?page=event-manager-setup&step=3')), 'wpem_skip_setup_nonce')); ?>" class="button button-border"><?php esc_attr_e('Skip for now', 'wp-event-manager'); ?></a>
 					</p>
 				<?php endif; ?>
 				<?php if(2 === $step) : ?>
@@ -411,7 +407,6 @@ class WP_Event_Manager_Setup {
 	public function wpem_save_installation_settings() {
 		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['security'] ) ), 'wpem_save_installation_settings_nonce' ) ) {
 			wp_send_json_error(array('message' => 'Invalid nonce'));
-			exit;
 		}
 
 		$date_format = isset( $_POST['date_format'] ) ? sanitize_text_field( wp_unslash( $_POST['date_format'] ) ) : '';
@@ -423,7 +418,6 @@ class WP_Event_Manager_Setup {
 		if ( ! empty( $time_format ) ) {
 			update_option('event_manager_timepicker_format', $time_format);
 		}
-		update_option('wpem_installation', 1);
 		wp_send_json_success(array(
 			'message' => 'Settings saved successfully!',
 			'redirect_url' => admin_url('index.php')
