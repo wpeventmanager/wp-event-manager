@@ -106,7 +106,7 @@ class WP_Event_Manager_Permalink_Settings {
 		if(!is_admin()) {
 			return;
 		}
-		if(isset($_POST['permalink_structure'])) {
+		if(isset($_POST['permalink_structure']) && isset($_POST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'update-permalink')) {
 			if(function_exists('switch_to_locale')) {
 				switch_to_locale(get_locale());
 			}
@@ -119,7 +119,7 @@ class WP_Event_Manager_Permalink_Settings {
 				restore_current_locale();
 			}
 		}
-	}
+	}	
 }
 
 WP_Event_Manager_Permalink_Settings::instance();
