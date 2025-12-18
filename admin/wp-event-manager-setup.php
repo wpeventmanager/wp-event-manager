@@ -84,8 +84,8 @@ class WP_Event_Manager_Setup {
 	 * Enqueue scripts for setup page.
 	 */
 	public function admin_enqueue_scripts()	{
-		wp_enqueue_style('event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array('dashicons'));
-		wp_enqueue_script('event_manager_setup_js', EVENT_MANAGER_PLUGIN_URL . '/assets//js/setup.min.js', array('jquery'), null, true);
+		wp_enqueue_style('event_manager_setup_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/setup.min.css', array('dashicons'), '1.0.0');
+		wp_enqueue_script('event_manager_setup_js', EVENT_MANAGER_PLUGIN_URL . '/assets//js/setup.min.js', array('jquery'), '1.0.0', true);
 
 		wp_localize_script('event_manager_setup_js', 'wpem_ajax', array(
 			'ajax_url' => admin_url('admin-ajax.php'),

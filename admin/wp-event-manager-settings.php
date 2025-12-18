@@ -754,7 +754,7 @@ class WP_Event_Manager_Settings{
 			));
 		wp_enqueue_script('chosen');	
 		wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '/assets/js/multiselect.min.js', array( 'jquery', 'chosen' ), EVENT_MANAGER_VERSION, true );
-		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
+		wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css', array(), '1.0.0' );
 		$this->init_settings(); ?>
 
 		<div class="wrap event-manager-settings-wrap">

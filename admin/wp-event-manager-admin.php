@@ -89,7 +89,7 @@ class WP_Event_Manager_Admin {
 		$screen = get_current_screen();
 
 		// Main frontend style
-		wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css');
+		wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css', array(), '1.0.0');
 
 		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue', 'event_listing_page_event-manager-shortcodes')))) {
 			$jquery_version = isset($wp_scripts->registered['jquery-ui-core']->ver) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
@@ -125,12 +125,11 @@ class WP_Event_Manager_Admin {
 				'no_result_text' => __('No results match', 'wp-event-manager'),
 			));
 		wp_enqueue_script('chosen');
-		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css');
+		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css', array(), '1.0.0');
 
-		wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css');
+		wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css', array(), '1.0.0');
 		wp_register_script('wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array('jquery', 'jquery-ui-core'), EVENT_MANAGER_VERSION, true);
 		wp_enqueue_script('wp-event-manager-jquery-timepicker');
-		
 	}
 
 	/**
@@ -342,6 +341,7 @@ A prior Backup does no harm before updating the plugin!',
 						"We've noticed you've been using WP Event Manager for some time now. We hope you love it! We'd be thrilled if you could %1$s. Don't forget to submit your site to %2$s and generate more traffic from our site.",
 						'wp-event-manager'
 					);
+
 					$review_link = sprintf(
 						'<strong><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></strong>',
 						esc_url( 'https://wordpress.org/support/plugin/wp-event-manager/reviews/' ),

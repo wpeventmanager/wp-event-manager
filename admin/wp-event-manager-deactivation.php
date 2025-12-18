@@ -41,7 +41,7 @@ class WP_Event_Manager_Deactivation {
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('wpem_deactivation_nonce'),
         ]);
-        wp_enqueue_style('wpem-deactivation-css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/wpem-deactivation.min.css');
+        wp_enqueue_style('wpem-deactivation-css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/wpem-deactivation.min.css', array(), '1.0.0', true);
 	}
 
     /**
