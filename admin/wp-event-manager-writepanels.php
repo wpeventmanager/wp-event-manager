@@ -1142,307 +1142,232 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function save_event_listing_data($post_id, $post){
+	public function save_event_listing_data($post_id, $post) {
 		global $wpdb;
 
 		// Security: verify nonce and user capability before processing form data.
-		if ( empty( $_POST ) ) {
-			return;
-		}
-		if ( empty( $_POST['event_manager_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['event_manager_nonce'] ) ), 'save_meta_data' ) ) {
-			return;
-		}
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
-			return;
-		}
-		// These need to exist
+		if ( empty($_POST) ) return;
+
+		if ( empty($_POST['event_manager_nonce']) || ! wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['event_manager_nonce'])), 'save_meta_data') ) return;
+
+		if ( ! current_user_can('edit_post', $post_id) ) return;
+
+		// Ensure default meta exists
 		add_post_meta($post_id, '_cancelled', 0, true);
 		add_post_meta($post_id, '_featured', 0, true);
 		update_post_meta($post_id, '_event_title', get_the_title($post_id));
-		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
-		// Covert datepicker format  into php date() function date format
+		// Get date format from admin settings
+		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
-		// Save fields
+		$ticket_type = '';
+		$event_online = '';
+
 		foreach ($this->event_listing_fields() as $key => $field) {
 
-			// Event Expiry date
-			if('_event_expiry_date' === $key) {
-				if(!empty($_POST[$key])) {
-					$date_format = isset( $_POST['date_format'] ) ? wp_kses_post( wp_unslash($_POST['date_format'] ) ) : '';
-					$date_value  = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash($_POST[ $key ] ) ) : '';
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format( $date_format, $date_value );
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+			$raw_value = isset($_POST[$key]) ? wp_unslash($_POST[$key]) : null;
 
+			// Event Expiry Date
+			if ($key === '_event_expiry_date') {
+				if (!empty($raw_value)) {
+					$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
+					$date_value = sanitize_text_field($raw_value);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format, $date_value);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_value;
 					update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
 				} else {
 					update_post_meta($post_id, sanitize_key($key), '');
 				}
 			}
-			// Locations
-			elseif('_event_location' === $key) {
-				if(update_post_meta($post_id, $key, sanitize_text_field(wp_unslash($_POST[$key])))) {
-					// Location data will be updated by hooked in methods
-				} elseif(apply_filters('event_manager_geolocation_enabled', true) && !WP_Event_Manager_Geocode::has_location_data($post_id)) {
-					WP_Event_Manager_Geocode::generate_location_data($post_id, sanitize_text_field(wp_unslash($_POST[$key])));
+			// Event Location
+			elseif ($key === '_event_location') {
+				$location_value = sanitize_text_field($raw_value);
+				if (update_post_meta($post_id, $key, $location_value)) {
+					// location updated by hooked methods
+				} elseif (apply_filters('event_manager_geolocation_enabled', true) && !WP_Event_Manager_Geocode::has_location_data($post_id)) {
+					WP_Event_Manager_Geocode::generate_location_data($post_id, $location_value);
 				}
-			} elseif('_event_author' === $key) {
-				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint(sanitize_text_field(wp_unslash($_POST[$key]))) : 0), array('ID' => $post_id));
-			} elseif('_event_banner' === $key) {
-				if ( isset( $_POST[ $key ] ) ) {
-					$meta_key = sanitize_key( $key );
-					$raw_value = sanitize_text_field(wp_unslash( $_POST[ $key ] ));
-					if ( is_array( $raw_value ) ) {
-						$sanitized_values = array_filter(array_map( 'sanitize_text_field', $raw_value ));
-						$thumbnail_image = isset( $sanitized_values[0] ) ? $sanitized_values[0] : '';
-						update_post_meta(
-							$post_id,
-							$meta_key,
-							$sanitized_values
-						);
+			}
+			// Event Author
+			elseif ($key === '_event_author') {
+				$author_id = $raw_value > 0 ? absint($raw_value) : 0;
+				$wpdb->update($wpdb->posts, ['post_author' => $author_id], ['ID' => $post_id]);
+			}
+			// Event Banner
+			elseif ($key === '_event_banner') {
+				if (!empty($raw_value)) {
+					$meta_key = sanitize_key($key);
+					if (is_array($raw_value)) {
+						$sanitized_values = array_filter(array_map('sanitize_text_field', $raw_value));
+						$thumbnail_image = $sanitized_values[0] ?? '';
+						update_post_meta($post_id, $meta_key, $sanitized_values);
 					} else {
-						$thumbnail_image = sanitize_text_field( $raw_value );
-						update_post_meta(
-							$post_id,
-							$meta_key,
-							$thumbnail_image
-						);
+						$thumbnail_image = sanitize_text_field($raw_value);
+						update_post_meta($post_id, $meta_key, $thumbnail_image);
 					}
-				}
 
-				$image = get_the_post_thumbnail_url( $post_id );
-				if ( empty( $image ) && ! empty( $thumbnail_image ) ) {
-					$wp_upload_dir     = wp_get_upload_dir();
-					$baseurl           = trailingslashit( $wp_upload_dir['baseurl'] );
-					$wp_attached_file  = str_replace( $baseurl, '', $thumbnail_image );
-					$attachments = get_posts(
-						array(
-							'post_type'      => 'attachment',
+					$image = get_the_post_thumbnail_url($post_id);
+					if (empty($image) && !empty($thumbnail_image)) {
+						$wp_upload_dir = wp_get_upload_dir();
+						$baseurl = trailingslashit($wp_upload_dir['baseurl']);
+						$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
+						$attachments = get_posts([
+							'post_type' => 'attachment',
 							'posts_per_page' => 1,
-							'meta_key'       => '_wp_attached_file',
-							'meta_value'     => $wp_attached_file,
-						)
-					);
-					if ( ! empty( $attachments ) ) {
-						set_post_thumbnail( $post_id, $attachments[0]->ID );
+							'meta_key' => '_wp_attached_file',
+							'meta_value' => $wp_attached_file
+						]);
+						if (!empty($attachments)) {
+							set_post_thumbnail($post_id, $attachments[0]->ID);
+						}
 					}
 				}
-			} elseif('_event_start_date' === $key) {
-				if(isset($_POST[$key]) && !empty($_POST[$key])) {
-					if(isset($_POST['_event_start_time']) && !empty($_POST['_event_start_time'])) {
-						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_start_time'])));
-					} else {
-						$start_time = gmdate('H:i:s');
-					}
-					// Combine event start date value with event start time
-					$raw_input = wp_unslash( $_POST[ $key ] );
-					$date = sanitize_text_field(explode(' ', $raw_input)[0] . ' ' . $start_time);
-					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(wp_unslash($_POST['date_format'])) . ' H:i:s', $date);
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
-				} else {
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
-				}
-			} elseif('_event_end_date' === $key) {
-				if(isset($_POST[$key]) && !empty($_POST[$key])) {
-					if(isset($_POST['_event_end_time']) && !empty($_POST['_event_end_time'])) {
-						$start_time = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_end_time'])));
-					} else {
-						$start_time = gmdate('H:i:s');
-					}
-					// Combine event start date value with event start time
-					$raw_input = wp_unslash( $_POST[ $key ] );
-					$date = sanitize_text_field(explode(' ', $raw_input)[0] . ' ' . $start_time);
-					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(wp_unslash($_POST['date_format']) . ' H:i:s', $date));
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
-				} else {
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
-				}
-			} elseif('_event_registration_deadline' === $key) {
-				if(isset($_POST[$key]) && !empty($_POST[$key])) {
-
-					// Combine event start date value with event start time
-					$post_value = sanitize_text_field(wp_unslash($_POST[$key]));
-					$date = sanitize_text_field(explode(' ', $post_value)[0]);
-					// Convert date and time value into DB formatted format and save eg. 1970-01-01 00:00:00
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(wp_unslash($_POST['date_format'])), $date);
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($date_dbformatted)));
-				} else {
-					update_post_meta($post_id, sanitize_key($key), sanitize_text_field(wp_unslash($_POST[$key])));
-				}
-			} elseif ( '_event_organizer_ids' === $key ) {
-				if ( ! empty( $_POST[$key] ) ) {
-					$value = wp_unslash($_POST[$key]);
-					if ( is_array( $value ) ) {
-						$value = array_filter( array_map( 'sanitize_text_field', $value ) );
-					} else {
-						$value = sanitize_text_field( $value );
-					}
-					update_post_meta( $post_id, sanitize_key( $key ), $value );
-				} else {
-					update_post_meta( $post_id, sanitize_key( $key ), '' );
-				}
-			} elseif('_event_venue_ids' === $key) {
-				if(!empty($_POST[$key])) {
-						update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
+			}
+			// Event Start Date
+			elseif ($key === '_event_start_date') {
+				if (!empty($raw_value)) {
+					$start_time = !empty($_POST['_event_start_time']) ? WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_start_time']))) : gmdate('H:i:s');
+					$date_input = sanitize_text_field(explode(' ', $raw_value)[0] . ' ' . $start_time);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(sanitize_text_field(wp_unslash($_POST['date_format'])) . ' H:i:s'), $date_input);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
+					update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
 				} else {
 					update_post_meta($post_id, sanitize_key($key), '');
 				}
 			}
-			// Everything else
+			// Event End Date
+			elseif ($key === '_event_end_date') {
+				if (!empty($raw_value)) {
+					$end_time = !empty($_POST['_event_end_time']) ? WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_end_time']))) : gmdate('H:i:s');
+					$date_input = sanitize_text_field(explode(' ', $raw_value)[0] . ' ' . $end_time);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(sanitize_text_field(wp_unslash($_POST['date_format'])) . ' H:i:s'), $date_input);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
+					update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
+				} else {
+					update_post_meta($post_id, sanitize_key($key), '');
+				}
+			}
+			// Event Registration Deadline
+			elseif ($key === '_event_registration_deadline') {
+				if (!empty($raw_value)) {
+					$post_value = sanitize_text_field($raw_value);
+					$date_input = sanitize_text_field(explode(' ', $post_value)[0]);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(sanitize_text_field(wp_unslash($_POST['date_format']))), $date_input);
+					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
+					update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
+				} else {
+					update_post_meta($post_id, sanitize_key($key), '');
+				}
+			}
+			// Organizer IDs
+			elseif ($key === '_event_organizer_ids') {
+				if (!empty($raw_value)) {
+					$value = is_array($raw_value) ? array_filter(array_map('sanitize_text_field', $raw_value)) : sanitize_text_field($raw_value);
+					update_post_meta($post_id, sanitize_key($key), $value);
+				} else {
+					update_post_meta($post_id, sanitize_key($key), '');
+				}
+			}
+			// Venue IDs
+			elseif ($key === '_event_venue_ids') {
+				if (!empty($raw_value) && is_array($raw_value)) {
+					update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $raw_value)));
+				} else {
+					update_post_meta($post_id, sanitize_key($key), '');
+				}
+			}
+			// All other fields
 			else {
-				$type = !empty($field['type']) ? $field['type'] : '';
+				$type = $field['type'] ?? '';
+
 				switch ($type) {
 					case 'textarea':
-						update_post_meta($post_id, sanitize_key($key), wp_kses_post(wp_unslash($_POST[$key])));
+						update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
 						break;
+
 					case 'multiselect':
-						if(!empty($_POST[$key])) {
-							update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $_POST[$key])));
+						if (!empty($raw_value) && is_array($raw_value)) {
+							update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $raw_value)));
 						} else {
 							update_post_meta($post_id, sanitize_key($key), '');
 						}
 						break;
+
 					case 'checkbox':
-						if(isset($_POST[$key])) {
-							update_post_meta($post_id, sanitize_key($key), 1);
-						} else {
-							update_post_meta($post_id, sanitize_key($key), 0);
-						}
+						update_post_meta($post_id, sanitize_key($key), isset($_POST[$key]) ? 1 : 0);
 						break;
+
 					case 'date':
-						if(isset($_POST[$key])) {
-							$date = sanitize_text_field(wp_unslash($_POST[$key]));
-							$datetime = sanitize_text_field(explode(' ', $_POST[$key]));
-
-							// Convert date and time value into DB formatted format and save eg. 1970-01-01
-							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format . ' H:i:s', $date);
-							if(!isset($datetime[1])) {
-								$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
-							}
-
-							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-							update_post_meta($post_id, sanitize_key(wp_unslash($key)), trim($date_dbformatted));
-							$date_dbformatted = gmdate($php_date_format, strtotime($date_dbformatted));
+						if (!empty($raw_value)) {
+							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, sanitize_text_field($raw_value));
+							update_post_meta($post_id, sanitize_key($key), $date_dbformatted ?: $raw_value);
 						}
 						break;
+
 					case 'time':
-						if(isset($_POST[$key])) {
-
-							$time = sanitize_text_field(wp_unslash($_POST[$key]));
-							if(empty($_POST[$key])) {
-								$time_dbformatted = '';
-							} else {
-								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time($time);
-								$time_dbformatted = !empty($time_dbformatted) ? $time_dbformatted : $time;
-							}
-							update_post_meta($post_id, sanitize_key(wp_unslash($key)), $time_dbformatted);
+						if (!empty($raw_value)) {
+							$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($raw_value));
+							update_post_meta($post_id, sanitize_key($key), $time_dbformatted ?: '');
 						}
 						break;
+
 					case 'wp-editor':
-						if(!empty($_POST[$key])) {
-							$v_text = wp_kses_post(wp_unslash($_POST[$key]));
-							update_post_meta($post_id, sanitize_key(wp_unslash($key)), $v_text);
-						}
+						update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
 						break;
+
 					default:
-					$add_data = apply_filters('wpem_save_event_data', true, $key, isset($_POST[$key]) ? $_POST[$key] : null);
-					if ( $add_data ) {
-						if ( ! isset( $_POST[$key] ) ) {
-							continue 2;
-						} elseif ( is_array( $_POST[$key] ) ) {
-							update_post_meta( $post_id, sanitize_key( wp_unslash($key )), array_filter( array_map( 'sanitize_text_field', $_POST[$key] ) ) );
-						} else {
-							$saved_value = sanitize_text_field( $_POST[$key] );
-							update_post_meta( $post_id, sanitize_key( wp_unslash($key) ), $saved_value );
-
-							if ( ! empty( $field['type'] ) && $field['type'] === 'file' && ! empty( $field['folder_location'] ) ) {
-								$upload_dir = wp_upload_dir();
-								$custom_dir = trailingslashit( $upload_dir['basedir'] ) . sanitize_file_name( $field['folder_location'] );
-
-								if ( ! file_exists( $custom_dir ) ) {
-									wp_mkdir_p( $custom_dir );
-								}
-
-								$file_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $saved_value );
-
-								if ( file_exists( $file_path ) ) {
-									$filename = basename( $file_path );
-									$new_path = trailingslashit( $custom_dir ) . $filename;
-
-									if ( @copy( $file_path, $new_path ) ) {
-										$new_url = trailingslashit( $upload_dir['baseurl'] ) . $field['folder_location'] . '/' . $filename;
-										update_post_meta( $post_id, sanitize_key( wp_unslash($key) ), esc_url_raw( $new_url ) );
-									}
-								}
+						$add_data = apply_filters('wpem_save_event_data', true, $key, $raw_value);
+						if ($add_data) {
+							if (is_array($raw_value)) {
+								update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $raw_value)));
+							} elseif (!is_null($raw_value)) {
+								$saved_value = sanitize_text_field($raw_value);
+								update_post_meta($post_id, sanitize_key($key), $saved_value);
 							}
-						}
-						if ( $key == '_event_ticket_options' && $_POST[$key] == 'free' ) {
-							$ticket_type = sanitize_text_field(wp_unslash($_POST[$key]));
-						}
-						if ( $key == '_event_online' ) {
-							$event_online = sanitize_text_field(wp_unslash($_POST[$key]));
+							if ($key == '_event_ticket_options' && $raw_value == 'free') $ticket_type = 'free';
+							if ($key == '_event_online') $event_online = sanitize_text_field($raw_value);
 						}
 						break;
-					}
 				}
 			}
 		}
 
-		// Delete location meta if event is online
-		if(isset($event_online) && $event_online == 'yes') {
+		// Handle online events
+		if ($event_online === 'yes') {
 			update_post_meta($post_id, '_event_location', '');
 			update_post_meta($post_id, '_event_pincode', '');
 			update_post_meta($post_id, '_event_country', '');
-		} 
-		// Reset meta value if ticket type is free
-		if(isset($ticket_type) && $ticket_type=='free'){
+		}
+
+		// Handle free tickets
+		if ($ticket_type === 'free') {
 			update_post_meta($post_id, '_event_ticket_price', '');
 		}
-		
-		// Check if timezone settings is enabled as each event then set current time stamp.according to the timezone
-		// For eg. if each event selected then Berlin timezone will be different then current site timezone.
-		if(WP_Event_Manager_Date_Time::get_event_manager_timezone_setting() == 'each_event') {
-			/* Set Post Status To Expired If Already Expired */
-			$event_timezone = esc_html(get_post_meta($post_id, '_event_timezone', true));
-			$current_timestamp = WP_Event_Manager_Date_Time::current_timestamp_from_event_timezone($event_timezone);
-		} else {
-			$current_timestamp = current_time('timestamp'); // If site wise timezone selected
-		}
 
-		// Set expire date at 12:00 PM of the selected day     
-		$expiry_date = apply_filters('wpem_expire_date_time', gmdate('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($post_id, '_event_expiry_date', true)). ' 23:59:30')), $post);     
-		$today_date = apply_filters('wpem_get_current_expire_time', gmdate('Y-m-d H:i:s', $current_timestamp));     
+		// Handle timezone-based timestamps
+		$current_timestamp = (WP_Event_Manager_Date_Time::get_event_manager_timezone_setting() === 'each_event') 
+			? WP_Event_Manager_Date_Time::current_timestamp_from_event_timezone(esc_html(get_post_meta($post_id, '_event_timezone', true)))
+			: current_time('timestamp');
 
-		// Check for event expire    
+		$expiry_date = apply_filters('wpem_expire_date_time', gmdate('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($post_id, '_event_expiry_date', true)) . ' 23:59:30')), $post);
+		$today_date = apply_filters('wpem_get_current_expire_time', gmdate('Y-m-d H:i:s', $current_timestamp));
+
 		$post_status = $expiry_date && strtotime($today_date) > strtotime($expiry_date) ? 'expired' : false;
-		if($post_status) {
-			remove_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);
-			$event_data = array(
-				'ID'          => $post_id,
-				'post_status' => $post_status,
-			);
-			wp_update_post($event_data);
-			add_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);
+
+		if ($post_status) {
+			remove_action('event_manager_save_event_listing', [$this, 'save_event_listing_data'], 20, 2);
+			wp_update_post(['ID' => $post_id, 'post_status' => $post_status]);
+			add_action('event_manager_save_event_listing', [$this, 'save_event_listing_data'], 20, 2);
 		}
 
+		// Handle custom author
 		if (isset($_POST['_event_author'])) {
-			$custom_author = sanitize_text_field(wp_unslash($_POST['_event_author']));
+			$custom_author = absint(sanitize_text_field($_POST['_event_author']));
 			if ($custom_author && get_user_by('ID', $custom_author)) {
-				remove_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);
-				wp_update_post([
-					'ID' => $post_id,
-					'post_author' => $custom_author
-				]);
-				add_action('event_manager_save_event_listing', array($this, 'save_event_listing_data'), 20, 2);
+				remove_action('event_manager_save_event_listing', [$this, 'save_event_listing_data'], 20, 2);
+				wp_update_post(['ID' => $post_id, 'post_author' => $custom_author]);
+				add_action('event_manager_save_event_listing', [$this, 'save_event_listing_data'], 20, 2);
 			}
 		}
 	}
