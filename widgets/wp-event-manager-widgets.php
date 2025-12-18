@@ -497,6 +497,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 			$args['meta_key'] = '_event_start_date';
 			$args['meta_type'] = 'DATETIME';
 		}
+		// phpcs:ignore WordPressVIPMinimum.Performance.MetaQueryDetected
 		$events = new WP_Query($args);
 		echo wp_kses_post($before_widget);
 
@@ -646,6 +647,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 			$args['meta_key'] = '_event_start_date';
 			$args['meta_type'] = 'DATETIME';
 		}
+		// phpcs:ignore WordPressVIPMinimum.Performance.MetaQueryDetected
 		$events = new WP_Query($args);
 		
 		echo wp_kses_post($before_widget);

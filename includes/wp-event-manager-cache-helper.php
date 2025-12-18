@@ -110,22 +110,22 @@ class WP_Event_Manager_Cache_Helper {
 			! defined( 'WP_INSTALLING' )
 		) {
 			// Table names can be safely interpolated
-			$table = $wpdb->options;
-			$sql = "
-				DELETE a, b
-				FROM {$table} a
-				INNER JOIN {$table} b
-					ON b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
-				WHERE a.option_name LIKE %s
-				AND a.option_name NOT LIKE %s
-				AND b.option_value < %d
-			";
-			$like_transient = $wpdb->esc_like( '_transient_em_' ) . '%';
+			global $wpdb;
+
+			$like_transient         = $wpdb->esc_like( '_transient_em_' ) . '%';
 			$like_timeout_transient = $wpdb->esc_like( '_transient_timeout_em_' ) . '%';
-			$now = time();
+			$now                    = time();
 			$wpdb->query(
 				$wpdb->prepare(
-					$sql,
+					"
+					DELETE a, b
+					FROM {$wpdb->options} a
+					INNER JOIN {$wpdb->options} b
+						ON b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
+					WHERE a.option_name LIKE %s
+					AND a.option_name NOT LIKE %s
+					AND b.option_value < %d
+					",
 					$like_transient,
 					$like_timeout_transient,
 					$now
@@ -191,6 +191,7 @@ class WP_Event_Manager_Cache_Helper {
 			"SELECT option_name FROM {$wpdb->options} WHERE option_name RLIKE %s",
 			$pattern_safe
 		);
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		$transients = $wpdb->get_col( $sql );
 		
 		// For each transient...

@@ -117,7 +117,8 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	public function get_action() {
-		return esc_url_raw($this->action ? $this->action : wp_kses_post(wp_unslash($_SERVER['REQUEST_URI'])));
+		$action = $_SERVER['REQUEST_URI'] ? wp_kses_post(wp_unslash($_SERVER['REQUEST_URI'])) : '';
+		return esc_url_raw($this->action ? $this->action : $action);
 	}
 
 	/**
@@ -292,22 +293,22 @@ abstract class WP_Event_Manager_Form {
 							if(is_array($_POST[ $field_name ])) {
 								$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_POST[ $field_name ])));
 							} else {
-								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(stripslashes($_POST[ $field_name ])) : '';
+								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
 							}	
 							break;
 						case 'date' :
 							if(!empty($_POST[ $field_name ])){
 								//Convert date and time value into DB formatted format and save eg. 1970-01-01
 								//$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, sanitize_text_field($_POST[ $field_name ]));	
-								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field($_POST[ $field_name ]) : '';
+								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
 							} else{
 								$item[ $key ] = '';
 							}
 							break;
 						case 'time' :
 							if(!empty($_POST[ $field_name ])) {
-								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($_POST[ $field_name ]));
-								$item[ $key ] = !empty($time_dbformatted) ? $time_dbformatted : sanitize_text_field($_POST[ $field_name ]);
+								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST[ $field_name ])));
+								$item[ $key ] = !empty($time_dbformatted) ? $time_dbformatted : sanitize_text_field(wp_unslash($_POST[ $field_name ]));
 							} else {
 								$item[ $key ] = '';
 							}
@@ -324,7 +325,7 @@ abstract class WP_Event_Manager_Form {
 							break;
 						case 'checkbox':
 								if(!empty($_POST[ $field_name ]) && $_POST[ $field_name ] > 0) {
-									$item[ $key ] =  isset($_POST[ $field_name ]) ? wp_kses_post(stripslashes($_POST[ $field_name ])) : '';			
+									$item[ $key ] =  isset($_POST[ $field_name ]) ? wp_kses_post(wp_unslash($_POST[ $field_name ])) : '';			
 								}
 							break;
 						default :
@@ -332,7 +333,7 @@ abstract class WP_Event_Manager_Form {
 								if(is_array($_POST[ $field_name ])) {
 									$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_POST[ $field_name ])));
 								} else {
-									$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(stripslashes($_POST[ $field_name ])) : '';
+									$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
 								}	
 							}else{
 									$item[ $key ] = '';
@@ -384,7 +385,7 @@ abstract class WP_Event_Manager_Form {
 			$value = urldecode($value);
 		}
 		// Santize value
-		$value = is_array($value) ? array_map(array($this, 'sanitize_posted_field'), $value) : sanitize_text_field(stripslashes(trim($value)));
+		$value = is_array($value) ? array_map(array($this, 'sanitize_posted_field'), $value) : sanitize_text_field(wp_unslash(trim($value)));
 		return $value;
 	}
 
@@ -488,12 +489,12 @@ abstract class WP_Event_Manager_Form {
 	protected function upload_file($field_key, $field) {
 		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]['name'])) {
 			if(!empty($field['allowed_mime_types'])) {
-				$allowed_mime_types =sanitize_text_field(wp_unslash($field['allowed_mime_types']));
+				$allowed_mime_types = sanitize_text_field(wp_unslash($field['allowed_mime_types']));
 			} else {
 				$allowed_mime_types = get_allowed_mime_types();
 			}
 			$file_urls       = array();
-			$files_to_upload = event_manager_prepare_uploaded_files($_FILES[ $field_key ]);
+			$files_to_upload = event_manager_prepare_uploaded_files(sanitize_text_field(wp_unslash($_FILES[ $field_key ])));
 			foreach ($files_to_upload as $file_to_upload) {
 				$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $field_key ,'allowed_mime_types' => $allowed_mime_types));
 				if(is_wp_error($uploaded_file)) {

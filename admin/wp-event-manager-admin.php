@@ -335,14 +335,13 @@ A prior Backup does no harm before updating the plugin!',
 		if(!$installation || !$skip_intallation) { ?>
 			<div class="notice wp-event-manager-notice">
 				<div class="wp-event-manager-notice-logo"><span></span></div>
-				<?php $store_url = trailingslashit( esc_url( get_option( 'wp_event_manager_store_url' ) ) ) . 'showcase/';
+					<?php $store_url = trailingslashit( esc_url( get_option( 'wp_event_manager_store_url' ) ) ) . 'showcase/';
 
-				/* translators: 1: review link, 2: showcase link */
+					/* translators: 1: review link, 2: showcase link */
 					$message = __(
 						"We've noticed you've been using WP Event Manager for some time now. We hope you love it! We'd be thrilled if you could %1$s. Don't forget to submit your site to %2$s and generate more traffic from our site.",
 						'wp-event-manager'
 					);
-
 					$review_link = sprintf(
 						'<strong><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></strong>',
 						esc_url( 'https://wordpress.org/support/plugin/wp-event-manager/reviews/' ),
@@ -353,12 +352,10 @@ A prior Backup does no harm before updating the plugin!',
 						'<strong><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></strong>',
 						esc_url( $store_url ),
 						esc_html__( 'our showcase', 'wp-event-manager' )
-					);
-					?>
+					); ?>
 
 					<div class="wp-event-manager-notice-message wp-wp-event-manager-fresh">
-						<?php
-						echo wp_kses(
+						<?php echo wp_kses(
 							sprintf(
 								$message,
 								$review_link,
@@ -372,8 +369,7 @@ A prior Backup does no harm before updating the plugin!',
 									'rel'    => true,
 								),
 							)
-						);
-						?>
+						); ?>
 					</div>
 
 				</div>

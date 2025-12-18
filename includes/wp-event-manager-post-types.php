@@ -821,15 +821,40 @@ class WP_Event_Manager_Post_Types {
 		global $wpdb;
 		
 		// Change status to expired
-		$event_ids = $wpdb->get_col($wpdb->prepare("
-			SELECT postmeta.post_id FROM {$wpdb->postmeta} as postmeta
-			LEFT JOIN {$wpdb->posts} as posts ON postmeta.post_id = posts.ID
-			WHERE postmeta.meta_key = '_event_expiry_date'
-			AND postmeta.meta_value > 0
-			AND postmeta.meta_value < %s
-			AND posts.post_status = 'publish'
-			AND posts.post_type = 'event_listing'
-		", gmdate('Y-m-d H:i:s', current_time('timestamp'))));
+		$now = gmdate( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'event_listing',
+				'post_status'    => 'publish',
+				'fields'         => 'ids',
+				'posts_per_page' => -1,
+				'meta_query'     => array(
+					array(
+						'key'     => '_event_expiry_date',
+						'value'   => 0,
+						'compare' => '>',
+						'type'    => 'NUMERIC',
+					),
+					array(
+						'key'     => '_event_expiry_date',
+						'value'   => $now,
+						'compare' => '<',
+						'type'    => 'DATETIME',
+					),
+				),
+			)
+		);
+		$event_ids = $query->posts;
+
+		// $event_ids = $wpdb->get_col($wpdb->prepare("
+		// 	SELECT postmeta.post_id FROM {$wpdb->postmeta} as postmeta
+		// 	LEFT JOIN {$wpdb->posts} as posts ON postmeta.post_id = posts.ID
+		// 	WHERE postmeta.meta_key = '_event_expiry_date'
+		// 	AND postmeta.meta_value > 0
+		// 	AND postmeta.meta_value < %s
+		// 	AND posts.post_status = 'publish'
+		// 	AND posts.post_type = 'event_listing'
+		// ", gmdate('Y-m-d H:i:s', current_time('timestamp'))));
 
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
@@ -851,12 +876,29 @@ class WP_Event_Manager_Post_Types {
 		// Delete old expired events	
 		$return_flag=absint(get_option('event_manager_delete_expired_events')) == 1 ? true : false;
 		if(apply_filters('event_manager_delete_expired_events', $return_flag)) {
-			$event_ids = $wpdb->get_col($wpdb->prepare("
-				SELECT posts.ID FROM {$wpdb->posts} as posts
-				WHERE posts.post_type = 'event_listing'
-				AND posts.post_modified < %s
-				AND posts.post_status = 'expired'
-			", gmdate('Y-m-d H:i:s', strtotime('-' . apply_filters('event_manager_delete_expired_events_days', 30) . ' days', current_time('timestamp')))));
+			$days = (int) apply_filters( 'event_manager_delete_expired_events_days', 30 );
+			$date = gmdate(
+				'Y-m-d H:i:s',
+				strtotime(
+					'-' . $days . ' days',
+					current_time( 'timestamp' )
+				)
+			);
+			$query = new WP_Query(
+				array(
+					'post_type'      => 'event_listing',
+					'post_status'    => 'expired',
+					'posts_per_page' => -1,
+					'fields'         => 'ids',
+					'date_query'     => array(
+						array(
+							'column' => 'post_modified_gmt',
+							'before' => $date,
+						),
+					),
+				)
+			);
+			$event_ids = $query->posts;
 			if($event_ids) {
 				foreach ($event_ids as $event_id) {
 					wp_trash_post($event_id);
@@ -903,13 +945,30 @@ class WP_Event_Manager_Post_Types {
 		global $wpdb;
 
 		// Delete old expired events
-		$event_ids = $wpdb->get_col($wpdb->prepare("
-			SELECT posts.ID FROM {$wpdb->posts} as posts
-			WHERE posts.post_type = 'event_listing'
-			AND posts.post_modified < %s
-			AND posts.post_status = 'preview'
-		", gmdate('Y-m-d', strtotime('-30 days', current_time('timestamp')))));
+		// $event_ids = $wpdb->get_col($wpdb->prepare("
+		// 	SELECT posts.ID FROM {$wpdb->posts} as posts
+		// 	WHERE posts.post_type = 'event_listing'
+		// 	AND posts.post_modified < %s
+		// 	AND posts.post_status = 'preview'
+		// ", gmdate('Y-m-d', strtotime('-30 days', current_time('timestamp')))));
 
+		$date = gmdate('Y-m-d', strtotime( '-30 days', current_time( 'timestamp' ) ));
+
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'event_listing',
+				'post_status'    => 'preview',
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+				'date_query'     => array(
+					array(
+						'column' => 'post_modified_gmt',
+						'before' => $date,
+					),
+				),
+			)
+		);
+		$event_ids = $query->posts;
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
 				wp_delete_post($event_id, true);

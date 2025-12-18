@@ -1327,9 +1327,9 @@ function event_manager_get_allowed_mime_types($field = ''){
  */
 function get_event_expiry_date($event_id) {
 	//get set listing expiry time duration
-	$option=get_option('event_manager_submission_expire_options');
-	$event_start_date = esc_attr(get_post_meta($event_id, '_event_start_date', true));
-	$event_end_date = esc_attr(get_post_meta($event_id, '_event_end_date', true));
+	$option = get_option('event_manager_submission_expire_options');
+	$event_start_date = get_post_meta($event_id, '_event_start_date', true);
+	$event_end_date = get_post_meta($event_id, '_event_end_date', true);
 	$expiry_base_date = $event_end_date ? $event_end_date : $event_start_date;
 
 	if($option==='event_end_date')	{
@@ -1337,8 +1337,7 @@ function get_event_expiry_date($event_id) {
 			return gmdate('Y-m-d', strtotime($expiry_base_date));
 	} else {
 		// Get duration from the admin settings if set.
-		$duration = esc_attr(get_post_meta($event_id, '_event_duration', true));		
-
+		$duration = get_post_meta($event_id, '_event_duration', true);		
 		if(!$duration) {		   
 			$duration = absint(get_option('event_manager_submission_duration'));
 		}
@@ -1392,6 +1391,7 @@ function event_manager_duplicate_listing($post_id) {
 	/*
 	 * Duplicate post meta, aside from some reserved fields.
 	 */
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$post_meta = $wpdb->get_results($wpdb->prepare("SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id=%d", $post_id));
 
 	do_action('event_manager_duplicate_listing_meta_start', $post_meta, $post, $new_post_id);

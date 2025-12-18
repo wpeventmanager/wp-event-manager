@@ -1191,34 +1191,42 @@ class WP_Event_Manager_Writepanels {
 			} elseif('_event_author' === $key) {
 				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint(sanitize_text_field(wp_unslash($_POST[$key]))) : 0), array('ID' => $post_id));
 			} elseif('_event_banner' === $key) {
-				if(isset($_POST[$key])){
-					if(is_array($_POST[$key])) {
-						$thumbnail_image = isset($_POST[$key][0]) ? sanitize_text_field(wp_unslash($_POST[$key][0])) : '';
-						update_post_meta($post_id, sanitize_key(wp_unslash($key)), array_filter(array_map('sanitize_text_field', $_POST[$key])));
+				if ( isset( $_POST[ $key ] ) ) {
+					$meta_key = sanitize_key( $key );
+					$raw_value = wp_unslash( $_POST[ $key ] );
+					if ( is_array( $raw_value ) ) {
+						$sanitized_values = array_filter(array_map( 'sanitize_text_field', $raw_value ));
+						$thumbnail_image = isset( $sanitized_values[0] ) ? $sanitized_values[0] : '';
+						update_post_meta(
+							$post_id,
+							$meta_key,
+							$sanitized_values
+						);
 					} else {
-						$thumbnail_image = isset($_POST[$key]) ? sanitize_text_field(wp_unslash($_POST[$key])) : '';
-						update_post_meta($post_id, sanitize_key(wp_unslash($key)), sanitize_text_field(wp_unslash($_POST[$key])));
+						$thumbnail_image = sanitize_text_field( $raw_value );
+						update_post_meta(
+							$post_id,
+							$meta_key,
+							$thumbnail_image
+						);
 					}
 				}
-				$image = get_the_post_thumbnail_url($post_id);
 
-				if(empty($image)) {
-					if(isset($thumbnail_image) && !empty($thumbnail_image)) {
-						$wp_upload_dir = wp_get_upload_dir();
-						$baseurl = $wp_upload_dir['baseurl'] . '/';
-						$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
-						$args = array(
-							'meta_key'       => '_wp_attached_file',
-							'meta_value'     => $wp_attached_file,
+				$image = get_the_post_thumbnail_url( $post_id );
+				if ( empty( $image ) && ! empty( $thumbnail_image ) ) {
+					$wp_upload_dir     = wp_get_upload_dir();
+					$baseurl           = trailingslashit( $wp_upload_dir['baseurl'] );
+					$wp_attached_file  = str_replace( $baseurl, '', $thumbnail_image );
+					$attachments = get_posts(
+						array(
 							'post_type'      => 'attachment',
 							'posts_per_page' => 1,
-						);
-						$attachments = get_posts($args);
-						if(!empty($attachments)) {
-							foreach ($attachments as $attachment) {
-								set_post_thumbnail($post_id, $attachment->ID);
-							}
-						}
+							'meta_key'       => '_wp_attached_file',
+							'meta_value'     => $wp_attached_file,
+						)
+					);
+					if ( ! empty( $attachments ) ) {
+						set_post_thumbnail( $post_id, $attachments[0]->ID );
 					}
 				}
 			} elseif('_event_start_date' === $key) {

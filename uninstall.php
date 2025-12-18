@@ -15,6 +15,7 @@ if (!is_multisite()) {
 	}
 } else {
 	global $wpdb;
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$blog_ids         = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
 	$original_blog_id = get_current_blog_id();
 
