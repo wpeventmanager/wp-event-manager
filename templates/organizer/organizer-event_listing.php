@@ -34,7 +34,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
                 <?php if ($upcomingEvents->have_posts()) : ?>
                     <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings wpem-event-listing-list-view">
                         <?php while ($upcomingEvents->have_posts()) : $upcomingEvents->the_post(); ?>
-                            <?php get_event_manager_template_part('content', 'event_listing'); ?>
+                            <?php wpem_get_event_manager_template('content', 'event_listing'); ?>
                         <?php endwhile; ?>
                     </div>
                     <?php if ($upcomingEvents->found_posts > $per_page) : ?>
@@ -44,7 +44,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
                     <?php endif; ?>
                 <?php
                 else :
-                    get_event_manager_template_part('content', 'no-events-found');
+                    wpem_get_event_manager_template('content', 'no-events-found');
                 endif; ?>
             </div>
             <!-- upcoming events list end-->
@@ -54,7 +54,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
                 <?php if ($currentEvents->have_posts()) : ?>
                     <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings wpem-event-listing-list-view">
                         <?php while ($currentEvents->have_posts()) : $currentEvents->the_post(); ?>
-                            <?php get_event_manager_template_part('content', 'event_listing'); ?>
+                            <?php wpem_get_event_manager_template('content', 'event_listing'); ?>
                         <?php endwhile; ?>
                     </div>
 
@@ -65,7 +65,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
                     <?php endif; ?>
                 <?php
                 else :
-                    get_event_manager_template_part('content', 'no-events-found');
+                    wpem_get_event_manager_template('content', 'no-events-found');
                 endif;  ?>
             </div>
             <!-- current events list end-->
@@ -75,7 +75,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
                 <?php if ($pastEvents->have_posts()) : ?>
                     <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings wpem-event-listing-list-view">
                         <?php while ($pastEvents->have_posts()) : $pastEvents->the_post(); ?>
-                            <?php get_event_manager_template_part('content', 'event_listing'); ?>
+                            <?php wpem_get_event_manager_template('content', 'event_listing'); ?>
                         <?php endwhile; ?>
                     </div>
                     <?php if ($pastEvents->found_posts > $per_page) : ?>
@@ -85,7 +85,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
                     <?php endif; ?>
                 <?php
                 else :
-                    get_event_manager_template_part('content', 'no-events-found');
+                    wpem_get_event_manager_template('content', 'no-events-found');
                 endif; ?>
             </div>
             <!-- past events list end-->

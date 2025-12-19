@@ -270,11 +270,11 @@ class WP_Event_Manager extends WPEM_Updater {
 			wp_register_script('wp-event-manager-ajax-file-upload', EVENT_MANAGER_PLUGIN_URL . '/assets/js/ajax-file-upload.min.js', array('jquery', 'jquery-fileupload'), EVENT_MANAGER_VERSION, true);
 
 			ob_start();
-			get_event_manager_template('form-fields/uploaded-file-html.php', array('name' => '', 'value' => '', 'extension' => 'jpg'));
+			wpem_get_event_manager_template('form-fields/uploaded-file-html.php', array('name' => '', 'value' => '', 'extension' => 'jpg'));
 			$js_field_html_img = ob_get_clean();
 
 			ob_start();
-			get_event_manager_template('form-fields/uploaded-file-html.php', array('name' => '', 'value' => '', 'extension' => 'zip'));
+			wpem_get_event_manager_template('form-fields/uploaded-file-html.php', array('name' => '', 'value' => '', 'extension' => 'zip'));
 			$js_field_html = ob_get_clean();
 
 			wp_localize_script('wp-event-manager-ajax-file-upload', 'event_manager_ajax_file_upload', array(

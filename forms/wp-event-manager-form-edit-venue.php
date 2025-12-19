@@ -98,7 +98,7 @@ class WPEM_Event_Manager_Form_Edit_Venue extends WPEM_Event_Manager_Form_Submit_
 		$this->fields = apply_filters('submit_venue_form_fields_get_venue_data', $this->fields, $venue);
 		wp_enqueue_script('wp-event-manager-event-submission');
 
-		get_event_manager_template('venue-submit.php', 
+		wpem_get_event_manager_template('venue-submit.php', 
 			array(
 				'form'              => esc_attr($this->form_name),
 				'venue_id'          => esc_attr($this->get_venue_id()),

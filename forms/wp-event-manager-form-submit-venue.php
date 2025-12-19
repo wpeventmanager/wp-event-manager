@@ -260,7 +260,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		}
 
 		wp_enqueue_script('wp-event-manager-event-submission');
-		get_event_manager_template('venue-submit.php', 
+		wpem_get_event_manager_template('venue-submit.php', 
 			array(
 				'form'               => esc_attr($this->form_name),
 				'venue_id'       	 =>esc_attr($this->get_venue_id()),
@@ -558,7 +558,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 */
 	public function done() {
 		do_action('event_manager_venue_submitted', $this->venue_id);
-		get_event_manager_template(
+		wpem_get_event_manager_template(
 			'venue-submitted.php', 
 			array(
 				'venue' => get_post($this->venue_id) 

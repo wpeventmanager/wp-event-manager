@@ -783,7 +783,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 
 		wp_enqueue_script( 'wp-event-manager-event-submission' );
-		get_event_manager_template( 'event-submit.php', array(
+		wpem_get_event_manager_template( 'event-submit.php', array(
 			'form'              => esc_attr( $this->form_name ),
 			'event_id'          => esc_attr( $this->get_event_id() ),
 			'resume_edit'       => $this->resume_edit,
@@ -1245,7 +1245,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$post              = get_post( $this->event_id );
 			setup_postdata( $post );
 			$post->post_status = 'preview';
-				get_event_manager_template( 'event-preview.php',  array( 'form' => $this ) );
+				wpem_get_event_manager_template( 'event-preview.php',  array( 'form' => $this ) );
 			wp_reset_postdata();
 		}
 	}
@@ -1289,7 +1289,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 */
 	public function done() {
 		do_action( 'event_manager_event_submitted', $this->event_id );
-		get_event_manager_template( 'event-submitted.php', array( 'event' => get_post( $this->event_id ) ) );
+		wpem_get_event_manager_template( 'event-submitted.php', array( 'event' => get_post( $this->event_id ) ) );
 	}
 	
 	/**

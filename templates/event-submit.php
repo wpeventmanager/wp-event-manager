@@ -12,7 +12,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-event-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if(apply_filters('submit_event_form_show_signin', true)) : 
-		get_event_manager_template('account-signin.php'); 
+		wpem_get_event_manager_template('account-signin.php'); 
 	 endif; 
 	if(event_manager_user_can_post_event() || event_manager_user_can_edit_event($event_id)) : ?>
 		<!-- Event Information Fields -->
@@ -57,7 +57,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 						do_action('wpem_submit_event_form_addon_before', $field, $key);	
 					else : 
 						$field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-						get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); 
+						wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); 
 					endif; ?>
 				</div>
 			</fieldset>
@@ -81,7 +81,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 							</label>
 							<div class="field <?php echo (isset($field['required']) && $field['required'] == 1 ? 'required-field' : ''); ?>">
 								<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-								get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+								wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
@@ -107,7 +107,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 							</label>
 							<div class="field <?php echo (isset($field['required']) && $field['required'] == 1 ? 'required-field' : ''); ?>">
 								<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-								get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+								wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
@@ -163,7 +163,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 							</label>
 							<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 								<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-								get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+								wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
@@ -222,7 +222,7 @@ if(get_option('enable_event_venue')) :
 							
 							<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 								<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-								get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+								wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;

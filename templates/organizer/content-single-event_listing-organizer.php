@@ -91,11 +91,11 @@ if (has_event_organizer_ids()) : ?>
                                                          //get disable organizer fields
                                                          $organizer_fields = wpem_get_hidden_form_fields( 'event_manager_submit_organizer_form_fields', 'organizer');
 
-                                                         $organizer_website  = !in_array('organizer_website', $organizer_fields)?get_organizer_website($organizer_id):'';
-                                                         $organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?get_organizer_facebook($organizer_id):'';
-                                                         $organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?get_organizer_instagram($organizer_id):'';
-                                                         $organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?get_organizer_twitter($organizer_id):'';
-                                                         $organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?get_organizer_youtube($organizer_id):'';
+                                                         $organizer_website  = !in_array('organizer_website', $organizer_fields)?wpem_get_organizer_website($organizer_id):'';
+                                                         $organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?wpem_get_organizer_facebook($organizer_id):'';
+                                                         $organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?wpem_get_organizer_instagram($organizer_id):'';
+                                                         $organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?wpem_get_organizer_twitter($organizer_id):'';
+                                                         $organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?wpem_get_organizer_youtube($organizer_id):'';
                                                         
                                                         if (!empty($organizer_website) && !in_array('organizer_website', $field_to_hide)) { ?>
                                                             <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php esc_html_e('Website', 'wp-event-manager'); ?></a></div>
@@ -177,11 +177,11 @@ if (has_event_organizer_ids()) : ?>
                                             <div class="wpem-organizer-social-lists">
                                                 <?php do_action('single_event_listing_organizer_social_start');
                                                 
-                                                $organizer_website  = get_organizer_website();
-                                                $organizer_facebook = get_organizer_facebook();
-                                                $organizer_instagram = get_organizer_instagram();
-                                                $organizer_twitter  = get_organizer_twitter();
-                                                $organizer_youtube  = get_organizer_youtube();
+                                                $organizer_website  = wpem_get_organizer_website();
+                                                $organizer_facebook = wpem_get_organizer_facebook();
+                                                $organizer_instagram = wpem_get_organizer_instagram();
+                                                $organizer_twitter  = wpem_get_organizer_twitter();
+                                                $organizer_youtube  = wpem_get_organizer_youtube();
                                                 
                                                 if (!empty($organizer_website)) { ?>
                                                     <div class="wpem-social-icon wpem-weblink"><a href="<?php echo esc_url($organizer_website); ?>" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>" target="_blank"><?php esc_html_e('Website', 'wp-event-manager'); ?></a></div>

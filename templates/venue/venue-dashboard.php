@@ -49,11 +49,11 @@ do_action('event_manager_venue_dashboard_before'); ?>
 
                                         //get disable venue fields
                                         $venue_fields = wpem_get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
-                                        $venue_website  = !in_array('venue_website', $venue_fields)?get_venue_website($venue):'';
-                                        $venue_facebook = !in_array('venue_facebook', $venue_fields)?get_venue_facebook($venue):'';
-                                        $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_instagram($venue):'';
-                                        $venue_twitter  = !in_array('venue_twitter', $venue_fields)?get_venue_twitter($venue):'';
-                                        $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_youtube($venue):'';
+                                        $venue_website  = !in_array('venue_website', $venue_fields)?wpem_get_venue_website($venue):'';
+                                        $venue_facebook = !in_array('venue_facebook', $venue_fields)?wpem_get_venue_facebook($venue):'';
+                                        $venue_instagram = !in_array('venue_instagram', $venue_fields)?wpem_get_venue_instagram($venue):'';
+                                        $venue_twitter  = !in_array('venue_twitter', $venue_fields)?wpem_get_venue_twitter($venue):'';
+                                        $venue_youtube  = !in_array('venue_youtube', $venue_fields)?wpem_get_venue_youtube($venue):'';
 
                                         if (empty($venue_website) && empty($venue_facebook) && empty($venue_instagram) && empty($venue_twitter) && empty($venue_youtube)) {
                                             ?><span class="no-social-links">-</span><?php
@@ -149,7 +149,7 @@ do_action('event_manager_venue_dashboard_before'); ?>
             </tbody>
         </table>
     </div>
-    <?php get_event_manager_template('pagination.php', array('max_num_pages' => $max_num_pages)); ?>
+    <?php wpem_get_event_manager_template('pagination.php', array('max_num_pages' => $max_num_pages)); ?>
 </div>
 <!-- Venue list section end-->
 <?php do_action('event_manager_venue_dashboard_after'); ?>

@@ -226,7 +226,7 @@ class WP_Event_Manager_Ajax {
 
 			while ($upcoming_events->have_posts()) {
 				$upcoming_events->the_post();
-				get_event_manager_template_part('content', 'past_event_listing');
+				wpem_get_event_manager_template_part('content', 'past_event_listing');
 			}
 
 			$events_html = ob_get_clean();
@@ -277,7 +277,7 @@ class WP_Event_Manager_Ajax {
 
 			while ($past_events->have_posts()) {
 				$past_events->the_post();
-				get_event_manager_template_part('content', 'past_event_listing');
+				wpem_get_event_manager_template_part('content', 'past_event_listing');
 			}
 
 			$events_html = ob_get_clean();
@@ -450,7 +450,7 @@ class WP_Event_Manager_Ajax {
 
 			while ($upcoming_events->have_posts()) {
 				$upcoming_events->the_post();
-				get_event_manager_template_part('content', 'past_event_listing');
+				wpem_get_event_manager_template_part('content', 'past_event_listing');
 			}
 
 			$events_html = ob_get_clean();
@@ -578,7 +578,7 @@ class WP_Event_Manager_Ajax {
 					$fully_registered_events++;
 					continue;
 				}
-				get_event_manager_template_part('content', 'event_listing');
+				wpem_get_event_manager_template_part('content', 'event_listing');
 			endwhile; 
 			$events->found_posts -= $fully_registered_events;
 			?>
@@ -590,7 +590,7 @@ class WP_Event_Manager_Ajax {
 			));
 			if(count($default_events) == 0): ?>
 				<div class="no_event_listings_found wpem-alert wpem-alert-danger wpem-mb-0"><?php esc_attr_e('There are currently no events.', 'wp-event-manager'); ?></div>
-			<?php else: get_event_manager_template_part('content', 'no-events-found');
+			<?php else: wpem_get_event_manager_template_part('content', 'no-events-found');
 			endif;
 		endif;
 

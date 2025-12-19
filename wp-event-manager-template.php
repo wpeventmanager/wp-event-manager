@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string The name of the current role
  * @since 1.0.0
  **/
-function get_event_manager_current_user_role(){
+function wpem_get_event_manager_current_user_role(){
 	global $wp_roles;
 	$current_user = wp_get_current_user();
 	$roles = $current_user->roles;
@@ -36,7 +36,7 @@ function get_event_manager_current_user_role(){
  * @param string $default_path (default: '')
  * @return void
  */
-function get_event_manager_template($template_name, $args = array(), $template_path = 'wp-event-manager', $default_path = ''){
+function wpem_get_event_manager_template($template_name, $args = array(), $template_path = 'wp-event-manager', $default_path = ''){
 	if($args && is_array($args)) {
 		extract($args);
 	}
@@ -114,7 +114,7 @@ function locate_event_manager_template($template_name, $template_path = 'wp-even
  * @param string $template_path (default: 'wp-event-manager')
  * @param string|bool $default_path (default: '') False to not load a default
  */
-function get_event_manager_template_part($slug, $name = '', $template_path = 'wp-event-manager', $default_path = ''){
+function wpem_get_event_manager_template_part($slug, $name = '', $template_path = 'wp-event-manager', $default_path = ''){
 	$template = '';
 	if($name) {
 		$template = locate_event_manager_template("{$slug}-{$name}.php", $template_path, $default_path);
@@ -146,7 +146,7 @@ add_filter('body_class', 'event_manager_body_class');
  */
 function get_event_listing_pagination($max_num_pages, $current_page = 1){
 	ob_start();
-	get_event_manager_template('event-pagination.php', array('max_num_pages' => $max_num_pages, 'current_page' => absint($current_page)));
+	wpem_get_event_manager_template('event-pagination.php', array('max_num_pages' => $max_num_pages, 'current_page' => absint($current_page)));
 	return ob_get_clean();
 }
 
@@ -1378,13 +1378,13 @@ function event_manager_get_resized_image($logo, $size){
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_organizer_contact_person_name($post = null){
+function wpem_get_event_organizer_contact_person_name($post = null){
 
 	$post = get_post($post);
 	if($post->post_type !== 'event_listing')
 		return;
 
-	return apply_filters('display_organizer_contact_person_name', $post->_organizer_contact_person_name, $post);
+	return apply_filters('wpem_display_organizer_contact_person_name', $post->_organizer_contact_person_name, $post);
 }
 
 /**
@@ -1394,9 +1394,9 @@ function get_event_organizer_contact_person_name($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_contact_person_name($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_contact_person_name($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_contact_person_name = get_event_organizer_contact_person_name($post);
+	$organizer_contact_person_name = wpem_get_event_organizer_contact_person_name($post);
 	if(strlen($organizer_contact_person_name) == 0)
 		return;
 
@@ -1415,7 +1415,7 @@ function display_organizer_contact_person_name($before = '', $after = '', $echo 
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_organizer_email($post = null){
+function wpem_get_event_organizer_email($post = null){
 
 	$post = get_post($post);
 
@@ -1430,9 +1430,9 @@ function get_event_organizer_email($post = null){
 			}
 			$organizers_email .= esc_html(get_post_meta($organizer_id, '_organizer_email', true));
 		}
-		return apply_filters('display_organizer_email', $organizers_email, $post);
+		return apply_filters('wpem_display_organizer_email', $organizers_email, $post);
 	}
-	return apply_filters('display_organizer_email', $post->_organizer_email, $post);
+	return apply_filters('wpem_display_organizer_email', $post->_organizer_email, $post);
 }
 
 /**
@@ -1442,9 +1442,9 @@ function get_event_organizer_email($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_email($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_email($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_email = get_event_organizer_email($post);
+	$organizer_email = wpem_get_event_organizer_email($post);
 	if(strlen($organizer_email) == 0)
 		return;
 
@@ -1462,21 +1462,21 @@ function display_organizer_email($before = '', $after = '', $echo = true, $post 
  * @param mixed $post (default: null)
  * @return string
  */
-function get_organizer_video($post = null){
+function wpem_get_organizer_video($post = null){
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
 		return;
 
-	return apply_filters('display_organizer_video', $post->_organizer_video, $post);
+	return apply_filters('wpem_display_organizer_video', $post->_organizer_video, $post);
 }
 
 /**
  * Output the organizer video.
  */
-function display_organizer_video($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_video($before = '', $after = '', $echo = true, $post = null){
 
 	$video_embed = false;
-	$video       = get_organizer_video($post);
+	$video       = wpem_get_organizer_video($post);
 	$filetype    = wp_check_filetype($video);
 	if(!empty($video)) {
 		// FV Wordpress Flowplayer Support for advanced video formats
@@ -1488,7 +1488,7 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
 			$video_embed = wp_oembed_get($video);
 		}
 	}
-	$video_embed = apply_filters('display_organizer_video_embed', $video_embed, $post);
+	$video_embed = apply_filters('wpem_display_organizer_video_embed', $video_embed, $post);
 	if($video_embed) {
 		printf('<div class="organizer_video">%s</div>', wp_kses_post($video_embed));
 	}
@@ -1501,7 +1501,7 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
  * @param int $post (default: null)
  * @return void
  */
-function get_organizer_website($post = null){
+function wpem_get_organizer_website($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -1515,14 +1515,14 @@ function get_organizer_website($post = null){
 				$website .= 'http://' . $website;
 			}
 		}
-		return apply_filters('display_organizer_website', $website, $post);
+		return apply_filters('wpem_display_organizer_website', $website, $post);
 	}
 
 	$website = $post->_organizer_website;
 	if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 		$website = 'http://' . $website;
 	}
-	return apply_filters('display_organizer_website', $website, $post);
+	return apply_filters('wpem_display_organizer_website', $website, $post);
 }
 
 /**
@@ -1532,8 +1532,8 @@ function get_organizer_website($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_website($before = '', $after = '', $echo = true, $post = null){
-	$organizer_website = get_organizer_website($post);
+function wpem_display_organizer_website($before = '', $after = '', $echo = true, $post = null){
+	$organizer_website = wpem_get_organizer_website($post);
 
 	if(strlen($organizer_website) == 0)
 		return;
@@ -1553,7 +1553,7 @@ function display_organizer_website($before = '', $after = '', $echo = true, $pos
  * @param int $post (default: null)
  * @return void
  */
-function get_venue_website($post = null){
+function wpem_get_venue_website($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
@@ -1566,14 +1566,14 @@ function get_venue_website($post = null){
 		if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 			$website .= 'http://' . $website;
 		}
-		return apply_filters('display_venue_website', $website, $post);
+		return apply_filters('wpem_display_venue_website', $website, $post);
 	}
 
 	$website = $post->_venue_website;
 	if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 		$website = 'http://' . $website;
 	}
-	return apply_filters('display_venue_website', $website, $post);
+	return apply_filters('wpem_display_venue_website', $website, $post);
 }
 
 /**
@@ -1583,9 +1583,9 @@ function get_venue_website($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_website($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_venue_website($before = '', $after = '', $echo = true, $post = null){
 
-	$venue_website = get_venue_website($post);
+	$venue_website = wpem_get_venue_website($post);
 	if(strlen($venue_website) == 0)
 		return;
 
@@ -1604,9 +1604,9 @@ function display_venue_website($before = '', $after = '', $echo = true, $post = 
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_tagline($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_tagline($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_tagline = get_organizer_tagline($post);
+	$organizer_tagline = wpem_get_organizer_tagline($post);
 
 	if(strlen($organizer_tagline) == 0)
 		return;
@@ -1626,11 +1626,11 @@ function display_organizer_tagline($before = '', $after = '', $echo = true, $pos
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_tagline($post = null){
+function wpem_get_organizer_tagline($post = null){
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
 		return;
-	return apply_filters('display_organizer_tagline', $post->_organizer_tagline, $post);
+	return apply_filters('wpem_display_organizer_tagline', $post->_organizer_tagline, $post);
 }
 
 /**
@@ -1640,7 +1640,7 @@ function get_organizer_tagline($post = null){
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_twitter($post = null){
+function wpem_get_organizer_twitter($post = null){
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
 		return;
@@ -1653,7 +1653,7 @@ function get_organizer_twitter($post = null){
 	if(strpos($organizer_twitter, '@') === 0)
 		$organizer_twitter = substr($organizer_twitter, 1);
 
-	return apply_filters('display_organizer_twitter', $organizer_twitter, $post);
+	return apply_filters('wpem_display_organizer_twitter', $organizer_twitter, $post);
 }
 
 /**
@@ -1663,9 +1663,9 @@ function get_organizer_twitter($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_twitter($before = '', $after = '', $echo = true, $post = null) {
+function wpem_display_organizer_twitter($before = '', $after = '', $echo = true, $post = null) {
 
-	$organizer_twitter = get_organizer_twitter($post);
+	$organizer_twitter = wpem_get_organizer_twitter($post);
 
 	if(strlen($organizer_twitter) == 0)
 		return;
@@ -1685,7 +1685,7 @@ function display_organizer_twitter($before = '', $after = '', $echo = true, $pos
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_twitter($post = null){
+function wpem_get_venue_twitter($post = null){
 
 	$post = get_post($post);
 
@@ -1699,7 +1699,7 @@ function get_venue_twitter($post = null){
 	if(strpos($venue_twitter, '@') === 0)
 		$venue_twitter = substr($venue_twitter, 1);
 
-	return apply_filters('display_venue_twitter', $venue_twitter, $post);
+	return apply_filters('wpem_display_venue_twitter', $venue_twitter, $post);
 }
 
 /**
@@ -1709,9 +1709,9 @@ function get_venue_twitter($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_twitter($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_venue_twitter($before = '', $after = '', $echo = true, $post = null){
 
-	$venue_twitter = get_venue_twitter($post);
+	$venue_twitter = wpem_get_venue_twitter($post);
 
 	if(strlen($venue_twitter) == 0)
 		return;
@@ -1731,7 +1731,7 @@ function display_venue_twitter($before = '', $after = '', $echo = true, $post = 
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_facebook($post = null){
+function wpem_get_organizer_facebook($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -1741,7 +1741,7 @@ function get_organizer_facebook($post = null){
 	if(strlen($organizer_facebook) == 0)
 		return;
 
-	return apply_filters('display_organizer_facebook', $organizer_facebook, $post);
+	return apply_filters('wpem_display_organizer_facebook', $organizer_facebook, $post);
 }
 
 /**
@@ -1751,9 +1751,9 @@ function get_organizer_facebook($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_facebook($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_facebook($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_facebook = get_organizer_facebook($post);
+	$organizer_facebook = wpem_get_organizer_facebook($post);
 	if(strlen($organizer_facebook) == 0)
 		return;
 
@@ -1772,7 +1772,7 @@ function display_organizer_facebook($before = '', $after = '', $echo = true, $po
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_facebook($post = null){
+function wpem_get_venue_facebook($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
@@ -1782,7 +1782,7 @@ function get_venue_facebook($post = null){
 	if(strlen($venue_facebook) == 0)
 		return;
 
-	return apply_filters('display_venue_facebook', $venue_facebook, $post);
+	return apply_filters('wpem_display_venue_facebook', $venue_facebook, $post);
 }
 
 /**
@@ -1792,9 +1792,9 @@ function get_venue_facebook($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_facebook($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_venue_facebook($before = '', $after = '', $echo = true, $post = null){
 
-	$venue_facebook = get_venue_facebook($post);
+	$venue_facebook = wpem_get_venue_facebook($post);
 	if(strlen($venue_facebook) == 0)
 		return;
 
@@ -1813,7 +1813,7 @@ function display_venue_facebook($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_linkedin($post = null){
+function wpem_get_organizer_linkedin($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -1823,7 +1823,7 @@ function get_organizer_linkedin($post = null){
 	if(strlen($organizer_linkedin) == 0)
 		return;
 
-	return apply_filters('display_organizer_linkedin', $organizer_linkedin, $post);
+	return apply_filters('wpem_display_organizer_linkedin', $organizer_linkedin, $post);
 }
 
 /**
@@ -1833,9 +1833,9 @@ function get_organizer_linkedin($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_linkedin($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_linkedin($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_linkedin = get_organizer_linkedin($post);
+	$organizer_linkedin = wpem_get_organizer_linkedin($post);
 	if(strlen($organizer_linkedin) == 0)
 		return;
 
@@ -1854,7 +1854,7 @@ function display_organizer_linkedin($before = '', $after = '', $echo = true, $po
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_xing($post = null){
+function wpem_get_organizer_xing($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -1864,7 +1864,7 @@ function get_organizer_xing($post = null){
 	if(strlen($organizer_xing) == 0)
 		return;
 
-	return apply_filters('display_organizer_xing', $organizer_xing, $post);
+	return apply_filters('wpem_display_organizer_xing', $organizer_xing, $post);
 }
 
 /**
@@ -1874,9 +1874,9 @@ function get_organizer_xing($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_xing($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_xing($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_xing = get_organizer_xing($post);
+	$organizer_xing = wpem_get_organizer_xing($post);
 	if(strlen($organizer_xing) == 0)
 		return;
 
@@ -1895,7 +1895,7 @@ function display_organizer_xing($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_instagram($post = null){
+function wpem_get_organizer_instagram($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -1905,7 +1905,7 @@ function get_organizer_instagram($post = null){
 	if(strlen($organizer_instagram) == 0)
 		return;
 
-	return apply_filters('display_organizer_instagram', $organizer_instagram, $post);
+	return apply_filters('wpem_display_organizer_instagram', $organizer_instagram, $post);
 }
 
 /**
@@ -1915,9 +1915,9 @@ function get_organizer_instagram($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_instagram($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_instagram($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_instagram = get_organizer_instagram($post);
+	$organizer_instagram = wpem_get_organizer_instagram($post);
 	if(strlen($organizer_instagram) == 0)
 		return;
 
@@ -1936,7 +1936,7 @@ function display_organizer_instagram($before = '', $after = '', $echo = true, $p
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_instagram($post = null){
+function wpem_get_venue_instagram($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
@@ -1946,7 +1946,7 @@ function get_venue_instagram($post = null){
 	if(strlen($venue_instagram) == 0)
 		return;
 
-	return apply_filters('display_venue_instagram', $venue_instagram, $post);
+	return apply_filters('wpem_display_venue_instagram', $venue_instagram, $post);
 }
 
 /**
@@ -1956,9 +1956,9 @@ function get_venue_instagram($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_instagram($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_venue_instagram($before = '', $after = '', $echo = true, $post = null){
 
-	$venue_instagram = get_venue_instagram($post);
+	$venue_instagram = wpem_get_venue_instagram($post);
 	if(strlen($venue_instagram) == 0)
 		return;
 
@@ -1977,7 +1977,7 @@ function display_venue_instagram($before = '', $after = '', $echo = true, $post 
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_pinterest($post = null){
+function wpem_get_organizer_pinterest($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -1987,7 +1987,7 @@ function get_organizer_pinterest($post = null){
 	if(strlen($organizer_pinterest) == 0)
 		return;
 
-	return apply_filters('display_organizer_pinterest', $organizer_pinterest, $post);
+	return apply_filters('wpem_display_organizer_pinterest', $organizer_pinterest, $post);
 }
 
 /**
@@ -1997,9 +1997,9 @@ function get_organizer_pinterest($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_pinterest($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_pinterest($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_pinterest = get_organizer_pinterest($post);
+	$organizer_pinterest = wpem_get_organizer_pinterest($post);
 	if(strlen($organizer_pinterest) == 0)
 		return;
 
@@ -2018,7 +2018,7 @@ function display_organizer_pinterest($before = '', $after = '', $echo = true, $p
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_youtube($post = null){
+function wpem_get_organizer_youtube($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -2032,7 +2032,7 @@ function get_organizer_youtube($post = null){
 	if(strlen($organizer_youtube) == 0)
 		return;
 
-	return apply_filters('display_organizer_youtube', $organizer_youtube, $post);
+	return apply_filters('wpem_display_organizer_youtube', $organizer_youtube, $post);
 }
 
 /**
@@ -2042,9 +2042,9 @@ function get_organizer_youtube($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_youtube($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_youtube($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_youtube = get_organizer_youtube($post);
+	$organizer_youtube = wpem_get_organizer_youtube($post);
 	if(strlen($organizer_youtube) == 0)
 		return;
 
@@ -2064,7 +2064,7 @@ function display_organizer_youtube($before = '', $after = '', $echo = true, $pos
  * @return void
  */
 
-function get_venue_youtube($post = null){
+function wpem_get_venue_youtube($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
@@ -2074,7 +2074,7 @@ function get_venue_youtube($post = null){
 	if(strlen($venue_youtube) == 0)
 		return;
 
-	return apply_filters('display_venue_youtube', $venue_youtube, $post);
+	return apply_filters('wpem_display_venue_youtube', $venue_youtube, $post);
 }
 
 /**
@@ -2084,8 +2084,8 @@ function get_venue_youtube($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_youtube($before = '', $after = '', $echo = true, $post = null){
-	$venue_youtube = get_venue_youtube($post);
+function wpem_display_venue_youtube($before = '', $after = '', $echo = true, $post = null){
+	$venue_youtube = wpem_get_venue_youtube($post);
 	if(strlen($venue_youtube) == 0)
 		return;
 
@@ -2104,7 +2104,7 @@ function display_venue_youtube($before = '', $after = '', $echo = true, $post = 
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_google_plus($post = null){
+function wpem_get_organizer_google_plus($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -2114,7 +2114,7 @@ function get_organizer_google_plus($post = null){
 	if(strlen($organizer_google_plus) == 0)
 		return;
 
-	return apply_filters('display_organizer_google_plus', $organizer_google_plus, $post);
+	return apply_filters('wpem_display_organizer_google_plus', $organizer_google_plus, $post);
 }
 
 /**
@@ -2124,9 +2124,9 @@ function get_organizer_google_plus($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_google_plus($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_organizer_google_plus($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_google_plus = get_organizer_google_plus($post);
+	$organizer_google_plus = wpem_get_organizer_google_plus($post);
 	if(strlen($organizer_google_plus) == 0)
 		return;
 
@@ -2147,7 +2147,7 @@ function display_organizer_google_plus($before = '', $after = '', $echo = true, 
  * @return void
  */
 function event_listing_class($class = '', $post_id = null){
-    $classes = get_event_listing_class($class, $post_id);
+    $classes = wpem_get_event_listing_class($class, $post_id);
     echo 'class="' . esc_attr(join(' ', $classes)) . '"';
 }
 
@@ -2157,7 +2157,7 @@ function event_listing_class($class = '', $post_id = null){
  * @access public
  * @return array
  */
-function get_event_listing_class($class = '', $post_id = null){
+function wpem_get_event_listing_class($class = '', $post_id = null){
 
 	$post = get_post($post_id);
 	if($post->post_type !== 'event_listing') {
@@ -2201,7 +2201,7 @@ function get_event_listing_class($class = '', $post_id = null){
  * @return number counted view.
  * @param $post
  **/
-function get_post_views_count($post){
+function wpem_get_post_views_count($post){
 	$count_key = '_view_count';
 	$count = esc_attr(get_post_meta($post->ID, $count_key, true));
 
@@ -2216,8 +2216,8 @@ function get_post_views_count($post){
 /**
  * Count event view on the single event page.
  */
-function get_single_listing_view_count($post){
-	get_post_views_count($post);
+function wpem_get_single_listing_view_count($post){
+	wpem_get_post_views_count($post);
 }
 
 /**
@@ -2363,8 +2363,8 @@ function event_manager_get_event_listing_structured_data($post = null){
 		$data['validThrough'] = gmdate('c', strtotime($event_expires));
 	}
 
-	$data['description'] = get_event_description($post);
-	$data['name'] = wp_strip_all_tags(get_event_title($post));
+	$data['description'] = wpem_get_event_description($post);
+	$data['name'] = wp_strip_all_tags(wpem_get_event_title($post));
 	$data['image'] = get_event_banner($post);
 	$data['startDate'] = get_event_start_date($post);
 	$data['endDate'] = get_event_end_date($post);
@@ -2373,7 +2373,7 @@ function event_manager_get_event_listing_structured_data($post = null){
 	$data['eventStatus'] = 'EventScheduled';
 	$data['Organizer']['@type'] = 'Organization';
 	$data['Organizer']['name'] = get_organizer_name($post);
-	if($organizer_website = get_organizer_website($post)) {
+	if($organizer_website = wpem_get_organizer_website($post)) {
 		$data['Organizer']['sameAs'] = $organizer_website;
 		$data['Organizer']['url'] = $organizer_website;
 	}
@@ -2463,8 +2463,8 @@ function event_manager_get_event_listing_location_structured_data($post){
  * @param int|WP_Post $post
  * @return string
  */
-function display_event_title($post = null){
-	if($event_title = get_event_title($post)) {
+function wpem_display_event_title($post = null){
+	if($event_title = wpem_get_event_title($post)) {
 		echo esc_attr($event_title);
 	}
 }
@@ -2476,7 +2476,7 @@ function display_event_title($post = null){
  * @param int|WP_Post $post (default: null)
  * @return string|bool|null
  */
-function get_event_title($post = null){
+function wpem_get_event_title($post = null){
 	$post = get_post($post);
 	if(!$post || 'event_listing' !== $post->post_type) {
 		return;
@@ -2490,7 +2490,7 @@ function get_event_title($post = null){
 	 * @param string      $title Title to be filtered.
 	 * @param int|WP_Post $post
 	 */
-	return apply_filters('display_event_title', $title, $post);
+	return apply_filters('wpem_display_event_title', $title, $post);
 }
 
 /**
@@ -2501,7 +2501,7 @@ function get_event_title($post = null){
  * @return string
  */
 function wpem_display_event_description($post = null){
-	if($event_description = get_event_description($post)) {
+	if($event_description = wpem_get_event_description($post)) {
 		echo esc_attr($event_description);
 	}
 }
@@ -2513,7 +2513,7 @@ function wpem_display_event_description($post = null){
  * @param int|WP_Post $post (default: null)
  * @return string|bool|null
  */
-function get_event_description($post = null){
+function wpem_get_event_description($post = null){
 	$post = get_post($post);
 	if(!$post || 'event_listing' !== $post->post_type) {
 		return;
@@ -2534,22 +2534,22 @@ function get_event_description($post = null){
  * Get event ticket price.
  * @return event ticket price
  **/
-function get_event_ticket_price($post = null){
+function wpem_get_event_ticket_price($post = null){
 
 	$post = get_post($post);
 	if($post->post_type !== 'event_listing' || get_event_ticket_option() == 'free')
 		return;
 
-	return apply_filters('display_event_ticket_price', $post->_event_ticket_price, $post);
+	return apply_filters('wpem_display_event_ticket_price', $post->_event_ticket_price, $post);
 }
 
 /**
  * Display event ticket price.
  * @return
  **/
-function display_event_ticket_price($before = '', $after = '', $echo = true, $post = null){
+function wpem_display_event_ticket_price($before = '', $after = '', $echo = true, $post = null){
 
-	$event_ticket_price = get_event_ticket_price($post);
+	$event_ticket_price = wpem_get_event_ticket_price($post);
 	if(strlen($event_ticket_price) == 0)
 		return;
 

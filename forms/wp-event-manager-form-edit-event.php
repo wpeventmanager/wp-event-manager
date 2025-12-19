@@ -114,7 +114,7 @@ class WPEM_Event_Manager_Form_Edit_Event extends WPEM_Event_Manager_Form_Submit_
 		
 		$this->fields = apply_filters('submit_event_form_fields_get_event_data', $this->fields, $event);
 		wp_enqueue_script('wp-event-manager-event-submission');
-		get_event_manager_template('event-submit.php', array(
+		wpem_get_event_manager_template('event-submit.php', array(
 			'form'               => esc_attr($this->form_name),
 			'event_id'           => esc_attr($this->get_event_id()),
 			'action'             => esc_url($this->get_action()),

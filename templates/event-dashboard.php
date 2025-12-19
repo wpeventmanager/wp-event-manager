@@ -341,7 +341,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 																		endif;
 																	
 																	elseif ('view_count' === $key) :
-																		echo  wp_kses_post(get_post_views_count($event)); ?>
+																		echo  wp_kses_post(wpem_get_post_views_count($event)); ?>
 
 																	<?php else : 
 																		do_action('event_manager_event_dashboard_column_' . $key, $event);
@@ -356,7 +356,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</div>
 								<?php endforeach; 
 							endif;
-							get_event_manager_template('pagination.php', array('max_num_pages' => $max_num_pages)); ?>
+							wpem_get_event_manager_template('pagination.php', array('max_num_pages' => $max_num_pages)); ?>
 						</div>
 					</div>
 				</div>

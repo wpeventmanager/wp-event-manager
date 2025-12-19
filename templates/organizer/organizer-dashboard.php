@@ -53,11 +53,11 @@ do_action('event_manager_organizer_dashboard_before'); ?>
 
 										//get disable organizer fields
 										$organizer_fields = wpem_get_hidden_form_fields( 'event_manager_submit_organizer_form_fields', 'organizer');
-										$organizer_website  = !in_array('organizer_website', $organizer_fields)?get_organizer_website($organizer):'';
-										$organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?get_organizer_facebook($organizer):'';
-										$organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?get_organizer_instagram($organizer):'';
-										$organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?get_organizer_twitter($organizer):'';
-										$organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?get_organizer_youtube($organizer):'';
+										$organizer_website  = !in_array('organizer_website', $organizer_fields)?wpem_get_organizer_website($organizer):'';
+										$organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?wpem_get_organizer_facebook($organizer):'';
+										$organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?wpem_get_organizer_instagram($organizer):'';
+										$organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?wpem_get_organizer_twitter($organizer):'';
+										$organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?wpem_get_organizer_youtube($organizer):'';
 
 										if (empty($organizer_website) && empty($organizer_facebook) && empty($organizer_instagram) && empty($organizer_twitter) && empty($organizer_youtube)) {
 											?><h1 class="text-left" style="font-weight: 200;">-</h1><?php
@@ -158,7 +158,7 @@ do_action('event_manager_organizer_dashboard_before'); ?>
 			</tbody>
 		</table>
 	</div>
-	<?php get_event_manager_template('pagination.php', array('max_num_pages' => $max_num_pages)); ?>
+	<?php wpem_get_event_manager_template('pagination.php', array('max_num_pages' => $max_num_pages)); ?>
 <!-- organizer list section end-->
 </div>
 <?php do_action('event_manager_organizer_dashboard_after'); ?>

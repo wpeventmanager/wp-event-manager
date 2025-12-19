@@ -86,7 +86,7 @@ $event = $post; ?>
                                         </div>
                                     <?php endif;
                                     
-                                    $view_count = get_post_views_count($post);
+                                    $view_count = wpem_get_post_views_count($post);
 									
                                     if ($view_count) : ?>
                                         <div class="wpem-viewed-event wpem-tooltip wpem-tooltip-bottom"><i class="wpem-icon-eye"></i><?php 
@@ -99,12 +99,9 @@ $event = $post; ?>
                                     <?php endif; 
                                     do_action('single_event_ticket_overview_before'); 
                                     if(isset($check_ticket_visibility) && !empty($check_ticket_visibility)) : 
-                                        if (get_event_ticket_price() && get_event_ticket_option()) : ?>
-                                            <div class="wpem-event-ticket-price"><i class="wpem-icon-ticket"></i> <?php display_event_ticket_price('', '', true, $post); ?></div>
+                                        if (wpem_get_event_ticket_price() && get_event_ticket_option()) : ?>
+                                            <div class="wpem-event-ticket-price"><i class="wpem-icon-ticket"></i> <?php wpem_display_event_ticket_price('', '', true, $post); ?></div>
                                         <?php endif; 
-                                        /* if (get_event_ticket_option()) : ?>
-                                            <div class="wpem-event-ticket-type"><span class="wpem-event-ticket-type-text"><?php display_event_ticket_option(); ?></span></div>
-                                        <?php endif; */ 
                                     endif; 
                                     do_action('single_event_ticket_overview_after'); ?>
                                 </div>
@@ -392,7 +389,7 @@ $event = $post; ?>
                                 }
                                 // If site wise timezone selected
                                 if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
-                                    get_event_manager_template('event-registration.php');
+                                    wpem_get_event_manager_template('event-registration.php');
                                 } else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
                                     echo '<div class="wpem-alert wpem-alert-warning">' . esc_html('Event registration closed.', 'wp-event-manager') . '</div>';
                                 }
@@ -469,7 +466,7 @@ $event = $post; ?>
                                         <div class="wpem-event-category"><?php display_event_category($event); ?></div>
                                     <?php endif; 
                                     /* youtube video button section */    
-                                    if (get_organizer_youtube($event)) : ?>
+                                    if (wpem_get_organizer_youtube($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <a id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php esc_html_e('Watch video', 'wp-event-manager'); ?></a>
                                         <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php esc_attr_e('Watch video', 'wp-event-manager'); ?>">
@@ -483,7 +480,7 @@ $event = $post; ?>
                                                 <div class="wpem-modal-content">
                                                     <div class="wpem-modal-content">
                                                         <?php echo wp_oembed_get(
-                                                            wp_kses_post(get_organizer_youtube( $event ),
+                                                            wp_kses_post(wpem_get_organizer_youtube( $event ),
                                                             array(
                                                                 'autoplay' => '1',
                                                                 'rel'      => 0,
@@ -538,7 +535,7 @@ $event = $post; ?>
                 $post = $event;
                 //if organizer setting is enable then display organizer section on single event listing
                 if (get_option('enable_event_organizer')) {
-                    get_event_manager_template(
+                    wpem_get_event_manager_template(
                         'content-single-event_listing-organizer.php',
                         array(),
                         'wp-event-manager/organizer',
@@ -547,7 +544,7 @@ $event = $post; ?>
                 }
                 //if venue setting is enable then display venue section on single event listing
                 if (get_option('enable_event_venue')) {
-                    get_event_manager_template(
+                    wpem_get_event_manager_template(
                         'content-single-event_listing-venue.php',
                         array(),
                         'wp-event-manager/venue',

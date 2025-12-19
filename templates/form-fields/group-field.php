@@ -47,7 +47,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
                                         $subfield['value'] = !empty($subfield['value']) ? gmdate($php_date_format, strtotime($subfield['value'])) : $subfield['value'];
                                     }
 
-                                    get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
+                                    wpem_get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
                                     ?>
                                 </div>
                             </fieldset>
@@ -90,7 +90,7 @@ endif; ?>
                             <?php
                             $subfield['name'] = $key . '_' . $subkey . '_%%group-row-index%%';
                             $subfield['id']   = $key . '_' . $subkey . '_%%group-row-index%%';
-                            get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
+                            wpem_get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
                             ?>
                         </div>
                     </fieldset>

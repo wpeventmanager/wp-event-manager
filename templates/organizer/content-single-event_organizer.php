@@ -64,11 +64,11 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
                             <?php
                             //get disable organizer fields
                             $organizer_fields = wpem_get_hidden_form_fields( 'event_manager_submit_organizer_form_fields', 'organizer');
-                            $organizer_website  = !in_array('organizer_website', $organizer_fields)?get_organizer_website($organizer):'';
-                            $organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?get_organizer_facebook($organizer):'';
-                            $organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?get_organizer_instagram($organizer):'';
-                            $organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?get_organizer_twitter($organizer):'';
-                            $organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?get_organizer_youtube($organizer):'';
+                            $organizer_website  = !in_array('organizer_website', $organizer_fields)?wpem_get_organizer_website($organizer):'';
+                            $organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?wpem_get_organizer_facebook($organizer):'';
+                            $organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?wpem_get_organizer_instagram($organizer):'';
+                            $organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?wpem_get_organizer_twitter($organizer):'';
+                            $organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?wpem_get_organizer_youtube($organizer):'';
                           
                             if (!empty($organizer_website) && !in_array('organizer_website', $field_to_hide) ) { ?>
                                 <div class="wpem-social-icon wpem-weblink">
@@ -141,7 +141,7 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
 </div>
 
 <?php
-get_event_manager_template(
+wpem_get_event_manager_template(
     'organizer-event_listing.php',
     array(
         'organizer_id'    => $organizer_id,

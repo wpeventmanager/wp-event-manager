@@ -169,7 +169,7 @@ class Elementor_Event_Field extends Widget_Base {
 
         if (isset($settings['event_field']) && $settings['event_field'] != '') {
             if ($settings['event_field'] == 'event_title') {
-                display_event_title($event);
+                wpem_display_event_title($event);
             } else if ($settings['event_field'] == 'event_type') {
                 display_event_type($event, '');
             } else if ($settings['event_field'] == 'event_category') {
@@ -206,7 +206,7 @@ class Elementor_Event_Field extends Widget_Base {
             if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
                 echo wp_kses_post('<div class="wpem-alert wpem-alert-warning">' . __('Event registration closed.', 'wp-event-manager') . '</div>');
             } else
-                get_event_manager_template('event-registration.php');
+                wpem_get_event_manager_template('event-registration.php');
             } else if ($settings['event_field'] == 'event_start_date') {
                 display_event_start_date('', '', true, $event);
             } else if ($settings['event_field'] == 'event_start_time') {
@@ -226,17 +226,17 @@ class Elementor_Event_Field extends Widget_Base {
             } else if ($settings['event_field'] == 'organizer_description') {
                 echo  wp_kses_post(get_organizer_description($event));
             } else if ($settings['event_field'] == 'organizer_email') {
-                display_organizer_email('', '', true, $event);
+                wpem_display_organizer_email('', '', true, $event);
             } else if ($settings['event_field'] == 'event_organizer_ids') {
                 echo  wp_kses_post(get_organizer_name($event, true));
             } else if ($settings['event_field'] == 'organizer_website') {
-                display_organizer_website('', '', true, $event);
+                wpem_display_organizer_website('', '', true, $event);
             } else if ($settings['event_field'] == 'organizer_twitter') {
-                display_organizer_twitter('', '', true, $event);
+                wpem_display_organizer_twitter('', '', true, $event);
             } else if ($settings['event_field'] == 'organizer_youtube') {
-                display_organizer_youtube('', '', true, $event);
+                wpem_display_organizer_youtube('', '', true, $event);
             } else if ($settings['event_field'] == 'event_video_url') { ?>
-                <?php if (get_organizer_youtube($event)) : ?>
+                <?php if (wpem_get_organizer_youtube($event)) : ?>
                     <div class="clearfix">&nbsp;</div>
                     <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php esc_attr_e('Watch video', 'wp-event-manager'); ?></button>
                     <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php esc_attr_e('Watch video', 'wp-event-manager'); ?>">
@@ -246,7 +246,7 @@ class Elementor_Event_Field extends Widget_Base {
                                 <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                             </div>
                             <div class="wpem-modal-content">
-                                <?php $youtube_url = get_organizer_youtube();
+                                <?php $youtube_url = wpem_get_organizer_youtube();
                                 if ( $youtube_url ) {
                                     // Sanitize the URL first
                                     $youtube_url = esc_url( $youtube_url );
@@ -291,9 +291,9 @@ class Elementor_Event_Field extends Widget_Base {
                 <?php endif; ?>
                 <?php
             } else if ($settings['event_field'] == 'organizer_facebook') {
-                display_organizer_facebook('', '', true, $event);
+                wpem_display_organizer_facebook('', '', true, $event);
             } else if ($settings['event_field'] == 'view_count') {
-                $view_count = get_post_views_count($event);
+                $view_count = wpem_get_post_views_count($event);
 
                 if ($view_count) : ?>
                     <i class="wpem-icon-eye"></i> <?php echo esc_html($view_count); ?>
@@ -425,7 +425,7 @@ class Elementor_Event_Field extends Widget_Base {
                 }
             }
         } else {
-            display_event_title($event);
+            wpem_display_event_title($event);
         }
        echo wp_kses_post($settings['event_field_after_html']);
     }

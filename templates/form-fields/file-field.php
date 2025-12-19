@@ -16,10 +16,10 @@ if (!empty($field['ajax']) && event_manager_user_can_upload_file_via_ajax()) {
 	<?php if (!empty($field['value'])) : 
 		if (is_array($field['value'])) : 
 			foreach ($field['value'] as $value) : 
-				get_event_manager_template('form-fields/uploaded-file-html.php', array('key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field)); 
+				wpem_get_event_manager_template('form-fields/uploaded-file-html.php', array('key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field)); 
 			endforeach; 
 		elseif ($value = $field['value']) :
-			get_event_manager_template('form-fields/uploaded-file-html.php', array('key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field));
+			wpem_get_event_manager_template('form-fields/uploaded-file-html.php', array('key' => $key, 'name' => 'current_' . $field_name, 'value' => $value, 'field' => $field));
 		endif;
 	endif; ?>
 </div>

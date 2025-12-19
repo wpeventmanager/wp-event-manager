@@ -529,7 +529,7 @@ class WP_Event_Manager_Post_Types {
 		if('event_listing' === $post->post_type) {
 			ob_start();
 			do_action('event_content_start');
-			get_event_manager_template_part('content-single', 'event_listing');
+			wpem_get_event_manager_template_part('content-single', 'event_listing');
 			do_action('event_content_end');
 			$content = ob_get_clean();
 		}
@@ -762,7 +762,7 @@ class WP_Event_Manager_Post_Types {
 				while ($query->have_posts()) : $query->the_post();
 					// Output feed item here
 					$post_id  = get_the_ID();
-					get_event_manager_template('rss-event-feed.php', array('post_id' => $post_id));
+					wpem_get_event_manager_template('rss-event-feed.php', array('post_id' => $post_id));
 				endwhile;
 			endif;
 			
@@ -810,7 +810,7 @@ class WP_Event_Manager_Post_Types {
 	 */
 	public function event_feed_item() {
 		$post_id  = get_the_ID();
-		get_event_manager_template('rss-event-feed.php', array('post_id' => $post_id));
+		wpem_get_event_manager_template('rss-event-feed.php', array('post_id' => $post_id));
 	}
 
 	/**
@@ -1014,7 +1014,7 @@ class WP_Event_Manager_Post_Types {
 		global $post; 
 		// Get the user role. 
 		if(is_user_logged_in()) {
-			$role=get_event_manager_current_user_role();  
+			$role=wpem_get_event_manager_current_user_role();  
 			$current_user = wp_get_current_user();
 			if($role !='Administrator' && ($post->post_author!=$current_user->ID)) { 
 				$this->set_post_views($post->ID);
@@ -1062,14 +1062,14 @@ class WP_Event_Manager_Post_Types {
 	 * The registration content when the registration method is an email.
 	 */
 	public function registration_details_email($register) {
-		get_event_manager_template('event-registration-email.php', array('register' => $register));
+		wpem_get_event_manager_template('event-registration-email.php', array('register' => $register));
 	}
 
 	/**
 	 * The registration content when the registration method is a url.
 	 */
 	public function registration_details_url($register) {
-		get_event_manager_template('event-registration-url.php', array('register' => $register));
+		wpem_get_event_manager_template('event-registration-url.php', array('register' => $register));
 	}
 
 	/**

@@ -23,7 +23,7 @@ if (!defined('ABSPATH')) {
 		<input type="submit" name="continue" id="event_preview_submit_button" class="button event-manager-button-submit-listing wpem-theme-button" value="<?php echo esc_attr(apply_filters('submit_event_step_preview_submit_text', __('Submit Listing →', 'wp-event-manager'))); ?>" />		
 	</div>
 	<div class="event_listing_preview single_event_listing">
-		<?php get_event_manager_template_part('content-single', 'event_listing'); ?>
+		<?php wpem_get_event_manager_template('content-single', 'event_listing'); ?>
 		<input type="hidden" name="event_id" value="<?php echo esc_attr($form->get_event_id()); ?>" />
 		<input type="hidden" name="step" value="<?php echo esc_attr($form->get_step()); ?>" />
 		<input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form->get_form_name()); ?>" />

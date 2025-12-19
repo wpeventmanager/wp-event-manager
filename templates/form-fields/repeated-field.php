@@ -52,7 +52,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
                                         $subfield['value'] = $stock;
                                     }
                                 }
-                                get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
+                                wpem_get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
                             ?>
                         </div>
                     </fieldset>
@@ -103,7 +103,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
                         <?php
                         $subfield['name'] = $key . '_' . $subkey . '_%%repeated-row-index%%';
                         $subfield['id']   = $key . '_' . $subkey . '_%%repeated-row-index%%';
-                        get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
+                        wpem_get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
                         ?>
                     </div>
                 </fieldset>

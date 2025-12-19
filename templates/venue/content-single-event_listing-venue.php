@@ -66,11 +66,11 @@ if (has_event_venue_ids() && !is_event_online()) : ?>
                                                  //get disable venue fields
                                                  $venue_fields = wpem_get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
 
-                                                 $venue_website  = !in_array('venue_website', $venue_fields)?get_venue_website($venue_id):'';
-                                                 $venue_facebook = !in_array('venue_facebook', $venue_fields)?get_venue_facebook($venue_id):'';
-                                                 $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_instagram($venue_id):'';
-                                                 $venue_twitter  = !in_array('venue_twitter', $venue_fields)?get_venue_twitter($venue_id):'';
-                                                 $venue_youtube  = !in_array('venue_youtube', $venue_fields)?get_venue_youtube($venue_id):'';
+                                                 $venue_website  = !in_array('venue_website', $venue_fields)?wpem_get_venue_website($venue_id):'';
+                                                 $venue_facebook = !in_array('venue_facebook', $venue_fields)?wpem_get_venue_facebook($venue_id):'';
+                                                 $venue_instagram = !in_array('venue_instagram', $venue_fields)?wpem_get_venue_instagram($venue_id):'';
+                                                 $venue_twitter  = !in_array('venue_twitter', $venue_fields)?wpem_get_venue_twitter($venue_id):'';
+                                                 $venue_youtube  = !in_array('venue_youtube', $venue_fields)?wpem_get_venue_youtube($venue_id):'';
 
                                                 if (!empty($venue_website)) {  ?>
                                                     <div class="wpem-social-icon wpem-weblink">

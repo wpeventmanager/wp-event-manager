@@ -135,7 +135,7 @@ class Elementor_Event_Tag extends Tag {
 
         if (isset($event_tag) && $event_tag != '') {
             if ($event_tag == 'event_title') {
-                display_event_title($event);
+                wpem_display_event_title($event);
             } else if ($event_tag == 'event_type') {
                 display_event_type($event, '');
             } else if ($event_tag == 'event_category') {
@@ -155,9 +155,9 @@ class Elementor_Event_Tag extends Tag {
             } else if ($event_tag == 'event_location') {
                 display_event_location(true, $event);
             } else if ($event_tag == 'event_description') {
-                echo wp_kses_post(get_event_description($event));
+                echo wp_kses_post(wpem_get_event_description($event));
             } else if ($event_tag == 'event_registration_email') {
-                get_event_manager_template('event-registration.php');
+                wpem_get_event_manager_template('event-registration.php');
             } else if ($event_tag == 'event_start_date') {
                 display_event_start_date('', '', true, $event);
             } else if ($event_tag == 'event_start_time') {
@@ -175,19 +175,19 @@ class Elementor_Event_Tag extends Tag {
             } else if ($event_tag == 'organizer_description') {
                 echo  wp_kses_post(get_organizer_description($event));
             } else if ($event_tag == 'organizer_email') {
-                display_organizer_email('', '', true, $event);
+                wpem_display_organizer_email('', '', true, $event);
             } else if ($event_tag == 'event_organizer_ids') {
                 echo esc_attr(get_organizer_name($event, true));
             } else if ($event_tag == 'organizer_website') {
-                display_organizer_website('', '', true, $event);
+                wpem_display_organizer_website('', '', true, $event);
             } else if ($event_tag == 'organizer_twitter') {
-                display_organizer_twitter('', '', true, $event);
+                wpem_display_organizer_twitter('', '', true, $event);
             } else if ($event_tag == 'organizer_youtube') {
-                display_organizer_youtube('', '', true, $event);
+                wpem_display_organizer_youtube('', '', true, $event);
             } else if ($event_tag == 'organizer_facebook') {
-                display_organizer_facebook('', '', true, $event);
+                wpem_display_organizer_facebook('', '', true, $event);
             } else if ($event_tag == 'view_count') {
-                $view_count = get_post_views_count($event);
+                $view_count = wpem_get_post_views_count($event);
 
                 if ($view_count) :
                     ?>
@@ -263,7 +263,7 @@ class Elementor_Event_Tag extends Tag {
                 }
             }
         } else {
-            display_event_title($event);
+            wpem_display_event_title($event);
         }
     }
 }

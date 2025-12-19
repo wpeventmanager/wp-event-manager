@@ -250,12 +250,12 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 
 			<ul class="event_listings">
 				<?php while ($events->have_posts()) : $events->the_post();
-					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
+					wpem_get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
 				 endwhile; ?>
 			</ul>
 			<?php echo wp_kses_post($after_widget); ?>
 		<?php else : 
-			get_event_manager_template_part('content-widget', 'no-events-found');
+			wpem_get_event_manager_template('content-widget', 'no-events-found');
 		endif;
 
 		wp_reset_postdata();
@@ -361,14 +361,14 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget{
 
 			<ul class="event_listings">
 				<?php while ($featured_events->have_posts()) : $featured_events->the_post();
-					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
+					wpem_get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
 				endwhile; ?>
 			</ul>
 
 			<?php echo wp_kses_post($after_widget); ?>
 
 		<?php else : 
-			get_event_manager_template_part('content-widget', 'no-events-found');
+			wpem_get_event_manager_template('content-widget', 'no-events-found');
 		endif;
 
 		wp_reset_postdata();
@@ -512,11 +512,11 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 		if ($events->have_posts()) : ?>
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 				<?php while ($events->have_posts()) : $events->the_post();
-					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
+					wpem_get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
 				endwhile; ?>
 			</div>
 		<?php else :
-			get_event_manager_template_part('content-widget', 'no-events-found');
+			wpem_get_event_manager_template('content-widget', 'no-events-found');
 		endif;
 
 		echo wp_kses_post($after_widget);
@@ -663,11 +663,11 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 		if ($events->have_posts()) : ?>
 			<div class="event_listings_class" id="event-manager-owl-carousel-slider-widget">
 				<?php while ($events->have_posts()) : $events->the_post();
-					get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
+					wpem_get_event_manager_template('content-widget-event_listing.php', array('widget_style' => $widget_style));
 				endwhile; ?>
 			</div>
 		<?php else :
-			get_event_manager_template_part('content-widget', 'no-events-found');
+			wpem_get_event_manager_template('content-widget', 'no-events-found');
 		endif;
 		
 		echo wp_kses_post($after_widget); 

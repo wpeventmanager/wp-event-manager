@@ -98,7 +98,7 @@ class WPEM_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submi
 		}
 		$this->fields = apply_filters('submit_organizer_form_fields_get_organizer_data', $this->fields, $organizer);
 		wp_enqueue_script('wp-event-manager-event-submission');
-		get_event_manager_template('organizer-submit.php', 
+		wpem_get_event_manager_template('organizer-submit.php', 
 			array(
 				'form'               	=> esc_attr($this->form_name),
 				'organizer_id'          => esc_attr($this->get_organizer_id()),

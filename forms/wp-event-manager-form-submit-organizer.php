@@ -268,7 +268,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		}
 		
 		wp_enqueue_script('wp-event-manager-event-submission');
-		get_event_manager_template('organizer-submit.php', 
+		wpem_get_event_manager_template('organizer-submit.php', 
 			array(
 				'form'               => esc_attr($this->form_name),
 				'organizer_id'       => esc_attr($this->get_organizer_id()),
@@ -574,7 +574,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 */
 	public function done() {
 		do_action('event_manager_organizer_submitted', $this->organizer_id);
-		get_event_manager_template(
+		wpem_get_event_manager_template(
 			'organizer-submitted.php', 
 			array(
 				'organizer' => get_post($this->organizer_id),
