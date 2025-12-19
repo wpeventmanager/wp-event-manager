@@ -772,12 +772,10 @@ class WP_Event_Manager_CPT {
 	 */
 	public function extend_submitdiv_post_status() {
 		global $post, $post_type;
-
 		// Abort if we're on the wrong post type, but only if we got a restriction
 		if('event_listing' !== $post_type) {
 			return;
 		}
-
 		// Get all non-builtin post status and add them as <option>
 		$options = $display = '';
 		foreach (get_event_listing_post_statuses() as $status => $name) {
@@ -786,10 +784,12 @@ class WP_Event_Manager_CPT {
 			$selected and $display = $name;
 			// Build the options
 			$options .= "<option{$selected} value='{$status}'>{$name}</option>";
-		} ?>
+		} 
+		?>
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
-				<?php if(!empty($display)) : ?>
+				<?php if(!empty($display)) :
+					// console.log('<?php echo wp_kses_post($display); ?>'); ?>
 					jQuery('#post-status-display').html('<?php echo wp_kses_post($display); ?>');
 				<?php endif; ?>
 				var select = jQuery('#post-status-select').find('select');
