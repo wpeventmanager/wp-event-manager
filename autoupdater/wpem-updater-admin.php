@@ -4,15 +4,15 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if(!function_exists('license_enqueue_scripts')){
+if(!function_exists('wpem_license_enqueue_scripts')){
     /**
-     * license_enqueue_scripts function.
+     * wpem_license_enqueue_scripts function.
      *
      * @access public
      * @return void
      * @since 1.2
      */
-    function license_enqueue_scripts($hook) {
+    function wpem_license_enqueue_scripts($hook) {
 		if ($hook === 'event_listing_page_wpem_license' && ! wp_style_is( 'wpem-updater-styles', 'enqueued' )) {
             wp_register_style( 'wpem-updater-styles', plugin_dir_url(__DIR__) . 'autoupdater/assets/css/backend.css', array(), '1.0.0' );
         }
@@ -22,7 +22,7 @@ if(!function_exists('license_enqueue_scripts')){
  * Hook admin-only functions
  */
 if ( is_admin() ) {
-	add_action('admin_enqueue_scripts', 'license_enqueue_scripts');
+	add_action('admin_enqueue_scripts', 'wpem_license_enqueue_scripts');
 	add_action('admin_menu', 'wpem_addon_license_manage_menu', 10);
 }
 
