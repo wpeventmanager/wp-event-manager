@@ -124,6 +124,12 @@ class WP_Event_Manager_Ajax {
 	 * Load more upcoming events
 	 */
 	function load_more_upcoming_events($atts) {
+		// Verify nonce for AJAX request
+		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'event_manager_ajax' ) ) {
+			wp_send_json_error(array('error' => 'Invalid nonce'));
+			return;
+		}
+		
 		$paged = isset($_POST['value']) ? intval(wp_unslash($_POST['value'])) : 1;
 		$per_page = isset($_POST['per_page']) ? intval(wp_unslash($_POST['per_page'])) : esc_attr(get_option('event_manager_per_page'));
 		$orderby = isset($_POST['orderby']) ? sanitize_text_field(wp_unslash($_POST['orderby'])) : 'date';
