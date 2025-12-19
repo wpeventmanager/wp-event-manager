@@ -22,21 +22,21 @@ $event_fields = $this->event_listing_fields(); ?>
                 <div class="wpem-variation-wrapper wpem-metaboxes">
                     <?php do_action('event_manager_event_data_start', $wpem_thepostid);
                     if (isset($event_fields)) {
-                        foreach ($event_fields as $key => $field) {
+                        foreach ($event_fields as $event_key => $event_field) {
                             // Get the value from post meta
-                            $field_value = get_post_meta($wpem_thepostid, '_' . $key, true);
+                            $event_field_value = get_post_meta($wpem_thepostid, '_' . $event_key, true);
                             
                             // If no value exists in post meta, use the default value
-                            if (empty($field_value) && isset($field['default'])) {
-                                $field_value = $field['default'];
+                            if (empty($event_field_value) && isset($event_field['default'])) {
+                                $event_field_value = $event_field['default'];
                             }
                             
-                            $field['value'] = $field_value;
-                            $field['required'] = false;
-                            $field['tabgroup'] = isset($field['tabgroup']) ? $field['tabgroup'] : 1;
+                            $event_field['value'] = $event_field_value;
+                            $event_field['required'] = false;
+                            $event_field['tabgroup'] = isset($event_field['tabgroup']) ? $event_field['tabgroup'] : 1;
                             
-                            if ($field['tabgroup'] == $tab['priority']) {
-                                $type = !empty($field['type']) ? $field['type'] : 'text';
+                            if ($event_field['tabgroup'] == $tab['priority']) {
+                                $type = !empty($event_field['type']) ? $event_field['type'] : 'text';
                                 if ($type == 'wp-editor') {
                                     $type = 'wp_editor';
                                 } elseif ($type == 'media-library-image') {
@@ -44,9 +44,9 @@ $event_fields = $this->event_listing_fields(); ?>
                                 }
                                 
                                 if (has_action('event_manager_input_' . $type)) {
-                                    do_action('event_manager_input_' . $type, $key, $field);
+                                    do_action('event_manager_input_' . $type, $event_key, $event_field);
                                 } elseif (method_exists($this, 'input_' . $type)) {
-                                    call_user_func(array($this, 'input_' . $type), $key, $field);
+                                    call_user_func(array($this, 'input_' . $type), $event_key, $event_field);
                                 }
                             }
                         }
