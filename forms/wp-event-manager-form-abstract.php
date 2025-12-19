@@ -418,6 +418,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return string|array
 	 */
 	protected function get_posted_field($key, $field) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		return isset($_POST[ $key ]) ? $this->sanitize_posted_field($_POST[ $key ]) : '';
 	}
 	
