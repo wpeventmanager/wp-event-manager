@@ -2,7 +2,17 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-$active_tab = esc_attr(isset($_REQUEST['tab']) ? sanitize_text_field(wp_unslash($_REQUEST['tab'])) : 'upcoming'); ?>
+// Verify nonce for tab parameter
+$active_tab = 'upcoming';
+if ( isset( $_REQUEST['tab'] ) ) {
+	$nonce_verified = false;
+	if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
+		$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'organizer_event_tabs' );
+	}
+	if ( $nonce_verified ) {
+		$active_tab = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['tab'])));
+	}
+} ?>
 
 <div class="wpem-event-organizer-tabs">
     <div class="wpem-tabs-wrapper">
