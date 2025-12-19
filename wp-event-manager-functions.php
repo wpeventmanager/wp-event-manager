@@ -488,8 +488,13 @@ if(!function_exists('get_featured_event_ids')) :
 			'suppress_filters' => false,
 			'post_type'      => 'event_listing',
 			'post_status'    => 'publish',
-			'meta_key'       => '_featured',
-			'meta_value'     => '1',
+			'meta_query'     => array(
+				array(
+					'key'     => '_featured',
+					'value'   => '1',
+					'compare' => '=',
+				),
+			),
 			'fields'         => 'ids'
 		));
 	}
