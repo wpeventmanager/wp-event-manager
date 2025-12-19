@@ -31,7 +31,7 @@ class WP_Event_Manager_Form_Edit_Venue extends WP_Event_Manager_Form_Submit_Venu
 	*/
 	public function __construct() {
 		// Verify nonce before processing venue_id
-		if (isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'edit-venue_' . (isset($_REQUEST['venue_id']) ? absint($_REQUEST['venue_id']) : 0))) {
+		if (isset($_REQUEST['venue_id']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_venue_actions')) {
 			$this->venue_id = !empty($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST[ 'venue_id' ])) : 0;
 		} else {
 			$this->venue_id = 0;

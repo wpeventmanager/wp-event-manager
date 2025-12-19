@@ -113,7 +113,7 @@ do_action('event_manager_venue_dashboard_before'); ?>
                                                 case 'publish':
                                                     $actions['edit']      = array(
                                                         'label' => __('Edit', 'wp-event-manager'),
-                                                        'nonce' => false
+                                                        'nonce' => true
                                                     );
                                                     $actions['duplicate'] = array(
                                                         'label' => __('Duplicate', 'wp-event-manager'),
