@@ -1215,7 +1215,9 @@ class WP_Event_Manager_Writepanels {
 						$attachments = get_posts([
 							'post_type' => 'attachment',
 							'posts_per_page' => 1,
+							// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for attachment lookup
 							'meta_key' => '_wp_attached_file',
+							// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup
 							'meta_value' => $wp_attached_file
 						]);
 						if (!empty($attachments)) {
