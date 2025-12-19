@@ -35,7 +35,7 @@ if (!function_exists('wpem_addon_license_manage_menu')) {
 	 * @since 1.2
 	 */
 	function wpem_addon_license_manage_menu() {
-		if(!empty(get_wpem_plugins_info())){
+		if(!empty(wpem_get_plugins_info())){
 			add_submenu_page(
 				'edit.php?post_type=event_listing',
 				__('License', 'wp-event-manager'),
@@ -63,7 +63,7 @@ if (!function_exists('wpem_manage_license')) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
-		$plugins = get_wpem_plugins_info(); ?>
+		$plugins = wpem_get_plugins_info(); ?>
 
 		<div class="wrap wpem-updater-licence-wrap">
 			<h2><?php esc_html_e('License', 'wp-event-manager'); ?></h2>

@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
 *
 * @since 3.2.1
 */
-if (!function_exists('get_wpem_plugins_info')) {
-	function get_wpem_plugins_info() {
+if (!function_exists('wpem_get_plugins_info')) {
+	function wpem_get_plugins_info() {
 		$plugins_info = array();
 		if (!function_exists('get_plugins')) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';

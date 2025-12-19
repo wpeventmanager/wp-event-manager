@@ -33,13 +33,13 @@ class WPEM_Updater {
 	 * Constructor, used if called directly.
 	 */
 	public function __construct( $file ) {
-		$this->plugin_data = get_wpem_plugins_info();
+		$this->plugin_data = wpem_get_plugins_info();
 		$this->init_updates( $file );
 	}
 
 	//Init the updater.
 	public function init_updates( $file ) {
-		$this->plugin_data = get_wpem_plugins_info();
+		$this->plugin_data = wpem_get_plugins_info();
 		foreach($this->plugin_data as $plugin_info){
 			register_activation_hook( $plugin_info['TextDomain'], array( $this, 'plugin_activation' ), 10 );
 			register_deactivation_hook( $plugin_info['TextDomain'], array( $this, 'plugin_deactivation' ), 10 );
