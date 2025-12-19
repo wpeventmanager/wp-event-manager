@@ -1448,7 +1448,17 @@ class WP_Event_Manager_Shortcodes{
 
 		// $organizer    = $organizers->posts[0];
 		$paged           = (get_query_var('paged')) ? get_query_var('paged') : 1;
-		$current_page    = isset($_REQUEST['pagination']) ? sanitize_text_field( wp_unslash($_REQUEST['pagination'])) : esc_attr($paged);
+		// Verify nonce for pagination parameter
+		$current_page = esc_attr($paged);
+		if ( isset( $_REQUEST['pagination'] ) ) {
+			$nonce_verified = false;
+			if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
+				$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_organizer_pagination' );
+			}
+			if ( $nonce_verified ) {
+				$current_page = sanitize_text_field( wp_unslash($_REQUEST['pagination']) );
+			}
+		}
 		$per_page        = 10;
 		$today_date      = gmdate("Y-m-d");
 		$organizer_id    = $organizer->ID;
