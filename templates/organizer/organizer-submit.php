@@ -19,8 +19,9 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
                     // Translators: %s is a link to create a new organizer.
                     esc_html__( 'You are editing an existing organizer. %s', 'wp-event-manager' ),
                     sprintf(
-                        '<a href="?new=1&key=%s">%s</a>',
+                        '<a href="?new=1&key=%s&_wpnonce=%s">%s</a>',
                         esc_attr( $resume_edit ),
+                        esc_attr( wp_create_nonce( 'wpem_reset_submission_cookies' ) ),
                         esc_html__( 'Create a new organizer', 'wp-event-manager' )
                     )
                 )

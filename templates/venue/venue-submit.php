@@ -20,9 +20,10 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 				'<p class="wpem-alert wpem-alert-info"><strong>%1$s %2$s</strong></p>',
 				esc_html__( 'You are editing an existing venue.', 'wp-event-manager' ),
 				sprintf(
-					'<a href="?new=1&key=%1$s">%2$s</a>',
+					'<a href="?new=1&key=%1$s&_wpnonce=%3$s">%2$s</a>',
 					esc_attr( $resume_edit ),
-					esc_html__( 'Create A New Venue', 'wp-event-manager' )
+					esc_html__( 'Create A New Venue', 'wp-event-manager' ),
+					esc_attr( wp_create_nonce( 'wpem_reset_submission_cookies' ) )
 				)
 			);
 		}

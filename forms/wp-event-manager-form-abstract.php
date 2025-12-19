@@ -36,7 +36,9 @@ abstract class WP_Event_Manager_Form {
     public function process() {
 		// Reset cookie
 		if(
-			isset($_GET[ 'new' ]) &&
+			! empty( $_GET[ 'new' ] ) &&
+			! empty( $_GET[ '_wpnonce' ] ) &&
+			wp_verify_nonce( sanitize_key( wp_unslash( $_GET[ '_wpnonce' ] ) ), 'wpem_reset_submission_cookies' ) &&
 			isset($_COOKIE[ 'wp-event-manager-submitting-event-id' ]) &&
 			isset($_COOKIE[ 'wp-event-manager-submitting-event-key' ]) &&
 			esc_attr(get_post_meta(absint($_COOKIE[ 'wp-event-manager-submitting-event-id' ]), '_wpem_unique_key', true)) == $_COOKIE['wp-event-manager-submitting-event-key']
@@ -46,7 +48,7 @@ abstract class WP_Event_Manager_Form {
 			setcookie('wp-event-manager-submitting-event-key', '', 0, COOKIEPATH, COOKIE_DOMAIN, false);
 			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 				$request_uri = wp_kses_post( wp_unslash( $_SERVER['REQUEST_URI'] ) );
-				$clean_url   = remove_query_arg( array( 'new', 'key' ), esc_url_raw( $request_uri ) );
+				$clean_url   = remove_query_arg( array( 'new', 'key', '_wpnonce' ), esc_url_raw( $request_uri ) );
 				wp_safe_redirect( esc_url( $clean_url ) );
 				exit;
 			}
@@ -278,8 +280,28 @@ abstract class WP_Event_Manager_Form {
 		$items       = array();
 		$field_keys  = array_keys($fields);
 		$field_prefix = esc_attr($field_prefix);
-		if(!empty($_POST[ 'repeated-row-' . $field_prefix ]) && is_array($_POST[ 'repeated-row-' . $field_prefix ])) {
-			$indexes = array_map('absint', $_POST[ 'repeated-row-' . $field_prefix ]);
+		if ( empty( $_POST['_wpnonce'] ) ) {
+			return $items;
+		}
+		$nonce = sanitize_key( wp_unslash( $_POST['_wpnonce'] ) );
+		$event_id = isset( $_POST['event_id'] ) ? absint( wp_unslash( $_POST['event_id'] ) ) : null;
+		$organizer_id = isset( $_POST['organizer_id'] ) ? absint( wp_unslash( $_POST['organizer_id'] ) ) : null;
+		$venue_id = isset( $_POST['venue_id'] ) ? absint( wp_unslash( $_POST['venue_id'] ) ) : null;
+		$nonce_valid = false;
+		if ( null !== $event_id && wp_verify_nonce( $nonce, 'edit-event_' . $event_id ) ) {
+			$nonce_valid = true;
+		} elseif ( null !== $organizer_id && wp_verify_nonce( $nonce, 'edit-organizer_' . $organizer_id ) ) {
+			$nonce_valid = true;
+		} elseif ( null !== $venue_id && wp_verify_nonce( $nonce, 'edit-venue_' . $venue_id ) ) {
+			$nonce_valid = true;
+		}
+		if ( ! $nonce_valid ) {
+			return $items;
+		}
+
+		$repeated_row_key = 'repeated-row-' . $field_prefix;
+		if(!empty($_POST[ $repeated_row_key ]) && is_array($_POST[ $repeated_row_key ])) {
+			$indexes = array_map('absint', wp_unslash( $_POST[ $repeated_row_key ] ));
 			foreach ($indexes as $index) {
 				$item = array();
 				foreach ($fields as $key => $field) {
@@ -301,7 +323,7 @@ abstract class WP_Event_Manager_Form {
 								//Convert date and time value into DB formatted format and save eg. 1970-01-01
 								//$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, sanitize_text_field($_POST[ $field_name ]));	
 								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
-							} else{
+							} else {
 								$item[ $key ] = '';
 							}
 							break;
