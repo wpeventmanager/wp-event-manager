@@ -162,7 +162,7 @@ class WP_Event_Manager_Cache_Helper {
 		 * @param string  $old_status Old post status.
 		 * @param WP_Post $post       Post object.
 		 */
-		$post_types = apply_filters('wp_eventmanager_count_cache_supported_post_types', array('event_listing'), $new_status, $old_status, $post);
+		$post_types = apply_filters('wpem_eventmanager_count_cache_supported_post_types', array('event_listing'), $new_status, $old_status, $post);
 		
 		// Only proceed when statuses do not match, and post type is supported post type
 		if($new_status === $old_status || !in_array($post->post_type, $post_types)) {
@@ -176,7 +176,7 @@ class WP_Event_Manager_Cache_Helper {
 		 * @param string  $old_status    Old post status.
 		 * @param WP_Post $post          Post object.
 		 */
-		$valid_statuses = apply_filters('wp_eventmanager_count_cache_supported_statuses', array('pending'), $new_status, $old_status, $post);
+		$valid_statuses = apply_filters('wpem_eventmanager_count_cache_supported_statuses', array('pending'), $new_status, $old_status, $post);
 		
 		$rlike = array();
 		// New status transient option name

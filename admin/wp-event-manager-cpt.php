@@ -235,7 +235,7 @@ class WP_Event_Manager_CPT {
 			'menu_order'   => false,
 		);
 		$terms  = get_terms($args);
-		$walker = new WP_Event_Manager_Category_Walker();
+		$walker = new WPEM_Event_Manager_Category_Walker();
 
 		if(!$terms) {
 			return;
@@ -272,7 +272,7 @@ class WP_Event_Manager_CPT {
 			'menu_order'   => false,
 		);
 		$terms   = get_terms($args);
-		$walker  = new WP_Event_Manager_Category_Walker();
+		$walker  = new WPEM_Event_Manager_Category_Walker();
 
 		if(!$terms) {
 			return;

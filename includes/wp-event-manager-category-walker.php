@@ -2,11 +2,11 @@
 if(!defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
- * WP_Event_Manager_Category_Walker class.
+ * WPEM_Event_Manager_Category_Walker class.
  *
  * @extends Walker
  */
-class WP_Event_Manager_Category_Walker extends Walker {
+class WPEM_Event_Manager_Category_Walker extends Walker {
 
 	var $tree_type = 'category';
 	var $db_fields = array ('parent' => 'parent', 'id' => 'term_id', 'slug' => 'slug');
