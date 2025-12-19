@@ -8,7 +8,7 @@ if(!defined('ABSPATH')) {
  *
  * @since 2.5
  */
-class WP_Event_Manager_Permalink_Settings {
+class WPEM_Event_Manager_Permalink_Settings {
 	/**
 	 * The single instance of the class.
 	 *
@@ -122,4 +122,4 @@ class WP_Event_Manager_Permalink_Settings {
 	}	
 }
 
-WP_Event_Manager_Permalink_Settings::instance();
+WPEM_Event_Manager_Permalink_Settings::instance();
