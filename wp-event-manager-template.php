@@ -383,13 +383,26 @@ function wp_event_manager_get_registration_fields(){
 
 	$registration_fields = array();
 	if(event_manager_enable_registration()) {
+		
+		// Verify nonce before processing registration form data
+		$registration_nonce_verified = false;
+		if ( ! empty( $_POST['_wpnonce'] ) ) {
+			$registration_nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'event_manager_registration' );
+		}
+
+		$email_value = '';
+		$username_value = '';
+		if ( $registration_nonce_verified ) {
+			$email_value = isset($_POST['create_account_email']) ? sanitize_email(wp_unslash($_POST['create_account_email'])) : '';
+			$username_value = isset($_POST['create_account_username']) ? sanitize_text_field(wp_unslash($_POST['create_account_username'])) : '';
+		}
 
 		$registration_fields['create_account_email'] = array(
 			'type'        => 'text',
 			'label'       => __('Your email', 'wp-event-manager'),
 			'placeholder' => __('you@yourdomain.com', 'wp-event-manager'),
 			'required'    => $account_required,
-			'value'       => isset($_POST['create_account_email']) ? sanitize_email(wp_unslash($_POST['create_account_email'])) : '',
+			'value'       => $email_value,
 		);
 
 		if(!$generate_username_from_email) {
@@ -397,7 +410,7 @@ function wp_event_manager_get_registration_fields(){
 				'type'     => 'text',
 				'label'    => __('Username', 'wp-event-manager'),
 				'required' => $account_required,
-				'value'    => isset($_POST['create_account_username']) ? sanitize_text_field(wp_unslash($_POST['create_account_username'])) : '',
+				'value'    => $username_value,
 			);
 		}
 		if(!$use_standard_password_setup_email) {
