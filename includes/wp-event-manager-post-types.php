@@ -55,16 +55,16 @@ class WP_Event_Manager_Post_Types {
 		
 		add_action('wp_head', array($this, 'noindex_expired_cancelled_event_listings'));
 
-		add_filter('display_event_description', 'wptexturize'      );
-		add_filter('display_event_description', 'convert_smilies'  );
-		add_filter('display_event_description', 'convert_chars'    );
-		add_filter('display_event_description', 'wpautop'          );
-		add_filter('display_event_description', 'shortcode_unautop');
-		add_filter('display_event_description', 'prepend_attachment');
+		add_filter('wpem_display_event_description', 'wptexturize'      );
+		add_filter('wpem_display_event_description', 'convert_smilies'  );
+		add_filter('wpem_display_event_description', 'convert_chars'    );
+		add_filter('wpem_display_event_description', 'wpautop'          );
+		add_filter('wpem_display_event_description', 'shortcode_unautop');
+		add_filter('wpem_display_event_description', 'prepend_attachment');
 
 		if(!empty($GLOBALS['wp_embed'])) {
-   			add_filter('display_event_description', array($GLOBALS['wp_embed'], 'run_shortcode'), 8);
-     		add_filter('display_event_description', array($GLOBALS['wp_embed'], 'autoembed'), 8);
+   			add_filter('wpem_display_event_description', array($GLOBALS['wp_embed'], 'run_shortcode'), 8);
+     		add_filter('wpem_display_event_description', array($GLOBALS['wp_embed'], 'autoembed'), 8);
    		}
 		add_action('event_manager_registration_details_email', array($this, 'registration_details_email'));
 		add_action('event_manager_registration_details_url', array($this, 'registration_details_url'));		

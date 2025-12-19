@@ -2500,7 +2500,7 @@ function get_event_title($post = null){
  * @param int|WP_Post $post
  * @return string
  */
-function display_event_description($post = null){
+function wpem_display_event_description($post = null){
 	if($event_description = get_event_description($post)) {
 		echo esc_attr($event_description);
 	}
@@ -2519,7 +2519,7 @@ function get_event_description($post = null){
 		return;
 	}
 
-	$description = apply_filters('display_event_description', get_the_content($post));
+	$description = apply_filters('wpem_display_event_description', get_the_content($post));
 	/**
 	 * Filter for the event description.
 	 *

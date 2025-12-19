@@ -194,7 +194,7 @@ class Elementor_Event_Field extends Widget_Base {
                 display_event_banner('full', '', $event);
             } else if ($settings['event_field'] == 'event_description') {
                 echo wp_kses_post(
-                    apply_filters( 'display_event_description', $event->post_content )
+                    apply_filters( 'wpem_display_event_description', $event->post_content )
                 );            
             } else if ($settings['event_field'] == 'registration') {
                 $registration_end_date = get_event_registration_end_date($event);
