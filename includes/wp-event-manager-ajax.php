@@ -95,8 +95,18 @@ class WP_Event_Manager_Ajax {
 	 */
 	public static function do_em_ajax() {
 		global $wp_query;
+		
+		// Verify nonce for AJAX action
+		$ajax_action = '';
 		if ( ! empty( $_GET['em-ajax'] ) ) {
-			 $wp_query->set('em-ajax', sanitize_text_field(wp_unslash($_GET['em-ajax'])));
+			$nonce_verified = false;
+			if ( ! empty( $_GET['_wpnonce'] ) ) {
+				$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'event_manager_ajax' );
+			}
+			if ( $nonce_verified ) {
+				$ajax_action = sanitize_text_field(wp_unslash($_GET['em-ajax']));
+				$wp_query->set('em-ajax', $ajax_action);
+			}
 		}
 		$action = $wp_query->get( 'em-ajax' );
    		if( $action ) {
