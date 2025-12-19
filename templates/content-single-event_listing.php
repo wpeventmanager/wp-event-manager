@@ -124,12 +124,12 @@ $event = $post; ?>
                             $show_additional_details = apply_filters('event_manager_show_additional_details', true);
 
                             if ($show_additional_details) :
-                                if (!class_exists('WP_Event_Manager_Form_Submit_Event')) {
+                                if (!class_exists('WPEM_Event_Manager_Form_Submit_Event')) {
                                     include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php');
                                     include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php');
                                 }
 
-                                $form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
+                                $form_submit_event_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Event', 'instance'));
                                 $custom_fields = $form_submit_event_instance->get_event_manager_fieldeditor_fields();
                                 $default_fields = $form_submit_event_instance->get_default_event_fields();
 

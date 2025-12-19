@@ -3,9 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 /**
- * WP_Event_Manager_Form_Submit_Event class used to create event submit form and add event data into database.
+ * WPEM_Event_Manager_Form_Submit_Event class used to create event submit form and add event data into database.
  */
-class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
+class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
     
 	public    $form_name = 'submit-event';
 	public    $resume_edit;
@@ -13,7 +13,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	public    $fields;
 	protected $event_id;
 	protected $preview_event;
-	/** @var WP_Event_Manager_Form_Submit_Event The single instance of the class */
+	/** @var WPEM_Event_Manager_Form_Submit_Event The single instance of the class */
 	protected static $_instance = null;
 	/**
 	 * Main Instance.

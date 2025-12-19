@@ -148,7 +148,7 @@ class WP_Event_Manager_Writepanels {
 			$expiry_date  = '';
 		}
 		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
-		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
+		$form_submit_event_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Event', 'instance'));
 		$fields                     = $form_submit_event_instance->wpem_merge_with_custom_fields('backend');
 
 		/** add _ (prefix) for all backend fields.

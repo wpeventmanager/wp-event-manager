@@ -5,14 +5,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 include_once('wp-event-manager-form-submit-organizer.php');
 
 /**
- * WP_Event_Manager_Form_Edit_Event class.
+ * WPEM_Event_Manager_Form_Edit_Event class.
  */
-class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_Organizer {
+class WPEM_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_Organizer {
 
 	public $form_name           = 'edit-organizer';
 	public $organizer_id;
 
-	/** @var WP_Event_Manager_Form_Edit_Organizer The single instance of the class */
+	/** @var WPEM_Event_Manager_Form_Edit_Organizer The single instance of the class */
 
 	protected static $_instance = null;
 
