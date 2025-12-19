@@ -52,19 +52,25 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			)
 		) );
 
-		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
-		// Get step/event
-		if( isset( $_POST['step'] ) ) {
-			$step_value = sanitize_text_field(wp_unslash($_POST['step']));
-			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search($step_value, array_keys($this->steps));
-		} elseif ( !empty( $_GET['step'] ) ) {
-			$step_value = sanitize_text_field(wp_unslash($_GET['step']));
-			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search($step_value, array_keys($this->steps));
-		}
-
+			uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 		$this->event_id = !empty( $_REQUEST['event_id'] ) ? absint( wp_unslash( $_REQUEST[ 'event_id' ] ) ) : 0;
 		if( !event_manager_user_can_edit_event( $this->event_id ) ) {
 			$this->event_id = 0;
+		}
+		$step_nonce_ok = false;
+		if ( ! empty( $_POST['_wpnonce'] ) ) {
+			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-event_' . $this->event_id );
+		} elseif ( ! empty( $_GET['_wpnonce'] ) ) {
+			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'edit-event_' . $this->event_id );
+		}
+
+		// Get step/event
+		if( $step_nonce_ok && isset( $_POST['step'] ) ) {
+			$step_value = sanitize_text_field(wp_unslash($_POST['step']));
+			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search($step_value, array_keys($this->steps));
+		} elseif ( $step_nonce_ok && !empty( $_GET['step'] ) ) {
+			$step_value = sanitize_text_field(wp_unslash($_GET['step']));
+			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search($step_value, array_keys($this->steps));
 		}
 		
 		// Allow resuming from cookie.
