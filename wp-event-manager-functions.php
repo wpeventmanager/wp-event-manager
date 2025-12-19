@@ -245,6 +245,7 @@ if(!function_exists('get_event_listings')) :
 		// If orderby meta key _event_start_date 
 		if('event_start_date' === $args['orderby']) {
 			$query_args['orderby'] ='meta_value';
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for event ordering by start date
 			$query_args['meta_key'] ='_event_start_date';
 			$query_args['meta_type'] ='DATETIME';
 		}
@@ -283,6 +284,7 @@ if(!function_exists('get_event_listings')) :
 		if(empty($query_args['tax_query'])) {
 			unset($query_args['tax_query']);
 		} else {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Required for event taxonomy filtering
 			$query_args['meta_query']['tax_query'] = array($query_args['tax_query']);
 			$query_args['meta_query']['relation'] = 'AND';
 			// $query_args['tax_query']['relation'] = 'AND';
