@@ -60,8 +60,8 @@ class WP_Event_Manager_Writepanels {
 	 * @since 1.0.0
 	 */
 	public function event_manager_data($post) {
-		global $post, $thepostid;
-		$thepostid = $post->ID;
+		global $post, $wpem_thepostid;
+		$wpem_thepostid = $post->ID;
 		wp_enqueue_script('wp-event-manager-admin-js');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
 		include('templates/listings-data-tabs.php');

@@ -22,7 +22,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 			
 			$detail_link = esc_url("https://wp-eventmanager.com/knowledge-base/");
 
-			$shortcode_plugins = apply_filters('wp_event_manager_shortcode_plugin', 
+			$shortcode_plugins = apply_filters('wpem_event_manager_shortcode_plugin', 
 				array(
 					'wp-event-manager' => __('WP Event Manager', 'wp-event-manager')
 				)
@@ -167,7 +167,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 									<td><?php esc_attr_e('In order to display a particular event’s Venue, a user can add this shortcode.', 'wp-event-manager');?></td>
 									<td><a class="button add-field" href="<?php echo esc_attr($detail_link).'venue-shortcode/#articleTOC_5';?>" target="_blank"><?php esc_attr_e('View Details', 'wp-event-manager');?></a></td>
 								</tr>
-								<?php do_action('wp_event_manager_shortcode_list', $detail_link); ?>
+								<?php do_action('wpem_event_manager_shortcode_list', $detail_link); ?>
 							</tbody>
 						</table>
 					</div>

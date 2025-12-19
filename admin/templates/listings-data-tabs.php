@@ -20,11 +20,11 @@ $event_fields = $this->event_listing_fields(); ?>
         <div id="<?php echo isset($tab['target']) ? esc_attr($tab['target']) : ''; ?>" class="panel wpem_panel wpem-metaboxes-wrapper">
             <div class="wp_event_manager_meta_data">
                 <div class="wpem-variation-wrapper wpem-metaboxes">
-                    <?php do_action('event_manager_event_data_start', $thepostid);
+                    <?php do_action('event_manager_event_data_start', $wpem_thepostid);
                     if (isset($event_fields)) {
                         foreach ($event_fields as $key => $field) {
                             // Get the value from post meta
-                            $field_value = get_post_meta($thepostid, '_' . $key, true);
+                            $field_value = get_post_meta($wpem_thepostid, '_' . $key, true);
                             
                             // If no value exists in post meta, use the default value
                             if (empty($field_value) && isset($field['default'])) {
@@ -51,7 +51,7 @@ $event_fields = $this->event_listing_fields(); ?>
                             }
                         }
                     }
-                    do_action('event_manager_event_data_end', $thepostid); ?>
+                    do_action('event_manager_event_data_end', $wpem_thepostid); ?>
                 </div>
             </div>
         </div>
