@@ -49,6 +49,7 @@ if(!function_exists('get_event_listings')) :
 			'posts_per_page'         => intval($args['posts_per_page']),
 			'orderby'                => $args['orderby'],
 			'order'                  => $args['order'],
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Required for event taxonomy filtering
 			'tax_query'              => array(),
 			'meta_query'             => array(),
 			'update_post_term_cache' => false,
