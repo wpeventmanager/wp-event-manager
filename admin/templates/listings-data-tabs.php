@@ -6,8 +6,8 @@ $event_fields = $this->event_listing_fields(); ?>
 
 <div class="panel-wrap">
     <ul class="wpem-tabs">
-        <?php foreach ($this->get_event_data_tabs() as $key => $tab) : ?>
-            <li class="<?php echo esc_attr($key); ?>_options <?php echo esc_attr($key); ?>_tab <?php echo esc_attr(isset($tab['class']) ? implode(' ', (array) $tab['class']) : ''); ?>">
+        <?php foreach ($this->get_event_data_tabs() as $wpem_key => $tab) : ?>
+            <li class="<?php echo esc_attr($wpem_key); ?>_options <?php echo esc_attr($wpem_key); ?>_tab <?php echo esc_attr(isset($tab['class']) ? implode(' ', (array) $tab['class']) : ''); ?>">
                 <a href="#<?php echo isset($tab['target']) ? esc_attr($tab['target']) : ''; ?>" class="">
                     <span><?php echo esc_html($tab['label']); ?></span>
                 </a>
@@ -16,7 +16,7 @@ $event_fields = $this->event_listing_fields(); ?>
         <?php do_action('wpem_event_write_panel_tabs'); ?>
     </ul>
 
-    <?php foreach ($this->get_event_data_tabs() as $key => $tab) : ?>
+    <?php foreach ($this->get_event_data_tabs() as $wpem_key => $tab) : ?>
         <div id="<?php echo isset($tab['target']) ? esc_attr($tab['target']) : ''; ?>" class="panel wpem_panel wpem-metaboxes-wrapper">
             <div class="wp_event_manager_meta_data">
                 <div class="wpem-variation-wrapper wpem-metaboxes">
