@@ -303,8 +303,18 @@ class WP_Event_Manager_Shortcodes{
 	public function edit_event(){
 		global $event_manager;
 
-		$organizer_id = isset($_REQUEST['organizer_id']) ? absint( wp_unslash($_REQUEST['organizer_id'])) : 0;
-		$venue_id     = isset($_REQUEST['venue_id']) ? absint( wp_unslash($_REQUEST['venue_id'])) : 0;
+		// Verify nonce before processing request parameters
+		$nonce_verified = false;
+		if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
+			$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'edit_event_form' );
+		}
+
+		$organizer_id = 0;
+		$venue_id = 0;
+		if ( $nonce_verified ) {
+			$organizer_id = isset($_REQUEST['organizer_id']) ? absint( wp_unslash($_REQUEST['organizer_id'])) : 0;
+			$venue_id     = isset($_REQUEST['venue_id']) ? absint( wp_unslash($_REQUEST['venue_id'])) : 0;
+		}
 
 		if ($organizer_id && get_post_type($organizer_id) === 'event_organizer') {
 			echo $this->escape_form_html($event_manager->forms->get_form('edit-organizer'));
@@ -595,7 +605,16 @@ class WP_Event_Manager_Shortcodes{
 
 		// If doing an action, show conditional content if needed....
 		if(!empty($_REQUEST['action'])) {
-			$action = sanitize_title( wp_unslash($_REQUEST['action']));
+			// Verify nonce for action parameter
+			$nonce_verified = false;
+			if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
+				$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_venue_actions' );
+			}
+			if ( $nonce_verified ) {
+				$action = sanitize_title( wp_unslash($_REQUEST['action']));
+			} else {
+				$action = '';
+			}
 			// Show alternative content if a plugin wants to
 			if(has_action('event_manager_venue_dashboard_content_' . $action)) {
 
@@ -758,19 +777,25 @@ class WP_Event_Manager_Shortcodes{
 			$ticket_prices        = is_array($ticket_prices) ? $ticket_prices : array_filter(array_map('trim', explode(',', $ticket_prices)));
 		}
 		// Get keywords, location, datetime, category, event type and ticket price from query string if set
-		if(!empty($_GET['search_keywords'])) {
+		// Verify nonce for search parameters
+		$search_nonce_verified = false;
+		if ( ! empty( $_GET['_wpnonce'] ) ) {
+			$search_nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'event_search_filter' );
+		}
+
+		if(!empty($_GET['search_keywords']) && $search_nonce_verified) {
 			$keywords = isset($_GET['search_keywords']) ? wp_kses_post(wp_unslash($_GET['search_keywords'])) : '';
 		}
 
-		if(!empty($_GET['search_location'])) {
+		if(!empty($_GET['search_location']) && $search_nonce_verified) {
 			$location = isset($_GET['search_location']) ? wp_kses_post(wp_unslash($_GET['search_location'])) : '';
 		}
 
-		if(!empty($_GET['search_datetime'])) {
+		if(!empty($_GET['search_datetime']) && $search_nonce_verified) {
 			$search_datetime = isset($_GET['search_datetime']) ? wp_kses_post(wp_unslash($_GET['search_datetime'])) : '';
 		}
 
-		if(!empty($_GET['search_category'])) {
+		if(!empty($_GET['search_category']) && $search_nonce_verified) {
 			if (!empty($_GET['search_category'])) {
 				$search_category_raw = wp_unslash($_GET['search_category']);
 				if (is_array($search_category_raw)) {
@@ -783,7 +808,7 @@ class WP_Event_Manager_Shortcodes{
 			}
 		}
 
-		if(!empty($_GET['search_event_type'])) {
+		if(!empty($_GET['search_event_type']) && $search_nonce_verified) {
 			if (!empty($_GET['search_event_type'])) {
 				$search_event_type_raw = wp_unslash($_GET['search_event_type']);
 				if (is_array($search_event_type_raw)) {
