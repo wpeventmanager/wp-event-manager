@@ -80,7 +80,7 @@ class WP_Event_Manager_Post_Types {
 		add_action('pmxi_saved_post', array($this, 'pmxi_saved_post'), 10, 1);
  
         // View count action
-        add_action('set_single_listing_view_count', array($this, 'set_single_listing_view_count'));
+        add_action('wpem_set_single_listing_view_count', array($this, 'wpem_set_single_listing_view_count'));
 
         // Admin notices.
         add_filter('bulk_post_updated_messages', array($this, 'bulk_post_updated_messages'), 10, 2);
@@ -1010,7 +1010,7 @@ class WP_Event_Manager_Post_Types {
 	* Set post view on the single listing page.
 	* @param  array $post	 
 	*/
-	function set_single_listing_view_count($post) {     
+	function wpem_set_single_listing_view_count($post) {     
 		global $post; 
 		// Get the user role. 
 		if(is_user_logged_in()) {

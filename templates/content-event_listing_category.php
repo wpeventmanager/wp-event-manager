@@ -20,7 +20,7 @@ global $wp_query; ?>
                 </div>
                 <?php
                 // remove calender view
-                remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon'); ?>
+                remove_action('wpem_end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon'); ?>
                 <div class="event_listings">
                     <?php if ( have_posts() ) :
                         get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>'all')); 

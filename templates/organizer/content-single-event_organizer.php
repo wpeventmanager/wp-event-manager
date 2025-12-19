@@ -127,7 +127,7 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
                             <?php endif;
                         endforeach;
                     }                     
-                    do_action('organizer_form_organizer_fields_end'); ?>
+                    do_action('wpem_submit_organizer_form_organizer_fields_end'); ?>
                     <div class="wpem-organizer-contact-actions">
                         <?php do_action('single_event_listing_organizer_action_start', $organizer_id); ?>
 

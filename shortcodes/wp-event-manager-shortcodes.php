@@ -1309,7 +1309,7 @@ class WP_Event_Manager_Shortcodes{
 		wp_reset_postdata();
 
 		// Remove calender view
-		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
+		remove_action('wpem_end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
 		wp_enqueue_script('wp-event-manager-ajax-filters');
 		if($past_events->have_posts()) : ?>
 			<div class="past_event_listings">
@@ -1949,7 +1949,7 @@ class WP_Event_Manager_Shortcodes{
 		wp_reset_postdata();
 
 		// Remove calender view
-		remove_action('end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
+		remove_action('wpem_end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon');
  
 		if($upcoming_events->have_posts()) : 
 			wp_enqueue_script('wp-event-manager-ajax-filters');?>

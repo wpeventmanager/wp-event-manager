@@ -167,7 +167,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
-					do_action('submit_organizer_form_organizer_fields_end'); ?>
+					do_action('wpem_submit_organizer_form_organizer_fields_end'); ?>
 
 					<div class="wpem-form-footer">
 						<?php wp_nonce_field( 'wpem_add_organizer_action', 'wpem_add_organizer_nonce' ); ?>

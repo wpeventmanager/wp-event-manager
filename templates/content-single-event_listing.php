@@ -13,7 +13,7 @@ $separator = get_wpem_date_time_separator();
 $check_ticket_visibility = get_option('event_manager_enable_event_ticket_prices_filter', true);
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style('wp-event-manager-slick-style');
-do_action('set_single_listing_view_count');
+do_action('wpem_set_single_listing_view_count');
 $event = $post; ?>
 
 <div class="single_event_listing">
