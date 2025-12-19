@@ -292,7 +292,9 @@ A prior Backup does no harm before updating the plugin!',
 			$wp_attached_file = str_replace($baseurl, '', $image_url);
 
 			$args = array(
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for attachment lookup
 				'meta_key'       => '_wp_attached_file',
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup
 				'meta_value'     => $wp_attached_file,
 				'post_type'      => 'attachment',
 				'posts_per_page' => 1,
