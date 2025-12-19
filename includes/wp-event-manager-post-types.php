@@ -118,8 +118,8 @@ class WP_Event_Manager_Post_Types {
 				$public    = true;
 			}
 			register_taxonomy("event_listing_category",
-			apply_filters('register_taxonomy_event_listing_category_object_type', array('event_listing')),
-	       	 	apply_filters('register_taxonomy_event_listing_category_args', array(
+			apply_filters('wpem_register_taxonomy_event_listing_category_object_type', array('event_listing')),
+	       	 	apply_filters('wpem_register_taxonomy_event_listing_category_args', array(
 		            'hierarchical' 			=> true,
 		            'update_count_callback' => '_update_post_term_count',
 		            'label' 				=> $plural,
@@ -197,8 +197,8 @@ class WP_Event_Manager_Post_Types {
 				$public    = true;
 			}
 			register_taxonomy("event_listing_type",
-			apply_filters('register_taxonomy_event_listing_type_object_type', array('event_listing')),
-		        apply_filters('register_taxonomy_event_listing_type_args', array(
+			apply_filters('wpem_register_taxonomy_event_listing_type_object_type', array('event_listing')),
+		        apply_filters('wpem_register_taxonomy_event_listing_type_args', array(
 		            'hierarchical' => true,
 		            'label'        => $plural,
 		            'labels'       => array(

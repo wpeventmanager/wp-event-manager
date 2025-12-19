@@ -35,7 +35,7 @@ class WP_Event_Manager_Date_Time {
 	* @since 3.0
 	**/
 	public static function get_default_date_formats(){
-		$date_formats['datepicker_date_formats']  = apply_filters('wp_event_manager_datepicker_date_formats',
+		$date_formats['datepicker_date_formats']  = apply_filters('wpem_event_manager_datepicker_date_formats',
 						array(
 							'yy-mm-dd',
 							'm-d-yy',
@@ -53,7 +53,7 @@ class WP_Event_Manager_Date_Time {
 							'dd.mm.yy'
 						)
 			);
-		$date_formats['view_date_formats'] = apply_filters('wp_event_manager_view_date_formats',
+		$date_formats['view_date_formats'] = apply_filters('wpem_event_manager_view_date_formats',
 				array(
 					'Y-m-d',
 					'n-j-Y',
@@ -302,10 +302,10 @@ class WP_Event_Manager_Date_Time {
 	 * 
 	 * @param string $tzstring
 	 */
-	public static function wp_event_manager_timezone_choice($tzstring = null){
+	public static function wpem_timezone_choice($tzstring = null){
 		if(empty($tzstring))
 			$tzstring = self::get_current_site_timezone();
-		return apply_filters('wp_event_manager_timezone_choice', wp_timezone_choice($tzstring, get_user_locale()));
+		return apply_filters('wpem_timezone_choice', wp_timezone_choice($tzstring, get_user_locale()));
 	}
 
 	/**

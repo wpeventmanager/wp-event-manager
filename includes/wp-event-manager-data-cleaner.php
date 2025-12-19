@@ -16,7 +16,7 @@ if(!defined('ABSPATH')) {
  *
  * @since 2.5
  */
-class WP_Event_Manager_Data_Cleaner {
+class WPEM_Event_Manager_Data_Cleaner {
 
 	/**
 	 * Custom post types to be deleted.

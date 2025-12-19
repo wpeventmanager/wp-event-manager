@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$field['default'] = isset($field['default']) ? $field['default'] : '';
 		$value = isset($field['value']) ? $field['value'] : $field['default'];	
 		echo wp_kses_post(
-			WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice(
+			WP_Event_Manager_Date_Time::wpem_timezone_choice(
 				esc_attr( $value )
 			)
 		); ?>

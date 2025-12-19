@@ -912,7 +912,7 @@ class WP_Event_Manager_Writepanels {
 					<?php
 					$value = isset($field['value']) ? $field['value'] : $field['default'];
 					echo wp_kses(
-						WP_Event_Manager_Date_Time::wp_event_manager_timezone_choice( esc_attr( $value ) ),
+						WP_Event_Manager_Date_Time::wpem_timezone_choice( esc_attr( $value ) ),
 						array(
 							'select' => array(
 								'name'     => true,
