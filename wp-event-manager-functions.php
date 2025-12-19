@@ -51,6 +51,7 @@ if(!function_exists('get_event_listings')) :
 			'order'                  => $args['order'],
 			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Required for event taxonomy filtering
 			'tax_query'              => array(),
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Required for event meta filtering
 			'meta_query'             => array(),
 			'update_post_term_cache' => false,
 			'update_post_meta_cache' => false,
@@ -212,6 +213,7 @@ if(!function_exists('get_event_listings')) :
 		}
 
 		if('featured' === $args['orderby']) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Required for event meta filtering
 			$query_args['meta_query'] = array(
 				'relation' => 'AND',
 				'featured_clause' => array(
@@ -248,6 +250,7 @@ if(!function_exists('get_event_listings')) :
 		}
 		// If orderby event_start_date and time  both
 		if('event_start_date_time' === $args['orderby']) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Required for event meta filtering
 			$query_args['meta_query'] = array(
 				'relation' => 'AND',
 				'event_start_date_clause' => array(
