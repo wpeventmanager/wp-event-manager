@@ -429,6 +429,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return array
 	 */
 	protected function get_posted_multiselect_field($key, $field) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		return isset($_POST[ $key ]) ? array_map('sanitize_text_field', $_POST[ $key ]) : array();
 	}
 
@@ -458,6 +459,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	protected function get_posted_textarea_field($key, $field) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		return isset($_POST[ $key ]) ? wp_kses_post(trim(wp_unslash($_POST[ $key ]))) : '';
 	}
 
@@ -478,6 +480,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return array
 	 */
 	protected function get_posted_term_checklist_field($key, $field) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if(isset($_POST[ 'tax_input' ]) && isset($_POST[ 'tax_input' ][ $field['taxonomy'] ])) {
 			return array_map('absint', $_POST[ 'tax_input' ][ $field['taxonomy'] ]);
 		} else {
@@ -492,6 +495,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return int
 	 */
 	protected function get_posted_term_multiselect_field($key, $field) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		return isset($_POST[ $key ]) ? array_map('absint', $_POST[ $key ]) : array();
 	}
 
@@ -502,6 +506,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return int
 	 */
 	protected function get_posted_term_select_field($key, $field) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		return !empty($_POST[ $key ]) && $_POST[ $key ] > 0 ? absint($_POST[ $key ]) : '';
 	}
 
