@@ -40,8 +40,32 @@ class WP_Event_Manager_Forms {
 	 * If a form was posted, load its class so that it can be processed before display.
 	 */
 	public function load_posted_form() {
-		if(!empty($_POST['event_manager_form'])) {
-			$this->load_form_class(sanitize_text_field(wp_unslash($_POST['event_manager_form'])));
+		if ( ! empty( $_POST['event_manager_form'] ) && ! empty( $_POST['_wpnonce'] ) ) {
+			$form_name = sanitize_text_field( wp_unslash( $_POST['event_manager_form'] ) );
+			$nonce_verified = false;
+			
+			// Verify nonce based on form type
+			switch ( $form_name ) {
+				case 'submit-event':
+				case 'edit-event':
+					$event_id = ! empty( $_POST['event_id'] ) ? absint( wp_unslash( $_POST['event_id'] ) ) : 0;
+					$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-event_' . $event_id );
+					break;
+				case 'submit-organizer':
+				case 'edit-organizer':
+					$organizer_id = ! empty( $_POST['organizer_id'] ) ? absint( wp_unslash( $_POST['organizer_id'] ) ) : 0;
+					$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-organizer_' . $organizer_id );
+					break;
+				case 'submit-venue':
+				case 'edit-venue':
+					$venue_id = ! empty( $_POST['venue_id'] ) ? absint( wp_unslash( $_POST['venue_id'] ) ) : 0;
+					$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-venue_' . $venue_id );
+					break;
+			}
+			
+			if ( $nonce_verified ) {
+				$this->load_form_class( $form_name );
+			}
 		}
 	}
 
