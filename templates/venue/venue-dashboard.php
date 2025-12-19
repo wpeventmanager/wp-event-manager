@@ -48,7 +48,7 @@ do_action('event_manager_venue_dashboard_before'); ?>
                                         do_action('single_event_listing_venue_social_start', $venue->ID);
 
                                         //get disable venue fields
-                                        $venue_fields = get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
+                                        $venue_fields = wpem_get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
                                         $venue_website  = !in_array('venue_website', $venue_fields)?get_venue_website($venue):'';
                                         $venue_facebook = !in_array('venue_facebook', $venue_fields)?get_venue_facebook($venue):'';
                                         $venue_instagram = !in_array('venue_instagram', $venue_fields)?get_venue_instagram($venue):'';

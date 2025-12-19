@@ -2683,7 +2683,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
  * @param string
  * @return array
  **/
-function get_hidden_form_fields($form_option, $key_name){
+function wpem_get_hidden_form_fields($form_option, $key_name){
 	$form_fields_array = get_option($form_option, true);
 	$form_fields = array();
 	if(!empty($form_fields_array)) :
