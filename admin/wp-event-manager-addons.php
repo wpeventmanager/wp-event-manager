@@ -6,11 +6,11 @@ if(!defined('ABSPATH')){
 	 exit;// Exit if accessed directly
 } 
 
-if(!class_exists('WP_Event_Manager_Addons')) :
+if(!class_exists('WPEM_Event_Manager_Addons')) :
 	/**
-	 * WP_Event_Manager_Addons Class.
+	 * WPEM_Event_Manager_Addons Class.
 	*/
-	class WP_Event_Manager_Addons {
+	class WPEM_Event_Manager_Addons {
 		/**
 		 * Handles output of the reports page in admin.
 		 */
@@ -199,5 +199,5 @@ if(!class_exists('WP_Event_Manager_Addons')) :
 endif;
 
 
-return new WP_Event_Manager_Addons();
+return new WPEM_Event_Manager_Addons();
 
