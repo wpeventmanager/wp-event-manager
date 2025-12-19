@@ -351,6 +351,11 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
+			
+			// Verify nonce before processing form submission
+			if ( ! empty( $_POST ) && ( empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-venue_' . $this->venue_id ) ) ) {
+				return;
+			}
 
 			if(empty($_POST['submit_venue'])) {
 				return;
