@@ -149,7 +149,7 @@ class WP_Event_Manager_Writepanels {
 		}
 		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-		$fields                     = $form_submit_event_instance->merge_with_custom_fields('backend');
+		$fields                     = $form_submit_event_instance->wpem_merge_with_custom_fields('backend');
 
 		/** add _ (prefix) for all backend fields.
 		 *  Field editor will only return fields without _(prefix).
@@ -1386,7 +1386,7 @@ class WP_Event_Manager_Writepanels {
 
 		$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 		$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
-		$fields                         = $form_submit_organizer_instance->merge_with_custom_fields('backend');
+		$fields                         = $form_submit_organizer_instance->wpem_merge_with_custom_fields('backend');
 
 		/** add _ (prefix) for all backend fields.
 		 *  Field editor will only return fields without _(prefix).
@@ -1560,7 +1560,7 @@ class WP_Event_Manager_Writepanels {
 
 		$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 		$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
-		$fields                     = $form_submit_venue_instance->merge_with_custom_fields('backend');
+		$fields                     = $form_submit_venue_instance->wpem_merge_with_custom_fields('backend');
 
 		/** add _ (prefix) for all backend fields.
 		 *  Field editor will only return fields without _(prefix).

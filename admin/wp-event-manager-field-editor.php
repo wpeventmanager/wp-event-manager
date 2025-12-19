@@ -100,12 +100,12 @@ class WP_Event_Manager_Field_Editor {
 
 		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-		$event_fields               = $form_submit_event_instance->merge_with_custom_fields('backend');
+		$event_fields               = $form_submit_event_instance->wpem_merge_with_custom_fields('backend');
 		
 		if(get_option('enable_event_organizer')) {
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
-			$organizer_fields               = $form_submit_organizer_instance->merge_with_custom_fields('backend');
+			$organizer_fields               = $form_submit_organizer_instance->wpem_merge_with_custom_fields('backend');
 		} else {
 			$organizer_fields = array();
 		}
@@ -113,7 +113,7 @@ class WP_Event_Manager_Field_Editor {
 		if(get_option('enable_event_venue')) {
 			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 			$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
-			$venue_fields               = $form_submit_venue_instance->merge_with_custom_fields('backend');
+			$venue_fields               = $form_submit_venue_instance->wpem_merge_with_custom_fields('backend');
 		} else {
 			$venue_fields = array();
 		}

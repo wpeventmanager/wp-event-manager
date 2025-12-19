@@ -9,7 +9,7 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
 } else {
     $GLOBALS['event_manager']->forms->get_form( 'submit-organizer', array() );
     $form_submit_organizer_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Organizer', 'instance' ) );
-    $organizer_custom_fields = $form_submit_organizer_instance->merge_with_custom_fields( 'backend' );
+    $organizer_custom_fields = $form_submit_organizer_instance->wpem_merge_with_custom_fields( 'backend' );
 } 
 // Check user is loggedin or not.
 $check_user_access 	 = wpem_checked_guest_user_access();

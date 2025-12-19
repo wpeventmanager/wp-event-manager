@@ -227,7 +227,7 @@ abstract class WP_Event_Manager_Form {
 		// $this->init_fields(); We dont need to initialize with this function because of field edior
 		// Now field editor function will return all the fields 
 		// Get merged fields from db and default fields.
-		$this->merge_with_custom_fields('frontend');
+		$this->wpem_merge_with_custom_fields('frontend');
 
 		$values = array();
 
@@ -545,7 +545,7 @@ abstract class WP_Event_Manager_Form {
 	 *
 	 * @return array Returns merged and replaced fields
 	 */
-	public function merge_with_custom_fields($field_view = 'frontend') { 
+	public function wpem_merge_with_custom_fields($field_view = 'frontend') { 
 	
 		$custom_fields  = $this->get_event_manager_fieldeditor_fields();
 		$default_fields = $this->get_default_fields();
@@ -577,7 +577,7 @@ abstract class WP_Event_Manager_Form {
 		}
 		
 		if(!is_array($custom_fields)){
-		    $this->fields = apply_filters('merge_with_custom_fields',$default_fields,$default_fields) ;
+		    $this->fields = apply_filters('wpem_merge_with_custom_fields',$default_fields,$default_fields) ;
 		    return $this->fields;
 		}
 		
@@ -631,7 +631,7 @@ abstract class WP_Event_Manager_Form {
 		if($timezone_setting != 'each_event' && isset($updated_fields['event']['event_timezone'])) {
 			unset($updated_fields['event']['event_timezone']);
 		}
-		$this->fields = apply_filters('merge_with_custom_fields',$updated_fields,$default_fields) ;
+		$this->fields = apply_filters('wpem_merge_with_custom_fields',$updated_fields,$default_fields) ;
 		return $this->fields;
 	}
 }

@@ -92,7 +92,7 @@ class Elementor_Event_Tag extends Tag {
             include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
         }
         $form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-        $fields = $form_submit_event_instance->merge_with_custom_fields('backend');
+        $fields = $form_submit_event_instance->wpem_merge_with_custom_fields('backend');
 
         foreach ($fields as $group_key => $group_fields) {
             foreach ($group_fields as $field_key => $field) {
@@ -244,7 +244,7 @@ class Elementor_Event_Tag extends Tag {
                     include_once( EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php' );
                 }
                 $form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-                $fields = $form_submit_event_instance->merge_with_custom_fields('backend');
+                $fields = $form_submit_event_instance->wpem_merge_with_custom_fields('backend');
 
                 foreach ($fields as $group_key => $group_fields) {
                     foreach ($group_fields as $field_key => $field) {

@@ -189,7 +189,7 @@ if(get_option('enable_event_venue')) :
 
 	$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 	$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
-	$venue_fields =	$form_submit_venue_instance->merge_with_custom_fields('backend'); ?>
+	$venue_fields =	$form_submit_venue_instance->wpem_merge_with_custom_fields('backend'); ?>
 
 	<div id="wpem_add_venue_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php echo esc_attr__('Add Venue', 'wp-event-manager'); ?>">
 		<div class="wpem-modal-content-wrapper">

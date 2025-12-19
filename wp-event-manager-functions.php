@@ -959,7 +959,7 @@ function event_manager_multiselect_event_type() {
     }
 
     $form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-    $event_fields = $form_submit_event_instance->merge_with_custom_fields();
+    $event_fields = $form_submit_event_instance->wpem_merge_with_custom_fields();
 
     if(isset($event_fields['event']['event_type']['type']) && $event_fields['event']['event_type']['type'] === 'term-multiselect') {
     	return apply_filters('event_manager_multiselect_event_type', true);
@@ -981,7 +981,7 @@ function event_manager_multiselect_event_category() {
     }
 
     $form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
-    $event_fields = $form_submit_event_instance->merge_with_custom_fields();
+    $event_fields = $form_submit_event_instance->wpem_merge_with_custom_fields();
 
     if(isset($event_fields['event']['event_category']['type']) && $event_fields['event']['event_category']['type'] === 'term-multiselect') {
     	return apply_filters('event_manager_multiselect_event_category', true);

@@ -798,7 +798,7 @@ class WP_Event_Manager_Ajax {
 
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
-			$event_fields =	$form_submit_organizer_instance->merge_with_custom_fields('frontend');
+			$event_fields =	$form_submit_organizer_instance->wpem_merge_with_custom_fields('frontend');
 
 			// Submit current event with $_POST values
 			$form_submit_organizer_instance->submit_handler();
@@ -893,7 +893,7 @@ class WP_Event_Manager_Ajax {
 
 			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 			$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
-			$event_fields =	$form_submit_venue_instance->merge_with_custom_fields('frontend');
+			$event_fields =	$form_submit_venue_instance->wpem_merge_with_custom_fields('frontend');
 
 			// Submit current event with $_POST values
 			$form_submit_venue_instance->submit_handler();

@@ -219,7 +219,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		//$this->init_fields(); We dont need to initialize with this function because of field edior
 		// Now field editor function will return all the fields 
 		//Get merged fields from db and default fields.
-		$this->merge_with_custom_fields('frontend');
+		$this->wpem_merge_with_custom_fields('frontend');
 
 		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
@@ -347,7 +347,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			//$this->init_fields(); We dont need to initialize with this function because of field edior
 			// Now field editor function will return all the fields 
 			//Get merged fields from db and default fields.
-			$this->merge_with_custom_fields('frontend');
+			$this->wpem_merge_with_custom_fields('frontend');
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
