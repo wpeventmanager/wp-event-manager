@@ -12,7 +12,7 @@ function event_manager_jetpack_skip_cancelled_event_listings($skip_post, $post) 
 	if ('event_listing' !== $post->post_type) {
 		return $skip_post;
 	}
-	if (is_event_cancelled($post)) {
+	if (wpem_is_event_cancelled($post)) {
 		return true;
 	}
 	return $skip_post;

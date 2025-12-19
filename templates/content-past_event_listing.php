@@ -2,21 +2,21 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-$start_date = get_event_start_date();
-$end_date   = get_event_end_date();
-$event_type = get_event_type();
-$start_time = get_event_start_time();
-$end_time   = get_event_end_time();
+$start_date = wpem_get_event_start_date();
+$end_date   = wpem_get_event_end_date();
+$event_type = wpem_get_event_type();
+$start_time = wpem_get_event_start_time();
+$end_time   = wpem_get_event_end_time();
 if (is_array($event_type) && isset($event_type[0]))
     $event_type = $event_type[0]->slug;
 
-$thumbnail     = get_event_thumbnail(); ?>
+$thumbnail     = wpem_get_event_thumbnail(); ?>
 
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-4 ">
     <!----- wpem-col-lg-4 value can be change by admin settings ------->
     <div class="wpem-event-layout-wrapper">
         <div <?php event_listing_class(''); ?>>
-            <a href="<?php display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo esc_attr($event_type); ?>">
+            <a href="<?php wpem_display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo esc_attr($event_type); ?>">
                 <div class="wpem-event-banner">
                     <div class="wpem-event-banner-img" style="background-image: url(<?php echo esc_attr($thumbnail); ?> ) ">
                         <!-- Hide in list View // Show in Box View -->
@@ -61,42 +61,42 @@ $thumbnail     = get_event_thumbnail(); ?>
                             <h3 class="wpem-heading-text"><?php echo esc_html(get_the_title()); ?></h3>
                         </div>
                         <div class="wpem-event-date-time">
-                            <span class="wpem-event-date-time-text"><?php display_event_start_date(); ?>
+                            <span class="wpem-event-date-time-text"><?php wpem_display_event_start_date(); ?>
                             <?php 
                                 if (!empty($start_time)) { 
                                         echo ' ' . esc_html(wpem_display_date_time_separator()) .' ';
                                     }
                             ?>
-                            <?php display_event_start_time(); ?> - <?php display_event_end_date(); ?>
+                            <?php wpem_display_event_start_time(); ?> - <?php wpem_display_event_end_date(); ?>
                             <?php
                                 if (!empty($end_date) && !empty($end_time)) {
                                     echo ' ' . esc_html(wpem_display_date_time_separator()) . ' ';
                                 }
                             ?>
-                            <?php display_event_end_time(); ?></span>
+                            <?php wpem_display_event_end_time(); ?></span>
                         </div>
                         <div class="wpem-event-location">
                             <span class="wpem-event-location-text">
                                 <?php
-                                if (get_event_location() == 'Online Event' || get_event_location() == '') :
+                                if (wpem_get_event_location() == 'Online Event' || wpem_get_event_location() == '') :
                                     echo esc_attr__('Online Event', 'wp-event-manager');
                                 else :
-                                    display_event_location(false);
+                                    wpem_display_event_location(false);
                                 endif;  ?>
                             </span>
                         </div>
 
                         <?php
-                        if (get_option('event_manager_enable_event_types') && get_event_type()) {  ?>
-                            <div class="wpem-event-type"><?php display_event_type(); ?></div>
+                        if (get_option('event_manager_enable_event_types') && wpem_get_event_type()) {  ?>
+                            <div class="wpem-event-type"><?php wpem_display_event_type(); ?></div>
                         <?php } 
                         do_action('event_already_registered_title'); ?>
 
                         <!-- Show in list View // Hide in Box View -->
                         <?php
-                        if (get_event_ticket_option()) {  ?>
+                        if (wpem_get_event_ticket_option()) {  ?>
                             <div class="wpem-event-ticket-type" class="wpem-event-ticket-type-text">
-                                <span class="wpem-event-ticket-type-text"><?php echo  wp_kses_post('#' . esc_html(get_event_ticket_option())); ?></span>
+                                <span class="wpem-event-ticket-type-text"><?php echo  wp_kses_post('#' . esc_html(wpem_get_event_ticket_option())); ?></span>
                             </div>
                         <?php } ?>
                         <!-- Show in list View // Hide in Box View -->

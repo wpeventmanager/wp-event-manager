@@ -3,12 +3,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 global $post;
-$start_date = get_event_start_date();
-$end_date   = get_event_end_date();
-$start_time = get_event_start_time();
-$end_time   = get_event_end_time();
-$address = get_event_address();
-$location =  get_event_location();
+$start_date = wpem_get_event_start_date();
+$end_date   = wpem_get_event_end_date();
+$start_time = wpem_get_event_start_time();
+$end_time   = wpem_get_event_end_time();
+$address = wpem_get_event_address();
+$location =  wpem_get_event_location();
 $separator = wpem_get_date_time_separator();
 $check_ticket_visibility = get_option('event_manager_enable_event_ticket_prices_filter', true);
 wp_enqueue_script('wp-event-manager-slick-script');
@@ -23,11 +23,11 @@ $event = $post; ?>
         if (get_option('event_manager_hide_expired_content', 1) && 'expired' === $post->post_status) : ?>
             <div class="wpem-alert wpem-alert-danger"><?php esc_html_e('This listing has been expired.', 'wp-event-manager'); ?></div>
         <?php else : 
-            if (is_event_cancelled()) : ?>
+            if (wpem_is_event_cancelled()) : ?>
                 <div class="wpem-alert wpem-alert-danger">
                     <span class="event-cancelled"><?php esc_html_e('This event has been cancelled.', 'wp-event-manager'); ?></span>
                 </div>
-            <?php elseif (!attendees_can_apply() && 'preview' !== $post->post_status) : ?>
+            <?php elseif (!wpem_attendees_can_apply() && 'preview' !== $post->post_status) : ?>
                 <div class="wpem-alert wpem-alert-danger">
                     <span class="listing-expired"><?php esc_html_e('Registrations have closed.', 'wp-event-manager'); ?></span>
                 </div>
@@ -43,7 +43,7 @@ $event = $post; ?>
                          <!-- Event banner section start-->
                         <div class="wpem-col-xs-12 wpem-col-sm-12 wpem-col-md-12 wpem-single-event-images">
                             <?php
-                            $event_banners = get_event_banner();
+                            $event_banners = wpem_get_event_banner();
                             if (is_array($event_banners) && sizeof($event_banners) >= 1) :
                                 $event_banners = array_filter($event_banners);
 					            $event_banners = array_values($event_banners); ?>
@@ -58,7 +58,7 @@ $event = $post; ?>
                                 </div>
                             <?php else : ?>
                                 <div class="wpem-event-single-image-wrapper">
-                                    <div class="wpem-event-single-image"><?php display_event_banner(); ?></div>
+                                    <div class="wpem-event-single-image"><?php wpem_display_event_banner(); ?></div>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -80,7 +80,7 @@ $event = $post; ?>
                                                 <?php do_action('single_event_organizer_name_start'); ?>
                                                 <?php 
 												// translators: %s is the name of the event organizer.
-												printf(wp_kses_post(__('by %s', 'wp-event-manager')), wp_kses_post(get_organizer_name($post, true))); ?>
+												printf(wp_kses_post(__('by %s', 'wp-event-manager')), wp_kses_post(wpem_get_organizer_name($post, true))); ?>
                                                 <?php do_action('single_event_organizer_name_end'); ?>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@ $event = $post; ?>
                                     <?php endif; 
                                     do_action('single_event_ticket_overview_before'); 
                                     if(isset($check_ticket_visibility) && !empty($check_ticket_visibility)) : 
-                                        if (wpem_get_event_ticket_price() && get_event_ticket_option()) : ?>
+                                        if (wpem_get_event_ticket_price() && wpem_get_event_ticket_option()) : ?>
                                             <div class="wpem-event-ticket-price"><i class="wpem-icon-ticket"></i> <?php wpem_display_event_ticket_price('', '', true, $post); ?></div>
                                         <?php endif; 
                                     endif; 
@@ -375,10 +375,10 @@ $event = $post; ?>
                                <?php
                                 $post = $event;
                                 $date_format           = WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
-                                $registration_end_date = get_event_registration_end_date();
+                                $registration_end_date = wpem_get_event_registration_end_date();
                                 $registration_end_date = !empty($registration_end_date) ? $registration_end_date . ' 23:59:59' : '';
                                 $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
-                                $event_timezone          = get_event_timezone();
+                                $event_timezone          = wpem_get_event_timezone();
 
                                 // check if timezone settings is enabled as each event then set current time stamp according to the timezone
                                 // for eg. if each event selected then Berlin timezone will be different then current site timezone.
@@ -388,7 +388,7 @@ $event = $post; ?>
                                     $current_timestamp = strtotime(current_time('Y-m-d H:i:s'));
                                 }
                                 // If site wise timezone selected
-                                if (attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
+                                if (wpem_attendees_can_apply() && ((strtotime($registration_end_date) >= $current_timestamp) || empty($registration_end_date)) && $registration_addon_form) {
                                     wpem_get_event_manager_template('event-registration.php');
                                 } else if (!empty($registration_end_date) && strtotime($registration_end_date) < $current_timestamp) {
                                     echo '<div class="wpem-alert wpem-alert-warning">' . esc_html('Event registration closed.', 'wp-event-manager') . '</div>';
@@ -413,7 +413,7 @@ $event = $post; ?>
                                             }else{echo esc_attr('-');  } ?>
                                         </span>
                                         <?php
-                                        if (get_event_end_date() != '') {
+                                        if (wpem_get_event_end_date() != '') {
                                             esc_html_e(' to', 'wp-event-manager'); ?>
                                             <br />
                                             <span class="wpem-event-date-time-text"><?php echo  esc_attr(date_i18n($date_format, strtotime($end_date))); ?>
@@ -427,10 +427,10 @@ $event = $post; ?>
                                     <!-- Event date section end-->
 
                                     <!-- Event Registration End Date start-->
-                                    <?php if (get_event_registration_end_date()) : ?>
+                                    <?php if (wpem_get_event_registration_end_date()) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php esc_html_e('Registration End Date', 'wp-event-manager'); ?></h3>
-                                        <?php display_event_registration_end_date(); ?>
+                                        <?php wpem_display_event_registration_end_date(); ?>
                                     <?php endif; ?>
                                     <!-- Registration End Date End-->
                                      <!-- Event location section start-->
@@ -439,14 +439,14 @@ $event = $post; ?>
                                         <h3 class="wpem-heading-text"><?php esc_html_e('Location', 'wp-event-manager'); ?></h3>
                                         <div>
                                             <?php
-                                            /* if (get_event_address()) { ?>
-                                                <a href="http://maps.google.com/maps?q=<?php display_event_address();?>">  
-                                                    <?php display_event_address();
+                                            /* if (wpem_get_event_address()) { ?>
+                                                <a href="http://maps.google.com/maps?q=<?php wpem_display_event_address();?>">  
+                                                    <?php wpem_display_event_address();
                                                     echo esc_attr(',');?>
                                                 </a><?php
                                             } */
-                                            if (!is_event_online()) {?> 
-                                                    <?php display_event_location();?>
+                                            if (!wpem_is_event_online()) {?> 
+                                                    <?php wpem_display_event_location();?>
                                             <?php } else {?>
                                                 <?php esc_attr_e('Online event', 'wp-event-manager'); ?>
                                             <?php } ?>
@@ -454,16 +454,16 @@ $event = $post; ?>
                                     </div>
                                     <!-- Event location section end-->
                                     <?php /*event types section */ ?>
-                                    <?php if (get_option('event_manager_enable_event_types') && get_event_type($event)) : ?>
+                                    <?php if (get_option('event_manager_enable_event_types') && wpem_get_event_type($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php esc_html_e('Event Types', 'wp-event-manager'); ?></h3>
-                                        <div class="wpem-event-type"><?php display_event_type($event); ?></div>
+                                        <div class="wpem-event-type"><?php wpem_display_event_type($event); ?></div>
                                     <?php endif;
                                     /* event categories section */
-                                    if (get_option('event_manager_enable_categories') && get_event_category($event)) : ?>
+                                    if (get_option('event_manager_enable_categories') && wpem_get_event_category($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <h3 class="wpem-heading-text"><?php esc_html_e('Event Category', 'wp-event-manager'); ?></h3>
-                                        <div class="wpem-event-category"><?php display_event_category($event); ?></div>
+                                        <div class="wpem-event-category"><?php wpem_display_event_category($event); ?></div>
                                     <?php endif; 
                                     /* youtube video button section */    
                                     if (wpem_get_organizer_youtube($event)) : ?>
@@ -508,19 +508,19 @@ $event = $post; ?>
                                         <div class="wpem-event-share-lists">
                                             <?php do_action('single_event_listing_social_share_start'); ?>
                                             <div class="wpem-social-icon wpem-facebook">
-                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php display_event_permalink(); ?>" title="Share this page on Facebook"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php wpem_display_event_permalink(); ?>" title="Share this page on Facebook"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
                                             </div>
                                             <div class="wpem-social-icon wpem-twitter">
-                                                <a href="https://twitter.com/share?text=twitter&url=<?php display_event_permalink(); ?>" title="Share this page on Twitter"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
+                                                <a href="https://twitter.com/share?text=twitter&url=<?php wpem_display_event_permalink(); ?>" title="Share this page on Twitter"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
                                             </div>
                                             <div class="wpem-social-icon wpem-linkedin">
-                                                <a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php display_event_permalink(); ?>" title="Share this page on Linkedin"><?php esc_html_e('Linkedin', 'wp-event-manager'); ?></a>
+                                                <a href="https://www.linkedin.com/sharing/share-offsite/?&url=<?php wpem_display_event_permalink(); ?>" title="Share this page on Linkedin"><?php esc_html_e('Linkedin', 'wp-event-manager'); ?></a>
                                             </div>
                                             <div class="wpem-social-icon wpem-xing">
-                                                <a href="https://www.xing.com/spi/shares/new?url=<?php display_event_permalink(); ?>" title="Share this page on Xing"><?php esc_html_e('Xing', 'wp-event-manager'); ?></a>
+                                                <a href="https://www.xing.com/spi/shares/new?url=<?php wpem_display_event_permalink(); ?>" title="Share this page on Xing"><?php esc_html_e('Xing', 'wp-event-manager'); ?></a>
                                             </div>
                                             <div class="wpem-social-icon wpem-pinterest">
-                                                <a href="https://pinterest.com/pin/create/button/?url=<?php display_event_permalink(); ?>" title="Share this page on Pinterest"><?php esc_html_e('Pinterest', 'wp-event-manager'); ?></a>
+                                                <a href="https://pinterest.com/pin/create/button/?url=<?php wpem_display_event_permalink(); ?>" title="Share this page on Pinterest"><?php esc_html_e('Pinterest', 'wp-event-manager'); ?></a>
                                             </div>
                                             <?php do_action('single_event_listing_social_share_end'); ?>
                                         </div>

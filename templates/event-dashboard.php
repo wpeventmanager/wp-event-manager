@@ -196,12 +196,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 													<?php if ($event->post_status == 'publish') : ?>
 														<a href="<?php echo esc_attr(get_permalink($event->ID)); ?>"><?php echo esc_html($event->post_title); ?></a>
 													<?php else : ?>
-														<?php echo esc_attr($event->post_title); ?> <small class="wpem-event-status-<?php echo esc_attr(sanitize_title(get_event_status($event))); ?>"><?php display_event_status($event); ?></small>
+														<?php echo esc_attr($event->post_title); ?> <small class="wpem-event-status-<?php echo esc_attr(sanitize_title(wpem_get_event_status($event))); ?>"><?php wpem_display_event_status($event); ?></small>
 													<?php endif; 
-													if (is_event_cancelled($event)) : ?>
+													if (wpem_is_event_cancelled($event)) : ?>
 														<small class="wpem-event-status-cancelled"><?php esc_html_e('Cancelled', 'wp-event-manager'); ?></small>
 													<?php endif;
-													if (is_event_featured($event)) : ?>
+													if (wpem_is_event_featured($event)) : ?>
 														<small class="wpem-event-status-featured"><?php esc_html_e('Featured', 'wp-event-manager'); ?></small>
 													<?php endif; ?>
 												</div>
@@ -219,7 +219,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 															'label' => __('Edit', 'wp-event-manager'),
 															'nonce' => false
 														);
-														if (is_event_cancelled($event)) {
+														if (wpem_is_event_cancelled($event)) {
 															$actions['mark_not_cancelled'] = array(
 																'label' => __('Mark not cancelled', 'wp-event-manager'),
 																'nonce' => true
@@ -278,25 +278,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 											<?php do_action('wpem_event_dashboard_event_info_start', $event); ?>
 											<div class="wpem-dashboard-event-date-time">
 												<div class="wpem-dashboard-event-placeholder"><strong><?php esc_attr_e('Date And Time', 'wp-event-manager') ?></strong></div>
-												<?php display_event_start_date('', '', true, $event); ?> <?php
-													if (get_event_start_time($event)) {
+												<?php 	wpem_display_event_start_date('', '', true, $event); ?> <?php
+													if (wpem_get_event_start_time($event)) {
 														echo wp_kses_post(wpem_display_date_time_separator()) . ' ';
-														display_event_start_time('', '', true, $event);
+														wpem_display_event_start_time('', '', true, $event);
 													} ?>
 													-<br>
-													<?php display_event_end_date('', '', true, $event); ?> <?php
-													if (get_event_start_time($event)) {
+													<?php wpem_display_event_end_date('', '', true, $event); ?> <?php
+													if (wpem_get_event_start_time($event)) {
 														echo wp_kses_post(wpem_display_date_time_separator()) . ' ';
-														display_event_end_time('', '', true, $event);
+														wpem_display_event_end_time('', '', true, $event);
 													} ?>
 											</div>
 											<div class="wpem-dashboard-event-location">
 												<div class="wpem-dashboard-event-placeholder"><strong><?php esc_html_e('Location', 'wp-event-manager') ?></strong></div>
 												<?php
-												if (get_event_location($event) === 'Online Event') :
+												if (wpem_get_event_location($event) === 'Online Event') :
 													esc_html_e('Online Event', 'wp-event-manager');
 												else :
-													display_event_location(false, $event);
+													wpem_display_event_location(false, $event);
 												endif; ?>
 											</div>
 											<?php do_action('wpem_event_dashboard_event_info_end', $event); ?>
@@ -322,22 +322,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 																		if ($event->post_status == 'publish') : ?>
 																			<a href="<?php echo esc_attr(get_permalink($event->ID)); ?>"><?php echo esc_html($event->post_title); ?></a>
 																		<?php else : 
-																			echo esc_attr($event->post_title); ?> <small>(<?php display_event_status($event); ?>)</small>
+																			echo esc_attr($event->post_title); ?> <small>(<?php wpem_display_event_status($event); ?>)</small>
 																		<?php endif;
 																	elseif ('event_start_date' === $key) :
-																		display_event_start_date('', '', true, $event);
+																		wpem_display_event_start_date('', '', true, $event);
 																	?> &nbsp; <?php
-																		display_event_start_time('', '', true, $event);
+																		wpem_display_event_start_time('', '', true, $event);
 																		
 																	elseif ('event_end_date' === $key) :
-																		display_event_end_date('', '', true, $event);
+																		wpem_display_event_end_date('', '', true, $event);
 																		?>&nbsp;<?php
-																			display_event_end_time('', '', true, $event);
+																			wpem_display_event_end_time('', '', true, $event);
 																	elseif ('event_location' === $key) :
-																		if (get_event_location($event) == 'Online Event') :
+																		if (wpem_get_event_location($event) == 'Online Event') :
 																			echo esc_attr('Online Event', 'wp-event-manager');
 																		else :
-																			display_event_location(false, $event);
+																			wpem_display_event_location(false, $event);
 																		endif;
 																	
 																	elseif ('view_count' === $key) :

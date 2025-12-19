@@ -1175,7 +1175,7 @@ class WP_Event_Manager_Shortcodes{
 		}
 		setup_postdata($post);?>
 		<div class="event-manager-registration-wrapper">
-			<?php $register = get_event_registration_method($post->ID);
+			<?php $register = wpem_get_event_registration_method($post->ID);
 			if (!empty($register) && isset($register->type)) {
 				do_action('event_manager_registration_details_' . sanitize_key($register->type), $register);
 			} ?>

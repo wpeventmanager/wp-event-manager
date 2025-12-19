@@ -459,10 +459,10 @@ class WP_Event_Manager_CPT {
 		global $post;
 		switch ($column) {
 			case 'event_status':
-				echo wp_kses_post('<span data-tip="' . esc_attr(get_event_status($post)) . '" class="tips status-' . esc_attr($post->post_status) . '">' . esc_attr(get_event_status($post)) . '</span>');
+				echo wp_kses_post('<span data-tip="' . esc_attr(wpem_get_event_status($post)) . '" class="tips status-' . esc_attr($post->post_status) . '">' . esc_attr(wpem_get_event_status($post)) . '</span>');
 				break;
 			case 'cancelled':
-				if(is_event_cancelled($post)) {
+				if(wpem_is_event_cancelled($post)) {
 					echo wp_kses_post('<span class="tips dashicons dashicons-no" data-tip="' . __('Cancelled', 'wp-event-manager') . '">' . __('Cancelled', 'wp-event-manager') . '</span>');
 				} else {
 					echo wp_kses_post('&ndash;');
@@ -470,7 +470,7 @@ class WP_Event_Manager_CPT {
 				break;
 				'<span class="tips dashicons dashicons-format-image" data-tip="' . __('Banner', 'wp-event-manager') . '">' . __('Banner', 'wp-event-manager') . '</span>';
 			case 'featured_event':
-				if(is_event_featured($post)) {
+				if(wpem_is_event_featured($post)) {
 					echo wp_kses_post('<span class="tips dashicons dashicons-star-filled" data-tip="' . __('Featured', 'wp-event-manager') . '">' . __('Featured', 'wp-event-manager') . '</span>');
 				} else {
 					echo wp_kses_post('<span class="tips dashicons dashicons-star-empty" data-tip="' . __('Not Featured', 'wp-event-manager') . '">' . __('Not Featured', 'wp-event-manager') . '</span>');
@@ -478,7 +478,7 @@ class WP_Event_Manager_CPT {
 				break;
 			case 'event_banner':
 				echo wp_kses_post('<div class="event_banner">');
-				display_event_banner();
+				wpem_display_event_banner();
 				echo wp_kses_post('</div>');
 				break;
 			case 'event_title':
@@ -488,7 +488,7 @@ class WP_Event_Manager_CPT {
 				echo wp_kses_post('<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__('Show more details', 'wp-event-manager') . '</span></button>');
 				break;
 			case 'event_listing_type':
-				$types = get_event_type($post);
+				$types = wpem_get_event_type($post);
 				if($types && !empty($types)) {
 					foreach ($types as $type) {
 						echo wp_kses_post('<span class="event-type ' . $type->slug . '">' . $type->name . '</span>');
@@ -496,11 +496,11 @@ class WP_Event_Manager_CPT {
 				}
 				break;
 			case 'event_location':
-				display_event_location($post);
+				wpem_display_event_location($post);
 				break;
 			case 'event_organizer':
 				echo wp_kses_post('<div class="organizer">');
-				echo wp_kses_post(get_organizer_name('', true, 'backend'));
+				echo wp_kses_post(wpem_get_organizer_name('', true, 'backend'));
 				echo wp_kses_post('</div>');
 				break;
 			case 'event_start_date':

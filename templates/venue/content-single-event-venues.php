@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since  3.1.32
  */
 
-if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
+if (has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
     $event_content_toggle = apply_filters('event_manager_event_content_toggle', true);
     $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-venue-info-title';?>
 
@@ -127,7 +127,7 @@ if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
             </div>
         </div>
     </div>
-<?php elseif (get_event_venue_name($event_id) != '' && !is_event_online($event_id)) : ?>
+<?php elseif (wpem_get_event_venue_name($event_id) != '' && !wpem_is_event_online($event_id)) : ?>
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
             <div class="wpem-col-md-12">
@@ -150,7 +150,7 @@ if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
                                 <div class="wpem-row">
                                     <div class="wpem-col-md-12 wpem-col-sm-12">
                                         <div class="wpem-venue-name wpem-heading-text">
-                                            <?php display_event_venue_name($event_id); ?></span></a>
+                                            <?php wpem_display_event_venue_name($event_id); ?></span></a>
                                         </div>
                                     </div>
                                 </div>

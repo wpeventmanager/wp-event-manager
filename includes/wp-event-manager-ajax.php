@@ -699,7 +699,7 @@ class WP_Event_Manager_Ajax {
 		// Generate pagination
 		if(isset($_REQUEST['show_pagination']) && $_REQUEST['show_pagination'] === 'true') {
 			$page = isset($_REQUEST['page']) ? absint(wp_unslash($_REQUEST['page'])) : 1;
-			$result['pagination'] = get_event_listing_pagination($events->max_num_pages, $page);
+			$result['pagination'] = wpem_get_event_listing_pagination($events->max_num_pages, $page);
 		}
 		$result['max_num_pages'] = $events->max_num_pages;
 		wp_send_json(apply_filters('event_manager_get_listings_result', $result, $events));

@@ -13,12 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			}
 		}else{
 			
-			echo wp_kses_post(get_event_listing_pagination($events->max_num_pages));
+			echo wp_kses_post(wpem_get_event_listing_pagination($events->max_num_pages));
 		}
 	} else {
 		if ($events->found_posts > $per_page && $show_more) :
 			if ($show_pagination) :
-				echo wp_kses_post(get_event_listing_pagination($events->max_num_pages));?>
+				echo wp_kses_post(wpem_get_event_listing_pagination($events->max_num_pages));?>
 			<?php else :?>
 				<div id="load_more_events_loader" class="load_more_events_loader">
 					<a class="load_more_events" id="load_more_events" href="#" ><strong><?php esc_html_e('Load more listings', 'wp-event-manager'); ?></strong></a>

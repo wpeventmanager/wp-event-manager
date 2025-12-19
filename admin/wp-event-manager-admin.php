@@ -278,7 +278,7 @@ A prior Backup does no harm before updating the plugin!',
 	 * Set banner image.
 	 */
 	public function banner_image_set_thumnail($event) {
-		$banner = get_event_banner($event);
+		$banner = wpem_get_event_banner($event);
 
 		if(is_array($banner)) {
 			$image_url = $banner[0];

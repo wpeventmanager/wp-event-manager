@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since  3.1.6
  */
-if (has_event_venue_ids() && !is_event_online()) : ?>
+if (has_event_venue_ids() && !wpem_is_event_online()) : ?>
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
             <div class="wpem-col-md-12">
@@ -45,7 +45,7 @@ if (has_event_venue_ids() && !is_event_online()) : ?>
                                     </div>
                                     <div class="wpem-col-md-9 wpem-col-sm-12">
                                         <div class="wpem-venue-name wpem-heading-text">
-                                            <a href="<?php echo esc_attr(get_the_permalink($venue_id)); ?>"><span><?php display_event_venue_name('', '', true, $venue_id); ?></span></a>
+                                            <a href="<?php echo esc_attr(get_the_permalink($venue_id)); ?>"><span><?php wpem_display_event_venue_name('', '', true, $venue_id); ?></span></a>
                                         </div>
                                         <?php do_action('single_event_listing_venue_description_before', $venue_id);
                                          $venue = get_post($venue_id);  ?>
@@ -117,7 +117,7 @@ if (has_event_venue_ids() && !is_event_online()) : ?>
             </div>
         </div>
     </div>
-<?php elseif (get_event_venue_name() != '' && !is_event_online()) : ?>
+<?php elseif (wpem_get_event_venue_name() != '' && !wpem_is_event_online()) : ?>
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
             <div class="wpem-col-md-12">
@@ -137,7 +137,7 @@ if (has_event_venue_ids() && !is_event_online()) : ?>
                                 <div class="wpem-row">
                                     <div class="wpem-col-md-12 wpem-col-sm-12">
                                         <div class="wpem-venue-name wpem-heading-text">
-                                            <?php display_event_venue_name(); ?></span></a>
+                                            <?php wpem_display_event_venue_name(); ?></span></a>
                                         </div>
                                     </div>
                                 </div>

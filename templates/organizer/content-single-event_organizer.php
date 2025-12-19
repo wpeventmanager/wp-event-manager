@@ -32,7 +32,7 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
                     <div class="wpem-organizer-logo">
                         <a><?php
                             if(!in_array('organizer_logo', $field_to_hide)) {
-                                display_organizer_logo('', '', $organizer); 
+                                wpem_display_organizer_logo('', '', $organizer); 
                             }
                             ?></a>
                     </div>

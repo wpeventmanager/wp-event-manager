@@ -51,7 +51,7 @@ if (has_event_organizer_ids()) : ?>
                                                     <a>
                                                         <?php 
                                                         if(!in_array('organizer_logo', $field_to_hide)) {
-                                                            display_organizer_logo('', '', $organizer_id); 
+                                                            wpem_display_organizer_logo('', '', $organizer_id); 
                                                         }
                                                         ?>
                                                     </a></div>
@@ -63,7 +63,7 @@ if (has_event_organizer_ids()) : ?>
                                                 <span>
                                                     <?php 
                                                     if(!in_array('organizer_name', $field_to_hide)) {
-                                                        display_organizer_name('', '', true, $organizer_id); 
+                                                        wpem_display_organizer_name('', '', true, $organizer_id); 
                                                     } 
                                                     ?>
                                                 </span></div>
@@ -141,7 +141,7 @@ if (has_event_organizer_ids()) : ?>
         </div>
     </div>
 <?php else : 
-    if (get_organizer_name()) : ?>
+    if (wpem_get_organizer_name()) : ?>
 
         <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
             <div class="wpem-row">
@@ -160,16 +160,16 @@ if (has_event_organizer_ids()) : ?>
 
                                     <div class="wpem-col-md-3 wpem-col-sm-12">
                                         <div class="wpem-organizer-logo-wrapper">
-                                            <div class="wpem-organizer-logo"><a><?php display_organizer_logo(); ?></a></div>
+                                            <div class="wpem-organizer-logo"><a><?php wpem_display_organizer_logo(); ?></a></div>
                                         </div>
                                     </div>
 
                                     <div class="wpem-col-md-9 wpem-col-sm-12">
-                                        <div class="wpem-organizer-name wpem-heading-text"><span><?php display_organizer_name(); ?></span></div>
+                                        <div class="wpem-organizer-name wpem-heading-text"><span><?php wpem_display_organizer_name(); ?></span></div>
 
                                         <?php do_action('single_event_listing_organizer_description_before'); ?>
 
-                                        <div class="wpem-organizer-short-info"><?php printf(esc_attr('%s', 'wp-event-manager'), wp_kses_post(get_organizer_description())); ?></div>
+                                        <div class="wpem-organizer-short-info"><?php printf(esc_attr('%s', 'wp-event-manager'), wp_kses_post(wpem_get_organizer_description())); ?></div>
 
                                         <?php do_action('single_event_listing_organizer_description_after'); ?>
 

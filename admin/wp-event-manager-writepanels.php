@@ -1739,7 +1739,7 @@ class WP_Event_Manager_Writepanels {
 		$children = get_children($args, ARRAY_A);
 		$retain_attachment = get_option( 'wpem_retain_attachment' );
 		if(sizeof($children) == 0) {
-			$event_banner = get_event_banner($post_id);
+			$event_banner = wpem_get_event_banner($post_id);
 			if(!empty($event_banner)) {
 				$wp_upload_dir = wp_get_upload_dir();
 				$baseurl = $wp_upload_dir['baseurl'] . '/';

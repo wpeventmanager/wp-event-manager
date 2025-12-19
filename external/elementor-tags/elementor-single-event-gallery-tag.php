@@ -110,7 +110,7 @@ class Elementor_Event_Gallery_Tag extends Data_Tag {
 		{
 			if($event_gallery_tag == 'event_banner')
 			{
-				$arrImage = get_event_banner($event);
+				$arrImage = wpem_get_event_banner($event);
 
 				if(!empty($arrImage))
 				{

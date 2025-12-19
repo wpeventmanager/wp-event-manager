@@ -68,7 +68,7 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
                                             <a href="<?php echo esc_url(get_the_permalink($organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
                                                 <?php $organizer = get_post($organizer_id); if(!in_array('organizer_logo', $field_to_hide)){?>
                                                 <?php if ($show_thumb && $show_thumb == 'true') : ?>
-                                                    <div class="wpem-organizer-logo"><?php display_organizer_logo('', '', $organizer); ?></div>
+                                                    <div class="wpem-organizer-logo"><?php wpem_display_organizer_logo('', '', $organizer); ?></div>
                                                 <?php endif;} ?>
 
                                                 <div class="wpem-organizer-name"><?php if(!in_array('organizer_name', $field_to_hide)){echo esc_attr($organizer_name); }?></div>

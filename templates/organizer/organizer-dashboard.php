@@ -44,7 +44,7 @@ do_action('event_manager_organizer_dashboard_before'); ?>
 							<?php foreach ($organizer_dashboard_columns as $key => $column) : ?>
 								<td data-title="<?php echo esc_html($column); ?>" class="<?php echo esc_attr($key); ?>">
 									<?php if ('organizer_name' === $key) : ?>
-										<div class="wpem-organizer-logo"><?php display_organizer_logo('', '', $organizer); ?></div>
+										<div class="wpem-organizer-logo"><?php wpem_display_organizer_logo('', '', $organizer); ?></div>
 										<a href="<?php echo esc_url(get_permalink($organizer->ID)); ?>"><?php echo esc_html($organizer->post_title); ?></a>
 
 									<?php elseif ('organizer_details' === $key) : 

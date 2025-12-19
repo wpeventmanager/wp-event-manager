@@ -2,10 +2,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-$location = get_event_location($post_id);
-$event_type = get_event_type($post_id);
-$ticket_price  = get_event_ticket_option($post_id);
-$organizer  = get_organizer_name($post_id);
+$location = wpem_get_event_location($post_id);
+$event_type = wpem_get_event_type($post_id);
+$ticket_price  = wpem_get_event_ticket_option($post_id);
+$organizer  = wpem_get_organizer_name($post_id);
 $start_date   = get_post_meta($post_id, '_event_start_date', true);
 $end_date     = get_post_meta($post_id, '_event_end_date', true);
 
