@@ -48,18 +48,23 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		));
 
 		uasort($this->steps, array($this, 'sort_by_priority'));
-		// Get step/event
-		if(isset($_POST['step'])) {
-			$this->step = is_numeric($_POST['step']) ? max(absint( wp_unslash( $_POST['step'])), 0) : array_search(esc_attr(wp_unslash($_POST['step'])), array_keys($this->steps));
-		} elseif(!empty($_GET['step'])) {
-			$this->step = is_numeric($_GET['step']) ? max(absint( wp_unslash( $_GET['step'])), 0) : array_search(esc_attr(wp_unslash($_GET['step'])), array_keys($this->steps));
-		}
-
 		$this->organizer_id =!empty($_REQUEST['organizer_id']) ? absint( wp_unslash( $_REQUEST[ 'organizer_id' ])) : 0;
 		if(!event_manager_user_can_edit_event($this->organizer_id)){
 			$this->organizer_id = 0;
 		}
-		
+		$step_nonce_ok = false;
+		if ( ! empty( $_POST['_wpnonce'] ) ) {
+			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-organizer_' . $this->organizer_id );
+		} elseif ( ! empty( $_GET['_wpnonce'] ) ) {
+			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'edit-organizer_' . $this->organizer_id );
+		}
+
+		// Get step/event
+		if($step_nonce_ok && isset($_POST['step'])) {
+			$this->step = is_numeric($_POST['step']) ? max(absint( wp_unslash( $_POST['step'])), 0) : array_search(esc_attr(wp_unslash($_POST['step'])), array_keys($this->steps));
+		} elseif($step_nonce_ok && !empty($_GET['step'])) {
+			$this->step = is_numeric($_GET['step']) ? max(absint( wp_unslash( $_GET['step'])), 0) : array_search(esc_attr(wp_unslash($_GET['step'])), array_keys($this->steps));
+		}
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
 		if(!isset($_GET[ 'new' ]) &&(!$this->organizer_id) &&!empty($_COOKIE['wp-event-manager-submitting-organizer-id']) &&!empty($_COOKIE['wp-event-manager-submitting-organizer-key'])){
