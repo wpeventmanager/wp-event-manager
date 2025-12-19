@@ -1254,6 +1254,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * Preview Step Form handler
 	 */
 	public function preview_handler() {
+		// Verify nonce before processing form data
+		if ( ! empty( $_POST ) && ( empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-event_' . $this->event_id ) ) ) {
+			return;
+		}
+		
 		if ( ! $_POST ) {
 			return;
 		}
