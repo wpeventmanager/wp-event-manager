@@ -298,7 +298,7 @@ class WP_Event_Manager_Post_Types {
 			'pages'      => false
 		);
 
-		$args = apply_filters("register_post_type_event_listing", array(
+		$args = apply_filters("wpem_register_post_type_event_listing", array(
 				'labels' => array(
 					'name'                  => $plural,
 					'singular_name'         => $singular,
@@ -417,7 +417,7 @@ class WP_Event_Manager_Post_Types {
 		if(get_option('enable_event_organizer')){	
 			$singular  = __('Organizer', 'wp-event-manager');
 			$plural    = __('Organizers', 'wp-event-manager');
-			register_post_type('event_organizer', apply_filters('register_event_organizer_post_type',array(
+			register_post_type('event_organizer', apply_filters('wpem_register_event_organizer_post_type',array(
 				        'labels' => array(
 						'name' 					=> $plural,
 						'singular_name' 		=> $singular,
@@ -457,7 +457,7 @@ class WP_Event_Manager_Post_Types {
 		if(get_option('enable_event_venue')){
 			$singular  = __('Venue', 'wp-event-manager');
 			$plural    = __('Venues', 'wp-event-manager');
-			register_post_type('event_venue', apply_filters('register_event_venue_post_type',array(
+			register_post_type('event_venue', apply_filters('wpem_register_event_venue_post_type',array(
 				        'labels' => array(
 						'name' 					=> $plural,
 						'singular_name' 		=> $singular,

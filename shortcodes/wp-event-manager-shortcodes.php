@@ -134,7 +134,7 @@ class WP_Event_Manager_Shortcodes{
 						// Update
 						update_post_meta($event_id, '_cancelled', 1);
 
-						do_action('after_event_cancelled', $action, $event_id);
+						do_action('wpem_after_event_cancelled', $action, $event_id);
 						// Message
 						// translators: %s is the title of the cancelled event.
 						$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . sprintf(__('%s has been cancelled.', 'wp-event-manager'), esc_html($event->post_title)) . '</div>';
@@ -1537,7 +1537,7 @@ class WP_Event_Manager_Shortcodes{
 		wp_reset_postdata();
 
 		// Organizer Template
-		do_action('organizer_content_start');
+		do_action('wpem_organizer_content_start');
 		wp_enqueue_script('wp-event-manager-organizer');
 
 		get_event_manager_template(
@@ -1555,7 +1555,7 @@ class WP_Event_Manager_Shortcodes{
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
 		);
 
-		do_action('organizer_content_end');
+		do_action('wpem_organizer_content_end');
 
 		return ob_get_clean();
 	}
@@ -1611,7 +1611,7 @@ class WP_Event_Manager_Shortcodes{
 			}
 		}
 
-		do_action('venue_content_start');
+		do_action('wpem_venue_content_start');
 
 		wp_enqueue_script('wp-event-manager-venue');
 
@@ -1628,7 +1628,7 @@ class WP_Event_Manager_Shortcodes{
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
 		);
 
-		do_action('venue_content_end');
+		do_action('wpem_venue_content_end');
 
 		wp_reset_postdata();
 
@@ -1752,7 +1752,7 @@ class WP_Event_Manager_Shortcodes{
 		$pastEvents = new WP_Query(apply_filters('wpem_single_venue_past_event_listing_query_args', $args_past));
 		wp_reset_postdata();
 
-		do_action('venue_content_start');
+		do_action('wpem_venue_content_start');
 
 		wp_enqueue_script('wp-event-manager-venue');
 
@@ -1772,7 +1772,7 @@ class WP_Event_Manager_Shortcodes{
 
 		wp_reset_postdata();
 
-		do_action('venue_content_end');
+		do_action('wpem_venue_content_end');
 
 		return ob_get_clean();
 	}
