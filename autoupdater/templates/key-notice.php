@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="notice notice-error">
     <?php 
     $license_page_url = get_admin_url() . 'edit.php?post_type=event_listing&page=wpem_license'; 
-    $dismiss_url = esc_url( add_query_arg( 'dismiss-' . sanitize_title( $plugin['TextDomain'] ), '1' ) );?>
+    $dismiss_url = wp_nonce_url( add_query_arg( array( 'dismiss-' . sanitize_title( $plugin['TextDomain'] ) => '1' ) ), 'wpem_licence_notice_action' );?>
     
     <p class="wpem-updater-dismiss" style="float:right;">
         <a href="<?php echo esc_url($dismiss_url); ?>">

@@ -8,7 +8,7 @@ if ( get_option( $plugin_slug . '_key_expire_pre' ) ) :
     $expire_date = $expire_date->format( 'jS F, Y' ); ?>
     <div class="updated">
         <p class="wpem-updater-dismiss" style="float:right;">
-            <a href="<?php echo esc_url( add_query_arg( 'dismiss-key-expire-' . sanitize_title( $plugin_slug ), '1' ) ); ?>">
+            <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'dismiss-key-expire-' . sanitize_title( $plugin_slug ) => '1' ) ), 'wpem_licence_notice_action' ) ); ?>">
                 <?php esc_html_e( 'Hide notice', 'wp-event-manager' ); ?>
             </a>
         </p>
@@ -31,7 +31,7 @@ if ( get_option( $plugin_slug . '_key_expire_pre' ) ) :
     <div class="updated">
         <?php $plugin_url = get_admin_url() . 'plugins.php' . '#' . sanitize_title( $plugin_slug . '_licence_key_row' ); ?>
         <p class="wpem-updater-dismiss" style="float:right;">
-            <a href="<?php echo esc_url( add_query_arg( 'dismiss-key-expire-' . sanitize_title( $plugin_slug ), '1' ) ); ?>">
+            <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'dismiss-key-expire-' . sanitize_title( $plugin_slug ) => '1' ) ), 'wpem_licence_notice_action' ) ); ?>">
                 <?php esc_html_e( 'Hide notice', 'wp-event-manager' ); ?>
             </a>
         </p>
