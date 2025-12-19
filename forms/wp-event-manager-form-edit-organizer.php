@@ -31,7 +31,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	*/
 	public function __construct() {
 		// Verify nonce before processing organizer_id
-		if (isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'edit-organizer_' . (isset($_REQUEST['organizer_id']) ? absint($_REQUEST['organizer_id']) : 0))) {
+		if (isset($_REQUEST['organizer_id']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_organizer_actions')) {
 			$this->organizer_id = !empty($_REQUEST['organizer_id']) ? absint(wp_unslash($_REQUEST[ 'organizer_id' ])) : 0;
 		} else {
 			$this->organizer_id = 0;
@@ -55,6 +55,7 @@ class WP_Event_Manager_Form_Edit_Organizer extends WP_Event_Manager_Form_Submit_
 	 */
 	public function submit() {
 		$organizer = get_post($this->organizer_id);
+
 		if(empty($this->organizer_id ) || ($organizer->post_status !== 'publish')) {
 			echo wp_kses_post(wpautop(__('Invalid listing', 'wp-event-manager')));
 			return;
