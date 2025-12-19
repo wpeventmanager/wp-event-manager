@@ -73,7 +73,7 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
                             <?php do_action('single_event_listing_venue_single_social_end', $venue_id); ?>
                         </div>
                     </div>
-                    <?php do_action('custom_venue_fields_start'); 
+                    <?php do_action('wpem_custom_venue_fields_start'); 
                     if (isset($venue_custom_fields)) {
                         foreach ($venue_custom_fields as $key => $field) :?>
                             <?php if (!strstr($key, 'venue') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($venue_id, '_' . $key))) : ?>
@@ -90,7 +90,7 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
                             <?php endif;
                         endforeach;
                     } 
-                    do_action('custom_venue_fields_end'); ?>
+                    do_action('wpem_custom_venue_fields_end'); ?>
                 </div>
             </div>
         </div>

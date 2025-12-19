@@ -471,13 +471,13 @@ class WP_Event_Manager extends WPEM_Updater {
 /**
  * Create link on plugin page for event manager plugin settings.
  */
-function add_plugin_page_event_manager_settings_link($links) {
+function wpem_add_plugin_page_event_manager_settings_link($links) {
     $links[] = '<a href="' .
         admin_url('edit.php?post_type=event_listing&page=event-manager-settings') .
         '">' . __('Settings', 'wp-event-manager') . '</a>';
         return $links;
 }
-add_filter('plugin_action_links_'.plugin_basename(__FILE__), 'add_plugin_page_event_manager_settings_link');
+add_filter('plugin_action_links_'.plugin_basename(__FILE__), 'wpem_add_plugin_page_event_manager_settings_link');
 
 /**
  * Main instance of WP Event Manager.

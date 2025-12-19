@@ -96,7 +96,7 @@ if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
 
                                 </div>
                             </div>
-                            <?php do_action('custom_venue_fields_start'); 
+                            <?php do_action('wpem_custom_venue_fields_start'); 
                             if (isset($venue_custom_fields)) {
                                 foreach ($venue_custom_fields as $key => $field) :?>
                                     <?php if (!strstr($key, 'venue') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($venue_id, '_' . $key))) : ?>
@@ -113,7 +113,7 @@ if (has_event_venue_ids($event_id) && !is_event_online($event_id)) :
                                     <?php endif;
                                 endforeach;
                             } 
-                            do_action('custom_venue_fields_end'); ?>
+                            do_action('wpem_custom_venue_fields_end'); ?>
                             <!-- Venue social link section end-->
                         </div>
                     </div>
