@@ -753,7 +753,18 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 			$this->fields = apply_filters( 'submit_event_form_fields_get_event_data', $this->fields, $event );
 		// Get user meta
-		} elseif ( is_user_logged_in() && empty( $_POST['submit_event'] ) ) {
+		} elseif ( is_user_logged_in() ) {
+			// Verify nonce before checking submit_event
+			$submit_event_present = false;
+			if ( ! empty( $_POST['_wpnonce'] ) ) {
+				$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-event_' . $this->event_id );
+				if ( $nonce_verified ) {
+					$submit_event_present = ! empty( $_POST['submit_event'] );
+				}
+			}
+			if ( $submit_event_present ) {
+				return;
+			}
 			
 			if( !empty( $this->fields['event']['registration'] ) ) {
 				$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
@@ -798,6 +809,11 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
+			
+			// Verify nonce before processing form submission
+			if ( ! empty( $_POST ) && ( empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-event_' . $this->event_id ) ) ) {
+				return;
+			}
 			
 			if( empty( $_POST['submit_event'] ) ) {
 				return;
