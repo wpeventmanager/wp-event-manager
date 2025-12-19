@@ -237,8 +237,17 @@ var Admin = function () {
                         event.preventDefault();
 
                         var plugin_slug = jQuery('#wpem_shortcode_filter').val();
-                        var old_url = window.location.href;
-                        window.location = old_url + "&plugin=" + plugin_slug;
+                        var nonce = jQuery('#wpem_shortcode_list_nonce').val();
+                        var url = new URL(window.location.href);
+                        if (plugin_slug) {
+                            url.searchParams.set('plugin', plugin_slug);
+                        } else {
+                            url.searchParams.delete('plugin');
+                        }
+                        if (nonce) {
+                            url.searchParams.set('wpem_shortcode_list_nonce', nonce);
+                        }
+                        window.location = url.toString();
                         
                     },
 
