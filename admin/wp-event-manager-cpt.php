@@ -413,7 +413,7 @@ class WP_Event_Manager_CPT {
 		if(!get_option('enable_event_organizer')) {
 			unset($columns['event_organizer']);
 		}
-		return apply_filters('wp_event_manager_cpt_event_column', $columns);
+		return apply_filters('wpem_cpt_event_column', $columns);
 	}
 
 	/**
