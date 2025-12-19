@@ -935,7 +935,7 @@ class WP_Event_Manager_Settings{
 											$this->create_multi_select_checkbox($option);
 											break;
 										default:
-											do_action('wp_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder);
+											do_action('wpem_event_manager_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder);
 											break;
 									}?>
 									</td></tr>
