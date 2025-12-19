@@ -479,12 +479,13 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 			'orderby'           => isset($instance['orderby']) ? $instance['orderby'] : 'event_start_date',
 			'order'             => isset($instance['order']) ? $instance['order'] : 'ASC',
 		);
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Required for event date filtering
 		$args['meta_query'] = array(
 			array(
 				'key'     => '_event_start_date',
 				'value'   => $today_date,
 				'type'    => 'DATETIME',
-				'compare' => '>'
+				'compare' => '>='
 			),
 			array(
 				'key'     => '_cancelled',
@@ -495,7 +496,6 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 		if ('event_start_date' === $args['orderby']) {
 			$args['orderby'] = 'meta_value';
 			$args['meta_key'] = '_event_start_date';
-			$args['meta_type'] = 'DATETIME';
 		}
 		// phpcs:ignore WordPressVIPMinimum.Performance.MetaQueryDetected
 		$events = new WP_Query($args);
