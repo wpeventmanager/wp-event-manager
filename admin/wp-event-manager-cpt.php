@@ -548,7 +548,7 @@ class WP_Event_Manager_CPT {
 				break;
 			case 'event_actions':
 				echo wp_kses_post('<div class="actions">');
-				$admin_actions = apply_filters('post_row_actions', array(), $post);
+				$admin_actions = apply_filters('wpem_event_listing_row_actions', array(), $post);
 				if(in_array($post->post_status, array('pending', 'pending_payment')) && current_user_can('publish_post', $post->ID)) {
 					$admin_actions['approve'] = array(
 						'action' => 'approve',
