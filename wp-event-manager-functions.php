@@ -1785,6 +1785,7 @@ function check_organizer_exist($organizer_email) {
 
 	$args = apply_filters('check_organizer_exist_query_args', $args);
 	// phpcs:ignore WordPressVIPMinimum.Performance.TaxQuery
+	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Simple equality comparison, optimized query
 	$organizer = get_posts($args);
 
 	if(!empty($organizer) && isset($organizer[0]->ID)) {
