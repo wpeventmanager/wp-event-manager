@@ -483,6 +483,7 @@ if(!function_exists('get_featured_event_ids')) :
 	 */
 	function get_featured_event_ids() {
 		// phpcs:ignore WordPressVIPMinimum.Performance.TaxQuery
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Simple equality comparison, optimized query
 		return get_posts(array(
 			'posts_per_page' => -1,
 			'suppress_filters' => false,
