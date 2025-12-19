@@ -755,7 +755,7 @@ class WP_Event_Manager_Post_Types {
 		xmlns:atom="http://www.w3.org/2005/Atom"
 		xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
 		xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
-		xmlns:event_listing="http://localhost/crm">';
+		xmlns:event_listing="' . esc_url(site_url()) . '">';
 		echo '<channel>';
 		
 			if ($query->have_posts()) :
