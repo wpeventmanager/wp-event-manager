@@ -2567,7 +2567,7 @@ function display_event_ticket_price($before = '', $after = '', $echo = true, $po
  * @param null
  * @return string 
  **/
-function get_wpem_date_time_separator(){
+function wpem_get_date_time_separator(){
 	$separator = get_option( 'event_manager_date_time_format_separator', '@' );
     $separator = apply_filters( 'event_manager_date_time_format_separator', $separator );
 
@@ -2585,9 +2585,9 @@ function get_wpem_date_time_separator(){
  * @param
  * @return
  **/
-function display_date_time_separator(){
+function wpem_display_date_time_separator(){
 	// Get separator
-    $separator = get_wpem_date_time_separator();
+    $separator = wpem_get_date_time_separator();
 
     // Escape for HTML context when echoing
     echo esc_html( $separator );
@@ -2599,8 +2599,8 @@ function display_date_time_separator(){
  * @param
  * @return
  **/
-add_filter('post_thumbnail_html', 'hide_feature_image_single_page', 10, 3);
-function hide_feature_image_single_page($html, $post_id, $post_image_id){
+add_filter('post_thumbnail_html', 'wpem_hide_feature_image_single_page', 10, 3);
+function wpem_hide_feature_image_single_page($html, $post_id, $post_image_id){
 	if(is_singular('event_listing')) {
 		return '';
 	} else if(is_singular('event_organizer')) {
@@ -2617,7 +2617,7 @@ function hide_feature_image_single_page($html, $post_id, $post_image_id){
  * @param
  * @return
  **/
-function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1, $tab = ''){
+function wpem_display_get_query_pagination($max_num_pages = 0, $current_page = 1, $tab = ''){
 	ob_start();
 
 	// Calculate pages to output 

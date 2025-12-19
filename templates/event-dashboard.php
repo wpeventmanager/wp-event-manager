@@ -280,13 +280,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 												<div class="wpem-dashboard-event-placeholder"><strong><?php esc_attr_e('Date And Time', 'wp-event-manager') ?></strong></div>
 												<?php display_event_start_date('', '', true, $event); ?> <?php
 													if (get_event_start_time($event)) {
-														echo wp_kses_post(display_date_time_separator()) . ' ';
+														echo wp_kses_post(wpem_display_date_time_separator()) . ' ';
 														display_event_start_time('', '', true, $event);
 													} ?>
 													-<br>
 													<?php display_event_end_date('', '', true, $event); ?> <?php
 													if (get_event_start_time($event)) {
-														echo wp_kses_post(display_date_time_separator()) . ' ';
+														echo wp_kses_post(wpem_display_date_time_separator()) . ' ';
 														display_event_end_time('', '', true, $event);
 													} ?>
 											</div>

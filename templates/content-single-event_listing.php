@@ -9,7 +9,7 @@ $start_time = get_event_start_time();
 $end_time   = get_event_end_time();
 $address = get_event_address();
 $location =  get_event_location();
-$separator = get_wpem_date_time_separator();
+$separator = wpem_get_date_time_separator();
 $check_ticket_visibility = get_option('event_manager_enable_event_ticket_prices_filter', true);
 wp_enqueue_script('wp-event-manager-slick-script');
 wp_enqueue_style('wp-event-manager-slick-style');
@@ -411,7 +411,7 @@ $event = $post; ?>
                                             <?php if($start_date){ 
                                                 echo  esc_attr(date_i18n($date_format, strtotime($start_date))); ?>
                                                 <?php if ($start_time) {
-                                                    echo esc_attr(display_date_time_separator() . ' ' . esc_attr($start_time));
+                                                    echo esc_attr(wpem_display_date_time_separator() . ' ' . esc_attr($start_time));
                                                 }
                                             }else{echo esc_attr('-');  } ?>
                                         </span>
@@ -421,7 +421,7 @@ $event = $post; ?>
                                             <br />
                                             <span class="wpem-event-date-time-text"><?php echo  esc_attr(date_i18n($date_format, strtotime($end_date))); ?>
                                                 <?php if ($end_time) {
-                                                    echo esc_attr(display_date_time_separator() . ' ' . esc_attr($end_time));
+                                                    echo esc_attr(wpem_display_date_time_separator() . ' ' . esc_attr($end_time));
                                                 }
                                                 ?>
                                             </span>

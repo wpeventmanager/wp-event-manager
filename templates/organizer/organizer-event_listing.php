@@ -39,7 +39,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
                     </div>
                     <?php if ($upcomingEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <?php display_wpem_get_query_pagination($upcomingEvents->max_num_pages, $current_page, 'upcoming'); ?>
+                            <?php wpem_display_get_query_pagination($upcomingEvents->max_num_pages, $current_page, 'upcoming'); ?>
                         <?php endif; ?>
                     <?php endif; ?>
                 <?php
@@ -60,7 +60,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
 
                     <?php if ($currentEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <?php display_wpem_get_query_pagination($currentEvents->max_num_pages, $current_page, 'current'); ?>
+                            <?php wpem_display_get_query_pagination($currentEvents->max_num_pages, $current_page, 'current'); ?>
                         <?php endif; ?>
                     <?php endif; ?>
                 <?php
@@ -80,7 +80,7 @@ if ( isset( $_REQUEST['tab'] ) ) {
                     </div>
                     <?php if ($pastEvents->found_posts > $per_page) : ?>
                         <?php if ($show_pagination == "true") : ?>
-                            <?php display_wpem_get_query_pagination($pastEvents->max_num_pages, $current_page, 'past'); ?>
+                            <?php wpem_display_get_query_pagination($pastEvents->max_num_pages, $current_page, 'past'); ?>
                         <?php endif; ?>
                     <?php endif; ?>
                 <?php
