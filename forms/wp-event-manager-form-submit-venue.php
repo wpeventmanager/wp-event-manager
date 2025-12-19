@@ -3,9 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 /**
- * WP_Event_Manager_Form_Submit_Venue class.
+ * WPEM_Event_Manager_Form_Submit_Venue class.
  */
-class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
+class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	
 	public    $form_name = 'submit-venue';
 	public    $steps;
@@ -14,7 +14,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	protected $venue_id;
 	protected $preview_venue;
 	/** @var 
-	* WP_Event_Manager_Form_Submit_Venue The single instance of the class 
+	* WPEM_Event_Manager_Form_Submit_Venue The single instance of the class 
 	*/
 	protected static $_instance = null;
 	/**

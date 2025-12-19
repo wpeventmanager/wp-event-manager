@@ -112,7 +112,7 @@ class WP_Event_Manager_Field_Editor {
 
 		if(get_option('enable_event_venue')) {
 			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
-			$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
+			$form_submit_venue_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Venue', 'instance'));
 			$venue_fields               = $form_submit_venue_instance->wpem_merge_with_custom_fields('backend');
 		} else {
 			$venue_fields = array();
@@ -331,7 +331,7 @@ class WP_Event_Manager_Field_Editor {
 
 					if( get_option('enable_event_venue') ) {
 						$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
-						$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
+						$form_submit_venue_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Venue', 'instance'));
 						$venue_fields               = $form_submit_venue_instance->init_fields();
 					} else {
 						$venue_fields = array();

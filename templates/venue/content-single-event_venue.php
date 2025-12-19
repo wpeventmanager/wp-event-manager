@@ -7,7 +7,7 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
     $venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
 } else {
     $GLOBALS['event_manager']->forms->get_form( 'submit-venue', array() );
-    $form_submit_venue_instance = call_user_func( array( 'WP_Event_Manager_Form_Submit_Venue', 'instance' ) );
+    $form_submit_venue_instance = call_user_func( array( 'WPEM_Event_Manager_Form_Submit_Venue', 'instance' ) );
     $venue_custom_fields = $form_submit_venue_instance->wpem_merge_with_custom_fields( 'backend' );
 } ?>
 

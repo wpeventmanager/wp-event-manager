@@ -892,7 +892,7 @@ class WP_Event_Manager_Ajax {
 			    unset($_COOKIE['wp-event-manager-submitting-venue-key']);
 
 			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
-			$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
+			$form_submit_venue_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Venue', 'instance'));
 			$event_fields =	$form_submit_venue_instance->wpem_merge_with_custom_fields('frontend');
 
 			// Submit current event with $_POST values
