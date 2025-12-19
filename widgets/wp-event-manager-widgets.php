@@ -494,13 +494,13 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 			),
 		);
 		if ('event_start_date' === $args['orderby']) {
-			$args['orderby'] = 'meta_value';
 			$args['meta_key'] = '_event_start_date';
+			$args['orderby'] = 'meta_value';
+			$args['meta_type'] = 'DATETIME';
 		}
 		// phpcs:ignore WordPressVIPMinimum.Performance.MetaQueryDetected
 		$events = new WP_Query($args);
 		echo wp_kses_post($before_widget);
-
 		if (isset($instance['widget_style']) && $instance['widget_style'] == 'list_widget')
 			$widget_style = 'wpem-single-event-widget-list-view';
 		else
