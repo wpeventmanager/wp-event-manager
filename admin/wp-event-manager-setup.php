@@ -131,8 +131,6 @@ class WP_Event_Manager_Setup {
 	public function output() {
 		$step = !empty($_GET['step']) ? absint($_GET['step']) : 1;
 		$wpem_url = esc_url(get_option('wp_event_manager_store_url'));
-		}
-
 		if(3 === $step && !empty($_POST)) {
 			if(!isset($_REQUEST['setup_wizard']) || false == wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['setup_wizard'])), 'step_3')) {
 				wp_die(esc_attr__('Error in nonce. Try again.', 'wp-event-manager'));
