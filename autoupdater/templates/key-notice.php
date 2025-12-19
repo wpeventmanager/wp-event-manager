@@ -4,11 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }?>
 <div class="notice notice-error">
     <?php 
-    $license_page_url = get_admin_url() . 'edit.php?post_type=event_listing&page=wpem_license'; 
-    $dismiss_url = wp_nonce_url( add_query_arg( array( 'dismiss-' . sanitize_title( $plugin['TextDomain'] ) => '1' ) ), 'wpem_licence_notice_action' );?>
+    $wpem_license_page_url = get_admin_url() . 'edit.php?post_type=event_listing&page=wpem_license'; 
+    $wpem_dismiss_url = wp_nonce_url( add_query_arg( array( 'dismiss-' . sanitize_title( $plugin['TextDomain'] ) => '1' ) ), 'wpem_licence_notice_action' );?>
     
     <p class="wpem-updater-dismiss" style="float:right;">
-        <a href="<?php echo esc_url($dismiss_url); ?>">
+        <a href="<?php echo esc_url($wpem_dismiss_url); ?>">
             <?php esc_html_e( 'Hide notice', 'wp-event-manager' ); ?>
         </a>
     </p>
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     ),
                 )
             ),
-            esc_url( $license_page_url ),
+            esc_url( $wpem_license_page_url ),
             esc_html( $plugin['Name'] )
         ); ?>
     </p>
