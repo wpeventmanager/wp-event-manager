@@ -1378,8 +1378,8 @@ class WP_Event_Manager_Shortcodes{
 			'order'		=> $order,
 		];
 
-		$organizers   = get_all_organizer_array('', $args);
-		$countAllEvents = get_event_organizer_count();
+		$organizers   = wpem_get_all_organizer_array('', $args);
+		$countAllEvents = wpem_get_event_organizer_count();
 		$organizers_array = [];
 
 		if (!empty($organizers)) {
@@ -1590,8 +1590,8 @@ class WP_Event_Manager_Shortcodes{
 			'order'		=> $order,
 		];
 
-		$venues   = get_all_venue_array('', $args);
-		$countAllEvents = get_event_venue_count();
+		$venues   = wpem_get_all_venue_array('', $args);
+		$countAllEvents = wpem_get_event_venue_count();
 		$venues_array = [];
 
 		if (!empty($venues)) {

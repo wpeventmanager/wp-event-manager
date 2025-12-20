@@ -42,7 +42,7 @@ do_action('event_manager_venue_dashboard_before'); ?>
                             <?php foreach ($venue_dashboard_columns as $key => $column) : ?>
                                 <td data-title="<?php echo esc_html($column); ?>" class="<?php echo esc_attr($key); ?>">
                                     <?php if ('venue_name' === $key) : ?>
-                                        <div class="wpem-venue-logo"><?php display_venue_logo('', '', $venue); ?></div>
+                                        <div class="wpem-venue-logo"><?php wpem_display_venue_logo('', '', $venue); ?></div>
                                         <a href="<?php echo esc_url(get_permalink($venue->ID)); ?>"><?php echo esc_html($venue->post_title); ?></a>
                                     <?php elseif ('venue_details' === $key) : 
                                         do_action('single_event_listing_venue_social_start', $venue->ID);
@@ -93,7 +93,7 @@ do_action('event_manager_venue_dashboard_before'); ?>
 
                                     <?php elseif ('venue_events' === $key) : 
 
-                                        $venue_events = get_event_by_venue_id($venue->ID); ?>
+                                        $venue_events = wpem_get_event_by_venue_id($venue->ID); ?>
                                         <div class="event-venue-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_html(count($venue_events)); ?></a>
                                             <?php if (!empty($venue_events)) : ?>
                                                 <span class="venue-events-list wpem-tooltiptext">

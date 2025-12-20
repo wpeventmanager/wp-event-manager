@@ -474,7 +474,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       	=> __( 'Organizer', 'wp-event-manager' ),		      
 			        'type'  		=> 'multiselect',
 				    'default'  		=> $default_organizer,
-				    'options'  		=>apply_filters('wpem_set_organizer_ids', ($current_user_id) ? get_all_organizer_array($current_user_id) : []),
+				    'options'  		=>apply_filters('wpem_set_organizer_ids', ($current_user_id) ? wpem_get_all_organizer_array($current_user_id) : []),
 				    'description'	=> $organizer_description,
 				    'priority'   	=> 24,
 			        'required'		=>false,
@@ -488,7 +488,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
 			        'type'  		=> 'multiselect',
 				    'default'  		=> $default_venue,
-				    'options'  		=> apply_filters('wpem_set_venue_ids', ($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')]),
+				    'options'  		=> apply_filters('wpem_set_venue_ids', ($current_user_id) ? wpem_get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')]),
 				    'description'	=> $venue_description,
 				    'priority'    	=> 25,
 			        'required'		=>false,
@@ -505,7 +505,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * @return bool on success, WP_ERROR on failure
 	 */
 	protected function validate_fields( $values ) {
-		$this->fields =  apply_filters( 'before_submit_event_form_validate_fields', $this->fields , $values );
+		$this->fields =  apply_filters( 'wpem_before_submit_event_form_validate_fields', $this->fields , $values );
 	    
 	    foreach ( $this->fields as $group_key => $group_fields ) {     	      
     	    // This filter need to apply for remove required attributes when option online event selected and ticket price.
@@ -1103,7 +1103,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					/*
 					* When user change event data from front side than we update expiry date as per event end date
 					*/
-					$event_expiry_date = get_event_expiry_date($this->event_id);
+					$event_expiry_date = wpem_get_event_expiry_date($this->event_id);
 					update_post_meta( $this->event_id, '_event_expiry_date', $event_expiry_date );
 
 				} elseif ( $key == 'event_organizer_ids' ) {

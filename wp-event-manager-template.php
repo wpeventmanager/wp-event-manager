@@ -1148,9 +1148,9 @@ function wpem_get_organizer_name($post = null, $link = false, $link_type = 'fron
 				$organizer_name .= '</a>';
 			}
 		}
-		return apply_filters('display_organizer_name', $organizer_name, $post);
+		return apply_filters('wpem_display_organizer_name', $organizer_name, $post);
 	}
-	return apply_filters('display_organizer_name', $post->_organizer_name, $post);
+	return apply_filters('wpem_display_organizer_name', $post->_organizer_name, $post);
 }
 
 /**
@@ -1227,7 +1227,7 @@ function wpem_display_organizer_logo($size = 'full', $default = null, $post = nu
  * @param mixed $post (default: null)
  * @return string
  */
-function get_organizer_logo($post = null, $size = 'full'){
+function wpem_get_organizer_logo($post = null, $size = 'full'){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
@@ -1256,14 +1256,14 @@ function get_organizer_logo($post = null, $size = 'full'){
  * @param int $post (default: null)
  * @return string
  */
-function get_venue_description($post = null){
+function wpem_get_venue_description($post = null){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue'])) {
 		return '';
 	}
 
-	return apply_filters('display_venue_description', $post->_venue_description, $post);
+	return apply_filters('wpem_display_venue_description', $post->_venue_description, $post);
 }
 
 /**
@@ -1274,9 +1274,9 @@ function get_venue_description($post = null){
  * @param mixed $default (default: null)
  * @return void
  */
-function display_venue_logo($size = 'full', $default = null, $post = null){
+function wpem_display_venue_logo($size = 'full', $default = null, $post = null){
 
-	$logo = get_venue_logo($post, $size);
+	$logo = wpem_get_venue_logo($post, $size);
 
 	if(has_post_thumbnail($post)) {
 		printf('<img class="venue_logo" src="' . esc_url($logo) . '" alt="' . esc_attr(wpem_get_event_venue_name($post)) . '" />');
@@ -1302,7 +1302,7 @@ function display_venue_logo($size = 'full', $default = null, $post = null){
  * @param mixed $post (default: null)
  * @return string
  */
-function get_venue_logo($post = null, $size = 'full'){
+function wpem_get_venue_logo($post = null, $size = 'full'){
 
 	$post = get_post($post);
 	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
@@ -1313,7 +1313,7 @@ function get_venue_logo($post = null, $size = 'full'){
 		return $src ? $src[0] : '';
 	} elseif(!empty($post->_venue_logo)) {
 		// Before were stored in post meta.
-		return apply_filters('display_venue_logo', $post->_venue_logo, $post);
+		return apply_filters('wpem_display_venue_logo', $post->_venue_logo, $post);
 	}
 
 	return '';

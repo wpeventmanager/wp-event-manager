@@ -116,7 +116,7 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 				$value['url'] 	= wpem_get_event_banner($event);
 			} else if($event_image_tag == 'organizer_logo')	{
 				$value['id'] 	= 0;
-				$value['url'] 	= get_organizer_logo($event, 'full');
+				$value['url'] 	= wpem_get_organizer_logo($event, 'full');
 			}
 		}
 

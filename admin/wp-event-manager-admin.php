@@ -246,7 +246,7 @@ A prior Backup does no harm before updating the plugin!',
 	 * Migrate organizer from event meta.
 	 */
 	public function migrate_organizer_from_event_meta($event, $organizer_data)	{
-		$organizer_id = check_organizer_exist($organizer_data['organizer_email']);
+		$organizer_id = wpem_check_organizer_exist($organizer_data['organizer_email']);
 		if(!$organizer_id) {
 			$args = apply_filters(
 				'wpem_create_event_organizer_data',

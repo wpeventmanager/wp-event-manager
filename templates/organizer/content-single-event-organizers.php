@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since  3.1.32
  */
-if (has_event_organizer_ids($event_id)) :
+if (wpem_has_event_organizer_ids($event_id)) :
     if (get_option('event_manager_form_fields')) {
         $organizer_custom_fields = get_option('event_manager_form_fields', true)['organizer'];
     } ?>
@@ -26,7 +26,7 @@ if (has_event_organizer_ids($event_id)) :
                         <div class="wpem-organizer-profile">
 
                             <?php do_action('single_event_listing_organizer_start'); 
-                            $organizer_ids = get_event_organizer_ids($event_id);
+                            $organizer_ids = wpem_get_event_organizer_ids($event_id);
                             if (!empty($organizer_ids)) :
                                 foreach ($organizer_ids as $key => $organizer_id) : 
                                     $organizer = get_post($organizer_id);

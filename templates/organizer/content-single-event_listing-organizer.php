@@ -16,7 +16,7 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
 	$field_to_hide = array();
 }
 
-if (has_event_organizer_ids()) : ?>
+if (wpem_has_event_organizer_ids()) : ?>
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
             <div class="wpem-col-md-12">
@@ -37,7 +37,7 @@ if (has_event_organizer_ids()) : ?>
 
                             <?php do_action('single_event_listing_organizer_start'); 
 
-                            $organizer_ids = get_event_organizer_ids(); 
+                            $organizer_ids = wpem_get_event_organizer_ids(); 
 
                             if (!empty($organizer_ids)) : 
                                 foreach ($organizer_ids as $key => $organizer_id) : ?>

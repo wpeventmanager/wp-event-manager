@@ -52,12 +52,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 </div>
                                 <div class="venue-name-list">
                                     <?php foreach ($venues as $venue_id => $venue_name) :
-                                        $count = get_event_venue_count($venue_id); ?>
+                                        $count = wpem_get_event_venue_count($venue_id); ?>
                                         <div class="venue-list-items">
                                             <a href="<?php echo esc_url(get_the_permalink($venue_id)) ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
                                                 <?php $venue = get_post($venue_id); ?>
                                                 <?php if ($show_thumb && $show_thumb == 'true') : ?>
-                                                    <div class="wpem-venue-logo"><?php display_venue_logo('', '', $venue); ?></div>
+                                                    <div class="wpem-venue-logo"><?php wpem_display_venue_logo('', '', $venue); ?></div>
                                                 <?php endif; ?>
 
                                                 <div class="wpem-venue-name"><?php echo esc_attr($venue_name); ?></div>

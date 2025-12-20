@@ -18,7 +18,7 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
             <div class="wpem-col-md-3">
                 <div class="wpem-venue-logo-wrapper">
                     <div class="wpem-venue-logo">
-                        <a><?php display_venue_logo('', '', $venue); ?></a>
+                        <a><?php wpem_display_venue_logo('', '', $venue); ?></a>
                     </div>
                 </div>
             </div>

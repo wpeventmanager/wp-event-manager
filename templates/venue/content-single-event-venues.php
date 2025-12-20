@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since  3.1.32
  */
 
-if (has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
+if (wpem_has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
     $event_content_toggle = apply_filters('event_manager_event_content_toggle', true);
     $event_content_toggle_class = $event_content_toggle ? 'wpem-listing-accordion' : 'wpem-event-venue-info-title';?>
 
@@ -19,7 +19,7 @@ if (has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
     <div class="wpem-venue-wrapper wpem-listing-accordion-panel active" style="display: block;">
 
         <?php do_action('single_event_listing_venue_start'); 
-        $venue_id = get_event_venue_ids($event_id); 
+        $venue_id = wpem_get_event_venue_ids($event_id); 
         $venue = get_post($venue_id); 
         if (get_option('event_manager_form_fields')) {
             $venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
@@ -32,7 +32,7 @@ if (has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
                     <div class="wpem-col-md-3">
                         <div class="wpem-venue-logo-wrapper">
                             <div class="wpem-venue-logo">
-                                <a><?php display_venue_logo('', '', $venue); ?></a>
+                                <a><?php wpem_display_venue_logo('', '', $venue); ?></a>
                             </div>
                         </div>
                     </div>

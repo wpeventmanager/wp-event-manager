@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since  3.1.6
  */
-if (has_event_venue_ids() && !wpem_is_event_online()) : ?>
+if (wpem_has_event_venue_ids() && !wpem_is_event_online()) : ?>
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
         <div class="wpem-row">
             <div class="wpem-col-md-12">
@@ -28,7 +28,7 @@ if (has_event_venue_ids() && !wpem_is_event_online()) : ?>
                         <div class="wpem-venue-profile">
                             <?php do_action('single_event_listing_venue_start'); ?>
 
-                            <?php $venue_ids = get_event_venue_ids(); 
+                            <?php $venue_ids = wpem_get_event_venue_ids(); 
                              if (!empty($venue_ids)) {
                                 foreach ($venue_ids as $key => $venue_id): ?>
 
@@ -38,7 +38,7 @@ if (has_event_venue_ids() && !wpem_is_event_online()) : ?>
                                         <div class="wpem-venue-logo-wrapper">
                                             <div class="wpem-venue-logo">
                                                 <a href="<?php echo esc_url(get_the_permalink($venue_id)); ?>">
-                                                    <?php display_venue_logo('', '', $venue_id); ?>
+                                                    <?php wpem_display_venue_logo('', '', $venue_id); ?>
                                                 </a>
                                             </div>
                                         </div>

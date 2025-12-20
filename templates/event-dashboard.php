@@ -154,7 +154,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<select name="search_order_by" id="search_order_by">
 										<option value=""><?php esc_attr_e('Order by', 'wp-event-manager'); ?></option>
 										<?php
-										foreach (get_event_order_by() as $order_by) : ?>
+										foreach (wpem_get_event_order_by() as $order_by) : ?>
 											<?php if (isset($order_by['type']) && !empty($order_by['type'])) : ?>
 												<optgroup label="<?php echo esc_html($order_by['label']); ?>">
 													<?php foreach ($order_by['type'] as $order_key => $order_value) : ?>

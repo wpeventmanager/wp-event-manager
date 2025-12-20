@@ -50,7 +50,7 @@ class WP_Event_Manager_Settings{
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 		);
-		$all_organizers = get_all_event_organizer('', $args);
+		$all_organizers = wpem_get_all_event_organizer('', $args);
 		$organizer_options_list = array('no_default' => __('No Default', 'wp-event-manager'));
 
 		if (!empty($all_organizers)) {
@@ -66,7 +66,7 @@ class WP_Event_Manager_Settings{
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 		);
-		$all_venue = get_all_event_venue('', $args);
+		$all_venue = wpem_get_all_event_venue('', $args);
 		$venue_options = array('no_default' => __('No Default', 'wp-event-manager'));
 
 		if (!empty($all_venue)) {

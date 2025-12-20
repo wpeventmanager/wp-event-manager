@@ -573,7 +573,7 @@ class WP_Event_Manager_CPT {
 						$admin_actions['duplicate'] = array(
 							'action' => 'duplicate',
 							'name'   => __('Duplicate', 'wp-event-manager'),
-							'url'    => esc_url(get_duplicate_post_link($post->ID)),
+							'url'    => esc_url(wpem_get_duplicate_post_link($post->ID)),
 						);
 					}
 					if(current_user_can('delete_post', $post->ID)) {

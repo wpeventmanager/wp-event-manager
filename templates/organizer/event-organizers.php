@@ -63,7 +63,7 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
                                 </div>
                                 <div class="organizer-name-list">
                                     <?php foreach ($organizers as $organizer_id => $organizer_name) :
-                                        $count = get_event_organizer_count($organizer_id); ?>
+                                        $count = wpem_get_event_organizer_count($organizer_id); ?>
                                         <div class="organizer-list-items">
                                             <a href="<?php echo esc_url(get_the_permalink($organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
                                                 <?php $organizer = get_post($organizer_id); if(!in_array('organizer_logo', $field_to_hide)){?>

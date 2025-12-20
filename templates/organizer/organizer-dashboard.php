@@ -100,7 +100,7 @@ do_action('event_manager_organizer_dashboard_before'); ?>
 											</div>
 										<?php } 
 									elseif ('organizer_events' === $key) : 
-										$organizer_events = get_event_by_organizer_id($organizer->ID); ?>
+										$organizer_events = wpem_get_event_by_organizer_id($organizer->ID); ?>
 
 										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_attr(sizeof($organizer_events)); ?></a>
 											<?php if (!empty($organizer_events)) : ?>

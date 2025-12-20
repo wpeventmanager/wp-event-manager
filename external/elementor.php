@@ -84,7 +84,7 @@ class Plugin {
 		$ajax_filter_deps = array('jquery', 'jquery-deserialize');
 
 		$chosen_shortcodes   = array('submit_event_form', 'event_dashboard', 'events');
-		$chosen_used_on_page = has_wpem_shortcode(null, $chosen_shortcodes);
+		$chosen_used_on_page = wpem_has_shortcode(null, $chosen_shortcodes);
 
 		//jQuery Chosen - vendor
 		if (apply_filters('event_manager_chosen_enabled', $chosen_used_on_page)) {
