@@ -313,7 +313,7 @@ class WP_Event_Manager_Shortcodes{
     	if (!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'event_manager_my_organizer_actions')) {
 
 			$action = sanitize_title($_REQUEST['action']);
-			$organizer_id = absint($_REQUEST['organizer_id']);
+			echo $organizer_id = absint($_REQUEST['organizer_id']);
 
 			try {
 				$event = get_post($organizer_id);
@@ -330,12 +330,12 @@ class WP_Event_Manager_Shortcodes{
 					case 'delete':
 						wp_trash_post($organizer_id);
 						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' .sprintf(esc_html__('%s has been deleted.', 'wp-event-manager'), esc_html($event->post_title)) .'</div>';
-						wp_safe_redirect(esc_url_raw(add_query_arg(array(
-							'venue_id' => absint($organizer_id),
-							'action' => 'organizer_dashboard'
-						), event_manager_get_permalink('event_dashboard'))));
-						exit;
-
+						// wp_safe_redirect(esc_url_raw(add_query_arg(array(
+						// 	'venue_id' => absint($organizer_id),
+						// 	'action' => 'organizer_dashboard'
+						// ), event_manager_get_permalink('event_dashboard'))));
+						// exit;
+						break;
 					case 'duplicate':
 						if (!event_manager_get_permalink('submit_organizer_form')) {
 							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
@@ -481,12 +481,12 @@ class WP_Event_Manager_Shortcodes{
 					case 'delete':
 						wp_trash_post($venue_id);
 						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' . sprintf(esc_html__('%s has been deleted.', 'wp-event-manager'), esc_html($venue->post_title)) . '</div>';
-						wp_safe_redirect(esc_url_raw(add_query_arg(array(
-							'venue_id' => absint($venue_id),
-							'action' => 'venue_dashboard'
-						), event_manager_get_permalink('event_dashboard'))));
-						exit;
-
+						// wp_safe_redirect(esc_url_raw(add_query_arg(array(
+						// 	'venue_id' => absint($venue_id),
+						// 	'action' => 'venue_dashboard'
+						// ), event_manager_get_permalink('event_dashboard'))));
+						// exit;
+						break;
 					case 'duplicate':
 						if (!event_manager_get_permalink('submit_venue_form')) {
 							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
