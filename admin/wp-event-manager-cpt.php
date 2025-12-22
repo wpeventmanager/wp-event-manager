@@ -246,10 +246,29 @@ class WP_Event_Manager_CPT {
 			$selected_category = sanitize_text_field( wp_unslash( $_GET['event_listing_category'] ) );
 		}
 		$output = "<select name='event_listing_category' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected($selected_category, '', false) . '>' . __('Select category', 'wp-event-manager') . '</option>';
+		$output .= '<option value="" ' . selected($selected_category, '', false) . '>' . esc_html__('Select category', 'wp-event-manager') . '</option>';
 		$output .= $walker->walk($terms, 0, $args);
 		$output .= '</select>';
-		printf('%s', $output);
+		// Allow select and option tags with their common attributes
+		$allowed_html = array(
+			'select' => array(
+				'name' => true,
+				'id' => true,
+				'class' => true,
+				'style' => true,
+				'title' => true,
+				'data-*' => true,
+				'aria-*' => true,
+			),
+			'option' => array(
+				'value' => true,
+				'selected' => true,
+				'disabled' => true,
+				'class' => true,
+				'data-*' => true,
+			),
+		);
+		echo wp_kses($output, $allowed_html);
 	}
 
 	/**
