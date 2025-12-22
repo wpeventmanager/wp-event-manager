@@ -1127,7 +1127,25 @@ function event_manager_dropdown_selection($args = '') {
 	$output .= "</select>\n";
 
 	if($echo) {
-		printf('%s', $output);
+		echo wp_kses($output, array(
+			'select' => array(
+				'name' => true,
+				'id' => true,
+				'class' => true,
+				'multiple' => true,
+				'data-placeholder' => true,
+				'data-no_results_text' => true,
+				'data-multiple_text' => true
+			),
+			'option' => array(
+				'value' => true,
+				'selected' => true,
+				'class' => true
+			),
+			'optgroup' => array(
+				'label' => true
+			)
+		));
 	}
 	return $output;
 }
