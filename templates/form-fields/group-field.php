@@ -9,45 +9,45 @@ if ( ! defined( 'ABSPATH' ) ) {
  * */
 
 //get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-$datepicker_date_format     = WP_Event_Manager_Date_Time::get_datepicker_format();
+$wpem_datepicker_date_format     = WP_Event_Manager_Date_Time::get_datepicker_format();
 
 //covert datepicker format  into php date() function date format
-$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+$wpem_php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($wpem_datepicker_date_format);
 
 if (!empty($field['value']) && is_array($field['value'])) : 
-    foreach ($field['value'] as $index => $value) : ?>
-        <div class="group-row-<?php echo esc_attr($index); ?>">
-            <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo esc_attr(absint($index)); ?>" />
+    foreach ($field['value'] as $wpem_index => $wpem_value) : ?>
+        <div class="group-row-<?php echo esc_attr($wpem_index); ?>">
+            <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo esc_attr(absint($wpem_index)); ?>" />
 
             <div class="wpem-tabs-wrapper wpem-add-group-tab-wrapper">
 
                 <div class="wpem-tabs-action-buttons">
                     <div class="wpem-group-counter-wrapper">
-                        <div class="wpem-group-counter"><?php echo  esc_attr(absint($index + 1)); ?></div>
+                        <div class="wpem-group-counter"><?php echo  esc_attr(absint($wpem_index + 1)); ?></div>
                     </div>
-                    <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($index); ?>"><i class="wpem-icon-cross"></i></a></div>
+                    <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($wpem_index); ?>"><i class="wpem-icon-cross"></i></a></div>
                 </div>
 
                 <div class="wpem-tab-content current">
                     <div class="wpem-tab-pane active">
                         <?php
-                        foreach ($field['fields'] as $subkey => $subfield) : ?>
-                            <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
-                                <?php if (!empty($subfield['label'])) : ?>
-                                    <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . wp_kses_post(apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional123)', 'wp-event-manager') . '</small>', $subfield)); ?></label>
+                        foreach ($field['fields'] as $wpem_subkey => $wpem_subfield) : ?>
+                            <fieldset class="wpem-form-group fieldset-<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>">
+                                <?php if (!empty($wpem_subfield['label'])) : ?>
+                                    <label for="<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($wpem_subfield['label'], 'wp-event-manager') . wp_kses_post(apply_filters('submit_event_form_required_label', $wpem_subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional123)', 'wp-event-manager') . '</small>', $wpem_subfield)); ?></label>
                                 <?php endif; ?>
 
                                 <div class="field">
                                     <?php
-                                    $subfield['name']  = $key . '_' . $subkey . '_' . $index;
-                                    $subfield['id']    = $key . '_' . $subkey . '_' . $index;
-                                    $subfield['value'] = isset($value[$subkey]) ? $value[$subkey] : '';
+                                    $wpem_subfield['name']  = $key . '_' . $wpem_subkey . '_' . $wpem_index;
+                                    $wpem_subfield['id']    = $key . '_' . $wpem_subkey . '_' . $wpem_index;
+                                    $wpem_subfield['value'] = isset($wpem_value[$wpem_subkey]) ? $wpem_value[$wpem_subkey] : '';
 
-                                    if ($subfield['type'] === 'date') {
-                                        $subfield['value'] = !empty($subfield['value']) ? gmdate($php_date_format, strtotime($subfield['value'])) : $subfield['value'];
+                                    if ($wpem_subfield['type'] === 'date') {
+                                        $wpem_subfield['value'] = !empty($wpem_subfield['value']) ? gmdate($wpem_php_date_format, strtotime($wpem_subfield['value'])) : $wpem_subfield['value'];
                                     }
 
-                                    wpem_get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
+                                    wpem_get_event_manager_template('form-fields/' . $wpem_subfield['type'] . '-field.php', array('key' => $wpem_subkey, 'field' => $wpem_subfield));
                                     ?>
                                 </div>
                             </fieldset>
@@ -80,17 +80,17 @@ endif; ?>
         <div class="wpem-tab-content current">
             <div class="wpem-tab-pane active">
                 <?php
-                foreach ($field['fields'] as $subkey => $subfield) : ?>
-                    <fieldset class="wpem-form-group fieldset-<?php esc_attr($subkey, 'wp-event-manager'); ?>">
-                        <?php if (!empty($subfield['label'])) : ?>
-                            <label for="<?php esc_attr($subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($subfield['label'], 'wp-event-manager') . wp_kses_post(apply_filters('submit_event_form_required_label', $subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $subfield)); ?></label>
+                foreach ($field['fields'] as $wpem_subkey => $wpem_subfield) : ?>
+                    <fieldset class="wpem-form-group fieldset-<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>">
+                        <?php if (!empty($wpem_subfield['label'])) : ?>
+                            <label for="<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>"><?php echo esc_attr($wpem_subfield['label'], 'wp-event-manager') . wp_kses_post(apply_filters('submit_event_form_required_label', $wpem_subfield['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $wpem_subfield)); ?></label>
                         <?php endif; ?>
 
                         <div class="field">
                             <?php
-                            $subfield['name'] = $key . '_' . $subkey . '_%%group-row-index%%';
-                            $subfield['id']   = $key . '_' . $subkey . '_%%group-row-index%%';
-                            wpem_get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $subkey, 'field' => $subfield));
+                            $wpem_subfield['name'] = $key . '_' . $wpem_subkey . '_%%group-row-index%%';
+                            $wpem_subfield['id']   = $key . '_' . $wpem_subkey . '_%%group-row-index%%';
+                            wpem_get_event_manager_template('form-fields/' . $wpem_subfield['type'] . '-field.php', array('key' => $wpem_subkey, 'field' => $wpem_subfield));
                             ?>
                         </div>
                     </fieldset>

@@ -20,7 +20,7 @@ do_action('event_manager_event_filters_before', $atts); ?>
 				<!-- shows default keywords text field  start-->
 				<div class="wpem-form-group">
 					<label for="search_keywords" class="wpem-form-label"><?php esc_attr_e('Keywords', 'wp-event-manager'); ?></label>
-					<input type="text" name="search_keywords" id="search_keywords" placeholder="<?php esc_attr_e('Keywords', 'wp-event-manager'); ?>" value="<?php echo esc_attr($keywords); ?>" />
+					<input type="text" name="search_keywords" id="search_keywords" placeholder="<?php esc_attr_e('Keywords', 'wp-event-manager'); ?>" value="<?php echo esc_attr($wpem_keywords); ?>" />
 				</div>
 				<!-- shows default keywords text field end -->
 			</div>
@@ -37,46 +37,46 @@ do_action('event_manager_event_filters_before', $atts); ?>
 
 			<!-- Search by date section start -->
 			<?php if(isset($datetimes)) : 
-				$arr_selected_datetime = [];
-				if(!empty($selected_datetime)) {
+				$wpem_arr_selected_datetime = [];
+				if(!empty($wpem_selected_datetime)) {
 					//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-					$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+					$wpem_datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 					
 					//covert datepicker format  into php date() function date format
-					$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+					$wpem_php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($wpem_datepicker_date_format);
 
-					$selected_datetime = explode(',', $selected_datetime);
+					$wpem_selected_datetime = explode(',', $wpem_selected_datetime);
 
-					$start_date = esc_attr(wp_strip_all_tags($selected_datetime[0]));
-					if(isset($selected_datetime[1]) == false) {
-						$end_date = esc_attr(wp_strip_all_tags($selected_datetime[0]));
+					$wpem_start_date = esc_attr(wp_strip_all_tags($wpem_selected_datetime[0]));
+					if(isset($wpem_selected_datetime[1]) == false) {
+						$wpem_end_date = esc_attr(wp_strip_all_tags($wpem_selected_datetime[0]));
 					} else {
-						if(strtotime($selected_datetime[1]) !== false && $selected_datetime[1] == 'tomorrow'){
-							$end_date =  gmdate($php_date_format, strtotime('+1 day'));
+						if(strtotime($wpem_selected_datetime[1]) !== false && $wpem_selected_datetime[1] == 'tomorrow'){
+							$wpem_end_date =  gmdate($wpem_php_date_format, strtotime('+1 day'));
 						}else{
-							$end_date = esc_attr(wp_strip_all_tags($selected_datetime[1]));
+							$wpem_end_date = esc_attr(wp_strip_all_tags($wpem_selected_datetime[1]));
 						}
 					}
 
-					if($start_date == 'today') {
-						$start_date = gmdate($php_date_format);
-					} else if($start_date == 'tomorrow') {
-						$start_date = gmdate($php_date_format, strtotime('+1 day'));
+					if($wpem_start_date == 'today') {
+						$wpem_start_date = gmdate($wpem_php_date_format);
+					} else if($wpem_start_date == 'tomorrow') {
+						$wpem_start_date = gmdate($wpem_php_date_format, strtotime('+1 day'));
 					}
 
-					$arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $start_date);
-					$arr_selected_datetime['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $end_date);
+					$wpem_arr_selected_datetime['start'] = WP_Event_Manager_Date_Time::date_parse_from_format($wpem_php_date_format, $wpem_start_date);
+					$wpem_arr_selected_datetime['end'] = WP_Event_Manager_Date_Time::date_parse_from_format($wpem_php_date_format, $wpem_end_date);
 
-					$arr_selected_datetime['start'] 	= date_i18n($php_date_format, strtotime($arr_selected_datetime['start']));
-					$arr_selected_datetime['end'] 	= date_i18n($php_date_format, strtotime($arr_selected_datetime['end']));
+					$wpem_arr_selected_datetime['start'] 	= date_i18n($wpem_php_date_format, strtotime($wpem_arr_selected_datetime['start']));
+					$wpem_arr_selected_datetime['end'] 	= date_i18n($wpem_php_date_format, strtotime($wpem_arr_selected_datetime['end']));
 
-					$selected_datetime = json_encode($arr_selected_datetime);
+					$wpem_selected_datetime = json_encode($wpem_arr_selected_datetime);
 				} ?>
 
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_datetimes" class="wpem-form-label"><?php esc_attr_e('Any dates', 'wp-event-manager'); ?></label>
-						<input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo esc_attr($selected_datetime); ?>' class="event-manager-category-dropdown date_range_picker">
+						<input type="text" name="search_datetimes[]" id="search_datetimes" value='<?php echo esc_attr($wpem_selected_datetime); ?>' class="event-manager-category-dropdown date_range_picker">
 					</div>
 				</div>
 			<?php endif; ?>
@@ -86,8 +86,8 @@ do_action('event_manager_event_filters_before', $atts); ?>
 		<div class="wpem-row">
 			<!-- Search by event categories section start -->
 			<?php if(isset($categories) && !empty($categories)) :
-				foreach ($categories as $category) : ?>
-					<input type="hidden" name="search_categories[]" value="<?php echo esc_attr(sanitize_title($category)); ?>" />
+				foreach ($categories as $wpem_category) : ?>
+					<input type="hidden" name="search_categories[]" value="<?php echo esc_attr(sanitize_title($wpem_category)); ?>" />
 				<?php endforeach;
 			elseif(isset($show_categories) && !empty($show_categories) && !is_tax('event_listing_category') && get_terms(['taxonomy' => 'event_listing_category', 'hide_empty' => false])) : ?>
 				<div class="wpem-col">
@@ -156,9 +156,9 @@ do_action('event_manager_event_filters_before', $atts); ?>
 			<?php endif;
 
 			if(isset($show_ticket_prices) && !empty($show_ticket_prices)) :
-				if(isset($ticket_prices) && !empty($ticket_prices)) :
-					foreach ($ticket_prices as $ticket_price) : ?>
-						<input type="hidden" name="search_ticket_prices[]" value="<?php echo esc_attr(sanitize_title($ticket_price)); ?>" />
+				if(isset($wpem_ticket_prices) && !empty($wpem_ticket_prices)) :
+					foreach ($wpem_ticket_prices as $wpem_ticket_price) : ?>
+						<input type="hidden" name="search_ticket_prices[]" value="<?php echo esc_attr(sanitize_title($wpem_ticket_price)); ?>" />
 					<?php endforeach; ?>
 				<?php else : ?>
 					<div class="wpem-col">
@@ -166,12 +166,12 @@ do_action('event_manager_event_filters_before', $atts); ?>
 							<label for="search_ticket_prices" class="wpem-form-label"><?php esc_attr_e('Ticket Prices', 'wp-event-manager'); ?></label>
 							<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php esc_attr_e('No results match', 'wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options', 'wp-event-manager'); ?>">
 								<?php
-								$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
-								foreach ($ticket_prices as $key => $value) :
-									if(!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price == $key) : ?>
-										<option selected=selected value="<?php echo esc_attr($key) != 'ticket_price_any' ? esc_attr($key) : ""; ?>"><?php echo  esc_attr($value); ?></option>
+								$wpem_ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
+								foreach ($wpem_ticket_prices as $wpem_key => $wpem_value) :
+									if(!strcasecmp($selected_ticket_price, $wpem_value) || $selected_ticket_price == $wpem_key) : ?>
+										<option selected=selected value="<?php echo esc_attr($wpem_key) != 'ticket_price_any' ? esc_attr($wpem_key) : ""; ?>"><?php echo  esc_attr($wpem_value); ?></option>
 									<?php else : ?>
-										<option value="<?php echo esc_attr($key) != 'ticket_price_any' ? esc_attr($key) : ""; ?>"><?php echo  esc_attr($value); ?></option>
+										<option value="<?php echo esc_attr($wpem_key) != 'ticket_price_any' ? esc_attr($wpem_key) : ""; ?>"><?php echo  esc_attr($wpem_value); ?></option>
 								<?php endif;
 								endforeach; ?>
 							</select>

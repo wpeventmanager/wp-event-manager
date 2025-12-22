@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * 	)
  */
 
-foreach($field['options'] as $option_key => $value) : ?>
-    <input type="button" name="<?php echo esc_attr( isset( $field['name']) ? $field['name'] : $key); ?>" id="<?php echo esc_attr( $key); ?>" attribute="<?php echo esc_attr( isset( $field['attribute']) ? $field['attribute'] : ''); ?>" value="<?php echo esc_attr( $option_key); ?>" /> <?php echo esc_html( $value); ?>
+foreach($field['options'] as $wpem_option_key => $wpem_value) : ?>
+    <input type="button" name="<?php echo esc_attr( isset( $field['name']) ? $field['name'] : $key); ?>" id="<?php echo esc_attr( $key); ?>" attribute="<?php echo esc_attr( isset( $field['attribute']) ? $field['attribute'] : ''); ?>" value="<?php echo esc_attr( $wpem_option_key); ?>" /> <?php echo esc_html( $wpem_value); ?>
 <?php endforeach; 
 
 if(!empty( $field['description'])) : ?>

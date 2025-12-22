@@ -27,9 +27,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		endif;
 	} 
 } 
-$html_after_event_list = get_option( 'enable_after_html' );
-if( $html_after_event_list ){
-	$html_content = get_option( 'event_content_after_html' );
-	echo wp_kses_post($html_content);
+$wpem_html_after_event_list = get_option( 'enable_after_html' );
+if( $wpem_html_after_event_list ){
+	$wpem_html_content = get_option( 'event_content_after_html' );
+	echo wp_kses_post($wpem_html_content);
 } ?>
 </div>

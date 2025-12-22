@@ -5,21 +5,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="event-manager-uploaded-file">
 	<?php
 	if(is_numeric($value)) {
-		$image_src = wp_get_attachment_image_src(absint($value));
-		$image_src = $image_src ? $image_src[0] : '';
+		$wpem_image_src = wp_get_attachment_image_src(absint($value));
+		$wpem_image_src = $wpem_image_src ? $wpem_image_src[0] : '';
 	} else {
-		$image_src = $value;
+		$wpem_image_src = $value;
 	}
-	$extension = !empty($extension) ? $extension : substr(strrchr($image_src, '.'), 1);
+	$wpem_extension = !empty($wpem_extension) ? $wpem_extension : substr(strrchr($wpem_image_src, '.'), 1);
 	//check for file extension/type
-	if(3 !== strlen($extension) || in_array($extension, array('jpg', 'gif', 'png', 'jpeg', 'jpe'))) : ?>
+	if(3 !== strlen($wpem_extension) || in_array($wpem_extension, array('jpg', 'gif', 'png', 'jpeg', 'jpe'))) : ?>
 		<span class="event-manager-uploaded-file-preview">
-			<img src="<?php echo esc_url($image_src); ?>" /> 
+			<img src="<?php echo esc_url($wpem_image_src); ?>" /> 
 			<a class="event-manager-remove-uploaded-file" href="#">[<?php esc_attr_e('remove', 'wp-event-manager'); ?>]</a>
 		</span>
 	<?php else : ?>
 		<span class="event-manager-uploaded-file-name">
-			<code><?php echo esc_html(basename($image_src)); ?></code> 
+			<code><?php echo esc_html(basename($wpem_image_src)); ?></code> 
 			<a class="event-manager-remove-uploaded-file" href="#">[<?php esc_attr_e('remove', 'wp-event-manager'); ?>]</a>
 		</span>
 	<?php endif; ?>

@@ -18,10 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  <select name="<?php echo esc_attr( isset( $field['name'] ) ? $field['name'] : $key ); ?>" id="<?php echo isset( $field['id'] ) ? esc_attr( $field['id'] ) :  esc_attr( $key ); ?>" class="input-select <?php echo esc_attr( isset( $field['class'] ) ? $field['class'] : $key ); ?>">
  	<?php
 		$field['default'] = isset($field['default']) ? $field['default'] : '';
-		$value = isset($field['value']) ? $field['value'] : $field['default'];	
+		$wpem_value = isset($field['value']) ? $field['value'] : $field['default'];	
 		echo wp_kses_post(
 			WP_Event_Manager_Date_Time::wpem_timezone_choice(
-				esc_attr( $value )
+				esc_attr( $wpem_value )
 			)
 		); ?>
  </select>

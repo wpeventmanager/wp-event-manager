@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if (!isset($field['type']) || $field['type'] !== 'wp-editor') {
 	return;
 }
-$editor = apply_filters('submit_event_form_wp_editor_args', array(
+$wpem_editor = apply_filters('submit_event_form_wp_editor_args', array(
 	'textarea_name' => isset($field['name']) ? $field['name'] : $key,
 	'media_buttons' => false,
 	'wpautop' 		=> false,
@@ -26,8 +26,8 @@ $editor = apply_filters('submit_event_form_wp_editor_args', array(
 	),
 ));
 
-$placeholder_text = isset($field['placeholder']) ? $field['placeholder'] : '';
-wp_editor(isset($field['value']) ? $field['value'] : $placeholder_text, $key, $editor);
+$wpem_placeholder_text = isset($field['placeholder']) ? $field['placeholder'] : '';
+wp_editor(isset($field['value']) ? $field['value'] : $wpem_placeholder_text, $key, $wpem_editor);
 if (!empty($field['description'])) : ?>
 	<small class="description">
 		<?php echo wp_kses_post($field['description']); ?>

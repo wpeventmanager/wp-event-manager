@@ -11,13 +11,13 @@ if($max_num_pages <= 1) {
 }
 
 // Calculate pages to output 
-$end_size    = 3;
-$mid_size    = 3;
-$start_pages = range(1, $end_size);
-$end_pages   = range($max_num_pages - $end_size + 1, $max_num_pages);
-$mid_pages   = range($current_page - $mid_size, $current_page + $mid_size);
-$pages       = array_intersect(range(1, $max_num_pages), array_merge($start_pages, $end_pages, $mid_pages));
-$prev_page   = 0; ?>
+$wpem_end_size    = 3;
+$wpem_mid_size    = 3;
+$wpem_start_pages = range(1, $wpem_end_size);
+$wpem_end_pages   = range($max_num_pages - $wpem_end_size + 1, $max_num_pages);
+$wpem_mid_pages   = range($current_page - $wpem_mid_size, $current_page + $wpem_mid_size);
+$pages       = array_intersect(range(1, $max_num_pages), array_merge($wpem_start_pages, $wpem_end_pages, $wpem_mid_pages));
+$wpem_prev_page   = 0; ?>
 
 <nav class="event-manager-pagination">
 	<ul class="page-numbers">
@@ -27,7 +27,7 @@ $prev_page   = 0; ?>
 		
 			foreach ($pages as $page) {
 
-				if($prev_page != $page - 1) { ?>
+				if($wpem_prev_page != $page - 1) { ?>
 					<li><span class="gap">...</span></li>
 				<?php }
 
@@ -37,7 +37,7 @@ $prev_page   = 0; ?>
 					<li><a href="#" data-page="<?php echo esc_attr($page);?>" class="page-numbers"><?php echo esc_attr($page);?></a></li>
 				<?php }
 
-				$prev_page = $page;
+				$wpem_prev_page = $page;
 			}
 		if($current_page && $current_page < $max_num_pages) : ?>
 			<li><a href="#" data-page="<?php echo esc_attr($current_page + 1); ?>" class="page-numbers">&rarr;</a></li>

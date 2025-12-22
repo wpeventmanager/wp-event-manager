@@ -8,10 +8,10 @@ wp_enqueue_script('wp-event-manager-jquery-ui-daterangepicker');
 wp_enqueue_script('wp-event-manager-ajax-filters');
 
 do_action('event_manager_event_filters_before', $atts); 
-$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+$wpem_datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 					
 //covert datepicker format  into php date() function date format
-$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);?>
+$wpem_php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($wpem_datepicker_date_format);?>
 
 <!-- Event Filter Version 2 Start -->
 <form class="wpem-main wpem-form-wrapper wpem-event-filter-wrapper event_filters wpem-main wpem-form-wrapper wpem-event-filter-version-2" id="event_filters">
@@ -24,7 +24,7 @@ $php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepic
 			</div>
 			<div class="wpem-form-group">
 				<label for="search_keywords" class="wpem-form-label"><?php esc_attr_e('Search for events', 'wp-event-manager'); ?></label>
-				<input type="text" name="search_keywords" id="search_keywords" placeholder="<?php esc_attr_e('Search for events', 'wp-event-manager'); ?>" value="<?php echo esc_attr($keywords); ?>" />
+				<input type="text" name="search_keywords" id="search_keywords" placeholder="<?php esc_attr_e('Search for events', 'wp-event-manager'); ?>" value="<?php echo esc_attr($wpem_keywords); ?>" />
 			</div>
 		</div>
 
@@ -55,13 +55,13 @@ $php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepic
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_fromdate" class="wpem-form-label"><?php esc_attr_e('From', 'wp-event-manager'); ?></label>
-						<input type="text" name="search_fromdate" id="search_fromdate" value='' placeholder="<?php esc_attr_e('From', 'wp-event-manager'); ?>" data-date-format="<?php echo esc_attr($datepicker_date_format); ?>" />
+						<input type="text" name="search_fromdate" id="search_fromdate" value='' placeholder="<?php esc_attr_e('From', 'wp-event-manager'); ?>" data-date-format="<?php echo esc_attr($wpem_datepicker_date_format); ?>" />
 					</div>
 				</div>
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_todate" class="wpem-form-label"><?php esc_attr_e('To', 'wp-event-manager'); ?></label>
-						<input type="text" name="search_todate" id="search_todate" value='' placeholder="<?php esc_attr_e('To', 'wp-event-manager'); ?>" data-date-format="<?php echo esc_attr($datepicker_date_format); ?>" />
+						<input type="text" name="search_todate" id="search_todate" value='' placeholder="<?php esc_attr_e('To', 'wp-event-manager'); ?>" data-date-format="<?php echo esc_attr($wpem_datepicker_date_format); ?>" />
 					</div>
 				</div>
 				<!-- Search by date section end -->
@@ -71,8 +71,8 @@ $php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepic
 			<div class="wpem-row">
 				<!-- Search by event categories section start -->
 				<?php if(isset($categories) && !empty($categories)) :
-					foreach ($categories as $category) : ?>
-						<input type="hidden" name="search_categories[]" value="<?php echo esc_attr(sanitize_title($category)); ?>" />
+					foreach ($categories as $wpem_category) : ?>
+						<input type="hidden" name="search_categories[]" value="<?php echo esc_attr(sanitize_title($wpem_category)); ?>" />
 					<?php endforeach;
 				elseif(isset($show_categories) && !empty($show_categories) && !is_tax('event_listing_category') && get_terms(['taxonomy' => 'event_listing_category', 'hide_empty' => false])) : ?>
 					<div class="wpem-col">
@@ -141,9 +141,9 @@ $php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepic
 				<?php endif;
 
 				if(isset($show_ticket_prices) && !empty($show_ticket_prices)) :
-					if(isset($ticket_prices) && !empty($ticket_prices)) :
-						foreach ($ticket_prices as $ticket_price) : ?>
-							<input type="hidden" name="search_ticket_prices[]" value="<?php echo esc_attr(sanitize_title($ticket_price)); ?>" />
+					if(isset($wpem_ticket_prices) && !empty($wpem_ticket_prices)) :
+						foreach ($wpem_ticket_prices as $wpem_ticket_price) : ?>
+							<input type="hidden" name="search_ticket_prices[]" value="<?php echo esc_attr(sanitize_title($wpem_ticket_price)); ?>" />
 						<?php endforeach; ?>
 					<?php else : ?>
 						<div class="wpem-col">
@@ -151,12 +151,12 @@ $php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepic
 								<label for="search_ticket_prices" class="wpem-form-label"><?php esc_attr_e('Ticket Prices', 'wp-event-manager'); ?></label>
 								<select name="search_ticket_prices[]" id="search_ticket_prices" class="event-manager-category-dropdown" data-placeholder="Choose any ticket price…" data-no_results_text="<?php esc_attr_e('No results match', 'wp-event-manager'); ?>" data-multiple_text="<?php __('Select Some Options', 'wp-event-manager'); ?>">
 									<?php
-									$ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
-									foreach ($ticket_prices as $key => $value) :
-										if(!strcasecmp($selected_ticket_price, $value) || $selected_ticket_price == $key) : ?>
-											<option selected=selected value="<?php echo esc_attr($key) != 'ticket_price_any' ? esc_attr($key) : ""; ?>"><?php echo  esc_attr($value); ?></option>
+									$wpem_ticket_prices	=	WP_Event_Manager_Filters::get_ticket_prices_filter();
+									foreach ($wpem_ticket_prices as $wpem_key => $wpem_value) :
+										if(!strcasecmp($selected_ticket_price, $wpem_value) || $selected_ticket_price == $wpem_key) : ?>
+											<option selected=selected value="<?php echo esc_attr($wpem_key) != 'ticket_price_any' ? esc_attr($wpem_key) : ""; ?>"><?php echo  esc_attr($wpem_value); ?></option>
 										<?php else : ?>
-											<option value="<?php echo esc_attr($key) != 'ticket_price_any' ? esc_attr($key) : ""; ?>"><?php echo  esc_attr($value); ?></option>
+											<option value="<?php echo esc_attr($wpem_key) != 'ticket_price_any' ? esc_attr($wpem_key) : ""; ?>"><?php echo  esc_attr($wpem_value); ?></option>
 									<?php endif;
 									endforeach; ?>
 								</select>

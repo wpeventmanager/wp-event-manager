@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if(!defined('ABSPATH')) exit;
 global $event_manager; 
 do_action('wp_event_manager_event_submit_before');
-$allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
+$wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-event-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if(apply_filters('submit_event_form_show_signin', true)) : 
@@ -35,29 +35,29 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		do_action('submit_event_form_event_fields_start'); 
 
 		//Show Hide event thumbnail field on front end
-		$thumbnail_key = 'event_thumbnail'; 
-		$show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false); 
-		foreach($event_fields as $key => $field) : 
-			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+		$wpem_thumbnail_key = 'event_thumbnail'; 
+		$wpem_show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false); 
+		foreach($event_fields as $wpem_key => $wpem_field) : 
+			if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] = false)) :
 				continue;
 			endif; 
-			if (isset($field['type']) && $field['type'] === 'media-library-image' && !is_user_logged_in()) {
+			if (isset($wpem_field['type']) && $wpem_field['type'] === 'media-library-image' && !is_user_logged_in()) {
 				continue;
 			}
-			if ($key === $thumbnail_key && $show_thumbnail_field != 1) {
+			if ($wpem_key === $wpem_thumbnail_key && $wpem_show_thumbnail_field != 1) {
 				continue;
 			} ?>
-			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-				<label for="<?php echo esc_attr($key); ?>">
-					<?php echo esc_html(isset($field['label']) ? $field['label'] : '', 'wp-event-manager');
-					echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($field['required']) && $field['required'] == 1 ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', isset($field['required']) ? $field['required'] : '')); ?>
+			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
+				<label for="<?php echo esc_attr($wpem_key); ?>">
+					<?php echo esc_html(isset($wpem_field['label']) ? $wpem_field['label'] : '', 'wp-event-manager');
+					echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($wpem_field['required']) && $wpem_field['required'] == 1 ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', isset($wpem_field['required']) ? $wpem_field['required'] : '')); ?>
 				</label>
-				<div class="field <?php echo esc_attr(isset($field['required']) && $field['required'] == 1 ? 'required-field' : ''); ?>">
-					<?php if(isset($field['addon']) && !empty($field['addon'])) : 
-						do_action('wpem_submit_event_form_addon_before', $field, $key);	
+				<div class="field <?php echo esc_attr(isset($wpem_field['required']) && $wpem_field['required'] == 1 ? 'required-field' : ''); ?>">
+					<?php if(isset($wpem_field['addon']) && !empty($wpem_field['addon'])) : 
+						do_action('wpem_submit_event_form_addon_before', $wpem_field, $wpem_key);	
 					else : 
-						$field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-						wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); 
+						$wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
+						wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); 
 					endif; ?>
 				</div>
 			</fieldset>
@@ -67,21 +67,21 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		<!-- Organizer Information Fields -->
 		<?php if(!get_option('event_manager_hide_frontend_organizer')) :
 			if(get_option('enable_event_organizer')) :
-				if($organizer_fields) :
+				if($wpem_organizer_fields) :
 					do_action('submit_event_form_organizer_fields_start');
-					foreach($organizer_fields as $key => $field) : 
-						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
+					foreach($wpem_organizer_fields as $wpem_key => $wpem_field) : 
+						if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] == false)) :
 							continue;
 						endif;?>
-						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
+						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
 							<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Organizer Details', 'wp-event-manager'); ?></h2>
-							<label for="<?php echo esc_attr($key); ?>">
-								<?php echo esc_html(isset($field['label']) ? $field['label'] : '', 'wp-event-manager');
-								echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($field['required']) && $field['required'] == 1 ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', isset($field['required']) ? $field['required'] : '')); ?>
+							<label for="<?php echo esc_attr($wpem_key); ?>">
+								<?php echo esc_html(isset($wpem_field['label']) ? $wpem_field['label'] : '', 'wp-event-manager');
+								echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($wpem_field['required']) && $wpem_field['required'] == 1 ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', isset($wpem_field['required']) ? $wpem_field['required'] : '')); ?>
 							</label>
-							<div class="field <?php echo (isset($field['required']) && $field['required'] == 1 ? 'required-field' : ''); ?>">
-								<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-								wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+							<div class="field <?php echo (isset($wpem_field['required']) && $wpem_field['required'] == 1 ? 'required-field' : ''); ?>">
+								<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
+								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
@@ -93,21 +93,21 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		<!-- Venue Information Fields -->
 		<?php if(!get_option('event_manager_hide_frontend_venue')) :
 			if(get_option('enable_event_venue')) :
-				if($venue_fields) :
+				if($wpem_venue_fields) :
 					do_action('submit_event_form_venue_fields_start'); 
-					foreach($venue_fields as $key => $field) : 
-						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
+					foreach($wpem_venue_fields as $wpem_key => $wpem_field) : 
+						if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] == false)) :
 							continue;
 						endif;?>
-						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
+						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
 							<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('Venue Details', 'wp-event-manager'); ?></h2>
-							<label for="<?php echo esc_attr($key); ?>">
-								<?php echo esc_html(isset($field['label']) ? $field['label'] : '', 'wp-event-manager');
-								echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($field['required']) && $field['required'] == 1 ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', isset($field['required']) ? $field['required'] : '')); ?>
+							<label for="<?php echo esc_attr($wpem_key); ?>">
+								<?php echo esc_html(isset($wpem_field['label']) ? $wpem_field['label'] : '', 'wp-event-manager');
+								echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($wpem_field['required']) && $wpem_field['required'] == 1 ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', isset($wpem_field['required']) ? $wpem_field['required'] : '')); ?>
 							</label>
-							<div class="field <?php echo (isset($field['required']) && $field['required'] == 1 ? 'required-field' : ''); ?>">
-								<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-								wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+							<div class="field <?php echo (isset($wpem_field['required']) && $wpem_field['required'] == 1 ? 'required-field' : ''); ?>">
+								<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
+								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
@@ -129,13 +129,13 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 </form>
 
 <?php if(get_option('enable_event_organizer')) : 
-	$organizer_fields =	$GLOBALS['event_manager']->forms->get_fields('submit-organizer');
+	$wpem_organizer_fields =	$GLOBALS['event_manager']->forms->get_fields('submit-organizer');
 	if(is_user_logged_in()) {
 		$current_user = wp_get_current_user();
-		if(isset($organizer_fields['organizer']['organizer_name']))
-			$organizer_fields['organizer']['organizer_name']['value'] =  $current_user->display_name;
-		if(isset($organizer_fields['organizer']['organizer_email']))
-			$organizer_fields['organizer']['organizer_email']['value'] =  $current_user->user_email;
+		if(isset($wpem_organizer_fields['organizer']['organizer_name']))
+			$wpem_organizer_fields['organizer']['organizer_name']['value'] =  $current_user->display_name;
+		if(isset($wpem_organizer_fields['organizer']['organizer_email']))
+			$wpem_organizer_fields['organizer']['organizer_email']['value'] =  $current_user->user_email;
 	} ?>
 
 	<div id="wpem_add_organizer_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php echo esc_attr__('Add Organizer', 'wp-event-manager'); ?>">
@@ -152,18 +152,18 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 
 					<?php do_action('submit_organizer_form_organizer_fields_start'); ?>
 
-					<?php foreach($organizer_fields['organizer'] as $key => $field) : 
-						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
+					<?php foreach($wpem_organizer_fields['organizer'] as $wpem_key => $wpem_field) : 
+						if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] == false)) :
 							continue;
 						endif;?>
-						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-							<label for="<?php echo esc_attr($key, 'wp-event-manager'); ?>">
-							<?php echo esc_html($field['label'], 'wp-event-manager');
-							 	echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
+						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
+							<label for="<?php echo esc_attr($wpem_key, 'wp-event-manager'); ?>">
+							<?php echo esc_html($wpem_field['label'], 'wp-event-manager');
+							 	echo wp_kses_post(apply_filters('submit_event_form_required_label', $wpem_field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $wpem_field)); ?>
 							</label>
-							<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
-								<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-								wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+							<div class="field <?php echo esc_attr($wpem_field['required'] ? 'required-field' : ''); ?>">
+								<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
+								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
@@ -188,8 +188,8 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 if(get_option('enable_event_venue')) :
 
 	$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
-	$form_submit_venue_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Venue', 'instance'));
-	$venue_fields =	$form_submit_venue_instance->wpem_merge_with_custom_fields('backend'); ?>
+	$wpem_form_submit_venue_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Venue', 'instance'));
+	$wpem_venue_fields =	$wpem_form_submit_venue_instance->wpem_merge_with_custom_fields('backend'); ?>
 
 	<div id="wpem_add_venue_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php echo esc_attr__('Add Venue', 'wp-event-manager'); ?>">
 		<div class="wpem-modal-content-wrapper">
@@ -210,19 +210,19 @@ if(get_option('enable_event_venue')) :
 					</h2>
 
 					<?php do_action('submit_venue_form_venue_fields_start');
-					foreach($venue_fields['venue'] as $key => $field) : 
-						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+					foreach($wpem_venue_fields['venue'] as $wpem_key => $wpem_field) : 
+						if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] = false)) :
 							continue;
 						endif; ?>
-						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-							<label for="<?php echo esc_attr($key, 'wp-event-manager'); ?>">
-								<?php echo esc_html($field['label'], 'wp-event-manager');
-								echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
+						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
+							<label for="<?php echo esc_attr($wpem_key, 'wp-event-manager'); ?>">
+								<?php echo esc_html($wpem_field['label'], 'wp-event-manager');
+								echo wp_kses_post(apply_filters('submit_event_form_required_label', $wpem_field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $wpem_field)); ?>
 							</label>
 							
-							<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
-								<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-								wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+							<div class="field <?php echo esc_attr($wpem_field['required'] ? 'required-field' : ''); ?>">
+								<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
+								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
