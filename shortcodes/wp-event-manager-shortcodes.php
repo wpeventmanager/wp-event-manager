@@ -595,7 +595,7 @@ class WP_Event_Manager_Shortcodes{
 		wpem_get_event_manager_template(
 			'organizer-dashboard.php',
 			array(
-				'organizers' => $organizers->posts,
+				'wpem_organizers' => $organizers->posts,
 				'max_num_pages' => $organizers->max_num_pages,
 				'wpem_organizer_dashboard_columns' => $organizer_dashboard_columns
 			),
@@ -759,9 +759,9 @@ class WP_Event_Manager_Shortcodes{
 		wpem_get_event_manager_template(
 			'venue-dashboard.php',
 			array(
-				'venues' => $venues->posts,
+				'wpem_venues' => $venues->posts,
 				'max_num_pages' => $venues->max_num_pages,
-				'venue_dashboard_columns' => $venue_dashboard_columns
+				'wpem_venue_dashboard_columns' => $venue_dashboard_columns
 			),
 			'wp-event-manager/venue',
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
@@ -981,7 +981,7 @@ class WP_Event_Manager_Shortcodes{
 				'orderby' => $orderby,
 				'order' => $order,
 				'datetimes' => $datetimes,
-				'selected_datetime' => $selected_datetime,
+				'wpem_selected_datetime' => $selected_datetime,
 				'show_categories' => $show_categories,
 				'show_category_multiselect' => $show_category_multiselect,
 				'categories' => $categories,
@@ -995,7 +995,7 @@ class WP_Event_Manager_Shortcodes{
 				'selected_ticket_price' => $selected_ticket_price,
 				'atts' => $atts,
 				'location' => $location,
-				'keywords' => $keywords,
+				'wpem_keywords' => $keywords,
 				'event_online' => $event_online,
 			);
 			// Only load if it's in the allowed list
@@ -2025,7 +2025,7 @@ class WP_Event_Manager_Shortcodes{
 			$event_filter_args = array(
 				'per_page' => $per_page,
 				'datetimes' => $datetimes,
-				'selected_datetime' => $selected_datetime,
+				'wpem_selected_datetime' => $selected_datetime,
 				'show_categories' => $show_categories,
 				'show_category_multiselect' => $show_category_multiselect,
 				'categories' => $categories,
@@ -2039,7 +2039,7 @@ class WP_Event_Manager_Shortcodes{
 				'selected_ticket_price' => $selected_ticket_price,
 				'atts' => $atts,
 				'location' => $location,
-				'keywords' => $keywords,
+				'wpem_keywords' => $keywords,
 				'event_online' => $event_online,
 			);
 			// Only load if it's in the allowed list
