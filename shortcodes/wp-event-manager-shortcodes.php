@@ -317,11 +317,11 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		if ($organizer_id && get_post_type($organizer_id) === 'event_organizer') {
-			echo $this->escape_form_html($event_manager->forms->get_form('edit-organizer'));
+			echo wp_kses( $this->escape_form_html( $event_manager->forms->get_form('edit-organizer') ), $this->get_form_allowed_html() );
 		} elseif ($venue_id && get_post_type($venue_id) === 'event_venue') {
-			echo $this->escape_form_html($event_manager->forms->get_form('edit-venue'));
+			echo wp_kses( $this->escape_form_html( $event_manager->forms->get_form('edit-venue') ), $this->get_form_allowed_html() );
 		} else {
-			echo $this->escape_form_html($event_manager->forms->get_form('edit-event'));
+			echo wp_kses( $this->escape_form_html( $event_manager->forms->get_form('edit-event') ), $this->get_form_allowed_html() );
 		}
 	}
 
@@ -336,6 +336,113 @@ class WP_Event_Manager_Shortcodes{
 		// and not user input, we can return it directly. The form system handles
 		// its own sanitization and security.
 		return $content;
+	}
+
+	private function get_form_allowed_html() {
+		$allowed = wp_kses_allowed_html( 'post' );
+
+		$allowed['form'] = array(
+			'action'        => true,
+			'method'        => true,
+			'enctype'       => true,
+			'id'            => true,
+			'class'         => true,
+			'name'          => true,
+			'target'        => true,
+			'autocomplete'  => true,
+			'novalidate'    => true,
+			'accept-charset'=> true,
+			'data-*'        => true,
+			'aria-*'        => true,
+		);
+		$allowed['input'] = array(
+			'type'         => true,
+			'name'         => true,
+			'value'        => true,
+			'id'           => true,
+			'class'        => true,
+			'placeholder'  => true,
+			'checked'      => true,
+			'selected'     => true,
+			'disabled'     => true,
+			'readonly'     => true,
+			'required'     => true,
+			'multiple'     => true,
+			'min'          => true,
+			'max'          => true,
+			'step'         => true,
+			'size'         => true,
+			'maxlength'    => true,
+			'pattern'      => true,
+			'autocomplete' => true,
+			'autofocus'    => true,
+			'data-*'       => true,
+			'aria-*'       => true,
+		);
+		$allowed['select'] = array(
+			'name'     => true,
+			'id'       => true,
+			'class'    => true,
+			'multiple' => true,
+			'disabled' => true,
+			'required' => true,
+			'data-*'   => true,
+			'aria-*'   => true,
+		);
+		$allowed['option'] = array(
+			'value'    => true,
+			'selected' => true,
+			'disabled' => true,
+		);
+		$allowed['optgroup'] = array(
+			'label'    => true,
+			'disabled' => true,
+		);
+		$allowed['textarea'] = array(
+			'name'        => true,
+			'id'          => true,
+			'class'       => true,
+			'placeholder' => true,
+			'rows'        => true,
+			'cols'        => true,
+			'maxlength'   => true,
+			'required'    => true,
+			'disabled'    => true,
+			'readonly'    => true,
+			'data-*'      => true,
+			'aria-*'      => true,
+		);
+		$allowed['button'] = array(
+			'type'     => true,
+			'name'     => true,
+			'value'    => true,
+			'id'       => true,
+			'class'    => true,
+			'disabled' => true,
+			'data-*'   => true,
+			'aria-*'   => true,
+		);
+		$allowed['label'] = array(
+			'for'    => true,
+			'class'  => true,
+			'id'     => true,
+			'data-*' => true,
+			'aria-*' => true,
+		);
+		$allowed['fieldset'] = array(
+			'class'  => true,
+			'id'     => true,
+			'data-*' => true,
+			'aria-*' => true,
+		);
+		$allowed['legend'] = array(
+			'class'  => true,
+			'id'     => true,
+			'data-*' => true,
+			'aria-*' => true,
+		);
+
+		return $allowed;
 	}
 
 	/**
