@@ -494,9 +494,11 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 			),
 		);
 		if ('event_start_date' === $args['orderby']) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for event date ordering
 			$args['meta_key'] = '_event_start_date';
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for event date ordering
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for event date ordering
 			$args['orderby'] = 'meta_value';
-			$args['meta_type'] = 'DATETIME';
 		}
 		// phpcs:ignore WordPressVIPMinimum.Performance.MetaQueryDetected
 		$events = new WP_Query($args);
@@ -643,6 +645,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 			),
 		);
 		if ('event_start_date' === $args['orderby']) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for event date ordering
 			$args['orderby'] = 'meta_value';
 			$args['meta_key'] = '_event_start_date';
 			$args['meta_type'] = 'DATETIME';
