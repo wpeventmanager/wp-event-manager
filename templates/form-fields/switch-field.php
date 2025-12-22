@@ -9,7 +9,7 @@ $wpem_saved_values = get_post_meta($post_id, stripslashes($key), true);
 $wpem_saved_values = !empty($wpem_saved_values) ? (array) $wpem_saved_values : [];
 
 // Get options
-$wpem_options = isset($field['options']) ? $field['options'] : [];?>
+$wpem_options = isset($wpem_field['options']) ? $wpem_field['options'] : [];?>
 
 <div class="health-guidelines-switches">
 	<?php foreach ($wpem_options as $wpem_option_key => $wpem_option_label) : ?>
@@ -19,7 +19,7 @@ $wpem_options = isset($field['options']) ? $field['options'] : [];?>
 					name="<?php echo esc_attr($key); ?>[<?php echo esc_attr($wpem_option_key); ?>]" 
 					id="<?php echo esc_attr($key . '_' . $wpem_option_key); ?>" class="<?php echo esc_attr($key); ?>"
 					value="1"
-					<?php echo isset($field['value'][$wpem_option_key]) ? 'checked' : ''; ?>>
+					<?php echo isset($wpem_field['value'][$wpem_option_key]) ? 'checked' : ''; ?>>
 				<span class="wpem-input-slider round"></span>
 			</label>
 			<label for="<?php echo esc_attr($key . '_' . $wpem_option_key); ?>">

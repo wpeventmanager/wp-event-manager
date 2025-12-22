@@ -15,19 +15,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 ?>
 <input type="text" 
-    class="input-text <?php echo esc_attr(isset($field['class']) ? $field['class'] : $key); ?>" 
-    name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" 
-    id="<?php echo isset($field['id']) ? esc_attr($field['id']) : esc_attr($key); ?>" 
-    placeholder="<?php echo empty($field['placeholder']) ? '' : esc_html($field['placeholder']); ?>" 
-    attribute="<?php echo esc_attr(isset($field['attribute']) ? $field['attribute'] : ''); ?>" 
-    value="<?php echo esc_attr(isset($field['value']) ? $field['value'] : (isset($field['default']) ? $field['default'] : '')); ?>" 
-    maxlength="<?php echo !empty($field['maxlength']) ? esc_attr($field['maxlength']) : ''; ?>" 
-    <?php if (!empty($field['required'])) echo esc_attr('required'); ?> 
-    <?php if (isset($field['disabled']) && !empty($field['disabled'])) echo esc_attr('disabled'); ?> 
+    class="input-text <?php echo esc_attr(isset($wpem_field['class']) ? $wpem_field['class'] : $key); ?>" 
+    name="<?php echo esc_attr(isset($wpem_field['name']) ? $wpem_field['name'] : $key); ?>" 
+    id="<?php echo isset($wpem_field['id']) ? esc_attr($wpem_field['id']) : esc_attr($key); ?>" 
+    placeholder="<?php echo empty($wpem_field['placeholder']) ? '' : esc_html($wpem_field['placeholder']); ?>" 
+    attribute="<?php echo esc_attr(isset($wpem_field['attribute']) ? $wpem_field['attribute'] : ''); ?>" 
+    value="<?php echo esc_attr(isset($wpem_field['value']) ? $wpem_field['value'] : (isset($wpem_field['default']) ? $wpem_field['default'] : '')); ?>" 
+    maxlength="<?php echo !empty($wpem_field['maxlength']) ? esc_attr($wpem_field['maxlength']) : ''; ?>" 
+    <?php if (!empty($wpem_field['required'])) echo esc_attr('required'); ?> 
+    <?php if (isset($wpem_field['disabled']) && !empty($wpem_field['disabled'])) echo esc_attr('disabled'); ?> 
 />
 
-<?php if (!empty($field['description'])) : ?>
+<?php if (!empty($wpem_field['description'])) : ?>
     <small class="description">
-        <?php echo wp_kses_post($field['description']); ?>
+        <?php echo wp_kses_post($wpem_field['description']); ?>
     </small>
 <?php endif; ?>

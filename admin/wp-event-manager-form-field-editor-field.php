@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if (empty($wpem_field_key)) { 
 	$wpem_field_key = $index;
 }
-$taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing')); ?>
+$wpem_taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing')); ?>
 
 <tr data-field-type="text-field" data-field-meta="_<?php echo esc_attr(stripslashes($wpem_field_key)); ?>">
 	 <td class="sort-column">&nbsp;</td>
@@ -74,9 +74,9 @@ $taxonomies = get_object_taxonomies((object) array('post_type' => 'event_listing
 		</div>
 		<div class="taxonomy-options">
 			<label class="taxonomy-option">
-				<?php if ($taxonomies) : ?>
+				<?php if ($wpem_taxonomies) : ?>
 					<select class="input-text taxonomy-select" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($wpem_field_key); ?>][taxonomy]">
-						<?php foreach ($taxonomies  as $taxonomy) : ?>
+						<?php foreach ($wpem_taxonomies  as $taxonomy) : ?>
 							<option value="<?php echo esc_attr($taxonomy); ?>" <?php
 								if (isset($wpem_field['taxonomy'])) {
 									echo selected($wpem_field['taxonomy'], $taxonomy, false);

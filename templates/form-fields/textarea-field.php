@@ -2,9 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }?>
-<textarea cols="20" rows="3" class="input-text" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>" id="<?php echo isset($field['id']) ? esc_attr($field['id']) :  esc_attr($key); ?>" attribute="<?php echo esc_attr(isset($field['attribute']) ? $field['attribute'] : ''); ?>" placeholder="<?php echo isset($field['placeholder']) ? esc_html($field['placeholder']) : ''; ?>" maxlength="<?php echo !empty($field['maxlength']) ? esc_attr($field['maxlength']) : ''; ?>" <?php if (!empty($field['required']))  echo esc_attr('required'); ?>><?php echo isset($field['value']) ? esc_textarea($field['value']) : ''; ?></textarea>
-<?php if (!empty($field['description'])) : ?>
+<textarea cols="20" rows="3" class="input-text" name="<?php echo esc_attr(isset($wpem_field['name']) ? $wpem_field['name'] : $key); ?>" id="<?php echo isset($wpem_field['id']) ? esc_attr($wpem_field['id']) :  esc_attr($key); ?>" attribute="<?php echo esc_attr(isset($wpem_field['attribute']) ? $wpem_field['attribute'] : ''); ?>" placeholder="<?php echo isset($wpem_field['placeholder']) ? esc_html($wpem_field['placeholder']) : ''; ?>" maxlength="<?php echo !empty($wpem_field['maxlength']) ? esc_attr($wpem_field['maxlength']) : ''; ?>" <?php if (!empty($wpem_field['required']))  echo esc_attr('required'); ?>><?php echo isset($wpem_field['value']) ? esc_textarea($wpem_field['value']) : ''; ?></textarea>
+<?php if (!empty($wpem_field['description'])) : ?>
     <small class="description">
-        <?php echo wp_kses( $field['description'], wp_kses_allowed_html($field['description'])); ?>
+        <?php echo wp_kses( $wpem_field['description'], wp_kses_allowed_html($wpem_field['description'])); ?>
     </small>
 <?php endif; ?>

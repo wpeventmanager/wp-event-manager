@@ -44,8 +44,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$wpem_menus = apply_filters('wpem_dashboard_menu', $wpem_menus);
 				$event_dashboard = get_option('event_manager_event_dashboard_page_id');
 				do_action('wpem_dashboard_menu_before', $wpem_menus);
-				foreach ($wpem_menus as $name => $menu) {
-					if (($name === 'registration' || $name === 'guest_lists')  && !current_user_can('administrator') && !current_user_can('organizer')) {
+				foreach ($wpem_menus as $wpem_name => $menu) {
+					if (($wpem_name === 'registration' || $wpem_name === 'guest_lists')  && !current_user_can('administrator') && !current_user_can('organizer')) {
 						continue; // Skip rendering this menu item
 					}
 					if (isset($menu['submenu']) && !empty($menu['submenu'])) {
@@ -88,7 +88,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							);
 						}
 						$wpem_active_menu = '';
-						if ($wpem_current_action === $name) {
+						if ($wpem_current_action === $wpem_name) {
 							$wpem_active_menu = 'wpem-main-vmenu-dashboard-link-active';
 						}
 						printf('<li class="wpem-main-vmenu-dashboard-li"><a class="wpem-main-vmenu-dashboard-link %s" href="%s"> <i class="%s"></i>%s</a></li>', esc_attr($wpem_active_menu), esc_url($wpem_action_url), esc_attr($menu['icon']), esc_attr($menu['title']));

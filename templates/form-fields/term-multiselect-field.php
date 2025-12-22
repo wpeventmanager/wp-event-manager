@@ -3,11 +3,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 // Get selected value
-if (isset($field['value'])) {
-	$wpem_selected = $field['value'];
-} elseif (!empty($field['default']) && is_int($field['default'])) {
-	$wpem_selected = $field['default'];
-} elseif (!empty($field['default']) && ($term = get_term_by('slug', $field['default'], $field['taxonomy']))) {
+if (isset($wpem_field['value'])) {
+	$wpem_selected = $wpem_field['value'];
+} elseif (!empty($wpem_field['default']) && is_int($wpem_field['default'])) {
+	$wpem_selected = $wpem_field['default'];
+} elseif (!empty($wpem_field['default']) && ($term = get_term_by('slug', $wpem_field['default'], $wpem_field['taxonomy']))) {
 	$wpem_selected = $term->term_id;
 } else {
 	$wpem_selected = '';
@@ -31,29 +31,29 @@ wp_register_script(
 
 wp_enqueue_script('wp-event-manager-term-multiselect');
 $wpem_args = array(
-	'taxonomy'     => $field['taxonomy'],
+	'taxonomy'     => $wpem_field['taxonomy'],
 	'hierarchical' => 1,
-	'name'         => isset($field['name']) ? $field['name'] : $key,
+	'name'         => isset($wpem_field['name']) ? $wpem_field['name'] : $key,
 	'orderby'      => 'name',
 	'selected'     => $wpem_selected,
 	'hide_empty'   => false
 );
-if (isset($field['placeholder']) && !empty($field['placeholder'])) 
-	$wpem_args['placeholder'] = $field['placeholder'];
-if(isset( $field['taxonomy'] )){
-	if($field['taxonomy'] === 'event_listing_type'):
-		$wpem_args['placeholder'] = isset($field['placeholder']) ? $field['placeholder'] : __('Choose an event type', 'wp-event-manager');
-		$wpem_args['multiple_text'] = isset($field['multiple_text']) ? $field['multiple_text'] :  __('Choose event types', 'wp-event-manager');;
+if (isset($wpem_field['placeholder']) && !empty($wpem_field['placeholder'])) 
+	$wpem_args['placeholder'] = $wpem_field['placeholder'];
+if(isset( $wpem_field['taxonomy'] )){
+	if($wpem_field['taxonomy'] === 'event_listing_type'):
+		$wpem_args['placeholder'] = isset($wpem_field['placeholder']) ? $wpem_field['placeholder'] : __('Choose an event type', 'wp-event-manager');
+		$wpem_args['multiple_text'] = isset($wpem_field['multiple_text']) ? $wpem_field['multiple_text'] :  __('Choose event types', 'wp-event-manager');;
 	else:
-		$wpem_args['placeholder'] = isset($field['placeholder']) ? $field['placeholder'] : __('Choose an event type', 'wp-event-manager');
-		$wpem_args['multiple_text'] = isset($field['multiple_text']) ? $field['multiple_text'] : $wpem_args['placeholder'];
+		$wpem_args['placeholder'] = isset($wpem_field['placeholder']) ? $wpem_field['placeholder'] : __('Choose an event type', 'wp-event-manager');
+		$wpem_args['multiple_text'] = isset($wpem_field['multiple_text']) ? $wpem_field['multiple_text'] : $wpem_args['placeholder'];
 	endif;
 }
 $wpem_args['selected'] = is_array($wpem_selected) ? $wpem_selected : array($wpem_selected);
 event_manager_dropdown_selection(apply_filters('event_manager_term_multiselect_field_args', $wpem_args));
 
-if (!empty($field['description'])) : ?>
+if (!empty($wpem_field['description'])) : ?>
 	<small class="description">
-		<?php echo wp_kses_post($field['description']); ?>
+		<?php echo wp_kses_post($wpem_field['description']); ?>
 	</small>
 <?php endif; ?>

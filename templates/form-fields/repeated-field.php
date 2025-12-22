@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Repeated fields for the paid and free tickets.
  * This field is used in submit event form.
  * */
-if (!empty($field['value']) && is_array($field['value'])) : 
-    foreach ($field['value'] as $wpem_index => $wpem_value) : ?>
+if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) : 
+    foreach ($wpem_field['value'] as $wpem_index => $wpem_value) : ?>
         <div class="repeated-row-<?php echo esc_attr($key); ?>">
             <input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo absint($wpem_index); ?>" />
 
@@ -29,30 +29,30 @@ if (!empty($field['value']) && is_array($field['value'])) :
                 <div id="sell-ticket-details-<?php echo esc_attr($key) . '-' . esc_attr($wpem_index); ?>" class="wpem-tab-content current">
                     <div id="sell-ticket-details_<?php echo esc_attr(absint($wpem_index)); ?>" class="wpem-tab-pane active">
                         <?php
-                        if (isset($field['fields'])) {
-                            foreach ($field['fields'] as $wpem_subkey => $subfield) :
+                        if (isset($wpem_field['fields'])) {
+                            foreach ($wpem_field['fields'] as $wpem_subkey => $wpem_subfield) :
                                 if ($wpem_subkey == 'ticket_description') : ?>
                     </div>
                     <!------------end ticket details tab------>
                     <div id="<?php echo esc_attr($key) . '_' . esc_attr($wpem_index); ?>" class="wpem-tab-pane">
                     <?php endif; ?>
                     <fieldset class="wpem-form-group fieldset-<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>">
-                        <?php if (!empty($subfield['label'])) : ?>
-                            <label for="<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . esc_attr('(optional)', 'wp-event-manager') . '</small>'); ?></label>
+                        <?php if (!empty($wpem_subfield['label'])) : ?>
+                            <label for="<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($wpem_subfield['label']) . ($wpem_subfield['required'] ? '' : ' <small>' . esc_attr('(optional)', 'wp-event-manager') . '</small>'); ?></label>
                         <?php endif; ?>
 
                         <div class="field">
                             <?php
-                                $subfield['name']  = $key . '_' . $wpem_subkey . '_' . $wpem_index;
-                                $subfield['id']    = $key . '_' . $wpem_subkey . '_' . $wpem_index;
-                                $subfield['value'] = isset($wpem_value[$wpem_subkey]) ? $wpem_value[$wpem_subkey] : '';
+                                $wpem_subfield['name']  = $key . '_' . $wpem_subkey . '_' . $wpem_index;
+                                $wpem_subfield['id']    = $key . '_' . $wpem_subkey . '_' . $wpem_index;
+                                $wpem_subfield['value'] = isset($wpem_value[$wpem_subkey]) ? $wpem_value[$wpem_subkey] : '';
                                 if ($wpem_subkey === 'ticket_quantity' && isset($wpem_value['product_id'])) {
                                     $wpem_stock = esc_attr(get_post_meta($wpem_value['product_id'], '_stock', true));
                                     if (isset($wpem_stock) && !empty($wpem_stock)) {
-                                        $subfield['value'] = $wpem_stock;
+                                        $wpem_subfield['value'] = $wpem_stock;
                                     }
                                 }
-                                wpem_get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $wpem_subkey, 'field' => $subfield));
+                                wpem_get_event_manager_template('form-fields/' . $wpem_subfield['type'] . '-field.php', array('key' => $wpem_subkey, 'field' => $wpem_subfield));
                             ?>
                         </div>
                     </fieldset>
@@ -86,7 +86,7 @@ if (!empty($field['value']) && is_array($field['value'])) :
             <div id="sell-ticket-details-<?php echo esc_attr($key) . '-' . '%%repeated-row-index%%'; ?>" class="wpem-tab-content current">
                 <div id="sell-ticket-details_%%repeated-row-index%%" class="wpem-tab-pane active">
                     <?php
-                    foreach ($field['fields'] as $wpem_subkey => $subfield) :
+                    foreach ($wpem_field['fields'] as $wpem_subkey => $wpem_subfield) :
                         if ($wpem_subkey == 'ticket_description') :
                     ?>
                 </div>
@@ -95,15 +95,15 @@ if (!empty($field['value']) && is_array($field['value'])) :
                 <?php endif; ?>
 
                 <fieldset class="wpem-form-group fieldset-<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>">
-                    <?php if (!empty($subfield['label'])) : ?>
-                        <label for="<?php esc_attr($wpem_subkey,'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($subfield['label']) . ($subfield['required'] ? '' : ' <small>' . esc_attr('(optional)', 'wp-event-manager') . '</small>'); ?></label>
+                    <?php if (!empty($wpem_subfield['label'])) : ?>
+                        <label for="<?php esc_attr($wpem_subkey,'wp-event-manager'); ?>" class="wpem-form-label-text"><?php echo esc_attr($wpem_subfield['label']) . ($wpem_subfield['required'] ? '' : ' <small>' . esc_attr('(optional)', 'wp-event-manager') . '</small>'); ?></label>
                     <?php endif; ?>
 
                     <div class="field">
                         <?php
-                        $subfield['name'] = $key . '_' . $wpem_subkey . '_%%repeated-row-index%%';
-                        $subfield['id']   = $key . '_' . $wpem_subkey . '_%%repeated-row-index%%';
-                        wpem_get_event_manager_template('form-fields/' . $subfield['type'] . '-field.php', array('key' => $wpem_subkey, 'field' => $subfield));
+                        $wpem_subfield['name'] = $key . '_' . $wpem_subkey . '_%%repeated-row-index%%';
+                        $wpem_subfield['id']   = $key . '_' . $wpem_subkey . '_%%repeated-row-index%%';
+                        wpem_get_event_manager_template('form-fields/' . $wpem_subfield['type'] . '-field.php', array('key' => $wpem_subkey, 'field' => $wpem_subfield));
                         ?>
                     </div>
                 </fieldset>
@@ -112,13 +112,13 @@ if (!empty($field['value']) && is_array($field['value'])) :
             </div>
             <?php  echo esc_attr(ob_get_clean());
             ?>">+ <?php
-                    if (!empty($field['label'])) {
-                        echo esc_attr($field['label']);
+                    if (!empty($wpem_field['label'])) {
+                        echo esc_attr($wpem_field['label']);
                     };
                     ?>
     </a>
-<?php if (!empty($field['description'])) : ?>
+<?php if (!empty($wpem_field['description'])) : ?>
     <small class="description">
-        <?php echo wp_kses_post($field['description']); ?>
+        <?php echo wp_kses_post($wpem_field['description']); ?>
     </small>
 <?php endif; ?>
