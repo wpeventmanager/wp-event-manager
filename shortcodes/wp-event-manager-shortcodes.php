@@ -781,6 +781,7 @@ class WP_Event_Manager_Shortcodes{
 		if ( $form_html ) {
 			// Output form HTML - wp_kses_post strips form tags, so we use echo directly
 			// The form is already sanitized by the form class
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $form_html;
 		}
 	}
