@@ -7,8 +7,8 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
     $wpem_venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
 } else {
     $GLOBALS['event_manager']->forms->get_form( 'submit-venue', array() );
-    $form_submit_venue_instance = call_user_func( array( 'WPEM_Event_Manager_Form_Submit_Venue', 'instance' ) );
-    $wpem_venue_custom_fields = $form_submit_venue_instance->wpem_merge_with_custom_fields( 'backend' );
+    $wpem_form_submit_venue_instance = call_user_func( array( 'WPEM_Event_Manager_Form_Submit_Venue', 'instance' ) );
+    $wpem_venue_custom_fields = $wpem_form_submit_venue_instance->wpem_merge_with_custom_fields( 'backend' );
 } ?>
 
 <div class="wpem-single-venue-profile-wrapper" id="wpem_venue_profile">

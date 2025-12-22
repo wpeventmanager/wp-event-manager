@@ -97,6 +97,6 @@ $wpem_options = array(
 		'wpem_installation_skip',
 );
 
-foreach ($wpem_options as $option) {
-	delete_option($option);
+foreach ($wpem_options as $wpem_option) {
+	delete_option($wpem_option);
 }
