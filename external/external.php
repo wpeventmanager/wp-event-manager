@@ -10,9 +10,6 @@ require_once('all-in-one-seo-pack.php');
 require_once('jetpack.php');
 require_once('yoast.php');
 
-//load file for visual composer custom element of shortcode
-require_once('visual-composer/index.php');
-
 //check Elementor Plugin istallation
 if(!function_exists('wpem_is_elementor_installed')) {
 	function wpem_is_elementor_installed() {
