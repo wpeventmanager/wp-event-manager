@@ -883,7 +883,7 @@ function wpem_display_event_end_time($before = '', $after = '', $echo = true, $p
  * @param int $post (default: null)
  * @return string
  */
-function wpem_get_event_timezone_abbr($post = null, $abbr = true){	
+function wpem_get_event_timezone($post = null, $abbr = true){	
 	$post = get_post($post);
 
 	if($post->post_type !== 'event_listing') {
@@ -931,7 +931,7 @@ function wpem_display_event_timezone($before = '', $after = '', $echo = true, $p
  * @param int $post (default: null)
  * @return string
  */
-function event_manager_get_event_timezone_abbr($post = null){
+function wpem_get_event_timezone_abbr($post = null){
 
 	$event_timezone = wpem_get_event_timezone($post);
 	if($event_timezone)
@@ -949,7 +949,7 @@ function event_manager_get_event_timezone_abbr($post = null){
  */
 function wpem_display_event_timezone_abbr($before = '', $after = '', $echo = true, $post = null){
 
-	$event_timezone = event_manager_get_event_timezone_abbr($post);
+	$event_timezone = wpem_get_event_timezone_abbr($post);
 	if(strlen($event_timezone) == 0)
 		return;
 
