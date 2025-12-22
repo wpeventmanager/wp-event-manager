@@ -855,23 +855,21 @@ class WP_Event_Manager_Settings{
 											<?php
 											break;
 										case 'page':
-											$args = array(
-												'name'        => $option['name'],
-												'id'          => $option['name'],
-												'sort_column' => 'menu_order',
-												'sort_order'  => 'ASC',
-												'show_option_none' => __('--no page--', 'wp-event-manager'),
-												'echo'        => false,
-												'selected'    => absint($value),
+											$dropdown = wp_dropdown_pages(
+												array(
+													'name'        => $option['name'],
+													'id'          => $option['name'],
+													'sort_column' => 'menu_order',
+													'sort_order'  => 'ASC',
+													'show_option_none' => __('--no page--', 'wp-event-manager'),
+													'echo'        => false,
+													'selected'    => absint($value),
+												)
 											);
-											// Get the dropdown HTML
-											$dropdown = wp_dropdown_pages( $args );
 
-											// Add placeholder safely
 											$placeholder = esc_attr__( 'Select a page…', 'wp-event-manager' );
 											$dropdown    = str_replace( ' id=', " data-placeholder='{$placeholder}' id=", $dropdown );
 
-											// Output safely
 											echo wp_kses(
 												$dropdown,
 												array(
