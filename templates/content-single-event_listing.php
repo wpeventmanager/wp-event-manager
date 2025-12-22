@@ -375,7 +375,7 @@ $event = $post; ?>
                                 $registration_end_date = get_event_registration_end_date();
                                 $registration_end_date = !empty($registration_end_date) ? $registration_end_date . ' 23:59:59' : '';
                                 $registration_addon_form = apply_filters('event_manager_registration_addon_form', true);
-                                $event_timezone          = wpem_get_event_timezone();
+                                $event_timezone          = get_event_timezone();
 
                                 // check if timezone settings is enabled as each event then set current time stamp according to the timezone
                                 // for eg. if each event selected then Berlin timezone will be different then current site timezone.
