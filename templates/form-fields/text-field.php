@@ -15,9 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 ?>
 <input type="text" 
-    class="input-text <?php echo esc_attr(isset($wpem_field['class']) ? $wpem_field['class'] : $key); ?>" 
-    name="<?php echo esc_attr(isset($wpem_field['name']) ? $wpem_field['name'] : $key); ?>" 
-    id="<?php echo isset($wpem_field['id']) ? esc_attr($wpem_field['id']) : esc_attr($key); ?>" 
+    class="input-text <?php echo esc_attr(isset($wpem_field['class']) ? $wpem_field['class'] : $wpem_key); ?>" 
+    name="<?php echo esc_attr(isset($wpem_field['name']) ? $wpem_field['name'] : $wpem_key); ?>" 
+    id="<?php echo isset($wpem_field['id']) ? esc_attr($wpem_field['id']) : esc_attr($wpem_key); ?>" 
     placeholder="<?php echo empty($wpem_field['placeholder']) ? '' : esc_html($wpem_field['placeholder']); ?>" 
     attribute="<?php echo esc_attr(isset($wpem_field['attribute']) ? $wpem_field['attribute'] : ''); ?>" 
     value="<?php echo esc_attr(isset($wpem_field['value']) ? $wpem_field['value'] : (isset($wpem_field['default']) ? $wpem_field['default'] : '')); ?>" 

@@ -597,7 +597,7 @@ class WP_Event_Manager_Shortcodes{
 			array(
 				'organizers' => $organizers->posts,
 				'max_num_pages' => $organizers->max_num_pages,
-				'organizer_dashboard_columns' => $organizer_dashboard_columns
+				'wpem_organizer_dashboard_columns' => $organizer_dashboard_columns
 			),
 			'wp-event-manager/organizer',
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'

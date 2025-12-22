@@ -15,7 +15,7 @@ wp_register_script( 'wp-event-manager-multiselect', EVENT_MANAGER_PLUGIN_URL . '
 wp_enqueue_style( 'chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css', array(), '1.0.0' );
 wp_enqueue_script('wpem-dompurify', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dom-purify/dompurify.min.js', [], '3.0.5', true); ?>
 
-<select multiple="multiple" name="<?php echo esc_attr(isset($wpem_field['name']) ? $wpem_field['name'] : $key); ?>[]" id="<?php echo esc_attr($key); ?>" class="event-manager-multiselect" data-no_results_text="<?php esc_attr_e('No results match', 'wp-event-manager'); ?>" attribute="<?php echo esc_attr(isset($wpem_field['attribute']) ? $wpem_field['attribute'] : ''); ?>" data-multiple_text="<?php esc_attr_e('Select Some Options', 'wp-event-manager'); ?>">
+<select multiple="multiple" name="<?php echo esc_attr(isset($wpem_field['name']) ? $wpem_field['name'] : $wpem_key); ?>[]" id="<?php echo esc_attr($wpem_key); ?>" class="event-manager-multiselect" data-no_results_text="<?php esc_attr_e('No results match', 'wp-event-manager'); ?>" attribute="<?php echo esc_attr(isset($wpem_field['attribute']) ? $wpem_field['attribute'] : ''); ?>" data-multiple_text="<?php esc_attr_e('Select Some Options', 'wp-event-manager'); ?>">
     <?php 
     // Get the default value (array of default organizers)
     $wpem_default_value = isset($wpem_field['default']) ? (array)$wpem_field['default'] : []; // Ensure it's an array

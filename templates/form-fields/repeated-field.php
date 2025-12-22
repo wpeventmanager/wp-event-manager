@@ -9,8 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * */
 if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) : 
     foreach ($wpem_field['value'] as $wpem_index => $wpem_value) : ?>
-        <div class="repeated-row-<?php echo esc_attr($key); ?>">
-            <input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo absint($wpem_index); ?>" />
+        <div class="repeated-row-<?php echo esc_attr($wpem_key); ?>">
+            <input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr($wpem_key); ?>[]" value="<?php echo absint($wpem_index); ?>" />
 
             <div class="wpem-tabs-wrapper wpem-add-tickets-tab-wrapper">
 
@@ -23,10 +23,10 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
 
                 <ul class="wpem-tabs-wrap">
                     <li class="wpem-tab-link active" data-tab="sell-ticket-details_<?php echo esc_attr($wpem_index); ?>"><?php esc_html_e('Ticket details', 'wp-event-manager'); ?></li>
-                    <li class="wpem-tab-link" data-tab="<?php echo esc_attr($key); ?>_<?php echo esc_attr(absint($wpem_index)); ?>"><?php esc_html_e('Settings', 'wp-event-manager'); ?></li>
+                    <li class="wpem-tab-link" data-tab="<?php echo esc_attr($wpem_key); ?>_<?php echo esc_attr(absint($wpem_index)); ?>"><?php esc_html_e('Settings', 'wp-event-manager'); ?></li>
                 </ul>
 
-                <div id="sell-ticket-details-<?php echo esc_attr($key) . '-' . esc_attr($wpem_index); ?>" class="wpem-tab-content current">
+                <div id="sell-ticket-details-<?php echo esc_attr($wpem_key) . '-' . esc_attr($wpem_index); ?>" class="wpem-tab-content current">
                     <div id="sell-ticket-details_<?php echo esc_attr(absint($wpem_index)); ?>" class="wpem-tab-pane active">
                         <?php
                         if (isset($wpem_field['fields'])) {
@@ -34,7 +34,7 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
                                 if ($wpem_subkey == 'ticket_description') : ?>
                     </div>
                     <!------------end ticket details tab------>
-                    <div id="<?php echo esc_attr($key) . '_' . esc_attr($wpem_index); ?>" class="wpem-tab-pane">
+                    <div id="<?php echo esc_attr($wpem_key) . '_' . esc_attr($wpem_index); ?>" class="wpem-tab-pane">
                     <?php endif; ?>
                     <fieldset class="wpem-form-group fieldset-<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>">
                         <?php if (!empty($wpem_subfield['label'])) : ?>
@@ -43,8 +43,8 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
 
                         <div class="field">
                             <?php
-                                $wpem_subfield['name']  = $key . '_' . $wpem_subkey . '_' . $wpem_index;
-                                $wpem_subfield['id']    = $key . '_' . $wpem_subkey . '_' . $wpem_index;
+                                $wpem_subfield['name']  = $wpem_key . '_' . $wpem_subkey . '_' . $wpem_index;
+                                $wpem_subfield['id']    = $wpem_key . '_' . $wpem_subkey . '_' . $wpem_index;
                                 $wpem_subfield['value'] = isset($wpem_value[$wpem_subkey]) ? $wpem_value[$wpem_subkey] : '';
                                 if ($wpem_subkey === 'ticket_quantity' && isset($wpem_value['product_id'])) {
                                     $wpem_stock = esc_attr(get_post_meta($wpem_value['product_id'], '_stock', true));
@@ -64,9 +64,9 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
         <?php endforeach; ?>
     <?php endif; ?>
     <a href="#" class="wpem-theme-text-button event_ticket_add_link" data-row="<?php ob_start();  ?>
-       <div class=" repeated-row-<?php echo esc_attr($key . '_%%repeated-row-index%%'); ?>">
+       <div class=" repeated-row-<?php echo esc_attr($wpem_key . '_%%repeated-row-index%%'); ?>">
 
-        <input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="%%repeated-row-index%%" />
+        <input type="hidden" class="repeated-row" name="repeated-row-<?php echo esc_attr($wpem_key); ?>[]" value="%%repeated-row-index%%" />
 
         <div class="wpem-tabs-wrapper wpem-add-tickets-tab-wrapper">
 
@@ -76,14 +76,14 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
                     <div class="wpem-ticket-counter"><?php echo wp_kses_post('%%repeated-row-index%%'); ?></div>
                 </div>
  
-                <div class="wpem-ticket-close-button"><a href="#remove" class="remove-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="repeated-row-<?php echo esc_attr($key . '_%%repeated-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
+                <div class="wpem-ticket-close-button"><a href="#remove" class="remove-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="repeated-row-<?php echo esc_attr($wpem_key . '_%%repeated-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
             </div>
 
             <ul class="wpem-tabs-wrap">
                 <li class="wpem-tab-link active" data-tab="sell-ticket-details_%%repeated-row-index%%"><?php esc_attr_e('Ticket details', 'wp-event-manager'); ?></li>
-                <li class="wpem-tab-link" data-tab="<?php echo esc_attr($key); ?>_%%repeated-row-index%%"><?php esc_attr_e('Settings', 'wp-event-manager'); ?></li>
+                <li class="wpem-tab-link" data-tab="<?php echo esc_attr($wpem_key); ?>_%%repeated-row-index%%"><?php esc_attr_e('Settings', 'wp-event-manager'); ?></li>
             </ul>
-            <div id="sell-ticket-details-<?php echo esc_attr($key) . '-' . '%%repeated-row-index%%'; ?>" class="wpem-tab-content current">
+            <div id="sell-ticket-details-<?php echo esc_attr($wpem_key) . '-' . '%%repeated-row-index%%'; ?>" class="wpem-tab-content current">
                 <div id="sell-ticket-details_%%repeated-row-index%%" class="wpem-tab-pane active">
                     <?php
                     foreach ($wpem_field['fields'] as $wpem_subkey => $wpem_subfield) :
@@ -91,7 +91,7 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
                     ?>
                 </div>
                 <!------------end ticket details tab------>
-                <div id="<?php echo esc_attr($key); ?>_%%repeated-row-index%%" class="wpem-tab-pane">
+                <div id="<?php echo esc_attr($wpem_key); ?>_%%repeated-row-index%%" class="wpem-tab-pane">
                 <?php endif; ?>
 
                 <fieldset class="wpem-form-group fieldset-<?php esc_attr($wpem_subkey, 'wp-event-manager'); ?>">
@@ -101,8 +101,8 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
 
                     <div class="field">
                         <?php
-                        $wpem_subfield['name'] = $key . '_' . $wpem_subkey . '_%%repeated-row-index%%';
-                        $wpem_subfield['id']   = $key . '_' . $wpem_subkey . '_%%repeated-row-index%%';
+                        $wpem_subfield['name'] = $wpem_key . '_' . $wpem_subkey . '_%%repeated-row-index%%';
+                        $wpem_subfield['id']   = $wpem_key . '_' . $wpem_subkey . '_%%repeated-row-index%%';
                         wpem_get_event_manager_template('form-fields/' . $wpem_subfield['type'] . '-field.php', array('key' => $wpem_subkey, 'field' => $wpem_subfield));
                         ?>
                     </div>

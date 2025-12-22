@@ -17,7 +17,7 @@ $wpem_php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_
 if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) : 
     foreach ($wpem_field['value'] as $wpem_index => $wpem_value) : ?>
         <div class="group-row-<?php echo esc_attr($wpem_index); ?>">
-            <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="<?php echo esc_attr(absint($wpem_index)); ?>" />
+            <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($wpem_key); ?>[]" value="<?php echo esc_attr(absint($wpem_index)); ?>" />
 
             <div class="wpem-tabs-wrapper wpem-add-group-tab-wrapper">
 
@@ -39,8 +39,8 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
 
                                 <div class="field">
                                     <?php
-                                    $wpem_subfield['name']  = $key . '_' . $wpem_subkey . '_' . $wpem_index;
-                                    $wpem_subfield['id']    = $key . '_' . $wpem_subkey . '_' . $wpem_index;
+                                    $wpem_subfield['name']  = $wpem_key . '_' . $wpem_subkey . '_' . $wpem_index;
+                                    $wpem_subfield['id']    = $wpem_key . '_' . $wpem_subkey . '_' . $wpem_index;
                                     $wpem_subfield['value'] = isset($wpem_value[$wpem_subkey]) ? $wpem_value[$wpem_subkey] : '';
 
                                     if ($wpem_subfield['type'] === 'date') {
@@ -59,12 +59,12 @@ if (!empty($wpem_field['value']) && is_array($wpem_field['value'])) :
     <?php endforeach;
 endif; ?>
 
-<a href="javascript:void(0)" class="wpem-theme-text-button add-group-row add-group-<?php echo esc_attr($key); ?>" data-row="<?php
+<a href="javascript:void(0)" class="wpem-theme-text-button add-group-row add-group-<?php echo esc_attr($wpem_key); ?>" data-row="<?php
                                                                                                                             ob_start();
                                                                                                                             ?>
-   <div class=" group-row-<?php echo esc_attr($key . '_%%group-row-index%%'); ?>">
+   <div class=" group-row-<?php echo esc_attr($wpem_key . '_%%group-row-index%%'); ?>">
 
-    <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($key); ?>[]" value="%%group-row-index%%" />
+    <input type="hidden" class="group-row" name="repeated-row-<?php echo esc_attr($wpem_key); ?>[]" value="%%group-row-index%%" />
 
     <div class="wpem-tabs-wrapper wpem-add-group-tab-wrapper">
 
@@ -74,7 +74,7 @@ endif; ?>
                 <div class="wpem-group-counter"><?php echo wp_kses_post('%%group-row-index%%'); ?></div>
             </div>
 
-            <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($key . '_%%group-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
+            <div class="wpem-group-close-button"><a href="javascript:void(0)" class="remove-group-row" title="<?php esc_attr_e('Remove', 'wp-event-manager'); ?>" id="group-row-<?php echo esc_attr($wpem_key . '_%%group-row-index%%'); ?>"><i class="wpem-icon-cross"></i></a></div>
         </div>
 
         <div class="wpem-tab-content current">
@@ -88,8 +88,8 @@ endif; ?>
 
                         <div class="field">
                             <?php
-                            $wpem_subfield['name'] = $key . '_' . $wpem_subkey . '_%%group-row-index%%';
-                            $wpem_subfield['id']   = $key . '_' . $wpem_subkey . '_%%group-row-index%%';
+                            $wpem_subfield['name'] = $wpem_key . '_' . $wpem_subkey . '_%%group-row-index%%';
+                            $wpem_subfield['id']   = $wpem_key . '_' . $wpem_subkey . '_%%group-row-index%%';
                             wpem_get_event_manager_template('form-fields/' . $wpem_subfield['type'] . '-field.php', array('key' => $wpem_subkey, 'field' => $wpem_subfield));
                             ?>
                         </div>

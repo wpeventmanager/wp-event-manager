@@ -17,9 +17,9 @@ if (isset($wpem_field['value'])) {
 
 $wpem_placeholder = '';
 
-if($key == 'event_category'){
+if($wpem_key == 'event_category'){
 	$wpem_placeholder=__( 'Choose a Category', 'wp-event-manager' );
-}else if($key == 'event_type'){
+}else if($wpem_key == 'event_type'){
 	$wpem_placeholder=__( 'Choose an Event Type', 'wp-event-manager' );
 }
 
@@ -40,11 +40,11 @@ wp_dropdown_categories(apply_filters('event_manager_term_select_field_wp_dropdow
 	'hierarchical'     => 1,
 	'show_option_all'  => $wpem_placeholder,
 	'show_option_none' => $wpem_field['required'] ? '' : '-',
-	'name'             => isset($wpem_field['name']) ? $wpem_field['name'] : $key,
+	'name'             => isset($wpem_field['name']) ? $wpem_field['name'] : $wpem_key,
 	'orderby'          => 'name',
 	'selected'         => $wpem_selected,
 	'hide_empty'       => false
-), $key, $wpem_field));
+), $wpem_key, $wpem_field));
 
 if (!empty($wpem_field['description'])) : ?>
 	<small class="description">

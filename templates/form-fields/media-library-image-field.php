@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 wp_enqueue_media();
 global $post_id;
 if(!isset($wpem_field['value']) || empty($wpem_field['value'])) {
-	$wpem_field['value'] = get_post_meta($post_id, stripslashes($key), true);
+	$wpem_field['value'] = get_post_meta($post_id, stripslashes($wpem_key), true);
 }
 if(empty($wpem_field['placeholder'])) {
 	$wpem_field['placeholder'] = 'http://';
@@ -13,9 +13,9 @@ if(empty($wpem_field['placeholder'])) {
 if(!empty($wpem_field['name'])) {
 	$wpem_name = $wpem_field['name'];
 } else {
-	$wpem_name = $key;
+	$wpem_name = $wpem_key;
 } ?>
-<p class="form-field <?php echo esc_attr($key); ?>" data-field-name="<?php echo esc_attr($key); ?>">
+<p class="form-field <?php echo esc_attr($wpem_key); ?>" data-field-name="<?php echo esc_attr($wpem_key); ?>">
 	<?php
 	if(!empty($wpem_field['description'])) : ?>
 	<span class="tips" data-tip="<?php echo esc_html($wpem_field['description'], 'wp-event-manager'); ?>">[?]</span><?php endif; ?></label>

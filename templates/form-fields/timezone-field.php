@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @version     3.0
  */
  ?>
- <select name="<?php echo esc_attr( isset( $wpem_field['name'] ) ? $wpem_field['name'] : $key ); ?>" id="<?php echo isset( $wpem_field['id'] ) ? esc_attr( $wpem_field['id'] ) :  esc_attr( $key ); ?>" class="input-select <?php echo esc_attr( isset( $wpem_field['class'] ) ? $wpem_field['class'] : $key ); ?>">
+ <select name="<?php echo esc_attr( isset( $wpem_field['name'] ) ? $wpem_field['name'] : $wpem_key ); ?>" id="<?php echo isset( $wpem_field['id'] ) ? esc_attr( $wpem_field['id'] ) :  esc_attr( $wpem_key ); ?>" class="input-select <?php echo esc_attr( isset( $wpem_field['class'] ) ? $wpem_field['class'] : $wpem_key ); ?>">
  	<?php
 		$wpem_field['default'] = isset($wpem_field['default']) ? $wpem_field['default'] : '';
 		$wpem_value = isset($wpem_field['value']) ? $wpem_field['value'] : $wpem_field['default'];	

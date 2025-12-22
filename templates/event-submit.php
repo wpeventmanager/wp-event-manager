@@ -57,7 +57,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 						do_action('wpem_submit_event_form_addon_before', $wpem_field, $wpem_key);	
 					else : 
 						$wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
-						wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); 
+						wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('wpem_key' => $wpem_key, 'wpem_field' => $wpem_field)); 
 					endif; ?>
 				</div>
 			</fieldset>
@@ -81,7 +81,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 							</label>
 							<div class="field <?php echo (isset($wpem_field['required']) && $wpem_field['required'] == 1 ? 'required-field' : ''); ?>">
 								<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
-								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
+								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('wpem_key' => $wpem_key, 'wpem_field' => $wpem_field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
@@ -107,7 +107,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 							</label>
 							<div class="field <?php echo (isset($wpem_field['required']) && $wpem_field['required'] == 1 ? 'required-field' : ''); ?>">
 								<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
-								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
+								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('wpem_key' => $wpem_key, 'wpem_field' => $wpem_field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;

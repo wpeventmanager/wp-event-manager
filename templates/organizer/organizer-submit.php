@@ -38,7 +38,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
                     echo wp_kses_post(apply_filters('submit_event_form_required_label', $wpem_field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $wpem_field)); ?></label>
                 <div class="field <?php echo esc_attr($wpem_field['required'] ? 'required-field' : ''); ?>">
                     <?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
-                    wpem_get_event_manager_template('form-fields/' . $wpem_field['type'] . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
+                    wpem_get_event_manager_template('form-fields/' . $wpem_field['type'] . '-field.php', array('wpem_key' => $wpem_key, 'wpem_field' => $wpem_field)); ?>
                 </div>
             </fieldset>
         <?php endforeach;

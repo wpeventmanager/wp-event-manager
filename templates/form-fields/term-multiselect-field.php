@@ -33,7 +33,7 @@ wp_enqueue_script('wp-event-manager-term-multiselect');
 $wpem_args = array(
 	'taxonomy'     => $wpem_field['taxonomy'],
 	'hierarchical' => 1,
-	'name'         => isset($wpem_field['name']) ? $wpem_field['name'] : $key,
+	'name'         => isset($wpem_field['name']) ? $wpem_field['name'] : $wpem_key,
 	'orderby'      => 'name',
 	'selected'     => $wpem_selected,
 	'hide_empty'   => false

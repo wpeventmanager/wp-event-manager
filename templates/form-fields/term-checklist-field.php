@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }?>
-<ul class="event-manager-term-checklist event-manager-term-checklist-<?php echo esc_attr($key) ?>">
+<ul class="event-manager-term-checklist event-manager-term-checklist-<?php echo esc_attr($wpem_key) ?>">
 	<?php require_once(ABSPATH . '/wp-admin/includes/template.php');
 
 	if (empty($wpem_field['default'])) {
