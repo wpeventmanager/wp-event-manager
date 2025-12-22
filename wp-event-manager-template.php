@@ -870,7 +870,7 @@ function display_event_end_time($before = '', $after = '', $echo = true, $post =
  * @param int $post (default: null)
  * @return string
  */
-function get_event_timezone($post = null, $abbr = true){	
+function wpem_get_event_timezone($post = null, $abbr = true){	
 	$post = get_post($post);
 
 	if($post->post_type !== 'event_listing') {
@@ -898,7 +898,7 @@ function get_event_timezone($post = null, $abbr = true){
  */
 function display_event_timezone($before = '', $after = '', $echo = true, $post = null){
 
-	$event_timezone = get_event_timezone($post);
+	$event_timezone = wpem_get_event_timezone($post);
 	if(strlen($event_timezone) == 0)
 		return;
 
@@ -920,7 +920,7 @@ function display_event_timezone($before = '', $after = '', $echo = true, $post =
  */
 function get_event_timezone_abbr($post = null){
 
-	$event_timezone = get_event_timezone($post);
+	$event_timezone = wpem_get_event_timezone($post);
 	if($event_timezone)
 		$event_timezone = WP_Event_Manager_Date_Time::convert_event_timezone_into_abbr($event_timezone);
 

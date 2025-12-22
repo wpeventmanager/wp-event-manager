@@ -316,9 +316,9 @@ class WP_Event_Manager_Shortcodes{
 			echo $organizer_id = absint($_REQUEST['organizer_id']);
 
 			try {
-				$event = get_post($organizer_id);
+				$organizer = get_post($organizer_id);
 
-				if (!$event || $event->post_type !== 'event_organizer') {
+				if (!$organizer || $organizer->post_type !== 'event_organizer') {
 					throw new Exception(__('Invalid organizer.', 'wp-event-manager'));
 				}
 
