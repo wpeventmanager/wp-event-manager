@@ -119,8 +119,8 @@ class WPEM_Event_Manager_Form_Edit_Event extends WPEM_Event_Manager_Form_Submit_
 			'event_id'           => esc_attr($this->get_event_id()),
 			'action'             => esc_url($this->get_action()),
 			'event_fields'       => $this->get_fields('event'),
-			'organizer_fields'   => $this->get_fields('organizer'),
-			'venue_fields'       => $this->get_fields('venue'),
+			'wpem_organizer_fields'   => $this->get_fields('organizer'),
+			'wpem_venue_fields'       => $this->get_fields('venue'),
 			'step'               => esc_attr($this->get_step()),
 			'submit_button_text' => __('Save changes', 'wp-event-manager')
 		));

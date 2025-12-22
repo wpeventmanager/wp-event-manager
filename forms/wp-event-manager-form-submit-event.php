@@ -789,7 +789,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'resume_edit'       => $this->resume_edit,
 			'action'            => esc_url( $this->get_action() ),
 			'event_fields'      => $this->get_fields( 'event' ),
-			'wpem_organizer_fields '	=> $this->get_fields( 'organizer' ),
+			'wpem_organizer_fields'	=> $this->get_fields( 'organizer' ),
 			'wpem_venue_fields'     	=> $this->get_fields( 'venue' ),
 			'step'           	=> esc_attr( $this->get_step() ),
 			'submit_button_text' => apply_filters( 'submit_event_form_submit_button_text', __( 'Preview', 'wp-event-manager' ) ),
