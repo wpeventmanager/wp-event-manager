@@ -52,7 +52,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			)
 		) );
 
-			uasort( $this->steps, array( $this, 'sort_by_priority' ) );
+		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 		$this->event_id = !empty( $_REQUEST['event_id'] ) ? absint( wp_unslash( $_REQUEST[ 'event_id' ] ) ) : 0;
 		if( !event_manager_user_can_edit_event( $this->event_id ) ) {
 			$this->event_id = 0;
@@ -76,7 +76,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
 		if( !isset( $_GET[ 'new' ] ) && ( 'before' === get_option( 'event_manager_paid_listings_flow' ) || !$this->event_id  ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ){
-			$event_id     = absint( $_COOKIE['wp-event-manager-submitting-event-id'] );
+			$event_id = absint( $_COOKIE['wp-event-manager-submitting-event-id'] );
 			$event_status = get_post_status( $event_id );
 			if ( 'preview' === $event_status && esc_attr(get_post_meta( $event_id, '_submitting_key', true )) === $_COOKIE['wp-event-manager-submitting-event-key'] ) {
 				$this->event_id = $event_id;
@@ -88,11 +88,11 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			if( 'expired' === $event_status ) {
 				if( !event_manager_user_can_edit_event( $this->event_id ) ) {
 					$this->event_id = 0;
-					$this->step   = 0;
+					$this->step = 0;
 				}
 			} elseif( !in_array( $event_status, apply_filters( 'event_manager_valid_submit_event_statuses', array( 'preview' ) ) ) ) {
 				$this->event_id = 0;
-				$this->step   = 0;
+				$this->step = 0;
 			}
 		}
 		add_filter('submit_event_form_fields', array($this,'add_event_thumbnail_field'));
