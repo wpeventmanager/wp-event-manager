@@ -763,7 +763,9 @@ class WP_Event_Manager_Settings{
 			</h1>
 			<div class="wpem-wrap event-manager-settings-wrap">
 				<form method="post" name="event-manager-settings-form" action="options.php">
-					<?php settings_fields($this->settings_group); ?>
+					<?php 
+					settings_fields($this->settings_group);
+					?>
 					<h2 class="nav-tab-wrapper">
 						<?php
 						foreach ($this->settings as $key => $section) {
@@ -772,7 +774,8 @@ class WP_Event_Manager_Settings{
 					</h2>
 					<div class="admin-setting-left">
 						<div class="white-background">
-							<?php if(!empty($_GET['settings-updated']) && isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'wpem_settings_nonce')) {
+							<?php 
+							if(isset($_GET['settings-updated']) && $_GET['settings-updated'] === 'true') {
 								flush_rewrite_rules();
 								echo wp_kses_post('<div class="updated fade event-manager-updated"><p>' . esc_attr__('Settings successfully saved', 'wp-event-manager') . '</p></div>');
 							}
@@ -942,8 +945,7 @@ class WP_Event_Manager_Settings{
 							<?php }?>
 						</div> <!-- .white-background- -->
 						<p class="submit">
-							<?php wp_nonce_field('wpem_settings_nonce', '_wpnonce'); ?>
-							<input type="submit" class="button-primary" id="save-changes" value="<?php esc_attr_e('Save Changes', 'wp-event-manager'); ?>" />
+							<?php submit_button(esc_attr__('Save Changes', 'wp-event-manager'), 'primary', 'submit', false); ?>
 						</p>
 					</div> <!-- .admin-setting-left -->
 				</form>
