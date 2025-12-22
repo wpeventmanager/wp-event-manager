@@ -864,7 +864,7 @@ class WP_Event_Manager_Settings{
 													'id'          => esc_attr($option['name']),
 													'sort_column' => 'menu_order',
 													'sort_order'  => 'ASC',
-													'show_option_none' => __('--no page--', 'wp-event-manager'),
+													'show_option_none' => esc_html__('--no page--', 'wp-event-manager'),
 													'echo'        => false,
 													'selected'    => absint($value),
 												)

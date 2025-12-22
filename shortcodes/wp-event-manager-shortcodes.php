@@ -332,10 +332,11 @@ class WP_Event_Manager_Shortcodes{
 	 * @return string The escaped HTML content
 	 */
 	private function escape_form_html($content) {
-		// Since the form content is generated internally by the plugin's own form system,
-		// and not user input, we can return it directly. The form system handles
-		// its own sanitization and security.
-		return $content;
+		// Get the allowed HTML tags for forms
+		$allowed_html = $this->get_form_allowed_html();
+		
+		// Use wp_kses to ensure only allowed HTML tags and attributes are output
+		return wp_kses($content, $allowed_html);
 	}
 
 	private function get_form_allowed_html() {
@@ -612,9 +613,10 @@ class WP_Event_Manager_Shortcodes{
 		global $event_manager;
 		// Get the form HTML
 		$form_html = $event_manager->forms->get_form('edit-organizer');
-		if ( $form_html ) {
-			// Output safely
-			echo $this->escape_form_html($form_html);
+		if ($form_html) {
+			// Output the form with minimal escaping to ensure form elements are preserved
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $form_html;
 		}
 	}
 
@@ -779,7 +781,7 @@ class WP_Event_Manager_Shortcodes{
 		if ( $form_html ) {
 			// Output form HTML - wp_kses_post strips form tags, so we use echo directly
 			// The form is already sanitized by the form class
-			echo $this->escape_form_html($form_html);
+			echo $form_html;
 		}
 	}
 
