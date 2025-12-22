@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if (!defined('ABSPATH')) exit;
 global $event_manager; 
 do_action('wp_event_manager_venue_submit_before');
-$allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
+$wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-venue-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if (is_user_logged_in()) { ?>
@@ -29,17 +29,17 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		}
 		do_action('submit_venue_form_venue_fields_start'); 
 		
-		foreach ($venue_fields as $key => $field) : 
-			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] === false)) :
+		foreach ($venue_fields as $wpem_key => $wpem_field) : 
+			if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] === false)) :
 				continue;
 			endif;?>
-			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
-				<label for="<?php echo esc_attr($key); ?>">
-				<?php echo esc_html($field['label'], 'wp-event-manager'); 
-				echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?></label>
-				<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
-					<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
-					wpem_get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
+			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
+				<label for="<?php echo esc_attr($wpem_key); ?>">
+				<?php echo esc_html($wpem_field['label'], 'wp-event-manager'); 
+				echo wp_kses_post(apply_filters('submit_event_form_required_label', $wpem_field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $wpem_field)); ?></label>
+				<div class="field <?php echo esc_attr($wpem_field['required'] ? 'required-field' : ''); ?>">
+					<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
+					wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
 				</div>
 			</fieldset>
 		<?php endforeach; 

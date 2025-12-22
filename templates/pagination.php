@@ -13,7 +13,7 @@ if($max_num_pages <= 1) {
 } ?>
 
 <nav class="event-manager-pagination-2">
-	<?php $current_page = is_front_page() ? max(1, get_query_var('page')) : max(1, get_query_var('paged'));
+	<?php $wpem_current_page = is_front_page() ? max(1, get_query_var('page')) : max(1, get_query_var('paged'));
 	echo wp_kses_post(
 		paginate_links(
 			apply_filters(
@@ -21,7 +21,7 @@ if($max_num_pages <= 1) {
 				array(
 					'base'      => esc_url_raw(str_replace(999999999, '%#%', get_pagenum_link(999999999, false))),
 					'format'    => '',
-					'current'   => $current_page,
+					'current'   => $wpem_current_page,
 					'total'     => $max_num_pages,
 					'prev_text' => '&larr;',
 					'next_text' => '&rarr;',

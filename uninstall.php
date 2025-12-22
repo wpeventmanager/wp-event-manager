@@ -9,29 +9,29 @@ require 'includes/wp-event-manager-data-cleaner.php';
 if (!is_multisite()) {
 
 	// Only do deletion if the setting is true.
-	$do_deletion = get_option( 'event_manager_delete_data_on_uninstall' );
-	if($do_deletion) {
+	$wpem_do_deletion = get_option( 'event_manager_delete_data_on_uninstall' );
+	if($wpem_do_deletion) {
 		WPEM_Event_Manager_Data_Cleaner::cleanup_all();
 	}
 } else {
 	global $wpdb;
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	$blog_ids         = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-	$original_blog_id = get_current_blog_id();
+	$wpem_blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+	$wpem_original_blog_id = get_current_blog_id();
 
-	foreach($blog_ids as $blog_id) {
+	foreach($wpem_blog_ids as $blog_id) {
 		switch_to_blog($blog_id);
 
 		// Only do deletion if the setting is true.
-		$do_deletion = get_option('event_manager_delete_data_on_uninstall');
-		if ($do_deletion) {
+		$wpem_do_deletion = get_option('event_manager_delete_data_on_uninstall');
+		if ($wpem_do_deletion) {
 			WPEM_Event_Manager_Data_Cleaner::cleanup_all();
 		}
 	}
-	switch_to_blog($original_blog_id);
+	switch_to_blog($wpem_original_blog_id);
 }
 
-$options = array(
+$wpem_options = array(
 		'event_manager_enqueue_boostrap_frontend',
 		'event_manager_enqueue_boostrap_backend',
 		'event_manager_delete_data_on_uninstall',
@@ -97,6 +97,6 @@ $options = array(
 		'wpem_installation_skip',
 );
 
-foreach ($options as $option) {
+foreach ($wpem_options as $option) {
 	delete_option($option);
 }

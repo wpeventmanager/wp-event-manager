@@ -28,85 +28,85 @@ do_action('event_manager_organizer_dashboard_before'); ?>
 		<table class="wpem-main wpem-responsive-table-wrapper">
 			<thead>
 				<tr>
-					<?php foreach ($organizer_dashboard_columns as $key => $column) : ?>
-						<th class="wpem-heading-text <?php echo esc_attr($key); ?>"><?php echo esc_html($column); ?></th>
+					<?php foreach ($wpem_organizer_dashboard_columns as $wpem_key => $wpem_column) : ?>
+						<th class="wpem-heading-text <?php echo esc_attr($wpem_key); ?>"><?php echo esc_html($wpem_column); ?></th>
 					<?php endforeach; ?>
 				</tr>
 			</thead>
 			<tbody>
-				<?php if (empty($organizers)) : ?>
+				<?php if (empty($wpem_organizers)) : ?>
 					<tr>
-						<td class="wpem_data_td_empty" colspan="<?php echo esc_attr(count($organizer_dashboard_columns)); ?>"><?php esc_html_e('There are no organizers.', 'wp-event-manager'); ?></td>
+						<td class="wpem_data_td_empty" colspan="<?php echo esc_attr(count($wpem_organizer_dashboard_columns)); ?>"><?php esc_html_e('There are no organizers.', 'wp-event-manager'); ?></td>
 					</tr>
 				<?php else :
-					foreach ($organizers as $organizer) : ?>
+					foreach ($wpem_organizers as $wpem_organizer) : ?>
 						<tr>
-							<?php foreach ($organizer_dashboard_columns as $key => $column) : ?>
-								<td data-title="<?php echo esc_html($column); ?>" class="<?php echo esc_attr($key); ?>">
-									<?php if ('organizer_name' === $key) : ?>
-										<div class="wpem-organizer-logo"><?php wpem_display_organizer_logo('', '', $organizer); ?></div>
-										<a href="<?php echo esc_url(get_permalink($organizer->ID)); ?>"><?php echo esc_html($organizer->post_title); ?></a>
+							<?php foreach ($wpem_organizer_dashboard_columns as $wpem_key => $wpem_column) : ?>
+								<td data-title="<?php echo esc_html($wpem_column); ?>" class="<?php echo esc_attr($wpem_key); ?>">
+									<?php if ('organizer_name' === $wpem_key) : ?>
+										<div class="wpem-organizer-logo"><?php wpem_display_organizer_logo('', '', $wpem_organizer); ?></div>
+										<a href="<?php echo esc_url(get_permalink($wpem_organizer->ID)); ?>"><?php echo esc_html($wpem_organizer->post_title); ?></a>
 
-									<?php elseif ('organizer_details' === $key) : 
+									<?php elseif ('organizer_details' === $wpem_key) : 
 
-										do_action('single_event_listing_organizer_social_start', $organizer->ID);
+										do_action('single_event_listing_organizer_social_start', $wpem_organizer->ID);
 
 										//get disable organizer fields
-										$organizer_fields = wpem_get_hidden_form_fields( 'event_manager_submit_organizer_form_fields', 'organizer');
-										$organizer_website  = !in_array('organizer_website', $organizer_fields)?wpem_get_organizer_website($organizer):'';
-										$organizer_facebook = !in_array('organizer_facebook', $organizer_fields)?wpem_get_organizer_facebook($organizer):'';
-										$organizer_instagram = !in_array('organizer_instagram', $organizer_fields)?wpem_get_organizer_instagram($organizer):'';
-										$organizer_twitter  = !in_array('organizer_twitter', $organizer_fields)?wpem_get_organizer_twitter($organizer):'';
-										$organizer_youtube  = !in_array('organizer_youtube', $organizer_fields)?wpem_get_organizer_youtube($organizer):'';
+										$wpem_organizer_fields = wpem_get_hidden_form_fields( 'event_manager_submit_organizer_form_fields', 'organizer');
+										$wpem_organizer_website  = !in_array('organizer_website', $wpem_organizer_fields)?wpem_get_organizer_website($wpem_organizer):'';
+										$wpem_organizer_facebook = !in_array('organizer_facebook', $wpem_organizer_fields)?wpem_get_organizer_facebook($wpem_organizer):'';
+										$wpem_organizer_instagram = !in_array('organizer_instagram', $wpem_organizer_fields)?wpem_get_organizer_instagram($wpem_organizer):'';
+										$wpem_organizer_twitter  = !in_array('organizer_twitter', $wpem_organizer_fields)?wpem_get_organizer_twitter($wpem_organizer):'';
+										$wpem_organizer_youtube  = !in_array('organizer_youtube', $wpem_organizer_fields)?wpem_get_organizer_youtube($wpem_organizer):'';
 
-										if (empty($organizer_website) && empty($organizer_facebook) && empty($organizer_instagram) && empty($organizer_twitter) && empty($organizer_youtube)) {
+										if (empty($wpem_organizer_website) && empty($wpem_organizer_facebook) && empty($wpem_organizer_instagram) && empty($wpem_organizer_twitter) && empty($wpem_organizer_youtube)) {
 											?><h1 class="text-left" style="font-weight: 200;">-</h1><?php
 										} else { ?>
 											<div class="wpem-organizer-social-links">
 												<div class="wpem-organizer-social-lists">
 
-													<?php if (!empty($organizer_website)) { ?>
+													<?php if (!empty($wpem_organizer_website)) { ?>
 														<div class="wpem-social-icon wpem-weblink">
-															<a href="<?php echo esc_url($organizer_website); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>"><?php esc_html_e('Website', 'wp-event-manager'); ?></a>
+															<a href="<?php echo esc_url($wpem_organizer_website); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>"><?php esc_html_e('Website', 'wp-event-manager'); ?></a>
 														</div>
 													<?php }
 
-													if (!empty($organizer_facebook)) { ?>
+													if (!empty($wpem_organizer_facebook)) { ?>
 														<div class="wpem-social-icon wpem-facebook">
-															<a href="<?php echo esc_url($organizer_facebook); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
+															<a href="<?php echo esc_url($wpem_organizer_facebook); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
 														</div>
 													<?php }
 
-													if (!empty($organizer_instagram)) { ?>
+													if (!empty($wpem_organizer_instagram)) { ?>
 														<div class="wpem-social-icon wpem-instagram">
-															<a href="<?php echo esc_url($organizer_instagram); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php esc_html_e('Instagram', 'wp-event-manager'); ?></a>
+															<a href="<?php echo esc_url($wpem_organizer_instagram); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php esc_html_e('Instagram', 'wp-event-manager'); ?></a>
 														</div>
 													<?php }
 
-													if (!empty($organizer_twitter)) { ?>
+													if (!empty($wpem_organizer_twitter)) { ?>
 														<div class="wpem-social-icon wpem-twitter">
-															<a href="<?php echo esc_url($organizer_twitter); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
+															<a href="<?php echo esc_url($wpem_organizer_twitter); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
 														</div>
 													<?php }
 
-													if (!empty($organizer_youtube)) { ?>
+													if (!empty($wpem_organizer_youtube)) { ?>
 														<div class="wpem-social-icon wpem-youtube">
-															<a href="<?php echo esc_url($organizer_youtube); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php esc_html_e('Youtube', 'wp-event-manager'); ?></a>
+															<a href="<?php echo esc_url($wpem_organizer_youtube); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php esc_html_e('Youtube', 'wp-event-manager'); ?></a>
 														</div>
 													<?php } ?>
 
-													<?php do_action('single_event_listing_organizer_single_social_end', $organizer->ID); ?>
+													<?php do_action('single_event_listing_organizer_single_social_end', $wpem_organizer->ID); ?>
 												</div>
 											</div>
 										<?php } 
-									elseif ('organizer_events' === $key) : 
-										$organizer_events = wpem_get_event_by_organizer_id($organizer->ID); ?>
+									elseif ('organizer_events' === $wpem_key) : 
+										$wpem_organizer_events = wpem_get_event_by_organizer_id($wpem_organizer->ID); ?>
 
-										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_attr(sizeof($organizer_events)); ?></a>
-											<?php if (!empty($organizer_events)) : ?>
+										<div class="event-organizer-count wpem-tooltip wpem-tooltip-bottom"><a href="javaScript:void(0)"><?php echo esc_attr(sizeof($wpem_organizer_events)); ?></a>
+											<?php if (!empty($wpem_organizer_events)) : ?>
 												<span class="organizer-events-list wpem-tooltiptext">
-													<?php foreach ($organizer_events as $organizer_event) : ?>
-														<span><a href="<?php echo esc_url(get_the_permalink($organizer_event->ID)); ?>"><?php echo esc_html(get_the_title($organizer_event->ID)); ?></a></span>
+													<?php foreach ($wpem_organizer_events as $wpem_organizer_event) : ?>
+														<span><a href="<?php echo esc_url(get_the_permalink($wpem_organizer_event->ID)); ?>"><?php echo esc_html(get_the_title($wpem_organizer_event->ID)); ?></a></span>
 													<?php endforeach; ?>
 												</span>
 											<?php else : ?>
@@ -114,41 +114,41 @@ do_action('event_manager_organizer_dashboard_before'); ?>
 											<?php endif; ?>
 										</div>
 
-									<?php elseif ('organizer_action' === $key) : ?>
+									<?php elseif ('organizer_action' === $wpem_key) : ?>
 										<div class="wpem-dboard-event-action">
 											<?php
-											$actions = array();
-											switch ($organizer->post_status) {
+											$wpem_actions = array();
+											switch ($wpem_organizer->post_status) {
 												case 'publish':
-													$actions['edit'] = array(
+													$wpem_actions['edit'] = array(
 														'label' => __('Edit', 'wp-event-manager'),
 														'nonce' => true
 													);
-													$actions['duplicate'] = array(
+													$wpem_actions['duplicate'] = array(
 														'label' => __('Duplicate', 'wp-event-manager'),
 														'nonce' => true
 													);
 													break;
 											}
-											$actions['delete'] = array(
+											$wpem_actions['delete'] = array(
 												'label' => __('Delete', 'wp-event-manager'),
 												'nonce' => true
 											);
-											$actions = apply_filters('event_manager_my_organizer_actions', $actions, $organizer);
-											foreach ($actions as $action => $value) {
-												$action_url = add_query_arg(array(
+											$wpem_actions = apply_filters('event_manager_my_organizer_actions', $wpem_actions, $wpem_organizer);
+											foreach ($wpem_actions as $action => $wpem_value) {
+												$wpem_action_url = add_query_arg(array(
 													'action' => $action,
-													'organizer_id' => $organizer->ID
+													'organizer_id' => $wpem_organizer->ID
 												));
-												if (sanitize_key($value['nonce'])) {
-													$action_url = wp_nonce_url($action_url, 'event_manager_my_organizer_actions');
+												if (sanitize_key($wpem_value['nonce'])) {
+													$wpem_action_url = wp_nonce_url($wpem_action_url, 'event_manager_my_organizer_actions');
 												}
-												echo wp_kses_post('<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($value['label']) . '" >' . esc_html($value['label']) . '</a></div>');
+												echo wp_kses_post('<div class="wpem-dboard-event-act-btn"><a href="' . esc_url($wpem_action_url) . '" class="event-dashboard-action-' . esc_attr($action) . '" title="' . esc_html($wpem_value['label']) . '" >' . esc_html($wpem_value['label']) . '</a></div>');
 											} ?>
 										</div>
 
 									<?php else : 
-										do_action('event_manager_organizer_dashboard_column_' . $key, $organizer); ?>
+										do_action('event_manager_organizer_dashboard_column_' . $wpem_key, $wpem_organizer); ?>
 									<?php endif; ?>
 								</td>
 							<?php endforeach; ?>

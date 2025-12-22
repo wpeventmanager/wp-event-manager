@@ -19,10 +19,10 @@ if (wpem_has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
     <div class="wpem-venue-wrapper wpem-listing-accordion-panel active" style="display: block;">
 
         <?php do_action('single_event_listing_venue_start'); 
-        $venue_id = wpem_get_event_venue_ids($event_id); 
-        $venue = get_post($venue_id); 
+        $wpem_venue_id = wpem_get_event_venue_ids($event_id); 
+        $wpem_venue = get_post($wpem_venue_id); 
         if (get_option('event_manager_form_fields')) {
-            $venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
+            $wpem_venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
         } ?>
         <div class="wpem-single-venue-profile-wrapper" id="wpem_venue_profile">
             <div class="wpem-venue-profile">
@@ -32,7 +32,7 @@ if (wpem_has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
                     <div class="wpem-col-md-3">
                         <div class="wpem-venue-logo-wrapper">
                             <div class="wpem-venue-logo">
-                                <a><?php wpem_display_venue_logo('', '', $venue); ?></a>
+                                <a><?php wpem_display_venue_logo('', '', $wpem_venue); ?></a>
                             </div>
                         </div>
                     </div>
@@ -42,72 +42,72 @@ if (wpem_has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
                         <div class="wpem-venue-infomation-wrapper">
                             <!-- Venue title-->
                             <div class="wpem-venue-name wpem-heading-text">
-                                <span><?php echo esc_attr($venue->post_title); ?></span>
+                                <span><?php echo esc_attr($wpem_venue->post_title); ?></span>
                             </div>
                             <!-- Venue description-->
                             <div class="wpem-venue-description"><?php 
-                                $content = apply_filters('wpem_the_content',$venue->post_content);
-                                if(!empty($content)){
-                                echo wp_kses_post( $content );}?>
+                                $wpem_content = apply_filters('wpem_the_content',$wpem_venue->post_content);
+                                if(!empty($wpem_content)){
+                                echo wp_kses_post( $wpem_content );}?>
                             </div>
                             <!-- Venue social link section start-->
                             <div class="wpem-venue-social-links">
                                 <div class="wpem-venue-social-lists">
                                     <?php do_action('single_event_listing_venue_social_start'); 
                                     //get disable venue fields
-                                    $venue_fields = wpem_get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
+                                    $wpem_venue_fields = wpem_get_hidden_form_fields( 'event_manager_submit_venue_form_fields', 'venue');
 
-                                    $venue_website  = !in_array('venue_website', $venue_fields)?wpem_get_venue_website($venue):'';
-                                    $venue_facebook = !in_array('venue_facebook', $venue_fields)?wpem_get_venue_facebook($venue):'';
-                                    $venue_instagram = !in_array('venue_instagram', $venue_fields)?wpem_get_venue_instagram($venue):'';
-                                    $venue_twitter  = !in_array('venue_twitter', $venue_fields)?wpem_get_venue_twitter($venue):'';
-                                    $venue_youtube  = !in_array('venue_youtube', $venue_fields)?wpem_get_venue_youtube($venue):'';
+                                    $wpem_venue_website  = !in_array('venue_website', $wpem_venue_fields)?wpem_get_venue_website($wpem_venue):'';
+                                    $wpem_venue_facebook = !in_array('venue_facebook', $wpem_venue_fields)?wpem_get_venue_facebook($wpem_venue):'';
+                                    $wpem_venue_instagram = !in_array('venue_instagram', $wpem_venue_fields)?wpem_get_venue_instagram($wpem_venue):'';
+                                    $wpem_venue_twitter  = !in_array('venue_twitter', $wpem_venue_fields)?wpem_get_venue_twitter($wpem_venue):'';
+                                    $wpem_venue_youtube  = !in_array('venue_youtube', $wpem_venue_fields)?wpem_get_venue_youtube($wpem_venue):'';
                                    
-                                    if (!empty($venue_website)) { ?>
+                                    if (!empty($wpem_venue_website)) { ?>
                                         <div class="wpem-social-icon wpem-weblink">
-                                            <a href="<?php echo esc_url($venue_website); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>"><?php esc_html_e('Website', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($wpem_venue_website); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Website', 'wp-event-manager'); ?>"><?php esc_html_e('Website', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php }
 
-                                    if (!empty($venue_facebook)) { ?>
+                                    if (!empty($wpem_venue_facebook)) { ?>
                                         <div class="wpem-social-icon wpem-facebook">
-                                            <a href="<?php echo esc_url($venue_facebook); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($wpem_venue_facebook); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Facebook', 'wp-event-manager'); ?>"><?php esc_html_e('Facebook', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php }
 
-                                    if (!empty($venue_instagram)) { ?>
+                                    if (!empty($wpem_venue_instagram)) { ?>
                                         <div class="wpem-social-icon wpem-instagram">
-                                            <a href="<?php echo esc_url($venue_instagram); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php esc_html_e('Instagram', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($wpem_venue_instagram); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Instagram', 'wp-event-manager'); ?>"><?php esc_html_e('Instagram', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php }
 
-                                    if (!empty($venue_twitter)) { ?>
+                                    if (!empty($wpem_venue_twitter)) { ?>
                                         <div class="wpem-social-icon wpem-twitter">
-                                            <a href="<?php echo esc_url($venue_twitter); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($wpem_venue_twitter); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Twitter', 'wp-event-manager'); ?>"><?php esc_html_e('Twitter', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php }
-                                    if (!empty($venue_youtube)) { ?>
+                                    if (!empty($wpem_venue_youtube)) { ?>
                                         <div class="wpem-social-icon wpem-youtube">
-                                            <a href="<?php echo esc_url($venue_youtube); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php esc_html_e('Youtube', 'wp-event-manager'); ?></a>
+                                            <a href="<?php echo esc_url($wpem_venue_youtube); ?>" target="_blank" title="<?php esc_attr_e('Get Connect on Youtube', 'wp-event-manager'); ?>"><?php esc_html_e('Youtube', 'wp-event-manager'); ?></a>
                                         </div>
                                     <?php } ?>
 
-                                    <?php do_action('single_event_listing_venue_single_social_end', $venue_id); ?>
+                                    <?php do_action('single_event_listing_venue_single_social_end', $wpem_venue_id); ?>
 
                                 </div>
                             </div>
                             <?php do_action('wpem_custom_venue_fields_start'); 
-                            if (isset($venue_custom_fields)) {
-                                foreach ($venue_custom_fields as $key => $field) :?>
-                                    <?php if (!strstr($key, 'venue') && !strstr($key, 'vcv') && !strstr($key, 'submitting') && !empty(get_post_meta($venue_id, '_' . $key))) : ?>
+                            if (isset($wpem_venue_custom_fields)) {
+                                foreach ($wpem_venue_custom_fields as $wpem_key => $wpem_field) :?>
+                                    <?php if (!strstr($wpem_key, 'venue') && !strstr($wpem_key, 'vcv') && !strstr($wpem_key, 'submitting') && !empty(get_post_meta($wpem_venue_id, '_' . $wpem_key))) : ?>
                                         <div class="wpem-organizer-additional-information">
-                                            <strong><?php echo esc_attr($field['label']); ?>:</strong>
+                                            <strong><?php echo esc_attr($wpem_field['label']); ?>:</strong>
                                             <span><?php 
-                                                $value = get_post_meta($venue_id, '_' . $key, true);
-                                                if($field['type'] == 'url' && !empty($value))
-                                                    echo wp_kses_post('<a href="'.esc_url($value).'" target="_blank">'.esc_html($value).'</a>');
+                                                $wpem_value = get_post_meta($wpem_venue_id, '_' . $wpem_key, true);
+                                                if($wpem_field['type'] == 'url' && !empty($wpem_value))
+                                                    echo wp_kses_post('<a href="'.esc_url($wpem_value).'" target="_blank">'.esc_html($wpem_value).'</a>');
                                                 else
-                                                    echo esc_attr($value); ?>
+                                                    echo esc_attr($wpem_value); ?>
                                             </span>
                                         </div>
                                     <?php endif;
@@ -119,9 +119,9 @@ if (wpem_has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
                     </div>
                 </div>
                 <div class="wpem-venue-contact-actions">
-                    <?php do_action('single_event_listing_venue_action_start', $venue_id); ?>
+                    <?php do_action('single_event_listing_venue_action_start', $wpem_venue_id); ?>
 
-                    <?php do_action('single_event_listing_venue_action_end', $venue_id); ?>
+                    <?php do_action('single_event_listing_venue_action_end', $wpem_venue_id); ?>
                 </div>
                 <?php do_action('single_event_listing_venue_end'); ?>
             </div>

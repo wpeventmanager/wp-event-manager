@@ -2,22 +2,22 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-$check_user_access = wpem_checked_guest_user_access();
-if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
-    $field_to_hide = get_option('wpem_hide_organizer_fields');
+$wpem_check_user_access = wpem_checked_guest_user_access();
+if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) {
+    $wpem_field_to_hide = get_option('wpem_hide_organizer_fields');
 } else {
-	$field_to_hide = array();
+	$wpem_field_to_hide = array();
 } ?>
 <!-- Organizer Counter -->
 <div class="wpem-organizer-connter">
 
-    <?php if (count($organizers) > 0) : ?>
+    <?php if (count($wpem_organizers) > 0) : ?>
 
         <div class="organizer-related-data-counter">
             <div class="organizer-counter-number-icon">
                 <div class="organizer-counter-upper-wrap">
                     <div class="organizer-counter-icon-wrap"><i class="wpem-icon-users"></i></div>
-                    <div class="organizer-counter-number-wrap"><?php echo esc_attr(count($organizers)); ?></div>
+                    <div class="organizer-counter-number-wrap"><?php echo esc_attr(count($wpem_organizers)); ?></div>
                 </div>
                 <div class="organizer-counter-bottom-wrap"><?php esc_html_e('Organizers', 'wp-event-manager'); ?></div>
             </div>
@@ -25,7 +25,7 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
                 <a href="<?php echo esc_url(get_the_permalink(get_option('event_manager_events_page_id'))); ?>" class="wpem-list-group-item" title="<?php esc_attr_e('Browse events', 'wp-event-manager'); ?>">
                     <div class="organizer-counter-upper-wrap">
                         <div class="organizer-counter-icon-wrap"><i class="wpem-icon-calendar"></i></div>
-                        <div class="organizer-counter-number-wrap"><?php echo esc_attr($countAllEvents); ?></div>
+                        <div class="organizer-counter-number-wrap"><?php echo esc_attr($wpem_countAllEvents); ?></div>
                     </div>
                     <div class="organizer-counter-bottom-wrap"><?php esc_html_e('Available events', 'wp-event-manager'); ?></div>
                 </a>
@@ -40,12 +40,12 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
             </div>
 
             <?php
-            foreach (range('0', '9') as $letter) : ?>
-                <div class="organizer-letters-list"><a id="<?php echo esc_attr($letter);?>" href="#<?php echo esc_attr($letter);?>"><?php echo esc_attr($letter);?></a></div>
+            foreach (range('0', '9') as $wpem_letter) : ?>
+                <div class="organizer-letters-list"><a id="<?php echo esc_attr($wpem_letter);?>" href="#<?php echo esc_attr($wpem_letter);?>"><?php echo esc_attr($wpem_letter);?></a></div>
             <?php endforeach;
 
-            foreach (range('A', 'Z') as $letter) : ?>
-                <div class="organizer-letters-list"><a id="<?php echo esc_attr($letter);?>" href="#<?php echo esc_attr($letter);?>"><?php echo esc_attr($letter);?></a></div>
+            foreach (range('A', 'Z') as $wpem_letter) : ?>
+                <div class="organizer-letters-list"><a id="<?php echo esc_attr($wpem_letter);?>" href="#<?php echo esc_attr($wpem_letter);?>"><?php echo esc_attr($wpem_letter);?></a></div>
             <?php endforeach;  ?>
 
         </div>
@@ -55,26 +55,26 @@ if($check_user_access == false && get_option('wpem_hide_data_from_guest')) {
             <div class="wpem-col-md-12 organizer-related-info-wrapper">
                 <div class="wpem-row">
                     <?php
-                    foreach ($organizers_array as $letter => $organizers) : ?>
-                        <div id="show_<?php echo esc_attr($letter); ?>" class="show-organizer-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
+                    foreach ($wpem_organizers_array as $wpem_letter => $wpem_organizers) : ?>
+                        <div id="show_<?php echo esc_attr($wpem_letter); ?>" class="show-organizer-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
                             <div class="wpem-list-group">
                                 <div class="organizer-group-header wpem-list-group-item wpem-list-group-item-success">
-                                    <div><?php echo esc_attr($letter); ?></div>
+                                    <div><?php echo esc_attr($wpem_letter); ?></div>
                                 </div>
                                 <div class="organizer-name-list">
-                                    <?php foreach ($organizers as $organizer_id => $organizer_name) :
-                                        $count = wpem_get_event_organizer_count($organizer_id); ?>
+                                    <?php foreach ($wpem_organizers as $wpem_organizer_id => $wpem_organizer_name) :
+                                        $wpem_count = wpem_get_event_organizer_count($wpem_organizer_id); ?>
                                         <div class="organizer-list-items">
-                                            <a href="<?php echo esc_url(get_the_permalink($organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
-                                                <?php $organizer = get_post($organizer_id); if(!in_array('organizer_logo', $field_to_hide)){?>
+                                            <a href="<?php echo esc_url(get_the_permalink($wpem_organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
+                                                <?php $wpem_organizer = get_post($wpem_organizer_id); if(!in_array('organizer_logo', $wpem_field_to_hide)){?>
                                                 <?php if ($show_thumb && $show_thumb == 'true') : ?>
-                                                    <div class="wpem-organizer-logo"><?php wpem_display_organizer_logo('', '', $organizer); ?></div>
+                                                    <div class="wpem-organizer-logo"><?php wpem_display_organizer_logo('', '', $wpem_organizer); ?></div>
                                                 <?php endif;} ?>
 
-                                                <div class="wpem-organizer-name"><?php if(!in_array('organizer_name', $field_to_hide)){echo esc_attr($organizer_name); }?></div>
+                                                <div class="wpem-organizer-name"><?php if(!in_array('organizer_name', $wpem_field_to_hide)){echo esc_attr($wpem_organizer_name); }?></div>
 
-                                                <?php if ($count != 0 && $show_count && $show_count == 'true') : ?>
-                                                    <div class="wpem-event-organizer-conunt-number"><?php echo esc_attr($count); ?></div>
+                                                <?php if ($wpem_count != 0 && $show_count && $show_count == 'true') : ?>
+                                                    <div class="wpem-event-organizer-conunt-number"><?php echo esc_attr($wpem_count); ?></div>
                                                 <?php endif; ?>
                                             </a>
                                         </div>

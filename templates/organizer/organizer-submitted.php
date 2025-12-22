@@ -4,14 +4,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 global $wp_post_types;
 //print appropriate message accroding to post status or post description
-$organizer_dashboard_page_id = get_option('event_manager_organizer_dashboard_page_id');
+$wpem_organizer_dashboard_page_id = get_option('event_manager_organizer_dashboard_page_id');
 
 switch ($organizer->post_status) :
 	case 'publish' :
 		printf(
 			wp_kses_post('<p class="post-submitted-success-green-message wpem-alert wpem-alert-success">%s listed successfully. To view your organizer list <a href="%s">click here</a>.</p>'),
 			esc_html($wp_post_types['event_organizer']->labels->singular_name),
-			esc_url(get_permalink($organizer_dashboard_page_id))
+			esc_url(get_permalink($wpem_organizer_dashboard_page_id))
 		);
 		break;
 	case 'pending' :
