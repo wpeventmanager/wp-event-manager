@@ -857,8 +857,8 @@ class WP_Event_Manager_Settings{
 										case 'page':
 											$dropdown = wp_dropdown_pages(
 												array(
-													'name'        => $option['name'],
-													'id'          => $option['name'],
+													'name'        => esc_attr($option['name']),
+													'id'          => esc_attr($option['name']),
 													'sort_column' => 'menu_order',
 													'sort_order'  => 'ASC',
 													'show_option_none' => __('--no page--', 'wp-event-manager'),
