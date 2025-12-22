@@ -3,22 +3,22 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 global $post;
-$start_date = wpem_get_event_start_date();
-$start_time = wpem_get_event_start_time();
-$end_date   = wpem_get_event_end_date();
-$end_time   = wpem_get_event_end_time();
+$wpem_start_date = wpem_get_event_start_date();
+$wpem_start_time = wpem_get_event_start_time();
+$wpem_end_date   = wpem_get_event_end_date();
+$wpem_end_time   = wpem_get_event_end_time();
 $event_type = wpem_get_event_type(); 
 if (is_array($event_type) && isset($event_type[0]))
     $event_type = $event_type[0]->slug;
 
-$thumbnail  = wpem_get_event_thumbnail( $post, 'full' ); ?>
+$wpem_thumbnail  = wpem_get_event_thumbnail( $post, 'full' ); ?>
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-<?php echo esc_attr(apply_filters('event_manager_event_wpem_column', '4')); ?>">
     <!----- wpem-col-lg-4 value can be change by admin settings ------->
     <div class="wpem-event-layout-wrapper">
         <div <?php event_listing_class(''); ?>>
             <a href="<?php wpem_display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo esc_attr($event_type); ?>">
                 <div class="wpem-event-banner">
-                    <div class="wpem-event-banner-img" style="background-image: url(<?php echo esc_attr($thumbnail) ?>)">
+                    <div class="wpem-event-banner-img" style="background-image: url(<?php echo esc_attr($wpem_thumbnail) ?>)">
                         <!-- Hide in list View // Show in Box View -->
                         <?php do_action('event_already_registered_title'); 
                         if (wpem_is_event_cancelled()){
@@ -31,10 +31,10 @@ $thumbnail  = wpem_get_event_thumbnail( $post, 'full' ); ?>
                         <div class="wpem-event-date">
                             <div class="wpem-event-date-type">
                                 <?php
-                                if (!empty($start_date)) { ?>
+                                if (!empty($wpem_start_date)) { ?>
                                     <div class="wpem-from-date">
-                                        <div class="wpem-date"><?php echo esc_html( date_i18n( 'd', strtotime( $start_date ) ) ); ?></div>
-                                        <div class="wpem-month"><?php echo esc_html( date_i18n( 'M', strtotime( $start_date ) ) ); ?></div>
+                                        <div class="wpem-date"><?php echo esc_html( date_i18n( 'd', strtotime( $wpem_start_date ) ) ); ?></div>
+                                        <div class="wpem-month"><?php echo esc_html( date_i18n( 'M', strtotime( $wpem_start_date ) ) ); ?></div>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -47,18 +47,18 @@ $thumbnail  = wpem_get_event_thumbnail( $post, 'full' ); ?>
                     <div class="wpem-event-date">
                         <div class="wpem-event-date-type">
                             <?php
-                            if (!empty($start_date)) { ?>
+                            if (!empty($wpem_start_date)) { ?>
                                 <div class="wpem-from-date">
-                                    <div class="wpem-date"><?php echo esc_html( date_i18n( 'd', strtotime( $start_date ) ) ); ?></div>
-                                    <div class="wpem-month"><?php echo esc_html( date_i18n( 'M', strtotime( $start_date ) ) ); ?></div>
+                                    <div class="wpem-date"><?php echo esc_html( date_i18n( 'd', strtotime( $wpem_start_date ) ) ); ?></div>
+                                    <div class="wpem-month"><?php echo esc_html( date_i18n( 'M', strtotime( $wpem_start_date ) ) ); ?></div>
                                 </div>
                             <?php } 
                             
-                            if ($start_date != $end_date && !empty($end_date)) {  ?>
+                            if ($wpem_start_date != $wpem_end_date && !empty($wpem_end_date)) {  ?>
                                 <div class="wpem-to-date">
                                     <div class="wpem-date-separator">-</div>
-                                    <div class="wpem-date"><?php echo esc_html( date_i18n( 'd', strtotime( $end_date ) ) ); ?></div>
-                                    <div class="wpem-month"><?php echo esc_html( date_i18n( 'M', strtotime( $end_date ) ) ); ?></div>
+                                    <div class="wpem-date"><?php echo esc_html( date_i18n( 'd', strtotime( $wpem_end_date ) ) ); ?></div>
+                                    <div class="wpem-month"><?php echo esc_html( date_i18n( 'M', strtotime( $wpem_end_date ) ) ); ?></div>
                                 </div>
                             <?php } ?>
                         </div>
@@ -74,17 +74,17 @@ $thumbnail  = wpem_get_event_thumbnail( $post, 'full' ); ?>
                             <span class="wpem-event-date-time-text">
                                 <?php wpem_display_event_start_date(); ?>
                                 <?php
-                                if (!empty($start_time)) {
+                                if (!empty($wpem_start_time)) {
                                     echo ' ' . esc_html(wpem_display_date_time_separator()) .' ';
                                 }
 									wpem_display_event_start_time(); 
-                                if (!empty($end_date) || !empty($end_time)) {
+                                if (!empty($wpem_end_date) || !empty($wpem_end_time)) {
                                 ?> - <?php
                                 } 
-                                if (isset($start_date) && isset($end_date) && $start_date != $end_date) {
+                                if (isset($wpem_start_date) && isset($wpem_end_date) && $wpem_start_date != $wpem_end_date) {
                                     wpem_display_event_end_date();
                                 }
-                                if (!empty($end_date) && !empty($end_time)) {
+                                if (!empty($wpem_end_date) && !empty($wpem_end_time)) {
                                     echo ' ' . esc_html(wpem_display_date_time_separator()) . ' ';
                                 }
 									wpem_display_event_end_time(); ?>

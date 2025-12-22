@@ -230,7 +230,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 		else
 			$number = 4;
 
-		$events   = get_event_listings(array(
+		$events   = wpem_get_event_listings(array(
 			'search_location'   => isset($instance['location']) ? $instance['location'] : '',
 			'search_keywords'   => isset($instance['keyword']) ? $instance['keyword'] : '',
 			'posts_per_page'    => $number,
@@ -340,7 +340,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget{
 		else
 			$number = 4;
 
-		$featured_events   = get_event_listings(
+		$featured_events   = wpem_get_event_listings(
 			array(
 				'posts_per_page'    => $number,
 				'orderby'           => 'event_start_date',

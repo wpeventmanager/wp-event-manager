@@ -167,7 +167,7 @@ function wpem_display_event_status($post = null){
 function wpem_get_event_status($post = null){
 	$post     = get_post($post);
 	$status   = $post->post_status;
-	$statuses = get_event_listing_post_statuses();
+	$statuses = wpem_get_event_listing_post_statuses();
 
 	if(isset($statuses[$status])) {
 		$status = $statuses[$status];

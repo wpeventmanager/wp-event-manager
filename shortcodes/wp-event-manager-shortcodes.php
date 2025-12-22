@@ -242,7 +242,7 @@ class WP_Event_Manager_Shortcodes{
 		$event_manager_keyword = isset($_GET['search_keywords']) ? wp_kses_post( wp_unslash($_GET['search_keywords'])): '';
 		if(!empty($event_manager_keyword) && strlen($event_manager_keyword) >= apply_filters('event_manager_get_listings_keyword_length_threshold', 2)) {
 			$args['s'] = $event_manager_keyword;
-			add_filter('posts_search', 'get_event_listings_keyword_search');
+			add_filter('posts_search', 'wpem_get_event_listings_keyword_search');
 		}
 
 		if(isset($args['orderby']) && !empty($args['orderby'])) {
@@ -292,7 +292,7 @@ class WP_Event_Manager_Shortcodes{
 
 		wpem_get_event_manager_template('event-dashboard.php', array('events' => $events->posts, 'max_num_pages' => $events->max_num_pages, 'event_dashboard_columns' => $event_dashboard_columns, 'atts' => $atts));
 
-		remove_filter('posts_search', 'get_event_listings_keyword_search');
+		remove_filter('posts_search', 'wpem_get_event_listings_keyword_search');
 
 		return ob_get_clean();
 	}
@@ -1013,7 +1013,7 @@ class WP_Event_Manager_Shortcodes{
 		if(empty($categories) && !empty($selected_category)) {
 			$categories = array_filter(array_map('trim', explode(',', $selected_category)));
 		}
-		$events = get_event_listings(apply_filters('event_manager_output_events_args', array(
+		$events = wpem_get_event_listings(apply_filters('event_manager_output_events_args', array(
 			'search_location'   => $location,
 			'search_keywords'   => $keywords,
 			'search_datetimes'  => array($selected_datetime),

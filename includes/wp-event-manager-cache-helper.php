@@ -32,7 +32,7 @@ class WP_Event_Manager_Cache_Helper {
 	 */
 	public static function flush_get_event_listings_cache($post_id) {
 		if('event_listing' === get_post_type($post_id)) {
-			self::get_transient_version('get_event_listings', true);
+			self::get_transient_version('wpem_get_event_listings', true);
 		}
 	}
 
@@ -41,7 +41,7 @@ class WP_Event_Manager_Cache_Helper {
 	 */
 	public static function event_manager_my_event_do_action($action) {
 		if('mark_cancelled' === $action || 'mark_not_cancelled' === $action) {
-			self::get_transient_version('get_event_listings', true);
+			self::get_transient_version('wpem_get_event_listings', true);
 		}
 	}
 

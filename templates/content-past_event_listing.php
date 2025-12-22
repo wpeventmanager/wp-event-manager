@@ -2,15 +2,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-$start_date = wpem_get_event_start_date();
-$end_date   = wpem_get_event_end_date();
+$wpem_start_date = wpem_get_event_start_date();
+$wpem_end_date   = wpem_get_event_end_date();
 $event_type = wpem_get_event_type();
-$start_time = wpem_get_event_start_time();
-$end_time   = wpem_get_event_end_time();
+$wpem_start_time = wpem_get_event_start_time();
+$wpem_end_time   = wpem_get_event_end_time();
 if (is_array($event_type) && isset($event_type[0]))
     $event_type = $event_type[0]->slug;
 
-$thumbnail     = wpem_get_event_thumbnail(); ?>
+$wpem_thumbnail     = wpem_get_event_thumbnail(); ?>
 
 <div class="wpem-event-box-col wpem-col wpem-col-12 wpem-col-md-6 wpem-col-lg-4 ">
     <!----- wpem-col-lg-4 value can be change by admin settings ------->
@@ -18,14 +18,14 @@ $thumbnail     = wpem_get_event_thumbnail(); ?>
         <div <?php event_listing_class(''); ?>>
             <a href="<?php wpem_display_event_permalink(); ?>" class="wpem-event-action-url event-style-color <?php echo esc_attr($event_type); ?>">
                 <div class="wpem-event-banner">
-                    <div class="wpem-event-banner-img" style="background-image: url(<?php echo esc_attr($thumbnail); ?> ) ">
+                    <div class="wpem-event-banner-img" style="background-image: url(<?php echo esc_attr($wpem_thumbnail); ?> ) ">
                         <!-- Hide in list View // Show in Box View -->
                         <?php do_action('event_already_registered_title'); ?>
                         <div class="wpem-event-date">
                             <div class="wpem-event-date-type">
                                 <div class="wpem-from-date">
-                                    <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($start_date))); ?></div>
-                                    <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($start_date))); ?></div>
+                                    <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($wpem_start_date))); ?></div>
+                                    <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($wpem_start_date))); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -37,19 +37,19 @@ $thumbnail     = wpem_get_event_thumbnail(); ?>
                     <div class="wpem-event-date">
                         <div class="wpem-event-date-type">
                             <div class="wpem-from-date">
-                                <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($start_date))); ?></div>
-                                <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($start_date))); ?></div>
+                                <div class="wpem-date"><?php echo  wp_kses_post(date_i18n('d', strtotime($wpem_start_date))); ?></div>
+                                <div class="wpem-month"><?php echo  wp_kses_post(date_i18n('M', strtotime($wpem_start_date))); ?></div>
                             </div>
                             <div class="wpem-to-date">
-                                 <?php if(!empty($end_date)){ ?>
+                                 <?php if(!empty($wpem_end_date)){ ?>
                                     <div class="wpem-date-separator">-</div>
                                     <div class="wpem-date">                                    
-                                        <?php echo  wp_kses_post(date_i18n('d', strtotime($end_date)));?>
+                                        <?php echo  wp_kses_post(date_i18n('d', strtotime($wpem_end_date)));?>
                                     </div>
                                 <?php } ?>
-                                 <?php if(!empty($end_date)){ ?>
+                                 <?php if(!empty($wpem_end_date)){ ?>
                                     <div class="wpem-month">
-                                        <?php echo  wp_kses_post(date_i18n('M', strtotime($end_date))); ?>
+                                        <?php echo  wp_kses_post(date_i18n('M', strtotime($wpem_end_date))); ?>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -63,13 +63,13 @@ $thumbnail     = wpem_get_event_thumbnail(); ?>
                         <div class="wpem-event-date-time">
                             <span class="wpem-event-date-time-text"><?php wpem_display_event_start_date(); ?>
                             <?php 
-                                if (!empty($start_time)) { 
+                                if (!empty($wpem_start_time)) { 
                                         echo ' ' . esc_html(wpem_display_date_time_separator()) .' ';
                                     }
                             ?>
                             <?php wpem_display_event_start_time(); ?> - <?php wpem_display_event_end_date(); ?>
                             <?php
-                                if (!empty($end_date) && !empty($end_time)) {
+                                if (!empty($wpem_end_date) && !empty($wpem_end_time)) {
                                     echo ' ' . esc_html(wpem_display_date_time_separator()) . ' ';
                                 }
                             ?>

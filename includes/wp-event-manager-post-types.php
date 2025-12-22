@@ -733,7 +733,7 @@ class WP_Event_Manager_Post_Types {
 
 			// Safe to pass to WP_Query
 			$query_args['s'] = $event_manager_keyword;
-			add_filter( 'posts_search', 'get_event_listings_keyword_search' );
+			add_filter( 'posts_search', 'wpem_get_event_listings_keyword_search' );
 		}
 		
 		if(empty($query_args['meta_query'])) {
@@ -771,7 +771,7 @@ class WP_Event_Manager_Post_Types {
 		// End RSS feed
 		echo '</channel>';
 		echo '</rss>';
-		remove_filter('posts_search', 'get_event_listings_keyword_search');
+		remove_filter('posts_search', 'wpem_get_event_listings_keyword_search');
 	}
 	
 	/**

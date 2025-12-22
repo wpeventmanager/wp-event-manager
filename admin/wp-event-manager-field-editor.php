@@ -179,7 +179,7 @@ class WP_Event_Manager_Field_Editor {
 						<?php
 						ob_start();
 						$index     = -1;
-						$field_key = '';
+						$wpem_field_key = '';
 						$field     = array(
 							'type'        => 'text',
 							'label'       => '',
@@ -189,9 +189,9 @@ class WP_Event_Manager_Field_Editor {
 						echo esc_attr(ob_get_clean());
 						
 						if(isset($group_fields) && !empty($group_fields)) {
-							foreach ($group_fields as $field_key => $field) {
+							foreach ($group_fields as $wpem_field_key => $wpem_field) {
 								$index++;
-								if(isset($field['visibility']) && ($field['visibility'] == false || $field['visibility'] == 0 )){
+								if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == false || $wpem_field['visibility'] == 0 )){
 									continue;
 								}
 								include 'wp-event-manager-form-field-editor-field.php';

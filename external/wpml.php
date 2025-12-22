@@ -7,7 +7,7 @@
  * @since 1.6
  */
 function wpem_wpml_event_manager_init() {
-	add_action('get_event_listings_init', 'wpem_wpml_event_manager_set_language');
+	add_action('wpem_get_event_listings_init', 'wpem_wpml_event_manager_set_language');
 	add_filter('wpem_lang', 'wpem_wpml_event_manager_get_event_listings_lang');
 	add_filter('event_manager_page_id', 'wpem_wpml_event_manager_page_id');
 }
@@ -36,7 +36,7 @@ function wpem_wpml_event_manager_set_language() {
  * @return string
  */
 function wpem_wpml_event_manager_get_event_listings_lang($lang) {
-	return apply_filters('wpml_current_language', $lang);
+	return apply_filters('wpem_wpml_current_language', $lang);
 }
 
 /**

@@ -661,7 +661,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 
 	private function event_types() {
 		$options = array();
-		$terms   = get_event_listing_types();
+		$terms   = wpem_get_event_listing_types();
 		foreach ( $terms as $term ) {
 			$options[ $term->slug ] = $term->name;
 		}

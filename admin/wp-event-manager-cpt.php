@@ -810,7 +810,7 @@ class WP_Event_Manager_CPT {
 		}
 		// Get all non-builtin post status and add them as <option>
 		$options = $display = '';
-		foreach (get_event_listing_post_statuses() as $status => $name) {
+		foreach (wpem_get_event_listing_post_statuses() as $status => $name) {
 			$selected = selected($post->post_status, $status, false);
 			// If we one of our custom post status is selected, remember it
 			$selected and $display = $name;
