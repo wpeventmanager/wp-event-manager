@@ -1385,7 +1385,7 @@ class WP_Event_Manager_Writepanels {
 		$current_user = wp_get_current_user();
 
 		$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-		$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
+		$form_submit_organizer_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Organizer', 'instance'));
 		$fields                         = $form_submit_organizer_instance->wpem_merge_with_custom_fields('backend');
 
 		/** add _ (prefix) for all backend fields.

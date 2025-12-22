@@ -797,7 +797,7 @@ class WP_Event_Manager_Ajax {
 			    unset($_COOKIE['wp-event-manager-submitting-organizer-key']);
 
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
+			$form_submit_organizer_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Organizer', 'instance'));
 			$event_fields =	$form_submit_organizer_instance->wpem_merge_with_custom_fields('frontend');
 
 			// Submit current event with $_POST values

@@ -209,7 +209,7 @@ A prior Backup does no harm before updating the plugin!',
 		}
 
 		$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-		$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
+		$form_submit_organizer_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Organizer', 'instance'));
 		$organizer_fields               = $form_submit_organizer_instance->wpem_merge_with_custom_fields('backend');
 
 		if(!empty($organizer_fields) && isset($organizer_fields['organizer']) && !empty($organizer_fields['organizer'])) {

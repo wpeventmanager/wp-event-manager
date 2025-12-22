@@ -408,7 +408,7 @@ $event = $post; ?>
                                             <?php if($start_date){ 
                                                 echo  esc_attr(date_i18n($date_format, strtotime($start_date))); ?>
                                                 <?php if ($start_time) {
-                                                    echo esc_attr(wpem_display_date_time_separator() . ' ' . esc_attr($start_time));
+                                                    echo esc_html(wpem_display_date_time_separator() . ' ' . esc_attr($start_time));
                                                 }
                                             }else{echo esc_attr('-');  } ?>
                                         </span>
@@ -418,7 +418,7 @@ $event = $post; ?>
                                             <br />
                                             <span class="wpem-event-date-time-text"><?php echo  esc_attr(date_i18n($date_format, strtotime($end_date))); ?>
                                                 <?php if ($end_time) {
-                                                    echo esc_attr(wpem_display_date_time_separator() . ' ' . esc_attr($end_time));
+                                                    echo esc_html(wpem_display_date_time_separator() . ' ' . esc_attr($end_time));
                                                 }
                                                 ?>
                                             </span>

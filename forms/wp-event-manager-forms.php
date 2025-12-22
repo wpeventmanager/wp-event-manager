@@ -99,7 +99,7 @@ class WP_Event_Manager_Forms {
 		}
 
 		// Build class and target file strictly from the map above
-		$form_class = 'WP_Event_Manager_Form_' . str_replace( '-', '_', $form_name );
+		$form_class = 'WPEM_Event_Manager_Form_' . str_replace( '-', '_', $form_name );
 
 		$forms_dir      = EVENT_MANAGER_PLUGIN_DIR . '/forms/';
 		$real_forms_dir = realpath( $forms_dir );

@@ -1800,7 +1800,7 @@ function wpem_check_organizer_exist($organizer_email) {
  * 
  * @since 3.1.16
  **/
-function has_event_venue_ids($post = null) {
+function wpem_has_event_venue_ids($post = null) {
 	$post = get_post($post);
 
 	if($post->post_type !== 'event_listing')

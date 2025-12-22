@@ -104,7 +104,7 @@ class WP_Event_Manager_Field_Editor {
 		
 		if(get_option('enable_event_organizer')) {
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
+			$form_submit_organizer_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Organizer', 'instance'));
 			$organizer_fields               = $form_submit_organizer_instance->wpem_merge_with_custom_fields('backend');
 		} else {
 			$organizer_fields = array();
@@ -323,7 +323,7 @@ class WP_Event_Manager_Field_Editor {
 					$event_fields =   $form_submit_event_instance->get_default_fields();
 					if(get_option('enable_event_organizer')) {
 						$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-						$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
+						$form_submit_organizer_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Organizer', 'instance'));
 						$organizer_fields               = $form_submit_organizer_instance->init_fields();
 					} else {
 						$organizer_fields = array();

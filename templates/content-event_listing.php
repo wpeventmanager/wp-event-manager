@@ -75,7 +75,7 @@ $thumbnail  = wpem_get_event_thumbnail( $post, 'full' ); ?>
                                 <?php wpem_display_event_start_date(); ?>
                                 <?php
                                 if (!empty($start_time)) {
-                                    echo ' ' . wp_kses_post(wpem_display_date_time_separator()) .' ';
+                                    echo ' ' . esc_html(wpem_display_date_time_separator()) .' ';
                                 }
 									wpem_display_event_start_time(); 
                                 if (!empty($end_date) || !empty($end_time)) {
@@ -85,7 +85,7 @@ $thumbnail  = wpem_get_event_thumbnail( $post, 'full' ); ?>
                                     wpem_display_event_end_date();
                                 }
                                 if (!empty($end_date) && !empty($end_time)) {
-                                    echo ' ' . wp_kses_post(wpem_display_date_time_separator()) . ' ';
+                                    echo ' ' . esc_html(wpem_display_date_time_separator()) . ' ';
                                 }
 									wpem_display_event_end_time(); ?>
                             </span>
