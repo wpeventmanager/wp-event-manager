@@ -479,13 +479,34 @@ $event = $post; ?>
                                                 </div>
                                                 <div class="wpem-modal-content">
                                                     <div class="wpem-modal-content">
-                                                        <?php echo wp_oembed_get(
-                                                            wp_kses_post(wpem_get_organizer_youtube( $event ),
+                                                        <?php 
+                                                        $youtube_url = wpem_get_organizer_youtube( $event );
+
+                                                        // Sanitize the URL first
+                                                        $youtube_url = esc_url_raw( $youtube_url );
+
+                                                        // Get the embed HTML safely
+                                                        $embed_html = wp_oembed_get( $youtube_url, array(
+                                                            'autoplay' => '1',
+                                                            'rel'      => 0,
+                                                        ));
+
+                                                        // Output the embed HTML, properly escaped
+                                                        echo wp_kses(
+                                                            $embed_html,
                                                             array(
-                                                                'autoplay' => '1',
-                                                                'rel'      => 0,
-                                                            ))
-                                                        ); ?>
+                                                                'iframe' => array(
+                                                                    'src'             => true,
+                                                                    'width'           => true,
+                                                                    'height'          => true,
+                                                                    'frameborder'     => true,
+                                                                    'allowfullscreen' => true,
+                                                                    'allow'           => true,
+                                                                    'style'           => true,
+                                                                ),
+                                                            )
+                                                        );
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
