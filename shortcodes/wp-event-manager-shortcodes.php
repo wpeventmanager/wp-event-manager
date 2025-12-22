@@ -513,7 +513,7 @@ class WP_Event_Manager_Shortcodes{
 				do_action('event_manager_my_organizer_do_action', $action, $organizer_id);
 
 			} catch (Exception $e) {
-				$this->organizer_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' .esc_html($e->getMessage()) .'</div>';
+				$this->organizer_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . $e->getMessage() . '</div>';
 			}
 		}
 	}
