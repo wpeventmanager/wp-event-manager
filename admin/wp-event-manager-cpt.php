@@ -301,11 +301,24 @@ class WP_Event_Manager_CPT {
 		if ( isset( $_GET['event_listing_type'] ) && isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'wpem_event_type_filter' ) ) {
 			$selected_event_type = sanitize_text_field( wp_unslash( $_GET['event_listing_type'] ) );
 		}
-		$output  = "<select name='event_listing_type' id='dropdown_event_listing_category'>";
-		$output .= '<option value="" ' . selected($selected_event_type, '', false) . '>' . __('Select Event Type', 'wp-event-manager') . '</option>';
-		$output .= $walker->walk($terms, 0, $args);
-		$output .= '</select>';
-		printf('%s', $output);
+		echo wp_kses(
+			"<select name='event_listing_type' id='event_listing_type'>" .
+			'<option value="" ' . selected($selected_event_type, '', false) . '>' . esc_html__('Select Event Type', 'wp-event-manager') . '</option>' .
+			$walker->walk($terms, 0, $args) .
+			'</select>',
+			array(
+				'select' => array(
+					'name' => true,
+					'id' => true,
+					'class' => true
+				),
+				'option' => array(
+					'value' => true,
+					'selected' => true,
+					'class' => true
+				)
+			)
+		);
 	}
 
 	/**
