@@ -340,7 +340,7 @@ A prior Backup does no harm before updating the plugin!',
 
 					/* translators: 1: review link, 2: showcase link */
 					$message = __(
-						"We've noticed you've been using WP Event Manager for some time now. We hope you love it! We'd be thrilled if you could %1$s. Don't forget to submit your site to %2$s and generate more traffic from our site.",
+						"We've noticed you've been using WP Event Manager for some time now. We hope you love it! We'd be thrilled if you could %1\$s. Don't forget to submit your site to %2\$s and generate more traffic from our site.",
 						'wp-event-manager'
 					);
 
