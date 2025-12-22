@@ -1365,7 +1365,7 @@ class WP_Event_Manager_Writepanels {
 
 		// Handle custom author
 		if (isset($_POST['_event_author'])) {
-			$custom_author = absint(sanitize_text_field($_POST['_event_author']));
+			$custom_author = absint(sanitize_text_field(wp_unslash($_POST['_event_author'])));
 			if ($custom_author && get_user_by('ID', $custom_author)) {
 				remove_action('event_manager_save_event_listing', [$this, 'save_event_listing_data'], 20, 2);
 				wp_update_post(['ID' => $post_id, 'post_author' => $custom_author]);
@@ -1474,18 +1474,20 @@ class WP_Event_Manager_Writepanels {
 			return;
 		}
 
+		$post_title = isset($_POST['post_title']) ? sanitize_text_field(wp_unslash($_POST['post_title'])) : '';
+		$post_content = isset($_POST['content']) ? wp_kses_post(wp_unslash($_POST['content'])) : '';
 		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
 
 		// Covert datepicker format  into php date() function date format
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
-		update_post_meta($post_id, '_organizer_name', sanitize_text_field(wp_unslash($_POST['post_title'])));
-		update_post_meta($post_id, '_organizer_description', wp_kses_post(wp_unslash($_POST['content'])));
+		update_post_meta($post_id, '_organizer_name', $post_title);
+		update_post_meta($post_id, '_organizer_description', $post_content);
 
 		// Save fields
 		foreach ($this->organizer_listing_fields() as $key => $field) {
-			$key = sanitize_text_field($key);
+			$key = isset($key) ? sanitize_text_field(wp_unslash($key)) : '';
 			if('_organizer_author' === $key) {
 				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint(sanitize_text_field($_POST[$key])) : 0), array('ID' => $post_id));
 			}
