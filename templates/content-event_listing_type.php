@@ -25,7 +25,7 @@ global $wp_query; ?>
                     <?php if (have_posts()) : 
                         wpem_get_event_manager_template('event-listings-start.php' ,array('layout_type'=>'all')); 
                         while (have_posts()) : the_post(); 
-                            wpem_get_event_manager_template('content', 'event_listing'); 
+                            wpem_get_event_manager_template_part('content', 'event_listing'); 
                         endwhile; 
                         wpem_get_event_manager_template('event-listings-end.php');
                         wpem_get_event_manager_template('pagination.php', array('max_num_pages' => $wp_query->max_num_pages)); ?>

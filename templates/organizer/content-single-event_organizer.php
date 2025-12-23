@@ -144,7 +144,7 @@ if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) 
 wpem_get_event_manager_template(
     'organizer-event_listing.php',
     array(
-        'organizer_id'    => $wpem_organizer_id,
+        'organizer_id'    => $wpem_organizer_id, 
         'per_page'        => $per_page,
         'show_pagination' => $show_pagination,
         'upcomingEvents'  => $upcomingEvents,

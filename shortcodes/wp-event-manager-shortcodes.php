@@ -1050,7 +1050,7 @@ class WP_Event_Manager_Shortcodes{
 				if($hide_event == true){
 					continue;
 				}
-				wpem_get_event_manager_template('content', 'event_listing');
+				wpem_get_event_manager_template_part('content', 'event_listing');
 			endwhile; 
 			wpem_get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));
 		 else :
@@ -1183,7 +1183,7 @@ class WP_Event_Manager_Shortcodes{
 		if($events->have_posts()) :
 			while ($events->have_posts()) : $events->the_post(); ?>
 				<div class="clearfix" />
-				<?php wpem_get_event_manager_template('content-single', 'event_listing'); 
+				<?php wpem_get_event_manager_template_part('content-single', 'event_listing'); 
 			endwhile;
 		endif;
 		wp_reset_postdata();
@@ -1425,7 +1425,7 @@ class WP_Event_Manager_Shortcodes{
 			<div class="past_event_listings">
 				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => sanitize_key( $atts['layout_type'] ), 'title' => esc_html($atts['title'])));
 				while ($past_events->have_posts()) : $past_events->the_post();
-					wpem_get_event_manager_template('content', 'past_event_listing');
+					wpem_get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
 				wpem_get_event_manager_template('event-listings-end.php');
 				if($past_events->found_posts > $per_page) :
@@ -1594,7 +1594,6 @@ class WP_Event_Manager_Shortcodes{
 				),
 			),
 		);
-
 		$upcomingEvents = new WP_Query(apply_filters('wpem_single_organizer_upcoming_event_listing_query_args', $args_upcoming));
 		wp_reset_postdata();
 
@@ -1653,7 +1652,7 @@ class WP_Event_Manager_Shortcodes{
 		wpem_get_event_manager_template(
 			'content-single-event_organizer.php',
 			array(
-				'wpem_organizer_id'    => $organizer_id,
+				'wpem_organizer_id' => $organizer_id,
 				'per_page'        => $per_page,
 				'show_pagination' => $show_pagination,
 				'upcomingEvents'  => $upcomingEvents,
@@ -2066,7 +2065,7 @@ class WP_Event_Manager_Shortcodes{
 			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>">
 				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
-					wpem_get_event_manager_template('content', 'past_event_listing');
+					wpem_get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
 				wpem_get_event_manager_template('event-listings-end.php');
 				if($upcoming_events->found_posts > $per_page) :
@@ -2145,7 +2144,7 @@ class WP_Event_Manager_Shortcodes{
 
 			while ($related_events->have_posts()) {
 				$related_events->the_post();
-				wpem_get_event_manager_template('content-related', 'event_listing');
+				wpem_get_event_manager_template_part('content-related', 'event_listing');
 			}
 
 			do_action('event_manager_related_events_after_loop', $event_id);
