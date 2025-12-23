@@ -49,7 +49,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 
 		uasort($this->steps, array($this, 'sort_by_priority'));
 		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint( wp_unslash( $_REQUEST[ 'venue_id' ])) : 0;
-		if(!event_manager_user_can_edit_event($this->venue_id)) {
+		if(!event_manager_user_can_edit_venue($this->venue_id)) {
 			$this->venue_id = 0;
 		}
 		$step_nonce_ok = false;
@@ -73,7 +73,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				$this->step = array_search( $step_input_sanitized, array_keys( $this->steps ), true );
 			}
 		}
-		if(!event_manager_user_can_edit_event($this->venue_id)) {
+		if(!event_manager_user_can_edit_venue($this->venue_id)) {
 		$this->venue_id = 0;
 		}
 		if(!isset($_GET[ 'new' ]) &&(!$this->venue_id) && !empty($_COOKIE['wp-event-manager-submitting-venue-id']) && !empty($_COOKIE['wp-event-manager-submitting-venue-key'])){
@@ -87,7 +87,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		if($this->venue_id) {
 			$venue_status = get_post_status($this->venue_id);
 			if('expired' === $venue_status) {
-				if(!event_manager_user_can_edit_event($this->venue_id)) {
+				if(!event_manager_user_can_edit_venue($this->venue_id)) {
 					$this->venue_id = 0;
 					$this->step   = 0;
 				}

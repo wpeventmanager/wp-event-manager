@@ -858,6 +858,29 @@ function event_manager_user_can_edit_organizer($organizer_id) {
 }
 
 /**
+ * True if the user can edit a venue.
+ *
+ * @param int $venue_id
+ * @return bool
+ */
+function event_manager_user_can_edit_venue($venue_id) {
+	$can_edit = true;
+	
+	if (!is_user_logged_in() || !$venue_id) {
+		$can_edit = false;
+	} else {
+		$venue = get_post($venue_id);
+		if (!$venue || $venue->post_type !== 'event_venue') {
+			$can_edit = false;
+		} elseif (absint($venue->post_author) !== get_current_user_id() && !current_user_can('edit_post', $venue_id)) {
+			$can_edit = false;
+		}
+	}
+	
+	return apply_filters('event_manager_user_can_edit_venue', $can_edit, $venue_id);
+}
+
+/**
  * Checks if the visitor is currently on a WPEM page, event listing, or taxonomy.
  *
  * @return bool

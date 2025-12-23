@@ -37,7 +37,7 @@ class WPEM_Event_Manager_Form_Edit_Venue extends WPEM_Event_Manager_Form_Submit_
 			$this->venue_id = 0;
 		}
 		
-		if  (!event_manager_user_can_edit_event($this->venue_id)) {
+		if (!event_manager_user_can_edit_venue($this->venue_id)) {
 			$this->venue_id = 0;
 		}
 	}
