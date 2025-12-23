@@ -466,6 +466,19 @@ class WP_Event_Manager_Shortcodes{
 				}
 
 				switch ($action) {
+					case 'edit':
+						if (!event_manager_get_permalink('submit_organizer_form')) {
+							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
+						}
+						wp_safe_redirect(
+							add_query_arg(
+								array(
+									'organizer_id' => absint($organizer_id),
+								),
+								event_manager_get_permalink('submit_organizer_form')
+							)
+						);
+						exit;
 					case 'delete':
 						wp_trash_post($organizer_id);
 						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' .
