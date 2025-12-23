@@ -37,7 +37,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		//Show Hide event thumbnail field on front end
 		$wpem_thumbnail_key = 'event_thumbnail'; 
 		$wpem_show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false); 
-		foreach($event_fields as $wpem_key => $wpem_field) : 
+		foreach($event_fields as $wpem_key => $wpem_field) :
 			if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] = false)) :
 				continue;
 			endif; 
@@ -163,7 +163,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 							</label>
 							<div class="field <?php echo esc_attr($wpem_field['required'] ? 'required-field' : ''); ?>">
 								<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
-								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
+								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('wpem_key' => $wpem_key, 'wpem_field' => $wpem_field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;
@@ -222,7 +222,7 @@ if(get_option('enable_event_venue')) :
 							
 							<div class="field <?php echo esc_attr($wpem_field['required'] ? 'required-field' : ''); ?>">
 								<?php $wpem_field_type = in_array($wpem_field['type'], $wpem_allowed_field_types, true) ? $wpem_field['type'] : 'text';
-								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('key' => $wpem_key, 'field' => $wpem_field)); ?>
+								wpem_get_event_manager_template('form-fields/' . $wpem_field_type . '-field.php', array('wpem_key' => $wpem_key, 'wpem_field' => $wpem_field)); ?>
 							</div>
 						</fieldset>
 					<?php endforeach;

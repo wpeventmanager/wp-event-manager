@@ -133,9 +133,8 @@ class WPEM_Event_Manager_Form_Edit_Event extends WPEM_Event_Manager_Form_Submit_
 		if(empty($_POST['submit_event'])) {
 			return;
 		}
-		
 		// Verify nonce before processing form data
-		if (empty($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_key(wp_unslash($_POST['_wpnonce'])), 'edit-event_' . $this->event_id)) {
+		if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'edit-event_' . $_POST['event_id'])) {
 			wp_die(esc_html__('Security check failed. Please try again.', 'wp-event-manager'));
 		}
 		
@@ -147,6 +146,7 @@ class WPEM_Event_Manager_Form_Edit_Event extends WPEM_Event_Manager_Form_Submit_
 			if(is_wp_error(($return = $this->validate_fields($values)))) {
 				throw new Exception($return->get_error_message());
 			}
+			$this->event_id = $_POST['event_id'] ? $_POST['event_id'] : 0 ;
 			$event_title       = html_entity_decode( $values['event']['event_title'] );
 			$event_description = html_entity_decode( $values['event']['event_description'] );
 			$event_title       = wp_strip_all_tags( $event_title );

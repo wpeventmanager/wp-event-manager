@@ -255,7 +255,7 @@ class WP_Event_Manager_Widget_Recent_Events extends WP_Event_Manager_Widget{
 			</ul>
 			<?php echo wp_kses_post($after_widget); ?>
 		<?php else : 
-			wpem_get_event_manager_template('content-widget', 'no-events-found');
+			wpem_get_event_manager_template_part('content-widget', 'no-events-found');
 		endif;
 
 		wp_reset_postdata();
@@ -368,7 +368,7 @@ class WP_Event_Manager_Widget_Featured_Events extends WP_Event_Manager_Widget{
 			<?php echo wp_kses_post($after_widget); ?>
 
 		<?php else : 
-			wpem_get_event_manager_template('content-widget', 'no-events-found');
+			wpem_get_event_manager_template_part('content-widget', 'no-events-found');
 		endif;
 
 		wp_reset_postdata();
@@ -518,7 +518,7 @@ class WP_Event_Manager_Widget_Upcoming_Events extends WP_Event_Manager_Widget{
 				endwhile; ?>
 			</div>
 		<?php else :
-			wpem_get_event_manager_template('content-widget', 'no-events-found');
+			wpem_get_event_manager_template_part('content-widget', 'no-events-found');
 		endif;
 
 		echo wp_kses_post($after_widget);
@@ -670,7 +670,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 				endwhile; ?>
 			</div>
 		<?php else :
-			wpem_get_event_manager_template('content-widget', 'no-events-found');
+			wpem_get_event_manager_template_part('content-widget', 'no-events-found');
 		endif;
 		
 		echo wp_kses_post($after_widget); 

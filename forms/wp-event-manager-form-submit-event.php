@@ -48,10 +48,10 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'done' => array(
 				'name'     => __( 'Done', 'wp-event-manager' ),
 				'view'     => array( $this, 'done' ),
+				'handler'  => array($this, 'preview_handler' ),
 				'priority' => 30
 			)
 		) );
-
 		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 		$this->event_id = !empty( $_REQUEST['event_id'] ) ? absint( wp_unslash( $_REQUEST[ 'event_id' ] ) ) : 0;
 		if( !event_manager_user_can_edit_event( $this->event_id ) ) {
@@ -63,7 +63,6 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		} elseif ( ! empty( $_GET['_wpnonce'] ) ) {
 			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'edit-event_' . $this->event_id );
 		}
-
 		// Get step/event
 		if( $step_nonce_ok && isset( $_POST['step'] ) ) {
 			$step_value = sanitize_text_field(wp_unslash($_POST['step']));
@@ -658,7 +657,6 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	/**
 	 * Gets event types.
 	 */
-
 	private function event_types() {
 		$options = array();
 		$terms   = wpem_get_event_listing_types();
@@ -677,7 +675,6 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		// Now field editor function will return all the fields 
 		// Get merged fields from db and default fields.
 		$this->wpem_merge_with_custom_fields('frontend' );
-		
 		$default_fields = $this->get_default_event_fields();
 
 		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
@@ -1236,7 +1233,6 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	/**
 	 * Preview Step.
 	 */
-
 	public function preview() {
 		global $post, $event_preview;
 		if ( $this->event_id ) {
@@ -1245,7 +1241,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$post              = get_post( $this->event_id );
 			setup_postdata( $post );
 			$post->post_status = 'preview';
-				wpem_get_event_manager_template( 'event-preview.php',  array( 'form' => $this ) );
+			wpem_get_event_manager_template( 'event-preview.php',  array( 'form' => $this ) );
 			wp_reset_postdata();
 		}
 	}
@@ -1258,7 +1254,6 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		if ( ! empty( $_POST ) && ( empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-event_' . $this->event_id ) ) ) {
 			return;
 		}
-		
 		if ( ! $_POST ) {
 			return;
 		}

@@ -24,6 +24,7 @@ if (!defined('ABSPATH')) {
 	</div>
 	<div class="event_listing_preview single_event_listing">
 		<?php wpem_get_event_manager_template_part('content-single', 'event_listing'); ?>
+		<?php wp_nonce_field('edit-event_' . esc_attr($form->get_event_id()), '_wpnonce'); ?>
 		<input type="hidden" name="event_id" value="<?php echo esc_attr($form->get_event_id()); ?>" />
 		<input type="hidden" name="step" value="<?php echo esc_attr($form->get_step()); ?>" />
 		<input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form->get_form_name()); ?>" />
