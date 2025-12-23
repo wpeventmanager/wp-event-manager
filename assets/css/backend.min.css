@@ -2863,6 +2863,11 @@ a {
 
 /*Bundles css end*/
 
+.wpem-variation-wrapper{
+	overflow: auto;
+}
+
+
 
 @media (max-width:992px) {
 	#event_manager_data ul.wpem-tabs {
