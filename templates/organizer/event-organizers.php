@@ -25,7 +25,7 @@ if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) 
                 <a href="<?php echo esc_url(get_the_permalink(get_option('event_manager_events_page_id'))); ?>" class="wpem-list-group-item" title="<?php esc_attr_e('Browse events', 'wp-event-manager'); ?>">
                     <div class="organizer-counter-upper-wrap">
                         <div class="organizer-counter-icon-wrap"><i class="wpem-icon-calendar"></i></div>
-                        <div class="organizer-counter-number-wrap"><?php echo esc_attr($wpem_countAllEvents); ?></div>
+                        <div class="organizer-counter-number-wrap"><?php echo esc_attr($wpem_count_events); ?></div>
                     </div>
                     <div class="organizer-counter-bottom-wrap"><?php esc_html_e('Available events', 'wp-event-manager'); ?></div>
                 </a>

@@ -1489,7 +1489,7 @@ class WP_Event_Manager_Shortcodes{
 		];
 
 		$organizers   = wpem_get_all_organizer_array('', $args);
-		$countAllEvents = wpem_get_event_organizer_count();
+		$wpem_count_events = wpem_get_event_organizer_count();
 		$organizers_array = [];
 
 		if (!empty($organizers)) {
@@ -1509,9 +1509,9 @@ class WP_Event_Manager_Shortcodes{
 		wpem_get_event_manager_template(
 			'event-organizers.php',
 			array(
-				'organizers'		=> $organizers,
-				'organizers_array'  => $organizers_array,
-				'countAllEvents'    => $countAllEvents,
+				'wpem_organizers'		=> $organizers,
+				'wpem_organizers_array'  => $organizers_array,
+				'wpem_count_events'    => $wpem_count_events,
 				'show_thumb'		=> $show_thumb,
 				'show_count'		=> $show_count,
 			),
@@ -1701,7 +1701,7 @@ class WP_Event_Manager_Shortcodes{
 		];
 
 		$venues   = wpem_get_all_venue_array('', $args);
-		$countAllEvents = wpem_get_event_venue_count();
+		$wpem_count_events = wpem_get_event_venue_count();
 		$venues_array = [];
 
 		if (!empty($venues)) {
@@ -1728,9 +1728,9 @@ class WP_Event_Manager_Shortcodes{
 		wpem_get_event_manager_template(
 			'event-venues.php',
 			array(
-				'venues'			=> $venues,
-				'venues_array'  	=> $venues_array,
-				'countAllEvents'	=> $countAllEvents,
+				'wpem_venues'       => $venues,
+				'wpem_venues_array' => $venues_array,
+				'wpem_count_events'	=> $wpem_count_events,
 				'show_thumb'		=> $show_thumb,
 				'show_count'		=> $show_count,
 			),
