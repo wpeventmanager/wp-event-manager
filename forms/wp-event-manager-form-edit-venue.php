@@ -30,13 +30,16 @@ class WPEM_Event_Manager_Form_Edit_Venue extends WPEM_Event_Manager_Form_Submit_
 	 * Constructor.
 	*/
 	public function __construct() {
-		// Verify nonce before processing venue_id
-		if (isset($_REQUEST['venue_id']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_venue_actions')) {
-			$this->venue_id = !empty($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST[ 'venue_id' ])) : 0;
-		} else {
-			$this->venue_id = 0;
-		}
-		
+		// IMPORTANT: call parent constructor
+		parent::__construct();
+
+		// Override form name
+		$this->form_name = 'edit-venue';
+
+		// Get venue ID
+		$this->venue_id = ! empty($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST['venue_id'])) : 0;
+
+		// Permission check
 		if (!event_manager_user_can_edit_venue($this->venue_id)) {
 			$this->venue_id = 0;
 		}
