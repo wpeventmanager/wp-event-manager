@@ -650,11 +650,24 @@ class WP_Event_Manager_Shortcodes{
 				}
 
 				// Ownership check
-				if (!event_manager_user_can_edit_event($venue_id)) {
+				if (!event_manager_user_can_edit_venue($venue_id)) {
 					throw new Exception(__('You do not have permission to perform this action.', 'wp-event-manager'));
 				}
 
 				switch ($action) {
+					case 'edit':
+						if (!event_manager_get_permalink('submit_venue_form')) {
+							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
+						}
+						wp_safe_redirect(
+							add_query_arg(
+								array(
+									'venue_id' => absint($venue_id),
+								),
+								event_manager_get_permalink('submit_venue_form')
+							)
+						);
+						exit;
 					case 'delete':
 						wp_trash_post($venue_id);
 						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' .
