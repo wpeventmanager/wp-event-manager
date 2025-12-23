@@ -144,14 +144,22 @@ class WPEM_Event_Manager_Form_Edit_Venue extends WPEM_Event_Manager_Form_Submit_
 			$this->save_venue($venue_name, $venue_description, '', $values, false);
 
 			$this->update_venue_data($values);
-			// Successful
-			switch (get_post_status($this->venue_id)) {
-				case 'publish' :
-					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . get_permalink($this->venue_id) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>' . '</div>');
-					break;
-				default :
-					echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . '</div>');
-					break;
+
+			// Clear any previous messages to avoid duplicates
+			if (!empty($this->errors)) {
+				$this->errors = array();
+			}
+			
+			// Add success message
+			// $this->add_message(__('Your changes have been saved.', 'wp-event-manager'));
+			
+			// Redirect to prevent form resubmission
+			$redirect_url = remove_query_arg('updated', $this->get_action());
+			$redirect_url = add_query_arg('updated', 'true', $redirect_url);
+			
+			if (!headers_sent()) {
+				wp_safe_redirect($redirect_url);
+				exit;
 			}
 		} catch (Exception $e) {
 			echo wp_kses_post('<div class="event-manager-error wpem-alert wpem-alert-danger">' .  esc_html($e->getMessage()) . '</div>');
