@@ -217,7 +217,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 														);
 														$wpem_actions['edit'] = array(
 															'label' => __('Edit', 'wp-event-manager'),
-															'nonce' => false
+															'nonce' => true
 														);
 														if (wpem_is_event_cancelled($event)) {
 															$wpem_actions['mark_not_cancelled'] = array(
