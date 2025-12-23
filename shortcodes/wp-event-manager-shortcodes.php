@@ -450,7 +450,7 @@ class WP_Event_Manager_Shortcodes{
 	 * Handles actions on organizer dashboard.
 	 */
 	public function organizer_dashboard_handler() {
-    	if (!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_organizer_actions')) {
+    	if (!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_organizer_actions')) {
 			$action = sanitize_title(wp_unslash($_REQUEST['action']));
 			$organizer_id = isset($_REQUEST['organizer_id']) ? absint(wp_unslash($_REQUEST['organizer_id'])) : 0;
 

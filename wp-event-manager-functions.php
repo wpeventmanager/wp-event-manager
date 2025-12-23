@@ -835,6 +835,29 @@ function event_manager_user_can_edit_event($event_id) {
 }
 
 /**
+ * True if the user can edit an organizer.
+ *
+ * @param int $organizer_id
+ * @return bool
+ */
+function event_manager_user_can_edit_organizer($organizer_id) {
+	$can_edit = true;
+	
+	if (!is_user_logged_in() || !$organizer_id) {
+		$can_edit = false;
+	} else {
+		$organizer = get_post($organizer_id);
+		if (!$organizer || $organizer->post_type !== 'event_organizer') {
+			$can_edit = false;
+		} elseif (absint($organizer->post_author) !== get_current_user_id() && !current_user_can('edit_post', $organizer_id)) {
+			$can_edit = false;
+		}
+	}
+	
+	return apply_filters('event_manager_user_can_edit_organizer', $can_edit, $organizer_id);
+}
+
+/**
  * Checks if the visitor is currently on a WPEM page, event listing, or taxonomy.
  *
  * @return bool

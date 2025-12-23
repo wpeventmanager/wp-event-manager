@@ -49,7 +49,7 @@ class WPEM_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 
 		uasort($this->steps, array($this, 'sort_by_priority'));
 		$this->organizer_id =!empty($_REQUEST['organizer_id']) ? absint( wp_unslash( $_REQUEST[ 'organizer_id' ])) : 0;
-		if(!event_manager_user_can_edit_event($this->organizer_id)){
+		if(!event_manager_user_can_edit_organizer($this->organizer_id)){
 			$this->organizer_id = 0;
 		}
 		$step_nonce_ok = false;
@@ -78,7 +78,7 @@ class WPEM_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		if($this->organizer_id) {
 			$organizer_status = get_post_status($this->organizer_id);
 			if('expired' === $organizer_status) {
-				if(!event_manager_user_can_edit_event($this->organizer_id)) {
+				if(!event_manager_user_can_edit_organizer($this->organizer_id)) {
 					$this->organizer_id = 0;
 					$this->step   = 0;
 				}
