@@ -1653,7 +1653,7 @@ class WP_Event_Manager_Shortcodes{
 		wpem_get_event_manager_template(
 			'content-single-event_organizer.php',
 			array(
-				'organizer_id'    => $organizer_id,
+				'wpem_organizer_id'    => $organizer_id,
 				'per_page'        => $per_page,
 				'show_pagination' => $show_pagination,
 				'upcomingEvents'  => $upcomingEvents,
