@@ -29,7 +29,7 @@ $wpem_taxonomies = get_object_taxonomies((object) array('post_type' => 'event_li
 				}
 
 				if (in_array($wpem_field_key, $disbled_fields)) {
-					if ($kewpem_keyy == $wpem_field['type']) {
+					if ($wpem_key == $wpem_field['type']) {
 						printf('<option value="' . esc_attr($wpem_key) . '" ' . selected($wpem_field['type'], $wpem_key, false) . '>' . esc_html($type) . '</option>');
 					}
 				}elseif(in_array($wpem_field_key, $taxonomy_fields)){
