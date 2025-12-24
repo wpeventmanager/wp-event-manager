@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 6.5
 Tested up to: 6.9
-Stable Tag: 3.3.0
+Stable Tag: 3.3.1
 Requires PHP: 7.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -380,9 +380,13 @@ All external service calls are made using WordPress standard functions (wp_remot
 
 == Changelog ==
 
+= [3.3.1] 24-12-2025 =
+
+Fixed : WP Coding standard improvements
+
 = [3.3.0] 20-11-2025 =
 
-Fixed : Nonce field is added to the events page filter. .
+Fixed : Nonce field is added to the events page filter.
 Fixed : Admin side Event location is saved properly.
 Fixed : Events are expired on time.
 Fixed : license activation message no longer appears once the licensee is activated.
