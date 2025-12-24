@@ -808,27 +808,46 @@ class WP_Event_Manager_CPT {
 		if('event_listing' !== $post_type) {
 			return;
 		}
+		
+		// Ensure the function exists
+		if(!function_exists('wpem_get_event_listing_post_statuses')) {
+			return;
+		}
+		
 		// Get all non-builtin post status and add them as <option>
 		$options = $display = '';
-		foreach (wpem_get_event_listing_post_statuses() as $status => $name) {
+		$post_statuses = wpem_get_event_listing_post_statuses();
+		
+		if(empty($post_statuses) || !is_array($post_statuses)) {
+			return;
+		}
+		$display = $post_statuses[0];
+		foreach ($post_statuses as $status => $name) {
 			$selected = selected($post->post_status, $status, false);
 			// If we one of our custom post status is selected, remember it
-			$selected and $display = $name;
+			if($selected) {
+				$display = $name;
+			}
 			// Build the options
 			$options .= "<option{$selected} value='{$status}'>{$name}</option>";
-		} 
+		}
+		echo '<input type="hidden" name="' . esc_attr($post_type) . '_status" . " value="' . esc_attr($post->post_status) . '">';
 		?>
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
-				<?php if(!empty($display)) :
-					// console.log('<?php echo wp_kses_post($display); ?>'); ?>
-					jQuery('#post-status-display').html('<?php echo wp_kses_post($display); ?>');
-				<?php endif; ?>
-				var select = jQuery('#post-status-select').find('select');
-				jQuery(select).html("<?php echo esc_js($options); ?>");
+				// Wait for the DOM to be fully loaded
+				setTimeout(function() {
+					var statusSelect = jQuery('#post-status-select').find('select');
+					var default_status = jQuery('#event_listing_status').val();
+					if(statusSelect.length > 0) {
+						if(!empty(default_status)) {
+							jQuery('#post-status-display').html('<?php echo wp_kses_post($display); ?>');
+						}
+						statusSelect.html("<?php echo esc_js($options); ?>");
+					}
+				}, 100);
 			});
 		</script>
-<?php
-	}
+	<?php }
 }
 new WP_Event_Manager_CPT();
