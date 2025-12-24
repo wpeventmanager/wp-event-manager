@@ -997,7 +997,7 @@ class WP_Event_Manager_Post_Types {
 			update_post_meta($post->ID, '_event_expiry_date', gmdate('Y-m-d', strtotime(wp_kses_post(wp_unslash($_POST[ '_event_expiry_date' ])))));
 			// No manual setting? Lets generate a date
 		} elseif(false == isset($expires)){
-			$expires = get_eventwpem_get_event_expiry_date_expiry_date($post->ID);
+			$expires = wpem_get_event_expiry_date($post->ID);
 			update_post_meta($post->ID, '_event_expiry_date', sanitize_text_field($expires));
 			// In case we are saving a post, ensure post data is updated so the field is not overridden
 			if(isset($_POST[ '_event_expiry_date' ])) {
