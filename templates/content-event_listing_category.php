@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
 get_header();
-global $wp_query; ?>
+global $wp_query;?>
 
 <div class="wpem-container">
     <div class="wpem-main wpem-event-listing-type-page">
@@ -15,7 +15,7 @@ global $wp_query; ?>
             <div class="wpem-col-12 wpem-event-listing-type-page-wrapper">
                 <div class="wpem-my-5 wpem-event-listing-type-page-title">
                     <h1 class="wpem-heading-text">
-                        <?php echo  wp_kses_post(get_the_archive_title()); ?>
+                        <?php echo wp_kses_post(get_the_archive_title()); ?>
                     </h1>
                 </div>
                 <?php
@@ -25,7 +25,7 @@ global $wp_query; ?>
                     <?php if ( have_posts() ) :
                         wpem_get_event_manager_template( 'event-listings-start.php' ,array('layout_type'=>'all')); 
                         while ( have_posts() ) : the_post();
-                            wpem_get_event_manager_template( 'content', 'event_listing' );
+                            wpem_get_event_manager_template_part( 'content', 'event_listing' );
                         endwhile; 
                         wpem_get_event_manager_template( 'event-listings-end.php' ); 
                         wpem_get_event_manager_template( 'pagination.php', array( 'max_num_pages' => $wp_query->max_num_pages ) ); ?>
