@@ -293,8 +293,7 @@ if(!function_exists('wpem_get_event_listings')) :
 		if(function_exists('pll_current_language') && !empty($args['lang'])) {
 			$query_args['lang'] = $args['lang'];
 		}
-		// Filter args
-		$query_args = apply_filters('wpem_get_event_listings_query_args', $query_args, $args);
+		// Filter argsget_event_listings_result_args', $query_args, $args);
 		do_action('wpem_before_get_event_listings', $query_args, $args);
 		// Cache results.
 		if(apply_filters('wpem_get_event_listings_cache_results', true)) {
