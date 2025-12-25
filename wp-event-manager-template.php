@@ -309,7 +309,7 @@ function wpem_display_event_type($post = null, $after = ''){
  */
 function wpem_get_event_type($post = null){
 	$post = get_post($post);
-	if($post->post_type !== 'event_listing' || !get_option('event_manager_enable_event_types')) {
+	if(!isset($post->post_type) || $post->post_type !== 'event_listing' || !get_option('event_manager_enable_event_types')) {
 		return;
 	}
 	$types = wp_get_post_terms($post->ID, 'event_listing_type');
@@ -358,7 +358,7 @@ function wpem_display_event_category($post = null, $after = ''){
  */
 function wpem_get_event_category($post = null){
 	$post = get_post($post);
-	if($post->post_type !== 'event_listing' || !get_option('event_manager_enable_categories')) {
+	if(!isset($post->post_type) && $post->post_type !== 'event_listing' || !get_option('event_manager_enable_categories')) {
 		return;
 	}
 	$categories = wp_get_post_terms($post->ID, 'event_listing_category');
