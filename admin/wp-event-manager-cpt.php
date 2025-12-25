@@ -821,7 +821,7 @@ class WP_Event_Manager_CPT {
 		if(empty($post_statuses) || !is_array($post_statuses)) {
 			return;
 		}
-		$display = $post_statuses[0];
+		$display = isset($post_statuses[0]) ? $post_statuses[0] : 'draft';
 		foreach ($post_statuses as $status => $name) {
 			$selected = selected($post->post_status, $status, false);
 			// If we one of our custom post status is selected, remember it
