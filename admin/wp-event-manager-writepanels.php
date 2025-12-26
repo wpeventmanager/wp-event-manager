@@ -150,7 +150,6 @@ class WP_Event_Manager_Writepanels {
 		$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 		$form_submit_event_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Event', 'instance'));
 		$fields                     = $form_submit_event_instance->wpem_merge_with_custom_fields('backend');
-
 		/** add _ (prefix) for all backend fields.
 		 *  Field editor will only return fields without _(prefix).
 		 */
@@ -753,12 +752,11 @@ class WP_Event_Manager_Writepanels {
 	public static function input_select($key, $field) {
 		global $post_id;
 		$default_venue = get_option( 'default_venue' );
-		if(!isset($field['value']) || empty($field['value'])) {
-			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
-			// If the meta value is still empty, use the default venue
-			if (empty($field['value']) && !empty($default_venue)) {
-				$field['value'] = $default_venue;
-			}
+		
+		$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
+		// If the meta value is still empty, use the default venue
+		if (empty($field['value']) && !empty($default_venue)) {
+			$field['value'] = $default_venue;
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
