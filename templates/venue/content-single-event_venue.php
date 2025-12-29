@@ -28,9 +28,10 @@ if (get_option('event_manager_form_fields') && is_array(get_option('event_manage
                         <span><?php echo esc_attr($wpem_venue->post_title); ?></span>
                     </div>
                     <div class="wpem-venue-description">
-                    <?php $wpem_content = apply_filters('wpem_the_content',$wpem_venue->post_content);
-                    if(!empty($wpem_content)){
-                        echo wp_kses_post( $wpem_content );}?>
+                        <?php $wpem_content = apply_filters('wpem_the_content',$wpem_venue->post_content);
+                        if ( is_string( $wpem_content ) && ! empty( $wpem_content ) ) {
+                            echo wp_kses_post( $wpem_content );
+                        }?>
                     </div>
                     <div class="wpem-venue-social-links">
                         <div class="wpem-venue-social-lists">
