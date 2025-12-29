@@ -249,10 +249,10 @@ class WP_Event_Manager_Ajax {
 	 * Load more past events
 	 */
 	public function load_more_past_events($atts) {
-		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'event_manager_ajax' ) ) {
+		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'event_manager_ajax_filters_nonce' ) ) {
 			wp_send_json_error(array('error' => 'Invalid nonce'));
 			return;
-		}
+		} 
 		
 		$paged = isset($_POST['value']) ? intval( wp_unslash($_POST['value'])) : 1;
 		$per_page = isset($_POST['per_page']) ? intval(wp_unslash($_POST['per_page'])) : esc_attr(get_option('event_manager_per_page'));

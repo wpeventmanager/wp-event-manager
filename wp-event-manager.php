@@ -341,6 +341,7 @@ class WP_Event_Manager extends WPEM_Updater {
 		wp_register_script('wp-event-manager-ajax-filters', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-ajax-filters.min.js', $ajax_filter_deps, EVENT_MANAGER_VERSION, true);
 		wp_localize_script('wp-event-manager-ajax-filters', 'event_manager_ajax_filters', array(
 			'ajax_url'                => $ajax_url,
+			'nonce'                   => wp_create_nonce('event_manager_ajax_filters_nonce'),
 			'is_rtl'                  => is_rtl() ? 1 : 0,
 			'lang'                    => apply_filters('wpem_lang', null) //defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : '', // WPML workaround until this is standardized			
 		));

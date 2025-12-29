@@ -481,6 +481,7 @@ var EventAjaxFilters = function() {
                             search_event_types: search_event_types,
                             value: currentPage,
                             per_page: per_page,
+                            _wpnonce: event_manager_ajax_filters.nonce,
                         },
                         success: function(response) {
                            jQuery('#load_more_events_loader').removeClass('wpem-loading');
