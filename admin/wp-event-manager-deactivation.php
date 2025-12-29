@@ -21,7 +21,7 @@ class WP_Event_Manager_Deactivation {
 			if ( ! $this->is_plugins_screen() ) {
 				return;
 			}
-
+		    add_action( 'admin_footer', [ $this, 'wpem_deactivate_feedback_dialog' ] );
 			add_action( 'admin_enqueue_scripts', [ $this, 'wpem_enqueue_deactivation_script' ] );
 		} );
         
@@ -34,7 +34,6 @@ class WP_Event_Manager_Deactivation {
 	 * @since 3.1.46
 	 */
 	public function wpem_enqueue_deactivation_script() {
-		add_action( 'admin_footer', [ $this, 'wpem_deactivate_feedback_dialog' ] );
 
 		wp_enqueue_script('wpem-deactivation-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/wpem-deactivation.min.js', ['jquery'], '1.0', true);
         wp_localize_script('wpem-deactivation-js', 'wpem_ajax', [
