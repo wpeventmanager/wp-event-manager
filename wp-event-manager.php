@@ -23,15 +23,10 @@ if(!defined('ABSPATH')) {
 	exit;
 }
 
-// Include WPEM Plugin Updater Class
-if ( !class_exists( 'WPEM_Updater' ) ) {
-	include( 'autoupdater/wpem-updater.php' );
-}
-
 /**
  * A class that defines the main features of the WP event manager plugin.
  */
-class WP_Event_Manager extends WPEM_Updater {
+class WP_Event_Manager {
 
 	public $forms;
 	public $post_types;
@@ -96,7 +91,6 @@ class WP_Event_Manager extends WPEM_Updater {
 		include('includes/wp-event-manager-filters.php');
 		include('includes/wp-event-manager-cache-helper.php');
 		include('includes/wp-event-manager-date-time.php');
-		include('includes/wp-event-manager-rest-api.php');
 
 		// Here is the list of all the shortcodes for WP Event Manager.
 		include('shortcodes/wp-event-manager-shortcodes.php');
@@ -143,11 +137,6 @@ class WP_Event_Manager extends WPEM_Updater {
 		// Defaults for core actions
 		add_action('event_manager_notify_new_user', 'wp_event_manager_notify_new_user', 10, 2);
 
-		if(is_admin()){
-			// Call updater for WPEM addons update
-			$this->init_updates( __FILE__ );
-		}
-		
 		// Duplicate the_content filter for Wp event Manager plugin
 		global $wp_embed;
 		add_filter('wpem_the_content', array($wp_embed, 'run_shortcode'), 8);
