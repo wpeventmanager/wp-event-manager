@@ -180,7 +180,7 @@ class WP_Event_Manager_Field_Editor {
 						ob_start();
 						$index     = -1;
 						$wpem_field_key = '';
-						$field     = array(
+						$wpem_field     = array(
 							'type'        => 'text',
 							'label'       => '',
 							'placeholder' => '',

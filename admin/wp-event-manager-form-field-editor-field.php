@@ -13,7 +13,7 @@ $wpem_taxonomies = get_object_taxonomies((object) array('post_type' => 'event_li
         <input <?php if (in_array($wpem_field_key, $disbled_fields)) echo 'disabled'; ?> type="checkbox" id="bulk-select" class="input-checkbox" name="" value="" />
     </td>
     <td>
-        <input type="text" class="input-text" name="<?php echo wp_kses_post($group_key); ?>[<?php echo esc_attr($wpem_field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($wpem_field['label'])); ?>" />
+        <input type="text" class="input-text" name="<?php echo wp_kses_post($group_key); ?>[<?php echo esc_attr($wpem_field_key); ?>][label]" value="<?php echo esc_attr(stripslashes($wpem_field['label'])); ?>" /> 
         <input type="hidden" name="_<?php echo esc_attr(stripslashes($wpem_field_key)); ?>_visibility" id="_<?php echo esc_attr(stripslashes($wpem_field_key)); ?>_visibility" value="1" />
     </td>
 	<td class="field-type">
