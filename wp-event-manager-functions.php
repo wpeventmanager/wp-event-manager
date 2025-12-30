@@ -1257,9 +1257,12 @@ add_filter('upload_dir', 'event_manager_upload_dir');
  * @return array
  */
 function event_manager_prepare_uploaded_files($file_data) {
-
 	$files_to_upload = array();
-	
+	// Bail early if file data is empty or not an array
+	if ( empty( $file_data ) || ! is_array( $file_data ) || empty( $file_data['name'] ) ) {
+		return $files_to_upload;
+	}
+
 	if(is_array($file_data['name'])) {
 		foreach($file_data['name'] as $file_data_key => $file_data_value) {
 			if($file_data['name'][$file_data_key]) {
