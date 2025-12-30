@@ -1273,7 +1273,7 @@ class WP_Event_Manager_Shortcodes{
 		if($events->have_posts()) { 
 			while ($events->have_posts()) : $events->the_post();
 				echo wp_kses_post('<div class="event_summary_shortcode align' . esc_attr($align) . '" style="width: ' . esc_attr($width) . '">');
-				wpem_get_event_manager_template('content-summary', 'event_listing');
+				wpem_get_event_manager_template_part('content-summary', 'event_listing');
 				echo wp_kses_post('</div>');
 			endwhile;
 		}else{
