@@ -144,6 +144,21 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					),
 					'visibility'  => 1,
 				),
+				'venue_qrcode' => array(
+					'label'       => __('Venue QRCode', 'wp-event-manager'),
+					'type'        => 'file',
+					'required'    => false,
+					'placeholder' => '',
+					'priority'    => 3,
+					'ajax'        => true,
+					'multiple'    => false,
+					'allowed_mime_types' => array(
+						'jpg'  => 'image/jpeg',
+						'jpeg' => 'image/jpeg',
+						'png'  => 'image/png'
+					),
+					'visibility'  => 1,
+				),
 				'venue_website' => array(
 					'label'       => __('Website', 'wp-event-manager'),
 					'type'        => 'text',
