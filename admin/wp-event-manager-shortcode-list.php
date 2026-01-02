@@ -39,7 +39,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 					$shortcode_list_nonce_action
 				)
 			) {
-				echo $plugin_slug = sanitize_text_field( wp_unslash( $_GET['plugin'] ) );
+				$plugin_slug = sanitize_text_field( wp_unslash( $_GET['plugin'] ) );
 			}
 			$shortcode_list_nonce = wp_create_nonce( $shortcode_list_nonce_action );
 			?>
