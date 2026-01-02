@@ -31,8 +31,15 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 			$shortcode_list_nonce_action = 'wpem_shortcode_list_filter';
 			$shortcode_list_nonce_name   = 'wpem_shortcode_list_nonce';
 
-			if ( isset( $_GET['plugin'], $_GET[ $shortcode_list_nonce_name ] ) && ! empty( $_GET['plugin'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_GET[ $shortcode_list_nonce_name ] ) ), $shortcode_list_nonce_action ) ) {
-				$plugin_slug = sanitize_text_field( wp_unslash( $_GET['plugin'] ) );
+			if (
+				isset( $_GET['plugin'], $_GET[ '_wpnonce' ] )
+				&& ! empty( $_GET['plugin'] )
+				&& wp_verify_nonce(
+					wp_unslash( $_GET[ '_wpnonce' ] ),
+					$shortcode_list_nonce_action
+				)
+			) {
+				echo $plugin_slug = sanitize_text_field( wp_unslash( $_GET['plugin'] ) );
 			}
 			$shortcode_list_nonce = wp_create_nonce( $shortcode_list_nonce_action );
 			?>

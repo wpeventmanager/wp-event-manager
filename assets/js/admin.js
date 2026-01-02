@@ -237,18 +237,16 @@ var Admin = function () {
                         event.preventDefault();
 
                         var plugin_slug = jQuery('#wpem_shortcode_filter').val();
-                        var nonce = jQuery('#wpem_shortcode_list_nonce').val();
+                        var nonce       = jQuery('#wpem_shortcode_list_nonce').val();
+
+                        if ( ! plugin_slug ) {
+                            return;
+                        }
+
                         var url = new URL(window.location.href);
-                        if (plugin_slug) {
-                            url.searchParams.set('plugin', plugin_slug);
-                        } else {
-                            url.searchParams.delete('plugin');
-                        }
-                        if (nonce) {
-                            url.searchParams.set('wpem_shortcode_list_nonce', nonce);
-                        }
+                        url.searchParams.set('plugin', plugin_slug);
+                        url.searchParams.set('_wpnonce', nonce);
                         window.location = url.toString();
-                        
                     },
 
                     /// <summary>
