@@ -17,6 +17,8 @@ if (!wp_script_is('wpem-dompurify', 'registered')) {
     wp_register_script('wpem-dompurify', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dom-purify/dompurify.min.js', array(), '3.0.5', true);
 }
 wp_enqueue_script('wpem-dompurify');
+wp_enqueue_script('chosen');
+wp_enqueue_style('chosen'); 
 // Ensure the term-multiselect script depends on DOMPurify at runtime
 if (wp_script_is('wp-event-manager-term-multiselect', 'registered')) {
     wp_deregister_script('wp-event-manager-term-multiselect');
@@ -28,6 +30,7 @@ wp_register_script(
     defined('EVENT_MANAGER_VERSION') ? EVENT_MANAGER_VERSION : null,
     true
 );
+wp_enqueue_script('wp-event-manager-multiselect');
 
 wp_enqueue_script('wp-event-manager-term-multiselect');
 $wpem_args = array(

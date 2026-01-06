@@ -752,8 +752,9 @@ class WP_Event_Manager_Writepanels {
 	public static function input_select($key, $field) {
 		global $post_id;
 		$default_venue = get_option( 'default_venue' );
-		
-		$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
+		if($key !== 'post_parent') {
+			$field['value'] = esc_attr(get_post_meta($post_id, stripslashes($key), true));
+		}
 		// If the meta value is still empty, use the default venue
 		if (empty($field['value']) && !empty($default_venue)) {
 			$field['value'] = $default_venue;
