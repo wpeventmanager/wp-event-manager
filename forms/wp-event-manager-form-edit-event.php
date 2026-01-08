@@ -30,12 +30,7 @@ class WPEM_Event_Manager_Form_Edit_Event extends WPEM_Event_Manager_Form_Submit_
 	 * Constructor.
 	*/
 	public function __construct() {
-		// Verify nonce before processing event_id
-		if (!empty($_REQUEST['event_id']) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_event_actions')) {
-			$this->event_id = !empty($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST[ 'event_id' ])) : 0;
-		} else {
-			$this->event_id = 0;
-		}
+		$this->event_id = !empty($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST[ 'event_id' ])) : 0;
 		
 		if  (!event_manager_user_can_edit_event($this->event_id)) {
 			$this->event_id = 0;
