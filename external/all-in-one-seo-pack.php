@@ -1,4 +1,5 @@
 <?php
+ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Adds additional compatibility with All in One SEO Pack.
  *

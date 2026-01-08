@@ -1,13 +1,12 @@
 <?php
-/*
-* Admin UI for creating custom post types(CPT) and custom taxonomies in WordPress.
-*/
 if(!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
 /**
  * Class of WP Event Manager custom post types.
+ * Admin UI for creating custom post types(CPT) and custom taxonomies in WordPress.
+ * 
  */
 class WP_Event_Manager_CPT {
 

@@ -1,13 +1,9 @@
 <?php
-/**
- * Shortcodes Page.
-*/
 if(!defined('ABSPATH')){
 	 exit;// Exit if accessed directly
 } 
 
 if(!class_exists('WP_Event_Manager_Shortcode_List')) :
-
 	/**
 	 * WP_Event_Manager_Shortcode_List Class
 	*/

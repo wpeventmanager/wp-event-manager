@@ -1,13 +1,10 @@
 <?php
+if(!defined('ABSPATH')) exit; // Exit if accessed directly
 /*
+* WP_Event_Manager_Shortcodes class.
 * This file is use to create a sortcode of wp event manager plugin. 
 * This file include sortcode of event/organizer/venue listing,event/organizer/venue submit form and event/organizer/venue dashboard etc.
 */
-
-if(!defined('ABSPATH')) exit; // Exit if accessed directly
-/**
- * WP_Event_Manager_Shortcodes class.
- */
 class WP_Event_Manager_Shortcodes{
 	private $event_dashboard_message = '';
 	private $organizer_dashboard_message = '';

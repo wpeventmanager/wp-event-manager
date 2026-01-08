@@ -1,14 +1,12 @@
 <?php
-/*
-* Main Admin functions class which responsible for the entire amdin functionality and scripts loaded and files.
-*
-*/
 if(!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
 /**
  * Class with Event admin side functionality.
+ * Main Admin functions class which responsible for the entire amdin functionality and scripts loaded and files.
+ * 
  */
 class WP_Event_Manager_Admin {
 	

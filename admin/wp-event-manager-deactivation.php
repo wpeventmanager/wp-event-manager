@@ -1,13 +1,12 @@
 <?php
-/*
-* This file use to create fields of wp event manager at admin side.
-*/
 if(!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
 /**
  *  Class with details of plugin deactivation.
+ * This file use to create fields of wp event manager at admin side.
+ * 
  */
 class WP_Event_Manager_Deactivation {
 

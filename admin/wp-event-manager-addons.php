@@ -1,11 +1,11 @@
 <?php
-/**
- * Addons page of WP Event Manager. 
-*/
 if(!defined('ABSPATH')){
 	 exit;// Exit if accessed directly
 } 
 
+/**
+ * Addons page of WP Event Manager. 
+*/
 if(!class_exists('WPEM_Event_Manager_Addons')) :
 	/**
 	 * WPEM_Event_Manager_Addons Class.

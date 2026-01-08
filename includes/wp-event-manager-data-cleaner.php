@@ -1,18 +1,12 @@
 <?php
-/**
- * Defines a class with methods for cleaning up plugin data. To be used when
- * the plugin is deleted.
- *
- * @package Core
- */
-
 if(!defined('ABSPATH')) {
 	// Exit if accessed directly.
 	exit;
 }
-
 /**
  * Methods for cleaning up all plugin data.
+ * Defines a class with methods for cleaning up plugin data. To be used when
+ * 
  *
  * @since 2.5
  */

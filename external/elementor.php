@@ -1,6 +1,6 @@
 <?php
 namespace WPEventManager;
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Class Plugin
  *

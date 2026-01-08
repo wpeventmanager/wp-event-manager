@@ -1,13 +1,12 @@
 <?php
-/*
-* This file use for settings at admin site for wp event manager plugin.
-*/
 if(!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
 /**
  * WP_Event_Manager_Settings class.
+ * This file use for settings at admin site for wp event manager plugin.
+ * 
  */
 class WP_Event_Manager_Settings{
 

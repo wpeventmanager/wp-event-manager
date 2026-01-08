@@ -1,13 +1,11 @@
 <?php
-/*
-* From admin panel, setuping post event page, event dashboard page and event listings page.
-*
-*/
 if(!defined('ABSPATH')) {
 }
 
 /**
  * WP_Event_Manager_Setup class.
+ * From admin panel, setuping post event page, event dashboard page and event listings page.
+ * 
  */
 class WP_Event_Manager_Setup {
 
