@@ -387,7 +387,7 @@ function wp_event_manager_get_registration_fields(){
 		// Verify nonce before processing registration form data
 		$registration_nonce_verified = false;
 		if ( ! empty( $_POST['_wpnonce'] ) ) {
-			$registration_nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'event_manager_registration' );
+			$registration_nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'event_manager_registration' );
 		}
 
 		$email_value = '';
@@ -2237,7 +2237,7 @@ function event_manager_get_registration_fields(){
 		// Verify nonce before processing registration form data
 		$registration_nonce_verified = false;
 		if ( ! empty( $_POST['_wpnonce'] ) ) {
-			$registration_nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'event_manager_registration' );
+			$registration_nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'event_manager_registration' );
 		}
 
 		$username_value = '';

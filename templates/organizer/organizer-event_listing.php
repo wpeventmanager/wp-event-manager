@@ -7,7 +7,7 @@ $wpem_active_tab = 'upcoming';
 if ( isset( $_REQUEST['tab'] ) ) {
 	$wpem_nonce_verified = false;
 	if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
-		$wpem_nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'organizer_event_tabs' );
+		$wpem_nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'organizer_event_tabs' );
 	}
 	if ( $wpem_nonce_verified ) {
 		$wpem_active_tab = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['tab'])));

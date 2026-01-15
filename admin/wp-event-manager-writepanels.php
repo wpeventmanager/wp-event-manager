@@ -1227,9 +1227,11 @@ class WP_Event_Manager_Writepanels {
 			// Event Start Date
 			elseif ($key === '_event_start_date') {
 				if (!empty($raw_value)) {
+					$sanitized_raw_value = sanitize_text_field($raw_value);
 					$start_time = !empty($_POST['_event_start_time']) ? WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_start_time']))) : gmdate('H:i:s');
-					$date_input = sanitize_text_field(explode(' ', $raw_value)[0] . ' ' . $start_time);
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(sanitize_text_field(wp_unslash($_POST['date_format'])) . ' H:i:s'), $date_input);
+					$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
+					$date_input = sanitize_text_field(explode(' ', $sanitized_raw_value)[0] . ' ' . $start_time);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format . ' H:i:s', $date_input);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
 					update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
 				} else {
@@ -1239,9 +1241,11 @@ class WP_Event_Manager_Writepanels {
 			// Event End Date
 			elseif ($key === '_event_end_date') {
 				if (!empty($raw_value)) {
+					$sanitized_raw_value = sanitize_text_field($raw_value);
 					$end_time = !empty($_POST['_event_end_time']) ? WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_end_time']))) : gmdate('H:i:s');
-					$date_input = sanitize_text_field(explode(' ', $raw_value)[0] . ' ' . $end_time);
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(sanitize_text_field(wp_unslash($_POST['date_format'])) . ' H:i:s'), $date_input);
+					$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
+					$date_input = sanitize_text_field(explode(' ', $sanitized_raw_value)[0] . ' ' . $end_time);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format . ' H:i:s', $date_input);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
 					update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
 				} else {

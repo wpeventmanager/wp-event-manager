@@ -31,7 +31,7 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 				isset( $_GET['plugin'], $_GET[ '_wpnonce' ] )
 				&& ! empty( $_GET['plugin'] )
 				&& wp_verify_nonce(
-					wp_unslash( $_GET[ '_wpnonce' ] ),
+					sanitize_text_field( wp_unslash( $_GET[ '_wpnonce' ] ) ),
 					$shortcode_list_nonce_action
 				)
 			) {

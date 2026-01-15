@@ -132,9 +132,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$wpem_search_order_by = '';
 
 					if ( isset( $_GET['wpem_event_dashboard_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wpem_event_dashboard_nonce'] ) ), 'wpem_event_dashboard_filter' ) ) {
-						$_GET = array_map( 'stripslashes_deep', $_GET );
-						$wpem_search_keywords = isset( $_GET['search_keywords'] ) ? wp_kses_post( wp_unslash($_GET['search_keywords']) ) : '';
-						$wpem_search_order_by = isset( $_GET['search_order_by'] ) ? sanitize_title( wp_unslash($_GET['search_order_by']) ) : '';
+						$wpem_search_keywords = isset( $_GET['search_keywords'] ) ? sanitize_text_field( wp_unslash( $_GET['search_keywords'] ) ) : '';
+						$wpem_search_order_by = isset( $_GET['search_order_by'] ) ? sanitize_title( wp_unslash( $_GET['search_order_by'] ) ) : '';
 					}
 
 					$wpem_display_block = '';

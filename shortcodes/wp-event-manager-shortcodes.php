@@ -111,7 +111,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function event_dashboard_handler(){
 
-		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_event_actions')) {
+		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_event_actions')) {
 			$action = sanitize_title( wp_unslash($_REQUEST['action']));
 			$event_id = isset($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST['event_id'])) : 0;
 			try {
@@ -205,10 +205,11 @@ class WP_Event_Manager_Shortcodes{
 
 		// Verify nonce for search order by parameter
 		$search_order_by = '';
+		$allowed_orderby = array('date', 'title', 'featured', 'rand_featured', 'event_start_date', 'event_start_date_time');
 		if ( isset( $_GET['search_order_by'] ) ) {
 			$nonce_verified = false;
 			if ( ! empty( $_GET['wpem_event_dashboard_nonce'] ) ) {
-				$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['wpem_event_dashboard_nonce'] ) ), 'wpem_event_dashboard_filter' );
+				$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wpem_event_dashboard_nonce'] ) ), 'wpem_event_dashboard_filter' );
 			}
 			if ( $nonce_verified ) {
 				$search_order_by = sanitize_text_field( wp_unslash( $_GET['search_order_by'] ) );
@@ -217,11 +218,11 @@ class WP_Event_Manager_Shortcodes{
 
 		if(isset($search_order_by) && !empty($search_order_by)) {
 			$search_order_by = explode('|', $search_order_by);
-			$orderby = $search_order_by[0];
-			$order = $search_order_by[1];
+			$orderby = isset($search_order_by[0]) && in_array($search_order_by[0], $allowed_orderby, true) ? $search_order_by[0] : 'date';
+			$order = isset($search_order_by[1]) && in_array(strtoupper($search_order_by[1]), array('ASC', 'DESC'), true) ? strtoupper($search_order_by[1]) : 'DESC';
 		} else {
 			$orderby = 'date';
-			$order = 'desc';
+			$order = 'DESC';
 		}
 
 		// ....If not show the event dashboard
@@ -303,7 +304,7 @@ class WP_Event_Manager_Shortcodes{
 		// Verify nonce before processing request parameters
 		$nonce_verified = false;
 		if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
-			$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'edit_event_form' );
+			$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'edit_event_form' );
 		}
 
 		$organizer_id = 0;
@@ -564,7 +565,7 @@ class WP_Event_Manager_Shortcodes{
 			// Verify nonce for action parameter
 			$nonce_verified = false;
 			if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
-				$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_organizer_actions' );
+				$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_organizer_actions' );
 			}
 			if ( $nonce_verified ) {
 				$action = sanitize_title( wp_unslash($_REQUEST['action']));
@@ -634,7 +635,7 @@ class WP_Event_Manager_Shortcodes{
 	 * Handles actions on venue dashboard
 	 */
 	public function venue_dashboard_handler() {
-		if ( !empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_venue_actions')	) {
+		if ( !empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_venue_actions')	) {
 			$action = sanitize_title( wp_unslash($_REQUEST['action']));
 			$venue_id = isset($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST['venue_id'])) : 0;
 
@@ -740,7 +741,7 @@ class WP_Event_Manager_Shortcodes{
 			// Verify nonce for action parameter
 			$nonce_verified = false;
 			if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
-				$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_venue_actions' );
+				$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_venue_actions' );
 			}
 			if ( $nonce_verified ) {
 				$action = sanitize_title( wp_unslash($_REQUEST['action']));
@@ -913,7 +914,7 @@ class WP_Event_Manager_Shortcodes{
 		// Verify nonce for search parameters
 		$search_nonce_verified = false;
 		if ( ! empty( $_GET['_wpnonce'] ) ) {
-			$search_nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'event_search_filter' );
+			$search_nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'event_search_filter' );
 		}
 
 		if(!empty($_GET['search_keywords']) && $search_nonce_verified) {
@@ -1586,7 +1587,7 @@ class WP_Event_Manager_Shortcodes{
 		if ( isset( $_REQUEST['pagination'] ) ) {
 			$nonce_verified = false;
 			if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
-				$nonce_verified = wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_organizer_pagination' );
+				$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_organizer_pagination' );
 			}
 			if ( $nonce_verified ) {
 				$current_page = sanitize_text_field( wp_unslash($_REQUEST['pagination']) );

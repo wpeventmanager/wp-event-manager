@@ -124,7 +124,7 @@ class WPEM_Event_Manager_Form_Edit_Venue extends WPEM_Event_Manager_Form_Submit_
 		}
 		
 		// Verify nonce before processing form data
-		if (empty($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_key(wp_unslash($_POST['_wpnonce'])), 'edit-venue_' . $this->venue_id)) {
+		if (empty($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'edit-venue_' . $this->venue_id)) {
 			wp_die(esc_html__('Security check failed. Please try again.', 'wp-event-manager'));
 		}
 		

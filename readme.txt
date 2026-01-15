@@ -376,6 +376,14 @@ This plugin connects to external services in order to provide certain features. 
    - Terms of Service: https://wp-eventmanager.com/terms-of-use/
    - Privacy Policy: https://wp-eventmanager.com/privacy-policy/
 
+4. Google reCAPTCHA (https://www.google.com/recaptcha/api.js)
+   - Purpose: Used to protect event submission forms from spam and automated abuse through reCAPTCHA verification.
+   - Data Sent: User interaction data with reCAPTCHA widget, and the user's IP address is sent to Google's reCAPTCHA service for verification.
+   - Data Received: reCAPTCHA verification response.
+   - When Used: When reCAPTCHA is enabled on event submission forms and users submit the form.
+   - Terms of Service: https://policies.google.com/terms
+   - Privacy Policy: https://policies.google.com/privacy
+
 All external service calls are made using WordPress standard functions (wp_remote_get) with appropriate timeout and security settings. No sensitive user data is transmitted except as specifically documented above.
 
 == Changelog ==

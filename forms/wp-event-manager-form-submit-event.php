@@ -59,7 +59,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 		$step_nonce_ok = false;
 		if ( ! empty( $_POST['_wpnonce'] ) ) {
-			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-event_' . $this->event_id );
+			$step_nonce_ok = wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-event_' . $this->event_id );
 		} elseif ( ! empty( $_GET['_wpnonce'] ) ) {
 			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'edit-event_' . $this->event_id );
 		}

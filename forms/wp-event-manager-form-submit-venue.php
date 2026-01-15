@@ -54,15 +54,15 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		}
 		$step_nonce_ok = false;
 		if ( ! empty( $_POST['_wpnonce'] ) ) {
-			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-venue_' . $this->venue_id );
+			$step_nonce_ok = wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-venue_' . $this->venue_id );
 		} elseif ( ! empty( $_GET['_wpnonce'] ) ) {
-			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'edit-venue_' . $this->venue_id );
+			$step_nonce_ok = wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'edit-venue_' . $this->venue_id );
 		}
 
 		// Get step/event
 		if($step_nonce_ok && isset($_POST['step'])) {
 			$step_value = sanitize_text_field(wp_unslash($_POST['step']));
-			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search(esc_attr($step_value), array_keys($this->steps));
+			$this->step = is_numeric($step_value) ? max(absint($step_value), 0) : array_search($step_value, array_keys($this->steps), true);
 		} elseif($step_nonce_ok && !empty($_GET['step'])) {
 			$step_input = isset( $_GET['step'] ) ? sanitize_text_field(wp_unslash( $_GET['step'] )) : 1;
 			if ( is_numeric( $step_input ) ) {
@@ -368,7 +368,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			$values = $this->get_posted_fields();
 			
 			// Verify nonce before processing form submission
-			if ( ! empty( $_POST ) && ( empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-venue_' . $this->venue_id ) ) ) {
+			if ( ! empty( $_POST ) && ( empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-venue_' . $this->venue_id ) ) ) {
 				return;
 			}
 

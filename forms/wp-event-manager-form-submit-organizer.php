@@ -54,16 +54,26 @@ class WPEM_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		}
 		$step_nonce_ok = false;
 		if ( ! empty( $_POST['_wpnonce'] ) ) {
-			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-organizer_' . $this->organizer_id );
+			$step_nonce_ok = wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-organizer_' . $this->organizer_id );
 		} elseif ( ! empty( $_GET['_wpnonce'] ) ) {
-			$step_nonce_ok = wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'edit-organizer_' . $this->organizer_id );
+			$step_nonce_ok = wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'edit-organizer_' . $this->organizer_id );
 		}
 
 		// Get step/event
 		if($step_nonce_ok && isset($_POST['step'])) {
-			$this->step = is_numeric($_POST['step']) ? max(absint( wp_unslash( $_POST['step'])), 0) : array_search(esc_attr(wp_unslash($_POST['step'])), array_keys($this->steps));
+			if(is_numeric($_POST['step'])) {
+				$this->step = max(absint(wp_unslash($_POST['step'])), 0);
+			} else {
+				$step_value = sanitize_text_field(wp_unslash($_POST['step']));
+				$this->step = array_search($step_value, array_keys($this->steps), true);
+			}
 		} elseif($step_nonce_ok && !empty($_GET['step'])) {
-			$this->step = is_numeric($_GET['step']) ? max(absint( wp_unslash( $_GET['step'])), 0) : array_search(esc_attr(wp_unslash($_GET['step'])), array_keys($this->steps));
+			if(is_numeric($_GET['step'])) {
+				$this->step = max(absint(wp_unslash($_GET['step'])), 0);
+			} else {
+				$step_value = sanitize_text_field(wp_unslash($_GET['step']));
+				$this->step = array_search($step_value, array_keys($this->steps), true);
+			}
 		}
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
@@ -364,7 +374,7 @@ class WPEM_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			$values = $this->get_posted_fields();
 			
 			// Verify nonce before processing form submission
-			if ( ! empty( $_POST ) && ( empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-organizer_' . $this->organizer_id ) ) ) {
+			if ( ! empty( $_POST ) && ( empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'edit-organizer_' . $this->organizer_id ) ) ) {
 				return;
 			}
 			
