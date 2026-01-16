@@ -345,30 +345,49 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 This plugin connects to external services in order to provide certain features. All external service connections are documented below with clear information about what data is sent, when, and why.
 
 1. IP-API (https://ip-api.com/)
-   - Purpose: Used to detect approximate user location based on IP address for location-based features.
-   - Data Sent: The user's IP address is sent to IP-API when location-based features are used.
-   - Data Received: Location information (city, country, timezone, etc.).
-   - When Used: When the plugin needs to determine user location for displaying location-relevant content.
-   - Terms of Service: http://ip-api.com/docs/legal
-   - Privacy Policy: http://ip-api.com/docs/legal
+   - Purpose: Used to detect approximate user location based on IP address. This information is collected during the deactivation feedback survey.
+   - Data Sent: The user's IP address is sent to IP-API to retrieve location information (city, country).
+   - Data Received: Location information (city, country).
+   - When Used: When the admin deactivates the plugin and the deactivation feedback form is submitted.
+   - Terms of Service: https://ip-api.com/docs/legal
+   - Privacy Policy: https://ip-api.com/docs/legal
 
-2. WP Event Manager API (https://wp-eventmanager.com/)
+2. Google Maps Geocoding API (https://maps.googleapis.com/maps/api/geocode/json)
+   - Purpose: Used to convert event addresses into geographic coordinates (latitude/longitude) for map display and location-based features.
+   - Data Sent: Event address information entered by event organizers (street address, city, country, etc.). An API key is required and must be configured by the site administrator.
+   - Data Received: Geocoding results including latitude, longitude, and formatted address.
+   - When Used: When an event is created, updated, or when the geocoding cache needs to be refreshed. Only when Google Maps Geocoding API key is configured in plugin settings.
+   - How to Disable: Leave the Google Maps API key field empty in WP Event Manager settings (Settings > WP Event Manager > Google Maps).
+   - User Agent: Requests include site URL and plugin version in the user-agent header for tracking purposes.
+   - Terms of Service: https://cloud.google.com/maps-platform/terms
+   - Privacy Policy: https://policies.google.com/privacy
+
+3. IP-API Geolocation (https://ip-api.com/json/) [used in deactivation feedback]
+   - Purpose: Used to retrieve location information from user IP addresses during the deactivation feedback process.
+   - Data Sent: User's IP address.
+   - Data Received: Location information (city, country).
+   - When Used: When plugin deactivation feedback is submitted.
+   - Terms of Service: https://ip-api.com/docs/legal
+   - Privacy Policy: https://ip-api.com/docs/legal
+
+4. WP Event Manager API (https://wp-eventmanager.com/)
    - Purpose: Used for multiple functions including plugin updates, addon information retrieval, licensing validation, and deactivation feedback.
    - Data Sent: Depending on the specific API call, this may include:
      - Site URL and plugin version (for update checks)
      - License key and site information (for license validation)
      - Plugin usage data and deactivation reasons (for feedback collection)
+     - Admin email, username, and location information (for deactivation feedback)
      - Plugin text-domain and addon information (for addon listings)
    - Data Received: Plugin update information, license status, addon listings, and confirmation receipts.
    - When Used: 
      - When checking for plugin updates (automatic WordPress cron)
      - When validating premium plugin licenses (user action)
      - When displaying addon listings in admin panel (admin page load)
-     - When plugin is deactivated (user action)
+     - When plugin is deactivated (user action - for feedback collection)
    - Terms of Service: https://wp-eventmanager.com/terms-of-use/
    - Privacy Policy: https://wp-eventmanager.com/privacy-policy/
 
-3. WP Event Manager Addons API (https://wp-eventmanager.com/plugins)
+5. WP Event Manager Addons API (https://wp-eventmanager.com/plugins)
    - Purpose: Used to retrieve premium addon listings and product information for the admin addons page.
    - Data Sent: HTTP request with basic headers, no personal data transmitted.
    - Data Received: HTML content containing addon listings, product information, and pricing.
@@ -376,15 +395,35 @@ This plugin connects to external services in order to provide certain features. 
    - Terms of Service: https://wp-eventmanager.com/terms-of-use/
    - Privacy Policy: https://wp-eventmanager.com/privacy-policy/
 
-4. Google reCAPTCHA (https://www.google.com/recaptcha/api.js)
+6. Google reCAPTCHA (https://www.google.com/recaptcha/api.js)
    - Purpose: Used to protect event submission forms from spam and automated abuse through reCAPTCHA verification.
    - Data Sent: User interaction data with reCAPTCHA widget, and the user's IP address is sent to Google's reCAPTCHA service for verification.
-   - Data Received: reCAPTCHA verification response.
+   - Data Received: reCAPTCHA verification response (score or pass/fail result).
    - When Used: When reCAPTCHA is enabled on event submission forms and users submit the form.
+   - How to Disable: reCAPTCHA can be disabled in plugin settings for each form type.
    - Terms of Service: https://policies.google.com/terms
    - Privacy Policy: https://policies.google.com/privacy
 
-All external service calls are made using WordPress standard functions (wp_remote_get) with appropriate timeout and security settings. No sensitive user data is transmitted except as specifically documented above.
+7. Social Media Sharing Links
+   - Purpose: The plugin provides links to share event information on social media platforms.
+   - Services Used: Facebook, LinkedIn, and Xing share buttons are provided as direct links to these platforms' native sharing interfaces.
+   - Data Sent: Event permalink and title (transmitted to social media platforms when users click share buttons).
+   - When Used: When event details page is viewed and users voluntarily click on social sharing buttons.
+   - Terms of Service and Privacy: Refer to respective social media platform policies:
+     - Facebook: https://www.facebook.com/policies/
+     - LinkedIn: https://www.linkedin.com/legal/
+     - Xing: https://corporate.xing.com/en/about-xing/legal/
+
+== Important Notes about External Services ==
+
+- All external service API calls use WordPress standard functions (wp_remote_get/wp_remote_post) with appropriate timeout and security settings.
+- No sensitive user data (passwords, payment information, personal identification numbers) is transmitted to external services.
+- Most external service usage is optional and can be disabled by:
+  - Not providing an API key for Google Maps (location features)
+  - Disabling reCAPTCHA in form settings
+  - Not using related premium add-ons
+- Users should review the privacy policies of third-party services, especially Google Services, for complete information about data handling practices.
+- Site administrators should ensure they have proper Terms of Service and Privacy Policy disclosures on their website that inform users about these external service connections.
 
 == Changelog ==
 

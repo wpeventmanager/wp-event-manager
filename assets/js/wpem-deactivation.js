@@ -58,8 +58,19 @@ var Deactivation = function () {
                 jQuery('#wpem-deactivation-popup .popup-content').html(`
                     <div class="deactivating-message">Deactivating...</div>
                 `);
-                $deactivateLink =  jQuery('#the-list').find('[data-slug="wp-event-manager"] span.deactivate a');
-                location.href = $deactivateLink.attr('href');
+                
+                // Use the standard WordPress deactivation URL pattern
+                const deactivateUrl = jQuery('a[data-slug="wp-event-manager"]').closest('tr').find('span.deactivate a').attr('href');
+                
+                if (deactivateUrl) {
+                    location.href = deactivateUrl;
+                } else {
+                    // Fallback: construct the deactivation URL manually
+                    const pluginPath = 'wp-event-manager/wp-event-manager.php';
+                    const baseUrl = window.location.href;
+                    const deactivateUrlFallback = baseUrl + (baseUrl.indexOf('?') > -1 ? '&' : '?') + 'action=deactivate&plugin=' + encodeURIComponent(pluginPath) + '&plugin_status=all&paged=1&s=&_wpnonce=' + wp_event_manager_admin_js.nonce_deactivate;
+                    location.href = deactivateUrlFallback;
+                }
             }
         }
     };

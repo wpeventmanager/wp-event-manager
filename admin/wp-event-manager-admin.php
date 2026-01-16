@@ -86,10 +86,10 @@ class WP_Event_Manager_Admin {
 		global $wp_scripts;
 		$screen = get_current_screen();
 
-		// Main frontend style
-		wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css', array(), '1.0.0');
-
 		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue', 'event_listing_page_event-manager-shortcodes')))) {
+
+			// Main backend style - only enqueue on plugin pages
+			wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css', array(), '1.0.0');
 			$jquery_version = isset($wp_scripts->registered['jquery-ui-core']->ver) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
 
 			wp_enqueue_style('jquery-ui-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.min.css', array(), $jquery_version);
@@ -113,21 +113,22 @@ class WP_Event_Manager_Admin {
 				)
 			);
 			wp_enqueue_script('wp-event-manager-admin-js');
+
+			wp_register_script('wp-event-manager-admin-settings', EVENT_MANAGER_PLUGIN_URL . '/assets/js/admin-settings.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
+			wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
+			wp_localize_script('wpem-chosen', 'wpem_chosen', array(
+					'multiple_text' => __('Select Some Options', 'wp-event-manager'),
+					'single_text' => __('Select an Option', 'wp-event-manager'),
+					'no_result_text' => __('No results match', 'wp-event-manager'),
+				));
+			wp_enqueue_script('chosen');
+			wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css', array(), '1.0.0');
+
+			wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css', array(), '1.0.0');
+			wp_register_script('wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array('jquery', 'jquery-ui-core'), EVENT_MANAGER_VERSION, true);
+			wp_enqueue_script('wp-event-manager-jquery-timepicker');
 		}
 		wp_enqueue_script('wpem-dompurify', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dom-purify/dompurify.min.js', [], '3.0.5', true);
-		wp_register_script('wp-event-manager-admin-settings', EVENT_MANAGER_PLUGIN_URL . '/assets/js/admin-settings.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
-		wp_register_script('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array('jquery'), '1.1.0', true);
-		wp_localize_script('wpem-chosen', 'wpem_chosen', array(
-				'multiple_text' => __('Select Some Options', 'wp-event-manager'),
-				'single_text' => __('Select an Option', 'wp-event-manager'),
-				'no_result_text' => __('No results match', 'wp-event-manager'),
-			));
-		wp_enqueue_script('chosen');
-		wp_enqueue_style('chosen', EVENT_MANAGER_PLUGIN_URL . '/assets/css/chosen.css', array(), '1.0.0');
-
-		wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css', array(), '1.0.0');
-		wp_register_script('wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array('jquery', 'jquery-ui-core'), EVENT_MANAGER_VERSION, true);
-		wp_enqueue_script('wp-event-manager-jquery-timepicker');
 	}
 
 	/**
