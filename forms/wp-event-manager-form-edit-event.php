@@ -129,7 +129,7 @@ class WPEM_Event_Manager_Form_Edit_Event extends WPEM_Event_Manager_Form_Submit_
 			return;
 		}
 		// Verify nonce before processing form data
-		if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'edit-event_' . absint($_POST['event_id']))) {
+		if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'edit-event_' . (isset($_POST['event_id']) ? absint($_POST['event_id']) : 0))) {
 			wp_die(esc_html__('Security check failed. Please try again.', 'wp-event-manager'));
 		}
 		

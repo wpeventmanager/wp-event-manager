@@ -312,8 +312,9 @@ abstract class WP_Event_Manager_Form {
 							$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
 							break;
 						case 'number' :
+							
 							if(is_array($_POST[ $field_name ])) {
-								$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_POST[ $field_name ])));
+								$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('wp_unslash', $_POST[ $field_name ])));
 							} else {
 								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
 							}	
@@ -353,7 +354,7 @@ abstract class WP_Event_Manager_Form {
 						default :
 							if(!empty($_POST[ $field_name ])){
 								if(is_array($_POST[ $field_name ])) {
-									$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('stripslashes', $_POST[ $field_name ])));
+									$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('wp_unslash', $_POST[ $field_name ])));
 								} else {
 									$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
 								}	
@@ -419,7 +420,7 @@ abstract class WP_Event_Manager_Form {
 	 */
 	protected function get_posted_field($key, $field) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		return isset($_POST[ $key ]) ? $this->sanitize_posted_field($_POST[ $key ]) : '';
+		return isset($_POST[ $key ]) ? $this->sanitize_posted_field(wp_unslash($_POST[ $key ])) : '';
 	}
 	
 	/**
@@ -430,7 +431,7 @@ abstract class WP_Event_Manager_Form {
 	 */
 	protected function get_posted_multiselect_field($key, $field) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		return isset($_POST[ $key ]) ? array_map('sanitize_text_field', $_POST[ $key ]) : array();
+		return isset($_POST[ $key ]) ? array_map('sanitize_text_field', array_map('wp_unslash', $_POST[ $key ])) : array();
 	}
 
 	/**
