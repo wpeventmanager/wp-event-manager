@@ -254,9 +254,9 @@ class WP_Event_Manager_Field_Editor {
 	private function form_editor_save()	{
 		if(isset($_POST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'save-wp-event-manager-form-field-editor')) {
 			
-			$event_field     = !empty($_POST['event']) ? $this->sanitize_array( wp_unslash( $_POST['event'] ) ) : array();
-			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array( wp_unslash( $_POST['organizer'] ) ) : array();
-			$event_venue     = !empty($_POST['venue']) ? $this->sanitize_array( wp_unslash( $_POST['venue'] ) ) : array();
+			$event_field     = isset($_POST['event']) && !empty(wp_unslash($_POST['event'])) ? $this->sanitize_array( wp_unslash( $_POST['event'] ) ) : array();
+			$event_organizer = isset($_POST['organizer']) && !empty(wp_unslash($_POST['organizer'])) ? $this->sanitize_array( wp_unslash( $_POST['organizer'] ) ) : array();
+			$event_venue     = isset($_POST['venue']) && !empty(wp_unslash($_POST['venue'])) ? $this->sanitize_array( wp_unslash( $_POST['venue'] ) ) : array();
 			$index           = 0;
 			$hasSave = 1;
 			if(!empty($event_field)) {

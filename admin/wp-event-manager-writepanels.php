@@ -1164,6 +1164,7 @@ class WP_Event_Manager_Writepanels {
 
 		foreach ($this->event_listing_fields() as $key => $field) {
 
+			$key = sanitize_key($key);
 			$raw_value = isset($_POST[$key]) ? wp_unslash($_POST[$key]) : null;
 
 			// Event Expiry Date
@@ -1503,7 +1504,7 @@ class WP_Event_Manager_Writepanels {
 		foreach ($this->organizer_listing_fields() as $key => $field) {
 			$key = isset($key) ? sanitize_text_field(wp_unslash($key)) : '';
 			if('_organizer_author' === $key) {
-				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint(sanitize_text_field($_POST[$key])) : 0), array('ID' => $post_id));
+				$wpdb->update($wpdb->posts, array('post_author' => isset($_POST[$key]) && $_POST[$key] > 0 ? absint(sanitize_text_field(wp_unslash($_POST[$key]))) : 0), array('ID' => $post_id));
 			}
 			// Everything else
 			else {
