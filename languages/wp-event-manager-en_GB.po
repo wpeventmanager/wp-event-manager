@@ -147,12 +147,10 @@ msgid "%s expired"
 msgstr "Expired"
 
 #: admin/wp-event-manager-cpt.php:312
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:158
 msgid "Select category"
 msgstr "Select category"
 
 #: admin/wp-event-manager-cpt.php:346
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:216
 #, fuzzy
 msgid "Select Event Type"
 msgstr "Select event"
@@ -1870,83 +1868,70 @@ msgid "Venue Name is a required field."
 msgstr "Nome é um campo obrigatório"
 
 #: core/wp-event-manager-filters.php:23 external/elementor.php:132
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:270
 #: wp-event-manager.php:324
 msgid "Today"
 msgstr "امروز"
 
 #: core/wp-event-manager-filters.php:25 external/elementor.php:133
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:271
 #: wp-event-manager.php:325
 msgid "Tomorrow"
 msgstr "فردا"
 
 #: core/wp-event-manager-filters.php:27 external/elementor.php:134
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:272
 #: wp-event-manager.php:326
 msgid "This Week"
 msgstr "本周"
 
 #: core/wp-event-manager-filters.php:29
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:273
 #, fuzzy
 msgid "This Weekend"
 msgstr "This Weekend"
 
 #: core/wp-event-manager-filters.php:31 external/elementor.php:136
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:274
 #: wp-event-manager.php:328
 msgid "This Month"
 msgstr "hendan mðr-"
 
 #: core/wp-event-manager-filters.php:33 external/elementor.php:138
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:275
 #: wp-event-manager.php:330
 msgid "This Year"
 msgstr "هذا العام"
 
 #: core/wp-event-manager-filters.php:35 external/elementor.php:135
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:276
 #: wp-event-manager.php:327
 #, fuzzy
 msgid "Next Week"
 msgstr "Semaine prochaine"
 
 #: core/wp-event-manager-filters.php:37
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:277
 #, fuzzy
 msgid "Next Weekend"
 msgstr "Next Weekend"
 
 #: core/wp-event-manager-filters.php:39 external/elementor.php:137
 #: external/elementor.php:139
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:278
 #: wp-event-manager.php:329
 msgid "Next Month"
 msgstr "ماه بعد"
 
 #: core/wp-event-manager-filters.php:41
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:279
 #: wp-event-manager.php:331
 #, fuzzy
 msgid "Next Year"
 msgstr "Next Year"
 
 #: core/wp-event-manager-filters.php:73
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:300
 #, fuzzy
 msgid "Any Ticket Price"
 msgstr "Tur fiyatı"
 
 #: core/wp-event-manager-filters.php:75
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:315
 #: wp-event-manager-template.php:521
 msgid "Paid"
 msgstr "Pagado"
 
 #: core/wp-event-manager-filters.php:77
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:316
 #: wp-event-manager-template.php:523
 msgid "Free"
@@ -2863,47 +2848,38 @@ msgstr "Стереть"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:168
 #, fuzzy
 msgid "No category found"
 msgstr "Aucune catégorie"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:192
 #, fuzzy
 msgid "The Category is disabled"
 msgstr "The Category is disabled"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:195
 #, fuzzy
 msgid "The Category is not available"
 msgstr "The Category is not available"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:226
 #, fuzzy
 msgid "Event-type not found"
 msgstr "Event-type not found"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:250
 #, fuzzy
 msgid "Event-Type is disabled"
 msgstr "Event-Type is disabled"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 #, fuzzy
 msgid "Event-Type is not available"
 msgstr "Event-Type is not available"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
 #: templates/filters/event-filters-2.php:62
 msgid "Select Date"
 msgstr "选择日期"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:269
 #, fuzzy
 msgid "Any Date"
 msgstr "Hvilken som helst dato"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:298
 #, fuzzy
 msgid "Select Ticket Type"
 msgstr "Select Ticket Type"

@@ -121,12 +121,10 @@ msgid "Dismiss"
 msgstr "Skrýt"
 
 #: admin/wp-event-manager-cpt.php:215
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:158
 msgid "Select category"
 msgstr "Vybrat kategorii"
 
 #: admin/wp-event-manager-cpt.php:246
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:216
 msgid "Select Event Type"
 msgstr "Vyberte typ události"
 
@@ -2340,110 +2338,88 @@ msgid "Cancel"
 msgstr "Zrušit"
 
 #: external/elementor.php:127
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:270
 #: includes/wp-event-manager-filters.php:18 wp-event-manager.php:354
 msgid "Today"
 msgstr "Dnes"
 
 #: external/elementor.php:128
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:271
 #: includes/wp-event-manager-filters.php:19 wp-event-manager.php:355
 msgid "Tomorrow"
 msgstr "Zítra"
 
 #: external/elementor.php:129
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:272
 #: includes/wp-event-manager-filters.php:20 wp-event-manager.php:356
 msgid "This Week"
 msgstr "Tento týden"
 
 #: external/elementor.php:130
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:276
 #: includes/wp-event-manager-filters.php:24 wp-event-manager.php:357
 msgid "Next Week"
 msgstr "Následující týden"
 
 #: external/elementor.php:131
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:274
 #: includes/wp-event-manager-filters.php:22 wp-event-manager.php:358
 msgid "This Month"
 msgstr "Tento měsíc"
 
 #: external/elementor.php:132 external/elementor.php:134
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:278
 #: includes/wp-event-manager-filters.php:26 wp-event-manager.php:359
 msgid "Next Month"
 msgstr "Následující měsíc"
 
 #: external/elementor.php:133
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:275
 #: includes/wp-event-manager-filters.php:23 wp-event-manager.php:360
 msgid "This Year"
 msgstr "Tento rok"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:168
 msgid "No category found"
 msgstr "Nebyla nalezena žádná kategorie"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:192
 msgid "The Category is disabled"
 msgstr "Kategorie je zakázána"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:195
 msgid "The Category is not available"
 msgstr "Kategorie není k dispozici"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:226
 msgid "Event-type not found"
 msgstr "Typ události nebyl nalezen"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:250
 msgid "Event-Type is disabled"
 msgstr "Typ události je zakázán"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 msgid "Event-Type is not available"
 msgstr "Typ události není k dispozici"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
 msgid "Select Date"
 msgstr "Vyberte datum"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:269
 msgid "Any Date"
 msgstr "Libovolné datum"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:273
 #: includes/wp-event-manager-filters.php:21
 msgid "This Weekend"
 msgstr "Tento víkend"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:277
 #: includes/wp-event-manager-filters.php:25
 msgid "Next Weekend"
 msgstr "Příští víkend"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:279
 #: includes/wp-event-manager-filters.php:27 wp-event-manager.php:361
 msgid "Next Year"
 msgstr "Další rok"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:298
 msgid "Select Ticket Type"
 msgstr "Vyberte typ vstupenky"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:300
 #: includes/wp-event-manager-filters.php:48
 msgid "Any Ticket Price"
 msgstr "Jakákoli cena vstupenky"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:269
 #: includes/wp-event-manager-filters.php:49 wp-event-manager-template.php:476
 msgid "Paid"
 msgstr "Zaplaceno"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:270
 #: includes/wp-event-manager-filters.php:50 wp-event-manager-template.php:478
 msgid "Free"

@@ -158,12 +158,10 @@ msgid "%s expired"
 msgstr "%s verlopen"
 
 #: admin/wp-event-manager-cpt.php:317
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:158
 msgid "Select category"
 msgstr "Selecteer categorie"
 
 #: admin/wp-event-manager-cpt.php:352
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:216
 msgid "Select Event Type"
 msgstr "Eventtype selecteren"
 
@@ -1816,78 +1814,65 @@ msgid "Venue Name is a required field."
 msgstr "Locatienaam is een verplicht veld."
 
 #: core/wp-event-manager-filters.php:23 external/elementor.php:132
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:270
 #: wp-event-manager.php:324
 msgid "Today"
 msgstr "Vandaag"
 
 #: core/wp-event-manager-filters.php:25 external/elementor.php:133
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:271
 #: wp-event-manager.php:325
 msgid "Tomorrow"
 msgstr "Morgen"
 
 #: core/wp-event-manager-filters.php:27 external/elementor.php:134
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:272
 #: wp-event-manager.php:326
 msgid "This Week"
 msgstr "Deze week"
 
 #: core/wp-event-manager-filters.php:29
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:273
 msgid "This Weekend"
 msgstr "Dit weekend"
 
 #: core/wp-event-manager-filters.php:31 external/elementor.php:136
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:274
 #: wp-event-manager.php:328
 msgid "This Month"
 msgstr "Deze maand"
 
 #: core/wp-event-manager-filters.php:33 external/elementor.php:138
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:275
 #: wp-event-manager.php:330
 msgid "This Year"
 msgstr "Dit Jaar"
 
 #: core/wp-event-manager-filters.php:35 external/elementor.php:135
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:276
 #: wp-event-manager.php:327
 msgid "Next Week"
 msgstr "Volgende week"
 
 #: core/wp-event-manager-filters.php:37
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:277
 msgid "Next Weekend"
 msgstr "Volgend weekend"
 
 #: core/wp-event-manager-filters.php:39 external/elementor.php:137
 #: external/elementor.php:139
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:278
 #: wp-event-manager.php:329
 msgid "Next Month"
 msgstr "Volgende maand"
 
 #: core/wp-event-manager-filters.php:41
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:279
 #: wp-event-manager.php:331
 msgid "Next Year"
 msgstr "Volgend jaar"
 
 #: core/wp-event-manager-filters.php:73
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:300
 msgid "Any Ticket Price"
 msgstr "Elke ticketprijs"
 
 #: core/wp-event-manager-filters.php:75
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:315
 #: wp-event-manager-template.php:559
 msgid "Paid"
 msgstr "Betaald"
 
 #: core/wp-event-manager-filters.php:77
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:316
 #: wp-event-manager-template.php:561
 msgid "Free"
@@ -2831,42 +2816,33 @@ msgstr "Wissen"
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:168
 msgid "No category found"
 msgstr "Geen categorie gevonden"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:192
 #, fuzzy
 msgid "The Category is disabled"
 msgstr "De categorie is uitgeschakeld"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:195
 #, fuzzy
 msgid "The Category is not available"
 msgstr "De categorie is niet beschikbaar"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:226
 msgid "Event-type not found"
 msgstr "Eventtype niet gevonden"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:250
 msgid "Event-Type is disabled"
 msgstr "Eventtype is uitgeschakeld"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 msgid "Event-Type is not available"
 msgstr "Eventtype is niet beschikbaar"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
 #: templates/filters/event-filters-2.php:61
 msgid "Select Date"
 msgstr "Selecteer datum"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:269
 msgid "Any Date"
 msgstr "Iedere datum"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:298
 #, fuzzy
 msgid "Select Ticket Type"
 msgstr "Selecteer tickettype"

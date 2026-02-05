@@ -123,12 +123,10 @@ msgid "Dismiss"
 msgstr "Κλείσιμο"
 
 #: admin/wp-event-manager-cpt.php:276
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:158
 msgid "Select category"
 msgstr "Επιλέξτε κατηγορία"
 
 #: admin/wp-event-manager-cpt.php:311
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:216
 
 msgid "Select Event Type"
 msgstr "Επιλέξτε Τύπο συμβάντος"
@@ -1806,81 +1804,68 @@ msgid "Venue Name is a required field."
 msgstr "Το Όνομα Χώρου είναι υποχρεωτικό πεδίο."
 
 #: core/wp-event-manager-filters.php:23 external/elementor.php:131
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:270
 #: wp-event-manager.php:343
 msgid "Today"
 msgstr "Σήμερα"
 
 #: core/wp-event-manager-filters.php:25 external/elementor.php:132
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:271
 #: wp-event-manager.php:344
 msgid "Tomorrow"
 msgstr "Αύριο"
 
 #: core/wp-event-manager-filters.php:27 external/elementor.php:133
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:272
 #: wp-event-manager.php:345
 msgid "This Week"
 msgstr "Αυτή την εβδομάδα"
 
 #: core/wp-event-manager-filters.php:29
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:273
 
 msgid "This Weekend"
 msgstr "Αυτό το Σαββατοκύριακο"
 
 #: core/wp-event-manager-filters.php:31 external/elementor.php:135
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:274
 #: wp-event-manager.php:347
 msgid "This Month"
 msgstr "Αυτόν το Μήνα"
 
 #: core/wp-event-manager-filters.php:33 external/elementor.php:137
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:275
 #: wp-event-manager.php:349
 msgid "This Year"
 msgstr "Αυτή την Χρονιά"
 
 #: core/wp-event-manager-filters.php:35 external/elementor.php:134
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:276
 #: wp-event-manager.php:346
 msgid "Next Week"
 msgstr "Επόμενη Εβδομάδα"
 
 #: core/wp-event-manager-filters.php:37
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:277
 
 msgid "Next Weekend"
 msgstr "Επόμενο Σαββατοκύριακο"
 
 #: core/wp-event-manager-filters.php:39 external/elementor.php:136
 #: external/elementor.php:138
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:278
 #: wp-event-manager.php:348
 msgid "Next Month"
 msgstr "Επόμενος μήνας"
 
 #: core/wp-event-manager-filters.php:41
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:279
 #: wp-event-manager.php:350
 msgid "Next Year"
 msgstr "Επόμενο έτος"
 
 #: core/wp-event-manager-filters.php:73
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:300
 
 msgid "Any Ticket Price"
 msgstr "Οποιαδήποτε τιμή εισιτηρίου"
 
 #: core/wp-event-manager-filters.php:75
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:284
 #: wp-event-manager-template.php:540
 msgid "Paid"
 msgstr "Πληρωμένο"
 
 #: core/wp-event-manager-filters.php:77
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:285
 #: wp-event-manager-template.php:542
 msgid "Free"
@@ -2764,45 +2749,36 @@ msgstr "Καθαρισμός"
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:168
 msgid "No category found"
 msgstr "Δεν βρέθηκε κατηγορία"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:192
 
 msgid "The Category is disabled"
 msgstr "Η κατηγορία είναι απενεργοποιημένη"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:195
 
 msgid "The Category is not available"
 msgstr "Η κατηγορία δεν είναι διαθέσιμη"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:226
 
 msgid "Event-type not found"
 msgstr "Ο τύπος συμβάντος δεν βρέθηκε"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:250
 
 msgid "Event-Type is disabled"
 msgstr "Ο τύπος συμβάντος είναι απενεργοποιημένος"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 
 msgid "Event-Type is not available"
 msgstr "Ο τύπος εκδήλωσης δεν είναι διαθέσιμος"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
 msgid "Select Date"
 msgstr "Επιλέξτε ημερομηνία"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:269
 
 msgid "Any Date"
 msgstr "Οποιαδήποτε ημερομηνία"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:298
 
 msgid "Select Ticket Type"
 msgstr "Επιλέξτε τύπο εισιτηρίου"
