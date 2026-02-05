@@ -573,8 +573,19 @@ class WP_Event_Manager_Ajax {
 			$args['event_online'] = ($_REQUEST['event_online'] === 'false') ? sanitize_text_field(wp_unslash($_REQUEST['event_online'])) : true;
 		}
 
+		// Sanitize $_REQUEST before passing to filter callback
+		$sanitized_request = array();
+		foreach ($_REQUEST as $key => $value) {
+			$safe_key = sanitize_key($key);
+			if (is_array($value)) {
+				$sanitized_request[$safe_key] = array_filter(array_map('sanitize_text_field', array_map('wp_unslash', (array) $value)));
+			} else {
+				$sanitized_request[$safe_key] = sanitize_text_field(wp_unslash($value));
+			}
+		}
+
 		ob_start();
-		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, $_REQUEST));
+		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, $sanitized_request));
 		$result['found_events'] = false;
 		$fully_registered_events = 0;
 		if($events->have_posts()) : $result['found_events'] = true;
@@ -728,7 +739,24 @@ class WP_Event_Manager_Ajax {
 			foreach ($_FILES as $file_key => $file) {
 				// Sanitize file key
 				$sanitized_file_key = sanitize_key($file_key);
-				$files_to_upload = event_manager_prepare_uploaded_files($file);
+				
+				// Sanitize $_FILES data before processing
+				$sanitized_file = array();
+				if (is_array($file['name'])) {
+					$sanitized_file['name'] = array_map('sanitize_file_name', $file['name']);
+					$sanitized_file['type'] = array_map('sanitize_text_field', $file['type'] ?? array());
+					$sanitized_file['tmp_name'] = array_map('sanitize_text_field', $file['tmp_name'] ?? array());
+					$sanitized_file['error'] = array_map('absint', $file['error'] ?? array());
+					$sanitized_file['size'] = array_map('absint', $file['size'] ?? array());
+				} else {
+					$sanitized_file['name'] = sanitize_file_name($file['name'] ?? '');
+					$sanitized_file['type'] = sanitize_text_field($file['type'] ?? '');
+					$sanitized_file['tmp_name'] = sanitize_text_field($file['tmp_name'] ?? '');
+					$sanitized_file['error'] = absint($file['error'] ?? 0);
+					$sanitized_file['size'] = absint($file['size'] ?? 0);
+				}
+				
+				$files_to_upload = event_manager_prepare_uploaded_files($sanitized_file);
 				foreach ($files_to_upload as $file_to_upload) {
 					$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key));
 					if(is_wp_error($uploaded_file)) {

@@ -1306,7 +1306,8 @@ class WP_Event_Manager_Writepanels {
 						if (!empty($raw_value)) {
 						$sanitized_date_value = sanitize_text_field($raw_value);
 						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $sanitized_date_value);
-						update_post_meta($post_id, sanitize_key($key), $date_dbformatted ?: $sanitized_date_value);
+						// Always use sanitized value - never fallback to unsanitized raw_value
+						update_post_meta($post_id, sanitize_key($key), !empty($date_dbformatted) ? $date_dbformatted : $sanitized_date_value);
 					}
 					break;
 
@@ -1314,7 +1315,8 @@ class WP_Event_Manager_Writepanels {
 					if (!empty($raw_value)) {
 						$sanitized_time_value = sanitize_text_field($raw_value);
 						$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time($sanitized_time_value);
-						update_post_meta($post_id, sanitize_key($key), $time_dbformatted ?: $sanitized_time_value);
+						// Always use sanitized value - never fallback to unsanitized raw_value
+						update_post_meta($post_id, sanitize_key($key), !empty($time_dbformatted) ? $time_dbformatted : $sanitized_time_value);
 					}
 					break;
 
@@ -1322,18 +1324,26 @@ class WP_Event_Manager_Writepanels {
 					update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
 					break;
 
-					default:
-						$add_data = apply_filters('wpem_save_event_data', true, $key, $raw_value);
-						if ($add_data) {
-							if (is_array($raw_value)) {
-								update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $raw_value)));
-							} elseif (!is_null($raw_value)) {
-								$saved_value = sanitize_text_field($raw_value);
-								update_post_meta($post_id, sanitize_key($key), $saved_value);
-							}
-							if ($key == '_event_ticket_options' && sanitize_text_field($raw_value) == 'free') $ticket_type = 'free';
-							if ($key == '_event_online') $event_online = sanitize_text_field($raw_value);
-						}
+				default:
+						// Sanitize the raw value based on type before passing to filter
+				if (is_array($raw_value)) {
+					$sanitized_raw_value = array_filter(array_map('sanitize_text_field', $raw_value));
+				} elseif (!is_null($raw_value)) {
+					$sanitized_raw_value = sanitize_text_field($raw_value);
+				} else {
+					$sanitized_raw_value = $raw_value;
+				}
+				
+				$add_data = apply_filters('wpem_save_event_data', true, $key, $sanitized_raw_value);
+				if ($add_data) {
+					if (is_array($sanitized_raw_value)) {
+						update_post_meta($post_id, sanitize_key($key), $sanitized_raw_value);
+					} elseif (!is_null($sanitized_raw_value)) {
+						update_post_meta($post_id, sanitize_key($key), $sanitized_raw_value);
+					}
+					if ($key == '_event_ticket_options' && $sanitized_raw_value == 'free') $ticket_type = 'free';
+					if ($key == '_event_online') $event_online = $sanitized_raw_value;
+				}
 						break;
 				}
 			}
