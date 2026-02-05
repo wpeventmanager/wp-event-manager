@@ -1162,193 +1162,406 @@ class WP_Event_Manager_Writepanels {
 		$ticket_type = '';
 		$event_online = '';
 
-		foreach ($this->event_listing_fields() as $key => $field) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified earlier
+		$post_data = wp_unslash( $_POST );
 
-			$key = sanitize_key($key);
-			$raw_value = isset($_POST[$key]) ? wp_unslash($_POST[$key]) : null;
+		foreach ( $this->event_listing_fields() as $key => $field ) {
+
+			$key       = sanitize_key( $key );
+			$raw_value = $post_data[ $key ] ?? null;
 
 			// Event Expiry Date
-			if ($key === '_event_expiry_date') {
-				if (!empty($raw_value)) {
-					$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
-					$date_value = sanitize_text_field($raw_value);
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format, $date_value);
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_value;
-					update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
+			if ( '_event_expiry_date' === $key ) {
+
+				if ( ! empty( $raw_value ) ) {
+					$date_format = sanitize_text_field( $post_data['date_format'] ?? '' );
+					$date_value  = sanitize_text_field( $raw_value );
+
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(
+						$date_format,
+						$date_value
+					);
+
+					update_post_meta(
+						$post_id,
+						$key,
+						! empty( $date_dbformatted ) ? $date_dbformatted : $date_value
+					);
 				} else {
-					update_post_meta($post_id, sanitize_key($key), '');
+					update_post_meta( $post_id, $key, '' );
 				}
+
+				continue;
 			}
+
 			// Event Location
-			elseif ($key === '_event_location') {
-				$location_value = sanitize_text_field($raw_value);
-				if (update_post_meta($post_id, $key, $location_value)) {
-					// location updated by hooked methods
-				} elseif (apply_filters('event_manager_geolocation_enabled', true) && !WP_Event_Manager_Geocode::has_location_data($post_id)) {
-					WP_Event_Manager_Geocode::generate_location_data($post_id, $location_value);
+			if ( '_event_location' === $key ) {
+
+				$location_value = sanitize_text_field( (string) $raw_value );
+
+				if ( update_post_meta( $post_id, $key, $location_value ) ) {
+					// updated
+				} elseif (
+					apply_filters( 'event_manager_geolocation_enabled', true ) &&
+					! WP_Event_Manager_Geocode::has_location_data( $post_id )
+				) {
+					WP_Event_Manager_Geocode::generate_location_data(
+						$post_id,
+						$location_value
+					);
 				}
+
+				continue;
 			}
+
 			// Event Author
-			elseif ($key === '_event_author') {
-				$author_id = $raw_value > 0 ? absint($raw_value) : 0;
-				$wpdb->update($wpdb->posts, ['post_author' => $author_id], ['ID' => $post_id]);
+			if ( '_event_author' === $key ) {
+
+				$author_id = absint( $raw_value );
+
+				$wpdb->update(
+					$wpdb->posts,
+					array( 'post_author' => $author_id ),
+					array( 'ID' => $post_id )
+				);
+
+				continue;
 			}
+
 			// Event Banner
-			elseif ($key === '_event_banner') {
-				if (!empty($raw_value)) {
-					$meta_key = sanitize_key($key);
-					if (is_array($raw_value)) {
-						$sanitized_values = array_filter(array_map('sanitize_text_field', $raw_value));
-						$thumbnail_image = $sanitized_values[0] ?? '';
-						update_post_meta($post_id, $meta_key, $sanitized_values);
-					} else {
-						$thumbnail_image = sanitize_text_field($raw_value);
-						update_post_meta($post_id, $meta_key, $thumbnail_image);
-					}
+			if ( '_event_banner' === $key && ! empty( $raw_value ) ) {
 
-					$image = get_the_post_thumbnail_url($post_id);
-					if (empty($image) && !empty($thumbnail_image)) {
-						$wp_upload_dir = wp_get_upload_dir();
-						$baseurl = trailingslashit($wp_upload_dir['baseurl']);
-						$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
-						$attachments = get_posts([
-							'post_type' => 'attachment',
+				if ( is_array( $raw_value ) ) {
+					$sanitized_values = array_filter(
+						array_map( 'sanitize_text_field', $raw_value )
+					);
+					$thumbnail_image = $sanitized_values[0] ?? '';
+					update_post_meta( $post_id, $key, $sanitized_values );
+				} else {
+					$thumbnail_image = sanitize_text_field( $raw_value );
+					update_post_meta( $post_id, $key, $thumbnail_image );
+				}
+
+				if ( empty( get_the_post_thumbnail_url( $post_id ) ) && ! empty( $thumbnail_image ) ) {
+
+					$wp_upload_dir     = wp_get_upload_dir();
+					$wp_attached_file  = str_replace(
+						trailingslashit( $wp_upload_dir['baseurl'] ),
+						'',
+						$thumbnail_image
+					);
+
+					$attachments = get_posts(
+						array(
+							'post_type'      => 'attachment',
 							'posts_per_page' => 1,
-							// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for attachment lookup
-							'meta_key' => '_wp_attached_file',
-							// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup
-							'meta_value' => $wp_attached_file
-						]);
-						if (!empty($attachments)) {
-							set_post_thumbnail($post_id, $attachments[0]->ID);
-						}
+							'meta_key'       => '_wp_attached_file',
+							'meta_value'     => $wp_attached_file,
+						)
+					);
+
+					if ( ! empty( $attachments ) ) {
+						set_post_thumbnail( $post_id, $attachments[0]->ID );
 					}
 				}
+
+				continue;
 			}
-			// Event Start Date
-			elseif ($key === '_event_start_date') {
-				if (!empty($raw_value)) {
-					$sanitized_raw_value = sanitize_text_field($raw_value);
-					$start_time = !empty($_POST['_event_start_time']) ? WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_start_time']))) : gmdate('H:i:s');
-					$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
-					$date_input = sanitize_text_field(explode(' ', $sanitized_raw_value)[0] . ' ' . $start_time);
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format . ' H:i:s', $date_input);
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
-					update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
+
+			// Start / End Dates
+			if ( in_array( $key, array( '_event_start_date', '_event_end_date' ), true ) ) {
+
+				if ( ! empty( $raw_value ) ) {
+
+					$date_format = sanitize_text_field( $post_data['date_format'] ?? '' );
+
+					$time_key  = '_event_start_date' === $key ? '_event_start_time' : '_event_end_time';
+					$time_raw = $post_data[ $time_key ] ?? '';
+					$time     = $time_raw
+						? WP_Event_Manager_Date_Time::get_db_formatted_time(
+							sanitize_text_field( $time_raw )
+						)
+						: gmdate( 'H:i:s' );
+
+					$date_input = sanitize_text_field(
+						explode( ' ', $raw_value )[0] . ' ' . $time
+					);
+
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(
+						$date_format . ' H:i:s',
+						$date_input
+					);
+
+					update_post_meta(
+						$post_id,
+						$key,
+						! empty( $date_dbformatted ) ? $date_dbformatted : $date_input
+					);
 				} else {
-					update_post_meta($post_id, sanitize_key($key), '');
+					update_post_meta( $post_id, $key, '' );
 				}
+
+				continue;
 			}
-			// Event End Date
-			elseif ($key === '_event_end_date') {
-				if (!empty($raw_value)) {
-					$sanitized_raw_value = sanitize_text_field($raw_value);
-					$end_time = !empty($_POST['_event_end_time']) ? WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_end_time']))) : gmdate('H:i:s');
-					$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
-					$date_input = sanitize_text_field(explode(' ', $sanitized_raw_value)[0] . ' ' . $end_time);
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format . ' H:i:s', $date_input);
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
-					update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
-				} else {
-					update_post_meta($post_id, sanitize_key($key), '');
-				}
-			}
-			// Event Registration Deadline
-			elseif ($key === '_event_registration_deadline') {
-				if (!empty($raw_value)) {
-					$post_value = sanitize_text_field($raw_value);
-					$date_input = sanitize_text_field(explode(' ', $post_value)[0]);
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(sanitize_text_field(wp_unslash($_POST['date_format']))), $date_input);
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
-					update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
-				} else {
-					update_post_meta($post_id, sanitize_key($key), '');
-				}
-			}
+
 			// Organizer IDs
-			elseif ($key === '_event_organizer_ids') {
-				if (!empty($raw_value)) {
-					$value = is_array($raw_value) ? array_filter(array_map('sanitize_text_field', $raw_value)) : sanitize_text_field($raw_value);
-					update_post_meta($post_id, sanitize_key($key), $value);
-				} else {
-					update_post_meta($post_id, sanitize_key($key), '');
-				}
+			if ( '_event_organizer_ids' === $key ) {
+
+				$value = is_array( $raw_value )
+					? array_filter( array_map( 'sanitize_text_field', $raw_value ) )
+					: sanitize_text_field( (string) $raw_value );
+
+				update_post_meta( $post_id, $key, $value );
+				continue;
 			}
+
 			// Venue IDs
-			elseif ($key === '_event_venue_ids') {
-				if (!empty($raw_value) && is_array($raw_value)) {
-					update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $raw_value)));
-				} else {
-					update_post_meta($post_id, sanitize_key($key), '');
-				}
+			if ( '_event_venue_ids' === $key ) {
+
+				$value = is_array( $raw_value )
+					? array_filter( array_map( 'sanitize_text_field', $raw_value ) )
+					: '';
+
+				update_post_meta( $post_id, $key, $value );
+				continue;
 			}
-			// All other fields
-			else {
-				$type = $field['type'] ?? '';
 
-				switch ($type) {
-					case 'textarea':
-						update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
-						break;
+			// Field type handling
+			$type = $field['type'] ?? '';
 
-					case 'multiselect':
-						if (!empty($raw_value) && is_array($raw_value)) {
-							update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $raw_value)));
-						} else {
-							update_post_meta($post_id, sanitize_key($key), '');
-						}
-						break;
+			switch ( $type ) {
 
-					case 'checkbox':
-						update_post_meta($post_id, sanitize_key($key), isset($_POST[$key]) ? 1 : 0);
-						break;
-
-					case 'date':
-						if (!empty($raw_value)) {
-						$sanitized_date_value = sanitize_text_field($raw_value);
-						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $sanitized_date_value);
-						// Always use sanitized value - never fallback to unsanitized raw_value
-						update_post_meta($post_id, sanitize_key($key), !empty($date_dbformatted) ? $date_dbformatted : $sanitized_date_value);
-					}
-					break;
-
-				case 'time':
-					if (!empty($raw_value)) {
-						$sanitized_time_value = sanitize_text_field($raw_value);
-						$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time($sanitized_time_value);
-						// Always use sanitized value - never fallback to unsanitized raw_value
-						update_post_meta($post_id, sanitize_key($key), !empty($time_dbformatted) ? $time_dbformatted : $sanitized_time_value);
-					}
-					break;
-
+				case 'textarea':
 				case 'wp-editor':
-					update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
+					update_post_meta(
+						$post_id,
+						$key,
+						wp_kses_post( (string) $raw_value )
+					);
+					break;
+
+				case 'multiselect':
+					update_post_meta(
+						$post_id,
+						$key,
+						is_array( $raw_value )
+							? array_filter( array_map( 'sanitize_text_field', $raw_value ) )
+							: ''
+					);
+					break;
+
+				case 'checkbox':
+					update_post_meta(
+						$post_id,
+						$key,
+						isset( $post_data[ $key ] ) ? 1 : 0
+					);
+					break;
+
+				case 'date':
+				case 'time':
+					$sanitized = sanitize_text_field( (string) $raw_value );
+					update_post_meta( $post_id, $key, $sanitized );
 					break;
 
 				default:
-						// Sanitize the raw value based on type before passing to filter
-				if (is_array($raw_value)) {
-					$sanitized_raw_value = array_filter(array_map('sanitize_text_field', $raw_value));
-				} elseif (!is_null($raw_value)) {
-					$sanitized_raw_value = sanitize_text_field($raw_value);
-				} else {
-					$sanitized_raw_value = $raw_value;
-				}
-				
-				$add_data = apply_filters('wpem_save_event_data', true, $key, $sanitized_raw_value);
-				if ($add_data) {
-					if (is_array($sanitized_raw_value)) {
-						update_post_meta($post_id, sanitize_key($key), $sanitized_raw_value);
-					} elseif (!is_null($sanitized_raw_value)) {
-						update_post_meta($post_id, sanitize_key($key), $sanitized_raw_value);
+					$sanitized = is_array( $raw_value )
+						? array_filter( array_map( 'sanitize_text_field', $raw_value ) )
+						: sanitize_text_field( (string) $raw_value );
+
+					if ( apply_filters( 'wpem_save_event_data', true, $key, $sanitized ) ) {
+						update_post_meta( $post_id, $key, $sanitized );
 					}
-					if ($key == '_event_ticket_options' && $sanitized_raw_value == 'free') $ticket_type = 'free';
-					if ($key == '_event_online') $event_online = $sanitized_raw_value;
-				}
-						break;
-				}
 			}
 		}
+
+		// foreach ($this->event_listing_fields() as $key => $field) {
+
+		// 	$key = sanitize_key($key);
+		// 	$raw_value = isset($_POST[$key]) ? wp_unslash($_POST[$key]) : null;
+
+		// 	// Event Expiry Date
+		// 	if ($key === '_event_expiry_date') {
+		// 		if (!empty($raw_value)) {
+		// 			$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
+		// 			$date_value = sanitize_text_field($raw_value);
+		// 			$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format, $date_value);
+		// 			$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_value;
+		// 			update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
+		// 		} else {
+		// 			update_post_meta($post_id, sanitize_key($key), '');
+		// 		}
+		// 	}
+		// 	// Event Location
+		// 	elseif ($key === '_event_location') {
+		// 		$location_value = sanitize_text_field($raw_value);
+		// 		if (update_post_meta($post_id, $key, $location_value)) {
+		// 			// location updated by hooked methods
+		// 		} elseif (apply_filters('event_manager_geolocation_enabled', true) && !WP_Event_Manager_Geocode::has_location_data($post_id)) {
+		// 			WP_Event_Manager_Geocode::generate_location_data($post_id, $location_value);
+		// 		}
+		// 	}
+		// 	// Event Author
+		// 	elseif ($key === '_event_author') {
+		// 		$author_id = $raw_value > 0 ? absint($raw_value) : 0;
+		// 		$wpdb->update($wpdb->posts, ['post_author' => $author_id], ['ID' => $post_id]);
+		// 	}
+		// 	// Event Banner
+		// 	elseif ($key === '_event_banner') {
+		// 		if (!empty($raw_value)) {
+		// 			$meta_key = sanitize_key($key);
+		// 			if (is_array($raw_value)) {
+		// 				$sanitized_values = array_filter(array_map('sanitize_text_field', $raw_value));
+		// 				$thumbnail_image = $sanitized_values[0] ?? '';
+		// 				update_post_meta($post_id, $meta_key, $sanitized_values);
+		// 			} else {
+		// 				$thumbnail_image = sanitize_text_field($raw_value);
+		// 				update_post_meta($post_id, $meta_key, $thumbnail_image);
+		// 			}
+
+		// 			$image = get_the_post_thumbnail_url($post_id);
+		// 			if (empty($image) && !empty($thumbnail_image)) {
+		// 				$wp_upload_dir = wp_get_upload_dir();
+		// 				$baseurl = trailingslashit($wp_upload_dir['baseurl']);
+		// 				$wp_attached_file = str_replace($baseurl, '', $thumbnail_image);
+		// 				$attachments = get_posts([
+		// 					'post_type' => 'attachment',
+		// 					'posts_per_page' => 1,
+		// 					// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for attachment lookup
+		// 					'meta_key' => '_wp_attached_file',
+		// 					// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup
+		// 					'meta_value' => $wp_attached_file
+		// 				]);
+		// 				if (!empty($attachments)) {
+		// 					set_post_thumbnail($post_id, $attachments[0]->ID);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// 	// Event Start Date
+		// 	elseif ($key === '_event_start_date') {
+		// 		if (!empty($raw_value)) {
+		// 			$sanitized_raw_value = sanitize_text_field($raw_value);
+		// 			$start_time = !empty($_POST['_event_start_time']) ? WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_start_time']))) : gmdate('H:i:s');
+		// 			$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
+		// 			$date_input = sanitize_text_field(explode(' ', $sanitized_raw_value)[0] . ' ' . $start_time);
+		// 			$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format . ' H:i:s', $date_input);
+		// 			$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
+		// 			update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
+		// 		} else {
+		// 			update_post_meta($post_id, sanitize_key($key), '');
+		// 		}
+		// 	}
+		// 	// Event End Date
+		// 	elseif ($key === '_event_end_date') {
+		// 		if (!empty($raw_value)) {
+		// 			$sanitized_raw_value = sanitize_text_field($raw_value);
+		// 			$end_time = !empty($_POST['_event_end_time']) ? WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST['_event_end_time']))) : gmdate('H:i:s');
+		// 			$date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : '';
+		// 			$date_input = sanitize_text_field(explode(' ', $sanitized_raw_value)[0] . ' ' . $end_time);
+		// 			$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($date_format . ' H:i:s', $date_input);
+		// 			$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
+		// 			update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
+		// 		} else {
+		// 			update_post_meta($post_id, sanitize_key($key), '');
+		// 		}
+		// 	}
+		// 	// Event Registration Deadline
+		// 	elseif ($key === '_event_registration_deadline') {
+		// 		if (!empty($raw_value)) {
+		// 			$post_value = sanitize_text_field($raw_value);
+		// 			$date_input = sanitize_text_field(explode(' ', $post_value)[0]);
+		// 			$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post(sanitize_text_field(wp_unslash($_POST['date_format']))), $date_input);
+		// 			$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date_input;
+		// 			update_post_meta($post_id, sanitize_key($key), $date_dbformatted);
+		// 		} else {
+		// 			update_post_meta($post_id, sanitize_key($key), '');
+		// 		}
+		// 	}
+		// 	// Organizer IDs
+		// 	elseif ($key === '_event_organizer_ids') {
+		// 		if (!empty($raw_value)) {
+		// 			$value = is_array($raw_value) ? array_filter(array_map('sanitize_text_field', $raw_value)) : sanitize_text_field($raw_value);
+		// 			update_post_meta($post_id, sanitize_key($key), $value);
+		// 		} else {
+		// 			update_post_meta($post_id, sanitize_key($key), '');
+		// 		}
+		// 	}
+		// 	// Venue IDs
+		// 	elseif ($key === '_event_venue_ids') {
+		// 		if (!empty($raw_value) && is_array($raw_value)) {
+		// 			update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $raw_value)));
+		// 		} else {
+		// 			update_post_meta($post_id, sanitize_key($key), '');
+		// 		}
+		// 	}
+		// 	// All other fields
+		// 	else {
+		// 		$type = $field['type'] ?? '';
+
+		// 		switch ($type) {
+		// 			case 'textarea':
+		// 				update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
+		// 				break;
+
+		// 			case 'multiselect':
+		// 				if (!empty($raw_value) && is_array($raw_value)) {
+		// 					update_post_meta($post_id, sanitize_key($key), array_filter(array_map('sanitize_text_field', $raw_value)));
+		// 				} else {
+		// 					update_post_meta($post_id, sanitize_key($key), '');
+		// 				}
+		// 				break;
+
+		// 			case 'checkbox':
+		// 				update_post_meta($post_id, sanitize_key($key), isset($_POST[$key]) ? 1 : 0);
+		// 				break;
+
+		// 			case 'date':
+		// 				if (!empty($raw_value)) {
+		// 				$sanitized_date_value = sanitize_text_field($raw_value);
+		// 				$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $sanitized_date_value);
+		// 				// Always use sanitized value - never fallback to unsanitized raw_value
+		// 				update_post_meta($post_id, sanitize_key($key), !empty($date_dbformatted) ? $date_dbformatted : $sanitized_date_value);
+		// 			}
+		// 			break;
+
+		// 		case 'time':
+		// 			if (!empty($raw_value)) {
+		// 				$sanitized_time_value = sanitize_text_field($raw_value);
+		// 				$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time($sanitized_time_value);
+		// 				// Always use sanitized value - never fallback to unsanitized raw_value
+		// 				update_post_meta($post_id, sanitize_key($key), !empty($time_dbformatted) ? $time_dbformatted : $sanitized_time_value);
+		// 			}
+		// 			break;
+
+		// 		case 'wp-editor':
+		// 			update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
+		// 			break;
+
+		// 		default:
+		// 				// Sanitize the raw value based on type before passing to filter
+		// 		if (is_array($raw_value)) {
+		// 			$sanitized_raw_value = array_filter(array_map('sanitize_text_field', $raw_value));
+		// 		} elseif (!is_null($raw_value)) {
+		// 			$sanitized_raw_value = sanitize_text_field($raw_value);
+		// 		} else {
+		// 			$sanitized_raw_value = $raw_value;
+		// 		}
+				
+		// 		$add_data = apply_filters('wpem_save_event_data', true, $key, $sanitized_raw_value);
+		// 		if ($add_data) {
+		// 			if (is_array($sanitized_raw_value)) {
+		// 				update_post_meta($post_id, sanitize_key($key), $sanitized_raw_value);
+		// 			} elseif (!is_null($sanitized_raw_value)) {
+		// 				update_post_meta($post_id, sanitize_key($key), $sanitized_raw_value);
+		// 			}
+		// 			if ($key == '_event_ticket_options' && $sanitized_raw_value == 'free') $ticket_type = 'free';
+		// 			if ($key == '_event_online') $event_online = $sanitized_raw_value;
+		// 		}
+		// 				break;
+		// 		}
+		// 	}
+		// }
 
 		// Handle online events
 		if ($event_online === 'yes') {

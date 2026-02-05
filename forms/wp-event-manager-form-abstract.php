@@ -268,26 +268,28 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $fields
 	 * @return array
 	 */
-	protected function get_repeated_field($field_prefix, $fields) {	
-		if(empty($fields))
-			return;
-		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
-		$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
-		
-		// Covert datepicker format  into php date() function date format
-		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+	protected function get_repeated_field( $field_prefix, $fields ) {
 
-		$items       = array();
-		$field_keys  = array_keys($fields);
-		$field_prefix = esc_attr($field_prefix);
-		if ( empty( $_POST['_wpnonce'] ) ) {
+		if ( empty( $fields ) ) {
+			return array();
+		}
+
+		// Copy & unslash ONCE
+		$post_data = wp_unslash( $_POST );
+
+		$items = array();
+
+		if ( empty( $post_data['_wpnonce'] ) ) {
 			return $items;
 		}
-		$nonce = sanitize_key( wp_unslash( $_POST['_wpnonce'] ) );
-		$event_id = isset( $_POST['event_id'] ) ? absint( wp_unslash( $_POST['event_id'] ) ) : null;
-		$organizer_id = isset( $_POST['organizer_id'] ) ? absint( wp_unslash( $_POST['organizer_id'] ) ) : null;
-		$venue_id = isset( $_POST['venue_id'] ) ? absint( wp_unslash( $_POST['venue_id'] ) ) : null;
+
+		$nonce        = sanitize_key( $post_data['_wpnonce'] );
+		$event_id     = isset( $post_data['event_id'] ) ? absint( $post_data['event_id'] ) : null;
+		$organizer_id = isset( $post_data['organizer_id'] ) ? absint( $post_data['organizer_id'] ) : null;
+		$venue_id     = isset( $post_data['venue_id'] ) ? absint( $post_data['venue_id'] ) : null;
+
 		$nonce_valid = false;
+
 		if ( null !== $event_id && wp_verify_nonce( $nonce, 'edit-event_' . $event_id ) ) {
 			$nonce_valid = true;
 		} elseif ( null !== $organizer_id && wp_verify_nonce( $nonce, 'edit-organizer_' . $organizer_id ) ) {
@@ -295,81 +297,101 @@ abstract class WP_Event_Manager_Form {
 		} elseif ( null !== $venue_id && wp_verify_nonce( $nonce, 'edit-venue_' . $venue_id ) ) {
 			$nonce_valid = true;
 		}
+
 		if ( ! $nonce_valid ) {
 			return $items;
 		}
 
-		$repeated_row_key = 'repeated-row-' . $field_prefix;
-		if(!empty($_POST[ $repeated_row_key ]) && is_array($_POST[ $repeated_row_key ])) {
-			$indexes = array_map('absint', wp_unslash( $_POST[ $repeated_row_key ] ));
-			foreach ($indexes as $index) {
-				$item = array();
-				foreach ($fields as $key => $field) {
-					$field_name = $field_prefix . '_' . $key . '_' . $index;
-					
-					switch ($field['type']) {
-						case 'textarea' :
-							$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
-							break;
-						case 'number' :
-							
-							if(is_array($_POST[ $field_name ])) {
-								$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('wp_unslash', $_POST[ $field_name ])));
-							} else {
-								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
-							}	
-							break;
-						case 'date' :
-							if(!empty($_POST[ $field_name ])){
-								//Convert date and time value into DB formatted format and save eg. 1970-01-01
-								//$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, sanitize_text_field($_POST[ $field_name ]));	
-								$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
-							} else {
-								$item[ $key ] = '';
-							}
-							break;
-						case 'time' :
-							if(!empty($_POST[ $field_name ])) {
-								$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field(wp_unslash($_POST[ $field_name ])));
-								$item[ $key ] = !empty($time_dbformatted) ? $time_dbformatted : sanitize_text_field(wp_unslash($_POST[ $field_name ]));
-							} else {
-								$item[ $key ] = '';
-							}
-							break;	
-						case 'file' :
-							$file = $this->upload_file($field_name, $field);
+		$repeated_row_key = 'repeated-row-' . sanitize_key( $field_prefix );
 
-							if(!$file) {
-								$file = $this->get_posted_field('current_' . $field_name, $field);
-							} elseif(is_array($file)) {
-								$file = array_filter(array_merge($file, (array) $this->get_posted_field('current_' . $field_name, $field)));
-							}
-							$item[ $key ] = $file;
-							break;
-						case 'checkbox':
-								if(!empty($_POST[ $field_name ]) && $_POST[ $field_name ] > 0) {
-									$item[ $key ] =  isset($_POST[ $field_name ]) ? wp_kses_post(wp_unslash($_POST[ $field_name ])) : '';			
-								}
-							break;
-						default :
-							if(!empty($_POST[ $field_name ])){
-								if(is_array($_POST[ $field_name ])) {
-									$item[ $key ] = array_filter(array_map('sanitize_text_field', array_map('wp_unslash', $_POST[ $field_name ])));
-								} else {
-									$item[ $key ] = isset($_POST[ $field_name ]) ? sanitize_text_field(wp_unslash($_POST[ $field_name ])) : '';
-								}	
-							}else{
-									$item[ $key ] = '';
-							}
-							break;
-					}
-					if(empty($item[ $key ]) && !empty($field['required']) && $field['type'] != 'number') {
-						continue 2;
-					}
-				}
-				$items[] = $item;
-			}
+		if ( empty( $post_data[ $repeated_row_key ] ) || ! is_array( $post_data[ $repeated_row_key ] ) ) {
+			return $items;
 		}
+
+		$indexes = array_map( 'absint', $post_data[ $repeated_row_key ] );
+
+		foreach ( $indexes as $index ) {
+
+			$item = array();
+
+			foreach ( $fields as $key => $field ) {
+
+				$field_name = $field_prefix . '_' . $key . '_' . $index;
+				$value      = $post_data[ $field_name ] ?? '';
+
+				switch ( $field['type'] ) {
+
+					case 'textarea':
+						$item[ $key ] = is_string( $value )
+							? sanitize_text_field( $value )
+							: '';
+						break;
+
+					case 'number':
+						if ( is_array( $value ) ) {
+							$item[ $key ] = array_filter(
+								array_map( 'sanitize_text_field', $value )
+							);
+						} else {
+							$item[ $key ] = sanitize_text_field( $value );
+						}
+						break;
+
+					case 'date':
+						$item[ $key ] = sanitize_text_field( $value );
+						break;
+
+					case 'time':
+						$time = sanitize_text_field( $value );
+						$db_time = WP_Event_Manager_Date_Time::get_db_formatted_time( $time );
+						$item[ $key ] = ! empty( $db_time ) ? $db_time : $time;
+						break;
+
+					case 'file':
+						$file = $this->upload_file( $field_name, $field );
+
+						if ( ! $file ) {
+							$file = $this->get_posted_field( 'current_' . $field_name, $field );
+						} elseif ( is_array( $file ) ) {
+							$file = array_filter(
+								array_merge(
+									$file,
+									(array) $this->get_posted_field( 'current_' . $field_name, $field )
+								)
+							);
+						}
+						$item[ $key ] = $file;
+						break;
+
+					case 'checkbox':
+						$item[ $key ] = ! empty( $value )
+							? wp_kses_post( $value )
+							: '';
+						break;
+
+					default:
+						if ( is_array( $value ) ) {
+							$item[ $key ] = array_filter(
+								array_map( 'sanitize_text_field', $value )
+							);
+						} else {
+							$item[ $key ] = sanitize_text_field( $value );
+						}
+						break;
+				}
+
+				if (
+					empty( $item[ $key ] ) &&
+					! empty( $field['required'] ) &&
+					'number' !== $field['type']
+				) {
+					continue 2;
+				}
+			}
+
+			$items[] = $item;
+		}
+
 		return $items;
 	}
 	
@@ -419,8 +441,11 @@ abstract class WP_Event_Manager_Form {
 	 * @return string|array
 	 */
 	protected function get_posted_field($key, $field) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		return isset($_POST[ $key ]) ? $this->sanitize_posted_field(wp_unslash($_POST[ $key ])) : '';
+		if ( ! isset( $this->post_data[ $key ] ) ) {
+			return '';
+		}
+
+		return $this->sanitize_posted_field( $this->post_data[ $key ] );
 	}
 	
 	/**
@@ -430,8 +455,17 @@ abstract class WP_Event_Manager_Form {
 	 * @return array
 	 */
 	protected function get_posted_multiselect_field($key, $field) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		return isset($_POST[ $key ]) ? array_map('sanitize_text_field', array_map('wp_unslash', $_POST[ $key ])) : array();
+		if (
+			empty( $this->post_data[ $key ] ) ||
+			! is_array( $this->post_data[ $key ] )
+		) {
+			return array();
+		}
+
+		return array_map(
+			'sanitize_text_field',
+			$this->post_data[ $key ]
+		);
 	}
 
 	/**
