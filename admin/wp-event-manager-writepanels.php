@@ -1498,7 +1498,7 @@ class WP_Event_Manager_Writepanels {
 				$type = isset($field['type']) ? sanitize_text_field(wp_unslash($field['type'])) : '';
 				switch ($type) {
 					case 'textarea':
-						update_post_meta($post_id, $key, wp_kses_post(stripslashes($_POST[$key])));
+						update_post_meta($post_id, $key, wp_kses_post(wp_unslash($_POST[$key])));
 						break;
 					case 'file':
 						if (isset($_POST[$key])) {
@@ -1524,7 +1524,7 @@ class WP_Event_Manager_Writepanels {
 						break;
 					case 'date':
 						if(isset($_POST[$key])) {
-							$date = wp_kses_post($_POST[$key]);
+							$date = wp_kses_post(wp_unslash($_POST[$key]));
 
 							// Convert date and time value into DB formatted format and save eg. 1970-01-01
 							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
@@ -1534,7 +1534,7 @@ class WP_Event_Manager_Writepanels {
 						break;
 					case 'wp-editor':
                         if(!empty($_POST[$key])) {
-                            $v_text = wp_kses_post(stripslashes($_POST[$key]));
+                            $v_text = wp_kses_post(wp_unslash($_POST[$key]));
                             update_post_meta($post_id, $key, $v_text);
                         }
                         break;
@@ -1542,9 +1542,9 @@ class WP_Event_Manager_Writepanels {
 						if(!isset($_POST[$key])) {
 							continue 2;
 						} elseif(is_array($_POST[$key])) {
-							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
+							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', wp_unslash($_POST[$key]))));
 						} else {
-							update_post_meta($post_id, $key, sanitize_text_field($_POST[$key]));
+							update_post_meta($post_id, $key, sanitize_text_field(wp_unslash($_POST[$key])));
 						}
 						break;
 				}
@@ -1657,14 +1657,14 @@ class WP_Event_Manager_Writepanels {
 		// Covert datepicker format  into php date() function date format
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
-		update_post_meta($post_id, '_venue_name', sanitize_text_field($_POST['post_title']));
-		update_post_meta($post_id, '_venue_description', wp_kses_post($_POST['content']));
+		update_post_meta($post_id, '_venue_name', sanitize_text_field(wp_unslash($_POST['post_title'])));
+		update_post_meta($post_id, '_venue_description', wp_kses_post(wp_unslash($_POST['content'])));
 
 		// Save fields
 		foreach ($this->venue_listing_fields() as $key => $field) {
 			$key = sanitize_text_field($key);
 			if('_venue_author' === $key) {
-				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint($_POST[$key]) : 0), array('ID' => $post_id));
+				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint(sanitize_text_field(wp_unslash($_POST[$key]))) : 0), array('ID' => $post_id));
 			} else {
 				$type = !empty($field['type']) ? $field['type'] : '';
 				switch ($type) {
@@ -1713,7 +1713,7 @@ class WP_Event_Manager_Writepanels {
 						if(!isset($_POST[$key])) {
 							continue 2;
 						} elseif(is_array($_POST[$key])) {
-							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', $_POST[$key])));
+							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', wp_unslash($_POST[$key]))));
 						} else {
 							update_post_meta($post_id, $key, sanitize_text_field(wp_unslash($_POST[$key])));
 						}

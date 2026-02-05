@@ -109,12 +109,10 @@ msgid "Dismiss"
 msgstr "忽略"
 
 #: admin/wp-event-manager-cpt.php:276
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:158
 msgid "Select category"
 msgstr "选择类别"
 
 #: admin/wp-event-manager-cpt.php:311
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:216
 msgid "Select Event Type"
 msgstr "多选活动类型"
 
@@ -1573,74 +1571,62 @@ msgid "Venue Name is a required field."
 msgstr "场地名称是必填字段。"
 
 #: core/wp-event-manager-filters.php:23 external/elementor.php:131
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:270
 #: wp-event-manager.php:343
 msgid "Today"
 msgstr "今天"
 
 #: core/wp-event-manager-filters.php:25 external/elementor.php:132
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:271
 #: wp-event-manager.php:344
 msgid "Tomorrow"
 msgstr "明天"
 
 #: core/wp-event-manager-filters.php:27 external/elementor.php:133
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:272
 #: wp-event-manager.php:345
 msgid "This Week"
 msgstr "本周"
 
 #: core/wp-event-manager-filters.php:29
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:273
 
 msgid "This Weekend"
 msgstr "本周末"
 
 #: core/wp-event-manager-filters.php:31 external/elementor.php:135
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:274
 #: wp-event-manager.php:347
 msgid "This Month"
 msgstr "本月"
 
 #: core/wp-event-manager-filters.php:33 external/elementor.php:137
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:275
 #: wp-event-manager.php:349
 msgid "This Year"
 msgstr "今年"
 
 #: core/wp-event-manager-filters.php:35 external/elementor.php:134
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:276
 #: wp-event-manager.php:346
 msgid "Next Week"
 msgstr "下周"
 
 #: core/wp-event-manager-filters.php:37
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:277
 
 msgid "Next Weekend"
 msgstr "下周末"
 
 #: core/wp-event-manager-filters.php:39 external/elementor.php:136
 #: external/elementor.php:138
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:278
 #: wp-event-manager.php:348
 msgid "Next Month"
 msgstr "下个月"
 
 #: core/wp-event-manager-filters.php:41
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:279
 #: wp-event-manager.php:350
 msgid "Next Year"
 msgstr "明年"
 
 #: core/wp-event-manager-filters.php:73
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:300
 
 msgid "Any Ticket Price"
 msgstr "任何票价"
 
 #: core/wp-event-manager-filters.php:75
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:284
 #: wp-event-manager-template.php:540
 
@@ -1648,7 +1634,6 @@ msgid "Paid"
 msgstr "已支付"
 
 #: core/wp-event-manager-filters.php:77
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:285
 #: wp-event-manager-template.php:542
 msgid "Free"
@@ -2470,39 +2455,30 @@ msgstr "清除"
 msgid "Cancel"
 msgstr "取消"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:168
 msgid "No category found"
 msgstr "找不到类别"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:192
 msgid "The Category is disabled"
 msgstr "分类已禁用"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:195
 msgid "The Category is not available"
 msgstr "分类不可用"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:226
 msgid "Event-type not found"
 msgstr "未找到活动类型"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:250
 msgid "Event-Type is disabled"
 msgstr "活动类型已禁用"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 msgid "Event-Type is not available"
 msgstr "活动类型不可用"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
 msgid "Select Date"
 msgstr "选择日期"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:269
 msgid "Any Date"
 msgstr "任何日期"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:298
 msgid "Select Ticket Type"
 msgstr "选择门票类型"
 
