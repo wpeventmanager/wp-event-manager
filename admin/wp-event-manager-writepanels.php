@@ -1304,21 +1304,23 @@ class WP_Event_Manager_Writepanels {
 
 					case 'date':
 						if (!empty($raw_value)) {
-							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, sanitize_text_field($raw_value));
-							update_post_meta($post_id, sanitize_key($key), $date_dbformatted ?: $raw_value);
-						}
-						break;
+						$sanitized_date_value = sanitize_text_field($raw_value);
+						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $sanitized_date_value);
+						update_post_meta($post_id, sanitize_key($key), $date_dbformatted ?: $sanitized_date_value);
+					}
+					break;
 
-					case 'time':
-						if (!empty($raw_value)) {
-							$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time(sanitize_text_field($raw_value));
-							update_post_meta($post_id, sanitize_key($key), $time_dbformatted ?: '');
-						}
-						break;
+				case 'time':
+					if (!empty($raw_value)) {
+						$sanitized_time_value = sanitize_text_field($raw_value);
+						$time_dbformatted = WP_Event_Manager_Date_Time::get_db_formatted_time($sanitized_time_value);
+						update_post_meta($post_id, sanitize_key($key), $time_dbformatted ?: $sanitized_time_value);
+					}
+					break;
 
-					case 'wp-editor':
-						update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
-						break;
+				case 'wp-editor':
+					update_post_meta($post_id, sanitize_key($key), wp_kses_post($raw_value));
+					break;
 
 					default:
 						$add_data = apply_filters('wpem_save_event_data', true, $key, $raw_value);
@@ -1329,7 +1331,7 @@ class WP_Event_Manager_Writepanels {
 								$saved_value = sanitize_text_field($raw_value);
 								update_post_meta($post_id, sanitize_key($key), $saved_value);
 							}
-							if ($key == '_event_ticket_options' && $raw_value == 'free') $ticket_type = 'free';
+							if ($key == '_event_ticket_options' && sanitize_text_field($raw_value) == 'free') $ticket_type = 'free';
 							if ($key == '_event_online') $event_online = sanitize_text_field($raw_value);
 						}
 						break;
