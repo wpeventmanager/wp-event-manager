@@ -669,4 +669,132 @@ abstract class WP_Event_Manager_Form {
 		$this->fields = apply_filters('wpem_merge_with_custom_fields',$updated_fields,$default_fields) ;
 		return $this->fields;
 	}
+
+	/**
+	 * Merge and replace $default_fields with custom fields.
+	 *
+	 * @return array Returns merged and replaced fields
+	 */
+	public function wpem_get_fieldeditore_fields($field_view = 'frontend') {
+
+		$custom_fields  = $this->get_event_manager_fieldeditor_fields();
+		$default_fields = $this->get_default_fields();
+
+		$has_custom = is_array($custom_fields) && !empty($custom_fields);
+
+		/*
+		* STEP 1: Decide base fields
+		* If DB has saved fields → start ONLY from saved fields
+		* Else → use defaults
+		*/
+		$updated_fields = $has_custom ? $custom_fields : $default_fields;
+
+		/*
+		* STEP 2: Add mandatory default fields if missing
+		*/
+		$mandatory_fields = apply_filters('wpem_mandatory_event_fields', [
+			'event' => [
+				'event_title',
+				'event_description',
+				'event_start_date',
+				'event_end_date',
+			],
+		]);
+
+		if ($has_custom) {
+			foreach ($mandatory_fields as $group => $fields) {
+				foreach ($fields as $field_key) {
+					if (
+						!isset($updated_fields[$group][$field_key]) &&
+						isset($default_fields[$group][$field_key])
+					) {
+						$updated_fields[$group][$field_key] = $default_fields[$group][$field_key];
+					}
+				}
+			}
+		}
+
+		/*
+		* STEP 3: Apply settings based removals
+		*/
+
+		// Ticket prices disabled
+		if (!get_option('event_manager_enable_event_ticket_prices', false)) {
+			unset(
+				$updated_fields['event']['event_ticket_options'],
+				$updated_fields['event']['event_ticket_price']
+			);
+		}
+
+		// Categories disabled or empty
+		if (
+			!get_option('event_manager_enable_categories') ||
+			wp_count_terms('event_listing_category') == 0
+		) {
+			unset($updated_fields['event']['event_category']);
+		}
+
+		// Event types disabled or empty
+		if (
+			!get_option('event_manager_enable_event_types') ||
+			wp_count_terms('event_listing_type') == 0
+		) {
+			unset($updated_fields['event']['event_type']);
+		}
+
+		/*
+		* STEP 4: Normalize fields
+		* - Remove invisible fields
+		* - Remove admin-only fields on frontend
+		* - Strip slashes
+		*/
+		foreach ($updated_fields as $group_key => $group_fields) {
+
+			foreach ($group_fields as $field_key => $field) {
+
+				// Remove invisible fields
+				if (isset($field['visibility']) && !$field['visibility']) {
+					unset($updated_fields[$group_key][$field_key]);
+					continue;
+				}
+
+				// Remove admin-only fields on frontend
+				if (
+					isset($field['admin_only']) &&
+					$field_view === 'frontend' &&
+					$field['admin_only']
+				) {
+					unset($updated_fields[$group_key][$field_key]);
+					continue;
+				}
+
+				// Strip slashes
+				$updated_fields[$group_key][$field_key] =
+					array_map('stripslashes_deep', $field);
+			}
+
+			// Sort by priority
+			uasort($updated_fields[$group_key], [$this, 'sort_by_priority']);
+		}
+
+		/*
+		* STEP 5: Timezone setting
+		*/
+		$timezone_setting = get_option('event_manager_timezone_setting', 'site_timezone');
+		if ($timezone_setting !== 'each_event') {
+			unset($updated_fields['event']['event_timezone']);
+		}
+
+		/*
+		* STEP 6: Final filter & return
+		*/
+		$this->fields = apply_filters(
+			'wpem_merge_with_custom_fields',
+			$updated_fields,
+			$default_fields
+		);
+
+		return $this->fields;
+	}
+
 }

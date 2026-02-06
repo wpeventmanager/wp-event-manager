@@ -85,8 +85,7 @@ class WP_Event_Manager_Admin {
 
 		global $wp_scripts;
 		$screen = get_current_screen();
-
-		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue', 'event_listing_page_event-manager-shortcodes')))) {
+		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue', 'event_listing_page_event-manager-shortcodes', 'event_listing_page_event-manager-form-editor')))) {
 
 			// Main backend style - only enqueue on plugin pages
 			wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css', array(), '1.0.0');
@@ -96,7 +95,6 @@ class WP_Event_Manager_Admin {
 			wp_register_script('jquery-tiptip', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-tiptip/jquery.tipTip.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
 			wp_register_script('wp-event-manager-admin-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/admin.min.js', array('jquery', 'jquery-tiptip', 'jquery-ui-core', 'jquery-ui-datepicker'), EVENT_MANAGER_VERSION, true);
 			wp_register_script('wp-event-manager-admin-addons-js', EVENT_MANAGER_PLUGIN_URL . '/assets/js/admin-addons.min.js', array('jquery', 'jquery-tiptip', 'jquery-ui-core', 'jquery-ui-datepicker'), EVENT_MANAGER_VERSION, true);
-
 
 			wp_localize_script(
 				'wp-event-manager-admin-js',
