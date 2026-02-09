@@ -117,11 +117,8 @@ class WP_Event_Manager_Field_Editor {
 		} else {
 			$venue_fields = array();
 		}
-		// error_log(print_r($venue_fields, true));
-		// print_r($venue_fields, true);
 		$fields = array_merge($event_fields, $organizer_fields, $venue_fields);
 		$add_event_form_fields = get_option('event_manager_form_fields');
-		// print_r($add_event_form_fields, true);
 
 		if(isset($fields['organizer']['event_organizer_ids']))
 			unset($fields['organizer']['event_organizer_ids']);
