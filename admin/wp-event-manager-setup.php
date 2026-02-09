@@ -127,42 +127,16 @@ class WP_Event_Manager_Setup {
 	 * Output addons page.
 	 */
 	public function output() {
-
-		$step     = ! empty( $_GET['step'] ) ? absint( $_GET['step'] ) : 1;
-		$wpem_url = esc_url( get_option( 'wp_event_manager_store_url' ) );
-
-		/*
-		* STEP 3: Create pages
-		*/
-		if ( 3 === $step && ! empty( $_POST ) ) {
-
-			if (
-				! isset( $_REQUEST['setup_wizard'] ) ||
-				! wp_verify_nonce(
-					sanitize_text_field( wp_unslash( $_REQUEST['setup_wizard'] ) ),
-					'step_3'
-				)
-			) {
-				wp_die( esc_attr__( 'Error in nonce. Try again.', 'wp-event-manager' ) );
+		$step = !empty($_GET['step']) ? absint($_GET['step']) : 1;
+		$wpem_url = esc_url(get_option('wp_event_manager_store_url'));
+		if(3 === $step && !empty($_POST)) {
+			if(!isset($_REQUEST['setup_wizard']) || false == wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['setup_wizard'])), 'step_3')) {
+				wp_die(esc_attr__('Error in nonce. Try again.', 'wp-event-manager'));
 			}
-
-			$create_pages = array();
-			$page_titles  = array();
-
-			// Sanitize create page checkboxes (keys only)
-			if ( isset( $_POST['wp-event-manager-create-page'] ) && is_array( $_POST['wp-event-manager-create-page'] ) ) {
-				foreach ( wp_unslash( $_POST['wp-event-manager-create-page'] ) as $key => $value ) {
-					$create_pages[ sanitize_key( $key ) ] = true;
-				}
-			}
-
-			// Sanitize page titles
-			if ( isset( $_POST['wp-event-manager-page-title'] ) && is_array( $_POST['wp-event-manager-page-title'] ) ) {
-				foreach ( wp_unslash( $_POST['wp-event-manager-page-title'] ) as $key => $value ) {
-					$page_titles[ sanitize_key( $key ) ] = sanitize_text_field( $value );
-				}
-			}
-
+			$raw_create_pages = isset($_POST['wp-event-manager-create-page']) ? wp_unslash($_POST['wp-event-manager-create-page']) : array();
+			$raw_page_titles = isset($_POST['wp-event-manager-page-title']) ? wp_unslash($_POST['wp-event-manager-page-title']) : array();
+			$create_pages = !empty($raw_create_pages) ? $this->sanitize_array($raw_create_pages) : array();
+			$page_titles = !empty($raw_page_titles) ? $this->sanitize_array($raw_page_titles) : array();
 			$pages_to_create = array(
 				'submit_event_form'     => '[submit_event_form]',
 				'event_dashboard'       => '[event_dashboard]',
