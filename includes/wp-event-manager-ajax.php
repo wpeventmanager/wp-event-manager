@@ -545,6 +545,7 @@ class WP_Event_Manager_Ajax {
 				array_filter(array_map('sanitize_text_field', $search_ticket_prices_raw)) : 
 				array_filter(array(sanitize_text_field($search_ticket_prices_raw)));
 		}
+		$per_page = isset($_REQUEST['per_page']) ? absint(wp_unslash($_REQUEST['per_page'])) : 10;
 		$order = isset($_REQUEST['order']) && in_array(strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))), array('ASC', 'DESC'), true) ? strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))) : 'DESC';
 		$args = array(
 			'search_location'    	=> $search_location,
@@ -555,8 +556,8 @@ class WP_Event_Manager_Ajax {
 			'search_ticket_prices'	=> $search_ticket_prices,			
 			'orderby'            	=> $orderby,
 			'order'              	=> $order,
-			'offset'             	=> isset($_REQUEST['page']) ? (absint(wp_unslash($_REQUEST['page'])) - 1) * absint( wp_unslash( $_REQUEST['per_page'])) : 0,
-			'posts_per_page'     	=> isset($_REQUEST['per_page']) ? absint(wp_unslash($_REQUEST['per_page'])) : 10,
+			'offset'             	=> isset($_REQUEST['page']) ? (absint(wp_unslash($_REQUEST['page'])) - 1) * $per_page : 0,
+			'posts_per_page'     	=> $per_page,
 			'lang'    	            => isset($_REQUEST['lang']) ? apply_filters('wpem_set_default_page_language', sanitize_text_field(wp_unslash($_REQUEST['lang']))) : '',
 		);
 
