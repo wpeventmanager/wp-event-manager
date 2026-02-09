@@ -497,7 +497,7 @@ abstract class WP_Event_Manager_Form {
 		$key = sanitize_key( $key );
 		$value = '';
 		if ( isset( $_POST[ $key ] ) ) {
-			$value = wp_kses_post(
+			$value = sanitize_textarea_field(
 				wp_unslash( $_POST[ $key ] )
 			);
 		}
