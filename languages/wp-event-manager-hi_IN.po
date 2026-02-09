@@ -318,12 +318,10 @@ msgid "Dismiss"
 msgstr "हटा"
 
 #: admin/wp-event-manager-cpt.php:216
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:158
 msgid "Select category"
 msgstr "श्रेणी का चयन करें"
 
 #: admin/wp-event-manager-cpt.php:247
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:216
 msgid "Select Event Type"
 msgstr "इवेंट प्रकार का चयन करें"
 
@@ -2969,110 +2967,88 @@ msgid "Cancel"
 msgstr "कैंसिल करें"
 
 #: external/elementor.php:132
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:270
 #: includes/wp-event-manager-filters.php:18 wp-event-manager.php:341
 msgid "Today"
 msgstr "आज"
 
 #: external/elementor.php:133
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:271
 #: includes/wp-event-manager-filters.php:19 wp-event-manager.php:342
 msgid "Tomorrow"
 msgstr "कल"
 
 #: external/elementor.php:134
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:272
 #: includes/wp-event-manager-filters.php:20 wp-event-manager.php:343
 msgid "This Week"
 msgstr "इस सप्ताह"
 
 #: external/elementor.php:135
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:276
 #: includes/wp-event-manager-filters.php:24 wp-event-manager.php:344
 msgid "Next Week"
 msgstr "अगले सप्ताह"
 
 #: external/elementor.php:136
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:274
 #: includes/wp-event-manager-filters.php:22 wp-event-manager.php:345
 msgid "This Month"
 msgstr "इस महीने"
 
 #: external/elementor.php:137 external/elementor.php:139
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:278
 #: includes/wp-event-manager-filters.php:26 wp-event-manager.php:346
 msgid "Next Month"
 msgstr "अगले महीने"
 
 #: external/elementor.php:138
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:275
 #: includes/wp-event-manager-filters.php:23 wp-event-manager.php:347
 msgid "This Year"
 msgstr "इस साल"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:168
 msgid "No category found"
 msgstr "कोई श्रेणी नहीं मिली"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:192
 msgid "The Category is disabled"
 msgstr "श्रेणी अक्षम है"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:195
 msgid "The Category is not available"
 msgstr "श्रेणी उपलब्ध नहीं है"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:226
 msgid "Event-type not found"
 msgstr "ईवेंट-प्रकार नहीं मिला"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:250
 msgid "Event-Type is disabled"
 msgstr "इवेंट-प्रकार अक्षम किया गया है"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 msgid "Event-Type is not available"
 msgstr "इवेंट-प्रकार उपलब्ध नहीं है"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
 msgid "Select Date"
 msgstr "दिनांक का चयन करें"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:269
 msgid "Any Date"
 msgstr "कोई भी तिथि"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:273
 #: includes/wp-event-manager-filters.php:21
 msgid "This Weekend"
 msgstr "इस वीकेंड"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:277
 #: includes/wp-event-manager-filters.php:25
 msgid "Next Weekend"
 msgstr "अगले सप्ताहांत"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:279
 #: includes/wp-event-manager-filters.php:27 wp-event-manager.php:348
 msgid "Next Year"
 msgstr "अगले साल"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:298
 msgid "Select Ticket Type"
 msgstr "टिकट प्रकार का चयन करें"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:300
 #: includes/wp-event-manager-filters.php:48
 msgid "Any Ticket Price"
 msgstr "किसी भी टिकट की कीमत"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:338
 #: includes/wp-event-manager-filters.php:49 wp-event-manager-template.php:508
 msgid "Paid"
 msgstr "भुगतान किया"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:339
 #: includes/wp-event-manager-filters.php:50 wp-event-manager-template.php:510
 msgid "Free"

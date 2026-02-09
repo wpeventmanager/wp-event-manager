@@ -545,6 +545,7 @@ class WP_Event_Manager_Ajax {
 				array_filter(array_map('sanitize_text_field', $search_ticket_prices_raw)) : 
 				array_filter(array(sanitize_text_field($search_ticket_prices_raw)));
 		}
+		$per_page = isset($_REQUEST['per_page']) ? absint(wp_unslash($_REQUEST['per_page'])) : 10;
 		$order = isset($_REQUEST['order']) && in_array(strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))), array('ASC', 'DESC'), true) ? strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))) : 'DESC';
 		$args = array(
 			'search_location'    	=> $search_location,
@@ -555,8 +556,8 @@ class WP_Event_Manager_Ajax {
 			'search_ticket_prices'	=> $search_ticket_prices,			
 			'orderby'            	=> $orderby,
 			'order'              	=> $order,
-			'offset'             	=> isset($_REQUEST['page']) ? (absint(wp_unslash($_REQUEST['page'])) - 1) * absint( wp_unslash( $_REQUEST['per_page'])) : 0,
-			'posts_per_page'     	=> isset($_REQUEST['per_page']) ? absint(wp_unslash($_REQUEST['per_page'])) : 10,
+			'offset'             	=> isset($_REQUEST['page']) ? (absint(wp_unslash($_REQUEST['page'])) - 1) * $per_page : 0,
+			'posts_per_page'     	=> $per_page,
 			'lang'    	            => isset($_REQUEST['lang']) ? apply_filters('wpem_set_default_page_language', sanitize_text_field(wp_unslash($_REQUEST['lang']))) : '',
 		);
 
@@ -573,8 +574,19 @@ class WP_Event_Manager_Ajax {
 			$args['event_online'] = ($_REQUEST['event_online'] === 'false') ? sanitize_text_field(wp_unslash($_REQUEST['event_online'])) : true;
 		}
 
+		// Sanitize $_REQUEST before passing to filter callback
+		$sanitized_request = array();
+		foreach ($_REQUEST as $key => $value) {
+			$safe_key = sanitize_key($key);
+			if (is_array($value)) {
+				$sanitized_request[$safe_key] = array_filter(array_map('sanitize_text_field', array_map('wp_unslash', (array) $value)));
+			} else {
+				$sanitized_request[$safe_key] = sanitize_text_field(wp_unslash($value));
+			}
+		}
+
 		ob_start();
-		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, $_REQUEST));
+		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, $sanitized_request));
 		$result['found_events'] = false;
 		$fully_registered_events = 0;
 		if($events->have_posts()) : $result['found_events'] = true;
@@ -728,7 +740,24 @@ class WP_Event_Manager_Ajax {
 			foreach ($_FILES as $file_key => $file) {
 				// Sanitize file key
 				$sanitized_file_key = sanitize_key($file_key);
-				$files_to_upload = event_manager_prepare_uploaded_files($file);
+				
+				// Sanitize $_FILES data before processing
+				$sanitized_file = array();
+				if (is_array($file['name'])) {
+					$sanitized_file['name'] = array_map('sanitize_file_name', $file['name']);
+					$sanitized_file['type'] = array_map('sanitize_text_field', $file['type'] ?? array());
+					$sanitized_file['tmp_name'] = array_map('sanitize_text_field', $file['tmp_name'] ?? array());
+					$sanitized_file['error'] = array_map('absint', $file['error'] ?? array());
+					$sanitized_file['size'] = array_map('absint', $file['size'] ?? array());
+				} else {
+					$sanitized_file['name'] = sanitize_file_name($file['name'] ?? '');
+					$sanitized_file['type'] = sanitize_text_field($file['type'] ?? '');
+					$sanitized_file['tmp_name'] = sanitize_text_field($file['tmp_name'] ?? '');
+					$sanitized_file['error'] = absint($file['error'] ?? 0);
+					$sanitized_file['size'] = absint($file['size'] ?? 0);
+				}
+				
+				$files_to_upload = event_manager_prepare_uploaded_files($sanitized_file);
 				foreach ($files_to_upload as $file_to_upload) {
 					$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key));
 					if(is_wp_error($uploaded_file)) {

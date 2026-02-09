@@ -130,12 +130,10 @@ msgid "Dismiss"
 msgstr "Odrzuć"
 
 #: admin/wp-event-manager-cpt.php:215
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:158
 msgid "Select category"
 msgstr "Wybierz kategorię"
 
 #: admin/wp-event-manager-cpt.php:246
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:216
 
 msgid "Select Event Type"
 msgstr "Wybierz typ zdarzenia"
@@ -2562,120 +2560,98 @@ msgid "Cancel"
 msgstr "Anuluj"
 
 #: external/elementor.php:127
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:270
 #: includes/wp-event-manager-filters.php:18 wp-event-manager.php:309
 msgid "Today"
 msgstr "Dzisiaj"
 
 #: external/elementor.php:128
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:271
 #: includes/wp-event-manager-filters.php:19 wp-event-manager.php:310
 msgid "Tomorrow"
 msgstr "Jutro"
 
 #: external/elementor.php:129
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:272
 #: includes/wp-event-manager-filters.php:20 wp-event-manager.php:311
 msgid "This Week"
 msgstr "W tym tygodniu"
 
 #: external/elementor.php:130
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:276
 #: includes/wp-event-manager-filters.php:24 wp-event-manager.php:312
 msgid "Next Week"
 msgstr "Następny tydzień"
 
 #: external/elementor.php:131
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:274
 #: includes/wp-event-manager-filters.php:22 wp-event-manager.php:313
 msgid "This Month"
 msgstr "Ten miesiąc"
 
 #: external/elementor.php:132 external/elementor.php:134
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:278
 #: includes/wp-event-manager-filters.php:26 wp-event-manager.php:314
 msgid "Next Month"
 msgstr "Następny miesiąc"
 
 #: external/elementor.php:133
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:275
 #: includes/wp-event-manager-filters.php:23 wp-event-manager.php:315
 msgid "This Year"
 msgstr "W tym roku"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:168
 msgid "No category found"
 msgstr "Nie znaleziono kategorii"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:192
 
 msgid "The Category is disabled"
 msgstr "Kategoria jest wyłączona"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:195
 
 msgid "The Category is not available"
 msgstr "Kategoria jest niedostępna"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:226
 
 msgid "Event-type not found"
 msgstr "Nie znaleziono typu zdarzenia"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:250
 
 msgid "Event-Type is disabled"
 msgstr "Typ zdarzenia jest wyłączony"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:253
 
 msgid "Event-Type is not available"
 msgstr "Typ zdarzenia jest niedostępny"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:267
 msgid "Select Date"
 msgstr "Wybierz datę"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:269
 
 msgid "Any Date"
 msgstr "Dowolna data"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:273
 #: includes/wp-event-manager-filters.php:21
 
 msgid "This Weekend"
 msgstr "W ten weekend"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:277
 #: includes/wp-event-manager-filters.php:25
 
 msgid "Next Weekend"
 msgstr "Następny weekend"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:279
 #: includes/wp-event-manager-filters.php:27 wp-event-manager.php:316
 msgid "Next Year"
 msgstr "Następny rok"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:298
 
 msgid "Select Ticket Type"
 msgstr "Wybierz typ biletu"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:300
 #: includes/wp-event-manager-filters.php:48
 
 msgid "Any Ticket Price"
 msgstr "Dowolna cena biletu"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:301
 #: forms/wp-event-manager-form-submit-event.php:287
 #: includes/wp-event-manager-filters.php:49 wp-event-manager-template.php:478
 msgid "Paid"
 msgstr "Zapłacone"
 
-#: external/visual-composer/eventListing/eventListing/EventListingController.php:302
 #: forms/wp-event-manager-form-submit-event.php:288
 #: includes/wp-event-manager-filters.php:50 wp-event-manager-template.php:480
 msgid "Free"

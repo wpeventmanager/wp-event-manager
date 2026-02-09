@@ -929,31 +929,74 @@ class WP_Event_Manager_Shortcodes{
 			$search_datetime = isset($_GET['search_datetime']) ? wp_kses_post(wp_unslash($_GET['search_datetime'])) : '';
 		}
 
-		if(!empty($_GET['search_category']) && $search_nonce_verified) {
-			if (!empty($_GET['search_category'])) {
-				$search_category_raw = wp_unslash($_GET['search_category']);
-				if (is_array($search_category_raw)) {
-					$search_category = array_map('sanitize_text_field', $search_category_raw);
-				} else {
-					$search_category = array_map('sanitize_text_field', explode(',', $search_category_raw));
-				}
-			} else {
-				$search_category = array();
-			}
-		}
+		$get_data = wp_unslash( $_GET );
+		$search_category    = array();
+		$search_event_type  = array();
 
-		if(!empty($_GET['search_event_type']) && $search_nonce_verified) {
-			if (!empty($_GET['search_event_type'])) {
-				$search_event_type_raw = wp_unslash($_GET['search_event_type']);
-				if (is_array($search_event_type_raw)) {
-					$search_event_type = array_map('sanitize_text_field', $search_event_type_raw);
+		if ( $search_nonce_verified ) {
+			// --- search_category ---
+			$raw_category = $get_data['search_category'] ?? array();
+
+			if ( ! empty( $raw_category ) ) {
+				if ( is_array( $raw_category ) ) {
+					$search_category = array_map(
+						'sanitize_text_field',
+						$raw_category
+					);
 				} else {
-					$search_event_type = array_map('sanitize_text_field', explode(',', $search_event_type_raw));
+					$search_category = array_map(
+						'sanitize_text_field',
+						explode( ',', $raw_category )
+					);
 				}
-			} else {
-				$search_event_type = array();
+			}
+
+			// --- search_event_type ---
+			$raw_event_type = $get_data['search_event_type'] ?? array();
+
+			if ( ! empty( $raw_event_type ) ) {
+				if ( is_array( $raw_event_type ) ) {
+					$search_event_type = array_map(
+						'sanitize_text_field',
+						$raw_event_type
+					);
+				} else {
+					$search_event_type = array_map(
+						'sanitize_text_field',
+						explode( ',', $raw_event_type )
+					);
+				}
 			}
 		}
+		// if(!empty($_GET['search_category']) && $search_nonce_verified) {
+		// 	if (!empty($_GET['search_category'])) {
+		// 		$search_category_raw = wp_unslash($_GET['search_category']);
+		// 		if (is_array($search_category_raw)) {
+		// 			$search_category = array_map(
+		// 				'sanitize_text_field',
+		// 				$raw_category
+		// 			);
+		// 			$search_category = array_map('sanitize_text_field', $search_category_raw);
+		// 		} else {
+		// 			$search_category = array_map('sanitize_text_field', explode(',', $search_category_raw));
+		// 		}
+		// 	} else {
+		// 		$search_category = array();
+		// 	}
+		// }
+
+		// if(!empty($_GET['search_event_type']) && $search_nonce_verified) {
+		// 	if (!empty($_GET['search_event_type'])) {
+		// 		$search_event_type_raw = wp_unslash($_GET['search_event_type']);
+		// 		if (is_array($search_event_type_raw)) {
+		// 			$search_event_type = array_map('sanitize_text_field', $search_event_type_raw);
+		// 		} else {
+		// 			$search_event_type = array_map('sanitize_text_field', explode(',', $search_event_type_raw));
+		// 		}
+		// 	} else {
+		// 		$search_event_type = array();
+		// 	}
+		// }
 
 		if(!empty($_GET['search_ticket_price'])) {
 			$selected_ticket_price = isset($_GET['search_ticket_price']) ? sanitize_text_field(wp_unslash($_GET['search_ticket_price'])) : '';
