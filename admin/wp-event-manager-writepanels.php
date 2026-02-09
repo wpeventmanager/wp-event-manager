@@ -1724,7 +1724,7 @@ class WP_Event_Manager_Writepanels {
 				$type = isset($field['type']) ? sanitize_text_field(wp_unslash($field['type'])) : '';
 				switch ($type) {
 					case 'textarea':
-						update_post_meta($post_id, $key, wp_kses_post(wp_unslash($_POST[$key])));
+						update_post_meta($post_id, $key, sanitize_textarea_field(wp_unslash($_POST[$key])));
 						break;
 					case 'file':
 						if (isset($_POST[$key])) {
@@ -1932,7 +1932,7 @@ class WP_Event_Manager_Writepanels {
 						update_post_meta(
 							$post_id,
 							$key,
-							wp_kses_post( wp_unslash( $_POST[ $key ] ) )
+							sanitize_textarea_field( wp_unslash( $_POST[ $key ] ) )
 						);
 					}
 					break;
