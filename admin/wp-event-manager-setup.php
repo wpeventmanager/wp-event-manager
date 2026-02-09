@@ -150,14 +150,14 @@ class WP_Event_Manager_Setup {
 
 			// Sanitize create page checkboxes (keys only)
 			if ( isset( $_POST['wp-event-manager-create-page'] ) && is_array( $_POST['wp-event-manager-create-page'] ) ) {
-				foreach ( wp_unslash( $_POST['wp-event-manager-create-page'] ) as $key => $value ) {
+				foreach ( map_deep( wp_unslash( $_POST['wp-event-manager-create-page'] ), 'sanitize_text_field' ) as $key => $value ) {
 					$create_pages[ sanitize_key( $key ) ] = true;
 				}
 			}
 
 			// Sanitize page titles
 			if ( isset( $_POST['wp-event-manager-page-title'] ) && is_array( $_POST['wp-event-manager-page-title'] ) ) {
-				foreach ( wp_unslash( $_POST['wp-event-manager-page-title'] ) as $key => $value ) {
+				foreach ( map_deep( wp_unslash( $_POST['wp-event-manager-page-title'] ), 'sanitize_text_field' ) as $key => $value ) {
 					$page_titles[ sanitize_key( $key ) ] = sanitize_text_field( $value );
 				}
 			}

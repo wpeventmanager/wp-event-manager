@@ -690,7 +690,7 @@ class WP_Event_Manager_Post_Types {
 		}
 	
 		if ( ! empty( $_GET['search_event_types'] ) ) {
-			$cats = wpem_sanitize_array( $_GET['search_event_types'] );
+			$cats = map_deep( wp_unslash( $_GET['search_event_types'] ), 'sanitize_text_field' );
 			if ( ! empty( $cats ) ) {
 				$field = is_int( $cats[0] ) ? 'term_id' : 'slug';
 				$operator = (
@@ -708,7 +708,7 @@ class WP_Event_Manager_Post_Types {
 		}
 	
 		if ( ! empty( $_GET['search_event_categories'] ) ) {
-			$cats = wpem_sanitize_array( $_GET['search_event_categories'] );
+			$cats = map_deep( wp_unslash( $_GET['search_event_categories'] ), 'sanitize_text_field' );
 			if ( ! empty( $cats ) ) {
 				$field = is_int( $cats[0] ) ? 'term_id' : 'slug';
 				$operator = (

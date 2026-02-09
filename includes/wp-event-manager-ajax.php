@@ -536,15 +536,15 @@ class WP_Event_Manager_Ajax {
 		};
 
 		// ---------- FILTER FIELDS ----------
-		$search_categories     = isset( $_REQUEST['search_categories'] ) ? $sanitize_array( $_REQUEST['search_categories'] ) : array();
-		$search_event_types    = isset( $_REQUEST['search_event_types'] ) ? $sanitize_array( $_REQUEST['search_event_types'] ) : array();
-		$search_ticket_prices  = isset( $_REQUEST['search_ticket_prices'] ) ? $sanitize_array( $_REQUEST['search_ticket_prices'] ) : array();
+		$search_categories     = isset( $_REQUEST['search_categories'] ) ? map_deep( wp_unslash( $_REQUEST['search_categories'] ), 'sanitize_text_field') : array();
+		$search_event_types    = isset( $_REQUEST['search_event_types'] ) ? map_deep( wp_unslash( $_REQUEST['search_event_types'] ), 'sanitize_text_field') : array();
+		$search_ticket_prices  = isset( $_REQUEST['search_ticket_prices'] ) ? map_deep( wp_unslash( $_REQUEST['search_ticket_prices'] ), 'sanitize_text_field' ) : array();
 
 		// ---------- DATETIME (JSON SAFE) ----------
 		$search_datetimes = array();
 
 		if ( isset( $_REQUEST['search_datetimes'] ) ) {
-			$raw = wp_unslash( $_REQUEST['search_datetimes'] );
+			$raw = map_deep(wp_unslash( $_REQUEST['search_datetimes'] ), 'wp_kses_post');
 
 			if ( is_array( $raw ) ) {
 				$raw = reset( $raw );
@@ -703,14 +703,14 @@ class WP_Event_Manager_Ajax {
 			]);
 			wp_die();
 		}
-
+		$form_data = isset($_POST['form_data']) ? map_deep( wp_unslash( $_POST['form_data']), 'wp_kses_post') : '';
 		$params = array();
 		// Parse ONLY from POST, not REQUEST
-		parse_str($_POST['form_data'], $params);
+		parse_str($form_data, $params);
 
 		// Sanitize dynamic fields
 		$clean = [];
-
+		$organizer_description = isset($_POST['organizer_description']) ? sanitize_text_field( wp_unslash( $_POST['organizer_description'] ) ) : '';
 		foreach ($params as $key => $value) {
 
 			$safe_key = sanitize_key($key);
@@ -723,7 +723,7 @@ class WP_Event_Manager_Ajax {
 		}
 
 		$params = $clean;		
-		$params['organizer_description'] = sanitize_text_field( wp_unslash( $_POST['organizer_description'] ) );
+		$params['organizer_description'] = $organizer_description;
 		$params['submit_organizer'] = 'Submit';
 
 		$data = [];
@@ -829,7 +829,7 @@ class WP_Event_Manager_Ajax {
 
 		if ( isset( $_POST['form_data'] ) ) {
 			parse_str(
-				wp_unslash( $_POST['form_data'] ),
+				map_deep( wp_unslash( $_POST['form_data'] ), 'wp_kses_post' ),
 				$params
 			);
 		}
@@ -856,9 +856,7 @@ class WP_Event_Manager_Ajax {
 			: '';
 
 		$params['submit_venue'] = 'Submit';
-
 		$data = [];
-
 		/*
 		* ------------------------------------------------------------
 		* Venue creation logic
@@ -924,7 +922,6 @@ class WP_Event_Manager_Ajax {
 					'</div>',
 			];
 		}
-
 		wp_send_json( $data );
 		wp_die();
 	}
