@@ -1863,88 +1863,147 @@ class WP_Event_Manager_Writepanels {
 	 * @param mixed $post
 	 * @return void
 	 */
-	public function save_venue_listing_data($post_id, $post){
+	public function save_venue_listing_data( $post_id, $post ) {
 		global $wpdb;
 
-		// Security: verify nonce and user capability before processing form data.
 		if ( empty( $_POST ) ) {
 			return;
 		}
-		if ( empty( $_POST['event_manager_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['event_manager_nonce'] ) ), 'save_meta_data' ) ) {
+
+		if (
+			empty( $_POST['event_manager_nonce'] ) ||
+			! wp_verify_nonce(
+				sanitize_text_field( wp_unslash( $_POST['event_manager_nonce'] ) ),
+				'save_meta_data'
+			)
+		) {
 			return;
 		}
+
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 
-		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 		$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+		$php_date_format        = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format(
+			$datepicker_date_format
+		);
 
-		// Covert datepicker format  into php date() function date format
-		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
+		// Venue title.
+		if ( isset( $_POST['post_title'] ) ) {
+			update_post_meta(
+				$post_id,
+				'_venue_name',
+				sanitize_text_field( wp_unslash( $_POST['post_title'] ) )
+			);
+		}
 
-		update_post_meta($post_id, '_venue_name', sanitize_text_field(wp_unslash($_POST['post_title'])));
-		update_post_meta($post_id, '_venue_description', wp_kses_post(wp_unslash($_POST['content'])));
+		// Venue description.
+		if ( isset( $_POST['content'] ) ) {
+			update_post_meta(
+				$post_id,
+				'_venue_description',
+				wp_kses_post( wp_unslash( $_POST['content'] ) )
+			);
+		}
 
-		// Save fields
-		foreach ($this->venue_listing_fields() as $key => $field) {
-			$key = sanitize_text_field($key);
-			if('_venue_author' === $key) {
-				$wpdb->update($wpdb->posts, array('post_author' => isset($_POST[$key]) && $_POST[$key] > 0 ? absint(sanitize_text_field(wp_unslash($_POST[$key]))) : 0), array('ID' => $post_id));
-			} else {
-				$type = !empty($field['type']) ? $field['type'] : '';
-				switch ($type) {
-					case 'textarea':
-						update_post_meta($post_id, $key, wp_kses_post(wp_unslash($_POST[$key])));
-						break;
-					case 'file':
-						if (isset($_POST[$key])) {
-							$value = '';
-							if (!empty($_POST['_thumbnail_id'])) {
-								$thumb_id = sanitize_text_field(wp_unslash($_POST['_thumbnail_id']));
-								$thumb_url = wp_get_attachment_url($thumb_id);
-
-								if ($thumb_url) {
-									$value = esc_url_raw($thumb_url);
-								}
-							}
-
-							update_post_meta($post_id, $key, $value);
-						}
-						break;
-					case 'checkbox':
-						if(isset($_POST[$key])) {
-							update_post_meta($post_id, $key, 1);
-						} else {
-							update_post_meta($post_id, $key, 0);
-						}
-						break;
-					case 'date':
-						if(isset($_POST[$key])) {
-							$date = wp_kses_post(wp_unslash($_POST[$key]));
-
-							// Convert date and time value into DB formatted format and save eg. 1970-01-01
-							$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $date);
-							$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-							update_post_meta($post_id, $key, sanitize_text_field(trim($date_dbformatted)));
-						}
-						break;
-						case 'wp-editor':
-							if(!empty($_POST[$key])) {
-								$v_text = wp_kses_post(wp_unslash($_POST[$key]));
-								update_post_meta($post_id, $key, $v_text);
-							}
-							break;
-					default:
-						if(!isset($_POST[$key])) {
-							continue 2;
-						} elseif(is_array($_POST[$key])) {
-							update_post_meta($post_id, $key, array_filter(array_map('sanitize_text_field', wp_unslash($_POST[$key]))));
-						} else {
-							update_post_meta($post_id, $key, sanitize_text_field(wp_unslash($_POST[$key])));
-						}
-						break;
+		foreach ( $this->venue_listing_fields() as $key => $field ) {
+			$key = sanitize_key( $key );
+			if ( '_venue_author' === $key ) {
+				$author_id = 0;
+				if ( isset( $_POST[ $key ] ) ) {
+					$author_id = absint( wp_unslash( $_POST[ $key ] ) );
 				}
+
+				$wpdb->update(
+					$wpdb->posts,
+					array( 'post_author' => $author_id ),
+					array( 'ID' => $post_id )
+				);
+
+				continue;
+			}
+
+			$type = ! empty( $field['type'] ) ? $field['type'] : '';
+
+			switch ( $type ) {
+				case 'textarea':
+					if ( isset( $_POST[ $key ] ) ) {
+						update_post_meta(
+							$post_id,
+							$key,
+							wp_kses_post( wp_unslash( $_POST[ $key ] ) )
+						);
+					}
+					break;
+				case 'file':
+					if ( isset( $_POST[ $key ] ) ) {
+						$value = '';
+						if ( isset( $_POST['_thumbnail_id'] ) ) {
+							$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+							$thumb_url = wp_get_attachment_url( $thumb_id );
+
+							if ( $thumb_url ) {
+								$value = esc_url_raw( $thumb_url );
+							}
+						}
+						update_post_meta( $post_id, $key, $value );
+					}
+					break;
+				case 'checkbox':
+					update_post_meta(
+						$post_id,
+						$key,
+						isset( $_POST[ $key ] ) ? 1 : 0
+					);
+					break;
+				case 'date':
+					if ( isset( $_POST[ $key ] ) ) {
+						$date = wp_kses_post( wp_unslash( $_POST[ $key ] ) );
+						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(
+							$php_date_format,
+							$date
+						);
+						$date_dbformatted = ! empty( $date_dbformatted ) ? $date_dbformatted : $date;
+						update_post_meta(
+							$post_id,
+							$key,
+							sanitize_text_field( trim( $date_dbformatted ) )
+						);
+					}
+					break;
+				case 'wp-editor':
+					if ( isset( $_POST[ $key ] ) ) {
+						update_post_meta(
+							$post_id,
+							$key,
+							wp_kses_post( wp_unslash( $_POST[ $key ] ) )
+						);
+					}
+					break;
+				default:
+					if ( ! isset( $_POST[ $key ] ) ) {
+						break;
+					}
+					if ( is_array( $_POST[ $key ] ) ) {
+						update_post_meta(
+							$post_id,
+							$key,
+							array_filter(
+								array_map(
+									'sanitize_text_field',
+									wp_unslash( $_POST[ $key ] )
+								)
+							)
+						);
+					} else {
+						update_post_meta(
+							$post_id,
+							$key,
+							sanitize_text_field( wp_unslash( $_POST[ $key ] ) )
+						);
+					}
+					break;
 			}
 		}
 	}

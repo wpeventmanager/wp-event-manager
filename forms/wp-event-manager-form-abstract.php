@@ -494,8 +494,14 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	protected function get_posted_textarea_field($key, $field) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		return isset($_POST[ $key ]) ? wp_kses_post(trim(wp_unslash($_POST[ $key ]))) : '';
+		$key = sanitize_key( $key );
+		$value = '';
+		if ( isset( $_POST[ $key ] ) ) {
+			$value = wp_kses_post(
+				wp_unslash( $_POST[ $key ] )
+			);
+		}
+		return trim( $value );
 	}
 
 	/**

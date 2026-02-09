@@ -127,7 +127,6 @@ class WP_Event_Manager_Setup {
 	 * Output addons page.
 	 */
 	public function output() {
-
 		$step     = ! empty( $_GET['step'] ) ? absint( $_GET['step'] ) : 1;
 		$wpem_url = esc_url( get_option( 'wp_event_manager_store_url' ) );
 
