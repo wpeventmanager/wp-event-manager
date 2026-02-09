@@ -526,24 +526,19 @@ class WP_Event_Manager_Ajax {
 		}
 
 		if(isset($_REQUEST['search_categories'])) {
-			$search_categories_raw = wp_unslash($_REQUEST['search_categories']);
-			$search_categories = is_array($search_categories_raw) ? 
-				map_deep($search_categories_raw, 'sanitize_text_field') : 
-				sanitize_text_field($search_categories_raw);
+			$search_categories = is_array($_REQUEST['search_categories']) ? map_deep(wp_unslash($_REQUEST['search_categories']), 'sanitize_text_field') : sanitize_text_field(wp_unslash($_REQUEST['search_categories']));
 		}
 
 		if(isset($_REQUEST['search_event_types'])) {
-			$search_event_types_raw = wp_unslash($_REQUEST['search_event_types']);
-			$search_event_types = is_array($search_event_types_raw) ? 
-				map_deep($search_event_types_raw, 'sanitize_text_field') : 
-				sanitize_text_field($search_event_types_raw);
+			$search_event_types = is_array($_REQUEST['search_event_types']) ? 
+				map_deep(wp_unslash($_REQUEST['search_event_types']), 'sanitize_text_field') : 
+				sanitize_text_field(wp_unslash($_REQUEST['search_event_types']));
 		}
 
 		if(isset($_REQUEST['search_ticket_prices'])) {
-			$search_ticket_prices_raw = wp_unslash($_REQUEST['search_ticket_prices']);
-			$search_ticket_prices = is_array($search_ticket_prices_raw) ? 
-				map_deep($search_ticket_prices_raw, 'sanitize_text_field') : 
-				sanitize_text_field($search_ticket_prices_raw);
+			$search_ticket_prices = is_array($_REQUEST['search_ticket_prices']) ? 
+				map_deep(wp_unslash($_REQUEST['search_ticket_prices']), 'sanitize_text_field') : 
+				sanitize_text_field(wp_unslash($_REQUEST['search_ticket_prices']));
 		}
 		$per_page = isset($_REQUEST['per_page']) ? absint(wp_unslash($_REQUEST['per_page'])) : 10;
 		$order = isset($_REQUEST['order']) && in_array(strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))), array('ASC', 'DESC'), true) ? strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))) : 'DESC';
