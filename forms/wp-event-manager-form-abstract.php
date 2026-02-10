@@ -230,7 +230,6 @@ abstract class WP_Event_Manager_Form {
 		$this->wpem_merge_with_custom_fields('frontend');
 
 		$values = array();
-
 		foreach ($this->fields as $group_key => $group_fields) {
 			foreach ($group_fields as $key => $field) {
 				
