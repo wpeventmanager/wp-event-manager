@@ -770,47 +770,72 @@ class WP_Event_Manager_Ajax {
 		}
 
 		$params = array();
-		$form_data = isset($_POST['form_data']) ? map_deep(wp_unslash($_POST['form_data']), 'wp_kses_post') : '';
-		// Parse ONLY from POST, not REQUEST
-		parse_str($form_data, $params);
+		$form_data_raw = filter_input( INPUT_POST, 'form_data', FILTER_UNSAFE_RAW );
 
-		// Sanitize dynamic fields
-		$clean = [];
-		$organizer_description = isset( $_POST['organizer_description'] ) ? wp_kses_post( wp_unslash( $_POST['organizer_description'] ) ) : '';
-		foreach ($params as $key => $value) {
+		if ( ! empty( $form_data_raw ) ) {
+			// Remove WP slashes
+			$form_data_raw = wp_unslash( $form_data_raw );
 
-			$safe_key = sanitize_key($key);
+			// Convert &amp; back to &
+			$form_data_raw = html_entity_decode( $form_data_raw, ENT_QUOTES, 'UTF-8' );
 
-			if (is_array($value)) {
-				$clean[$safe_key] = map_deep($value, 'sanitize_text_field');
-			} else {
-				$clean[$safe_key] = sanitize_text_field($value);
+			// Parse query string
+			parse_str( $form_data_raw, $params );
+
+			$sanitized = [];
+
+			foreach ( $params as $key => $value ) {
+
+				// Sanitize key itself
+				$safe_key = sanitize_key( $key );
+
+				// Handle arrays (checkboxes, multiselects)
+				if ( is_array( $value ) ) {
+					$sanitized[ $safe_key ] = array_map( 'sanitize_text_field', $value );
+					continue;
+				}
+
+				// Auto-detect value type
+				if ( is_email( $value ) ) {
+					$sanitized[ $safe_key ] = sanitize_email( $value );
+				} elseif ( is_numeric( $value ) ) {
+					$sanitized[ $safe_key ] = $value + 0;
+				} elseif ( wp_http_validate_url( $value ) ) {
+					$sanitized[ $safe_key ] = esc_url_raw( $value );
+				} else {
+					// Allow safe HTML (for textarea / editors)
+					$sanitized[ $safe_key ] = wp_kses_post( $value );
+				}
 			}
 		}
+		$organizer_description = isset( $_POST['organizer_description'] ) ? wp_kses_post( wp_unslash( $_POST['organizer_description'] ) ) : '';
 
-		$params = $clean;		
+		$params = $sanitized;		
 		$params['organizer_description'] = $organizer_description;
 		$params['submit_organizer'] = 'Submit';
-
 		$data = [];
-
-		if(!empty($params['organizer_name']) && isset($params['organizer_id'])  && $params['organizer_id'] == 0){
-			$_POST = $params;
+		if(!empty($params['organizer_name'])){
 
 			if(isset($_COOKIE['wp-event-manager-submitting-organizer-id']))
 			    unset($_COOKIE['wp-event-manager-submitting-organizer-id']);				
 			if(isset($_COOKIE['wp-event-manager-submitting-organizer-key']))
 			    unset($_COOKIE['wp-event-manager-submitting-organizer-key']);
 
+			// Add the required nonce for form submission
+			$organizer_id = isset($params['organizer_id']) ? $params['organizer_id'] : 0;
+			$params['_wpnonce'] = wp_create_nonce('edit-organizer_' . $organizer_id);
+			$_POST = $params;
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 			$form_submit_organizer_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Organizer', 'instance'));
 			$event_fields =	$form_submit_organizer_instance->wpem_merge_with_custom_fields('frontend');
+
+			// Initialize post_data for the form instance
+			$form_submit_organizer_instance->post_data = $_POST;
 
 			// Submit current event with $_POST values
 			$form_submit_organizer_instance->submit_handler();
 
 			$organizer_id = $form_submit_organizer_instance->get_organizer_id();
-
 			if(isset($organizer_id) && !empty($organizer_id)){
 				$organizer = get_post($organizer_id);
 
@@ -870,27 +895,54 @@ class WP_Event_Manager_Ajax {
 		}
 
 		$params = array();
-		$form_data = isset($_POST['form_data']) ? map_deep(wp_unslash($_POST['form_data']), 'wp_kses_post') : '';
-		// Parse ONLY from POST, not REQUEST
-		parse_str($form_data, $params);
-		// Sanitize dynamic fields
-		$clean = [];
+		$form_data_raw = filter_input( INPUT_POST, 'form_data', FILTER_UNSAFE_RAW );
 
-		foreach ($params as $key => $value) {
-			$safe_key = sanitize_key($key);
-			if (is_array($value)) {
-				$clean[$safe_key] = map_deep($value, 'sanitize_text_field');
-			} else {
-				$clean[$safe_key] = sanitize_text_field($value);
+		if ( ! empty( $form_data_raw ) ) {
+			// Remove WP slashes
+			$form_data_raw = wp_unslash( $form_data_raw );
+
+			// Convert &amp; back to &
+			$form_data_raw = html_entity_decode( $form_data_raw, ENT_QUOTES, 'UTF-8' );
+
+			// Parse query string
+			parse_str( $form_data_raw, $params );
+
+			$sanitized = [];
+
+			foreach ( $params as $key => $value ) {
+
+				// Sanitize key itself
+				$safe_key = sanitize_key( $key );
+
+				// Handle arrays (checkboxes, multiselects)
+				if ( is_array( $value ) ) {
+					$sanitized[ $safe_key ] = array_map( 'sanitize_text_field', $value );
+					continue;
+				}
+
+				// Auto-detect value type
+				if ( is_email( $value ) ) {
+					$sanitized[ $safe_key ] = sanitize_email( $value );
+				} elseif ( is_numeric( $value ) ) {
+					$sanitized[ $safe_key ] = $value + 0;
+				} elseif ( wp_http_validate_url( $value ) ) {
+					$sanitized[ $safe_key ] = esc_url_raw( $value );
+				} else {
+					// Allow safe HTML (for textarea / editors)
+					$sanitized[ $safe_key ] = wp_kses_post( $value );
+				}
 			}
 		}
 
-		$params = $clean;
+		$params = $sanitized;
 		$params['venue_description'] = isset( $_POST['venue_description'] ) ? wp_kses_post( wp_unslash( $_POST['venue_description'] ) ) : '';
 		$params['submit_venue'] = 'Submit';
 
 		$data = [];
 		if(!empty($params['venue_name']) && isset($params['venue_id'])  && $params['venue_id'] == 0) {
+			// Add the required nonce for form submission
+			$venue_id = isset($params['venue_id']) ? $params['venue_id'] : 0;
+			$params['_wpnonce'] = wp_create_nonce('edit-venue_' . $venue_id);
 			$_POST = $params;
 
 			if(isset($_COOKIE['wp-event-manager-submitting-venue-id']))
@@ -901,6 +953,9 @@ class WP_Event_Manager_Ajax {
 			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 			$form_submit_venue_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Venue', 'instance'));
 			$event_fields =	$form_submit_venue_instance->wpem_merge_with_custom_fields('frontend');
+
+			// Initialize post_data for the form instance
+			$form_submit_venue_instance->post_data = $_POST;
 
 			// Submit current event with $_POST values
 			$form_submit_venue_instance->submit_handler();
