@@ -502,8 +502,8 @@ class WP_Event_Manager_Ajax {
 		$search_ticket_prices = "";
 		if (isset($_REQUEST['search_datetimes'])) {
 			$raw_dates = is_array($_REQUEST['search_datetimes']) 
-				? array_filter(array_map('sanitize_text_field', array_map('stripslashes', wp_unslash($_REQUEST['search_datetimes'])))) 
-				: array_filter([sanitize_text_field(stripslashes(wp_unslash($_REQUEST['search_datetimes'])))]);
+				? map_deep(wp_unslash($_REQUEST['search_datetimes']), 'sanitize_text_field') 
+				: sanitize_text_field(wp_unslash($_REQUEST['search_datetimes']));
 			// Validate date format before JSON decode
 			if (!empty($raw_dates) && !empty($raw_dates[0])) {
 				// Check if it looks like JSON before decoding
@@ -526,24 +526,19 @@ class WP_Event_Manager_Ajax {
 		}
 
 		if(isset($_REQUEST['search_categories'])) {
-			$search_categories_raw = wp_unslash($_REQUEST['search_categories']);
-			$search_categories = is_array($search_categories_raw) ? 
-				array_filter(array_map('sanitize_text_field', $search_categories_raw)) : 
-				array_filter(array(sanitize_text_field($search_categories_raw)));
+			$search_categories = is_array($_REQUEST['search_categories']) ? map_deep(wp_unslash($_REQUEST['search_categories']), 'sanitize_text_field') : sanitize_text_field(wp_unslash($_REQUEST['search_categories']));
 		}
 
 		if(isset($_REQUEST['search_event_types'])) {
-			$search_event_types_raw = wp_unslash($_REQUEST['search_event_types']);
-			$search_event_types = is_array($search_event_types_raw) ? 
-				array_filter(array_map('sanitize_text_field', $search_event_types_raw)) : 
-				array_filter(array(sanitize_text_field($search_event_types_raw)));
+			$search_event_types = is_array($_REQUEST['search_event_types']) ? 
+				map_deep(wp_unslash($_REQUEST['search_event_types']), 'sanitize_text_field') : 
+				sanitize_text_field(wp_unslash($_REQUEST['search_event_types']));
 		}
 
 		if(isset($_REQUEST['search_ticket_prices'])) {
-			$search_ticket_prices_raw = wp_unslash($_REQUEST['search_ticket_prices']);
-			$search_ticket_prices = is_array($search_ticket_prices_raw) ? 
-				array_filter(array_map('sanitize_text_field', $search_ticket_prices_raw)) : 
-				array_filter(array(sanitize_text_field($search_ticket_prices_raw)));
+			$search_ticket_prices = is_array($_REQUEST['search_ticket_prices']) ? 
+				map_deep(wp_unslash($_REQUEST['search_ticket_prices']), 'sanitize_text_field') : 
+				sanitize_text_field(wp_unslash($_REQUEST['search_ticket_prices']));
 		}
 		$per_page = isset($_REQUEST['per_page']) ? absint(wp_unslash($_REQUEST['per_page'])) : 10;
 		$order = isset($_REQUEST['order']) && in_array(strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))), array('ASC', 'DESC'), true) ? strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))) : 'DESC';
@@ -574,19 +569,8 @@ class WP_Event_Manager_Ajax {
 			$args['event_online'] = ($_REQUEST['event_online'] === 'false') ? sanitize_text_field(wp_unslash($_REQUEST['event_online'])) : true;
 		}
 
-		// Sanitize $_REQUEST before passing to filter callback
-		$sanitized_request = array();
-		foreach ($_REQUEST as $key => $value) {
-			$safe_key = sanitize_key($key);
-			if (is_array($value)) {
-				$sanitized_request[$safe_key] = array_filter(array_map('sanitize_text_field', array_map('wp_unslash', (array) $value)));
-			} else {
-				$sanitized_request[$safe_key] = sanitize_text_field(wp_unslash($value));
-			}
-		}
-
 		ob_start();
-		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, $sanitized_request));
+		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, array_map('wp_kses_post', $_REQUEST) ));
 		$result['found_events'] = false;
 		$fully_registered_events = 0;
 		if($events->have_posts()) : $result['found_events'] = true;
@@ -740,24 +724,7 @@ class WP_Event_Manager_Ajax {
 			foreach ($_FILES as $file_key => $file) {
 				// Sanitize file key
 				$sanitized_file_key = sanitize_key($file_key);
-				
-				// Sanitize $_FILES data before processing
-				$sanitized_file = array();
-				if (is_array($file['name'])) {
-					$sanitized_file['name'] = array_map('sanitize_file_name', $file['name']);
-					$sanitized_file['type'] = array_map('sanitize_text_field', $file['type'] ?? array());
-					$sanitized_file['tmp_name'] = array_map('sanitize_text_field', $file['tmp_name'] ?? array());
-					$sanitized_file['error'] = array_map('absint', $file['error'] ?? array());
-					$sanitized_file['size'] = array_map('absint', $file['size'] ?? array());
-				} else {
-					$sanitized_file['name'] = sanitize_file_name($file['name'] ?? '');
-					$sanitized_file['type'] = sanitize_text_field($file['type'] ?? '');
-					$sanitized_file['tmp_name'] = sanitize_text_field($file['tmp_name'] ?? '');
-					$sanitized_file['error'] = absint($file['error'] ?? 0);
-					$sanitized_file['size'] = absint($file['size'] ?? 0);
-				}
-				
-				$files_to_upload = event_manager_prepare_uploaded_files($sanitized_file);
+				$files_to_upload = event_manager_prepare_uploaded_files($file);
 				foreach ($files_to_upload as $file_to_upload) {
 					$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key));
 					if(is_wp_error($uploaded_file)) {
@@ -803,46 +770,72 @@ class WP_Event_Manager_Ajax {
 		}
 
 		$params = array();
-		// Parse ONLY from POST, not REQUEST
-		parse_str($_POST['form_data'], $params);
+		$form_data_raw = filter_input( INPUT_POST, 'form_data', FILTER_UNSAFE_RAW );
 
-		// Sanitize dynamic fields
-		$clean = [];
+		if ( ! empty( $form_data_raw ) ) {
+			// Remove WP slashes
+			$form_data_raw = wp_unslash( $form_data_raw );
 
-		foreach ($params as $key => $value) {
+			// Convert &amp; back to &
+			$form_data_raw = html_entity_decode( $form_data_raw, ENT_QUOTES, 'UTF-8' );
 
-			$safe_key = sanitize_key($key);
+			// Parse query string
+			parse_str( $form_data_raw, $params );
 
-			if (is_array($value)) {
-				$clean[$safe_key] = array_map('sanitize_text_field', $value);
-			} else {
-				$clean[$safe_key] = sanitize_text_field($value);
+			$sanitized = [];
+
+			foreach ( $params as $key => $value ) {
+
+				// Sanitize key itself
+				$safe_key = sanitize_key( $key );
+
+				// Handle arrays (checkboxes, multiselects)
+				if ( is_array( $value ) ) {
+					$sanitized[ $safe_key ] = array_map( 'sanitize_text_field', $value );
+					continue;
+				}
+
+				// Auto-detect value type
+				if ( is_email( $value ) ) {
+					$sanitized[ $safe_key ] = sanitize_email( $value );
+				} elseif ( is_numeric( $value ) ) {
+					$sanitized[ $safe_key ] = $value + 0;
+				} elseif ( wp_http_validate_url( $value ) ) {
+					$sanitized[ $safe_key ] = esc_url_raw( $value );
+				} else {
+					// Allow safe HTML (for textarea / editors)
+					$sanitized[ $safe_key ] = wp_kses_post( $value );
+				}
 			}
 		}
+		$organizer_description = isset( $_POST['organizer_description'] ) ? wp_kses_post( wp_unslash( $_POST['organizer_description'] ) ) : '';
 
-		$params = $clean;		
-		$params['organizer_description'] = sanitize_text_field( wp_unslash( $_POST['organizer_description'] ) );
+		$params = $sanitized;		
+		$params['organizer_description'] = $organizer_description;
 		$params['submit_organizer'] = 'Submit';
-
 		$data = [];
-
-		if(!empty($params['organizer_name']) && isset($params['organizer_id'])  && $params['organizer_id'] == 0){
-			$_POST = $params;
+		if(!empty($params['organizer_name'])){
 
 			if(isset($_COOKIE['wp-event-manager-submitting-organizer-id']))
 			    unset($_COOKIE['wp-event-manager-submitting-organizer-id']);				
 			if(isset($_COOKIE['wp-event-manager-submitting-organizer-key']))
 			    unset($_COOKIE['wp-event-manager-submitting-organizer-key']);
 
+			// Add the required nonce for form submission
+			$organizer_id = isset($params['organizer_id']) ? $params['organizer_id'] : 0;
+			$params['_wpnonce'] = wp_create_nonce('edit-organizer_' . $organizer_id);
+			$_POST = $params;
 			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
 			$form_submit_organizer_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Organizer', 'instance'));
 			$event_fields =	$form_submit_organizer_instance->wpem_merge_with_custom_fields('frontend');
+
+			// Initialize post_data for the form instance
+			$form_submit_organizer_instance->post_data = $_POST;
 
 			// Submit current event with $_POST values
 			$form_submit_organizer_instance->submit_handler();
 
 			$organizer_id = $form_submit_organizer_instance->get_organizer_id();
-
 			if(isset($organizer_id) && !empty($organizer_id)){
 				$organizer = get_post($organizer_id);
 
@@ -902,26 +895,54 @@ class WP_Event_Manager_Ajax {
 		}
 
 		$params = array();
-		// Parse ONLY from POST, not REQUEST
-		parse_str($_POST['form_data'], $params);
-		// Sanitize dynamic fields
-		$clean = [];
+		$form_data_raw = filter_input( INPUT_POST, 'form_data', FILTER_UNSAFE_RAW );
 
-		foreach ($params as $key => $value) {
-			$safe_key = sanitize_key($key);
-			if (is_array($value)) {
-				$clean[$safe_key] = array_map('sanitize_text_field', $value);
-			} else {
-				$clean[$safe_key] = sanitize_text_field($value);
+		if ( ! empty( $form_data_raw ) ) {
+			// Remove WP slashes
+			$form_data_raw = wp_unslash( $form_data_raw );
+
+			// Convert &amp; back to &
+			$form_data_raw = html_entity_decode( $form_data_raw, ENT_QUOTES, 'UTF-8' );
+
+			// Parse query string
+			parse_str( $form_data_raw, $params );
+
+			$sanitized = [];
+
+			foreach ( $params as $key => $value ) {
+
+				// Sanitize key itself
+				$safe_key = sanitize_key( $key );
+
+				// Handle arrays (checkboxes, multiselects)
+				if ( is_array( $value ) ) {
+					$sanitized[ $safe_key ] = array_map( 'sanitize_text_field', $value );
+					continue;
+				}
+
+				// Auto-detect value type
+				if ( is_email( $value ) ) {
+					$sanitized[ $safe_key ] = sanitize_email( $value );
+				} elseif ( is_numeric( $value ) ) {
+					$sanitized[ $safe_key ] = $value + 0;
+				} elseif ( wp_http_validate_url( $value ) ) {
+					$sanitized[ $safe_key ] = esc_url_raw( $value );
+				} else {
+					// Allow safe HTML (for textarea / editors)
+					$sanitized[ $safe_key ] = wp_kses_post( $value );
+				}
 			}
 		}
 
-		$params = $clean;
-		$params['venue_description'] = isset( $_POST['venue_description'] ) ? sanitize_text_field( wp_unslash( $_POST['venue_description'] ) ) : '';
+		$params = $sanitized;
+		$params['venue_description'] = isset( $_POST['venue_description'] ) ? wp_kses_post( wp_unslash( $_POST['venue_description'] ) ) : '';
 		$params['submit_venue'] = 'Submit';
 
 		$data = [];
 		if(!empty($params['venue_name']) && isset($params['venue_id'])  && $params['venue_id'] == 0) {
+			// Add the required nonce for form submission
+			$venue_id = isset($params['venue_id']) ? $params['venue_id'] : 0;
+			$params['_wpnonce'] = wp_create_nonce('edit-venue_' . $venue_id);
 			$_POST = $params;
 
 			if(isset($_COOKIE['wp-event-manager-submitting-venue-id']))
@@ -932,6 +953,9 @@ class WP_Event_Manager_Ajax {
 			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
 			$form_submit_venue_instance = call_user_func(array('WPEM_Event_Manager_Form_Submit_Venue', 'instance'));
 			$event_fields =	$form_submit_venue_instance->wpem_merge_with_custom_fields('frontend');
+
+			// Initialize post_data for the form instance
+			$form_submit_venue_instance->post_data = $_POST;
 
 			// Submit current event with $_POST values
 			$form_submit_venue_instance->submit_handler();
@@ -964,4 +988,4 @@ class WP_Event_Manager_Ajax {
 		wp_die();
 	}
 }
- WP_Event_Manager_Ajax::instance();
+WP_Event_Manager_Ajax::instance();

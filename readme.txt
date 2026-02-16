@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 6.5
 Tested up to: 6.9
-Stable Tag: 3.3.2
+Stable Tag: 3.3.3
 Requires PHP: 7.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -426,6 +426,10 @@ This plugin connects to external services in order to provide certain features. 
 - Site administrators should ensure they have proper Terms of Service and Privacy Policy disclosures on their website that inform users about these external service connections.
 
 == Changelog ==
+
+= [3.3.3] 16-02-2026 =
+
+Fixed : WP Coding standard improvements
 
 = [3.3.2] 09-02-2026 =
 

@@ -230,7 +230,6 @@ abstract class WP_Event_Manager_Form {
 		$this->wpem_merge_with_custom_fields('frontend');
 
 		$values = array();
-
 		foreach ($this->fields as $group_key => $group_fields) {
 			foreach ($group_fields as $key => $field) {
 				
@@ -494,8 +493,14 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	protected function get_posted_textarea_field($key, $field) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		return isset($_POST[ $key ]) ? wp_kses_post(trim(wp_unslash($_POST[ $key ]))) : '';
+		$key = sanitize_key( $key );
+		$value = '';
+		if ( isset( $_POST[ $key ] ) ) {
+			$value = sanitize_textarea_field(
+				wp_unslash( $_POST[ $key ] )
+			);
+		}
+		return trim( $value );
 	}
 
 	/**

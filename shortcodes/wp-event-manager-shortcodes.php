@@ -918,15 +918,15 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		if(!empty($_GET['search_keywords']) && $search_nonce_verified) {
-			$keywords = isset($_GET['search_keywords']) ? wp_kses_post(wp_unslash($_GET['search_keywords'])) : '';
+			$keywords = isset($_GET['search_keywords']) ? map_deep(wp_unslash($_GET['search_keywords']), 'wp_kses_post') : '';
 		}
 
 		if(!empty($_GET['search_location']) && $search_nonce_verified) {
-			$location = isset($_GET['search_location']) ? wp_kses_post(wp_unslash($_GET['search_location'])) : '';
+			$location = isset($_GET['search_location']) ? map_deep(wp_unslash($_GET['search_location']), 'wp_kses_post') : '';
 		}
 
 		if(!empty($_GET['search_datetime']) && $search_nonce_verified) {
-			$search_datetime = isset($_GET['search_datetime']) ? wp_kses_post(wp_unslash($_GET['search_datetime'])) : '';
+			$search_datetime = isset($_GET['search_datetime']) ? map_deep(wp_unslash($_GET['search_datetime']), 'wp_kses_post') : '';
 		}
 
 		$get_data = wp_unslash( $_GET );
