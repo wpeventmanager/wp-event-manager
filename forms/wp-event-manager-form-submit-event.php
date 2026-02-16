@@ -509,44 +509,44 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	    foreach ( $this->fields as $group_key => $group_fields ) {     	      
     	    // This filter need to apply for remove required attributes when option online event selected and ticket price.
     	    if(isset($group_fields['event_online'] ) ) {
-    			if($values['event_online']=='yes') {
+    			if(isset($values[$group_key]['event_online']) && $values[$group_key]['event_online']=='yes') {
 				    $group_fields['event_venue_name']['required']=false;
 					$group_fields['event_address']['required']=false;
 					$group_fields['event_pincode']['required']=false;
 					$group_fields['event_location']['required']=false;
 					$group_fields['event_country']['required']=false;
-					unset($values['event_venue_name']);
-					unset($values['event_address']);
-					unset($values['event_pincode']);
-					unset($values['event_location']);
-					unset($values['event_country']);
+					unset($values[$group_key]['event_venue_name']);
+					unset($values[$group_key]['event_address']);
+					unset($values[$group_key]['event_pincode']);
+					unset($values[$group_key]['event_location']);
+					unset($values[$group_key]['event_country']);
 				}
 			}
 			if(isset($group_fields['event_ticket_options']) ) {
-				if($values['event_ticket_options']=='free') {	
+				if(isset($values[$group_key]['event_ticket_options']) && $values[$group_key]['event_ticket_options']=='free') {	
 					$group_fields['event_ticket_price']['required']=false;
-					unset($values['event_ticket_price']);
+					unset($values[$group_key]['event_ticket_price']);
 				} 			
 			}
 			
 	        foreach ( $group_fields as $key => $field ) {
-				if(!isset($values[$key]))
+				if(!isset($values[$group_key][$key]))
 					continue;
 				if (!is_user_logged_in() && isset($field['type']) && $field['type'] === 'media-library-image') {
 					$field['required'] = false;
 				}
 				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] = false ) )
 					continue;
-				if( $field['required'] && empty( $values[ $key ] ) ) {	  
+				if( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {	  
 					return new WP_Error( 'validation-error', sprintf(wp_kses( '%s is a required field.', 'wp-event-manager' ), esc_attr( $field['label'] ) ) );
 				}
 
 				if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ), true ) ) {
 
-					if ( is_array( $values[ $key ] ) ) {
-						$check_value = array_map( 'absint', $values[ $key ] ); // ✅ FIX
+					if ( is_array( $values[ $group_key ][ $key ] ) ) {
+						$check_value = array_map( 'absint', $values[ $group_key ][ $key ] );
 					} else {
-						$check_value = empty( $values[ $key ] ) ? [] : [ absint( $values[ $key ] ) ];
+						$check_value = empty( $values[ $group_key ][ $key ] ) ? [] : [ absint( $values[ $group_key ][ $key ] ) ];
 					}
 
 					foreach ( $check_value as $term ) {
@@ -563,10 +563,10 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				}
 
 				if( isset($field['type']) && 'file' === $field['type'] && ! empty( $field['allowed_mime_types'] ) ) {
-					if( is_array( $values[ $key ] ) ) {
-						$check_value = array_filter( $values[ $key ] );
+					if( is_array( $values[ $group_key ][ $key ] ) ) {
+						$check_value = array_filter( $values[ $group_key ][ $key ] );
 					} else {
-						$check_value = array_filter( array( $values[ $key ] ) );
+						$check_value = array_filter( array( $values[ $group_key ][ $key ] ) );
 					}
 
 					if( !empty( $check_value ) ) {
@@ -587,50 +587,50 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			}
 		}
 
-		if( isset($values['event_start_date']) && !empty($values['event_start_date']) && isset($values['event_end_date']) && !empty($values['event_end_date']) ){
+		if( isset($values['event']['event_start_date']) && !empty($values['event']['event_start_date']) && isset($values['event']['event_end_date']) && !empty($values['event']['event_end_date']) ){
 			// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
 			$datepicker_date_format 	= WP_Event_Manager_Date_Time::get_datepicker_format();
 			
 			// Covert datepicker format  into php date() function date format
 			$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format( $datepicker_date_format );
 
-			$event_start_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event_start_date']);
-			$event_start_date = !empty($event_start_date) ? $event_start_date : $values['event_start_date'];
+			$event_start_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event']['event_start_date']);
+			$event_start_date = !empty($event_start_date) ? $event_start_date : $values['event']['event_start_date'];
 
-			$event_end_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event_end_date']);
-			$event_end_date = !empty($event_end_date) ? $event_end_date : $values['event_end_date'];
+			$event_end_date = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format, $values['event']['event_end_date']);
+			$event_end_date = !empty($event_end_date) ? $event_end_date : $values['event']['event_end_date'];
 
 			if( $event_start_date > $event_end_date )
 				return new WP_Error( 'validation-error', __( 'Event end date must be greater than the event start date.', 'wp-event-manager' ) );
 		}
 		
 		// Registration method
-		if( isset( $values['registration'] ) && ! empty( $values['registration'] ) ) {
+		if( isset( $values['event']['registration'] ) && ! empty( $values['event']['registration'] ) ) {
 			$allowed_registration_method = get_option( 'event_manager_allowed_registration_method', '' );
-			$values['registration'] = str_replace( ' ', '+', $values['registration'] );
+			$values['event']['registration'] = str_replace( ' ', '+', $values['event']['registration'] );
 
 			switch ( $allowed_registration_method ) {
 				case 'email' :
-					if( !is_email( $values['registration'] ) ) {
+					if( !is_email( $values['event']['registration'] ) ) {
 						throw new Exception( esc_attr_e( 'Please enter a valid registration email address.', 'wp-event-manager' ) );
 					}
 				break;
 				case 'url' :
 					// Prefix http if needed
-					if( !strstr( $values['registration'], 'http:' ) && ! strstr( $values['registration'], 'https:' ) ) {
-						$values['registration'] = 'http://' . $values['registration'];
+					if( !strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
+						$values['event']['registration'] = 'http://' . $values['event']['registration'];
 					}
-					if( !filter_var( $values['registration'], FILTER_VALIDATE_URL ) ) {
+					if( !filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
 						throw new Exception( esc_attr_e( 'Please enter a valid registration URL.', 'wp-event-manager' ) );
 					}
 				break;
 				default :
-					if( !is_email( $values['registration'] ) ) {
+					if( !is_email( $values['event']['registration'] ) ) {
 						// Prefix http if needed
-						if( !strstr( $values['registration'], 'http:' ) && ! strstr( $values['registration'], 'https:' ) ) {
-							$values['registration'] = 'http://' . $values['registration'];
+						if( !strstr( $values['event']['registration'], 'http:' ) && ! strstr( $values['event']['registration'], 'https:' ) ) {
+							$values['event']['registration'] = 'http://' . $values['event']['registration'];
 						}
-						if ( ! filter_var( $values['registration'], FILTER_VALIDATE_URL ) ) {
+						if ( ! filter_var( $values['event']['registration'], FILTER_VALIDATE_URL ) ) {
 							throw new Exception( esc_attr__( 'Please enter a valid registration email address or URL.', 'wp-event-manager' ) );
 						}
 						
@@ -828,7 +828,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				return;
 			}
 			// Validate required
-			if( is_wp_error( ( $return = $this->validate_fields( $_POST ) ) ) ) {
+			if( is_wp_error( ( $return = $this->validate_fields( $values ) ) ) ) {
 				throw new Exception( $return->get_error_message() );
 			}
 			// Account creation
