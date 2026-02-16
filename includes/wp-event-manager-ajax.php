@@ -570,7 +570,7 @@ class WP_Event_Manager_Ajax {
 		}
 
 		ob_start();
-		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, $_REQUEST));
+		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, array_map('wp_kses_post', $_REQUEST) ));
 		$result['found_events'] = false;
 		$fully_registered_events = 0;
 		if($events->have_posts()) : $result['found_events'] = true;
