@@ -224,7 +224,7 @@ abstract class WP_Event_Manager_Form {
 	public function get_posted_fields() {
 	    
 		// Initialize post_data from $_POST
-		$this->post_data = map_deep('wp_kses_post', wp_unslash( $_POST ));
+		$this->post_data = map_deep(wp_unslash( $_POST ), 'wp_kses_post');
 		
 		// Init fields
 		// $this->init_fields(); We dont need to initialize with this function because of field edior
