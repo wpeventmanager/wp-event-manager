@@ -613,7 +613,7 @@ class WP_Event_Manager_Ajax {
 			$showing_categories = array();
 			foreach ($search_categories as $category) {
 				$category_object = get_term_by(is_numeric($category) ? 'id' : 'slug', $category, 'event_listing_category');
-				if(!is_wp_error($category_object)) {
+				if($category_object && !is_wp_error($category_object)) {
 					$showing_categories[] = $category_object->name;
 				}
 			}
@@ -625,7 +625,7 @@ class WP_Event_Manager_Ajax {
 			$showing_event_types = array();
 			foreach ($search_event_types as $event_type) {
 				$event_type_object = get_term_by(is_numeric($event_type) ? 'id' : 'slug', $event_type, 'event_listing_type');
-				if(!is_wp_error($event_type_object)) {
+				if($event_type_object && !is_wp_error($event_type_object)) {
 					$showing_event_types[] = $event_type_object->name;
 				}
 			}

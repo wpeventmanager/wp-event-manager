@@ -15,6 +15,7 @@ abstract class WP_Event_Manager_Form {
 	protected $steps     = array();
 	protected $step      = 0;
 	public    $form_name = '';
+	public $post_data;
 	
 	/**
 	 * Cloning is forbidden.
