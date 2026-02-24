@@ -570,7 +570,16 @@ class WP_Event_Manager_Ajax {
 		}
 
 		ob_start();
-		$events = wpem_get_event_listings(apply_filters('event_manager_get_listings_args', $args, map_deep( wp_unslash($_REQUEST), 'wp_kses_post'))); 
+		$request_data = wp_unslash( $_REQUEST );
+		$request_data = map_deep( $request_data, 'wp_kses_post' );
+		$events = wpem_get_event_listings(
+			apply_filters(
+				'event_manager_get_listings_args',
+				$args,
+				$request_data
+			)
+		);
+
 		$result['found_events'] = false;
 		$fully_registered_events = 0;
 		if($events->have_posts()) : $result['found_events'] = true;
