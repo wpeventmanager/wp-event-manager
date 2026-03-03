@@ -15,6 +15,7 @@ abstract class WP_Event_Manager_Form {
 	protected $steps     = array();
 	protected $step      = 0;
 	public    $form_name = '';
+	public $post_data;
 	
 	/**
 	 * Cloning is forbidden.
@@ -223,6 +224,9 @@ abstract class WP_Event_Manager_Form {
 	 */
 	public function get_posted_fields() {
 	    
+		// Initialize post_data from $_POST
+		$this->post_data = map_deep(wp_unslash( $_POST ), 'wp_kses_post');
+		
 		// Init fields
 		// $this->init_fields(); We dont need to initialize with this function because of field edior
 		// Now field editor function will return all the fields 
