@@ -111,7 +111,9 @@ $event = $post; ?>
                             <!-- Event description section start-->
                             <div class="wpem-single-event-body-content">
                                 <?php do_action('single_event_overview_start'); 
-                                echo esc_attr(apply_filters('wpem_the_content', $event->post_content)); 
+                               if(!empty($event->post_content)){
+                                    echo wp_kses_post(apply_filters('wpem_the_content', $event->post_content)); 
+                                }
                                 do_action('single_event_overview_end'); ?>
                             </div>
                             <!-- Event description section end-->
