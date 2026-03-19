@@ -1164,7 +1164,6 @@ class WP_Event_Manager_Writepanels {
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified earlier
 		$post_data = wp_unslash( $_POST );
-
 		foreach ( $this->event_listing_fields() as $key => $field ) {
 
 			$key       = sanitize_key( $key );
@@ -1365,10 +1364,12 @@ class WP_Event_Manager_Writepanels {
 					break;
 
 				default:
+					if($field['type'] === 'repeated')
+						break;
 					$sanitized = is_array( $raw_value )
 						? array_filter( array_map( 'sanitize_text_field', $raw_value ) )
 						: sanitize_text_field( (string) $raw_value );
-
+					// error_log(print_r($sanitized, true));
 					if ( apply_filters( 'wpem_save_event_data', true, $key, $sanitized ) ) {
 						update_post_meta( $post_id, $key, $sanitized );
 					}
