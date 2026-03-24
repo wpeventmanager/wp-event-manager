@@ -822,12 +822,29 @@ function event_manager_user_can_post_event() {
 function event_manager_user_can_edit_event($event_id) {
 
 	$can_edit = true;
-	if(!is_user_logged_in() || !$event_id)  {
+	if ( ! $event_id ) {
 		$can_edit = false;
-	} else {
+	} elseif ( is_user_logged_in() ) {
 		$event  = get_post($event_id);
 		if(!$event || (absint($event->post_author) !== get_current_user_id() && !current_user_can('edit_post', $event_id))) {
 			$can_edit = false;
+		}
+	} else {
+		$can_edit = false;
+
+		if ( ! empty( $_COOKIE['wp-event-manager-submitting-event-id'] ) && ! empty( $_COOKIE['wp-event-manager-submitting-event-key'] ) ) {
+			$cookie_event_id = absint( wp_unslash( $_COOKIE['wp-event-manager-submitting-event-id'] ) );
+			if ( $cookie_event_id === absint( $event_id ) ) {
+				$cookie_key = sanitize_text_field( wp_unslash( $_COOKIE['wp-event-manager-submitting-event-key'] ) );
+				$stored_key = get_post_meta( $event_id, '_submitting_key', true );
+
+				if ( ! empty( $stored_key ) && hash_equals( $stored_key, $cookie_key ) ) {
+					$event_status = get_post_status( $event_id );
+					if ( in_array( $event_status, array( 'preview', 'pending' ), true ) ) {
+						$can_edit = true;
+					}
+				}
+			}
 		}
 	}
 	return apply_filters('event_manager_user_can_edit_event', $can_edit, $event_id);
