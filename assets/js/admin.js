@@ -223,9 +223,61 @@ var Admin = function () {
             }
             jQuery('body').on('change', '#_event_end_date', Admin.actions.setListingExpery);
 
-             //upgrade database
+            //upgrade database
              jQuery("#shortcode_list_filter_action").on('click', Admin.actions.getShortcodeList);
+            
+            // Pricing table variation handlers
+            jQuery(".questions").click(function() {
+                jQuery(this).parent().toggleClass("show").siblings().removeClass("show");
+            });
+            
+            jQuery("a.price-table-change-variation").on('click', function(event) {
+                event.preventDefault();
+
+                jQuery(this).closest('.pricing-plan-body').prev().find('.woocommerce-Price-amount').html('<i class="wpemtheme-spinner"></i>');
+                var product_id = jQuery(this).data('product-id');
+
+
+                if (Admin.util.getUrlVars()['action']) {
+                    var add_cart_url = '?add-to-cart=' + product_id + '&subscription_id=' + Admin.util.getUrlVars()["subscription_id"] + '&currentbundleid=' + Admin.util.getUrlVars()["bundle_id"];
+                } else {
+                    var add_cart_url = '?add-to-cart=' + product_id;
+                }
+                var price_container = jQuery(this).parents('.pricing-plan-col');
+                price_container.find('.pricing-plan-foot button').attr("data-id", product_id);
+                price_container.find('.pricing-plan-foot a').attr("href", add_cart_url);
+                if (jQuery(this).hasClass('prevbundle') == false) {
+                    jQuery('a button[data-id="' + jQuery(this).attr('data-product-id') + '"').parent().css('pointer-events', 'auto');
+                }
+                price_container.find(".site-selection-dropdown").removeClass("show");
+                price_container.find(".site-selection-dropdown-toggle").text(jQuery(this).text());
+
+                var data = {
+                    'action': 'get_product_price',
+                    'product_id': product_id, // We pass php values differently!
+                    'security': '<?php echo $ajax_nonce; ?>'
+                };
+                // We can also pass the url value separately from ajaxurl for front end AJAX implementations
+                jQuery.post("<?php echo admin_url('admin-ajax.php'); ?>", data, function(response) {
+                    price_container.find(".pricing-plan-price").html(response);
+                });
+            });
+
+            jQuery(".site-selection-dropdown-menu").find('a.price-table-change-variation:first').each(function() {
+                jQuery(this).trigger("click")
+            });
+
+            jQuery(".site-selection-dropdown-toggle").click(function() {
+                jQuery(this).parent().toggleClass("show");
+            });
+            jQuery(document).on("click", function(event) {
+                var $trigger = jQuery(".site-selection-dropdown");
+                if ($trigger !== event.target && !$trigger.has(event.target).length) {
+                    jQuery(".site-selection-dropdown").removeClass("show");
+                }
+            });
         },
+
         actions:
                 {
                     /// <summary>
@@ -459,7 +511,21 @@ var Admin = function () {
                 event.preventDefault();
             }
         },
+        util: {
+            getUrlVars: function() {
+                var vars = [],
+                    hash;
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for (var i = 0; i < hashes.length; i++) {
+                    hash = hashes[i].split('=');
+                    vars.push(hash[0]);
+                    vars[hash[0]] = hash[1];
+                }
+                return vars;
+            }
+        },
         fileUpload: {
+
             /// <summary>
             /// Upload new file from admin area.
             /// </summary>
@@ -567,64 +633,4 @@ jQuery(document).ready(function ($){
     Admin.init();
 });
 
-jQuery(".questions").click(function() {
-		jQuery(this).parent().toggleClass("show").siblings().removeClass("show");
-	});
 
-	function getUrlVars() {
-		var vars = [],
-			hash;
-		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-		for (var i = 0; i < hashes.length; i++) {
-			hash = hashes[i].split('=');
-			vars.push(hash[0]);
-			vars[hash[0]] = hash[1];
-		}
-		return vars;
-	}
-
-	jQuery("a.price-table-change-variation").on('click', function(event) {
-		event.preventDefault();
-
-		jQuery(this).closest('.pricing-plan-body').prev().find('.woocommerce-Price-amount').html('<i class="wpemtheme-spinner"></i>');
-		var product_id = jQuery(this).data('product-id');
-
-
-		if (getUrlVars()['action']) {
-			var add_cart_url = '?add-to-cart=' + product_id + '&subscription_id=' + getUrlVars()["subscription_id"] + '&currentbundleid=' + getUrlVars()["bundle_id"];
-		} else {
-			var add_cart_url = '?add-to-cart=' + product_id;
-		}
-		var price_container = jQuery(this).parents('.pricing-plan-col');
-		price_container.find('.pricing-plan-foot button').attr("data-id", product_id);
-		price_container.find('.pricing-plan-foot a').attr("href", add_cart_url);
-		if (jQuery(this).hasClass('prevbundle') == false) {
-			jQuery('a button[data-id="' + jQuery(this).attr('data-product-id') + '"').parent().css('pointer-events', 'auto');
-		}
-		price_container.find(".site-selection-dropdown").removeClass("show");
-		price_container.find(".site-selection-dropdown-toggle").text(jQuery(this).text());
-
-		var data = {
-			'action': 'get_product_price',
-			'product_id': product_id, // We pass php values differently!
-			'security': '<?php echo $ajax_nonce; ?>'
-		};
-		// We can also pass the url value separately from ajaxurl for front end AJAX implementations
-		jQuery.post("<?php echo admin_url('admin-ajax.php'); ?>", data, function(response) {
-			price_container.find(".pricing-plan-price").html(response);
-		});
-	});
-
-	jQuery(".site-selection-dropdown-menu").find('a.price-table-change-variation:first').each(function() {
-		jQuery(this).trigger("click")
-	});
-
-	jQuery(".site-selection-dropdown-toggle").click(function() {
-		jQuery(this).parent().toggleClass("show");
-	});
-	jQuery(document).on("click", function(event) {
-		var $trigger = jQuery(".site-selection-dropdown");
-		if ($trigger !== event.target && !$trigger.has(event.target).length) {
-			jQuery(".site-selection-dropdown").removeClass("show");
-		}
-	});
