@@ -30,6 +30,7 @@
         <attribute>selected_event_type</attribute>
         <attribute>selected_ticket_price</attribute>
         <attribute>layout_type</attribute>
+        <attribute>layout_instance</attribute>
       </attributes>
     </shortcode>
     <shortcode>

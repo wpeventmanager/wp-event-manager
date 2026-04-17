@@ -16,7 +16,7 @@ var EventAjaxFilters = function() {
             // After deactivate calendar addon load box layout as default 
             if(localStorage.getItem("layout")==="calendar-layout" ){
 				jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
-				jQuery("#wpem-event-box-layout").addClass("wpem-active-layout");
+				jQuery('.wpem-event-listing-instance .wpem-event-box-layout').addClass("wpem-active-layout");
 				localStorage.setItem("layout", "box-layout"); 
 			}
 
@@ -538,8 +538,11 @@ var EventAjaxFilters = function() {
                     },
                     success: function(response) {
                         if (response.success) {
-                            jQuery('#event-listing-view').html(response.data.events_html);
-                            jQuery('#event-listing-view').data('locked', true);
+                            var $upcomingListings = jQuery('#upcoming_event_listing .wpem-event-listings').first();
+                            if ($upcomingListings.length) {
+                                $upcomingListings.html(response.data.events_html);
+                                $upcomingListings.data('locked', true);
+                            }
                             var nextPage = parseInt(currentPage)+1;
                             jQuery('#load_more_events').attr('data-page', nextPage);
                             if (response.data.no_more_events===true) {

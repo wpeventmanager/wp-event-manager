@@ -853,6 +853,7 @@ class WP_Event_Manager_Shortcodes{
 			'layout_type'      			=> 'all',
 			'event_online'      		=> '',
 			'title'                     => __('Events', 'wp-event-manager'),
+			'layout_instance'           => '',
 		)), $atts));
 
 		$current_page = max(1, get_query_var('paged'));
@@ -879,6 +880,8 @@ class WP_Event_Manager_Shortcodes{
 		$show_event_type_multiselect = $this->string_to_bool($show_event_type_multiselect);
 		$show_more                 = $this->string_to_bool($show_more);
 		$show_pagination           = $this->string_to_bool($show_pagination);
+
+		$listing_instance_id = ! empty( $layout_instance ) ? sanitize_key( $layout_instance ) : 'events';
 
 		// Order by meta value and it will take default sort order by start date of event
 		if(is_null($orderby) ||  empty($orderby)) {
@@ -1111,7 +1114,7 @@ class WP_Event_Manager_Shortcodes{
 		if($events->have_posts()) :
 
 			wp_enqueue_script('wp-event-manager-ajax-filters');
-			wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
+			wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title, 'listing_instance_id' => $listing_instance_id));
 			while ($events->have_posts()) : $events->the_post();
 				$hide_event = apply_filters('wpem_hide_selected_event', false, get_the_id());
 				if($hide_event == true){
@@ -1122,7 +1125,7 @@ class WP_Event_Manager_Shortcodes{
 			wpem_get_event_manager_template('event-listings-end.php', array('show_pagination' => $show_pagination, 'show_more' => $show_more, 'per_page' => $per_page, 'events' => $events, 'show_filters' => $show_filters));
 		 else :
 			
-			wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
+			wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title, 'listing_instance_id' => $listing_instance_id));
 			$default_events = get_posts(array(
 				'numberposts' => -1,
 				'post_type'   => 'event_listing',
@@ -1384,7 +1387,9 @@ class WP_Event_Manager_Shortcodes{
 			'selected_event_types' => '',
 			'layout_type'          => 'all',
 			'title'                => __('Past Events', 'wp-event-manager'),
+			'layout_instance'      => '',
 		), $atts);
+		$listing_instance_id = ! empty( $atts['layout_instance'] ) ? sanitize_key( $atts['layout_instance'] ) : 'past-events';
 		$per_page = absint($atts['per_page']);
 		$show_pagination = $atts['show_pagination'];
 
@@ -1490,7 +1495,7 @@ class WP_Event_Manager_Shortcodes{
 		wp_enqueue_script('wp-event-manager-ajax-filters');
 		if($past_events->have_posts()) : ?>
 			<div class="past_event_listings">
-				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => sanitize_key( $atts['layout_type'] ), 'title' => esc_html($atts['title'])));
+				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => sanitize_key( $atts['layout_type'] ), 'title' => esc_html($atts['title']), 'listing_instance_id' => $listing_instance_id));
 				while ($past_events->have_posts()) : $past_events->the_post();
 					wpem_get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;
@@ -1977,7 +1982,9 @@ class WP_Event_Manager_Shortcodes{
 			'title'                 => __('Upcoming Events', 'wp-event-manager'),
 			'show_filters'          => true,
 			'filter_style'          => '',
+			'layout_instance'       => '',
 		), $atts);
+		$listing_instance_id = ! empty( $atts['layout_instance'] ) ? sanitize_key( $atts['layout_instance'] ) : 'upcoming-events';
 		$show_filters = filter_var( $atts['show_filters'], FILTER_VALIDATE_BOOLEAN );
 
 		$paged = is_front_page() ? max(1, get_query_var('page')) : max(1, get_query_var('paged'));
@@ -2130,7 +2137,7 @@ class WP_Event_Manager_Shortcodes{
 		if($upcoming_events->have_posts()) : 
 			wp_enqueue_script('wp-event-manager-ajax-filters');?>
 			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>">
-				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
+				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title, 'listing_instance_id' => $listing_instance_id));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 					wpem_get_event_manager_template_part('content', 'past_event_listing');
 				endwhile;

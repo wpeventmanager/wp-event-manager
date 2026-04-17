@@ -23,7 +23,7 @@ global $wp_query; ?>
                 remove_action('wpem_end_event_listing_layout_icon', 'add_event_listing_calendar_layout_icon'); ?>
                 <div class="event_listings">
                     <?php if (have_posts()) : 
-                        wpem_get_event_manager_template('event-listings-start.php' ,array('layout_type'=>'all')); 
+                        wpem_get_event_manager_template( 'event-listings-start.php', array( 'layout_type' => 'all', 'listing_instance_id' => 'event-type-archive' ) ); 
                         while (have_posts()) : the_post(); 
                             wpem_get_event_manager_template_part('content', 'event_listing'); 
                         endwhile; 
