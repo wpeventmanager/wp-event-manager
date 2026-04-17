@@ -1,4 +1,4 @@
-/* global Common, event_manager_content_event_listing, jQuery, moment */
+/* global Common, moment */
 var ContentEventListing = function () {
 	var STORAGE_PREFIX = "wpem_layout_inst_";
 
@@ -79,101 +79,112 @@ var ContentEventListing = function () {
 		applyBoxLayout($root);
 	}
 
-	function initDateRangePicker() {
-		if (jQuery("input.date_range_picker").length === 0) {
+	function resolveLayoutKey(layout) {
+		if (layout === "line-layout") {
+			return "line-layout";
+		}
+		if (layout === "calendar-layout") {
+			return "calendar-layout";
+		}
+		return "box-layout";
+	}
+
+	function applyLayoutToSingleInstance() {
+		var $root = jQuery(this);
+		if ($root.find(".wpem-event-list-layout").length === 0 && $root.find(".wpem-event-box-layout").length === 0) {
 			return;
 		}
-		var i18n = event_manager_content_event_listing;
-		jQuery("input.date_range_picker").daterangepicker({
+		var instanceId = $root.attr("data-wpem-listing-instance") || "";
+		var layoutKey = resolveLayoutKey(getStoredLayout(instanceId));
+		applyLayoutToInstance($root, layoutKey);
+	}
+
+	function buildDateRangePickerOptions() {
+		var labels = window.event_manager_content_event_listing;
+		return {
 			datepickerOptions: {
 				numberOfMonths: 2,
 				minDate: null,
 				maxDate: null,
-				monthNames: i18n.i18n_monthNames,
-				dayNames: i18n.i18n_dayNames,
-				dayNamesMin: i18n.i18n_dayNamesMin
+				monthNames: labels.i18n_monthNames,
+				dayNames: labels.i18n_dayNames,
+				dayNamesMin: labels.i18n_dayNamesMin
 			},
-			initialText: i18n.i18n_initialText,
-			applyButtonText: i18n.i18n_applyButtonText,
-			clearButtonText: i18n.i18n_clearButtonText,
-			cancelButtonText: i18n.i18n_cancelButtonText,
-			dateFormat: i18n.i18n_datepicker_format,
-			altFormat: i18n.i18n_datepicker_format,
-			clear: function () {
+			initialText: labels.i18n_initialText,
+			applyButtonText: labels.i18n_applyButtonText,
+			clearButtonText: labels.i18n_clearButtonText,
+			cancelButtonText: labels.i18n_cancelButtonText,
+			dateFormat: labels.i18n_datepicker_format,
+			altFormat: labels.i18n_datepicker_format,
+			clear() {
 				jQuery(".comiseo-daterangepicker-triggerbutton").click();
 			},
 			rangeSplitter: " : ",
 			presetRanges: [
 				{
-					text: i18n.i18n_today,
-					dateStart: function () { return moment(); },
-					dateEnd: function () { return moment(); }
+					text: labels.i18n_today,
+					dateStart() { return moment(); },
+					dateEnd() { return moment(); }
 				},
 				{
-					text: i18n.i18n_tomorrow,
-					dateStart: function () { return moment().add("days", 1); },
-					dateEnd: function () { return moment().add("days", 1); }
+					text: labels.i18n_tomorrow,
+					dateStart() { return moment().add("days", 1); },
+					dateEnd() { return moment().add("days", 1); }
 				},
 				{
-					text: i18n.i18n_thisWeek,
-					dateStart: function () { return moment().startOf("week"); },
-					dateEnd: function () { return moment().endOf("week"); }
+					text: labels.i18n_thisWeek,
+					dateStart() { return moment().startOf("week"); },
+					dateEnd() { return moment().endOf("week"); }
 				},
 				{
-					text: i18n.i18n_nextWeek,
-					dateStart: function () { return moment().add("weeks", 1).startOf("week"); },
-					dateEnd: function () { return moment().add("weeks", 1).endOf("week"); }
+					text: labels.i18n_nextWeek,
+					dateStart() { return moment().add("weeks", 1).startOf("week"); },
+					dateEnd() { return moment().add("weeks", 1).endOf("week"); }
 				},
 				{
-					text: i18n.i18n_thisMonth,
-					dateStart: function () { return moment().startOf("month"); },
-					dateEnd: function () { return moment().endOf("month"); }
+					text: labels.i18n_thisMonth,
+					dateStart() { return moment().startOf("month"); },
+					dateEnd() { return moment().endOf("month"); }
 				},
 				{
-					text: i18n.i18n_nextMonth,
-					dateStart: function () { return moment().add("months", 1).startOf("month"); },
-					dateEnd: function () { return moment().add("months", 1).endOf("month"); }
+					text: labels.i18n_nextMonth,
+					dateStart() { return moment().add("months", 1).startOf("month"); },
+					dateEnd() { return moment().add("months", 1).endOf("month"); }
 				},
 				{
-					text: i18n.i18n_thisYear,
-					dateStart: function () { return moment().startOf("year"); },
-					dateEnd: function () { return moment().endOf("year"); }
+					text: labels.i18n_thisYear,
+					dateStart() { return moment().startOf("year"); },
+					dateEnd() { return moment().endOf("year"); }
 				},
 				{
-					text: i18n.i18n_nextYear,
-					dateStart: function () { return moment().add("years", 1).startOf("year"); },
-					dateEnd: function () { return moment().add("years", 1).endOf("year"); }
+					text: labels.i18n_nextYear,
+					dateStart() { return moment().add("years", 1).startOf("year"); },
+					dateEnd() { return moment().add("years", 1).endOf("year"); }
 				}
 			]
-		});
+		};
+	}
+
+	function initDateRangePicker() {
+		if (jQuery("input.date_range_picker").length === 0) {
+			return;
+		}
+		jQuery("input.date_range_picker").daterangepicker(buildDateRangePickerOptions());
 	}
 
 	return {
-		init: function () {
+		init() {
 			Common.logInfo("ContentEventListing.init...");
 
 			jQuery(document).on("click", ".wpem-event-list-layout", ContentEventListing.actions.lineLayoutIconClick);
 			jQuery(document).on("click", ".wpem-event-box-layout", ContentEventListing.actions.boxLayoutIconClick);
 
-			jQuery(".wpem-event-listing-instance").each(function () {
-				var $root = jQuery(this);
-				var instanceId = $root.attr("data-wpem-listing-instance") || "";
-				if ($root.find(".wpem-event-list-layout").length > 0 || $root.find(".wpem-event-box-layout").length > 0) {
-					var layout = getStoredLayout(instanceId);
-					if (layout === "line-layout") {
-						applyLayoutToInstance($root, "line-layout");
-					} else if (layout === "calendar-layout") {
-						applyLayoutToInstance($root, "calendar-layout");
-					} else {
-						applyLayoutToInstance($root, "box-layout");
-					}
-				}
-			});
+			jQuery(".wpem-event-listing-instance").each(applyLayoutToSingleInstance);
 
 			setTimeout(initDateRangePicker, 500);
 		},
 		actions: {
-			lineLayoutIconClick: function (event) {
+			lineLayoutIconClick(evt) {
 				var $root = getInstanceRoot(this);
 				var instanceId = $root.attr("data-wpem-listing-instance") || "";
 				jQuery(this).addClass("wpem-active-layout");
@@ -183,10 +194,10 @@ var ContentEventListing = function () {
 				$listings.removeClass("wpem-row wpem-event-listing-box-view");
 				$listings.addClass("wpem-event-listing-list-view");
 				setStoredLayout(instanceId, "line-layout");
-				event.preventDefault();
+				evt.preventDefault();
 			},
 
-			boxLayoutIconClick: function (event) {
+			boxLayoutIconClick(evt) {
 				Common.logInfo("ContentEventListing.actions.boxLayoutIconClick...");
 				var $root = getInstanceRoot(this);
 				var instanceId = $root.attr("data-wpem-listing-instance") || "";
@@ -199,7 +210,7 @@ var ContentEventListing = function () {
 				$listings.removeClass("wpem-event-listing-list-view");
 				$listings.addClass("wpem-row wpem-event-listing-box-view");
 				setStoredLayout(instanceId, "box-layout");
-				event.preventDefault();
+				evt.preventDefault();
 			}
 		}
 	};

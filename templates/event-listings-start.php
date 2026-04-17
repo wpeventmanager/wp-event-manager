@@ -7,14 +7,14 @@ $listing_instance_id = isset( $listing_instance_id ) && is_string( $listing_inst
 	: sanitize_key( wp_unique_id( 'wpem-el-' ) );
 wpem_listing_instance_stack_push( $listing_instance_id );
 wp_enqueue_script( 'wp-event-manager-content-event-listing' );
-wpem_echo_listing_instance_wrapper_open( $listing_instance_id );
+echo wp_kses( wpem_listing_instance_wrapper_html( $listing_instance_id ), wpem_listing_instance_markup_kses_allowed() );
 ?>
 <div class="wpem-main wpem-event-listings-header">
     <div class="wpem-row">
         <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-8">
             <div class="wpem-event-listing-header-title">
                 <?php if ( isset( $title ) ) : ?>
-                    <h2 class="wpem-heading-text"><?php wpem_echo_listing_section_title( $title ); ?></h2>
+                    <h2 class="wpem-heading-text"><?php echo wpem_listing_section_title_html( $title ); ?></h2>
                 <?php endif; ?>
             </div>
         </div>
@@ -50,4 +50,4 @@ if ( $wpem_html_before_event_list ) {
 }
 ?>
 <div class="event_listings_main">
-<?php wpem_echo_listing_view_container_open( $listing_instance_id, $wpem_list_type_class, $layout_type ); ?>
+<?php echo wp_kses( wpem_listing_view_container_open_html( $listing_instance_id, $wpem_list_type_class, $layout_type ), wpem_listing_instance_markup_kses_allowed() ); ?>

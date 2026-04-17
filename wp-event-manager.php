@@ -91,7 +91,7 @@ class WP_Event_Manager {
 		include('includes/wp-event-manager-filters.php');
 		include('includes/wp-event-manager-cache-helper.php');
 		include('includes/wp-event-manager-date-time.php');
-		require_once EVENT_MANAGER_PLUGIN_DIR . '/includes/wp-event-manager-listing-instance-stack.php';
+		include('includes/wp-event-manager-listing-instance-stack.php');
 
 		// Here is the list of all the shortcodes for WP Event Manager.
 		include('shortcodes/wp-event-manager-shortcodes.php');
