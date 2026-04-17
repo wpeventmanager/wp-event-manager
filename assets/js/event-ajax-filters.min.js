@@ -432,7 +432,7 @@ var EventAjaxFilters = function() {
                             per_page: per_page,
                         },
                         success: function(response) {
-                            target.find('.load_more_events_loader').removeClass('wpem-loading');
+                            jQuery('#upcoming_event_listing').find('#load_more_events_loader, .load_more_events_loader').removeClass('wpem-loading');
                             if (response.success) {
                                 jQuery('.event_listings').append(response.data.events_html);                            
                                 var nextPage = parseInt(currentPage) + 1;
