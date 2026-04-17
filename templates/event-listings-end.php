@@ -33,3 +33,5 @@ if( $wpem_html_after_event_list ){
 	echo wp_kses_post($wpem_html_content);
 } ?>
 </div>
+<?php wpem_listing_instance_stack_pop(); ?>
+</div>
