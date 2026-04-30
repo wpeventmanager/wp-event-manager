@@ -1358,6 +1358,22 @@ class WP_Event_Manager_Writepanels {
 					break;
 
 				case 'date':
+					// Convert from datepicker display format (e.g. m-d-Y) to Y-m-d before saving.
+					if ( ! empty( $raw_value ) ) {
+						$date_format      = sanitize_text_field( $post_data['date_format'] ?? $php_date_format );
+						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(
+							$date_format,
+							sanitize_text_field( (string) $raw_value )
+						);
+						update_post_meta(
+							$post_id,
+							$key,
+							! empty( $date_dbformatted ) ? $date_dbformatted : sanitize_text_field( (string) $raw_value )
+						);
+					} else {
+						update_post_meta( $post_id, $key, '' );
+					}
+					break;
 				case 'time':
 					$sanitized = sanitize_text_field( (string) $raw_value );
 					update_post_meta( $post_id, $key, $sanitized );
