@@ -237,6 +237,7 @@ class WP_Event_Manager_Geocode {
 			$address['country_short'] = false;
 			$address['country_long']  = false;
 			foreach ($address_data as $data) {
+				if ( empty( $data->types ) ) continue;
 				switch ($data->types[0]) {
 					case 'street_number' :
 						$address['street_number'] = esc_attr($data->long_name);
