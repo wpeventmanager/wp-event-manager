@@ -566,7 +566,8 @@ abstract class WP_Event_Manager_Form {
 				$allowed_mime_types = get_allowed_mime_types();
 			}
 			$file_urls       = array();
-			$files_to_upload = event_manager_prepare_uploaded_files(sanitize_text_field(wp_unslash($_FILES[ $field_key ])));
+			sanitize_file_name(wp_unslash($_FILES[ $field_key ]['name']));
+			$files_to_upload = event_manager_prepare_uploaded_files($_FILES[ $field_key ]);
 			foreach ($files_to_upload as $file_to_upload) {
 				$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $field_key ,'allowed_mime_types' => $allowed_mime_types));
 				if(is_wp_error($uploaded_file)) {
