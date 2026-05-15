@@ -508,13 +508,20 @@ abstract class WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Get the value of a posted textarea field.
+	 * Get the value of a posted wp editor field.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return string
 	 */
-	protected function get_posted_wp_editor_field($key, $field) {
-		return $this->get_posted_textarea_field($key, $field);
+
+	protected function get_posted_wp_editor_field( $key, $field ) {
+		$key   = sanitize_key( $key );
+		$value = '';
+		if ( isset( $_POST[ $key ] ) ) {
+			$value = wp_kses_post( $_POST[ $key ]);
+		}
+
+		return trim( $value );
 	}
 	
 	/**
