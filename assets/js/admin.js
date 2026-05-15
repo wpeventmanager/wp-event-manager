@@ -239,9 +239,9 @@ var Admin = function () {
 
 
                 if (Admin.util.getUrlVars()['action']) {
-                    var add_cart_url = '?add-to-cart=' + product_id + '&subscription_id=' + Admin.util.getUrlVars()["subscription_id"] + '&currentbundleid=' + Admin.util.getUrlVars()["bundle_id"];
+                    var add_cart_url = 'https://wp-eventmanager.com/pricing/?add-to-cart=' + product_id + '&subscription_id=' + Admin.util.getUrlVars()["subscription_id"] + '&currentbundleid=' + Admin.util.getUrlVars()["bundle_id"];
                 } else {
-                    var add_cart_url = '?add-to-cart=' + product_id;
+                    var add_cart_url = 'https://wp-eventmanager.com/pricing/?add-to-cart=' + product_id;
                 }
                 var price_container = jQuery(this).parents('.pricing-plan-col');
                 price_container.find('.pricing-plan-foot button').attr("data-id", product_id);
