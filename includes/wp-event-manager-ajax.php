@@ -571,7 +571,12 @@ class WP_Event_Manager_Ajax {
 
 		ob_start();
 		$request_data = wp_unslash( $_REQUEST );
-		$request_data = map_deep( $request_data, 'wp_kses_post' );
+		$request_data = map_deep(
+			$request_data,
+			function ( $request_value ) {
+				return wp_kses_post( is_null( $request_value ) ? '' : $request_value );
+			}
+		);
 		$events = wpem_get_event_listings(
 			apply_filters(
 				'event_manager_get_listings_args',
