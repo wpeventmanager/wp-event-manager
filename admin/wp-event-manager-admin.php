@@ -85,7 +85,7 @@ class WP_Event_Manager_Admin {
 
 		global $wp_scripts;
 		$screen = get_current_screen();
-		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue', 'event_listing_page_event-manager-shortcodes', 'event_listing_page_event-manager-form-editor')))) {
+		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue', 'event_listing_page_event-manager-shortcodes', 'event_listing_page_event-manager-form-editor','event_registration_page_event-registrations-settings','event_zoom_page_event-manager-zoom-settings')))) {
 
 			// Main backend style - only enqueue on plugin pages
 			wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css', array(), '1.0.0');
