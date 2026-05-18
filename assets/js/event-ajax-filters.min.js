@@ -189,11 +189,11 @@ var EventAjaxFilters = function() {
             },
 
             eventPagination: function(event) {
-                Common.logInfo("EventAjaxFilters.actions.eventPagination...");
+                event.preventDefault();
                 var target = jQuery(this).closest('div.event_listings');
                 var page = jQuery(this).data('page');
                 EventAjaxFilters.actions.event_manager_store_state(target, page);
-                EventAjaxFilters.actions.getEventListings(event, page, false, false);
+                target.triggerHandler('update_event_listings', [page, false, false]);
             },
             
             getEventListings: function(event, page=1, append, loading_previous) {
