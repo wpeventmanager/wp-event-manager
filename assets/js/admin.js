@@ -245,7 +245,7 @@ var Admin = function () {
                 }
                 var price_container = jQuery(this).parents('.pricing-plan-col');
                 price_container.find('.pricing-plan-foot button').attr("data-id", product_id);
-                price_container.find('.pricing-plan-foot a').attr("href", add_cart_url);
+                price_container.find('.pricing-plan-foot a').attr("target", "_blank").attr("href", add_cart_url);
                 if (jQuery(this).hasClass('prevbundle') == false) {
                     jQuery('a button[data-id="' + jQuery(this).attr('data-product-id') + '"').parent().css('pointer-events', 'auto');
                 }
