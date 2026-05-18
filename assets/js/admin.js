@@ -34,7 +34,7 @@ var Admin = function () {
             jQuery('.wpem-tabs li a:first').click();
             jQuery(document).on("click", ".event-manager-remove-uploaded-file", function (e) {
                 e.preventDefault(); // Prevent default anchor behavior
-                var parentDiv = jQuery(this).closest(".event-manager-uploaded-files");
+                var parentDiv = jQuery(this).closest(".event-manager-uploaded-file");
                 // Remove the preview span
                 parentDiv.find(".event-manager-uploaded-file-preview").remove();
                 // Clear the hidden input field value
