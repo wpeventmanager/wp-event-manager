@@ -1869,21 +1869,28 @@ function wpem_check_organizer_exist($organizer_email) {
  * @since 3.1.16
  **/
 function wpem_has_event_venue_ids($post = null) {
-	$post = get_post($post);
-
-	if($post->post_type !== 'event_listing')
-		return;
-
-	if(!empty($post->_event_venue_ids))	{
-		$venue = get_post($post->_event_venue_ids);
-		if(empty($venue))
-			return;
-
-		if($venue->post_status != 'publish')
-			return;
-	}
-
-	return !empty($post->_event_venue_ids) ? true : false;
+    $post = get_post($post);
+    if (!$post || $post->post_type !== 'event_listing') {
+        return false;
+    }
+    $venue_ids = $post->_event_venue_ids;
+    if (empty($venue_ids)) {
+        return false;
+    }
+    // Handle array format
+    if (is_array($venue_ids)) {
+        $venue_id = reset($venue_ids);
+    } else {
+        $venue_id = $venue_ids;
+    }
+    $venue = get_post($venue_id);
+    if (empty($venue)) {
+        return false;
+    }
+    if ($venue->post_status !== 'publish') {
+        return false;
+    }
+    return true;
 }
 
 /**
