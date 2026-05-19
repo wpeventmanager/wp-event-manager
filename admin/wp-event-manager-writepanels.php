@@ -1977,16 +1977,16 @@ class WP_Event_Manager_Writepanels {
 						}
 
 						$value = esc_url_raw( $value );
-						if( empty( trim( $value ) ) ) {
-							if ( isset( $_POST['_thumbnail_id'] ) ) {
-								$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
-								$thumb_url = wp_get_attachment_url( $thumb_id );
+						// if( empty( trim( $value ) ) ) {
+						// 	if ( isset( $_POST['_thumbnail_id'] ) ) {
+						// 		$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+						// 		$thumb_url = wp_get_attachment_url( $thumb_id );
 
-								if ( $thumb_url ) {
-									$value = esc_url_raw( $thumb_url );
-								}
-							}
-						}
+						// 		if ( $thumb_url ) {
+						// 			$value = esc_url_raw( $thumb_url );
+						// 		}
+						// 	}
+						// }
 						update_post_meta( $post_id, $key, $value );
 					}else{
 						// If no value in POST, check if thumbnail ID is set and use it as fallback based on the above existing flow.
