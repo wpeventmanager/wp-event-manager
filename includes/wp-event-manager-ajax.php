@@ -321,6 +321,35 @@ class WP_Event_Manager_Ajax {
 		$orderby = isset($_POST['orderby']) ? sanitize_text_field(wp_unslash($_POST['orderby'])) : 'date';
 		$order = isset($_POST['order']) ? sanitize_text_field(wp_unslash($_POST['order'])) : 'DESC';
 
+		$search_datetimes = array();
+		if ( isset( $_POST['search_datetimes'] ) ) {
+
+			$search_datetimes = is_array( $_POST['search_datetimes'] )
+				? array_map(
+					'sanitize_text_field',
+					wp_unslash( $_POST['search_datetimes'] )
+				)
+				: array(
+					sanitize_text_field(
+						wp_unslash( $_POST['search_datetimes'] )
+					)
+				);
+
+			// Validate decoded JSON structure
+			if ( ! empty( $search_datetimes[0] ) ) {
+
+				$dates = json_decode( $search_datetimes[0], true );
+
+				if (
+					empty( $dates ) ||
+					empty( $dates['start'] ) ||
+					empty( $dates['end'] )
+				) {
+					$search_datetimes = array();
+				}
+			}
+		}
+
 		$args = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => array('publish'),
@@ -351,6 +380,51 @@ class WP_Event_Manager_Ajax {
 				),
 			)
 		);
+
+		if ( ! empty( $search_datetimes[0] ) ) {
+
+			$dates = json_decode( $search_datetimes[0], true );
+
+			// Get admin date format
+			$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+
+			// Convert to PHP date format
+			$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format(
+				$datepicker_date_format
+			);
+
+			$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format(
+				$php_date_format,
+				$dates['start']
+			);
+
+			$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format(
+				$php_date_format,
+				$dates['end']
+			);
+
+			$date_search = array(
+				'relation' => 'AND',
+				array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['end'],
+					'compare' => '<=',
+					'type'    => 'DATE',
+				),
+				array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['start'],
+					'compare' => '>=',
+					'type'    => 'DATE',
+				),
+			);
+
+			$args['meta_query'][] = $date_search;
+		}
+
+		if(!empty($event_manager_keyword) && strlen($event_manager_keyword) > 0) {
+			$args['s'] = $event_manager_keyword;
+		}
 
 		if('featured' === $orderby) {
 			$args['meta_query'] = array(
