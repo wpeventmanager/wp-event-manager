@@ -169,7 +169,7 @@ class WP_Event_Manager_Post_Types {
 												esc_html( $singular )
 											)
 	            	),
-		            'show_ui' 				=> true,
+		            'show_ui' 				=> false,
 					'show_in_rest'          => true,
 		            'public' 	     		=> $public,
 		            'capabilities'			=> array(
@@ -256,7 +256,7 @@ class WP_Event_Manager_Post_Types {
 						'back_to_items'      => __( '← Go to Types', 'wp-event-manager' ),
 						'view_item'          => __( 'View Type', 'wp-event-manager' ),
 					),
-		            'show_ui' 				=> true,
+		            'show_ui' 				=> false,
 					'show_in_rest'          => true,
 		            'public' 			    => $public,
 		            'capabilities'			=> array(
