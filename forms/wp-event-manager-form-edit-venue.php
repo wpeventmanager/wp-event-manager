@@ -101,6 +101,11 @@ class WPEM_Event_Manager_Form_Edit_Venue extends WPEM_Event_Manager_Form_Submit_
 		$this->fields = apply_filters('submit_venue_form_fields_get_venue_data', $this->fields, $venue);
 		wp_enqueue_script('wp-event-manager-event-submission');
 
+		// Show success message if the form was just submitted
+		if (isset($_GET['updated']) && $_GET['updated'] === 'true') {
+			echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . get_permalink($this->get_venue_id()) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>' . '</div>');
+		}
+
 		wpem_get_event_manager_template('venue-submit.php', 
 			array(
 				'form'              => esc_attr($this->form_name),

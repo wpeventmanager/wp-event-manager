@@ -104,7 +104,7 @@ class WPEM_Event_Manager_Form_Edit_Organizer extends WPEM_Event_Manager_Form_Sub
 		
 		// Show success message if the form was just submitted
 		if (isset($_GET['updated']) && $_GET['updated'] === 'true') {
-			$this->add_message(__('Your changes have been saved.', 'wp-event-manager'));
+			echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . get_permalink($this->get_organizer_id()) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>' . '</div>');
 		}
 		
 		wpem_get_event_manager_template('organizer-submit.php', 

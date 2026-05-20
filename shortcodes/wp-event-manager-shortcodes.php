@@ -303,15 +303,19 @@ class WP_Event_Manager_Shortcodes{
 
 		// Verify nonce before processing request parameters
 		$nonce_verified = false;
-		if ( ! empty( $_REQUEST['_wpnonce'] ) ) {
-			$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'edit_event_form' );
+		$organizer_id = isset($_REQUEST['organizer_id']) ? absint( wp_unslash($_REQUEST['organizer_id'])) : 0;
+		$venue_id     = isset($_REQUEST['venue_id']) ? absint( wp_unslash($_REQUEST['venue_id'])) : 0;
+
+		if ($organizer_id && get_post_type($organizer_id) === 'event_organizer') {
+			$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_organizer_actions' );
+		}elseif ($venue_id && get_post_type($venue_id) === 'event_venue') {
+			$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_venue_actions' );
+		}else{
+			$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_event_actions' );
 		}
 
-		$organizer_id = 0;
-		$venue_id = 0;
-		if ( $nonce_verified ) {
-			$organizer_id = isset($_REQUEST['organizer_id']) ? absint( wp_unslash($_REQUEST['organizer_id'])) : 0;
-			$venue_id     = isset($_REQUEST['venue_id']) ? absint( wp_unslash($_REQUEST['venue_id'])) : 0;
+		if(!$nonce_verified){
+			$organizer_id = $venue_id = 0;
 		}
 
 		if ($organizer_id && get_post_type($organizer_id) === 'event_organizer') {
@@ -464,19 +468,6 @@ class WP_Event_Manager_Shortcodes{
 				}
 
 				switch ($action) {
-					case 'edit':
-						if (!event_manager_get_permalink('submit_organizer_form')) {
-							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
-						}
-						wp_safe_redirect(
-							add_query_arg(
-								array(
-									'organizer_id' => absint($organizer_id),
-								),
-								event_manager_get_permalink('submit_organizer_form')
-							)
-						);
-						exit;
 					case 'delete':
 						wp_trash_post($organizer_id);
 						$this->organizer_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' .
@@ -653,19 +644,6 @@ class WP_Event_Manager_Shortcodes{
 				}
 
 				switch ($action) {
-					case 'edit':
-						if (!event_manager_get_permalink('submit_venue_form')) {
-							throw new Exception(__('Missing submission page.', 'wp-event-manager'));
-						}
-						wp_safe_redirect(
-							add_query_arg(
-								array(
-									'venue_id' => absint($venue_id),
-								),
-								event_manager_get_permalink('submit_venue_form')
-							)
-						);
-						exit;
 					case 'delete':
 						wp_trash_post($venue_id);
 						$this->venue_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-danger">' .
