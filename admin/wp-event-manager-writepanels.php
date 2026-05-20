@@ -1744,20 +1744,40 @@ class WP_Event_Manager_Writepanels {
 						update_post_meta($post_id, $key, sanitize_textarea_field(wp_unslash($_POST[$key])));
 						break;
 					case 'file':
-						if (isset($_POST[$key])) {
-							$value = '';
-							if (!empty($_POST['_thumbnail_id'])) {
-								$thumb_id = intval(wp_unslash($_POST['_thumbnail_id']));
-								$thumb_url = wp_get_attachment_url($thumb_id);
-
-								if ($thumb_url) {
-									$value = esc_url_raw($thumb_url);
-								}
-							}
-
-							update_post_meta($post_id, $key, $value);
+					// If value is uploaded via POST.
+					if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
+						$value = wp_unslash( $_POST[ $key ] );
+						// Handle array values safely
+						if ( is_array( $value ) ) {
+							$value = reset( $value ); // get first value
 						}
-						break;
+
+						$value = esc_url_raw( $value );
+						// if( empty( trim( $value ) ) ) {
+						// 	if ( isset( $_POST['_thumbnail_id'] ) ) {
+						// 		$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+						// 		$thumb_url = wp_get_attachment_url( $thumb_id );
+
+						// 		if ( $thumb_url ) {
+						// 			$value = esc_url_raw( $thumb_url );
+						// 		}
+						// 	}
+						// }
+						update_post_meta( $post_id, $key, $value );
+					}else{
+						// If no value in POST, check if thumbnail ID is set and use it as fallback based on the above existing flow.
+						$value = '';
+						if ( isset( $_POST['_thumbnail_id'] ) ) {
+							$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+							$thumb_url = wp_get_attachment_url( $thumb_id );
+
+							if ( $thumb_url ) {
+								$value = esc_url_raw( $thumb_url );
+							}
+						}
+						update_post_meta( $post_id, $key, $value );
+					}
+					break;
 					case 'checkbox':
 						if(isset($_POST[$key])) {
 							update_post_meta($post_id, $key, 1);
