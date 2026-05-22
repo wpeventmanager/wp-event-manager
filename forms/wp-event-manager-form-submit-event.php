@@ -29,6 +29,15 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * Constructor.
 	 */
 	public function __construct() {
+
+		$this->step = isset( $_REQUEST['step'] )
+			? absint( $_REQUEST['step'] )
+			: 0;
+
+		$this->event_id = isset( $_REQUEST['event_id'] )
+			? absint( $_REQUEST['event_id'] )
+			: 0;
+
 		add_action( 'wp', array( $this, 'process' ) );
 		$this->steps  = (array) apply_filters( 'submit_event_steps', array(
 			'submit' => array(
@@ -48,7 +57,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'done' => array(
 				'name'     => __( 'Done', 'wp-event-manager' ),
 				'view'     => array( $this, 'done' ),
-				'handler'  => array($this, 'preview_handler' ),
+				'handler'  => array( $this, 'preview_handler' ),
 				'priority' => 30
 			)
 		) );
@@ -89,7 +98,11 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					$this->event_id = 0;
 					$this->step = 0;
 				}
-			} elseif( !in_array( $event_status, apply_filters( 'event_manager_valid_submit_event_statuses', array( 'preview' ) ) ) ) {
+			} elseif( !in_array( $event_status,
+				apply_filters(
+					'event_manager_valid_submit_event_statuses',
+					array( 'preview', 'pending', 'draft', 'auto-draft' )
+				)) ) {
 				$this->event_id = 0;
 				$this->step = 0;
 			}
@@ -535,7 +548,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				if (!is_user_logged_in() && isset($field['type']) && $field['type'] === 'media-library-image') {
 					$field['required'] = false;
 				}
-				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] = false ) )
+				if( isset( $field['visibility'] ) && empty($field['visibility']) )
 					continue;
 				if( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {	  
 					return new WP_Error( 'validation-error', sprintf(wp_kses( '%s is a required field.', 'wp-event-manager' ), esc_attr( $field['label'] ) ) );
@@ -887,6 +900,16 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$this->update_event_data( $values );
 			// Successful, show next step
 			$this->step ++;
+			$url = add_query_arg(
+				array(
+					'step'      => $this->step,
+					'event_id'  => $this->event_id,
+				),
+				get_permalink()
+			);
+
+			wp_safe_redirect( $url );
+			exit;
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage() );
 			return;
@@ -1288,6 +1311,16 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				wp_update_post( $update_event );
 			}			
 			$this->step ++;
+			$url = add_query_arg(
+				array(
+					'step'      => $this->step,
+					'event_id'  => $this->event_id,
+				),
+				get_permalink()
+			);
+
+			wp_safe_redirect( $url );
+			exit;
 		}
 	}
 	
