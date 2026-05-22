@@ -427,6 +427,65 @@ This plugin connects to external services in order to provide certain features. 
 
 == Changelog ==
 
+= [3.4.0] 22-05-2026 =
+
+Fixed : In multiselect fields template default value is not showing.
+Fixed : Event shortcode and selected_datetime.
+Fixed : Backend Incorrect Button Label After Event Type Update.
+Fixed : PHP Fatal error.
+Fixed : Frontside Event dashboard shows blank action field meta.
+Fixed : Shorcode filter is not working.
+Fixed : Admin side All addon license section not shows.
+Fixed : Adding nonce field in events page filter.
+Fixed : Admin side Event location not save as online.
+Fixed : events are not expiring.
+Fixed : license activate message even after all plugin license are activated.
+Fixed : Frontside Event edit update it shows the warning.
+Fixed : View event permission issue resolved.
+Fixed : unable to edit slug of event_listing_type.
+Fixed : Error on delete plugin.
+Fixed : Event Registration Email Displays Incorrect Value (Shows Admin Account Email).
+Fixed : Backend Listing Expiry Date Resets to 1970 After Publishing or Updating Event.
+Fixed : Backend Event Update Fails with Backend Error.
+Fixed : Admin side Event type not able to edit and update.
+Fixed : Excessive and Duplicate Update Checks in WP Event Manager Plugin.
+Fixed : Broken layout on empty event page.
+Fixed : Translation.
+Fixed : Upcoming Events shortcode.
+Fixed : jQuery Bug with File Upload.
+Fixed : for core plugin licensekey need.
+Fixed : Incorrect Redirect on Buy Now Button (Bundle & Save).
+Fixed : When try to activate license for registration addon then shows the warning.
+Fixed : Organizer edit and update the message and redirection is not proper.
+Fixed : Allowing direct file access to plugin files.
+Fixed : Reason for this code is outside of the function.
+Fixed : Installed Plugin Version Still Showing Old Version.
+Fixed : Anonymous preview submit redirects back to editor.
+Fixed : Incorrect Message Shown After Event Creation.
+Fixed : Organizer Events Not Showing in Dashboard.
+Fixed :Event Banner Required Error While Creating Organizer.
+Fixed : Event Image Not Displaying After Upload.
+Fixed : Unable to add organizer and venue from Post an event page.
+Fixed : Post an Event shows the validation Event Banner is a required field even if banner is uploaded.
+Fixed : Error Occurs When Submitting Edited Event from Frontend Dashboard.
+Fixed : Preview Page Opens but Event Information Is Missing.
+Fixed : Upcoming Events , Current Events , Past Event Not Displayed for Organizer.
+Fixed : Issue Occurs When Clicking Organizer and Venue.
+Fixed : Organizer page Error When Opening Organizer Details.
+Fixed : Venue page Error When Opening Venue Details.
+Fixed : Invalid Listing Page Appears When Clicking Edit in Event Dashboard.
+Fixed : Event Not Submitted and Redirects to Add Event Page.
+Fixed : Organizer Edits Not Saving – Previous Details Remain.
+Fixed : Venue Edits Not Saving – Previous Details Remain.
+Fixed : Event not displaying when clicking on event category.
+Fixed : Various Bug Fixes and Code Improvements
+Added : event start date and time in confirmation email.
+Added : Frontside Post an event page multiple venue create possible.
+Added : if added field as file then we have to give file path to store in field editor.
+Added : Frontside Hide Add Organizer and Add venue field from add event form.
+Added : query for some terms in a loop grid.
+Added : Manual License Activation added for My account Page in wp event manager website.
+
 = [3.3.5] 10-03-2026 =
 
 Fixed : WP Coding standard improvements
