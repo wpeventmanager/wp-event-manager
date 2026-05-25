@@ -1218,10 +1218,11 @@ class WP_Event_Manager_Writepanels {
 
 				$author_id = absint( $raw_value );
 
-				$wpdb->update(
-					$wpdb->posts,
-					array( 'post_author' => $author_id ),
-					array( 'ID' => $post_id )
+				wp_update_post(
+					array(
+						'ID'          => $post_id,
+						'post_author' => $author_id,
+					)
 				);
 
 				continue;
@@ -1734,7 +1735,13 @@ class WP_Event_Manager_Writepanels {
 		foreach ($this->organizer_listing_fields() as $key => $field) {
 			$key = isset($key) ? sanitize_text_field(wp_unslash($key)) : '';
 			if('_organizer_author' === $key) {
+				// Direct database update is used here intentionally to avoid recursive wp_update_post().
+
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
 				$wpdb->update($wpdb->posts, array('post_author' => isset($_POST[$key]) && $_POST[$key] > 0 ? absint(sanitize_text_field(wp_unslash($_POST[$key]))) : 0), array('ID' => $post_id));
+				// phpcs:enable
+				// phpcs:enable
 			}
 			// Everything else
 			else {
@@ -1744,27 +1751,26 @@ class WP_Event_Manager_Writepanels {
 						update_post_meta($post_id, $key, sanitize_textarea_field(wp_unslash($_POST[$key])));
 						break;
 					case 'file':
-					// If value is uploaded via POST.
-					if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
-						$value = wp_unslash( $_POST[ $key ] );
-						// Handle array values safely
-						if ( is_array( $value ) ) {
-							$value = reset( $value ); // get first value
-						}
+						if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
+							$value = wp_unslash( $_POST[ $key ] );
+							// Handle array values safely
+							if ( is_array( $value ) ) {
+								$value = reset( $value ); // get first value
+							}
 
-						$value = esc_url_raw( $value );
-						// if( empty( trim( $value ) ) ) {
-						// 	if ( isset( $_POST['_thumbnail_id'] ) ) {
-						// 		$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
-						// 		$thumb_url = wp_get_attachment_url( $thumb_id );
+							$value = esc_url_raw( $value );
+							// if( empty( trim( $value ) ) ) {
+							// 	if ( isset( $_POST['_thumbnail_id'] ) ) {
+							// 		$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+							// 		$thumb_url = wp_get_attachment_url( $thumb_id );
 
-						// 		if ( $thumb_url ) {
-						// 			$value = esc_url_raw( $thumb_url );
-						// 		}
-						// 	}
-						// }
-						update_post_meta( $post_id, $key, $value );
-					}else{
+							// 		if ( $thumb_url ) {
+							// 			$value = esc_url_raw( $thumb_url );
+							// 		}
+							// 	}
+							// }
+							update_post_meta( $post_id, $key, $value );
+						}else{
 						// If no value in POST, check if thumbnail ID is set and use it as fallback based on the above existing flow.
 						$value = '';
 						if ( isset( $_POST['_thumbnail_id'] ) ) {
@@ -1988,7 +1994,6 @@ class WP_Event_Manager_Writepanels {
 					// }
 					// break;
 				case 'file':
-					// If value is uploaded via POST.
 					if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
 						$value = wp_unslash( $_POST[ $key ] );
 						// Handle array values safely

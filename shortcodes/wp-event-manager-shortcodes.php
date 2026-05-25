@@ -305,13 +305,15 @@ class WP_Event_Manager_Shortcodes{
 		$nonce_verified = false;
 		$organizer_id = isset($_REQUEST['organizer_id']) ? absint( wp_unslash($_REQUEST['organizer_id'])) : 0;
 		$venue_id     = isset($_REQUEST['venue_id']) ? absint( wp_unslash($_REQUEST['venue_id'])) : 0;
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Nonce existence handled by request flow.
+		$nonce = isset( $_REQUEST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '';
 
 		if ($organizer_id && get_post_type($organizer_id) === 'event_organizer') {
-			$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_organizer_actions' );
+			$nonce_verified = wp_verify_nonce( $nonce, 'event_manager_my_organizer_actions' );
 		}elseif ($venue_id && get_post_type($venue_id) === 'event_venue') {
-			$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_venue_actions' );
+			$nonce_verified = wp_verify_nonce( $nonce, 'event_manager_my_venue_actions' );
 		}else{
-			$nonce_verified = wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'event_manager_my_event_actions' );
+			$nonce_verified = wp_verify_nonce( $nonce, 'event_manager_my_event_actions' );
 		}
 
 		if(!$nonce_verified){

@@ -4,8 +4,8 @@ Contributors: wpeventmanager,ashokdudhat
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 6.5
-Tested up to: 6.9
-Stable Tag: 3.3.5
+Tested up to: 7.0
+Stable Tag: 3.4.0
 Requires PHP: 7.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html

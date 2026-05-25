@@ -567,6 +567,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							return new WP_Error(
 								'validation-error',
 								sprintf(
+									/* translators: %s: field label. */
 									__( '%s is invalid.', 'wp-event-manager' ),
 									esc_html( $field['label'] )
 								)

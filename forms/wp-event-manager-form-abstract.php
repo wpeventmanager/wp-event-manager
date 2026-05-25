@@ -120,8 +120,11 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	public function get_action() {
-		$action = isset($_SERVER['REQUEST_URI']) ? wp_unslash($_SERVER['REQUEST_URI']) : '';
-		return esc_url_raw($this->action ? $this->action : $action);
+		if ( ! empty( $this->action ) ) {
+			return $this->action;
+		}
+		
+		return isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	}
 
 	/**
@@ -223,8 +226,8 @@ abstract class WP_Event_Manager_Form {
 	 * @return array of data
 	 */
 	public function get_posted_fields() {
-	    
 		// Initialize post_data from $_POST
+	    // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$this->post_data = map_deep(wp_unslash( $_POST ), 'wp_kses_post');
 		
 		// Init fields
@@ -499,11 +502,13 @@ abstract class WP_Event_Manager_Form {
 	protected function get_posted_textarea_field($key, $field) {
 		$key = sanitize_key( $key );
 		$value = '';
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if ( isset( $_POST[ $key ] ) ) {
 			$value = sanitize_textarea_field(
 				wp_unslash( $_POST[ $key ] )
 			);
 		}
+		// phpcs:enable
 		return trim( $value );
 	}
 
@@ -517,9 +522,11 @@ abstract class WP_Event_Manager_Form {
 	protected function get_posted_wp_editor_field( $key, $field ) {
 		$key   = sanitize_key( $key );
 		$value = '';
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if ( isset( $_POST[ $key ] ) ) {
-			$value = wp_kses_post( $_POST[ $key ]);
+			$value = wp_kses_post( wp_unslash( $_POST[ $key ] ) );
 		}
+		// phpcs:enable
 
 		return trim( $value );
 	}
@@ -531,12 +538,13 @@ abstract class WP_Event_Manager_Form {
 	 * @return array
 	 */
 	protected function get_posted_term_checklist_field($key, $field) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if(isset($_POST[ 'tax_input' ]) && isset($_POST[ 'tax_input' ][ $field['taxonomy'] ])) {
 			return array_map('absint', $_POST[ 'tax_input' ][ $field['taxonomy'] ]);
 		} else {
 			return array();
 		}
+		// phpcs:enable
 	}
 
 	/**
@@ -566,6 +574,7 @@ abstract class WP_Event_Manager_Form {
 	 * @return  string or array
 	 */
 	protected function upload_file($field_key, $field) {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]['name'])) {
 			if(!empty($field['allowed_mime_types'])) {
 				$allowed_mime_types = sanitize_text_field(wp_unslash($field['allowed_mime_types']));
@@ -574,7 +583,9 @@ abstract class WP_Event_Manager_Form {
 			}
 			$file_urls       = array();
 			sanitize_file_name(wp_unslash($_FILES[ $field_key ]['name']));
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- File upload array handled by WordPress upload APIs.
 			$files_to_upload = event_manager_prepare_uploaded_files($_FILES[ $field_key ]);
+
 			foreach ($files_to_upload as $file_to_upload) {
 				$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $field_key ,'allowed_mime_types' => $allowed_mime_types));
 				if(is_wp_error($uploaded_file)) {
@@ -589,7 +600,9 @@ abstract class WP_Event_Manager_Form {
 			} else {
 				return current($file_urls);
 			}
-		}
+		}		
+		// phpcs:enable
+
 	}
 
 	/**

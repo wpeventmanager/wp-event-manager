@@ -37,7 +37,9 @@ class WPEM_Event_Manager_Form_Edit_Organizer extends WPEM_Event_Manager_Form_Sub
 		$this->form_name = 'edit-organizer';
 
 		// Get organizer ID
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only request parameter.
 		$this->organizer_id = ! empty($_REQUEST['organizer_id']) ? absint(wp_unslash($_REQUEST['organizer_id'])) : 0;
+		// phpcs:enable
 
 		// Permission check
 		if (!event_manager_user_can_edit_organizer($this->organizer_id)) {
@@ -103,10 +105,12 @@ class WPEM_Event_Manager_Form_Edit_Organizer extends WPEM_Event_Manager_Form_Sub
 		wp_enqueue_script('wp-event-manager-event-submission');
 		
 		// Show success message if the form was just submitted
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only request parameter.
 		if (isset($_GET['updated']) && $_GET['updated'] === 'true') {
 			echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . get_permalink($this->get_organizer_id()) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>' . '</div>');
 		}
-		
+		// phpcs:enable
+
 		wpem_get_event_manager_template('organizer-submit.php', 
 			array(
 				'form'               	=> esc_attr($this->form_name),

@@ -601,6 +601,8 @@ class WP_Event_Manager_Post_Types {
 	 * Event listing feeds.
 	 */
 	public function event_feed() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Public feed parameter.
+
 		header('Content-Type: application/rss+xml; charset=' . get_option('blog_charset'));
 		if(get_option('event_manager_hide_expired')) {
 			$post_status = 'publish';
@@ -772,6 +774,7 @@ class WP_Event_Manager_Post_Types {
 		echo '</channel>';
 		echo '</rss>';
 		remove_filter('posts_search', 'wpem_get_event_listings_keyword_search');
+		// phpcs:enable
 	}
 	
 	/**
@@ -993,6 +996,7 @@ class WP_Event_Manager_Post_Types {
 		
 		// No metadata set so we can generate an expiry date
 		// See if the user has set the expiry manually:
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified by WordPress core during post save.
 		if(!empty($_POST[ '_event_expiry_date' ])) {
 			update_post_meta($post->ID, '_event_expiry_date', gmdate('Y-m-d', strtotime(sanitize_text_field(wp_unslash($_POST[ '_event_expiry_date' ])))));
 			// No manual setting? Lets generate a date
@@ -1004,6 +1008,7 @@ class WP_Event_Manager_Post_Types {
 				$_POST[ '_event_expiry_date' ] = sanitize_text_field(wp_unslash($expires));
 			}
 		}
+		// phpcs:enable
 	}
 
 	/**

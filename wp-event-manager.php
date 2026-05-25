@@ -10,7 +10,7 @@
 * Version: 3.4.0
 * Since: 1.0.0
 * Requires at least: 6.5
-* Tested up to: 6.9
+* Tested up to: 7.0
 * Requires PHP: 7.6
 * Copyright: 2019 WP Event Manager
 * License: GNU General Public License v3.0
