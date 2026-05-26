@@ -132,7 +132,7 @@ class WP_Event_Manager_Ajax {
 		$allowed_orderby = array('date', 'title', 'featured', 'rand_featured', 'event_start_date', 'event_start_date_time');
 		$orderby = isset($_POST['orderby']) && in_array(sanitize_text_field(wp_unslash($_POST['orderby'])), $allowed_orderby, true) ? sanitize_text_field(wp_unslash($_POST['orderby'])) : 'date';
 		$order = isset($_POST['order']) && in_array(strtoupper(sanitize_text_field(wp_unslash($_POST['order']))), array('ASC', 'DESC'), true) ? strtoupper(sanitize_text_field(wp_unslash($_POST['order']))) : 'DESC';
-
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Required for event meta filtering
 		$args = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => array('publish'),
@@ -196,6 +196,7 @@ class WP_Event_Manager_Ajax {
 		// If orderby meta key _event_start_date 
 		if('event_start_date' === $orderby) {
 			$args['orderby'] ='meta_value';
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			$args['meta_key'] ='_event_start_date';
 			$args['meta_type'] ='DATETIME';
 		}
@@ -217,6 +218,7 @@ class WP_Event_Manager_Ajax {
 				'event_start_time_clause' => $order,
 			);
 		}
+		// phpcs:enable
 		$upcoming_events = new WP_Query($args);
 
 		if ($upcoming_events->have_posts()) {
@@ -265,6 +267,7 @@ class WP_Event_Manager_Ajax {
 			'paged'          => $paged,
 			'order'          => 'DESC',
 			'orderby'        => 'meta_value',
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			'meta_key'       => '_event_start_date',
 			'meta_type'      => 'DATETIME',
 		);
@@ -300,6 +303,7 @@ class WP_Event_Manager_Ajax {
 	 */
 	public function get_upcoming_listings($atts) {
 
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$search_location = isset( $_POST['search_location'] ) ? sanitize_text_field( wp_unslash( $_POST['search_location'] ) ) : '';
 		$search_categories = isset( $_POST['search_categories'] ) ? sanitize_text_field( wp_unslash( $_POST['search_categories'] ) ) : '';
 		$event_manager_keyword = isset( $_POST['search_keywords'] ) ? sanitize_text_field( wp_unslash( $_POST['search_keywords'] ) ) : '';
@@ -349,7 +353,8 @@ class WP_Event_Manager_Ajax {
 				}
 			}
 		}
-
+		// phpcs:enable
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		$args = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => array('publish'),
@@ -458,6 +463,7 @@ class WP_Event_Manager_Ajax {
 		// If orderby meta key _event_start_date 
 		if('event_start_date' === $orderby) {
 			$args['orderby'] ='meta_value';
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			$args['meta_key'] ='_event_start_date';
 			$args['meta_type'] ='DATETIME';
 		}
@@ -513,9 +519,10 @@ class WP_Event_Manager_Ajax {
 		}
 
 		if ( !empty( $tax_query ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			$args['tax_query'] = array_merge( array( 'relation' => 'AND' ), $tax_query );
 		}
-
+		// phpcs:enable
 		$upcoming_events = new WP_Query($args);
 
 		if ($upcoming_events->have_posts()) {

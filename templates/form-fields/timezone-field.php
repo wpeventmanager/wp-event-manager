@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @version     3.0
  */
 
-$allowed_html = array(
+$wpem_allowed_tag = array(
 	'optgroup' => array(
 		'label' => true,
 	),
@@ -34,6 +34,6 @@ $allowed_html = array(
 			WP_Event_Manager_Date_Time::wpem_timezone_choice(
 				esc_attr( $wpem_value )
 			),
-		$allowed_html
+		$wpem_allowed_tag
 		); ?>
  </select>

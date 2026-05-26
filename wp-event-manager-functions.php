@@ -481,8 +481,7 @@ if(!function_exists('wpem_get_featured_event_ids')) :
 	 * @return array
 	 */
 	function wpem_get_featured_event_ids() {
-		// phpcs:ignore WordPressVIPMinimum.Performance.TaxQuery
-		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Simple equality comparison, optimized query
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Simple equality comparison, optimized query
 		return get_posts(array(
 			'posts_per_page' => -1,
 			'suppress_filters' => false,
@@ -497,6 +496,7 @@ if(!function_exists('wpem_get_featured_event_ids')) :
 			),
 			'fields'         => 'ids'
 		));
+		// phpcs:enable
 	}
 endif;
 
@@ -1084,6 +1084,7 @@ function event_manager_user_can_edit_pending_submissions() {
  * @see  wp_dropdown_categories
  */
 function event_manager_dropdown_selection($args = '') {
+	// phpcs:disable WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Exclude parameter is required for dropdown category filtering flexibility.
 	$defaults = array(
         'orderby'         => 'id',
         'order'           => 'ASC',
@@ -1106,6 +1107,7 @@ function event_manager_dropdown_selection($args = '') {
         'no_results_text' => __('No results match', 'wp-event-manager'),
         'multiple_text'   => __('Choose Categories', 'wp-event-manager'),
     );
+	// phpcs:enable
 	$defaults = apply_filters('event_manager_dropdown_selection_args', $defaults);
 	$args = wp_parse_args($args, $defaults);
 	foreach ($args as $arg_key => $arg_value) {
@@ -1130,8 +1132,8 @@ function event_manager_dropdown_selection($args = '') {
 	// Store in a transient to help sites with many cats
 	$categories_hash = 'em_cats_' . md5(json_encode($query) . WP_Event_Manager_Cache_Helper::get_transient_version('em_get_' . $query['taxonomy']));
 	$categories      = get_transient($categories_hash);
-
 	if(empty($categories)) {
+		// phpcs:disable WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
 		$categories = get_terms([
 			'taxonomy' => $taxonomy,
 			'orderby'         => $query['orderby'],
@@ -1141,8 +1143,8 @@ function event_manager_dropdown_selection($args = '') {
 			'exclude'         => $query['exclude'],
 			'hierarchical'    => $query['hierarchical']
 		]);
- 
 		set_transient($categories_hash, $categories, DAY_IN_SECONDS * 30);
+		// phpcs:enable
 	}
 
 	$categories = apply_filters('event_manager_dropdown_selection_' . $taxonomy, $categories);
@@ -1838,6 +1840,8 @@ function wpem_get_event_organizer_ids( $post = null ) {
  * @since 3.1.15
  **/
 function wpem_check_organizer_exist($organizer_email) {
+
+	// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 	$args = [
 			'post_type' 	=> 'event_organizer',
 			'post_status' 	=> ['publish'],
@@ -1850,6 +1854,7 @@ function wpem_check_organizer_exist($organizer_email) {
 	        ],
 	    ],
 	];
+	// phpcs:enable
 
 	$args = apply_filters('wpem_check_organizer_exist_query_args', $args);
 	// phpcs:ignore WordPressVIPMinimum.Performance.TaxQuery

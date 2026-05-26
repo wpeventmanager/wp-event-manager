@@ -401,7 +401,7 @@ class WPEM_Event_Manager_Data_Cleaner {
 			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			// Direct database delete is required for bulk cleanup of user meta entries
 			// by meta_key. No suitable WordPress core API exists for this operation.
-			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key.
+			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			$wpdb->delete($wpdb->usermeta, array('meta_key' => $meta_key));
 			// phpcs:enable
 			// phpcs:enable
