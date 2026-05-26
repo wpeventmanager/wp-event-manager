@@ -406,6 +406,7 @@ var EventAjaxFilters = function() {
             loadMoreUpcomingEvents: function(event){
                 if(jQuery('#upcoming_event_listing').length > 0) {
                     event.preventDefault();
+                    var target = jQuery(this).closest('div#upcoming_event_listing');
                     jQuery(this).parent().addClass('wpem-loading');
                     var search_keywords = jQuery('#search_keywords').val();
                     var search_location = jQuery('#search_location').val();
@@ -432,7 +433,7 @@ var EventAjaxFilters = function() {
                             per_page: per_page,
                         },
                         success: function(response) {
-                            target.find('.load_more_events_loader').removeClass('wpem-loading');
+                            target.find('.#load_more_events_loader').removeClass('wpem-loading');
                             if (response.success) {
                                 jQuery('.event_listings').append(response.data.events_html);                            
                                 var nextPage = parseInt(currentPage) + 1;
