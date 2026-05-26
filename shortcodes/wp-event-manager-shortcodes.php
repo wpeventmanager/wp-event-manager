@@ -244,6 +244,7 @@ class WP_Event_Manager_Shortcodes{
 		}
 
 		if(isset($args['orderby']) && !empty($args['orderby'])) {
+			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query, WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Meta queries are required for event filtering.
 			if($args['orderby'] == 'event_location') {
 				$args['meta_query'] = array(
 					'relation' => 'AND',
@@ -271,6 +272,7 @@ class WP_Event_Manager_Shortcodes{
 				$args['orderby'] = 'meta_value';
 				$args['meta_type'] = 'DATETIME';
 			}
+			// phpcs:enable
 		}
 
 		$events = new WP_Query($args);
@@ -1267,6 +1269,8 @@ class WP_Event_Manager_Shortcodes{
 			'post_status' => 'publish'
 		);
 
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta queries are required for event filtering.
+
 		if(!$id) {
 			$args['posts_per_page'] = $limit;
 			$args['orderby']        = 'rand';
@@ -1289,6 +1293,7 @@ class WP_Event_Manager_Shortcodes{
 				));
 			}
 		}
+		// phpcs:enable
 
 		$events = new WP_Query($args);
 		if($events->have_posts()) { 
@@ -1455,9 +1460,11 @@ class WP_Event_Manager_Shortcodes{
 
 		// Handle custom order by
 		if ('event_start_date' === $args_past['orderby']) {
+			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Meta key query is required for event start date sorting.
 			$args_past['orderby']    = 'meta_value';
 			$args_past['meta_key']   = '_event_start_date';
 			$args_past['meta_type']  = 'DATETIME';
+			// phpcs:enable
 		}
 
 		$args_past = apply_filters('event_manager_past_event_listings_args', $args_past);
@@ -1621,6 +1628,8 @@ class WP_Event_Manager_Shortcodes{
 		$organizer_id    = $organizer->ID;
 		$show_pagination = true;
 
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta query is required to fetch upcoming, current, and past events.
+		
 		$args_upcoming = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => 'publish',
@@ -1691,6 +1700,8 @@ class WP_Event_Manager_Shortcodes{
 		);
 		$pastEvents = new WP_Query(apply_filters('wpem_single_organizer_past_event_listing_query_args', $args_past));
 		wp_reset_postdata();
+
+		// phpcs:enable
 
 		// Organizer Template
 		do_action('wpem_organizer_content_start');
@@ -1832,6 +1843,7 @@ class WP_Event_Manager_Shortcodes{
 		$venue_id         = $venue->ID;
 		$show_pagination  = true;
 
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta query is required to fetch upcoming, current, and past events.
 		// Upcoming Events
 		$args_upcoming = array(
 			'post_type'      => 'event_listing',
@@ -1907,6 +1919,7 @@ class WP_Event_Manager_Shortcodes{
 
 		$pastEvents = new WP_Query(apply_filters('wpem_single_venue_past_event_listing_query_args', $args_past));
 		wp_reset_postdata();
+		// phpcs:enable
 
 		do_action('wpem_venue_content_start');
 
@@ -1965,6 +1978,7 @@ class WP_Event_Manager_Shortcodes{
 		$layout_type = $atts['layout_type'];
 		$title = $atts['title'];
 
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta queries are required for event date filtering and sorting of upcoming events.
 		$args = array(
 			'post_type'       => 'event_listing',
 			'post_status'     => array('publish'),
@@ -1998,6 +2012,8 @@ class WP_Event_Manager_Shortcodes{
 				)
 			)
 		);
+		// phpcs:enable
+
 		// Add keyword search
 		if (!empty($atts['keywords'])) {
 			$args['s'] = sanitize_text_field($atts['keywords']);
@@ -2165,7 +2181,7 @@ class WP_Event_Manager_Shortcodes{
 		if (empty($categories)) {
 			return '';
 		}
-	
+		// phpcs:disable WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in, WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Required for related event filtering and excluding the current event from results.
 		$args = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => 'publish',
@@ -2179,7 +2195,8 @@ class WP_Event_Manager_Shortcodes{
 				),
 			),
 		);
-
+		// phpcs:enable
+		
 		$args = apply_filters('event_manager_related_events_args', $args, $event_id);
 
 		$related_events = new WP_Query($args);

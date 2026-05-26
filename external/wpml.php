@@ -21,12 +21,16 @@ add_action('wpml_loaded', 'wpem_wpml_event_manager_set_language');
  * @since 1.6
  */
 function wpem_wpml_event_manager_set_language() {
-
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended
+	// phpcs:disable WordPress.Security.NonceVerification.Missing
+	// Public AJAX filtering parameters used for frontend language switching only.
 	$input_lang = isset($_POST['lang']) ? sanitize_text_field(wp_unslash($_POST['lang'])) : false;
 
 	if (isset($_SERVER['REQUEST_URI']) && (strstr(esc_url_raw( wp_unslash($_SERVER['REQUEST_URI'])), '/em-ajax/') || !empty($_GET['em-ajax'])) && $input_lang)  {
 		do_action('wpem_wpml_switch_language', sanitize_text_field(wp_unslash($_POST['lang'])));
 	}
+	// phpcs:enable
+	// phpcs:enable
 }
 
 /**

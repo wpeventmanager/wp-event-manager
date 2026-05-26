@@ -1251,6 +1251,7 @@ class WP_Event_Manager_Writepanels {
 						$thumbnail_image
 					);
 
+					// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required to locate attachment by stored file path.
 					$attachments = get_posts(
 						array(
 							'post_type'      => 'attachment',
@@ -1259,7 +1260,7 @@ class WP_Event_Manager_Writepanels {
 							'meta_value'     => $wp_attached_file,
 						)
 					);
-
+					// phpcs:enable
 					if ( ! empty( $attachments ) ) {
 						set_post_thumbnail( $post_id, $attachments[0]->ID );
 					}
@@ -1752,6 +1753,7 @@ class WP_Event_Manager_Writepanels {
 						break;
 					case 'file':
 						if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
+							// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization is handled below based on expected input type (string or array).
 							$value = wp_unslash( $_POST[ $key ] );
 							// Handle array values safely
 							if ( is_array( $value ) ) {
@@ -1958,11 +1960,20 @@ class WP_Event_Manager_Writepanels {
 					$author_id = absint( wp_unslash( $_POST[ $key ] ) );
 				}
 
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+				// Direct database update is used intentionally to avoid recursive
+				// wp_update_post() calls triggered during venue save hooks.
 				$wpdb->update(
 					$wpdb->posts,
 					array( 'post_author' => $author_id ),
 					array( 'ID' => $post_id )
 				);
+
+				clean_post_cache( $post_id );
+
+				// phpcs:enable
+				// phpcs:enable
 
 				continue;
 			}
@@ -1994,7 +2005,9 @@ class WP_Event_Manager_Writepanels {
 					// }
 					// break;
 				case 'file':
+					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization is handled below based on expected input type (string or array).
 					if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
+						// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization is handled below based on expected input type (string or array).
 						$value = wp_unslash( $_POST[ $key ] );
 						// Handle array values safely
 						if ( is_array( $value ) ) {
@@ -2112,12 +2125,14 @@ class WP_Event_Manager_Writepanels {
 				if(is_array($event_banner)) {
 					foreach ($event_banner as $banner) {
 						$wp_attached_file = str_replace($baseurl, '', $banner);
+						// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup.
 						$args = array(
 							'meta_key'       => '_wp_attached_file',
 							'meta_value'     => $wp_attached_file,
 							'post_type'      => 'attachment',
 							'posts_per_page' => 1,
 						);
+						// phpcs:enable
 						$attachments = get_posts($args);
 						if(!empty($attachments)) {
 							if( !$retain_attachment ){
@@ -2129,12 +2144,14 @@ class WP_Event_Manager_Writepanels {
 					}
 				} else {
 					$wp_attached_file = str_replace($baseurl, '', $event_banner);
+					// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup.
 					$args = array(
 						'meta_key'       => '_wp_attached_file',
 						'meta_value'     => $wp_attached_file,
 						'post_type'      => 'attachment',
 						'posts_per_page' => 1,
 					);
+					// phpcs:enable
 					$attachments = get_posts($args);
 					if(!empty($attachments)) {
 						if( !$retain_attachment ){

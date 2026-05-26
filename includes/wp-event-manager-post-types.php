@@ -602,6 +602,7 @@ class WP_Event_Manager_Post_Types {
 	 */
 	public function event_feed() {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Public feed parameter.
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_tax_query, WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Taxonomy and meta queries are required for event feed filtering.
 
 		header('Content-Type: application/rss+xml; charset=' . get_option('blog_charset'));
 		if(get_option('event_manager_hide_expired')) {
@@ -775,6 +776,7 @@ class WP_Event_Manager_Post_Types {
 		echo '</rss>';
 		remove_filter('posts_search', 'wpem_get_event_listings_keyword_search');
 		// phpcs:enable
+		// phpcs:enable
 	}
 	
 	/**
@@ -825,6 +827,7 @@ class WP_Event_Manager_Post_Types {
 		
 		// Change status to expired
 		$now = gmdate( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta queries are required for event filtering.
 		$query = new WP_Query(
 			array(
 				'post_type'      => 'event_listing',
@@ -847,6 +850,7 @@ class WP_Event_Manager_Post_Types {
 				),
 			)
 		);
+		// phpcs:enable
 		$event_ids = $query->posts;
 
 		// $event_ids = $wpdb->get_col($wpdb->prepare("
@@ -912,6 +916,7 @@ class WP_Event_Manager_Post_Types {
 		// Delete event after finished
 		$delete_events_after_finished = absint(get_option('event_manager_delete_events_after_finished')) == 1 ? true : false;
 		if($delete_events_after_finished) {
+			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta queries are required for event filtering.
 			$args = [
 				'post_type'      => 'event_listing',
 				'post_status'    => array('publish', 'expired'),
@@ -926,6 +931,7 @@ class WP_Event_Manager_Post_Types {
 			      ),
 			  ),
 			]; 
+			// phpcs:enable
 
 			$event_ids = get_posts($args);
 

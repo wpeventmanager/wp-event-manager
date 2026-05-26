@@ -123,6 +123,7 @@ class WP_Event_Manager_Cache_Helper {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$like_timeout_transient = $wpdb->esc_like( '_transient_timeout_em_' ) . '%';
 			$now                    = time();
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->query(
 				$wpdb->prepare(
 					"
@@ -199,7 +200,7 @@ class WP_Event_Manager_Cache_Helper {
 			"SELECT option_name FROM {$wpdb->options} WHERE option_name RLIKE %s",
 			$pattern_safe
 		);
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$transients = $wpdb->get_col( $sql );
 		
 		// For each transient...
