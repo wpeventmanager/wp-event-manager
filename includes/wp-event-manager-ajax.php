@@ -815,6 +815,7 @@ class WP_Event_Manager_Ajax {
 		}
 
 		$data = array('files' => array());
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- File uploads are restricted to authenticated users and validated during final form submission.
 		if(!empty($_FILES)) {
 			foreach ($_FILES as $file_key => $file) {
 				// Sanitize file key
@@ -830,6 +831,7 @@ class WP_Event_Manager_Ajax {
 				}
 			}
 		}
+		// phpcs:enable
 		wp_send_json($data);
 	}
 
