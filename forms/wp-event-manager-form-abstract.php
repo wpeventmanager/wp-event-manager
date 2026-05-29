@@ -575,14 +575,47 @@ abstract class WP_Event_Manager_Form {
 	 */
 	protected function upload_file($field_key, $field) {
 		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]['name'])) {
+		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ])) {
+
+			$file_names = wp_unslash($_FILES[$field_key]['name']);
+
+			// Handle single + multiple uploads safely
+			$has_files = false;
+
+			if (is_array($file_names)) {
+
+				// Remove empty entries
+				$file_names = array_filter($file_names);
+
+				if (!empty($file_names)) {
+					$has_files = true;
+
+					// Sanitize all filenames
+					$_FILES[$field_key]['name'] = array_map(
+						'sanitize_file_name',
+						$file_names
+					);
+				}
+
+			} else {
+
+				if (!empty($file_names)) {
+					$has_files = true;
+
+					$_FILES[$field_key]['name'] = sanitize_file_name($file_names);
+				}
+			}
+
+			if (!$has_files) {
+				return;
+			}
+
 			if(!empty($field['allowed_mime_types'])) {
 				$allowed_mime_types = sanitize_text_field(wp_unslash($field['allowed_mime_types']));
 			} else {
 				$allowed_mime_types = get_allowed_mime_types();
 			}
 			$file_urls       = array();
-			sanitize_file_name(wp_unslash($_FILES[ $field_key ]['name']));
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- File upload array handled by WordPress upload APIs.
 			$files_to_upload = event_manager_prepare_uploaded_files($_FILES[ $field_key ]);
 
