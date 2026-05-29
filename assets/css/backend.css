@@ -258,7 +258,8 @@ a {
 
 .widefat .column-event_actions a.button-icon {
 	width: 2em !important;
-	padding: 0 !important
+	padding: 0 !important;
+	min-height: inherit;
 }
 
 .widefat .column-event_actions a.button-icon:before {
@@ -353,7 +354,6 @@ a {
 .wp_event_manager_meta_data .form-field input.radio {
 	width: auto;
 	margin: 4px 2px;
-	display: inline-block
 }
 
 .wp_event_manager_meta_data .form-field .description {
