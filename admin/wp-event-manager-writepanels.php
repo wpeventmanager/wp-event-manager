@@ -1217,13 +1217,17 @@ class WP_Event_Manager_Writepanels {
 			if ( '_event_author' === $key ) {
 
 				$author_id = absint( $raw_value );
-
-				wp_update_post(
-					array(
-						'ID'          => $post_id,
-						'post_author' => $author_id,
-					)
+				// Direct database update is used here intentionally to avoid recursive wp_update_post().
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+				$wpdb->update(
+					$wpdb->posts,
+					array( 'post_author' => $author_id ),
+					array( 'ID' => $post_id ),
 				);
+				clean_post_cache( $post_id );
+				// phpcs:enable
+				// phpcs:enable
 
 				continue;
 			}
