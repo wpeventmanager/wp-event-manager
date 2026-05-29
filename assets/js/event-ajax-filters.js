@@ -83,11 +83,6 @@ var EventAjaxFilters = function() {
                     var target = jQuery(this).closest('div.event_listings');
                     target.triggerHandler('update_event_listings', [1, false]);
                     EventAjaxFilters.actions.event_manager_store_state(target, 1)
-                }).on("change", function(e) {
-                    EventAjaxFilters.actions.getEventListings(e);
-                    if (e.which === 13) {
-                        jQuery(this).trigger('change')
-                    }
                 });
             }
             jQuery('.wpem-event-filter-version-2-search-btn').change(function() {
@@ -168,7 +163,6 @@ var EventAjaxFilters = function() {
                 form.find(':input[name^="search_ticket_prices"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
                 target.triggerHandler('reset');
                 target.triggerHandler('update_event_listings', [1, false]);
-                jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
                 EventAjaxFilters.actions.event_manager_store_state(target, 1);
                 return false;
                 event.preventDefault()
