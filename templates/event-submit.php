@@ -37,6 +37,8 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		//Show Hide event thumbnail field on front end
 		$wpem_thumbnail_key = 'event_thumbnail'; 
 		$wpem_show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false); 
+		$disable_multiple_file_upload_feature_for_fields = apply_filters('disable_multiple_file_upload_feature_for_fields', array('event_thumbnail'));
+
 		foreach($event_fields as $wpem_key => $wpem_field) :
 			if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] = false)) :
 				continue;
@@ -46,7 +48,13 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			}
 			if ($wpem_key === $wpem_thumbnail_key && $wpem_show_thumbnail_field != 1) {
 				continue;
-			} ?>
+			}
+			if (in_array( $wpem_key, $disable_multiple_file_upload_feature_for_fields, true )) {
+				if (isset($wpem_field['multiple']) && $wpem_field['multiple'] == 1) {
+					$wpem_field['multiple'] = 0;
+				}
+			}
+			?>
 			<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
 				<label for="<?php echo esc_attr($wpem_key); ?>">
 					<?php echo esc_html(isset($wpem_field['label']) ? $wpem_field['label'] : '', 'wp-event-manager');
