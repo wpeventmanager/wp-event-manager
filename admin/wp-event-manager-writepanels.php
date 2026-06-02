@@ -693,6 +693,11 @@ class WP_Event_Manager_Writepanels {
 				$date = gmdate($php_date_format, strtotime($date));
 				$field['value']         = $date;
 			}
+		}else{
+			$timestamp = strtotime($field['value']);
+			if ($timestamp !== false) {
+				$field['value'] = gmdate($php_date_format, $timestamp);
+			}
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
