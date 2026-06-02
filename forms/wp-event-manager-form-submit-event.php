@@ -660,13 +660,19 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 	 * add event thumbnail field.
 	 */
 	function add_event_thumbnail_field($fields) {
+		$event_form_fields = get_option('event_manager_submit_event_form_fields');
+		$event_field_count = 0;
+		if(isset($event_form_fields['event']) && !empty($event_form_fields['event'])) {
+			$event_field_count = count($event_form_fields['event']);
+		}
+
 		if (get_option('event_manager_upload_custom_thumbnail', false)) {
 			$fields['event']['event_thumbnail'] = array(
 				'label'       => __( 'Event Thumbnail', 'wp-event-manager' ),
 				'type'        => 'file',
 				'required'    => true,
 				'placeholder' => '',
-				'priority'    => 8,
+				'priority'    => $event_field_count + 1,
 				'ajax'        => true,
 				'allowed_mime_types' => array(
 					'jpg'  => 'image/jpeg',
