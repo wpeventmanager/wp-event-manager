@@ -782,11 +782,24 @@ abstract class WP_Event_Manager_Form {
 		*/
 
 		// Ticket prices disabled
-		if (!get_option('event_manager_enable_event_ticket_prices', false)) {
-			unset(
-				$updated_fields['event']['event_ticket_options'],
-				$updated_fields['event']['event_ticket_price']
-			);
+		if(isset($updated_fields['event'])){
+			if (!get_option('event_manager_enable_event_ticket_prices', false)) {
+				unset(
+					$updated_fields['event']['event_ticket_options'],
+					$updated_fields['event']['event_ticket_price']
+				);
+			}else{	
+				if(!isset($updated_fields['event']['event_ticket_options'])){
+					$updated_fields['event']['event_ticket_options'] = isset($default_fields['event']['event_ticket_options']) ? $default_fields['event']['event_ticket_options'] : array();			
+				}else{
+					$updated_fields['event']['event_ticket_options']['visibility'] = 1;
+				}
+				if(!isset($updated_fields['event']['event_ticket_price'])){
+					$updated_fields['event']['event_ticket_price'] = isset($default_fields['event']['event_ticket_price']) ? $default_fields['event']['event_ticket_price'] : array();			
+				}else{
+					$updated_fields['event']['event_ticket_price']['visibility'] = 1;
+				}
+			}
 		}
 
 		// Categories disabled or empty
