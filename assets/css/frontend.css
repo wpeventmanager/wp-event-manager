@@ -554,7 +554,7 @@ a.wpem-theme-button,
 button.wpem-theme-button,
 input.wpem-theme-button {
   background: var(--wpem-primary-color);
-  color: var(--wpem-white-color)!important;
+  color: var(--wpem-white-color);
   border: none;
   padding: 10px 20px;
   width: auto;
