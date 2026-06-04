@@ -427,7 +427,7 @@ This plugin connects to external services in order to provide certain features. 
 
 == Changelog ==
 
-= [3.4.0] 22-05-2026 =
+= [3.4.0] 04-06-2026 =
 
 Fixed : In multiselect fields template default value is not showing.
 Fixed : Event shortcode and selected_datetime.
