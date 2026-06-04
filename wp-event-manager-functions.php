@@ -2442,3 +2442,123 @@ function wpem_get_form_field_types() {
 		)
 	);
 }
+
+
+/**
+ * Removes WP date filter on event listing in admin area
+ * which filters on publish date not start date of event.
+ */
+add_filter('months_dropdown_results', 'disable_default_date_filters_robust', 10, 2 );
+function disable_default_date_filters_robust( $months, $post_type ) {
+    if ( $post_type == 'event_listing' ) {
+        return array(); // Return an empty array to remove the default date filter
+    }
+    return $months; // Return the original months if not our post type
+}
+
+/**
+ * Set up a new date filter on event listing in admin area.
+ */
+function custom_date_filter_form() {
+    global $wpdb;	
+    $selected_month = get_custom_date_filter_from_get(); // Get the selected month
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT DISTINCT SUBSTRING(pm.meta_value, 1, 7) AS event_month_year
+            FROM {$wpdb->posts} p
+            INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+            WHERE p.post_type = %s
+            AND pm.meta_key = %s
+            AND pm.meta_value IS NOT NULL
+			AND pm.meta_value != ''
+            ORDER BY event_month_year ASC", // Order by year-month for correct chronological order
+            'event_listing',
+            '_event_start_date'
+        )
+    );
+
+    $dateList = array();
+    foreach ( $results as $result ) {
+        // $result->event_month_year will be in YYYY-MM format (e.g., '2025-07')
+		$selector = $result->event_month_year;
+        $year = substr( $result->event_month_year, 0, 4 );
+        $month_num = substr( $result->event_month_year, 5, 2 );
+        $month_name = gmdate( "F", mktime( 0, 0, 0, (int) $month_num, 10 ) );
+        $dateList[ $selector ] = $month_name . ' ' . $year; // Store as month number => Month Name Year
+    }
+	
+    $html = '<select name="custom_date_filter">';
+    $html .= '<option value="">All Event Start Dates</option>';
+
+    foreach ( $dateList as $month_num => $month_name_year ) {
+        $selected = ( $selected_month == $month_num ) ? 'selected="selected"' : '';
+        $html .= '<option value="' . esc_attr( $month_num ) . '" ' . $selected . '>' . esc_html( $month_name_year ) . '</option>';
+    }
+
+    $html .= '</select>';
+    return $html;  // Return the complete HTML string
+}
+
+
+/**
+ * Get the relevant event listings to display.
+ */
+function filter_by_custom_date($query) {
+    global $pagenow, $wpdb;
+	$selected_month = get_custom_date_filter_from_get();
+	$post_type = get_post_type_from_get();
+    if (is_admin() && $query->is_main_query() && $pagenow === 'edit.php' && $post_type === 'event_listing' && !empty($selected_month)) {
+        $date_filter = $selected_month;
+		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+		if($date_filter === ""){
+			$sql = 
+				"SELECT DISTINCT p.ID
+				FROM {$wpdb->posts} p
+				INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+				WHERE p.post_type = %s
+				";
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$sql = $wpdb->prepare($sql, 'event_listing');
+			$post_ids = $wpdb->get_col( $sql );
+		}else{
+				$sql = 
+				"SELECT p.ID
+				FROM {$wpdb->posts} p
+				INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+				WHERE p.post_type = %s
+				AND pm.meta_key = %s
+				AND SUBSTRING(pm.meta_value, 1, 7) = %s
+				";
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$sql = $wpdb->prepare($sql, 'event_listing', '_event_start_date', $date_filter);
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$post_ids = $wpdb->get_col( $sql ); // Get post IDs that match
+		}
+		// phpcs:enable
+        if ( ! empty( $post_ids ) ) {
+            $query->set( 'post__in', $post_ids ); // Set post__in to filter by those IDs
+            $query->set( 'orderby', 'post__in' ); // Maintain original order
+        } else {
+            $query->set( 'post__in', array(0) ); // No results, use a non-existent ID to prevent results
+        }
+    }
+	return $query;
+}
+add_filter('pre_get_posts', 'filter_by_custom_date');
+
+function get_custom_date_filter_from_get() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    $month = isset($_GET['custom_date_filter']) ? sanitize_text_field( wp_unslash( $_GET['custom_date_filter'] ) ) : '';
+    return preg_match('/^\d{4}-\d{2}$/', $month) ? $month : '';
+}
+
+function get_post_type_from_get() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+     return isset($_GET['post_type']) ? sanitize_key( wp_unslash( $_GET['post_type'] ) ) : '';
+}
+
+add_action( 'restrict_manage_posts', function($html) {
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo custom_date_filter_form(); // Return the result of the function, as intended.
+}, 10 );
