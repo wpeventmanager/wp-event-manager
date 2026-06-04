@@ -2128,7 +2128,7 @@ class WP_Event_Manager_Shortcodes{
 			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>">
 				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
-					wpem_get_event_manager_template_part('content', 'past_event_listing');
+					wpem_get_event_manager_template_part('content', 'event_listing');
 				endwhile;
 				wpem_get_event_manager_template('event-listings-end.php');
 				if($upcoming_events->found_posts > $per_page) :
