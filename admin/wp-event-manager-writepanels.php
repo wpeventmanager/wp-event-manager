@@ -1192,7 +1192,8 @@ class WP_Event_Manager_Writepanels {
 						! empty( $date_dbformatted ) ? $date_dbformatted : $date_value
 					);
 				} else {
-					update_post_meta( $post_id, $key, '' );
+					$event_expiry_date = wpem_get_event_expiry_date($post_id);
+					update_post_meta( $post_id, $key, $event_expiry_date );
 				}
 
 				continue;
