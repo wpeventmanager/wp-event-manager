@@ -169,7 +169,7 @@ class WP_Event_Manager_Post_Types {
 												esc_html( $singular )
 											)
 	            	),
-		            'show_ui' 				=> true,
+		            'show_ui' 				=> false,
 					'show_in_rest'          => true,
 		            'public' 	     		=> $public,
 		            'capabilities'			=> array(
@@ -256,7 +256,7 @@ class WP_Event_Manager_Post_Types {
 						'back_to_items'      => __( '← Go to Types', 'wp-event-manager' ),
 						'view_item'          => __( 'View Type', 'wp-event-manager' ),
 					),
-		            'show_ui' 				=> true,
+		            'show_ui' 				=> false,
 					'show_in_rest'          => true,
 		            'public' 			    => $public,
 		            'capabilities'			=> array(
@@ -601,6 +601,9 @@ class WP_Event_Manager_Post_Types {
 	 * Event listing feeds.
 	 */
 	public function event_feed() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Public feed parameter.
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_tax_query, WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Taxonomy and meta queries are required for event feed filtering.
+
 		header('Content-Type: application/rss+xml; charset=' . get_option('blog_charset'));
 		if(get_option('event_manager_hide_expired')) {
 			$post_status = 'publish';
@@ -772,6 +775,8 @@ class WP_Event_Manager_Post_Types {
 		echo '</channel>';
 		echo '</rss>';
 		remove_filter('posts_search', 'wpem_get_event_listings_keyword_search');
+		// phpcs:enable
+		// phpcs:enable
 	}
 	
 	/**
@@ -822,6 +827,7 @@ class WP_Event_Manager_Post_Types {
 		
 		// Change status to expired
 		$now = gmdate( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta queries are required for event filtering.
 		$query = new WP_Query(
 			array(
 				'post_type'      => 'event_listing',
@@ -844,6 +850,7 @@ class WP_Event_Manager_Post_Types {
 				),
 			)
 		);
+		// phpcs:enable
 		$event_ids = $query->posts;
 
 		// $event_ids = $wpdb->get_col($wpdb->prepare("
@@ -859,7 +866,11 @@ class WP_Event_Manager_Post_Types {
 		if($event_ids) {
 			foreach ($event_ids as $event_id) {
 				$event = get_post($event_id);
-				$expiry_date = apply_filters('wpem_expire_date_time', gmdate('Y-m-d H:i:s', strtotime(esc_html(get_post_meta($event_id, '_event_expiry_date', true)). ' 23:59:30')), $event);     
+				$expiry_time = get_post_meta($event_id, '_event_end_time', true);
+				if (empty($expiry_time)) {
+					$expiry_time = '23:59:30';
+				}
+				$expiry_date = apply_filters('wpem_expire_date_time', gmdate('Y-m-d H:i:s', strtotime(get_post_meta($event_id, '_event_expiry_date', true). ' ' . $expiry_time)), $event);
 				$today_date = apply_filters('wpem_get_current_expire_time', gmdate('Y-m-d H:i:s', current_time('timestamp')));     
 				
 				// Check for event expire    
@@ -909,6 +920,7 @@ class WP_Event_Manager_Post_Types {
 		// Delete event after finished
 		$delete_events_after_finished = absint(get_option('event_manager_delete_events_after_finished')) == 1 ? true : false;
 		if($delete_events_after_finished) {
+			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta queries are required for event filtering.
 			$args = [
 				'post_type'      => 'event_listing',
 				'post_status'    => array('publish', 'expired'),
@@ -923,6 +935,7 @@ class WP_Event_Manager_Post_Types {
 			      ),
 			  ),
 			]; 
+			// phpcs:enable
 
 			$event_ids = get_posts($args);
 
@@ -993,6 +1006,7 @@ class WP_Event_Manager_Post_Types {
 		
 		// No metadata set so we can generate an expiry date
 		// See if the user has set the expiry manually:
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified by WordPress core during post save.
 		if(!empty($_POST[ '_event_expiry_date' ])) {
 			update_post_meta($post->ID, '_event_expiry_date', gmdate('Y-m-d', strtotime(sanitize_text_field(wp_unslash($_POST[ '_event_expiry_date' ])))));
 			// No manual setting? Lets generate a date
@@ -1004,6 +1018,7 @@ class WP_Event_Manager_Post_Types {
 				$_POST[ '_event_expiry_date' ] = sanitize_text_field(wp_unslash($expires));
 			}
 		}
+		// phpcs:enable
 	}
 
 	/**

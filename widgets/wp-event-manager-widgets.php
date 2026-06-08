@@ -631,6 +631,7 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 			'order'             => isset($instance['order']) ? $instance['order'] : 'ASC',
 
 		);
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Meta queries are required for event date filtering and cancelled event exclusion.
 		$args['meta_query'] = array(
 			array(
 				'key'     => '_event_start_date',
@@ -644,9 +645,11 @@ class WP_Event_Manager_Widget_Past_Events extends WP_Event_Manager_Widget{
 				'compare' => '!='
 			),
 		);
+		// phpcs:enable
+		
 		if ('event_start_date' === $args['orderby']) {
-			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for event date ordering
 			$args['orderby'] = 'meta_value';
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Required for event date ordering
 			$args['meta_key'] = '_event_start_date';
 			$args['meta_type'] = 'DATETIME';
 		}

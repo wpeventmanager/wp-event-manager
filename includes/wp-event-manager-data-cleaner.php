@@ -178,13 +178,14 @@ class WPEM_Event_Manager_Data_Cleaner {
 			if(is_array($event_banner)){
 				foreach ($event_banner as $banner) {
 					$wp_attached_file = str_replace($baseurl, '', $banner);
-
+					// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup.
 					$args = array(
 				        'meta_key'         	=> '_wp_attached_file',
 				        'meta_value'       	=> $wp_attached_file,
 				        'post_type'        	=> 'attachment',
 				        'posts_per_page'	=> 1,
 				   );
+					// phpcs:enable
 					$attachments = get_posts($args);
 					if(!empty($attachments)){
 						foreach ($attachments as $attachment) {
@@ -194,12 +195,14 @@ class WPEM_Event_Manager_Data_Cleaner {
 				}
 			} else {
 				$wp_attached_file = str_replace($baseurl, '', $event_banner);
+				// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup.
 				$args = array(
 			        'meta_key'         	=> '_wp_attached_file',
 			        'meta_value'       	=> $wp_attached_file,
 			        'post_type'        	=> 'attachment',
 			        'posts_per_page'	=> 1,
 			   );
+				// phpcs:enable
 				$attachments = get_posts($args);
 				if(!empty($attachments)){
 					foreach ($attachments as $attachment) {
@@ -338,6 +341,7 @@ class WPEM_Event_Manager_Data_Cleaner {
 
 		foreach (array('_transient_', '_transient_timeout_') as $prefix) {
 			foreach (self::$transients as $transient) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				$wpdb->query(
 					$wpdb->prepare(
 						"DELETE FROM $wpdb->options WHERE option_name RLIKE %s",
@@ -394,7 +398,13 @@ class WPEM_Event_Manager_Data_Cleaner {
 		global $wpdb;
 
 		foreach (self::$user_meta_keys as $meta_key) {
+			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			// Direct database delete is required for bulk cleanup of user meta entries
+			// by meta_key. No suitable WordPress core API exists for this operation.
+			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			$wpdb->delete($wpdb->usermeta, array('meta_key' => $meta_key));
+			// phpcs:enable
+			// phpcs:enable
 		}
 	}
 

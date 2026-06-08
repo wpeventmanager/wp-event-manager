@@ -693,6 +693,11 @@ class WP_Event_Manager_Writepanels {
 				$date = gmdate($php_date_format, strtotime($date));
 				$field['value']         = $date;
 			}
+		}else{
+			$timestamp = strtotime($field['value']);
+			if ($timestamp !== false) {
+				$field['value'] = gmdate($php_date_format, $timestamp);
+			}
 		}
 		if(!empty($field['name'])) {
 			$name = $field['name'];
@@ -1164,7 +1169,6 @@ class WP_Event_Manager_Writepanels {
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified earlier
 		$post_data = wp_unslash( $_POST );
-
 		foreach ( $this->event_listing_fields() as $key => $field ) {
 
 			$key       = sanitize_key( $key );
@@ -1188,7 +1192,8 @@ class WP_Event_Manager_Writepanels {
 						! empty( $date_dbformatted ) ? $date_dbformatted : $date_value
 					);
 				} else {
-					update_post_meta( $post_id, $key, '' );
+					$event_expiry_date = wpem_get_event_expiry_date($post_id);
+					update_post_meta( $post_id, $key, $event_expiry_date );
 				}
 
 				continue;
@@ -1218,12 +1223,17 @@ class WP_Event_Manager_Writepanels {
 			if ( '_event_author' === $key ) {
 
 				$author_id = absint( $raw_value );
-
+				// Direct database update is used here intentionally to avoid recursive wp_update_post().
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
 				$wpdb->update(
 					$wpdb->posts,
 					array( 'post_author' => $author_id ),
-					array( 'ID' => $post_id )
+					array( 'ID' => $post_id ),
 				);
+				clean_post_cache( $post_id );
+				// phpcs:enable
+				// phpcs:enable
 
 				continue;
 			}
@@ -1251,6 +1261,7 @@ class WP_Event_Manager_Writepanels {
 						$thumbnail_image
 					);
 
+					// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required to locate attachment by stored file path.
 					$attachments = get_posts(
 						array(
 							'post_type'      => 'attachment',
@@ -1259,7 +1270,7 @@ class WP_Event_Manager_Writepanels {
 							'meta_value'     => $wp_attached_file,
 						)
 					);
-
+					// phpcs:enable
 					if ( ! empty( $attachments ) ) {
 						set_post_thumbnail( $post_id, $attachments[0]->ID );
 					}
@@ -1359,16 +1370,33 @@ class WP_Event_Manager_Writepanels {
 					break;
 
 				case 'date':
+					// Convert from datepicker display format (e.g. m-d-Y) to Y-m-d before saving.
+					if ( ! empty( $raw_value ) ) {
+						$date_format      = sanitize_text_field( $post_data['date_format'] ?? $php_date_format );
+						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(
+							$date_format,
+							sanitize_text_field( (string) $raw_value )
+						);
+						update_post_meta(
+							$post_id,
+							$key,
+							! empty( $date_dbformatted ) ? $date_dbformatted : sanitize_text_field( (string) $raw_value )
+						);
+					} else {
+						update_post_meta( $post_id, $key, '' );
+					}
+					break;
 				case 'time':
 					$sanitized = sanitize_text_field( (string) $raw_value );
 					update_post_meta( $post_id, $key, $sanitized );
 					break;
 
 				default:
+					if($field['type'] === 'repeated')
+						break;
 					$sanitized = is_array( $raw_value )
 						? array_filter( array_map( 'sanitize_text_field', $raw_value ) )
 						: sanitize_text_field( (string) $raw_value );
-
 					if ( apply_filters( 'wpem_save_event_data', true, $key, $sanitized ) ) {
 						update_post_meta( $post_id, $key, $sanitized );
 					}
@@ -1717,7 +1745,13 @@ class WP_Event_Manager_Writepanels {
 		foreach ($this->organizer_listing_fields() as $key => $field) {
 			$key = isset($key) ? sanitize_text_field(wp_unslash($key)) : '';
 			if('_organizer_author' === $key) {
+				// Direct database update is used here intentionally to avoid recursive wp_update_post().
+
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
 				$wpdb->update($wpdb->posts, array('post_author' => isset($_POST[$key]) && $_POST[$key] > 0 ? absint(sanitize_text_field(wp_unslash($_POST[$key]))) : 0), array('ID' => $post_id));
+				// phpcs:enable
+				// phpcs:enable
 			}
 			// Everything else
 			else {
@@ -1727,20 +1761,40 @@ class WP_Event_Manager_Writepanels {
 						update_post_meta($post_id, $key, sanitize_textarea_field(wp_unslash($_POST[$key])));
 						break;
 					case 'file':
-						if (isset($_POST[$key])) {
-							$value = '';
-							if (!empty($_POST['_thumbnail_id'])) {
-								$thumb_id = intval(wp_unslash($_POST['_thumbnail_id']));
-								$thumb_url = wp_get_attachment_url($thumb_id);
-
-								if ($thumb_url) {
-									$value = esc_url_raw($thumb_url);
-								}
+						if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
+							// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization is handled below based on expected input type (string or array).
+							$value = wp_unslash( $_POST[ $key ] );
+							// Handle array values safely
+							if ( is_array( $value ) ) {
+								$value = reset( $value ); // get first value
 							}
 
-							update_post_meta($post_id, $key, $value);
+							$value = esc_url_raw( $value );
+							// if( empty( trim( $value ) ) ) {
+							// 	if ( isset( $_POST['_thumbnail_id'] ) ) {
+							// 		$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+							// 		$thumb_url = wp_get_attachment_url( $thumb_id );
+
+							// 		if ( $thumb_url ) {
+							// 			$value = esc_url_raw( $thumb_url );
+							// 		}
+							// 	}
+							// }
+							update_post_meta( $post_id, $key, $value );
+						}else{
+						// If no value in POST, check if thumbnail ID is set and use it as fallback based on the above existing flow.
+						$value = '';
+						if ( isset( $_POST['_thumbnail_id'] ) ) {
+							$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+							$thumb_url = wp_get_attachment_url( $thumb_id );
+
+							if ( $thumb_url ) {
+								$value = esc_url_raw( $thumb_url );
+							}
 						}
-						break;
+						update_post_meta( $post_id, $key, $value );
+					}
+					break;
 					case 'checkbox':
 						if(isset($_POST[$key])) {
 							update_post_meta($post_id, $key, 1);
@@ -1915,11 +1969,20 @@ class WP_Event_Manager_Writepanels {
 					$author_id = absint( wp_unslash( $_POST[ $key ] ) );
 				}
 
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+				// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+				// Direct database update is used intentionally to avoid recursive
+				// wp_update_post() calls triggered during venue save hooks.
 				$wpdb->update(
 					$wpdb->posts,
 					array( 'post_author' => $author_id ),
 					array( 'ID' => $post_id )
 				);
+
+				clean_post_cache( $post_id );
+
+				// phpcs:enable
+				// phpcs:enable
 
 				continue;
 			}
@@ -1936,8 +1999,44 @@ class WP_Event_Manager_Writepanels {
 						);
 					}
 					break;
+					// case 'file':
+					// if ( isset( $_POST[ $key ] ) ) {
+					// 	$value = '';
+					// 	if ( isset( $_POST['_thumbnail_id'] ) ) {
+					// 		$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+					// 		$thumb_url = wp_get_attachment_url( $thumb_id );
+
+					// 		if ( $thumb_url ) {
+					// 			$value = esc_url_raw( $thumb_url );
+					// 		}
+					// 	}
+					// 	update_post_meta( $post_id, $key, $value );
+					// }
+					// break;
 				case 'file':
-					if ( isset( $_POST[ $key ] ) ) {
+					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization is handled below based on expected input type (string or array).
+					if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
+						// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization is handled below based on expected input type (string or array).
+						$value = wp_unslash( $_POST[ $key ] );
+						// Handle array values safely
+						if ( is_array( $value ) ) {
+							$value = reset( $value ); // get first value
+						}
+
+						$value = esc_url_raw( $value );
+						// if( empty( trim( $value ) ) ) {
+						// 	if ( isset( $_POST['_thumbnail_id'] ) ) {
+						// 		$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
+						// 		$thumb_url = wp_get_attachment_url( $thumb_id );
+
+						// 		if ( $thumb_url ) {
+						// 			$value = esc_url_raw( $thumb_url );
+						// 		}
+						// 	}
+						// }
+						update_post_meta( $post_id, $key, $value );
+					}else{
+						// If no value in POST, check if thumbnail ID is set and use it as fallback based on the above existing flow.
 						$value = '';
 						if ( isset( $_POST['_thumbnail_id'] ) ) {
 							$thumb_id  = absint( wp_unslash( $_POST['_thumbnail_id'] ) );
@@ -2035,12 +2134,14 @@ class WP_Event_Manager_Writepanels {
 				if(is_array($event_banner)) {
 					foreach ($event_banner as $banner) {
 						$wp_attached_file = str_replace($baseurl, '', $banner);
+						// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup.
 						$args = array(
 							'meta_key'       => '_wp_attached_file',
 							'meta_value'     => $wp_attached_file,
 							'post_type'      => 'attachment',
 							'posts_per_page' => 1,
 						);
+						// phpcs:enable
 						$attachments = get_posts($args);
 						if(!empty($attachments)) {
 							if( !$retain_attachment ){
@@ -2052,12 +2153,14 @@ class WP_Event_Manager_Writepanels {
 					}
 				} else {
 					$wp_attached_file = str_replace($baseurl, '', $event_banner);
+					// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required for attachment lookup.
 					$args = array(
 						'meta_key'       => '_wp_attached_file',
 						'meta_value'     => $wp_attached_file,
 						'post_type'      => 'attachment',
 						'posts_per_page' => 1,
 					);
+					// phpcs:enable
 					$attachments = get_posts($args);
 					if(!empty($attachments)) {
 						if( !$retain_attachment ){

@@ -95,6 +95,7 @@ class WP_Event_Manager_Field_Editor {
 		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country'));
 		$disbled_fields_tab_group = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country', 'event_type', 'event_category'));
 		$disbled_file_field = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_banner'));
+		$disable_multiple_file_upload_feature_for_fields = apply_filters('disable_multiple_file_upload_feature_for_fields', array('event_thumbnail'));
 		$taxonomy_fields = apply_filters('wpem_admin_field_editor_taxonomy_fields', array('event_type', 'event_category'));
 		$field_types = wpem_get_form_field_types();
 

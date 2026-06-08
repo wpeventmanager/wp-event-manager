@@ -24,7 +24,7 @@ $event_fields = $this->event_listing_fields(); ?>
                     if (isset($event_fields)) {
                         foreach ($event_fields as $event_key => $event_field) {
                             // Get the value from post meta
-                            $event_field_value = get_post_meta($wpem_thepostid, '_' . $event_key, true);
+                            $event_field_value = get_post_meta($wpem_thepostid, $event_key, true);
                             
                             // If no value exists in post meta, use the default value
                             if (empty($event_field_value) && isset($event_field['default'])) {

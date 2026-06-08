@@ -111,7 +111,18 @@ $event = $post; ?>
                             <!-- Event description section start-->
                             <div class="wpem-single-event-body-content">
                                 <?php do_action('single_event_overview_start'); 
-                                echo wp_kses_post(do_blocks(apply_filters('wpem_the_content', $event->post_content)));
+                                $wpem_allowed_tag = wp_kses_allowed_html( 'post' );
+                                $wpem_allowed_tag['iframe'] = array(
+                                    'src'             => true,
+                                    'width'           => true,
+                                    'height'          => true,
+                                    'frameborder'     => true,
+                                    'allow'           => true,
+                                    'allowfullscreen' => true,
+                                    'loading'         => true,
+                                    'referrerpolicy'  => true,
+                                );
+                                echo wp_kses(do_blocks(apply_filters('wpem_the_content',$event->post_content)),$wpem_allowed_tag);
                                 do_action('single_event_overview_end'); ?>
                             </div>
                             <!-- Event description section end-->

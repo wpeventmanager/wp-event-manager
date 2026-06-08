@@ -120,8 +120,11 @@ abstract class WP_Event_Manager_Form {
 	 * @return string
 	 */
 	public function get_action() {
-		$action = isset($_SERVER['REQUEST_URI']) ? wp_kses_post(wp_unslash($_SERVER['REQUEST_URI'])) : '';
-		return esc_url_raw($this->action ? $this->action : $action);
+		if ( ! empty( $this->action ) ) {
+			return $this->action;
+		}
+		
+		return isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	}
 
 	/**
@@ -213,7 +216,7 @@ abstract class WP_Event_Manager_Form {
 	 */
 	public function enqueue_scripts() {
 		if($this->use_recaptcha_field()) {
-			wp_enqueue_script('recaptcha', 'https://www.google.com/recaptcha/api.js', array(), '1.0.0');
+			wp_enqueue_script('recaptcha', 'https://www.google.com/recaptcha/api.js', array(), '1.0.0', true);
 		}
 	}
 
@@ -223,8 +226,8 @@ abstract class WP_Event_Manager_Form {
 	 * @return array of data
 	 */
 	public function get_posted_fields() {
-	    
 		// Initialize post_data from $_POST
+	    // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$this->post_data = map_deep(wp_unslash( $_POST ), 'wp_kses_post');
 		
 		// Init fields
@@ -499,22 +502,33 @@ abstract class WP_Event_Manager_Form {
 	protected function get_posted_textarea_field($key, $field) {
 		$key = sanitize_key( $key );
 		$value = '';
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if ( isset( $_POST[ $key ] ) ) {
 			$value = sanitize_textarea_field(
 				wp_unslash( $_POST[ $key ] )
 			);
 		}
+		// phpcs:enable
 		return trim( $value );
 	}
 
 	/**
-	 * Get the value of a posted textarea field.
+	 * Get the value of a posted wp editor field.
 	 * @param  string $key
 	 * @param  array $field
 	 * @return string
 	 */
-	protected function get_posted_wp_editor_field($key, $field) {
-		return $this->get_posted_textarea_field($key, $field);
+
+	protected function get_posted_wp_editor_field( $key, $field ) {
+		$key   = sanitize_key( $key );
+		$value = '';
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
+		if ( isset( $_POST[ $key ] ) ) {
+			$value = wp_kses_post( wp_unslash( $_POST[ $key ] ) );
+		}
+		// phpcs:enable
+
+		return trim( $value );
 	}
 	
 	/**
@@ -524,12 +538,13 @@ abstract class WP_Event_Manager_Form {
 	 * @return array
 	 */
 	protected function get_posted_term_checklist_field($key, $field) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if(isset($_POST[ 'tax_input' ]) && isset($_POST[ 'tax_input' ][ $field['taxonomy'] ])) {
 			return array_map('absint', $_POST[ 'tax_input' ][ $field['taxonomy'] ]);
 		} else {
 			return array();
 		}
+		// phpcs:enable
 	}
 
 	/**
@@ -559,14 +574,51 @@ abstract class WP_Event_Manager_Form {
 	 * @return  string or array
 	 */
 	protected function upload_file($field_key, $field) {
-		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ]['name'])) {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
+		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ])) {
+
+			$file_names = wp_unslash($_FILES[$field_key]['name']);
+
+			// Handle single + multiple uploads safely
+			$has_files = false;
+
+			if (is_array($file_names)) {
+
+				// Remove empty entries
+				$file_names = array_filter($file_names);
+
+				if (!empty($file_names)) {
+					$has_files = true;
+
+					// Sanitize all filenames
+					$_FILES[$field_key]['name'] = array_map(
+						'sanitize_file_name',
+						$file_names
+					);
+				}
+
+			} else {
+
+				if (!empty($file_names)) {
+					$has_files = true;
+
+					$_FILES[$field_key]['name'] = sanitize_file_name($file_names);
+				}
+			}
+
+			if (!$has_files) {
+				return;
+			}
+
 			if(!empty($field['allowed_mime_types'])) {
 				$allowed_mime_types = sanitize_text_field(wp_unslash($field['allowed_mime_types']));
 			} else {
 				$allowed_mime_types = get_allowed_mime_types();
 			}
 			$file_urls       = array();
-			$files_to_upload = event_manager_prepare_uploaded_files(sanitize_text_field(wp_unslash($_FILES[ $field_key ])));
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- File upload array handled by WordPress upload APIs.
+			$files_to_upload = event_manager_prepare_uploaded_files($_FILES[ $field_key ]);
+
 			foreach ($files_to_upload as $file_to_upload) {
 				$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $field_key ,'allowed_mime_types' => $allowed_mime_types));
 				if(is_wp_error($uploaded_file)) {
@@ -581,7 +633,9 @@ abstract class WP_Event_Manager_Form {
 			} else {
 				return current($file_urls);
 			}
-		}
+		}		
+		// phpcs:enable
+
 	}
 
 	/**
@@ -728,11 +782,24 @@ abstract class WP_Event_Manager_Form {
 		*/
 
 		// Ticket prices disabled
-		if (!get_option('event_manager_enable_event_ticket_prices', false)) {
-			unset(
-				$updated_fields['event']['event_ticket_options'],
-				$updated_fields['event']['event_ticket_price']
-			);
+		if(isset($updated_fields['event'])){
+			if (!get_option('event_manager_enable_event_ticket_prices', false)) {
+				unset(
+					$updated_fields['event']['event_ticket_options'],
+					$updated_fields['event']['event_ticket_price']
+				);
+			}else{	
+				if(!isset($updated_fields['event']['event_ticket_options'])){
+					$updated_fields['event']['event_ticket_options'] = isset($default_fields['event']['event_ticket_options']) ? $default_fields['event']['event_ticket_options'] : array();			
+				}else{
+					$updated_fields['event']['event_ticket_options']['visibility'] = 1;
+				}
+				if(!isset($updated_fields['event']['event_ticket_price'])){
+					$updated_fields['event']['event_ticket_price'] = isset($default_fields['event']['event_ticket_price']) ? $default_fields['event']['event_ticket_price'] : array();			
+				}else{
+					$updated_fields['event']['event_ticket_price']['visibility'] = 1;
+				}
+			}
 		}
 
 		// Categories disabled or empty

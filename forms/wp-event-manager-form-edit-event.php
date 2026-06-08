@@ -30,8 +30,9 @@ class WPEM_Event_Manager_Form_Edit_Event extends WPEM_Event_Manager_Form_Submit_
 	 * Constructor.
 	*/
 	public function __construct() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only request parameter.
 		$this->event_id = !empty($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST[ 'event_id' ])) : 0;
-		
+		// phpcs:enable
 		if  (!event_manager_user_can_edit_event($this->event_id)) {
 			$this->event_id = 0;
 		}

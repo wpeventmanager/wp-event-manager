@@ -714,6 +714,7 @@ class WP_Event_Manager_CPT {
 	 */
 	public function sort_columns($vars) {
 		if(isset($vars['orderby'])) {
+			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Meta key queries are required for custom event date sorting.
 			if('event_expires' === $vars['orderby']) {
 				$vars = array_merge(
 					$vars,
@@ -758,6 +759,7 @@ class WP_Event_Manager_CPT {
 					)
 				);
 			}
+			// phpcs:enable
 		}
 		return $vars;
 	}

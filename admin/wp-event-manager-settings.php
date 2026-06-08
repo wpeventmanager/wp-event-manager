@@ -774,6 +774,7 @@ class WP_Event_Manager_Settings{
 					<div class="admin-setting-left">
 						<div class="white-background">
 							<?php 
+							// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 							if(isset($_GET['settings-updated']) && $_GET['settings-updated'] === 'true') {
 								flush_rewrite_rules();
 								echo wp_kses_post('<div class="updated fade event-manager-updated"><p>' . esc_attr__('Settings successfully saved', 'wp-event-manager') . '</p></div>');

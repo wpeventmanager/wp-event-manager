@@ -37,7 +37,9 @@ class WPEM_Event_Manager_Form_Edit_Venue extends WPEM_Event_Manager_Form_Submit_
 		$this->form_name = 'edit-venue';
 
 		// Get venue ID
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only request parameter.
 		$this->venue_id = ! empty($_REQUEST['venue_id']) ? absint(wp_unslash($_REQUEST['venue_id'])) : 0;
+		// phpcs:enable
 
 		// Permission check
 		if (!event_manager_user_can_edit_venue($this->venue_id)) {
@@ -100,6 +102,13 @@ class WPEM_Event_Manager_Form_Edit_Venue extends WPEM_Event_Manager_Form_Submit_
 		}
 		$this->fields = apply_filters('submit_venue_form_fields_get_venue_data', $this->fields, $venue);
 		wp_enqueue_script('wp-event-manager-event-submission');
+
+		// Show success message if the form was just submitted
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only request parameter.
+		if (isset($_GET['updated']) && $_GET['updated'] === 'true') {
+			echo wp_kses_post('<div class="event-manager-message wpem-alert wpem-alert-success">' . __('Your changes have been saved.', 'wp-event-manager') . ' <a href="' . get_permalink($this->get_venue_id()) . '">' . __('View &rarr;', 'wp-event-manager') . '</a>' . '</div>');
+		}
+		// phpcs:enable
 
 		wpem_get_event_manager_template('venue-submit.php', 
 			array(

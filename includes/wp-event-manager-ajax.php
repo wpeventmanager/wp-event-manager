@@ -132,7 +132,7 @@ class WP_Event_Manager_Ajax {
 		$allowed_orderby = array('date', 'title', 'featured', 'rand_featured', 'event_start_date', 'event_start_date_time');
 		$orderby = isset($_POST['orderby']) && in_array(sanitize_text_field(wp_unslash($_POST['orderby'])), $allowed_orderby, true) ? sanitize_text_field(wp_unslash($_POST['orderby'])) : 'date';
 		$order = isset($_POST['order']) && in_array(strtoupper(sanitize_text_field(wp_unslash($_POST['order']))), array('ASC', 'DESC'), true) ? strtoupper(sanitize_text_field(wp_unslash($_POST['order']))) : 'DESC';
-
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Required for event meta filtering
 		$args = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => array('publish'),
@@ -196,6 +196,7 @@ class WP_Event_Manager_Ajax {
 		// If orderby meta key _event_start_date 
 		if('event_start_date' === $orderby) {
 			$args['orderby'] ='meta_value';
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			$args['meta_key'] ='_event_start_date';
 			$args['meta_type'] ='DATETIME';
 		}
@@ -217,6 +218,7 @@ class WP_Event_Manager_Ajax {
 				'event_start_time_clause' => $order,
 			);
 		}
+		// phpcs:enable
 		$upcoming_events = new WP_Query($args);
 
 		if ($upcoming_events->have_posts()) {
@@ -265,6 +267,7 @@ class WP_Event_Manager_Ajax {
 			'paged'          => $paged,
 			'order'          => 'DESC',
 			'orderby'        => 'meta_value',
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			'meta_key'       => '_event_start_date',
 			'meta_type'      => 'DATETIME',
 		);
@@ -300,6 +303,7 @@ class WP_Event_Manager_Ajax {
 	 */
 	public function get_upcoming_listings($atts) {
 
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$search_location = isset( $_POST['search_location'] ) ? sanitize_text_field( wp_unslash( $_POST['search_location'] ) ) : '';
 		$search_categories = isset( $_POST['search_categories'] ) ? sanitize_text_field( wp_unslash( $_POST['search_categories'] ) ) : '';
 		$event_manager_keyword = isset( $_POST['search_keywords'] ) ? sanitize_text_field( wp_unslash( $_POST['search_keywords'] ) ) : '';
@@ -321,6 +325,36 @@ class WP_Event_Manager_Ajax {
 		$orderby = isset($_POST['orderby']) ? sanitize_text_field(wp_unslash($_POST['orderby'])) : 'date';
 		$order = isset($_POST['order']) ? sanitize_text_field(wp_unslash($_POST['order'])) : 'DESC';
 
+		$search_datetimes = array();
+		if ( isset( $_POST['search_datetimes'] ) ) {
+
+			$search_datetimes = is_array( $_POST['search_datetimes'] )
+				? array_map(
+					'sanitize_text_field',
+					wp_unslash( $_POST['search_datetimes'] )
+				)
+				: array(
+					sanitize_text_field(
+						wp_unslash( $_POST['search_datetimes'] )
+					)
+				);
+
+			// Validate decoded JSON structure
+			if ( ! empty( $search_datetimes[0] ) ) {
+
+				$dates = json_decode( $search_datetimes[0], true );
+
+				if (
+					empty( $dates ) ||
+					empty( $dates['start'] ) ||
+					empty( $dates['end'] )
+				) {
+					$search_datetimes = array();
+				}
+			}
+		}
+		// phpcs:enable
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		$args = array(
 			'post_type'      => 'event_listing',
 			'post_status'    => array('publish'),
@@ -351,6 +385,51 @@ class WP_Event_Manager_Ajax {
 				),
 			)
 		);
+
+		if ( ! empty( $search_datetimes[0] ) ) {
+
+			$dates = json_decode( $search_datetimes[0], true );
+
+			// Get admin date format
+			$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
+
+			// Convert to PHP date format
+			$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format(
+				$datepicker_date_format
+			);
+
+			$dates['start'] = WP_Event_Manager_Date_Time::date_parse_from_format(
+				$php_date_format,
+				$dates['start']
+			);
+
+			$dates['end'] = WP_Event_Manager_Date_Time::date_parse_from_format(
+				$php_date_format,
+				$dates['end']
+			);
+
+			$date_search = array(
+				'relation' => 'AND',
+				array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['end'],
+					'compare' => '<=',
+					'type'    => 'DATE',
+				),
+				array(
+					'key'     => '_event_start_date',
+					'value'   => $dates['start'],
+					'compare' => '>=',
+					'type'    => 'DATE',
+				),
+			);
+
+			$args['meta_query'][] = $date_search;
+		}
+
+		if(!empty($event_manager_keyword) && strlen($event_manager_keyword) > 0) {
+			$args['s'] = $event_manager_keyword;
+		}
 
 		if('featured' === $orderby) {
 			$args['meta_query'] = array(
@@ -384,6 +463,7 @@ class WP_Event_Manager_Ajax {
 		// If orderby meta key _event_start_date 
 		if('event_start_date' === $orderby) {
 			$args['orderby'] ='meta_value';
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			$args['meta_key'] ='_event_start_date';
 			$args['meta_type'] ='DATETIME';
 		}
@@ -439,9 +519,10 @@ class WP_Event_Manager_Ajax {
 		}
 
 		if ( !empty( $tax_query ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			$args['tax_query'] = array_merge( array( 'relation' => 'AND' ), $tax_query );
 		}
-
+		// phpcs:enable
 		$upcoming_events = new WP_Query($args);
 
 		if ($upcoming_events->have_posts()) {
@@ -571,7 +652,12 @@ class WP_Event_Manager_Ajax {
 
 		ob_start();
 		$request_data = wp_unslash( $_REQUEST );
-		$request_data = map_deep( $request_data, 'wp_kses_post' );
+		$request_data = map_deep(
+			$request_data,
+			function ( $request_value ) {
+				return wp_kses_post( is_null( $request_value ) ? '' : $request_value );
+			}
+		);
 		$events = wpem_get_event_listings(
 			apply_filters(
 				'event_manager_get_listings_args',
@@ -729,6 +815,7 @@ class WP_Event_Manager_Ajax {
 		}
 
 		$data = array('files' => array());
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- File uploads are restricted to authenticated users and validated during final form submission.
 		if(!empty($_FILES)) {
 			foreach ($_FILES as $file_key => $file) {
 				// Sanitize file key
@@ -744,6 +831,7 @@ class WP_Event_Manager_Ajax {
 				}
 			}
 		}
+		// phpcs:enable
 		wp_send_json($data);
 	}
 

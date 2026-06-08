@@ -70,7 +70,16 @@ $wpem_taxonomies = get_object_taxonomies((object) array('post_type' => 'event_li
 		}	?>" placeholder="<?php esc_attr_e('N/A', 'wp-event-manager'); ?>" />
 		<input type="text" class="input-text options" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($wpem_field_key); ?>][options]" placeholder="<?php esc_attr_e('Pipe (|) separate options.', 'wp-event-manager'); ?>" value="<?php echo esc_attr($wpem_options); ?>" />
 		<div class="file-options">
-			<label class="multiple-files"><input type='hidden' value='0' name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($wpem_field_key); ?>][multiple]"><input type="checkbox" class="input-text" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($wpem_field_key); ?>][multiple]" value="1" <?php checked(!empty($wpem_field['multiple']), true); ?> /> <?php esc_attr_e('Multiple Files?', 'wp-event-manager'); ?></label>
+			<?php 
+		if ( ! in_array( $wpem_field_key, $disable_multiple_file_upload_feature_for_fields, true ) ) {
+		?>
+			<label class="multiple-files">
+				<input type='hidden' value='0' name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($wpem_field_key); ?>][multiple]">
+				<input type="checkbox" class="input-text" name="<?php echo esc_attr($group_key); ?>[<?php echo esc_attr($wpem_field_key); ?>][multiple]" value="1" <?php checked(!empty($wpem_field['multiple']), true); ?> /> <?php esc_attr_e('Multiple Files?', 'wp-event-manager'); ?>
+			</label>
+		<?php
+		}
+		?>
 		</div>
 		<div class="taxonomy-options">
 			<label class="taxonomy-option">
