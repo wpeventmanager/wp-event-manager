@@ -45,7 +45,7 @@ class WP_Event_Manager {
 	 * @var plugin version
 	 * @since  3.1.33
 	 */
-	private static $wpem_verion = '3.3.5';
+	private static $wpem_verion = '3.4.1';
 
 
 	/**
