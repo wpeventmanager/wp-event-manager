@@ -126,7 +126,48 @@ class WP_Event_Manager_Admin {
 			wp_register_script('wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array('jquery', 'jquery-ui-core'), EVENT_MANAGER_VERSION, true);
 			wp_enqueue_script('wp-event-manager-jquery-timepicker');
 		}
+		if ( $screen && 'event_listing' === $screen->post_type ) {
+			$this->wpem_hide_event_listing_taxonomy_metaboxes();
+		}
 		wp_enqueue_script('wpem-dompurify', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dom-purify/dompurify.min.js', [], '3.0.5', true);
+	}
+
+	/**
+	 * Hide Event Listing taxonomy panels in Gutenberg editor.
+	 *
+	 * Removes the default taxonomy sidebar panels for:
+	 * - event_listing_category
+	 * - event_listing_type
+	 *
+	 * This ensures taxonomy assignment is not available in the block editor
+	 * while keeping the taxonomies registered and available via admin menus
+	 * and REST API (WordPress 6.5+).
+	 *
+	 * @return void
+	 */
+	public function wpem_hide_event_listing_taxonomy_metaboxes() {
+
+		$categories_enabled = get_option( 'event_manager_enable_categories' );
+		$types_enabled      = get_option( 'event_manager_enable_event_types' );
+
+		$custom_editor_script = "
+		wp.domReady(function() {
+			const editor = wp.data.dispatch('core/editor');
+		";
+
+		if ( $categories_enabled ) {
+			$custom_editor_script .= "editor.removeEditorPanel('taxonomy-panel-event_listing_category');";
+		}
+
+		if ( $types_enabled ) {
+			$custom_editor_script .= "editor.removeEditorPanel('taxonomy-panel-event_listing_type');";
+		}
+
+		$custom_editor_script .= "
+		});
+		";
+
+		wp_add_inline_script( 'wp-edit-post', $custom_editor_script );
 	}
 
 	/**
