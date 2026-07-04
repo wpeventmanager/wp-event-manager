@@ -1336,14 +1336,49 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 				$update_event['post_date_gmt'] = current_time('mysql', 1);
 				wp_update_post($update_event);
 			}
-			if (class_exists('WPEM_WC_Paid_Listings_Submit_Event_Form')) {
-				WPEM_WC_Paid_Listings_Submit_Event_Form::process_package(
-					WPEM_WC_Paid_Listings_Submit_Event_Form::get_current_package_id(),
-					WPEM_WC_Paid_Listings_Submit_Event_Form::is_current_user_package(),
-					$this->event_id
-				);
-				wp_safe_redirect(get_permalink(wc_get_page_id('checkout')));
-				exit;
+			// if (class_exists('WPEM_WC_Paid_Listings_Submit_Event_Form')) {
+			// 	WPEM_WC_Paid_Listings_Submit_Event_Form::process_package(
+			// 		WPEM_WC_Paid_Listings_Submit_Event_Form::get_current_package_id(),
+			// 		WPEM_WC_Paid_Listings_Submit_Event_Form::is_current_user_package(),
+			// 		$this->event_id
+			// 	);
+			// 	wp_safe_redirect(get_permalink(wc_get_page_id('checkout')));
+			// 	exit;
+			// }
+			if ('before' === get_option('event_manager_paid_listings_flow')) {
+				if (class_exists('WPEM_WC_Paid_Listings_Submit_Event_Form')) {
+					$is_user_pkg = WPEM_WC_Paid_Listings_Submit_Event_Form::is_current_user_package();
+
+					WPEM_WC_Paid_Listings_Submit_Event_Form::process_package(
+						WPEM_WC_Paid_Listings_Submit_Event_Form::get_current_package_id(),
+						$is_user_pkg,
+						$this->event_id
+					);
+
+
+					if ($is_user_pkg) {
+						$this->step++;
+
+						$wp_post_types = get_post_types(array('_builtin' => false), 'objects');
+						$event_singular = esc_attr($wp_post_types['event_listing']->labels->singular_name);
+						$wpem_custom_message = get_option('wpem_event_submit_success_message');
+						if (empty($wpem_custom_message)) {
+							$wpem_custom_message = __('%s submitted successfully. Your listing will be visible once approved.', 'wp-event-manager');
+						}
+
+						$this->form_messages[] = array(
+							'type' => 'success',
+							'message' => sprintf($wpem_custom_message, get_the_title($this->event_id))
+						);
+
+
+						return;
+					}
+
+					// New package - checkout:
+					wp_safe_redirect(get_permalink(wc_get_page_id('checkout')));
+					exit;
+				}
 			}
 			$this->step++;
 			$url = add_query_arg(
