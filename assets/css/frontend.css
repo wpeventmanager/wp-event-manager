@@ -7,6 +7,10 @@
   --wpem-gray-bg-color: #f5f5f5;
 }
 
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 [class^="wpem"] {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -354,21 +358,177 @@
   display: inline-block;
   position: relative;
 }
+/* WP Editor (TinyMCE) – outer wrapper */
 .wpem-form-group .wp-editor-wrap {
   border: 1px solid var(--wpem-gray-border-color);
   overflow: hidden;
-  border-radius: 4px;
-  transition: 0.2s all ease-in-out;
+  border-radius: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
-.wpem-form-group .wp-editor-wrap:active,
-.wpem-form-group .wp-editor-wrap:focus {
+
+/* Hover – subtle blue tint on border + light glow */
+.wpem-form-group .wp-editor-wrap:hover {
+  border-color: #90c4e8;
+  box-shadow: 0 2px 10px rgba(0, 150, 255, 0.10);
+}
+
+/* Focus-within – full primary blue ring (fires when typing inside) */
+.wpem-form-group .wp-editor-wrap:focus-within {
   border-color: var(--wpem-primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 150, 255, 0.14);
 }
+
 .wpem-form-group .wp-editor-wrap .wp-editor-container {
   border: none;
 }
-.wpem-form-group .wp-editor-wrap:hover {
+
+/* ── Visual / Text tab buttons ───────────────────────────── */
+.wpem-form-group .wp-editor-wrap .wp-editor-tools {
+  background: #f5f7f9;
+  border-bottom: 1px solid var(--wpem-gray-border-color);
+  padding: 4px 8px 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.wpem-form-group .wp-editor-tabs {
+  margin-left: auto;
+}
+
+.wpem-form-group .wp-switch-editor {
+  background: transparent;
+  border: 1px solid var(--wpem-gray-border-color);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  color: var(--wpem-gray-color);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  margin-left: 2px;
+}
+
+.wpem-form-group .wp-switch-editor:hover {
+  background: rgba(0, 150, 255, 0.08);
+  color: var(--wpem-primary-color);
+}
+
+.wpem-form-group .wp-switch-editor.active {
+  background: var(--wpem-white-color);
+  color: var(--wpem-primary-color);
   border-color: var(--wpem-gray-border-color);
+}
+
+/* ── TinyMCE toolbar area ────────────────────────────────── */
+.wpem-form-group .mce-tinymce.mce-container,
+.wpem-form-group .mce-panel {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.wpem-form-group .mce-toolbar-grp.mce-container {
+  background: #f5f7f9 !important;
+  border-bottom: 1px solid var(--wpem-gray-border-color) !important;
+  padding: 4px 6px !important;
+}
+
+/* ── Every toolbar button (icon + listbox) ───────────────── */
+.wpem-form-group .mce-btn,
+.wpem-form-group .mce-btn.mce-active,
+.wpem-form-group .mce-btn:active,
+.wpem-form-group .mce-listbox,
+.wpem-form-group .mce-listbox.mce-active,
+.wpem-form-group .mce-listbox:active {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  margin: 1px !important;
+  transition: background 0.15s, border-color 0.15s !important;
+  color: var(--wpem-dark-color) !important;
+}
+
+/* Button inner element – prevent skin from going black */
+.wpem-form-group .mce-btn button,
+.wpem-form-group .mce-btn button:hover,
+.wpem-form-group .mce-btn button:focus,
+.wpem-form-group .mce-listbox button,
+.wpem-form-group .mce-listbox button:hover,
+.wpem-form-group .mce-listbox button:focus {
+  background: transparent !important;
+  color: var(--wpem-dark-color) !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 4px 6px !important;
+}
+
+/* Hover state for ALL toolbar buttons */
+.wpem-form-group .mce-btn:hover,
+.wpem-form-group .mce-btn:focus,
+.wpem-form-group .mce-listbox:hover,
+.wpem-form-group .mce-listbox:focus {
+  background: rgba(0, 150, 255, 0.10) !important;
+  border-color: rgba(0, 150, 255, 0.20) !important;
+  box-shadow: none !important;
+}
+
+.wpem-form-group .mce-btn:hover button,
+.wpem-form-group .mce-btn:focus button,
+.wpem-form-group .mce-listbox:hover button,
+.wpem-form-group .mce-listbox:focus button {
+  color: var(--wpem-primary-color) !important;
+  background: transparent !important;
+}
+
+/* Pressed / active */
+.wpem-form-group .mce-btn.mce-active button,
+.wpem-form-group .mce-listbox.mce-active button {
+  background: transparent !important;
+  color: var(--wpem-primary-color) !important;
+}
+
+/* Toolbar separator */
+.wpem-form-group .mce-btn-group:not(:first-child) {
+  border-left: 1px solid var(--wpem-gray-border-color) !important;
+  margin-left: 4px !important;
+  padding-left: 4px !important;
+}
+
+/* Format / paragraph dropdown label */
+.wpem-form-group .mce-listbox .mce-txt,
+.wpem-form-group .mce-listbox:hover .mce-txt,
+.wpem-form-group .mce-listbox.mce-active .mce-txt {
+  color: var(--wpem-dark-color) !important;
+  font-size: 13px !important;
+}
+
+.wpem-form-group .mce-listbox:hover .mce-txt {
+  color: var(--wpem-primary-color) !important;
+}
+
+/* ── Edit area & status bar ──────────────────────────────── */
+.wpem-form-group .mce-edit-area {
+  border: none !important;
+  background: var(--wpem-white-color) !important;
+}
+
+.wpem-form-group .mce-statusbar {
+  background: #f5f7f9 !important;
+  border-top: 1px solid var(--wpem-gray-border-color) !important;
+  border-radius: 0 0 7px 7px;
+  overflow: hidden;
+}
+
+.wpem-form-group .mce-resizehandle {
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.wpem-form-group .wp-editor-wrap:hover .mce-resizehandle {
+  opacity: 0.8;
 }
 .wpem-form-wrapper .wpem-form-group .event-manager-uploaded-files .event-manager-uploaded-file .event-manager-uploaded-file-preview img {
   max-height: 100px;
@@ -1323,6 +1483,8 @@ input.wpem-theme-button:hover span {
 
 .wpem-single-event-page .wpem-single-event-wrapper {
   border: 1px solid var(--wpem-gray-border-color);
+  border-radius: 12px;
+  overflow: hidden;
 }
 .wpem-single-event-page .event-manager-info {
   border: 1px solid var(--wpem-gray-border-color);
@@ -2107,6 +2269,7 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
   box-sizing: border-box;
   z-index: 998;
   transition: all 0.5s;
+  max-width: inherit;
 }
 .wpem-modal.wpem-modal-open {
   opacity: 1;
@@ -2847,6 +3010,8 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider .wpem-slider-items img {
   width: 100%;
   height: auto;
+  max-height: 420px;
+  object-fit: cover;
   display: block;
 }
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-body .wpem-single-event-left-content .wpem-single-event-short-info .wpem-event-organizer {
@@ -3813,62 +3978,206 @@ p.post-submitted-success-green-message a {
 
 
 /*Date Picker Start*/
+
+/* Wrapper card */
+.ui-datepicker.ui-widget.ui-widget-content {
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14) !important;
+  overflow: hidden;
+  padding: 0 !important;
+  font-family: inherit;
+  font-size: 14px;
+  min-width: 280px;
+  background: var(--wpem-white-color) !important;
+}
+
+/* Header – blue background */
 .ui-datepicker .ui-datepicker-header {
-  border: 0;
-  background-color: var(--wpem-gray-bg-color);
-  padding: 8px !important;
-}
-.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
-  width: 30%;
-  padding-right: 15px !important;
-  background-position: right 5px center;
-  border: 1px solid var(--wpem-gray-border-color);
-  border-radius: 2px;
-  padding: 1px 7px;
-  margin: 0;  
-}
-.ui-datepicker .ui-datepicker-title {
-  gap: 3px;
-  display: flex;
-  justify-content: center;
-}
-.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
-  top: 7px !important;
-}
-.ui-datepicker .ui-datepicker-prev {
-  left: 5px !important;
-}
-.ui-datepicker .ui-datepicker-next {
-  right: 5px !important;
-}
-.ui-state-default{
-  background: var(--wpem-gray-bg-color) !important;
-  border: 0 !important;
-  text-align: center;
-  border-radius: 2px;
-}
-.ui-state-default:hover {
-  background-color: var(--wpem-gray-border-color) !important;
-  color: var(--wpem-dark-color);
-}
-a.ui-state-highlight, a.ui-state-highlight:hover {
   background: var(--wpem-primary-color) !important;
-  color: #fff !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 14px 16px !important;
+  position: relative;
 }
-td.ui-state-highlight a {
-  background-color: var(--wpem-gray-border-color) !important;
-  color: var(--wpem-dark-color);
+
+/* Month / Year title */
+.ui-datepicker .ui-datepicker-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--wpem-white-color) !important;
+  line-height: 1;
+  margin: 0;
 }
-.ui-state-active, .ui-state-active:hover{
-  background-color: var(--wpem-gray-border-color) !important;
-  color: var(--wpem-dark-color) !important;
+
+/* Month & Year dropdowns inside header */
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-radius: 4px !important;
+  color: var(--wpem-white-color) !important;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 3px 6px !important;
+  margin: 0 !important;
+  height: auto !important;
+  line-height: normal !important;
+  width: auto !important;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
 }
-.ui-widget.ui-widget-content {
-  border-radius: 4px;
-  border: 1px solid var(--wpem-gray-border-color);
+
+.ui-datepicker select.ui-datepicker-month option,
+.ui-datepicker select.ui-datepicker-year option {
+  background: var(--wpem-dark-color);
+  color: var(--wpem-white-color);
 }
+
+/* Prev / Next arrows */
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  top: 50% !important;
+  transform: translateY(-50%);
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: none !important;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+  left: 10px !important;
+}
+
+.ui-datepicker .ui-datepicker-next {
+  right: 10px !important;
+}
+
+.ui-datepicker .ui-datepicker-prev:hover,
+.ui-datepicker .ui-datepicker-next:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Hide default jQuery UI icon text, use CSS arrows */
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+  display: none !important;
+}
+
+.ui-datepicker .ui-datepicker-prev::after {
+  content: "‹";
+  color: var(--wpem-white-color);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ui-datepicker .ui-datepicker-next::after {
+  content: "›";
+  color: var(--wpem-white-color);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Calendar table */
 .ui-datepicker table {
   border: 0;
+  border-collapse: separate;
+  border-spacing: 4px;
+  padding: 12px 14px 14px;
+  width: 100%;
+  margin: 0;
+}
+
+/* Day-of-week headers */
+.ui-datepicker th {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--wpem-gray-color) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 0 8px !important;
+  text-align: center;
+  border: none !important;
+  background: none !important;
+}
+
+/* Date cells */
+.ui-datepicker td {
+  border: none !important;
+  padding: 2px !important;
+}
+
+/* Default day state */
+.ui-datepicker td .ui-state-default {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 50% !important;
+  color: var(--wpem-dark-color) !important;
+  font-size: 13px;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px !important;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  padding: 0 !important;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+
+/* Hover state */
+.ui-datepicker td .ui-state-default:hover {
+  background: rgba(0, 150, 255, 0.12) !important;
+  color: var(--wpem-primary-color) !important;
+}
+
+/* Today's date */
+.ui-datepicker td.ui-datepicker-today .ui-state-default,
+.ui-datepicker td.ui-datepicker-today a.ui-state-default {
+  background: rgba(0, 150, 255, 0.15) !important;
+  color: var(--wpem-primary-color) !important;
+  font-weight: 700 !important;
+  border-radius: 50% !important;
+}
+
+/* Selected / Active date */
+.ui-datepicker td .ui-state-active,
+.ui-datepicker td .ui-state-active:hover,
+a.ui-state-highlight,
+a.ui-state-highlight:hover {
+  background: var(--wpem-primary-color) !important;
+  color: var(--wpem-white-color) !important;
+  border-radius: 50% !important;
+  font-weight: 700 !important;
+}
+
+/* Today when also selected */
+.ui-datepicker td.ui-datepicker-today .ui-state-active {
+  background: var(--wpem-primary-color) !important;
+  color: var(--wpem-white-color) !important;
+}
+
+/* Disabled / other-month days */
+.ui-datepicker td.ui-datepicker-unselectable .ui-state-default,
+.ui-datepicker td.ui-state-disabled .ui-state-default {
+  color: var(--wpem-gray-border-color) !important;
+  cursor: not-allowed;
 }
 
 /*Date Picker End*/
@@ -4498,4 +4807,112 @@ span.event-manager-uploaded-file {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+}
+
+
+/* ============================================================
+   Post an Event – UI Improvements
+   ============================================================ */
+
+/* Section card */
+.wpem-form-wrapper .wpem-form-section {
+  background: var(--wpem-white-color);
+  border: 1px solid var(--wpem-gray-border-color);
+  border-top: 3px solid var(--wpem-primary-color);
+  border-radius: 6px;
+  padding: 28px 28px 10px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Section heading */
+.wpem-form-wrapper .wpem-form-section .wpem-form-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--wpem-dark-color);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--wpem-gray-border-color);
+}
+
+/* Field label improvements */
+.wpem-form-wrapper fieldset label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--wpem-dark-color);
+  margin-bottom: 7px;
+}
+
+.wpem-form-wrapper .wpem-form-group .require-field {
+  color: #e53e3e;
+  margin-left: 2px;
+}
+
+.wpem-form-wrapper fieldset label small {
+  font-weight: 400;
+  color: var(--wpem-gray-color);
+  font-size: 12px;
+}
+
+/* Field focus: left accent border */
+.wpem-form-wrapper .wpem-form-group input[type="text"]:focus,
+.wpem-form-wrapper .wpem-form-group input[type="email"]:focus,
+.wpem-form-wrapper .wpem-form-group input[type="url"]:focus,
+.wpem-form-wrapper .wpem-form-group input[type="tel"]:focus,
+.wpem-form-wrapper .wpem-form-group input[type="number"]:focus,
+.wpem-form-wrapper .wpem-form-group input[type="password"]:focus,
+.wpem-form-wrapper .wpem-form-group input[type="date"]:focus,
+.wpem-form-wrapper .wpem-form-group input[type="time"]:focus,
+.wpem-form-wrapper .wpem-form-group textarea:focus {
+  border-color: var(--wpem-primary-color);
+  box-shadow: 0 0 0 3px rgba(0,150,255,0.12);
+  outline: none;
+}
+
+.wpem-form-wrapper .wpem-form-group select:focus {
+  border-color: var(--wpem-primary-color);
+  box-shadow: 0 0 0 3px rgba(0,150,255,0.12);
+  outline: none;
+}
+
+/* Fieldset spacing inside sections */
+.wpem-form-section .wpem-form-group {
+  margin-bottom: 22px;
+}
+
+/* Submit button – full width, larger */
+.wpem-form-wrapper .wpem-form-footer {
+  padding-top: 8px;
+}
+
+.wpem-form-wrapper .wpem-form-footer input.wpem-theme-button[type="submit"] {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+/* Account sign-in notice */
+.wpem-form-wrapper .wpem-alert-info {
+  border-left: 4px solid var(--wpem-primary-color);
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+/* Radio/checkbox label alignment */
+.wpem-form-wrapper .wpem-form-group input[type="radio"],
+.wpem-form-wrapper .wpem-form-group input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--wpem-primary-color);
+  width: auto;
+  height: auto;
+}
+
+/* Hover state for fields */
+.wpem-form-wrapper .wpem-form-group input:not([type="radio"]):not([type="checkbox"]):not([type="submit"]):hover,
+.wpem-form-wrapper .wpem-form-group select:hover,
+.wpem-form-wrapper .wpem-form-group textarea:hover {
+  border-color: #b0cfe8;
 }
