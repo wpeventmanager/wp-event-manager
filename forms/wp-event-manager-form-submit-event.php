@@ -1336,20 +1336,15 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 				$update_event['post_date_gmt'] = current_time('mysql', 1);
 				wp_update_post($update_event);
 			}
-			// if (class_exists('WPEM_WC_Paid_Listings_Submit_Event_Form')) {
-			// 	WPEM_WC_Paid_Listings_Submit_Event_Form::process_package(
-			// 		WPEM_WC_Paid_Listings_Submit_Event_Form::get_current_package_id(),
-			// 		WPEM_WC_Paid_Listings_Submit_Event_Form::is_current_user_package(),
-			// 		$this->event_id
-			// 	);
-			// 	wp_safe_redirect(get_permalink(wc_get_page_id('checkout')));
-			// 	exit;
-			// }
 			if ('before' === get_option('event_manager_paid_listings_flow')) {
-				if (class_exists('WPEM_WC_Paid_Listings_Submit_Event_Form')) {
+				// Only hijack the flow if the paid listings addon is active AND it actually has
+				// packages available for purchase. Without this check, sites that enable the
+				// addon but haven't created any package product yet were being redirected to
+				// the WooCommerce checkout/cart page even though no package was ever selected.
+				if (class_exists('WPEM_WC_Paid_Listings_Submit_Event_Form') && WPEM_WC_Paid_Listings_Submit_Event_Form::get_packages()) {
 					$is_user_pkg = WPEM_WC_Paid_Listings_Submit_Event_Form::is_current_user_package();
 
-					WPEM_WC_Paid_Listings_Submit_Event_Form::process_package(
+					$package_processed = WPEM_WC_Paid_Listings_Submit_Event_Form::process_package(
 						WPEM_WC_Paid_Listings_Submit_Event_Form::get_current_package_id(),
 						$is_user_pkg,
 						$this->event_id
@@ -1375,9 +1370,12 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 						return;
 					}
 
-					// New package - checkout:
-					wp_safe_redirect(get_permalink(wc_get_page_id('checkout')));
-					exit;
+					// New package - checkout. Only redirect if a package was actually
+					// processed/added to the cart; otherwise fall through to the normal step flow.
+					if ($package_processed) {
+						wp_safe_redirect(get_permalink(wc_get_page_id('checkout')));
+						exit;
+					}
 				}
 			}
 			$this->step++;
