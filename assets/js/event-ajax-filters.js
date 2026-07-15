@@ -159,8 +159,8 @@ var EventAjaxFilters = function() {
                 form.find(':input[name^="search_todate"]').not(':input[type="hidden"]').val('').trigger('chosen:updated');
                 form.find(':input[name^="search_datetimes"]').not(':input[type="hidden"]').val('').trigger('chosen:updated');
                 form.find(':input[name^="search_categories"]').not(':input[type="hidden"]').val('').trigger('chosen:updated');
-                form.find(':input[name^="search_event_types"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
-                form.find(':input[name^="search_ticket_prices"]').not(':input[type="hidden"]').val(0).trigger('chosen:updated');
+                form.find(':input[name^="search_event_types"]').not(':input[type="hidden"]').val('').trigger('chosen:updated');
+                form.find(':input[name^="search_ticket_prices"]').not(':input[type="hidden"]').val('').trigger('chosen:updated');
                 target.triggerHandler('reset');
                 target.triggerHandler('update_event_listings', [1, false]);
                 EventAjaxFilters.actions.event_manager_store_state(target, 1);
