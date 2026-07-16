@@ -809,7 +809,7 @@ class WP_Event_Manager_Shortcodes{
 			
 			// Filters + cats
 			'show_filters'              => true,
-			'filter_style'              => '',
+			'filter_style'              => '',  // event-classic-filters or event-crystal-filters
 			'show_categories'           => true,
 			'show_event_types'          => true,
 			'show_ticket_prices'        => true,
@@ -988,8 +988,8 @@ class WP_Event_Manager_Shortcodes{
 			'event-crystal-filters.php',
 		));
 
-		$filter_file_option = get_option('event_manager_filter_design');
-		$filter_file = $filter_file_option ? basename($filter_file_option . '.php') : 'event-classic-filters.php';
+		$filter_file = $filter_style . '.php';
+
 		if (!empty($selected_datetime)) {
 			// Get date and time settings defined in the admin panel Event listing -> Settings -> Date & Time formatting
 			$datepicker_date_format = WP_Event_Manager_Date_Time::get_datepicker_format();
