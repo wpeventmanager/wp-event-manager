@@ -3978,25 +3978,29 @@ p.post-submitted-success-green-message a {
 
 
 /*Date Picker Start*/
+.comiseo-daterangepicker .ui-datepicker.ui-widget.ui-widget-content {
+    box-shadow: none;
+    border-radius: 4px;
+}
 
 /* Wrapper card */
 .ui-datepicker.ui-widget.ui-widget-content {
-  border: none !important;
-  border-radius: 12px !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14) !important;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
   overflow: hidden;
-  padding: 0 !important;
+  padding: 0;
   font-family: inherit;
   font-size: 14px;
   min-width: 280px;
-  background: var(--wpem-white-color) !important;
+  background: var(--wpem-white-color);
 }
 
 /* Header – blue background */
 .ui-datepicker .ui-datepicker-header {
-  background: var(--wpem-primary-color) !important;
-  border: none !important;
-  border-radius: 0 !important;
+  background: var(--wpem-primary-color);
+  border: none;
+  border-radius: 0;
   padding: 14px 16px !important;
   position: relative;
 }
@@ -4009,7 +4013,7 @@ p.post-submitted-success-green-message a {
   gap: 6px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--wpem-white-color) !important;
+  color: var(--wpem-white-color);
   line-height: 1;
   margin: 0;
 }
@@ -4017,22 +4021,22 @@ p.post-submitted-success-green-message a {
 /* Month & Year dropdowns inside header */
 .ui-datepicker select.ui-datepicker-month,
 .ui-datepicker select.ui-datepicker-year {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.35) !important;
-  border-radius: 4px !important;
-  color: var(--wpem-white-color) !important;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+  color: var(--wpem-white-color);
   font-weight: 600;
   font-size: 14px;
-  padding: 3px 6px !important;
-  margin: 0 !important;
-  height: auto !important;
-  line-height: normal !important;
-  width: auto !important;
+  padding: 3px 6px;
+  margin: 0;
+  height: auto;
+  line-height: normal;
+  width: auto;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
   outline: none;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .ui-datepicker select.ui-datepicker-month option,
@@ -4107,53 +4111,48 @@ p.post-submitted-success-green-message a {
 .ui-datepicker th {
   font-size: 11px;
   font-weight: 700;
-  color: var(--wpem-gray-color) !important;
+  color: var(--wpem-gray-color);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 4px 0 8px !important;
+  padding: 4px 0 8px;
   text-align: center;
-  border: none !important;
-  background: none !important;
+  border: none;
+  background: none;
 }
 
-/* Date cells */
-.ui-datepicker td {
-  border: none !important;
-  padding: 2px !important;
-}
 
 /* Default day state */
 .ui-datepicker td .ui-state-default {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 50% !important;
-  color: var(--wpem-dark-color) !important;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: var(--wpem-dark-color);
   font-size: 13px;
   font-weight: 500;
   width: 32px;
   height: 32px;
-  line-height: 32px !important;
+  line-height: 32px;
   text-align: center;
   display: block;
   margin: 0 auto;
-  padding: 0 !important;
+  padding: 0;
   transition: background 0.15s, color 0.15s;
   text-decoration: none;
 }
 
 /* Hover state */
 .ui-datepicker td .ui-state-default:hover {
-  background: rgba(0, 150, 255, 0.12) !important;
-  color: var(--wpem-primary-color) !important;
+  background: rgba(0, 150, 255, 0.12);
+  color: var(--wpem-primary-color);
 }
 
 /* Today's date */
 .ui-datepicker td.ui-datepicker-today .ui-state-default,
 .ui-datepicker td.ui-datepicker-today a.ui-state-default {
-  background: rgba(0, 150, 255, 0.15) !important;
-  color: var(--wpem-primary-color) !important;
-  font-weight: 700 !important;
-  border-radius: 50% !important;
+  background: rgba(0, 150, 255, 0.15);
+  color: var(--wpem-primary-color);
+  font-weight: 700;
+  border-radius: 50%;
 }
 
 /* Selected / Active date */
@@ -4161,23 +4160,27 @@ p.post-submitted-success-green-message a {
 .ui-datepicker td .ui-state-active:hover,
 a.ui-state-highlight,
 a.ui-state-highlight:hover {
-  background: var(--wpem-primary-color) !important;
-  color: var(--wpem-white-color) !important;
-  border-radius: 50% !important;
-  font-weight: 700 !important;
+  background: var(--wpem-primary-color);
+  color: var(--wpem-white-color);
+  border-radius: 50%;
+  font-weight: 700;
 }
 
 /* Today when also selected */
 .ui-datepicker td.ui-datepicker-today .ui-state-active {
-  background: var(--wpem-primary-color) !important;
-  color: var(--wpem-white-color) !important;
+  background: var(--wpem-primary-color);
+  color: var(--wpem-white-color);
 }
 
 /* Disabled / other-month days */
 .ui-datepicker td.ui-datepicker-unselectable .ui-state-default,
 .ui-datepicker td.ui-state-disabled .ui-state-default {
-  color: var(--wpem-gray-border-color) !important;
+  color: var(--wpem-gray-color);
   cursor: not-allowed;
+}
+.ui-datepicker td.ui-state-disabled.ui-datepicker-today .ui-state-default {
+    color: var(--wpem-primary-color);
+    background: rgba(0, 150, 255, 0.30);
 }
 
 /*Date Picker End*/
