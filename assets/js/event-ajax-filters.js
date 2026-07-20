@@ -14,10 +14,10 @@ var EventAjaxFilters = function() {
                 });
             });
             // After deactivate calendar addon load box layout as default 
-            if(localStorage.getItem("layout")==="calendar-layout" ){
+            if(Common.getLayout()==="calendar-layout" ){
 				jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
 				jQuery("#wpem-event-box-layout").addClass("wpem-active-layout");
-				localStorage.setItem("layout", "box-layout"); 
+				Common.setLayout("box-layout"); 
 			}
 
             jQuery("#wpem-event-filter-version-2-filter-action").click(function(){
