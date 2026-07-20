@@ -988,7 +988,12 @@ class WP_Event_Manager_Shortcodes{
 			'event-crystal-filters.php',
 		));
 
-		$filter_file = $filter_style . '.php';
+		if(!empty($filter_style)) {
+			$filter_file = $filter_style . '.php';
+		} else {
+			$filter_file_option = get_option('event_manager_filter_design');
+			$filter_file = $filter_file_option ? basename($filter_file_option . '.php') : 'event-classic-filters.php';
+		}
 
 		if (!empty($selected_datetime)) {
 			// Get date and time settings defined in the admin panel Event listing -> Settings -> Date & Time formatting
