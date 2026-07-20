@@ -14,6 +14,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 	public $fields;
 	protected $event_id;
 	protected $preview_event;
+	public $form_messages = array();
 	/** @var WPEM_Event_Manager_Form_Submit_Event The single instance of the class */
 	protected static $_instance = null;
 	/**
@@ -40,6 +41,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 		$this->event_id = isset($_REQUEST['event_id'])
 			? absint($_REQUEST['event_id'])
 			: 0;
+			
 
 		add_action('wp', array($this, 'process'));
 		$this->steps = (array) apply_filters('submit_event_steps', array(
