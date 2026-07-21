@@ -195,7 +195,11 @@ var EventAjaxFilters = function() {
                 Common.logInfo("EventAjaxFilters.actions.getEventListings...");
 
                 var data = '';
-                var target = jQuery(event.currentTarget || this);
+                // Resolve to the listings wrapper regardless of what triggered this
+                // (search button click, filter change, pagination, etc). Using
+                // .closest() here is safe: if the element is already the wrapper,
+                // it simply returns itself.
+                var target = jQuery(event.currentTarget || this).closest('div.event_listings');
                 var form = target.find('.event_filters');
                 var filters_bar = target.find('.showing_applied_filters');
                 var results = target.find('.event_listings');
