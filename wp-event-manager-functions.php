@@ -2,6 +2,25 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
+
+if(!function_exists('wpem_get_event_listing_instance_id')) :
+	/**
+	 * Generates a unique, incrementing id for every event listing block
+	 * (e.g. [events], [upcoming_events], [past_events]) rendered on the
+	 * current page. This lets each block remember its own box/list layout
+	 * in localStorage instead of sharing one value with every other block
+	 * on the same page.
+	 *
+	 * @access public
+	 * @return int
+	 */
+	function wpem_get_event_listing_instance_id() {
+		static $wpem_event_listing_instance = 0;
+		$wpem_event_listing_instance++;
+		return $wpem_event_listing_instance;
+	}
+endif;
+
 if(!function_exists('wpem_get_event_listings')) :
 	/**
 	 * Queries event listings with certain criteria and returns them.
