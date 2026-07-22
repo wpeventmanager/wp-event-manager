@@ -2,7 +2,14 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-wp_enqueue_script('wp-event-manager-content-event-listing'); ?>
+wp_enqueue_script('wp-event-manager-content-event-listing');
+// Unique id for this event listing block, so a page that has more than one
+// event listing shortcode (e.g. [events] used twice, or [events] together
+// with [upcoming_events]/[past_events]) can remember a different box/list
+// layout for each block instead of sharing one layout for the whole page.
+$wpem_layout_instance_id = wpem_get_event_listing_instance_id();
+?>
+<div class="wpem-event-listings-instance" data-wpem-layout-instance="<?php echo esc_attr( $wpem_layout_instance_id ); ?>">
 <div class="wpem-main wpem-event-listings-header">
     <div class="wpem-row">
         <div class="wpem-col wpem-col-12 wpem-col-sm-6 wpem-col-md-6 wpem-col-lg-8">
@@ -20,8 +27,8 @@ wp_enqueue_script('wp-event-manager-content-event-listing'); ?>
                 <div class="wpem-event-layout-action">
                     <?php if ($layout_type == 'all') :  ?>
                         <?php do_action('wpem_start_event_listing_layout_icon'); ?>
-                        <div class="wpem-event-layout-icon wpem-event-box-layout" title="<?php esc_attr_e('Events Box View', 'wp-event-manager'); ?>" id="wpem-event-box-layout"><i class="wpem-icon-stop2"></i></div>
-                        <div class="wpem-event-layout-icon wpem-event-list-layout wpem-active-layout" title="<?php esc_attr_e('Events List View', 'wp-event-manager'); ?>" id="wpem-event-list-layout"><i class="wpem-icon-menu"></i></div>
+                        <div class="wpem-event-layout-icon wpem-event-box-layout" title="<?php esc_attr_e('Events Box View', 'wp-event-manager'); ?>" id="wpem-event-box-layout-<?php echo esc_attr( $wpem_layout_instance_id ); ?>"><i class="wpem-icon-stop2"></i></div>
+                        <div class="wpem-event-layout-icon wpem-event-list-layout wpem-active-layout" title="<?php esc_attr_e('Events List View', 'wp-event-manager'); ?>" id="wpem-event-list-layout-<?php echo esc_attr( $wpem_layout_instance_id ); ?>"><i class="wpem-icon-menu"></i></div>
                         <?php do_action('wpem_end_event_listing_layout_icon'); ?>
                     <?php endif; ?>
                 </div>
@@ -45,4 +52,4 @@ if( $wpem_html_before_event_list ){
 	echo wp_kses_post( $wpem_html_content );
 } ?>
 <div class="event_listings_main">
-    <div id="event-listing-view" class="wpem-main wpem-event-listings event_listings <?php echo esc_attr($wpem_list_type_class);?>" data-id="<?php echo esc_attr($layout_type);?>">
+    <div id="event-listing-view-<?php echo esc_attr( $wpem_layout_instance_id ); ?>" class="wpem-main wpem-event-listings event_listings <?php echo esc_attr($wpem_list_type_class);?>" data-id="<?php echo esc_attr($layout_type);?>">

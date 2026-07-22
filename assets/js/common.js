@@ -10,6 +10,7 @@ var Common = function () {
             /// <summary>Initializes the common.</summary>
             /// <since>1.0.0</since>              
             Common.logInfo("Common.init..."); 
+            Common.cleanupLegacyLayoutKeys();
             jQuery(document).delegate( "ul.wpem-tabs-wrap li.wpem-tab-link", "click",Common.tabChanged);
             
             window.addEventListener('keydown', function (e) {
@@ -60,6 +61,84 @@ var Common = function () {
 			jQuery(this).closest('.wpem-tabs-wrapper').find('.wpem-tab-content .wpem-tab-pane').not('#'+tabId).removeClass('active');
 			jQuery(this).closest('.wpem-tabs-wrapper').find('.wpem-tab-content .wpem-tab-pane#'+tabId).addClass('active');
 		},
+
+        /// <summary>
+        /// Builds a localStorage key for the selected event layout that is
+        /// specific to the current page (path), so the layout chosen on one
+        /// page/post does not affect the layout shown on other pages.
+        ///  </summary>
+        /// <returns type="string" />
+        /// <since>1.0.0</since>
+        /// <param name="instanceId" type="string/number">Optional. Identifies a single event listing
+        /// block on the page (see data-wpem-layout-instance), so that if the same or different event
+        /// listing shortcode is used more than once on one page, each block gets its own key instead
+        /// of all of them sharing one page-wide key.</param>
+        getLayoutStorageKey: function (instanceId) {
+            var key = "layout_" + window.location.pathname;
+            if (instanceId !== undefined && instanceId !== null && instanceId !== "") {
+                key += "_" + instanceId;
+            }
+            return key;
+        },
+
+        /// <summary>
+        /// Gets the event layout ("line-layout"/"box-layout"/"calendar-layout")
+        /// saved for the current page (and, if given, the specific event listing
+        /// block on that page).
+        ///  </summary>
+        /// <param name="instanceId" type="string/number">Optional block id.</param>
+        /// <returns type="string" />
+        /// <since>1.0.0</since>
+        getLayout: function (instanceId) {
+            return localStorage.getItem(Common.getLayoutStorageKey(instanceId));
+        },
+
+        /// <summary>
+        /// Saves the event layout for the current page (and, if given, the
+        /// specific event listing block on that page) only, so it does not
+        /// leak to / override the layout of other pages or other blocks.
+        ///  </summary>
+        /// <param name="value" type="string" />
+        /// <param name="instanceId" type="string/number">Optional block id.</param>
+        /// <since>1.0.0</since>
+        setLayout: function (value, instanceId) {
+            localStorage.setItem(Common.getLayoutStorageKey(instanceId), value);
+        },
+
+        /// <summary>
+        /// One-time cleanup that removes localStorage keys left over from older
+        /// versions of the layout-saving code:
+        ///   - the plain global "layout" key (replaced by page/instance-specific keys)
+        ///   - any "wpem_layout_*" keys (an intermediate naming that was reverted
+        ///     back to the "layout_*" prefix)
+        /// Runs once per browser (guarded by a flag key) so it doesn't do
+        /// unnecessary work on every single page load.
+        ///  </summary>
+        /// <since>1.0.0</since>
+        cleanupLegacyLayoutKeys: function () {
+            try {
+                if (localStorage.getItem("wpem_layout_cleanup_done") === "1") {
+                    return;
+                }
+
+                localStorage.removeItem("layout");
+
+                var keysToRemove = [];
+                for (var i = 0; i < localStorage.length; i++) {
+                    var key = localStorage.key(i);
+                    if (key && key.indexOf("wpem_layout_") === 0) {
+                        keysToRemove.push(key);
+                    }
+                }
+                for (var j = 0; j < keysToRemove.length; j++) {
+                    localStorage.removeItem(keysToRemove[j]);
+                }
+
+                localStorage.setItem("wpem_layout_cleanup_done", "1");
+            } catch (e) {
+                // localStorage may be unavailable (e.g. private browsing); fail silently.
+            }
+        },
 
         jsonToString: function (jsonObject) {
             /// <summary>Converts a json object to a string.</summary>
