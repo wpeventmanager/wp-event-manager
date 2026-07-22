@@ -608,18 +608,32 @@ class WP_Event_Manager_Ajax {
 
 		if(isset($_REQUEST['search_categories'])) {
 			$search_categories = is_array($_REQUEST['search_categories']) ? map_deep(wp_unslash($_REQUEST['search_categories']), 'sanitize_text_field') : sanitize_text_field(wp_unslash($_REQUEST['search_categories']));
+			// An untouched "Choose an Event Category" dropdown submits its placeholder
+			// option value (""), not nothing. Drop blank entries so it isn't wrongly
+			// treated as an applied filter.
+			if(is_array($search_categories)) {
+				$search_categories = array_values(array_filter($search_categories, 'strlen'));
+			}
 		}
 
 		if(isset($_REQUEST['search_event_types'])) {
 			$search_event_types = is_array($_REQUEST['search_event_types']) ? 
 				map_deep(wp_unslash($_REQUEST['search_event_types']), 'sanitize_text_field') : 
 				sanitize_text_field(wp_unslash($_REQUEST['search_event_types']));
+			// Same as above: an untouched "Choose an Event Type" dropdown submits "".
+			if(is_array($search_event_types)) {
+				$search_event_types = array_values(array_filter($search_event_types, 'strlen'));
+			}
 		}
 
 		if(isset($_REQUEST['search_ticket_prices'])) {
 			$search_ticket_prices = is_array($_REQUEST['search_ticket_prices']) ? 
 				map_deep(wp_unslash($_REQUEST['search_ticket_prices']), 'sanitize_text_field') : 
 				sanitize_text_field(wp_unslash($_REQUEST['search_ticket_prices']));
+			// Same as above: an untouched ticket price dropdown submits "" for "Any".
+			if(is_array($search_ticket_prices)) {
+				$search_ticket_prices = array_values(array_filter($search_ticket_prices, 'strlen'));
+			}
 		}
 		$per_page = isset($_REQUEST['per_page']) ? absint(wp_unslash($_REQUEST['per_page'])) : 10;
 		$order = isset($_REQUEST['order']) && in_array(strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))), array('ASC', 'DESC'), true) ? strtoupper(sanitize_text_field(wp_unslash($_REQUEST['order']))) : 'DESC';

@@ -16,8 +16,8 @@ var Organizers = function () {
             jQuery('.organizer-letters a').on('click', this.actions.showOrganizerInfo);
 			jQuery("#upcoming-past-tabs a").on('click',this.actions.tabClick); 		
             
-            if(localStorage.getItem("layout")=="calendar-layout"){
-                localStorage.setItem("layout", "box-layout");
+            if(Common.getLayout()=="calendar-layout"){
+                Common.setLayout("box-layout");
             }
 			if(jQuery(".normal-section-title").length >0)
 			   jQuery(".normal-section-title").html(event_manager_organizer.i18n_upcomingEventsTitle);
@@ -65,7 +65,7 @@ var Organizers = function () {
                     if(jQuery(".normal-section-title").length >0)
                       jQuery(".normal-section-title").html(event_manager_organizer.i18n_pastEventsTitle);  
                       
-                    if(localStorage.getItem("layout")=="box-layout") {                       
+                    if(Common.getLayout()=="box-layout") {                       
         	            jQuery("#past #line-layout-icon").addClass("lightgray-layout-icon");
         		        jQuery("#past #box-layout-icon").removeClass("lightgray-layout-icon");
 		            } else  {
@@ -76,7 +76,7 @@ var Organizers = function () {
                     if(jQuery(".normal-section-title").length >0)
                         jQuery(".normal-section-title").html(event_manager_organizer.i18n_currentEventsTitle);  
                      
-                    if(localStorage.getItem("layout")=="box-layout") {                       
+                    if(Common.getLayout()=="box-layout") {                       
         	            jQuery("#current #line-layout-icon").addClass("lightgray-layout-icon");
         		        jQuery("#current #box-layout-icon").removeClass("lightgray-layout-icon");
 		            } else {
