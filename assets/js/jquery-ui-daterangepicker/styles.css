@@ -54,7 +54,6 @@ body button.ui-button:focus {
 
 .comiseo-daterangepicker .ui-widget-content .ui-state-default,
 .comiseo-daterangepicker .ui-widget-content .ui-widget-header{
-	background: var(--wpem-gray-bg-color);
 	border: 0;
 	text-align: center;
 }
@@ -75,9 +74,10 @@ body button.ui-button:focus {
     background-color: var(--wpem-primary-color);
 }
 .comiseo-daterangepicker-presets .ui-menu-item-wrapper {
-    padding: 5px;
+    padding: 8px;
     cursor: pointer;
     line-height: normal;
+    border-radius: 4px;
 }
 .ui-datepicker-multi .ui-datepicker-group table {
     border: 0;

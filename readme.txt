@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 6.5
 Tested up to: 7.0
-Stable Tag: 3.4.0
+Stable Tag: 3.4.1
 Requires PHP: 7.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -426,6 +426,19 @@ This plugin connects to external services in order to provide certain features. 
 - Site administrators should ensure they have proper Terms of Service and Privacy Policy disclosures on their website that inform users about these external service connections.
 
 == Changelog ==
+
+= [3.4.1] 22-07-2026 =
+
+Fixed: Admin event Categories and Types list not displaying.
+Fixed: Event Categories and Types disappearing from the admin sidebar after the latest update.
+Fixed: Default filter incorrectly applied on the frontend event listing page.
+Fixed: Reset action in the frontend event filter not properly clearing the selected keyword and event type.
+Fixed: Past dates could be selected in the date picker.
+Fixed: Description header icon turning black on hover.
+Fixed: Date range picker overlapping the search section on the frontend.
+Fixed: Multiple event shortcodes on the same page sharing view toggles due to a common localStorage key and global jQuery selectors.
+Fixed: Date range filter not working in Crystal View on the frontend.
+Fixed: Various bug fixes, code optimizations, and overall stability improvements.
 
 = [3.4.0] 05-06-2026 =
 
