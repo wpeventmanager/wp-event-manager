@@ -7,7 +7,7 @@
 * Author URI: https://www.wp-eventmanager.com
 * Text Domain: wp-event-manager
 * Domain Path: /languages
-* Version: 3.4.0
+* Version: 3.4.1
 * Since: 1.0.0
 * Requires at least: 6.5
 * Tested up to: 7.0
