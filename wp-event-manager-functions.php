@@ -138,15 +138,18 @@ if(!function_exists('wpem_get_event_listings')) :
 		}
 
 		if(isset($args['event_online']) && !empty($args['event_online'])) {
-		
-			if($args['event_online'] == 'true')
+			$event_online_raw = strtolower(trim((string) $args['event_online']));
+			if(in_array($event_online_raw, array('true', 'yes', '1'), true))
 				$event_online = 'yes';
-			elseif($args['event_online'] == 'false')
+			elseif(in_array($event_online_raw, array('false', 'no', '0'), true))
 				$event_online = 'no';
+			else
+				$event_online = 'yes'; // Fallback: treat any other truthy value as "online".
+
 			$query_args['meta_query'][] = array(
 				'key'     => '_event_online',
 				'value'   => $event_online,
-				'compare' => $args['event_online'] ? '=' : '!='
+				'compare' => '='
 			);
 		}
 			

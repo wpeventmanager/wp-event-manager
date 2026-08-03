@@ -660,8 +660,13 @@ class WP_Event_Manager_Ajax {
 			$args['orderby']  = 'featured' === $orderby ? 'date' : $orderby;
 		}
 
-		if(isset($_REQUEST['event_online']) && ($_REQUEST['event_online'] === 'true' || $_REQUEST['event_online'] === 'false')) {
-			$args['event_online'] = ($_REQUEST['event_online'] === 'false') ? sanitize_text_field(wp_unslash($_REQUEST['event_online'])) : true;
+		if(isset($_REQUEST['event_online']) && $_REQUEST['event_online'] !== '') {
+			$event_online_req = strtolower(trim(sanitize_text_field(wp_unslash($_REQUEST['event_online']))));
+			if(in_array($event_online_req, array('true', 'yes', '1'), true)) {
+				$args['event_online'] = 'yes';
+			} elseif(in_array($event_online_req, array('false', 'no', '0'), true)) {
+				$args['event_online'] = 'no';
+			}
 		}
 
 		ob_start();
