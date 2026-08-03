@@ -217,18 +217,28 @@ if(!function_exists('wpem_get_event_listings')) :
 		}
 		// Must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 		if(!empty($args['search_ticket_prices'][0]))  {	
+			// Normalize the incoming value - shortcode attributes / custom query args
+			// may arrive with different casing or stray whitespace (e.g. "Paid", " paid")
+			// compared to the values generated internally by the filter widget.
+			$raw_ticket_price_search = strtolower(trim($args['search_ticket_prices'][0]));
 			$ticket_price_value='';
-			if($args['search_ticket_prices'][0]==='paid' || $args['search_ticket_prices'][0]==='ticket_price_paid') {  
+			if($raw_ticket_price_search === 'paid' || $raw_ticket_price_search === 'ticket_price_paid') {  
 				$ticket_price_value='paid';     
-			} elseif($args['search_ticket_prices'][0]==='free' || $args['search_ticket_prices'][0]==='ticket_price_free') {
+			} elseif($raw_ticket_price_search === 'free' || $raw_ticket_price_search === 'ticket_price_free') {
 				$ticket_price_value='free';
 			}
-			$ticket_search[] = array(
-							'key'     => '_event_ticket_options',
-							'value'   => $ticket_price_value,
-							'compare' => 'LIKE',
-						);
-			$query_args['meta_query'][] = $ticket_search;
+			// Only add the meta query when the value was recognised. Previously an
+			// unrecognised value still added the query with an empty string, which
+			// produces a LIKE '%%' comparison that matches every event instead of
+			// filtering them - making the filter silently do nothing.
+			if(!empty($ticket_price_value)) {
+				$ticket_search[] = array(
+					'key'     => '_event_ticket_options',
+					'value'   => $ticket_price_value,
+					'compare' => 'LIKE',
+				);
+				$query_args['meta_query'][] = $ticket_search;
+			}
 		}
 
 		if('featured' === $args['orderby']) {

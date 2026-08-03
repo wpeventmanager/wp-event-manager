@@ -891,6 +891,9 @@ class WP_Event_Manager_Shortcodes{
 		$event_types          = is_array($event_types) ? $event_types : array_filter(array_map('trim', explode(',', $event_types)));
 		if(!empty($ticket_prices)){
 			$ticket_prices        = is_array($ticket_prices) ? $ticket_prices : array_filter(array_map('trim', explode(',', $ticket_prices)));
+			// Normalize casing so shortcode usage like ticket_prices="Paid" or
+			// ticket_prices="PAID" is matched the same way as the frontend filter values.
+			$ticket_prices        = array_map('strtolower', $ticket_prices);
 		}
 		// Get keywords, location, datetime, category, event type and ticket price from query string if set
 		// Verify nonce for search parameters
@@ -1030,6 +1033,20 @@ class WP_Event_Manager_Shortcodes{
 		}
 		
 		if($show_filters) {
+			// If the shortcode set ticket_prices (e.g. ticket_prices="paid") but didn't
+			// separately set selected_ticket_price, pre-select the matching dropdown
+			// option from it. The frontend automatically re-fetches events via AJAX
+			// right after page load using whatever the dropdown currently has selected,
+			// so without this the auto-refresh silently ignores the ticket_prices filter
+			// and shows all events again.
+			if(empty($selected_ticket_price) && !empty($ticket_prices)) {
+				$first_ticket_price = strtolower(trim(reset($ticket_prices)));
+				if($first_ticket_price === 'paid') {
+					$selected_ticket_price = 'ticket_price_paid';
+				} elseif($first_ticket_price === 'free') {
+					$selected_ticket_price = 'ticket_price_free';
+				}
+			}
 			$event_filter_args = array(
 				'per_page' => $per_page,
 				'orderby' => $orderby,
