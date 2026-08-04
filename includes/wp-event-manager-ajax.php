@@ -523,11 +523,15 @@ class WP_Event_Manager_Ajax {
 			$args['tax_query'] = array_merge( array( 'relation' => 'AND' ), $tax_query );
 		}
 		// phpcs:enable
-		$upcoming_events = new WP_Query($args);
-
+		 $upcoming_events = new WP_Query($args);
+		// $upcoming_events = wpem_get_event_listings($args);
+$query_args_string = http_build_query($_POST);
 		if ($upcoming_events->have_posts()) {
 			ob_start();
-
+apply_filters('wpem_get_event_listings_result_args', $upcoming_events, $query_args_string);
+    $map_html = ob_get_clean();
+	
+	ob_start();
 			while ($upcoming_events->have_posts()) {
 				$upcoming_events->the_post();
 				wpem_get_event_manager_template_part('content', 'past_event_listing');
@@ -538,6 +542,7 @@ class WP_Event_Manager_Ajax {
 
 			wp_send_json_success(array(
 				'events_html' => $events_html,
+				'map_html'       => $map_html,
 				'no_more_events' => $no_more_events
 			));
 			// wp_send_json_success(array(
