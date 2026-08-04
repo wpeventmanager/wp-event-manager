@@ -2087,8 +2087,12 @@ class WP_Event_Manager_Shortcodes{
 			'event-crystal-filters.php',
 		));
 
-		$filter_file_option = get_option('event_manager_filter_design');
-		$filter_file = $filter_file_option ? basename($filter_file_option . '.php') : 'event-classic-filters.php';
+		if(!empty($atts['filter_style'])) {
+			$filter_file = basename($atts['filter_style'] . '.php');
+		} else {
+			$filter_file_option = get_option('event_manager_filter_design');
+			$filter_file = $filter_file_option ? basename($filter_file_option . '.php') : 'event-classic-filters.php';
+		}
 		$datetimes = WP_Event_Manager_Filters::get_datetimes_filter();
 		$selected_datetime = $atts['selected_datetime'];
 		$show_categories = true;
