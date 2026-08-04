@@ -19,7 +19,9 @@ if (wpem_has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
     <div class="wpem-venue-wrapper wpem-listing-accordion-panel active" style="display: block;">
 
         <?php do_action('single_event_listing_venue_start'); 
-        $wpem_venue_id = wpem_get_event_venue_ids($event_id); 
+        $wpem_venue_ids = wpem_get_event_venue_ids($event_id);
+        $wpem_venue_id  = is_array($wpem_venue_ids) ? reset($wpem_venue_ids) : $wpem_venue_ids;
+
         $wpem_venue = get_post($wpem_venue_id); 
         if (get_option('event_manager_form_fields')) {
             $wpem_venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
