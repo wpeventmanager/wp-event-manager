@@ -139,14 +139,19 @@ if(!class_exists('WPEM_Event_Manager_Addons')) :
 						$dom->loadHTML($raw_themes);
 		
 						$xpath = new DOMXPath($dom);
+						// $themes = "";
+						// $div_array = array("wpem-container");
+						// for($i = 0 ; $i <= 3 ; $i++){
+						// 	$tags  = $xpath->query('//div[@class="wpem-theme-box"]');
+						// 	foreach ($tags as $tag) {
+						// 		$themes .= $tag->ownerDocument->saveXML($tag);
+						// 	}
+						// }
 						$themes = "";
-						$div_array = array("wpem-container");
-						for($i = 0 ; $i <= 3 ; $i++){
-							$tags  = $xpath->query('//div[@class="wpem-theme-box"]');
-							foreach ($tags as $tag) {
-								$themes .= $tag->ownerDocument->saveXML($tag);
-							}
-						}
+$tags = $xpath->query('//div[@class="wpem-theme-box"]');
+foreach ($tags as $tag) {
+    $themes .= $tag->ownerDocument->saveXML($tag);
+}
 					
 						$themes = wp_kses_post($themes);
 						if($themes) {
