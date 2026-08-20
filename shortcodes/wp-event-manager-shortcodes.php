@@ -1543,6 +1543,7 @@ class WP_Event_Manager_Shortcodes{
 			'order'       => 'ASC',
 			'show_thumb'  => true,
 			'show_count'  => true,
+			'per_page'   => 9,
 		));
 
 		$atts = shortcode_atts($defaults, $atts, 'event_organizers');
@@ -1559,12 +1560,44 @@ class WP_Event_Manager_Shortcodes{
 			$orderby = 'title';
 		}
 
+		// Default to 9 venues per page.
+		$per_page = absint( $atts['per_page'] );
+		if ( $per_page < 1 ) {
+			$per_page = 9;
+		}
+
 		$args = [
 			'orderby' 	=> $orderby,
 			'order'		=> $order,
 		];
 
-		$organizers   = wpem_get_all_organizer_array('', $args);
+		$all_organizers   = wpem_get_all_organizer_array('', $args);
+		// Make sure we always have an array.
+		if ( ! is_array( $all_organizers ) ) {
+			$all_organizers = array();
+		}
+
+		// Current page.
+		$paged = isset( $_GET['organizer_page'] ) ? absint( $_GET['organizer_page'] ) : 1;
+		if ( $paged < 1 ) {
+			$paged = 1;
+		}
+
+		// Total number of venues.
+		$total_organizers = count( $all_organizers );
+		// Total number of pages.
+		$total_pages = $per_page > 0 ? (int) ceil( $total_organizers / $per_page ) : 1;
+
+		// Make sure current page does not exceed total pages.
+		if ( $total_pages > 0 && $paged > $total_pages ) {
+			$paged = $total_pages;
+		}
+
+		// Calculate offset.
+		$offset = ( $paged - 1 ) * $per_page;
+		// Get only venues for current page.
+		$organizers = array_slice( $all_organizers, $offset, $per_page, true );
+
 		$wpem_count_events = wpem_get_event_organizer_count();
 		$organizers_array = [];
 
@@ -1590,6 +1623,12 @@ class WP_Event_Manager_Shortcodes{
 				'wpem_count_events'    => $wpem_count_events,
 				'show_thumb'		=> $show_thumb,
 				'show_count'		=> $show_count,
+
+				// Pagination data.
+				'per_page'          => $per_page,
+				'paged'             => $paged,
+				'total_venues'      => $total_organizers,
+				'total_pages'       => $total_pages,
 			),
 			'wp-event-manager/organizer',
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
@@ -1759,71 +1798,6 @@ class WP_Event_Manager_Shortcodes{
 	 * @param array $args
 	 * @return string
 	 */
-	// public function output_event_venues($atts)	{
-	// 	$atts = shortcode_atts(apply_filters('event_manager_output_event_venues_defaults', array(
-	// 		'orderby'     => 'title',
-	// 		'order'       => 'ASC',
-	// 		'show_thumb'  => true,
-	// 		'show_count'  => true,
-	// 	)), $atts);
-
-	// 	$orderby    = sanitize_key($atts['orderby']);
-	// 	$order      = sanitize_text_field($atts['order']);
-	// 	$show_thumb = filter_var($atts['show_thumb'], FILTER_VALIDATE_BOOLEAN);
-	// 	$show_count = filter_var($atts['show_count'], FILTER_VALIDATE_BOOLEAN);
-
-	// 	ob_start();
-
-	// 	$args = [
-	// 		'orderby' 	=> $orderby,
-	// 		'order'		=> $order,
-	// 	];
-
-	// 	$venues   = wpem_get_all_venue_array('', $args);
-	// 	$wpem_count_events = wpem_get_event_venue_count();
-	// 	$venues_array = [];
-
-	// 	if (!empty($venues)) {
-	// 		foreach ($venues as $venue_id => $venue) {
-	// 			if (is_array($venue) && isset($venue[0])) {
-	// 				$name = $venue[0];
-	// 			} elseif (is_string($venue)) {
-	// 				$name = $venue;
-	// 			} else {
-	// 				continue;
-	// 			}
-
-	// 			$first_char = mb_substr($name, 0, 1);
-	// 			$key = preg_match('/[A-Za-z]/u', $first_char) ? strtoupper($first_char) : '#';
-
-	// 			$venues_array[$key][$venue_id] = $venue;
-	// 		}
-	// 	}
-
-	// 	do_action('wpem_venue_content_start');
-
-	// 	wp_enqueue_script('wp-event-manager-venue');
-
-	// 	wpem_get_event_manager_template(
-	// 		'event-venues.php',
-	// 		array(
-	// 			'wpem_venues'       => $venues,
-	// 			'wpem_venues_array' => $venues_array,
-	// 			'wpem_count_events'	=> $wpem_count_events,
-	// 			'show_thumb'		=> $show_thumb,
-	// 			'show_count'		=> $show_count,
-	// 		),
-	// 		'wp-event-manager/venue',
-	// 		EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
-	// 	);
-
-	// 	do_action('wpem_venue_content_end');
-
-	// 	wp_reset_postdata();
-
-	// 	return ob_get_clean();
-	// }
-
 	public function output_event_venues( $atts ) {
 		$atts = shortcode_atts(
 			apply_filters(

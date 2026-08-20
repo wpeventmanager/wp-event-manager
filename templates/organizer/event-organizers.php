@@ -101,3 +101,23 @@ if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) 
     <?php endif; ?>
 </div>
 <!-- end Organizer Counter -->
+
+<?php
+if ( ! empty( $total_pages ) && $total_pages > 1 ) {
+
+	$current_page = ! empty( $paged ) ? absint( $paged ) : 1;
+
+	$pagination_args = array(
+		'base'      => esc_url_raw( add_query_arg( 'organizer_page', '%#%' ) ),
+		'format'    => '',
+		'current'   => $current_page,
+		'total'     => $total_pages,
+		'prev_text' => esc_html__( '←', 'wp-event-manager' ),
+		'next_text' => esc_html__( '→', 'wp-event-manager' ),
+		'type'      => 'list',
+	);
+
+	echo '<div class="wpem-organizer-pagination wpem-venue-pagination">';
+	echo wp_kses_post( paginate_links( $pagination_args ) );
+	echo '</div>';
+}
