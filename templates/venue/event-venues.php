@@ -99,8 +99,8 @@ if ( ! empty( $total_pages ) && $total_pages > 1 ) {
 		'format'    => '',
 		'current'   => $current_page,
 		'total'     => $total_pages,
-		'prev_text' => esc_html__( 'Previous', 'wp-event-manager' ),
-		'next_text' => esc_html__( 'Next', 'wp-event-manager' ),
+		'prev_text' => esc_html__( '←', 'wp-event-manager' ),
+		'next_text' => esc_html__( '→', 'wp-event-manager' ),
 		'type'      => 'list',
 	);
 
