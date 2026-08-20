@@ -4919,3 +4919,46 @@ span.event-manager-uploaded-file {
 .wpem-form-wrapper .wpem-form-group textarea:hover {
   border-color: #b0cfe8;
 }
+
+/* venue pagination css (start) */
+.wpem-venue-pagination {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.wpem-venue-pagination ul.page-numbers {
+    display: inline-flex;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.wpem-venue-pagination li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.wpem-venue-pagination a.page-numbers, .wpem-venue-pagination span.page-numbers {
+    border-radius: 2px;
+    border: 1px solid var(--wpem-gray-border-color);
+    transition: .2s;
+    padding: 5px 10px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    background: var(--wpem-white-color);
+    color: var(--wpem-gray-color);
+    text-decoration: none;
+}
+
+.wpem-venue-pagination a.page-numbers:hover, .wpem-venue-pagination span.page-numbers:hover {
+    border-color: var(--wpem-gray-color);
+}
+
+.wpem-venue-pagination span.page-numbers.current {
+    border-color: var(--wpem-primary-color);
+    background: var(--wpem-primary-color);
+    color: var(--wpem-white-color);
+}
+/* venue pagination css (end) */

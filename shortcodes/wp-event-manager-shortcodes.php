@@ -1759,68 +1759,167 @@ class WP_Event_Manager_Shortcodes{
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event_venues($atts)	{
-		$atts = shortcode_atts(apply_filters('event_manager_output_event_venues_defaults', array(
-			'orderby'     => 'title',
-			'order'       => 'ASC',
-			'show_thumb'  => true,
-			'show_count'  => true,
-		)), $atts);
+	// public function output_event_venues($atts)	{
+	// 	$atts = shortcode_atts(apply_filters('event_manager_output_event_venues_defaults', array(
+	// 		'orderby'     => 'title',
+	// 		'order'       => 'ASC',
+	// 		'show_thumb'  => true,
+	// 		'show_count'  => true,
+	// 	)), $atts);
 
-		$orderby    = sanitize_key($atts['orderby']);
-		$order      = sanitize_text_field($atts['order']);
-		$show_thumb = filter_var($atts['show_thumb'], FILTER_VALIDATE_BOOLEAN);
-		$show_count = filter_var($atts['show_count'], FILTER_VALIDATE_BOOLEAN);
+	// 	$orderby    = sanitize_key($atts['orderby']);
+	// 	$order      = sanitize_text_field($atts['order']);
+	// 	$show_thumb = filter_var($atts['show_thumb'], FILTER_VALIDATE_BOOLEAN);
+	// 	$show_count = filter_var($atts['show_count'], FILTER_VALIDATE_BOOLEAN);
 
-		ob_start();
+	// 	ob_start();
 
-		$args = [
-			'orderby' 	=> $orderby,
-			'order'		=> $order,
-		];
+	// 	$args = [
+	// 		'orderby' 	=> $orderby,
+	// 		'order'		=> $order,
+	// 	];
 
-		$venues   = wpem_get_all_venue_array('', $args);
+	// 	$venues   = wpem_get_all_venue_array('', $args);
+	// 	$wpem_count_events = wpem_get_event_venue_count();
+	// 	$venues_array = [];
+
+	// 	if (!empty($venues)) {
+	// 		foreach ($venues as $venue_id => $venue) {
+	// 			if (is_array($venue) && isset($venue[0])) {
+	// 				$name = $venue[0];
+	// 			} elseif (is_string($venue)) {
+	// 				$name = $venue;
+	// 			} else {
+	// 				continue;
+	// 			}
+
+	// 			$first_char = mb_substr($name, 0, 1);
+	// 			$key = preg_match('/[A-Za-z]/u', $first_char) ? strtoupper($first_char) : '#';
+
+	// 			$venues_array[$key][$venue_id] = $venue;
+	// 		}
+	// 	}
+
+	// 	do_action('wpem_venue_content_start');
+
+	// 	wp_enqueue_script('wp-event-manager-venue');
+
+	// 	wpem_get_event_manager_template(
+	// 		'event-venues.php',
+	// 		array(
+	// 			'wpem_venues'       => $venues,
+	// 			'wpem_venues_array' => $venues_array,
+	// 			'wpem_count_events'	=> $wpem_count_events,
+	// 			'show_thumb'		=> $show_thumb,
+	// 			'show_count'		=> $show_count,
+	// 		),
+	// 		'wp-event-manager/venue',
+	// 		EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
+	// 	);
+
+	// 	do_action('wpem_venue_content_end');
+
+	// 	wp_reset_postdata();
+
+	// 	return ob_get_clean();
+	// }
+
+	public function output_event_venues( $atts ) {
+		$atts = shortcode_atts(
+			apply_filters(
+				'event_manager_output_event_venues_defaults',
+				array(
+					'orderby'    => 'title',
+					'order'      => 'ASC',
+					'show_thumb' => true,
+					'show_count' => true,
+					'per_page'   => 9,
+				)
+			),
+			$atts
+		);
+
+		$orderby     = sanitize_key( $atts['orderby'] );
+		$order       = sanitize_text_field( $atts['order'] );
+		$show_thumb  = filter_var( $atts['show_thumb'], FILTER_VALIDATE_BOOLEAN );
+		$show_count  = filter_var( $atts['show_count'], FILTER_VALIDATE_BOOLEAN );
+
+		// Default to 9 venues per page.
+		$per_page = absint( $atts['per_page'] );
+		if ( $per_page < 1 ) {
+			$per_page = 9;
+		}
+
+		// Get all venues first.
+		$args = array(
+			'orderby' => $orderby,
+			'order'   => $order,
+		);
+
+		$all_venues = wpem_get_all_venue_array( '', $args );
+		// Make sure we always have an array.
+		if ( ! is_array( $all_venues ) ) {
+			$all_venues = array();
+		}
+
+		// Current page.
+		$paged = isset( $_GET['venue_page'] ) ? absint( $_GET['venue_page'] ) : 1;
+		if ( $paged < 1 ) {
+			$paged = 1;
+		}
+
+		// Total number of venues.
+		$total_venues = count( $all_venues );
+		// Total number of pages.
+		$total_pages = $per_page > 0 ? (int) ceil( $total_venues / $per_page ) : 1;
+
+		// Make sure current page does not exceed total pages.
+		if ( $total_pages > 0 && $paged > $total_pages ) {
+			$paged = $total_pages;
+		}
+
+		// Calculate offset.
+		$offset = ( $paged - 1 ) * $per_page;
+		// Get only venues for current page.
+		$venues = array_slice( $all_venues, $offset, $per_page, true );
 		$wpem_count_events = wpem_get_event_venue_count();
-		$venues_array = [];
-
-		if (!empty($venues)) {
-			foreach ($venues as $venue_id => $venue) {
-				if (is_array($venue) && isset($venue[0])) {
+		$venues_array = array();
+		if ( ! empty( $venues ) ) {
+			foreach ( $venues as $venue_id => $venue ) {
+				if ( is_array( $venue ) && isset( $venue[0] ) ) {
 					$name = $venue[0];
-				} elseif (is_string($venue)) {
+				} elseif ( is_string( $venue ) ) {
 					$name = $venue;
 				} else {
 					continue;
 				}
-
-				$first_char = mb_substr($name, 0, 1);
-				$key = preg_match('/[A-Za-z]/u', $first_char) ? strtoupper($first_char) : '#';
-
-				$venues_array[$key][$venue_id] = $venue;
+				$first_char = mb_substr( $name, 0, 1 );
+				$key = preg_match( '/[A-Za-z]/u', $first_char ) ? strtoupper( $first_char ) : '#';
+				$venues_array[ $key ][ $venue_id ] = $venue;
 			}
 		}
-
-		do_action('wpem_venue_content_start');
-
-		wp_enqueue_script('wp-event-manager-venue');
-
+		do_action( 'wpem_venue_content_start' );
+		wp_enqueue_script( 'wp-event-manager-venue' );
 		wpem_get_event_manager_template(
 			'event-venues.php',
 			array(
 				'wpem_venues'       => $venues,
 				'wpem_venues_array' => $venues_array,
-				'wpem_count_events'	=> $wpem_count_events,
-				'show_thumb'		=> $show_thumb,
-				'show_count'		=> $show_count,
+				'wpem_count_events' => $wpem_count_events,
+				'show_thumb'        => $show_thumb,
+				'show_count'        => $show_count,
+
+				// Pagination data.
+				'per_page'          => $per_page,
+				'paged'             => $paged,
+				'total_venues'      => $total_venues,
+				'total_pages'       => $total_pages,
 			),
 			'wp-event-manager/venue',
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
 		);
-
-		do_action('wpem_venue_content_end');
-
+		do_action( 'wpem_venue_content_end' );
 		wp_reset_postdata();
-
 		return ob_get_clean();
 	}
 
