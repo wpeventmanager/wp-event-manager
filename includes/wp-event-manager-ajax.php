@@ -305,7 +305,7 @@ class WP_Event_Manager_Ajax {
 
 		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$search_location = isset( $_POST['search_location'] ) ? sanitize_text_field( wp_unslash( $_POST['search_location'] ) ) : '';
-		$search_categories = isset( $_POST['search_categories'] ) ? sanitize_text_field( wp_unslash( $_POST['search_categories'] ) ) : '';
+		$search_categories = isset( $_POST['search_categories'] ) ? wp_unslash( $_POST['search_categories'] ) : '';
 		$event_manager_keyword = isset( $_POST['search_keywords'] ) ? sanitize_text_field( wp_unslash( $_POST['search_keywords'] ) ) : '';
 		if( is_array( $search_categories ) ) {
 		$search_categories = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_categories ) ) );
@@ -313,7 +313,7 @@ class WP_Event_Manager_Ajax {
 			$search_categories = sanitize_text_field( stripslashes( $search_categories ) );
 			$search_categories = explode( ',', $search_categories );
 		}
-		$search_event_types = isset( $_POST['search_event_types'] ) ? sanitize_text_field( wp_unslash( $_POST['search_event_types'] ) ) : '';
+		$search_event_types = isset( $_POST['search_event_types'] ) ? wp_unslash( $_POST['search_event_types'] ) : '';
 		if( is_array( $search_event_types ) ) {
 			$search_event_types= array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_event_types) ) );
 		} else {

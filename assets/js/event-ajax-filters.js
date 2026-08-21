@@ -511,14 +511,27 @@ var EventAjaxFilters = function() {
              */
             getUpcomingEvents: function(event){
                 event.preventDefault();
+                var upcoming_wrapper = jQuery('#upcoming_event_listing');
+                // The results container id is instance-specific
+                // (event-listing-view-<instance_id>), so it can't be selected with a
+                // fixed '#event-listing-view' selector. Resolve it relative to the
+                // upcoming events wrapper instead, same as loadMoreUpcomingEvents does.
+                var results = upcoming_wrapper.find('[id^="event-listing-view"]').first();
+                if (results.length === 0) {
+                    results = upcoming_wrapper.find('.event_listings').first();
+                }
                 var search_keywords = jQuery('#search_keywords').val();
                 var search_location = jQuery('#search_location').val();
-                var search_categories = jQuery('#search_categories').val();
-                var search_event_types = jQuery('#search_event_types').val();
+                var search_categories = jQuery(':input[name^="search_categories"]').map(function() {
+                    return jQuery(this).val()
+                }).get();
+                var search_event_types = jQuery(':input[name^="search_event_types"]').map(function() {
+                    return jQuery(this).val()
+                }).get();
                 var search_datetimes = jQuery('#search_datetimes').val();
-                var order = jQuery('#upcoming_event_listing').data('order');
-                var orderby = jQuery('#upcoming_event_listing').data('orderby');
-                var currentPage = jQuery('#upcoming_event_listing').attr('data-page');
+                var order = upcoming_wrapper.data('order');
+                var orderby = upcoming_wrapper.data('orderby');
+                var currentPage = upcoming_wrapper.attr('data-page') || 1;
                 var per_page = jQuery('#per-page-settings').data('per-page');
                 jQuery.ajax({
                     type: 'POST',
@@ -532,21 +545,23 @@ var EventAjaxFilters = function() {
                         search_event_types: search_event_types,
                         order: order,
                         orderby: orderby,
-                        value: currentPage,
+                        value: 1,
                         per_page: per_page,
                     },
                     success: function(response) {
                         if (response.success) {
-                            jQuery('#event-listing-view').html(response.data.events_html);
+                            results.html(response.data.events_html);
                             if (response.data.map_html) {
-            jQuery('#wpem_upcoming_map_container').html(response.data.map_html);
-        }
-                            jQuery('#event-listing-view').data('locked', true);
-                            var nextPage = parseInt(currentPage)+1;
-                            jQuery('#load_more_events').attr('data-page', nextPage);
+                                jQuery('#wpem_upcoming_map_container').html(response.data.map_html);
+                            }
+                            results.data('locked', true);
+                            upcoming_wrapper.attr('data-page', 1);
+                            jQuery('#load_more_events').attr('data-page', 2);
                             if (response.data.no_more_events===true) {
                                 jQuery('#load_more_events').hide();
-                            }      
+                            } else {
+                                jQuery('#load_more_events').show();
+                            }
                         } else {
                             console.error('Failed to load events:', response.data.error);
                              jQuery('#load_more_events').hide();
