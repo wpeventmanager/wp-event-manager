@@ -375,6 +375,35 @@
 .wpem-setup-addon-support .wpem-setup-help-center-block-heading {
       margin-top: 0;
   }
+
+
+.wp-event-manager-last-steps-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.wp-event-manager-last-steps-link li {
+    margin: 0;
+}
+.wp-event-manager-last-steps-link a {
+    color: var(--wpem-dark-color);
+    font-size: 15px;
+    padding: 10px 15px;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s 0s;
+    background-color: var(--wpem-gray-bg-color);
+}
+.wp-event-manager-last-steps-link a:hover {
+    background-color: var(--wpem-primary-color);
+    color: #fff;
+}
+.wpem-setup-last-step .wpem-step-window h3 {
+    margin-top: 0;
+}
   /*STEP 3 END*/
   
   
