@@ -9,10 +9,10 @@ var Venues = function () {
         /// </summary>                 
         /// <returns type="initialization settings" />     
         /// <since>1.0.0</since>  
-        init: function () {           
+               init: function () {           
             Common.logInfo("Venues.init...");
             
-            jQuery('#show_ALL').show();
+            this.actions.applyPageFilter();
             jQuery('.venue-letters a').on('click', this.actions.showVenueInfo);
 			jQuery("#upcoming-past-tabs a").on('click',this.actions.tabClick); 		
             
@@ -30,20 +30,49 @@ var Venues = function () {
             /// <param name="parent" type="Event"></param>           
             /// <returns type="actions" />     
             /// <since>1.0.0</since>       
+                        getCurrentPage: function () {
+                var match = window.location.search.match(/[?&]venue_page=(\d+)/);
+                var page = match ? parseInt(match[1], 10) : 1;
+                return (page && page > 0) ? page : 1;
+            },
+
+                       applyPageFilter: function ( forcePage ) {
+                var currentPage = forcePage ? forcePage : Venues.actions.getCurrentPage();
+                var anyGroupVisible = false;
+                jQuery('.show-venue-info').each(function () {
+                    var $group = jQuery(this);
+                    var visibleCount = 0;
+                    $group.find('.venue-list-items').each(function () {
+                        var itemPage = parseInt(jQuery(this).data('page'), 10) || 1;
+                        var isMatch = (itemPage === currentPage);
+                        jQuery(this).toggle(isMatch);
+                        if (isMatch) { visibleCount++; }
+                    });
+                    $group.toggle(visibleCount > 0);
+                    if (visibleCount > 0) { anyGroupVisible = true; }
+                });
+                jQuery('.no-venue').toggleClass('wpem-d-none', anyGroupVisible);
+            },
             showVenueInfo: function (event) {
                 Common.logInfo("Venues.actions.showVenueInfo...");
 
                 var currentClickedLetterId = jQuery(this).attr('id');
                 var showAllLetterId = 'ALL';
-                //first, hide all venue info 	
                 jQuery('.show-venue-info').hide();
+                jQuery('.venue-list-items').show();
 
-                //checks condition if selected id is \show_All\ then it will show all venue name,else it will show only slected alphabet letter venue name.
                 if (currentClickedLetterId == showAllLetterId) {
-                    //show all venue block which has clas show-venue-info
-                    jQuery('.show-venue-info').show();
-                    jQuery('.no-venue').addClass('wpem-d-none');
-                } else if(jQuery('#show_' + currentClickedLetterId).length) {	//show clicked letter venue only       
+                    // Always send "All" back to page 1 so the venue
+                    // list and the pagination widget below stay in
+                    // sync, instead of just visually filtering.
+                    if (Venues.actions.getCurrentPage() !== 1) {
+                        var url = new URL(window.location.href);
+                        url.searchParams.delete('venue_page');
+                        window.location.href = url.toString();
+                        return;
+                    }
+                    Venues.actions.applyPageFilter( 1 );
+                } else if(jQuery('#show_' + currentClickedLetterId).length) {
                     jQuery('#show_' + currentClickedLetterId).css({ "display": "block" });
                     jQuery('.no-venue').addClass('wpem-d-none');
                 }else{

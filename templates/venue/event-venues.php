@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="venue-counter-number-icon">
                 <div class="venue-counter-upper-wrap">
                     <div class="venue-counter-icon-wrap"><i class="wpem-icon-location2"></i></div>
-                    <div class="venue-counter-number-wrap"><?php echo esc_attr(count($wpem_venues)); ?></div>
+                                        <div class="venue-counter-number-wrap"><?php echo esc_attr( isset( $total_venues ) ? $total_venues : count( $wpem_venues ) ); ?></div>
                 </div>
                 <div class="venue-counter-bottom-wrap"><?php esc_html_e('Venues', 'wp-event-manager'); ?></div>
             </div>
@@ -43,17 +43,20 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="wpem-main wpem-row venue-related-data-wrapper">
             <div class="wpem-col-md-12 venue-related-info-wrapper">
                 <div class="wpem-row">
-                    <?php
-                    foreach ($wpem_venues_array as $wpem_letter => $wpem_venues) : ?>
+                                        <?php
+                    foreach ($wpem_venues_array as $wpem_letter => $wpem_venues_group) : ?>
                         <div id="show_<?php echo esc_attr($wpem_letter); ?>" class="show-venue-info show-venue-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
                             <div class="wpem-list-group">
                                 <div class="venue-group-header wpem-list-group-item wpem-list-group-item-success">
                                     <div><?php echo esc_attr($wpem_letter); ?></div>
                                 </div>
                                 <div class="venue-name-list">
-                                    <?php foreach ($wpem_venues as $wpem_venue_id => $wpem_venue_name) :
-                                        $wpem_count = wpem_get_event_venue_count($wpem_venue_id); ?>
-                                        <div class="venue-list-items">
+                                    <?php foreach ($wpem_venues_group as $wpem_venue_id => $wpem_venue_data) :
+                                        $wpem_count      = wpem_get_event_venue_count($wpem_venue_id);
+                                        $wpem_venue_name = is_array( $wpem_venue_data ) ? $wpem_venue_data['name'] : $wpem_venue_data;
+                                        $wpem_item_page  = is_array( $wpem_venue_data ) && isset( $wpem_venue_data['page'] ) ? absint( $wpem_venue_data['page'] ) : 1;
+                                        ?>
+                                        <div class="venue-list-items" data-page="<?php echo esc_attr( $wpem_item_page ); ?>">
                                             <a href="<?php echo esc_url(get_the_permalink($wpem_venue_id)) ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
                                                 <?php $wpem_venue = get_post($wpem_venue_id); ?>
                                                 <?php if ($show_thumb && $show_thumb == 'true') : ?>

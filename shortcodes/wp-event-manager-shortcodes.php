@@ -1593,23 +1593,22 @@ class WP_Event_Manager_Shortcodes{
 			$paged = $total_pages;
 		}
 
-		// Calculate offset.
-		$offset = ( $paged - 1 ) * $per_page;
-		// Get only venues for current page.
-		$organizers = array_slice( $all_organizers, $offset, $per_page, true );
-
-		$wpem_count_events = wpem_get_event_organizer_count();
+				$wpem_count_events = wpem_get_event_organizer_count();
 		$organizers_array = [];
-
-		if (!empty($organizers)) {
-			foreach ($organizers as $organizer_id => $organizer) {
+		$index = 0;
+		if (!empty($all_organizers)) {
+			foreach ($all_organizers as $organizer_id => $organizer) {
 				if (is_array($organizer) && isset($organizer[0])) {
-					$letter = strtoupper(mb_substr($organizer[0], 0, 1));
-					$organizers_array[$letter][$organizer_id] = $organizer;
+					$name = $organizer[0];
 				} elseif (is_string($organizer) && strlen($organizer) > 0) {
-					$letter = strtoupper(mb_substr($organizer, 0, 1));
-					$organizers_array[$letter][$organizer_id] = $organizer;
+					$name = $organizer;
+				} else {
+					continue;
 				}
+				$letter    = strtoupper(mb_substr($name, 0, 1));
+				$item_page = $per_page > 0 ? ( (int) floor( $index / $per_page ) + 1 ) : 1;
+				$organizers_array[$letter][$organizer_id] = array( 'name' => $name, 'page' => $item_page );
+				$index++;
 			}
 		}
 
@@ -1618,7 +1617,7 @@ class WP_Event_Manager_Shortcodes{
 		wpem_get_event_manager_template(
 			'event-organizers.php',
 			array(
-				'wpem_organizers'		=> $organizers,
+				'wpem_organizers'		=> $all_organizers,
 				'wpem_organizers_array'  => $organizers_array,
 				'wpem_count_events'    => $wpem_count_events,
 				'show_thumb'		=> $show_thumb,
@@ -1852,14 +1851,11 @@ class WP_Event_Manager_Shortcodes{
 			$paged = $total_pages;
 		}
 
-		// Calculate offset.
-		$offset = ( $paged - 1 ) * $per_page;
-		// Get only venues for current page.
-		$venues = array_slice( $all_venues, $offset, $per_page, true );
-		$wpem_count_events = wpem_get_event_venue_count();
+				$wpem_count_events = wpem_get_event_venue_count();
 		$venues_array = array();
-		if ( ! empty( $venues ) ) {
-			foreach ( $venues as $venue_id => $venue ) {
+		$index = 0;
+		if ( ! empty( $all_venues ) ) {
+			foreach ( $all_venues as $venue_id => $venue ) {
 				if ( is_array( $venue ) && isset( $venue[0] ) ) {
 					$name = $venue[0];
 				} elseif ( is_string( $venue ) ) {
@@ -1869,7 +1865,9 @@ class WP_Event_Manager_Shortcodes{
 				}
 				$first_char = mb_substr( $name, 0, 1 );
 				$key = preg_match( '/[A-Za-z]/u', $first_char ) ? strtoupper( $first_char ) : '#';
-				$venues_array[ $key ][ $venue_id ] = $venue;
+				$item_page = $per_page > 0 ? ( (int) floor( $index / $per_page ) + 1 ) : 1;
+				$venues_array[ $key ][ $venue_id ] = array( 'name' => $name, 'page' => $item_page );
+				$index++;
 			}
 		}
 		do_action( 'wpem_venue_content_start' );
@@ -1877,7 +1875,7 @@ class WP_Event_Manager_Shortcodes{
 		wpem_get_event_manager_template(
 			'event-venues.php',
 			array(
-				'wpem_venues'       => $venues,
+				'wpem_venues'       => $all_venues,
 				'wpem_venues_array' => $venues_array,
 				'wpem_count_events' => $wpem_count_events,
 				'show_thumb'        => $show_thumb,
