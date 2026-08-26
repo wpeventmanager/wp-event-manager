@@ -3114,17 +3114,17 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 }
 .organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-list-items .wpem-organizer-logo,
 .venue-related-data-wrapper .show-venue-info .wpem-list-group .venue-name-list .venue-list-items .wpem-venue-logo {
-  width: 30px;
+  width: 50px;
   height: auto;
-  max-height: 30px;
+  max-height: 50px;
   display: flex;
-  border: 1px solid var(--wpem-gray-border-color);
   margin-right: 10px;
 }
 .organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-list-items .wpem-organizer-logo img,
 .venue-related-data-wrapper .show-venue-info .wpem-list-group .venue-name-list .venue-list-items .wpem-venue-logo img {
   width: 100%;
   height: auto;
+  border-radius: 4px;
 }
 .organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-list-items .wpem-event-organizer-conunt-number,
 .venue-related-data-wrapper .show-venue-info .wpem-list-group .venue-name-list .venue-list-items .wpem-event-venue-conunt-number {
