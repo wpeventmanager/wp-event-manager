@@ -75,6 +75,7 @@ var EventAjaxFilters = function() {
             jQuery(document.body).on('click', '.load_more_events', EventAjaxFilters.actions.loadMoreEvents);
             jQuery('#event_filters').on('click', '.reset', EventAjaxFilters.actions.eventAjaxFiltersReset); 
             jQuery('div.event_listings_main').on('click', '.event-manager-pagination a', EventAjaxFilters.actions.eventPagination);
+            jQuery(document.body).on('click', '#upcoming_event_listing .event-manager-pagination a', EventAjaxFilters.actions.upcomingEventPagination);
             jQuery('.event_listings').on('update_event_listings', EventAjaxFilters.actions.getEventListings);
             if (jQuery('.event_listings_upcoming').length > 0) {
                 jQuery('#search_keywords, #search_location, #search_datetimes, #search_categories, #search_event_types, #search_ticket_prices, .event-manager-filter').change(EventAjaxFilters.actions.getUpcomingEvents);
@@ -506,6 +507,82 @@ var EventAjaxFilters = function() {
             },
 
             /**
+             * Numbered pagination click handler for the [upcoming_events show_pagination="true"]
+             * shortcode. Mirrors EventAjaxFilters.actions.eventPagination/getEventListings (used
+             * by the [events] shortcode) so that clicking a page number fetches that exact page
+             * via ajax and swaps only the inner results markup - keeping the currently selected
+             * list/box layout intact instead of doing a full page reload.
+             * @param {*} event 
+             */
+            upcomingEventPagination: function(event) {
+                event.preventDefault();
+                var page = jQuery(this).data('page');
+                if (!page) {
+                    return;
+                }
+
+                var wrapper = jQuery(this).closest('#upcoming_event_listing');
+                // The results container id is instance-specific (event-listing-view-<instance_id>),
+                // same as getUpcomingEvents/loadMoreUpcomingEvents above.
+                var results = wrapper.find('[id^="event-listing-view"]').first();
+                if (results.length === 0) {
+                    results = wrapper.find('.event_listings').first();
+                }
+
+                var search_keywords = jQuery('#search_keywords').val();
+                var search_location = jQuery('#search_location').val();
+                var search_categories = jQuery(':input[name^="search_categories"]').map(function() {
+                    return jQuery(this).val()
+                }).get();
+                var search_event_types = jQuery(':input[name^="search_event_types"]').map(function() {
+                    return jQuery(this).val()
+                }).get();
+                var search_datetimes = jQuery('#search_datetimes').val();
+                var order = wrapper.data('order');
+                var orderby = wrapper.data('orderby');
+                var per_page = wrapper.data('per-page');
+
+                jQuery(results).parent().addClass('wpem-loading');
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "get_upcoming_listings"),
+                    data: {
+                        action: 'get_upcoming_listings',
+                        search_keywords: search_keywords,
+                        search_location: search_location,
+                        search_datetimes: search_datetimes,
+                        search_categories: search_categories,
+                        search_event_types: search_event_types,
+                        order: order,
+                        orderby: orderby,
+                        value: page,
+                        per_page: per_page,
+                        show_pagination: 'true'
+                    },
+                    success: function(response) {
+                        jQuery(results).parent().removeClass('wpem-loading');
+                        if (response.success) {
+                            results.html(response.data.events_html);
+                            if (response.data.map_html) {
+                                jQuery('#wpem_upcoming_map_container').html(response.data.map_html);
+                            }
+                            if (response.data.pagination) {
+                                wrapper.find('.event-organizer-pagination').html(response.data.pagination);
+                            }
+                            wrapper.attr('data-page', page);
+                        } else {
+                            console.error('Failed to load events:', response.data && response.data.error);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        jQuery(results).parent().removeClass('wpem-loading');
+                        console.error('AJAX Error:', status, error);
+                    }
+                });
+            },
+
+            /**
              * this function is used to get upcoming events
              * @param {*} event 
              */
@@ -532,7 +609,10 @@ var EventAjaxFilters = function() {
                 var order = upcoming_wrapper.data('order');
                 var orderby = upcoming_wrapper.data('orderby');
                 var currentPage = upcoming_wrapper.attr('data-page') || 1;
-                var per_page = jQuery('#per-page-settings').data('per-page');
+                var per_page = upcoming_wrapper.data('per-page');
+                if (!per_page) {
+                    per_page = jQuery('#per-page-settings').data('per-page');
+                }
                 jQuery.ajax({
                     type: 'POST',
                     url: event_manager_ajax_filters.ajax_url.toString().replace("%%endpoint%%", "get_upcoming_listings"),

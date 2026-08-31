@@ -2223,7 +2223,7 @@ class WP_Event_Manager_Shortcodes{
 		if($upcoming_events->have_posts()) : 
 			wp_enqueue_script('wp-event-manager-ajax-filters');?>
 			<div id="wpem_upcoming_map_container"></div>
-			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>">
+			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>" data-per-page="<?php echo esc_attr($per_page); ?>" data-show-pagination="<?php echo ($atts['show_pagination'] == 'true' || $atts['show_pagination'] == 'on') ? 'true' : 'false'; ?>">
 				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 					wpem_get_event_manager_template_part('content', 'event_listing');
@@ -2232,7 +2232,7 @@ class WP_Event_Manager_Shortcodes{
 				if($upcoming_events->found_posts > $per_page) :
 					if($atts['show_pagination'] == "true" || $atts['show_pagination'] == "on") : ?>
 						<div class="event-organizer-pagination">
-							<?php wpem_get_event_manager_template('pagination.php', array('max_num_pages' => $upcoming_events->max_num_pages)); ?>
+							<?php echo wp_kses_post( wpem_get_event_listing_pagination( $upcoming_events->max_num_pages, $paged ) ); ?>
 						</div>
 					<?php else : ?>
     					<div id="load_more_events_loader">

@@ -226,7 +226,7 @@ class WP_Event_Manager_Ajax {
 
 			while ($upcoming_events->have_posts()) {
 				$upcoming_events->the_post();
-				wpem_get_event_manager_template_part('content', 'past_event_listing');
+				wpem_get_event_manager_template_part('content', 'event_listing');
 			}
 
 			$events_html = ob_get_clean();
@@ -525,13 +525,13 @@ class WP_Event_Manager_Ajax {
 		// phpcs:enable
 		 $upcoming_events = new WP_Query($args);
 		// $upcoming_events = wpem_get_event_listings($args);
-$query_args_string = http_build_query($_POST);
+		$query_args_string = http_build_query($_POST);
 		if ($upcoming_events->have_posts()) {
 			ob_start();
-apply_filters('wpem_get_event_listings_result_args', $upcoming_events, $query_args_string);
-    $map_html = ob_get_clean();
-	
-	ob_start();
+			apply_filters('wpem_get_event_listings_result_args', $upcoming_events, $query_args_string);
+			$map_html = ob_get_clean();
+				
+			ob_start();
 			while ($upcoming_events->have_posts()) {
 				$upcoming_events->the_post();
 				wpem_get_event_manager_template_part('content', 'past_event_listing');
@@ -540,23 +540,32 @@ apply_filters('wpem_get_event_listings_result_args', $upcoming_events, $query_ar
 			$events_html = ob_get_clean();
 			$no_more_events = $upcoming_events->found_posts <= $paged * $per_page;
 
-			wp_send_json_success(array(
-				'events_html' => $events_html,
+			$response = array(
+				'events_html'    => $events_html,
 				'map_html'       => $map_html,
-				'no_more_events' => $no_more_events
-			));
-			// wp_send_json_success(array(
-			// 	'events_html' => $events_html,
-			// ));
-			} else {
-				$no_events_html = '<div class="no_event_listings_found wpem-alert wpem-alert-danger">';
-				$no_events_html .= esc_html__('There are no events matching your search.', 'wp-event-manager');
-				$no_events_html .= '</div>';
+				'no_more_events' => $no_more_events,
+				'max_num_pages'  => $upcoming_events->max_num_pages,
+			);
 
-				wp_send_json_success(array(
-					'events_html' => $no_events_html
-				));
+			// When the shortcode is using numbered pagination (show_pagination="true"),
+			// also return freshly rendered pagination markup for the page that was
+			// requested, so the pagination nav can be kept in sync via ajax the same
+			// way the [events] shortcode does it, instead of relying on a full page reload.
+			if ( isset( $_POST['show_pagination'] ) && 'true' === sanitize_text_field( wp_unslash( $_POST['show_pagination'] ) ) ) {
+				$response['pagination'] = wpem_get_event_listing_pagination( $upcoming_events->max_num_pages, $paged );
 			}
+
+			wp_send_json_success($response);
+		} else {
+			$no_events_html = '<div class="no_event_listings_found wpem-alert wpem-alert-danger">';
+			$no_events_html .= esc_html__('There are no events matching your search.', 'wp-event-manager');
+			$no_events_html .= '</div>';
+
+			wp_send_json_success(array(
+				'events_html'   => $no_events_html,
+				'max_num_pages' => 0,
+			));
+		}
 		wp_reset_postdata();
 	}
 
