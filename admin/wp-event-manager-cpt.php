@@ -668,12 +668,16 @@ class WP_Event_Manager_CPT {
 		$new_post_id = wp_insert_post($new_post);
 
 		$meta = get_post_meta($post_id);
+		
+		if (isset($meta['_view_count'])) {
+			unset($meta['_view_count']);
+		}
+
 		foreach ($meta as $key => $values) {
 			foreach ($values as $value) {
 				add_post_meta($new_post_id, $key, maybe_unserialize($value));
 			}
 		}
-
 		$taxonomies = get_object_taxonomies($post->post_type);
 		foreach ($taxonomies as $taxonomy) {
 			$terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
