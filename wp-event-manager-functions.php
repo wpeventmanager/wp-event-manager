@@ -854,13 +854,18 @@ function event_manager_user_can_post_event() {
 function event_manager_user_can_edit_event($event_id) {
 
 	$can_edit = true;
-	if(!is_user_logged_in() || !$event_id)  {
+	if (!$event_id) {
 		if(event_manager_user_requires_account() && !event_manager_enable_registration()) {
 			$can_edit = false;
 		}
 	} else {
 		$event  = get_post($event_id);
-		if(!$event || (absint($event->post_author) !== get_current_user_id() && !current_user_can('edit_post', $event_id))) {
+		if (
+			!$event
+			|| 'event_listing' !== $event->post_type
+			|| !is_user_logged_in()
+			|| (absint($event->post_author) !== get_current_user_id() && !current_user_can('edit_post', $event_id))
+		) {
 			$can_edit = false;
 		}
 	}
