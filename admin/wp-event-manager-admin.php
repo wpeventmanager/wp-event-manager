@@ -155,11 +155,11 @@ class WP_Event_Manager_Admin {
 			const editor = wp.data.dispatch('core/editor');
 		";
 
-		if ( $categories_enabled ) {
+		if ( $categories_enabled && false == event_manager_multiselect_event_category() ) {
 			$custom_editor_script .= "editor.removeEditorPanel('taxonomy-panel-event_listing_category');";
 		}
 
-		if ( $types_enabled ) {
+		if ( $types_enabled && false == event_manager_multiselect_event_type() ) {
 			$custom_editor_script .= "editor.removeEditorPanel('taxonomy-panel-event_listing_type');";
 		}
 
