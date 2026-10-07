@@ -21,11 +21,13 @@ class WP_Event_Manager_CPT {
 		add_filter('enter_title_here', array($this, 'enter_title_here'), 1, 2);
 
 		add_filter('manage_edit-event_listing_columns', array($this, 'columns'));
+		add_filter('manage_edit-event_venue_columns', array($this, 'venue_columns'));
 
 		add_filter('list_table_primary_column', array($this, 'primary_column'), 10, 2);
 		add_filter('post_row_actions', array($this, 'row_actions'));
 
 		add_action('manage_event_listing_posts_custom_column', array($this, 'custom_columns'), 2);
+		add_action('manage_event_venue_posts_custom_column', array($this, 'venue_custom_columns'), 10, 2);
 
 		add_filter('manage_edit-event_listing_sortable_columns', array($this, 'sortable_columns'));
 
@@ -459,8 +461,43 @@ class WP_Event_Manager_CPT {
 		// If we want to set the primary column for CPT
 		if('edit-event_listing' === $screen) {
 			$column = 'event_title';
+		} elseif('edit-event_venue' === $screen) {
+			$column = 'venue_title';
 		}
 		return $column;
+	}
+
+	/**
+	 * Replace the default venue title column with a title column that includes an ID tooltip.
+	 *
+	 * @param array $columns
+	 * @return array
+	 */
+	public function venue_columns($columns) {
+		$venue_columns = array();
+		foreach($columns as $column => $label) {
+			if('title' === $column) {
+				$venue_columns['venue_title'] = $label;
+			} else {
+				$venue_columns[$column] = $label;
+			}
+		}
+		return $venue_columns;
+	}
+
+	/**
+	 * Display the venue title with its ID in a tooltip.
+	 *
+	 * @param string $column
+	 * @param int    $post_id
+	 * @return void
+	 */
+	public function venue_custom_columns($column, $post_id) {
+		if('venue_title' !== $column) {
+			return;
+		}
+
+		echo '<a href="' . esc_url(admin_url('post.php?post=' . absint($post_id) . '&action=edit')) . '" class="tips venue_title row-title" data-tip="' . esc_attr(sprintf(__('ID: %d', 'wp-event-manager'), absint($post_id))) . '">' . esc_html(get_the_title($post_id)) . '</a>';
 	}
 
 	/**
@@ -514,7 +551,7 @@ class WP_Event_Manager_CPT {
 				break;
 			case 'event_title':
 				echo wp_kses_post('<div class="event_title">');
-				echo wp_kses_post('<a href="' . esc_url(admin_url('post.php?post=' . $post->ID . '&action=edit')) . '" class="tips event_title" data-tip="' . sprintf(wp_kses('ID: %d', 'wp-event-manager'), $post->ID) . '">' . esc_html($post->post_title) . '</a>');
+				echo wp_kses_post('<a href="' . esc_url(admin_url('post.php?post=' . $post->ID . '&action=edit')) . '" class="tips event_title row-title" data-tip="' . sprintf(wp_kses('ID: %d', 'wp-event-manager'), $post->ID) . '">' . esc_html($post->post_title) . '</a>');
 				echo wp_kses_post('</div>');
 				echo wp_kses_post('<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__('Show more details', 'wp-event-manager') . '</span></button>');
 				break;
