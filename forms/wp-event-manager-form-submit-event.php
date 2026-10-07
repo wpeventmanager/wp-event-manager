@@ -604,7 +604,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 								throw new Exception(sprintf(
 									wp_kses('" %s " (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'),
 									esc_attr($field['label']),
-									esc_attr($info['ext']),
+									esc_attr($file_info['ext']),
 									implode(', ', array_map('esc_attr', array_keys($field['allowed_mime_types'])))
 								));
 							}

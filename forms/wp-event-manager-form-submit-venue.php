@@ -304,9 +304,9 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				 
 			foreach($group_fields as $key => $field) {
 				if (!is_user_logged_in() && isset($field['type']) && $field['type'] === 'media-library-image') {
-					$$field['required'] = false;
+					$field['required'] = false;
 				}
-				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] = false ) )
+				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] == false ) )
 					continue;
 				
 				if($field['required'] && empty($values[ $group_key ][ $key ])) {	    
@@ -337,7 +337,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 							$file_url = current(explode('?', $file_url));
 							$file_info = wp_check_filetype($file_url);
 							if(!is_numeric($file_url) && $file_info && !in_array($file_info['type'], $field['allowed_mime_types'])) {
-								throw new Exception(sprintf(wp_kses('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), esc_attr($field['label']), esc_attr($info['ext']),esc_attr(implode(', ', array_keys($field['allowed_mime_types']))) ));
+								throw new Exception(sprintf(wp_kses('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), esc_attr($field['label']), esc_attr($file_info['ext']),esc_attr(implode(', ', array_keys($field['allowed_mime_types']))) ));
 							}
 						}
 					}
@@ -451,7 +451,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		// Loop fields and save meta and term data
 		foreach($this->fields as $group_key => $group_fields) {
 			foreach($group_fields as $key => $field) {
-				if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
+				if(isset($field['visibility']) && empty($field['visibility'])) :
 					continue;
 				endif; 
 				// Save taxonomies
