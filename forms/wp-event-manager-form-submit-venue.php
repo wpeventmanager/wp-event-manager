@@ -306,7 +306,7 @@ class WPEM_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				if (!is_user_logged_in() && isset($field['type']) && $field['type'] === 'media-library-image') {
 					$field['required'] = false;
 				}
-				if( isset( $field['visibility'] ) && ( $field['visibility'] == 0 || $field['visibility'] == false ) )
+				if( isset( $field['visibility'] ) && empty($field['visibility']) )
 					continue;
 				
 				if($field['required'] && empty($values[ $group_key ][ $key ])) {	    

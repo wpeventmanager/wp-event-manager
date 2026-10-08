@@ -40,7 +40,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		$disable_multiple_file_upload_feature_for_fields = apply_filters('disable_multiple_file_upload_feature_for_fields', array('event_thumbnail'));
 
 		foreach($event_fields as $wpem_key => $wpem_field) :
-			if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] = false)) :
+			if(isset($wpem_field['visibility']) && empty($wpem_field['visibility'])) :
 				continue;
 			endif; 
 			if (isset($wpem_field['type']) && $wpem_field['type'] === 'media-library-image' && !is_user_logged_in()) {
@@ -78,7 +78,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 				if($wpem_organizer_fields) :
 					do_action('submit_event_form_organizer_fields_start');
 					foreach($wpem_organizer_fields as $wpem_key => $wpem_field) : 
-						if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] == false)) :
+						if(isset($wpem_field['visibility']) && empty($wpem_field['visibility'])) :
 							continue;
 						endif;?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
@@ -104,7 +104,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 				if($wpem_venue_fields) :
 					do_action('submit_event_form_venue_fields_start'); 
 					foreach($wpem_venue_fields as $wpem_key => $wpem_field) : 
-						if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] == false)) :
+						if(isset($wpem_field['visibility']) && empty($wpem_field['visibility'])) :
 							continue;
 						endif;?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
@@ -161,7 +161,7 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 					<?php do_action('submit_organizer_form_organizer_fields_start'); ?>
 
 					<?php foreach($wpem_organizer_fields['organizer'] as $wpem_key => $wpem_field) : 
-						if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] == false)) :
+						if(isset($wpem_field['visibility']) && empty($wpem_field['visibility'])) :
 							continue;
 						endif;?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">
@@ -219,7 +219,7 @@ if(get_option('enable_event_venue')) :
 
 					<?php do_action('submit_venue_form_venue_fields_start');
 					foreach($wpem_venue_fields['venue'] as $wpem_key => $wpem_field) : 
-						if(isset($wpem_field['visibility']) && ($wpem_field['visibility'] == 0 || $wpem_field['visibility'] = false)) :
+						if(isset($wpem_field['visibility']) && empty($wpem_field['visibility'])) :
 							continue;
 						endif; ?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($wpem_key); ?>">

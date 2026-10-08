@@ -1072,7 +1072,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 		// Loop fields and save meta and term data
 		foreach ($this->fields as $group_key => $group_fields) {
 			foreach ($group_fields as $key => $field) {
-				if (isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)):
+				if (isset($field['visibility']) && empty($field['visibility']) ):
 					continue;
 				endif;
 				// Save taxonomies
