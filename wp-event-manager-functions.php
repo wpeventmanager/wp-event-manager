@@ -1371,7 +1371,14 @@ function event_manager_upload_file($file, $args = array()) {
     if(is_wp_error($file)) {
         return $file;
     }
-    
+        // Security: verify the real extension/content on the server, do not trust the client-sent type.
+    $wpem_check = wp_check_filetype_and_ext($file['tmp_name'], $file['name'], (array) $allowed_mime_types);
+    if(empty($wpem_check['ext']) || empty($wpem_check['type'])) {
+        $event_manager_upload         = false;
+        $event_manager_uploading_file = '';
+        return new WP_Error('upload', __('Invalid file type.', 'wp-event-manager'));
+    }
+    $file['type'] = $wpem_check['type'];
 	if(!in_array($file['type'], $allowed_mime_types)) {
 		if($args['file_label']) {
 			return new WP_Error('upload', sprintf('"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), $args['file_label'], $file['type'], implode(', ', array_keys($args['allowed_mime_types']))) ;
