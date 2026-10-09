@@ -853,9 +853,16 @@ class WP_Event_Manager_Ajax {
 			foreach ($_FILES as $file_key => $file) {
 				// Sanitize file key
 				$sanitized_file_key = sanitize_key($file_key);
+				// Security: over AJAX only images are allowed, unless a field key is explicitly whitelisted for documents.
+				$allowed_mime_types = event_manager_get_allowed_mime_types($sanitized_file_key);
+				$document_fields    = apply_filters('event_manager_ajax_document_upload_fields', array());
+				if (!in_array($sanitized_file_key, (array) $document_fields, true)) {
+					$allowed_mime_types = array_intersect($allowed_mime_types, array('image/jpeg', 'image/gif', 'image/png'));
+				}
 				$files_to_upload = event_manager_prepare_uploaded_files($file);
 				foreach ($files_to_upload as $file_to_upload) {
-					$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key));
+					// $uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key));
+					$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key, 'allowed_mime_types' => $allowed_mime_types));
 					if(is_wp_error($uploaded_file)) {
 						$data['files'][] = array('error' => $uploaded_file->get_error_message());
 					} else {
