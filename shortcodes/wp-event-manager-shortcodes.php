@@ -111,6 +111,24 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function event_dashboard_handler(){
 
+		$user_id = get_current_user_id();
+		if ( $user_id ) {
+			$message_key = 'wpem_event_dashboard_message_' . $user_id;
+			$dashboard_message = get_transient( $message_key );
+			if ( false !== $dashboard_message ) {
+				delete_transient( $message_key );
+				if ( is_array( $dashboard_message ) && isset( $dashboard_message['action'], $dashboard_message['event_title'] ) && 'mark_not_cancelled' === $dashboard_message['action'] ) {
+					// translators: %s is the title of the event marked as not cancelled.
+					$message = sprintf( __( '%s has been marked as not cancelled.', 'wp-event-manager' ), esc_html( $dashboard_message['event_title'] ) );
+				} else {
+					$event_title = is_array( $dashboard_message ) && isset( $dashboard_message['event_title'] ) ? $dashboard_message['event_title'] : $dashboard_message;
+					// translators: %s is the title of the cancelled event.
+					$message = sprintf( __( '%s has been cancelled.', 'wp-event-manager' ), esc_html( $event_title ) );
+				}
+				$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . $message . '</div>';
+			}
+		}
+
 		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_event_actions')) {
 			$action = sanitize_title( wp_unslash($_REQUEST['action']));
 			$event_id = isset($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST['event_id'])) : 0;
@@ -177,6 +195,18 @@ class WP_Event_Manager_Shortcodes{
 						break;
 				}
 				do_action('event_manager_my_event_do_action', $action, $event_id);
+				if ( in_array( $action, array( 'mark_cancelled', 'mark_not_cancelled' ), true ) ) {
+					set_transient(
+						'wpem_event_dashboard_message_' . $user_id,
+						array(
+							'action'      => $action,
+							'event_title' => $event->post_title,
+						),
+						MINUTE_IN_SECONDS
+					);
+					wp_safe_redirect( esc_url_raw( remove_query_arg( array( 'action', 'event_id', '_wpnonce' ) ) ) );
+					exit;
+				}
 			} catch (Exception $e) {
 				$this->event_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . esc_html($e->getMessage()) . '</div>';
 			}
