@@ -96,7 +96,7 @@ class WP_Event_Manager_Admin {
 		);
 		?>
 		<div class="notice notice-info">
-			<p><strong><?php esc_html_e('Template Override Notice:', 'wp-event-manager'); ?></strong> <?php esc_html_e('All WP Event Manager plugins and add-ons are updated regularly to improve functionality and compatibility. If you have overridden any template files in any WP Event Manager plugin or add-on, please ensure they are synchronized with the latest versions to maintain optimal functionality and avoid potential issues.', 'wp-event-manager'); ?></p>
+			<p><strong><?php esc_html_e('Template Override Notice:', 'wp-event-manager'); ?></strong> <?php esc_html_e('All wp event manager plugins and add-ons are updated regularly to improve functionality and compatibility. If you have overridden any template files in your theme, please ensure they are synchronized with the latest versions to maintain optimal functionality and avoid potential issues.', 'wp-event-manager'); ?></p>
 			<p><a href="<?php echo esc_url($dismiss_url); ?>"><?php esc_html_e('Dismiss Notice', 'wp-event-manager'); ?></a></p>
 		</div>
 		<?php
