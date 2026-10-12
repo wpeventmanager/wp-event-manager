@@ -121,21 +121,46 @@ if(!function_exists('wpem_get_event_listings')) :
 			$query_args['meta_query']['relation'] = 'AND';
 		}
 
+		// if(!is_null($args['cancelled']) || 1 === absint(get_option('event_manager_hide_cancelled_events'))) {
+		// 	$query_args['meta_query'][] = array(
+		// 		'relation' => 'OR',
+		// 		array(
+		// 			'key' => '_event_cancelled',
+		// 			'value'   => '1',
+		// 			'compare' => $args['cancelled'] ? '=' : '!='
+		// 		),
+		// 		array(
+		// 			'key' => '_cancelled',
+		// 			'value'   => '1',
+		// 			'compare' => $args['cancelled'] ? '=' : '!='
+		// 		)
+		// 	);
+		// }
+
 		if(!is_null($args['cancelled']) || 1 === absint(get_option('event_manager_hide_cancelled_events'))) {
-			$query_args['meta_query'][] = array(
-				'relation' => 'OR',
-				array(
-					'key' => '_event_cancelled',
-					'value'   => '1',
-					'compare' => $args['cancelled'] ? '=' : '!='
-				),
-				array(
-					'key' => '_cancelled',
-					'value'   => '1',
-					'compare' => $args['cancelled'] ? '=' : '!='
-				)
-			);
-		}
+    if($args['cancelled']) {
+        // Show Cancelled events 
+        $query_args['meta_query'][] = array(
+            'key'     => '_event_cancelled',
+            'value'   => '1',
+            'compare' => '=',
+        );
+    } else {
+        // Hide Cancelled events HIDE — NOT EXISTS or value != 1
+        $query_args['meta_query'][] = array(
+            'relation' => 'OR',
+            array(
+                'key'     => '_event_cancelled',
+                'compare' => 'NOT EXISTS', //  index use 
+            ),
+            array(
+                'key'     => '_event_cancelled',
+                'value'   => '1',
+                'compare' => '!=',
+            ),
+        );
+    }
+}
 
 		if(isset($args['event_online']) && !empty($args['event_online'])) {
 			$event_online_raw = strtolower(trim((string) $args['event_online']));
