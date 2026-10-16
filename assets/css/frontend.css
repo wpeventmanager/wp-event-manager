@@ -1192,6 +1192,9 @@ input.wpem-theme-button:hover span {
   font-size: 14px;
   border-radius: 4px;
 }
+.wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-register-label + .wpem-event-cancel-label{
+    top: 45px;
+}
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-date .wpem-event-date-type .wpem-from-date {
   display: inline-block;
   float: left;
