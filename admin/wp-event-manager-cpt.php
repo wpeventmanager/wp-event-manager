@@ -497,7 +497,13 @@ class WP_Event_Manager_CPT {
 			return;
 		}
 
-		echo '<a href="' . esc_url(admin_url('post.php?post=' . absint($post_id) . '&action=edit')) . '" class="tips venue_title row-title" data-tip="' . esc_attr(sprintf(__('ID: %d', 'wp-event-manager'), absint($post_id))) . '">' . esc_html(get_the_title($post_id)) . '</a>';
+		echo '<a href="' . esc_url(admin_url('post.php?post=' . absint($post_id) . '&action=edit')) . '" class="tips venue_title row-title" data-tip="' . esc_attr(
+			sprintf(
+				/* translators: %d: The post ID. */
+				__('ID: %d', 'wp-event-manager'),
+				absint($post_id)
+			)
+		) . '">' . esc_html(get_the_title($post_id)) . '</a>';
 	}
 
 	/**

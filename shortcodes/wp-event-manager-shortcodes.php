@@ -1408,7 +1408,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function output_past_events($atts){
 		ob_start();
-
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		$atts = shortcode_atts(array(
 			'show_pagination'      => true,
 			'per_page'             => get_option('event_manager_per_page', 10),
@@ -1553,6 +1553,7 @@ class WP_Event_Manager_Shortcodes{
 		wp_reset_postdata();
 		$event_listings_output = apply_filters('event_manager_past_event_listings_output', ob_get_clean());
 		return  $event_listings_output;
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -1567,7 +1568,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function output_event_organizers($atts)	{
 		ob_start();
-
+		//phpcs:disable WordPress.Security.NonceVerification.Recommended
 		$defaults = apply_filters('event_manager_output_event_organizers_defaults', array(
 			'orderby'     => 'title',
 			'order'       => 'ASC',
@@ -1666,6 +1667,7 @@ class WP_Event_Manager_Shortcodes{
 		wp_reset_postdata();
 
 		return ob_get_clean();
+		//phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -1828,6 +1830,7 @@ class WP_Event_Manager_Shortcodes{
 	 * @return string
 	 */
 	public function output_event_venues( $atts ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		$atts = shortcode_atts(
 			apply_filters(
 				'event_manager_output_event_venues_defaults',
@@ -1923,6 +1926,7 @@ class WP_Event_Manager_Shortcodes{
 		do_action( 'wpem_venue_content_end' );
 		wp_reset_postdata();
 		return ob_get_clean();
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**

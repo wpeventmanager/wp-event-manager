@@ -2,7 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-
 if(!function_exists('wpem_get_event_listing_instance_id')) :
 	/**
 	 * Generates a unique, incrementing id for every event listing block
@@ -2517,7 +2516,9 @@ function wpem_get_form_field_types() {
  * Removes WP date filter on event listing in admin area
  * which filters on publish date not start date of event.
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 add_filter('months_dropdown_results', 'disable_default_date_filters_robust', 10, 2 );
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function disable_default_date_filters_robust( $months, $post_type ) {
     if ( $post_type == 'event_listing' ) {
         return array(); // Return an empty array to remove the default date filter
@@ -2528,6 +2529,7 @@ function disable_default_date_filters_robust( $months, $post_type ) {
 /**
  * Set up a new date filter on event listing in admin area.
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function custom_date_filter_form() {
     global $wpdb;	
     $selected_month = get_custom_date_filter_from_get(); // Get the selected month
@@ -2573,13 +2575,14 @@ function custom_date_filter_form() {
 /**
  * Get the relevant event listings to display.
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function filter_by_custom_date($query) {
     global $pagenow, $wpdb;
 	$selected_month = get_custom_date_filter_from_get();
 	$post_type = get_post_type_from_get();
     if (is_admin() && $query->is_main_query() && $pagenow === 'edit.php' && $post_type === 'event_listing' && !empty($selected_month)) {
         $date_filter = $selected_month;
-		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		if($date_filter === ""){
 			$sql = 
 				"SELECT DISTINCT p.ID
@@ -2604,7 +2607,7 @@ function filter_by_custom_date($query) {
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$post_ids = $wpdb->get_col( $sql ); // Get post IDs that match
 		}
-		// phpcs:enable
+		// phpcs:enable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         if ( ! empty( $post_ids ) ) {
             $query->set( 'post__in', $post_ids ); // Set post__in to filter by those IDs
             $query->set( 'orderby', 'post__in' ); // Maintain original order
@@ -2616,12 +2619,14 @@ function filter_by_custom_date($query) {
 }
 add_filter('pre_get_posts', 'filter_by_custom_date');
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function get_custom_date_filter_from_get() {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
     $month = isset($_GET['custom_date_filter']) ? sanitize_text_field( wp_unslash( $_GET['custom_date_filter'] ) ) : '';
     return preg_match('/^\d{4}-\d{2}$/', $month) ? $month : '';
 }
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function get_post_type_from_get() {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
      return isset($_GET['post_type']) ? sanitize_key( wp_unslash( $_GET['post_type'] ) ) : '';
@@ -2631,3 +2636,5 @@ add_action( 'restrict_manage_posts', function($html) {
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo custom_date_filter_form(); // Return the result of the function, as intended.
 }, 10 );
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound

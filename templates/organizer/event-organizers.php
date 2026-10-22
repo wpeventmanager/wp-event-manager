@@ -7,7 +7,9 @@ if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) 
     $wpem_field_to_hide = get_option('wpem_hide_organizer_fields');
 } else {
 	$wpem_field_to_hide = array();
-} ?>
+}
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+?>
 <!-- Organizer Counter -->
 <div class="wpem-organizer-connter">
 
@@ -124,3 +126,4 @@ if ( ! empty( $total_pages ) && $total_pages > 1 ) {
 	echo wp_kses_post( paginate_links( $pagination_args ) );
 	echo '</div>';
 }
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

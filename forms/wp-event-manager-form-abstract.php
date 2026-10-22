@@ -577,6 +577,7 @@ abstract class WP_Event_Manager_Form {
 		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ])) {
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- File upload array handled by WordPress upload APIs.
 			$file_names = wp_unslash($_FILES[$field_key]['name']);
 
 			// Handle single + multiple uploads safely

@@ -1384,6 +1384,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 						$event_singular = esc_attr($wp_post_types['event_listing']->labels->singular_name);
 						$wpem_custom_message = get_option('wpem_event_submit_success_message');
 						if (empty($wpem_custom_message)) {
+							/* translators: %s: The type or name of the listing submitted. */
 							$wpem_custom_message = __('%s submitted successfully. Your listing will be visible once approved.', 'wp-event-manager');
 						}
 

@@ -1,7 +1,9 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
-}?>
+}
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+?>
 <!-- venue Counter -->
 <div class="wpem-venue-connter">
     <?php if (count($wpem_venues) > 0) : ?>
@@ -111,3 +113,4 @@ if ( ! empty( $total_pages ) && $total_pages > 1 ) {
 	echo wp_kses_post( paginate_links( $pagination_args ) );
 	echo '</div>';
 }
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

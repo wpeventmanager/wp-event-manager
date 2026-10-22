@@ -305,6 +305,7 @@ class WP_Event_Manager_Ajax {
 
 		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$search_location = isset( $_POST['search_location'] ) ? sanitize_text_field( wp_unslash( $_POST['search_location'] ) ) : '';
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$search_categories = isset( $_POST['search_categories'] ) ? wp_unslash( $_POST['search_categories'] ) : '';
 		$event_manager_keyword = isset( $_POST['search_keywords'] ) ? sanitize_text_field( wp_unslash( $_POST['search_keywords'] ) ) : '';
 		if( is_array( $search_categories ) ) {
@@ -313,6 +314,7 @@ class WP_Event_Manager_Ajax {
 			$search_categories = sanitize_text_field( stripslashes( $search_categories ) );
 			$search_categories = explode( ',', $search_categories );
 		}
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$search_event_types = isset( $_POST['search_event_types'] ) ? wp_unslash( $_POST['search_event_types'] ) : '';
 		if( is_array( $search_event_types ) ) {
 			$search_event_types= array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_event_types) ) );
@@ -525,6 +527,7 @@ class WP_Event_Manager_Ajax {
 		// phpcs:enable
 		 $upcoming_events = new WP_Query($args);
 		// $upcoming_events = wpem_get_event_listings($args);
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$query_args_string = http_build_query($_POST);
 		if ($upcoming_events->have_posts()) {
 			ob_start();
@@ -554,6 +557,7 @@ class WP_Event_Manager_Ajax {
 			if ( isset( $_POST['show_pagination'] ) && 'true' === sanitize_text_field( wp_unslash( $_POST['show_pagination'] ) ) ) {
 				$response['pagination'] = wpem_get_event_listing_pagination( $upcoming_events->max_num_pages, $paged );
 			}
+			// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 			wp_send_json_success($response);
 		} else {

@@ -36,7 +36,8 @@ $wpem_allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 
 		//Show Hide event thumbnail field on front end
 		$wpem_thumbnail_key = 'event_thumbnail'; 
-		$wpem_show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false); 
+		$wpem_show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false);
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$disable_multiple_file_upload_feature_for_fields = apply_filters('disable_multiple_file_upload_feature_for_fields', array('event_thumbnail'));
 
 		foreach($event_fields as $wpem_key => $wpem_field) :
