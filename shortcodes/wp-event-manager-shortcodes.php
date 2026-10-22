@@ -1636,12 +1636,28 @@ class WP_Event_Manager_Shortcodes{
 				} else {
 					continue;
 				}
-				$letter    = strtoupper(mb_substr($name, 0, 1));
-				$item_page = $per_page > 0 ? ( (int) floor( $index / $per_page ) + 1 ) : 1;
-				$organizers_array[$letter][$organizer_id] = array( 'name' => $name, 'page' => $item_page );
-				$index++;
+				$letter = strtoupper(mb_substr($name, 0, 1));
+$organizers_array[$letter][$organizer_id] = array('name' => $name, 'page' => 0); // page=0 placeholder
+$index++;
 			}
 		}
+		$page_num      = 1;
+$count_on_page = 0;
+ksort($organizers_array); // A-Z sort
+
+foreach ($organizers_array as $letter => &$orgs) {
+    $group_size = count($orgs);
+    //if group not fit in this page then next page 
+    if ($count_on_page > 0 && ($count_on_page + $group_size) > $per_page) {
+        $page_num++;
+        $count_on_page = 0;
+    }
+    foreach ($orgs as &$org) {
+        $org['page'] = $page_num;
+    }
+    $count_on_page += $group_size;
+}
+unset($orgs, $org); // reference cleanup
 
 		wp_enqueue_script('wp-event-manager-organizer');
 
