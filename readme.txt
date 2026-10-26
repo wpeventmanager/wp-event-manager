@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 6.5
 Tested up to: 7.1
-Stable Tag: 3.4.1
+Stable Tag: 3.4.2
 Requires PHP: 7.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
