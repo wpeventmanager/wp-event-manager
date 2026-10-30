@@ -118,6 +118,7 @@ class WPEM_Event_Manager_Data_Cleaner {
 		'_organizer_tagline',
 		'_organizer_twitter',
 		'_organizer_video',
+		'_wpem_template_override_notice_dismissed_until'
 	);
 
 	/**

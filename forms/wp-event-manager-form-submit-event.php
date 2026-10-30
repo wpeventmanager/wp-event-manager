@@ -604,7 +604,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 								throw new Exception(sprintf(
 									wp_kses('" %s " (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'),
 									esc_attr($field['label']),
-									esc_attr($info['ext']),
+									esc_attr($file_info['ext']),
 									implode(', ', array_map('esc_attr', array_keys($field['allowed_mime_types'])))
 								));
 							}
@@ -1072,7 +1072,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 		// Loop fields and save meta and term data
 		foreach ($this->fields as $group_key => $group_fields) {
 			foreach ($group_fields as $key => $field) {
-				if (isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)):
+				if (isset($field['visibility']) && empty($field['visibility']) ):
 					continue;
 				endif;
 				// Save taxonomies
@@ -1165,10 +1165,21 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 					update_post_meta($this->event_id, '_event_expiry_date', $event_expiry_date);
 
 				} elseif ($key == 'event_organizer_ids') {
-					update_post_meta($this->event_id, '_' . $key, $values[$group_key][$key]);
-
+					$organizer_ids = array();
 					if ($current_user_id) {
-						foreach ($values[$group_key][$key] as $organizer_id) {
+						foreach ((array) $values[$group_key][$key] as $organizer_id) {
+							$organizer_id = absint($organizer_id);
+							$organizer = get_post($organizer_id);
+
+							if (
+								!$organizer
+								|| 'event_organizer' !== $organizer->post_type
+								|| (absint($organizer->post_author) !== $current_user_id && !current_user_can('edit_post', $organizer_id))
+							) {
+								continue;
+							}
+
+							$organizer_ids[] = $organizer_id;
 							$my_post = array(
 								'ID' => $organizer_id,
 								'post_author' => $current_user_id,
@@ -1177,22 +1188,35 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 							wp_update_post($my_post);
 						}
 					}
+					update_post_meta($this->event_id, '_' . $key, $organizer_ids);
 				} elseif ($key == 'event_venue_ids') {
-					update_post_meta($this->event_id, '_' . $key, $values[$group_key][$key]);
-
+					$venue_ids = array();
 					if ($current_user_id && !empty($values[$group_key][$key])) {
-						foreach ($values[$group_key][$key] as $venue_id) {
+						foreach ((array) $values[$group_key][$key] as $venue_id) {
+							$venue_id = absint($venue_id);
+							$venue = get_post($venue_id);
+
+							if (
+								!$venue
+								|| 'event_venue' !== $venue->post_type
+								|| (absint($venue->post_author) !== $current_user_id && !current_user_can('edit_post', $venue_id))
+							) {
+								continue;
+							}
+
+							$venue_ids[] = $venue_id;
 							$my_post = array(
 								'ID' => $venue_id,
 								'post_author' => $current_user_id,
 								'post_status' => 'publish',
 							);
-						}
-						wp_update_post($my_post);
+							wp_update_post($my_post);
 
-						update_post_meta($values[$group_key][$key], '_venue_location', sanitize_text_field($values['event']['event_location']));
-						update_post_meta($values[$group_key][$key], '_venue_zipcode', sanitize_text_field($values['event']['event_pincode']));
+							update_post_meta($venue_id, '_venue_location', sanitize_text_field($values['event']['event_location']));
+							update_post_meta($venue_id, '_venue_zipcode', sanitize_text_field($values['event']['event_pincode']));
+						}
 					}
+					update_post_meta($this->event_id, '_' . $key, $venue_ids);
 				} elseif (isset($field['type']) && $field['type'] == 'date') {
 					$date = $values[$group_key][$key];
 					if (!empty($date)) {
@@ -1360,6 +1384,7 @@ class WPEM_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form
 						$event_singular = esc_attr($wp_post_types['event_listing']->labels->singular_name);
 						$wpem_custom_message = get_option('wpem_event_submit_success_message');
 						if (empty($wpem_custom_message)) {
+							/* translators: %s: The type or name of the listing submitted. */
 							$wpem_custom_message = __('%s submitted successfully. Your listing will be visible once approved.', 'wp-event-manager');
 						}
 

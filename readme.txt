@@ -4,8 +4,8 @@ Contributors: wpeventmanager,ashokdudhat
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
 Tags: calendar, event, events, organizer, tickets
 Requires at least: 6.5
-Tested up to: 7.0
-Stable Tag: 3.4.1
+Tested up to: 7.1
+Stable Tag: 3.4.2
 Requires PHP: 7.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -426,6 +426,32 @@ This plugin connects to external services in order to provide certain features. 
 - Site administrators should ensure they have proper Terms of Service and Privacy Policy disclosures on their website that inform users about these external service connections.
 
 == Changelog ==
+
+= [3.4.2] 29-10-2026 =
+
+Fixed : Slow Database Queries When “Hide Cancelled Events” Is Enabled.
+Fixed : Security: AJAX upload_file accepts non-image files (PDF/DOC) for image-only fields.
+Fixed : Date validation issue.
+Fixed : Multiselect category or type issue.
+Fixed : Single event organizer shortcode issue.
+Fixed : Venue ID Not Displayed on Hover at venue listing section.
+Fixed : Unauthenticated User Can Read and Overwrite Any Draft/Pending Post via event_id.
+Fixed : View counter is not reset when duplicating an event.
+Fixed : Required field validation is skipped due to assignment in visibility checks.
+Fixed : Need to add a notice regarding the customization support.
+Fixed : [upcoming_events] shortcode issue.
+Fixed : Event_online attribute not working in [events] shortcode.
+Fixed : Ticket_prices attribute not working in [events] shortcode.
+Fixed : Event Cancellation Alert Changes Color After Page Refresh.
+Fixed : Load more button is not working
+Fixed : Admin : Organizer/venue edit the logo update is not working.
+Fixed : Frontside : Post an Event page image should be remove and Preview should be show for logout user.
+Fixed : Event Labels Overlapping in Grid View.
+Fixed : Fatal error when event submission or editing receives malformed taxonomy selections.
+Fixed : When Event update then the Update button are not work.
+Fixed : Organizer listing issue.
+Fixed : Some shortcodes are missing in our admin area shortcodes page.
+Fixed : Various Security, Code Improvements and Bug Fixes.
 
 = [3.4.1] 22-07-2026 =
 
