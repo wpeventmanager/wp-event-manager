@@ -170,6 +170,24 @@ if(!class_exists('WP_Event_Manager_Shortcode_List')) :
 									<td><?php esc_attr_e('In order to display a particular event’s Venue, a user can add this shortcode.', 'wp-event-manager');?></td>
 									<td><a class="button add-field" href="<?php echo esc_attr($detail_link).'venue-shortcode/#articleTOC_5';?>" target="_blank"><?php esc_attr_e('View Details', 'wp-event-manager');?></a></td>
 								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[upcoming_events]</td>
+									<td><?php esc_attr_e('Upcoming Events', 'wp-event-manager');?></td>
+									<td><?php esc_attr_e('The Upcoming Events shortcode allows users to display a list of upcoming events on a page.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo esc_attr($detail_link);?>" target="_blank"><?php esc_attr_e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[related_events event_id="event_id"]</td>
+									<td><?php esc_attr_e('Related Events', 'wp-event-manager');?></td>
+									<td><?php esc_attr_e('The Related Events shortcode allows users to display a list of events related to a specific event.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo esc_attr($detail_link);?>" target="_blank"><?php esc_attr_e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
+								<tr class="shortcode_list wp-event-manager">
+									<td class="wpem-shortcode-td">[event_register id="event_id"]</td>
+									<td><?php esc_attr_e('Event Registration Form', 'wp-event-manager');?></td>
+									<td><?php esc_attr_e('The Event Registration Form shortcode allows users to display a registration form for an event.', 'wp-event-manager');?></td>
+									<td><a class="button add-field" href="<?php echo esc_attr($detail_link);?>" target="_blank"><?php esc_attr_e('View Details', 'wp-event-manager');?></a></td>
+								</tr>
 								<?php do_action('wpem_event_manager_shortcode_list', $detail_link); ?>
 							</tbody>
 						</table>

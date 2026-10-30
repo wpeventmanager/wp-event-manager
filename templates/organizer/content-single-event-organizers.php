@@ -9,7 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 if (wpem_has_event_organizer_ids($event_id)) :
     if (get_option('event_manager_form_fields')) {
-        $wpem_organizer_custom_fields = get_option('event_manager_form_fields', true)['organizer'];
+        // error_log('test ==== ' . print_r(get_option('event_manager_form_fields', true)['organizer'], true));
+        $wpem_form_fields_option = get_option('event_manager_form_fields');
+        if (is_array($wpem_form_fields_option) && isset($wpem_form_fields_option['organizer']) && is_array($wpem_form_fields_option['organizer'])) {
+            $wpem_organizer_custom_fields = $wpem_form_fields_option['organizer'];
+        }
     } ?>
 
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">
@@ -32,7 +36,9 @@ if (wpem_has_event_organizer_ids($event_id)) :
                                     $wpem_organizer = get_post($wpem_organizer_id);
 
                                     if (get_option('event_manager_form_fields')) {
-                                        $wpem_organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
+                                        if (is_array($wpem_form_fields_option) && isset($wpem_form_fields_option['organizer']) && is_array($wpem_form_fields_option['organizer'])) {
+                                            $wpem_organizer_fields = get_option('event_manager_form_fields', true)['organizer'];
+                                        }
                                     }
                                     $wpem_organizer_email = esc_html(get_post_meta($wpem_organizer_id, '_organizer_email', true));
                                     

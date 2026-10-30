@@ -33,12 +33,14 @@ class WP_Event_Manager_Admin {
 		add_action('admin_menu', array($this, 'admin_menu'), 12);
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
 		add_action('admin_init', array($this, 'admin_init'));
+		add_action('admin_init', array($this, 'wpem_dismiss_template_override_notice'));
 		add_action('current_screen', array($this, 'conditional_includes'));
 		add_filter('pre_insert_term', [$this,'secure_event_manager_category_name'], 10, 2);
 
 		if(version_compare(get_option('wp_event_manager_db_version', 0), '3.1.13', '<')) {
 			add_action('admin_notices', array($this, 'upgrade_database_notice'));
 		}
+		add_action('admin_notices', array($this, 'wpem_template_override_notice'));
 
 		// Ajax
 		add_action('wp_ajax_wpem_upgrade_database', array($this, 'wpem_upgrade_database'));
@@ -73,6 +75,58 @@ class WP_Event_Manager_Admin {
 			</div>
 		<?php
 		}
+	}
+
+	/**
+	 * Display a reminder to synchronize overridden templates.
+	 *
+	 * @return void
+	 */
+	public function wpem_template_override_notice() {
+		$dismissed_until = (int) get_user_meta(get_current_user_id(), '_wpem_template_override_notice_dismissed_until', true);
+		if ($dismissed_until > time()) {
+			return;
+		}else{
+			delete_user_meta(get_current_user_id(), '_wpem_template_override_notice_dismissed_until');
+		}
+
+		$dismiss_url = wp_nonce_url(
+			add_query_arg('wpem_dismiss_template_override_notice', '1'),
+			'wpem_dismiss_template_override_notice'
+		);
+		?>
+		<div class="notice notice-info">
+			<p><strong><?php esc_html_e('Template Override Notice:', 'wp-event-manager'); ?></strong> <?php esc_html_e('WP Event Manager and its add-ons are updated regularly to enhance functionality and compatibility. If you have overridden any template files in your theme, please ensure they are updated to match the latest versions to maintain optimal performance and prevent potential issues.', 'wp-event-manager'); ?></p>
+			<p><a href="<?php echo esc_url($dismiss_url); ?>"><?php esc_html_e('Dismiss Notice', 'wp-event-manager'); ?></a></p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Dismiss the template override notice for 10 days for the current user.
+	 *
+	 * @return void
+	 */
+	public function wpem_dismiss_template_override_notice() {
+		if (
+			! isset($_GET['wpem_dismiss_template_override_notice'], $_GET['_wpnonce'])
+			|| '1' !== sanitize_text_field(wp_unslash($_GET['wpem_dismiss_template_override_notice']))
+			|| ! wp_verify_nonce(
+				sanitize_text_field(wp_unslash($_GET['_wpnonce'])),
+				'wpem_dismiss_template_override_notice'
+			)
+		) {
+			return;
+		}
+
+		update_user_meta(
+			get_current_user_id(),
+			'_wpem_template_override_notice_dismissed_until',
+			time() + (10 * DAY_IN_SECONDS)
+		);
+
+		wp_safe_redirect(remove_query_arg(array('wpem_dismiss_template_override_notice', '_wpnonce')));
+		exit;
 	}
 
 	/**
@@ -155,11 +209,11 @@ class WP_Event_Manager_Admin {
 			const editor = wp.data.dispatch('core/editor');
 		";
 
-		if ( $categories_enabled ) {
+		if ( $categories_enabled && false == event_manager_multiselect_event_category() ) {
 			$custom_editor_script .= "editor.removeEditorPanel('taxonomy-panel-event_listing_category');";
 		}
 
-		if ( $types_enabled ) {
+		if ( $types_enabled && false == event_manager_multiselect_event_type() ) {
 			$custom_editor_script .= "editor.removeEditorPanel('taxonomy-panel-event_listing_type');";
 		}
 

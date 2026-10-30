@@ -537,15 +537,26 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return array
 	 */
+	// protected function get_posted_term_checklist_field($key, $field) {
+	// 	// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
+	// 	if(isset($_POST[ 'tax_input' ]) && isset($_POST[ 'tax_input' ][ $field['taxonomy'] ])) {
+	// 		return array_map('absint', $_POST[ 'tax_input' ][ $field['taxonomy'] ]);
+	// 	} else {
+	// 		return array();
+	// 	}
+	// 	// phpcs:enable
+	// }
 	protected function get_posted_term_checklist_field($key, $field) {
 		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		if(isset($_POST[ 'tax_input' ]) && isset($_POST[ 'tax_input' ][ $field['taxonomy'] ])) {
-			return array_map('absint', $_POST[ 'tax_input' ][ $field['taxonomy'] ]);
-		} else {
-			return array();
-		}
-		// phpcs:enable
-	}
+    if (isset($_POST['tax_input'], $_POST['tax_input'][$field['taxonomy']])) {
+        $value = $_POST['tax_input'][$field['taxonomy']];
+        if (!is_array($value)) return array(); // ✅ malformed reject
+        return array_map('absint', $value);
+    }
+    return array();
+	// phpcs:enable
+}
+
 
 	/**
 	 * Get posted terms for the taxonomy.
@@ -553,10 +564,15 @@ abstract class WP_Event_Manager_Form {
 	 * @param  array $field
 	 * @return int
 	 */
+	// protected function get_posted_term_multiselect_field($key, $field) {
+	// 	// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
+	// 	return isset($_POST[ $key ]) ? array_map('absint', $_POST[ $key ]) : array();
+	// }
 	protected function get_posted_term_multiselect_field($key, $field) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
-		return isset($_POST[ $key ]) ? array_map('absint', $_POST[ $key ]) : array();
-	}
+    if (!isset($_POST[$key]) || !is_array($_POST[$key])) return array(); 
+    return array_map('absint', $_POST[$key]);
+}
 
 	/**
 	 * Get posted terms for the taxonomy.
@@ -577,6 +593,7 @@ abstract class WP_Event_Manager_Form {
 		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification handled at form submission level
 		if(isset($_FILES[ $field_key ]) && !empty($_FILES[ $field_key ])) {
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- File upload array handled by WordPress upload APIs.
 			$file_names = wp_unslash($_FILES[$field_key]['name']);
 
 			// Handle single + multiple uploads safely
