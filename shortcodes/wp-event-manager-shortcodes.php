@@ -111,24 +111,6 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function event_dashboard_handler(){
 
-		$user_id = get_current_user_id();
-		if ( $user_id ) {
-			$message_key = 'wpem_event_dashboard_message_' . $user_id;
-			$dashboard_message = get_transient( $message_key );
-			if ( false !== $dashboard_message ) {
-				delete_transient( $message_key );
-				if ( is_array( $dashboard_message ) && isset( $dashboard_message['action'], $dashboard_message['event_title'] ) && 'mark_not_cancelled' === $dashboard_message['action'] ) {
-					// translators: %s is the title of the event marked as not cancelled.
-					$message = sprintf( __( '%s has been marked as not cancelled.', 'wp-event-manager' ), esc_html( $dashboard_message['event_title'] ) );
-				} else {
-					$event_title = is_array( $dashboard_message ) && isset( $dashboard_message['event_title'] ) ? $dashboard_message['event_title'] : $dashboard_message;
-					// translators: %s is the title of the cancelled event.
-					$message = sprintf( __( '%s has been cancelled.', 'wp-event-manager' ), esc_html( $event_title ) );
-				}
-				$this->event_dashboard_message = '<div class="event-manager-message wpem-alert wpem-alert-success">' . $message . '</div>';
-			}
-		}
-
 		if(!empty($_REQUEST['action']) && !empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'event_manager_my_event_actions')) {
 			$action = sanitize_title( wp_unslash($_REQUEST['action']));
 			$event_id = isset($_REQUEST['event_id']) ? absint(wp_unslash($_REQUEST['event_id'])) : 0;
@@ -195,18 +177,6 @@ class WP_Event_Manager_Shortcodes{
 						break;
 				}
 				do_action('event_manager_my_event_do_action', $action, $event_id);
-				if ( in_array( $action, array( 'mark_cancelled', 'mark_not_cancelled' ), true ) ) {
-					set_transient(
-						'wpem_event_dashboard_message_' . $user_id,
-						array(
-							'action'      => $action,
-							'event_title' => $event->post_title,
-						),
-						MINUTE_IN_SECONDS
-					);
-					wp_safe_redirect( esc_url_raw( remove_query_arg( array( 'action', 'event_id', '_wpnonce' ) ) ) );
-					exit;
-				}
 			} catch (Exception $e) {
 				$this->event_dashboard_message = '<div class="event-manager-error wpem-alert wpem-alert-danger">' . esc_html($e->getMessage()) . '</div>';
 			}
@@ -921,9 +891,6 @@ class WP_Event_Manager_Shortcodes{
 		$event_types          = is_array($event_types) ? $event_types : array_filter(array_map('trim', explode(',', $event_types)));
 		if(!empty($ticket_prices)){
 			$ticket_prices        = is_array($ticket_prices) ? $ticket_prices : array_filter(array_map('trim', explode(',', $ticket_prices)));
-			// Normalize casing so shortcode usage like ticket_prices="Paid" or
-			// ticket_prices="PAID" is matched the same way as the frontend filter values.
-			$ticket_prices        = array_map('strtolower', $ticket_prices);
 		}
 		// Get keywords, location, datetime, category, event type and ticket price from query string if set
 		// Verify nonce for search parameters
@@ -1063,20 +1030,6 @@ class WP_Event_Manager_Shortcodes{
 		}
 		
 		if($show_filters) {
-			// If the shortcode set ticket_prices (e.g. ticket_prices="paid") but didn't
-			// separately set selected_ticket_price, pre-select the matching dropdown
-			// option from it. The frontend automatically re-fetches events via AJAX
-			// right after page load using whatever the dropdown currently has selected,
-			// so without this the auto-refresh silently ignores the ticket_prices filter
-			// and shows all events again.
-			if(empty($selected_ticket_price) && !empty($ticket_prices)) {
-				$first_ticket_price = strtolower(trim(reset($ticket_prices)));
-				if($first_ticket_price === 'paid') {
-					$selected_ticket_price = 'ticket_price_paid';
-				} elseif($first_ticket_price === 'free') {
-					$selected_ticket_price = 'ticket_price_free';
-				}
-			}
 			$event_filter_args = array(
 				'per_page' => $per_page,
 				'orderby' => $orderby,
@@ -1408,7 +1361,7 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function output_past_events($atts){
 		ob_start();
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+
 		$atts = shortcode_atts(array(
 			'show_pagination'      => true,
 			'per_page'             => get_option('event_manager_per_page', 10),
@@ -1553,7 +1506,6 @@ class WP_Event_Manager_Shortcodes{
 		wp_reset_postdata();
 		$event_listings_output = apply_filters('event_manager_past_event_listings_output', ob_get_clean());
 		return  $event_listings_output;
-		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -1568,13 +1520,12 @@ class WP_Event_Manager_Shortcodes{
 	 */
 	public function output_event_organizers($atts)	{
 		ob_start();
-		//phpcs:disable WordPress.Security.NonceVerification.Recommended
+
 		$defaults = apply_filters('event_manager_output_event_organizers_defaults', array(
 			'orderby'     => 'title',
 			'order'       => 'ASC',
 			'show_thumb'  => true,
 			'show_count'  => true,
-			'per_page'   => 9,
 		));
 
 		$atts = shortcode_atts($defaults, $atts, 'event_organizers');
@@ -1591,90 +1542,37 @@ class WP_Event_Manager_Shortcodes{
 			$orderby = 'title';
 		}
 
-		// Default to 9 venues per page.
-		$per_page = absint( $atts['per_page'] );
-		if ( $per_page < 1 ) {
-			$per_page = 9;
-		}
-
 		$args = [
 			'orderby' 	=> $orderby,
 			'order'		=> $order,
 		];
 
-		$all_organizers   = wpem_get_all_organizer_array('', $args);
-		// Make sure we always have an array.
-		if ( ! is_array( $all_organizers ) ) {
-			$all_organizers = array();
-		}
-
-		// Current page.
-		$paged = isset( $_GET['organizer_page'] ) ? absint( $_GET['organizer_page'] ) : 1;
-		if ( $paged < 1 ) {
-			$paged = 1;
-		}
-
-		// Total number of venues.
-		$total_organizers = count( $all_organizers );
-		// Total number of pages.
-		$total_pages = $per_page > 0 ? (int) ceil( $total_organizers / $per_page ) : 1;
-
-		// Make sure current page does not exceed total pages.
-		if ( $total_pages > 0 && $paged > $total_pages ) {
-			$paged = $total_pages;
-		}
-
-				$wpem_count_events = wpem_get_event_organizer_count();
+		$organizers   = wpem_get_all_organizer_array('', $args);
+		$wpem_count_events = wpem_get_event_organizer_count();
 		$organizers_array = [];
-		$index = 0;
-		if (!empty($all_organizers)) {
-			foreach ($all_organizers as $organizer_id => $organizer) {
+
+		if (!empty($organizers)) {
+			foreach ($organizers as $organizer_id => $organizer) {
 				if (is_array($organizer) && isset($organizer[0])) {
-					$name = $organizer[0];
+					$letter = strtoupper(mb_substr($organizer[0], 0, 1));
+					$organizers_array[$letter][$organizer_id] = $organizer;
 				} elseif (is_string($organizer) && strlen($organizer) > 0) {
-					$name = $organizer;
-				} else {
-					continue;
+					$letter = strtoupper(mb_substr($organizer, 0, 1));
+					$organizers_array[$letter][$organizer_id] = $organizer;
 				}
-				$letter = strtoupper(mb_substr($name, 0, 1));
-$organizers_array[$letter][$organizer_id] = array('name' => $name, 'page' => 0); // page=0 placeholder
-$index++;
 			}
 		}
-		$page_num      = 1;
-$count_on_page = 0;
-ksort($organizers_array); // A-Z sort
-
-foreach ($organizers_array as $letter => &$orgs) {
-    $group_size = count($orgs);
-    //if group not fit in this page then next page 
-    if ($count_on_page > 0 && ($count_on_page + $group_size) > $per_page) {
-        $page_num++;
-        $count_on_page = 0;
-    }
-    foreach ($orgs as &$org) {
-        $org['page'] = $page_num;
-    }
-    $count_on_page += $group_size;
-}
-unset($orgs, $org); // reference cleanup
 
 		wp_enqueue_script('wp-event-manager-organizer');
 
 		wpem_get_event_manager_template(
 			'event-organizers.php',
 			array(
-				'wpem_organizers'		=> $all_organizers,
+				'wpem_organizers'		=> $organizers,
 				'wpem_organizers_array'  => $organizers_array,
 				'wpem_count_events'    => $wpem_count_events,
 				'show_thumb'		=> $show_thumb,
 				'show_count'		=> $show_count,
-
-				// Pagination data.
-				'per_page'          => $per_page,
-				'paged'             => $paged,
-				'total_venues'      => $total_organizers,
-				'total_pages'       => $total_pages,
 			),
 			'wp-event-manager/organizer',
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer/'
@@ -1683,7 +1581,6 @@ unset($orgs, $org); // reference cleanup
 		wp_reset_postdata();
 
 		return ob_get_clean();
-		//phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -1845,104 +1742,69 @@ unset($orgs, $org); // reference cleanup
 	 * @param array $args
 	 * @return string
 	 */
-	public function output_event_venues( $atts ) {
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		$atts = shortcode_atts(
-			apply_filters(
-				'event_manager_output_event_venues_defaults',
-				array(
-					'orderby'    => 'title',
-					'order'      => 'ASC',
-					'show_thumb' => true,
-					'show_count' => true,
-					'per_page'   => 9,
-				)
-			),
-			$atts
-		);
+	public function output_event_venues($atts)	{
+		$atts = shortcode_atts(apply_filters('event_manager_output_event_venues_defaults', array(
+			'orderby'     => 'title',
+			'order'       => 'ASC',
+			'show_thumb'  => true,
+			'show_count'  => true,
+		)), $atts);
 
-		$orderby     = sanitize_key( $atts['orderby'] );
-		$order       = sanitize_text_field( $atts['order'] );
-		$show_thumb  = filter_var( $atts['show_thumb'], FILTER_VALIDATE_BOOLEAN );
-		$show_count  = filter_var( $atts['show_count'], FILTER_VALIDATE_BOOLEAN );
+		$orderby    = sanitize_key($atts['orderby']);
+		$order      = sanitize_text_field($atts['order']);
+		$show_thumb = filter_var($atts['show_thumb'], FILTER_VALIDATE_BOOLEAN);
+		$show_count = filter_var($atts['show_count'], FILTER_VALIDATE_BOOLEAN);
 
-		// Default to 9 venues per page.
-		$per_page = absint( $atts['per_page'] );
-		if ( $per_page < 1 ) {
-			$per_page = 9;
-		}
+		ob_start();
 
-		// Get all venues first.
-		$args = array(
-			'orderby' => $orderby,
-			'order'   => $order,
-		);
+		$args = [
+			'orderby' 	=> $orderby,
+			'order'		=> $order,
+		];
 
-		$all_venues = wpem_get_all_venue_array( '', $args );
-		// Make sure we always have an array.
-		if ( ! is_array( $all_venues ) ) {
-			$all_venues = array();
-		}
+		$venues   = wpem_get_all_venue_array('', $args);
+		$wpem_count_events = wpem_get_event_venue_count();
+		$venues_array = [];
 
-		// Current page.
-		$paged = isset( $_GET['venue_page'] ) ? absint( $_GET['venue_page'] ) : 1;
-		if ( $paged < 1 ) {
-			$paged = 1;
-		}
-
-		// Total number of venues.
-		$total_venues = count( $all_venues );
-		// Total number of pages.
-		$total_pages = $per_page > 0 ? (int) ceil( $total_venues / $per_page ) : 1;
-
-		// Make sure current page does not exceed total pages.
-		if ( $total_pages > 0 && $paged > $total_pages ) {
-			$paged = $total_pages;
-		}
-
-				$wpem_count_events = wpem_get_event_venue_count();
-		$venues_array = array();
-		$index = 0;
-		if ( ! empty( $all_venues ) ) {
-			foreach ( $all_venues as $venue_id => $venue ) {
-				if ( is_array( $venue ) && isset( $venue[0] ) ) {
+		if (!empty($venues)) {
+			foreach ($venues as $venue_id => $venue) {
+				if (is_array($venue) && isset($venue[0])) {
 					$name = $venue[0];
-				} elseif ( is_string( $venue ) ) {
+				} elseif (is_string($venue)) {
 					$name = $venue;
 				} else {
 					continue;
 				}
-				$first_char = mb_substr( $name, 0, 1 );
-				$key = preg_match( '/[A-Za-z]/u', $first_char ) ? strtoupper( $first_char ) : '#';
-				$item_page = $per_page > 0 ? ( (int) floor( $index / $per_page ) + 1 ) : 1;
-				$venues_array[ $key ][ $venue_id ] = array( 'name' => $name, 'page' => $item_page );
-				$index++;
+
+				$first_char = mb_substr($name, 0, 1);
+				$key = preg_match('/[A-Za-z]/u', $first_char) ? strtoupper($first_char) : '#';
+
+				$venues_array[$key][$venue_id] = $venue;
 			}
 		}
-		do_action( 'wpem_venue_content_start' );
-		wp_enqueue_script( 'wp-event-manager-venue' );
+
+		do_action('wpem_venue_content_start');
+
+		wp_enqueue_script('wp-event-manager-venue');
+
 		wpem_get_event_manager_template(
 			'event-venues.php',
 			array(
-				'wpem_venues'       => $all_venues,
+				'wpem_venues'       => $venues,
 				'wpem_venues_array' => $venues_array,
-				'wpem_count_events' => $wpem_count_events,
-				'show_thumb'        => $show_thumb,
-				'show_count'        => $show_count,
-
-				// Pagination data.
-				'per_page'          => $per_page,
-				'paged'             => $paged,
-				'total_venues'      => $total_venues,
-				'total_pages'       => $total_pages,
+				'wpem_count_events'	=> $wpem_count_events,
+				'show_thumb'		=> $show_thumb,
+				'show_count'		=> $show_count,
 			),
 			'wp-event-manager/venue',
 			EVENT_MANAGER_PLUGIN_DIR . '/templates/venue/'
 		);
-		do_action( 'wpem_venue_content_end' );
+
+		do_action('wpem_venue_content_end');
+
 		wp_reset_postdata();
+
 		return ob_get_clean();
-		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -2208,12 +2070,8 @@ unset($orgs, $org); // reference cleanup
 			'event-crystal-filters.php',
 		));
 
-		if(!empty($atts['filter_style'])) {
-			$filter_file = basename($atts['filter_style'] . '.php');
-		} else {
-			$filter_file_option = get_option('event_manager_filter_design');
-			$filter_file = $filter_file_option ? basename($filter_file_option . '.php') : 'event-classic-filters.php';
-		}
+		$filter_file_option = get_option('event_manager_filter_design');
+		$filter_file = $filter_file_option ? basename($filter_file_option . '.php') : 'event-classic-filters.php';
 		$datetimes = WP_Event_Manager_Filters::get_datetimes_filter();
 		$selected_datetime = $atts['selected_datetime'];
 		$show_categories = true;
@@ -2272,8 +2130,7 @@ unset($orgs, $org); // reference cleanup
  
 		if($upcoming_events->have_posts()) : 
 			wp_enqueue_script('wp-event-manager-ajax-filters');?>
-			<div id="wpem_upcoming_map_container"></div>
-			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>" data-per-page="<?php echo esc_attr($per_page); ?>" data-show-pagination="<?php echo ($atts['show_pagination'] == 'true' || $atts['show_pagination'] == 'on') ? 'true' : 'false'; ?>">
+			<div id="upcoming_event_listing" class="event_listings_upcoming" data-orderby="<?php echo esc_attr( $atts['orderby'] ); ?>" data-order="<?php echo esc_attr( $atts['order'] ); ?>" data-page="<?php echo (int)$paged; ?>">
 				<?php wpem_get_event_manager_template('event-listings-start.php', array('layout_type' => esc_attr( $layout_type ), 'title' => $title));
 				while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
 					wpem_get_event_manager_template_part('content', 'event_listing');
@@ -2282,7 +2139,7 @@ unset($orgs, $org); // reference cleanup
 				if($upcoming_events->found_posts > $per_page) :
 					if($atts['show_pagination'] == "true" || $atts['show_pagination'] == "on") : ?>
 						<div class="event-organizer-pagination">
-							<?php echo wp_kses_post( wpem_get_event_listing_pagination( $upcoming_events->max_num_pages, $paged ) ); ?>
+							<?php wpem_get_event_manager_template('pagination.php', array('max_num_pages' => $upcoming_events->max_num_pages)); ?>
 						</div>
 					<?php else : ?>
     					<div id="load_more_events_loader">

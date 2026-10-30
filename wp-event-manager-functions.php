@@ -2,6 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
+
 if(!function_exists('wpem_get_event_listing_instance_id')) :
 	/**
 	 * Generates a unique, incrementing id for every event listing block
@@ -120,60 +121,32 @@ if(!function_exists('wpem_get_event_listings')) :
 			$query_args['meta_query']['relation'] = 'AND';
 		}
 
-		// if(!is_null($args['cancelled']) || 1 === absint(get_option('event_manager_hide_cancelled_events'))) {
-		// 	$query_args['meta_query'][] = array(
-		// 		'relation' => 'OR',
-		// 		array(
-		// 			'key' => '_event_cancelled',
-		// 			'value'   => '1',
-		// 			'compare' => $args['cancelled'] ? '=' : '!='
-		// 		),
-		// 		array(
-		// 			'key' => '_cancelled',
-		// 			'value'   => '1',
-		// 			'compare' => $args['cancelled'] ? '=' : '!='
-		// 		)
-		// 	);
-		// }
-
 		if(!is_null($args['cancelled']) || 1 === absint(get_option('event_manager_hide_cancelled_events'))) {
-    if($args['cancelled']) {
-        // Show Cancelled events 
-        $query_args['meta_query'][] = array(
-            'key'     => '_event_cancelled',
-            'value'   => '1',
-            'compare' => '=',
-        );
-    } else {
-        // Hide Cancelled events HIDE — NOT EXISTS or value != 1
-        $query_args['meta_query'][] = array(
-            'relation' => 'OR',
-            array(
-                'key'     => '_event_cancelled',
-                'compare' => 'NOT EXISTS', //  index use 
-            ),
-            array(
-                'key'     => '_event_cancelled',
-                'value'   => '1',
-                'compare' => '!=',
-            ),
-        );
-    }
-}
+			$query_args['meta_query'][] = array(
+				'relation' => 'OR',
+				array(
+					'key' => '_event_cancelled',
+					'value'   => '1',
+					'compare' => $args['cancelled'] ? '=' : '!='
+				),
+				array(
+					'key' => '_cancelled',
+					'value'   => '1',
+					'compare' => $args['cancelled'] ? '=' : '!='
+				)
+			);
+		}
 
 		if(isset($args['event_online']) && !empty($args['event_online'])) {
-			$event_online_raw = strtolower(trim((string) $args['event_online']));
-			if(in_array($event_online_raw, array('true', 'yes', '1'), true))
+		
+			if($args['event_online'] == 'true')
 				$event_online = 'yes';
-			elseif(in_array($event_online_raw, array('false', 'no', '0'), true))
+			elseif($args['event_online'] == 'false')
 				$event_online = 'no';
-			else
-				$event_online = 'yes'; // Fallback: treat any other truthy value as "online".
-
 			$query_args['meta_query'][] = array(
 				'key'     => '_event_online',
 				'value'   => $event_online,
-				'compare' => '='
+				'compare' => $args['event_online'] ? '=' : '!='
 			);
 		}
 			
@@ -244,28 +217,18 @@ if(!function_exists('wpem_get_event_listings')) :
 		}
 		// Must match with event_ticket_options options value at wp-event-manager-form-submit-event.php
 		if(!empty($args['search_ticket_prices'][0]))  {	
-			// Normalize the incoming value - shortcode attributes / custom query args
-			// may arrive with different casing or stray whitespace (e.g. "Paid", " paid")
-			// compared to the values generated internally by the filter widget.
-			$raw_ticket_price_search = strtolower(trim($args['search_ticket_prices'][0]));
 			$ticket_price_value='';
-			if($raw_ticket_price_search === 'paid' || $raw_ticket_price_search === 'ticket_price_paid') {  
+			if($args['search_ticket_prices'][0]==='paid' || $args['search_ticket_prices'][0]==='ticket_price_paid') {  
 				$ticket_price_value='paid';     
-			} elseif($raw_ticket_price_search === 'free' || $raw_ticket_price_search === 'ticket_price_free') {
+			} elseif($args['search_ticket_prices'][0]==='free' || $args['search_ticket_prices'][0]==='ticket_price_free') {
 				$ticket_price_value='free';
 			}
-			// Only add the meta query when the value was recognised. Previously an
-			// unrecognised value still added the query with an empty string, which
-			// produces a LIKE '%%' comparison that matches every event instead of
-			// filtering them - making the filter silently do nothing.
-			if(!empty($ticket_price_value)) {
-				$ticket_search[] = array(
-					'key'     => '_event_ticket_options',
-					'value'   => $ticket_price_value,
-					'compare' => 'LIKE',
-				);
-				$query_args['meta_query'][] = $ticket_search;
-			}
+			$ticket_search[] = array(
+							'key'     => '_event_ticket_options',
+							'value'   => $ticket_price_value,
+							'compare' => 'LIKE',
+						);
+			$query_args['meta_query'][] = $ticket_search;
 		}
 
 		if('featured' === $args['orderby']) {
@@ -878,18 +841,13 @@ function event_manager_user_can_post_event() {
 function event_manager_user_can_edit_event($event_id) {
 
 	$can_edit = true;
-	if (!$event_id) {
+	if(!is_user_logged_in() || !$event_id)  {
 		if(event_manager_user_requires_account() && !event_manager_enable_registration()) {
 			$can_edit = false;
 		}
 	} else {
 		$event  = get_post($event_id);
-		if (
-			!$event
-			|| 'event_listing' !== $event->post_type
-			|| !is_user_logged_in()
-			|| (absint($event->post_author) !== get_current_user_id() && !current_user_can('edit_post', $event_id))
-		) {
+		if(!$event || (absint($event->post_author) !== get_current_user_id() && !current_user_can('edit_post', $event_id))) {
 			$can_edit = false;
 		}
 	}
@@ -1395,14 +1353,7 @@ function event_manager_upload_file($file, $args = array()) {
     if(is_wp_error($file)) {
         return $file;
     }
-        // Security: verify the real extension/content on the server, do not trust the client-sent type.
-    $wpem_check = wp_check_filetype_and_ext($file['tmp_name'], $file['name'], (array) $allowed_mime_types);
-    if(empty($wpem_check['ext']) || empty($wpem_check['type'])) {
-        $event_manager_upload         = false;
-        $event_manager_uploading_file = '';
-        return new WP_Error('upload', __('Invalid file type.', 'wp-event-manager'));
-    }
-    $file['type'] = $wpem_check['type'];
+    
 	if(!in_array($file['type'], $allowed_mime_types)) {
 		if($args['file_label']) {
 			return new WP_Error('upload', sprintf('"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), $args['file_label'], $file['type'], implode(', ', array_keys($args['allowed_mime_types']))) ;
@@ -2516,9 +2467,7 @@ function wpem_get_form_field_types() {
  * Removes WP date filter on event listing in admin area
  * which filters on publish date not start date of event.
  */
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 add_filter('months_dropdown_results', 'disable_default_date_filters_robust', 10, 2 );
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function disable_default_date_filters_robust( $months, $post_type ) {
     if ( $post_type == 'event_listing' ) {
         return array(); // Return an empty array to remove the default date filter
@@ -2529,7 +2478,6 @@ function disable_default_date_filters_robust( $months, $post_type ) {
 /**
  * Set up a new date filter on event listing in admin area.
  */
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function custom_date_filter_form() {
     global $wpdb;	
     $selected_month = get_custom_date_filter_from_get(); // Get the selected month
@@ -2575,14 +2523,13 @@ function custom_date_filter_form() {
 /**
  * Get the relevant event listings to display.
  */
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function filter_by_custom_date($query) {
     global $pagenow, $wpdb;
 	$selected_month = get_custom_date_filter_from_get();
 	$post_type = get_post_type_from_get();
     if (is_admin() && $query->is_main_query() && $pagenow === 'edit.php' && $post_type === 'event_listing' && !empty($selected_month)) {
         $date_filter = $selected_month;
-		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
 		if($date_filter === ""){
 			$sql = 
 				"SELECT DISTINCT p.ID
@@ -2607,7 +2554,7 @@ function filter_by_custom_date($query) {
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$post_ids = $wpdb->get_col( $sql ); // Get post IDs that match
 		}
-		// phpcs:enable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:enable
         if ( ! empty( $post_ids ) ) {
             $query->set( 'post__in', $post_ids ); // Set post__in to filter by those IDs
             $query->set( 'orderby', 'post__in' ); // Maintain original order
@@ -2619,14 +2566,12 @@ function filter_by_custom_date($query) {
 }
 add_filter('pre_get_posts', 'filter_by_custom_date');
 
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function get_custom_date_filter_from_get() {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
     $month = isset($_GET['custom_date_filter']) ? sanitize_text_field( wp_unslash( $_GET['custom_date_filter'] ) ) : '';
     return preg_match('/^\d{4}-\d{2}$/', $month) ? $month : '';
 }
 
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function get_post_type_from_get() {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
      return isset($_GET['post_type']) ? sanitize_key( wp_unslash( $_GET['post_type'] ) ) : '';
@@ -2636,5 +2581,3 @@ add_action( 'restrict_manage_posts', function($html) {
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo custom_date_filter_form(); // Return the result of the function, as intended.
 }, 10 );
-
-// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound

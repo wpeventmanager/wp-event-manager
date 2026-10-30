@@ -7,9 +7,7 @@ if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) 
     $wpem_field_to_hide = get_option('wpem_hide_organizer_fields');
 } else {
 	$wpem_field_to_hide = array();
-}
-// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-?>
+} ?>
 <!-- Organizer Counter -->
 <div class="wpem-organizer-connter">
 
@@ -19,7 +17,7 @@ if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) 
             <div class="organizer-counter-number-icon">
                 <div class="organizer-counter-upper-wrap">
                     <div class="organizer-counter-icon-wrap"><i class="wpem-icon-users"></i></div>
-                                        <div class="organizer-counter-number-wrap"><?php echo esc_attr( isset( $total_venues ) ? $total_venues : count( $wpem_organizers ) ); ?></div>
+                    <div class="organizer-counter-number-wrap"><?php echo esc_attr(count($wpem_organizers)); ?></div>
                 </div>
                 <div class="organizer-counter-bottom-wrap"><?php esc_html_e('Organizers', 'wp-event-manager'); ?></div>
             </div>
@@ -56,20 +54,17 @@ if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) 
         <div class="wpem-main wpem-row organizer-related-data-wrapper">
             <div class="wpem-col-md-12 organizer-related-info-wrapper">
                 <div class="wpem-row">
-                                        <?php
-                    foreach ($wpem_organizers_array as $wpem_letter => $wpem_organizers_group) : ?>
+                    <?php
+                    foreach ($wpem_organizers_array as $wpem_letter => $wpem_organizers) : ?>
                         <div id="show_<?php echo esc_attr($wpem_letter); ?>" class="show-organizer-info wpem-col-sm-12 wpem-col-md-6 wpem-col-lg-4">
                             <div class="wpem-list-group">
                                 <div class="organizer-group-header wpem-list-group-item wpem-list-group-item-success">
                                     <div><?php echo esc_attr($wpem_letter); ?></div>
                                 </div>
                                 <div class="organizer-name-list">
-                                    <?php foreach ($wpem_organizers_group as $wpem_organizer_id => $wpem_organizer_data) :
-                                        $wpem_count          = wpem_get_event_organizer_count($wpem_organizer_id);
-                                        $wpem_organizer_name = is_array( $wpem_organizer_data ) ? $wpem_organizer_data['name'] : $wpem_organizer_data;
-                                        $wpem_item_page      = is_array( $wpem_organizer_data ) && isset( $wpem_organizer_data['page'] ) ? absint( $wpem_organizer_data['page'] ) : 1;
-                                        ?>
-                                        <div class="organizer-list-items" data-page="<?php echo esc_attr( $wpem_item_page ); ?>">
+                                    <?php foreach ($wpem_organizers as $wpem_organizer_id => $wpem_organizer_name) :
+                                        $wpem_count = wpem_get_event_organizer_count($wpem_organizer_id); ?>
+                                        <div class="organizer-list-items">
                                             <a href="<?php echo esc_url(get_the_permalink($wpem_organizer_id)); ?>" class="wpem-list-group-item list-color" title="<?php esc_attr_e('Click here, for more info.', 'wp-event-manager'); ?>">
                                                 <?php $wpem_organizer = get_post($wpem_organizer_id); if(!in_array('organizer_logo', $wpem_field_to_hide)){?>
                                                 <?php if ($show_thumb && $show_thumb == 'true') : ?>
@@ -106,24 +101,3 @@ if($wpem_check_user_access == false && get_option('wpem_hide_data_from_guest')) 
     <?php endif; ?>
 </div>
 <!-- end Organizer Counter -->
-
-<?php
-if ( ! empty( $total_pages ) && $total_pages > 1 ) {
-
-	$current_page = ! empty( $paged ) ? absint( $paged ) : 1;
-
-	$pagination_args = array(
-		'base'      => esc_url_raw( add_query_arg( 'organizer_page', '%#%' ) ),
-		'format'    => '',
-		'current'   => $current_page,
-		'total'     => $total_pages,
-		'prev_text' => esc_html__( '←', 'wp-event-manager' ),
-		'next_text' => esc_html__( '→', 'wp-event-manager' ),
-		'type'      => 'list',
-	);
-
-	echo '<div class="wpem-organizer-pagination wpem-venue-pagination">';
-	echo wp_kses_post( paginate_links( $pagination_args ) );
-	echo '</div>';
-}
-// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

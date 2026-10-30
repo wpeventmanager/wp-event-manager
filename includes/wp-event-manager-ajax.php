@@ -226,7 +226,7 @@ class WP_Event_Manager_Ajax {
 
 			while ($upcoming_events->have_posts()) {
 				$upcoming_events->the_post();
-				wpem_get_event_manager_template_part('content', 'event_listing');
+				wpem_get_event_manager_template_part('content', 'past_event_listing');
 			}
 
 			$events_html = ob_get_clean();
@@ -305,8 +305,7 @@ class WP_Event_Manager_Ajax {
 
 		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$search_location = isset( $_POST['search_location'] ) ? sanitize_text_field( wp_unslash( $_POST['search_location'] ) ) : '';
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$search_categories = isset( $_POST['search_categories'] ) ? wp_unslash( $_POST['search_categories'] ) : '';
+		$search_categories = isset( $_POST['search_categories'] ) ? sanitize_text_field( wp_unslash( $_POST['search_categories'] ) ) : '';
 		$event_manager_keyword = isset( $_POST['search_keywords'] ) ? sanitize_text_field( wp_unslash( $_POST['search_keywords'] ) ) : '';
 		if( is_array( $search_categories ) ) {
 		$search_categories = array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_categories ) ) );
@@ -314,8 +313,7 @@ class WP_Event_Manager_Ajax {
 			$search_categories = sanitize_text_field( stripslashes( $search_categories ) );
 			$search_categories = explode( ',', $search_categories );
 		}
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$search_event_types = isset( $_POST['search_event_types'] ) ? wp_unslash( $_POST['search_event_types'] ) : '';
+		$search_event_types = isset( $_POST['search_event_types'] ) ? sanitize_text_field( wp_unslash( $_POST['search_event_types'] ) ) : '';
 		if( is_array( $search_event_types ) ) {
 			$search_event_types= array_filter( array_map( 'sanitize_text_field', array_map( 'stripslashes', $search_event_types) ) );
 		} else {
@@ -525,16 +523,11 @@ class WP_Event_Manager_Ajax {
 			$args['tax_query'] = array_merge( array( 'relation' => 'AND' ), $tax_query );
 		}
 		// phpcs:enable
-		 $upcoming_events = new WP_Query($args);
-		// $upcoming_events = wpem_get_event_listings($args);
-		// phpcs:disable WordPress.Security.NonceVerification.Missing
-		$query_args_string = http_build_query($_POST);
+		$upcoming_events = new WP_Query($args);
+
 		if ($upcoming_events->have_posts()) {
 			ob_start();
-			apply_filters('wpem_get_event_listings_result_args', $upcoming_events, $query_args_string);
-			$map_html = ob_get_clean();
-				
-			ob_start();
+
 			while ($upcoming_events->have_posts()) {
 				$upcoming_events->the_post();
 				wpem_get_event_manager_template_part('content', 'past_event_listing');
@@ -543,33 +536,22 @@ class WP_Event_Manager_Ajax {
 			$events_html = ob_get_clean();
 			$no_more_events = $upcoming_events->found_posts <= $paged * $per_page;
 
-			$response = array(
-				'events_html'    => $events_html,
-				'map_html'       => $map_html,
-				'no_more_events' => $no_more_events,
-				'max_num_pages'  => $upcoming_events->max_num_pages,
-			);
-
-			// When the shortcode is using numbered pagination (show_pagination="true"),
-			// also return freshly rendered pagination markup for the page that was
-			// requested, so the pagination nav can be kept in sync via ajax the same
-			// way the [events] shortcode does it, instead of relying on a full page reload.
-			if ( isset( $_POST['show_pagination'] ) && 'true' === sanitize_text_field( wp_unslash( $_POST['show_pagination'] ) ) ) {
-				$response['pagination'] = wpem_get_event_listing_pagination( $upcoming_events->max_num_pages, $paged );
-			}
-			// phpcs:enable WordPress.Security.NonceVerification.Missing
-
-			wp_send_json_success($response);
-		} else {
-			$no_events_html = '<div class="no_event_listings_found wpem-alert wpem-alert-danger">';
-			$no_events_html .= esc_html__('There are no events matching your search.', 'wp-event-manager');
-			$no_events_html .= '</div>';
-
 			wp_send_json_success(array(
-				'events_html'   => $no_events_html,
-				'max_num_pages' => 0,
+				'events_html' => $events_html,
+				'no_more_events' => $no_more_events
 			));
-		}
+			// wp_send_json_success(array(
+			// 	'events_html' => $events_html,
+			// ));
+			} else {
+				$no_events_html = '<div class="no_event_listings_found wpem-alert wpem-alert-danger">';
+				$no_events_html .= esc_html__('There are no events matching your search.', 'wp-event-manager');
+				$no_events_html .= '</div>';
+
+				wp_send_json_success(array(
+					'events_html' => $no_events_html
+				));
+			}
 		wp_reset_postdata();
 	}
 
@@ -678,13 +660,8 @@ class WP_Event_Manager_Ajax {
 			$args['orderby']  = 'featured' === $orderby ? 'date' : $orderby;
 		}
 
-		if(isset($_REQUEST['event_online']) && $_REQUEST['event_online'] !== '') {
-			$event_online_req = strtolower(trim(sanitize_text_field(wp_unslash($_REQUEST['event_online']))));
-			if(in_array($event_online_req, array('true', 'yes', '1'), true)) {
-				$args['event_online'] = 'yes';
-			} elseif(in_array($event_online_req, array('false', 'no', '0'), true)) {
-				$args['event_online'] = 'no';
-			}
+		if(isset($_REQUEST['event_online']) && ($_REQUEST['event_online'] === 'true' || $_REQUEST['event_online'] === 'false')) {
+			$args['event_online'] = ($_REQUEST['event_online'] === 'false') ? sanitize_text_field(wp_unslash($_REQUEST['event_online'])) : true;
 		}
 
 		ob_start();
@@ -857,16 +834,9 @@ class WP_Event_Manager_Ajax {
 			foreach ($_FILES as $file_key => $file) {
 				// Sanitize file key
 				$sanitized_file_key = sanitize_key($file_key);
-				// Security: over AJAX only images are allowed, unless a field key is explicitly whitelisted for documents.
-				$allowed_mime_types = event_manager_get_allowed_mime_types($sanitized_file_key);
-				$document_fields    = apply_filters('event_manager_ajax_document_upload_fields', array());
-				if (!in_array($sanitized_file_key, (array) $document_fields, true)) {
-					$allowed_mime_types = array_intersect($allowed_mime_types, array('image/jpeg', 'image/gif', 'image/png'));
-				}
 				$files_to_upload = event_manager_prepare_uploaded_files($file);
 				foreach ($files_to_upload as $file_to_upload) {
-					// $uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key));
-					$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key, 'allowed_mime_types' => $allowed_mime_types));
+					$uploaded_file = event_manager_upload_file($file_to_upload, array('file_key' => $sanitized_file_key));
 					if(is_wp_error($uploaded_file)) {
 						$data['files'][] = array('error' => $uploaded_file->get_error_message());
 					} else {

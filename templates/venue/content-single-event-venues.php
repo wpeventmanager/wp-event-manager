@@ -19,18 +19,11 @@ if (wpem_has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
     <div class="wpem-venue-wrapper wpem-listing-accordion-panel active" style="display: block;">
 
         <?php do_action('single_event_listing_venue_start'); 
-        $wpem_venue_ids = wpem_get_event_venue_ids($event_id);
-        
-        if (!is_array($wpem_venue_ids)) {
-    $wpem_venue_ids = !empty($wpem_venue_ids) ? array($wpem_venue_ids) : array();
-}        
+        $wpem_venue_id = wpem_get_event_venue_ids($event_id); 
+        $wpem_venue = get_post($wpem_venue_id); 
         if (get_option('event_manager_form_fields')) {
             $wpem_venue_custom_fields = get_option('event_manager_form_fields', true)['venue'];
-        } 
-        foreach ($wpem_venue_ids as $wpem_venue_id) :
-    $wpem_venue = get_post($wpem_venue_id);
-    if (!$wpem_venue || $wpem_venue->post_status !== 'publish') continue;
-        ?>
+        } ?>
         <div class="wpem-single-venue-profile-wrapper" id="wpem_venue_profile">
             <div class="wpem-venue-profile">
                 <?php do_action('single_event_listing_venue_start'); ?>
@@ -133,7 +126,6 @@ if (wpem_has_event_venue_ids($event_id) && !wpem_is_event_online($event_id)) :
                 <?php do_action('single_event_listing_venue_end'); ?>
             </div>
         </div>
-        <?php endforeach; //  loop end ?>
     </div>
 <?php elseif (wpem_get_event_venue_name($event_id) != '' && !wpem_is_event_online($event_id)) : ?>
     <div class="wpem-single-event-footer" itemscope itemtype="http://data-vocabulary.org/Organization">

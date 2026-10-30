@@ -1192,9 +1192,6 @@ input.wpem-theme-button:hover span {
   font-size: 14px;
   border-radius: 4px;
 }
-.wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-register-label + .wpem-event-cancel-label{
-    top: 45px;
-}
 .wpem-event-listings.wpem-event-listing-box-view .wpem-event-layout-wrapper .wpem-event-banner .wpem-event-date .wpem-event-date-type .wpem-from-date {
   display: inline-block;
   float: left;
@@ -3012,7 +3009,8 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-event-single-image-wrapper .wpem-event-single-image img,
 .wpem-single-event-page .wpem-single-event-wrapper .wpem-single-event-header-top .wpem-single-event-slider-wrapper .wpem-single-event-slider .wpem-slider-items img {
   width: 100%;
-  height: auto;  
+  height: auto;
+  max-height: 420px;
   object-fit: cover;
   display: block;
 }
@@ -3117,17 +3115,17 @@ div#event-manager-event-dashboard .wpem-responsive-table-block .wpem-social-icon
 }
 .organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-list-items .wpem-organizer-logo,
 .venue-related-data-wrapper .show-venue-info .wpem-list-group .venue-name-list .venue-list-items .wpem-venue-logo {
-  width: 50px;
+  width: 30px;
   height: auto;
-  max-height: 50px;
+  max-height: 30px;
   display: flex;
+  border: 1px solid var(--wpem-gray-border-color);
   margin-right: 10px;
 }
 .organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-list-items .wpem-organizer-logo img,
 .venue-related-data-wrapper .show-venue-info .wpem-list-group .venue-name-list .venue-list-items .wpem-venue-logo img {
   width: 100%;
   height: auto;
-  border-radius: 4px;
 }
 .organizer-related-data-wrapper .show-organizer-info .wpem-list-group .organizer-name-list .organizer-list-items .wpem-event-organizer-conunt-number,
 .venue-related-data-wrapper .show-venue-info .wpem-list-group .venue-name-list .venue-list-items .wpem-event-venue-conunt-number {
@@ -4921,46 +4919,3 @@ span.event-manager-uploaded-file {
 .wpem-form-wrapper .wpem-form-group textarea:hover {
   border-color: #b0cfe8;
 }
-
-/* venue pagination css (start) */
-.wpem-venue-pagination {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.wpem-venue-pagination ul.page-numbers {
-    display: inline-flex;
-    margin: 0 auto;
-    padding: 0;
-}
-
-.wpem-venue-pagination li {
-    list-style: none;
-    display: inline-block;
-    margin: 0 2px;
-}
-
-.wpem-venue-pagination a.page-numbers, .wpem-venue-pagination span.page-numbers {
-    border-radius: 2px;
-    border: 1px solid var(--wpem-gray-border-color);
-    transition: .2s;
-    padding: 5px 10px;
-    display: inline-block;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
-    background: var(--wpem-white-color);
-    color: var(--wpem-gray-color);
-    text-decoration: none;
-}
-
-.wpem-venue-pagination a.page-numbers:hover, .wpem-venue-pagination span.page-numbers:hover {
-    border-color: var(--wpem-gray-color);
-}
-
-.wpem-venue-pagination span.page-numbers.current {
-    border-color: var(--wpem-primary-color);
-    background: var(--wpem-primary-color);
-    color: var(--wpem-white-color);
-}
-/* venue pagination css (end) */
