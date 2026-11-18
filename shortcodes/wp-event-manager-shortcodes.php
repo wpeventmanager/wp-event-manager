@@ -312,10 +312,10 @@ class WP_Event_Manager_Shortcodes{
 		echo wp_kses_post($this->venue_dashboard_message);
 
 		$event_dashboard_columns = apply_filters('event_manager_event_dashboard_columns', array(
-			'event_title' => __('Title', 'wp-event-manager'),
-			'event_location' => __('Location', 'wp-event-manager'),
-			'event_start_date' => __('Start Date', 'wp-event-manager'),
-			'event_end_date' => __('End Date', 'wp-event-manager'),
+			// 'event_title' => __('Title', 'wp-event-manager'),
+			// 'event_location' => __('Location', 'wp-event-manager'),
+			// 'event_start_date' => __('Start Date', 'wp-event-manager'),
+			// 'event_end_date' => __('End Date', 'wp-event-manager'),
 			'view_count' => __('Viewed', 'wp-event-manager'),
 			'event_action' => __('Action', 'wp-event-manager'),
 		));
