@@ -495,15 +495,18 @@ function wpem_get_event_location($post = null){
  */
 function wpem_display_event_location($map_link = true, $post = null){
 
-	$location = wpem_get_event_location($post);
-	if(wpem_is_event_online($post)) {
-		echo wp_kses_post(apply_filters('wpem_display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
-	} else {
-		if($map_link === true || ($map_link && $map_link !== '-'))
-			echo wp_kses_post(apply_filters('wpem_display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
-		else
-			echo wp_kses_post($location);
-	}
+    $location = wpem_get_event_location($post);
+    if (wpem_is_event_online($post)) {
+        echo wp_kses_post(apply_filters('wpem_display_event_location_anywhere_text',__('Online Event', 'wp-event-manager')));
+    } else {
+        if ($map_link === true || ($map_link && $map_link !== '-')) {
+            $map_url = 'https://maps.google.com/maps?q=' . rawurlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false';
+            $output = '<a href="' . esc_url($map_url) . '" target="_blank" rel="noopener noreferrer">' . esc_html($location) . '</a>';
+            echo wp_kses_post( apply_filters( 'wpem_display_event_location_map_link', $output, $location, $post ));
+        } else {
+            echo wp_kses_post($location);
+        }
+    }
 }
 
 /**
