@@ -41,6 +41,9 @@ class WP_Event_Manager_Admin {
 			add_action('admin_notices', array($this, 'upgrade_database_notice'));
 		}
 		add_action('admin_notices', array($this, 'wpem_template_override_notice'));
+		// First activation welcome notification.
+add_action('admin_notices', array($this, 'wpem_welcome_notice'));
+add_action('wp_ajax_wpem_dismiss_welcome_notice', array($this, 'wpem_dismiss_welcome_notice'));
 
 		// Ajax
 		add_action('wp_ajax_wpem_upgrade_database', array($this, 'wpem_upgrade_database'));
@@ -103,6 +106,146 @@ class WP_Event_Manager_Admin {
 	}
 
 	/**
+ * Display first-activation welcome notification.
+ *
+ * @return void
+ */
+public function wpem_welcome_notice() {
+
+    if ( ! current_user_can('manage_options') ) {
+        return;
+    }
+
+    // Check whether the welcome notice was permanently dismissed.
+    if ( 'yes' === get_option('wpem_welcome_notice_dismissed', 'no') ) {
+        return;
+    }
+
+    $screen = get_current_screen();
+
+    if ( ! $screen ) {
+        return;
+    }
+
+    // Display only on Dashboard, Plugins and WP Event Manager pages.
+    $allowed_screens = array(
+        'dashboard',
+        'plugins',
+        'edit-event_listing',
+        'event_listing',
+    );
+
+    $is_wpem_page = in_array($screen->id, $allowed_screens, true)
+        || strpos($screen->id, 'event_listing_page_') === 0;
+
+    if ( ! $is_wpem_page ) {
+        return;
+    }
+    ?>
+
+    <div class="notice notice-info wpem-welcome-notice">
+
+        <button type="button" class="notice-dismiss wpem-welcome-dismiss">
+            <span class="screen-reader-text">
+                <?php esc_html_e('Dismiss this notice.', 'wp-event-manager'); ?>
+            </span>
+        </button>
+
+        <div class="wpem-welcome-content">
+
+            <div class="wpem-welcome-heading">
+                <h2>
+                    <?php esc_html_e('Welcome to WP Event Manager!', 'wp-event-manager'); ?>
+                </h2>
+
+                <p>
+                    <?php esc_html_e("Let's bring your events to life.", 'wp-event-manager'); ?>
+                </p>
+            </div>
+
+            <p>
+                <?php esc_html_e("Whether you're setting up your first event or building a complete event website, our team is here to help.", 'wp-event-manager'); ?>
+                <br>
+                <?php esc_html_e('Get personalised recommendations, speak directly with our team, or explore our live demo at your own pace.', 'wp-event-manager'); ?>
+            </p>
+
+            <div class="wpem-welcome-actions">
+
+                <button type="button" class="button button-primary wpem-open-zoho-form">
+                    <?php esc_html_e('Get Free Setup Guidance', 'wp-event-manager'); ?>
+                </button>
+
+                <a href="https://mymeeting.zohobookings.com/WPEM-Sahil/#/WPEM-Sahil"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="button button-secondary">
+                    <?php esc_html_e('Book a Free Call', 'wp-event-manager'); ?>
+                </a>
+
+                <a href="https://wp-eventmanager.com/wpem-demo/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="wpem-welcome-demo-link">
+                    <?php esc_html_e('Explore Live Demo', 'wp-event-manager'); ?>
+                </a>
+
+            </div>
+			<!-- Zoho Registration Form Modal -->
+<div id="wpem-zoho-modal" class="wpem-zoho-modal" style="display:none;">
+
+    <div class="wpem-zoho-modal-overlay"></div>
+
+    <div class="wpem-zoho-modal-content" role="dialog" aria-modal="true" aria-labelledby="wpem-zoho-modal-title">
+
+        <button type="button" class="wpem-zoho-close" aria-label="Close">
+            &times;
+        </button>
+
+        <h2 id="wpem-zoho-modal-title">
+            <?php esc_html_e('Get Free Setup Guidance', 'wp-event-manager'); ?>
+        </h2>
+
+        <iframe
+            id="ziframe_830693"
+            aria-label="WP Event Manager Setup Guidance Form"
+            frameborder="0"
+            style="height:500px;width:100%;border:none;"
+            src="about:blank">
+        </iframe>
+
+    </div>
+
+</div>
+
+            <p class="wpem-welcome-footer">
+                <?php esc_html_e('Free assistance. No purchase required.', 'wp-event-manager'); ?>
+            </p>
+
+        </div>
+
+    </div>
+
+    <?php
+}
+
+/**
+ * Permanently dismiss the welcome notification.
+ *
+ * @return void
+ */
+public function wpem_dismiss_welcome_notice() {
+
+    check_ajax_referer('wpem_welcome_notice_nonce', 'nonce');
+
+    if ( ! current_user_can('manage_options') ) {
+        wp_send_json_error();
+    }
+
+    update_option('wpem_welcome_notice_dismissed', 'yes');
+
+    wp_send_json_success();
+}
+	/**
 	 * Dismiss the template override notice for 10 days for the current user.
 	 *
 	 * @return void
@@ -139,6 +282,37 @@ class WP_Event_Manager_Admin {
 
 		global $wp_scripts;
 		$screen = get_current_screen();
+		// Load welcome notification styles on relevant admin pages.
+if (
+    $screen &&
+    (
+        in_array($screen->id, array('dashboard', 'plugins', 'edit-event_listing', 'event_listing'), true)
+        || strpos($screen->id, 'event_listing_page_') === 0
+    )
+) {
+    wp_enqueue_style(
+        'wpem-welcome-notice',
+        EVENT_MANAGER_PLUGIN_URL . '/assets/css/wpem-welcome.min.css',
+        array(),
+        EVENT_MANAGER_VERSION
+    );
+	wp_enqueue_script(
+    'wpem-welcome-notice',
+    EVENT_MANAGER_PLUGIN_URL . '/assets/js/wpem-welcome.min.js',
+    array('jquery'),
+    EVENT_MANAGER_VERSION,
+    true
+);
+
+wp_localize_script(
+    'wpem-welcome-notice',
+    'wpemWelcome',
+    array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce'    => wp_create_nonce('wpem_welcome_notice_nonce'),
+    )
+);
+}
 		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue', 'event_listing_page_event-manager-shortcodes', 'event_listing_page_event-manager-form-editor','event_registration_page_event-registrations-settings','event_zoom_page_event-manager-zoom-settings')))) {
 
 			// Main backend style - only enqueue on plugin pages
