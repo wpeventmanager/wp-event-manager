@@ -178,3 +178,117 @@ body.wpem-zoho-modal-open {
         min-height: 550px;
     }
 }
+
+.wpem-help-page {
+    max-width: 1100px;
+}
+
+.wpem-help-card {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-left: 4px solid #21a6df;
+    border-radius: 5px;
+    padding: 24px;
+    margin-top: 25px;
+}
+
+.wpem-help-card h2 {
+    font-size: 18px;
+    margin: 0 0 12px;
+    color: #252a30;
+}
+
+.wpem-help-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #50575e;
+}
+
+.wpem-help-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+.wpem-help-card {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-left: 4px solid #21a6df;
+    border-radius: 5px;
+    padding: 20px 24px;
+    margin: 20px 0;
+}
+
+.wpem-help-card h2 {
+    font-size: 18px;
+    margin: 0 0 12px;
+    color: #252a30;
+}
+
+.wpem-help-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #50575e;
+}
+
+.wpem-help-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+.wpem-event-footer-help {
+    text-align: center;
+    padding: 15px 0;
+    margin: 20px 0;
+    color: #646970;
+    font-size: 13px;
+}
+
+.wpem-event-footer-help .button-link {
+    color: #1688c1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.wpem-settings-help {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-left: 3px solid #21a6df;
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin: 25px 0;
+}
+
+.wpem-settings-help h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #252a30;
+}
+
+.wpem-settings-help .wpem-help-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.wpem-addons-help {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-left: 3px solid #21a6df;
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin: 25px 0;
+}
+
+.wpem-addons-help h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #252a30;
+}
+
+.wpem-addons-help .wpem-help-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

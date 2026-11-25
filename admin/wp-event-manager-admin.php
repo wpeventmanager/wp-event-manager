@@ -42,8 +42,25 @@ class WP_Event_Manager_Admin {
 		}
 		add_action('admin_notices', array($this, 'wpem_template_override_notice'));
 		// First activation welcome notification.
-add_action('admin_notices', array($this, 'wpem_welcome_notice'));
-add_action('wp_ajax_wpem_dismiss_welcome_notice', array($this, 'wpem_dismiss_welcome_notice'));
+		add_action('admin_notices', array($this, 'wpem_welcome_notice'));
+		// Display reusable Zoho form modal.
+		add_action('admin_footer', array($this, 'wpem_zoho_form_modal'));
+		// Display contextual help on All Events page.
+		add_action('admin_footer-edit.php', array($this, 'wpem_events_empty_state_help'));
+		// Display contextual help in Add New Event footer.
+		add_action('admin_footer-post-new.php', array($this, 'wpem_add_event_contextual_help'));
+		add_action('admin_footer-post.php', array($this, 'wpem_add_event_contextual_help'));
+		// Display contextual help on WP Event Manager Settings page.
+		add_action(
+			'admin_footer-event_listing_page_event-manager-settings',
+			array($this, 'wpem_settings_contextual_help')
+		);
+		// Display contextual help on Add-ons page.
+		add_action(
+			'admin_footer-event_listing_page_event-manager-addons',
+			array($this, 'wpem_addons_contextual_help')
+		);
+		add_action('wp_ajax_wpem_dismiss_welcome_notice', array($this, 'wpem_dismiss_welcome_notice'));
 
 		// Ajax
 		add_action('wp_ajax_wpem_upgrade_database', array($this, 'wpem_upgrade_database'));
@@ -191,31 +208,7 @@ public function wpem_welcome_notice() {
 
             </div>
 			<!-- Zoho Registration Form Modal -->
-<div id="wpem-zoho-modal" class="wpem-zoho-modal" style="display:none;">
 
-    <div class="wpem-zoho-modal-overlay"></div>
-
-    <div class="wpem-zoho-modal-content" role="dialog" aria-modal="true" aria-labelledby="wpem-zoho-modal-title">
-
-        <button type="button" class="wpem-zoho-close" aria-label="Close">
-            &times;
-        </button>
-
-        <h2 id="wpem-zoho-modal-title">
-            <?php esc_html_e('Get Free Setup Guidance', 'wp-event-manager'); ?>
-        </h2>
-
-        <iframe
-            id="ziframe_830693"
-            aria-label="WP Event Manager Setup Guidance Form"
-            frameborder="0"
-            style="height:500px;width:100%;border:none;"
-            src="about:blank">
-        </iframe>
-
-    </div>
-
-</div>
 
             <p class="wpem-welcome-footer">
                 <?php esc_html_e('Free assistance. No purchase required.', 'wp-event-manager'); ?>
@@ -224,6 +217,266 @@ public function wpem_welcome_notice() {
         </div>
 
     </div>
+
+    <?php
+}
+
+/**
+ * Display contextual help on Settings page.
+ *
+ * @return void
+ */
+public function wpem_settings_contextual_help() {
+
+    if ( ! current_user_can('manage_options') ) {
+        return;
+    }
+    ?>
+
+    <div id="wpem-settings-help" class="wpem-settings-help">
+
+        <h3>
+            <?php esc_html_e('Need help configuring WP Event Manager?', 'wp-event-manager'); ?>
+        </h3>
+
+        <div class="wpem-help-actions">
+
+            <button type="button" class="button button-primary wpem-open-zoho-form">
+                <?php esc_html_e('Get Free Setup Guidance', 'wp-event-manager'); ?>
+            </button>
+
+            <a href="https://mymeeting.zohobookings.com/WPEM-Sahil/#/WPEM-Sahil"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="button button-secondary">
+                <?php esc_html_e('Book a Free Call', 'wp-event-manager'); ?>
+            </a>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+
+    var helpSection = $('#wpem-settings-help');
+    var settingsContent = $('.admin-setting-left');
+
+    if (helpSection.length && settingsContent.length) {
+        settingsContent.append(helpSection);
+        helpSection.show();
+    }
+
+});
+    </script>
+
+    <?php
+}
+
+
+/**
+ * Display contextual help on Add-ons page.
+ *
+ * @return void
+ */
+public function wpem_addons_contextual_help() {
+
+    if ( ! current_user_can('manage_options') ) {
+        return;
+    }
+    ?>
+
+    <div id="wpem-addons-help" class="wpem-addons-help" style="display:none;">
+
+        <h3>
+            <?php esc_html_e('Not sure which add-ons you need?', 'wp-event-manager'); ?>
+        </h3>
+
+        <div class="wpem-help-actions">
+
+            <a href="https://mymeeting.zohobookings.com/WPEM-Sahil/#/WPEM-Sahil"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="button button-primary">
+                <?php esc_html_e('Book a Free Call', 'wp-event-manager'); ?>
+            </a>
+
+            <a href="https://wp-eventmanager.com/wpem-demo/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="button button-secondary">
+                <?php esc_html_e('Explore Live Demo', 'wp-event-manager'); ?>
+            </a>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+
+        var helpSection = $('#wpem-addons-help');
+        var pageContent = $('.wrap').first();
+
+        if (helpSection.length && pageContent.length) {
+            pageContent.append(helpSection);
+            helpSection.show();
+        }
+
+    });
+    </script>
+
+    <?php
+}
+
+
+/**
+ * Display contextual help link in event editor footer.
+ *
+ * @return void
+ */
+public function wpem_add_event_contextual_help() {
+
+    if ( ! current_user_can('edit_posts') ) {
+        return;
+    }
+
+    $screen = get_current_screen();
+
+    if (
+        ! $screen ||
+        'post' !== $screen->base ||
+        'event_listing' !== $screen->post_type
+    ) {
+        return;
+    }
+    ?>
+
+    <div class="wpem-event-footer-help">
+        <?php esc_html_e('Need help setting up your events?', 'wp-event-manager'); ?>
+
+        <button type="button" class="button-link wpem-open-zoho-form">
+            <?php esc_html_e('Get Free Setup Guidance', 'wp-event-manager'); ?>
+        </button>
+    </div>
+
+    <?php
+}
+
+/**
+ * Display reusable Zoho registration form modal.
+ *
+ * @return void
+ */
+public function wpem_zoho_form_modal() {
+
+    if ( ! current_user_can('manage_options') ) {
+        return;
+    }
+
+    ?>
+    <div id="wpem-zoho-modal" class="wpem-zoho-modal" style="display:none;">
+
+        <div class="wpem-zoho-modal-overlay"></div>
+
+        <div class="wpem-zoho-modal-content" role="dialog" aria-modal="true" aria-labelledby="wpem-zoho-modal-title">
+
+            <button type="button" class="wpem-zoho-close" aria-label="<?php esc_attr_e('Close', 'wp-event-manager'); ?>">
+                &times;
+            </button>
+
+            <h2 id="wpem-zoho-modal-title">
+                <?php esc_html_e('Get Free Setup Guidance', 'wp-event-manager'); ?>
+            </h2>
+
+            <iframe
+                id="ziframe_830693"
+                aria-label="WP Event Manager Setup Guidance Form"
+                frameborder="0"
+                style="height:500px;width:100%;border:none;"
+                src="about:blank">
+            </iframe>
+
+        </div>
+
+    </div>
+    <?php
+}
+
+/**
+ * Display contextual help when no events exist.
+ *
+ * @return void
+ */
+public function wpem_events_empty_state_help() {
+
+    if ( ! current_user_can('manage_options') ) {
+        return;
+    }
+
+    $screen = get_current_screen();
+
+    if ( ! $screen || 'edit-event_listing' !== $screen->id ) {
+        return;
+    }
+
+    // Get event counts.
+    $event_counts = wp_count_posts('event_listing');
+
+    $total_events = 0;
+
+    foreach (array('publish', 'pending', 'draft', 'future', 'private') as $status) {
+        if (isset($event_counts->$status)) {
+            $total_events += (int) $event_counts->$status;
+        }
+    }
+
+    // Do not display help when events already exist.
+    if ($total_events > 0) {
+        return;
+    }
+    ?>
+
+    <div id="wpem-events-empty-help" class="wpem-help-card" style="display:none;">
+
+        <h2>
+            <?php esc_html_e('Need Help Getting Started?', 'wp-event-manager'); ?>
+        </h2>
+
+        <p>
+            <?php esc_html_e('Our team can help you set up your event website based on your requirements.', 'wp-event-manager'); ?>
+        </p>
+
+        <div class="wpem-help-actions">
+
+            <button type="button" class="button button-primary wpem-open-zoho-form">
+                <?php esc_html_e('Get Free Setup Guidance', 'wp-event-manager'); ?>
+            </button>
+
+            <a href="https://wp-eventmanager.com/wpem-demo/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="button button-secondary">
+                <?php esc_html_e('Explore Live Demo', 'wp-event-manager'); ?>
+            </a>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+
+        var helpCard = $('#wpem-events-empty-help');
+        var eventsList = $('#posts-filter');
+
+        if (helpCard.length && eventsList.length) {
+            eventsList.after(helpCard);
+            helpCard.show();
+        }
+
+    });
+    </script>
 
     <?php
 }
@@ -286,7 +539,7 @@ public function wpem_dismiss_welcome_notice() {
 if (
     $screen &&
     (
-        in_array($screen->id, array('dashboard', 'plugins', 'edit-event_listing', 'event_listing'), true)
+        in_array($screen->id, array('dashboard', 'plugins', 'edit-event_listing', 'event_listing','event_listing_page_event-manager-settings','event_listing_page_event-manager-addons'), true)
         || strpos($screen->id, 'event_listing_page_') === 0
     )
 ) {
@@ -415,6 +668,15 @@ wp_localize_script(
 		if(apply_filters('event_manager_show_addons_page', true)) {
 			add_submenu_page('edit.php?post_type=event_listing', __('WP Event Manager Add-ons', 'wp-event-manager'), __('Add-ons', 'wp-event-manager'), 'manage_options', 'event-manager-addons', array($this, 'addons_page'));
 		}
+		// Help & Getting Started page.
+add_submenu_page(
+    'edit.php?post_type=event_listing',
+    __('Help & Getting Started', 'wp-event-manager'),
+    __('Help & Getting Started', 'wp-event-manager'),
+    'manage_options',
+    'wpem-help-getting-started',
+    array($this, 'help_getting_started_page')
+);
 	}
 
 	/**
@@ -583,6 +845,72 @@ A prior Backup does no harm before updating the plugin!',
 		$addons = include 'wp-event-manager-addons.php';
 		$addons->output();
 	}
+
+	/**
+ * Display Help & Getting Started page.
+ *
+ * @return void
+ */
+
+/**
+ * Display Help & Getting Started page.
+ *
+ * @return void
+ */
+public function help_getting_started_page() {
+    ?>
+    <div class="wrap wp_event_manager wpem-help-page">
+
+        <h1>
+            <?php esc_html_e('Help & Getting Started', 'wp-event-manager'); ?>
+        </h1>
+
+        <p>
+            <?php esc_html_e('Need help setting up your event website? Our team is here to help you.', 'wp-event-manager'); ?>
+        </p>
+
+        <div class="wpem-help-card">
+
+            <h2>
+                <?php esc_html_e('Need Help with WP Event Manager?', 'wp-event-manager'); ?>
+            </h2>
+
+            <p>
+                <?php esc_html_e('Whether you are setting up your first event or configuring your event website, our team is here to help.', 'wp-event-manager'); ?>
+            </p>
+
+            <p>
+                <?php esc_html_e('Get personalised recommendations, speak directly with our team, or explore our live demo.', 'wp-event-manager'); ?>
+            </p>
+
+            <div class="wpem-help-actions">
+
+                <button type="button" class="button button-primary wpem-open-zoho-form">
+                    <?php esc_html_e('Get Free Setup Guidance', 'wp-event-manager'); ?>
+                </button>
+
+                <a href="https://mymeeting.zohobookings.com/WPEM-Sahil/#/WPEM-Sahil"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="button button-secondary">
+                    <?php esc_html_e('Book a Free Call', 'wp-event-manager'); ?>
+                </a>
+
+                <a href="https://wp-eventmanager.com/wpem-demo/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="button button-secondary">
+                    <?php esc_html_e('Explore Live Demo', 'wp-event-manager'); ?>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+    <?php
+}
+
 
 	/**
 	 * Output shortcode page.
