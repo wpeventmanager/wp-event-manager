@@ -292,3 +292,29 @@ body.wpem-zoho-modal-open {
     flex-wrap: wrap;
     gap: 10px;
 }
+.wpem-admin-footer-help {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 0;
+    background: #f0f0f1;
+}
+
+.wpem-admin-footer-help p {
+    margin: 0;
+    color: #50575e;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.wpem-admin-footer-help a {
+    color: #21a6df;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.wpem-admin-footer-help a:hover {
+    color: #1688bb;
+    text-decoration: underline;
+}

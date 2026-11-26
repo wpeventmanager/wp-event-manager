@@ -373,6 +373,22 @@ public function wpem_zoho_form_modal() {
     if ( ! current_user_can('manage_options') ) {
         return;
     }
+	$screen = get_current_screen();
+
+$allowed_screens = array(
+    'dashboard',
+    'plugins',
+    'edit-event_listing',
+    'event_listing',
+    'event_listing_page_event-manager-settings',
+    'event_listing_page_event-manager-addons',
+    'dashboard_page_event-manager-setup',
+    'event_listing_page_wpem-help-getting-started'
+);
+
+if ( ! $screen || ! in_array( $screen->id, $allowed_screens, true ) ) {
+    return;
+}
 
     ?>
     <div id="wpem-zoho-modal" class="wpem-zoho-modal" style="display:none;">
@@ -539,7 +555,7 @@ public function wpem_dismiss_welcome_notice() {
 if (
     $screen &&
     (
-        in_array($screen->id, array('dashboard', 'plugins', 'edit-event_listing', 'event_listing','event_listing_page_event-manager-settings','event_listing_page_event-manager-addons'), true)
+        in_array($screen->id, array('dashboard', 'plugins', 'edit-event_listing', 'event_listing','event_listing_page_event-manager-settings','event_listing_page_event-manager-addons','dashboard_page_event-manager-setup'), true)
         || strpos($screen->id, 'event_listing_page_') === 0
     )
 ) {

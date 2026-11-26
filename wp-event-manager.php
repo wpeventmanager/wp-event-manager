@@ -136,6 +136,7 @@ class WP_Event_Manager {
 		
 		// Defaults for core actions
 		add_action('event_manager_notify_new_user', 'wp_event_manager_notify_new_user', 10, 2);
+		add_action( 'admin_footer', array( $this, 'wpem_setup_wizard_footer_help' ) );
 
 		// Duplicate the_content filter for Wp event Manager plugin
 		global $wp_embed;
@@ -425,6 +426,7 @@ add_option('wpem_welcome_notice_dismissed', 'no');
 			wp_schedule_event(time(), 'twicedaily', 'event_manager_clear_expired_transients');
 		}
 	}
+	
 	/**
 	 * Restrict access to the dashboard for non-organizer and non-administrator users.
 	 *
@@ -458,7 +460,25 @@ add_option('wpem_welcome_notice_dismissed', 'no');
     		}
     	}
     }
+	    public function wpem_setup_wizard_footer_help() {
+
+        if (
+            ! isset( $_GET['page'] ) ||
+            'event-manager-setup' !== sanitize_text_field( wp_unslash( $_GET['page'] ) )
+        ) {
+            return;
+        }
+        ?>
+        <div class="wpem-admin-footer-help">
+            <p>
+                Need help setting up WP Event Manager?
+                <a href="#" class="wpem-open-zoho-form">Get Free Setup Guidance</a>
+            </p>
+        </div>
+        <?php
+    }
 }
+
 
 /**
  * Create link on plugin page for event manager plugin settings.
@@ -470,6 +490,7 @@ function wpem_add_plugin_page_event_manager_settings_link($links) {
         return $links;
 }
 add_filter('plugin_action_links_'.plugin_basename(__FILE__), 'wpem_add_plugin_page_event_manager_settings_link');
+
 
 /**
  * Main instance of WP Event Manager.
